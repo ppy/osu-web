@@ -5,8 +5,8 @@ import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { UserEntryList } from './contest/user-entry-list'
 
-core.reactTurbolinks.register 'admin-contest-user-entry-list', true, (el) ->
+core.reactTurbolinks.register 'admin-contest-user-entry-list', (container) ->
   createElement UserEntryList,
-    container: el
+    container: container
     contest: osu.parseJson('json-contest')
     entries: osu.parseJson('json-contest-entries')

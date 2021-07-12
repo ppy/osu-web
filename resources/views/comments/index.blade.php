@@ -17,5 +17,5 @@
     <script id="json-index" type="application/json">
         {!! json_encode($commentBundle->toArray()) !!}
     </script>
-    @include('layout._extra_js', ['src' => 'js/react/comments-index.js'])
+    @include('layout._react_js', ['src' => 'js/react/comments-index.js'])
 @endsection

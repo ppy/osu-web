@@ -5,6 +5,6 @@ import { Main } from 'groups-show/main';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
-core.reactTurbolinks.register('groups-show', true, () => (
+core.reactTurbolinks.register('groups-show', () => (
   <Main group={osu.parseJson('json-group')} users={osu.parseJson('json-users')} />
 ));

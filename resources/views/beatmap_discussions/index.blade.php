@@ -146,5 +146,5 @@
         {!! json_encode($json) !!}
     </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/beatmap-discussions-history.js'])
+    @include('layout._react_js', ['src' => 'js/react/beatmap-discussions-history.js'])
 @endsection

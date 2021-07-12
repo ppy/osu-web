@@ -5,16 +5,16 @@ import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { Main } from './modding-profile/main'
 
-core.reactTurbolinks.register 'modding-profile', true, (target) ->
+core.reactTurbolinks.register 'modding-profile', (container) ->
   createElement Main,
     beatmaps: osu.parseJson('json-beatmaps')
-    container: target
+    container: container
     discussions: osu.parseJson('json-discussions')
     events: osu.parseJson('json-events')
     extras: osu.parseJson('json-extras')
     perPage: osu.parseJson('json-perPage')
     posts: osu.parseJson('json-posts')
-    reviewsConfig: osu.parseJson 'json-reviewsConfig'
+    reviewsConfig: osu.parseJson('json-reviewsConfig')
     user: osu.parseJson('json-user')
     users: osu.parseJson('json-users')
     votes: osu.parseJson('json-votes')
