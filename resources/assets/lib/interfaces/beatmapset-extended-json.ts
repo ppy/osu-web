@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import UserJson from './user-json';
 
 interface AvailabilityInterface {
   download_disabled: boolean;
@@ -19,6 +20,7 @@ export default interface BeatmapsetExtendedJson extends BeatmapsetJson {
   ranked: number;
   ranked_date: string;
   ratings: number[];
+  related_users: UserJson[];
   submitted_date: string;
   storyboard: boolean;
 }

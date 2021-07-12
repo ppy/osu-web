@@ -337,6 +337,7 @@ class BeatmapsetsController extends Controller
             'language',
             'ratings',
             'recent_favourites',
+            'related_users',
             'user',
         ]);
     }
