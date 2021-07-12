@@ -5,7 +5,6 @@
 
 namespace App\Models\Solo;
 
-use App\Exceptions\GameCompletedException;
 use App\Exceptions\InvariantException;
 use App\Libraries\ModsHelper;
 use App\Libraries\ScoreCheck;
@@ -59,10 +58,6 @@ class Score extends Model
 
     public function complete(array $params): void
     {
-        if ($this->isCompleted()) {
-            throw new GameCompletedException('cannot modify score after submission');
-        }
-
         $this->fill($params);
 
         ScoreCheck::assertCompleted($this);
