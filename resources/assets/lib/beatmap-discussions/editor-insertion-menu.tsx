@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
-import * as _ from 'lodash';
+import { Cancelable, throttle } from 'lodash';
 import { Portal } from 'portal';
 import * as React from 'react';
 import { Editor as SlateEditor, Element as SlateElement, Node as SlateNode, Point, Text as SlateText, Transforms } from 'slate';
@@ -15,24 +15,34 @@ interface Props {
 }
 
 export class EditorInsertionMenu extends React.Component<Props> {
-  static contextType = SlateContext;
-  bn = 'beatmap-discussion-editor-insertion-menu';
+  static readonly contextType = SlateContext;
   declare context: React.ContextType<typeof SlateContext>;
-  hideInsertMenuTimer?: number;
-  hoveredBlock: HTMLElement | undefined;
-  insertPosition: 'above' | 'below' | undefined;
-  insertRef: React.RefObject<HTMLDivElement> = React.createRef();
-  mouseOver = false;
-  scrollContainer: HTMLElement | undefined;
-  // setTimeout delay is to prevent flashing when hovering the menu (the portal is not inside the container, so it fires a mouseleave)
-  throttledContainerMouseExit = _.throttle(() => {
-    setTimeout(this.hideMenu.bind(this), 100);
-  }, 10);
-  throttledContainerMouseMove = _.throttle(this.containerMouseMove.bind(this), 10);
-  throttledMenuMouseEnter = _.throttle(this.menuMouseEnter.bind(this), 10);
-  throttledMenuMouseExit = _.throttle(this.menuMouseLeave.bind(this), 10);
-  throttledScroll = _.throttle(this.forceHideMenu.bind(this), 10);
+  private readonly bn = 'beatmap-discussion-editor-insertion-menu';
   private readonly eventId = `editor-insertion-menu-${nextVal()}`;
+  private hideInsertMenuTimer?: number;
+  private hoveredBlock: HTMLElement | undefined;
+  private insertPosition: 'above' | 'below' | undefined;
+  private readonly insertRef: React.RefObject<HTMLDivElement> = React.createRef();
+  private mouseOver = false;
+  private scrollContainer: HTMLElement | undefined;
+  private readonly throttledContainerMouseExit: (() => void) & Cancelable;
+  private readonly throttledContainerMouseMove: ((event: JQuery.MouseMoveEvent) => void) & Cancelable;
+  private readonly throttledMenuMouseEnter: (() => void) & Cancelable;
+  private readonly throttledMenuMouseExit: (() => void) & Cancelable;
+  private readonly throttledScroll: (() => void) & Cancelable;
+
+  constructor(props: Props) {
+    super(props);
+
+    // setTimeout delay is to prevent flashing when hovering the menu (the portal is not inside the container, so it fires a mouseleave)
+    this.throttledContainerMouseExit = throttle(() => {
+      setTimeout(this.hideMenu, 100);
+    }, 10);
+    this.throttledContainerMouseMove = throttle(this.containerMouseMove, 10);
+    this.throttledMenuMouseEnter = throttle(this.menuMouseEnter, 10);
+    this.throttledMenuMouseExit = throttle(this.menuMouseLeave, 10);
+    this.throttledScroll = throttle(this.forceHideMenu, 10);
+  }
 
   componentDidMount() {
     if (this.insertRef.current) {
@@ -57,7 +67,38 @@ export class EditorInsertionMenu extends React.Component<Props> {
     }
   }
 
-  containerMouseMove(event: JQuery.MouseMoveEvent) {
+  render() {
+    return (
+      <Portal>
+        <div
+          ref={this.insertRef}
+          className={`${this.bn}`}
+        >
+          <div className={`${this.bn}__body`}>
+            <i className='fas fa-plus' />
+            <div className={`${this.bn}__buttons`}>
+              {this.insertButton('suggestion')}
+              {this.insertButton('problem')}
+              {this.insertButton('praise')}
+              {this.insertButton('paragraph')}
+            </div>
+          </div>
+        </div>
+      </Portal>
+    );
+  }
+
+  setScrollContainer(container: HTMLElement) {
+    if (this.scrollContainer) {
+      $(this.scrollContainer).off(`.${this.eventId}`);
+    }
+    this.scrollContainer = container;
+    $(this.scrollContainer).on(`mousemove.${this.eventId}`, this.throttledContainerMouseMove);
+    $(this.scrollContainer).on(`mouseleave.${this.eventId}`, this.throttledContainerMouseExit);
+    $(this.scrollContainer).on(`scroll.${this.eventId}`, this.throttledScroll);
+  }
+
+  private containerMouseMove = (event: JQuery.MouseMoveEvent) => {
     if (!event.originalEvent) {
       return;
     }
@@ -96,22 +137,22 @@ export class EditorInsertionMenu extends React.Component<Props> {
     this.updatePosition();
     this.showMenu();
     this.startHideTimer();
-  }
+  };
 
-  forceHideMenu() {
+  private forceHideMenu = () => {
     this.mouseOver = false;
     this.hideMenu();
-  }
+  };
 
-  hideMenu() {
+  private hideMenu = () => {
     if (!this.insertRef.current || this.mouseOver) {
       return;
     }
 
     this.insertRef.current.style.display = 'none';
-  }
+  };
 
-  insertBlock = (event: React.MouseEvent<HTMLElement>) => {
+  private insertBlock = (event: React.MouseEvent<HTMLElement>) => {
     const ed: ReactEditor = this.context;
     const slateNodeElement = this.hoveredBlock?.lastChild;
     const type = event.currentTarget.dataset.discussionType;
@@ -178,7 +219,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
     Transforms.insertNodes(ed, insertNode, { at: insertAt });
   };
 
-  insertButton = (type: string) => {
+  private insertButton = (type: string) => {
     let icon = 'fas fa-question';
 
     switch (type) {
@@ -205,61 +246,30 @@ export class EditorInsertionMenu extends React.Component<Props> {
     );
   };
 
-  menuMouseEnter() {
+  private menuMouseEnter = () => {
     this.mouseOver = true;
-  }
+  };
 
-  menuMouseLeave() {
+  private menuMouseLeave = () => {
     this.mouseOver = false;
     this.startHideTimer();
-  }
+  };
 
-  render() {
-    return (
-      <Portal>
-        <div
-          ref={this.insertRef}
-          className={`${this.bn}`}
-        >
-          <div className={`${this.bn}__body`}>
-            <i className='fas fa-plus' />
-            <div className={`${this.bn}__buttons`}>
-              {this.insertButton('suggestion')}
-              {this.insertButton('problem')}
-              {this.insertButton('praise')}
-              {this.insertButton('paragraph')}
-            </div>
-          </div>
-        </div>
-      </Portal>
-    );
-  }
-
-  setScrollContainer(container: HTMLElement) {
-    if (this.scrollContainer) {
-      $(this.scrollContainer).off(`.${this.eventId}`);
-    }
-    this.scrollContainer = container;
-    $(this.scrollContainer).on(`mousemove.${this.eventId}`, this.throttledContainerMouseMove);
-    $(this.scrollContainer).on(`mouseleave.${this.eventId}`, this.throttledContainerMouseExit);
-    $(this.scrollContainer).on(`scroll.${this.eventId}`, this.throttledScroll);
-  }
-
-  showMenu() {
+  private showMenu() {
     if (this.insertRef.current) {
       this.insertRef.current.style.display = 'flex';
     }
   }
 
-  startHideTimer() {
+  private startHideTimer() {
     if (this.hideInsertMenuTimer) {
       window.clearTimeout(this.hideInsertMenuTimer);
     }
 
-    this.hideInsertMenuTimer = window.setTimeout(this.hideMenu.bind(this), 2000);
+    this.hideInsertMenuTimer = window.setTimeout(this.hideMenu, 2000);
   }
 
-  updatePosition() {
+  private updatePosition() {
     if (!this.scrollContainer || !this.hoveredBlock || !this.insertRef.current) {
       return;
     }
