@@ -9,6 +9,7 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
+import { getBeatmapMapper } from 'utils/beatmap-helper';
 import Extra from './extra';
 import Metadata from './metadata';
 import Stats from './stats';
@@ -35,10 +36,7 @@ function formatDuration(value: number) {
 export default class Header extends React.PureComponent<Props> {
   render() {
     const showedBeatmap = this.props.hoveredBeatmap ?? this.props.currentBeatmap;
-    const mapper = {
-      id: showedBeatmap.user_id,
-      username: this.props.beatmapset.related_users.find((user) => user.id === showedBeatmap.user_id)?.username ?? '',
-    };
+    const mapper = getBeatmapMapper(this.props.beatmapset, showedBeatmap);
 
     return (
       <div className='beatmapset-info'>
@@ -62,7 +60,7 @@ export default class Header extends React.PureComponent<Props> {
                   ':mapper':
                     <UserLink
                       key='mapper'
-                      user={mapper}
+                      user={{ id: mapper.id, username: mapper.username }}
                     />,
                 }}
                 pattern={osu.trans('beatmapsets.show.details.mapped_by')}

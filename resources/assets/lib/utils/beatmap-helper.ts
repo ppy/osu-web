@@ -3,11 +3,12 @@
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJson from 'interfaces/beatmap-json';
-import { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
+import BeatmapJsonExtended, { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import * as _ from 'lodash';
+import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 
 export const modes: GameMode[] = ['osu', 'taiko', 'fruits', 'mania'];
@@ -91,6 +92,16 @@ export function getArtist(beatmapset: BeatmapsetJson) {
   }
 
   return beatmapset.artist;
+}
+
+export function getBeatmapMapper(beatmapset: BeatmapsetExtendedJson, beatmap: BeatmapJsonExtended) {
+  const mapper = beatmapset.related_users.find((user) => user.id === beatmap.user_id);
+
+  if (mapper === undefined) {
+    return deletedUser.toJson();
+  }
+
+  return mapper;
 }
 
 export function getNominators(beatmapset: BeatmapsetExtendedJson) {
