@@ -83,8 +83,8 @@ export default class Room extends React.Component<Props> {
             <div
               className='multiplayer-room__difficulty'
               style={{
-                '--max-difficulty': `var(--diff-${getDiffRating(this.maxDifficulty)})`,
-                '--min-difficulty': `var(--diff-${getDiffRating(this.minDifficulty)})`,
+                '--max-difficulty': osu.diffColour(this.maxDifficulty),
+                '--min-difficulty': osu.diffColour(this.minDifficulty),
               } as React.CSSProperties}
             >
               <DifficultyBadge rating={this.minDifficulty} />
