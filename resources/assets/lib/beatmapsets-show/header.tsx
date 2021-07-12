@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapList from 'beatmap-discussions/beatmap-list';
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import * as React from 'react';
@@ -15,7 +15,7 @@ import BeatmapPicker from './beatmap-picker';
 
 interface Props {
   beatmaps: Map<GameMode, BeatmapJsonExtended[]>;
-  beatmapset: BeatmapsetJson;
+  beatmapset: BeatmapsetExtendedJson;
   currentBeatmap: BeatmapJsonExtended;
 }
 
@@ -88,6 +88,7 @@ export default class Header extends React.PureComponent<Props> {
           <div className='beatmapset-header__chooser-list'>
             <BeatmapList
               beatmaps={this.beatmaps}
+              beatmapset={this.props.beatmapset}
               createLink={this.createLink}
               currentBeatmap={this.props.currentBeatmap}
               large={false}

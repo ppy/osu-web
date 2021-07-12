@@ -3,13 +3,16 @@
 
 import Blackout from 'blackout';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import * as React from 'react';
+import { getBeatmapMapper } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { nextVal } from 'utils/seq';
 import BeatmapListItem from './beatmap-list-item';
 
 interface Props {
   beatmaps: BeatmapJsonExtended[];
+  beatmapset: BeatmapsetExtendedJson;
   createLink: (beatmap: BeatmapJsonExtended) => string;
   currentBeatmap: BeatmapJsonExtended;
   getCount?: (beatmap: BeatmapJsonExtended) => number | undefined;
@@ -61,6 +64,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
             <BeatmapListItem
               beatmap={this.props.currentBeatmap}
               large={this.props.large}
+              mapper={getBeatmapMapper(this.props.beatmapset, this.props.currentBeatmap)}
               withButton='down'
             />
           </a>
@@ -82,7 +86,11 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
         href={this.props.createLink(beatmap)}
         onClick={this.selectBeatmap}
       >
-        <BeatmapListItem beatmap={beatmap} count={this.props.getCount?.(beatmap)} />
+        <BeatmapListItem
+          beatmap={beatmap}
+          count={this.props.getCount?.(beatmap)}
+          mapper={getBeatmapMapper(this.props.beatmapset, beatmap)}
+        />
       </a>
     );
   }
