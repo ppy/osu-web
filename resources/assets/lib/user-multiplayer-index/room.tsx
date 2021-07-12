@@ -13,7 +13,6 @@ import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
 import UserMultiplayerHistoryContext from 'user-multiplayer-history-context';
-import { getDiffRating } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
