@@ -62,10 +62,12 @@ class CommentNew extends BroadcastNotificationBase
         if ($this->comment->parent !== null) {
             // also notify parent if option is enabled.
             $user = $this->comment->parent->user;
-            $notificationOption = $user->notificationOptions()->where('name', Notification::COMMENT_NEW)->first();
+            if ($user !== null) {
+                $notificationOption = $user->notificationOptions()->where('name', Notification::COMMENT_NEW)->first();
 
-            if ($notificationOption->details[UserNotificationOption::COMMENT_REPLY] ?? true) {
-                $userIds->push($user->getKey());
+                if ($notificationOption->details[UserNotificationOption::COMMENT_REPLY] ?? true) {
+                    $userIds->push($user->getKey());
+                }
             }
         }
 

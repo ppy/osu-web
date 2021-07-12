@@ -21,5 +21,5 @@
         {!! json_encode($scoreJson) !!}
     </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/scores-show.js'])
+    @include('layout._react_js', ['src' => 'js/react/scores-show.js'])
 @endsection

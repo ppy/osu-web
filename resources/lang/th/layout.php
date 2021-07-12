@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'การวิจารณ์บีทแมพ',
+            'multiplayer' => '',
             'show' => 'ข้อมูล',
         ],
     ],

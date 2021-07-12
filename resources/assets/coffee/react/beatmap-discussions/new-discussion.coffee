@@ -30,12 +30,12 @@ export class NewDiscussion extends React.PureComponent
 
   componentDidMount: =>
     @setTop()
-    $(window).on 'resize.new-discussion', @setTop
+    $(window).on 'resize', @setTop
     @inputBox.current?.focus() if @props.autoFocus
 
 
   componentWillUnmount: =>
-    $(window).off '.new-discussion'
+    $(window).off 'resize', @setTop
     @postXhr?.abort()
     @throttledPost.cancel()
 

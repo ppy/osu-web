@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Gioco scorretto / Cheating',
+            'multiple_accounts' => '',
             'insults' => 'Insulti a me / altri',
             'spam' => 'Spamming',
             'unwanted_content' => 'Condivisione di contenuti inappropriati',
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Più recenti',
                 'title' => 'Medaglie',
             ],
+            'multiplayer' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => 'Post',
                 'title_longer' => 'Post Recenti',
@@ -429,6 +433,6 @@ return [
     'view_mode' => [
         'brick' => 'Vista a blocchi',
         'card' => 'Vista a schede',
-        'list' => 'Vista ad elenco',
+        'list' => 'Vista a elenco',
     ],
 ];

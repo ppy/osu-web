@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch } from 'app-dispatcher';
 import { route } from 'laroute';
 import { forEach, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
+import core from 'osu-core-singleton';
 import SocketMessageEvent from 'socket-message-event';
 
 const isNotificationEventLogoutJson = (arg: any): arg is NotificationEventLogoutJson => arg.event === 'logout';
@@ -110,7 +110,7 @@ export default class SocketWorker {
 
     if (isNotificationEventLogoutJson(eventData)) {
       this.destroy();
-      dispatch(new UserLogoutAction());
+      core.userLoginObserver.logout();
     } else if (isNotificationEventVerifiedJson(eventData)) {
       $.publish('user-verification:success');
     } else {

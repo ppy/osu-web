@@ -34,19 +34,10 @@ class MultiplayerController extends Controller
         $beatmaps = $rooms->pluck('playlist')->flatten(1)->pluck('beatmap')->unique()->values();
         $beatmapsets = $beatmaps->pluck('beatmapset')->unique()->values();
 
-        $userTransformer = new UserTransformer(); // TODO: should user profile have standard includes?
-        $userTransformer->mode = $user->playmode;
         $jsonUser = json_item(
             $user,
-            $userTransformer,
-            [
-                'active_tournament_banner',
-                'badges',
-                'follower_count',
-                'groups',
-                'previous_usernames',
-                'support_level',
-            ]
+            (new UserTransformer())->setMode($user->playmode),
+            UserTransformer::PROFILE_HEADER_INCLUDES,
         );
 
         $json = [

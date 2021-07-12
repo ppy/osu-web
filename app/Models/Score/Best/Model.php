@@ -324,6 +324,20 @@ abstract class Model extends BaseModel
         return $query->whereIn('user_id', $userIds);
     }
 
+    /**
+     * Override parent scope with a noop as only passed scores go in here.
+     * And the `pass` column doesn't exist.
+     */
+    public function scopeIncludeFails($query, bool $include)
+    {
+        return $query;
+    }
+
+    public function getPassAttribute(): bool
+    {
+        return true;
+    }
+
     public function replayViewCount()
     {
         $class = ReplayViewCount::class.'\\'.get_class_basename(static::class);

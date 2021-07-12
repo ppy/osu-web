@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Oszukiwanie',
+            'multiple_accounts' => '',
             'insults' => 'Obrażanie mnie lub innych',
             'spam' => 'Spamowanie',
             'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;",
                 'recent' => 'Ostatnie',
                 'title' => 'Medale',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Posty',

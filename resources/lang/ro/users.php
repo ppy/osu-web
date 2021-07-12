@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
+            'multiple_accounts' => '',
             'insults' => 'M-a insultat pe mine / pe alții',
             'spam' => 'Spam',
             'unwanted_content' => 'Partajarea unui conținut nepotrivit',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Acest utilizator nu a primit nici unul încă. ;_;",
                 'recent' => 'Recente',
                 'title' => 'Medalii',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Postări',
