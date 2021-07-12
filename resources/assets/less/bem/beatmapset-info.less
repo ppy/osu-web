@@ -49,19 +49,17 @@
     &--diff {
       display: flex;
       align-items: center;
-      line-height: 1;
     }
 
     &--stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      align-items: start;
-      gap: 5px 30px;
       margin-bottom: 15px;
       font-weight: bold;
 
-      @media @mobile {
-        grid-template-columns: 1fr;
+      @media @desktop {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: start;
+        gap: 5px 30px;
       }
     }
   }
