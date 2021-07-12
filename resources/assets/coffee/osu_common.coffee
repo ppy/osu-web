@@ -44,7 +44,7 @@
 
     colour = {}
 
-    if (difficulty == null || difficulty > 8)
+    if (difficulty == null)
       colour = { red: 0, green: 0, blue: 0 }
     else
       i = stops.findIndex((stop) -> difficulty <= stop.offset)
