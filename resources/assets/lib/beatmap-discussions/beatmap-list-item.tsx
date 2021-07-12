@@ -36,6 +36,10 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
           <i className={`fal fa-extra-mode-${this.props.beatmap.mode}`} />
         </div>
 
+        <div className='beatmap-list-item__col'>
+          <DifficultyBadge rating={this.props.beatmap.difficulty_rating} />
+        </div>
+
         <div className='beatmap-list-item__col beatmap-list-item__col--main'>
           <div className='u-ellipsis-overflow'>
             {version}
