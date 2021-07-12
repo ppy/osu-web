@@ -54,17 +54,29 @@
     &--stats {
       margin-bottom: 15px;
       font-weight: bold;
+      display: grid;
+      align-items: start;
+      gap: 10px 30px;
+      grid-template-columns: 1fr;
 
       @media @desktop {
-        display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        align-items: start;
-        gap: 5px 30px;
       }
     }
   }
 
   &__length-bpm-value {
     color: hsl(var(--hsl-c2));
+  }
+
+  &__line {
+    width: calc(100% + calc(2 * @gutter-v2));
+    height: 1px;
+    margin: 0 -@gutter-v2;
+    border-top: 1px solid hsl(var(--hsl-b6));
+
+    @media @desktop {
+      display: none;
+    }
   }
 }
