@@ -15,16 +15,16 @@ interface Props {
 }
 
 export class EditorInsertionMenu extends React.Component<Props> {
-  static contextType = SlateContext;
-  bn = 'beatmap-discussion-editor-insertion-menu';
+  static readonly contextType = SlateContext;
   declare context: React.ContextType<typeof SlateContext>;
-  hideInsertMenuTimer?: number;
-  hoveredBlock: HTMLElement | undefined;
-  insertPosition: 'above' | 'below' | undefined;
-  insertRef: React.RefObject<HTMLDivElement> = React.createRef();
-  mouseOver = false;
-  scrollContainer: HTMLElement | undefined;
+  private readonly bn = 'beatmap-discussion-editor-insertion-menu';
   private readonly eventId = `editor-insertion-menu-${nextVal()}`;
+  private hideInsertMenuTimer?: number;
+  private hoveredBlock: HTMLElement | undefined;
+  private insertPosition: 'above' | 'below' | undefined;
+  private readonly insertRef: React.RefObject<HTMLDivElement> = React.createRef();
+  private mouseOver = false;
+  private scrollContainer: HTMLElement | undefined;
   private readonly throttledContainerMouseExit: (() => void) & Cancelable;
   private readonly throttledContainerMouseMove: ((event: JQuery.MouseMoveEvent) => void) & Cancelable;
   private readonly throttledMenuMouseEnter: (() => void) & Cancelable;
@@ -67,7 +67,92 @@ export class EditorInsertionMenu extends React.Component<Props> {
     }
   }
 
-  insertBlock = (event: React.MouseEvent<HTMLElement>) => {
+  render() {
+    return (
+      <Portal>
+        <div
+          ref={this.insertRef}
+          className={`${this.bn}`}
+        >
+          <div className={`${this.bn}__body`}>
+            <i className='fas fa-plus' />
+            <div className={`${this.bn}__buttons`}>
+              {this.insertButton('suggestion')}
+              {this.insertButton('problem')}
+              {this.insertButton('praise')}
+              {this.insertButton('paragraph')}
+            </div>
+          </div>
+        </div>
+      </Portal>
+    );
+  }
+
+  setScrollContainer(container: HTMLElement) {
+    if (this.scrollContainer) {
+      $(this.scrollContainer).off(`.${this.eventId}`);
+    }
+    this.scrollContainer = container;
+    $(this.scrollContainer).on(`mousemove.${this.eventId}`, this.throttledContainerMouseMove);
+    $(this.scrollContainer).on(`mouseleave.${this.eventId}`, this.throttledContainerMouseExit);
+    $(this.scrollContainer).on(`scroll.${this.eventId}`, this.throttledScroll);
+  }
+
+  private containerMouseMove = (event: JQuery.MouseMoveEvent) => {
+    if (!event.originalEvent) {
+      return;
+    }
+
+    const y = event.originalEvent.clientY;
+    const container = this.scrollContainer!;
+    const children = container.children[0].children;
+
+    let blockOffset = 0;
+    for (const child of children) {
+      if (y < child.getBoundingClientRect().top) {
+        if (blockOffset > 0) {
+          const prevBlock = children[blockOffset - 1];
+          if (y < prevBlock.getBoundingClientRect().top + (prevBlock.getBoundingClientRect().height / 2)) {
+            blockOffset--;
+          }
+        }
+        break;
+      }
+
+      if (blockOffset < children.length - 1) {
+        blockOffset++;
+      }
+    }
+
+    this.hoveredBlock = children[blockOffset] as HTMLElement;
+    const blockBounds = this.hoveredBlock.getBoundingClientRect();
+
+    // If we're past the half-way point of the block's height then put the menu below the block, otherwise put it above
+    if (y > blockBounds.top + (blockBounds.height / 2)) {
+      this.insertPosition = 'below';
+    } else {
+      this.insertPosition = 'above';
+    }
+
+    this.updatePosition();
+    this.showMenu();
+    this.startHideTimer();
+  };
+
+  private forceHideMenu = () => {
+    this.mouseOver = false;
+    this.hideMenu();
+  };
+
+  private hideMenu = () => {
+    if (!this.insertRef.current || this.mouseOver) {
+      return;
+    }
+
+    this.insertRef.current.style.display = 'none';
+  };
+
+  private insertBlock = (event: React.MouseEvent<HTMLElement>) => {
     const ed: ReactEditor = this.context;
     const slateNodeElement = this.hoveredBlock?.lastChild;
     const type = event.currentTarget.dataset.discussionType;
@@ -134,7 +219,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
     Transforms.insertNodes(ed, insertNode, { at: insertAt });
   };
 
-  insertButton = (type: string) => {
+  private insertButton = (type: string) => {
     let icon = 'fas fa-question';
 
     switch (type) {
@@ -161,44 +246,22 @@ export class EditorInsertionMenu extends React.Component<Props> {
     );
   };
 
-  render() {
-    return (
-      <Portal>
-        <div
-          ref={this.insertRef}
-          className={`${this.bn}`}
-        >
-          <div className={`${this.bn}__body`}>
-            <i className='fas fa-plus' />
-            <div className={`${this.bn}__buttons`}>
-              {this.insertButton('suggestion')}
-              {this.insertButton('problem')}
-              {this.insertButton('praise')}
-              {this.insertButton('paragraph')}
-            </div>
-          </div>
-        </div>
-      </Portal>
-    );
-  }
+  private menuMouseEnter = () => {
+    this.mouseOver = true;
+  };
 
-  setScrollContainer(container: HTMLElement) {
-    if (this.scrollContainer) {
-      $(this.scrollContainer).off(`.${this.eventId}`);
-    }
-    this.scrollContainer = container;
-    $(this.scrollContainer).on(`mousemove.${this.eventId}`, this.throttledContainerMouseMove);
-    $(this.scrollContainer).on(`mouseleave.${this.eventId}`, this.throttledContainerMouseExit);
-    $(this.scrollContainer).on(`scroll.${this.eventId}`, this.throttledScroll);
-  }
+  private menuMouseLeave = () => {
+    this.mouseOver = false;
+    this.startHideTimer();
+  };
 
-  showMenu() {
+  private showMenu() {
     if (this.insertRef.current) {
       this.insertRef.current.style.display = 'flex';
     }
   }
 
-  startHideTimer() {
+  private startHideTimer() {
     if (this.hideInsertMenuTimer) {
       window.clearTimeout(this.hideInsertMenuTimer);
     }
@@ -206,7 +269,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
     this.hideInsertMenuTimer = window.setTimeout(this.hideMenu, 2000);
   }
 
-  updatePosition() {
+  private updatePosition() {
     if (!this.scrollContainer || !this.hoveredBlock || !this.insertRef.current) {
       return;
     }
@@ -223,68 +286,5 @@ export class EditorInsertionMenu extends React.Component<Props> {
       this.insertRef.current.style.top = `${blockBounds.top + blockBounds.height - 10}px`;
     }
   }
-
-  private containerMouseMove = (event: JQuery.MouseMoveEvent) => {
-    if (!event.originalEvent) {
-      return;
-    }
-
-    const y = event.originalEvent.clientY;
-    const container = this.scrollContainer!;
-    const children = container.children[0].children;
-
-    let blockOffset = 0;
-    for (const child of children) {
-      if (y < child.getBoundingClientRect().top) {
-        if (blockOffset > 0) {
-          const prevBlock = children[blockOffset - 1];
-          if (y < prevBlock.getBoundingClientRect().top + (prevBlock.getBoundingClientRect().height / 2)) {
-            blockOffset--;
-          }
-        }
-        break;
-      }
-
-      if (blockOffset < children.length - 1) {
-        blockOffset++;
-      }
-    }
-
-    this.hoveredBlock = children[blockOffset] as HTMLElement;
-    const blockBounds = this.hoveredBlock.getBoundingClientRect();
-
-    // If we're past the half-way point of the block's height then put the menu below the block, otherwise put it above
-    if (y > blockBounds.top + (blockBounds.height / 2)) {
-      this.insertPosition = 'below';
-    } else {
-      this.insertPosition = 'above';
-    }
-
-    this.updatePosition();
-    this.showMenu();
-    this.startHideTimer();
-  };
-
-  private forceHideMenu = () => {
-    this.mouseOver = false;
-    this.hideMenu();
-  };
-
-  private hideMenu = () => {
-    if (!this.insertRef.current || this.mouseOver) {
-      return;
-    }
-
-    this.insertRef.current.style.display = 'none';
-  };
-
-  private menuMouseEnter = () => {
-    this.mouseOver = true;
-  };
-
-  private menuMouseLeave = () => {
-    this.mouseOver = false;
-    this.startHideTimer();
-  };
 
 }
