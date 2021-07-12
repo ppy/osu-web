@@ -1,16 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapList from 'beatmap-discussions/beatmap-list';
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
-import { observer } from 'mobx-react';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
-import BeatmapList from './beatmap-list';
+import { generate as generateHash } from 'utils/beatmapset-page-hash';
 import BeatmapPicker from './beatmap-picker';
 
 interface Props {
@@ -19,11 +19,10 @@ interface Props {
   currentBeatmap: BeatmapJsonExtended;
 }
 
-@observer
-export default class Header extends React.Component<Props> {
-  render() {
-    const beatmaps = this.props.beatmaps.get(this.props.currentBeatmap.mode) ?? [];
+export default class Header extends React.PureComponent<Props> {
+  private beatmaps = this.props.beatmaps.get(this.props.currentBeatmap.mode) ?? [];
 
+  render() {
     return (
       <div className='beatmapset-header'>
         <div className='beatmapset-header__status'>
@@ -88,15 +87,16 @@ export default class Header extends React.Component<Props> {
         <div className='beatmapset-header__chooser'>
           <div className='beatmapset-header__chooser-list'>
             <BeatmapList
-              beatmaps={beatmaps}
+              beatmaps={this.beatmaps}
+              createLink={this.createLink}
               currentBeatmap={this.props.currentBeatmap}
-              type='show'
+              onSelectBeatmap={this.onSelectBeatmap}
             />
           </div>
 
           <div className='beatmapset-header__chooser-picker'>
             <BeatmapPicker
-              beatmaps={beatmaps}
+              beatmaps={this.beatmaps}
               currentBeatmap={this.props.currentBeatmap}
             />
           </div>
@@ -104,4 +104,12 @@ export default class Header extends React.Component<Props> {
       </div>
     );
   }
+
+  private createLink = (beatmap: BeatmapJsonExtended) => generateHash({ beatmap });
+
+  private onSelectBeatmap = (beatmapId: number) => {
+    const selectedBeatmap = this.beatmaps.find((beatmap) => beatmap.id === beatmapId);
+
+    $.publish('beatmapset:beatmap:set', { beatmap: selectedBeatmap });
+  };
 }

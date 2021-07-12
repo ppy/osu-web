@@ -25,10 +25,6 @@
     margin-top: 5px;
     background-color: @osu-colour-b5;
 
-    // 10 items dropdown
-    max-height: 320px;
-    overflow-y: auto;
-
     flex-direction: column;
 
 
@@ -43,13 +39,6 @@
       margin-left: 5px;
       margin-top: 0;
       padding: 10px 0;
-    }
-
-    &--icon-only {
-      width: auto;
-      top: 50%;
-      left: 100%;
-      transform: translateY(-50%);
     }
   }
 
@@ -84,18 +73,6 @@
 
     &--current {
       background-color: @osu-colour-b6;
-    }
-
-    &--show {
-      background-color: transparent;
-      box-shadow: none;
-      padding: 10px 0;
-      opacity: 0.7;
-
-      &:hover {
-        background-color: transparent;
-        opacity: 1;
-      }
     }
   }
 }
