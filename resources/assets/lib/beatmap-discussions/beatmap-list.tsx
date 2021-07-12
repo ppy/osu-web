@@ -50,7 +50,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
             href={this.props.createLink(this.props.currentBeatmap)}
             onClick={this.toggleSelector}
           >
-            <BeatmapListItem beatmap={this.props.currentBeatmap} large withButton='down' />
+            <BeatmapListItem beatmap={this.props.currentBeatmap} large withButton='fas fa-chevron-down' />
           </a>
 
           <div className='beatmap-list__selector'>

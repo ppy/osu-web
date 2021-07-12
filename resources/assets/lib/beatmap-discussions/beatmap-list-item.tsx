@@ -44,7 +44,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
 
         {this.props.withButton !== undefined && (
           <div className='beatmap-list-item__col'>
-            <i className={`fas fa-chevron-${this.props.withButton}`} />
+            <i className={this.props.withButton} />
           </div>
         )}
 
