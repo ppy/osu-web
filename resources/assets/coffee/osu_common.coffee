@@ -27,7 +27,7 @@
     _.find currentUser.friends, target_id: user_id
 
 
-  diffColour: (difficultyRating) ->
+  diffRatingColour: (difficultyRating) ->
     '--diff': "var(--diff-#{difficultyRating ? 'default'})"
 
 

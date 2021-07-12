@@ -39,7 +39,7 @@ const BeatmapInfo = (props: Props) => {
         <span className='score-beatmap__detail-item score-beatmap__detail-item--difficulty'>
           <span
             className='score-beatmap__star'
-            style={osu.diffColour(getDiffRating(beatmap.difficulty_rating))}
+            style={osu.diffRatingColour(getDiffRating(beatmap.difficulty_rating))}
           >
             <span className='fas fa-star' />
           </span>

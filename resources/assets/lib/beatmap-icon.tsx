@@ -33,7 +33,7 @@ export const BeatmapIcon = (props: Props) => {
     className += ' beatmap-icon--with-hover js-beatmap-tooltip';
   }
 
-  const style = osu.diffColour(difficultyRating);
+  const style = osu.diffRatingColour(difficultyRating);
 
   return (
     <div
