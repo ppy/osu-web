@@ -130,6 +130,7 @@ return [
             'language' => 'Language',
             'loved' => 'Loved',
             'no_scores' => 'Data still being calculated...',
+            'nominators' => 'Nominators',
             'nsfw' => 'Explicit content',
             'points-of-failure' => 'Points of Failure',
             'qualified' => 'Qualified',
