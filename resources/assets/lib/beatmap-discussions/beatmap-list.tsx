@@ -54,26 +54,24 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
           </a>
 
           <div className='beatmap-list__selector'>
-            {this.props.beatmaps.map((b) => this.beatmapListItem(b))}
+            {this.props.beatmaps.map(this.beatmapListItem)}
           </div>
         </div>
       </div>
     );
   }
 
-  private beatmapListItem(beatmap: BeatmapJsonExtended) {
-    return (
-      <a
-        key={beatmap.id}
-        className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.currentBeatmap.id })}
-        data-id={beatmap.id}
-        href={this.props.createLink(beatmap)}
-        onClick={this.selectBeatmap}
-      >
-        <BeatmapListItem beatmap={beatmap} count={this.props.getCount?.(beatmap)} />
-      </a>
-    );
-  }
+  private beatmapListItem = (beatmap: BeatmapJsonExtended) => (
+    <a
+      key={beatmap.id}
+      className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.currentBeatmap.id })}
+      data-id={beatmap.id}
+      href={this.props.createLink(beatmap)}
+      onClick={this.selectBeatmap}
+    >
+      <BeatmapListItem beatmap={beatmap} count={this.props.getCount?.(beatmap)} />
+    </a>
+  );
 
   private hideSelector = () => {
     if (!this.state.showingSelector) {
