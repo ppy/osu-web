@@ -4,7 +4,9 @@
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import GameMode from 'interfaces/game-mode';
+import UserJson from 'interfaces/user-json';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
 
@@ -89,6 +91,32 @@ export function getArtist(beatmapset: BeatmapsetJson) {
   }
 
   return beatmapset.artist;
+}
+
+export function getNominators(beatmapset: BeatmapsetExtendedJson) {
+  if (!(['pending', 'ranked', 'qualified', 'wip'].includes(beatmapset.status))) {
+    return null;
+  }
+
+  const nominators: UserJson[] = [];
+
+  for (const event of beatmapset.events.reverse()) {
+    if (event.type === 'disqualify' || event.type === 'nomination_reset') {
+      break;
+    } else if (event.type === 'nominate') {
+      const nominator = beatmapset.related_users.find((user) => user.id === event.user_id);
+
+      if (nominator !== undefined) {
+        nominators.unshift(nominator);
+      }
+    }
+  }
+
+  if (nominators.length === 0) {
+    return null;
+  }
+
+  return nominators;
 }
 
 export function getTitle(beatmapset: BeatmapsetJson) {
