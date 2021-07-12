@@ -35,6 +35,10 @@ function formatDuration(value: number) {
 export default class Header extends React.PureComponent<Props> {
   render() {
     const showedBeatmap = this.props.hoveredBeatmap ?? this.props.currentBeatmap;
+    const mapper = {
+      id: showedBeatmap.user_id,
+      username: this.props.beatmapset.related_users.find((user) => user.id === showedBeatmap.user_id)?.username ?? '',
+    };
 
     return (
       <div className='beatmapset-info'>
@@ -58,7 +62,7 @@ export default class Header extends React.PureComponent<Props> {
                   ':mapper':
                     <UserLink
                       key='mapper'
-                      user={{ id: this.props.beatmapset.user_id, username: this.props.beatmapset.creator }}
+                      user={mapper}
                     />,
                 }}
                 pattern={osu.trans('beatmapsets.show.details.mapped_by')}
