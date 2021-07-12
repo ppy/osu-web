@@ -3,6 +3,8 @@
 
 .beatmap-list-item {
   display: flex;
+  flex: 1;
+  column-gap: 5px;
   align-items: center;
 
   min-width: 0;
@@ -15,7 +17,6 @@
   }
 
   &--large {
-    flex: 1;
     font-size: 15px;
   }
 
@@ -25,8 +26,16 @@
     &--main {
       min-width: 0;
       flex: 1 1 auto;
-      padding: 0 10px;
       white-space: nowrap;
+    }
+
+    &--icon {
+      display: flex;
+      font-size: 20px;
+    }
+
+    &--icon-large {
+      font-size: 30px;
     }
   }
 

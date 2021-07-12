@@ -29,11 +29,11 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
           large: this.props.large,
         })}
       >
-        <div className='beatmap-list-item__col'>
-          <BeatmapIcon
-            beatmap={this.props.beatmap}
-            modifier={this.props.large ? 'large' : undefined}
-          />
+        <div className={classWithModifiers('beatmap-list-item__col', {
+          icon: true,
+          'icon-large': this.props.large,
+        })}>
+          <i className={`fal fa-extra-mode-${this.props.beatmap.mode}`} />
         </div>
 
         <div className='beatmap-list-item__col beatmap-list-item__col--main'>

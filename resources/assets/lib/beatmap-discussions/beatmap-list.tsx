@@ -13,6 +13,7 @@ interface Props {
   createLink: (beatmap: BeatmapJsonExtended) => string;
   currentBeatmap: BeatmapJsonExtended;
   getCount?: (beatmap: BeatmapJsonExtended) => number | undefined;
+  large: boolean;
   modifiers?: string[];
   onSelectBeatmap: (beatmapId: number) => void;
 }
@@ -22,6 +23,10 @@ interface State {
 }
 
 export default class BeatmapList extends React.PureComponent<Props, State> {
+  static defaultProps = {
+    large: true,
+  };
+
   private readonly eventId = `beatmapset-discussions-show-beatmap-list-${nextVal()}`;
 
   constructor(props: Props) {
@@ -53,7 +58,11 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
             href={this.props.createLink(this.props.currentBeatmap)}
             onClick={this.toggleSelector}
           >
-            <BeatmapListItem beatmap={this.props.currentBeatmap} large withButton='down' />
+            <BeatmapListItem
+              beatmap={this.props.currentBeatmap}
+              large={this.props.large}
+              withButton='down'
+            />
           </a>
 
           <div className='beatmap-list__selector'>
