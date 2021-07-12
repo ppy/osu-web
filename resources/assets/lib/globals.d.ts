@@ -68,6 +68,7 @@ type AjaxError = (xhr: JQuery.jqXHR) => void;
 interface OsuCommon {
   ajaxError: AjaxError;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
+  diffColour: (difficulty?: number | null) => string;
   diffRatingColour: (difficultyRating?: string | null) => React.CSSProperties;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
