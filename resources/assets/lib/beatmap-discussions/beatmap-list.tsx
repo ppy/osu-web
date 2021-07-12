@@ -74,11 +74,9 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   );
 
   private hideSelector = () => {
-    if (!this.state.showingSelector) {
-      return;
+    if (this.state.showingSelector) {
+      this.setSelector(false);
     }
-
-    this.setSelector(false);
   };
 
   private onDocumentClick = (e: JQuery.ClickEvent) => {
@@ -100,11 +98,9 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   };
 
   private setSelector = (state: boolean) => {
-    if (this.state.showingSelector === state) {
-      return;
+    if (this.state.showingSelector !== state) {
+      this.setState({ showingSelector: state }, this.syncBlackout);
     }
-
-    this.setState({ showingSelector: state }, this.syncBlackout);
   };
 
   private syncBlackout = () => {
