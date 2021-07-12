@@ -8,7 +8,7 @@ export default function DifficultyBadge(props: { rating: number }) {
     <div
       className='difficulty-badge'
       style={{
-        '--bg': `${osu.diffColour(props.rating)}`,
+        '--bg': osu.diffColour(props.rating),
       } as React.CSSProperties}
     >
       <span className='difficulty-badge__icon'>

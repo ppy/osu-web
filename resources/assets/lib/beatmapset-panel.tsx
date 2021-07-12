@@ -47,7 +47,7 @@ const BeatmapDot = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
   <div
     className='beatmapset-panel__beatmap-dot'
     style={{
-      '--bg': `${osu.diffColour(beatmap.difficulty_rating)})`,
+      '--bg': osu.diffColour(beatmap.difficulty_rating),
     } as React.CSSProperties}
   />
 ));
