@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
-import { throttle, Cancelable } from 'lodash';
+import { Cancelable, throttle } from 'lodash';
 import { Portal } from 'portal';
 import * as React from 'react';
 import { Editor as SlateEditor, Element as SlateElement, Node as SlateNode, Point, Text as SlateText, Transforms } from 'slate';
@@ -24,12 +24,12 @@ export class EditorInsertionMenu extends React.Component<Props> {
   insertRef: React.RefObject<HTMLDivElement> = React.createRef();
   mouseOver = false;
   scrollContainer: HTMLElement | undefined;
+  private readonly eventId = `editor-insertion-menu-${nextVal()}`;
   private readonly throttledContainerMouseExit: (() => void) & Cancelable;
   private readonly throttledContainerMouseMove: ((event: JQuery.MouseMoveEvent) => void) & Cancelable;
   private readonly throttledMenuMouseEnter: (() => void) & Cancelable;
   private readonly throttledMenuMouseExit: (() => void) & Cancelable;
   private readonly throttledScroll: (() => void) & Cancelable;
-  private readonly eventId = `editor-insertion-menu-${nextVal()}`;
 
   constructor(props: Props) {
     super(props);
@@ -66,60 +66,6 @@ export class EditorInsertionMenu extends React.Component<Props> {
       $(this.insertRef.current).off(`.${this.eventId}`);
     }
   }
-
-  private containerMouseMove = (event: JQuery.MouseMoveEvent) => {
-    if (!event.originalEvent) {
-      return;
-    }
-
-    const y = event.originalEvent.clientY;
-    const container = this.scrollContainer!;
-    const children = container.children[0].children;
-
-    let blockOffset = 0;
-    for (const child of children) {
-      if (y < child.getBoundingClientRect().top) {
-        if (blockOffset > 0) {
-          const prevBlock = children[blockOffset - 1];
-          if (y < prevBlock.getBoundingClientRect().top + (prevBlock.getBoundingClientRect().height / 2)) {
-            blockOffset--;
-          }
-        }
-        break;
-      }
-
-      if (blockOffset < children.length - 1) {
-        blockOffset++;
-      }
-    }
-
-    this.hoveredBlock = children[blockOffset] as HTMLElement;
-    const blockBounds = this.hoveredBlock.getBoundingClientRect();
-
-    // If we're past the half-way point of the block's height then put the menu below the block, otherwise put it above
-    if (y > blockBounds.top + (blockBounds.height / 2)) {
-      this.insertPosition = 'below';
-    } else {
-      this.insertPosition = 'above';
-    }
-
-    this.updatePosition();
-    this.showMenu();
-    this.startHideTimer();
-  };
-
-  private forceHideMenu = () => {
-    this.mouseOver = false;
-    this.hideMenu();
-  };
-
-  private hideMenu = () => {
-    if (!this.insertRef.current || this.mouseOver) {
-      return;
-    }
-
-    this.insertRef.current.style.display = 'none';
-  };
 
   insertBlock = (event: React.MouseEvent<HTMLElement>) => {
     const ed: ReactEditor = this.context;
@@ -215,15 +161,6 @@ export class EditorInsertionMenu extends React.Component<Props> {
     );
   };
 
-  private menuMouseEnter = () => {
-    this.mouseOver = true;
-  };
-
-  private menuMouseLeave = () => {
-    this.mouseOver = false;
-    this.startHideTimer();
-  };
-
   render() {
     return (
       <Portal>
@@ -286,5 +223,68 @@ export class EditorInsertionMenu extends React.Component<Props> {
       this.insertRef.current.style.top = `${blockBounds.top + blockBounds.height - 10}px`;
     }
   }
+
+  private containerMouseMove = (event: JQuery.MouseMoveEvent) => {
+    if (!event.originalEvent) {
+      return;
+    }
+
+    const y = event.originalEvent.clientY;
+    const container = this.scrollContainer!;
+    const children = container.children[0].children;
+
+    let blockOffset = 0;
+    for (const child of children) {
+      if (y < child.getBoundingClientRect().top) {
+        if (blockOffset > 0) {
+          const prevBlock = children[blockOffset - 1];
+          if (y < prevBlock.getBoundingClientRect().top + (prevBlock.getBoundingClientRect().height / 2)) {
+            blockOffset--;
+          }
+        }
+        break;
+      }
+
+      if (blockOffset < children.length - 1) {
+        blockOffset++;
+      }
+    }
+
+    this.hoveredBlock = children[blockOffset] as HTMLElement;
+    const blockBounds = this.hoveredBlock.getBoundingClientRect();
+
+    // If we're past the half-way point of the block's height then put the menu below the block, otherwise put it above
+    if (y > blockBounds.top + (blockBounds.height / 2)) {
+      this.insertPosition = 'below';
+    } else {
+      this.insertPosition = 'above';
+    }
+
+    this.updatePosition();
+    this.showMenu();
+    this.startHideTimer();
+  };
+
+  private forceHideMenu = () => {
+    this.mouseOver = false;
+    this.hideMenu();
+  };
+
+  private hideMenu = () => {
+    if (!this.insertRef.current || this.mouseOver) {
+      return;
+    }
+
+    this.insertRef.current.style.display = 'none';
+  };
+
+  private menuMouseEnter = () => {
+    this.mouseOver = true;
+  };
+
+  private menuMouseLeave = () => {
+    this.mouseOver = false;
+    this.startHideTimer();
+  };
 
 }
