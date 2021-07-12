@@ -333,6 +333,7 @@ class BeatmapsetsController extends Controller
             'converts.failtimes',
             'current_user_attributes',
             'description',
+            'events',
             'genre',
             'language',
             'ratings',

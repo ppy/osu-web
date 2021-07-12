@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapsetEventJson from './beatmapset-event-json';
 import UserJson from './user-json';
 
 interface AvailabilityInterface {
@@ -16,6 +17,7 @@ interface NominationsSummaryInterface {
 
 export default interface BeatmapsetExtendedJson extends BeatmapsetJson {
   availability?: AvailabilityInterface;
+  events: BeatmapsetEventJson[];
   nominations_summary?: NominationsSummaryInterface;
   ranked: number;
   ranked_date: string;
