@@ -33,7 +33,7 @@
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
     "mariuzzo/laravel-js-localization": "*",
-    "paypal/rest-api-sdk-php": "*",
+    "paypal/paypal-checkout-sdk": "*",
     "php-ds/php-ds": "^1.3",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",

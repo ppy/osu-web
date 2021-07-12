@@ -29,7 +29,7 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max szavazás használva',
         ],
     ],
     'entry' => [

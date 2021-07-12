@@ -3,13 +3,14 @@
 
 import AdminMenuItem from 'interfaces/admin-menu-item';
 import * as React from 'react';
+import { nextVal } from 'utils/seq';
 
 interface Props {
   items: AdminMenuItem[];
 }
 
 export default class AdminMenu extends React.PureComponent<Props> {
-  private eventId = `admin-menu-${osu.uuid()}`;
+  private eventId = `admin-menu-${nextVal()}`;
 
   render() {
     if (currentUser.id == null || !currentUser.is_admin) {

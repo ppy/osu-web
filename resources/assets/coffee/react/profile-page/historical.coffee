@@ -8,6 +8,7 @@ import { PlayDetailList } from 'play-detail-list'
 import * as React from 'react'
 import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
 import ShowMoreLink from 'show-more-link'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 
@@ -15,7 +16,7 @@ export class Historical extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @id = "users-show-historical-#{osu.uuid()}"
+    @id = "users-show-historical-#{nextVal()}"
     @monthlyPlaycountsChartArea = React.createRef()
     @replaysWatchedCountsChartArea = React.createRef()
 

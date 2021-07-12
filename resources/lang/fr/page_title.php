@@ -142,5 +142,8 @@ return [
         'modding_history_controller' => [
             '_' => 'informations du moddeur',
         ],
+        'multiplayer_controller' => [
+            '_' => '',
+        ],
     ],
 ];

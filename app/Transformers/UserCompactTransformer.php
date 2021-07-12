@@ -24,7 +24,23 @@ class UserCompactTransformer extends TransformerAbstract
         'userProfileCustomization',
     ];
 
-    public $mode;
+    const LIST_INCLUDES = [
+        ...self::CARD_INCLUDES,
+        'statistics',
+        'support_level',
+    ];
+
+    const PROFILE_HEADER_INCLUDES = [
+        'active_tournament_banner',
+        'badges',
+        'comments_count',
+        'follower_count',
+        'groups',
+        'previous_usernames',
+        'support_level',
+    ];
+
+    protected string $mode;
 
     protected $availableIncludes = [
         'account_history',
@@ -32,6 +48,7 @@ class UserCompactTransformer extends TransformerAbstract
         'badges',
         'beatmap_playcounts_count',
         'blocks',
+        'comments_count',
         'country',
         'cover',
         'favourite_beatmapset_count',
@@ -154,6 +171,11 @@ class UserCompactTransformer extends TransformerAbstract
             $user->relations()->blocks()->get(),
             new UserRelationTransformer()
         );
+    }
+
+    public function includeCommentsCount(User $user)
+    {
+        return $this->primitive($user->comments()->withoutTrashed()->count());
     }
 
     public function includeCountry(User $user)
@@ -398,6 +420,13 @@ class UserCompactTransformer extends TransformerAbstract
             'user_list_sort',
             'user_list_view',
         ]));
+    }
+
+    public function setMode(string $mode)
+    {
+        $this->mode = $mode;
+
+        return $this;
     }
 
     protected function userProfileCustomization(User $user): UserProfileCustomization

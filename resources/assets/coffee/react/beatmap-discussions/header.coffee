@@ -1,12 +1,12 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import BeatmapList from 'beatmapsets-show/beatmap-list'
 import { BigButton } from 'big-button'
 import { Nominations } from './nominations'
 import { Subscribe } from './subscribe'
 import { UserFilter } from './user-filter'
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
+import BeatmapList from 'beatmap-discussions/beatmap-list'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import HeaderV4 from 'header-v4'
 import { deletedUser } from 'models/user'
@@ -99,10 +99,11 @@ export class Header extends React.PureComponent
           div
             className: "#{bn}__filter-group"
             el BeatmapList,
-              currentBeatmap: @props.currentBeatmap
-              currentDiscussions: @props.currentDiscussions
               beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
-              type: 'discussions'
+              currentBeatmap: @props.currentBeatmap
+              createLink: @createLink
+              getCount: @getCount
+              onSelectBeatmap: @onSelectBeatmap
 
           div
             className: "#{bn}__filter-group #{bn}__filter-group--stats"
@@ -170,3 +171,14 @@ export class Header extends React.PureComponent
             total
 
         div className: "#{bn}__line"
+
+  createLink: (beatmap) =>
+    BeatmapDiscussionHelper.url beatmap: beatmap
+
+  getCount: (beatmap) =>
+    if beatmap.deleted_at? then undefined else @props.currentDiscussions.countsByBeatmap[beatmap.id]
+
+  onSelectBeatmap: (beatmapId) =>
+    $.publish 'beatmapsetDiscussions:update',
+      beatmapId: beatmapId
+      mode: BeatmapDiscussionHelper.DEFAULT_MODE

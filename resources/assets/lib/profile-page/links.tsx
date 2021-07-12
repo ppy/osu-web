@@ -65,7 +65,7 @@ const linkMapping: Record<LinkKey, (user: UserJsonExtended) => LinkProps> = {
 
 const textMapping: Record<TextKey, (user: UserJsonExtended) => StringWithComponentProps> = {
   comments_count: (user: UserJsonExtended) => {
-    const count = osu.transChoice('users.show.comments_count.count', user.comments_count);
+    const count = osu.transChoice('users.show.comments_count.count', user.comments_count ?? 0);
     const url = route('comments.index', { user_id: user.id });
 
     return {

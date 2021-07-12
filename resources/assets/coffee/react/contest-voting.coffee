@@ -20,5 +20,5 @@ propsFunction = (target) ->
 core.reactTurbolinks.register 'contestArtList', false, (target) ->
   createElement(ArtEntryList, propsFunction(target))
 
-core.reactTurbolinks.register 'contestList', false, ->
+core.reactTurbolinks.register 'contestList', false, (target) ->
   createElement(EntryList, propsFunction(target))

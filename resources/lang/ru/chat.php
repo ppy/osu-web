@@ -6,7 +6,7 @@
 return [
     'talking_in' => 'чат в :channel',
     'talking_with' => 'чат с :name',
-    'title_compact' => 'сообщения',
+    'title_compact' => 'чат',
 
     'cannot_send' => [
         'channel' => 'Вы не можете написать в данный момент. Это может быть обусловлено одной из следующих причин:',
@@ -24,7 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'нельзя отправить сообщение...',
-        'placeholder' => 'введите сообщения...',
+        'placeholder' => 'введите сообщение...',
         'send' => 'Отправить',
     ],
     'no-conversations' => [
