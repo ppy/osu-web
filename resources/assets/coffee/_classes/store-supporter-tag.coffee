@@ -24,11 +24,10 @@ class @StoreSupporterTag
     @usernameInput = @el.querySelector('.js-username-input')
 
     @reactElement = @el.querySelector('.js-react--user-card-store')
-    if !@reactElement.dataset.user?
+    @user = JSON.parse(@reactElement.dataset.user)
+    if !@user?
       @user = currentUser
       @reactElement.dataset.user = JSON.stringify(@user)
-    else
-      @user = JSON.parse(@reactElement.dataset.user)
 
     $(document).one 'turbolinks:before-cache', =>
       @reactElement.dataset.user = JSON.stringify(@user)
