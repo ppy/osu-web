@@ -47,6 +47,14 @@ export default class ReactTurbolinks {
     this.boot();
   }
 
+  runAfterPageLoad(eventId: string, callback: () => void) {
+    if (document.body === window.newBody) {
+      callback();
+    } else {
+      $(document).one(`turbolinks:load.${eventId}`, callback);
+    }
+  }
+
   private destroy = () => {
     for (const target of this.renderedContainers.values()) {
       if (document.body.contains(target)) continue;

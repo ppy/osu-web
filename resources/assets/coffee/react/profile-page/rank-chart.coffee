@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import { nextVal } from 'utils/seq'
@@ -24,6 +25,7 @@ export class RankChart extends React.Component
 
   componentWillUnmount: =>
     $(window).off ".#{@id}"
+    $(document).off ".#{@id}"
     $.unsubscribe ".#{@id}"
 
 
@@ -63,6 +65,10 @@ export class RankChart extends React.Component
 
       $(window).on "resize.#{@id}", @rankChart.resize
 
+    core.reactTurbolinks.runAfterPageLoad @id, @loadRankChart
+
+
+  loadRankChart: =>
     data = @props.rankHistory?.data if @props.stats.is_ranked
 
     data = (data ? []).map (rank, i) ->
