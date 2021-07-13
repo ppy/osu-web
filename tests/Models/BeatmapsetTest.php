@@ -202,9 +202,14 @@ class BeatmapsetTest extends TestCase
         $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
 
         // create legacy nomination event to enable legacy nomination mode
-        $beatmapset->events()->create([
+        $event = $beatmapset->events()->create([
             'type' => BeatmapsetEvent::NOMINATE,
             'user_id' => $this->createUserWithGroupPlaymodes('bng', $beatmapset->playmodesStr())->getKey(),
+        ]);
+
+        $beatmapset->beatmapsetNominations()->create([
+            'event_id' => $event->getKey(),
+            'user_id' => $event->user_id,
         ]);
 
         $notifications = Notification::count();
@@ -227,9 +232,14 @@ class BeatmapsetTest extends TestCase
         $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
 
         // create legacy nomination event to enable legacy nomination mode
-        $beatmapset->events()->create([
+        $event = $beatmapset->events()->create([
             'type' => BeatmapsetEvent::NOMINATE,
             'user_id' => $this->createUserWithGroupPlaymodes('bng', $beatmapset->playmodesStr())->getKey(),
+        ]);
+
+        $beatmapset->beatmapsetNominations()->create([
+            'event_id' => $event->getKey(),
+            'user_id' => $event->user_id,
         ]);
 
         // fill with legacy nominations
