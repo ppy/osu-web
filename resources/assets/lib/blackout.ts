@@ -12,7 +12,7 @@ const Blackout = {
     const el = document.querySelector('.js-blackout');
 
     if (el instanceof HTMLElement) {
-      el.style.opacity = !state || opacity === undefined ? '' : String(opacity);
+      el.style.opacity = !state || opacity == null ? '' : String(opacity);
       Fade.toggle(el, state);
     }
   },
