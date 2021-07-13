@@ -991,10 +991,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             return $this->beatmapsetNominations()->current()->count();
         }
 
-        $currentNominations = [];
-        foreach ($this->playmodesStr() as $playmode) {
-            $currentNominations[$playmode] = 0;
-        }
+        $currentNominations = array_fill_keys($this->playmodesStr(), 0);
 
         $nominations = $this->beatmapsetNominations()->current()->get();
         foreach ($nominations as $nomination) {
