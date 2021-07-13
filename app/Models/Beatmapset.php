@@ -1003,7 +1003,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                     continue;
                 }
 
-                $currentNominations[$mode] = $currentNominations[$mode] ?? 0;
                 $currentNominations[$mode]++;
             }
         }
