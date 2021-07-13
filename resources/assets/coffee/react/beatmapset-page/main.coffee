@@ -278,7 +278,7 @@ export class Main extends React.Component
         moddingLink = @props.beatmapset.legacy_thread_url
 
       links = [
-        { title: 'Info', url: '', active: true },
+        { title: 'Info', url: laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id), active: true },
         { title: 'Comments', url: '#comments' },
         { title: 'Modding', url: moddingLink },
       ]
