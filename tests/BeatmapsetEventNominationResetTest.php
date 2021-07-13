@@ -9,6 +9,7 @@ use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
+use App\Models\BeatmapsetNomination;
 use App\Models\User;
 use Queue;
 
@@ -86,13 +87,8 @@ class BeatmapsetEventNominationResetTest extends TestCase
 
         for ($i = 0; $i < $nominatorCount; $i++) {
             $this->nominators[] = $nominator = $this->createUserWithGroupPlaymodes('bng', $modes);
-            $event = $this->beatmapset->events()->create([
-                'type' => BeatmapsetEvent::NOMINATE,
-                'user_id' => $nominator->getKey(),
-            ]);
-
-            $this->beatmapset->beatmapsetNominations()->create([
-                'event_id' => $event->getKey(),
+            factory(BeatmapsetNomination::class)->create([
+                'beatmapset_id' => $this->beatmapset->getKey(),
                 'user_id' => $nominator->getKey(),
             ]);
         }

@@ -9,7 +9,7 @@ use App\Exceptions\AuthorizationException;
 use App\Models\Beatmap;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetEvent;
+use App\Models\BeatmapsetNomination;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\Notification;
@@ -202,14 +202,9 @@ class BeatmapsetTest extends TestCase
         $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
 
         // create legacy nomination event to enable legacy nomination mode
-        $event = $beatmapset->events()->create([
-            'type' => BeatmapsetEvent::NOMINATE,
+        factory(BeatmapsetNomination::class)->create([
+            'beatmapset_id' => $beatmapset->getKey(),
             'user_id' => $this->createUserWithGroupPlaymodes('bng', $beatmapset->playmodesStr())->getKey(),
-        ]);
-
-        $beatmapset->beatmapsetNominations()->create([
-            'event_id' => $event->getKey(),
-            'user_id' => $event->user_id,
         ]);
 
         $notifications = Notification::count();
@@ -232,14 +227,9 @@ class BeatmapsetTest extends TestCase
         $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
 
         // create legacy nomination event to enable legacy nomination mode
-        $event = $beatmapset->events()->create([
-            'type' => BeatmapsetEvent::NOMINATE,
+        factory(BeatmapsetNomination::class)->create([
+            'beatmapset_id' => $beatmapset->getKey(),
             'user_id' => $this->createUserWithGroupPlaymodes('bng', $beatmapset->playmodesStr())->getKey(),
-        ]);
-
-        $beatmapset->beatmapsetNominations()->create([
-            'event_id' => $event->getKey(),
-            'user_id' => $event->user_id,
         ]);
 
         // fill with legacy nominations
