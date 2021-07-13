@@ -34,17 +34,7 @@ export default class Extra extends React.PureComponent<Props, State> {
 
   render() {
     const successRate = round((this.props.beatmap.passcount / this.props.beatmap.playcount) * 100, 1);
-    const ratings = this.props.beatmapset.ratings.reduce(
-      (result, count, rating) => {
-        if (rating >= 1 && rating <= 5) {
-          result.negative += count;
-        } else if (rating >= 6 && rating <= 10) {
-          result.positive += count;
-        }
-        return result;
-      },
-      { negative: 0, positive: 0 },
-    );
+    const ratings = this.getRatings();
 
     return (
       <div className='beatmapset-extra'>
@@ -136,4 +126,16 @@ export default class Extra extends React.PureComponent<Props, State> {
       </svg>
     );
   }
+
+  private getRatings = () => this.props.beatmapset.ratings.reduce(
+    (result, count, rating) => {
+      if (rating >= 1 && rating <= 5) {
+        result.negative += count;
+      } else if (rating >= 6 && rating <= 10) {
+        result.positive += count;
+      }
+      return result;
+    },
+    { negative: 0, positive: 0 },
+  );
 }
