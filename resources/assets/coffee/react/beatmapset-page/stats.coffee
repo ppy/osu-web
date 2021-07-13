@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, span, table, tbody, td, th, tr, i } from 'react-dom-factories'
 import { nextVal } from 'utils/seq'
@@ -20,6 +21,7 @@ export class Stats extends React.Component
 
   componentWillUnmount: =>
     $(window).off ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
 
   componentDidUpdate: =>
@@ -113,4 +115,5 @@ export class Stats extends React.Component
       @_ratingChart = new StackedBarChart @refs.chartArea, options
       $(window).on "resize.#{@eventId}", @_ratingChart.resize
 
-    @_ratingChart.loadData rating: @props.beatmapset.ratings[1..]
+    core.reactTurbolinks.runAfterPageLoad @eventId, =>
+      @_ratingChart.loadData rating: @props.beatmapset.ratings[1..]
