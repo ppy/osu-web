@@ -166,14 +166,12 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();
-            $disqualificationEvent = $beatmapset->disqualificationEvent();
             $resetEvent = $beatmapset->resetEvent();
 
-            if ($resetEvent !== null && $resetEvent->type === BeatmapsetEvent::NOMINATION_RESET) {
+            if ($resetEvent->type === BeatmapsetEvent::NOMINATION_RESET) {
                 $result['nomination_reset'] = json_item($resetEvent, 'BeatmapsetEvent');
-            }
-            if ($disqualificationEvent !== null) {
-                $result['disqualification'] = json_item($disqualificationEvent, 'BeatmapsetEvent');
+            } else if ($resetEvent->type === BeatmapsetEvent::DISQUALIFY) {
+                $result['disqualification'] = json_item($resetEvent, 'BeatmapsetEvent');
             }
             if ($currentUser !== null) {
                 $result['nominated'] = $beatmapset->beatmapsetNominations()->current()->where('user_id', $currentUser->getKey())->exists();
