@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPasswordToMultiplayerRooms extends Migration
+class CreateSoloScoreTokens extends Migration
 {
     /**
      * Run the migrations.
@@ -16,8 +16,13 @@ class AddPasswordToMultiplayerRooms extends Migration
      */
     public function up()
     {
-        Schema::table('multiplayer_rooms', function (Blueprint $table) {
-            $table->string('password')->nullable()->after('participant_count');
+        Schema::create('solo_score_tokens', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('score_id')->nullable();
+            $table->bigInteger('user_id');
+            $table->mediumInteger('beatmap_id');
+            $table->smallInteger('ruleset_id');
+            $table->timestamps();
         });
     }
 
@@ -28,8 +33,6 @@ class AddPasswordToMultiplayerRooms extends Migration
      */
     public function down()
     {
-        Schema::table('multiplayer_rooms', function (Blueprint $table) {
-            $table->dropColumn('password');
-        });
+        Schema::dropIfExists('solo_score_tokens');
     }
 }

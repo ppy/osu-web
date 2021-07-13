@@ -5,6 +5,6 @@ import { Main } from 'friends-index/main';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
-core.reactTurbolinks.register('friends-index', true, () => (
+core.reactTurbolinks.register('friends-index', () => (
   <Main friends={osu.parseJson('json-users')} />
 ));
