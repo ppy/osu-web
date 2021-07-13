@@ -602,7 +602,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
 
         $this->getConnection()->transaction(function () use ($event, $notificationClass, $post, $user) {
-            $nominators = $this->nominationsSinceReset()->with('user')->get()->pluck('user');
+            $nominators = $this->beatmapsetNominations()->current()->with('user')->get()->pluck('user');
+
             BeatmapsetEvent::log($event, $user, $post, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
             foreach ($nominators as $nominator) {
                 BeatmapsetEvent::log(
@@ -707,7 +708,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 }
             }
 
-            $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
+            $nomination = $this->beatmapsetNominations()->current()->where('user_id', $user->getKey());
             if (!$nomination->exists()) {
                 $eventParams = [
                     'type' => BeatmapsetEvent::NOMINATE,
@@ -1029,13 +1030,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function isLegacyNominationMode()
     {
         return $this->memoize(__FUNCTION__, function () {
-            return $this->nominationsSinceReset()->whereNull('comment')->exists();
+            return $this->beatmapsetNominations()->current()->whereNull('modes')->exists();
         });
     }
 
     public function hasNominations()
     {
-        return $this->nominationsSinceReset()->exists();
+        return $this->beatmapsetNominations()->current()->exists();
     }
 
     public function playmodes()
@@ -1097,26 +1098,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         });
     }
 
-    public function eventsSinceReset()
-    {
-        $events = $this->events();
-
-        $resetEvent = $this->resetEvent();
-        if ($resetEvent) {
-            $events->where('id', '>=', $resetEvent->id);
-        }
-
-        return $events;
-    }
-
-    public function nominationsSinceReset()
-    {
-        return $this->eventsSinceReset()->nominations();
-    }
-
     public function hasFullBNNomination($mode = null)
     {
-        return $this->nominationsSinceReset()
+        return $this->beatmapsetNominations()
+            ->current()
             ->with('user')
             ->get()
             ->pluck('user')

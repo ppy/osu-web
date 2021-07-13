@@ -35,3 +35,5 @@ $factory->define(BeatmapDiscussion::class, fn () => array_rand_val($states));
 foreach ($states as $state => $attributes) {
     $factory->state(BeatmapDiscussion::class, $state, $attributes);
 }
+
+$factory->state(BeatmapDiscussion::class, 'hype', ['message_type' => 'hype']);
