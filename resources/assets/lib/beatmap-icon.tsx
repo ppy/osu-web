@@ -4,7 +4,7 @@
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as _ from 'lodash';
 import * as React from 'react';
-import { getDiffRating, getDiffColour } from 'utils/beatmap-helper';
+import { getDiffColour, getDiffRating } from 'utils/beatmap-helper';
 
 interface Props {
   beatmap: BeatmapJsonExtended;
