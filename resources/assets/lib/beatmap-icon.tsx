@@ -34,7 +34,7 @@ export const BeatmapIcon = (props: Props) => {
   }
 
   const style = {
-    color: osu.diffColour(beatmap.difficulty_rating)
+    color: osu.diffColour(beatmap.difficulty_rating),
   };
 
   return (
