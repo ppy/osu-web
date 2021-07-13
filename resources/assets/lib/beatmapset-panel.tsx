@@ -19,7 +19,7 @@ import { Transition } from 'react-transition-group';
 import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
-import { getArtist, getTitle, group as groupBeatmaps } from 'utils/beatmap-helper';
+import { getArtist, getDiffColour, getTitle, group as groupBeatmaps } from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumberSuffixed } from 'utils/html';
@@ -47,7 +47,7 @@ const BeatmapDot = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
   <div
     className='beatmapset-panel__beatmap-dot'
     style={{
-      '--bg': osu.diffColour(beatmap.difficulty_rating),
+      '--bg': getDiffColour(beatmap.difficulty_rating),
     } as React.CSSProperties}
   />
 ));

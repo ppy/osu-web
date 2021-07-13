@@ -2,13 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { getDiffColour } from 'utils/beatmap-helper';
 
 export default function DifficultyBadge(props: { rating: number }) {
   return (
     <div
       className='difficulty-badge'
       style={{
-        '--bg': osu.diffColour(props.rating),
+        '--bg': getDiffColour(props.rating),
         color: `var(--diff-badge-text-${props.rating < 7.5 ? 'dark' : 'light'})`,
       } as React.CSSProperties}
     >
