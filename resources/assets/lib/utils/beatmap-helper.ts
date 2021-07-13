@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import * as d3 from 'd3';
 import BeatmapJson from 'interfaces/beatmap-json';
 import { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
 import GameMode from 'interfaces/game-mode';
 import * as _ from 'lodash';
-import * as d3 from 'd3';
 import core from 'osu-core-singleton';
 
 export const modes: GameMode[] = ['osu', 'taiko', 'fruits', 'mania'];
