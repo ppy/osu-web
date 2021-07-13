@@ -1,12 +1,19 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+// difficulty badge text
+@diff-badge-text-light: white;
+@diff-badge-text-dark: hsl(var(--hsl-b6));
+
 // Set --bg on the component
 .difficulty-badge {
+  --diff-badge-text-light: @diff-badge-text-light;
+  --diff-badge-text-dark: @diff-badge-text-dark;
+
   --diff-expert-plus: @diff-expert-plus-light;
   border-radius: 10000px;
   background-color: var(--bg);
-  color: hsl(var(--hsl-b6));
+  color: var(--diff-badge-text-dark);
   padding: 0 6px;
   display: flex;
   align-items: center;
