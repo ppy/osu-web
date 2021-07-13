@@ -27,7 +27,7 @@ class BeatmapsetNomination extends Model
 
     public function beatmapset()
     {
-        return $this->belongsTo(Beatmapset::class);
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
     public function scopeCurrent($query)
