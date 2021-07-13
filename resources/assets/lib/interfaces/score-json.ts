@@ -18,6 +18,7 @@ export default interface ScoreJson {
   mode?: GameMode;
   mode_int?: number;
   mods: string[];
+  passed: boolean;
   pp?: number;
   rank?: Rank;
   rank_country?: number;

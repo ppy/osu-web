@@ -382,7 +382,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                 Route::get('scores', 'BeatmapsController@scores')->name('scores');
 
                 Route::group(['as' => 'solo.', 'prefix' => 'solo'], function () {
-                    Route::resource('scores', 'Solo\ScoresController', ['only' => ['store', 'update']]);
+                    Route::group(['namespace' => 'Solo'], function () {
+                        Route::post('scores', 'ScoreTokensController@store')->name('score-tokens.store');
+                        Route::put('scores/{token}', 'ScoresController@store')->name('scores.store');
+                    });
                 });
             });
         });

@@ -3,17 +3,19 @@
 
 import Fade from 'fade';
 
-export default class Blackout {
-  static hide = () => Blackout.toggle(false);
+const Blackout = {
+  hide: () => Blackout.toggle(false),
 
-  static show = () => Blackout.toggle(true);
+  show: () => Blackout.toggle(true),
 
-  static toggle = (state: boolean, opacity?: number) => {
-    const el = document.getElementsByClassName('js-blackout')[0];
+  toggle: (state: boolean, opacity?: number) => {
+    const el = document.querySelector('.js-blackout');
 
     if (el instanceof HTMLElement) {
       el.style.opacity = !state || opacity === undefined ? '0' : String(opacity);
       Fade.toggle(el, state);
     }
-  };
-}
+  },
+};
+
+export default Blackout;

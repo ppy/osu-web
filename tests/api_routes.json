@@ -52,7 +52,7 @@
         "methods": [
             "POST"
         ],
-        "controller": "App\\Http\\Controllers\\Solo\\ScoresController@store",
+        "controller": "App\\Http\\Controllers\\Solo\\ScoreTokensController@store",
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
@@ -61,12 +61,11 @@
         "scopes": []
     },
     {
-        "uri": "api/v2/beatmaps/{beatmap}/solo/scores/{score}",
+        "uri": "api/v2/beatmaps/{beatmap}/solo/scores/{token}",
         "methods": [
-            "PATCH",
             "PUT"
         ],
-        "controller": "App\\Http\\Controllers\\Solo\\ScoresController@update",
+        "controller": "App\\Http\\Controllers\\Solo\\ScoresController@store",
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",

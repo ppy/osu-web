@@ -65,35 +65,32 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
               beatmap={this.props.currentBeatmap}
               large={this.props.large}
               mapper={getBeatmapMapper(this.props.beatmapset, this.props.currentBeatmap)}
-              withButton='down'
+              withButton='fas fa-chevron-down'
             />
           </a>
 
           <div className='beatmap-list__selector'>
-            {this.props.beatmaps.map((b) => this.beatmapListItem(b))}
+            {this.props.beatmaps.map(this.beatmapListItem)}
           </div>
         </div>
       </div>
     );
   }
 
-  private beatmapListItem(beatmap: BeatmapJsonExtended) {
-    return (
-      <a
-        key={beatmap.id}
-        className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.currentBeatmap.id })}
-        data-id={beatmap.id}
-        href={this.props.createLink(beatmap)}
-        onClick={this.selectBeatmap}
-      >
-        <BeatmapListItem
-          beatmap={beatmap}
-          count={this.props.getCount?.(beatmap)}
-          mapper={getBeatmapMapper(this.props.beatmapset, beatmap)}
-        />
-      </a>
-    );
-  }
+  private beatmapListItem = (beatmap: BeatmapJsonExtended) => (
+    <a
+      key={beatmap.id}
+      className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.currentBeatmap.id })}
+      data-id={beatmap.id}
+      href={this.props.createLink(beatmap)}
+      onClick={this.selectBeatmap}
+    >
+      <BeatmapListItem beatmap={beatmap}
+        count={this.props.getCount?.(beatmap)}
+        mapper={getBeatmapMapper(this.props.beatmapset, beatmap)}
+      />
+    </a>
+  );
 
   private getModifiers = () => {
     if (this.props.modifiers === undefined) {
@@ -104,11 +101,9 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   };
 
   private hideSelector = () => {
-    if (!this.state.showingSelector) {
-      return;
+    if (this.state.showingSelector) {
+      this.setSelector(false);
     }
-
-    this.setSelector(false);
   };
 
   private onDocumentClick = (e: JQuery.ClickEvent) => {
@@ -130,11 +125,9 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   };
 
   private setSelector = (state: boolean) => {
-    if (this.state.showingSelector === state) {
-      return;
+    if (this.state.showingSelector !== state) {
+      this.setState({ showingSelector: state }, this.syncBlackout);
     }
-
-    this.setState({ showingSelector: state }, this.syncBlackout);
   };
 
   private syncBlackout = () => {

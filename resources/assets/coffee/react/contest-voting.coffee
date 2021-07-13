@@ -6,8 +6,8 @@ import { createElement } from 'react'
 import { ArtEntryList } from './contest-voting/art-entry-list'
 import { EntryList } from './contest-voting/entry-list'
 
-propsFunction = (target) ->
-  data = osu.parseJson target.dataset.src
+propsFunction = (container) ->
+  data = osu.parseJson container.dataset.src
 
   return {
     contest: data.contest
@@ -17,8 +17,8 @@ propsFunction = (target) ->
       showLink: data.contest['type'] == 'external' || (data.contest['type'] == 'beatmap' && _.some(data.contest.entries, 'preview'))
   }
 
-core.reactTurbolinks.register 'contestArtList', false, (target) ->
-  createElement(ArtEntryList, propsFunction(target))
+core.reactTurbolinks.register 'contestArtList', (container) ->
+  createElement(ArtEntryList, propsFunction(container))
 
-core.reactTurbolinks.register 'contestList', false, (target) ->
-  createElement(EntryList, propsFunction(target))
+core.reactTurbolinks.register 'contestList', (container) ->
+  createElement(EntryList, propsFunction(container))
