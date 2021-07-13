@@ -988,7 +988,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function currentNominationCount()
     {
         if ($this->isLegacyNominationMode()) {
-            return $this->nominationsSinceReset()->count();
+            return $this->beatmapsetNominations()->current()->count();
         }
 
         $currentNominations = [];
@@ -996,15 +996,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $currentNominations[$playmode] = 0;
         }
 
-        $nominations = $this->nominationsSinceReset()->get();
+        $nominations = $this->beatmapsetNominations()->current()->get();
         foreach ($nominations as $nomination) {
-            foreach ($nomination->nominationModes as $nomMode) {
-                if (!isset($currentNominations[$nomMode])) {
+            foreach ($nomination->modes as $mode) {
+                if (!isset($currentNominations[$mode])) {
                     continue;
                 }
 
-                $currentNominations[$nomMode] = $currentNominations[$nomMode] ?? 0;
-                $currentNominations[$nomMode]++;
+                $currentNominations[$mode] = $currentNominations[$mode] ?? 0;
+                $currentNominations[$mode]++;
             }
         }
 
