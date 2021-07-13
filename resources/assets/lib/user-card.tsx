@@ -24,7 +24,7 @@ interface Props {
   activated: boolean;
   mode: ViewMode;
   modifiers: string[];
-  user?: UserJson;
+  user?: UserJson | null;
 }
 
 interface State {

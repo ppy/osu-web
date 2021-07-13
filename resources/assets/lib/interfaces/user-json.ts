@@ -10,6 +10,7 @@ export default interface UserJson {
   active_tournament_banner?: ProfileBannerJson | null;
   avatar_url: string;
   badges?: UserBadgeJson[];
+  comments_count?: number;
   country?: Country;
   country_code: string; // TODO: country object?
   cover?: Cover;

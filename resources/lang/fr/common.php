@@ -144,8 +144,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => 'Il y à :count_delimited jour|Il y à:count_delimited jours',
-        'hours_ago' => 'Il y à:count_delimited heure|Il y à :count_delimited heures',
+        'days_ago' => 'Il y à :count_delimited jour|Il y à :count_delimited jours',
+        'hours_ago' => 'Il y à :count_delimited heure|Il y à :count_delimited heures',
         'now' => 'maintenant',
         'remaining' => 'Temps restant',
     ],

@@ -3,6 +3,7 @@
 
 import * as React from 'react'
 import { div } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 bn = 'notification-banner-v2'
@@ -12,7 +13,7 @@ export class NotificationBanner extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "notification-banner-#{osu.uuid()}"
+    @eventId = "notification-banner-#{nextVal()}"
     @createPortalContainer()
 
 

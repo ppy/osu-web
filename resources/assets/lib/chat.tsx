@@ -7,7 +7,7 @@ import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
-core.reactTurbolinks.register('chat', false, () => {
+core.reactTurbolinks.register('chat', () => {
   const dataStore = core.dataStore;
   const initial = osu.parseJson<ChatInitialJson | null>('json-chat-initial', true);
 

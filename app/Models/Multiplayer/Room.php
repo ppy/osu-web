@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
+ * @property string $category
  * @property Channel $channel
  * @property int|null $channel_id
  * @property \Carbon\Carbon|null $created_at
@@ -44,7 +45,7 @@ class Room extends Model
         ],
     ];
 
-    const DEFAULT_SORT = 'ended';
+    const DEFAULT_SORT = 'created';
 
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];
@@ -52,13 +53,13 @@ class Room extends Model
         'participant_count' => 0,
     ];
 
-    public static function search($params, $preloads = null, $includes = null)
+    public static function search($params)
     {
         $query = static::query();
 
         $mode = presence(get_string($params['mode'] ?? null));
         $user = $params['user'];
-        $sort = 'created';
+        $sort = $params['sort'] ?? null;
 
         $category = presence(get_string($params['category'] ?? null)) ?? 'any';
         if ($category === 'any') {
@@ -70,7 +71,7 @@ class Room extends Model
         switch ($mode) {
             case 'ended':
                 $query->ended();
-                $sort = 'ended';
+                $sort ??= 'ended';
                 break;
             case 'participated':
                 $query->hasParticipated($user);
@@ -82,16 +83,17 @@ class Room extends Model
                 $query->active();
         }
 
-        $query->cursorSort($sort, $params['cursor'] ?? null);
-
-        foreach ($preloads ?? [] as $preload) {
-            $query->with($preload);
-        }
+        $cursorHelper = static::makeDbCursorHelper($sort);
+        $query->cursorSort($cursorHelper, get_arr($params['cursor'] ?? null));
 
         $limit = clamp(get_int($params['limit'] ?? 250), 1, 250);
         $query->limit($limit);
 
-        return json_collection($query->get(), 'Multiplayer\Room', $includes ?? []);
+        return [
+            'cursorHelper' => $cursorHelper,
+            'query' => $query,
+            'search' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
+        ];
     }
 
     public function channel()
@@ -194,7 +196,7 @@ class Room extends Model
         }
     }
 
-    public function startGame(User $owner, array $params)
+    public function startGame(User $owner, array $rawParams)
     {
         priv_check_user($owner, 'MultiplayerRoomCreate')->ensureCan();
 
@@ -204,36 +206,42 @@ class Room extends Model
             throw new InvariantException('number of simultaneously active rooms reached');
         }
 
-        $this->name = get_string($params['name'] ?? null);
+        $params = get_params($rawParams, null, [
+            'category',
+            'duration:int',
+            'ends_at:time',
+            'max_attempts:int',
+            'name',
+            'password',
+            'playlist:array',
+        ], ['null_missing' => true]);
+
+        $this->name = $params['name'];
         $this->user_id = $owner->getKey();
-        $this->max_attempts = get_int($params['max_attempts'] ?? null);
+        $this->max_attempts = $params['max_attempts'];
         $this->starts_at = now();
 
-        $category = $params['category'] ?? null;
-        if ($category === 'realtime') {
-            $this->category = $category;
+        if ($params['category'] === 'realtime') {
+            $this->category = $params['category'];
+            // only for realtime rooms for now
+            $this->password = $params['password'];
             $this->ends_at = now()->addSeconds(30);
         } else {
-            $endsAt = parse_time_to_carbon($params['ends_at'] ?? null);
-            if ($endsAt !== null) {
-                $this->ends_at = $endsAt;
-            } else {
-                $duration = get_int($params['duration'] ?? null);
-                if ($duration !== null) {
-                    $this->ends_at = $this->starts_at->copy()->addMinutes($duration);
-                }
+            if ($params['ends_at'] !== null) {
+                $this->ends_at = $params['ends_at'];
+            } elseif ($params['duration'] !== null) {
+                $this->ends_at = $this->starts_at->copy()->addMinutes($params['duration']);
             }
         }
 
         $this->assertValidStartGame();
 
-        $playlistParams = $params['playlist'] ?? [];
-        if (!is_array($playlistParams)) {
+        if (!is_array($params['playlist'])) {
             throw new InvariantException("field 'playlist' must an an array");
         }
 
         $playlistItems = [];
-        foreach ($playlistParams as $item) {
+        foreach ($params['playlist'] as $item) {
             $playlistItems[] = PlaylistItem::fromJsonParams($item);
         }
 
