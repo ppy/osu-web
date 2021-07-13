@@ -4,6 +4,7 @@
 import BbcodeEditor from 'bbcode-editor'
 import MetadataEditor from 'beatmapsets-show/metadata-editor'
 import { Modal } from 'modal'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
 import { nextVal } from 'utils/seq'
@@ -33,6 +34,7 @@ export class Info extends React.Component
 
   componentWillUnmount: =>
     $(window).off ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
 
   toggleEditingDescription: =>
@@ -96,8 +98,9 @@ export class Info extends React.Component
       @_failurePointsChart = new StackedBarChart @chartAreaRef.current, options
       $(window).on "resize.#{@eventId}", @_failurePointsChart.resize
 
-    @_failurePointsChart.loadData @props.beatmap.failtimes
-    @_failurePointsChart.reattach @chartAreaRef.current
+    core.reactTurbolinks.runAfterPageLoad @eventId, =>
+      @_failurePointsChart.loadData @props.beatmap.failtimes
+      @_failurePointsChart.reattach @chartAreaRef.current
 
 
   renderEditMetadataButton: =>
