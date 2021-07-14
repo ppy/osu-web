@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 /**
  * @property Beatmapset $beatmapset
  * @property int $beatmapset_id
@@ -21,6 +23,8 @@ namespace App\Models;
  */
 class BeatmapsetNomination extends Model
 {
+    use HasFactory;
+
     protected $casts = [
         'modes' => 'array',
     ];

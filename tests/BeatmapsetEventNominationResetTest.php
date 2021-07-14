@@ -87,7 +87,7 @@ class BeatmapsetEventNominationResetTest extends TestCase
 
         for ($i = 0; $i < $nominatorCount; $i++) {
             $this->nominators[] = $nominator = $this->createUserWithGroupPlaymodes('bng', $modes);
-            factory(BeatmapsetNomination::class)->create([
+            BeatmapsetNomination::factory()->create([
                 'beatmapset_id' => $this->beatmapset->getKey(),
                 'user_id' => $nominator->getKey(),
             ]);
