@@ -13,15 +13,8 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
 class ChatChannelEvent implements ShouldBroadcastNow
 {
-    public $action;
-    public $channel;
-    public $user;
-
-    public function __construct(ChatChannel $channel, User $user, string $action)
+    public function __construct(public ChatChannel $channel, public User $user, public string $action)
     {
-        $this->action = $action;
-        $this->channel = $channel;
-        $this->user = $user;
     }
 
     public function broadcastAs()

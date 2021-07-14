@@ -13,14 +13,9 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
 class ChatMessageEvent implements ShouldBroadcastNow
 {
-    public $message;
-    public $sender;
-
     // TODO: just get sender from message?
-    public function __construct(Message $message, User $sender)
+    public function __construct(public Message $message, public User $sender)
     {
-        $this->message = $message;
-        $this->sender = $sender;
     }
 
     public function broadcastAs()
