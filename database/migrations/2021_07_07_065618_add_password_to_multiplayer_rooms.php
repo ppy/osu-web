@@ -29,7 +29,7 @@ class AddPasswordToMultiplayerRooms extends Migration
     public function down()
     {
         Schema::table('multiplayer_rooms', function (Blueprint $table) {
-            $table->string('password')->nullable();
+            $table->dropColumn('password');
         });
     }
 }

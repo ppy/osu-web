@@ -3,6 +3,7 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
+import Blackout from 'blackout'
 import Fade from 'fade'
 import Gallery from 'gallery'
 import * as laroute from 'laroute'
@@ -16,6 +17,8 @@ import { pageChange, pageChangeImmediate } from 'utils/page-change'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
+
+window.Blackout = Blackout
 
 window.Fade = Fade
 

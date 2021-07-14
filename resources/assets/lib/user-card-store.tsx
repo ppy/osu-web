@@ -6,11 +6,11 @@ import * as React from 'react';
 import { UserCard } from 'user-card';
 
 interface Props {
-  user: UserJson;
+  user: UserJson | null;
 }
 
 interface State {
-  user?: UserJson;
+  user?: UserJson | null;
 }
 
 /**

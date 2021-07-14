@@ -51,7 +51,7 @@
                 @if (count($albums) > 0)
                     <div class="artist__albums">
                         @foreach ($albums as $album)
-                            <div class="artist-album js-audio--group">
+                            <div class="artist-album">
                                 <a class="fragment-target" name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
                                 <div class="artist-album__header">
                                     <div class="artist-album__header-overlay{{$album['is_new'] ? ' artist-album__header-overlay--new' : ''}}" style="background-image: url({{$album['cover_url']}});"></div>
@@ -128,5 +128,5 @@
 @section("script")
   @parent
 
-  @include('layout._extra_js', ['src' => 'js/react/artist-page.js'])
+  @include('layout._react_js', ['src' => 'js/react/artist-page.js'])
 @stop

@@ -5,6 +5,6 @@ import Main from 'follows-comment/main';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
-core.reactTurbolinks.register('follows-comment', true, () => (
+core.reactTurbolinks.register('follows-comment', () => (
   <Main follows={osu.parseJson('json-follows-comment')} />
 ));

@@ -57,7 +57,7 @@
 
 
   parseJson: (id, remove = false) ->
-    element = document.getElementById(id)
+    element = window.newBody?.querySelector("##{id}")
     return unless element?
 
     json = JSON.parse element.text
