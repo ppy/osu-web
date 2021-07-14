@@ -221,7 +221,7 @@ export class Main extends React.Component
 
         el Header,
           beatmapset: @state.beatmapset
-          beatmaps: @state.beatmaps
+          beatmaps: @state.beatmaps.get(@state.currentBeatmap.mode)
           currentBeatmap: @state.currentBeatmap
 
         el Info,

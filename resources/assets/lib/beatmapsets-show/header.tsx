@@ -4,7 +4,6 @@
 import BeatmapList from 'beatmap-discussions/beatmap-list';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
@@ -14,14 +13,12 @@ import { generate as generateHash } from 'utils/beatmapset-page-hash';
 import BeatmapPicker from './beatmap-picker';
 
 interface Props {
-  beatmaps: Map<GameMode, BeatmapJsonExtended[]>;
+  beatmaps: BeatmapJsonExtended[];
   beatmapset: BeatmapsetExtendedJson;
   currentBeatmap: BeatmapJsonExtended;
 }
 
 export default class Header extends React.PureComponent<Props> {
-  private beatmaps = this.props.beatmaps.get(this.props.currentBeatmap.mode) ?? [];
-
   render() {
     return (
       <div className='beatmapset-header'>
@@ -87,7 +84,7 @@ export default class Header extends React.PureComponent<Props> {
         <div className='beatmapset-header__chooser'>
           <div className='beatmapset-header__chooser-list'>
             <BeatmapList
-              beatmaps={this.beatmaps}
+              beatmaps={this.props.beatmaps}
               beatmapset={this.props.beatmapset}
               createLink={this.createLink}
               currentBeatmap={this.props.currentBeatmap}
@@ -99,7 +96,7 @@ export default class Header extends React.PureComponent<Props> {
 
           <div className='beatmapset-header__chooser-picker'>
             <BeatmapPicker
-              beatmaps={this.beatmaps}
+              beatmaps={this.props.beatmaps}
               currentBeatmap={this.props.currentBeatmap}
             />
           </div>
@@ -111,7 +108,7 @@ export default class Header extends React.PureComponent<Props> {
   private createLink = (beatmap: BeatmapJsonExtended) => generateHash({ beatmap });
 
   private onSelectBeatmap = (beatmapId: number) => {
-    const selectedBeatmap = this.beatmaps.find((beatmap) => beatmap.id === beatmapId);
+    const selectedBeatmap = this.props.beatmaps.find((beatmap) => beatmap.id === beatmapId);
 
     $.publish('beatmapset:beatmap:set', { beatmap: selectedBeatmap });
   };
