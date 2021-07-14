@@ -26,6 +26,8 @@
     background-color: @osu-colour-b5;
 
     flex-direction: column;
+    max-height: 300px;
+    overflow-y: auto;
 
 
     display: none;
@@ -39,6 +41,17 @@
       margin-left: 5px;
       margin-top: 0;
       padding: 10px 0;
+    }
+
+    .@{top}--beatmapset-show & {
+      @media @desktop {
+        width: auto;
+        top: 0;
+        left: 100%;
+        margin-top: 0;
+        margin-left: 5px;
+        transform: translateY(-50%);
+      }
     }
   }
 
@@ -72,11 +85,42 @@
 
       .@{top}--beatmapset-show & {
         box-shadow: none;
+
+        @media @desktop {
+          background-color: transparent;
+          padding: 0;
+        }
       }
     }
 
     &--current {
       background-color: @osu-colour-b6;
+    }
+  }
+
+  &__selected {
+    &--icons {
+      display: none;
+
+      .@{top}--beatmapset-show & {
+        @media @desktop {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          font-size: 9px;
+          gap: 2px 2px;
+        }
+      }
+    }
+
+    &--list {
+      display: flex;
+      flex: 1;
+
+      .@{top}--beatmapset-show & {
+        @media @desktop {
+          display: none;
+        }
+      }
     }
   }
 }
