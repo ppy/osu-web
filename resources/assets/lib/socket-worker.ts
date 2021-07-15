@@ -144,7 +144,7 @@ export default class SocketWorker {
 
     this.xhrLoadingState.startWebSocket = true;
 
-    return this.xhr.startWebSocket = $.get(route('notifications.endpoint'))
+    this.xhr.startWebSocket = $.get(route('notifications.endpoint'))
       .done(action((data: NotificationFeedMetaJson) => {
         this.xhrLoadingState.startWebSocket = false;
         this.endpoint = data.url;
