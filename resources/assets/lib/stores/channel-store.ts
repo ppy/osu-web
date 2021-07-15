@@ -7,7 +7,7 @@ import {
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import ChatAPI from 'chat/chat-api';
+import ChatApi from 'chat/chat-api';
 import { ChatMessageNewEvent } from 'chat/chat-events';
 import DispatchListener from 'dispatch-listener';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
@@ -27,7 +27,6 @@ export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
   lastPolledMessageId = 0;
 
-  private api = new ChatAPI();
   private markingAsRead: Partial<Record<number, number>> = {};
 
   @computed
@@ -147,7 +146,7 @@ export default class ChannelStore implements DispatchListener {
     }
 
     // call load and then wait for ChatChannelJoin to arrive over the websocket.
-    channel.load(this.api);
+    channel.load();
   }
 
   @action
@@ -166,7 +165,7 @@ export default class ChannelStore implements DispatchListener {
     }
 
     try {
-      const response = await this.api.getMessages(channel.channelId, { until });
+      const response = await ChatApi.getMessages(channel.channelId, { until });
       channel.addMessages(response.map(Message.fromJson));
     } finally {
       runInAction(() => {
@@ -202,7 +201,7 @@ export default class ChannelStore implements DispatchListener {
         return;
       }
 
-      this.api.markAsRead(channel.channelId, channel.lastMessageId);
+      ChatApi.markAsRead(channel.channelId, channel.lastMessageId);
     }), 1000);
 
     this.markingAsRead[channelId] = currentTimeout;
@@ -211,7 +210,7 @@ export default class ChannelStore implements DispatchListener {
   @action
   partChannel(channelId: number) {
     if (channelId > 0) {
-      this.api.partChannel(channelId, window.currentUser.id);
+      ChatApi.partChannel(channelId, window.currentUser.id);
     }
 
     this.channels.delete(channelId);
@@ -281,14 +280,14 @@ export default class ChannelStore implements DispatchListener {
           return;
         }
 
-        const response = await this.api.newConversation(userId, message);
+        const response = await ChatApi.newConversation(userId, message);
         runInAction(() => {
           this.channels.delete(message.channelId);
           const newChannel = this.addNewConversation(response.channel, response.message);
           dispatch(new ChatNewConversationAdded(newChannel.channelId));
         });
       } else {
-        const response = await this.api.sendMessage(message);
+        const response = await ChatApi.sendMessage(message);
         channel.afterSendMesssage(message, response);
       }
     } catch (error) {

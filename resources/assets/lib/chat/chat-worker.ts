@@ -4,7 +4,7 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import ChatAPI from 'chat/chat-api';
+import ChatApi from 'chat/chat-api';
 import { ChatChannelJoinEvent, ChatChannelPartEvent, ChatEventJson, ChatMessageNewEvent, isChannelEvent, isMessageEvent } from 'chat/chat-events';
 import DispatchListener from 'dispatch-listener';
 import { maxBy } from 'lodash';
@@ -36,7 +36,6 @@ function newDispatchActionFromJson(json: ChatEventJson) {
 
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
-  private api = new ChatAPI();
   private lastHistoryId: number | null = null;
   private pollTime = 1000;
   private pollTimeIdle = 5000;
@@ -71,7 +70,7 @@ export default class ChatWorker implements DispatchListener {
 
     this.updateXHR = true;
 
-    this.api.getUpdates(this.channelStore.lastPolledMessageId, this.lastHistoryId)
+    ChatApi.getUpdates(this.channelStore.lastPolledMessageId, this.lastHistoryId)
       .then((updateJson) => {
         this.retryDelay.reset();
         this.updateXHR = false;

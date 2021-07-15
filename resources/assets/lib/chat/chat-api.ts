@@ -19,27 +19,27 @@ interface NewConversationJson {
   new_channel_id: number;
 }
 
-export default class ChatAPI {
-  getChannel(channelId: number) {
+export default class ChatApi {
+  static getChannel(channelId: number) {
     return $.get(route('chat.channels.show', { channel: channelId })) as JQuery.jqXHR<GetChannelResponse>;
   }
 
-  getMessages(channelId: number, params?: { since?: number; until?: number }) {
+  static getMessages(channelId: number, params?: { since?: number; until?: number }) {
     return $.get(route('chat.channels.messages.index', { channel: channelId, ...params })) as JQuery.jqXHR<MessageJson[]>;
   }
 
-  getUpdates(since: number, lastHistoryId?: number | null) {
+  static getUpdates(since: number, lastHistoryId?: number | null) {
     return $.get(route('chat.updates'), { history_since: lastHistoryId, since }) as JQuery.jqXHR<ChatUpdatesJson>;
   }
 
-  markAsRead(channelId: number, messageId: number) {
+  static markAsRead(channelId: number, messageId: number) {
     return $.ajax({
       type: 'PUT',
       url: route('chat.channels.mark-as-read', {channel: channelId, message: messageId}),
     }) as JQuery.jqXHR<void>;
   }
 
-  newConversation(userId: number, message: Message) {
+  static newConversation(userId: number, message: Message) {
     return $.post(route('chat.new'), {
       is_action: message.isAction,
       message: message.content,
@@ -47,7 +47,7 @@ export default class ChatAPI {
     }) as JQuery.jqXHR<NewConversationJson>;
   }
 
-  partChannel(channelId: number, userId: number) {
+  static partChannel(channelId: number, userId: number) {
     return $.ajax(route('chat.channels.part', {
       channel: channelId,
       user: userId,
@@ -56,7 +56,7 @@ export default class ChatAPI {
     }) as JQuery.jqXHR<void>;
   }
 
-  sendMessage(message: Message) {
+  static sendMessage(message: Message) {
     return $.post(route('chat.channels.messages.store', { channel: message.channelId }), {
       is_action: message.isAction,
       message: message.content,

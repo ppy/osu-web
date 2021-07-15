@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 
-import ChatAPI from 'chat/chat-api';
+import ChatApi from 'chat/chat-api';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import * as _ from 'lodash';
@@ -150,23 +150,22 @@ export default class Channel {
   }
 
   @action
-  // TODO: don't pass api through?
-  async load(api: ChatAPI) {
+  async load() {
     // nothing to load
     if (this.newPmChannel) return;
 
-    this.loadMessages(api);
-    this.loadMetadata(api);
+    this.loadMessages();
+    this.loadMetadata();
   }
 
   @action
-  async loadMessages(api: ChatAPI) {
+  async loadMessages() {
     if (this.newPmChannel || this.loadingState.messages != null) return;
 
     this.loadingState.messages = false;
 
     try {
-      const response = await api.getMessages(this.channelId);
+      const response = await ChatApi.getMessages(this.channelId);
 
       runInAction(() => {
         // TODO: something about User; map in api? or lazy load?
@@ -187,13 +186,13 @@ export default class Channel {
   }
 
   @action
-  async loadMetadata(api: ChatAPI) {
+  async loadMetadata() {
     if (this.loadingState.metadata != null) return;
 
     this.loadingState.metadata = false;
 
     try {
-      const response = await api.getChannel(this.channelId);
+      const response = await ChatApi.getChannel(this.channelId);
 
       runInAction(() => {
         this.updateWithJson(response.channel);
