@@ -18,7 +18,6 @@ import { action, comparer, computed, makeObservable, observable, runInAction } f
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
-import UserStore from './user-store';
 
 const skippedChannelTypes = new Set<ChannelType>(['MULTIPLAYER', 'TEMPORARY']);
 
@@ -74,7 +73,7 @@ export default class ChannelStore implements DispatchListener {
     });
   }
 
-  constructor(protected userStore: UserStore) {
+  constructor() {
     makeObservable(this);
   }
 
