@@ -84,7 +84,7 @@ export default class Channel {
 
   @computed
   get loading() {
-    return this.loadingState.messages == false || this.loadingState.metadata == false;
+    return this.loadingState.messages === false || this.loadingState.metadata === false;
   }
 
   @computed
