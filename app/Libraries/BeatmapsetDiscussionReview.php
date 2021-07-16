@@ -84,65 +84,12 @@ class BeatmapsetDiscussionReview
         return $stats;
     }
 
-    private static function update(BeatmapDiscussion $discussion, array $document, User $user)
+    public static function update(BeatmapDiscussion $discussion, array $document, User $user)
     {
         // fail if updating on deleted beatmapset.
         $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id);
 
         return (new static($beatmapset, $user, $document, $discussion))->process();
-    }
-
-    // This should be private but phpcs thinks it's not used?
-    public function process()
-    {
-        $this->priorOpenProblemCount = $this->beatmapset->beatmapDiscussions()->openProblems()->count();
-
-        try {
-            DB::beginTransaction();
-
-            [$output, $childIds] = $this->parseDocument();
-
-            if (!$this->isUpdate) {
-                $this->discussion = $this->createDiscussion(
-                    'review',
-                    json_encode($output)
-                );
-            } else {
-                // ensure all referenced embeds belong to this discussion
-                $externalEmbeds = BeatmapDiscussion::whereIn('id', $childIds)->where('parent_id', '<>', $this->discussion->getKey())->count();
-                if ($externalEmbeds > 0) {
-                    throw new InvariantException(osu_trans('beatmap_discussions.review.validation.external_references'));
-                }
-
-                // update the review post
-                $post = $this->discussion->startingPost;
-                $post['message'] = json_encode($output);
-                $post['last_editor_id'] = $this->user->getKey();
-                $post->saveOrExplode();
-
-                // unlink any embeds that were removed from the review
-                BeatmapDiscussion::where('parent_id', $this->discussion->getKey())
-                    ->whereNotIn('id', $childIds)
-                    ->update(['parent_id' => null]);
-            }
-
-            // associate children with parent
-            BeatmapDiscussion::whereIn('id', $childIds)
-                ->update(['parent_id' => $this->discussion->getKey()]);
-
-            $this->handleProblemDiscussion();
-
-            DB::commit();
-
-            if (!$this->isUpdate) {
-                (new BeatmapsetDiscussionReviewNew($this->discussion, $this->user))->dispatch();
-            }
-
-            return $this->discussion;
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
     }
 
     private function createDiscussion(string $discussionType, string $message, int $beatmapId = null, string $timestamp = null)
@@ -266,5 +213,57 @@ class BeatmapsetDiscussionReview
         }
 
         return [$output, $childIds];
+    }
+
+    private function process()
+    {
+        $this->priorOpenProblemCount = $this->beatmapset->beatmapDiscussions()->openProblems()->count();
+
+        try {
+            DB::beginTransaction();
+
+            [$output, $childIds] = $this->parseDocument();
+
+            if (!$this->isUpdate) {
+                $this->discussion = $this->createDiscussion(
+                    'review',
+                    json_encode($output)
+                );
+            } else {
+                // ensure all referenced embeds belong to this discussion
+                $externalEmbeds = BeatmapDiscussion::whereIn('id', $childIds)->where('parent_id', '<>', $this->discussion->getKey())->count();
+                if ($externalEmbeds > 0) {
+                    throw new InvariantException(osu_trans('beatmap_discussions.review.validation.external_references'));
+                }
+
+                // update the review post
+                $post = $this->discussion->startingPost;
+                $post['message'] = json_encode($output);
+                $post['last_editor_id'] = $this->user->getKey();
+                $post->saveOrExplode();
+
+                // unlink any embeds that were removed from the review
+                BeatmapDiscussion::where('parent_id', $this->discussion->getKey())
+                    ->whereNotIn('id', $childIds)
+                    ->update(['parent_id' => null]);
+            }
+
+            // associate children with parent
+            BeatmapDiscussion::whereIn('id', $childIds)
+                ->update(['parent_id' => $this->discussion->getKey()]);
+
+            $this->handleProblemDiscussion();
+
+            DB::commit();
+
+            if (!$this->isUpdate) {
+                (new BeatmapsetDiscussionReviewNew($this->discussion, $this->user))->dispatch();
+            }
+
+            return $this->discussion;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 }
