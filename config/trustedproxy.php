@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 $trustedProxies = presence(env('TRUSTED_PROXIES'));
 if ($trustedProxies !== null && $trustedProxies !== '*') {
     $trustedProxies = explode(',', $trustedProxies);
@@ -50,6 +52,6 @@ return [
      *
      * @link https://symfony.com/doc/current/deployment/proxies.html
      */
-    'headers' => Illuminate\Http\Request::HEADER_X_FORWARDED_ALL,
+    'headers' => Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_HOST | Request::HEADER_X_FORWARDED_PORT | Request::HEADER_X_FORWARDED_PROTO,
 
 ];
