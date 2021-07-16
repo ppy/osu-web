@@ -14,7 +14,7 @@ use Log;
 class BeatmapsetNominationSyncCommand extends Command
 {
     protected $signature = 'beatmapset:nomination-sync';
-    protected $description = 'Indexes documents into Elasticsearch.';
+    protected $description = 'Migrates nomination-related BeatmapsetEvents to BeatmapsetNomination.';
 
     public function handle()
     {
