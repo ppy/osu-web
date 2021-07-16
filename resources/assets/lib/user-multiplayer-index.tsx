@@ -8,7 +8,7 @@ import * as React from 'react';
 import UserMultiplayerHistoryContext, { makeStore, updateStore } from 'user-multiplayer-history-context';
 import Main from 'user-multiplayer-index/main';
 
-core.reactTurbolinks.register('user-multiplayer-index', true, () => {
+core.reactTurbolinks.register('user-multiplayer-index', () => {
   const jsonUser = osu.parseJson<UserJsonExtended>('json-user');
   const json = osu.parseJson<UserMultiplayerHistoryJson>('json-user-multiplayer-index');
   const store = makeStore();

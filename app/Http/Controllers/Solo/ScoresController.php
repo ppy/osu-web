@@ -5,72 +5,60 @@
 
 namespace App\Http\Controllers\Solo;
 
-use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
-use App\Libraries\ClientCheck;
 use App\Libraries\Multiplayer\Mod;
-use App\Models\Beatmap;
 use App\Models\Solo\Score;
-use PDOException;
+use App\Models\Solo\ScoreToken;
+use DB;
 
 class ScoresController extends BaseController
 {
-    private static function getBeatmapOrFail($beatmapId): Beatmap
-    {
-        return Beatmap::scoreable()->findOrFail($beatmapId);
-    }
-
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    public function store($beatmapId)
+    public function store($beatmapId, $tokenId)
     {
-        $beatmap = static::getBeatmapOrFail($beatmapId);
-        $user = auth()->user();
-        $params = request()->all();
-
-        ClientCheck::assert($user, $params);
-
-        $params = get_params($params, null, ['ruleset_id:int']);
-
-        try {
-            $score = Score::create(array_merge($params, [
+        $score = DB::transaction(function () use ($beatmapId, $tokenId) {
+            $user = auth()->user();
+            $scoreToken = ScoreToken::where([
+                'beatmap_id' => $beatmapId,
                 'user_id' => $user->getKey(),
-                'beatmap_id' => $beatmap->getKey(),
-                'started_at' => now(),
-            ]));
-        } catch (PDOException $e) {
-            // TODO: move this to be a validation inside Score model
-            throw new InvariantException('failed updating score');
-        }
+            ])->lockForUpdate()->findOrFail($tokenId);
 
-        return json_item($score, 'Solo\Score');
-    }
+            // return existing score otherwise (assuming duplicated submission)
+            if ($scoreToken->score_id === null) {
+                $params = get_params(request()->all(), null, [
+                    'accuracy:float',
+                    'max_combo:int',
+                    'mods:array',
+                    'passed:bool',
+                    'rank:string',
+                    'statistics:array',
+                    'total_score:int',
+                ]);
 
-    public function update($beatmapId, $id)
-    {
-        static::getBeatmapOrFail($beatmapId);
+                $params = array_merge($params, [
+                    'beatmap_id' => $scoreToken->beatmap_id,
+                    'ended_at' => now(),
+                    'mods' => Mod::parseInputArray($params['mods'] ?? [], $scoreToken->ruleset_id),
+                    'ruleset_id' => $scoreToken->ruleset_id,
+                    'started_at' => $scoreToken->created_at,
+                    'user_id' => $scoreToken->user_id,
+                ]);
 
-        $user = auth()->user();
-        $score = Score::where('user_id', $user->getKey())->findOrFail($id);
+                $score = new Score();
 
-        $params = get_params(request()->all(), null, [
-            'accuracy:float',
-            'max_combo:int',
-            'mods:array',
-            'passed:bool',
-            'rank:string',
-            'statistics:array',
-            'total_score:int',
-        ]);
-        $params['ended_at'] = now();
-        $params['mods'] = Mod::parseInputArray($params['mods'] ?? [], $score->ruleset_id);
+                $score->complete($params);
+                $score->createLegacyEntry();
+                $scoreToken->fill(['score_id' => $score->getKey()])->saveOrExplode();
+            } else {
+                // assume score exists and is valid
+                $score = $scoreToken->score;
+            }
 
-        $score->getConnection()->transaction(function () use ($params, $score) {
-            $score->complete($params);
-            $score->createLegacyEntry();
+            return $score;
         });
 
         return json_item($score, 'Solo\Score');

@@ -18,12 +18,11 @@ export class Paginator extends React.PureComponent
 
   componentDidMount: =>
     Timeout.set 0, @throttledAutoPagerOnScroll
-    $(window).on 'scroll.paginator', @throttledAutoPagerOnScroll
+    $(window).on 'scroll', @throttledAutoPagerOnScroll
 
 
   componentWillUnmount: =>
-    $(window).off '.paginator'
-    $(document).off '.paginator'
+    $(window).off 'scroll', @throttledAutoPagerOnScroll
     @throttledAutoPagerOnScroll.cancel()
 
 

@@ -31,6 +31,7 @@ class ScoreTransformer extends TransformerAbstract
             'mods' => $score->enabled_mods,
             'score' => $score->score,
             'max_combo' => $score->maxcombo,
+            'passed' => $score->pass,
             'perfect' => $score->perfect,
             'statistics' => [
                 'count_50' => $score->count50,

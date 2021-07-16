@@ -5,12 +5,14 @@ import { Uploader } from './uploader'
 import { UserEntry } from './user-entry'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class UserEntryList extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "contests-show-enter-#{nextVal()}"
     @state =
       contest: @props.contest
       userEntries: @props.userEntries
@@ -20,10 +22,10 @@ export class UserEntryList extends React.Component
       userEntries: data
 
   componentDidMount: ->
-    $.subscribe 'contest:entries:update.contest', @handleUpdate
+    $.subscribe "contest:entries:update.#{@eventId}", @handleUpdate
 
   componentWillUnmount: ->
-    $.unsubscribe '.contest'
+    $.unsubscribe ".#{@eventId}"
 
   render: ->
     entryOpen = moment(@state.contest.entry_starts_at).diff() <= 0 && moment(@state.contest.entry_ends_at).diff() >= 0

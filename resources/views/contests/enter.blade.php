@@ -35,5 +35,5 @@
   <script id="json-userEntries" type="application/json">
     {!! json_encode($contest->userEntries(Auth::user())) !!}
   </script>
-  @include('layout._extra_js', ['src' => 'js/react/contest-entry.js'])
+  @include('layout._react_js', ['src' => 'js/react/contest-entry.js'])
 @stop

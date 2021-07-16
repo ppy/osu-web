@@ -5,7 +5,7 @@ import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { Main } from './profile-page/main'
 
-core.reactTurbolinks.register 'profile-page', true, (target) ->
+core.reactTurbolinks.register 'profile-page', (container) ->
   user = osu.parseJson('json-user')
 
   createElement Main,
@@ -17,4 +17,4 @@ core.reactTurbolinks.register 'profile-page', true, (target) ->
     achievements: _.keyBy osu.parseJson('json-achievements'), 'id'
     perPage: osu.parseJson('json-perPage')
     extras: osu.parseJson('json-extras')
-    container: target
+    container: container

@@ -42,15 +42,11 @@ class FriendsController extends Controller
             ->orderBy('username', 'asc')
             ->get();
 
-        $transformer = new UserCompactTransformer();
-        $transformer->mode = $currentMode;
-        $usersJson = json_collection($friends, $transformer, [
-            'cover',
-            'country',
-            'statistics',
-            'groups',
-            'support_level',
-        ]);
+        $usersJson = json_collection(
+            $friends,
+            (new UserCompactTransformer())->setMode($currentMode),
+            UserCompactTransformer::LIST_INCLUDES
+        );
 
         if (is_api_request()) {
             return $usersJson;

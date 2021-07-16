@@ -6,11 +6,11 @@ import * as React from 'react';
 import { UserCard } from 'user-card';
 
 interface Props {
-  user: UserJson;
+  user: UserJson | null;
 }
 
 interface State {
-  user?: UserJson;
+  user?: UserJson | null;
 }
 
 /**
@@ -20,11 +20,11 @@ export class UserCardStore extends React.PureComponent<Props, State> {
   state: Readonly<State> = { user: this.props.user };
 
   componentDidMount() {
-    $.subscribe('store-supporter-tag:update-user.user-card-store', this.setUser);
+    $.subscribe('store-supporter-tag:update-user', this.setUser);
   }
 
   componentWillUnmount() {
-    $.unsubscribe('.user-card-store');
+    $.unsubscribe('store-supporter-tag:update-user', this.setUser);
   }
 
   render() {
