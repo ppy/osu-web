@@ -49,14 +49,6 @@ class BeatmapsetDiscussionReview
         return (new static($beatmapset, $user, $document))->process();
     }
 
-    public static function update(BeatmapDiscussion $discussion, array $document, User $user)
-    {
-        // fail if updating on deleted beatmapset.
-        $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id);
-
-        return (new static($beatmapset, $user, $document, $discussion))->process();
-    }
-
     public static function getStats(array $document)
     {
         $stats = [
@@ -90,6 +82,14 @@ class BeatmapsetDiscussionReview
         }
 
         return $stats;
+    }
+
+    private static function update(BeatmapDiscussion $discussion, array $document, User $user)
+    {
+        // fail if updating on deleted beatmapset.
+        $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id);
+
+        return (new static($beatmapset, $user, $document, $discussion))->process();
     }
 
     // This should be private but phpcs thinks it's not used?
