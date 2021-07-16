@@ -41,27 +41,7 @@ export default class Stats extends React.PureComponent<Props> {
           </div>
         </div>
 
-        {statsKey.map((stat) => (
-          <React.Fragment key={stat}>
-            <div>{osu.trans(`beatmapsets.show.stats.${stat}`)}</div>
-            <div className='beatmapset-stats__value'>
-              {stat === 'difficulty_rating'
-                ? osu.formatNumber(this.props.beatmap.difficulty_rating)
-                : this.props.beatmap[stat]
-              }
-            </div>
-            <div className='beatmapset-stats__bar-container'>
-              <div className='beatmapset-stats__bar'>
-                <div
-                  className='beatmapset-stats__bar-fill'
-                  style={{
-                    width: `${10 * Math.min(10, Number(this.props.beatmap[stat]))}%`,
-                  } as React.CSSProperties}
-                />
-              </div>
-            </div>
-          </React.Fragment>
-        ))}
+        {statsKey.map(this.renderStat)}
       </div>
     );
   }
@@ -75,5 +55,33 @@ export default class Stats extends React.PureComponent<Props> {
       default:
         return ['cs', 'drain', 'accuracy', 'ar', 'difficulty_rating'];
     }
+  };
+
+  private renderStat = (stat: keyof BeatmapJsonExtended) => {
+    if (this.props.beatmap.mode === 'mania' && stat === 'cs') {
+      stat += '-mania';
+    }
+
+    return (
+      <React.Fragment key={stat}>
+        <div>{osu.trans(`beatmapsets.show.stats.${stat}`)}</div>
+        <div className='beatmapset-stats__value'>
+          {stat === 'difficulty_rating'
+            ? osu.formatNumber(this.props.beatmap.difficulty_rating)
+            : this.props.beatmap[stat]
+          }
+        </div>
+        <div className='beatmapset-stats__bar-container'>
+          <div className='beatmapset-stats__bar'>
+            <div
+              className='beatmapset-stats__bar-fill'
+              style={{
+                width: `${10 * Math.min(10, Number(this.props.beatmap[stat]))}%`,
+              } as React.CSSProperties}
+            />
+          </div>
+        </div>
+      </React.Fragment>
+    );
   };
 }
