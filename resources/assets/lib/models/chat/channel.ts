@@ -94,18 +94,6 @@ export default class Channel {
     this.channelId = channelId;
   }
 
-  static fromJson(json: ChannelJsonExtended): Channel {
-    const channel = Object.create(Channel.prototype);
-    return Object.assign(channel, {
-      channelId: json.channel_id,
-      description: json.description,
-      icon: json.icon,
-      lastReadId: json.last_read_id,
-      name: json.name,
-      type: json.type,
-    });
-  }
-
   static newPM(target: User, channelId: number | null): Channel {
     const channel = new Channel(channelId ?? -1);
     channel.newPmChannel = channelId == null;
