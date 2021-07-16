@@ -18,11 +18,12 @@ class BeatmapsetNominationSyncCommand extends Command
 
     public function handle()
     {
+        $progress = $this->output->createProgressBar();
         $max = BeatmapsetEvent::max('id');
 
         BeatmapsetEvent::where('id', '<=', $max)->whereIn('type', [BeatmapsetEvent::NOMINATE, BeatmapsetEvent::NOMINATION_RESET, BeatmapsetEvent::DISQUALIFY])
             ->with('beatmapset')
-            ->chunkById(1000, function ($chunk) {
+            ->chunkById(1000, function ($chunk) use ($progress) {
                 /** @var BeatmapsetEvent $event */
                 foreach ($chunk as $event) {
                     switch ($event->type) {
@@ -51,7 +52,11 @@ class BeatmapsetNominationSyncCommand extends Command
                             ]);
                             break;
                     }
+
+                    $progress->advance();
                 }
             });
+
+        $progress->finish();
     }
 }
