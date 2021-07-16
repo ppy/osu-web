@@ -15,7 +15,7 @@ const options = {
 
 const client = Shopify.buildClient(options);
 
-export async function fetchAllProducts(): Promise<any[]> {
+export function fetchAllProducts(): Promise<any[]> {
   return client.product.fetchAll();
 }
 
