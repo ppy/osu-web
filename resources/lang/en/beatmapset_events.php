@@ -74,6 +74,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Nomination',
         'nomination_reset' => 'Nomination resetting',
+        'nomination_reset_received' => 'Nomination reset received',
         'nsfw_toggle' => 'Explicit mark',
         'qualify' => 'Qualification',
         'rank' => 'Ranking',
