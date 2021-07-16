@@ -20,9 +20,9 @@ function isVisibleBeatmap(beatmap: BeatmapJson) {
 }
 
 const difficultyColourSpectrum = d3.scaleLinear<string>()
-  .domain([1.5, 2, 2.5, 3.375, 4.625, 5.875, 7, 8])
+  .domain([1.5, 2, 2.5, 3.25, 4.5, 6, 7, 8])
   .clamp(true)
-  .range(['#4FC0FF', '#4FFFD5', '#7CFF4F', '#F7F05C', '#FF8068', '#FF3C71', '#6563DE', '#18158E', '#18158E'])
+  .range(['#4FC0FF', '#4FFFD5', '#7CFF4F', '#F6F05C', '#FF8068', '#FF3C71', '#6563DE', '#18158E'])
   .interpolate(d3.interpolateRgb.gamma(2.2));
 
 interface FindDefaultParams<T> {
@@ -90,7 +90,7 @@ export function getDiffRating(rating: number) {
 }
 
 export function getDiffColour(rating?: number | null) {
-  if (rating ?? 0 > 8) return '#000000';
+  if ((rating ?? 0) >= 8) return '#000000';
   return difficultyColourSpectrum(rating ?? 0);
 }
 
