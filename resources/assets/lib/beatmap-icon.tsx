@@ -34,8 +34,8 @@ export const BeatmapIcon = (props: Props) => {
   }
 
   const style = {
-    color: getDiffColour(beatmap.difficulty_rating),
-  };
+    '--diff': getDiffColour(beatmap.difficulty_rating),
+  } as React.CSSProperties;
 
   return (
     <div
