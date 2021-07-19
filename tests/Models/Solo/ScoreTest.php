@@ -7,8 +7,8 @@ namespace Tests\Models\Solo;
 
 use App\Exceptions\InvariantException;
 use App\Models\Solo\Score;
-use stdClass;
 use Carbon\Carbon;
+use stdClass;
 use Tests\TestCase;
 
 class ScoreTest extends TestCase
