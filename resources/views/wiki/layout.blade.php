@@ -10,5 +10,6 @@
 @endphp
 
 @extends('master', [
+    'canonicalUrl' => $page->isVisible() ? wiki_url($page->path, $page->locale) : null,
     'translatedPages' => $translatedPages,
 ])
