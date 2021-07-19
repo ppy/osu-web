@@ -110,25 +110,30 @@ abstract class Search extends HasSearch implements Queryable
         );
     }
 
-    /**
-     * @return array|null
-     */
-    public function getSortCursor()
+    public function getSortCursor(): ?array
     {
-        $last = array_last($this->response()->hits());
-        if ($last !== null && array_key_exists('sort', $last)) {
-            $fields = array_map(function ($sort) {
-                return $sort->field;
-            }, $this->params->sorts);
+        $requested = $this->params->size;
+        $received = $this->response()->count();
+        $total = $this->response()->total();
 
-            $casted = array_map(function ($value) {
-                // stringify all ints since javascript doesn't like big ints.
-                // fortunately the minimum value is PHP_INT_MIN instead of the equivalent double.
-                return is_int($value) ? (string) $value : $value;
-            }, $last['sort']);
+        if ($received === $requested && $received < $total) {
+            $last = array_last($this->response()->hits());
+            if (array_key_exists('sort', $last)) {
+                $fields = array_map(function ($sort) {
+                    return $sort->field;
+                }, $this->params->sorts);
 
-            return array_combine($fields, $casted);
+                $casted = array_map(function ($value) {
+                    // stringify all ints since javascript doesn't like big ints.
+                    // fortunately the minimum value is PHP_INT_MIN instead of the equivalent double.
+                    return is_int($value) ? (string) $value : $value;
+                }, $last['sort']);
+
+                return array_combine($fields, $casted);
+            }
         }
+
+        return null;
     }
 
     public function isLoginRequired(): bool
