@@ -386,7 +386,7 @@ class BeatmapDiscussion extends Model
     /**
      * To get the correct result, this should be called before discussions are updated, as it checks the open problems count.
      */
-    public function shouldNotifiyQualifiedProblem(?string $event): bool
+    public function shouldNotifyQualifiedProblem(?string $event): bool
     {
         return (
             $event === BeatmapsetEvent::ISSUE_REOPEN
