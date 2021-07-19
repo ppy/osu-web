@@ -4,7 +4,7 @@
 --}}
 @php
     $translatedPages = [];
-    foreach ([$page->requestedLocale, ...$page->otherLocales()] as $l) {
+    foreach ($page->availableLocales() as $l) {
         $translatedPages[$l] = wiki_url($page->path, $l);
     }
 @endphp

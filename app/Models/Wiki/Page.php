@@ -19,6 +19,7 @@ use App\Libraries\Wiki\MarkdownRenderer;
 use App\Models\Elasticsearch\WikiPageTrait;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
+use Ds\Set;
 use Exception;
 use Log;
 
@@ -163,11 +164,13 @@ class Page implements WikiObject
         $this->defaultSubtitle = array_pop($defaultTitles);
     }
 
-    public function otherLocales()
+    public function availableLocales(): Set
     {
         return $this->memoize(__FUNCTION__, function () {
+            $locales = new Set();
+
             if (!$this->isVisible()) {
-                return [];
+                return $locales;
             }
 
             $query = (new BoolQuery())
@@ -179,13 +182,13 @@ class Page implements WikiObject
                 ->query($query);
             $response = $search->response();
 
-            $locales = [];
             foreach ($response->hits() as $hit) {
                 $locale = $hit['_source']['locale'] ?? null;
-                if ($locale !== null && $locale !== $this->locale && LocaleMeta::isValid($locale)) {
+                if (LocaleMeta::isValid($locale)) {
                     $locales[] = $locale;
                 }
             }
+            $locales->sort();
 
             return $locales;
         });

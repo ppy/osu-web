@@ -3,14 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $otherLocales = $page->otherLocales();
-    $locale = $page->requestedLocale;
-
-    // put back original page locale when showing fallback translation
-    if ($page->isVisible() && $locale !== $page->locale && !in_array($page->locale, $otherLocales, true)) {
-        array_unshift($otherLocales, $page->locale);
-        sort($otherLocales);
-    }
+    $requestedLocale = $page->requestedLocale;
 @endphp
 <div class="header-buttons">
     <div class="header-buttons__item">
@@ -29,7 +22,7 @@
                 type="button"
                 class="btn-osu-big btn-osu-big--rounded-thin"
                 data-remote="true"
-                data-url="{{ wiki_url($page->path, $locale) }}"
+                data-url="{{ wiki_url($page->path, $requestedLocale) }}"
                 data-method="PUT"
                 title="{{ osu_trans('wiki.show.edit.refresh') }}"
             >
@@ -40,9 +33,9 @@
 
     <div class="header-buttons__item">
         @include('wiki._locale_menu', [
+            'availableLocales' => $page->availableLocales(),
             'contentLocale' => $page->locale,
-            'displayLocale' => $locale,
-            'otherLocales' => $otherLocales,
+            'displayLocale' => $requestedLocale,
             'path' => $page->path,
         ])
     </div>

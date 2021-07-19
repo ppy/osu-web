@@ -45,9 +45,9 @@
 
                 <div class="header-buttons__item">
                     @include('wiki._locale_menu', [
+                        'availableLocales' => new Ds\Set(config('app.available_locales')),
                         'contentLocale' => $locale,
                         'displayLocale' => $locale,
-                        'otherLocales' => config('app.available_locales'),
                         'path' => 'Sitemap',
                     ])
                 </div>
