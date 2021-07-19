@@ -3,7 +3,6 @@
 
 import { BeatmapIcon } from 'beatmap-icon';
 import * as React from 'react';
-import { FunctionComponent } from 'react';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
 
@@ -13,7 +12,7 @@ interface Props {
   };
 }
 
-export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
+export const ReviewPostEmbed = ({data}: Props) => {
   const bn = 'beatmap-discussion-review-post-embed-preview';
   const discussions = React.useContext(DiscussionsContext);
   const beatmaps = React.useContext(BeatmapsContext);

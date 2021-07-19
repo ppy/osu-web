@@ -5,6 +5,7 @@
 
 namespace App\Http;
 
+use Fideloper\Proxy\TrustProxies;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -25,6 +26,7 @@ class Kernel extends HttpKernel
             Middleware\CheckUserBanStatus::class,
         ],
         'web' => [
+            TrustProxies::class,
             Middleware\StripCookies::class,
             Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
