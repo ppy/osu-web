@@ -17,13 +17,14 @@ use App\Libraries\Search\BasicSearch;
 use App\Libraries\Wiki\MainPageRenderer;
 use App\Libraries\Wiki\MarkdownRenderer;
 use App\Models\Elasticsearch\WikiPageTrait;
+use App\Traits\Memoizes;
 use Carbon\Carbon;
 use Exception;
 use Log;
 
 class Page implements WikiObject
 {
-    use WikiPageTrait;
+    use Memoizes, WikiPageTrait;
 
     const CACHE_DURATION = 5 * 60 * 60;
     const VERSION = 9;
@@ -164,28 +165,30 @@ class Page implements WikiObject
 
     public function otherLocales()
     {
-        if (!$this->isVisible()) {
-            return [];
-        }
-
-        $query = (new BoolQuery())
-            ->must(['term' => ['path.keyword' => $this->path]])
-            ->must(['exists' => ['field' => 'page']]);
-        $search = (new BasicSearch(static::esIndexName(), 'wiki_searchlocales'))
-            ->source('locale')
-            ->sort(new Sort('locale.keyword', 'asc'))
-            ->query($query);
-        $response = $search->response();
-
-        $locales = [];
-        foreach ($response->hits() as $hit) {
-            $locale = $hit['_source']['locale'] ?? null;
-            if ($locale !== null && $locale !== $this->locale && LocaleMeta::isValid($locale)) {
-                $locales[] = $locale;
+        return $this->memoize(__FUNCTION__, function () {
+            if (!$this->isVisible()) {
+                return [];
             }
-        }
 
-        return $locales;
+            $query = (new BoolQuery())
+                ->must(['term' => ['path.keyword' => $this->path]])
+                ->must(['exists' => ['field' => 'page']]);
+            $search = (new BasicSearch(static::esIndexName(), 'wiki_searchlocales'))
+                ->source('locale')
+                ->sort(new Sort('locale.keyword', 'asc'))
+                ->query($query);
+            $response = $search->response();
+
+            $locales = [];
+            foreach ($response->hits() as $hit) {
+                $locale = $hit['_source']['locale'] ?? null;
+                if ($locale !== null && $locale !== $this->locale && LocaleMeta::isValid($locale)) {
+                    $locales[] = $locale;
+                }
+            }
+
+            return $locales;
+        });
     }
 
     public function editUrl()
