@@ -38,7 +38,7 @@ class ScoreTest extends TestCase
             'max_combo' => 100,
             'statistics' => ['great' => 10],
             'accuracy' => 1,
-            'rank' => 'S', // lazer may send an incorrect rank for a failed score.
+            'rank' => 'S',
         ]);
 
         $this->assertTrue($score->passed);
