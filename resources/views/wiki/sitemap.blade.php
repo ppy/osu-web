@@ -51,7 +51,6 @@
                 <div class="header-buttons__item">
                     @include('wiki._locale_menu', [
                         'availableLocales' => $availableLocales,
-                        'contentLocale' => $locale,
                         'displayLocale' => $locale,
                         'path' => 'Sitemap',
                     ])
