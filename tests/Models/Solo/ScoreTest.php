@@ -19,6 +19,9 @@ class ScoreTest extends TestCase
         $this->expectException(InvariantException::class);
 
         $score->createLegacyEntry();
+
+        $this->assertFalse($score->passed);
+        $this->assertEquals($score->rank, 'F');
     }
 
     public function testModsPropertyType()
