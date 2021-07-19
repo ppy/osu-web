@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 
-@extends('master')
+@extends('wiki.layout')
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
