@@ -7,11 +7,11 @@ import { forEach, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
 import core from 'osu-core-singleton';
-import SocketMessageEvent from 'socket-message-event';
+import SocketMessageEvent, { isSocketEventData, SocketEventData } from 'socket-message-event';
 
-const isNotificationEventLogoutJson = (arg: any): arg is NotificationEventLogoutJson => arg.event === 'logout';
+const isNotificationEventLogoutJson = (arg: SocketEventData): arg is NotificationEventLogoutJson => arg.event === 'logout';
 
-const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVerifiedJson => arg.event === 'verified';
+const isNotificationEventVerifiedJson = (arg: SocketEventData): arg is NotificationEventVerifiedJson => arg.event === 'verified';
 
 interface NotificationFeedMetaJson {
   url: string;
@@ -99,14 +99,8 @@ export default class SocketWorker {
   }
 
   private handleNewEvent = (event: MessageEvent) => {
-    let eventData: any;
-    try {
-      eventData = JSON.parse(event.data);
-    } catch {
-      console.debug('Failed parsing data:', event.data);
-
-      return;
-    }
+    const eventData = this.parseMessageEvent(event);
+    if (eventData == null) return;
 
     if (isNotificationEventLogoutJson(eventData)) {
       this.destroy();
@@ -117,6 +111,19 @@ export default class SocketWorker {
       dispatch(new SocketMessageEvent(eventData));
     }
   };
+
+  private parseMessageEvent(event: MessageEvent) {
+    try {
+      const json = JSON.parse(event.data) as unknown;
+      if (isSocketEventData(json)) {
+        return json;
+      }
+
+      console.debug('message missing event type.');
+    } catch {
+      console.debug('Failed parsing data:', event.data);
+    }
+  }
 
   @action
   private reconnectWebSocket = () => {
@@ -144,7 +151,7 @@ export default class SocketWorker {
 
     this.xhrLoadingState.startWebSocket = true;
 
-    return this.xhr.startWebSocket = $.get(route('notifications.endpoint'))
+    this.xhr.startWebSocket = $.get(route('notifications.endpoint'))
       .done(action((data: NotificationFeedMetaJson) => {
         this.xhrLoadingState.startWebSocket = false;
         this.endpoint = data.url;
