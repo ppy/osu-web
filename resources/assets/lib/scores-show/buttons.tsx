@@ -17,7 +17,7 @@ export default function Buttons(props: Props) {
     <div className='score-buttons'>
       {props.score.replay && (
         <a
-          className='btn-osu-big btn-osu-big--rounded'
+          className='js-login-required--click btn-osu-big btn-osu-big--rounded'
           data-turbolinks={false}
           href={route('scores.download', { mode: props.score.mode, score: props.score.best_id })}
         >
