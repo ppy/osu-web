@@ -59,5 +59,6 @@ class BeatmapsetNominationSyncCommand extends Command
             });
 
         $progress->finish();
+        $this->line('');
     }
 }
