@@ -25,15 +25,9 @@
     }
 
     $links[] = compact('title', 'url');
-
-    $translatedPages = [];
-    foreach ([$page->requestedLocale, ...$page->otherLocales()] as $l) {
-        $translatedPages[$l] = wiki_url($page->path, $l);
-    }
 @endphp
 
-@extends('master', [
-    'translatedPages' => $translatedPages,
+@extends('wiki.layout', [
     'titlePrepend' => $page->title(true),
 ])
 
