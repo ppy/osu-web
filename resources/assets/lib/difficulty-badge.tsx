@@ -5,7 +5,7 @@ import * as React from 'react';
 import { getDiffRating } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 
-export default function DifficultyBadge(props: { rating: number; modifiers?: string[] }) {
+export default function DifficultyBadge(props: { modifiers?: string[]; rating: number }) {
   return (
     <div
       className={classWithModifiers('difficulty-badge', props.modifiers)}

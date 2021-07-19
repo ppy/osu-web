@@ -25,8 +25,8 @@ declare module 'bbcode-editor' {
   }) => void;
 
   interface Props {
-    modifiers?: string[];
     disabled: boolean;
+    modifiers?: string[];
     onChange: OnChange;
     rawValue: string;
   }

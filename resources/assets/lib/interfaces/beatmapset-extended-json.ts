@@ -23,6 +23,6 @@ export default interface BeatmapsetExtendedJson extends BeatmapsetJson {
   ranked_date: string;
   ratings: number[];
   related_users: UserJson[];
-  submitted_date: string;
   storyboard: boolean;
+  submitted_date: string;
 }

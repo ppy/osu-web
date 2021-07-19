@@ -97,7 +97,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
                   <a key={tag} href={route('beatmapsets.index', { q: tag })}>
                     {tag}
                   </a>
-                  <span> </span>
+                  {' '}
                 </React.Fragment>
               ))}
             </div>

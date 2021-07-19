@@ -92,7 +92,8 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
       href={this.props.createLink(beatmap)}
       onClick={this.selectBeatmap}
     >
-      <BeatmapListItem beatmap={beatmap}
+      <BeatmapListItem
+        beatmap={beatmap}
         count={this.props.getCount?.(beatmap)}
         mapper={getBeatmapMapper(this.props.beatmapset, beatmap)}
       />

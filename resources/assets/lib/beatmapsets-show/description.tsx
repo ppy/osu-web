@@ -11,9 +11,9 @@ interface Props {
 }
 
 interface State {
+  description?: { bbcode: string; description: string };
   isBusy: boolean;
   isEditing: boolean;
-  description?: { bbcode: string; description: string };
 }
 
 interface BbcodeEditorOnChangeParams {

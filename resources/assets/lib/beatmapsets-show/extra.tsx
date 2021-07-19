@@ -27,7 +27,6 @@ export default class Extra extends React.PureComponent<Props, State> {
     };
   }
 
-
   componentDidMount() {
     this.setState({ chartAreaBound: this.chartAreaRef.current?.getBoundingClientRect() ?? null });
   }

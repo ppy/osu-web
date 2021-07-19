@@ -43,7 +43,6 @@ interface DiscussionMessageType {
 
 interface BeatmapDiscussionHelperClass {
   messageType: DiscussionMessageType;
-  DEFAULT_MODE: string;
   TIMESTAMP_REGEX: RegExp;
   format(text: string, options?: any): string;
   formatTimestamp(value: number | null): string | undefined;
@@ -72,9 +71,9 @@ type AjaxError = (xhr: JQuery.jqXHR) => void;
 
 interface OsuCommon {
   ajaxError: AjaxError;
-  emitAjaxError: (target: EventTarget) => void;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
+  emitAjaxError: (target: EventTarget) => void;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
