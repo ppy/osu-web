@@ -79,7 +79,19 @@ export default class Extra extends React.PureComponent<Props, State> {
     );
   }
 
-  renderBar(fill: number, fromRight = false) {
+  private getRatings = () => this.props.beatmapset.ratings.reduce(
+    (result, count, rating) => {
+      if (rating >= 1 && rating <= 5) {
+        result.negative += count;
+      } else if (rating >= 6 && rating <= 10) {
+        result.positive += count;
+      }
+      return result;
+    },
+    { negative: 0, positive: 0 },
+  );
+
+  private renderBar(fill: number, fromRight = false) {
     return (
       <div className='beatmapset-bar beatmapset-bar--beatmapset-extra'>
         <div
@@ -92,7 +104,7 @@ export default class Extra extends React.PureComponent<Props, State> {
     );
   }
 
-  renderChart(ratings: number[]) {
+  private renderChart(ratings: number[]) {
     const areaWidth = this.state.chartAreaBound?.width ?? 0;
     const areaHeight = this.state.chartAreaBound?.height ?? 0;
 
@@ -125,16 +137,4 @@ export default class Extra extends React.PureComponent<Props, State> {
       </svg>
     );
   }
-
-  private getRatings = () => this.props.beatmapset.ratings.reduce(
-    (result, count, rating) => {
-      if (rating >= 1 && rating <= 5) {
-        result.negative += count;
-      } else if (rating >= 6 && rating <= 10) {
-        result.positive += count;
-      }
-      return result;
-    },
-    { negative: 0, positive: 0 },
-  );
 }

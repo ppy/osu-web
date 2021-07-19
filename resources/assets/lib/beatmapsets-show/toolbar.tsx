@@ -84,7 +84,7 @@ export default class Toolbar extends React.PureComponent<Props> {
     );
   }
 
-  renderDiscussionButtons() {
+  private renderDiscussionButtons() {
     if (this.props.beatmapset.discussion_enabled) {
       return (
         <BigButton
@@ -110,7 +110,7 @@ export default class Toolbar extends React.PureComponent<Props> {
     }
   }
 
-  renderDownloadButtons() {
+  private renderDownloadButtons() {
     if (currentUser.id && !this.props.beatmapset.availability?.download_disabled) {
       return (
         <>
@@ -148,7 +148,7 @@ export default class Toolbar extends React.PureComponent<Props> {
     }
   }
 
-  renderFavouriteButton({ action, icon }: { action: string; icon: string }) {
+  private renderFavouriteButton({ action, icon }: { action: string; icon: string }) {
     if (currentUser.id) {
       return (
         <button
@@ -164,7 +164,7 @@ export default class Toolbar extends React.PureComponent<Props> {
     }
   }
 
-  renderLoginButton() {
+  private renderLoginButton() {
     if (!currentUser.id) {
       return (
         <BigButton

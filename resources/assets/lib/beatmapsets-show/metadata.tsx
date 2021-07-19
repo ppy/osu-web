@@ -166,7 +166,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
     );
   }
 
-  renderDate(dateTime: string) {
+  private renderDate(dateTime: string) {
     return (
       <TimeWithTooltip
         dateTime={dateTime}
