@@ -90,8 +90,8 @@ export function getDiffRating(rating: number) {
 }
 
 export function getDiffColour(rating?: number | null) {
-  if ((rating ?? 0) >= 8) return '#000000';
-  return difficultyColourSpectrum(rating ?? 0);
+  rating ??= 0;
+  return rating >= 8 ? '#000000' : difficultyColourSpectrum(rating);
 }
 
 // TODO: should make a Beatmapset proxy object or something
