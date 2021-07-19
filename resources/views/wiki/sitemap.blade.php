@@ -3,11 +3,16 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $sitemapUrl = route('wiki.sitemap', ['locale' => $locale]);
+    $urlFn = fn (string $locale): string => route('wiki.sitemap', compact('locale'));
+    $sitemapUrl = $urlFn($locale);
+    $availableLocales = new Ds\Set(config('app.available_locales'));
 @endphp
 
-@extends('master', [
+@extends('wiki.layout', [
+    'availableLocales' => $availableLocales,
+    'canonicalUrl' => $sitemapUrl,
     'titlePrepend' => osu_trans('layout.header.help.sitemap'),
+    'urlFn' => $urlFn,
 ])
 
 @section('content')
@@ -45,7 +50,7 @@
 
                 <div class="header-buttons__item">
                     @include('wiki._locale_menu', [
-                        'availableLocales' => new Ds\Set(config('app.available_locales')),
+                        'availableLocales' => $availableLocales,
                         'contentLocale' => $locale,
                         'displayLocale' => $locale,
                         'path' => 'Sitemap',

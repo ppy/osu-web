@@ -3,13 +3,17 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    if (isset($page)) {
+        $availableLocales = $page->availableLocales();
+        $canonicalUrl = $page->isVisible() ? wiki_url($page->path, $page->locale) : null;
+        $path = $page->path;
+        $urlFn = fn (string $locale): string => wiki_url($path, $locale);
+    }
+
     $translatedPages = [];
-    foreach ($page->availableLocales() as $l) {
-        $translatedPages[$l] = wiki_url($page->path, $l);
+    foreach ($availableLocales as $l) {
+        $translatedPages[$l] = $urlFn($l);
     }
 @endphp
 
-@extends('master', [
-    'canonicalUrl' => $page->isVisible() ? wiki_url($page->path, $page->locale) : null,
-    'translatedPages' => $translatedPages,
-])
+@extends('master', compact('canonicalUrl', 'translatedPages'))
