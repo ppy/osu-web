@@ -28,7 +28,7 @@ return [
         'nominate' => 'Nominated by :user.',
         'nominate_modes' => 'Nominated by :user (:modes).',
         'nomination_reset' => 'New problem :discussion (:text) triggered a nomination reset.',
-        'nomination_reset_received' => 'Nomination by (:user) was reset by :source_user (:text)',
+        'nomination_reset_received' => 'Nomination by :user was reset by :source_user (:text)',
         'nomination_reset_received_profile' => 'Nomination was reset by :user (:text)',
         'qualify' => 'This beatmap has reached the required number of nominations and has been qualified.',
         'rank' => 'Ranked.',
