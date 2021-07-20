@@ -27,7 +27,7 @@
     $links[] = compact('title', 'url');
 @endphp
 
-@extends('master', [
+@extends('wiki.layout', [
     'titlePrepend' => $page->title(true),
 ])
 
