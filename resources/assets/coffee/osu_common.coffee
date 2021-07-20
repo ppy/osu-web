@@ -42,6 +42,7 @@
     return if newUrl == location.href
 
     history.replaceState history.state, null, newUrl
+    window.newUrl = newUrl
 
 
   ajaxError: (xhr) ->
