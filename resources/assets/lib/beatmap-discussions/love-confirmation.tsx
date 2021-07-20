@@ -18,6 +18,8 @@ interface State {
 }
 
 export default class LoveConfirmation extends React.PureComponent<Props, State> {
+  private groupedBeatmaps = groupBeatmaps(this.props.beatmapset.beatmaps ?? []);
+
   constructor(props: Props) {
     super(props);
 
@@ -27,8 +29,6 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
   }
 
   render() {
-    const groupedBeatmaps = [...groupBeatmaps(this.props.beatmapset.beatmaps ?? [])];
-
     return (
       <div className='love-confirmation'>
         <div className='love-confirmation__row love-confirmation__row--title'>
@@ -36,7 +36,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
         </div>
 
         <div className='love-confirmation__row love-confirmation__row--content'>
-          {groupedBeatmaps.map(([mode, beatmaps]) => this.renderDiffMode(mode, beatmaps))}
+          {[...this.groupedBeatmaps].map(([mode, beatmaps]) => this.renderDiffMode(mode, beatmaps))}
         </div>
 
         <div className='love-confirmation__row love-confirmation__row--footer'>
@@ -59,6 +59,18 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
       </div>
     );
   }
+
+  private checkIsModeSelected = (mode: GameMode) => {
+    const modeBeatmapIds = this.groupedBeatmaps.get(mode)?.map((beatmap) => beatmap.id) ?? [];
+    const isAllSelected = modeBeatmapIds.every((id) => this.state.selectedBeatmapIds.has(id));
+    const isAllUnselected = modeBeatmapIds.every((id) => !this.state.selectedBeatmapIds.has(id));
+
+    if (!isAllSelected && !isAllUnselected) {
+      return 'indeterminate';
+    }
+
+    return isAllSelected;
+  };
 
   private handleCheckboxDifficulty = (e: React.ChangeEvent<HTMLInputElement>) => {
     const beatmapId = parseInt(e.target.value, 10);
@@ -107,8 +119,11 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
         <div className='love-confirmation__diff-mode-title'>
           <label className='osu-switch-v2'>
             <input
+              checked={this.checkIsModeSelected(mode) !== false}
               className='osu-switch-v2__input'
+              data-indeterminate={this.checkIsModeSelected(mode) === 'indeterminate'}
               type='checkbox'
+              value={mode}
             />
             <span className='osu-switch-v2__content' />
             <div className='love-confirmation__switch-text'>
