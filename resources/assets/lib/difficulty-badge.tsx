@@ -7,10 +7,9 @@ import { getDiffColour } from 'utils/beatmap-helper';
 export default function DifficultyBadge(props: { rating: number }) {
   return (
     <div
-      className='difficulty-badge'
+      className={'difficulty-badge' + (props.rating >= 6.5 ? ' difficulty-badge--expert-plus' : '')}
       style={{
         '--bg': getDiffColour(props.rating),
-        color: `var(--diff-badge-text-${(props.rating ?? 0) < 6.5 ? 'dark' : 'light'})`,
       } as React.CSSProperties}
     >
       <span className='difficulty-badge__icon'>
