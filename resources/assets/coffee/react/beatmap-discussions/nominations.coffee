@@ -173,23 +173,6 @@ export class Nominations extends React.PureComponent
       .always LoadingOverlay.hide
 
 
-  love: =>
-    return unless confirm(osu.trans('beatmaps.nominations.love_confirm'))
-
-    LoadingOverlay.show()
-
-    @xhr.love?.abort()
-
-    url = laroute.route('beatmapsets.love', beatmapset: @props.beatmapset.id)
-    params = method: 'PUT'
-
-    @xhr.love = $.ajax(url, params)
-      .done (response) =>
-        $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
-      .always LoadingOverlay.hide
-
-
   removeFromLoved: =>
     reason = osu.presence(prompt(osu.trans('beatmaps.nominations.remove_from_loved_prompt')))
 
