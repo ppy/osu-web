@@ -167,12 +167,13 @@ export class BeatmapsetSearchController {
 
   @action
   private restoreStateFromUrl() {
-    const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(location.href);
+    const currentUrl = window.newUrl ?? location.href;
+    const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(currentUrl);
 
     if (this.filtersObserver != null) {
       this.filtersObserver();
     }
-    this.filters = new BeatmapsetSearchFilters(location.href);
+    this.filters = new BeatmapsetSearchFilters(currentUrl);
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 
     this.isExpanded = intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0;
