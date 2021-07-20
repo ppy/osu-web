@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import { route } from 'laroute';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 
@@ -62,6 +63,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
         <div className='love-confirmation__row love-confirmation__row--footer'>
           <button
             className='btn-osu-big btn-osu-big--rounded-thin'
+            onClick={this.love}
             type='button'
           >
             Loved
@@ -94,4 +96,26 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
     this.setState({ selectedBeatmapIds: [...newSelectedIds] });
   };
 
+  private love = () => {
+    if (this.state.selectedBeatmapIds.length === 0) {
+      return;
+    }
+
+    LoadingOverlay.show();
+
+    const url = route('beatmapsets.love', { beatmapset: this.props.beatmapset.id });
+    const params = {
+      data: { beatmapIds: this.state.selectedBeatmapIds },
+      method: 'PUT',
+    };
+
+    $.ajax(url, params).done((response) => {
+      $.publish('beatmapsetDiscussions:update', { beatmapset: response });
+      this.props.onClose();
+    }).fail((xhr) => {
+      osu.ajaxError(xhr);
+    }).always(() => {
+      LoadingOverlay.hide();
+    });
+  };
 }
