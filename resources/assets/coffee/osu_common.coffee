@@ -36,10 +36,11 @@
 
 
   setHash: (newHash) ->
-    newUrl = location.href.replace /#.*/, ''
+    currentUrl = _exported.currentUrl().href
+    newUrl = currentUrl.replace /#.*/, ''
     newUrl += newHash
 
-    return if newUrl == location.href
+    return if newUrl == currentUrl
 
     history.replaceState history.state, null, newUrl
 
@@ -166,7 +167,7 @@
       if !_.isEmpty window.reloadUrl
         window.reloadUrl
       else
-        location.href
+        _exported.currentUrl().href
 
     window.reloadUrl = null
 
@@ -289,7 +290,8 @@
 
 
   updateQueryString: (url, params) ->
-    urlObj = new URL(url ? window.location.href, document.location.origin)
+    docUrl = _exported.currentUrl()
+    urlObj = new URL(url ? docUrl.href, docUrl.origin)
     for own key, value of params
       if value?
         urlObj.searchParams.set(key, value)

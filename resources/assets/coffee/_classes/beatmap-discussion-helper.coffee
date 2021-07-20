@@ -207,7 +207,7 @@ class @BeatmapDiscussionHelper
   @urlParse: (urlString, discussions, options = {}) =>
     options.forceDiscussionId ?= false
 
-    url = new URL(urlString ? window.newUrl ? document.location.href)
+    url = new URL(urlString ? _exported.currentUrl().href)
     [__, pathBeatmapsets, beatmapsetId, pathDiscussions, beatmapId, mode, filter] = url.pathname.split /\/+/
 
     return if pathBeatmapsets != 'beatmapsets' || pathDiscussions != 'discussion'
