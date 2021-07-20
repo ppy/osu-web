@@ -27,10 +27,6 @@
     _.find currentUser.friends, target_id: user_id
 
 
-  diffRatingColour: (difficultyRating) ->
-    '--diff': "var(--diff-#{difficultyRating ? 'default'})"
-
-
   groupColour: (group) ->
     '--group-colour': group?.colour ? 'initial'
 
