@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-page-cover {
-  @height: 50px;
-  --cover-height: @height;
+  @_height: 50px;
+  --cover-height: @_height;
   .default-box-shadow();
 
   position: relative;
@@ -24,7 +24,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    height: @height;
+    height: @_height;
     display: flex;
     align-items: center;
   }
