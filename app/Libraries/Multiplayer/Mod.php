@@ -208,6 +208,9 @@ class Mod
             'scale' => 'float',
             'style' => 'int',
         ],
+        self::OSU_TARGET => [
+            'seed' => 'int',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
@@ -351,6 +354,10 @@ class Mod
                             self::OSU_SPININ,
                         ],
                         [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_TARGET,
+                        ],
+                        [
                             self::OSU_TRACEABLE,
                             self::OSU_DEFLATE,
                         ],
@@ -365,6 +372,10 @@ class Mod
                         [
                             self::OSU_TRACEABLE,
                             self::OSU_SPININ,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_TARGET,
                         ],
                         [
                             self::OSU_SPININ,
