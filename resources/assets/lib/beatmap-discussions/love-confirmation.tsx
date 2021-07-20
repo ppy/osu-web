@@ -14,7 +14,7 @@ interface Props {
 }
 
 interface State {
-  selectedBeatmapIds: number[];
+  selectedBeatmapIds: Set<number>;
 }
 
 export default class LoveConfirmation extends React.PureComponent<Props, State> {
@@ -22,7 +22,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
     super(props);
 
     this.state = {
-      selectedBeatmapIds: this.props.beatmapset.beatmaps?.map((beatmap) => beatmap.id) ?? [],
+      selectedBeatmapIds: new Set(this.props.beatmapset.beatmaps?.map((beatmap) => beatmap.id) ?? []),
     };
   }
 
@@ -63,20 +63,19 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
   private handleCheckboxDifficulty = (e: React.ChangeEvent<HTMLInputElement>) => {
     const beatmapId = parseInt(e.target.value, 10);
 
-    const idx = this.state.selectedBeatmapIds.indexOf(beatmapId);
-    const newSelectedIds = [...this.state.selectedBeatmapIds];
+    const newSelectedIds = new Set(this.state.selectedBeatmapIds);
 
-    if (idx >= 0) {
-      newSelectedIds.splice(idx, 1);
+    if (this.state.selectedBeatmapIds.has(beatmapId)) {
+      newSelectedIds.delete(beatmapId);
     } else {
-      newSelectedIds.push(beatmapId);
+      newSelectedIds.add(beatmapId);
     }
 
-    this.setState({ selectedBeatmapIds: [...newSelectedIds] });
+    this.setState({ selectedBeatmapIds: newSelectedIds });
   };
 
   private love = () => {
-    if (this.state.selectedBeatmapIds.length === 0) {
+    if (this.state.selectedBeatmapIds.size === 0) {
       return;
     }
 
@@ -84,7 +83,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
 
     const url = route('beatmapsets.love', { beatmapset: this.props.beatmapset.id });
     const params = {
-      data: { beatmapIds: this.state.selectedBeatmapIds },
+      data: { beatmapIds: [...this.state.selectedBeatmapIds] },
       method: 'PUT',
     };
 
@@ -125,7 +124,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
             >
               <label className='osu-switch-v2'>
                 <input
-                  checked={this.state.selectedBeatmapIds.includes(beatmap.id)}
+                  checked={this.state.selectedBeatmapIds.has(beatmap.id)}
                   className='osu-switch-v2__input'
                   onChange={this.handleCheckboxDifficulty}
                   type='checkbox'
