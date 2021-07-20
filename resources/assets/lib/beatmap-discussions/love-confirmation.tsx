@@ -1,0 +1,67 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import * as React from 'react';
+import { group as groupBeatmaps } from 'utils/beatmap-helper';
+
+interface Props {
+  beatmapset: BeatmapsetJson;
+  onClose: () => void;
+}
+
+export default class LoveConfirmation extends React.PureComponent<Props> {
+  render() {
+    const groupedBeatmaps = [...groupBeatmaps(this.props.beatmapset.beatmaps ?? [])];
+
+    return (
+      <div className='love-confirmation'>
+        <div className='love-confirmation__row love-confirmation__row--title'>
+          Choose difficulties to be loved
+        </div>
+
+        <div className='love-confirmation__row love-confirmation__row--content'>
+          <ul className='love-confirmation__difficulty-list'>
+            {groupedBeatmaps.map(([, beatmaps]) => (
+              beatmaps.map((beatmap) => (
+                <li
+                  key={beatmap.id}
+                  className='love-confirmation__difficulty-list-item'
+                >
+                  <label className='osu-switch-v2'>
+                    <input
+                      className='osu-switch-v2__input'
+                      type='checkbox'
+                      value={beatmap.id}
+                    />
+                    <span className='osu-switch-v2__content' />
+                    <div className='love-confirmation__difficulty-name'>
+                      {beatmap.version}
+                    </div>
+                  </label>
+                </li>
+              ))
+            ))}
+          </ul>
+        </div>
+
+        <div className='love-confirmation__row love-confirmation__row--footer'>
+          <button
+            className='btn-osu-big btn-osu-big--rounded-thin'
+            type='button'
+          >
+            Loved
+          </button>
+
+          <button
+            className='btn-osu-big btn-osu-big--rounded-thin'
+            onClick={this.props.onClose}
+            type='button'
+          >
+            {osu.trans('common.buttons.close')}
+          </button>
+        </div>
+      </div>
+    );
+  }
+}

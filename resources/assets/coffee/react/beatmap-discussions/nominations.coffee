@@ -7,6 +7,7 @@ import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
 import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
+import LoveConfirmation from 'beatmap-discussions/love-confirmation'
 import { Nominator } from 'beatmap-discussions/nominator'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { pageChange } from 'utils/page-change'
@@ -21,7 +22,9 @@ export class Nominations extends React.PureComponent
     super props
 
     @xhr = {}
-    @state = changeOwnerModal: false
+    @state =
+      changeOwnerModal: false
+      isConfirmingLove: false
 
 
   componentDidMount: =>
@@ -40,6 +43,7 @@ export class Nominations extends React.PureComponent
   render: =>
     div className: bn,
       @renderChangeOwnerModal()
+      @renderLoveConfirmation()
       div className: "#{bn}__items #{bn}__items--messages",
         div className: "#{bn}__item", @statusMessage()
         div className: "#{bn}__item", @hypeBar()
@@ -486,7 +490,7 @@ export class Nominations extends React.PureComponent
       icon: 'fas fa-heart'
       modifiers: ['pink']
       props:
-        onClick: @love
+        onClick: @handleLoveConfirmation
 
 
   removeFromLovedButton: =>
@@ -525,6 +529,10 @@ export class Nominations extends React.PureComponent
     @setState changeOwnerModal: !@state.changeOwnerModal
 
 
+  handleLoveConfirmation: =>
+    @setState isConfirmingLove: !@state.isConfirmingLove
+
+
   renderChangeOwnerModal: =>
     return if !@state.changeOwnerModal
 
@@ -533,3 +541,11 @@ export class Nominations extends React.PureComponent
         beatmapset: @props.beatmapset,
         users: @props.users
         onClose: @handleChangeOwnerClick
+
+  renderLoveConfirmation: =>
+    return if !@state.isConfirmingLove
+
+    el Modal, visible: true, onClose: @handleLoveConfirmation,
+      el LoveConfirmation,
+        beatmapset: @props.beatmapset
+        onClose: @handleLoveConfirmation
