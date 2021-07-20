@@ -71,6 +71,9 @@ export default class ReactTurbolinks {
 
   private handleBeforeRender = (e: JQuery.TriggeredEvent) => {
     window.newBody = (e.originalEvent as Event & { data: { newBody: HTMLElement }}).data.newBody;
+    window.newUrl = Turbolinks.controller.currentVisit?.redirectedToLocation?.absoluteURL
+      ?? Turbolinks.controller.currentVisit?.location.absoluteURL
+      ?? document.location.href;
     this.pageReady = true;
     this.loadScripts(false);
     this.boot();
