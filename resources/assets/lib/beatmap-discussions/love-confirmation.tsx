@@ -10,7 +10,19 @@ interface Props {
   onClose: () => void;
 }
 
-export default class LoveConfirmation extends React.PureComponent<Props> {
+interface State {
+  selectedBeatmapIds: number[];
+}
+
+export default class LoveConfirmation extends React.PureComponent<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      selectedBeatmapIds: this.props.beatmapset.beatmaps?.map((beatmap) => beatmap.id) ?? [],
+    };
+  }
+
   render() {
     const groupedBeatmaps = [...groupBeatmaps(this.props.beatmapset.beatmaps ?? [])];
 
@@ -30,7 +42,9 @@ export default class LoveConfirmation extends React.PureComponent<Props> {
                 >
                   <label className='osu-switch-v2'>
                     <input
+                      checked={this.state.selectedBeatmapIds.includes(beatmap.id)}
                       className='osu-switch-v2__input'
+                      onChange={this.handleCheckboxChange}
                       type='checkbox'
                       value={beatmap.id}
                     />
@@ -64,4 +78,20 @@ export default class LoveConfirmation extends React.PureComponent<Props> {
       </div>
     );
   }
+
+  private handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const beatmapId = parseInt(e.target.value, 10);
+
+    const idx = this.state.selectedBeatmapIds.indexOf(beatmapId);
+    const newSelectedIds = [...this.state.selectedBeatmapIds];
+
+    if (idx >= 0) {
+      newSelectedIds.splice(idx, 1);
+    } else {
+      newSelectedIds.push(beatmapId);
+    }
+
+    this.setState({ selectedBeatmapIds: [...newSelectedIds] });
+  };
+
 }
