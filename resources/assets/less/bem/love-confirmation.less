@@ -15,16 +15,26 @@
     width: auto;
   }
 
-  &__difficulty-list {
+  &__diff-list {
     list-style: none;
     padding: 0;
   }
 
-  &__difficulty-list-item {
+  &__diff-list-item {
     margin-bottom: 5px;
   }
 
-  &__difficulty-name {
+  &__diff-mode {
+    width: 200px;
+  }
+
+  &__diff-mode-title {
+    font-size: @font-size--title-small-4;
+    font-weight: 800;
+    margin-bottom: 5px;
+  }
+
+  &__diff-name {
     margin-left: 5px;
   }
 
@@ -35,6 +45,8 @@
 
     &--content {
       font-size: @font-size--normal;
+      display: flex;
+      column-gap: 10px;
     }
 
     &--title {

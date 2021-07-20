@@ -2,6 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapJson from 'interfaces/beatmap-json';
+import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
@@ -34,30 +36,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
         </div>
 
         <div className='love-confirmation__row love-confirmation__row--content'>
-          <ul className='love-confirmation__difficulty-list'>
-            {groupedBeatmaps.map(([, beatmaps]) => (
-              beatmaps.map((beatmap) => (
-                <li
-                  key={beatmap.id}
-                  className='love-confirmation__difficulty-list-item'
-                >
-                  <label className='osu-switch-v2'>
-                    <input
-                      checked={this.state.selectedBeatmapIds.includes(beatmap.id)}
-                      className='osu-switch-v2__input'
-                      onChange={this.handleCheckboxChange}
-                      type='checkbox'
-                      value={beatmap.id}
-                    />
-                    <span className='osu-switch-v2__content' />
-                    <div className='love-confirmation__difficulty-name'>
-                      {beatmap.version}
-                    </div>
-                  </label>
-                </li>
-              ))
-            ))}
-          </ul>
+          {groupedBeatmaps.map(([mode, beatmaps]) => this.renderDiffMode(mode, beatmaps))}
         </div>
 
         <div className='love-confirmation__row love-confirmation__row--footer'>
@@ -117,5 +96,41 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
     }).always(() => {
       LoadingOverlay.hide();
     });
+  };
+
+  private renderDiffMode(mode: GameMode, beatmaps: BeatmapJson[]) {
+    if (beatmaps.length === 0) {
+      return null;
+    }
+
+    return (
+      <div key={mode} className='love-confirmation__diff-mode'>
+        <div className='love-confirmation__diff-mode-title'>
+          {osu.trans(`beatmaps.mode.${mode}`)}
+        </div>
+        <ul className='love-confirmation__diff-list'>
+          {beatmaps.map((beatmap) => (
+            <li
+              key={beatmap.id}
+              className='love-confirmation__diff-list-item'
+            >
+              <label className='osu-switch-v2'>
+                <input
+                  checked={this.state.selectedBeatmapIds.includes(beatmap.id)}
+                  className='osu-switch-v2__input'
+                  onChange={this.handleCheckboxChange}
+                  type='checkbox'
+                  value={beatmap.id}
+                />
+                <span className='osu-switch-v2__content' />
+                <div className='love-confirmation__diff-name'>
+                  {beatmap.version}
+                </div>
+              </label>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   };
 }
