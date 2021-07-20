@@ -85,6 +85,7 @@ export default class ReactTurbolinks {
 
   private handleLoad = () => {
     window.newBody ??= document.body;
+    window.newUrl = null; // location.href should now be correct
     this.pageReady = true;
     this.scrolled = false;
     $(window).off('scroll', this.handleWindowScroll);

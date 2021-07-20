@@ -43,7 +43,6 @@ Turbolinks.Controller::advanceHistory = (url) ->
   @cache.put location, snapshot.clone()
   @lastRenderedLocation = Turbolinks.Location.wrap(url)
   @pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
-  window.newUrl = url
 
 
 # Ignore anchor check on loading snapshot to prevent repeating requesting page
