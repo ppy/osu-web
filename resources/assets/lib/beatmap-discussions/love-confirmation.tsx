@@ -32,7 +32,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
     return (
       <div className='love-confirmation'>
         <div className='love-confirmation__row love-confirmation__row--title'>
-          Choose difficulties to be loved
+          {osu.trans('beatmaps.nominations.love_choose')}
         </div>
 
         <div className='love-confirmation__row love-confirmation__row--content'>
