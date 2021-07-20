@@ -1,0 +1,44 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.love-confirmation {
+  .page-width-default();
+  .default-box-shadow();
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: @border-radius-large;
+  background-color: hsl(var(--hsl-b5));
+  margin: auto;
+  width: auto;
+
+  @media @desktop {
+    width: auto;
+  }
+
+  &__difficulty-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__difficulty-list-item {
+    margin-bottom: 5px;
+  }
+
+  &__difficulty-name {
+    margin-left: 5px;
+  }
+
+  &__row {
+    .default-gutter-v2();
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &--content {
+      font-size: @font-size--normal;
+    }
+
+    &--title {
+      font-size: @font-size--title-small-2;
+    }
+  }
+}
