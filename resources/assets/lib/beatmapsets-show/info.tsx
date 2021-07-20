@@ -42,11 +42,9 @@ export default class Header extends React.PureComponent<Props> {
       <div className='beatmapset-info'>
         <div className='beatmapset-info__item beatmapset-info__item--diff'>
           <div className='beatmapset-info__diff-item beatmapset-info__diff-item--details'>
-            <BeatmapIcon
-              beatmap={showedBeatmap}
-              modifier='beatmapset-info'
-              showTitle={false}
-            />
+            <div className='beatmapset-info__diff-icon'>
+              <i className={`fal fa-extra-mode-${showedBeatmap.mode}`} />
+            </div>
 
             <DifficultyBadge modifiers={['beatmapset-info']} rating={showedBeatmap.difficulty_rating} />
 
