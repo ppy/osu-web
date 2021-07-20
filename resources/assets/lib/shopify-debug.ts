@@ -36,7 +36,7 @@ export async function fetchAllVariants(): Promise<any[]> {
   return variants;
 }
 
-export async function fetchAllVariantIds(): Promise {
+export async function fetchAllVariantIds(): Promise<unknown[]> {
   const variants = await fetchAllVariants();
 
   return variants.map((x: any) => ({
