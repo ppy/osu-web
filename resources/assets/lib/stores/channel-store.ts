@@ -145,27 +145,11 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  async loadChannelEarlierMessages(channelId: number) {
+  loadChannelEarlierMessages(channelId: number) {
     const channel = this.get(channelId);
 
-    if (channel == null || !channel.hasEarlierMessages || channel.loadingEarlierMessages) {
-      return;
-    }
-
-    channel.loadingEarlierMessages = true;
-    let until: number | undefined;
-    // FIXME: nullable id instead?
-    if (channel.minMessageId > 0) {
-      until = channel.minMessageId;
-    }
-
-    try {
-      const response = await ChatApi.getMessages(channel.channelId, { until });
-      channel.addMessages(response.map(Message.fromJson));
-    } finally {
-      runInAction(() => {
-        channel.loadingEarlierMessages = false;
-      });
+    if (channel != null) {
+      void channel.loadEarlierMessages();
     }
   }
 

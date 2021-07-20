@@ -160,6 +160,29 @@ export default class Channel {
   }
 
   @action
+  async loadEarlierMessages() {
+    if (!this.hasEarlierMessages || this.loadingEarlierMessages) {
+      return;
+    }
+
+    this.loadingEarlierMessages = true;
+    let until: number | undefined;
+    // FIXME: nullable id instead?
+    if (this.minMessageId > 0) {
+      until = this.minMessageId;
+    }
+
+    try {
+      const response = await ChatApi.getMessages(this.channelId, { until });
+      this.addMessages(response.map(Message.fromJson));
+    } finally {
+      runInAction(() => {
+        this.loadingEarlierMessages = false;
+      });
+    }
+  }
+
+  @action
   async loadMessages() {
     if (this.newPmChannel || this.loadingState.messages != null) return;
 
