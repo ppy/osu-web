@@ -86,6 +86,24 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
     this.setState({ selectedBeatmapIds: newSelectedIds });
   };
 
+  private handleCheckboxMode = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const mode = e.target.value as GameMode;
+    const modeBeatmapIds = this.groupedBeatmaps.get(mode)?.map((beatmap) => beatmap.id) ?? [];
+    const newSelectedIds = new Set(this.state.selectedBeatmapIds);
+
+    if (this.checkIsModeSelected(mode) === true) {
+      modeBeatmapIds.forEach((id) => {
+        newSelectedIds.delete(id);
+      });
+    } else {
+      modeBeatmapIds.forEach((id) => {
+        newSelectedIds.add(id);
+      });
+    }
+
+    this.setState({ selectedBeatmapIds: newSelectedIds });
+  };
+
   private love = () => {
     if (this.state.selectedBeatmapIds.size === 0) {
       return;
@@ -122,6 +140,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
               checked={this.checkIsModeSelected(mode) !== false}
               className='osu-switch-v2__input'
               data-indeterminate={this.checkIsModeSelected(mode) === 'indeterminate'}
+              onChange={this.handleCheckboxMode}
               type='checkbox'
               value={mode}
             />
