@@ -106,7 +106,16 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
     return (
       <div key={mode} className='love-confirmation__diff-mode'>
         <div className='love-confirmation__diff-mode-title'>
-          {osu.trans(`beatmaps.mode.${mode}`)}
+          <label className='osu-switch-v2'>
+            <input
+              className='osu-switch-v2__input'
+              type='checkbox'
+            />
+            <span className='osu-switch-v2__content' />
+            <div className='love-confirmation__switch-text'>
+              {osu.trans(`beatmaps.mode.${mode}`)}
+            </div>
+          </label>
         </div>
         <ul className='love-confirmation__diff-list'>
           {beatmaps.map((beatmap) => (
@@ -123,7 +132,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
                   value={beatmap.id}
                 />
                 <span className='osu-switch-v2__content' />
-                <div className='love-confirmation__diff-name'>
+                <div className='love-confirmation__switch-text'>
                   {beatmap.version}
                 </div>
               </label>
