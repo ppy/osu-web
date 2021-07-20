@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Img2x from 'img2x';
+import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -10,6 +11,7 @@ import { classWithModifiers } from 'utils/css';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
+  currentBeatmap: BeatmapJsonExtended;
 }
 
 @observer
@@ -31,11 +33,11 @@ export default class Cover extends React.Component<Props> {
             <div
               className='beatmapset-status beatmapset-status--cover'
               style={{
-                '--bg': `var(--beatmapset-${this.props.beatmapset.status}-bg-transparent)`,
-                '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
+                '--bg': `var(--beatmapset-${this.props.currentBeatmap.status}-bg-transparent)`,
+                '--colour': `var(--beatmapset-${this.props.currentBeatmap.status}-colour)`,
               } as React.CSSProperties}
             >
-              {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
+              {osu.trans(`beatmapsets.show.status.${this.props.currentBeatmap.status}`)}
             </div>
 
             {this.props.beatmapset.nsfw && (

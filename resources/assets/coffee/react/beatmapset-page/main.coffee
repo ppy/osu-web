@@ -218,6 +218,7 @@ export class Main extends React.Component
       div className: 'osu-layout__row osu-layout__row--page-compact',
         el Cover,
           beatmapset: @state.beatmapset
+          currentBeatmap: @state.currentBeatmap
 
         el Header,
           beatmapset: @state.beatmapset
