@@ -16,6 +16,7 @@ export default class OsuUrlHelper {
     'community',
     'help',
     'home',
+    'groups',
     'legal',
     'multiplayer',
     'notifications',
