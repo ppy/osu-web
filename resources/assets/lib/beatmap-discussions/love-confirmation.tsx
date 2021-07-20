@@ -42,6 +42,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
         <div className='love-confirmation__row love-confirmation__row--footer'>
           <button
             className='btn-osu-big btn-osu-big--rounded-thin'
+            disabled={this.state.selectedBeatmapIds.size === 0}
             onClick={this.love}
             type='button'
           >
