@@ -60,7 +60,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
     );
   }
 
-  private handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  private handleCheckboxDifficulty = (e: React.ChangeEvent<HTMLInputElement>) => {
     const beatmapId = parseInt(e.target.value, 10);
 
     const idx = this.state.selectedBeatmapIds.indexOf(beatmapId);
@@ -127,7 +127,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
                 <input
                   checked={this.state.selectedBeatmapIds.includes(beatmap.id)}
                   className='osu-switch-v2__input'
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleCheckboxDifficulty}
                   type='checkbox'
                   value={beatmap.id}
                 />
