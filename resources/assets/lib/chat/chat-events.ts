@@ -9,6 +9,7 @@ import ChannelJson from 'interfaces/channel-json';
 import MessageJson from 'interfaces/message-json';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
+import { SocketEventData } from 'socket-message-event';
 
 export type ChatEventJson = ChatChannelEventJson | ChatMessageEventJson;
 
@@ -22,11 +23,11 @@ export interface ChatMessageEventJson {
   event: string;
 }
 
-export function isChannelEvent(arg: ChatEventJson): arg is ChatChannelEventJson {
+export function isChannelEvent(arg: SocketEventData): arg is ChatChannelEventJson {
   return arg.event?.startsWith('chat.channel.') ?? false;
 }
 
-export function isMessageEvent(arg: ChatEventJson): arg is ChatMessageEventJson {
+export function isMessageEvent(arg: SocketEventData): arg is ChatMessageEventJson {
   return arg.event?.startsWith('chat.message.') ?? false;
 }
 

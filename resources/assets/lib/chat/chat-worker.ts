@@ -5,17 +5,17 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatApi from 'chat/chat-api';
-import { ChatChannelJoinEvent, ChatChannelPartEvent, ChatEventJson, ChatMessageNewEvent, isChannelEvent, isMessageEvent } from 'chat/chat-events';
+import { ChatChannelJoinEvent, ChatChannelPartEvent, ChatMessageNewEvent, isChannelEvent, isMessageEvent } from 'chat/chat-events';
 import DispatchListener from 'dispatch-listener';
 import { maxBy } from 'lodash';
 import { transaction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
-import SocketMessageEvent from 'socket-message-event';
+import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
 import ChannelStore from 'stores/channel-store';
 import RetryDelay from 'utils/retry-delay';
 
-function newDispatchActionFromJson(json: ChatEventJson) {
+function newDispatchActionFromJson(json: SocketEventData) {
   if (isMessageEvent(json)) {
     switch (json.event) {
       case 'chat.message.new':
