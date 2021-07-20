@@ -138,14 +138,10 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  async loadChannel(channelId: number) {
+  loadChannel(channelId: number) {
     const channel = this.getOrCreate(channelId);
-    if (channel.loading || channel.newPmChannel) {
-      return;
-    }
 
-    // call load and then wait for ChatChannelJoin to arrive over the websocket.
-    channel.load();
+    void channel.load();
   }
 
   @action

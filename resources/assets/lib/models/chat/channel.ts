@@ -150,12 +150,13 @@ export default class Channel {
   }
 
   @action
-  async load() {
+  load() {
     // nothing to load
-    if (this.newPmChannel) return;
+    if (this.newPmChannel || this.loading) return;
 
-    this.loadMessages();
-    this.loadMetadata();
+    // call load and then wait for ChatChannelJoin to arrive over the websocket.
+    void this.loadMessages();
+    void this.loadMetadata();
   }
 
   @action
