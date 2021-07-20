@@ -1,6 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+interface Window {
+  newBody?: HTMLElement;
+  newUrl?: string;
+}
+
 // interfaces for using process.env
 interface Process {
   env: ProcessEnv;
@@ -60,7 +65,7 @@ interface BeatmapDiscussionHelperClass {
 interface JQueryStatic {
   publish: (eventName: string, data?: any) => void;
   subscribe: (eventName: string, handler: (...params: any[]) => void) => void;
-  unsubscribe: (eventName: string) => void;
+  unsubscribe: (eventName: string, handler?: unknown) => void;
 }
 
 type AjaxError = (xhr: JQuery.jqXHR) => void;

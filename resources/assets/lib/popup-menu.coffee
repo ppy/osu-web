@@ -7,6 +7,7 @@ import * as React from 'react'
 import { button, div, i } from 'react-dom-factories'
 import { TooltipContext } from 'tooltip-context'
 import { Modal } from 'modal'
+import { nextVal } from 'utils/seq'
 
 export class PopupMenu extends PureComponent
   @contextType = TooltipContext
@@ -19,7 +20,7 @@ export class PopupMenu extends PureComponent
   constructor: (props) ->
     super props
 
-    @uuid = osu.uuid()
+    @eventId = "popup-menu-#{nextVal()}"
     @menu = createRef()
 
     @state =
@@ -28,9 +29,8 @@ export class PopupMenu extends PureComponent
 
   componentDidMount: =>
     @tooltipHideEvent = @tooltipElement().qtip('option', 'hide.event')
-    $(window).on "resize.#{@uuid}", @resize
-    $(document).on "turbolinks:before-cache.#{@uuid}", () =>
-      @removePortal()
+    $(window).on "resize.#{@eventId}", @resize
+    $(document).on "turbolinks:before-cache.#{@eventId}", @removePortal
 
 
   resize: () =>

@@ -21,7 +21,7 @@ export class Main extends React.Component
 
 
   componentDidMount: =>
-    pagination = document.querySelector('.js-comments-pagination').cloneNode(true)
+    pagination = newBody.querySelector('.js-comments-pagination').cloneNode(true)
     @pagination.current.innerHTML = ''
     @pagination.current.appendChild pagination
 

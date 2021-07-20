@@ -4,12 +4,14 @@
 import * as React from 'react'
 import { div, form, input, label, span } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Uploader extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "contests-show-enter-uploader-#{nextVal()}"
     @dropzoneRef = React.createRef()
     @uploadContainerRef = React.createRef()
 
@@ -48,8 +50,8 @@ export class Uploader extends React.Component
 
     $(@uploadContainerRef.current).append($uploadButton)
 
-    $.subscribe 'dragenterGlobal.contest-upload', => @setOverlay('active')
-    $.subscribe 'dragendGlobal.contest-upload', => @setOverlay('hidden')
+    $.subscribe "dragenterGlobal.#{@eventId}", => @setOverlay('active')
+    $.subscribe "dragendGlobal.#{@eventId}", => @setOverlay('hidden')
 
     $uploadButton.fileupload
       url: laroute.route 'contest-entries.store'
@@ -84,7 +86,7 @@ export class Uploader extends React.Component
       fail: _exported.fileuploadFailCallback
 
   componentWillUnmount: =>
-    $.unsubscribe '.contest-upload'
+    $.unsubscribe ".#{@eventId}"
 
     @$uploadButton()
       .fileupload 'destroy'

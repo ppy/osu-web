@@ -123,3 +123,9 @@
 @if (isset($canonicalUrl))
     <link rel="canonical" href="{{ $canonicalUrl }}">
 @endif
+
+@if (isset($translatedPages))
+    @foreach ($translatedPages as $l => $url)
+        <link rel="alternate" hreflang="{{ $l }}" href="{{ $url }}" />
+    @endforeach
+@endif

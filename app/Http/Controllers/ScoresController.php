@@ -71,7 +71,6 @@ class ScoresController extends Controller
         $scoreJson = json_item($score, 'Score', array_merge([
             'beatmap.max_combo',
             'beatmapset',
-            'rank_country',
             'rank_global',
         ], $userIncludes));
 

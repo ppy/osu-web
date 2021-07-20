@@ -14,7 +14,7 @@ class ArtistsController extends Controller
 {
     public function index()
     {
-        $artists = Artist::with('label')->withCount('tracks')->orderBy('name', 'asc');
+        $artists = Artist::with('label')->withMax('tracks', 'created_at')->withCount('tracks')->orderBy('name', 'asc');
         $user = Auth::user();
 
         if ($user === null || !$user->isAdmin()) {

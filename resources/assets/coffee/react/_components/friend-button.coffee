@@ -4,6 +4,7 @@
 import * as React from 'react'
 import { button, div, i, span } from 'react-dom-factories'
 import { Spinner } from 'spinner'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 bn = 'user-action-button'
@@ -18,7 +19,7 @@ export class FriendButton extends React.PureComponent
     super props
 
     @button = React.createRef()
-    @eventId = "friendButton-#{@props.userId}-#{osu.uuid()}"
+    @eventId = "friendButton-#{@props.userId}-#{nextVal()}"
 
     friend = _.find(currentUser.friends, target_id: props.userId)
     followersWithoutSelf = @props.followers ? 0

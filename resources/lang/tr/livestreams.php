@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => '',
-        'unpin' => "",
+        'pin' => 'Bu canlı yayını teşvik etmek istediğinizden emin misiniz?',
+        'unpin' => "Bu canlı yayının teşvikini kaldırmak istediğinizden emin misiniz?",
     ],
 
     'top-headers' => [

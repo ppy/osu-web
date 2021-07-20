@@ -19,11 +19,11 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
   }
 
   componentDidMount() {
-    $.subscribe('contest:vote:end.count', this.syncState);
+    $.subscribe('contest:vote:end', this.syncState);
   }
 
   componentWillUnmount() {
-    $.unsubscribe('.count');
+    $.unsubscribe('contest:vote:end', this.syncState);
   }
 
   render() {

@@ -142,5 +142,8 @@ return [
         'modding_history_controller' => [
             '_' => '摸圖者資訊',
         ],
+        'multiplayer_controller' => [
+            '_' => '',
+        ],
     ],
 ];

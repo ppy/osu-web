@@ -39,7 +39,7 @@ return [
             'verify_link' => 'пацверджанне ўліковага запісу',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'ліцэнзаваныя мастакі',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'допісы ў абмеркаваннях бітмап',
@@ -142,6 +142,9 @@ return [
     'users' => [
         'modding_history_controller' => [
             '_' => 'інфармацыя пра модэра',
+        ],
+        'multiplayer_controller' => [
+            '_' => '',
         ],
     ],
 ];

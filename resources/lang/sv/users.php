@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Fult spel / Fusk',
+            'multiple_accounts' => '',
             'insults' => 'Förolämpar mig / andra',
             'spam' => 'Spammning',
             'unwanted_content' => 'Länkar olämpligt innehåll',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Denna användare har inte fått några än. ;_;",
                 'recent' => 'Senaste',
                 'title' => 'Medaljer',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Inlägg',

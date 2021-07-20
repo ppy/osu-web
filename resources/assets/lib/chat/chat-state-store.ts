@@ -4,7 +4,6 @@
 import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
-import { UserLogoutAction } from 'actions/user-login-actions';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatchListener } from 'app-dispatcher';
 import { clamp } from 'lodash';
@@ -42,19 +41,11 @@ export default class ChatStateStore {
     });
   }
 
-  @action
-  flushStore() {
-    this.selected = 0;
-    this.autoScroll = false;
-  }
-
   handleDispatchAction(event: DispatcherAction) {
     if (event instanceof ChatMessageSendAction) {
       this.autoScroll = true;
     } else if (event instanceof ChatNewConversationAdded) {
       this.handleChatNewConversationAdded(event);
-    } else if (event instanceof UserLogoutAction) {
-      this.flushStore();
     } else if (event instanceof WindowFocusAction) {
       this.handleWindowFocusAction();
     }
