@@ -67,7 +67,7 @@ class Score extends Model
         // accept their scores.
         //
         // also, "F" rank is not a thing in lazer yet (and may never be?).
-        if ($this->passed !== true) {
+        if (!$this->passed) {
             $this->rank = 'F';
         }
 
@@ -106,7 +106,7 @@ class Score extends Model
             'enabled_mods' => ModsHelper::toBitset(array_column($this->mods, 'acronym')),
             'maxcombo' => $this->max_combo,
             'pass' => $this->passed,
-            'perfect' => $this->rank !== 'F' && $statistics['Miss'] + $statistics['LargeTickMiss'] === 0,
+            'perfect' => !$this->passed && $statistics['Miss'] + $statistics['LargeTickMiss'] === 0,
             'rank' => $this->rank,
             'score' => $this->total_score,
             'scorechecksum' => "\0",
