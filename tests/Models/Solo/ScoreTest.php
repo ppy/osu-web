@@ -64,7 +64,7 @@ class ScoreTest extends TestCase
             'passed' => false,
             'total_score' => 1000,
             'max_combo' => 100,
-            'statistics' => ['great' => 10],
+            'statistics' => ['Great' => 10],
             'accuracy' => 1,
             'rank' => 'S', // lazer may send an incorrect rank for a failed score.
         ]);
