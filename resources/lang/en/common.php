@@ -53,6 +53,7 @@ return [
         'show_less' => 'show less',
         'show_more' => 'show more',
         'show_more_options' => 'show more options',
+        'submit' => 'Submit',
         'unpin' => 'unpin',
         'update' => 'Update',
         'upload_image' => 'upload image',

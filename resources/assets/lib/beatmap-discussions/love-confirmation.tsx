@@ -46,11 +46,11 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
             onClick={this.love}
             type='button'
           >
-            Loved
+            {osu.trans('common.buttons.submit')}
           </button>
 
           <button
-            className='btn-osu-big btn-osu-big--rounded-thin'
+            className='btn-osu-big btn-osu-big--rounded-thin btn-osu-big--danger'
             onClick={this.props.onClose}
             type='button'
           >
