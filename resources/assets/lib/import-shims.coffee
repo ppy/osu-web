@@ -14,6 +14,7 @@ import { fileuploadFailCallback } from 'utils/ajax'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { make2x } from 'utils/html'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
+import { currentUrl } from 'utils/turbolinks'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -26,6 +27,7 @@ window.gallery ?= new Gallery
 
 window._exported = {
   OsuUrlHelper
+  currentUrl
   discussionLinkify
   fileuploadFailCallback
   make2x

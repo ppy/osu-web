@@ -7,6 +7,7 @@ import { BeatmapsetSearchFilters, BeatmapsetSearchParams } from 'beatmapset-sear
 import { route } from 'laroute';
 import { debounce, intersection, map } from 'lodash';
 import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe, runInAction } from 'mobx';
+import { currentUrl } from 'utils/turbolinks';
 
 export interface SearchStatus {
   error?: any;
@@ -167,13 +168,13 @@ export class BeatmapsetSearchController {
 
   @action
   private restoreStateFromUrl() {
-    const currentUrl = window.newUrl ?? location.href;
-    const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(currentUrl);
+    const url = currentUrl().href;
+    const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(url);
 
     if (this.filtersObserver != null) {
       this.filtersObserver();
     }
-    this.filters = new BeatmapsetSearchFilters(currentUrl);
+    this.filters = new BeatmapsetSearchFilters(url);
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 
     this.isExpanded = intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0;

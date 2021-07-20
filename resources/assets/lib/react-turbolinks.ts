@@ -4,6 +4,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import TurbolinksReload from 'turbolinks-reload';
+import { currentUrl } from 'utils/turbolinks';
 
 type ElementFn = (container: HTMLElement) => React.ReactElement;
 
@@ -71,9 +72,7 @@ export default class ReactTurbolinks {
 
   private handleBeforeRender = (e: JQuery.TriggeredEvent) => {
     window.newBody = (e.originalEvent as Event & { data: { newBody: HTMLElement }}).data.newBody;
-    window.newUrl = Turbolinks.controller.currentVisit?.redirectedToLocation?.absoluteURL
-      ?? Turbolinks.controller.currentVisit?.location.absoluteURL
-      ?? document.location.href;
+    this.setNewUrl();
     this.pageReady = true;
     this.loadScripts(false);
     this.boot();
@@ -126,10 +125,17 @@ export default class ReactTurbolinks {
 
     if (!newVisit || this.scrolled) return;
 
-    const targetId = decodeURIComponent(document.location.hash.substr(1));
+    const targetId = decodeURIComponent(currentUrl().hash.substr(1));
 
     if (targetId === '') return;
 
     document.getElementById(targetId)?.scrollIntoView();
   };
+
+  private setNewUrl() {
+    const visitUrl = Turbolinks.controller.currentVisit?.redirectedToLocation?.absoluteURL
+      ?? Turbolinks.controller.currentVisit?.location.absoluteURL;
+
+    window.newUrl = visitUrl == null ? document.location : new URL(visitUrl);
+  }
 }
