@@ -15,7 +15,7 @@ use App\Models\UserNotificationOption;
 use Event;
 use Queue;
 
-class BeatmapsetDisqualifyTest extends TestCase
+class BeatmapsetDisqualifyNotificationsTest extends TestCase
 {
     /** @var Beatmapset */
     protected $beatmapset;
@@ -26,6 +26,7 @@ class BeatmapsetDisqualifyTest extends TestCase
     /** @var User */
     protected $user;
 
+    #region notification tests
     public function testDuplicateNotificationNotSent()
     {
         $this->beatmapset->watches()->create(['user_id' => $this->user->getKey()]);
@@ -125,6 +126,7 @@ class BeatmapsetDisqualifyTest extends TestCase
 
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }
+    #endregion
 
     public function booleanDataProvider()
     {
@@ -141,7 +143,11 @@ class BeatmapsetDisqualifyTest extends TestCase
         Queue::fake();
         Event::fake();
 
-        $this->beatmapset = factory(Beatmapset::class)->states('qualified', 'with_discussion')->create();
+        $owner = factory(User::class)->create();
+        $this->beatmapset = factory(Beatmapset::class)->states('qualified', 'with_discussion')->create([
+            'creator' => $owner->username,
+            'user_id' => $owner->getKey(),
+        ]);
         $this->sender = $this->createUserWithGroup('bng');
         $this->user = factory(User::class)->create();
     }
