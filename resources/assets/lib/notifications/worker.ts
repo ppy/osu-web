@@ -113,6 +113,10 @@ export default class Worker implements DispatchListener {
 
           return;
         }
+        // Non-verification 401 error means user has been logged out. Don't retry.
+        if (xhr.status === 401) {
+          return;
+        }
         this.delayedRetryInitialLoadMore();
       });
   };

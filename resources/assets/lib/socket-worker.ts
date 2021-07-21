@@ -156,7 +156,13 @@ export default class SocketWorker {
         this.xhrLoadingState.startWebSocket = false;
         this.endpoint = data.url;
         this.connectWebSocket();
-      })).fail(action(() => {
+      })).fail(action((xhr: JQuery.jqXHR) => {
+        // User is logged out.
+        // TODO: Add message to the popup.
+        if (xhr.status === 401) {
+          this.destroy();
+          return;
+        }
         this.timeout.startWebSocket = window.setTimeout(this.startWebSocket, 10000);
       }));
   };
