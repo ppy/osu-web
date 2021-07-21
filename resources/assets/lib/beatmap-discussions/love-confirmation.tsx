@@ -62,7 +62,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
   }
 
   private checkIsModeSelected = (mode: GameMode) => {
-    const modeBeatmapIds = this.groupedBeatmaps.get(mode)?.map((beatmap) => beatmap.id) ?? [];
+    const modeBeatmapIds = this.getModeBeatmapIds(mode);
     const isAllSelected = modeBeatmapIds.every((id) => this.state.selectedBeatmapIds.has(id));
     const isAllUnselected = modeBeatmapIds.every((id) => !this.state.selectedBeatmapIds.has(id));
 
@@ -72,6 +72,8 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
 
     return isAllSelected;
   };
+
+  private getModeBeatmapIds = (mode: GameMode) => this.groupedBeatmaps.get(mode)?.map((beatmap) => beatmap.id) ?? [];
 
   private handleCheckboxDifficulty = (e: React.ChangeEvent<HTMLInputElement>) => {
     const beatmapId = parseInt(e.target.value, 10);
@@ -89,7 +91,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
 
   private handleCheckboxMode = (e: React.ChangeEvent<HTMLInputElement>) => {
     const mode = e.target.value as GameMode;
-    const modeBeatmapIds = this.groupedBeatmaps.get(mode)?.map((beatmap) => beatmap.id) ?? [];
+    const modeBeatmapIds = this.getModeBeatmapIds(mode);
     const newSelectedIds = new Set(this.state.selectedBeatmapIds);
 
     if (this.checkIsModeSelected(mode) === true) {
