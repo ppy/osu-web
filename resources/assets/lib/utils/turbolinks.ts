@@ -14,3 +14,9 @@ export function currentUrlParams() {
     return new URLSearchParams(url.search);
   }
 }
+
+export function currentUrlRelative() {
+  const url = currentUrl();
+
+  return `${url.pathname}${url.search}`;
+}
