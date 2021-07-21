@@ -2,6 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 declare module 'turbolinks' {
+  interface Controller {
+    currentVisit?: Visit;
+    advanceHistory(url: string): void;
+  }
+
+  interface Location {
+    absoluteURL: string;
+  }
+
   interface TurbolinksAction {
     action: 'advance' | 'replace' | 'restore';
   }
@@ -11,8 +20,13 @@ declare module 'turbolinks' {
     isHTML(): boolean;
   }
 
+  interface Visit {
+    location: Location;
+    redirectedToLocation?: Location;
+  }
+
   export default interface TurbolinksStatic {
-    controller: any;
+    controller: Controller;
     supported: boolean;
 
     clearCache(): void;
