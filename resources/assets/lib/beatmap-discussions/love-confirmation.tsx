@@ -177,5 +177,5 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
         </ul>
       </div>
     );
-  };
+  }
 }
