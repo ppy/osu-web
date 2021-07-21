@@ -35,7 +35,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
           {osu.trans('beatmaps.nominations.love_choose')}
         </div>
 
-        <div className='love-confirmation__row love-confirmation__row--content'>
+        <div className='love-confirmation__row love-confirmation__row--content u-fancy-scrollbar'>
           {[...this.groupedBeatmaps].map(([mode, beatmaps]) => this.renderDiffMode(mode, beatmaps))}
         </div>
 
@@ -151,7 +151,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
             </div>
           </label>
         </div>
-        <ul className='love-confirmation__diff-list u-fancy-scrollbar'>
+        <ul className='love-confirmation__diff-list'>
           {beatmaps.map((beatmap) => (
             <li
               key={beatmap.id}
