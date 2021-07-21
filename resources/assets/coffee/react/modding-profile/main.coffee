@@ -13,6 +13,7 @@ import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-con
 import { BlockButton } from 'block-button'
 import { deletedUser } from 'models/user'
 import { NotificationBanner } from 'notification-banner'
+import core from 'osu-core-singleton'
 import { Posts } from "./posts"
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
@@ -81,12 +82,15 @@ export class Main extends React.PureComponent
     @modeScrollUrl = currentLocation()
 
     if !@restoredState
-      Timeout.set 0, => @pageJump null, @initialPage
+      core.reactTurbolinks.runAfterPageLoad @eventId, =>
+        # The scroll is a bit off on Firefox if not using timeout.
+        Timeout.set 0, => @pageJump(null, @initialPage)
 
 
   componentWillUnmount: =>
     $.unsubscribe ".#{@eventId}"
     $(window).off ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
