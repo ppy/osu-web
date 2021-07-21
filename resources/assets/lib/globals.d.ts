@@ -3,6 +3,7 @@
 
 interface Window {
   newBody?: HTMLElement;
+  newUrl?: URL | Location | null;
 }
 
 // interfaces for using process.env

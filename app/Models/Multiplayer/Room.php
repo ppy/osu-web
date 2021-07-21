@@ -5,6 +5,7 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Casts\PresentString;
 use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\Model;
@@ -47,6 +48,9 @@ class Room extends Model
 
     const DEFAULT_SORT = 'created';
 
+    protected $casts = [
+        'password' => PresentString::class,
+    ];
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];
     protected $attributes = [

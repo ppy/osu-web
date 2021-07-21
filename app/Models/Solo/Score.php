@@ -62,6 +62,13 @@ class Score extends Model
 
         ScoreCheck::assertCompleted($this);
 
+        // this should potentially just be validation rather than applying this logic here, but
+        // older lazer builds potentially submit incorrect details here (and we still want to
+        // accept their scores.
+        if (!$this->passed) {
+            $this->rank = 'D';
+        }
+
         $this->save();
     }
 
@@ -89,6 +96,7 @@ class Score extends Model
         }
 
         $scoreClass = LegacyScore\Model::getClass($this->ruleset_id);
+
         $score = new $scoreClass([
             'beatmap_id' => $this->beatmap_id,
             'beatmapset_id' => optional($this->beatmap)->beatmapset_id ?? 0,
@@ -96,7 +104,7 @@ class Score extends Model
             'enabled_mods' => ModsHelper::toBitset(array_column($this->mods, 'acronym')),
             'maxcombo' => $this->max_combo,
             'pass' => $this->passed,
-            'perfect' => $statistics['Miss'] + $statistics['LargeTickMiss'] === 0,
+            'perfect' => $this->passed && $statistics['Miss'] + $statistics['LargeTickMiss'] === 0,
             'rank' => $this->rank,
             'score' => $this->total_score,
             'scorechecksum' => "\0",
@@ -127,6 +135,7 @@ class Score extends Model
                 break;
         }
 
-        return $score->saveOrExplode();
+        $score->saveOrExplode();
+        return $score;
     }
 }

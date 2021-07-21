@@ -107,13 +107,12 @@ class BeatmapsetSearchParams extends SearchParams
     /**
      * {@inheritdoc}
      */
-    public function getCacheKey(): string
+    public function getCacheKeyVars(): array
     {
-        $vars = get_object_vars($this);
+        $vars = parent::getCacheKeyVars();
         unset($vars['user']);
-        ksort($vars);
 
-        return 'beatmapset-search:'.json_encode($vars);
+        return $vars;
     }
 
     /**
