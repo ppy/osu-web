@@ -151,7 +151,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
             </div>
           </label>
         </div>
-        <ul className='love-confirmation__diff-list'>
+        <ul className='love-confirmation__diff-list u-fancy-scrollbar'>
           {beatmaps.map((beatmap) => (
             <li
               key={beatmap.id}

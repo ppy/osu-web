@@ -13,19 +13,18 @@
 
   @media @desktop {
     width: auto;
+    max-width: 1000px;
   }
 
   &__diff-list {
     list-style: none;
     padding: 0;
+    max-height: 75vh;
+    overflow-y: auto;
   }
 
   &__diff-list-item {
     margin-bottom: 5px;
-  }
-
-  &__diff-mode {
-    width: 200px;
   }
 
   &__diff-mode-title {
@@ -40,14 +39,17 @@
     .default-gutter-v2();
     padding-top: 10px;
     padding-bottom: 10px;
-    display: flex;
 
     &--content {
       font-size: @font-size--normal;
+      display: grid;
       column-gap: 10px;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
     }
 
     &--footer {
+      display: flex;
       column-gap: 5px;
       justify-content: flex-end;
     }
