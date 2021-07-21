@@ -16,6 +16,7 @@ import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
 import * as BeatmapsetPageHash from 'utils/beatmapset-page-hash'
 import { nextVal } from 'utils/seq'
+import { currentUrl } from 'utils/turbolinks'
 
 el = React.createElement
 
@@ -33,7 +34,7 @@ export class Main extends React.Component
     if @restoredState
       @state.beatmaps = new Map(@state.beatmapsArray)
     else
-      optionsHash = BeatmapsetPageHash.parse location.hash
+      optionsHash = BeatmapsetPageHash.parse currentUrl().hash
 
       beatmaps = _.concat props.beatmapset.beatmaps, props.beatmapset.converts
       beatmaps = BeatmapHelper.group beatmaps

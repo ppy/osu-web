@@ -125,7 +125,7 @@ class BeatmapDiscussionPostsController extends Controller
         priv_check('BeatmapDiscussionPostStore', $post)->ensureCan();
 
         $event = BeatmapsetEvent::getBeatmapsetEventType($discussion, $user);
-        $notifyQualifiedProblem = $discussion->shouldNotifiyQualifiedProblem($event);
+        $notifyQualifiedProblem = $discussion->shouldNotifyQualifiedProblem($event);
 
         $posts = $discussion->getConnection()->transaction(function () use ($discussion, $event, $post, $user) {
             $discussion->saveOrExplode();

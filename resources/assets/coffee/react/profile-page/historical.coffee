@@ -36,6 +36,7 @@ export class Historical extends React.PureComponent
 
   componentWillUnmount: =>
     $(window).off ".#{@id}"
+    $(document).off ".#{@id}"
 
 
   render: =>
@@ -153,8 +154,9 @@ export class Historical extends React.PureComponent
 
       @charts[attribute] = new LineChart(area, options)
 
-    @updateTicks @charts[attribute], data
-    @charts[attribute].loadData data
+    core.reactTurbolinks.runAfterPageLoad @id, =>
+      @updateTicks @charts[attribute], data
+      @charts[attribute].loadData data
 
 
   hasMonthlyPlaycounts: =>

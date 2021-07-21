@@ -17,6 +17,8 @@ const isBeatmapOwnerChangeEventJson = (event: BeatmapsetEventJson): event is Bea
 const isNominationResetReceivedEventJson = (event: BeatmapsetEventJson): event is NominationResetReceivedEventJson =>
   event.type === 'nomination_reset_received';
 
+export type EventViewMode = 'discussions' | 'profile' | 'list';
+
 interface BeatmapOwnerChangeEventJson extends BeatmapsetEventJson {
   comment: {
     beatmap_id: number;
@@ -39,16 +41,12 @@ interface NominationResetReceivedEventJson extends BeatmapsetEventJson {
 interface Props {
   discussions?: Partial<Record<string, BeatmapsetDiscussionJson>>;
   event: BeatmapsetEventJson;
-  mode: 'discussions' | 'profile';
+  mode: EventViewMode;
   time?: string;
   users: Partial<Record<string, UserJson>>;
 }
 
 export default class Event extends React.PureComponent<Props> {
-  static readonly defaultProps = {
-    mode: 'discussions',
-  };
-
   private get beatmapsetId(): number | undefined {
     return this.props.event.beatmapset?.id;
   }
@@ -204,7 +202,12 @@ export default class Event extends React.PureComponent<Props> {
 
     if (isNominationResetReceivedEventJson(this.props.event)) {
       const data = this.props.event.comment;
-      params.user = osu.link(route('users.show', { user: data.source_user_id }), data.source_user_username);
+      if (this.props.mode === 'profile') {
+        eventType += '_profile';
+        params.user = osu.link(route('users.show', { user: data.source_user_id }), data.source_user_username);
+      } else {
+        params.source_user = osu.link(route('users.show', { user: data.source_user_id }), data.source_user_username);
+      }
     }
 
     const key = `beatmapset_events.event.${eventType}`;

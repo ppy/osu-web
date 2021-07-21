@@ -14,22 +14,24 @@ use Log;
 class BeatmapsetNominationSyncCommand extends Command
 {
     protected $signature = 'beatmapset:nomination-sync';
-    protected $description = 'Indexes documents into Elasticsearch.';
+    protected $description = 'Migrates nomination-related BeatmapsetEvents to BeatmapsetNomination.';
 
     public function handle()
     {
+        $progress = $this->output->createProgressBar();
         $max = BeatmapsetEvent::max('id');
 
         BeatmapsetEvent::where('id', '<=', $max)->whereIn('type', [BeatmapsetEvent::NOMINATE, BeatmapsetEvent::NOMINATION_RESET, BeatmapsetEvent::DISQUALIFY])
             ->with('beatmapset')
-            ->chunkById(1000, function ($chunk) {
+            ->chunkById(1000, function ($chunk) use ($progress) {
                 /** @var BeatmapsetEvent $event */
                 foreach ($chunk as $event) {
                     switch ($event->type) {
                         case BeatmapsetEvent::NOMINATE:
                             try {
                                 Log::debug('nominate', ['beatmapset_id' => $event->beatmapset_id, 'user_id' => $event->user_id]);
-                                $event->beatmapset->beatmapsetNominations()->create([
+                                BeatmapsetNomination::create([
+                                    'beatmapset_id' => $event->beatmapset_id,
                                     'event_id' => $event->getKey(),
                                     'user_id' => $event->user_id,
                                 ]);
@@ -44,14 +46,19 @@ class BeatmapsetNominationSyncCommand extends Command
                         case BeatmapsetEvent::DISQUALIFY:
                         case BeatmapsetEvent::NOMINATION_RESET:
                             Log::debug('nomination reset', ['beatmapset_id' => $event->beatmapset_id, 'user_id' => $event->user_id]);
-                            BeatmapsetNomination::where('beatmapset_id', $event->beatmapset->getKey())->current()->update([
+                            BeatmapsetNomination::where('beatmapset_id', $event->beatmapset_id)->current()->update([
                                 'reset' => true,
                                 'reset_at' => $event->created_at,
                                 'reset_user_id' => $event->user_id,
                             ]);
                             break;
                     }
+
+                    $progress->advance();
                 }
             });
+
+        $progress->finish();
+        $this->line('');
     }
 }

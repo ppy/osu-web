@@ -15,14 +15,12 @@ use Queue;
 
 class BeatmapsetEventNominationResetTest extends TestCase
 {
-    /** @var Beatmapset */
-    private $beatmapset;
+    private Beatmapset $beatmapset;
 
     /** @var User[] */
-    private $nominators;
+    private array $nominators;
 
-    /** @var User */
-    private $sender;
+    private User $sender;
 
     #region event logging tests
     public function testBeatmapsetEventsWhenDisqualified()

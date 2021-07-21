@@ -6,6 +6,7 @@ import NotificationType, { getValidName, Name as NotificationTypeName, typeNames
 import { NotificationContextData } from 'notifications-context';
 import NotificationStackStore from 'stores/notification-stack-store';
 import NotificationStore from 'stores/notification-store';
+import { currentUrl, currentUrlParams } from 'utils/turbolinks';
 
 export default class NotificationController {
   @observable currentFilter: NotificationTypeName;
@@ -24,9 +25,7 @@ export default class NotificationController {
   }
 
   private get typeNameFromUrl() {
-    const url = new URL(location.href);
-
-    return getValidName(url.searchParams.get('type'));
+    return getValidName(currentUrlParams().get('type'));
   }
 
   constructor(
@@ -79,7 +78,7 @@ export default class NotificationController {
     if (!this.contextType.isWidget) {
       let href: string;
       if (type == null) {
-        const url = new URL(window.location.href);
+        const url = new URL(currentUrl().href);
         url.searchParams.delete('type');
 
         href = url.href;

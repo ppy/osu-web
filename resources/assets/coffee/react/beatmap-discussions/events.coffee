@@ -37,7 +37,8 @@ export class Events extends React.PureComponent
                 className: 'beatmapset-events__event'
                 el Event,
                   event: event
+                  discussions: @props.discussions
+                  mode: 'discussions'
                   time: event.created_at
                   users: @props.users
-                  discussions: @props.discussions
             ]

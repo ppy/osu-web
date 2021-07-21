@@ -383,19 +383,10 @@ class BeatmapDiscussion extends Model
         ])->saveOrExplode();
     }
 
-    public function responsibleUserId(): ?int
-    {
-        if ($this->beatmap === null) {
-            return $this->beatmapset->user_id;
-        }
-
-        return $this->beatmap->user_id;
-    }
-
     /**
      * To get the correct result, this should be called before discussions are updated, as it checks the open problems count.
      */
-    public function shouldNotifiyQualifiedProblem(?string $event): bool
+    public function shouldNotifyQualifiedProblem(?string $event): bool
     {
         return (
             $event === BeatmapsetEvent::ISSUE_REOPEN
