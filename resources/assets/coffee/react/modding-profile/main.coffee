@@ -19,15 +19,12 @@ import { a, button, div, i, span } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
+import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
 
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
 pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollspy-offset")
-
-currentLocation = ->
-  "#{document.location.pathname}#{document.location.search}"
-
 
 export class Main extends React.PureComponent
   constructor: (props) ->
@@ -41,7 +38,7 @@ export class Main extends React.PureComponent
     @restoredState = @state?
 
     if !@restoredState
-      page = location.hash.slice(1)
+      page = currentUrl().hash.slice(1)
       @initialPage = page if page?
 
       @state =
@@ -78,7 +75,7 @@ export class Main extends React.PureComponent
 
     pageChange()
 
-    @modeScrollUrl = currentLocation()
+    @modeScrollUrl = currentUrlRelative()
 
     if !@restoredState
       Timeout.set 0, => @pageJump null, @initialPage
@@ -300,7 +297,7 @@ export class Main extends React.PureComponent
 
 
   pageScan: =>
-    return if @modeScrollUrl != currentLocation()
+    return if @modeScrollUrl != currentUrlRelative()
 
     return if @scrolling
     return if pages.length == 0
