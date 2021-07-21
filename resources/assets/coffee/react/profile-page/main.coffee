@@ -13,6 +13,7 @@ import { TopRanks } from './top-ranks'
 import { UserPage } from './user-page'
 import { BlockButton } from 'block-button'
 import { NotificationBanner } from 'notification-banner'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
@@ -107,12 +108,15 @@ export class Main extends React.PureComponent
     @modeScrollUrl = currentUrlRelative()
 
     if !@restoredState
-      Timeout.set 0, => @pageJump null, @initialPage
+      core.reactTurbolinks.runAfterPageLoad @eventId, =>
+        # The scroll is a bit off on Firefox if not using timeout.
+        Timeout.set 0, => @pageJump(null, @initialPage)
 
 
   componentWillUnmount: =>
     $.unsubscribe ".#{@eventId}"
     $(window).off ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
     for sortable in [@pages, @tabs]
       $(sortable.current).sortable 'destroy'
