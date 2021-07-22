@@ -193,6 +193,24 @@ describe('osu_common', () => {
     })
   })
 
+  describe('test transArray', () => {
+    it('should empty string for empty array', () => {
+      expect(osu.transArray([])).toBe('');
+    })
+
+    it('should return correct translation for single item array', () => {
+      expect(osu.transArray(['Me'])).toBe('Me');
+    })
+
+    it('should return correct translation for two items array', () => {
+      expect(osu.transArray(['Me', 'My Self'])).toBe('Me and My Self');
+    })
+
+    it('should return correct translation for three items array', () => {
+      expect(osu.transArray(['Me', 'My Self', 'I'])).toBe('Me, My Self, and I');
+    })
+  })
+
   describe('test transExists', () => {
     it('should return true for existed translation', () => {
       expect(osu.transExists('common.confirmation')).toBe(true);
