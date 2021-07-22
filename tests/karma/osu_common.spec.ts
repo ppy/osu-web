@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import GroupJson from "interfaces/group-json";
 import * as React from "react";
 
 describe('osu_common', () => {
@@ -50,6 +51,37 @@ describe('osu_common', () => {
       expect(osu.diffColour()).toEqual({
         '--diff': 'var(--diff-default)',
       } as React.CSSProperties);
+    })
+  })
+
+  describe('test groupColour', () => {
+    const group: GroupJson = {
+      colour: '#abcdef',
+      has_listing: true,
+      has_playmodes: true,
+      id: 1,
+      identifier: 'abc',
+      is_probationary: false,
+      name: 'ABC',
+      short_name: 'abc',
+    }
+
+    it('should return CSS object with correct colour', () => {
+      expect(osu.groupColour(group)).toEqual({
+        '--group-colour': '#abcdef',
+      } as React.CSSProperties)
+    })
+
+    it('should return CSS object with initial value when colour is null', () => {
+      expect(osu.groupColour({ ...group, colour: null })).toEqual({
+        '--group-colour': 'initial',
+      } as React.CSSProperties)
+    })
+
+    it('should return CSS object with initial value when group is undefined', () => {
+      expect(osu.groupColour()).toEqual({
+        '--group-colour': 'initial',
+      } as React.CSSProperties)
     })
   })
 
