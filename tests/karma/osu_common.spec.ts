@@ -16,6 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import * as React from "react";
+
 describe('osu_common', () => {
   describe('test locale file loaded in test runner', () => {
     it('should be loaded', () => {
@@ -34,6 +36,20 @@ describe('osu_common', () => {
 
     it('should only return base class name when modifier is empty', () => {
       expect(osu.classWithModifiers('base-class', [])).toBe('base-class');
+    })
+  })
+
+  describe('test diffColour', () => {
+    it('should return CSS object with correct variable', () => {
+      expect(osu.diffColour('normal')).toEqual({
+        '--diff': 'var(--diff-normal)',
+      } as React.CSSProperties);
+    })
+
+    it('should return CSS object with default variable', () => {
+      expect(osu.diffColour()).toEqual({
+        '--diff': 'var(--diff-default)',
+      } as React.CSSProperties);
     })
   })
 
