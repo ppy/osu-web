@@ -147,6 +147,24 @@ describe('osu_common', () => {
     })
   })
 
+  describe('test present', () => {
+    it('should return true for non empty string', () => {
+      expect(osu.present('test')).toBe(true);
+    })
+
+    it('should return false for empty string', () => {
+      expect(osu.present('')).toBe(false);
+    })
+
+    it('should return false for null', () => {
+      expect(osu.present(null)).toBe(false);
+    })
+
+    it('should return false for undefined', () => {
+      expect(osu.present()).toBe(false);
+    })
+  })
+
   describe('test updateQueryString', () => {
     it('should add the new parameter to the query string', () => {
       const params = {
