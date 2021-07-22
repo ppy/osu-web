@@ -74,6 +74,7 @@ interface OsuCommon {
   ajaxError: AjaxError;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
+  formatBytes: (bytes: number, decimals?: number) => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;

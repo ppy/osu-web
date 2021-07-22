@@ -115,6 +115,24 @@ describe('osu_common', () => {
     })
   })
 
+  describe('test formatBytes', () => {
+    it('should return same value in bytes', () => {
+      expect(osu.formatBytes(100)).toBe('100 B');
+    })
+
+    it('should return correct value in KB', () => {
+      expect(osu.formatBytes(1000)).toBe('1.00 KB');
+    })
+
+    it('should return correct value in MB', () => {
+      expect(osu.formatBytes(1000000)).toBe('1.00 MB');
+    })
+
+    it('should return correct value in KB without trailing zero', () => {
+      expect(osu.formatBytes(1000, 0)).toBe('1 KB');
+    })
+  })
+
   describe('test updateQueryString', () => {
     it('should add the new parameter to the query string', () => {
       const params = {
