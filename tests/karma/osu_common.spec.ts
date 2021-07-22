@@ -147,6 +147,24 @@ describe('osu_common', () => {
     })
   })
 
+  describe('test presence', () => {
+    it('should return same string', () => {
+      expect(osu.presence('test')).toBe('test');
+    })
+
+    it('should return null for empty string', () => {
+      expect(osu.presence('')).toBe(null);
+    })
+
+    it('should return null for null', () => {
+      expect(osu.presence('')).toBe(null);
+    })
+
+    it('should return null for undefined', () => {
+      expect(osu.presence()).toBe(null);
+    })
+  })
+
   describe('test present', () => {
     it('should return true for non empty string', () => {
       expect(osu.present('test')).toBe(true);
