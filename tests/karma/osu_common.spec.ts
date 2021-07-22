@@ -85,6 +85,20 @@ describe('osu_common', () => {
     })
   })
 
+  describe('test jsonClone', () => {
+    it('should return same object', () => {
+      expect(osu.jsonClone({ test: '1234' })).toEqual({ test: '1234' });
+    })
+
+    it('should return null', () => {
+      expect(osu.jsonClone(null)).toBe(null);
+    })
+
+    it('should return null when object is undefined', () => {
+      expect(osu.jsonClone(undefined)).toBe(null);
+    })
+  })
+
   describe('test updateQueryString', () => {
     it('should add the new parameter to the query string', () => {
       const params = {
