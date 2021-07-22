@@ -183,6 +183,16 @@ describe('osu_common', () => {
     })
   })
 
+  describe('test trans', () => {
+    it('should return correct translation', () => {
+      expect(osu.trans('common.confirmation')).toBe('Are you sure?');
+    })
+
+    it('should return key for non existed translation', () => {
+      expect(osu.trans('common.this_is_not_existed')).toBe('common.this_is_not_existed');
+    })
+  })
+
   describe('test transExists', () => {
     it('should return true for existed translation', () => {
       expect(osu.transExists('common.confirmation')).toBe(true);
