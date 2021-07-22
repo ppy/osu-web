@@ -30,7 +30,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     unit \
     unit-php \
     yarnpkg \
-    zip
+    zip \
+    sudo
 
 WORKDIR /app
 
@@ -41,6 +42,7 @@ COPY package.json yarn.lock ./
 RUN yarnpkg
 
 COPY . .
+RUN cp /app/docker/deployment/sudoers /etc/sudoers
 RUN mkdir -p bootstrap/cache storage/framework/views storage/framework/sessions
 RUN composer dump-autoload
 

@@ -1,0 +1,95 @@
+version: '3.4'
+
+x-env: &x-env
+  APP_ENV: production
+  BROADCAST_DRIVER: redis
+  CACHE_DRIVER: redis
+  DB_HOST: 172.17.0.1
+  ES_HOST: elasticsearch:9200
+  ES_SCORES_HOST: elasticsearch:9200
+  GITHUB_TOKEN: "${GITHUB_TOKEN}"
+  NOTIFICATION_REDIS_HOST: 172.17.0.1
+  REDIS_HOST: 172.17.0.1
+  CACHE_REDIS_HOST: 172.17.0.1
+  SESSION_DRIVER: redis
+  NOTIFICATION_ENDPOINT: ws://localhost:2345
+
+x-web: &x-web
+  image: pppy/osu-web:latest
+  build:
+    context: .
+    dockerfile: Dockerfile.deployment
+    args:
+      APP_URL: http://localhost:${NGINX_PORT:-8000}
+      DOCS_URL: https://docs.ppy.sh
+      PAYMENT_SANDBOX: "true"
+      SHOPIFY_DOMAIN: notarealdomainortld
+      SHOPIFY_STOREFRONT_TOKEN: notreal
+      GIT_SHA: latest
+  environment:
+    <<: *x-env
+  env_file: .env
+
+services:
+  nginx-unit:
+    <<: *x-web
+    volumes:
+      - ./storage:/app/storage
+      - ./public/uploads:/app/public/uploads
+      - ./public/uploads-avatar:/app/public/uploads-avatar
+    ports:
+      - "${NGINX_PORT:-8000}:8000"
+    command: ['nginx']
+
+  job:
+    <<: *x-web
+    command: ['artisan', 'queue:work', '--queue=beatmap_default,beatmap_high,default,notification,store-notifications', '--tries=3', '--timeout=1000']
+
+  schedule:
+    <<: *x-web
+    command: ['schedule']
+
+  notification-server:
+    image: pppy/osu-notification-server
+    depends_on:
+      - redis
+      - db
+    volumes:
+      - .env:/app/.env
+      - ./storage/oauth-public.key:/app/oauth-public.key
+    ports:
+      - 2345:2345
+    environment:
+      <<: *x-env
+    env_file: .env
+
+  db:
+    image: mysql:8.0
+    volumes:
+      - database:/var/lib/mysql
+      - ./bin/db_setup.sh:/docker-entrypoint-initdb.d/db_setup.sh
+      - ./docker/development/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
+    environment:
+      <<: *x-env
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ONETIME_PASSWORD: "yes"
+    ports:
+      - "${MYSQL_EXTERNAL_PORT:-3306}:3306"
+    command: --default-authentication-plugin=mysql_native_password
+
+  redis:
+    image: redis:latest
+
+  elasticsearch:
+    # Version must be kept up to date with library defined in: composer.json
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.12
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+    environment:
+      action.auto_create_index: "false"
+      discovery.type: single-node
+      cluster.routing.allocation.disk.threshold_enabled: "false"
+
+volumes:
+  database:
+  elasticsearch:
