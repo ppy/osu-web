@@ -133,6 +133,20 @@ describe('osu_common', () => {
     })
   })
 
+  describe('test formatNumber', () => {
+    it('should return null', () => {
+      expect(osu.formatNumber(null)).toBe(null);
+    })
+
+    it('should return number with correct precision', () => {
+      expect(osu.formatNumber(12.345, 2)).toBe('12.35');
+    })
+
+    it('shoudl return integer number', () => {
+      expect(osu.formatNumber(12.34, 0)).toBe('12');
+    })
+  })
+
   describe('test updateQueryString', () => {
     it('should add the new parameter to the query string', () => {
       const params = {
