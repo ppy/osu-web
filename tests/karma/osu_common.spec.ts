@@ -17,52 +17,56 @@
  */
 
 describe('osu_common', () => {
-  it('test locale file loaded in test runner', () => {
-    expect(Lang.has('common.confirmation')).toBe(true);
-  });
+  describe('test locale file loaded in test runner', () => {
+    it('should be loaded', () => {
+      expect(Lang.has('common.confirmation')).toBe(true);
+    })
+  })
 
-  it('should add the new parameter to the query string', () => {
-    const params = {
-      foo: 'bar',
-    };
+  describe('test updateQueryString', () => {
+    it('should add the new parameter to the query string', () => {
+      const params = {
+        foo: 'bar',
+      };
 
-    const expected = new URL('/nowhere?foo=bar', location.origin).href;
-    const result = osu.updateQueryString('/nowhere', params);
+      const expected = new URL('/nowhere?foo=bar', location.origin).href;
+      const result = osu.updateQueryString('/nowhere', params);
 
-    expect(result).toBe(expected);
-  });
+      expect(result).toBe(expected);
+    });
 
-  it('should update the existing parameter value', () => {
-    const params = {
-      something: '2',
-    };
+    it('should update the existing parameter value', () => {
+      const params = {
+        something: '2',
+      };
 
-    const expected = new URL('/nowhere?something=2', location.origin).href;
-    const result = osu.updateQueryString('/nowhere?something=1', params);
+      const expected = new URL('/nowhere?something=2', location.origin).href;
+      const result = osu.updateQueryString('/nowhere?something=1', params);
 
-    expect(result).toBe(expected);
-  });
+      expect(result).toBe(expected);
+    });
 
-  it('should append the new parameter value', () => {
-    const params = {
-      more: '3',
-    };
+    it('should append the new parameter value', () => {
+      const params = {
+        more: '3',
+      };
 
-    const expected = new URL('/nowhere?something=1&more=3', location.origin).href;
-    const result = osu.updateQueryString('/nowhere?something=1', params);
+      const expected = new URL('/nowhere?something=1&more=3', location.origin).href;
+      const result = osu.updateQueryString('/nowhere?something=1', params);
 
-    expect(result).toBe(expected);
-  });
+      expect(result).toBe(expected);
+    });
 
-  it('should update the existing parameter and append the new parameter value', () => {
-    const params = {
-      more: '3',
-      something: '5',
-    };
+    it('should update the existing parameter and append the new parameter value', () => {
+      const params = {
+        more: '3',
+        something: '5',
+      };
 
-    const expected = new URL('/nowhere?something=5&more=3', location.origin).href;
-    const result = osu.updateQueryString('/nowhere?something=1', params);
+      const expected = new URL('/nowhere?something=5&more=3', location.origin).href;
+      const result = osu.updateQueryString('/nowhere?something=1', params);
 
-    expect(result).toBe(expected);
-  });
+      expect(result).toBe(expected);
+    });
+  })
 });
