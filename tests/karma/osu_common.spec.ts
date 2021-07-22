@@ -183,6 +183,16 @@ describe('osu_common', () => {
     })
   })
 
+  describe('test transExists', () => {
+    it('should return true for existed translation', () => {
+      expect(osu.transExists('common.confirmation')).toBe(true);
+    })
+
+    it('should return false for non existed translation', () => {
+      expect(osu.transExists('common.this_is_not_existed')).toBe(false);
+    })
+  })
+
   describe('test updateQueryString', () => {
     it('should add the new parameter to the query string', () => {
       const params = {
