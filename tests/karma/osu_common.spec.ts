@@ -23,6 +23,20 @@ describe('osu_common', () => {
     })
   })
 
+  describe('test classWithModifiers', () => {
+    it('should return correct class with modifier', () => {
+      expect(osu.classWithModifiers('base-class', ['modifier'])).toBe('base-class base-class--modifier');
+    })
+
+    it('should only return base class name when modifier is undefined', () => {
+      expect(osu.classWithModifiers('base-class')).toBe('base-class');
+    })
+
+    it('should only return base class name when modifier is empty', () => {
+      expect(osu.classWithModifiers('base-class', [])).toBe('base-class');
+    })
+  })
+
   describe('test updateQueryString', () => {
     it('should add the new parameter to the query string', () => {
       const params = {
