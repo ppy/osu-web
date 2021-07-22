@@ -294,6 +294,15 @@ function default_mode()
     return optional(auth()->user())->playmode ?? 'osu';
 }
 
+function flag_url($countryCode)
+{
+    $chars = str_split($countryCode);
+    $hexEmojiChars = array_map(fn ($chr) => dechex(mb_ord($chr) + 127397), $chars);
+    $baseFileName = implode('-', $hexEmojiChars);
+
+    return "/assets/images/flags/{$baseFileName}.svg";
+}
+
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
