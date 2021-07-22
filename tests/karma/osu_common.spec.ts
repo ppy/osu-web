@@ -99,6 +99,22 @@ describe('osu_common', () => {
     })
   })
 
+  describe('test linkify', () => {
+    const textWithLink = 'Please visit https://osu.ppy.sh/';
+
+    it('should return correct anchor', () => {
+      expect(osu.linkify(textWithLink)).toBe(
+        `Please visit <a href="https://osu.ppy.sh/" rel="nofollow noreferrer">osu.ppy.sh/</a>`
+      )
+    })
+
+    it('should return correct anchor with target blank', () => {
+      expect(osu.linkify(textWithLink, true)).toBe(
+        `Please visit <a href="https://osu.ppy.sh/" rel="nofollow noreferrer" target="_blank">osu.ppy.sh/</a>`
+      )
+    })
+  })
+
   describe('test updateQueryString', () => {
     it('should add the new parameter to the query string', () => {
       const params = {
