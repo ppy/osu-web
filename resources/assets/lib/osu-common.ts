@@ -35,6 +35,7 @@ const osuCommon = {
   diffColour: (difficultyRating?: string | null) => ({ '--diff': `var(--diff-${difficultyRating ?? 'default'})` } as React.CSSProperties),
   emitAjaxError: (element = document.body) => (xhr: JQuery.jqXHR, status: string, error: string) => $(element).trigger('ajax:error', [xhr, status, error]),
   groupColour: (group?: GroupJson) => ({ '--group-colour': group?.colour ?? 'initial' } as React.CSSProperties),
+  isInputElement: (el: HTMLElement) => ['INPUT', 'SELECT', 'TEXTAREA'].includes(el.tagName) || el.isContentEditable,
   isIos: /iPad|iPhone|iPod/.test(navigator.platform),
   // make a clone of json-like object (object with simple values)
   jsonClone: (obj: any) => JSON.parse(JSON.stringify(obj ?? null)),
