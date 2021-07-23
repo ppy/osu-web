@@ -4,7 +4,7 @@
 import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
 import { action, observable } from 'mobx';
-import osu from 'osu-common';
+// import osu from 'osu-common';
 
 export default class User {
   @observable avatarUrl = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
@@ -93,7 +93,8 @@ export default class User {
 
 const deletedUser = new User(-1);
 deletedUser.isDeleted = true;
-deletedUser.username = osu.trans('users.deleted');
+// deletedUser.username = osu.trans('users.deleted');
+deletedUser.username = '[deleted user]';
 
 export {
   deletedUser,
