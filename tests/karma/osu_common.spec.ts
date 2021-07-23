@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import GroupJson from "interfaces/group-json";
-import * as React from "react";
+import GroupJson from 'interfaces/group-json';
+import * as React from 'react';
 
 describe('osu_common', () => {
   describe('test locale file loaded in test runner', () => {
