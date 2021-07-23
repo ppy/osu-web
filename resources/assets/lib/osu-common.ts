@@ -196,6 +196,10 @@ const osuCommon = {
 
   present: (str?: string | null) => str != null && str !== '',
 
+  promisify: (xhr: JQuery.jqXHR): Promise<any> => new Promise((resolve, reject) => {
+    xhr.done(resolve).fail(reject);
+  }),
+
   reloadPage: (keepScroll = true) => {
     $(document).off('.ujsHideLoadingOverlay');
     Turbolinks.clearCache();
