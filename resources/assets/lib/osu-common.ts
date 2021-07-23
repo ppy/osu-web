@@ -7,6 +7,17 @@ const osuCommon = {
     const body = document.documentElement ?? document.body.parentElement ?? document.body;
     return (body.scrollHeight - body.scrollTop) - body.clientHeight;
   },
+  classWithModifiers: (className: string, modifiers?: string[]) => {
+    let ret = className;
+
+    if (modifiers != null) {
+      modifiers.forEach((modifier) => {
+        ret += ` ${className}--${modifier}`;
+      });
+    }
+
+    return ret;
+  },
   isIos: /iPad|iPhone|iPod/.test(navigator.platform),
   urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig,
 };
