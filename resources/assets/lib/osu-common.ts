@@ -88,6 +88,16 @@ const osuCommon = {
   isIos: /iPad|iPhone|iPod/.test(navigator.platform),
   // make a clone of json-like object (object with simple values)
   jsonClone: (obj: any) => JSON.parse(JSON.stringify(obj ?? null)),
+  keepScrollOnLoad: () => {
+    const position = [
+      window.pageXOffset,
+      window.pageYOffset,
+    ];
+
+    $(document).one('turbolinks:load', () => {
+      window.scrollTo(position[0], position[1]);
+    });
+  },
   link: (url: string, text: string, options: OsuLinkOptions = {}) => {
     if (options.unescape) {
       url = unescape(url);
