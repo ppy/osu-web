@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import GroupJson from 'interfaces/group-json';
-import { find } from 'lodash';
+import { each, find, unescape } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import Timeout from 'timeout';
@@ -63,6 +63,26 @@ const osuCommon = {
   isIos: /iPad|iPhone|iPod/.test(navigator.platform),
   // make a clone of json-like object (object with simple values)
   jsonClone: (obj: any) => JSON.parse(JSON.stringify(obj ?? null)),
+  link: (url: string, text: string, options: OsuLinkOptions = {}) => {
+    if (options.unescape) {
+      url = unescape(url);
+      text = unescape(text);
+    }
+
+    const el = document.createElement('a');
+    el.setAttribute('href', url);
+    el.setAttribute('data-remote', options.isRemote ? 'true' : '');
+    el.className = options.classNames != null ? options.classNames.join(' ') : '';
+    el.textContent = text;
+
+    if (options.props != null) {
+      each(options.props, (val, prop) => {
+        el.setAttribute(prop, val ?? '');
+      });
+    }
+
+    return el.outerHTML;
+  },
   parseJson<T = any>(id: string, remove = false) {
     const element = window.newBody?.querySelector(`#${id}`);
 
