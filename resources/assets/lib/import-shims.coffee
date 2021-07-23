@@ -10,7 +10,6 @@ import * as laroute from 'laroute'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import OsuUrlHelper from 'osu-url-helper'
-import Timeout from 'timeout'
 import { fileuploadFailCallback } from 'utils/ajax'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { make2x } from 'utils/html'
@@ -47,5 +46,3 @@ window._styles =
     heightMobile: 50 # @navbar-height
 
 window.StoreCheckout = StoreCheckout
-
-window.Timeout = Timeout
