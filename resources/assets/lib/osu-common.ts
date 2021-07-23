@@ -55,6 +55,8 @@ const osuCommon = {
 
     alert.appendTo(popupContainer).fadeIn();
   },
+  presence: (str?: string | null) => osuCommon.present(str) ? str : null,
+  present: (str?: string | null) => str != null && str !== '',
   setHash: (newHash: string) => {
     const currentUrl = getCurrentUrl().href;
     let newUrl = currentUrl.replace(/#.*/, '');
