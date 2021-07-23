@@ -23,18 +23,6 @@ const osu = {
     return (body.scrollHeight - body.scrollTop) - body.clientHeight;
   },
 
-  classWithModifiers: (className: string, modifiers?: string[]) => {
-    let ret = className;
-
-    if (modifiers != null) {
-      modifiers.forEach((modifier) => {
-        ret += ` ${className}--${modifier}`;
-      });
-    }
-
-    return ret;
-  },
-
   currentUserIsFriendsWith: (userId: number) => find(currentUser.friends, { target_id: userId }),
 
   diffColour: (difficultyRating?: string | null) => ({ '--diff': `var(--diff-${difficultyRating ?? 'default'})` } as React.CSSProperties),
