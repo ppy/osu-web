@@ -4,6 +4,7 @@
 import GroupJson from 'interfaces/group-json';
 import { find } from 'lodash';
 import * as React from 'react';
+import Timeout from 'timeout';
 import { currentUrl as getCurrentUrl } from 'utils/turbolinks';
 
 const osuCommon = {
@@ -27,6 +28,33 @@ const osuCommon = {
   diffColour: (difficultyRating?: string | null) => ({ '--diff': `var(--diff-${difficultyRating ?? 'default'})` } as React.CSSProperties),
   groupColour: (group?: GroupJson) => ({ '--group-colour': group?.colour ?? 'initial' } as React.CSSProperties),
   isIos: /iPad|iPhone|iPod/.test(navigator.platform),
+  popup: (message: string, type = 'info') => {
+    const popupContainer = $('#popup-container');
+    const alert = $('.popup-clone').clone();
+
+    const closeAlert = () => alert.click();
+
+    alert.addClass(`alert-${type} popup-active`).removeClass('popup-clone');
+
+    alert.find('.popup-text').html(message);
+
+    if (['warning', 'danger'].includes(type)) {
+      $('#overlay')
+        .off('click.close-alert')
+        .one('click.close-alert', closeAlert)
+        .fadeIn();
+    } else {
+      Timeout.set(5000, closeAlert);
+    }
+
+    const activeElement = document.activeElement;
+
+    if (activeElement instanceof HTMLElement) {
+      activeElement.blur();
+    }
+
+    alert.appendTo(popupContainer).fadeIn();
+  },
   setHash: (newHash: string) => {
     const currentUrl = getCurrentUrl().href;
     let newUrl = currentUrl.replace(/#.*/, '');
