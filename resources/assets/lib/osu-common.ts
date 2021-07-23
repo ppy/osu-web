@@ -83,6 +83,7 @@ const osuCommon = {
 
     return el.outerHTML;
   },
+  linkify: (text: string, newWindow = false) => text.replace(osuCommon.urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="blank"' : ''}>$2</a>`),
   parseJson<T = any>(id: string, remove = false) {
     const element = window.newBody?.querySelector(`#${id}`);
 
