@@ -89,6 +89,19 @@ const osuCommon = {
 
     history.replaceState(history.state, '', newUrl);
   },
+  storeJson: (id: string, object: Record<string, unknown>) => {
+    const json = JSON.stringify(object);
+    let element = document.getElementById(id) as (HTMLScriptElement | null);
+
+    if (element == null) {
+      element = document.createElement('script');
+      element.id = id;
+      element.type = 'application/json';
+      document.body.appendChild(element);
+    }
+
+    element.text = json;
+  },
   trans: (key: string, replacements = {}, locale?: string) => {
     if (osuCommon.transExists(key, locale)) {
       locale = fallbackLocale;
