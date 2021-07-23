@@ -255,6 +255,19 @@ const osuCommon = {
     return Lang.get(key, replacements, locale);
   },
 
+  transArray: (array: string[], key = 'common.array_and') => {
+    switch (array.length) {
+      case 0:
+        return '';
+      case 1:
+        return array[0];
+      case 2:
+        return array.join(osuCommon.trans(`${key}.two_words_connector`));
+      default:
+        return `${array.slice(0, -1).join(osuCommon.trans(`${key}.words_connector`))}${osu.trans(`${key}.last_word_connector`)}${array[array.length - 1]}`;
+    }
+  },
+
   transExists: (key: string, locale?: string) => {
     const translated = Lang.get(key, null, locale);
 
