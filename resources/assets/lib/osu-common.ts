@@ -34,6 +34,19 @@ const osuCommon = {
   currentUserIsFriendsWith: (userId: number) => find(currentUser.friends, { target_id: userId }),
   diffColour: (difficultyRating?: string | null) => ({ '--diff': `var(--diff-${difficultyRating ?? 'default'})` } as React.CSSProperties),
   emitAjaxError: (element = document.body) => (xhr: JQuery.jqXHR, status: string, error: string) => $(element).trigger('ajax:error', [xhr, status, error]),
+  // mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
+  focus: (el: HTMLElement) => {
+    el = $(el)[0]; // so we can handle both jquery'd and normal dom nodes
+
+    if (!osuCommon.isIos) {
+      return el.focus();
+    }
+
+    const prevSize = el.style.fontSize;
+    el.style.fontSize = '16px';
+    el.focus();
+    el.style.fontSize = prevSize;
+  },
   groupColour: (group?: GroupJson) => ({ '--group-colour': group?.colour ?? 'initial' } as React.CSSProperties),
   isClickable: (el: HTMLElement): boolean => {
     if (osuCommon.isInputElement(el) || ['A', 'BUTTON'].includes(el.tagName)) {
