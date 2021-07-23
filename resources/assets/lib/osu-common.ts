@@ -81,4 +81,36 @@ const osuCommon = {
     return osuCommon.present(translated) && translated !== key;
   },
   urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig,
+  xhrErrorMessage: (xhr: JQuery.jqXHR) => {
+    const validationMessage = xhr.responseJSON.validation_error;
+    let message: string;
+
+    if (validationMessage != null) {
+      let allErrors: string[] = [];
+
+      // FIXME: not sure about this conversion `for own` from coffeescript
+      for (const field in validationMessage) {
+        if (validationMessage.hasOwnProperty(field)) {
+          const errors = validationMessage[field];
+          allErrors = allErrors.concat(errors);
+        }
+      }
+
+      message = `${allErrors.join(', ')}.`;
+    }
+
+    message ??= xhr.responseJSON.error;
+    message ??= xhr.responseJSON.message;
+
+    if (message == null || message === '') {
+      const errorKey = `errors.codes.http-${xhr.status}`;
+      message = osuCommon.trans(errorKey);
+
+      if (message === errorKey) {
+        message = osuCommon.trans('errors.unknown');
+      }
+    }
+
+    return message;
+  },
 };
