@@ -23,7 +23,7 @@ declare const Turbolinks: import('turbolinks').default;
 
 // our helpers
 declare const tooltipDefault: TooltipDefault;
-declare const osu: OsuCommon;
+declare const osu: typeof import('osu-common').default;
 declare const currentUser: import('interfaces/current-user').default;
 
 // external (to typescript) classes
@@ -70,38 +70,6 @@ interface JQueryStatic {
 }
 
 type AjaxError = (xhr: JQuery.jqXHR) => void;
-
-interface OsuCommon {
-  ajaxError: AjaxError;
-  classWithModifiers: (baseName: string, modifiers?: string[]) => string;
-  diffColour: (difficultyRating?: string | null) => React.CSSProperties;
-  formatBytes: (bytes: number, decimals?: number) => string;
-  groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
-  isClickable: (el: HTMLElement) => boolean;
-  jsonClone: (obj: any) => any;
-  link: (url: string, text: string, options?: OsuLinkOptions) => string;
-  linkify: (text: string, newWindow?: boolean) => string;
-  navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
-  popup: (message: string, type: string) => void;
-  popupShowing: () => boolean;
-  presence: (str?: string | null) => string | null;
-  present: (str?: string | null) => boolean;
-  promisify: (xhr: JQuery.jqXHR) => Promise<any>;
-  reloadPage: () => void;
-  timeago: (time?: string) => string;
-  trans: (...args: any[]) => string;
-  transArray: (array: any[], key?: string) => string;
-  transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
-  transExists: (key: string, locale?: string) => boolean;
-  urlPresence: (url?: string | null) => string;
-  urlRegex: RegExp;
-  uuid: () => string;
-  xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
-  formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
-  formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
-  parseJson<T = any>(id: string, remove?: boolean): T;
-  updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
-}
 
 interface OsuLinkOptions {
   classNames?: string[];
