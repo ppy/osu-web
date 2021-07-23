@@ -303,6 +303,8 @@ const osuCommon = {
 
   urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig,
 
+  uuid: () => Turbolinks.uuid(), // no point rolling our own
+
   xhrErrorMessage: (xhr: JQuery.jqXHR) => {
     const validationMessage = xhr.responseJSON.validation_error;
     let message: string;
