@@ -268,6 +268,27 @@ const osuCommon = {
     }
   },
 
+  transChoice: (key: string, count: number, replacements: Record<string, unknown> = {}, locale?: string) => {
+    locale ??= currentLocale;
+    const isFallbackLocale = locale === fallbackLocale;
+
+    if (!isFallbackLocale && !osuCommon.transExists(key, locale)) {
+      return osu.transChoice(key, count, replacements, fallbackLocale);
+    }
+
+    replacements.count_delimited = osuCommon.formatNumber(count, null, null, locale);
+    const translated = Lang.choice(key, count, replacements, locale);
+
+    if (!isFallbackLocale && translated == null) {
+      // added by Lang.choice
+      delete replacements.count;
+
+      return osu.transChoice(key, count, replacements, fallbackLocale);
+    }
+
+    return translated;
+  },
+
   transExists: (key: string, locale?: string) => {
     const translated = Lang.get(key, null, locale);
 
