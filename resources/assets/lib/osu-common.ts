@@ -136,7 +136,7 @@ const osu = {
     return el.outerHTML;
   },
 
-  linkify: (text: string, newWindow = false) => text.replace(osu.urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="blank"' : ''}>$2</a>`),
+  linkify: (text: string, newWindow = false) => text.replace(osu.urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="_blank"' : ''}>$2</a>`),
 
   navigate: (url: string, keepScroll = false, action?: TurbolinksAction) => {
     action ??= { action: 'advance' };
