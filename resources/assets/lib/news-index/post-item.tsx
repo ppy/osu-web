@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import osu from 'osu-common';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
+import { classWithModifiers } from 'utils/css';
 
 export default function PostItem({ modifiers, post }: { modifiers?: string[]; post: PostJson }) {
   let cover;
@@ -23,7 +24,7 @@ export default function PostItem({ modifiers, post }: { modifiers?: string[]; po
 
   return (
     <a
-      className={osu.classWithModifiers('news-card', modifiers ?? ['index', 'hover'])}
+      className={classWithModifiers('news-card', modifiers ?? ['index', 'hover'])}
       href={route('news.show', { news: post.slug })}
     >
       <div className='news-card__cover-container'>

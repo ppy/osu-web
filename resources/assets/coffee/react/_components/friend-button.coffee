@@ -4,7 +4,9 @@
 import * as React from 'react'
 import { button, div, i, span } from 'react-dom-factories'
 import { Spinner } from 'spinner'
+import { classWithModifiers } from 'utils/css'
 import { nextVal } from 'utils/seq'
+
 el = React.createElement
 
 bn = 'user-action-button'
@@ -88,7 +90,7 @@ export class FriendButton extends React.PureComponent
 
         return null
 
-    blockClass = osu.classWithModifiers(bn, @props.modifiers)
+    blockClass = classWithModifiers(bn, @props.modifiers)
 
     isFriendLimit = (currentUser.friends?.length ? 0) >= currentUser.max_friends
     title = switch

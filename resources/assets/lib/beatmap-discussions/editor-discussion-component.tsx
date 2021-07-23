@@ -10,6 +10,7 @@ import * as React from 'react';
 import { Element as SlateElement, Path, Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
+import { classWithModifiers } from 'utils/css';
 import { DraftsContext } from './drafts-context';
 import EditorBeatmapSelector from './editor-beatmap-selector';
 import EditorIssueTypeSelector from './editor-issue-type-selector';
@@ -302,7 +303,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         suppressContentEditableWarning
         {...this.props.attributes}
       >
-        <div className={osu.classWithModifiers(this.bn, classMods)}>
+        <div className={classWithModifiers(this.bn, classMods)}>
           <div className={`${this.bn}__content`}>
             <div
               className={`${this.bn}__selectors`}

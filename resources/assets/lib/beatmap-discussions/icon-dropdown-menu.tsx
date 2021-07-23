@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import osu from 'osu-common';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import { SlateContext } from './slate-context';
 
 export interface MenuItem {
@@ -49,7 +50,7 @@ export default class IconDropdownMenu extends React.Component<Props> {
     return (
       <div
         ref={ref}
-        className={osu.classWithModifiers(bn, mods)} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+        className={classWithModifiers(bn, mods)} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
         contentEditable={false}
         onClick={toggle}
       >
@@ -71,11 +72,11 @@ export default class IconDropdownMenu extends React.Component<Props> {
     return (
       <button
         key={menuItem.id}
-        className={osu.classWithModifiers(baseClass, mods)}
+        className={classWithModifiers(baseClass, mods)}
         data-id={menuItem.id}
         onClick={this.select}
       >
-        <div className={osu.classWithModifiers(iconClass, ['icon-dropdown-menu'])}>
+        <div className={classWithModifiers(iconClass, ['icon-dropdown-menu'])}>
           {menuItem.icon}
         </div>
         <div className='simple-menu__label'>

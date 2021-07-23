@@ -7,6 +7,7 @@ import { find } from 'lodash';
 import { NotificationBanner } from 'notification-banner';
 import osu from 'osu-common';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   user: UserJson;
@@ -32,7 +33,7 @@ export default class UserProfileContainer extends React.PureComponent<Props, Sta
     return (
       <div className={cssClass}>
         {isBlocked && this.renderBanner()}
-        <div className={osu.classWithModifiers('osu-layout', modifiers)}>
+        <div className={classWithModifiers('osu-layout', modifiers)}>
           {this.props.children}
         </div>
       </div>

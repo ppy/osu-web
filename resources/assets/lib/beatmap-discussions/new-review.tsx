@@ -7,6 +7,7 @@ import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import UserJson from 'interfaces/user-json';
 import osu from 'osu-common';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import Editor from './editor';
 
 interface Props {

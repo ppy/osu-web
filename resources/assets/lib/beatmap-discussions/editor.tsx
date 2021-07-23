@@ -15,6 +15,7 @@ import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, with
 import { Spinner } from 'spinner';
 import { sortWithMode } from 'utils/beatmap-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
+import { classWithModifiers } from 'utils/css';
 import { DraftsContext } from './drafts-context';
 import EditorDiscussionComponent from './editor-discussion-component';
 import {
@@ -265,7 +266,7 @@ export default class Editor extends React.Component<Props, State> {
     this.updateDrafts();
 
     return (
-      <div className={osu.classWithModifiers(editorClass, modifiers)}>
+      <div className={classWithModifiers(editorClass, modifiers)}>
         <div className={`${editorClass}__content`}>
           <SlateContext.Provider value={this.slateEditor}>
             <Slate

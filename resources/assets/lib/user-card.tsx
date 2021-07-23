@@ -118,7 +118,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     this.url = this.isUserVisible ? route('users.show', { user: this.user.id }) : undefined;
 
     return (
-      <div className={osu.classWithModifiers('user-card', modifiers)}>
+      <div className={classWithModifiers('user-card', modifiers)}>
         {this.renderBackground()}
 
         <div className='user-card__card'>
@@ -166,7 +166,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     let background: React.ReactNode;
     let backgroundLink: React.ReactNode;
 
-    const overlayCssClass = osu.classWithModifiers(
+    const overlayCssClass = classWithModifiers(
       'user-card__background-overlay',
       this.isOnline ? ['online'] : [],
     );

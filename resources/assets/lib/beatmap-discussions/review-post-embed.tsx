@@ -4,6 +4,7 @@
 import { BeatmapIcon } from 'beatmap-icon';
 import osu from 'osu-common';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
 
@@ -22,7 +23,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
   if (!discussion) {
     // if a discussion has been deleted or is otherwise missing
     return (
-      <div className={osu.classWithModifiers(bn, ['deleted', 'lighter'])}>
+      <div className={classWithModifiers(bn, ['deleted', 'lighter'])}>
         <div className={`${bn}__missing`}>{osu.trans('beatmaps.discussions.review.embed.missing')}</div>
       </div>
     );
@@ -82,7 +83,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
   };
 
   return (
-    <div className={osu.classWithModifiers(bn, additionalClasses)}>
+    <div className={classWithModifiers(bn, additionalClasses)}>
       <div className={`${bn}__content`}>
         <div className={`${bn}__selectors`}>
           <div className='icon-dropdown-menu icon-dropdown-menu--disabled'>

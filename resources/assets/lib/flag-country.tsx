@@ -3,6 +3,7 @@
 
 import osu from 'osu-common';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   country?: Country;
@@ -25,7 +26,7 @@ export default function FlagCountry({ country, modifiers }: Props) {
 
   return (
     <div
-      className={osu.classWithModifiers('flag-country', modifiers)}
+      className={classWithModifiers('flag-country', modifiers)}
       style={{
         backgroundImage: `url('${flagUrl(country.code)}')`,
       }}

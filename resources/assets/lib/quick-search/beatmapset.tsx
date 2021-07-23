@@ -7,12 +7,13 @@ import { route } from 'laroute';
 import osu from 'osu-common';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
+import { classWithModifiers } from 'utils/css';
 
 export default function Beatmapset({ beatmapset, modifiers = [] }: { beatmapset: BeatmapsetJson; modifiers?: string[] }) {
   const url = route('beatmapsets.show', { beatmapset: beatmapset.id });
 
   return (
-    <a className={osu.classWithModifiers('beatmapset-search-card', modifiers)} href={url}>
+    <a className={classWithModifiers('beatmapset-search-card', modifiers)} href={url}>
       <div className='beatmapset-search-card__cover-container'>
         <Img2x className='beatmapset-search-card__cover' src={beatmapset.covers.list} />
       </div>

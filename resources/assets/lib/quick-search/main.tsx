@@ -7,6 +7,7 @@ import osu from 'osu-common';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { StringWithComponent } from 'string-with-component';
+import { classWithModifiers } from 'utils/css';
 import Beatmapset from './beatmapset';
 import User from './user';
 import { ResultMode, Section } from './worker';
@@ -35,7 +36,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   };
 
   render() {
-    let blockClass = osu.classWithModifiers('quick-search', this.props.modifiers);
+    let blockClass = classWithModifiers('quick-search', this.props.modifiers);
     blockClass += ' u-fancy-scrollbar';
 
     return (
@@ -241,7 +242,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <a
-        className={osu.classWithModifiers('search-result-more', active ? ['active'] : [])}
+        className={classWithModifiers('search-result-more', active ? ['active'] : [])}
         href={route('search', { mode, query: this.props.worker.query })}
       >
         <div className='search-result-more__content'>

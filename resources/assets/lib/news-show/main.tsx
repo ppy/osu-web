@@ -14,6 +14,7 @@ import NewsSidebar from 'news-sidebar/main';
 import osu from 'osu-common';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   container: HTMLElement;
@@ -28,7 +29,7 @@ function NavPost({ post, subtitle, modifiers }: { modifiers: string[]; post?: Ne
 
   return (
     <a
-      className={osu.classWithModifiers('page-nav-fancy', modifiers)}
+      className={classWithModifiers('page-nav-fancy', modifiers)}
       href={route('news.show', { news: post.slug })}
       style={{ backgroundImage: osu.urlPresence(post.first_image) }}
     >
