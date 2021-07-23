@@ -157,6 +157,7 @@ interface BeatmapsetDiscussionPostJson {
 interface LangClass {
   _getPluralForm: (count: number, locale: string) => number;
   _origGetPluralForm: (count: number, locale: string) => number;
+  get(key: string, replacements?: Record<string, unknown> | null, locale?: string): string;
   has(key: string): boolean;
 }
 
