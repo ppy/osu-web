@@ -33,6 +33,7 @@ const osuCommon = {
   },
   currentUserIsFriendsWith: (userId: number) => find(currentUser.friends, { target_id: userId }),
   diffColour: (difficultyRating?: string | null) => ({ '--diff': `var(--diff-${difficultyRating ?? 'default'})` } as React.CSSProperties),
+  emitAjaxError: (element = document.body) => (xhr: JQuery.jqXHR, status: string, error: string) => $(element).trigger('ajax:error', [xhr, status, error]),
   groupColour: (group?: GroupJson) => ({ '--group-colour': group?.colour ?? 'initial' } as React.CSSProperties),
   isIos: /iPad|iPhone|iPod/.test(navigator.platform),
   popup: (message: string, type = 'info') => {
