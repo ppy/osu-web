@@ -10,6 +10,7 @@ import Beatmapset from './beatmapset';
 import User from './user';
 import { ResultMode, Section } from './worker';
 import Worker from './worker';
+import osu from 'osu-common';
 
 interface Props {
   modifiers?: string[];
@@ -190,10 +191,12 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     if (this.count('forum_post') === 0 && this.count('wiki_page') === 0) {
       return (
         <span className='quick-search-items quick-search-items--empty'>
-          {osu.trans('quick_search.result.empty_for', { modes: osu.transArray([
-            osu.trans('quick_search.mode.forum_post'),
-            osu.trans('quick_search.mode.wiki_page'),
-          ]) })}
+          {osu.trans('quick_search.result.empty_for', {
+            modes: osu.transArray([
+              osu.trans('quick_search.mode.forum_post'),
+              osu.trans('quick_search.mode.wiki_page'),
+            ])
+          })}
         </span>
       );
     }

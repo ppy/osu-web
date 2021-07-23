@@ -4,6 +4,7 @@
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import GameMode from 'interfaces/game-mode';
 import { sumBy } from 'lodash';
+import osu from 'osu-common';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 

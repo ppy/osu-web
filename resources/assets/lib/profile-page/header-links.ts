@@ -4,6 +4,7 @@
 import HeaderLink from 'interfaces/header-link';
 import UserJsonExtended from 'interfaces/user-json-extended';
 import { route } from 'laroute';
+import osu from 'osu-common';
 
 type LinkMode = 'modding' | 'multiplayer' | 'show';
 

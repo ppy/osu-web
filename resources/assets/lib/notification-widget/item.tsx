@@ -6,6 +6,7 @@ import Notification from 'models/notification';
 import { NotificationContext } from 'notifications-context';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
+import osu from 'osu-common';
 import * as React from 'react';
 
 interface Props {

@@ -7,6 +7,7 @@ import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
+import osu from 'osu-common';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import UserAvatar from 'user-avatar';

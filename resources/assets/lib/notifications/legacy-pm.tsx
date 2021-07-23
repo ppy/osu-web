@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import { nameToIcons } from 'notification-maps/icons';
 import Item from 'notification-widget/item';
+import osu from 'osu-common';
 import * as React from 'react';
 
 @observer

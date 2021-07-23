@@ -4,6 +4,7 @@
 import HeaderV4 from 'header-v4';
 import NewsPostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
+import osu from 'osu-common';
 import * as React from 'react';
 
 interface Props {
@@ -25,7 +26,7 @@ export default function NewsHeader(props: Props) {
     links.push({
       active: true,
       title: props.post.title,
-      url: route('news.show', {news: props.post.slug}),
+      url: route('news.show', { news: props.post.slug }),
     });
   }
 

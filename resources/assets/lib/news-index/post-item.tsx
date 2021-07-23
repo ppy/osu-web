@@ -4,10 +4,11 @@
 import PostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
 import * as moment from 'moment';
+import osu from 'osu-common';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 
-export default function PostItem({modifiers, post}: {modifiers?: string[]; post: PostJson}) {
+export default function PostItem({ modifiers, post }: { modifiers?: string[]; post: PostJson }) {
   let cover;
 
   if (post.first_image != null) {

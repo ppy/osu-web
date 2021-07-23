@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as _ from 'lodash';
+import osu from 'osu-common';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { SlateContext } from './slate-context';

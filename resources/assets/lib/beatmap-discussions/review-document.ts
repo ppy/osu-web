@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import osu from 'osu-common';
 import * as markdown from 'remark-parse';
 import { Node as SlateNode } from 'slate';
 import * as unified from 'unified';
@@ -96,7 +97,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
 //   becomes:
 // paragraph -> text (with bold and italic properties set)
 //
-function squash(items: SlateNode[], currentMarks?: {bold: boolean; italic: boolean}) {
+function squash(items: SlateNode[], currentMarks?: { bold: boolean; italic: boolean }) {
   let flat: SlateNode[] = [];
   const marks = currentMarks ?? {
     bold: false,
@@ -104,7 +105,7 @@ function squash(items: SlateNode[], currentMarks?: {bold: boolean; italic: boole
   };
 
   if (!items) {
-    return [{text: ''}];
+    return [{ text: '' }];
   }
 
   items.forEach((item: SlateNode) => {

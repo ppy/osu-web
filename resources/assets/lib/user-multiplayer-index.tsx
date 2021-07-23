@@ -3,6 +3,7 @@
 
 import UserJsonExtended from 'interfaces/user-json-extended';
 import UserMultiplayerHistoryJson from 'interfaces/user-multiplayer-history-json';
+import osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import UserMultiplayerHistoryContext, { makeStore, updateStore } from 'user-multiplayer-history-context';

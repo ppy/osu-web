@@ -3,6 +3,7 @@
 
 import { route } from 'laroute';
 import { Dictionary } from 'lodash';
+import osu from 'osu-common';
 import * as React from 'react';
 import { ReportForm } from 'report-form';
 
@@ -80,7 +81,7 @@ export class ReportReportable extends React.PureComponent<Props, State> {
       this.setState({ completed: true });
     }).fail((xhr) => {
       osu.ajaxError(xhr);
-      this.setState({ disabled : false });
+      this.setState({ disabled: false });
     });
   };
 

@@ -4,6 +4,7 @@
 import HeaderV4 from 'header-v4';
 import Img2x from 'img2x';
 import { observer, Provider } from 'mobx-react';
+import osu from 'osu-common';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
 import ChatWorker from './chat-worker';
@@ -50,7 +51,7 @@ export default class MainView extends React.Component<Props> {
                 <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />
                 <div className='chat__title'>{osu.trans('chat.no-conversations.title')}</div>
                 <div className='chat__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
-                <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', {link: lazerLink})}} />
+                <div dangerouslySetInnerHTML={{ __html: osu.trans('chat.no-conversations.lazer', { link: lazerLink }) }} />
               </div>
             </div>
           )}

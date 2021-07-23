@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as clipboard from 'clipboard-polyfill';
+import osu from 'osu-common';
 import * as React from 'react';
 
 interface Props {
@@ -22,7 +23,7 @@ export default class ClickToCopy extends React.Component<Props> {
   // TODO: figure out if possible to use the qtip typescript types
   api: any;
   timer?: number;
-  title: string|null = null;
+  title: string | null = null;
 
   click = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -54,7 +55,7 @@ export default class ClickToCopy extends React.Component<Props> {
 
   render() {
     if (!this.props.value) {
-      return <span/>;
+      return <span />;
     }
 
     return (
@@ -68,7 +69,7 @@ export default class ClickToCopy extends React.Component<Props> {
         title={osu.trans('common.buttons.click_to_copy')}
       >
         {this.props.label || this.props.value}
-        {this.props.showIcon && <i className={`fas fa-paste ${bn}__icon`}/>}
+        {this.props.showIcon && <i className={`fas fa-paste ${bn}__icon`} />}
       </a>
     );
   }

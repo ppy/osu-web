@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
+import osu from 'osu-common';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 

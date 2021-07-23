@@ -5,6 +5,7 @@ import { BeatmapIcon } from 'beatmap-icon';
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import { route } from 'laroute';
+import osu from 'osu-common';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';

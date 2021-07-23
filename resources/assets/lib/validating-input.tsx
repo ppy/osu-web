@@ -3,6 +3,7 @@
 
 import { FormErrors } from 'form-errors';
 import { observer } from 'mobx-react';
+import osu from 'osu-common';
 import * as React from 'react';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {

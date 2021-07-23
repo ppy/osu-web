@@ -6,6 +6,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
 import GameMode from 'interfaces/game-mode';
 import * as _ from 'lodash';
+import osu from 'osu-common';
 import core from 'osu-core-singleton';
 
 export const modes: GameMode[] = ['osu', 'taiko', 'fruits', 'mania'];

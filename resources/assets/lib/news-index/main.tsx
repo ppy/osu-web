@@ -8,6 +8,7 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import NewsSidebar from 'news-sidebar/main';
+import osu from 'osu-common';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { nextVal } from 'utils/seq';
@@ -169,13 +170,13 @@ export default class Main extends React.Component<Props, State> {
       search.cursor.published_at = lastPost.published_at;
     }
 
-    this.setState({loading: true});
+    this.setState({ loading: true });
 
     $.get(route('news.index'), search)
       .done((data) => {
         this.setState(this.newStateFromData(data as PostsJson));
       }).always(() => {
-        this.setState({loading: false});
+        this.setState({ loading: false });
       });
   };
 }

@@ -6,6 +6,7 @@ import mapperGroup from 'beatmap-discussions/mapper-group';
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import UserJson from 'interfaces/user-json';
+import osu from 'osu-common';
 import { AnchorHTMLAttributes } from 'react';
 import { currentUrl } from 'utils/turbolinks';
 

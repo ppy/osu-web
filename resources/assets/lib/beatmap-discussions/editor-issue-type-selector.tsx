@@ -3,6 +3,7 @@
 
 import { BeatmapReviewDiscussionType } from 'interfaces/beatmap-discussion-review';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import osu from 'osu-common';
 import * as React from 'react';
 import { Element, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
@@ -48,6 +49,6 @@ export default class EditorIssueTypeSelector extends React.Component<Props> {
 
   select = (discussionType: string) => {
     const path = ReactEditor.findPath(this.context, this.props.element);
-    Transforms.setNodes(this.context, {discussionType}, {at: path});
+    Transforms.setNodes(this.context, { discussionType }, { at: path });
   };
 }

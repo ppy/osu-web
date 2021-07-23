@@ -17,6 +17,7 @@
  */
 
 import GroupJson from "interfaces/group-json";
+import osu from "osu-common";
 import * as React from "react";
 
 describe('osu_common', () => {

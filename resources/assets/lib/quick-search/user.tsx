@@ -5,6 +5,7 @@ import FlagCountry from 'flag-country';
 import { FriendButton } from 'friend-button';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
+import osu from 'osu-common';
 import * as React from 'react';
 import { SupporterIcon } from 'supporter-icon';
 import UserGroupBadges from 'user-group-badges';

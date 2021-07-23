@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapIcon } from 'beatmap-icon';
+import osu from 'osu-common';
 import * as React from 'react';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
@@ -12,7 +13,7 @@ interface Props {
   };
 }
 
-export const ReviewPostEmbed = ({data}: Props) => {
+export const ReviewPostEmbed = ({ data }: Props) => {
   const bn = 'beatmap-discussion-review-post-embed-preview';
   const discussions = React.useContext(DiscussionsContext);
   const beatmaps = React.useContext(BeatmapsContext);
@@ -71,10 +72,10 @@ export const ReviewPostEmbed = ({data}: Props) => {
       <div className={`${bn}__link`}>
         <a
           className={`${bn}__link-text js-beatmap-discussion--jump`}
-          href={BeatmapDiscussionHelper.url({discussion})}
+          href={BeatmapDiscussionHelper.url({ discussion })}
           title={osu.trans('beatmap_discussions.review.go_to_child')}
         >
-          <i className='fas fa-external-link-alt'/>
+          <i className='fas fa-external-link-alt' />
         </a>
       </div>
     );
@@ -101,7 +102,7 @@ export const ReviewPostEmbed = ({data}: Props) => {
         </div>
         <div className={`${bn}__stripe`} />
         <div className={`${bn}__message-container`}>
-          <div className={`${bn}__body`} dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format((discussion.starting_post || discussion.posts[0]).message)}} />
+          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: BeatmapDiscussionHelper.format((discussion.starting_post || discussion.posts[0]).message) }} />
         </div>
         {parentLink()}
       </div>

@@ -12,6 +12,7 @@ import { route } from 'laroute';
 import { sum, values } from 'lodash';
 import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import osu from 'osu-common';
 import core from 'osu-core-singleton';
 import OsuUrlHelper from 'osu-url-helper';
 import * as React from 'react';
@@ -150,7 +151,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
       url = OsuUrlHelper.beatmapsetDownloadDirect(this.props.beatmapset.id);
       titleVariant = 'direct';
     } else {
-      const params: Record<string, string|number> = {
+      const params: Record<string, string | number> = {
         beatmapset: this.props.beatmapset.id,
       };
 
@@ -227,7 +228,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
   @computed
   private get url() {
-    return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id});
+    return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id });
   }
 
   componentWillUnmount() {

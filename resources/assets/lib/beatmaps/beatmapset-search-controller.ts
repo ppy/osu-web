@@ -7,6 +7,7 @@ import { BeatmapsetSearchFilters, BeatmapsetSearchParams } from 'beatmapset-sear
 import { route } from 'laroute';
 import { debounce, intersection, map } from 'lodash';
 import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe, runInAction } from 'mobx';
+import osu from 'osu-common';
 import { currentUrl } from 'utils/turbolinks';
 
 export interface SearchStatus {
@@ -38,7 +39,7 @@ export class BeatmapsetSearchController {
   private filtersObserver!: Lambda;
   private initialErrorMessage?: string;
 
-  constructor(private beatmapsetSearch: BeatmapsetSearch) {}
+  constructor(private beatmapsetSearch: BeatmapsetSearch) { }
 
   @computed
   get currentBeatmapsetIds() {

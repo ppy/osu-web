@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import osu from 'osu-common';
 import * as React from 'react';
 import { nextVal } from 'utils/seq';
 
@@ -90,8 +91,8 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
   }
 
   private isDisabled = () => this.state.isLoading ||
-      this.state.button.votingOver ||
-      (!this.state.button.isSelected && !this.state.button.hasVote);
+    this.state.button.votingOver ||
+    (!this.state.button.isSelected && !this.state.button.hasVote);
 
   private loadingEnd = () => {
     this.setState({ isLoading: false });

@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from 'interfaces/beatmap-json';
+import osu from 'osu-common';
 
 function getInt(num: unknown) {
   let ret: number | undefined;

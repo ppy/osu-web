@@ -5,6 +5,7 @@ import { dispatch } from 'app-dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { Main } from 'notifications-index/main';
 import { NotificationEventMoreLoaded } from 'notifications/notification-events';
+import osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 

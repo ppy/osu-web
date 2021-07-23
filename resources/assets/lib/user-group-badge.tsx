@@ -3,6 +3,7 @@
 
 import UserGroupJson from 'interfaces/user-group-json';
 import { route } from 'laroute';
+import osu from 'osu-common';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
@@ -11,7 +12,7 @@ interface Props {
   modifiers?: Modifiers;
 }
 
-export default function UserGroupBadge({group, modifiers}: Props) {
+export default function UserGroupBadge({ group, modifiers }: Props) {
   if (group == null) {
     return null;
   }

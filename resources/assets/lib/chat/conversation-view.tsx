@@ -7,6 +7,7 @@ import { computed, observe } from 'mobx';
 import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
+import osu from 'osu-common';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { Spinner } from 'spinner';
@@ -230,12 +231,12 @@ export default class ConversationView extends React.Component<Props> {
         <div className='chat-conversation__chat-label'>
           {channel.pmTarget != null ? (
             <StringWithComponent
-              mappings={{':name': <a key='user' className='js-usercard' data-user-id={channel.pmTarget} href={route('users.show', {user: channel.pmTarget})}>{channel.name}</a>}}
+              mappings={{ ':name': <a key='user' className='js-usercard' data-user-id={channel.pmTarget} href={route('users.show', { user: channel.pmTarget })}>{channel.name}</a> }}
               // TODO: rework this once the user class situation is resolved
               pattern={osu.trans('chat.talking_with')}
             />
           ) : (
-            osu.trans('chat.talking_in', {channel: channel.name})
+            osu.trans('chat.talking_in', { channel: channel.name })
           )}
         </div>
         {channel.description &&

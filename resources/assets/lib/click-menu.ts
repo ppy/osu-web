@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Fade from 'fade';
+import osu from 'osu-common';
 
 export default class ClickMenu {
   private current: string | null | undefined = null;
@@ -120,7 +121,7 @@ export default class ClickMenu {
     let traverseId: string | null | undefined = this.current;
     const tree = [traverseId];
 
-    for (;;) {
+    for (; ;) {
       traverseId = this.closestMenuId(this.menuLink(traverseId));
 
       if (traverseId == null) {

@@ -4,6 +4,7 @@
 import { BigButton } from 'big-button';
 import { observer } from 'mobx-react';
 import { Client } from 'models/oauth/client';
+import osu from 'osu-common';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';

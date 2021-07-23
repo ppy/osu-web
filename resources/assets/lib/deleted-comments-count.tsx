@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Comment } from 'models/comment';
+import osu from 'osu-common';
 import * as React from 'react';
 
 interface Props {

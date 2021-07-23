@@ -5,6 +5,7 @@ import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
 import { route } from 'laroute';
+import osu from 'osu-common';
 import * as React from 'react';
 
 interface Props {
@@ -131,11 +132,13 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
     this.setState({ isBusy: true });
 
     $.ajax(route('beatmapsets.update', { beatmapset: this.props.beatmapset.id }), {
-      data: { beatmapset: {
-        genre_id: this.state.genreId,
-        language_id: this.state.languageId,
-        nsfw: this.state.nsfw,
-      } },
+      data: {
+        beatmapset: {
+          genre_id: this.state.genreId,
+          language_id: this.state.languageId,
+          nsfw: this.state.nsfw,
+        }
+      },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJson) => $.publish('beatmapset:set', { beatmapset }))
       .fail(osu.ajaxError)

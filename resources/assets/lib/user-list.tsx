@@ -5,6 +5,7 @@ import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Sort } from 'sort';
@@ -311,7 +312,7 @@ export class UserList extends React.PureComponent<Props> {
         {mode === 'all' ?
           <span>{osu.trans('beatmaps.mode.all')}</span>
           :
-          <span className={`fal fa-extra-mode-${mode}`}/>
+          <span className={`fal fa-extra-mode-${mode}`} />
         }
       </button>
     ));

@@ -10,6 +10,7 @@ import { urlGroup } from 'notification-maps/url';
 import { NotificationContext } from 'notifications-context';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
+import osu from 'osu-common';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import Item from './item';

@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
+import osu from 'osu-common';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { onErrorWithClick } from 'utils/ajax';
@@ -126,7 +127,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
       return;
     }
 
-    return(
+    return (
       <span className={`${bn}__counter`}>
         {osu.formatNumber(this.followers())}
       </span>
@@ -138,7 +139,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
       ? <Spinner />
       : <i className='fas fa-bell' />;
 
-    return(
+    return (
       <span className={`${bn}__icon-container`}>
         {icon}
       </span>

@@ -4,6 +4,7 @@
 import NewsPostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
 import * as moment from 'moment';
+import osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 

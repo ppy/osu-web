@@ -8,6 +8,7 @@ import homeLinks from 'home-links';
 import FollowCommentJson from 'interfaces/follow-comment-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
+import osu from 'osu-common';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';

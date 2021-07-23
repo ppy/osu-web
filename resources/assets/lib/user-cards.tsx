@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJson from 'interfaces/user-json';
+import osu from 'osu-common';
 import * as React from 'react';
 import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { UserCard, ViewMode } from 'user-card';

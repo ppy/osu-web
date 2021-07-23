@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import PostItem from 'news-index/post-item';
 import NewsSidebar from 'news-sidebar/main';
+import osu from 'osu-common';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 
@@ -114,7 +115,7 @@ export default class Main extends React.Component<Props> {
                 'data-method': 'put',
                 'data-reload-on-success': 1,
                 'data-remote': true,
-                'data-url': route('news.update', {news: this.props.post.id}),
+                'data-url': route('news.update', { news: this.props.post.id }),
                 type: 'button',
               },
               text: osu.trans('news.update.button'),

@@ -9,6 +9,7 @@ import homeLinks from 'home-links';
 import FollowMappingJson from 'interfaces/follow-mapping-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
+import osu from 'osu-common';
 import * as React from 'react';
 
 interface Props {

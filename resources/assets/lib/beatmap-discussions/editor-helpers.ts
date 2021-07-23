@@ -6,6 +6,7 @@ import {
   BeatmapReviewDiscussionType,
   DocumentIssueEmbed,
 } from 'interfaces/beatmap-discussion-review';
+import osu from 'osu-common';
 import { Editor, Element as SlateElement, Node as SlateNode, Range as SlateRange, Text, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
 
@@ -13,9 +14,9 @@ export const blockCount = (input: SlateElement[]) => input.length;
 
 export const slateDocumentIsEmpty = (doc: SlateElement[]): boolean => doc.length === 0 || (
   doc.length === 1 &&
-      doc[0].type === 'paragraph' &&
-      doc[0].children.length === 1 &&
-      doc[0].children[0].text === ''
+  doc[0].type === 'paragraph' &&
+  doc[0].children.length === 1 &&
+  doc[0].children[0].text === ''
 );
 
 export const insideEmbed = (editor: ReactEditor) => getCurrentNode(editor)?.type === 'embed';

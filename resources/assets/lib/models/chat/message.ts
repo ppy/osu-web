@@ -6,6 +6,7 @@ import { escape } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import User from 'models/user';
 import * as moment from 'moment';
+import osu from 'osu-common';
 import core from 'osu-core-singleton';
 
 export default class Message {

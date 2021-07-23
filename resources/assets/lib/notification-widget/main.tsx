@@ -9,6 +9,7 @@ import { NotificationContext } from 'notifications-context';
 import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
 import NotificationReadButton from 'notifications/notification-read-button';
+import osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';

@@ -3,6 +3,7 @@
 
 import { BeatmapIcon } from 'beatmap-icon';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import osu from 'osu-common';
 import * as React from 'react';
 import { Node, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
@@ -53,6 +54,6 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
     const beatmapId = id !== 'all' ? parseInt(id, 10) : undefined;
 
     const path = ReactEditor.findPath(this.context, this.props.element);
-    Transforms.setNodes(this.context, {beatmapId}, {at: path});
+    Transforms.setNodes(this.context, { beatmapId }, { at: path });
   };
 }

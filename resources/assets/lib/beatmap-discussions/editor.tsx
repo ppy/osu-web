@@ -7,6 +7,7 @@ import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import osu from 'osu-common';
 import * as React from 'react';
 import { createEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
@@ -69,7 +70,7 @@ export default class Editor extends React.Component<Props, State> {
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
   declare context: React.ContextType<typeof ReviewEditorConfigContext>;
-  emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
+  emptyDocTemplate = [{ children: [{ text: '' }], type: 'paragraph' }];
   insertMenuRef: React.RefObject<EditorInsertionMenu>;
   localStorageKey: string;
   scrollContainerRef: React.RefObject<HTMLDivElement>;
@@ -239,17 +240,17 @@ export default class Editor extends React.Component<Props, State> {
 
   post = () => {
     if (this.showConfirmationIfRequired()) {
-      this.setState({posting: true}, () => {
-        this.xhr = $.ajax(route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
-          data: {document: this.serialize()},
+      this.setState({ posting: true }, () => {
+        this.xhr = $.ajax(route('beatmapsets.discussion.review', { beatmapset: this.props.beatmapset.id }), {
+          data: { document: this.serialize() },
           method: 'POST',
         })
           .done((data) => {
-            $.publish('beatmapsetDiscussions:update', {beatmapset: data});
+            $.publish('beatmapsetDiscussions:update', { beatmapset: data });
             this.resetInput();
           })
           .fail(osu.ajaxError)
-          .always(() => this.setState({posting: false}));
+          .always(() => this.setState({ posting: false }));
       });
     }
   };
@@ -291,7 +292,7 @@ export default class Editor extends React.Component<Props, State> {
                   {this.renderBlockCount('lighter')}
                 </div>
               }
-              { !this.props.editMode &&
+              {!this.props.editMode &&
                 <div className={`${editorClass}__button-bar`}>
                   <button
                     className='btn-osu-big btn-osu-big--forum-secondary'
@@ -467,7 +468,7 @@ export default class Editor extends React.Component<Props, State> {
           if (node.beatmapId != null) {
             const beatmap = typeof node.beatmapId === 'number' ? this.props.beatmaps[node.beatmapId] : undefined;
             if (beatmap == null || beatmap.deleted_at != null) {
-              Transforms.setNodes(editor, {beatmapId: undefined}, {at: path});
+              Transforms.setNodes(editor, { beatmapId: undefined }, { at: path });
             }
           }
         }

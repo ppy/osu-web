@@ -3,6 +3,7 @@
 
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import { Cancelable, throttle } from 'lodash';
+import osu from 'osu-common';
 import { Portal } from 'portal';
 import * as React from 'react';
 import { Editor as SlateEditor, Element as SlateElement, Node as SlateNode, Point, Text as SlateText, Transforms } from 'slate';
@@ -165,14 +166,14 @@ export class EditorInsertionMenu extends React.Component<Props> {
       case 'praise':
         insertNode = {
           beatmapId,
-          children: [{text: ''}],
+          children: [{ text: '' }],
           discussionType: type,
           type: 'embed',
         };
         break;
       case 'paragraph':
         insertNode = {
-          children: [{text: ''}],
+          children: [{ text: '' }],
           type: 'paragraph',
         };
         break;
@@ -241,7 +242,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
         title={osu.trans(`beatmaps.discussions.review.insert-block.${type}`)}
         type='button'
       >
-        <i className={icon}/>
+        <i className={icon} />
       </button>
     );
   };

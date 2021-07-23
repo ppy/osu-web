@@ -7,6 +7,7 @@ import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { escape, kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
+import osu from 'osu-common';
 import * as React from 'react';
 import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers } from 'utils/css';
