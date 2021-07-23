@@ -3,6 +3,7 @@
 
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
+import osu from 'osu-common';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { StringWithComponent } from 'string-with-component';
@@ -10,7 +11,6 @@ import Beatmapset from './beatmapset';
 import User from './user';
 import { ResultMode, Section } from './worker';
 import Worker from './worker';
-import osu from 'osu-common';
 
 interface Props {
   modifiers?: string[];
@@ -195,7 +195,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
             modes: osu.transArray([
               osu.trans('quick_search.mode.forum_post'),
               osu.trans('quick_search.mode.wiki_page'),
-            ])
+            ]),
           })}
         </span>
       );

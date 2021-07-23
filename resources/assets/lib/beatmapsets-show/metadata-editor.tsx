@@ -137,7 +137,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
           genre_id: this.state.genreId,
           language_id: this.state.languageId,
           nsfw: this.state.nsfw,
-        }
+        },
       },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJson) => $.publish('beatmapset:set', { beatmapset }))
