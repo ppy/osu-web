@@ -9,6 +9,7 @@ import Gallery from 'gallery'
 import * as laroute from 'laroute'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
+import OsuCommon from 'osu-common'
 import OsuUrlHelper from 'osu-url-helper'
 import Timeout from 'timeout'
 import { fileuploadFailCallback } from 'utils/ajax'
@@ -38,6 +39,8 @@ window._exported = {
 
 # FIXME: remove once everything imports instead of using global
 window.laroute ?= laroute
+
+window.osu = OsuCommon
 
 # refer to variables.less
 window._styles =
