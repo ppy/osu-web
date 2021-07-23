@@ -6,6 +6,7 @@ import { each, find, unescape } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import Timeout from 'timeout';
+import { TurbolinksAction } from 'turbolinks';
 import { currentUrl as getCurrentUrl } from 'utils/turbolinks';
 
 const osuCommon = {
@@ -119,6 +120,15 @@ const osuCommon = {
     return el.outerHTML;
   },
   linkify: (text: string, newWindow = false) => text.replace(osuCommon.urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="blank"' : ''}>$2</a>`),
+  navigate: (url: string, keepScroll = false, action?: TurbolinksAction) => {
+    action ??= { action: 'advance' };
+
+    if (keepScroll) {
+      osuCommon.keepScrollOnLoad();
+    }
+
+    Turbolinks.visit(url, action);
+  },
   parseJson<T = any>(id: string, remove = false) {
     const element = window.newBody?.querySelector(`#${id}`);
 
