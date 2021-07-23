@@ -150,6 +150,15 @@ const osuCommon = {
 
     element.text = json;
   },
+  timeago: (time = '') => {
+    const el = document.createElement('time');
+
+    el.classList.add('js-timeago');
+    el.setAttribute('datetime', time);
+    el.textContent = time;
+
+    return el.outerHTML;
+  },
   trans: (key: string, replacements = {}, locale?: string) => {
     if (osuCommon.transExists(key, locale)) {
       locale = fallbackLocale;
