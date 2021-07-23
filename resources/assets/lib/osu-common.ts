@@ -36,6 +36,19 @@ const osuCommon = {
   emitAjaxError: (element = document.body) => (xhr: JQuery.jqXHR, status: string, error: string) => $(element).trigger('ajax:error', [xhr, status, error]),
   groupColour: (group?: GroupJson) => ({ '--group-colour': group?.colour ?? 'initial' } as React.CSSProperties),
   isIos: /iPad|iPhone|iPod/.test(navigator.platform),
+  parseJson<T = any>(id: string, remove = false) {
+    const element = window.newBody?.querySelector(`#${id}`);
+
+    if (element instanceof HTMLScriptElement) {
+      const json: T = JSON.parse(element.text);
+
+      if (remove) {
+        element.remove();
+      }
+
+      return json;
+    }
+  },
   popup: (message: string, type = 'info') => {
     const popupContainer = $('#popup-container');
     const alert = $('.popup-clone').clone();
