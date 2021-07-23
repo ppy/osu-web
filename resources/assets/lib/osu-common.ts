@@ -190,6 +190,8 @@ const osuCommon = {
     alert.appendTo(popupContainer).fadeIn();
   },
 
+  popupShowing: () => $('#overlay').is(':visible'),
+
   presence: (str?: string | null) => osuCommon.present(str) ? str : null,
 
   present: (str?: string | null) => str != null && str !== '',
