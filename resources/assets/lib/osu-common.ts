@@ -47,6 +47,20 @@ const osuCommon = {
     el.focus();
     el.style.fontSize = prevSize;
   },
+  formatNumber: (num: number | null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) => {
+    if (num == null) {
+      return null;
+    }
+
+    options ??= {};
+
+    if (precision != null) {
+      options.minimumFractionDigits = precision;
+      options.maximumFractionDigits = precision;
+    }
+
+    return num.toLocaleString(locale ?? currentLocale, options);
+  },
   groupColour: (group?: GroupJson) => ({ '--group-colour': group?.colour ?? 'initial' } as React.CSSProperties),
   isClickable: (el: HTMLElement): boolean => {
     if (osuCommon.isInputElement(el) || ['A', 'BUTTON'].includes(el.tagName)) {
