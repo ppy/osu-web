@@ -3,11 +3,18 @@
 
 import GroupJson from 'interfaces/group-json';
 import { find } from 'lodash';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import Timeout from 'timeout';
 import { currentUrl as getCurrentUrl } from 'utils/turbolinks';
 
 const osuCommon = {
+  ajaxError: (xhr: JQuery.jqXHR) => {
+    if (core.userLogin.showOnError(xhr)) return;
+    if (core.userVerification.showOnError(xhr)) return;
+
+    osuCommon.popup(osuCommon.xhrErrorMessage(xhr), 'danger');
+  },
   bottomPage: () => osuCommon.bottomPageDistance() === 0,
   bottomPageDistance: () => {
     const body = document.documentElement ?? document.body.parentElement ?? document.body;
