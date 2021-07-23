@@ -4,6 +4,7 @@
 interface Window {
   newBody?: HTMLElement;
   newUrl?: URL | Location | null;
+  reloadUrl?: string | null;
 }
 
 // interfaces for using process.env

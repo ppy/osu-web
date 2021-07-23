@@ -171,6 +171,16 @@ const osuCommon = {
   },
   presence: (str?: string | null) => osuCommon.present(str) ? str : null,
   present: (str?: string | null) => str != null && str !== '',
+  reloadPage: (keepScroll = true) => {
+    $(document).off('.ujsHideLoadingOverlay');
+    Turbolinks.clearCache();
+
+    const url = window.reloadUrl != null ? window.reloadUrl : getCurrentUrl().href;
+
+    window.reloadUrl = null;
+
+    osuCommon.navigate(url, keepScroll, { action: 'replace' });
+  },
   setHash: (newHash: string) => {
     const currentUrl = getCurrentUrl().href;
     let newUrl = currentUrl.replace(/#.*/, '');
