@@ -10,7 +10,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
 use App\Traits\MacroableModel;
-use Illuminate\Database\Eloquent\Builder;
+use Exception;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
@@ -33,11 +33,13 @@ abstract class Model extends BaseModel
 
     public function getMacros()
     {
-        $macros = $this->macros ?? [];
-        $macros[] = 'realCount';
-        $macros[] = 'last';
+        static $baseMacros = [
+            'getWithHasMore',
+            'last',
+            'realCount',
+        ];
 
-        return $macros;
+        return array_merge($this->macros ?? [], $baseMacros);
     }
 
     /**
@@ -48,6 +50,26 @@ abstract class Model extends BaseModel
     public function lockSelf()
     {
         return $this->lockForUpdate()->find($this->getKey());
+    }
+
+    public function macroGetWithHasMore()
+    {
+        return function ($query) {
+            $limit = $query->getQuery()->limit;
+            if ($limit === null) {
+                throw new Exception('"getWithHasMore" was called on query without "limit" specified');
+            }
+            $moreLimit = $limit + 1;
+            $result = $query->limit($moreLimit)->get();
+
+            $hasMore = $result->count() === $moreLimit;
+
+            if ($hasMore) {
+                $result->pop();
+            }
+
+            return [$result, $hasMore];
+        };
     }
 
     public function macroLast()
@@ -158,7 +180,7 @@ abstract class Model extends BaseModel
     // Allows save/update/delete to work with composite primary keys.
     // Note this doesn't fix 'find' method and a bunch of other laravel things
     // which rely on getKeyName and getKey (and they themselves are broken as well).
-    protected function setKeysForSaveQuery(Builder $query)
+    protected function setKeysForSaveQuery($query)
     {
         if (isset($this->primaryKeys)) {
             foreach ($this->primaryKeys as $key) {

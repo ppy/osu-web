@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => '不正行為/チート',
+            'multiple_accounts' => '',
             'insults' => 'あなた/他の人への侮辱',
             'spam' => 'スパム',
             'unwanted_content' => '不適切なコンテンツへのリンク',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Lovedされたビートマップ',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approvedのビートマップ',
+                'pending' => [
+                    'title' => 'Pendingビートマップ',
                 ],
-                'unranked' => [
-                    'title' => '保留中のビートマップ',
+                'ranked' => [
+                    'title' => 'Ranked & Approvedのビートマップ',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "このユーザーはまだメダルを取得していません。",
                 'recent' => '最新',
                 'title' => 'メダル',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => '投稿',
@@ -402,10 +406,10 @@ return [
             'total_hits' => '合計ヒット数',
             'total_score' => '合計スコア',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approvedのビートマップ',
-            'loved_beatmapset_count' => 'Lovedされたビートマップ',
-            'unranked_beatmapset_count' => '保留中のビートマップ',
             'graveyard_beatmapset_count' => 'Graveyardのビートマップ',
+            'loved_beatmapset_count' => 'Lovedされたビートマップ',
+            'pending_beatmapset_count' => 'Pendingビートマップ',
+            'ranked_beatmapset_count' => 'Ranked & Approvedのビートマップ',
         ],
     ],
 

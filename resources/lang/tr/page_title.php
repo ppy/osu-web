@@ -61,7 +61,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap tartışma',
-            'index' => 'beatmap listesi',
+            'index' => 'beatmap kataloğu',
             'show' => 'beatmap bilgisi',
         ],
         'changelog_controller' => [
@@ -141,6 +141,9 @@ return [
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder bilgisi',
+        ],
+        'multiplayer_controller' => [
+            '_' => '',
         ],
     ],
 ];

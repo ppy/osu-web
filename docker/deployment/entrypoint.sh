@@ -79,7 +79,7 @@ _config_reloader() {
 _php() {
     /app/artisan config:cache
     /app/artisan route:cache
-    exec php-fpm7.4 -y /app/docker/deployment/php-fpm.conf
+    exec php-fpm8.0 -y /app/docker/deployment/php-fpm.conf
 }
 
 _schedule() {

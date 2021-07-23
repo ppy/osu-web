@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => '搜索',
             'deleted' => '包含已经删除的讨论',
-            'mode' => '',
+            'mode' => '谱面模式',
             'only_unresolved' => '只显示未解决的讨论',
             'types' => '评论类型',
             'username' => '用户名',
@@ -56,6 +56,13 @@ return [
         'confirm' => '在这个时间点上没有相关的讨论记录。',
         'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，发表前请检查。',
         'unsaved' => '此审阅中有 :count',
+    ],
+
+    'owner_editor' => [
+        'button' => '难度作者',
+        'reset_confirm' => '重置此难度的作者？',
+        'user' => '作者/拥有者',
+        'version' => '难度',
     ],
 
     'reply' => [

@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { forEach } from 'lodash';
+import { currentUrl } from 'utils/turbolinks';
 import { Ziggy } from 'ziggy';
 import ziggyRoute from 'ziggy-route';
 
@@ -10,10 +11,9 @@ interface Attributes {
 }
 
 // ensure correct url
-Ziggy.baseUrl = `${document.location.origin}/`;
-Ziggy.baseProtocol = document.location.protocol.slice(0, -1);
-Ziggy.baseDomain = document.location.hostname;
-Ziggy.basePort = +document.location.port || false; // either port number of false if empty (converted to 0)
+const siteUrl = currentUrl();
+Ziggy.port = +siteUrl.port || null; // either port number or null if empty (converted to 0)
+Ziggy.url = siteUrl.origin;
 
 export function route(name: string, params?: Attributes | null, absolute?: boolean) {
   if (params == null) {

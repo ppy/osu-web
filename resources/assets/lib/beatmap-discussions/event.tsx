@@ -9,20 +9,44 @@ import { escape, kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
 import TimeWithTooltip from 'time-with-tooltip';
+import { classWithModifiers } from 'utils/css';
+
+const isBeatmapOwnerChangeEventJson = (event: BeatmapsetEventJson): event is BeatmapOwnerChangeEventJson =>
+  event.type === 'beatmap_owner_change';
+
+const isNominationResetReceivedEventJson = (event: BeatmapsetEventJson): event is NominationResetReceivedEventJson =>
+  event.type === 'nomination_reset_received';
+
+export type EventViewMode = 'discussions' | 'profile' | 'list';
+
+interface BeatmapOwnerChangeEventJson extends BeatmapsetEventJson {
+  comment: {
+    beatmap_id: number;
+    beatmap_version: string;
+    new_user_id: number;
+    new_user_username: string;
+  };
+  type: 'beatmap_owner_change';
+}
+
+interface NominationResetReceivedEventJson extends BeatmapsetEventJson {
+  comment: {
+    beatmap_discussion_id: number;
+    source_user_id: number;
+    source_user_username: string;
+  };
+  type: 'nomination_reset_received';
+}
 
 interface Props {
   discussions?: Partial<Record<string, BeatmapsetDiscussionJson>>;
   event: BeatmapsetEventJson;
-  mode: 'discussions' | 'profile';
+  mode: EventViewMode;
   time?: string;
   users: Partial<Record<string, UserJson>>;
 }
 
 export default class Event extends React.PureComponent<Props> {
-  static readonly defaultProps = {
-    mode: 'discussions',
-  };
-
   private get beatmapsetId(): number | undefined {
     return this.props.event.beatmapset?.id;
   }
@@ -51,7 +75,7 @@ export default class Event extends React.PureComponent<Props> {
 
     return (
       <div className='beatmapset-event'>
-        <div className={osu.classWithModifiers('beatmapset-event__icon', [kebabCase(this.props.event.type)])} />
+        <div className='beatmapset-event__icon' style={this.iconStyle()} />
         <div className='beatmapset-event__time'>
           <TimeWithTooltip dateTime={eventTime} format='LT' />
         </div>
@@ -87,7 +111,10 @@ export default class Event extends React.PureComponent<Props> {
           // instead of a translation that overflows.
           <span className='beatmapset-cover'>beatmap deleted</span>
         )}
-        <div className={osu.classWithModifiers('beatmapset-event__icon', [kebabCase(this.props.event.type), 'beatmapset-activities'])} />
+        <div
+          className={classWithModifiers('beatmapset-event__icon', ['beatmapset-activities'])}
+          style={this.iconStyle()}
+        />
 
         <div>
           <div
@@ -167,6 +194,22 @@ export default class Event extends React.PureComponent<Props> {
       eventType += `.${newState}`;
     }
 
+    if (isBeatmapOwnerChangeEventJson(this.props.event)) {
+      const data = this.props.event.comment;
+      params.new_user = osu.link(route('users.show', { user: data.new_user_id }), data.new_user_username);
+      params.beatmap = osu.link(route('beatmaps.show', { beatmap: data.beatmap_id }), data.beatmap_version);
+    }
+
+    if (isNominationResetReceivedEventJson(this.props.event)) {
+      const data = this.props.event.comment;
+      if (this.props.mode === 'profile') {
+        eventType += '_profile';
+        params.user = osu.link(route('users.show', { user: data.source_user_id }), data.source_user_username);
+      } else {
+        params.source_user = osu.link(route('users.show', { user: data.source_user_id }), data.source_user_username);
+      }
+    }
+
     const key = `beatmapset_events.event.${eventType}`;
     let message = osu.trans(key, params);
 
@@ -177,5 +220,11 @@ export default class Event extends React.PureComponent<Props> {
     }
 
     return message;
+  }
+
+  private iconStyle() {
+    return {
+      '--bg': `var(--bg-${kebabCase(this.props.event.type)})`,
+    } as React.CSSProperties;
   }
 }

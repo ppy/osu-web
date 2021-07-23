@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Szukaj',
             'deleted' => 'Uwzględnij usunięte dyskusje',
-            'mode' => '',
+            'mode' => 'Tryb beatmapy',
             'only_unresolved' => 'Pokaż tylko nierozwiązane dyskusje',
             'types' => 'Rodzaj wiadomości',
             'username' => 'Nazwa użytkownika',
@@ -55,7 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'Żaden z tych postów nie jest istotny',
         'notice' => 'Istnieją posty dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem posta.',
-        'unsaved' => '',
+        'unsaved' => ':count w tej recenzji',
+    ],
+
+    'owner_editor' => [
+        'button' => 'Twórca poziomu trudności',
+        'reset_confirm' => 'Zresetować twórcę dla tego poziomu trudności?',
+        'user' => 'Twórca',
+        'version' => 'Poziom trudności',
     ],
 
     'reply' => [

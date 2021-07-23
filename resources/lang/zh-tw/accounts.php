@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => '傳送選項',
+            'beatmap_owner_change' => '客串難度',
             'beatmapset:modding' => '圖譜製作',
             'channel_message' => '私人訊息',
             'comment_new' => '新評論',

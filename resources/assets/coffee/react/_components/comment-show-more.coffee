@@ -4,7 +4,7 @@
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, span } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 import { Spinner } from 'spinner'
 
 

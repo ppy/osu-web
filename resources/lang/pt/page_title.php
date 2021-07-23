@@ -96,7 +96,7 @@ return [
             '_' => 'informação',
         ],
         'livestreams_controller' => [
-            '_' => 'transmissões ao vivo',
+            '_' => 'transmissões em direto',
         ],
         'matches_controller' => [
             '_' => 'partidas',
@@ -141,6 +141,9 @@ return [
     'users' => [
         'modding_history_controller' => [
             '_' => 'informação do modder',
+        ],
+        'multiplayer_controller' => [
+            '_' => '',
         ],
     ],
 ];

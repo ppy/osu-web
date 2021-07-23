@@ -115,7 +115,7 @@ export default class Main extends React.Component<Props> {
                 'data-reload-on-success': 1,
                 'data-remote': true,
                 'data-url': route('news.update', {news: this.props.post.id}),
-                'type': 'button',
+                type: 'button',
               },
               text: osu.trans('news.update.button'),
             },
@@ -135,9 +135,20 @@ export default class Main extends React.Component<Props> {
     const contentHTML = document.createElement('div');
     contentHTML.innerHTML = content;
 
-    const firstImage = contentHTML.querySelector('img');
-    if (firstImage != null && firstImage.parentElement != null) {
-      firstImage.parentElement.remove();
+    const firstImageUrl = this.props.post.first_image;
+
+    if (firstImageUrl != null) {
+      const firstImage = contentHTML.querySelector(`img[src="${CSS.escape(firstImageUrl)}"]`);
+
+      if (firstImage != null) {
+        const firstImageParent = firstImage.parentElement;
+
+        if (firstImageParent?.children.length === 1) {
+          firstImageParent.remove();
+        } else {
+          firstImage.remove();
+        }
+      }
     }
 
     content = contentHTML.innerHTML;

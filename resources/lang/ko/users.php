@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => '부정 행위 / 치트 사용',
+            'multiple_accounts' => '',
             'insults' => '자신 / 다른 사람을 모욕 함',
             'spam' => '도배',
             'unwanted_content' => '부적절한 콘텐츠에 링크 걸기',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Loved 비트맵',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked 및 Approved 상태의 비트맵',
+                'pending' => [
+                    'title' => '대기 중인 비트맵',
                 ],
-                'unranked' => [
-                    'title' => 'Pending 비트맵',
+                'ranked' => [
+                    'title' => '새로 랭크된 비트맵',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "아직 아무런 메달도 받지 못했네요. ;_;",
                 'recent' => '최근 획득',
                 'title' => '메달',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => '게시글',
@@ -402,10 +406,10 @@ return [
             'total_hits' => '총 타격 횟수',
             'total_score' => '총 점수',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked 및 Approved 상태의 비트맵',
-            'loved_beatmapset_count' => 'Loved 비트맵',
-            'unranked_beatmapset_count' => '대기 중인 비트맵',
             'graveyard_beatmapset_count' => '묻힌 비트맵',
+            'loved_beatmapset_count' => 'Loved 비트맵',
+            'pending_beatmapset_count' => '대기 중인 비트맵',
+            'ranked_beatmapset_count' => '랭크된 비트맵',
         ],
     ],
 

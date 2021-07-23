@@ -22,7 +22,7 @@ return [
             '401-verification' => 'пацверджанне ўліковага запісу',
             '405' => 'не знойдзена',
             '422' => 'недапушчальны запыт',
-            '429' => '',
+            '429' => 'занадта шмат запытаў',
             '500' => 'нешта зламалася',
             '503' => 'тэхнічныя працы',
         ],
@@ -39,7 +39,7 @@ return [
             'verify_link' => 'пацверджанне ўліковага запісу',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'ліцэнзаваныя мастакі',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'допісы ў абмеркаваннях бітмап',
@@ -77,7 +77,7 @@ return [
             '_' => 'конкурсы',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => 'табліца',
         ],
         'friends_controller' => [
             'index' => 'панэль кіравання',
@@ -132,7 +132,8 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => '',
+            '_' => 'рэйтынг
+',
         ],
     ],
     'store' => [
@@ -141,6 +142,9 @@ return [
     'users' => [
         'modding_history_controller' => [
             '_' => 'інфармацыя пра модэра',
+        ],
+        'multiplayer_controller' => [
+            '_' => '',
         ],
     ],
 ];

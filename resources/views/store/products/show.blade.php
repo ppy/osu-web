@@ -123,13 +123,13 @@
                     @elseif($product->inStock(1, true))
                     <div class="grid">
                         <div class="grid-cell grid-cell--fill">
-                            {{ trans('store.product.stock.out_with_alternative') }}
+                            {{ osu_trans('store.product.stock.out_with_alternative') }}
                         </div>
                     </div>
                     @else
                     <div class="grid">
                         <div class="grid-cell grid-cell--fill">
-                            {{ trans('store.product.stock.out') }}
+                            {{ osu_trans('store.product.stock.out') }}
                         </div>
                     </div>
                     @endif
@@ -141,7 +141,7 @@
         <div class="store-page store-page--footer" id="add-to-cart">
             @if($product->inStock())
                 <button type="submit" class="btn-osu-big btn-osu-big--store-action js-store-add-to-cart js-login-required--click">
-                    {{ trans('store.product.add_to_cart') }}
+                    {{ osu_trans('store.product.add_to_cart') }}
                 </button>
 
             @elseif(!$requestedNotification)
@@ -151,7 +151,7 @@
                     data-remote="true"
                     data-method="POST"
                 >
-                    {{ trans('store.product.notify') }}
+                    {{ osu_trans('store.product.notify') }}
                 </a>
             @endif
 
@@ -159,10 +159,10 @@
                 <div class="store-notification-requested-alert">
                     <span class="far fa-check-circle store-notification-requested-alert__icon"></span>
                     <p class="store-notification-requested-alert__text">
-                        {!! trans('store.product.notification_success', [
+                        {!! osu_trans('store.product.notification_success', [
                             'link' => link_to_route(
                                 'store.notification-request',
-                                trans('store.product.notification_remove_text'),
+                                osu_trans('store.product.notification_remove_text'),
                                 ['product' => $product->product_id],
                                 ['data-remote' => 'true', 'data-method' => 'DELETE']
                             )

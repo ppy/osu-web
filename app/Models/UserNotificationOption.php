@@ -13,6 +13,7 @@ use App\Traits\Validatable;
  * @property string $name
  * @property int $id
  * @property \Carbon\Carbon $updated_at
+ * @property User $user
  * @property int $user_id
  */
 class UserNotificationOption extends Model
@@ -26,11 +27,13 @@ class UserNotificationOption extends Model
 
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
     const COMMENT_REPLY = 'comment_reply';
+    const DELIVERY_MODE_DEFAULTS = ['mail' => false, 'push' => true];
     const DELIVERY_MODES = ['mail', 'push'];
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
     const MAPPING = 'mapping';
 
     const HAS_DELIVERY_MODES = [
+        Notification::BEATMAP_OWNER_CHANGE,
         self::MAPPING,
         self::BEATMAPSET_MODDING,
         Notification::CHANNEL_MESSAGE,
@@ -51,7 +54,7 @@ class UserNotificationOption extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function setDetailsAttribute($value)

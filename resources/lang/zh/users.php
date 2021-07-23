@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => '违规 / 作弊',
+            'multiple_accounts' => '',
             'insults' => '侮辱 我/其他人',
             'spam' => '刷屏/垃圾广告',
             'unwanted_content' => '发布包含不当内容的链接',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Loved 的谱面',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved 的谱面',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Pending 的谱面',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Approved 的谱面',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "该用户还没有获得成就。;_;",
                 'recent' => '最近取得',
                 'title' => '成就',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => '回复',
@@ -402,10 +406,10 @@ return [
             'total_hits' => '总命中次数',
             'total_score' => '总分',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved 的谱面',
-            'loved_beatmapset_count' => 'Loved 的谱面',
-            'unranked_beatmapset_count' => 'Pending 的谱面',
             'graveyard_beatmapset_count' => '坟场里的谱面',
+            'loved_beatmapset_count' => 'Loved 的谱面',
+            'pending_beatmapset_count' => 'Pending 的谱面',
+            'ranked_beatmapset_count' => 'Ranked & Approved 的谱面',
         ],
     ],
 

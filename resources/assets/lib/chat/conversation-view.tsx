@@ -8,7 +8,7 @@ import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
+import ShowMoreLink from 'show-more-link';
 import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
 import { StringWithComponent } from 'string-with-component';

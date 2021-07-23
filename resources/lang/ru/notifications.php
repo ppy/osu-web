@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Карта',
 
+            'beatmap_owner_change' => [
+                '_' => 'Гостевая сложность',
+                'beatmap_owner_change' => 'Вы назначены владельцем сложности ":beatmap" в карте ":title"',
+                'beatmap_owner_change_compact' => 'Вы назначены владельцем сложности ":beatmap" ',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Обсуждение карты',
                 'beatmapset_discussion_lock' => 'Карта ":title" заблокирована для обсуждений.',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Вы приглашены в ":title" ',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Обсуждение ":title" было закрыто',
                 'beatmapset_discussion_post_new' => 'Обсуждение ":title" имеет новые ответы',

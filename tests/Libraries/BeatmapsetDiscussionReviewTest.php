@@ -15,7 +15,6 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
-use App\Models\Group;
 use App\Models\Notification;
 use App\Models\User;
 use Faker;
@@ -284,13 +283,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
 
         $playmode = $beatmapset->playmodesStr()[0];
-        $natUser = factory(User::class)->create();
-        $natUser->userGroups()->create([
-            'group_id' => app('groups')->byIdentifier('nat')->getKey(),
-            'playmodes' => [$playmode],
-            'user_pending' => 0,
-        ]);
-
+        $natUser = $this->createUserWithGroupPlaymodes('nat', [$playmode]);
         $watchingUser = factory(User::class)->create();
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
 
@@ -602,13 +595,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
 
         $playmode = $beatmapset->playmodesStr()[0];
-        $natUser = factory(User::class)->create();
-        $natUser->userGroups()->create([
-            'group_id' => app('groups')->byIdentifier('nat')->getKey(),
-            'playmodes' => [$playmode],
-            'user_pending' => 0,
-        ]);
-
+        $natUser = $this->createUserWithGroupPlaymodes('nat', [$playmode]);
         $review = $this->setUpPraiseOnlyReview($beatmapset, $natUser);
 
         // ensure qualified beatmap is pending
@@ -725,9 +712,6 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-
-        Group::find(app('groups')->byIdentifier('nat')->getKey())->update(['has_playmodes' => true]);
-        app('groups')->resetCache();
     }
 
     protected function setUpReview($beatmapset = null): BeatmapDiscussion

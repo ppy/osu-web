@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Ara',
             'deleted' => 'Silinmiş tartışmaları içer',
-            'mode' => '',
+            'mode' => 'Beatmap modu',
             'only_unresolved' => 'Sadece çözülmemiş tartışmaları göster',
             'types' => 'Mesaj türü',
             'username' => 'Kullanıcı adı',
@@ -56,6 +56,13 @@ return [
         'confirm' => 'Bu gönderilerin hiçbiri sorunumla ilgili değil',
         'notice' => ':timestamp (:existing_timestamp) civarında gönderilmiş mesajlar var. Göndermeden önce lütfen onlara bir göz atın.',
         'unsaved' => 'bu incelemede :count',
+    ],
+
+    'owner_editor' => [
+        'button' => 'Zorluk Sahibi',
+        'reset_confirm' => 'Bu zorluğun sahibi sıfırlansın mı?',
+        'user' => 'Sahip',
+        'version' => 'Zorluk',
     ],
 
     'reply' => [

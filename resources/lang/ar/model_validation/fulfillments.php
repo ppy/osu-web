@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'التبرع أقل مما هو مطلوب لاِهداء شارة osu!supporter (:actual > :expected)',
+        'insufficient_paid' => 'التبرع أقل مما هو مطلوب لإهداء شارة osu!supporter (:actual > :expected)',
     ],
 ];

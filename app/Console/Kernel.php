@@ -16,8 +16,6 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\DisqusImport::class,
-
         Commands\EsCreateSearchBlacklist::class,
         Commands\EsIndexDocuments::class,
         Commands\EsIndexWiki::class,
@@ -27,6 +25,7 @@ class Kernel extends ConsoleKernel
 
         Commands\UserForumStatSyncCommand::class,
         Commands\BeatmapsetsHypeSyncCommand::class,
+        Commands\BeatmapsetNominationSyncCommand::class,
 
         Commands\StoreCleanupStaleOrders::class,
         Commands\StoreExpireProducts::class,
@@ -93,7 +92,7 @@ class Kernel extends ConsoleKernel
             ->daily()
             ->withoutOverlapping();
 
-        $schedule->command('rankings:recalculate-country')
+        $schedule->command('rankings:recalculate-country-stats')
             ->cron('25 0,3,6,9,12,15,18,21 * * *');
 
         $schedule->command('modding:rank')

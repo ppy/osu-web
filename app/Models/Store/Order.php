@@ -36,12 +36,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $provider
  * @property \Carbon\Carbon|null $paid_at
  * @property \Illuminate\Database\Eloquent\Collection $payments Payment
- * @property string|null $reference
+ * @property string|null $reference For paypal transactions, this is the resource Id of the paypal order; otherwise, it is the same as the transaction_id without the prefix.
  * @property \Carbon\Carbon|null $shipped_at
  * @property float|null $shipping
  * @property mixed $status
  * @property string|null $tracking_code
- * @property string|null $transaction_id
+ * @property string|null $transaction_id For paypal transactions, this value is based on the IPN or captured payment Id, not the order resource id.
  * @property \Carbon\Carbon|null $updated_at
  * @property User $user
  * @property int $user_id
@@ -212,6 +212,13 @@ class Order extends Model
 
     /**
      * Returns the reference id for the provider associated with this Order.
+     *
+     * For Paypal transactions, this is "paypal-{$capturedId}" where $capturedId is the IPN txn_id
+     * or captured Id of the payment item in the payment transaction (not the payment itself).
+     *
+     * For other payment providers, this value should be "{$provider}-{$reference}".
+     *
+     * In the case of failed or user-aborted payments, this should be "{$provider}-failed".
      *
      * @return string|null
      */
@@ -413,7 +420,7 @@ class Order extends Model
         // TODO: Payment processors should set a context variable flagging the user check to be skipped.
         // This is currently only fine because the Orders controller requires auth.
         if ($user !== null && $this->user_id === $user->getKey() && !$this->canUserCancel()) {
-            throw new InvariantException(trans('store.order.cancel_not_allowed'));
+            throw new InvariantException(osu_trans('store.order.cancel_not_allowed'));
         }
 
         $this->status = 'cancelled';
@@ -465,7 +472,7 @@ class Order extends Model
 
             // TODO: better validation handling.
             if ($params['product'] === null) {
-                return trans('model_validation/store/product.not_available');
+                return osu_trans('model_validation/store/product.not_available');
             }
 
             $this->saveOrExplode();

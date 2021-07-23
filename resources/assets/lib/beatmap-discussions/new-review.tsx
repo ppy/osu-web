@@ -46,11 +46,11 @@ export default class NewReview extends React.Component<Props, State> {
 
   componentDidMount(): void {
     this.setTop();
-    $(window).on('resize.new-review', this.setTop);
+    $(window).on('resize', this.setTop);
   }
 
   componentWillUnmount(): void {
-    $(window).off('.new-review');
+    $(window).off('resize', this.setTop);
   }
 
   cssTop = (sticky: boolean) => {

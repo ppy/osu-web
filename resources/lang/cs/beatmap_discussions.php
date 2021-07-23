@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count v této recenzi',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Pro přidání odpovědi se musíš přihlásit',

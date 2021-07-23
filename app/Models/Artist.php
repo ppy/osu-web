@@ -6,7 +6,6 @@
 namespace App\Models;
 
 use App\Traits\Memoizes;
-use Carbon\Carbon;
 
 /**
  * @property \Illuminate\Database\Eloquent\Collection $albums ArtistAlbum
@@ -50,27 +49,18 @@ class Artist extends Model
         return $this->hasMany(ArtistTrack::class);
     }
 
+    /**
+     * This requires querying the model with `->withMax('tracks', 'created_at')`.
+     */
     public function hasNewTracks()
     {
-        return in_array($this->id, static::recentlyUpdatedArtists(), true);
+        $date = parse_time_to_carbon($this->attributes['tracks_max_created_at']);
+
+        return $date !== null && $date->addMonth(1)->isFuture();
     }
 
     public function url()
     {
         return route('artists.show', $this);
-    }
-
-    private static function recentlyUpdatedArtists()
-    {
-        return static::memoizeStatic(__FUNCTION__, function () {
-            return cache_remember_mutexed('recentlyUpdatedArtists', 300, [], function () {
-                return ArtistTrack::where('created_at', '>', Carbon::now()->subMonth(1))
-                    ->select('artist_id')
-                    ->groupBy('artist_id')
-                    ->get()
-                    ->pluck('artist_id')
-                    ->toArray();
-            });
-        });
     }
 }

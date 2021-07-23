@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => 'Kirjaudu sisään äänestääksesi.',
         'over' => 'Äänestys tälle kilpailulle on päättynyt',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Näytä äänestetyt',
 
         'best_of' => [
             'none_played' => "Näyttäisi siltä, ettet ole pelannut tähän kilpailuun kelpuutettuja mappeja!",
@@ -26,6 +26,10 @@ return [
             'add' => 'Äänestä',
             'remove' => 'Poista ääni',
             'used_up' => 'Olet käyttänyt kaikki äänesi',
+        ],
+
+        'progress' => [
+            '_' => '',
         ],
     ],
     'entry' => [

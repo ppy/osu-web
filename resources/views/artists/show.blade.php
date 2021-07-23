@@ -5,7 +5,7 @@
 @php
     $headerLinks = [
         [
-            'title' => trans('layout.header.artists.index'),
+            'title' => osu_trans('layout.header.artists.index'),
             'url' => route('artists.index'),
         ],
         [
@@ -41,7 +41,7 @@
         <div class="page-contents page-contents--artist">
             <div class="page-contents__artist-left">
                 @if (!$artist->visible)
-                    <div class="artist__admin-note">{{ trans('artist.admin.hidden') }}</div>
+                    <div class="artist__admin-note">{{ osu_trans('artist.admin.hidden') }}</div>
                 @endif
                 <div class="artist__description">
                     <h1>{{ $artist->name }}</h1>
@@ -51,7 +51,7 @@
                 @if (count($albums) > 0)
                     <div class="artist__albums">
                         @foreach ($albums as $album)
-                            <div class="artist-album js-audio--group">
+                            <div class="artist-album">
                                 <a class="fragment-target" name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
                                 <div class="artist-album__header">
                                     <div class="artist-album__header-overlay{{$album['is_new'] ? ' artist-album__header-overlay--new' : ''}}" style="background-image: url({{$album['cover_url']}});"></div>
@@ -60,7 +60,7 @@
                                     @if ($album['is_new'])
                                         <span class="artist-album__badge">
                                             <span class="pill-badge pill-badge--yellow pill-badge--with-shadow">
-                                                {{trans('common.badges.new')}}
+                                                {{osu_trans('common.badges.new')}}
                                             </span>
                                         </span>
                                     @endif
@@ -77,7 +77,7 @@
                     <div class="artist-album">
                         <div class="artist-album__header">
                             <div class="artist-album__header-overlay" style="background-image: url({{$images['header_url']}});"></div>
-                            <span class="artist-album__title">{{trans('artist.songs._')}}</span>
+                            <span class="artist-album__title">{{osu_trans('artist.songs._')}}</span>
                         </div>
                         <div class="js-react--artistTracklist" data-src="singles-json-{{$artist->id}}"></div>
                         <script id="singles-json-{{$artist->id}}" type="application/json">
@@ -111,7 +111,7 @@
                                     <img class="artist-sidebar-album__cover" src="{{$album['cover_url']}}">
                                     @if ($album['is_new'])
                                         <span class="artist__badge-wrapper">
-                                            <span class="pill-badge pill-badge--yellow pill-badge--with-shadow">{{trans('common.badges.new')}}</span>
+                                            <span class="pill-badge pill-badge--yellow pill-badge--with-shadow">{{osu_trans('common.badges.new')}}</span>
                                         </span>
                                     @endif
                                 </div>
@@ -128,5 +128,5 @@
 @section("script")
   @parent
 
-  @include('layout._extra_js', ['src' => 'js/react/artist-page.js'])
+  @include('layout._react_js', ['src' => 'js/react/artist-page.js'])
 @stop

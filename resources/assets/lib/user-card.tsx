@@ -24,7 +24,7 @@ interface Props {
   activated: boolean;
   mode: ViewMode;
   modifiers: string[];
-  user?: UserJson;
+  user?: UserJson | null;
 }
 
 interface State {
@@ -42,7 +42,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   static userLoading: UserJson = {
     avatar_url: '',
     country_code: '',
-    cover: {},
+    cover: { custom_url: null, id: null, url: null },
     default_group: '',
     id: 0,
     is_active: false,

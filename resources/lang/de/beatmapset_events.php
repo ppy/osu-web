@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved.',
+        'beatmap_owner_change' => 'Besitzer der Schwierigkeit :beatmap wurde auf :new_user geändert.',
         'discussion_delete' => 'Ein Moderator hat die Diskussion :discussion gelöscht.',
         'discussion_lock' => 'Die Diskussion für diese Beatmap wurde deaktiviert. (:text)',
         'discussion_post_delete' => 'Ein Moderator hat einen Beitrag der Diskussion :discussion gelöscht.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Approval',
+        'beatmap_owner_change' => 'Schwierigkeitsstufenbesitzeränderung',
         'discussion_delete' => 'Diskussion löschen',
         'discussion_post_delete' => 'Löschen der Diskussionsantwort',
         'discussion_post_restore' => 'Diskussionsantwort wiederherstellen',

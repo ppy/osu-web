@@ -30,7 +30,8 @@ class WikiController extends Controller
      *
      * Returns [WikiPage](#wikipage).
      *
-     * @urlParam page The path name of the wiki page.
+     * @urlParam locale string required Two-letter language code of the wiki page. Example: en
+     * @urlParam path string required The path name of the wiki page. Example: Welcome
      */
     public function show($locale = null, $path = null)
     {
@@ -67,7 +68,7 @@ class WikiController extends Controller
         }
 
         // legal pages should be displayed with their own style etc
-        if (starts_with("{$path}/", "Legal/")) {
+        if (starts_with("{$path}/", 'Legal/')) {
             return ujs_redirect(wiki_url($path, $locale));
         }
 

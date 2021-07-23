@@ -30,12 +30,12 @@ export class NewDiscussion extends React.PureComponent
 
   componentDidMount: =>
     @setTop()
-    $(window).on 'resize.new-discussion', @setTop
+    $(window).on 'resize', @setTop
     @inputBox.current?.focus() if @props.autoFocus
 
 
   componentWillUnmount: =>
-    $(window).off '.new-discussion'
+    $(window).off 'resize', @setTop
     @postXhr?.abort()
     @throttledPost.cancel()
 
@@ -64,8 +64,9 @@ export class NewDiscussion extends React.PureComponent
 
     canPostNote =
       @props.currentUser.id == @props.beatmapset.user_id ||
+      (@props.currentUser.id == @props.currentBeatmap.user_id && @props.mode in ['general', 'timeline']) ||
       @props.currentUser.is_bng ||
-      @props.currentUser.is_nat
+      BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
 
     buttonCssClasses = 'btn-circle'
     buttonCssClasses += ' btn-circle--activated' if @props.pinned

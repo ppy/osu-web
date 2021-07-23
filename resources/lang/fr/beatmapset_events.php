@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approuvé.',
+        'beatmap_owner_change' => 'Propriétaire de la difficulté :beatmap changé par :new_user.',
         'discussion_delete' => 'Un modérateur a supprimé la discussion :discussion.',
         'discussion_lock' => 'La discussion pour cette beatmap a été désactivée. (:text)',
         'discussion_post_delete' => 'Un modérateur a supprimé le post de la discussion :discussion.',
@@ -18,7 +19,7 @@ return [
         'issue_reopen' => 'Le problème :discussion a été résolu par :discussion_user et rouvert par :user.',
         'issue_resolve' => 'Le problème :discussion écrit par :discussion_user a été marqué comme résolu par :user.',
         'kudosu_allow' => 'Le refus de Kudosu pour la discussion :discussion a été supprimé.',
-        'kudosu_deny' => 'La discussion :discussion a été refusée pour le kudosu.',
+        'kudosu_deny' => 'La discussion :discussion a été refusée pour l\'attribution de kudosu.',
         'kudosu_gain' => 'La discussion :discussion par :user a obtenu assez de votes pour le kudosu.',
         'kudosu_lost' => 'La discussion :discussion par :user a perdu ses votes et le kudosu accordé a été retiré.',
         'kudosu_recalculate' => 'La discussion :discussion a vu ses kudosu accordés recalculés.',
@@ -26,19 +27,19 @@ return [
         'love' => 'Aimé par :user',
         'nominate' => 'Nominée par :user.',
         'nominate_modes' => 'Nominée par :user (:modes).',
-        'nomination_reset' => 'Le nouveau problème :discussion a déclenché une réinitialisation du processus de nomination.',
+        'nomination_reset' => 'Le nouveau problème :discussion (:text) a déclenché une réinitialisation de la nomination.',
         'qualify' => 'Cette beatmap a atteint le nombre requis de nominations et a été qualifiée.',
         'rank' => 'Classée.',
-        'remove_from_loved' => 'Supprimé des Loved par :user(:text)',
+        'remove_from_loved' => 'Supprimé des Loved par :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => 'Supprimer les tags explicites',
-            'to_1' => 'Marquer en tant qu\'explicite',
+            'to_0' => 'Supprimer le tag explicite',
+            'to_1' => 'Marquer comme explicite',
         ],
     ],
 
     'index' => [
-        'title' => 'Événements du beatmapset',
+        'title' => 'Événements de la beatmapset',
 
         'form' => [
             'period' => 'Période',
@@ -48,22 +49,23 @@ return [
 
     'item' => [
         'content' => 'Contenu',
-        'discussion_deleted' => '[supprimée]',
+        'discussion_deleted' => '[deleted]',
         'type' => 'Type',
     ],
 
     'type' => [
         'approve' => 'Approbation',
+        'beatmap_owner_change' => 'Changement du propriétaire de la difficulté',
         'discussion_delete' => 'Suppression de la discussion',
-        'discussion_post_delete' => 'Suppression de la réponse de discussion',
-        'discussion_post_restore' => 'Restauration de réponse de discussion',
+        'discussion_post_delete' => 'Suppression des réponses aux discussions',
+        'discussion_post_restore' => 'Restauration des réponses aux discussions',
         'discussion_restore' => 'Restauration de la discussion',
         'disqualify' => 'Disqualification',
         'genre_edit' => 'Édition du genre',
         'issue_reopen' => 'Réouverture de la discussion',
         'issue_resolve' => 'Résolution de la discussion',
         'kudosu_allow' => 'Allocation de Kudosu',
-        'kudosu_deny' => 'Déni de Kudosu',
+        'kudosu_deny' => 'Refus de Kudosu',
         'kudosu_gain' => 'Gain de Kudosu',
         'kudosu_lost' => 'Perte de Kudosu',
         'kudosu_recalculate' => 'Recalcul du Kudosu',
@@ -74,6 +76,6 @@ return [
         'nsfw_toggle' => 'Marque explicite',
         'qualify' => 'Qualification',
         'rank' => 'Classement',
-        'remove_from_loved' => 'Suppression des Loved',
+        'remove_from_loved' => 'Suppression de Loved',
     ],
 ];

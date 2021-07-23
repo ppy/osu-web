@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'Nu ești capabil să efectuezi această acțiune în timp ce contul tău se află într-un statut restricționat.',
+    'supporter_only' => 'Trebuie să fii un suporter pentru a folosi această funcție.',
+    'unknown' => 'A avut loc o eroare necunoscută.',
+
     'codes' => [
         'http-401' => 'Te rugăm să te autentifici pentru a continua.',
         'http-403' => 'Acces respins.',
@@ -26,8 +31,4 @@ return [
         'default' => 'Nu s-au putut obține rezultate, încearcă mai târziu.',
         'operation_timeout_exception' => 'Căutarea este mai ocupată decât de obicei, încearcă mai târziu.',
     ],
-
-    'supporter_only' => 'Trebuie să fii un suporter pentru a folosi această funcție.',
-    'no_restricted_access' => 'Nu ești capabil să efectuezi această acțiune în timp ce contul tău se află într-un statut restricționat.',
-    'unknown' => 'A avut loc o eroare necunoscută.',
 ];

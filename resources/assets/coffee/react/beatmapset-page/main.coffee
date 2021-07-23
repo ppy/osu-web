@@ -9,11 +9,14 @@ import NsfwWarning from 'beatmapsets-show/nsfw-warning'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import HeaderV4 from 'header-v4'
+import core from 'osu-core-singleton'
 import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
 import * as BeatmapsetPageHash from 'utils/beatmapset-page-hash'
+import { nextVal } from 'utils/seq'
+import { currentUrl } from 'utils/turbolinks'
 
 el = React.createElement
 
@@ -21,6 +24,7 @@ export class Main extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapsets-show-#{nextVal()}"
     @scoreboardXhr = null
     @favouriteXhr = null
 
@@ -30,7 +34,7 @@ export class Main extends React.Component
     if @restoredState
       @state.beatmaps = new Map(@state.beatmapsArray)
     else
-      optionsHash = BeatmapsetPageHash.parse location.hash
+      optionsHash = BeatmapsetPageHash.parse currentUrl().hash
 
       beatmaps = _.concat props.beatmapset.beatmaps, props.beatmapset.converts
       beatmaps = BeatmapHelper.group beatmaps
@@ -51,7 +55,7 @@ export class Main extends React.Component
         favcount: props.beatmapset.favourite_count
         hasFavourited: props.beatmapset.has_favourited
         loading: false
-        showingNsfwWarning: props.beatmapset.nsfw && !currentUser.user_preferences?.beatmapset_show_nsfw
+        showingNsfwWarning: props.beatmapset.nsfw && !core.userPreferences.get('beatmapset_show_nsfw')
         currentScoreboardType: 'global'
         enabledMods: []
         scores: []
@@ -73,12 +77,9 @@ export class Main extends React.Component
   }) =>
     @scoreboardXhr?.abort()
 
-    @setState
-      currentScoreboardType: scoreboardType
-
-    if scoreboardType != 'global' && !currentUser.is_supporter
-      @setState scores: []
-      return
+    prevState =
+      currentScoreboardType: @state.currentScoreboardType
+      enabledMods: @state.enabledMods
 
     enabledMods = if resetMods
       []
@@ -89,6 +90,14 @@ export class Main extends React.Component
     else
       @state.enabledMods
 
+    @setState
+      currentScoreboardType: scoreboardType
+      enabledMods: enabledMods
+
+    if !@state.currentBeatmap.is_scoreable || (!currentUser.is_supporter && (scoreboardType != 'global' || enabledMods.length > 0))
+      @setState scores: []
+      return
+
     @scoresCache ?= {}
     cacheKey = "#{@state.currentBeatmap.id}-#{@state.currentBeatmap.mode}-#{_.sortBy enabledMods}-#{scoreboardType}"
 
@@ -97,7 +106,6 @@ export class Main extends React.Component
         scores: @scoresCache[cacheKey].scores
         userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
         userScorePosition: @scoresCache[cacheKey].userScorePosition
-        enabledMods: enabledMods
 
     if !forceReload && @scoresCache[cacheKey]?
       loadScore()
@@ -119,6 +127,8 @@ export class Main extends React.Component
       loadScore()
 
     .fail (xhr, status) =>
+      @setState(prevState)
+
       if status == 'abort'
         return
 
@@ -172,13 +182,13 @@ export class Main extends React.Component
       osu.ajaxError xhr
 
   componentDidMount: ->
-    $.subscribe 'beatmapset:set.beatmapsetPage', @setBeatmapset
-    $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmap
-    $.subscribe 'playmode:set.beatmapsetPage', @setCurrentPlaymode
-    $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
-    $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
-    $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
-    $(document).on 'turbolinks:before-cache.beatmapsetPage', @saveStateToContainer
+    $.subscribe "beatmapset:set.#{@eventId}", @setBeatmapset
+    $.subscribe "beatmapset:beatmap:set.#{@eventId}", @setCurrentBeatmap
+    $.subscribe "playmode:set.#{@eventId}", @setCurrentPlaymode
+    $.subscribe "beatmapset:scoreboard:set.#{@eventId}", @setCurrentScoreboard
+    $.subscribe "beatmapset:hoveredbeatmap:set.#{@eventId}", @setHoveredBeatmap
+    $.subscribe "beatmapset:favourite:toggle.#{@eventId}", @toggleFavourite
+    $(document).on "turbolinks:before-cache.#{@eventId}", @saveStateToContainer
 
     @setHash()
 
@@ -187,7 +197,7 @@ export class Main extends React.Component
 
 
   componentWillUnmount: ->
-    $.unsubscribe '.beatmapsetPage'
+    $.unsubscribe ".#{@eventId}"
     @scoreboardXhr?.abort()
     @favouriteXhr?.abort()
 

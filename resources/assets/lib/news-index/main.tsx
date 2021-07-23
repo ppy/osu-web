@@ -9,7 +9,8 @@ import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
+import ShowMoreLink from 'show-more-link';
+import { nextVal } from 'utils/seq';
 import PostItem from './post-item';
 
 interface Props {
@@ -41,7 +42,7 @@ interface State {
 }
 
 export default class Main extends React.Component<Props, State> {
-  private eventId = `news-index-${osu.uuid()}`;
+  private readonly eventId = `news-index-${nextVal()}`;
 
   constructor(props: Props) {
     super(props);
@@ -103,7 +104,7 @@ export default class Main extends React.Component<Props, State> {
                 'data-reload-on-success': '1',
                 'data-remote': true,
                 'data-url': route('news.store'),
-                'type': 'button',
+                type: 'button',
               },
               text: osu.trans('news.store.button'),
             },

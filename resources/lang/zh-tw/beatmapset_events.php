@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => '已批准。',
+        'beatmap_owner_change' => '難度 :beatmap 的作者已變更為 :new_user。',
         'discussion_delete' => '管理員刪除了 :discussion 。',
         'discussion_lock' => '此圖譜的討論已被禁用。（:text）',
         'discussion_post_delete' => '管理員在 :discussion 中刪除了這條回覆。',
@@ -25,15 +26,15 @@ return [
         'language_edit' => '語言由:old更改為:new',
         'love' => '受到 :user 的喜愛',
         'nominate' => '被 :user 提名',
-        'nominate_modes' => '',
+        'nominate_modes' => '由 :user 提名 (:modes)。',
         'nomination_reset' => '新問題 :discussion 導致提名被重置。',
         'qualify' => '這張圖譜已經達到所需的提名數量，並已經 qualified。',
         'rank' => '進榜',
         'remove_from_loved' => '由 :user 從 Loved 中移除。(:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => '移除成人內容標記',
+            'to_1' => '標記為成人內容',
         ],
     ],
 
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Approval',
+        'beatmap_owner_change' => '難度作者變更',
         'discussion_delete' => '刪除討論',
         'discussion_post_delete' => '刪除討論的回覆',
         'discussion_post_restore' => '恢復已刪除的討論的回覆',
@@ -71,7 +73,7 @@ return [
         'love' => 'Love',
         'nominate' => '被提名',
         'nomination_reset' => '被取消提名',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => '成人內容標記',
         'qualify' => 'Qualification',
         'rank' => 'Ranking',
         'remove_from_loved' => '',

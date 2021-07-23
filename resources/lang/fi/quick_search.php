@@ -9,7 +9,7 @@ return [
         'forum_post' => '',
         'other' => '',
         'user' => '',
-        'wiki_page' => '',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [

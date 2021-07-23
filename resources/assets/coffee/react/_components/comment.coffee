@@ -10,9 +10,12 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, span, textarea } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 import { Spinner } from 'spinner'
+import { StringWithComponent } from 'string-with-component'
+import TimeWithTooltip from 'time-with-tooltip'
 import UserAvatar from 'user-avatar'
+import { UserLink } from 'user-link'
 import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
 import { createClickCallback, formatNumberSuffixed } from 'utils/html'
@@ -46,7 +49,7 @@ export class Comment extends React.PureComponent
     @xhr = {}
     @loadMoreRef = React.createRef()
 
-    if osu.isMobile()
+    if osuCore.windowSize.isMobile
       # There's no indentation on mobile so don't expand by default otherwise it will be confusing.
       expandReplies = false
     else if @props.comment.isDeleted
@@ -72,12 +75,12 @@ export class Comment extends React.PureComponent
 
 
   componentDidMount: =>
-    @setState lines: estimateMinLines(@props.comment.messageHtml)
+    @setState lines: estimateMinLines(@props.comment.messageHtml ? '')
 
 
   componentDidUpdate: (prevProps) =>
     if prevProps.comment.messageHtml != @props.comment.messageHtml
-      @setState lines: estimateMinLines(@props.comment.messageHtml)
+      @setState lines: estimateMinLines(@props.comment.messageHtml ? '')
 
 
   render: =>
@@ -175,6 +178,7 @@ export class Comment extends React.PureComponent
               @renderPin()
               @renderReport()
               @renderEditedBy()
+              @renderDeletedBy()
               @renderRepliesText()
 
             @renderReplyBox()
@@ -197,7 +201,7 @@ export class Comment extends React.PureComponent
 
   renderComment: (comment) =>
     comment = store.comments.get(comment.id)
-    return null if comment.isDeleted && !uiState.comments.isShowDeleted
+    return null if comment.isDeleted && !core.userPreferences.get('comments_show_deleted')
 
     el Comment,
       key: comment.id
@@ -216,6 +220,24 @@ export class Comment extends React.PureComponent
           className: 'comment__action'
           onClick: @delete
           osu.trans('common.buttons.delete')
+
+
+  renderDeletedBy: =>
+    if @props.comment.isDeleted && @props.comment.canModerate
+      div className: 'comment__row-item comment__row-item--info',
+        el StringWithComponent,
+          pattern: osu.trans('comments.deleted_by')
+          mappings:
+            ':timeago':
+              el TimeWithTooltip,
+                key: 'timeago'
+                dateTime: @props.comment.deletedAt
+                relative: true
+            ':user':
+              if @props.comment.deletedById?
+                el UserLink, key: 'user', user: (userStore.get(@props.comment.deletedById) ? deletedUser)
+              else
+                osu.trans('comments.deleted_by_system')
 
 
   renderPin: =>
@@ -254,7 +276,7 @@ export class Comment extends React.PureComponent
 
 
   renderOwnerBadge: (meta) =>
-    return null unless @props.comment.userId == meta.owner_id
+    return null unless meta.owner_id? && @props.comment.userId == meta.owner_id
 
     div className: 'comment__row-item',
       div className: 'comment__owner-badge', meta.owner_title
@@ -434,7 +456,7 @@ export class Comment extends React.PureComponent
             className: 'sort__item sort__item--button'
             onClick: @onShowDeletedToggleClick
             span className: 'sort__item-icon',
-              span className: if uiState.comments.isShowDeleted then 'fas fa-check-square' else 'far fa-square'
+              span className: if core.userPreferences.get('comments_show_deleted') then 'fas fa-check-square' else 'far fa-square'
             osu.trans('common.buttons.show_deleted')
 
 
@@ -488,7 +510,7 @@ export class Comment extends React.PureComponent
 
 
   onShowDeletedToggleClick: ->
-    $.publish 'comments:toggle-show-deleted'
+    core.userPreferences.set('comments_show_deleted', !core.userPreferences.get('comments_show_deleted'))
 
 
   parentLink: (parent) =>

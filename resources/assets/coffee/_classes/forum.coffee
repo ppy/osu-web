@@ -217,18 +217,18 @@ class @Forum
   toggleDeleted: =>
     return if !@showDeleted()? # you don't see this option unless you're a moderator, anyway
 
-    $.ajax laroute.route('account.options'),
-      method: 'PUT'
-      data:
-        user_profile_customization:
-          forum_posts_show_deleted: !@showDeleted()
-    .done (user) =>
-      $.publish 'user:update', user
-      Turbolinks.visit @postUrlN(@currentPostPosition)
+    xhr = osuCore.userPreferences.set('forum_posts_show_deleted', !@showDeleted())
+
+    callback = => Turbolinks.visit @postUrlN(@currentPostPosition)
+
+    if xhr?
+      xhr.done callback
+    else
+      callback()
 
 
   initialScrollTo: =>
-    return if location.hash != '' ||
+    return if _exported.currentUrl().hash != '' ||
       !window.postJumpTo? ||
       window.postJumpTo == 0
 
@@ -244,7 +244,7 @@ class @Forum
 
 
   postUrlN: (postN) ->
-    "#{document.location.pathname}?n=#{postN}"
+    "#{_exported.currentUrl().pathname}?n=#{postN}"
 
 
   showMore: (e) =>
@@ -292,7 +292,7 @@ class @Forum
       targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
       window.scrollTo x, targetDocumentScrollTop
 
-      osu.pageChange()
+      _exported.pageChange()
       link.dataset.failed = '0'
 
     .always ->

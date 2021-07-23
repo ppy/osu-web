@@ -27,6 +27,10 @@ return [
             'remove' => 'Fjern stemme',
             'used_up' => 'Du har brugt alle dine stemmer',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'entry',

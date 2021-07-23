@@ -5,7 +5,7 @@
 <div class="account-edit">
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
-            {{ trans('accounts.playstyles.title') }}
+            {{ osu_trans('accounts.playstyles.title') }}
         </h2>
     </div>
 
@@ -27,7 +27,7 @@
                             ])
 
                             <span class="account-edit-entry__checkbox-label">
-                                {{ trans("accounts.playstyles.{$key}") }}
+                                {{ osu_trans("accounts.playstyles.{$key}") }}
                             </span>
                         </label>
                     @endforeach

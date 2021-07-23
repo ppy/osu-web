@@ -8,6 +8,15 @@ interface Props {
   modifiers?: string[];
 }
 
+const flagUrl = (code: string) => {
+  const baseFileName = code
+    .split('')
+    .map((c) => (c.charCodeAt(0) + 127397).toString(16))
+    .join('-');
+
+  return `/assets/images/flags/${baseFileName}.svg`;
+};
+
 export default function FlagCountry({country, modifiers}: Props) {
   if (country == null || country.code == null) {
     return null;
@@ -17,7 +26,7 @@ export default function FlagCountry({country, modifiers}: Props) {
     <div
       className={osu.classWithModifiers('flag-country', modifiers)}
       style={{
-        backgroundImage: `url('/images/flags/${country.code}.png')`,
+        backgroundImage: `url('${flagUrl(country.code)}')`,
       }}
       title={country.name}
     />

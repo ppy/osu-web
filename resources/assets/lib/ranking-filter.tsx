@@ -5,6 +5,7 @@ import GameMode from 'interfaces/game-mode';
 import * as React from 'react';
 import { Option, OptionRenderProps, SelectOptions } from 'select-options';
 import { Sort } from 'sort';
+import { currentUrlParams } from 'utils/turbolinks';
 
 type RankingTypes = 'performance' | 'charts' | 'scores' | 'country';
 
@@ -43,15 +44,15 @@ export default class RankingFilter extends React.PureComponent<Props> {
   }
 
   get countryCode() {
-    return new URL(window.location.href).searchParams.get('country');
+    return currentUrlParams().get('country');
   }
 
   get currentVariant() {
-    return new URL(window.location.href).searchParams.get('variant');
+    return currentUrlParams().get('variant');
   }
 
   get filterMode() {
-    return new URL(window.location.href).searchParams.get('filter');
+    return currentUrlParams().get('filter');
   }
 
   get options() {

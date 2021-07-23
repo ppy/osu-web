@@ -8,11 +8,7 @@ export default class Localtime {
 
   constructor() {
     this.observer = new MutationObserver(this.mutationHandler);
-
-    $(document).on('turbolinks:load', () => {
-      this.formatElems();
-      this.observer.observe(document.body, { childList: true, subtree: true });
-    });
+    this.observer.observe(document, { childList: true, subtree: true });
   }
 
   private formatElem = (elem: HTMLTimeElement) => {

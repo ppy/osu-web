@@ -11,6 +11,16 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 3px;
+  position: relative;
+  filter: saturate(1.1);
+
+  &::after {
+    .full-size();
+    background-color: fade(#fff, 25%);
+    content: '';
+    border-radius: inherit;
+  }
 
   &--flat {
     box-shadow: none;

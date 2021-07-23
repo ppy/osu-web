@@ -2,10 +2,13 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    use App\Models\UserNotificationOption;
+@endphp
 <div class="account-edit">
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
-            {{ trans('accounts.notifications.title') }}
+            {{ osu_trans('accounts.notifications.title') }}
         </h2>
     </div>
 
@@ -24,7 +27,7 @@
                     ])
 
                     <span class="account-edit-entry__checkbox-label">
-                        {{ trans('accounts.notifications.topic_auto_subscribe') }}
+                        {{ osu_trans('accounts.notifications.topic_auto_subscribe') }}
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
@@ -41,7 +44,7 @@
                 <label class="account-edit-entry__checkbox">
                     @php
                         $name = App\Models\Notification::COMMENT_NEW;
-                        $option = App\Models\UserNotificationOption::COMMENT_REPLY;
+                        $option = UserNotificationOption::COMMENT_REPLY;
                     @endphp
                     @include('objects._switch', [
                         'additionalClass'=> 'js-account-edit__input',
@@ -50,7 +53,7 @@
                     ])
 
                     <span class="account-edit-entry__checkbox-label">
-                        {{ trans('accounts.notifications.comment_reply') }}
+                        {{ osu_trans('accounts.notifications.comment_reply') }}
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
@@ -61,10 +64,10 @@
         </div>
 
         <div class="account-edit__input-group">
-            @foreach (App\Models\UserNotificationOption::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS as $notificationType)
+            @foreach (UserNotificationOption::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS as $notificationType)
                 <div class="account-edit-entry account-edit-entry--no-label">
                     <div class="account-edit-entry__checkboxes-label">
-                        {{ trans("accounts.notifications.$notificationType") }}
+                        {{ osu_trans("accounts.notifications.$notificationType") }}
                     </div>
                     <form
                         class="account-edit-entry__checkboxes js-account-edit"
@@ -84,7 +87,7 @@
                                 ])
 
                                 <span class="account-edit-entry__checkbox-label">
-                                    {{ trans("beatmaps.mode.{$key}") }}
+                                    {{ osu_trans("beatmaps.mode.{$key}") }}
                                 </span>
                             </label>
                         @endforeach
@@ -100,7 +103,7 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry">
                 <div class="account-edit-entry__label account-edit-entry__label--top-pinned">
-                    {{ trans('accounts.notifications.options._') }}
+                    {{ osu_trans('accounts.notifications.options._') }}
                 </div>
 
                 <form
@@ -109,20 +112,20 @@
                     data-account-edit-type="multi"
                     data-url="{{ route('account.notification-options') }}"
                 >
-                    @foreach (App\Models\UserNotificationOption::DELIVERY_MODES as $mode)
-                        <div>{{ trans("accounts.notifications.options.{$mode}") }}</div>
+                    @foreach (UserNotificationOption::DELIVERY_MODES as $mode)
+                        <div>{{ osu_trans("accounts.notifications.options.{$mode}") }}</div>
                     @endforeach
 
                     <div>@include('accounts._edit_entry_status')</div>
 
-                    @foreach (App\Models\UserNotificationOption::HAS_DELIVERY_MODES as $name)
-                        @foreach (App\Models\UserNotificationOption::DELIVERY_MODES as $mode)
+                    @foreach (UserNotificationOption::HAS_DELIVERY_MODES as $name)
+                        @foreach (UserNotificationOption::DELIVERY_MODES as $mode)
                             <label
                                 class="account-edit-entry__checkbox account-edit-entry__checkbox--grid"
                             >
                                 @include('objects._switch', [
                                     'additionalClass'=> 'js-account-edit__input',
-                                    'checked' => $notificationOptions[$name]->details[$mode] ?? true,
+                                    'checked' => $notificationOptions[$name]->details[$mode] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS[$mode],
                                     'defaultValue' => '0',
                                     'modifiers' => ['grid'],
                                     'name' => "user_notification_option[{$name}][details][{$mode}]",
@@ -131,7 +134,7 @@
                         @endforeach
 
                         <span class="account-edit-entry__checkbox-label account-edit-entry__checkbox-label--grid">
-                            {{ trans("accounts.notifications.options.{$name}") }}
+                            {{ osu_trans("accounts.notifications.options.{$name}") }}
                         </span>
                     @endforeach
                 </form>

@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Exception;
 
 /**
+ * @property string $commentable_identifier
  * @property Comment $comments
  * @property \Carbon\Carbon|null $created_at
  * @property string|null $hash
@@ -222,7 +223,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public function editUrl()
     {
-        return 'https://github.com/'.OsuWiki::user().'/'.OsuWiki::repository().'/tree/master/news/'.$this->filename();
+        return 'https://github.com/'.OsuWiki::user().'/'.OsuWiki::repository().'/tree/'.OsuWiki::branch().'/news/'.$this->filename();
     }
 
     public function firstImage($absolute = false)

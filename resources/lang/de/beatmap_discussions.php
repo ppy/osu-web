@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Suche',
             'deleted' => 'Gelöschte Diskussionen einbeziehen',
-            'mode' => '',
+            'mode' => 'Beatmap-Modus',
             'only_unresolved' => 'Nur ungelöste Diskussionen anzeigen',
             'types' => 'Nachrichtentyp',
             'username' => 'Benutzername',
@@ -56,6 +56,13 @@ return [
         'confirm' => 'Keiner dieser Beiträge behandelt mein Anliegen.',
         'notice' => 'Es gibt bereits Beiträge in der Nähe von :timestamp (:existing_timestamps). Bitte überprüfe sie, bevor du diesen absendest.',
         'unsaved' => ':count in dieser Bewertung',
+    ],
+
+    'owner_editor' => [
+        'button' => 'Schwierigkeitsstufenbesitzer',
+        'reset_confirm' => 'Besitzer für diese Schwierigkeit zurücksetzen?',
+        'user' => 'Besitzer',
+        'version' => 'Schwierigkeit',
     ],
 
     'reply' => [

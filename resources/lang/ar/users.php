@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'لعب مؤذي/ غش',
+            'multiple_accounts' => '',
             'insults' => 'اهانتي / اهانة الاخرين',
             'spam' => 'سبام',
             'unwanted_content' => 'ربط عن محتوى غير لائق',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'الخرائط المُحَبَبة',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'الخرائط المصفوفة والمقبولة',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'الخرائط المعلقة',
+                ],
+                'ranked' => [
+                    'title' => 'الخرائط المصفوفة والمقبولة',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "هذا المستخدم لم يحصل على أي شيئ حتى الآن. ;_;",
                 'recent' => 'الأخير',
                 'title' => 'الاوسمة',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'المنشورات',
@@ -402,10 +406,10 @@ return [
             'total_hits' => 'مجموع التصويبات',
             'total_score' => 'مجموع النقاط',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'الخرائط المصفوفة والمقبولة',
-            'loved_beatmapset_count' => 'الخرائط المُحَبَبة',
-            'unranked_beatmapset_count' => 'الخرائط المعلقة',
             'graveyard_beatmapset_count' => 'الخرائط المقبورة',
+            'loved_beatmapset_count' => 'الخرائط المُحَبَبة',
+            'pending_beatmapset_count' => 'الخرائط المعلقة',
+            'ranked_beatmapset_count' => 'الخرائط المصفوفة والمقبولة',
         ],
     ],
 

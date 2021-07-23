@@ -8,6 +8,7 @@ import ScoreboardMod from 'beatmapsets-show/scoreboard-mod'
 import * as React from 'react'
 import { div, h2, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Scoreboard extends React.PureComponent
@@ -32,6 +33,7 @@ export class Scoreboard extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapsets-show-scoreboard-#{nextVal()}"
     @state =
       loading: false
 
@@ -39,10 +41,10 @@ export class Scoreboard extends React.PureComponent
     @setState loading: isLoading
 
   componentDidMount: ->
-    $.subscribe 'beatmapset:scoreboard:loading.beatmapsetPageScoreboard', @setLoading
+    $.subscribe "beatmapset:scoreboard:loading.#{@eventId}", @setLoading
 
   componentWillUnmount: ->
-    $.unsubscribe '.beatmapsetPageScoreboard'
+    $.unsubscribe ".#{@eventId}"
 
   render: ->
     userScoreFound = false
@@ -69,7 +71,7 @@ export class Scoreboard extends React.PureComponent
             type: type
             active: @props.type == type
 
-      if currentUser.is_supporter && @props.isScoreable
+      if @props.isScoreable
         div
           className: classWithModifiers('beatmapset-scoreboard__mods', initial: @props.enabledMods.length == 0)
           for mod in mods
@@ -100,7 +102,7 @@ export class Scoreboard extends React.PureComponent
             className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'
             osu.trans 'beatmapsets.show.scoreboard.no_scores.unranked'
 
-        else if currentUser.is_supporter || @props.type == 'global'
+        else if currentUser.is_supporter || (@props.type == 'global' && @props.enabledMods.length == 0)
           translationKey = if @state.loading then 'loading' else @props.type
 
           p

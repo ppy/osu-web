@@ -11,13 +11,13 @@
             If you have any issues with your purchase, please contact the <a href='mailto:osustore@ppy.sh'>osu!store support</a>.
         </p>
     @elseif ($order->isProcessing())
-        <p><em class="store-text store-text--emphasis">{{ trans('store.invoice.status.processing.title') }}</em></p>
+        <p><em class="store-text store-text--emphasis">{{ osu_trans('store.invoice.status.processing.title') }}</em></p>
         <p>
-            {{ trans('store.invoice.status.processing.line_1') }}
+            {{ osu_trans('store.invoice.status.processing.line_1') }}
         </p>
         <p>
-            {!! trans('store.invoice.status.processing.line_2._', [
-                'link' => Html::link(route('store.checkout.show', $order), trans('store.invoice.status.processing.line_2.link_text')),
+            {!! osu_trans('store.invoice.status.processing.line_2._', [
+                'link' => Html::link(route('store.checkout.show', $order), osu_trans('store.invoice.status.processing.line_2.link_text')),
             ]) !!}
         </p>
     @elseif ($order->status === 'cancelled')
@@ -50,7 +50,7 @@
 
         @if ($order->isPendingEcheck())
             <p>
-                {{ trans('store.invoice.echeck_delay') }}
+                {{ osu_trans('store.invoice.echeck_delay') }}
             </p>
         @endif
     @endif

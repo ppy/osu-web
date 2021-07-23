@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved.',
+        'beatmap_owner_change' => ':beatmap 난이도의 주인이 :new_user로 변경되었습니다.',
         'discussion_delete' => 'Moderator가 :discussion 토론을 삭제했습니다.',
         'discussion_lock' => '이 비트맵에 대한 토론이 비활성화되었습니다. (:text)',
         'discussion_post_delete' => 'Moderator가 :discussion 토론에 달린 글을 삭제했습니다.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => '승인',
+        'beatmap_owner_change' => '난이도 주인 변경',
         'discussion_delete' => '토론 삭제',
         'discussion_post_delete' => '토론 답글 삭제',
         'discussion_post_restore' => '토론 답글 복원',

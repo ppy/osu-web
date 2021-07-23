@@ -13,7 +13,7 @@ class ForumPostsControllerTest extends TestCase
 {
     public function testDestroy()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -40,7 +40,7 @@ class ForumPostsControllerTest extends TestCase
 
     public function testDestroyFirstPost()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -66,7 +66,7 @@ class ForumPostsControllerTest extends TestCase
 
     public function testDestroyNotLastPost()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -94,7 +94,7 @@ class ForumPostsControllerTest extends TestCase
 
     public function testRestore()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);

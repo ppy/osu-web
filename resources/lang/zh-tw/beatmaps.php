@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => '收回 kudosu',
         'edit' => '編輯',
         'edited' => '最後由 :editor 編輯於 :update_time 。',
+        'guest' => '由 :user 製作的客串難度',
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder_deleted_beatmap' => '該難度已被刪除，無法繼續討論',
         'message_placeholder_locked' => '此圖譜的討論已被禁用。',
@@ -61,7 +62,7 @@ return [
         'message_placeholder' => [
             'general' => '在此處輸入以發佈至整體 (:version)',
             'generalAll' => '在此處輸入以發佈至整體 (所有難度)',
-            'review' => '',
+            'review' => '在此處輸入以發佈評論',
             'timeline' => '在此處輸入以發佈至時間軸 (:version)',
         ],
 
@@ -96,7 +97,7 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => '新評論',
             'embed' => [
                 'delete' => '刪除',
                 'missing' => '',
@@ -309,11 +310,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => '所有',

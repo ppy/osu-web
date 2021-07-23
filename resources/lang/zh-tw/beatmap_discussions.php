@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => '搜尋',
             'deleted' => '包含已經刪除的討論',
-            'mode' => '',
+            'mode' => '圖譜遊戲模式',
             'only_unresolved' => '只顯示未解決的討論',
             'types' => '訊息類別',
             'username' => '使用者名稱',
@@ -56,6 +56,13 @@ return [
         'confirm' => '在這個時間點上沒有相關的討論記錄。',
         'notice' => '在 :timestamp 附近（:existing_timestamps）有討論記錄，發表前請檢查。',
         'unsaved' => '',
+    ],
+
+    'owner_editor' => [
+        'button' => '難度作者',
+        'reset_confirm' => '要重設此難度的作者嗎？',
+        'user' => '作者',
+        'version' => '難度',
     ],
 
     'reply' => [
