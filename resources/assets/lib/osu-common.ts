@@ -47,6 +47,17 @@ const osuCommon = {
     el.focus();
     el.style.fontSize = prevSize;
   },
+  formatBytes: (bytes: number, decimals = 2) => {
+    const suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const k = 1000;
+
+    if (bytes < k) {
+      return `${bytes} B`;
+    }
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return `${osuCommon.formatNumber(bytes / Math.pow(k, i), decimals)} ${suffixes[i]}`;
+  },
   formatNumber: (num: number | null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) => {
     if (num == null) {
       return null;
