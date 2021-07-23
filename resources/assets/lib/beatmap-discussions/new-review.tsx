@@ -77,7 +77,7 @@ export default class NewReview extends React.Component<Props, State> {
     }
 
     return (
-      <div className={osu.classWithModifiers(floatClass, floatMods)} style={{ top: this.state.cssTop }}>
+      <div className={classWithModifiers(floatClass, floatMods)} style={{ top: this.state.cssTop }}>
         <div className={`${floatClass}__floatable ${floatClass}__floatable--pinned`}>
           <div className={`${floatClass}__content`}>
             <div className='osu-page osu-page--small'>

@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { observer } from 'mobx-react';
-import osu from 'osu-common';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { classWithModifiers } from 'utils/css';
