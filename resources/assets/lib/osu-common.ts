@@ -68,7 +68,7 @@ const osuCommon = {
     return `${osuCommon.formatNumber(bytes / Math.pow(k, i), decimals)} ${suffixes[i]}`;
   },
 
-  formatNumber: (num: number | null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) => {
+  formatNumber: (num: number | null, precision?: number | null, options?: Intl.NumberFormatOptions | null, locale?: string) => {
     if (num == null) {
       return null;
     }
