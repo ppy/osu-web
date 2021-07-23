@@ -68,6 +68,13 @@ const osuCommon = {
 
     history.replaceState(history.state, '', newUrl);
   },
+  trans: (key: string, replacements = {}, locale?: string) => {
+    if (osuCommon.transExists(key, locale)) {
+      locale = fallbackLocale;
+    }
+
+    return Lang.get(key, replacements, locale);
+  },
   transExists: (key: string, locale?: string) => {
     const translated = Lang.get(key, null, locale);
 
