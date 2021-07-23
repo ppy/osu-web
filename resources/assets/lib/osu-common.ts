@@ -5,7 +5,6 @@ import GroupJson from 'interfaces/group-json';
 import { each, find, unescape } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import Timeout from 'timeout';
 import { TurbolinksAction } from 'turbolinks';
 import { currentUrl as getCurrentUrl } from 'utils/turbolinks';
 
@@ -180,7 +179,7 @@ const osu = {
         .one('click.close-alert', closeAlert)
         .fadeIn();
     } else {
-      Timeout.set(5000, closeAlert);
+      window.setTimeout(closeAlert, 5000);
     }
 
     const activeElement = document.activeElement;
