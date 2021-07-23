@@ -16,11 +16,14 @@ const osuCommon = {
 
     osuCommon.popup(osuCommon.xhrErrorMessage(xhr), 'danger');
   },
+
   bottomPage: () => osuCommon.bottomPageDistance() === 0,
+
   bottomPageDistance: () => {
     const body = document.documentElement ?? document.body.parentElement ?? document.body;
     return (body.scrollHeight - body.scrollTop) - body.clientHeight;
   },
+
   classWithModifiers: (className: string, modifiers?: string[]) => {
     let ret = className;
 
@@ -32,9 +35,13 @@ const osuCommon = {
 
     return ret;
   },
+
   currentUserIsFriendsWith: (userId: number) => find(currentUser.friends, { target_id: userId }),
+
   diffColour: (difficultyRating?: string | null) => ({ '--diff': `var(--diff-${difficultyRating ?? 'default'})` } as React.CSSProperties),
+
   emitAjaxError: (element = document.body) => (xhr: JQuery.jqXHR, status: string, error: string) => $(element).trigger('ajax:error', [xhr, status, error]),
+
   // mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
   focus: (el: HTMLElement) => {
     el = $(el)[0]; // so we can handle both jquery'd and normal dom nodes
@@ -48,6 +55,7 @@ const osuCommon = {
     el.focus();
     el.style.fontSize = prevSize;
   },
+
   formatBytes: (bytes: number, decimals = 2) => {
     const suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     const k = 1000;
@@ -59,6 +67,7 @@ const osuCommon = {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return `${osuCommon.formatNumber(bytes / Math.pow(k, i), decimals)} ${suffixes[i]}`;
   },
+
   formatNumber: (num: number | null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) => {
     if (num == null) {
       return null;
@@ -73,7 +82,9 @@ const osuCommon = {
 
     return num.toLocaleString(locale ?? currentLocale, options);
   },
+
   groupColour: (group?: GroupJson) => ({ '--group-colour': group?.colour ?? 'initial' } as React.CSSProperties),
+
   isClickable: (el: HTMLElement): boolean => {
     if (osuCommon.isInputElement(el) || ['A', 'BUTTON'].includes(el.tagName)) {
       return true;
@@ -85,10 +96,14 @@ const osuCommon = {
 
     return false;
   },
+
   isInputElement: (el: HTMLElement) => ['INPUT', 'SELECT', 'TEXTAREA'].includes(el.tagName) || el.isContentEditable,
+
   isIos: /iPad|iPhone|iPod/.test(navigator.platform),
+
   // make a clone of json-like object (object with simple values)
   jsonClone: (obj: any) => JSON.parse(JSON.stringify(obj ?? null)),
+
   keepScrollOnLoad: () => {
     const position = [
       window.pageXOffset,
@@ -99,6 +114,7 @@ const osuCommon = {
       window.scrollTo(position[0], position[1]);
     });
   },
+
   link: (url: string, text: string, options: OsuLinkOptions = {}) => {
     if (options.unescape) {
       url = unescape(url);
@@ -119,7 +135,9 @@ const osuCommon = {
 
     return el.outerHTML;
   },
+
   linkify: (text: string, newWindow = false) => text.replace(osuCommon.urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="blank"' : ''}>$2</a>`),
+
   navigate: (url: string, keepScroll = false, action?: TurbolinksAction) => {
     action ??= { action: 'advance' };
 
@@ -129,6 +147,7 @@ const osuCommon = {
 
     Turbolinks.visit(url, action);
   },
+
   parseJson<T = any>(id: string, remove = false) {
     const element = window.newBody?.querySelector(`#${id}`);
 
@@ -142,6 +161,7 @@ const osuCommon = {
       return json;
     }
   },
+
   popup: (message: string, type = 'info') => {
     const popupContainer = $('#popup-container');
     const alert = $('.popup-clone').clone();
@@ -169,8 +189,11 @@ const osuCommon = {
 
     alert.appendTo(popupContainer).fadeIn();
   },
+
   presence: (str?: string | null) => osuCommon.present(str) ? str : null,
+
   present: (str?: string | null) => str != null && str !== '',
+
   reloadPage: (keepScroll = true) => {
     $(document).off('.ujsHideLoadingOverlay');
     Turbolinks.clearCache();
@@ -181,6 +204,7 @@ const osuCommon = {
 
     osuCommon.navigate(url, keepScroll, { action: 'replace' });
   },
+
   setHash: (newHash: string) => {
     const currentUrl = getCurrentUrl().href;
     let newUrl = currentUrl.replace(/#.*/, '');
@@ -192,6 +216,7 @@ const osuCommon = {
 
     history.replaceState(history.state, '', newUrl);
   },
+
   storeJson: (id: string, object: Record<string, unknown>) => {
     const json = JSON.stringify(object);
     let element = document.getElementById(id) as (HTMLScriptElement | null);
@@ -205,6 +230,7 @@ const osuCommon = {
 
     element.text = json;
   },
+
   timeago: (time = '') => {
     const el = document.createElement('time');
 
@@ -214,6 +240,7 @@ const osuCommon = {
 
     return el.outerHTML;
   },
+
   trans: (key: string, replacements = {}, locale?: string) => {
     if (osuCommon.transExists(key, locale)) {
       locale = fallbackLocale;
@@ -221,16 +248,20 @@ const osuCommon = {
 
     return Lang.get(key, replacements, locale);
   },
+
   transExists: (key: string, locale?: string) => {
     const translated = Lang.get(key, null, locale);
 
     return osuCommon.present(translated) && translated !== key;
   },
+
   // Wrapping the string with quotes and escaping the used quotes inside
   // is sufficient. Use double quote as it's easy to figure out with
   // encodeURI (it doesn't escape single quote).
   urlPresence: (url?: string | null) => osuCommon.present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : null,
+
   urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig,
+
   xhrErrorMessage: (xhr: JQuery.jqXHR) => {
     const validationMessage = xhr.responseJSON.validation_error;
     let message: string;
