@@ -9,15 +9,15 @@ import Timeout from 'timeout';
 import { TurbolinksAction } from 'turbolinks';
 import { currentUrl as getCurrentUrl } from 'utils/turbolinks';
 
-const OsuCommon = {
+const osu = {
   ajaxError: (xhr: JQuery.jqXHR) => {
     if (core.userLogin.showOnError(xhr)) return;
     if (core.userVerification.showOnError(xhr)) return;
 
-    OsuCommon.popup(OsuCommon.xhrErrorMessage(xhr), 'danger');
+    osu.popup(osu.xhrErrorMessage(xhr), 'danger');
   },
 
-  bottomPage: () => OsuCommon.bottomPageDistance() === 0,
+  bottomPage: () => osu.bottomPageDistance() === 0,
 
   bottomPageDistance: () => {
     const body = document.documentElement ?? document.body.parentElement ?? document.body;
@@ -46,7 +46,7 @@ const OsuCommon = {
   focus: (el: HTMLElement) => {
     el = $(el)[0]; // so we can handle both jquery'd and normal dom nodes
 
-    if (!OsuCommon.isIos) {
+    if (!osu.isIos) {
       return el.focus();
     }
 
@@ -65,7 +65,7 @@ const OsuCommon = {
     }
 
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return `${OsuCommon.formatNumber(bytes / Math.pow(k, i), decimals)} ${suffixes[i]}`;
+    return `${osu.formatNumber(bytes / Math.pow(k, i), decimals)} ${suffixes[i]}`;
   },
 
   formatNumber: (num: number | null, precision?: number | null, options?: Intl.NumberFormatOptions | null, locale?: string) => {
@@ -86,12 +86,12 @@ const OsuCommon = {
   groupColour: (group?: GroupJson) => ({ '--group-colour': group?.colour ?? 'initial' } as React.CSSProperties),
 
   isClickable: (el: HTMLElement): boolean => {
-    if (OsuCommon.isInputElement(el) || ['A', 'BUTTON'].includes(el.tagName)) {
+    if (osu.isInputElement(el) || ['A', 'BUTTON'].includes(el.tagName)) {
       return true;
     }
 
     if (el.parentNode instanceof HTMLElement) {
-      return OsuCommon.isClickable(el.parentNode);
+      return osu.isClickable(el.parentNode);
     }
 
     return false;
@@ -136,13 +136,13 @@ const OsuCommon = {
     return el.outerHTML;
   },
 
-  linkify: (text: string, newWindow = false) => text.replace(OsuCommon.urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="blank"' : ''}>$2</a>`),
+  linkify: (text: string, newWindow = false) => text.replace(osu.urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="blank"' : ''}>$2</a>`),
 
   navigate: (url: string, keepScroll = false, action?: TurbolinksAction) => {
     action ??= { action: 'advance' };
 
     if (keepScroll) {
-      OsuCommon.keepScrollOnLoad();
+      osu.keepScrollOnLoad();
     }
 
     Turbolinks.visit(url, action);
@@ -194,7 +194,7 @@ const OsuCommon = {
 
   popupShowing: () => $('#overlay').is(':visible'),
 
-  presence: (str?: string | null) => OsuCommon.present(str) ? str : null,
+  presence: (str?: string | null) => osu.present(str) ? str : null,
 
   present: (str?: string | null) => str != null && str !== '',
 
@@ -210,7 +210,7 @@ const OsuCommon = {
 
     window.reloadUrl = null;
 
-    OsuCommon.navigate(url, keepScroll, { action: 'replace' });
+    osu.navigate(url, keepScroll, { action: 'replace' });
   },
 
   setHash: (newHash: string) => {
@@ -250,7 +250,7 @@ const OsuCommon = {
   },
 
   trans: (key: string, replacements = {}, locale?: string) => {
-    if (OsuCommon.transExists(key, locale)) {
+    if (osu.transExists(key, locale)) {
       locale = fallbackLocale;
     }
 
@@ -264,9 +264,9 @@ const OsuCommon = {
       case 1:
         return String(array[0]);
       case 2:
-        return array.join(OsuCommon.trans(`${key}.two_words_connector`));
+        return array.join(osu.trans(`${key}.two_words_connector`));
       default:
-        return `${array.slice(0, -1).join(OsuCommon.trans(`${key}.words_connector`))}${OsuCommon.trans(`${key}.last_word_connector`)}${String(array[array.length - 1])}`;
+        return `${array.slice(0, -1).join(osu.trans(`${key}.words_connector`))}${osu.trans(`${key}.last_word_connector`)}${String(array[array.length - 1])}`;
     }
   },
 
@@ -274,18 +274,18 @@ const OsuCommon = {
     locale ??= currentLocale;
     const isFallbackLocale = locale === fallbackLocale;
 
-    if (!isFallbackLocale && !OsuCommon.transExists(key, locale)) {
-      return OsuCommon.transChoice(key, count, replacements, fallbackLocale);
+    if (!isFallbackLocale && !osu.transExists(key, locale)) {
+      return osu.transChoice(key, count, replacements, fallbackLocale);
     }
 
-    replacements.count_delimited = OsuCommon.formatNumber(count, null, null, locale);
+    replacements.count_delimited = osu.formatNumber(count, null, null, locale);
     const translated = Lang.choice(key, count, replacements, locale);
 
     if (!isFallbackLocale && translated == null) {
       // added by Lang.choice
       delete replacements.count;
 
-      return OsuCommon.transChoice(key, count, replacements, fallbackLocale);
+      return osu.transChoice(key, count, replacements, fallbackLocale);
     }
 
     return translated;
@@ -295,7 +295,7 @@ const OsuCommon = {
   transExists: (key: string, locale?: string) => {
     const translated = Lang.get(key, null, locale);
 
-    return OsuCommon.present(translated) && translated !== key;
+    return osu.present(translated) && translated !== key;
   },
 
   updateQueryString: (url: string | null, params: { [key: string]: string | null | undefined }) => {
@@ -321,7 +321,7 @@ const OsuCommon = {
   // Wrapping the string with quotes and escaping the used quotes inside
   // is sufficient. Use double quote as it's easy to figure out with
   // encodeURI (it doesn't escape single quote).
-  urlPresence: (url?: string | null) => OsuCommon.present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : undefined,
+  urlPresence: (url?: string | null) => osu.present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : undefined,
 
   urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig,
 
@@ -350,10 +350,10 @@ const OsuCommon = {
 
     if (message == null || message === '') {
       const errorKey = `errors.codes.http-${xhr.status}`;
-      message = OsuCommon.trans(errorKey);
+      message = osu.trans(errorKey);
 
       if (message === errorKey) {
-        message = OsuCommon.trans('errors.unknown');
+        message = osu.trans('errors.unknown');
       }
     }
 
@@ -363,11 +363,10 @@ const OsuCommon = {
 
 declare global {
   interface Window {
-    osu: typeof OsuCommon;
+    osu: typeof osu;
   }
 }
 
-const osu = OsuCommon;
 window.osu = osu;
 
 export default osu;
