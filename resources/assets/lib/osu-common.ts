@@ -334,7 +334,7 @@ const osuCommon = {
 
       // FIXME: not sure about this conversion `for own` from coffeescript
       for (const field in validationMessage) {
-        if (validationMessage.hasOwnProperty(field)) {
+        if (Object.prototype.hasOwnProperty.call(validationMessage, field)) {
           const errors = validationMessage[field];
           allErrors = allErrors.concat(errors);
         }
