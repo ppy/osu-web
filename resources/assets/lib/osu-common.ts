@@ -226,6 +226,10 @@ const osuCommon = {
 
     return osuCommon.present(translated) && translated !== key;
   },
+  // Wrapping the string with quotes and escaping the used quotes inside
+  // is sufficient. Use double quote as it's easy to figure out with
+  // encodeURI (it doesn't escape single quote).
+  urlPresence: (url?: string | null) => osuCommon.present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : null,
   urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig,
   xhrErrorMessage: (xhr: JQuery.jqXHR) => {
     const validationMessage = xhr.responseJSON.validation_error;
