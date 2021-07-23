@@ -23,7 +23,6 @@ declare const Turbolinks: import('turbolinks').default;
 
 // our helpers
 declare const tooltipDefault: TooltipDefault;
-declare const osu: typeof import('osu-common').default;
 declare const currentUser: import('interfaces/current-user').default;
 
 // external (to typescript) classes

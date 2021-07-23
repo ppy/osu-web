@@ -361,4 +361,13 @@ const OsuCommon = {
   },
 };
 
-export default OsuCommon;
+declare global {
+  interface Window {
+    osu: typeof OsuCommon;
+  }
+}
+
+const osu = OsuCommon;
+window.osu = osu;
+
+export default osu;
