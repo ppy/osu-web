@@ -289,6 +289,7 @@ const osuCommon = {
     return translated;
   },
 
+  // Handles case where crowdin fills in untranslated key with empty string.
   transExists: (key: string, locale?: string) => {
     const translated = Lang.get(key, null, locale);
 
