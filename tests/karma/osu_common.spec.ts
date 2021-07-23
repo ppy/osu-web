@@ -28,7 +28,7 @@ describe('osu_common', () => {
 
   describe('text urlRegex', () => {
     it('should match url', () => {
-      expect(osu.urlRegex.test('https://osu.ppy.sh/')).toBe(true);
+      expect(osu.urlRegex.test('https://link.com')).toBe(true);
     })
 
     it('should not match non url', () => {
@@ -36,11 +36,11 @@ describe('osu_common', () => {
     })
 
     it('should return correct match', () => {
-      const matches = osu.urlRegex.exec('https://osu.ppy.sh/');
+      const matches = osu.urlRegex.exec('https://link.com');
 
-      expect(matches?.[0]).toBe('https://osu.ppy.sh/')
-      expect(matches?.[1]).toBe('https://osu.ppy.sh/');
-      expect(matches?.[2]).toBe('osu.ppy.sh/');
+      expect(matches?.[0]).toBe('https://link.com')
+      expect(matches?.[1]).toBe('https://link.com');
+      expect(matches?.[2]).toBe('link.com');
     })
 
     it('should return null for non correct match', () => {
@@ -122,17 +122,17 @@ describe('osu_common', () => {
   })
 
   describe('test linkify', () => {
-    const textWithLink = 'Please visit https://osu.ppy.sh/';
+    const textWithLink = 'Please visit https://link.com';
 
     it('should return correct anchor', () => {
       expect(osu.linkify(textWithLink)).toBe(
-        `Please visit <a href="https://osu.ppy.sh/" rel="nofollow noreferrer">osu.ppy.sh/</a>`
+        `Please visit <a href="https://link.com" rel="nofollow noreferrer">link.com</a>`
       )
     })
 
     it('should return correct anchor with target blank', () => {
       expect(osu.linkify(textWithLink, true)).toBe(
-        `Please visit <a href="https://osu.ppy.sh/" rel="nofollow noreferrer" target="_blank">osu.ppy.sh/</a>`
+        `Please visit <a href="https://link.com" rel="nofollow noreferrer" target="_blank">link.com</a>`
       )
     })
   })
