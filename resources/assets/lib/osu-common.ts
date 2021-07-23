@@ -36,6 +36,8 @@ const osuCommon = {
   emitAjaxError: (element = document.body) => (xhr: JQuery.jqXHR, status: string, error: string) => $(element).trigger('ajax:error', [xhr, status, error]),
   groupColour: (group?: GroupJson) => ({ '--group-colour': group?.colour ?? 'initial' } as React.CSSProperties),
   isIos: /iPad|iPhone|iPod/.test(navigator.platform),
+  // make a clone of json-like object (object with simple values)
+  jsonClone: (obj: any) => JSON.parse(JSON.stringify(obj ?? null)),
   parseJson<T = any>(id: string, remove = false) {
     const element = window.newBody?.querySelector(`#${id}`);
 
