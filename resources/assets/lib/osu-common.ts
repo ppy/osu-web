@@ -296,6 +296,26 @@ const osuCommon = {
     return osuCommon.present(translated) && translated !== key;
   },
 
+  updateQueryString: (url: string | null, params: { [key: string]: string | null | undefined }) => {
+    const docUrl = getCurrentUrl();
+    const urlObj = new URL(url ?? docUrl.href, docUrl.origin);
+
+    // FIXME: not sure about this conversion `for own` from coffeescript
+    for (const key in params) {
+      if (Object.prototype.hasOwnProperty.call(params, key)) {
+        const value = params[key];
+
+        if (value != null) {
+          urlObj.searchParams.set(key, value);
+        } else {
+          urlObj.searchParams.delete(key);
+        }
+      }
+    }
+
+    return urlObj.href;
+  },
+
   // Wrapping the string with quotes and escaping the used quotes inside
   // is sufficient. Use double quote as it's easy to figure out with
   // encodeURI (it doesn't escape single quote).
