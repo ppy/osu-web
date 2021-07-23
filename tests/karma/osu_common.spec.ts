@@ -26,28 +26,6 @@ describe('osu_common', () => {
     })
   })
 
-  describe('text urlRegex', () => {
-    it('should match url', () => {
-      expect(osu.urlRegex.test('https://link.com')).toBe(true);
-    })
-
-    it('should not match non url', () => {
-      expect(osu.urlRegex.test('this is not url')).toBe(false);
-    })
-
-    it('should return correct match', () => {
-      const matches = osu.urlRegex.exec('https://link.com');
-
-      expect(matches?.[0]).toBe('https://link.com')
-      expect(matches?.[1]).toBe('https://link.com');
-      expect(matches?.[2]).toBe('link.com');
-    })
-
-    it('should return null for non correct match', () => {
-      expect(osu.urlRegex.exec('this is not url')).toBe(null);
-    })
-  })
-
   describe('test classWithModifiers', () => {
     it('should return correct class with modifier', () => {
       expect(osu.classWithModifiers('base-class', ['modifier'])).toBe('base-class base-class--modifier');
