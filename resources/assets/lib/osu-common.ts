@@ -160,6 +160,8 @@ const OsuCommon = {
 
       return json;
     }
+
+    return {} as T;
   },
 
   popup: (message: string, type = 'info') => {
@@ -255,16 +257,16 @@ const OsuCommon = {
     return Lang.get(key, replacements, locale);
   },
 
-  transArray: (array: string[], key = 'common.array_and') => {
+  transArray: (array: any[], key = 'common.array_and') => {
     switch (array.length) {
       case 0:
         return '';
       case 1:
-        return array[0];
+        return String(array[0]);
       case 2:
         return array.join(OsuCommon.trans(`${key}.two_words_connector`));
       default:
-        return `${array.slice(0, -1).join(OsuCommon.trans(`${key}.words_connector`))}${OsuCommon.trans(`${key}.last_word_connector`)}${array[array.length - 1]}`;
+        return `${array.slice(0, -1).join(OsuCommon.trans(`${key}.words_connector`))}${OsuCommon.trans(`${key}.last_word_connector`)}${String(array[array.length - 1])}`;
     }
   },
 
@@ -319,7 +321,7 @@ const OsuCommon = {
   // Wrapping the string with quotes and escaping the used quotes inside
   // is sufficient. Use double quote as it's easy to figure out with
   // encodeURI (it doesn't escape single quote).
-  urlPresence: (url?: string | null) => OsuCommon.present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : null,
+  urlPresence: (url?: string | null) => OsuCommon.present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : undefined,
 
   urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig,
 

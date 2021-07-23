@@ -28,7 +28,7 @@ export default function PpValue(props: Props) {
   }
 
   return (
-    <span title={osu.formatNumber(props.score.pp)}>
+    <span title={osu.formatNumber(props.score.pp) ?? undefined}>
       {osu.formatNumber(Math.round(props.score.pp))}
       {props.suffix}
     </span>
