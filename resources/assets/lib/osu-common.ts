@@ -68,5 +68,10 @@ const osuCommon = {
 
     history.replaceState(history.state, '', newUrl);
   },
+  transExists: (key: string, locale?: string) => {
+    const translated = Lang.get(key, null, locale);
+
+    return osuCommon.present(translated) && translated !== key;
+  },
   urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig,
 };
