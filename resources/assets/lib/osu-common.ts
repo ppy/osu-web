@@ -9,15 +9,15 @@ import Timeout from 'timeout';
 import { TurbolinksAction } from 'turbolinks';
 import { currentUrl as getCurrentUrl } from 'utils/turbolinks';
 
-const osuCommon = {
+const OsuCommon = {
   ajaxError: (xhr: JQuery.jqXHR) => {
     if (core.userLogin.showOnError(xhr)) return;
     if (core.userVerification.showOnError(xhr)) return;
 
-    osuCommon.popup(osuCommon.xhrErrorMessage(xhr), 'danger');
+    OsuCommon.popup(OsuCommon.xhrErrorMessage(xhr), 'danger');
   },
 
-  bottomPage: () => osuCommon.bottomPageDistance() === 0,
+  bottomPage: () => OsuCommon.bottomPageDistance() === 0,
 
   bottomPageDistance: () => {
     const body = document.documentElement ?? document.body.parentElement ?? document.body;
@@ -46,7 +46,7 @@ const osuCommon = {
   focus: (el: HTMLElement) => {
     el = $(el)[0]; // so we can handle both jquery'd and normal dom nodes
 
-    if (!osuCommon.isIos) {
+    if (!OsuCommon.isIos) {
       return el.focus();
     }
 
@@ -65,7 +65,7 @@ const osuCommon = {
     }
 
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return `${osuCommon.formatNumber(bytes / Math.pow(k, i), decimals)} ${suffixes[i]}`;
+    return `${OsuCommon.formatNumber(bytes / Math.pow(k, i), decimals)} ${suffixes[i]}`;
   },
 
   formatNumber: (num: number | null, precision?: number | null, options?: Intl.NumberFormatOptions | null, locale?: string) => {
@@ -86,12 +86,12 @@ const osuCommon = {
   groupColour: (group?: GroupJson) => ({ '--group-colour': group?.colour ?? 'initial' } as React.CSSProperties),
 
   isClickable: (el: HTMLElement): boolean => {
-    if (osuCommon.isInputElement(el) || ['A', 'BUTTON'].includes(el.tagName)) {
+    if (OsuCommon.isInputElement(el) || ['A', 'BUTTON'].includes(el.tagName)) {
       return true;
     }
 
     if (el.parentNode instanceof HTMLElement) {
-      return osuCommon.isClickable(el.parentNode);
+      return OsuCommon.isClickable(el.parentNode);
     }
 
     return false;
@@ -136,13 +136,13 @@ const osuCommon = {
     return el.outerHTML;
   },
 
-  linkify: (text: string, newWindow = false) => text.replace(osuCommon.urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="blank"' : ''}>$2</a>`),
+  linkify: (text: string, newWindow = false) => text.replace(OsuCommon.urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="blank"' : ''}>$2</a>`),
 
   navigate: (url: string, keepScroll = false, action?: TurbolinksAction) => {
     action ??= { action: 'advance' };
 
     if (keepScroll) {
-      osuCommon.keepScrollOnLoad();
+      OsuCommon.keepScrollOnLoad();
     }
 
     Turbolinks.visit(url, action);
@@ -192,7 +192,7 @@ const osuCommon = {
 
   popupShowing: () => $('#overlay').is(':visible'),
 
-  presence: (str?: string | null) => osuCommon.present(str) ? str : null,
+  presence: (str?: string | null) => OsuCommon.present(str) ? str : null,
 
   present: (str?: string | null) => str != null && str !== '',
 
@@ -208,7 +208,7 @@ const osuCommon = {
 
     window.reloadUrl = null;
 
-    osuCommon.navigate(url, keepScroll, { action: 'replace' });
+    OsuCommon.navigate(url, keepScroll, { action: 'replace' });
   },
 
   setHash: (newHash: string) => {
@@ -248,7 +248,7 @@ const osuCommon = {
   },
 
   trans: (key: string, replacements = {}, locale?: string) => {
-    if (osuCommon.transExists(key, locale)) {
+    if (OsuCommon.transExists(key, locale)) {
       locale = fallbackLocale;
     }
 
@@ -262,28 +262,28 @@ const osuCommon = {
       case 1:
         return array[0];
       case 2:
-        return array.join(osuCommon.trans(`${key}.two_words_connector`));
+        return array.join(OsuCommon.trans(`${key}.two_words_connector`));
       default:
-        return `${array.slice(0, -1).join(osuCommon.trans(`${key}.words_connector`))}${osu.trans(`${key}.last_word_connector`)}${array[array.length - 1]}`;
+        return `${array.slice(0, -1).join(OsuCommon.trans(`${key}.words_connector`))}${OsuCommon.trans(`${key}.last_word_connector`)}${array[array.length - 1]}`;
     }
   },
 
-  transChoice: (key: string, count: number, replacements: Record<string, unknown> = {}, locale?: string) => {
+  transChoice: (key: string, count: number, replacements: Record<string, unknown> = {}, locale?: string): string => {
     locale ??= currentLocale;
     const isFallbackLocale = locale === fallbackLocale;
 
-    if (!isFallbackLocale && !osuCommon.transExists(key, locale)) {
-      return osu.transChoice(key, count, replacements, fallbackLocale);
+    if (!isFallbackLocale && !OsuCommon.transExists(key, locale)) {
+      return OsuCommon.transChoice(key, count, replacements, fallbackLocale);
     }
 
-    replacements.count_delimited = osuCommon.formatNumber(count, null, null, locale);
+    replacements.count_delimited = OsuCommon.formatNumber(count, null, null, locale);
     const translated = Lang.choice(key, count, replacements, locale);
 
     if (!isFallbackLocale && translated == null) {
       // added by Lang.choice
       delete replacements.count;
 
-      return osu.transChoice(key, count, replacements, fallbackLocale);
+      return OsuCommon.transChoice(key, count, replacements, fallbackLocale);
     }
 
     return translated;
@@ -293,7 +293,7 @@ const osuCommon = {
   transExists: (key: string, locale?: string) => {
     const translated = Lang.get(key, null, locale);
 
-    return osuCommon.present(translated) && translated !== key;
+    return OsuCommon.present(translated) && translated !== key;
   },
 
   updateQueryString: (url: string | null, params: { [key: string]: string | null | undefined }) => {
@@ -319,7 +319,7 @@ const osuCommon = {
   // Wrapping the string with quotes and escaping the used quotes inside
   // is sufficient. Use double quote as it's easy to figure out with
   // encodeURI (it doesn't escape single quote).
-  urlPresence: (url?: string | null) => osuCommon.present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : null,
+  urlPresence: (url?: string | null) => OsuCommon.present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : null,
 
   urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig,
 
@@ -348,13 +348,15 @@ const osuCommon = {
 
     if (message == null || message === '') {
       const errorKey = `errors.codes.http-${xhr.status}`;
-      message = osuCommon.trans(errorKey);
+      message = OsuCommon.trans(errorKey);
 
       if (message === errorKey) {
-        message = osuCommon.trans('errors.unknown');
+        message = OsuCommon.trans('errors.unknown');
       }
     }
 
     return message;
   },
 };
+
+export default OsuCommon;
