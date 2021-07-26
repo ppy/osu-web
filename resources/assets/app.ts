@@ -9,7 +9,7 @@ import 'app-deps';
 import './coffee/_classes/*.coffee';
 
 import 'jquery-pubsub.coffee';
-import 'osu-common';
+import 'osu-common-global';
 
 import 'spoilerbox.coffee';
 import 'store.coffee';
