@@ -7,6 +7,7 @@ import { NotificationContext } from 'notifications-context';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   canMarkAsRead?: boolean;
@@ -58,7 +59,7 @@ export default class Item extends React.Component<Props> {
       modifiers.push('read');
     }
 
-    return `clickable-row ${osu.classWithModifiers('notification-popup-item', modifiers)}`;
+    return `clickable-row ${classWithModifiers('notification-popup-item', modifiers)}`;
   }
 
   private handleContainerClick = (event: React.SyntheticEvent) => {
