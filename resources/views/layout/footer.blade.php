@@ -5,9 +5,9 @@
 <footer class="no-print {{ class_with_modifiers('footer', $modifiers ?? []) }}">
     @if ($withLinks ?? true)
         <div class="footer__row">
-            @foreach (footer_legal_links() as $action => $link)
+            @foreach (footer_legal_links() as $transKey => $link)
                 <a class="footer__link" href="{{ $link }}">
-                    {{ osu_trans("layout.footer.legal.{$action}") }}
+                    {{ osu_trans($transKey) }}
                 </a>
             @endforeach
 

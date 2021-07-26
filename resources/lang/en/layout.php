@@ -63,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'featured artists',
-            'index' => 'listing',
-            'packs' => 'packs',
         ],
         'community' => [
             '_' => 'community',
-            'chat' => 'chat',
-            'contests' => 'contests',
             'dev' => 'development',
-            'forum-forums-index' => 'forums',
-            'getLive' => 'live',
-            'tournaments' => 'tournaments',
         ],
         'help' => [
             '_' => 'help',
@@ -82,48 +74,26 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'rules',
             'getSupport' => 'no, really, i need help!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'home',
-            'changelog-index' => 'changelog',
-            'getDownload' => 'download',
-            'news-index' => 'news',
-            'search' => 'search',
             'team' => 'team',
         ],
         'rankings' => [
             '_' => 'rankings',
-            'charts' => 'spotlights',
-            'country' => 'country',
-            'index' => 'performance',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multiplayer',
-            'score' => 'score',
         ],
         'store' => [
             '_' => 'store',
-            'cart-show' => 'cart',
-            'getListing' => 'listing',
-            'orders-index' => 'order history',
         ],
     ],
 
     'footer' => [
         'general' => [
             '_' => 'General',
-            'home' => 'Home',
-            'changelog-index' => 'Changelog',
-            'beatmaps' => 'Beatmap Listing',
-            'download' => 'Download osu!',
         ],
         'help' => [
             '_' => 'Help & Community',
-            'faq' => 'Frequently Asked Questions',
-            'forum' => 'Community Forums',
-            'livestreams' => 'Live Streams',
-            'report' => 'Report an Issue',
-            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Legal & Status',

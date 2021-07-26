@@ -35,7 +35,7 @@
     }
 
     $currentHue = $currentHue ?? section_to_hue_map($currentSection);
-
+    $navLinks ??= nav_links();
 @endphp
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#" lang="{{ current_locale_meta()->html() }}">
