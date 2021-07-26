@@ -29,6 +29,26 @@ export default class UserCardBrick extends React.PureComponent<Props> {
 
   private readonly eventId = `user-card-brick-${nextVal()}`;
 
+  private get friendModifier() {
+    let isFriend = false;
+    let isMutual = false;
+
+    if (currentUser.friends != null) {
+      const friendState = currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
+
+      if (friendState != null) {
+        isFriend = true;
+        isMutual = friendState.mutual;
+      }
+    }
+
+    if (isMutual) {
+      return 'mutual';
+    } else if (isFriend && !this.context.isFriendsPage) {
+      return 'friend';
+    }
+  }
+
   componentDidMount() {
     $.subscribe(`friendButton:refresh.${this.eventId}`, this.refresh);
   }
@@ -38,12 +58,16 @@ export default class UserCardBrick extends React.PureComponent<Props> {
   }
 
   render() {
-    const modifiers = this.props.modifiers.concat(this.props.mode);
-    this.addFriendModifier(modifiers);
+    const blockClass = classWithModifiers(
+      'user-card-brick',
+      this.props.modifiers,
+      this.props.mode,
+      this.friendModifier,
+    );
 
     return (
       <a
-        className={`js-usercard ${classWithModifiers('user-card-brick', modifiers)}`}
+        className={`js-usercard ${blockClass}`}
         data-user-id={this.props.user.id}
         href={route('users.show', { user: this.props.user.id })}
       >
@@ -59,26 +83,6 @@ export default class UserCardBrick extends React.PureComponent<Props> {
       </a>
     );
   }
-
-  private addFriendModifier = (modifiers: string[]) => {
-    let isFriend = false;
-    let isMutual = false;
-
-    if (currentUser.friends != null) {
-      const friendState = currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
-
-      if (friendState != null) {
-        isFriend = true;
-        isMutual = friendState.mutual;
-      }
-    }
-
-    if (isMutual) {
-      modifiers.push('mutual');
-    } else if (isFriend && !this.context.isFriendsPage) {
-      modifiers.push('friend');
-    }
-  };
 
   private refresh = () => {
     this.forceUpdate();
