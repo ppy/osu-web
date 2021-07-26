@@ -345,12 +345,8 @@ export function xhrErrorMessage(xhr: JQuery.jqXHR) {
   if (validationMessage != null) {
     let allErrors: string[] = [];
 
-    // FIXME: not sure about this conversion `for own` from coffeescript
-    for (const field in validationMessage) {
-      if (Object.prototype.hasOwnProperty.call(validationMessage, field)) {
-        const errors = validationMessage[field];
-        allErrors = allErrors.concat(errors);
-      }
+    for (const errors of Object.values(validationMessage)) {
+      allErrors = allErrors.concat(errors as string[]);
     }
 
     message = `${allErrors.join(', ')}.`;
