@@ -3,7 +3,6 @@
 
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as _ from 'lodash';
-import * as osu from 'osu-common';
 import * as React from 'react';
 import { getDiffColour, getDiffRating } from 'utils/beatmap-helper';
 
