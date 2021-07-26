@@ -6,7 +6,7 @@ import GameMode from 'interfaces/game-mode';
 import UserJsonExtended from 'interfaces/user-json-extended';
 import { route } from 'laroute';
 import * as _ from 'lodash';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import UserAvatar from 'user-avatar';
 import UserGroupBadges from 'user-group-badges';

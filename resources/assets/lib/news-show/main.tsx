@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import PostItem from 'news-index/post-item';
 import NewsSidebar from 'news-sidebar/main';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { classWithModifiers } from 'utils/css';

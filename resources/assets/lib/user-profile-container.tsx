@@ -5,7 +5,7 @@ import { BlockButton } from 'block-button';
 import UserJson from 'interfaces/user-json';
 import { find } from 'lodash';
 import { NotificationBanner } from 'notification-banner';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 

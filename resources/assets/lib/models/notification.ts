@@ -11,7 +11,7 @@ import { displayType } from 'notification-maps/type';
 import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import core from 'osu-core-singleton';
 
 export default class Notification implements NotificationReadable, NotificationDeletable {

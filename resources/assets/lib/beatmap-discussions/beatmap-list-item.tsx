@@ -3,7 +3,7 @@
 
 import { BeatmapIcon } from 'beatmap-icon';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 

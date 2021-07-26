@@ -4,7 +4,7 @@
 import { ChatInitialJson } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
 import Channel from 'models/chat/channel';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { currentUrlParams } from 'utils/turbolinks';

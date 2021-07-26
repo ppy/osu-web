@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 import { computed, observe } from 'mobx';
 import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';

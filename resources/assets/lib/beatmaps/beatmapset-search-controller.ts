@@ -7,7 +7,7 @@ import { BeatmapsetSearchFilters, BeatmapsetSearchParams } from 'beatmapset-sear
 import { route } from 'laroute';
 import { debounce, intersection, map } from 'lodash';
 import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe, runInAction } from 'mobx';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import { currentUrl } from 'utils/turbolinks';
 
 export interface SearchStatus {

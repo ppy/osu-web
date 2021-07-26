@@ -6,7 +6,7 @@ import {
   BeatmapReviewDiscussionType,
   DocumentIssueEmbed,
 } from 'interfaces/beatmap-discussion-review';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import { Editor, Element as SlateElement, Node as SlateNode, Range as SlateRange, Text, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
 

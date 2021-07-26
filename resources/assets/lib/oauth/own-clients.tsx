@@ -8,7 +8,7 @@ import { Modal } from 'modal';
 import { ClientDetails } from 'oauth/client-details';
 import { NewClient } from 'oauth/new-client';
 import { OwnClient } from 'oauth/own-client';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 

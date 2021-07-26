@@ -3,7 +3,7 @@
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import { route } from 'laroute';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 

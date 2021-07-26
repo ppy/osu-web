@@ -4,7 +4,7 @@
 import NewsPostJson from 'interfaces/news-post-json';
 import NewsSidebarMetaJson from 'interfaces/news-sidebar-meta-json';
 import * as moment from 'moment';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import MonthListing from './month-listing';
 import Years from './years';

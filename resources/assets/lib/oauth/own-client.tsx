@@ -4,7 +4,7 @@
 import { BigButton } from 'big-button';
 import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 

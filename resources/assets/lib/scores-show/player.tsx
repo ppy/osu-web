@@ -4,7 +4,7 @@
 import ScoreJson from 'interfaces/score-json';
 import Mod from 'mod';
 import * as moment from 'moment';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 
 interface Props {

@@ -11,7 +11,7 @@ import { NotificationContextData } from 'notifications-context';
 import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity, resolveIdentityType, toJson, toString } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import { NotificationCursor } from './notification-cursor';
 import { NotificationEventDelete, NotificationEventMoreLoaded, NotificationEventRead } from './notification-events';
 

@@ -5,7 +5,7 @@ import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
 import { route } from 'laroute';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 
 interface Props {

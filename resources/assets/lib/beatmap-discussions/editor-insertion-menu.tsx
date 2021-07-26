@@ -3,7 +3,7 @@
 
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import { Cancelable, throttle } from 'lodash';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import { Portal } from 'portal';
 import * as React from 'react';
 import { Editor as SlateEditor, Element as SlateElement, Node as SlateNode, Point, Text as SlateText, Transforms } from 'slate';

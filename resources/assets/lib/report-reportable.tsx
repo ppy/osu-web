@@ -3,7 +3,7 @@
 
 import { route } from 'laroute';
 import { Dictionary } from 'lodash';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { ReportForm } from 'report-form';
 

@@ -3,7 +3,7 @@
 
 import { BeatmapReviewDiscussionType } from 'interfaces/beatmap-discussion-review';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { Element, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';

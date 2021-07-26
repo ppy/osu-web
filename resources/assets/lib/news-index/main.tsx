@@ -8,7 +8,7 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import NewsSidebar from 'news-sidebar/main';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { nextVal } from 'utils/seq';

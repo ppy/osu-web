@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as clipboard from 'clipboard-polyfill';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 
 interface Props {

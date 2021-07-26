@@ -6,7 +6,7 @@ import { OwnClientJson } from 'interfaces/own-client-json';
 import { route } from 'laroute';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';

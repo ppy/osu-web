@@ -3,7 +3,7 @@
 
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { WikiSearchController } from 'wiki-search-controller';

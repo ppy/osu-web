@@ -5,7 +5,7 @@ import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import UserJson from 'interfaces/user-json';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import Editor from './editor';

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import GameMode from 'interfaces/game-mode';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { Option, OptionRenderProps, SelectOptions } from 'select-options';
 import { Sort } from 'sort';

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Main from 'follows-comment/main';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 

@@ -4,7 +4,7 @@
 import PostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
 import * as moment from 'moment';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { classWithModifiers } from 'utils/css';

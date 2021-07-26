@@ -6,7 +6,7 @@ import UserJson from 'interfaces/user-json';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import BeatmapOwnerEditor from './beatmap-owner-editor';

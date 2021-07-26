@@ -4,7 +4,7 @@
 import HeaderV4 from 'header-v4';
 import NewsPostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 
 interface Props {

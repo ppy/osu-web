@@ -3,7 +3,7 @@
 
 import { AuthorizedClients } from 'oauth/authorized-clients';
 import { OwnClients } from 'oauth/own-clients';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 

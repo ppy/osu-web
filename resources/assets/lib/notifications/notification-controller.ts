@@ -4,7 +4,7 @@
 import { action, computed, observable } from 'mobx';
 import NotificationType, { getValidName, Name as NotificationTypeName, typeNames } from 'models/notification-type';
 import { NotificationContextData } from 'notifications-context';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import NotificationStackStore from 'stores/notification-stack-store';
 import NotificationStore from 'stores/notification-store';
 import { currentUrl, currentUrlParams } from 'utils/turbolinks';

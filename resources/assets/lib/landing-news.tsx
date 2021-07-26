@@ -4,7 +4,7 @@ import PostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import PostItem from 'news-index/post-item';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 

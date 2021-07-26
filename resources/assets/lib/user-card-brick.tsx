@@ -5,7 +5,7 @@ import UserJson from 'interfaces/user-json';
 import UserRelationJson from 'interfaces/user-relation-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { ViewMode } from 'user-card';
 import UserCardTypeContext from 'user-card-type-context';

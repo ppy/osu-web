@@ -4,7 +4,7 @@
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import Img2x from 'img2x';
 import { route } from 'laroute';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';

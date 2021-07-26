@@ -3,7 +3,7 @@
 
 import BeatmapJson from 'interfaces/beatmap-json';
 import ScoreJson from 'interfaces/score-json';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { UserCard } from 'user-card';

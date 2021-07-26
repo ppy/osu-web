@@ -5,7 +5,7 @@ import { BeatmapIcon } from 'beatmap-icon';
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import { route } from 'laroute';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
@@ -40,7 +40,7 @@ const BeatmapInfo = (props: Props) => {
         <span className='score-beatmap__detail-item score-beatmap__detail-item--difficulty'>
           <span
             className='score-beatmap__star'
-            style={{'--diff': getDiffColour(beatmap.difficulty_rating)} as React.CSSProperties}
+            style={{ '--diff': getDiffColour(beatmap.difficulty_rating) } as React.CSSProperties}
           >
             <span className='fas fa-star' />
           </span>

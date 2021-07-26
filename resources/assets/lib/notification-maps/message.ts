@@ -4,7 +4,7 @@
 import * as _ from 'lodash';
 import Notification from 'models/notification';
 import { isBeatmapOwnerChangeNotification } from 'models/notification/beatmap-owner-change-notification';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 
 type Replacements = { title: string } & Partial<Record<string, string>>;
 

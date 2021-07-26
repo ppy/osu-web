@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { PersistedBeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
 import { propsFromHref } from 'utils/beatmapset-discussion-helper';

@@ -4,7 +4,7 @@
 import HeaderV4 from 'header-v4';
 import Img2x from 'img2x';
 import { observer, Provider } from 'mobx-react';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
 import ChatWorker from './chat-worker';

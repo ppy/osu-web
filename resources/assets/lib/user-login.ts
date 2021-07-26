@@ -4,7 +4,7 @@
 import Captcha from 'captcha';
 import UserJson from 'interfaces/user-json';
 import * as Cookies from 'js-cookie';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import { createClickCallback } from 'utils/html';
 
 declare global {

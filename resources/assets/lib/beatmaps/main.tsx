@@ -7,7 +7,7 @@ import HeaderV4 from 'header-v4';
 import { isEqual } from 'lodash';
 import { IValueDidChange, observe } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { SearchContent } from 'react/beatmaps/search-content';

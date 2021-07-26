@@ -3,7 +3,7 @@
 
 import Fade from 'fade';
 import { route } from 'laroute';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import core from 'osu-core-singleton';
 import { createClickCallback } from 'utils/html';
 

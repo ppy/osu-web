@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { action, computed, intercept, observable } from 'mobx';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 
 const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
 

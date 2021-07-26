@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJsonExtended from 'interfaces/user-json-extended';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import Header from 'user-multiplayer-index/header';
 import MultiplayerHistory from 'user-multiplayer-index/multiplayer-history';

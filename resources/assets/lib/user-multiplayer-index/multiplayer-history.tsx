@@ -6,7 +6,7 @@ import UserMultiplayerHistoryJson from 'interfaces/user-multiplayer-history-json
 import { route } from 'laroute';
 import { action, computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import UserMultiplayerHistoryContext, { updateStore } from 'user-multiplayer-history-context';

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Fade from 'fade';
-import osu from 'osu-common';
+import * as osu from 'osu-common';
 
 export default class ClickMenu {
   private current: string | null | undefined = null;
