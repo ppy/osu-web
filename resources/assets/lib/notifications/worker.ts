@@ -7,7 +7,7 @@ import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { action, computed, observable, observe } from 'mobx';
-import SocketMessageEvent from 'socket-message-event';
+import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
 import SocketWorker from 'socket-worker';
 import {
   NotificationEventDelete,
@@ -23,11 +23,11 @@ interface NotificationBootJson extends NotificationBundleJson {
   notification_endpoint: string;
 }
 
-const isNotificationEventDeleteJson = (arg: any): arg is NotificationEventDeleteJson => arg.event === 'delete';
+const isNotificationEventDeleteJson = (arg: SocketEventData): arg is NotificationEventDeleteJson => arg.event === 'delete';
 
-const isNotificationEventNewJson = (arg: any): arg is NotificationEventNewJson => arg.event === 'new';
+const isNotificationEventNewJson = (arg: SocketEventData): arg is NotificationEventNewJson => arg.event === 'new';
 
-const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson => arg.event === 'read';
+const isNotificationEventReadJson = (arg: SocketEventData): arg is NotificationEventReadJson => arg.event === 'read';
 
 /**
  * Handles initial notifications bootstrapping and parsing of web socket messages into notification events.

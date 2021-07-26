@@ -51,7 +51,7 @@ export default class OsuCore {
   notificationsWorker: NotificationsWorker;
   readonly osuAudio: OsuAudio;
   readonly osuLayzr = new OsuLayzr();
-  readonly reactTurbolinks = new ReactTurbolinks();
+  readonly reactTurbolinks: ReactTurbolinks;
   socketWorker: SocketWorker;
   readonly timeago = new Timeago();
   readonly turbolinksReload = new TurbolinksReload();
@@ -69,6 +69,7 @@ export default class OsuCore {
 
     this.enchant = new Enchant(this.turbolinksReload);
     this.osuAudio = new OsuAudio(this.userPreferences);
+    this.reactTurbolinks = new ReactTurbolinks(this.turbolinksReload);
     this.userLogin = new UserLogin(this.captcha);
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.

@@ -3,122 +3,139 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import TurbolinksReload from 'turbolinks-reload';
+import { currentUrl } from 'utils/turbolinks';
 
-function isTurbolinksPermanent(element: Element) {
-  return element instanceof HTMLElement && element.id !== '' && element.dataset.turbolinksPermanent != null;
-}
-
-type ElementFn = (target: Element) => React.ReactElement;
-
-interface Component {
-  elementFn: ElementFn;
-  loaded: boolean;
-  persistent: boolean;
-  targets: HTMLCollection;
-}
+type ElementFn = (container: HTMLElement) => React.ReactElement;
 
 export default class ReactTurbolinks {
-  private components = new Map<string, Component>();
-  private documentReady = false;
+  private components = new Map<string, ElementFn>();
   private newVisit = true;
+  private pageReady = false;
+  private renderedContainers = new Set<HTMLElement>();
   private scrolled = false;
-  private targets = new Set<Element>();
   private timeoutScroll?: number;
 
-  constructor() {
-    $(document).on('turbolinks:before-cache', this.onBeforeCache);
-    $(document).on('turbolinks:before-visit', this.onBeforeVisit);
-    $(document).on('turbolinks:load', this.onLoad);
+  constructor(private turbolinksReload: TurbolinksReload) {
+    $(document).on('turbolinks:before-cache', this.handleBeforeCache);
+    $(document).on('turbolinks:before-visit', this.handleBeforeVisit);
+    $(document).on('turbolinks:load', this.handleLoad);
+    $(document).on('turbolinks:before-render', this.handleBeforeRender);
   }
 
-  allTargets = (callback: (params: { component: Component; name: string; target: Element }) => void) => {
-    for (const [name, component] of this.components.entries()) {
-      for (const target of component.targets) {
-        callback({ component, name, target });
+  boot = () => {
+    if (!this.pageReady || window.newBody == null) return;
+
+    for (const [name, elementFn] of this.components.entries()) {
+      const containers = window.newBody.querySelectorAll(`.js-react--${name}`);
+
+      for (const container of containers) {
+        if (!(container instanceof HTMLElement) || this.renderedContainers.has(container)) {
+          continue;
+        }
+
+        this.renderedContainers.add(container);
+        ReactDOM.render(elementFn(container), container);
       }
     }
   };
 
-  boot = () => {
-    if (!this.documentReady) return;
+  register(name: string, elementFn: ElementFn) {
+    if (this.components.has(name)) return;
 
-    this.allTargets(({ component, target }) => {
-      if (this.targets.has(target)) return;
+    this.components.set(name, elementFn);
 
-      this.targets.add(target);
-      ReactDOM.render(component.elementFn(target), target);
-    });
-  };
+    this.boot();
+  }
 
-  destroy = () => {
-    this.allTargets(({ component, target }) => {
-      if (!isTurbolinksPermanent(target) && this.targets.has(target) && !component.persistent) {
-        ReactDOM.unmountComponentAtNode(target);
-      }
-    });
-  };
+  runAfterPageLoad(eventId: string, callback: () => void) {
+    if (document.body === window.newBody) {
+      callback();
+    } else {
+      $(document).one(`turbolinks:load.${eventId}`, callback);
+    }
+  }
 
-  destroyPersisted = () => {
-    for (const target of this.targets.values()) {
-      if (isTurbolinksPermanent(target) && document.body.contains(target)) continue;
+  private destroy = () => {
+    for (const target of this.renderedContainers.values()) {
+      if (document.body.contains(target)) continue;
 
       ReactDOM.unmountComponentAtNode(target);
-      this.targets.delete(target);
+      this.renderedContainers.delete(target);
     }
   };
 
-  onBeforeCache = () => {
+  private handleBeforeCache = () => {
+    this.pageReady = false;
     window.clearTimeout(this.timeoutScroll);
-    this.documentReady = false;
-    this.destroy();
   };
 
-  onBeforeVisit = () => {
+  private handleBeforeRender = (e: JQuery.TriggeredEvent) => {
+    window.newBody = (e.originalEvent as Event & { data: { newBody: HTMLElement }}).data.newBody;
+    this.setNewUrl();
+    this.pageReady = true;
+    this.loadScripts(false);
+    this.boot();
+  };
+
+  private handleBeforeVisit = () => {
     this.newVisit = true;
   };
 
-  onLoad = () => {
+  private handleLoad = () => {
+    window.newBody ??= document.body;
+    window.newUrl = null; // location.href should now be correct
+    this.pageReady = true;
     this.scrolled = false;
-    $(window).off('scroll', this.onWindowScroll);
-    $(window).on('scroll', this.onWindowScroll);
+    $(window).off('scroll', this.handleWindowScroll);
+    $(window).on('scroll', this.handleWindowScroll);
 
     // Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
     window.setTimeout(() => {
-      this.destroyPersisted();
-      this.documentReady = true;
+      this.destroy();
+      this.loadScripts();
       this.boot();
       this.timeoutScroll = window.setTimeout(this.scrollOnNewVisit, 100);
     }, 1);
   };
 
-  onWindowScroll = () => {
+  private handleWindowScroll = () => {
     this.scrolled = this.scrolled || window.scrollX !== 0 || window.scrollY !== 0;
   };
 
-  register(name: string, persistent: boolean, elementFn: ElementFn) {
-    if (this.components.has(name)) return;
+  private loadScripts(isAsync = true) {
+    if (window.newBody == null) return;
 
-    this.components.set(name, {
-      elementFn,
-      loaded: false,
-      persistent,
-      targets: document.getElementsByClassName(`js-react--${name}`),
+    const loadFunc = isAsync ? 'load' : 'loadSync';
+
+    window.newBody.querySelectorAll('.js-react-turbolinks--script').forEach((script) => {
+      if (script instanceof HTMLDivElement) {
+        const src = script.dataset.src;
+        if (src != null) {
+          void this.turbolinksReload[loadFunc](src);
+        }
+      }
     });
-
-    this.boot();
   }
 
-  scrollOnNewVisit = () => {
-    $(window).off('scroll', this.onWindowScroll);
+  private scrollOnNewVisit = () => {
+    $(window).off('scroll', this.handleWindowScroll);
     const newVisit = this.newVisit;
     this.newVisit = false;
 
     if (!newVisit || this.scrolled) return;
 
-    const targetId = decodeURIComponent(document.location.hash.substr(1));
+    const targetId = decodeURIComponent(currentUrl().hash.substr(1));
 
     if (targetId === '') return;
 
     document.getElementById(targetId)?.scrollIntoView();
   };
+
+  private setNewUrl() {
+    const visitUrl = Turbolinks.controller.currentVisit?.redirectedToLocation?.absoluteURL
+      ?? Turbolinks.controller.currentVisit?.location.absoluteURL;
+
+    window.newUrl = visitUrl == null ? document.location : new URL(visitUrl);
+  }
 }

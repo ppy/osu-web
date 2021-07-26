@@ -6,8 +6,9 @@ import MainView from 'chat/main-view';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { currentUrlParams } from 'utils/turbolinks';
 
-core.reactTurbolinks.register('chat', false, () => {
+core.reactTurbolinks.register('chat', () => {
   const dataStore = core.dataStore;
   const initial = osu.parseJson<ChatInitialJson | null>('json-chat-initial', true);
 
@@ -36,7 +37,7 @@ core.reactTurbolinks.register('chat', false, () => {
       initialChannel = channel.channelId;
     }
   } else {
-    const channelId = parseInt(new URL(location.href).searchParams.get('channel_id') ?? '', 10);
+    const channelId = parseInt(currentUrlParams().get('channel_id') ?? '', 10);
     // TODO: should clear query string as well (and maybe update on channel selection?)
     initialChannel = dataStore.channelStore.get(channelId) != null ? channelId : dataStore.chatState.selected;
 

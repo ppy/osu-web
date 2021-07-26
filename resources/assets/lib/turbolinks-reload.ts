@@ -35,4 +35,19 @@ export default class TurbolinksReload {
 
     return xhr;
   }
+
+  loadSync(src: string) {
+    if (this.loaded.has(src)) {
+      return;
+    }
+
+    // abort current one to make sure sync loading.
+    if (this.loading.has(src)) {
+      this.forget(src);
+    }
+
+    void $.ajax(src, { async: false, cache: true, dataType: 'script' });
+
+    this.loaded.add(src);
+  }
 }

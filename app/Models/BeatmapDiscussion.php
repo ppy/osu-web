@@ -17,6 +17,7 @@ use Exception;
  * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussionVotes BeatmapDiscussionVote
  * @property int|null $beatmap_id
  * @property int $beatmapset_id
+ * @property Beatmapset $beatmapset
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $deleted_at
  * @property int|null $deleted_by_id
@@ -250,6 +251,11 @@ class BeatmapDiscussion extends Model
             !$this->kudosu_denied;
     }
 
+    public function isProblem()
+    {
+        return $this->message_type === 'problem';
+    }
+
     public function refreshKudosu($event, $eventExtraData = [])
     {
         // remove own votes
@@ -375,6 +381,17 @@ class BeatmapDiscussion extends Model
         return $this->fill([
             'timestamp' => $this->startingPost->timestamp() ?? null,
         ])->saveOrExplode();
+    }
+
+    /**
+     * To get the correct result, this should be called before discussions are updated, as it checks the open problems count.
+     */
+    public function shouldNotifyQualifiedProblem(?string $event): bool
+    {
+        return (
+            $event === BeatmapsetEvent::ISSUE_REOPEN
+            || $event === null && !$this->exists && $this->isProblem() && $this->beatmapset->isQualified()
+        ) && $this->beatmapset->beatmapDiscussions()->openProblems()->count() === 0;
     }
 
     public function fixBeatmapsetId()

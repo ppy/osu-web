@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
 
         Commands\UserForumStatSyncCommand::class,
         Commands\BeatmapsetsHypeSyncCommand::class,
+        Commands\BeatmapsetNominationSyncCommand::class,
 
         Commands\StoreCleanupStaleOrders::class,
         Commands\StoreExpireProducts::class,

@@ -10,6 +10,7 @@ import * as React from 'react';
 import { Sort } from 'sort';
 import { ViewMode, viewModes } from 'user-card';
 import { UserCards } from 'user-cards';
+import { currentUrlParams } from 'utils/turbolinks';
 
 export type Filter = 'all' | 'online' | 'offline';
 type PlayModeFilter = 'all' | GameMode;
@@ -51,21 +52,17 @@ export class UserList extends React.PureComponent<Props> {
   };
 
   private get filterFromUrl() {
-    const url = new URL(location.href);
-
     return this.getAllowedQueryStringValue(
       filters,
-      url.searchParams.get('filter'),
+      currentUrlParams().get('filter'),
       core.userPreferences.get('user_list_filter'),
     );
   }
 
   private get playmodeFromUrl() {
-    const url = new URL(location.href);
-
     return this.getAllowedQueryStringValue(
       playModes,
-      url.searchParams.get('mode'),
+      currentUrlParams().get('mode'),
       'all',
     );
   }
@@ -96,21 +93,17 @@ export class UserList extends React.PureComponent<Props> {
   }
 
   private get sortFromUrl() {
-    const url = new URL(location.href);
-
     return this.getAllowedQueryStringValue(
       sortModes,
-      url.searchParams.get('sort'),
+      currentUrlParams().get('sort'),
       core.userPreferences.get('user_list_sort'),
     );
   }
 
   private get viewFromUrl() {
-    const url = new URL(location.href);
-
     return this.getAllowedQueryStringValue(
       viewModes,
-      url.searchParams.get('view'),
+      currentUrlParams().get('view'),
       core.userPreferences.get('user_list_view'),
     );
   }

@@ -3,6 +3,7 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
+import Blackout from 'blackout'
 import Fade from 'fade'
 import Gallery from 'gallery'
 import * as laroute from 'laroute'
@@ -13,9 +14,12 @@ import { fileuploadFailCallback } from 'utils/ajax'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { make2x } from 'utils/html'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
+import { currentUrl } from 'utils/turbolinks'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
+
+window.Blackout = Blackout
 
 window.Fade = Fade
 
@@ -23,6 +27,7 @@ window.gallery ?= new Gallery
 
 window._exported = {
   OsuUrlHelper
+  currentUrl
   discussionLinkify
   fileuploadFailCallback
   make2x

@@ -39,5 +39,5 @@
     </script>
 
     @include('beatmapsets._recommended_star_difficulty_all')
-    @include('layout._extra_js', ['src' => 'js/react/beatmapset-page.js'])
+    @include('layout._react_js', ['src' => 'js/react/beatmapset-page.js'])
 @endsection

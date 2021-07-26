@@ -6,7 +6,7 @@ import { OwnClients } from 'oauth/own-clients';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
-core.reactTurbolinks.register('authorized-clients', false, () => {
+core.reactTurbolinks.register('authorized-clients', () => {
   const json = osu.parseJson('json-authorized-clients', true);
   if (json != null) {
     core.dataStore.clientStore.initialize(json);
@@ -15,7 +15,7 @@ core.reactTurbolinks.register('authorized-clients', false, () => {
   return <AuthorizedClients />;
 });
 
-core.reactTurbolinks.register('own-clients', false, () => {
+core.reactTurbolinks.register('own-clients', () => {
   const json = osu.parseJson('json-own-clients', true);
   if (json != null) {
     core.dataStore.ownClientStore.initialize(json);

@@ -228,7 +228,7 @@ class @Forum
 
 
   initialScrollTo: =>
-    return if location.hash != '' ||
+    return if _exported.currentUrl().hash != '' ||
       !window.postJumpTo? ||
       window.postJumpTo == 0
 
@@ -244,7 +244,7 @@ class @Forum
 
 
   postUrlN: (postN) ->
-    "#{document.location.pathname}?n=#{postN}"
+    "#{_exported.currentUrl().pathname}?n=#{postN}"
 
 
   showMore: (e) =>

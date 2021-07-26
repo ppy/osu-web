@@ -16,6 +16,7 @@ import { div } from 'react-dom-factories'
 import NewReview from 'beatmap-discussions/new-review'
 import * as BeatmapHelper from 'utils/beatmap-helper'
 import { nextVal } from 'utils/seq'
+import { currentUrl } from 'utils/turbolinks'
 
 el = React.createElement
 
@@ -35,7 +36,7 @@ export class Main extends React.PureComponent
     @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
     @restoredState = @state?
     # FIXME: update url handler to recognize this instead
-    @focusNewDiscussion = document.location.hash == '#new'
+    @focusNewDiscussion = currentUrl().hash == '#new'
 
     if @restoredState
       @state.readPostIds = new Set(@state.readPostIdsArray)

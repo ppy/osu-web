@@ -7,6 +7,7 @@ import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import UserJson from 'interfaces/user-json';
 import { AnchorHTMLAttributes } from 'react';
+import { currentUrl } from 'utils/turbolinks';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
@@ -46,7 +47,7 @@ export function discussionLinkify(text: string) {
 }
 
 export function propsFromHref(href: string) {
-  const current = BeatmapDiscussionHelper.urlParse(window.location.href);
+  const current = BeatmapDiscussionHelper.urlParse(currentUrl().href);
 
   const props: AnchorHTMLAttributes<HTMLAnchorElement> = {
     children: href,
@@ -65,7 +66,7 @@ export function propsFromHref(href: string) {
     // ignore error
   }
 
-  if (targetUrl != null && targetUrl.host === window.location.host) {
+  if (targetUrl != null && targetUrl.host === currentUrl().host) {
     const target = BeatmapDiscussionHelper.urlParse(targetUrl.href, null, { forceDiscussionId: true });
     if (target?.discussionId != null && target.beatmapsetId != null) {
       const hash = [target.discussionId, target.postId].filter(Number.isFinite).join('/');

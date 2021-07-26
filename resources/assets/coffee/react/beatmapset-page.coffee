@@ -5,7 +5,7 @@ import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { Main } from './beatmapset-page/main'
 
-core.reactTurbolinks.register 'beatmapset-page', true, (target) ->
+core.reactTurbolinks.register 'beatmapset-page', (container) ->
   createElement Main,
     beatmapset: osu.parseJson('json-beatmapset')
-    container: target
+    container: container

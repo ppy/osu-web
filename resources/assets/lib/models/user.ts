@@ -27,13 +27,12 @@ export default class User {
   }
 
   static fromJson(json: UserJson): User {
-    const user = Object.create(User.prototype);
+    const user = new User(json.id);
     return Object.assign(user, {
       avatarUrl: json.avatar_url,
       countryCode: json.country_code,
       defaultGroup: json.default_group,
       groups: json.groups,
-      id: json.id,
       isActive: json.is_active,
       isBot: json.is_bot,
       isOnline: json.is_online,
