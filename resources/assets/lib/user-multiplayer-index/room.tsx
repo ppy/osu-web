@@ -14,7 +14,7 @@ import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
 import UserMultiplayerHistoryContext from 'user-multiplayer-history-context';
-import { getDiffRating } from 'utils/beatmap-helper';
+import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
@@ -84,8 +84,8 @@ export default class Room extends React.Component<Props> {
             <div
               className='multiplayer-room__difficulty'
               style={{
-                '--max-difficulty': `var(--diff-${getDiffRating(this.maxDifficulty)})`,
-                '--min-difficulty': `var(--diff-${getDiffRating(this.minDifficulty)})`,
+                '--max-difficulty': getDiffColour(this.maxDifficulty),
+                '--min-difficulty': getDiffColour(this.minDifficulty),
               } as React.CSSProperties}
             >
               <DifficultyBadge rating={this.minDifficulty} />

@@ -39,7 +39,7 @@ interface Comment {
 }
 
 interface DiscussionMessageType {
-  icon: {[key: string]: string};
+  icon: { [key: string]: string };
 }
 
 interface BeatmapDiscussionHelperClass {

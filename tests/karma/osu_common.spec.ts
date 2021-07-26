@@ -27,20 +27,6 @@ describe('osu_common', () => {
     })
   })
 
-  describe('test diffColour', () => {
-    it('should return CSS object with correct variable', () => {
-      expect(osu.diffColour('normal')).toEqual({
-        '--diff': 'var(--diff-normal)',
-      } as React.CSSProperties);
-    })
-
-    it('should return CSS object with default variable', () => {
-      expect(osu.diffColour()).toEqual({
-        '--diff': 'var(--diff-default)',
-      } as React.CSSProperties);
-    })
-  })
-
   describe('test groupColour', () => {
     const group: GroupJson = {
       colour: '#abcdef',

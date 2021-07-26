@@ -3,14 +3,17 @@
 
 import osu from 'osu-common';
 import * as React from 'react';
-import { getDiffRating } from 'utils/beatmap-helper';
+import { getDiffColour } from 'utils/beatmap-helper';
+import { classWithModifiers } from 'utils/css';
 
 export default function DifficultyBadge(props: { rating: number }) {
   return (
     <div
-      className='difficulty-badge'
+      className={classWithModifiers('difficulty-badge', {
+        'expert-plus': props.rating >= 6.5,
+      })}
       style={{
-        '--bg': `var(--diff-${getDiffRating(props.rating)})`,
+        '--bg': getDiffColour(props.rating),
       } as React.CSSProperties}
     >
       <span className='difficulty-badge__icon'>
