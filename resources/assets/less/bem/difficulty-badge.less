@@ -3,7 +3,6 @@
 
 // Set --bg on the component
 .difficulty-badge {
-  --diff-expert-plus: @diff-expert-plus-light;
   border-radius: 10000px;
   background-color: var(--bg);
   color: hsl(var(--hsl-b6));
@@ -11,6 +10,10 @@
   display: flex;
   align-items: center;
   font-weight: 800;
+
+  &--expert-plus {
+    color: hsl(var(--hsl-orange-1));
+  }
 
   &__icon {
     font-size: 8px; // icon size
