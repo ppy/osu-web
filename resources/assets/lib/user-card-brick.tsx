@@ -30,22 +30,14 @@ export default class UserCardBrick extends React.PureComponent<Props> {
   private readonly eventId = `user-card-brick-${nextVal()}`;
 
   private get friendModifier() {
-    let isFriend = false;
-    let isMutual = false;
+    if (currentUser.friends == null) return;
 
-    if (currentUser.friends != null) {
-      const friendState = currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
+    const friendState = currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
 
-      if (friendState != null) {
-        isFriend = true;
-        isMutual = friendState.mutual;
-      }
-    }
+    if (friendState != null) {
+      if (friendState.mutual) return 'mutual';
 
-    if (isMutual) {
-      return 'mutual';
-    } else if (isFriend && !this.context.isFriendsPage) {
-      return 'friend';
+      if (!this.context.isFriendsPage) return 'friend';
     }
   }
 
