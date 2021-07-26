@@ -8,352 +8,365 @@ import * as React from 'react';
 import { TurbolinksAction } from 'turbolinks';
 import { currentUrl as getCurrentUrl } from 'utils/turbolinks';
 
-const osu = {
-  ajaxError: (xhr: JQuery.jqXHR) => {
-    if (core.userLogin.showOnError(xhr)) return;
-    if (core.userVerification.showOnError(xhr)) return;
+export function ajaxError(xhr: JQuery.jqXHR) {
+  if (core.userLogin.showOnError(xhr)) return;
+  if (core.userVerification.showOnError(xhr)) return;
 
-    osu.popup(osu.xhrErrorMessage(xhr), 'danger');
-  },
+  popup(xhrErrorMessage(xhr), 'danger');
+}
 
-  bottomPage: () => osu.bottomPageDistance() === 0,
+export function bottomPage() {
+  return bottomPageDistance() === 0;
+}
 
-  bottomPageDistance: () => {
-    const body = document.documentElement ?? document.body.parentElement ?? document.body;
-    return (body.scrollHeight - body.scrollTop) - body.clientHeight;
-  },
+export function bottomPageDistance() {
+  const body = document.documentElement ?? document.body.parentElement ?? document.body;
+  return (body.scrollHeight - body.scrollTop) - body.clientHeight;
+}
 
-  currentUserIsFriendsWith: (userId: number) => find(currentUser.friends, { target_id: userId }),
+export function currentUserIsFriendsWith(userId: number) {
+  return find(currentUser.friends, { target_id: userId });
+}
 
-  diffColour: (difficultyRating?: string | null) => ({ '--diff': `var(--diff-${difficultyRating ?? 'default'})` } as React.CSSProperties),
+export function emitAjaxError(element = document.body) {
+  return (xhr: JQuery.jqXHR, status: string, error: string) => $(element).trigger('ajax:error', [xhr, status, error]);
+}
 
-  emitAjaxError: (element = document.body) => (xhr: JQuery.jqXHR, status: string, error: string) => $(element).trigger('ajax:error', [xhr, status, error]),
+// mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
+export function focus(el: HTMLElement) {
+  el = $(el)[0]; // so we can handle both jquery'd and normal dom nodes
 
-  // mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
-  focus: (el: HTMLElement) => {
-    el = $(el)[0]; // so we can handle both jquery'd and normal dom nodes
-
-    if (!osu.isIos) {
-      return el.focus();
-    }
-
-    const prevSize = el.style.fontSize;
-    el.style.fontSize = '16px';
+  if (!isIos) {
     el.focus();
-    el.style.fontSize = prevSize;
-  },
+    return;
+  }
 
-  formatBytes: (bytes: number, decimals = 2) => {
-    const suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    const k = 1000;
+  const prevSize = el.style.fontSize;
+  el.style.fontSize = '16px';
+  el.focus();
+  el.style.fontSize = prevSize;
+}
 
-    if (bytes < k) {
-      return `${bytes} B`;
-    }
+export function formatBytes(bytes: number, decimals = 2) {
+  const suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const k = 1000;
 
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return `${osu.formatNumber(bytes / Math.pow(k, i), decimals)} ${suffixes[i]}`;
-  },
+  if (bytes < k) {
+    return `${bytes} B`;
+  }
 
-  formatNumber: (num: number | null, precision?: number | null, options?: Intl.NumberFormatOptions | null, locale?: string) => {
-    if (num == null) {
-      return null;
-    }
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return `${formatNumber(bytes / Math.pow(k, i), decimals)} ${suffixes[i]}`;
+}
 
-    options ??= {};
+export function formatNumber(num: number | null, precision?: number | null, options?: Intl.NumberFormatOptions | null, locale?: string) {
+  if (num == null) {
+    return null;
+  }
 
-    if (precision != null) {
-      options.minimumFractionDigits = precision;
-      options.maximumFractionDigits = precision;
-    }
+  options ??= {};
 
-    return num.toLocaleString(locale ?? currentLocale, options);
-  },
+  if (precision != null) {
+    options.minimumFractionDigits = precision;
+    options.maximumFractionDigits = precision;
+  }
 
-  groupColour: (group?: GroupJson) => ({ '--group-colour': group?.colour ?? 'initial' } as React.CSSProperties),
+  return num.toLocaleString(locale ?? currentLocale, options);
+}
 
-  isClickable: (el: HTMLElement): boolean => {
-    if (osu.isInputElement(el) || ['A', 'BUTTON'].includes(el.tagName)) {
-      return true;
-    }
+export function groupColour(group?: GroupJson) {
+  return { '--group-colour': group?.colour ?? 'initial' } as React.CSSProperties;
+}
 
-    if (el.parentNode instanceof HTMLElement) {
-      return osu.isClickable(el.parentNode);
-    }
+export function isClickable(el: HTMLElement): boolean {
+  if (isInputElement(el) || ['A', 'BUTTON'].includes(el.tagName)) {
+    return true;
+  }
 
-    return false;
-  },
+  if (el.parentNode instanceof HTMLElement) {
+    return isClickable(el.parentNode);
+  }
 
-  isInputElement: (el: HTMLElement) => ['INPUT', 'SELECT', 'TEXTAREA'].includes(el.tagName) || el.isContentEditable,
+  return false;
+}
 
-  isIos: /iPad|iPhone|iPod/.test(navigator.platform),
+export function isInputElement(el: HTMLElement) {
+  return ['INPUT', 'SELECT', 'TEXTAREA'].includes(el.tagName) || el.isContentEditable;
+}
 
-  // make a clone of json-like object (object with simple values)
-  jsonClone: (obj: any) => JSON.parse(JSON.stringify(obj ?? null)),
+export const isIos = /iPad|iPhone|iPod/.test(navigator.platform);
 
-  keepScrollOnLoad: () => {
-    const position = [
-      window.pageXOffset,
-      window.pageYOffset,
-    ];
+// make a clone of json-like object (object with simple values)
+export function jsonClone(obj: any) {
+  return JSON.parse(JSON.stringify(obj ?? null));
+}
 
-    $(document).one('turbolinks:load', () => {
-      window.scrollTo(position[0], position[1]);
+export function keepScrollOnLoad() {
+  const position = [
+    window.pageXOffset,
+    window.pageYOffset,
+  ];
+
+  $(document).one('turbolinks:load', () => {
+    window.scrollTo(position[0], position[1]);
+  });
+}
+
+export function link(url: string, text: string, options: OsuLinkOptions = {}) {
+  if (options.unescape) {
+    url = unescape(url);
+    text = unescape(text);
+  }
+
+  const el = document.createElement('a');
+  el.setAttribute('href', url);
+  el.setAttribute('data-remote', options.isRemote ? 'true' : '');
+  el.className = options.classNames != null ? options.classNames.join(' ') : '';
+  el.textContent = text;
+
+  if (options.props != null) {
+    each(options.props, (val, prop) => {
+      el.setAttribute(prop, val ?? '');
     });
-  },
+  }
 
-  link: (url: string, text: string, options: OsuLinkOptions = {}) => {
-    if (options.unescape) {
-      url = unescape(url);
-      text = unescape(text);
+  return el.outerHTML;
+}
+
+export function linkify(text: string, newWindow = false) {
+  return text.replace(urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="_blank"' : ''}>$2</a>`);
+}
+
+export function navigate(url: string, keepScroll = false, action?: TurbolinksAction) {
+  action ??= { action: 'advance' };
+
+  if (keepScroll) {
+    keepScrollOnLoad();
+  }
+
+  Turbolinks.visit(url, action);
+}
+
+export function parseJson<T = any>(id: string, remove = false) {
+  const element = window.newBody?.querySelector(`#${id}`);
+
+  if (element instanceof HTMLScriptElement) {
+    const json: T = JSON.parse(element.text);
+
+    if (remove) {
+      element.remove();
     }
 
-    const el = document.createElement('a');
-    el.setAttribute('href', url);
-    el.setAttribute('data-remote', options.isRemote ? 'true' : '');
-    el.className = options.classNames != null ? options.classNames.join(' ') : '';
-    el.textContent = text;
+    return json;
+  }
 
-    if (options.props != null) {
-      each(options.props, (val, prop) => {
-        el.setAttribute(prop, val ?? '');
-      });
-    }
+  return {} as T;
+}
 
-    return el.outerHTML;
-  },
+export function popup(message: string, type = 'info') {
+  const popupContainer = $('#popup-container');
+  const alert = $('.popup-clone').clone();
 
-  linkify: (text: string, newWindow = false) => text.replace(osu.urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="_blank"' : ''}>$2</a>`),
+  const closeAlert = () => alert.click();
 
-  navigate: (url: string, keepScroll = false, action?: TurbolinksAction) => {
-    action ??= { action: 'advance' };
+  alert.addClass(`alert-${type} popup-active`).removeClass('popup-clone');
 
-    if (keepScroll) {
-      osu.keepScrollOnLoad();
-    }
+  alert.find('.popup-text').html(message);
 
-    Turbolinks.visit(url, action);
-  },
+  if (['warning', 'danger'].includes(type)) {
+    $('#overlay')
+      .off('click.close-alert')
+      .one('click.close-alert', closeAlert)
+      .fadeIn();
+  } else {
+    window.setTimeout(closeAlert, 5000);
+  }
 
-  parseJson<T = any>(id: string, remove = false) {
-    const element = window.newBody?.querySelector(`#${id}`);
+  const activeElement = document.activeElement;
 
-    if (element instanceof HTMLScriptElement) {
-      const json: T = JSON.parse(element.text);
+  if (activeElement instanceof HTMLElement) {
+    activeElement.blur();
+  }
 
-      if (remove) {
-        element.remove();
-      }
+  alert.appendTo(popupContainer).fadeIn();
+}
 
-      return json;
-    }
+export function popupShowing() {
+  return $('#overlay').is(':visible');
+}
 
-    return {} as T;
-  },
+export function presence(str?: string | null) {
+  return present(str) ? str : null;
+}
 
-  popup: (message: string, type = 'info') => {
-    const popupContainer = $('#popup-container');
-    const alert = $('.popup-clone').clone();
+export function present(str?: string | null) {
+  return str != null && str !== '';
+}
 
-    const closeAlert = () => alert.click();
-
-    alert.addClass(`alert-${type} popup-active`).removeClass('popup-clone');
-
-    alert.find('.popup-text').html(message);
-
-    if (['warning', 'danger'].includes(type)) {
-      $('#overlay')
-        .off('click.close-alert')
-        .one('click.close-alert', closeAlert)
-        .fadeIn();
-    } else {
-      window.setTimeout(closeAlert, 5000);
-    }
-
-    const activeElement = document.activeElement;
-
-    if (activeElement instanceof HTMLElement) {
-      activeElement.blur();
-    }
-
-    alert.appendTo(popupContainer).fadeIn();
-  },
-
-  popupShowing: () => $('#overlay').is(':visible'),
-
-  presence: (str?: string | null) => osu.present(str) ? str : null,
-
-  present: (str?: string | null) => str != null && str !== '',
-
-  promisify: (xhr: JQuery.jqXHR): Promise<any> => new Promise((resolve, reject) => {
+export function promisify(xhr: JQuery.jqXHR): Promise<any> {
+  return new Promise((resolve, reject) => {
     xhr.done(resolve).fail(reject);
-  }),
+  });
+}
 
-  reloadPage: (keepScroll = true) => {
-    $(document).off('.ujsHideLoadingOverlay');
-    Turbolinks.clearCache();
+export function reloadPage(keepScroll = true) {
+  $(document).off('.ujsHideLoadingOverlay');
+  Turbolinks.clearCache();
 
-    const url = window.reloadUrl != null ? window.reloadUrl : getCurrentUrl().href;
+  const url = window.reloadUrl != null ? window.reloadUrl : getCurrentUrl().href;
 
-    window.reloadUrl = null;
+  window.reloadUrl = null;
 
-    osu.navigate(url, keepScroll, { action: 'replace' });
-  },
+  navigate(url, keepScroll, { action: 'replace' });
+}
 
-  setHash: (newHash: string) => {
-    const currentUrl = getCurrentUrl().href;
-    let newUrl = currentUrl.replace(/#.*/, '');
-    newUrl += newHash;
+export function setHash(newHash: string) {
+  const currentUrl = getCurrentUrl().href;
+  let newUrl = currentUrl.replace(/#.*/, '');
+  newUrl += newHash;
 
-    if (newUrl === currentUrl) {
-      return;
-    }
+  if (newUrl === currentUrl) {
+    return;
+  }
 
-    history.replaceState(history.state, '', newUrl);
-  },
+  history.replaceState(history.state, '', newUrl);
+}
 
-  storeJson: (id: string, object: Record<string, unknown>) => {
-    const json = JSON.stringify(object);
-    let element = document.getElementById(id) as (HTMLScriptElement | null);
+export function storeJson(id: string, object: Record<string, unknown>) {
+  const json = JSON.stringify(object);
+  let element = document.getElementById(id) as (HTMLScriptElement | null);
 
-    if (element == null) {
-      element = document.createElement('script');
-      element.id = id;
-      element.type = 'application/json';
-      document.body.appendChild(element);
-    }
+  if (element == null) {
+    element = document.createElement('script');
+    element.id = id;
+    element.type = 'application/json';
+    document.body.appendChild(element);
+  }
 
-    element.text = json;
-  },
+  element.text = json;
+}
 
-  timeago: (time = '') => {
-    const el = document.createElement('time');
+export function timeago(time = '') {
+  const el = document.createElement('time');
 
-    el.classList.add('js-timeago');
-    el.setAttribute('datetime', time);
-    el.textContent = time;
+  el.classList.add('js-timeago');
+  el.setAttribute('datetime', time);
+  el.textContent = time;
 
-    return el.outerHTML;
-  },
+  return el.outerHTML;
+}
 
-  trans: (key: string, replacements = {}, locale?: string) => {
-    if (osu.transExists(key, locale)) {
-      locale = fallbackLocale;
-    }
+export function trans(key: string, replacements = {}, locale?: string) {
+  if (transExists(key, locale)) {
+    locale = fallbackLocale;
+  }
 
-    return Lang.get(key, replacements, locale);
-  },
+  return Lang.get(key, replacements, locale);
+}
 
-  transArray: (array: any[], key = 'common.array_and') => {
-    switch (array.length) {
-      case 0:
-        return '';
-      case 1:
-        return String(array[0]);
-      case 2:
-        return array.join(osu.trans(`${key}.two_words_connector`));
-      default:
-        return `${array.slice(0, -1).join(osu.trans(`${key}.words_connector`))}${osu.trans(`${key}.last_word_connector`)}${String(array[array.length - 1])}`;
-    }
-  },
-
-  transChoice: (key: string, count: number, replacements: Record<string, unknown> = {}, locale?: string): string => {
-    locale ??= currentLocale;
-    const isFallbackLocale = locale === fallbackLocale;
-
-    if (!isFallbackLocale && !osu.transExists(key, locale)) {
-      return osu.transChoice(key, count, replacements, fallbackLocale);
-    }
-
-    replacements.count_delimited = osu.formatNumber(count, null, null, locale);
-    const translated = Lang.choice(key, count, replacements, locale);
-
-    if (!isFallbackLocale && translated == null) {
-      // added by Lang.choice
-      delete replacements.count;
-
-      return osu.transChoice(key, count, replacements, fallbackLocale);
-    }
-
-    return translated;
-  },
-
-  // Handles case where crowdin fills in untranslated key with empty string.
-  transExists: (key: string, locale?: string) => {
-    const translated = Lang.get(key, null, locale);
-
-    return osu.present(translated) && translated !== key;
-  },
-
-  updateQueryString: (url: string | null, params: { [key: string]: string | null | undefined }) => {
-    const docUrl = getCurrentUrl();
-    const urlObj = new URL(url ?? docUrl.href, docUrl.origin);
-
-    // FIXME: not sure about this conversion `for own` from coffeescript
-    for (const key in params) {
-      if (Object.prototype.hasOwnProperty.call(params, key)) {
-        const value = params[key];
-
-        if (value != null) {
-          urlObj.searchParams.set(key, value);
-        } else {
-          urlObj.searchParams.delete(key);
-        }
-      }
-    }
-
-    return urlObj.href;
-  },
-
-  // Wrapping the string with quotes and escaping the used quotes inside
-  // is sufficient. Use double quote as it's easy to figure out with
-  // encodeURI (it doesn't escape single quote).
-  urlPresence: (url?: string | null) => osu.present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : undefined,
-
-  urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig,
-
-  uuid: () => Turbolinks.uuid(), // no point rolling our own
-
-  xhrErrorMessage: (xhr: JQuery.jqXHR) => {
-    const validationMessage = xhr.responseJSON.validation_error;
-    let message: string;
-
-    if (validationMessage != null) {
-      let allErrors: string[] = [];
-
-      // FIXME: not sure about this conversion `for own` from coffeescript
-      for (const field in validationMessage) {
-        if (Object.prototype.hasOwnProperty.call(validationMessage, field)) {
-          const errors = validationMessage[field];
-          allErrors = allErrors.concat(errors);
-        }
-      }
-
-      message = `${allErrors.join(', ')}.`;
-    }
-
-    message ??= xhr.responseJSON.error;
-    message ??= xhr.responseJSON.message;
-
-    if (message == null || message === '') {
-      const errorKey = `errors.codes.http-${xhr.status}`;
-      message = osu.trans(errorKey);
-
-      if (message === errorKey) {
-        message = osu.trans('errors.unknown');
-      }
-    }
-
-    return message;
-  },
-};
-
-declare global {
-  interface Window {
-    osu: typeof osu;
+export function transArray(array: any[], key = 'common.array_and') {
+  switch (array.length) {
+    case 0:
+      return '';
+    case 1:
+      return String(array[0]);
+    case 2:
+      return array.join(trans(`${key}.two_words_connector`));
+    default:
+      return `${array.slice(0, -1).join(trans(`${key}.words_connector`))}${trans(`${key}.last_word_connector`)}${String(array[array.length - 1])}`;
   }
 }
 
-window.osu = osu;
+export function transChoice(key: string, count: number, replacements: Record<string, unknown> = {}, locale?: string): string {
+  locale ??= currentLocale;
+  const isFallbackLocale = locale === fallbackLocale;
 
-export default osu;
+  if (!isFallbackLocale && !transExists(key, locale)) {
+    return transChoice(key, count, replacements, fallbackLocale);
+  }
+
+  replacements.count_delimited = formatNumber(count, null, null, locale);
+  const translated = Lang.choice(key, count, replacements, locale);
+
+  if (!isFallbackLocale && translated == null) {
+    // added by Lang.choice
+    delete replacements.count;
+
+    return transChoice(key, count, replacements, fallbackLocale);
+  }
+
+  return translated;
+}
+
+// Handles case where crowdin fills in untranslated key with empty string.
+export function transExists(key: string, locale?: string) {
+  const translated = Lang.get(key, null, locale);
+
+  return present(translated) && translated !== key;
+}
+
+export function updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }) {
+  const docUrl = getCurrentUrl();
+  const urlObj = new URL(url ?? docUrl.href, docUrl.origin);
+
+  // FIXME: not sure about this conversion `for own` from coffeescript
+  for (const key in params) {
+    if (Object.prototype.hasOwnProperty.call(params, key)) {
+      const value = params[key];
+
+      if (value != null) {
+        urlObj.searchParams.set(key, value);
+      } else {
+        urlObj.searchParams.delete(key);
+      }
+    }
+  }
+
+  return urlObj.href;
+}
+
+// Wrapping the string with quotes and escaping the used quotes inside
+// is sufficient. Use double quote as it's easy to figure out with
+// encodeURI (it doesn't escape single quote).
+export function urlPresence(url?: string | null) {
+  return present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : undefined;
+}
+
+export const urlRegex = /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig;
+
+export function uuid() {
+  return Turbolinks.uuid(); // no point rolling our own
+}
+
+export function xhrErrorMessage(xhr: JQuery.jqXHR) {
+  const validationMessage = xhr.responseJSON.validation_error;
+  let message: string;
+
+  if (validationMessage != null) {
+    let allErrors: string[] = [];
+
+    // FIXME: not sure about this conversion `for own` from coffeescript
+    for (const field in validationMessage) {
+      if (Object.prototype.hasOwnProperty.call(validationMessage, field)) {
+        const errors = validationMessage[field];
+        allErrors = allErrors.concat(errors);
+      }
+    }
+
+    message = `${allErrors.join(', ')}.`;
+  }
+
+  message ??= xhr.responseJSON.error;
+  message ??= xhr.responseJSON.message;
+
+  if (message == null || message === '') {
+    const errorKey = `errors.codes.http-${xhr.status}`;
+    message = trans(errorKey);
+
+    if (message === errorKey) {
+      message = trans('errors.unknown');
+    }
+  }
+
+  return message;
+}
