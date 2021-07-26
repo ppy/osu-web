@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   mod: string;
@@ -9,7 +10,7 @@ interface Props {
 }
 
 export default function Mod(props: Props) {
-  let blockClass = osu.classWithModifiers('mod', props.modifiers);
+  let blockClass = classWithModifiers('mod', props.modifiers);
   blockClass += ` mod--${props.mod}`;
 
   return (

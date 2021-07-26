@@ -106,14 +106,14 @@ export class Comment extends React.PureComponent
       repliesClass += ' comment__replies--hidden' if !@state.expandReplies
 
       div
-        className: osu.classWithModifiers 'comment', modifiers
+        className: classWithModifiers 'comment', modifiers
 
         @renderRepliesToggle()
         @renderCommentableMeta(meta)
         @renderToolbar()
 
         div
-          className: osu.classWithModifiers('comment__main', mainModifiers)
+          className: classWithModifiers('comment__main', mainModifiers)
           style:
             '--line-height': if @state.lines? then "#{@state.lines.lineHeight}px" else undefined
             '--clip-lines': CLIP_LINES

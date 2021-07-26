@@ -39,7 +39,7 @@ interface Comment {
 }
 
 interface DiscussionMessageType {
-  icon: {[key: string]: string};
+  icon: { [key: string]: string };
 }
 
 interface BeatmapDiscussionHelperClass {
@@ -73,7 +73,6 @@ type AjaxError = (xhr: JQuery.jqXHR) => void;
 interface OsuCommon {
   ajaxError: AjaxError;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
-  diffColour: (difficultyRating?: string | null) => React.CSSProperties;
   formatBytes: (bytes: number, decimals?: number) => string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;

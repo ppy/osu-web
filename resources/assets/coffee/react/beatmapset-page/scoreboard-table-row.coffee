@@ -11,6 +11,8 @@ import { a, div, span, tr, td } from 'react-dom-factories'
 import { hasMenu } from 'score-helper'
 import ScoreboardTime from 'scoreboard-time'
 import PpValue from 'scores/pp-value'
+import { classWithModifiers } from 'utils/css'
+
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
@@ -25,7 +27,7 @@ export class ScoreboardTableRow extends React.PureComponent
     cell = "#{bn}__cell"
 
     tr
-      className: "#{osu.classWithModifiers("#{bn}__body-row", classMods)}",
+      className: "#{classWithModifiers("#{bn}__body-row", classMods)}",
 
       el @tdLink,
         modifiers: ['rank']
@@ -108,6 +110,6 @@ export class ScoreboardTableRow extends React.PureComponent
     td
       className: "#{bn}__cell"
       a
-        className: osu.classWithModifiers("#{bn}__cell-content", props.modifiers)
+        className: classWithModifiers("#{bn}__cell-content", props.modifiers)
         href: props.href ? route('scores.show', mode: @props.score.mode, score: @props.score.best_id)
         props.children

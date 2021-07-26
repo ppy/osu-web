@@ -4,7 +4,9 @@
 import * as React from 'react'
 import Img2x from 'img2x'
 import { div, img } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
 import { nextVal } from 'utils/seq'
+
 el = React.createElement
 
 export class AchievementBadge extends React.PureComponent
@@ -17,7 +19,7 @@ export class AchievementBadge extends React.PureComponent
   render: =>
     @tooltipId = "#{@props.achievement.slug}-#{nextVal()}"
 
-    badgeClass = osu.classWithModifiers('badge-achievement', @props.modifiers)
+    badgeClass = classWithModifiers('badge-achievement', @props.modifiers)
     tooltipBadgeClass = 'badge-achievement badge-achievement--dynamic-height'
 
     if !@props.userAchievement?
