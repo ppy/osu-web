@@ -8,7 +8,7 @@ import { action, computed, observable } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
 import core from 'osu-core-singleton';
 import SocketMessageEvent, { isSocketEventData, SocketEventData } from 'socket-message-event';
-import ConnectionDelay from 'utils/connection-delay';
+import RetryDelay from 'utils/retry-delay';
 
 const isNotificationEventLogoutJson = (arg: SocketEventData): arg is NotificationEventLogoutJson => arg.event === 'logout';
 
@@ -21,21 +21,21 @@ interface NotificationFeedMetaJson {
 type ConnectionStatus = 'disconnected' | 'disconnecting' | 'connecting' | 'connected';
 
 export default class SocketWorker {
-  @observable connectionStatus: ConnectionStatus = 'disconnected';
-  @observable hasConnectedOnce = false;
-  userId: number | null = null;
-  @observable private active = false;
-  private connectionDelay = new ConnectionDelay();
-  private endpoint?: string;
-  private timeout: Partial<Record<string, number>> = {};
-  private ws: WebSocket | null | undefined;
-  private xhr: Partial<Record<string, JQueryXHR>> = {};
-  private xhrLoadingState: Partial<Record<string, boolean>> = {};
 
   @computed
   get isConnected() {
     return this.connectionStatus === 'connected';
   }
+  @observable connectionStatus: ConnectionStatus = 'disconnected';
+  @observable hasConnectedOnce = false;
+  userId: number | null = null;
+  @observable private active = false;
+  private endpoint?: string;
+  private retryDelay = new RetryDelay();
+  private timeout: Partial<Record<string, number>> = {};
+  private ws: WebSocket | null | undefined;
+  private xhr: Partial<Record<string, JQueryXHR>> = {};
+  private xhrLoadingState: Partial<Record<string, boolean>> = {};
 
   boot() {
     this.active = this.userId != null;
@@ -76,7 +76,7 @@ export default class SocketWorker {
     const token = tokenEl.getAttribute('content');
     this.ws = new WebSocket(`${this.endpoint}?csrf=${token}`);
     this.ws.addEventListener('open', () => {
-      this.connectionDelay.reset();
+      this.retryDelay.reset();
       this.connectionStatus = 'connected';
       this.hasConnectedOnce = true;
     });
@@ -138,7 +138,7 @@ export default class SocketWorker {
     this.timeout.connectWebSocket = window.setTimeout(action(() => {
       this.ws = null;
       this.connectWebSocket();
-    }), this.connectionDelay.get());
+    }), this.retryDelay.get());
   };
 
   private startWebSocket = () => {
@@ -159,7 +159,7 @@ export default class SocketWorker {
         this.xhrLoadingState.startWebSocket = false;
       }))
       .done(action((data: NotificationFeedMetaJson) => {
-        this.connectionDelay.reset();
+        this.retryDelay.reset();
         this.endpoint = data.url;
         this.connectWebSocket();
       })).fail(action((xhr: JQuery.jqXHR) => {
@@ -169,7 +169,7 @@ export default class SocketWorker {
           this.destroy();
           return;
         }
-        this.timeout.startWebSocket = window.setTimeout(this.startWebSocket, this.connectionDelay.get());
+        this.timeout.startWebSocket = window.setTimeout(this.startWebSocket, this.retryDelay.get());
       }));
   };
 }

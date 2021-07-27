@@ -8,17 +8,17 @@ import DispatchListener from 'dispatch-listener';
 import { maxBy } from 'lodash';
 import { transaction } from 'mobx';
 import ChannelStore from 'stores/channel-store';
-import ConnectionDelay from 'utils/connection-delay';
+import RetryDelay from 'utils/retry-delay';
 import ChatAPI from './chat-api';
 
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
   private api = new ChatAPI();
-  private connectionDelay = new ConnectionDelay();
   private lastHistoryId: number | null = null;
   private pollingEnabled = true;
   private pollTime = 1000;
   private pollTimeIdle = 5000;
+  private retryDelay = new RetryDelay();
   private updateTimerId?: number;
   private updateXHR = false;
   private windowIsActive = true;
@@ -43,7 +43,7 @@ export default class ChatWorker implements DispatchListener {
 
     this.api.getUpdates(this.channelStore.lastPolledMessageId, this.lastHistoryId)
       .then((updateJson) => {
-        this.connectionDelay.reset();
+        this.retryDelay.reset();
         this.updateXHR = false;
         if (this.pollingEnabled) {
           this.updateTimerId = window.setTimeout(this.pollForUpdates, this.pollingTime());
@@ -67,7 +67,7 @@ export default class ChatWorker implements DispatchListener {
         // silently ignore errors and continue polling
         this.updateXHR = false;
         if (this.pollingEnabled) {
-          this.updateTimerId = window.setTimeout(this.pollForUpdates, this.connectionDelay.get());
+          this.updateTimerId = window.setTimeout(this.pollForUpdates, this.retryDelay.get());
         }
       });
   };

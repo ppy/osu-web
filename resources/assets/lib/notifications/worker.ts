@@ -9,7 +9,7 @@ import { route } from 'laroute';
 import { action, computed, observable, observe } from 'mobx';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
 import SocketWorker from 'socket-worker';
-import ConnectionDelay from 'utils/connection-delay';
+import RetryDelay from 'utils/retry-delay';
 import {
   NotificationEventDelete,
   NotificationEventDeleteJson,
@@ -35,18 +35,18 @@ const isNotificationEventReadJson = (arg: SocketEventData): arg is NotificationE
  */
 @dispatchListener
 export default class Worker implements DispatchListener {
-  @observable waitingVerification = false;
-
-  private connectionDelay = new ConnectionDelay();
-  @observable private firstLoadedAt?: Date;
-  private timeout: Partial<Record<string, number>> = {};
-  private xhr: Partial<Record<string, JQueryXHR>> = {};
-  private xhrLoadingState: Partial<Record<string, boolean>> = {};
 
   @computed
   get hasData() {
     return this.firstLoadedAt != null;
   }
+  @observable waitingVerification = false;
+  @observable private firstLoadedAt?: Date;
+
+  private retryDelay = new RetryDelay();
+  private timeout: Partial<Record<string, number>> = {};
+  private xhr: Partial<Record<string, JQueryXHR>> = {};
+  private xhrLoadingState: Partial<Record<string, boolean>> = {};
 
   constructor(private readonly socketWorker: SocketWorker) {
     observe(this.socketWorker, 'connectionStatus', (change) => {
@@ -82,7 +82,7 @@ export default class Worker implements DispatchListener {
   }
 
   private delayedRetryInitialLoadMore() {
-    this.timeout.loadMore = window.setTimeout(this.loadMore, this.connectionDelay.get());
+    this.timeout.loadMore = window.setTimeout(this.loadMore, this.retryDelay.get());
   }
 
   @action
@@ -108,7 +108,7 @@ export default class Worker implements DispatchListener {
       }).done((data: NotificationBootJson) => {
         this.waitingVerification = false;
         this.loadBundle(data);
-        this.connectionDelay.reset();
+        this.retryDelay.reset();
       })
       .fail((xhr) => {
         if (xhr.responseJSON != null && xhr.responseJSON.error === 'verification') {
