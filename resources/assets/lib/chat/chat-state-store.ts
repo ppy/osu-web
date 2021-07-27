@@ -55,7 +55,7 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  async selectChannel(channelId: number) {
+  selectChannel(channelId: number) {
     if (this.selected === channelId) return;
 
     const channel = this.channelStore.get(channelId);
@@ -74,7 +74,7 @@ export default class ChatStateStore implements DispatchListener {
     this.selectedIndex = this.channelStore.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
-    await this.channelStore.loadChannel(channelId);
+    this.channelStore.loadChannel(channelId);
     this.channelStore.markAsRead(channelId);
   }
 
@@ -100,6 +100,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   private handleWindowFocusAction() {
+    this.channelStore.loadChannel(this.selected);
     this.channelStore.markAsRead(this.selected);
   }
 

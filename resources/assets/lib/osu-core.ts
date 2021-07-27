@@ -74,13 +74,13 @@ export default class OsuCore {
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.
     this.dataStore = new RootDataStore();
-    this.chatWorker = new ChatWorker(this.dataStore.channelStore);
     this.userLoginObserver = new UserLoginObserver();
     this.windowFocusObserver = new WindowFocusObserver();
 
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
 
     this.socketWorker = new SocketWorker();
+    this.chatWorker = new ChatWorker(this.socketWorker, this.dataStore.channelStore);
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);
 
     makeObservable(this);

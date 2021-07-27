@@ -141,7 +141,7 @@ export default class ChannelStore implements DispatchListener {
   loadChannel(channelId: number) {
     const channel = this.getOrCreate(channelId);
 
-    void channel.load();
+    channel.load();
   }
 
   @action

@@ -30,6 +30,7 @@ export default class Channel {
   };
   @observable messages: Message[] = observable([]);
   @observable name = '';
+  needsRefresh = false;
   @observable newPmChannel = false;
   newPmChannelTransient = false;
   @observable type: ChannelType = 'NEW';
@@ -155,8 +156,13 @@ export default class Channel {
     if (this.newPmChannel || this.loading) return;
 
     // call load and then wait for ChatChannelJoin to arrive over the websocket.
-    void this.loadMessages();
     void this.loadMetadata();
+
+    if (this.loadingState.messages) {
+      void this.loadMoreMessages();
+    } else {
+      void this.loadMessages();
+    }
   }
 
   @action
@@ -174,7 +180,7 @@ export default class Channel {
 
     try {
       const response = await ChatApi.getMessages(this.channelId, { until });
-      this.addMessages(response.map(Message.fromJson));
+      this.addMessages(response.map((json) => Message.fromJson(json)));
     } finally {
       runInAction(() => {
         this.loadingEarlierMessages = false;
@@ -202,6 +208,7 @@ export default class Channel {
         }
 
         this.addMessages(messages);
+        this.needsRefresh = false;
         this.loadingState.messages = true;
       });
     } catch {
@@ -221,6 +228,24 @@ export default class Channel {
       runInAction(() => {
         this.updateWithJson(response.channel);
         this.loadingState.metadata = true;
+      });
+    } catch {
+      // TODO: revert state
+    }
+  }
+
+  @action
+  async loadMoreMessages() {
+    if (!this.needsRefresh) return;
+
+    try {
+      const response = await ChatApi.getMessages(this.channelId, { since: this.lastMessageId });
+
+      runInAction(() => {
+        // TODO: something about User; map in api? or lazy load?
+        const messages = response.map((messageJson) => Message.fromJson(messageJson));
+        this.addMessages(messages);
+        this.needsRefresh = false;
       });
     } catch {
       // TODO: revert state
