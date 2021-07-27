@@ -69,7 +69,7 @@ class BeatmapsetEvent extends Model
             }
         }
 
-        if ($discussion->exists || $discussion->message_type !== 'problem') {
+        if (($discussion->exists && !$discussion->wasRecentlyCreated) || $discussion->message_type !== 'problem') {
             return null;
         }
 
