@@ -3,11 +3,12 @@
 
 import { dispatch } from 'app-dispatcher';
 import { route } from 'laroute';
-import { forEach, random } from 'lodash';
+import { forEach } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
 import core from 'osu-core-singleton';
 import SocketMessageEvent, { isSocketEventData, SocketEventData } from 'socket-message-event';
+import ConnectionDelay from 'utils/connection-delay';
 
 const isNotificationEventLogoutJson = (arg: SocketEventData): arg is NotificationEventLogoutJson => arg.event === 'logout';
 
@@ -24,6 +25,7 @@ export default class SocketWorker {
   @observable hasConnectedOnce = false;
   userId: number | null = null;
   @observable private active = false;
+  private connectionDelay = new ConnectionDelay;
   private endpoint?: string;
   private timeout: Partial<Record<string, number>> = {};
   private ws: WebSocket | null | undefined;
@@ -74,6 +76,7 @@ export default class SocketWorker {
     const token = tokenEl.getAttribute('content');
     this.ws = new WebSocket(`${this.endpoint}?csrf=${token}`);
     this.ws.addEventListener('open', () => {
+      this.connectionDelay.reset();
       this.connectionStatus = 'connected';
       this.hasConnectedOnce = true;
     });
@@ -135,7 +138,7 @@ export default class SocketWorker {
     this.timeout.connectWebSocket = window.setTimeout(action(() => {
       this.ws = null;
       this.connectWebSocket();
-    }), random(5000, 20000));
+    }), this.connectionDelay.get());
   };
 
   private startWebSocket = () => {
@@ -156,6 +159,7 @@ export default class SocketWorker {
         this.xhrLoadingState.startWebSocket = false;
       }))
       .done(action((data: NotificationFeedMetaJson) => {
+        this.connectionDelay.reset();
         this.endpoint = data.url;
         this.connectWebSocket();
       })).fail(action((xhr: JQuery.jqXHR) => {
@@ -165,7 +169,7 @@ export default class SocketWorker {
           this.destroy();
           return;
         }
-        this.timeout.startWebSocket = window.setTimeout(this.startWebSocket, 10000);
+        this.timeout.startWebSocket = window.setTimeout(this.startWebSocket, this.connectionDelay.get());
       }));
   };
 }

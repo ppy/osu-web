@@ -9,10 +9,12 @@ import { maxBy } from 'lodash';
 import { transaction } from 'mobx';
 import ChannelStore from 'stores/channel-store';
 import ChatAPI from './chat-api';
+import ConnectionDelay from 'utils/connection-delay';
 
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
   private api = new ChatAPI();
+  private connectionDelay = new ConnectionDelay;
   private lastHistoryId: number | null = null;
   private pollingEnabled = true;
   private pollTime = 1000;
@@ -41,6 +43,7 @@ export default class ChatWorker implements DispatchListener {
 
     this.api.getUpdates(this.channelStore.lastPolledMessageId, this.lastHistoryId)
       .then((updateJson) => {
+        this.connectionDelay.reset();
         this.updateXHR = false;
         if (this.pollingEnabled) {
           this.updateTimerId = window.setTimeout(this.pollForUpdates, this.pollingTime());
@@ -64,7 +67,7 @@ export default class ChatWorker implements DispatchListener {
         // silently ignore errors and continue polling
         this.updateXHR = false;
         if (this.pollingEnabled) {
-          this.updateTimerId = window.setTimeout(this.pollForUpdates, this.pollingTime());
+          this.updateTimerId = window.setTimeout(this.pollForUpdates, this.connectionDelay.get());
         }
       });
   };

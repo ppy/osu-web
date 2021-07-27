@@ -18,6 +18,7 @@ import {
   NotificationEventRead,
   NotificationEventReadJson,
 } from './notification-events';
+import ConnectionDelay from 'utils/connection-delay';
 
 interface NotificationBootJson extends NotificationBundleJson {
   notification_endpoint: string;
@@ -36,6 +37,7 @@ const isNotificationEventReadJson = (arg: SocketEventData): arg is NotificationE
 export default class Worker implements DispatchListener {
   @observable waitingVerification = false;
 
+  private connectionDelay = new ConnectionDelay;
   @observable private firstLoadedAt?: Date;
   private timeout: Partial<Record<string, number>> = {};
   private xhr: Partial<Record<string, JQueryXHR>> = {};
@@ -80,7 +82,7 @@ export default class Worker implements DispatchListener {
   }
 
   private delayedRetryInitialLoadMore() {
-    this.timeout.loadMore = window.setTimeout(this.loadMore, 10000);
+    this.timeout.loadMore = window.setTimeout(this.loadMore, this.connectionDelay.get());
   }
 
   @action
@@ -106,6 +108,7 @@ export default class Worker implements DispatchListener {
       }).done((data: NotificationBootJson) => {
         this.waitingVerification = false;
         this.loadBundle(data);
+        this.connectionDelay.reset();
       })
       .fail((xhr) => {
         if (xhr.responseJSON != null && xhr.responseJSON.error === 'verification') {
