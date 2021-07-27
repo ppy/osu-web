@@ -47,7 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modaus',
-            'multiplayer' => '',
+            'multiplayer' => 'moninpeli',
             'show' => 'tiedot',
         ],
     ],
@@ -78,7 +78,7 @@ return [
         ],
         'help' => [
             '_' => 'apua',
-            'getAbuse' => '',
+            'getAbuse' => 'ilmoita väärinkäyttöstä',
             'getFaq' => 'ukk',
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',

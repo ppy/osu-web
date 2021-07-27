@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'A választott fizetési módot a Paypal visszautasította.',
     'invalid_resource_id' => 'Nem található fizetési információ.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "A fizetés vissza lett utasítva, de nem tudjuk, miért.",
 ];

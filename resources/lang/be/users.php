@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Несумленная гульня / Чыты',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Выкарыстанне некалькіх уліковых запісаў',
             'insults' => 'Абраза мяне / іншых',
             'spam' => 'Спам',
             'unwanted_content' => 'Неадпаведна звязанае змесціва',
@@ -302,7 +302,7 @@ return [
                 'title' => 'Медалі',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Мультыплэерныя гульні',
             ],
             'posts' => [
                 'title' => 'Паведамленні',

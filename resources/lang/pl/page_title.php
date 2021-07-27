@@ -143,7 +143,7 @@ return [
             '_' => 'informacje o modowaniu',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'historia trybu wieloosobowego',
         ],
     ],
 ];

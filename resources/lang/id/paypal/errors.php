@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'Metode pembayaran yang dipilih ditolak oleh Paypal.',
     'invalid_resource_id' => 'Informasi pembayaran tidak ditemukan.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "Pembayaran ditolak, tetapi kami tidak yakin mengapa.",
 ];

@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => '',
-        'unpin' => "",
+        'pin' => 'Bạn có chắc rằng bạn muốn quảng cáo cho buổi trực tuyến này? ',
+        'unpin' => "Bạn có chắc rằng bạn muốn xóa quảng cáo buổi trực tuyến này?",
     ],
 
     'top-headers' => [
