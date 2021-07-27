@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'Выбранный метод оплаты был отклонён PayPal.',
     'invalid_resource_id' => 'Информация о платеже не найдена.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "Платёж был отклонён по неизвестной причине.",
 ];

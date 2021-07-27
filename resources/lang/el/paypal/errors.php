@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'Η επιλεγμένη μέθοδος πληρωμής απορρίφθηκε από την Paypal.',
     'invalid_resource_id' => 'Δεν βρέθηκαν πληροφορίες πληρωμής.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "Η πληρωμή απορρίφθηκε, αλλά δεν είμαστε σίγουροι γιατί.",
 ];

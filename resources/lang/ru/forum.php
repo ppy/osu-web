@@ -281,7 +281,7 @@ return [
 
             'feature_vote' => [
                 'current' => 'Текущий приоритет: +:count',
-                'do' => 'Продвинуть данный запрос',
+                'do' => 'Продвинуть эту идею',
 
                 'info' => [
                     '_' => 'Это :feature_request. За идею можно проголосовать только с :supporters.',
@@ -291,7 +291,7 @@ return [
 
                 'user' => [
                     'count' => ':count голос|:count голоса|:count голосов',
-                    'current' => 'У вас осталось :votes голосов.',
+                    'current' => 'У вас осталось :votes.',
                     'not_enough' => "У вас больше нет голосов",
                 ],
             ],
@@ -319,8 +319,8 @@ return [
 
         'watch' => [
             'to_not_watching' => 'Не в закладках',
-            'to_watching' => 'Заметка',
-            'to_watching_mail' => 'В закладки с оповещением',
+            'to_watching' => 'В закладки',
+            'to_watching_mail' => 'В закладки с уведомлением',
             'tooltip_mail_disable' => 'Уведомления включены. Нажмите, чтобы отключить',
             'tooltip_mail_enable' => 'Уведомления отключены. Нажмите, чтобы включить',
         ],

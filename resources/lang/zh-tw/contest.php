@@ -29,7 +29,7 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max 已使用票數',
         ],
     ],
     'entry' => [

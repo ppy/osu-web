@@ -14,11 +14,11 @@ return [
     'common' => [
         'closing' => 'Terveisin',
         'hello' => 'Hei :user,',
-        'report' => '',
+        'report' => 'Vastaa tähän sähköpostiin VÄLITTÖMÄSTI, jos et ole pyytänyt tätä muutosta.',
     ],
 
     'donation_thanks' => [
-        'benefit_more' => '',
+        'benefit_more' => 'Lisää etuja tukijoille tulee myös tulemaan aikaa myöten!',
         'feedback' => "",
         'keep_free' => '',
         'keep_running' => '',

@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Gioco scorretto / Cheating',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Uso di account multipli',
             'insults' => 'Insulti a me / altri',
             'spam' => 'Spamming',
             'unwanted_content' => 'Condivisione di contenuti inappropriati',
@@ -302,7 +302,7 @@ return [
                 'title' => 'Medaglie',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Partite Multigiocatore',
             ],
             'posts' => [
                 'title' => 'Post',

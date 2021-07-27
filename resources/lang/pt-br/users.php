@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Jogando sujo / Trapaceando',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Usando diversas contas',
             'insults' => 'Me insultando / outros',
             'spam' => 'Spam',
             'unwanted_content' => 'Enviando links com conteúdo inapropriado',
@@ -302,7 +302,8 @@ return [
                 'title' => 'Medalhas',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Jogos multijogador
+',
             ],
             'posts' => [
                 'title' => 'Publicações',

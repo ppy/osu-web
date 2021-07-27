@@ -28,9 +28,9 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Gästsvårighetsgrad',
+                'beatmap_owner_change' => 'Du är nu ägare till svårighetsgraden ":beatmap" för beatmappen ":title"',
+                'beatmap_owner_change_compact' => 'Du är nu ägare till svårighetsgraden ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -166,7 +166,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Du är nu gäst i beatmappen ":title"',
             ],
 
             'beatmapset_discussion' => [

@@ -117,7 +117,7 @@ return [
             '_' => 'ค่าศักยภาพ',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'ร้านค้า',
         ],
         'tournaments_controller' => [
             '_' => '
@@ -128,7 +128,7 @@ return [
             'disabled' => 'การแจ้งเตือน',
         ],
         'wiki_controller' => [
-            '_' => 'ฐานความรู้',
+            '_' => 'วิกิ',
         ],
     ],
     'multiplayer' => [
@@ -137,7 +137,7 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'ร้านค้า',
     ],
     'users' => [
         'modding_history_controller' => [
