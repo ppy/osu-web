@@ -9,6 +9,7 @@ import { route } from 'laroute';
 import { action, computed, observable, observe } from 'mobx';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
 import SocketWorker from 'socket-worker';
+import ConnectionDelay from 'utils/connection-delay';
 import {
   NotificationEventDelete,
   NotificationEventDeleteJson,
@@ -18,7 +19,6 @@ import {
   NotificationEventRead,
   NotificationEventReadJson,
 } from './notification-events';
-import ConnectionDelay from 'utils/connection-delay';
 
 interface NotificationBootJson extends NotificationBundleJson {
   notification_endpoint: string;
@@ -37,7 +37,7 @@ const isNotificationEventReadJson = (arg: SocketEventData): arg is NotificationE
 export default class Worker implements DispatchListener {
   @observable waitingVerification = false;
 
-  private connectionDelay = new ConnectionDelay;
+  private connectionDelay = new ConnectionDelay();
   @observable private firstLoadedAt?: Date;
   private timeout: Partial<Record<string, number>> = {};
   private xhr: Partial<Record<string, JQueryXHR>> = {};

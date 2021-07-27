@@ -25,7 +25,7 @@ export default class SocketWorker {
   @observable hasConnectedOnce = false;
   userId: number | null = null;
   @observable private active = false;
-  private connectionDelay = new ConnectionDelay;
+  private connectionDelay = new ConnectionDelay();
   private endpoint?: string;
   private timeout: Partial<Record<string, number>> = {};
   private ws: WebSocket | null | undefined;

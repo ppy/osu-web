@@ -8,13 +8,13 @@ import DispatchListener from 'dispatch-listener';
 import { maxBy } from 'lodash';
 import { transaction } from 'mobx';
 import ChannelStore from 'stores/channel-store';
-import ChatAPI from './chat-api';
 import ConnectionDelay from 'utils/connection-delay';
+import ChatAPI from './chat-api';
 
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
   private api = new ChatAPI();
-  private connectionDelay = new ConnectionDelay;
+  private connectionDelay = new ConnectionDelay();
   private lastHistoryId: number | null = null;
   private pollingEnabled = true;
   private pollTime = 1000;
