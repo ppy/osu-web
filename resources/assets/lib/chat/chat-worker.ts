@@ -8,11 +8,10 @@ import ChatApi from 'chat/chat-api';
 import { ChatChannelJoinEvent, ChatChannelPartEvent, ChatMessageNewEvent, isChannelEvent, isMessageEvent } from 'chat/chat-events';
 import DispatchListener from 'dispatch-listener';
 import { maxBy } from 'lodash';
-import { observe, transaction } from 'mobx';
+import { transaction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
-import SocketWorker from 'socket-worker';
 import ChannelStore from 'stores/channel-store';
 import RetryDelay from 'utils/retry-delay';
 
@@ -46,12 +45,7 @@ export default class ChatWorker implements DispatchListener {
   private updateXHR = false;
   private windowIsActive = true;
 
-  constructor(private socketWorker: SocketWorker, private channelStore: ChannelStore) {
-    observe(this.socketWorker, 'isConnected', (change) => {
-      if (change.newValue && change.newValue !== change.oldValue) {
-        this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
-      }
-    }, true);
+  constructor(private channelStore: ChannelStore) {
   }
 
   handleDispatchAction(event: DispatcherAction) {
@@ -64,6 +58,7 @@ export default class ChatWorker implements DispatchListener {
     if (!(event instanceof SocketMessageEvent)) return;
 
     const dispatchAction = newDispatchActionFromJson(event.message);
+    console.debug(dispatchAction);
     if (dispatchAction != null) {
       dispatch(dispatchAction);
     }

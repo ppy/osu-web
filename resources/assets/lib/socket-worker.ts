@@ -1,10 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { SocketConnectedAction } from 'actions/socket-connected-action';
 import { dispatch } from 'app-dispatcher';
 import { route } from 'laroute';
 import { forEach } from 'lodash';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable, observe } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
 import core from 'osu-core-singleton';
 import SocketMessageEvent, { isSocketEventData, SocketEventData } from 'socket-message-event';
@@ -38,6 +39,12 @@ export default class SocketWorker {
   }
 
   constructor() {
+    observe(this, 'isConnected', (change) => {
+      if (change.newValue && change.newValue !== change.oldValue) {
+        dispatch(new SocketConnectedAction());
+      }
+    }, true);
+
     makeObservable(this);
   }
 
