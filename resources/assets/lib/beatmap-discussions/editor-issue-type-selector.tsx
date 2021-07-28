@@ -24,7 +24,7 @@ export default class EditorIssueTypeSelector extends React.Component<Props> {
 
   render(): React.ReactNode {
     const menuOptions: MenuItem[] = selectableTypes.map((type) => ({
-      icon: <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={`${discussionTypeIcons[type]}`} /></span>,
+      icon: <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={discussionTypeIcons[type]} /></span>,
       id: type,
       label: osu.trans(`beatmaps.discussions.message_type.${type}`),
     }));
