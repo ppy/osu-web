@@ -319,7 +319,7 @@ export class Discussion extends React.PureComponent
             span
               className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{_.kebabCase(@props.discussion.message_type)}"
               i
-                className: discussionTypeIcons[_.camelCase(@props.discussion.message_type)]
+                className: discussionTypeIcons[@props.discussion.message_type]
                 title: osu.trans "beatmaps.discussions.message_type.#{@props.discussion.message_type}"
 
           if @props.discussion.resolved

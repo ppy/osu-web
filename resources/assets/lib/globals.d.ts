@@ -133,7 +133,7 @@ interface BeatmapsetDiscussionJson {
   beatmapset_id: number;
   deleted_at: string | null;
   id: number;
-  message_type: import('beatmap-discussions/discussion-type').DiscussionTypeJson;
+  message_type: import('beatmap-discussions/discussion-type').DiscussionType;
   parent_id: number | null;
   posts: BeatmapsetDiscussionPostJson[];
   resolved: boolean;

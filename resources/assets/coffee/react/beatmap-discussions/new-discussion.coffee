@@ -324,7 +324,7 @@ export class NewDiscussion extends React.PureComponent
 
     el BigButton,
       modifiers: ['beatmap-discussion-new']
-      icon: discussionTypeIcons[_.camelCase(type)]
+      icon: discussionTypeIcons[type]
       isBusy: @state.posting == type
       text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type
