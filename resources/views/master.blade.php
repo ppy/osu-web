@@ -36,9 +36,11 @@
 
     $currentHue = $currentHue ?? section_to_hue_map($currentSection);
 
+    $navLinks ??= nav_links();
+    $currentLocaleMeta ??= current_locale_meta();
 @endphp
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#" lang="{{ current_locale_meta()->html() }}">
+<html prefix="og: http://ogp.me/ns#" lang="{{ $currentLocaleMeta->html() }}">
     <head>
         @include("layout.metadata")
         <title>{!! $title !!}</title>
