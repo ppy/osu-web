@@ -26,6 +26,7 @@ class Mod
     const WIND_UP = 'WU';
     const WIND_DOWN = 'WD';
     const RANDOM = 'RD';
+    const MIRROR = 'MR';
 
     // osu-specific
     const OSU_AUTOPILOT = 'AP';
@@ -55,7 +56,6 @@ class Mod
     const MANIA_KEY10 = '10K';
     const MANIA_DUALSTAGES = 'DS';
     const MANIA_FADEIN = 'FI';
-    const MANIA_MIRROR = 'MR';
     const MANIA_INVERT = 'IN';
     const MANIA_CONSTANTSPEED = 'CS';
 
@@ -211,6 +211,9 @@ class Mod
         self::OSU_TARGET => [
             'seed' => 'int',
         ],
+        self::MIRROR => [
+            'reflection' => 'int',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
@@ -283,6 +286,7 @@ class Mod
                         self::OSU_BARRELROLL,
                         self::RANDOM,
                         self::OSU_APPROACH_DIFFERENT,
+                        self::MIRROR,
                     ]
                 ),
 
@@ -316,7 +320,7 @@ class Mod
                         self::MANIA_KEY10,
                         self::MANIA_DUALSTAGES,
                         self::MANIA_FADEIN,
-                        self::MANIA_MIRROR,
+                        self::MIRROR,
                         self::MANIA_INVERT,
                         self::MANIA_CONSTANTSPEED,
                         self::RANDOM,
@@ -385,6 +389,10 @@ class Mod
                         [
                             self::OSU_SPININ,
                             self::HIDDEN,
+                        ],
+                        [
+                            self::HARDROCK,
+                            self::MIRROR,
                         ],
                     ]
                 ),
