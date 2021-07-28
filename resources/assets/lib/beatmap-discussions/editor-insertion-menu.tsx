@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import { Cancelable, throttle } from 'lodash';
 import { Portal } from 'portal';
@@ -226,10 +227,10 @@ export class EditorInsertionMenu extends React.Component<Props> {
       case 'praise':
       case 'problem':
       case 'suggestion':
-        icon = BeatmapDiscussionHelper.messageType.icon[type];
+        icon = discussionTypeIcons[type];
         break;
       case 'paragraph':
-        icon = 'fas fa-indent';
+        icon = 'fas fa-fw fa-indent';
         break;
     }
 

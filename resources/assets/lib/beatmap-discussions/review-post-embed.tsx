@@ -2,10 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapIcon } from 'beatmap-icon';
+import { DiscussionType, discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
+import { camelCase } from 'lodash';
 
 interface Props {
   data: {
@@ -47,9 +49,9 @@ export const ReviewPostEmbed = ({ data }: Props) => {
   }
 
   const messageTypeIcon = () => {
-    const type = discussion.message_type;
+    const type = camelCase(discussion.message_type) as DiscussionType;
     return (
-      <div className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={BeatmapDiscussionHelper.messageType.icon[type]} title={osu.trans(`beatmaps.discussions.message_type.${type}`)} /></div>
+      <div className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={discussionTypeIcons[type]} title={osu.trans(`beatmaps.discussions.message_type.${type}`)} /></div>
     );
   };
 
