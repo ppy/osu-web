@@ -9,9 +9,12 @@ import { ReactEditor } from 'slate-react';
 import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
 import { SlateContext } from './slate-context';
 
-type DiscussionType = 'hype' | 'mapperNote' | 'praise' | 'problem' | 'suggestion';
+const discussionTypes = ['hype', 'mapperNote', 'praise', 'problem', 'suggestion'] as const;
+export type DiscussionType = (typeof discussionTypes)[number];
+
 const selectableTypes: DiscussionType[] = ['praise', 'problem', 'suggestion'];
-const discussionTypeIcons = {
+
+const discussionTypeIcons: Record<DiscussionType, string> = {
   hype: 'fas fa-fw fa-bullhorn',
   mapperNote: 'far fa-fw fa-sticky-note',
   praise: 'fas fa-fw fa-heart',
