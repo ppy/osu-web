@@ -7,7 +7,7 @@ return [
     'index' => [
         'description' => '相同主題的圖譜合集壓縮檔',
         'nav_title' => '列表',
-        'title' => '圖譜壓縮檔',
+        'title' => '曲包',
 
         'blurb' => [
             'important' => '下載前必讀',
@@ -31,7 +31,7 @@ return [
             'not_cleared' => '未玩',
         ],
         'no_diff_reduction' => [
-            '_' => '',
+            '_' => '使用:link將無法解鎖這個曲包的成就。',
             'link' => '降低難度的 mod',
         ],
     ],

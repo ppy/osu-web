@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
+    'missing_route' => 'Ogiltig url eller felaktig metod av begäran.',
     'no_restricted_access' => 'Du kan inte utföra denna återgärd medans ditt konto är begränsad.',
     'supporter_only' => 'Du måste vara en supporter för att använda denna funktion.',
     'unknown' => 'Okänt fel uppstod.',

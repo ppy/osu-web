@@ -85,7 +85,7 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filtri per Beatmap',
+                'title' => 'Filtri Beatmap',
                 'description' => 'I filtri per beatmap cercano tra mappe giocate e non giocate, o in base al rank ottenuto.',
             ],
 

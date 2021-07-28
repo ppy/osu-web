@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Vill du verkligen radera ämnet?',
+        'confirm_restore' => 'Vill du verkligen återställa ämnet?',
         'deleted' => 'raderat ämne',
         'go_to_latest' => 'visa senaste inlägg',
         'has_replied' => 'Du har svarat på detta ämne',

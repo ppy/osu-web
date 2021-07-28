@@ -3,9 +3,8 @@
 
 .flag-country {
   --height: 1em;
-  --width-height-ratio: calc(70 / 47);
+  --width-height-ratio: calc(100 / 75);
 
-  .default-box-shadow();
   height: var(--height);
   width: calc(var(--height) * var(--width-height-ratio));
   background-size: cover;
@@ -13,13 +12,15 @@
   background-repeat: no-repeat;
   border-radius: 3px;
   position: relative;
-  filter: saturate(1.1);
+  filter: saturate(1.1) drop-shadow(0 1px @box-shadow-radius @box-shadow-color);
 
   &::after {
     .full-size();
-    background-color: fade(#fff, 25%);
-    content: '';
+    background: inherit;
     border-radius: inherit;
+    filter: contrast(0) brightness(2);
+    opacity: 0.25;
+    content: '';
   }
 
   &--flat {

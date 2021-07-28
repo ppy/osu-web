@@ -81,6 +81,7 @@ return [
             'external_references' => '이 리뷰는 관련 없는 이슈 참조를 포함하고 있습니다.',
             'invalid_block_type' => '잘못된 블록 종류',
             'invalid_document' => '잘못된 리뷰',
+            'invalid_discussion_type' => '',
             'minimum_issues' => '리뷰는 최소한 :count개의 이슈를 포함해야 합니다',
             'missing_text' => '블록이 텍스트를 포함하고 있지 않음',
             'too_many_blocks' => '리뷰는 최대 :count개의 문단 및 이슈를 포함할 수 있습니다.',

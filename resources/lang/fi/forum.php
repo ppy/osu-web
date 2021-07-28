@@ -58,7 +58,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Uusi vastaus',
             ],
         ],
 

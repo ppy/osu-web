@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'заборонити кудосу',
         'edit' => 'змінити',
         'edited' => 'Останній раз змінено :editor :update_time.',
-        'guest' => '',
+        'guest' => 'Гостьова складність від :user',
         'kudosu_denied' => 'Відмовлено в отриманні кудосу.',
         'message_placeholder_deleted_beatmap' => 'Ця складність була видалена і відгукуватися про неї не можна.',
         'message_placeholder_locked' => 'Обговорення цієї карти відключено.',

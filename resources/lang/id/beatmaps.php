@@ -250,7 +250,7 @@ return [
         ],
     ],
     'general' => [
-        'converts' => 'Sertakan beatmap-beatmap convert',
+        'converts' => 'Sertakan map-map convert',
         'follows' => 'Tampilkan hanya mapper-mapper yang dipantau',
         'recommended' => 'Tingkat kesulitan yang disarankan',
     ],

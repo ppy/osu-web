@@ -15,7 +15,7 @@ return [
         'create' => [
             '_' => '新增封面',
             'button' => '上傳圖片',
-            'info' => '圖片尺寸應為 :dimensions. 也可以將圖片拉到此處上傳.',
+            'info' => '圖片尺寸應為 :dimensions。你也可以將圖片拉到此處來上傳。',
         ],
 
         'destroy' => [
@@ -93,7 +93,7 @@ return [
 
         'actions' => [
             'destroy' => '刪除主題',
-            'restore' => '恢復主題',
+            'restore' => '復原主題',
         ],
 
         'create' => [

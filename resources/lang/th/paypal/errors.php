@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'วิธีการชำระเงินที่เลือกถูกปฏิเสธโดย PayPal',
     'invalid_resource_id' => 'ไม่พบข้อมูลการชำระเงิน',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "การชำระเงินถูกปฏิเสธ แต่เราไม่แน่ใจว่าทำไม",
 ];
