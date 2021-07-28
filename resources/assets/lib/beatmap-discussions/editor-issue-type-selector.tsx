@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { DiscussionType, discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapReviewDiscussionType } from 'interfaces/beatmap-discussion-review';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as React from 'react';
@@ -9,18 +10,7 @@ import { ReactEditor } from 'slate-react';
 import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
 import { SlateContext } from './slate-context';
 
-const discussionTypes = ['hype', 'mapperNote', 'praise', 'problem', 'suggestion'] as const;
-export type DiscussionType = (typeof discussionTypes)[number];
-
 const selectableTypes: DiscussionType[] = ['praise', 'problem', 'suggestion'];
-
-const discussionTypeIcons: Record<DiscussionType, string> = {
-  hype: 'fas fa-fw fa-bullhorn',
-  mapperNote: 'far fa-fw fa-sticky-note',
-  praise: 'fas fa-fw fa-heart',
-  problem: 'fas fa-fw fa-exclamation-circle',
-  suggestion: 'far fa-fw fa-circle',
-};
 
 interface Props {
   beatmaps: BeatmapJsonExtended[];
