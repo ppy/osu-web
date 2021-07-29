@@ -130,19 +130,19 @@ export default class LoveConfirmation extends React.PureComponent<Props> {
     return (
       <div key={mode} className='love-beatmap-modal__diff-mode'>
         <div className='love-beatmap-modal__diff-mode-title'>
-          <label className='osu-switch-v2'>
-            <input
-              checked={this.checkIsModeSelected(mode) !== false}
-              className='osu-switch-v2__input'
-              data-indeterminate={this.checkIsModeSelected(mode) === null}
-              onChange={this.handleCheckboxMode}
-              type='checkbox'
-              value={mode}
-            />
-            <span className='osu-switch-v2__content' />
-            <div className='love-beatmap-modal__switch-text'>
-              {osu.trans(`beatmaps.mode.${mode}`)}
+          <label className='love-beatmap-modal__switch'>
+            <div className='osu-switch-v2'>
+              <input
+                checked={this.checkIsModeSelected(mode) !== false}
+                className='osu-switch-v2__input'
+                data-indeterminate={this.checkIsModeSelected(mode) === null}
+                onChange={this.handleCheckboxMode}
+                type='checkbox'
+                value={mode}
+              />
+              <span className='osu-switch-v2__content' />
             </div>
+            {osu.trans(`beatmaps.mode.${mode}`)}
           </label>
         </div>
         <ul className='love-beatmap-modal__diff-list'>
@@ -151,18 +151,18 @@ export default class LoveConfirmation extends React.PureComponent<Props> {
               key={beatmap.id}
               className='love-beatmap-modal__diff-list-item'
             >
-              <label className='osu-switch-v2'>
-                <input
-                  checked={this.selectedBeatmapIds.has(beatmap.id)}
-                  className='osu-switch-v2__input'
-                  onChange={this.handleCheckboxDifficulty}
-                  type='checkbox'
-                  value={beatmap.id}
-                />
-                <span className='osu-switch-v2__content' />
-                <div className='love-beatmap-modal__switch-text'>
-                  {beatmap.version}
+              <label className='love-beatmap-modal__switch'>
+                <div className='osu-switch-v2'>
+                  <input
+                    checked={this.selectedBeatmapIds.has(beatmap.id)}
+                    className='osu-switch-v2__input'
+                    onChange={this.handleCheckboxDifficulty}
+                    type='checkbox'
+                    value={beatmap.id}
+                  />
+                  <span className='osu-switch-v2__content' />
                 </div>
+                {beatmap.version}
               </label>
             </li>
           ))}

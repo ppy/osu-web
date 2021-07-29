@@ -31,7 +31,6 @@
 
   &__diff-mode-title {
     font-size: @font-size--title-small;
-    font-weight: 800;
     padding-bottom: 5px;
     margin-bottom: 5px;
     border-bottom: 1px solid #fff;
@@ -68,7 +67,11 @@
     }
   }
 
-  &__switch-text {
-    margin-left: 5px;
+  &__switch {
+    display: flex;
+    align-items: baseline;
+    text-transform: none;
+    font-size: inherit;
+    font-weight: normal;
   }
 }
