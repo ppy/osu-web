@@ -189,6 +189,55 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
     }
 
+    /**
+     * @dataProvider postStoreNewReplyByOtherUserDataProvider
+     */
+    public function testPostStoreNewReplyByOtherUserResolved($group)
+    {
+        $this->beatmapset->update([
+            'approved' => Beatmapset::STATES['qualified'],
+            'queued_at' => now(),
+        ]);
+
+        $user = $this->createUserWithGroup($group);
+        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
+        $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
+        $lastDiscussionPosts = BeatmapDiscussionPost::count();
+
+        $this
+            ->postResolveDiscussion(false, $user)
+            ->assertStatus(200);
+
+        // reopen adds system post
+        $this->assertSame($lastDiscussionPosts + 2, BeatmapDiscussionPost::count());
+        $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
+        $this->assertSame($this->beatmapset->refresh()->approved, Beatmapset::STATES['qualified']);
+    }
+
+    /**
+     * @dataProvider postStoreNewReplyByOtherUserDataProvider
+     */
+    public function testPostStoreNewReplyByOtherUserUnresolved($group)
+    {
+        $this->beatmapset->update([
+            'approved' => Beatmapset::STATES['qualified'],
+            'queued_at' => now(),
+        ]);
+
+        $user = $this->createUserWithGroup($group);
+        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
+        $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => false]);
+        $lastDiscussionPosts = BeatmapDiscussionPost::count();
+
+        $this
+            ->postResolveDiscussion(false, $user)
+            ->assertStatus(200);
+
+        $this->assertSame($lastDiscussionPosts + 1, BeatmapDiscussionPost::count());
+        $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
+        $this->assertSame($this->beatmapset->refresh()->approved, Beatmapset::STATES['qualified']);
+    }
+
     public function testPostStoreNewReplyReopenByMapper()
     {
         $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
@@ -196,39 +245,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->postResolveDiscussion(false, $this->beatmapset->user)
-            ->assertStatus(200);
-
-        // reopen adds system post
-        $this->assertSame($lastDiscussionPosts + 2, BeatmapDiscussionPost::count());
-        $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
-    }
-
-    public function testPostStoreNewReplyReopenByNominator()
-    {
-        $user = factory(User::class)->create();
-        $user->addToGroup(app('groups')->byIdentifier('bng'));
-        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
-        $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
-        $lastDiscussionPosts = BeatmapDiscussionPost::count();
-
-        $this
-            ->postResolveDiscussion(false, $user)
-            ->assertStatus(200);
-
-        // reopen adds system post
-        $this->assertSame($lastDiscussionPosts + 2, BeatmapDiscussionPost::count());
-        $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
-    }
-
-    public function testPostStoreNewReplyReopenByOtherUser()
-    {
-        $user = factory(User::class)->create();
-        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
-        $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
-        $lastDiscussionPosts = BeatmapDiscussionPost::count();
-
-        $this
-            ->postResolveDiscussion(false, $user)
             ->assertStatus(200);
 
         // reopen adds system post
@@ -795,6 +811,17 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         foreach ($notQueued as $class) {
             Queue::assertNotPushed($class);
         }
+    }
+
+    public function postStoreNewReplyByOtherUserDataProvider()
+    {
+        return [
+            ['admin'],
+            ['bng'],
+            ['gmt'],
+            ['nat'],
+            [[]],
+        ];
     }
 
     public function problemDataProvider()
