@@ -5,6 +5,8 @@ import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
+import { computed } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 
@@ -17,15 +19,24 @@ interface State {
   selectedBeatmapIds: Set<number>;
 }
 
+@observer
 export default class LoveConfirmation extends React.PureComponent<Props, State> {
-  private groupedBeatmaps = groupBeatmaps(this.props.beatmapset.beatmaps ?? []);
-
   constructor(props: Props) {
     super(props);
 
     this.state = {
       selectedBeatmapIds: new Set(this.props.beatmapset.beatmaps?.map((beatmap) => beatmap.id) ?? []),
     };
+  }
+
+  @computed
+  private get beatmaps() {
+    return this.props.beatmapset.beatmaps?.filter((beatmap) => beatmap.deleted_at === null) ?? [];
+  }
+
+  @computed
+  private get groupedBeatmaps() {
+    return groupBeatmaps(this.beatmaps);
   }
 
   render() {
