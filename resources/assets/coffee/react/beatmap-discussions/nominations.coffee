@@ -24,7 +24,7 @@ export class Nominations extends React.PureComponent
     @xhr = {}
     @state =
       changeOwnerModal: false
-      isConfirmingLove: false
+      loveBeatmapModal: false
 
 
   componentDidMount: =>
@@ -43,7 +43,7 @@ export class Nominations extends React.PureComponent
   render: =>
     div className: bn,
       @renderChangeOwnerModal()
-      @renderLoveConfirmation()
+      @renderLoveBeatmapModal()
       div className: "#{bn}__items #{bn}__items--messages",
         div className: "#{bn}__item", @statusMessage()
         div className: "#{bn}__item", @hypeBar()
@@ -473,7 +473,7 @@ export class Nominations extends React.PureComponent
       icon: 'fas fa-heart'
       modifiers: ['pink']
       props:
-        onClick: @handleLoveConfirmation
+        onClick: @handleLoveBeatmapModal
 
 
   removeFromLovedButton: =>
@@ -512,8 +512,8 @@ export class Nominations extends React.PureComponent
     @setState changeOwnerModal: !@state.changeOwnerModal
 
 
-  handleLoveConfirmation: =>
-    @setState isConfirmingLove: !@state.isConfirmingLove
+  handleLoveBeatmapModal: =>
+    @setState loveBeatmapModal: !@state.loveBeatmapModal
 
 
   renderChangeOwnerModal: =>
@@ -525,10 +525,10 @@ export class Nominations extends React.PureComponent
         users: @props.users
         onClose: @handleChangeOwnerClick
 
-  renderLoveConfirmation: =>
-    return if !@state.isConfirmingLove
+  renderLoveBeatmapModal: =>
+    return if !@state.loveBeatmapModal
 
-    el Modal, visible: true, onClose: @handleLoveConfirmation,
+    el Modal, visible: true, onClose: @handleLoveBeatmapModal,
       el LoveBeatmapModal,
         beatmapset: @props.beatmapset
-        onClose: @handleLoveConfirmation
+        onClose: @handleLoveBeatmapModal
