@@ -43,7 +43,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
           <button
             className='btn-osu-big btn-osu-big--rounded-thin'
             disabled={this.state.selectedBeatmapIds.size === 0}
-            onClick={this.love}
+            onClick={this.handleSubmit}
             type='button'
           >
             {osu.trans('common.buttons.submit')}
@@ -107,7 +107,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
     this.setState({ selectedBeatmapIds: newSelectedIds });
   };
 
-  private love = () => {
+  private handleSubmit = () => {
     if (this.state.selectedBeatmapIds.size === 0) {
       return;
     }
