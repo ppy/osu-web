@@ -202,7 +202,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        $params = get_params(request()->all(), null, ['beatmap_ids:int[]']);
+        $params = get_params(request()->all(), null, ['beatmap_ids:int[]'], ['null_missing' => true]);
 
         priv_check('BeatmapsetLove')->ensureCan();
 
