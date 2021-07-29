@@ -94,11 +94,8 @@ export default class LoveConfirmation extends React.PureComponent<Props> {
     const mode = e.target.value as GameMode;
     const modeBeatmaps = this.groupedBeatmaps.get(mode) ?? [];
 
-    if (this.checkIsModeSelected(mode) === true) {
-      modeBeatmaps.forEach((beatmap) => this.selectedBeatmapIds.delete(beatmap.id));
-    } else {
-      modeBeatmaps.forEach((beatmap) => this.selectedBeatmapIds.add(beatmap.id));
-    }
+    const action = this.checkIsModeSelected(mode) ? 'delete' : 'add';
+    modeBeatmaps.forEach((beatmap) => this.selectedBeatmapIds[action](beatmap.id));
   };
 
   private handleSubmit = () => {
