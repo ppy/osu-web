@@ -30,16 +30,16 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
 
   render() {
     return (
-      <div className='love-confirmation'>
-        <div className='love-confirmation__row love-confirmation__row--title'>
+      <div className='love-beatmap-modal'>
+        <div className='love-beatmap-modal__row love-beatmap-modal__row--title'>
           {osu.trans('beatmaps.nominations.love_choose')}
         </div>
 
-        <div className='love-confirmation__row love-confirmation__row--content u-fancy-scrollbar'>
+        <div className='love-beatmap-modal__row love-beatmap-modal__row--content u-fancy-scrollbar'>
           {[...this.groupedBeatmaps].map(([mode, beatmaps]) => this.renderDiffMode(mode, beatmaps))}
         </div>
 
-        <div className='love-confirmation__row love-confirmation__row--footer'>
+        <div className='love-beatmap-modal__row love-beatmap-modal__row--footer'>
           <button
             className='btn-osu-big btn-osu-big--rounded-thin'
             disabled={this.state.selectedBeatmapIds.size === 0}
@@ -136,8 +136,8 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
     }
 
     return (
-      <div key={mode} className='love-confirmation__diff-mode'>
-        <div className='love-confirmation__diff-mode-title'>
+      <div key={mode} className='love-beatmap-modal__diff-mode'>
+        <div className='love-beatmap-modal__diff-mode-title'>
           <label className='osu-switch-v2'>
             <input
               checked={this.checkIsModeSelected(mode) !== false}
@@ -148,16 +148,16 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
               value={mode}
             />
             <span className='osu-switch-v2__content' />
-            <div className='love-confirmation__switch-text'>
+            <div className='love-beatmap-modal__switch-text'>
               {osu.trans(`beatmaps.mode.${mode}`)}
             </div>
           </label>
         </div>
-        <ul className='love-confirmation__diff-list'>
+        <ul className='love-beatmap-modal__diff-list'>
           {beatmaps.map((beatmap) => (
             <li
               key={beatmap.id}
-              className='love-confirmation__diff-list-item'
+              className='love-beatmap-modal__diff-list-item'
             >
               <label className='osu-switch-v2'>
                 <input
@@ -168,7 +168,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
                   value={beatmap.id}
                 />
                 <span className='osu-switch-v2__content' />
-                <div className='love-confirmation__switch-text'>
+                <div className='love-beatmap-modal__switch-text'>
                   {beatmap.version}
                 </div>
               </label>
