@@ -108,6 +108,10 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
   };
 
   private handleSubmit = () => {
+    if (!confirm(osu.trans('beatmaps.nominations.love_confirm'))) {
+      return;
+    }
+
     if (this.state.selectedBeatmapIds.size === 0) {
       return;
     }
