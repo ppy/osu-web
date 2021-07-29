@@ -73,12 +73,12 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
   }
 
   private checkIsModeSelected = (mode: GameMode) => {
-    const modeBeatmapIds = this.getModeBeatmapIds(mode);
-    const isAllSelected = modeBeatmapIds.every((id) => this.state.selectedBeatmapIds.has(id));
-    const isAllUnselected = modeBeatmapIds.every((id) => !this.state.selectedBeatmapIds.has(id));
+    const modeBeatmap = this.groupedBeatmaps.get(mode) ?? [];
+    const isAllSelected = modeBeatmap.every((beatmap) => this.state.selectedBeatmapIds.has(beatmap.id));
+    const isAllUnselected = modeBeatmap.every((beatmap) => !this.state.selectedBeatmapIds.has(beatmap.id));
 
     if (!isAllSelected && !isAllUnselected) {
-      return 'indeterminate';
+      return null;
     }
 
     return isAllSelected;
@@ -154,7 +154,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
             <input
               checked={this.checkIsModeSelected(mode) !== false}
               className='osu-switch-v2__input'
-              data-indeterminate={this.checkIsModeSelected(mode) === 'indeterminate'}
+              data-indeterminate={this.checkIsModeSelected(mode) === null}
               onChange={this.handleCheckboxMode}
               type='checkbox'
               value={mode}
