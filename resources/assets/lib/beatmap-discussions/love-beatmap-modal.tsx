@@ -123,11 +123,8 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
     $.ajax(url, params).done((response) => {
       $.publish('beatmapsetDiscussions:update', { beatmapset: response });
       this.props.onClose();
-    }).fail((xhr) => {
-      osu.ajaxError(xhr);
-    }).always(() => {
-      LoadingOverlay.hide();
-    });
+    }).fail(osu.ajaxError)
+      .always(LoadingOverlay.hide());
   };
 
   private renderDiffMode(mode: GameMode, beatmaps: BeatmapJson[]) {
