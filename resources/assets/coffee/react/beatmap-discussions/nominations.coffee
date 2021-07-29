@@ -7,7 +7,7 @@ import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
 import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
-import LoveConfirmation from 'beatmap-discussions/love-confirmation'
+import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-modal'
 import { Nominator } from 'beatmap-discussions/nominator'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { pageChange } from 'utils/page-change'
@@ -529,6 +529,6 @@ export class Nominations extends React.PureComponent
     return if !@state.isConfirmingLove
 
     el Modal, visible: true, onClose: @handleLoveConfirmation,
-      el LoveConfirmation,
+      el LoveBeatmapModal,
         beatmapset: @props.beatmapset
         onClose: @handleLoveConfirmation
