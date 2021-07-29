@@ -116,7 +116,7 @@ export default class LoveConfirmation extends React.PureComponent<Props, State> 
 
     const url = route('beatmapsets.love', { beatmapset: this.props.beatmapset.id });
     const params = {
-      data: { beatmapIds: [...this.state.selectedBeatmapIds] },
+      data: { beatmap_ids: [...this.state.selectedBeatmapIds] },
       method: 'PUT',
     };
 
