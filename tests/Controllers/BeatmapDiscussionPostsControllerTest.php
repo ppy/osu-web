@@ -23,8 +23,14 @@ use Tests\TestCase;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase
 {
-    private $minPlays;
-    private $user;
+    private Beatmap $beatmap;
+    private BeatmapDiscussion $beatmapDiscussion;
+    private BeatmapDiscussionPost $beatmapDiscussionPost;
+    private Beatmapset $beatmapset;
+    private User $mapper;
+    private int $minPlays;
+    private Beatmapset $otherBeatmapset;
+    private User $user;
 
     public function testPostStoreNewDiscussion()
     {
@@ -894,7 +900,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
 
         $this->otherBeatmapset = factory(Beatmapset::class)->states('no_discussion')->create();
-        $this->otherBeatmap = $this->otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $this->otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
     }
 
     private function deletePost(BeatmapDiscussionPost $post, ?User $user = null)
