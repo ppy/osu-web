@@ -549,7 +549,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
         $beatmaps = $this->beatmaps();
 
-        if (isset($beatmapIds)) {
+        if (isset($beatmapIds) && empty(array_diff($beatmapIds, $beatmaps->get()->modelKeys()))) {
             $beatmaps = $beatmaps->whereIn('beatmap_id', $beatmapIds);
         }
 
