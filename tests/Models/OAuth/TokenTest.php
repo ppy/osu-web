@@ -37,6 +37,15 @@ class TokenTest extends TestCase
         $this->createToken(null, ['bot'], $client);
     }
 
+    public function testClientCredentialsAllowsDelegation()
+    {
+        $user = factory(User::class)->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+
+        $this->expectNotToPerformAssertions();
+        $this->createToken(null, ['bot'], $client);
+    }
+
     public function testClientCredentialResourceOwnerBot()
     {
         $user = factory(User::class)->states('bot')->create();
@@ -61,6 +70,15 @@ class TokenTest extends TestCase
         $this->assertTrue($token->isClientCredentials());
         $this->assertNull($token->getResourceOwner());
         $this->assertNull(auth()->user());
+    }
+
+    public function testDelegationRequiresClientCredentials()
+    {
+        $user = factory(User::class)->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+
+        $this->expectException(InvalidScopeException::class);
+        $this->createToken($user, ['bot'], $client);
     }
 
     /**
