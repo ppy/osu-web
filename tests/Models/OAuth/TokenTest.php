@@ -10,23 +10,20 @@ use App\Exceptions\InvalidScopeException;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
+use Laravel\Passport\Passport;
 use Laravel\Passport\RefreshToken;
 use Tests\TestCase;
 
 class TokenTest extends TestCase
 {
     /**
-     * @dataProvider botScopeRequiresBotGroupDataProvider
+     * @dataProvider authCodeChatWriteRequiresBotGroupDataProvider
      */
-    public function testBotScopeRequiresBotGroup($group, $expectedException)
+    public function testAuthCodeChatWriteRequiresBotGroup(?string $group, ?string $expectedException)
     {
-        $user = factory(User::class);
-        if ($group !== null) {
-            $user->states($group);
-        }
-        $user = $user->create();
-
+        $user = factory(User::class)->states($group ?? [])->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $tokenUser = factory(User::class)->create();
 
         if ($expectedException !== null) {
             $this->expectException($expectedException);
@@ -34,16 +31,16 @@ class TokenTest extends TestCase
             $this->expectNotToPerformAssertions();
         }
 
-        $this->createToken(null, ['bot'], $client);
+        $this->createToken($tokenUser, ['chat.write'], $client);
     }
 
-    public function testClientCredentialsAllowsDelegation()
+    public function testClientCredentialsRequiredForDelegation()
     {
         $user = factory(User::class)->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
 
-        $this->expectNotToPerformAssertions();
-        $this->createToken(null, ['bot'], $client);
+        $this->expectException(InvalidScopeException::class);
+        $this->createToken($user, ['bot'], $client);
     }
 
     public function testClientCredentialResourceOwnerBot()
@@ -73,6 +70,18 @@ class TokenTest extends TestCase
     }
 
     /**
+     * @dataProvider delegationNotAllowedScopesDataProvider
+     */
+    public function testDelegationNotAllowedScopes(array $scopes)
+    {
+        $user = factory(User::class)->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+
+        $this->expectException(InvalidScopeException::class);
+        $this->createToken(null, $scopes, $client);
+    }
+
+    /**
      * @dataProvider delegationRequiredScopesDataProvider
      */
     public function testDelegationRequiredScopes(array $scopes, ?string $expectedException)
@@ -87,15 +96,6 @@ class TokenTest extends TestCase
         }
 
         $this->createToken(null, $scopes, $client);
-    }
-
-    public function testDelegationRequiresClientCredentials()
-    {
-        $user = factory(User::class)->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-
-        $this->expectException(InvalidScopeException::class);
-        $this->createToken($user, ['bot'], $client);
     }
 
     /**
@@ -153,6 +153,25 @@ class TokenTest extends TestCase
         Event::assertDispatched(UserSessionEvent::class);
     }
 
+    public function authCodeChatWriteRequiresBotGroupDataProvider()
+    {
+        return [
+            [null, InvalidScopeException::class],
+            ['admin', InvalidScopeException::class],
+            ['bng', InvalidScopeException::class],
+            ['bot', null],
+            ['gmt', InvalidScopeException::class],
+            ['nat', InvalidScopeException::class],
+        ];
+    }
+
+    public function delegationNotAllowedScopesDataProvider()
+    {
+        $ids = Passport::scopes()->pluck('id')->filter(fn ($id) => !in_array($id, ['bot', 'chat.write'], true))->values();
+
+        return $ids->map(fn ($id) => [['bot', $id]]);
+    }
+
     public function delegationRequiredScopesDataProvider()
     {
         return [
@@ -176,18 +195,6 @@ class TokenTest extends TestCase
             'null is not a valid scope' => [null, InvalidScopeException::class],
             'empty scope should fail' => [[], InvalidScopeException::class],
             'all scope is not allowed' => [['*'], InvalidScopeException::class],
-        ];
-    }
-
-    public function botScopeRequiresBotGroupDataProvider()
-    {
-        return [
-            [null, InvalidScopeException::class],
-            ['admin', InvalidScopeException::class],
-            ['bng', InvalidScopeException::class],
-            ['bot', null],
-            ['gmt', InvalidScopeException::class],
-            ['nat', InvalidScopeException::class],
         ];
     }
 }

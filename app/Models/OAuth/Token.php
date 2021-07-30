@@ -8,6 +8,7 @@ namespace App\Models\OAuth;
 use App\Events\UserSessionEvent;
 use App\Exceptions\InvalidScopeException;
 use App\Models\User;
+use Ds\Set;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token as PassportToken;
 
@@ -77,6 +78,11 @@ class Token extends PassportToken
 
     public function validate()
     {
+        static $scopesRequireDelegation;
+        if ($scopesRequireDelegation === null) {
+            $scopesRequireDelegation = new Set(['bot', 'chat.write']);
+        }
+
         if (empty($this->scopes)) {
             throw new InvalidScopeException('Tokens without scopes are not valid.');
         }
@@ -85,29 +91,36 @@ class Token extends PassportToken
             throw new InvalidScopeException('The client is not authorized.', 'unauthorized_client');
         }
 
-        if ($this->isClientCredentials() && in_array('*', $this->scopes, true)) {
-            throw new InvalidScopeException('* is not allowed with Client Credentials');
+        $scopes = new Set($this->scopes);
+        // no silly scopes.
+        if ($scopes->contains('*') && $scopes->count() > 1) {
+            throw new InvalidScopeException('* is not valid with other scopes');
         }
 
-        if (in_array('chat.write', $this->scopes, true)) {
-            // only clients owned by bots can request this scope.
-            if (!$this->client->user->isBot()) {
-                throw new InvalidScopeException('This scope is only available for chat bots.');
+        if ($this->isClientCredentials()) {
+            if ($scopes->contains('*')) {
+                throw new InvalidScopeException('* is not allowed with Client Credentials');
             }
 
-            // in the case of client credentials, delegation must be enabled on the token.
-            if ($this->isClientCredentials() && !$this->canDelegate()) {
-                throw new InvalidScopeException('bot scope required.');
-            }
-        }
+            if (!$scopes->intersect($scopesRequireDelegation)->isEmpty()) {
+                if (!$this->canDelegate()) {
+                    throw new InvalidScopeException('bot scope is required.');
+                }
 
-        if ($this->canDelegate()) {
-            if (!$this->client->user->isBot()) {
-                throw new InvalidScopeException('This scope is only available for chat bots.');
+                // delegation is only allowed if scopes given allow delegation.
+                if (!$scopes->diff($scopesRequireDelegation)->isEmpty()) {
+                    throw new InvalidScopeException('delegation is not supported for this combination of scopes.');
+                }
             }
-
-            if (!$this->isClientCredentials()) {
+        } else {
+            // delegation is only available for client_credentials.
+            if ($this->canDelegate()) {
                 throw new InvalidScopeException('bot scope is only valid for client_credentials tokens.');
+            }
+
+            // only clients owned by bots are allowed to act on behalf of another user.
+            if ($scopes->contains('chat.write') && !$this->client->user->isBot()) {
+                throw new InvalidScopeException('This scope is only available for chat bots.');
             }
         }
 
