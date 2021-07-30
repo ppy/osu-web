@@ -72,6 +72,23 @@ class TokenTest extends TestCase
         $this->assertNull(auth()->user());
     }
 
+    /**
+     * @dataProvider delegationRequiredScopesDataProvider
+     */
+    public function testDelegationRequiredScopes(array $scopes, ?string $expectedException)
+    {
+        $user = factory(User::class)->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+
+        if ($expectedException !== null) {
+            $this->expectException($expectedException);
+        } else {
+            $this->expectNotToPerformAssertions();
+        }
+
+        $this->createToken(null, $scopes, $client);
+    }
+
     public function testDelegationRequiresClientCredentials()
     {
         $user = factory(User::class)->create();
@@ -134,6 +151,14 @@ class TokenTest extends TestCase
         $this->assertTrue($refreshToken->fresh()->revoked);
         $this->assertTrue($token->fresh()->revoked);
         Event::assertDispatched(UserSessionEvent::class);
+    }
+
+    public function delegationRequiredScopesDataProvider()
+    {
+        return [
+            'chat.write requires delegation' => [['chat.write'], InvalidScopeException::class],
+            'chat.write delegation' => [['bot', 'chat.write'], null],
+        ];
     }
 
     public function scopesDataProvider()
