@@ -4,11 +4,14 @@
 .love-beatmap-modal {
   .page-width-default();
   .default-box-shadow();
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 20px;
+  padding-bottom: $padding-top;
   border-radius: @border-radius-large;
   background-color: hsl(var(--hsl-b5));
   margin: 10px;
+  max-height: 80vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 
   @media @desktop {
     width: auto;
@@ -18,15 +21,18 @@
   &__diff-list {
     list-style: none;
     padding: 0;
-    overflow-y: auto;
-
-    @media @desktop {
-      max-height: 75vh;
-    }
   }
 
   &__diff-list-item {
     margin-bottom: 5px;
+  }
+
+  &__diff-mode {
+    position: relative;
+
+    @media @desktop {
+      overflow-y: auto;
+    }
   }
 
   &__diff-mode-title {
@@ -34,25 +40,25 @@
     padding-bottom: 5px;
     margin-bottom: 5px;
     border-bottom: 1px solid #fff;
+    position: sticky;
+    top: 0;
+    background-color: hsl(var(--hsl-b5));
   }
 
   &__row {
     .default-gutter-v2();
-    padding-top: 10px;
-    padding-bottom: 10px;
 
     &--content {
       font-size: @font-size--normal;
       display: grid;
       column-gap: 10px;
       grid-template-columns: 1fr;
-      max-height: 70vh;
       overflow-y: auto;
 
       @media @desktop {
         grid-auto-flow: column;
         grid-auto-columns: 1fr;
-        max-height: none;
+        overflow-y: hidden;
       }
     }
 
@@ -60,10 +66,12 @@
       display: flex;
       column-gap: 5px;
       justify-content: flex-end;
+      margin-top: 20px;
     }
 
     &--title {
-      font-size: @font-size--title-small-2;
+      font-size: @font-size--title-small-3;
+      margin-bottom: 20px;
     }
   }
 
@@ -73,5 +81,6 @@
     text-transform: none;
     font-size: inherit;
     font-weight: normal;
+    cursor: pointer;
   }
 }
