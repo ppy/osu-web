@@ -54,8 +54,12 @@ class PasswordResetController extends Controller
     public function update()
     {
         $session = Session::get('password_reset');
+
+        if ($session === null) {
+            return $this->restart('invalid');
+        }
+
         $user = User::find($session['user_id']);
-        $inputKey = str_replace(' ', '', Request::input('key'));
 
         if ($user === null) {
             return $this->restart('invalid');
@@ -64,6 +68,8 @@ class PasswordResetController extends Controller
         if ($session['expire']->isPast()) {
             return $this->restart('expired');
         }
+
+        $inputKey = str_replace(' ', '', Request::input('key'));
 
         if (!present($inputKey)) {
             return response(['form_error' => [
@@ -144,6 +150,6 @@ class PasswordResetController extends Controller
     {
         $this->clear();
 
-        return ['message' => osu_trans("password_reset.restart.{$reasonKey}")];
+        return ['message' => osu_trans("password_reset.error.{$reasonKey}")];
     }
 }
