@@ -59,14 +59,14 @@ class PasswordResetController extends Controller
             return $this->restart('invalid');
         }
 
+        if ($session['expire']->isPast()) {
+            return $this->restart('expired');
+        }
+
         $user = User::find($session['user_id']);
 
         if ($user === null) {
             return $this->restart('invalid');
-        }
-
-        if ($session['expire']->isPast()) {
-            return $this->restart('expired');
         }
 
         $inputKey = str_replace(' ', '', Request::input('key'));
