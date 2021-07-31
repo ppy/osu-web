@@ -62,7 +62,7 @@
                         </span>
 
                         <span class="u-ellipsis-overflow">
-                            {{ trans('layout.popup_login.button') }}
+                            {{ osu_trans('layout.popup_login.button') }}
                         </span>
                     </button>
                 @endif
@@ -79,8 +79,8 @@
                     <button
                         class="mobile-menu-tab js-click-menu js-react--chat-icon"
                         data-click-menu-target="mobile-chat-notification"
-                        data-chat-icon="{{ json_encode(['type' => 'mobile']) }}"
                         data-turbolinks-permanent
+                        data-type='mobile'
                         id="notification-widget-chat-icon-mobile"
                     >
                         <span class="notification-icon notification-icon--mobile">
@@ -89,10 +89,10 @@
                         </span>
                     </button>
 
-                    <button class="mobile-menu-tab js-click-menu js-react--notification-icon"
+                    <button class="mobile-menu-tab js-click-menu js-react--main-notification-icon"
                         data-click-menu-target="mobile-notification"
-                        data-notification-icon="{{ json_encode(['type' => 'mobile']) }}"
                         data-turbolinks-permanent
+                        data-type='mobile'
                         id="notification-widget-icon-mobile"
                     >
                         <span class="notification-icon notification-icon--mobile">

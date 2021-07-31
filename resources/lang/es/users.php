@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Juega sucio o hace trampa',
+            'multiple_accounts' => 'Utiliza multiples cuentas',
             'insults' => 'Insulta a mí o a otros',
             'spam' => 'Envía mensajes spam',
             'unwanted_content' => 'Enlaza contenido inapropiado',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Mapas Amados',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Mapas Clasificados y Aprobados',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Mapas Pendientes',
+                ],
+                'ranked' => [
+                    'title' => 'Mapas Clasificados y Aprobados',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "Este usuario aún no ha conseguido ninguna. ;_;",
                 'recent' => 'Más reciente',
                 'title' => 'Medallas',
+            ],
+            'multiplayer' => [
+                'title' => 'Partidas multijugador',
             ],
             'posts' => [
                 'title' => 'Publicaciones',
@@ -402,10 +406,10 @@ return [
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Mapas Clasificados y Aprobados',
-            'loved_beatmapset_count' => 'Mapas Amados',
-            'unranked_beatmapset_count' => 'Mapas Pendientes',
             'graveyard_beatmapset_count' => 'Mapas Abandonados',
+            'loved_beatmapset_count' => 'Mapas Amados',
+            'pending_beatmapset_count' => 'Mapas Pendientes',
+            'ranked_beatmapset_count' => 'Mapas Clasificados y Aprobados',
         ],
     ],
 

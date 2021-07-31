@@ -3,8 +3,18 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 
+export function isSocketEventData(arg: unknown): arg is SocketEventData {
+  return typeof arg === 'object'
+    && arg != null
+    && 'event' in arg;
+}
+
+export interface SocketEventData {
+  event: string;
+}
+
 export default class SocketMessageEvent extends DispatcherAction {
-  constructor(readonly message: JSON) {
+  constructor(readonly message: SocketEventData) {
     super();
   }
 }

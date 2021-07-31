@@ -8,14 +8,14 @@ namespace App\Models;
 use App\Libraries\Transactions\AfterCommit;
 
 /**
- * @property string $colour
+ * @property string|null $colour
  * @property int $display_order
  * @property string $group_avatar
  * @property int $group_avatar_height
  * @property int $group_avatar_type
  * @property int $group_avatar_width
  * @property string $group_colour
- * @property string $group_desc
+ * @property string|null $group_desc
  * @property string $group_desc_bitfield
  * @property int $group_desc_options
  * @property string $group_desc_uid
@@ -42,15 +42,10 @@ class Group extends Model implements AfterCommit
         'has_playmodes' => 'boolean',
     ];
 
-    public function scopeVisible($query)
-    {
-        return $query->where('group_type', 1);
-    }
-
-    public function getColourAttribute($value)
+    public function getColourAttribute($value): ?string
     {
         if (!present($value)) {
-            return;
+            return null;
         }
 
         if (strlen($value) === 6 || strlen($value) === 3 && ctype_xdigit($value)) {
@@ -60,15 +55,30 @@ class Group extends Model implements AfterCommit
         return $value;
     }
 
+    public function getGroupDescAttribute($value): ?string
+    {
+        return presence($value);
+    }
+
+    public function descriptionHtml(): ?string
+    {
+        return $this->group_desc === null ? null : markdown($this->group_desc, 'group');
+    }
+
+    public function hasBadge(): bool
+    {
+        return $this->display_order !== null;
+    }
+
+    public function hasListing(): bool
+    {
+        return $this->group_type === 1;
+    }
+
     public function isProbationary(): bool
     {
         // TODO: move this to a DB field or something if other groups end up needing 'probation'
         return $this->identifier === 'bng_limited';
-    }
-
-    public function isVisible(): bool
-    {
-        return $this->group_type === 1;
     }
 
     public function users()

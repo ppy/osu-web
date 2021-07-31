@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'O método de pagamento selecionado foi rejeitado pelo PayPal.',
     'invalid_resource_id' => 'Nenhuma informação de pagamento encontrada.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "O pagamento foi rejeitado, mas não sabemos bem porquê.",
 ];

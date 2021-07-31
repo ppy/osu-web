@@ -12,6 +12,7 @@ class WikiPageTransformer extends TransformerAbstract
     public function transform(Page $page)
     {
         return [
+            'available_locales' => $page->availableLocales(),
             'layout' => $page->layout(),
             'locale' => $page->locale,
             'markdown' => $page->getMarkdown(),

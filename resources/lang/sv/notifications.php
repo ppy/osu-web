@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => 'Gästsvårighetsgrad',
+                'beatmap_owner_change' => 'Du är nu ägare till svårighetsgraden ":beatmap" för beatmappen ":title"',
+                'beatmap_owner_change_compact' => 'Du är nu ägare till svårighetsgraden ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Beatmapdiskussion',
                 'beatmapset_discussion_lock' => 'Diskussion om ":title" har låsts',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Du är nu gäst i beatmappen ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Diskussionen om ":title" har låsts',
                 'beatmapset_discussion_post_new' => 'Diskussionen om ":title" har nya uppdateringar',

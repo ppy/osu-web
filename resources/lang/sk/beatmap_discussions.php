@@ -58,6 +58,13 @@ return [
         'unsaved' => '',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Prosím, prihláste sa, aby ste mohli odpovedať',
@@ -74,6 +81,7 @@ return [
             'external_references' => '',
             'invalid_block_type' => 'neplatný typ bloku',
             'invalid_document' => 'neplatná recenzia',
+            'invalid_discussion_type' => '',
             'minimum_issues' => 'kontrola musí obsahovať minimálne :count problémov|kontrola musí obsahovať minimálne :count problémov',
             'missing_text' => 'v bloku nie je žiadny text',
             'too_many_blocks' => 'recenzie môžu obsahovať iba :count odsekov/vydaní|recenzie môžu obsahovať iba :count odsekov/čísel',

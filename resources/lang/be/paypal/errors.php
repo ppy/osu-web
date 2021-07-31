@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'Выбраны спосаб аплаты быў адхілены Paypal.',
     'invalid_resource_id' => 'Звесткі пра аплату не знойдзены.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "Аплата адхілена па невядомых нам прычынах.",
 ];

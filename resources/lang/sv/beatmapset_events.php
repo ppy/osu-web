@@ -6,7 +6,8 @@
 return [
     'event' => [
         'approve' => 'Godkänd.',
-        'discussion_delete' => 'Moderator raderade diskussion :discussion.',
+        'beatmap_owner_change' => 'Ägare av svårighetsgrad :beatmap ändrad till :new_user.',
+        'discussion_delete' => 'Moderator raderade diskussionen :discussion.',
         'discussion_lock' => 'Diskussioner för denna beatmap har inaktiverats. (:text)',
         'discussion_post_delete' => 'Moderator raderade inlägg från diskussionen :discussion.',
         'discussion_post_restore' => 'Moderator återställde inlägg från diskussionen :discussion.',
@@ -27,6 +28,8 @@ return [
         'nominate' => 'Nominerad av :user.',
         'nominate_modes' => 'Nominerad av :user (:modes).',
         'nomination_reset' => 'Nytt problem :discussion triggade en nomination återställning.',
+        'nomination_reset_received' => '',
+        'nomination_reset_received_profile' => '',
         'qualify' => 'Denna beatmap har uppnått den nödvändiga antalet av nomineringar och har blivit kvalificerad.',
         'rank' => 'Rankad.',
         'remove_from_loved' => 'Borttagen från Älskad av :user. (:text)',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Godkännande',
+        'beatmap_owner_change' => ' Byte av svårighetsgradsägare',
         'discussion_delete' => 'Borttagning av diskussioner',
         'discussion_post_delete' => 'Borttagning av diskussionssvar',
         'discussion_post_restore' => 'Återställning av diskussionssvar',
@@ -71,6 +75,7 @@ return [
         'love' => 'Älska',
         'nominate' => 'Nominering',
         'nomination_reset' => 'Återställning av nominering',
+        'nomination_reset_received' => '',
         'nsfw_toggle' => 'Explicit markering',
         'qualify' => 'Kvalifikation',
         'rank' => 'Rankning',

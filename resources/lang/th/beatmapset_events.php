@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'อนุมัติ',
+        'beatmap_owner_change' => 'เจ้าของระดับความยาก:beatmapเปลี่ยนเป็น:new_user',
         'discussion_delete' => 'ผู้ดูแลลบการสนทนา :discussion',
         'discussion_lock' => 'การสนทนาสำหรับบีทแมพนี้ถูกปิดใช้งาน (:text)',
         'discussion_post_delete' => 'ผู้ดูแลลบโพสต์จากการสนทนา:discussion',
@@ -27,6 +28,8 @@ return [
         'nominate' => 'ถูกเสนอชื่อโดย :user',
         'nominate_modes' => 'เสนอชื่อโดย :user (:modes)',
         'nomination_reset' => 'ปัญหาใหม่ :discussion (:text) ทำให้เกิดการรีเซทการเสนอชื่อ',
+        'nomination_reset_received' => '',
+        'nomination_reset_received_profile' => '',
         'qualify' => 'บีทแมพนี้ได้รับจำนวนการเสนอชื่อครบแล้ว และได้ถูก Qualified',
         'rank' => 'จัดอันดับ',
         'remove_from_loved' => 'ถูกนำออกจาก Loved โดย :user (:text)',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'การอนุมัติ',
+        'beatmap_owner_change' => 'เปลี่ยนเจ้าของระดับความยาก',
         'discussion_delete' => 'การลบบทสนทนา',
         'discussion_post_delete' => 'การลบการตอบกลับในบทสนทนา',
         'discussion_post_restore' => 'การกู้คืนการตอบกลับในบทสนทนา',
@@ -71,6 +75,7 @@ return [
         'love' => 'รักเลย',
         'nominate' => 'การเสนอชื่อ',
         'nomination_reset' => 'กำลังตั้งค่าการเสนอชื่อใหม่',
+        'nomination_reset_received' => '',
         'nsfw_toggle' => 'เครื่องหมายเนื้อหาล่อแหลม',
         'qualify' => 'คุณสมบัติ',
         'rank' => 'อันดับ',

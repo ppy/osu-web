@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Sök',
             'deleted' => 'Inkludera raderade diskussioner',
-            'mode' => '',
+            'mode' => 'Beatmapläge',
             'only_unresolved' => 'Visa bara olösta diskussioner',
             'types' => 'Typ av meddelande',
             'username' => 'Användarnamn',
@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count i denna recension',
     ],
 
+    'owner_editor' => [
+        'button' => 'Svårighetsgradens Ägare',
+        'reset_confirm' => 'Återställ ägare för denna svårighetsgrad?',
+        'user' => 'Ägare',
+        'version' => 'Svårighetsgrad',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Logga in för att svara',
@@ -66,7 +73,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max block används',
         'go_to_parent' => 'Visa granskningsinlägg',
         'go_to_child' => 'Visa diskussion',
         'validation' => [
@@ -74,6 +81,7 @@ return [
             'external_references' => 'granskningen innehåller referenser till problem som inte hör till denna recension',
             'invalid_block_type' => 'ogiltig blocktyp',
             'invalid_document' => 'ogiltig granskning',
+            'invalid_discussion_type' => '',
             'minimum_issues' => 'granskningen måste innehålla minst :count problem|granskningen måste innehålla minst :count problem',
             'missing_text' => 'blocket saknar text',
             'too_many_blocks' => 'granskningarna måste endast innehålla :count stycke/problem granskningarna får endast innehålla upp till :count stycken/problem',

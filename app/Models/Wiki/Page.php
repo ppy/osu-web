@@ -17,13 +17,15 @@ use App\Libraries\Search\BasicSearch;
 use App\Libraries\Wiki\MainPageRenderer;
 use App\Libraries\Wiki\MarkdownRenderer;
 use App\Models\Elasticsearch\WikiPageTrait;
+use App\Traits\Memoizes;
 use Carbon\Carbon;
+use Ds\Set;
 use Exception;
 use Log;
 
 class Page implements WikiObject
 {
-    use WikiPageTrait;
+    use Memoizes, WikiPageTrait;
 
     const CACHE_DURATION = 5 * 60 * 60;
     const VERSION = 9;
@@ -162,35 +164,39 @@ class Page implements WikiObject
         $this->defaultSubtitle = array_pop($defaultTitles);
     }
 
-    public function otherLocales()
+    public function availableLocales(): Set
     {
-        if (!$this->isVisible()) {
-            return [];
-        }
+        return $this->memoize(__FUNCTION__, function () {
+            $locales = new Set();
 
-        $query = (new BoolQuery())
-            ->must(['term' => ['path.keyword' => $this->path]])
-            ->must(['exists' => ['field' => 'page']]);
-        $search = (new BasicSearch(static::esIndexName(), 'wiki_searchlocales'))
-            ->source('locale')
-            ->sort(new Sort('locale.keyword', 'asc'))
-            ->query($query);
-        $response = $search->response();
-
-        $locales = [];
-        foreach ($response->hits() as $hit) {
-            $locale = $hit['_source']['locale'] ?? null;
-            if ($locale !== null && $locale !== $this->locale && LocaleMeta::sanitizeCode($locale) !== null) {
-                $locales[] = $locale;
+            if (!$this->isVisible()) {
+                return $locales;
             }
-        }
 
-        return $locales;
+            $query = (new BoolQuery())
+                ->must(['term' => ['path.keyword' => $this->path]])
+                ->must(['exists' => ['field' => 'page']]);
+            $search = (new BasicSearch(static::esIndexName(), 'wiki_searchlocales'))
+                ->source('locale')
+                ->sort(new Sort('locale.keyword', 'asc'))
+                ->query($query);
+            $response = $search->response();
+
+            foreach ($response->hits() as $hit) {
+                $locale = $hit['_source']['locale'] ?? null;
+                if (LocaleMeta::isValid($locale)) {
+                    $locales[] = $locale;
+                }
+            }
+            $locales->sort();
+
+            return $locales;
+        });
     }
 
     public function editUrl()
     {
-        return 'https://github.com/'.OsuWiki::user().'/'.OsuWiki::repository().'/tree/master/wiki/'.$this->pagePath();
+        return 'https://github.com/'.OsuWiki::user().'/'.OsuWiki::repository().'/tree/'.OsuWiki::branch().'/wiki/'.$this->pagePath();
     }
 
     public function esDeleteDocument(array $options = [])
@@ -425,7 +431,7 @@ class Page implements WikiObject
     public function title($withSubtitle = false)
     {
         if ($this->page === null) {
-            return trans('wiki.show.missing_title');
+            return osu_trans('wiki.show.missing_title');
         }
 
         $title = presence($this->page['header']['title'] ?? null) ?? $this->defaultTitle;

@@ -6,6 +6,3 @@ import DispatcherAction from './dispatcher-action';
 
 export class UserLoginAction implements DispatcherAction {
 }
-
-export class UserLogoutAction implements DispatcherAction {
-}

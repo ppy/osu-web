@@ -37,7 +37,6 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
             'nominations_summary' => $beatmapset->nominationsSummaryMeta(),
             'ranked' => $beatmapset->approved,
             'ranked_date' => json_time($beatmapset->approved_date),
-            'source' => $beatmapset->source,
             'storyboard' => $beatmapset->storyboard,
             'submitted_date' => json_time($beatmapset->submit_date),
             'tags' => $beatmapset->tags,

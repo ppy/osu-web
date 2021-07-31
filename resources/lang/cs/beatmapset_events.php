@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Schváleno.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderátor smazal tuto diskusi :discussion.',
         'discussion_lock' => 'Diskuze o této mapě byly vypnuty. (:text)',
         'discussion_post_delete' => 'Moderátor smazal příspěvek z této diskuse :discussion.',
@@ -27,6 +28,8 @@ return [
         'nominate' => 'Nominováno uživatelem :user.',
         'nominate_modes' => '',
         'nomination_reset' => 'Nový problém :discussion (:text) způsobil resetování nominace.',
+        'nomination_reset_received' => '',
+        'nomination_reset_received_profile' => '',
         'qualify' => 'Tato beatmapa získala požadované množství nominací a byla kvalifikována.',
         'rank' => 'Hodnocené.',
         'remove_from_loved' => '',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Schválení',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Odstranění diskuze',
         'discussion_post_delete' => 'Odstranění odpovědí diskuze',
         'discussion_post_restore' => 'Obnovení odpovědí diskuze',
@@ -71,6 +75,7 @@ return [
         'love' => 'Obliba',
         'nominate' => 'Nominace',
         'nomination_reset' => 'Resetování nominací',
+        'nomination_reset_received' => '',
         'nsfw_toggle' => '',
         'qualify' => 'Kvalifikace',
         'rank' => 'Hodnocení',

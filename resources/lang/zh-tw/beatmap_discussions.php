@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => '搜尋',
             'deleted' => '包含已經刪除的討論',
-            'mode' => '',
+            'mode' => '圖譜遊戲模式',
             'only_unresolved' => '只顯示未解決的討論',
             'types' => '訊息類別',
             'username' => '使用者名稱',
@@ -58,6 +58,13 @@ return [
         'unsaved' => '',
     ],
 
+    'owner_editor' => [
+        'button' => '難度作者',
+        'reset_confirm' => '要重設此難度的作者嗎？',
+        'user' => '作者',
+        'version' => '難度',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => '登入以回覆',
@@ -74,6 +81,7 @@ return [
             'external_references' => '',
             'invalid_block_type' => '',
             'invalid_document' => '',
+            'invalid_discussion_type' => '',
             'minimum_issues' => '',
             'missing_text' => '',
             'too_many_blocks' => '',

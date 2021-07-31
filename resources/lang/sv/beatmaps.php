@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'neka kudosu',
         'edit' => 'redigera',
         'edited' => 'Senast redigerad av :editor :update_time.',
+        'guest' => 'Gästsvårighetsgrad av :user',
         'kudosu_denied' => 'Nekad från att skaffa kudosu.',
         'message_placeholder_deleted_beatmap' => 'Denna svårighetsgrad har tagits bort så den kan inte längre diskuteras.',
         'message_placeholder_locked' => 'Diskussioner för denna beatmap har inaktiverats.',
@@ -250,7 +251,7 @@ return [
     ],
     'general' => [
         'converts' => 'Inkludera konverterade beatmaps',
-        'follows' => '',
+        'follows' => 'Prenumererade mappare',
         'recommended' => 'Rekommenderad svårighetsgrad',
     ],
     'mode' => [
@@ -309,11 +310,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Alla',

@@ -62,29 +62,33 @@ module.exports = {
       ],
       '@typescript-eslint/member-delimiter-style': 'error',
       '@typescript-eslint/member-ordering': [
-        'error',
+        // TODO: flip to error once tslint is turned off. The order is case sensitive while the tslint one isn't.
+        'warn',
         {
-          default: [
-            'public-static-field',
-            'protected-static-field',
-            'private-static-field',
+          default: {
+            memberTypes: [
+              'public-static-field',
+              'protected-static-field',
+              'private-static-field',
 
-            'public-instance-field',
-            'protected-instance-field',
-            'private-instance-field',
+              'public-instance-field',
+              'protected-instance-field',
+              'private-instance-field',
 
-            'public-constructor',
-            'protected-constructor',
-            'private-constructor',
+              'public-constructor',
+              'protected-constructor',
+              'private-constructor',
 
-            'public-static-method',
-            'protected-static-method',
-            'private-static-method',
+              'public-static-method',
+              'protected-static-method',
+              'private-static-method',
 
-            'public-instance-method',
-            'protected-instance-method',
-            'private-instance-method',
-          ],
+              'public-instance-method',
+              'protected-instance-method',
+              'private-instance-method',
+            ],
+            order: 'alphabetically',
+          },
         },
       ],
       '@typescript-eslint/naming-convention': 'off',
@@ -119,7 +123,7 @@ module.exports = {
       '@typescript-eslint/unified-signatures': 'error',
       'dot-notation': 'off',
       'no-invalid-this': 'off',
-      'quotes': 'off',
+      quotes: 'off',
       'react-hooks/exhaustive-deps': 'error',
       'react/jsx-boolean-value': 'error',
       'react/jsx-curly-spacing': 'error',
@@ -131,7 +135,7 @@ module.exports = {
       'react/no-deprecated': 'warn',
       'react/no-unsafe': 'off',
       'react/self-closing-comp': 'error',
-      'semi': 'off',
+      semi: 'off',
     },
     settings: {
       react: {
@@ -151,11 +155,11 @@ module.exports = {
     'arrow-parens': 'error',
     'brace-style': 'error',
     'comma-dangle': ['error', 'always-multiline'],
-    'complexity': 'off',
-    'curly': ['error', 'multi-line'],
+    complexity: 'off',
+    curly: ['error', 'multi-line'],
     'dot-notation': 'error',
     'eol-last': 'error',
-    'eqeqeq': ['error', 'smart'],
+    eqeqeq: ['error', 'smart'],
     'guard-for-in': 'error',
     'id-blacklist': [
       'error',
@@ -189,18 +193,17 @@ module.exports = {
     'no-throw-literal': 'error',
     'no-trailing-spaces': 'error',
     'no-undef-init': 'error',
-    'no-underscore-dangle': 'error',
     'no-unsafe-finally': 'error',
     'object-shorthand': 'error',
     'one-var': ['error', 'never'],
-    'quote-props': ['error', 'consistent-as-needed'],
-    'quotes': [
+    'quote-props': ['error', 'as-needed'],
+    quotes: [
       'error',
       'single',
       { avoidEscape: true },
     ],
-    'radix': 'error',
-    'semi': ['error', 'always'],
+    radix: 'error',
+    semi: ['error', 'always'],
     'sort-keys': ['error', 'asc', { caseSensitive: false }],
     'space-before-function-paren': [
       'error',

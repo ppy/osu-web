@@ -7,20 +7,7 @@ namespace App\Traits;
 
 trait Memoizes
 {
-    private static $memoizedStatic = [];
-
     private $memoized = [];
-
-    protected static function memoizeStatic(string $key, callable $function)
-    {
-        $key = static::class.'-'.$key;
-
-        if (!array_key_exists($key, static::$memoizedStatic)) {
-            static::$memoizedStatic[$key] = $function();
-        }
-
-        return static::$memoizedStatic[$key];
-    }
 
     protected function memoize(string $key, callable $function)
     {

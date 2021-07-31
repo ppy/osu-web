@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         bootstrap="bootstrap/autoload.php"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
          colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         processIsolation="false"
-         stopOnFailure="false">
+>
     <testsuites>
         <testsuite name="Application Test Suite">
-            <directory>./tests/</directory>
+            <directory suffix="Test.php">./tests/</directory>
             <exclude>./tests/Browser</exclude>
         </testsuite>
     </testsuites>

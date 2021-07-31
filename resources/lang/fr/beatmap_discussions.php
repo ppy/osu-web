@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Rechercher',
             'deleted' => 'Inclure les discussions supprimées',
-            'mode' => '',
+            'mode' => 'Mode Beatmap',
             'only_unresolved' => 'Afficher uniquement les discussions non résolues',
             'types' => 'Types de message',
             'username' => 'Nom d’utilisateur',
@@ -40,7 +40,7 @@ return [
 
             'user' => [
                 'label' => 'Utilisateur',
-                'overview' => 'Activités',
+                'overview' => 'Aperçu des actions',
             ],
         ],
     ],
@@ -55,7 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'Aucun des posts ne parle de mon problème',
         'notice' => 'Il y a des posts pour :timestamp (:existing_timestamps). Merci de les vérifier avant de poster.',
-        'unsaved' => ':count dans cette revue',
+        'unsaved' => ':count dans cette review',
+    ],
+
+    'owner_editor' => [
+        'button' => 'Propriétaire de la difficulté',
+        'reset_confirm' => 'Réinitialiser le propriétaire pour cette difficulté ?',
+        'user' => 'Propriétaire',
+        'version' => 'Difficulté',
     ],
 
     'reply' => [
@@ -67,14 +74,15 @@ return [
 
     'review' => [
         'block_count' => ':used / :max blocs utilisés',
-        'go_to_parent' => 'Voir l\'avis',
+        'go_to_parent' => 'Afficher le commentaire',
         'go_to_child' => 'Voir la discussion',
         'validation' => [
             'block_too_large' => 'chaque bloc peut contenir jusqu\'à :limit caractères',
             'external_references' => 'l\'avis contient des références à des problèmes qui n\'appartiennent pas à cet avis',
             'invalid_block_type' => 'type de bloc invalide',
-            'invalid_document' => 'avis invalide',
-            'minimum_issues' => 'l\'avis doit contenir un minimum de :count problèmes|l\'avis doit contenir un minimum de :count problèmes',
+            'invalid_document' => 'review invalide',
+            'invalid_discussion_type' => '',
+            'minimum_issues' => 'le review doit contenir un minimum de :count problème|le review doit contenir un minimum de :count problèmes',
             'missing_text' => 'le bloc manque du texte',
             'too_many_blocks' => 'les avis ne doivent contenir que :count paragraphes/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',
         ],

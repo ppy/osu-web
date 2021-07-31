@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => '收回 kudosu',
         'edit' => '編輯',
         'edited' => '最後由 :editor 編輯於 :update_time 。',
+        'guest' => '由 :user 製作的客串難度',
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder_deleted_beatmap' => '該難度已被刪除，無法繼續討論',
         'message_placeholder_locked' => '此圖譜的討論已被禁用。',
@@ -61,7 +62,7 @@ return [
         'message_placeholder' => [
             'general' => '在此處輸入以發佈至整體 (:version)',
             'generalAll' => '在此處輸入以發佈至整體 (所有難度)',
-            'review' => '',
+            'review' => '在此處輸入以發佈評論',
             'timeline' => '在此處輸入以發佈至時間軸 (:version)',
         ],
 
@@ -96,10 +97,10 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => '新評論',
             'embed' => [
                 'delete' => '刪除',
-                'missing' => '',
+                'missing' => '[該討論已移除]',
                 'unlink' => '取消連結',
                 'unsaved' => '尚未儲存',
                 'timestamp' => [
@@ -109,7 +110,7 @@ return [
             ],
             'insert-block' => [
                 'paragraph' => '插入段落',
-                'praise' => '',
+                'praise' => '插入表揚',
                 'problem' => '插入問題',
                 'suggestion' => '插入建議',
             ],
@@ -187,16 +188,16 @@ return [
         'nominate_confirm' => '確定要提名這張圖譜？',
         'nominated_by' => '被 :users 提名',
         'not_enough_hype' => "沒有足夠的推薦。",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => '從 Loved 中移除',
+        'remove_from_loved_prompt' => '從 Loved 中移除的原因：',
         'required_text' => '提名數: :current/:required',
         'reset_message_deleted' => '已刪除',
         'title' => '提名狀態',
         'unresolved_issues' => '仍然有需解決的問題 。',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
+            '_' => '若沒找到問題，該圖譜將於 :date 進榜。位於 :queue 中的 #:position。',
+            'queue' => 'ranking 列隊',
             'soon' => '不久後',
         ],
 
@@ -225,7 +226,7 @@ return [
                 'genre' => '曲風',
                 'language' => '語言',
                 'mode' => '模式',
-                'nsfw' => '',
+                'nsfw' => '成人內容',
                 'played' => '玩過',
                 'rank' => '成績',
                 'status' => '分類',
@@ -309,11 +310,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => '所有',

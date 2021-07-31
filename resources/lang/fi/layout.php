@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Toista seuraava kappale automaattisesti',
     ],
 
     'defaults' => [
@@ -16,23 +16,23 @@ return [
         'admin' => [
             'beatmapset' => '',
             'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            'contest' => 'kilpailu',
+            'contests' => 'kilpailuja',
+            'root' => 'konsoli',
+            'store_orders' => 'kaupan ylläpitäjä',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'listaus',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'listaus',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'indeksi',
+            'sitemap' => 'Sivukartta',
         ],
 
         'store' => [
@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modaus',
+            'multiplayer' => 'moninpeli',
             'show' => 'tiedot',
         ],
     ],
@@ -77,7 +78,7 @@ return [
         ],
         'help' => [
             '_' => 'apua',
-            'getAbuse' => '',
+            'getAbuse' => 'ilmoita väärinkäyttöstä',
             'getFaq' => 'ukk',
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',
@@ -184,13 +185,13 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'kirjaudu sisään / rekisteröidy',
 
         'login' => [
             'forgot' => "Olen unohtanut tietoni",
             'password' => 'salasana',
             'title' => 'Kirjaudu sisään jatkaaksesi',
-            'username' => '',
+            'username' => 'käyttäjänimi',
 
             'error' => [
                 'email' => "Käyttäjänimeä tai sähköpostia ei ole",
@@ -208,7 +209,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Asetukset',
-            'follows' => '',
+            'follows' => 'Seurantalistat',
             'friends' => 'Kaverit',
             'logout' => 'Kirjaudu ulos',
             'profile' => 'Profiilini',

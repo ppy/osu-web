@@ -36,9 +36,11 @@
 
     $currentHue = $currentHue ?? section_to_hue_map($currentSection);
 
+    $navLinks ??= nav_links();
+    $currentLocaleMeta ??= current_locale_meta();
 @endphp
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#">
+<html prefix="og: http://ogp.me/ns#" lang="{{ $currentLocaleMeta->html() }}">
     <head>
         @include("layout.metadata")
         <title>{!! $title !!}</title>
@@ -65,8 +67,8 @@
         @if (Auth::user() && Auth::user()->isRestricted())
             @include('objects._notification_banner', [
                 'type' => 'alert',
-                'title' => trans('users.restricted_banner.title'),
-                'message' => trans('users.restricted_banner.message'),
+                'title' => osu_trans('users.restricted_banner.title'),
+                'message' => osu_trans('users.restricted_banner.message'),
             ])
         @endif
 

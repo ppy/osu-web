@@ -56,12 +56,13 @@ return [
 
         'options' => [
             '_' => 'leveransalternativ',
+            'beatmap_owner_change' => 'gästsvårighetsgrad',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'privata chattmeddelanden',
             'comment_new' => 'nya kommentarer',
             'forum_topic_reply' => 'ämnessvar',
             'mail' => 'mail',
-            'mapping' => '',
+            'mapping' => 'beatmap ägare',
             'push' => 'push',
             'user_achievement_unlock' => 'användarmedalj upplåst',
         ],

@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Onaylı.',
+        'beatmap_owner_change' => ':beatmap zorluğunun sahibi :new_user kullanıcısı ile değiştirildi.',
         'discussion_delete' => 'Moderatör :discussion tartışmasını sildi.',
         'discussion_lock' => 'Bu beatmap için tartışma sağlandı',
         'discussion_post_delete' => ':discussion tartışmasındaki gönderi Moderatör tarafından silindi.',
@@ -27,6 +28,8 @@ return [
         'nominate' => ':user tarafından aday gösterildi.',
         'nominate_modes' => ' :user (:modes) tarafından aday gösterildi.',
         'nomination_reset' => 'Yeni sorun :discussion (:text) bir adaylık sıfırlamasını tetikledi.',
+        'nomination_reset_received' => '',
+        'nomination_reset_received_profile' => '',
         'qualify' => 'Bu beatmap gerekli aday gösterilme miktarına ulaştı ve nitelikli oldu.',
         'rank' => 'Dereceli.',
         'remove_from_loved' => ':user tarafından Sevilenlerden çıkarıldı (:text)',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Onay',
+        'beatmap_owner_change' => 'Zorluk sahibi değiştirme',
         'discussion_delete' => 'Tartışma silindi',
         'discussion_post_delete' => 'Tartışma yanıtı silme',
         'discussion_post_restore' => 'Tartışma yanıtı geri getirme',
@@ -71,6 +75,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Adaylık',
         'nomination_reset' => 'Adaylık Sıfırlama',
+        'nomination_reset_received' => '',
         'nsfw_toggle' => 'Müstehcen işareti',
         'qualify' => 'Adaylık',
         'rank' => 'Sıralama',

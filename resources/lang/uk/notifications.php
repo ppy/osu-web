@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Карта',
 
+            'beatmap_owner_change' => [
+                '_' => 'Гостьова складність',
+                'beatmap_owner_change' => 'Тепер ви власник складності ":beatmap" для карти ":title"',
+                'beatmap_owner_change_compact' => 'Тепер ви власник складності ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Обговорення карти',
                 'beatmapset_discussion_lock' => 'Карта ":title" заблокована для обговорень.',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Ви тепер гість на карті ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Обговорення в ":title" закрито',
                 'beatmapset_discussion_post_new' => 'Обговорення на ":title" має нові оновлення',

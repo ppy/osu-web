@@ -27,6 +27,10 @@ return [
             'remove' => 'Remover voto',
             'used_up' => 'Você usou todos seus votos',
         ],
+
+        'progress' => [
+            '_' => ':used / :max votos usados',
+        ],
     ],
     'entry' => [
         '_' => 'inscrição',

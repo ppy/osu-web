@@ -4,10 +4,12 @@
 import * as React from 'react'
 import { a, button, span, i } from 'react-dom-factories'
 import { Spinner } from 'spinner'
+import { classWithModifiers } from 'utils/css'
+
 el = React.createElement
 
 export BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = [], isBusy = false}) ->
-  props.className = osu.classWithModifiers('btn-osu-big', modifiers)
+  props.className = classWithModifiers('btn-osu-big', modifiers)
   props.className += " #{klass}" for klass in extraClasses
 
   blockElement =

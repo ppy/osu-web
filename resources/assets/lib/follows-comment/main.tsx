@@ -61,9 +61,10 @@ export default class Main extends React.PureComponent<Props> {
         </td>
 
         <td className='follows-table__data'>
-          <a href={follow.commentable_meta.url}>
-            {follow.commentable_meta.title}
-          </a>
+          {'url' in follow.commentable_meta
+            ? <a href={follow.commentable_meta.url}>{follow.commentable_meta.title}</a>
+            : <span>{follow.commentable_meta.title}</span>
+          }
         </td>
 
         <td className='follows-table__data'>

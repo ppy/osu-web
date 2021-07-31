@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved',
+        'beatmap_owner_change' => '難易度:beatmapの所有者が:new_userに変更されました。',
         'discussion_delete' => 'モデレーターが:discussionを削除しました。',
         'discussion_lock' => 'このビートマップに関するディスカッションは無効になっています。 （:text）',
         'discussion_post_delete' => 'モデレーターが:discussionから投稿を削除しました。',
@@ -27,6 +28,8 @@ return [
         'nominate' => ':userがノミネートしました。',
         'nominate_modes' => ':user(:modes)がノミネートしました。',
         'nomination_reset' => '新しい問題 :discussion (:text)によりノミネートがリセットされました。',
+        'nomination_reset_received' => '',
+        'nomination_reset_received_profile' => '',
         'qualify' => 'このビートマップは既に必要なノミネーション数に達しており、Qualifiedされています。',
         'rank' => 'Rankedされました。',
         'remove_from_loved' => ':userによってLovedから削除されました。(:text)',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => '承認',
+        'beatmap_owner_change' => '難易度の所有者変更',
         'discussion_delete' => 'ディスカッションの削除',
         'discussion_post_delete' => 'ディスカッションの返信を削除',
         'discussion_post_restore' => 'ディスカッションの返信を復元',
@@ -71,6 +75,7 @@ return [
         'love' => 'Love',
         'nominate' => 'ノミネーション',
         'nomination_reset' => 'ノミネーションのリセット',
+        'nomination_reset_received' => '',
         'nsfw_toggle' => '露骨マーク',
         'qualify' => 'Qualification',
         'rank' => 'ランキング',

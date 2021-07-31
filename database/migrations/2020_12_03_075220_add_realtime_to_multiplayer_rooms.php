@@ -18,9 +18,9 @@ class AddRealtimeToMultiplayerRooms extends Migration
                        MODIFY COLUMN category
                        ENUM('normal', 'spotlight', 'realtime')
                        NOT NULL DEFAULT 'normal'");
-        DB::statement("ALTER TABLE multiplayer_rooms
+        DB::statement('ALTER TABLE multiplayer_rooms
                        MODIFY COLUMN ends_at
-                       TIMESTAMP NULL");
+                       TIMESTAMP NULL');
     }
 
     /**
@@ -34,8 +34,8 @@ class AddRealtimeToMultiplayerRooms extends Migration
                        MODIFY COLUMN category
                        ENUM('normal', 'spotlight')
                        NOT NULL DEFAULT 'normal'");
-        DB::statement("ALTER TABLE multiplayer_rooms
+        DB::statement('ALTER TABLE multiplayer_rooms
                        MODIFY COLUMN ends_at
-                       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP");
+                       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP');
     }
 }

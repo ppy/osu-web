@@ -11,7 +11,7 @@
             </a>
         </div>
 
-        @foreach (nav_links() as $section => $links)
+        @foreach ($navLinks as $section => $links)
             <div class="nav2__col nav2__col--menu">
                 <a
                     class="nav2__menu-link-main js-menu"
@@ -20,7 +20,7 @@
                     data-menu-show-delay="0"
                 >
                     <span class="u-relative">
-                        {{ trans("layout.menu.{$section}._") }}
+                        {{ osu_trans("layout.menu.{$section}._") }}
 
                         @if ($section === $currentSection && !($isSearchPage ?? false))
                             <span class="nav2__menu-link-bar u-section--bg-normal"></span>
@@ -45,7 +45,7 @@
                                 @continue
                             @endif
                             <a class="simple-menu__item u-section-{{ $section }}--before-bg-normal" href="{{ $link }}">
-                                {{ trans("layout.menu.{$section}.{$action}") }}
+                                {{ osu_trans("layout.menu.{$section}.{$action}") }}
                             </a>
                         @endforeach
                     </div>
@@ -81,7 +81,7 @@
             <a
                 href="{{ route('support-the-game') }}"
                 class="nav-button nav-button--support"
-                title="{{ trans('page_title.main.home_controller.support_the_game') }}"
+                title="{{ osu_trans('page_title.main.home_controller.support_the_game') }}"
             >
                 <span class="fas fa-heart"></span>
             </a>
@@ -94,7 +94,7 @@
             >
                 <span class="nav-button__locale-current-flag">
                     @include('objects._flag_country', [
-                        'countryCode' => locale_flag(App::getLocale()),
+                        'countryCode' => $currentLocaleMeta->flag(),
                         'modifiers' => ['flat'],
                     ])
                 </span>
@@ -108,13 +108,16 @@
                 >
                     <div class="simple-menu__content">
                         @foreach (config('app.available_locales') as $locale)
+                            @php
+                                $localeMeta = locale_meta($locale);
+                            @endphp
                             <button
                                 type="button"
                                 class="
                                     simple-menu__item
-                                    {{ $locale === App::getLocale() ? 'simple-menu__item--active' : '' }}
+                                    {{ $localeMeta === $currentLocaleMeta ? 'simple-menu__item--active' : '' }}
                                 "
-                                @if ($locale !== App::getLocale())
+                                @if ($localeMeta !== $currentLocaleMeta)
                                     data-url="{{ route('set-locale', ['locale' => $locale]) }}"
                                     data-remote="1"
                                     data-method="POST"
@@ -123,12 +126,12 @@
                                 <span class="nav2-locale-item">
                                     <span class="nav2-locale-item__flag">
                                         @include('objects._flag_country', [
-                                            'countryCode' => locale_flag($locale),
+                                            'countryCode' => $localeMeta->flag(),
                                             'modifiers' => ['flat'],
                                         ])
                                     </span>
 
-                                    {{ locale_name($locale) }}
+                                    {{ $localeMeta->name() }}
                                 </span>
                             </button>
                         @endforeach
@@ -163,7 +166,7 @@
 
             <div class="nav2__col">
                 <button
-                    class="nav-button nav-button--stadium js-click-menu js-react--notification-icon"
+                    class="nav-button nav-button--stadium js-click-menu js-react--main-notification-icon"
                     data-click-menu-target="nav2-notification-widget"
                     data-turbolinks-permanent
                     id="notification-widget-icon"

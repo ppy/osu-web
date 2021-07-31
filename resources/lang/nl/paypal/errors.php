@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'De geselecteerde betaling was geweigerd door Paypal.',
     'invalid_resource_id' => 'Geen betalingsinformatie gevonden.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "De betaling was afgewezen, maar we weten niet waarom.",
 ];

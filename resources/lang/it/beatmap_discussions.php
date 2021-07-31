@@ -24,8 +24,8 @@ return [
         'form' => [
             '_' => 'Cerca',
             'deleted' => 'Includi discussioni eliminate',
-            'mode' => '',
-            'only_unresolved' => 'Mostra solo le discussioni in sospeso',
+            'mode' => 'Modalità Beatmap',
+            'only_unresolved' => 'Mostra solo discussioni irrisolte',
             'types' => 'Tipi di messaggio',
             'username' => 'Nome Utente',
 
@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count in questa revisione',
     ],
 
+    'owner_editor' => [
+        'button' => 'Mapper della difficoltà',
+        'reset_confirm' => 'Resettare il proprietario per questa difficoltà?',
+        'user' => 'Proprietario',
+        'version' => 'Difficoltà',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Registrati per Rispondere',
@@ -74,6 +81,7 @@ return [
             'external_references' => 'la revisione contiene riferimenti a dei problemi che non appartengono a questa revisione',
             'invalid_block_type' => 'tipo di blocco non valido',
             'invalid_document' => 'revisione non valida',
+            'invalid_discussion_type' => '',
             'minimum_issues' => 'la revisione deve contenere almeno :count problema|la revisione deve contenere almeno :count problemi',
             'missing_text' => 'il blocco non ha testo',
             'too_many_blocks' => 'le revisioni possono contenere solo :count paragrafo/problema|le revisioni possono contenere fino a :count paragrafi/problemi',

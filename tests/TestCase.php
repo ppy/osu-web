@@ -223,13 +223,31 @@ class TestCase extends BaseTestCase
         return $token;
     }
 
-    protected function createUserWithGroup($groupIdentifier, array $attributes = []): ?User
+    /**
+     * @param array|string $groupIdentifier
+     */
+    protected function createUserWithGroup($groupIdentifier, array $attributes = []): User
     {
-        if ($groupIdentifier === null) {
-            return null;
+        return factory(User::class)->states($groupIdentifier)->create($attributes);
+    }
+
+    protected function createUserWithGroupPlaymodes(string $groupIdentifier, array $playmodes = [], array $attributes = []): User
+    {
+        $user = $this->createUserWithGroup($groupIdentifier, $attributes);
+        $group = app('groups')->byIdentifier($groupIdentifier);
+
+        if (!$group->has_playmodes) {
+            $group->update(['has_playmodes' => true]);
+
+            // TODO: This shouldn't have to be called here, since it's already
+            // called by `Group::afterCommit`, but `Group::afterCommit` isn't
+            // running in tests when creating/saving `Group`s.
+            app('groups')->resetCache();
         }
 
-        return factory(User::class)->states($groupIdentifier)->create($attributes);
+        $user->findUserGroup($group, true)->update(['playmodes' => $playmodes]);
+
+        return $user;
     }
 
     protected function fileList($path, $suffix)
@@ -278,7 +296,7 @@ class TestCase extends BaseTestCase
 
     protected function normalizeHTML($html)
     {
-        return str_replace('<br />', "<br />\n", str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html))));
+        return str_replace('<br />', "<br />\n", str_replace("\n", '', preg_replace('/>\s*</s', '><', trim($html))));
     }
 
     protected function runFakeQueue()

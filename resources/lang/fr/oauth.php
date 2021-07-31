@@ -15,7 +15,7 @@ return [
     'authorized_clients' => [
         'confirm_revoke' => 'Êtes-vous sûr de vouloir révoquer les permissions de ce client ?',
         'scopes_title' => 'Cette application peut :',
-        'owned_by' => 'Crée par :user',
+        'owned_by' => 'Créer par :user',
         'none' => 'Aucun client',
 
         'revoked' => [
@@ -43,7 +43,7 @@ return [
         'register' => 'Inscrire une application',
         'terms_of_use' => [
             '_' => 'En utilisant cette API vous acceptez :link.',
-            'link' => 'Termes d\'utilisation',
+            'link' => 'Conditions d’Utilisations',
         ],
     ],
 

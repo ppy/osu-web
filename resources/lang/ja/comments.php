@@ -5,6 +5,8 @@
 
 return [
     'deleted' => '削除済み',
+    'deleted_by' => ':timeagoに:userによって削除済み ',
+    'deleted_by_system' => 'システム',
     'deleted_count' => ':count_delimited個の削除されたコメント',
     'edited' => ':userが:timeagoに編集済み',
     'pinned' => 'ピン留め',

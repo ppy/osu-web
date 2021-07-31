@@ -8,12 +8,14 @@ import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-con
 import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, img } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapset-discussions-history-#{nextVal()}"
     @cache = {}
     @state = JSON.parse(props.container.dataset.discussionsState ? null)
     @restoredState = @state?
@@ -27,13 +29,13 @@ export class Main extends React.PureComponent
 
 
   componentDidMount: =>
-    $.subscribe 'beatmapsetDiscussions:update.discussionHistory', @discussionUpdate
-    $(document).on 'ajax:success.discussionHistory', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
+    $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @discussionUpdate
+    $(document).on "ajax:success.#{@eventId}", '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.discussionHistory'
-    $(window).off '.discussionHistory'
+    $.unsubscribe ".#{@eventId}"
+    $(window).off ".#{@eventId}"
 
     $(window).stop()
 
@@ -117,6 +119,7 @@ export class Main extends React.PureComponent
                   el Discussion,
                     discussion: discussion
                     users: @users()
+                    currentBeatmap: @beatmaps()[discussion.beatmap_id]
                     currentUser: currentUser
                     beatmapset: discussion.beatmapset
                     isTimelineVisible: false

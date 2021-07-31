@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'การวิจารณ์บีทแมพ',
+            'multiplayer' => '',
             'show' => 'ข้อมูล',
         ],
     ],
@@ -161,7 +162,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'เกินขีดจำกัดการเข้าถึง',
             'description' => '',
         ],
         '500' => [
@@ -209,7 +210,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'การตั้งค่า',
-            'follows' => '',
+            'follows' => 'รายการการเฝ้าดู',
             'friends' => 'เพื่อน',
             'logout' => 'ออกจากระบบ',
             'profile' => 'โปรไฟล์ของฉัน',

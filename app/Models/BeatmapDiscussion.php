@@ -17,6 +17,7 @@ use Exception;
  * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussionVotes BeatmapDiscussionVote
  * @property int|null $beatmap_id
  * @property int $beatmapset_id
+ * @property Beatmapset $beatmapset
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $deleted_at
  * @property int|null $deleted_by_id
@@ -74,10 +75,12 @@ class BeatmapDiscussion extends Model
         ];
 
         $query = static::limit($params['limit'])->offset($pagination['offset']);
+        $isModerator = $rawParams['is_moderator'] ?? false;
 
         if (present($rawParams['user'] ?? null)) {
             $params['user'] = $rawParams['user'];
-            $user = User::lookup($params['user']);
+            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
+            $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
                 $query->none();
@@ -248,6 +251,11 @@ class BeatmapDiscussion extends Model
             !$this->kudosu_denied;
     }
 
+    public function isProblem()
+    {
+        return $this->message_type === 'problem';
+    }
+
     public function refreshKudosu($event, $eventExtraData = [])
     {
         // remove own votes
@@ -373,6 +381,17 @@ class BeatmapDiscussion extends Model
         return $this->fill([
             'timestamp' => $this->startingPost->timestamp() ?? null,
         ])->saveOrExplode();
+    }
+
+    /**
+     * To get the correct result, this should be called before discussions are updated, as it checks the open problems count.
+     */
+    public function shouldNotifyQualifiedProblem(?string $event): bool
+    {
+        return $this->beatmapset->isQualified() && (
+            $event === BeatmapsetEvent::ISSUE_REOPEN
+            || $event === null && !$this->exists && $this->isProblem()
+        ) && $this->beatmapset->beatmapDiscussions()->openProblems()->count() === 0;
     }
 
     public function fixBeatmapsetId()
@@ -617,6 +636,14 @@ class BeatmapDiscussion extends Model
             ])->saveOrExplode();
             $this->refreshKudosu('deny_kudosu');
         });
+    }
+
+    public function managedBy(User $user): bool
+    {
+        $id = $user->getKey();
+
+        return $this->beatmapset->user_id === $id
+            || ($this->beatmap !== null && $this->beatmap->user_id === $id);
     }
 
     public function userRecentVotesCount($user, $increment = false)

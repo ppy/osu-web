@@ -165,7 +165,7 @@ class Parser
         }, $header);
 
         usort($mappings, function ($left, $right) {
-            return $right[1] > $left[1];
+            return $right[1] <=> $left[1];
         });
 
         return array_filter(array_map(function ($mapping) {

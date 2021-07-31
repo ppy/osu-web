@@ -8,6 +8,8 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import { ViewMode } from 'user-card';
 import UserCardTypeContext from 'user-card-type-context';
+import { classWithModifiers } from 'utils/css';
+import { nextVal } from 'utils/seq';
 
 interface Props {
   mode: ViewMode;
@@ -25,7 +27,7 @@ export default class UserCardBrick extends React.PureComponent<Props> {
 
   declare context: React.ContextType<typeof UserCardTypeContext>;
 
-  readonly eventId = `user-card-brick-${osu.uuid()}`;
+  private readonly eventId = `user-card-brick-${nextVal()}`;
 
   componentDidMount() {
     $.subscribe(`friendButton:refresh.${this.eventId}`, this.refresh);
@@ -41,7 +43,7 @@ export default class UserCardBrick extends React.PureComponent<Props> {
 
     return (
       <a
-        className={`js-usercard ${osu.classWithModifiers('user-card-brick', modifiers)}`}
+        className={`js-usercard ${classWithModifiers('user-card-brick', modifiers)}`}
         data-user-id={this.props.user.id}
         href={route('users.show', { user: this.props.user.id })}
       >

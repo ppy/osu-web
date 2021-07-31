@@ -58,13 +58,13 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Uusi vastaus',
             ],
         ],
 
         'info' => [
             'post_count' => ':count_delimited viesti|:count_delimited viestiä',
-            'topic_starter' => '',
+            'topic_starter' => 'Aiheen Aloittaja',
         ],
     ],
 
@@ -75,11 +75,11 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Haluatko varmasti poistaa aiheen?',
+        'confirm_restore' => 'Haluatko varmasti palauttaa aiheen?',
         'deleted' => 'poistettu aihe',
         'go_to_latest' => 'näytä viimeisin viesti',
-        'has_replied' => '',
+        'has_replied' => 'Olet vastannut tähän aiheeseen',
         'in_forum' => '',
         'latest_post' => ':when käyttäjältä :user',
         'latest_reply_by' => 'viimeisimmän vastauksen jätti :user',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'aloittanut :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Poista aihe',
+            'restore' => 'Palauta aihe',
         ],
 
         'create' => [

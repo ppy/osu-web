@@ -32,16 +32,16 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
+        'hybrid_requires_modes' => 'En hybrid beatmap kräver att du väljer minst ett spelläge att nominera för.',
         'incorrect_mode' => 'Du har inte behörighet att nominera för läge: :mode',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'full_bn_required' => 'Du måste vara en fullständig nominerare för att utföra denna kvalificerande nominering.',
+        'too_many' => 'Nomineringskravet är redan uppfyllt.',
 
         'dialog' => [
             'confirmation' => 'Är du säker på att du vill nominera denna Beatmap?',
             'header' => 'Nominera Beatmap',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'hybrid_warning' => 'notera: du kan bara nominera en gång, så se till att du nominerar för alla spellägen som du tänker nominera för',
+            'which_modes' => 'Nominera för vilka spellägen?',
         ],
     ],
 
@@ -53,9 +53,9 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => 'av :artist',
             'favourite' => 'Favorisera denna beatmapset',
-            'favourite_login' => '',
+            'favourite_login' => 'Logga in för att favorisera denna beatmap',
             'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
             'mapped_by' => 'skapad av :mapper',
             'unfavourite' => 'Ta bort favorisering på denna beatmapset',
@@ -119,10 +119,10 @@ return [
             'nsfw' => 'Explicit innehåll',
             'points-of-failure' => 'Punkter av Misslyckande',
             'source' => 'Källa',
-            'storyboard' => '',
+            'storyboard' => 'Denna beatmap innehåller storyboard',
             'success-rate' => 'Genomsnittig Succe',
             'tags' => 'Taggar',
-            'video' => '',
+            'video' => 'Denna beatmap innehåller video',
         ],
 
         'nsfw_warning' => [

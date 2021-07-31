@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Aprobat.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Un moderator a șters discuția :discussion.',
         'discussion_lock' => 'Discuție pentru acest beatmap a fost dezactivată. (:text)',
         'discussion_post_delete' => 'Un moderator a șters postarea din discuția :discussion.',
@@ -27,6 +28,8 @@ return [
         'nominate' => 'Nominalizat de :user.',
         'nominate_modes' => '',
         'nomination_reset' => 'O problemă nouă :discussion (:text) a declanșat reluarea unei nominalizări.',
+        'nomination_reset_received' => '',
+        'nomination_reset_received_profile' => '',
         'qualify' => 'Acest beatmap a atins numărul limită de nominalizări și s-a calificat.',
         'rank' => 'Clasat.',
         'remove_from_loved' => '',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Aprobare',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Ștergerea discuției',
         'discussion_post_delete' => 'Ștergerea răspunsului',
         'discussion_post_restore' => 'Restaurarea răspunsului',
@@ -71,6 +75,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Nominalizare',
         'nomination_reset' => 'Resetarea nominalizărilor',
+        'nomination_reset_received' => '',
         'nsfw_toggle' => '',
         'qualify' => 'Calificare',
         'rank' => 'Clasament',

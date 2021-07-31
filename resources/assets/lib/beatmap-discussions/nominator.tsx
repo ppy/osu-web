@@ -263,9 +263,16 @@ export class Nominator extends React.PureComponent<Props, State> {
       (userNominatable[mode] === 'limited' && !this.requiresFullNomination(mode));
   };
 
-  userHasNominatePermission = () => !this.userIsOwner() && (this.props.currentUser.is_admin || this.props.currentUser.is_bng || this.props.currentUser.is_nat);
+  userHasNominatePermission = () => this.props.currentUser.is_admin || (!this.userIsOwner() && (this.props.currentUser.is_bng || this.props.currentUser.is_nat));
 
-  userIsOwner = () => this.props.currentUser?.id === this.props.beatmapset.user_id;
+  userIsOwner = () => {
+    const userId = this.props.currentUser?.id;
+
+    return (userId != null && (
+      userId === this.props.beatmapset.user_id
+      || (this.props.beatmapset.beatmaps ?? []).some((beatmap) => userId === beatmap.user_id)
+    ));
+  };
 
   userNominatableModes = () => {
     if (!this.mapCanBeNominated() || !this.userHasNominatePermission()) {
@@ -276,10 +283,9 @@ export class Nominator extends React.PureComponent<Props, State> {
   };
 
   private modalContentHybrid = () => {
-    let renderPlaymodes;
     const playmodes = _.keys(this.props.beatmapset.nominations?.required);
 
-    renderPlaymodes = _.map(playmodes, (mode: GameMode) => {
+    const renderPlaymodes = _.map(playmodes, (mode: GameMode) => {
       const disabled = !this.userCanNominateMode(mode);
       return (
         <label

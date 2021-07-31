@@ -11,8 +11,6 @@ class @StickyHeader
     @header = document.getElementsByClassName('js-pinned-header')
     @marker = document.getElementsByClassName('js-sticky-header')
     @pinnedSticky = document.getElementsByClassName('js-pinned-header-sticky')
-    @stickyBreadcrumbs = document.getElementsByClassName('js-sticky-header-breadcrumbs')
-    @stickyContent = document.getElementsByClassName('js-sticky-header-content')
 
     $(window).on 'scroll', @onScroll
     $(document).on 'turbolinks:load', @debouncedOnScroll
@@ -21,16 +19,16 @@ class @StickyHeader
 
 
   breadcrumbsElement: ->
-    @stickyBreadcrumbs[0]
+    newBody.querySelector('.js-sticky-header-breadcrumbs')
 
 
   contentElement: ->
-    @stickyContent[0]
+    newBody.querySelector('.js-sticky-header-content')
 
 
   headerHeight: ->
     styles = window._styles.header
-    if osu.isMobile()
+    if osuCore.windowSize.isMobile
       styles.heightMobile
     else
       styles.heightSticky

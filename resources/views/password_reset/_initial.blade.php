@@ -11,7 +11,7 @@
     'data-skip-ajax-error-popup' => '1',
 ]) !!}
     <label class="password-reset__input-group">
-        {{ trans('password_reset.starting.username') }}
+        {{ osu_trans('password_reset.starting.username') }}
 
         <input name="username" class="password-reset__input" autofocus>
 
@@ -20,17 +20,17 @@
 
     <div class="password-reset__input-group">
         <button class="btn-osu-big btn-osu-big--password-reset">
-            {{ trans('password_reset.button.start') }}
+            {{ osu_trans('password_reset.button.start') }}
         </button>
     </div>
 
     @if (config('services.enchant.id') !== null)
         <div>
-            {!! trans('password_reset.starting.support._', ['button' => tag('a', [
+            {!! osu_trans('password_reset.starting.support._', ['button' => tag('a', [
                 'class' => 'js-enchant--show',
                 'role' => 'button',
                 'href' => '#',
-            ], trans('password_reset.starting.support.button'))]) !!}
+            ], osu_trans('password_reset.starting.support.button'))]) !!}
         </div>
 
         @include('objects._enchant')

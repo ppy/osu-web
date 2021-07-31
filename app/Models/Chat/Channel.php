@@ -6,8 +6,10 @@
 namespace App\Models\Chat;
 
 use App\Exceptions\API;
+use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\ChannelMessage;
-use App\Models\Match\Match;
+use App\Models\LegacyMatch\LegacyMatch;
+use App\Models\Multiplayer\Room;
 use App\Models\User;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
@@ -21,8 +23,10 @@ use LaravelRedis as Redis;
  * @property \Carbon\Carbon $creation_time
  * @property string $description
  * @property \Illuminate\Database\Eloquent\Collection $messages Message
+ * @property int|null $match_id
  * @property int $moderated
  * @property string $name
+ * @property int|null $room_id
  * @property mixed $type
  */
 class Channel extends Model
@@ -51,6 +55,19 @@ class Channel extends Model
         'pm' => 'PM',
         'group' => 'GROUP',
     ];
+
+    public static function createMultiplayer(Room $room)
+    {
+        if (!$room->exists) {
+            throw new InvariantException('cannot create Channel for a Room that has not been persisted.');
+        }
+
+        return static::create([
+            'name' => "#lazermp_{$room->getKey()}",
+            'type' => static::TYPES['multiplayer'],
+            'description' => $room->name,
+        ]);
+    }
 
     public static function createPM($user1, $user2)
     {
@@ -169,12 +186,12 @@ class Channel extends Model
 
     public function scopePublic($query)
     {
-        return $query->where('type', self::TYPES['public']);
+        return $query->where('type', static::TYPES['public']);
     }
 
     public function scopePM($query)
     {
-        return $query->where('type', self::TYPES['pm']);
+        return $query->where('type', static::TYPES['pm']);
     }
 
     public function getAllowedGroupsAttribute($allowed_groups)
@@ -182,29 +199,34 @@ class Channel extends Model
         return $allowed_groups === null ? [] : array_map('intval', explode(',', $allowed_groups));
     }
 
+    public function isMultiplayer()
+    {
+        return $this->type === static::TYPES['multiplayer'];
+    }
+
     public function isPublic()
     {
-        return $this->type === self::TYPES['public'];
+        return $this->type === static::TYPES['public'];
     }
 
     public function isPrivate()
     {
-        return $this->type === self::TYPES['private'];
+        return $this->type === static::TYPES['private'];
     }
 
     public function isPM()
     {
-        return $this->type === self::TYPES['pm'];
+        return $this->type === static::TYPES['pm'];
     }
 
     public function isGroup()
     {
-        return $this->type === self::TYPES['group'];
+        return $this->type === static::TYPES['group'];
     }
 
     public function isBanchoMultiplayerChat()
     {
-        return $this->type === self::TYPES['temporary'] && starts_with($this->name, '#mp_');
+        return $this->type === static::TYPES['temporary'] && starts_with($this->name, '#mp_');
     }
 
     public function getMatchIdAttribute()
@@ -215,9 +237,17 @@ class Channel extends Model
         }
     }
 
+    public function getRoomIdAttribute()
+    {
+        // 9 = strlen('#lazermp_')
+        if ($this->isMultiplayer() && substr($this->name, 0, 9) === '#lazermp_') {
+            return get_int(substr($this->name, 9));
+        }
+    }
+
     public function multiplayerMatch()
     {
-        return $this->belongsTo(Match::class, 'match_id');
+        return $this->belongsTo(LegacyMatch::class, 'match_id');
     }
 
     public function pmTargetFor(User $user)
@@ -261,17 +291,23 @@ class Channel extends Model
             ->exec();
 
         if (count($sent) >= $limit) {
-            throw new API\ExcessiveChatMessagesException(trans('api.error.chat.limit_exceeded'));
+            throw new API\ExcessiveChatMessagesException(osu_trans('api.error.chat.limit_exceeded'));
         }
 
         $content = str_replace(["\r", "\n"], ' ', trim($content));
 
         if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
-            throw new API\ChatMessageTooLongException(trans('api.error.chat.too_long'));
+            throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
         }
 
         if (!present($content)) {
-            throw new API\ChatMessageEmptyException(trans('api.error.chat.empty'));
+            throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
+        }
+
+        $chatFilters = app('chat-filters')->all();
+
+        foreach ($chatFilters as $filter) {
+            $content = str_replace($filter->match, $filter->replacement, $content);
         }
 
         $message = new Message();

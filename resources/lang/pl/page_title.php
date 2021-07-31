@@ -142,5 +142,8 @@ return [
         'modding_history_controller' => [
             '_' => 'informacje o modowaniu',
         ],
+        'multiplayer_controller' => [
+            '_' => 'historia trybu wieloosobowego',
+        ],
     ],
 ];

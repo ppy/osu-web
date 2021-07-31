@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Vahvistettu.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderaattori poisti keskustelun :discussion.',
         'discussion_lock' => '',
         'discussion_post_delete' => 'Moderaattori poisti viestin keskustelusta :discussion.',
@@ -27,6 +28,8 @@ return [
         'nominate' => 'Käyttäjän :user suosittelema.',
         'nominate_modes' => '',
         'nomination_reset' => 'Uusi ongelma :discussion (:text) nollasi suositukset.',
+        'nomination_reset_received' => '',
+        'nomination_reset_received_profile' => '',
         'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia hyväksymisvaihetta varten.',
         'rank' => 'Hyväksytty.',
         'remove_from_loved' => '',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Hyväksyntä',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Poista keskustelu',
         'discussion_post_delete' => 'Keskustelun vastauksen poistaminen',
         'discussion_post_restore' => 'Keskustelun vastauksen palautus',
@@ -71,6 +75,7 @@ return [
         'love' => 'Rakkaus',
         'nominate' => 'Äänestetty',
         'nomination_reset' => 'Äänestyksen resetointi',
+        'nomination_reset_received' => '',
         'nsfw_toggle' => '',
         'qualify' => 'Hyväksyntä',
         'rank' => 'Luokittelu',

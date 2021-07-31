@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Gioco scorretto / Cheating',
+            'multiple_accounts' => 'Uso di account multipli',
             'insults' => 'Insulti a me / altri',
             'spam' => 'Spamming',
             'unwanted_content' => 'Condivisione di contenuti inappropriati',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Beatmap Amate',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmap Classificate & Approvate',
+                'pending' => [
+                    'title' => 'Beatmap In Attesa',
                 ],
-                'unranked' => [
-                    'title' => 'Beatmap in Attesa',
+                'ranked' => [
+                    'title' => 'Beatmap Classificate',
                 ],
             ],
             'discussions' => [
@@ -232,7 +233,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'volte giocata',
-                    'title' => 'Beatmap più Giocate',
+                    'title' => 'Beatmap Più Giocate',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisione: :percentage',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Questo utente non ne ha ricevuti ancora. ;_;",
                 'recent' => 'Più recenti',
                 'title' => 'Medaglie',
+            ],
+            'multiplayer' => [
+                'title' => 'Partite Multigiocatore',
             ],
             'posts' => [
                 'title' => 'Post',
@@ -402,10 +406,10 @@ return [
             'total_hits' => 'Colpi Totali',
             'total_score' => 'Punteggio Totale',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmap Classificate & Approvate',
-            'loved_beatmapset_count' => 'Beatmap Amate',
-            'unranked_beatmapset_count' => 'Beatmap in Attesa',
             'graveyard_beatmapset_count' => 'Beatmap Abbandonate',
+            'loved_beatmapset_count' => 'Beatmap Amate',
+            'pending_beatmapset_count' => 'Beatmap In Attesa',
+            'ranked_beatmapset_count' => 'Beatmap Classificate',
         ],
     ],
 
@@ -429,6 +433,6 @@ return [
     'view_mode' => [
         'brick' => 'Vista a blocchi',
         'card' => 'Vista a schede',
-        'list' => 'Vista ad elenco',
+        'list' => 'Vista a elenco',
     ],
 ];

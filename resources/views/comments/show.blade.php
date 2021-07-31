@@ -11,5 +11,5 @@
         {!! json_encode($commentBundle->toArray()) !!}
     </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/comments-show.js'])
+    @include('layout._react_js', ['src' => 'js/react/comments-show.js'])
 @endsection

@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Le rythme est à un seul *clic* !  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
+        'page_description' => 'osu ! - Le rythme n\'est plus qu\'à un *clic* !  Avec les modes de jeu Ouendan/EBA, Taiko et original, ainsi qu\'un éditeur de niveaux entièrement fonctionnel.',
     ],
 
     'header' => [
@@ -32,7 +32,7 @@ return [
 
         'help' => [
             'index' => 'index',
-            'sitemap' => 'Plan du site',
+            'sitemap' => 'Aide à la navigation',
         ],
 
         'store' => [
@@ -47,13 +47,14 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => 'multijoueur',
             'show' => 'infos',
         ],
     ],
 
     'gallery' => [
         'close' => 'Fermer (Échap)',
-        'fullscreen' => 'Plein écran',
+        'fullscreen' => 'Basculer en plein écran',
         'zoom' => 'Zoom avant/arrière',
         'previous' => 'Précédent (flèche gauche)',
         'next' => 'Suivant (flèche droite)',
@@ -62,13 +63,13 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'artistes plébiscités',
-            'index' => 'index',
+            'artists' => 'artistes en vedette',
+            'index' => 'liste',
             'packs' => 'collections',
         ],
         'community' => [
             '_' => 'communauté',
-            'chat' => 'chat',
+            'chat' => 'tchat',
             'contests' => 'concours',
             'dev' => 'développement',
             'forum-forums-index' => 'forums',
@@ -85,15 +86,15 @@ return [
         ],
         'home' => [
             '_' => 'accueil',
-            'changelog-index' => 'notes de MàJ',
+            'changelog-index' => 'changelog',
             'getDownload' => 'télécharger',
             'news-index' => 'actualités',
             'search' => 'rechercher',
             'team' => 'équipe',
         ],
         'rankings' => [
-            '_' => 'rankings',
-            'charts' => 'classements',
+            '_' => 'classements',
+            'charts' => 'mise en avant',
             'country' => 'pays',
             'index' => 'performance',
             'kudosu' => 'kudosu',
@@ -112,14 +113,14 @@ return [
         'general' => [
             '_' => 'Général',
             'home' => 'Accueil',
-            'changelog-index' => 'Notes de MàJ',
+            'changelog-index' => 'Changelog',
             'beatmaps' => 'Liste des beatmaps',
             'download' => 'Télécharger osu!',
         ],
         'help' => [
             '_' => 'Aide & Communauté',
-            'faq' => 'Foire aux Questions',
-            'forum' => 'Forums',
+            'faq' => 'Questions fréquemment posées',
+            'forum' => 'Forums communautaire',
             'livestreams' => 'Streams en direct',
             'report' => 'Signaler une erreur',
             'wiki' => 'Wiki',
@@ -144,11 +145,11 @@ return [
             'description' => "Désolé, mais la page demandée n'est pas ici !",
         ],
         '403' => [
-            'error' => "Vous ne devriez pas être ici",
+            'error' => "Vous ne devriez pas être ici.",
             'description' => 'Vous pouvez essayer de revenir en arrière.',
         ],
         '401' => [
-            'error' => "Vous ne devriez pas être ici",
+            'error' => "Vous ne devriez pas être ici.",
             'description' => 'Vous pouvez essayer de revenir en arrière. Ou peut-être vous connecter.',
         ],
         '405' => [
@@ -169,7 +170,7 @@ return [
         ],
         'fatal' => [
             'error' => 'Oh non ! Quelque chose s\'est cassé ! (gravement) ;_;',
-            'description' => "Nous avons été notifié automatiquement de cette erreur.",
+            'description' => "Nous avons été automatiquement notifié de cette erreur.",
         ],
         '503' => [
             'error' => 'Maintenance en cours!',
@@ -200,7 +201,7 @@ return [
 
         'register' => [
             'download' => 'Télécharger',
-            'info' => 'Téléchargez osu! pour créer votre propre compte!',
+            'info' => 'Téléchargez osu! pour créer votre propre compte !',
             'title' => "Vous n'avez pas de compte ?",
         ],
     ],
@@ -216,7 +217,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Écrivez pour rechercher!',
+        'initial' => 'Écrivez pour rechercher !',
         'retry' => 'La recherche a échouée. Cliquez pour réessayer.',
     ],
 ];

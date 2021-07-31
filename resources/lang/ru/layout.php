@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'моддинг',
+            'multiplayer' => 'мультиплеер',
             'show' => 'информация',
         ],
     ],
@@ -62,16 +63,16 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'карты',
-            'artists' => 'featured artists',
+            'artists' => 'избранные исполнители',
             'index' => 'библиотека',
             'packs' => 'сборки',
         ],
         'community' => [
             '_' => 'сообщество',
-            'chat' => 'сообщения',
+            'chat' => 'чат',
             'contests' => 'конкурсы',
             'dev' => 'разработка',
-            'forum-forums-index' => 'форумы',
+            'forum-forums-index' => 'форум',
             'getLive' => 'прямые трансляции',
             'tournaments' => 'турниры',
         ],
@@ -216,7 +217,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Введите для поиска!',
+        'initial' => 'Начните печатать!',
         'retry' => 'Ошибка поиска. Нажмите для повтора.',
     ],
 ];

@@ -13,6 +13,7 @@ import PostItem from 'news-index/post-item';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   container: HTMLElement;
@@ -27,7 +28,7 @@ function NavPost({ post, subtitle, modifiers }: { modifiers: string[]; post?: Ne
 
   return (
     <a
-      className={osu.classWithModifiers('page-nav-fancy', modifiers)}
+      className={classWithModifiers('page-nav-fancy', modifiers)}
       href={route('news.show', { news: post.slug })}
       style={{ backgroundImage: osu.urlPresence(post.first_image) }}
     >
@@ -114,8 +115,8 @@ export default class Main extends React.Component<Props> {
                 'data-method': 'put',
                 'data-reload-on-success': 1,
                 'data-remote': true,
-                'data-url': route('news.update', {news: this.props.post.id}),
-                'type': 'button',
+                'data-url': route('news.update', { news: this.props.post.id }),
+                type: 'button',
               },
               text: osu.trans('news.update.button'),
             },
@@ -135,9 +136,20 @@ export default class Main extends React.Component<Props> {
     const contentHTML = document.createElement('div');
     contentHTML.innerHTML = content;
 
-    const firstImage = contentHTML.querySelector('img');
-    if (firstImage != null && firstImage.parentElement != null) {
-      firstImage.parentElement.remove();
+    const firstImageUrl = this.props.post.first_image;
+
+    if (firstImageUrl != null) {
+      const firstImage = contentHTML.querySelector(`img[src="${CSS.escape(firstImageUrl)}"]`);
+
+      if (firstImage != null) {
+        const firstImageParent = firstImage.parentElement;
+
+        if (firstImageParent?.children.length === 1) {
+          firstImageParent.remove();
+        } else {
+          firstImage.remove();
+        }
+      }
     }
 
     content = contentHTML.innerHTML;

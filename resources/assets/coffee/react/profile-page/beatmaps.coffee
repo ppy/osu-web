@@ -6,14 +6,14 @@ import BeatmapsetPanel from 'beatmapset-panel'
 import { observable } from 'mobx'
 import * as React from 'react'
 import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 el = React.createElement
 
 sections = [
   'favouriteBeatmapsets'
-  'rankedAndApprovedBeatmapsets'
+  'rankedBeatmapsets'
   'lovedBeatmapsets'
-  'unrankedBeatmapsets'
+  'pendingBeatmapsets'
   'graveyardBeatmapsets'
 ]
 

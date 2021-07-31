@@ -27,6 +27,10 @@ return [
             'remove' => 'Vote entfernen',
             'used_up' => 'Du hast alle deine Votes verwendet',
         ],
+
+        'progress' => [
+            '_' => ':used / :max Stimmen vergeben',
+        ],
     ],
     'entry' => [
         '_' => 'entry',

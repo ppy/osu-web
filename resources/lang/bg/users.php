@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Нечестна игра / Измама',
+            'multiple_accounts' => '',
             'insults' => 'Обижда ме / други',
             'spam' => 'Спам',
             'unwanted_content' => 'Изпраща неприлично съдържание',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Обичани бийтмапове',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Класирани и одобрени бийтмапове',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Предстоящи класиране бийтмапове',
+                ],
+                'ranked' => [
+                    'title' => 'Класирани и одобрени бийтмапове',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "Този потребител все още няма никакви! Т - Т",
                 'recent' => 'Най-новите',
                 'title' => 'Медали',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Публикации',
@@ -402,10 +406,10 @@ return [
             'total_hits' => 'Общ брой попадения',
             'total_score' => 'Общ брой точки',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Класирани и одобрени бийтмапове',
-            'loved_beatmapset_count' => 'Обичани бийтмапове',
-            'unranked_beatmapset_count' => 'Предстоящи бийтмапове за класиране',
             'graveyard_beatmapset_count' => 'Изоставени бийтмапове',
+            'loved_beatmapset_count' => 'Обичани бийтмапове',
+            'pending_beatmapset_count' => 'Предстоящи бийтмапове за класиране',
+            'ranked_beatmapset_count' => 'Класирани и одобрени бийтмапове',
         ],
     ],
 

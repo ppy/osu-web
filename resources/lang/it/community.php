@@ -24,7 +24,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Artisti in primo piano',
-                'description' => 'Con il tuo supporto possiamo raggiungere tanti altri fantastici artisti e avere la licenza su più musica da usare su osu!',
+                'description' => 'Con il tuo supporto possiamo raggiungere tanti altri fantastici artisti e ottenere la licenza per poter utilizzare molta più musica su osu!',
                 'link_text' => 'Visualizza l\'elenco attuale &raquo;',
             ],
             'ads' => [
@@ -85,7 +85,7 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filtri per Beatmap',
+                'title' => 'Filtri Beatmap',
                 'description' => 'I filtri per beatmap cercano tra mappe giocate e non giocate, o in base al rank ottenuto.',
             ],
 

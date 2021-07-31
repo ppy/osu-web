@@ -117,7 +117,7 @@ return [
             '_' => 'prestation',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'butik',
         ],
         'tournaments_controller' => [
             '_' => 'turneringar',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'notera',
         ],
         'wiki_controller' => [
-            '_' => 'kunskapsbas',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -136,11 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'butik',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder info',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'flerspelarhistorik',
         ],
     ],
 ];
