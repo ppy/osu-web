@@ -48,20 +48,20 @@ export default class LoveConfirmation extends React.PureComponent<Props> {
 
         <div className='love-beatmap-modal__row love-beatmap-modal__row--footer'>
           <button
+            className='btn-osu-big btn-osu-big--rounded-thin btn-osu-big--danger'
+            onClick={this.props.onClose}
+            type='button'
+          >
+            {osu.trans('common.buttons.close')}
+          </button>
+
+          <button
             className='btn-osu-big btn-osu-big--rounded-thin'
             disabled={this.selectedBeatmapIds.size === 0}
             onClick={this.handleSubmit}
             type='button'
           >
             {osu.trans('common.buttons.submit')}
-          </button>
-
-          <button
-            className='btn-osu-big btn-osu-big--rounded-thin btn-osu-big--danger'
-            onClick={this.props.onClose}
-            type='button'
-          >
-            {osu.trans('common.buttons.close')}
           </button>
         </div>
       </div>
