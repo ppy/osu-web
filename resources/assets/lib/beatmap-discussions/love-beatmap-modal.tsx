@@ -127,15 +127,17 @@ export default class LoveConfirmation extends React.PureComponent<Props> {
       return null;
     }
 
+    const isModeSelected = this.checkIsModeSelected(mode);
+
     return (
       <div key={mode} className='love-beatmap-modal__diff-mode'>
         <div className='love-beatmap-modal__diff-mode-title'>
           <label className='love-beatmap-modal__switch'>
             <div className='osu-switch-v2'>
               <input
-                checked={this.checkIsModeSelected(mode) !== false}
+                checked={isModeSelected !== false}
                 className='osu-switch-v2__input'
-                data-indeterminate={this.checkIsModeSelected(mode) === null}
+                data-indeterminate={isModeSelected === null}
                 onChange={this.handleCheckboxMode}
                 type='checkbox'
                 value={mode}
