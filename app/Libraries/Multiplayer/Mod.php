@@ -218,6 +218,9 @@ class Mod
         ],
         self::MUTED => [
             'enable_metronome' => 'bool',
+            'mute_combo_count' => 'int',
+            'inverse_muting' => 'bool',
+            'affects_hit_sounds' => 'bool',
         ],
     ];
 
