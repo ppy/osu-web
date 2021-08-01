@@ -30,7 +30,7 @@ export class DetailBar extends React.Component
       div className: bn,
         div className: "#{bn}__page-toggle",
           button
-            className: 'page-toggle'
+            className: 'btn-circle btn-circle--page-toggle'
             onClick: @toggleExtend
             title: osu.trans("common.buttons.#{if expanded then 'collapse' else 'expand'}")
             if expanded
