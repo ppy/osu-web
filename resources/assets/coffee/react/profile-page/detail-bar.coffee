@@ -116,7 +116,7 @@ export class DetailBar extends React.Component
 
     div className: "#{bn}__entry",
       button
-        className: 'page-toggle page-toggle--detail js-click-menu'
+        className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail js-click-menu'
         title: osu.trans('common.buttons.show_more_options')
         'data-click-menu-target': "profile-page-bar-#{@eventId}"
         span className: 'fas fa-ellipsis-v'
