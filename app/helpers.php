@@ -864,29 +864,29 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 
 function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
-    // FIXME: remove `rawurlencode` workaround when fixed upstream.
-    // Reference: https://github.com/laravel/framework/issues/26715
+    $path = $path === null ? 'Main_Page' : str_replace('%2F', '/', rawurlencode($path));
+
     $params = [
-        'path' => $path === null ? 'Main_Page' : str_replace('%2F', '/', rawurlencode($path)),
+        'path' => 'WIKI_PATH',
         'locale' => $locale ?? App::getLocale(),
     ];
 
     if ($api ?? is_api_request()) {
-        return route('api.wiki.show', $params, $fullUrl);
-    }
-
-    if ($params['path'] === 'Sitemap') {
-        return route('wiki.sitemap', $params['locale'], $fullUrl);
-    }
-
-    if (starts_with("{$params['path']}/", 'Legal/')) {
-        $params['path'] = ltrim(substr($params['path'], strlen('Legal')), '/');
-        $route = 'legal';
+        $route = 'api.wiki.show';
     } else {
-        $route = 'wiki.show';
+        if ($path === 'Sitemap') {
+            return route('wiki.sitemap', $params['locale'], $fullUrl);
+        }
+
+        if (starts_with("{$path}/", 'Legal/')) {
+            $path = ltrim(substr($path, strlen('Legal')), '/');
+            $route = 'legal';
+        } else {
+            $route = 'wiki.show';
+        }
     }
 
-    return route($route, $params, $fullUrl);
+    return str_replace($params['path'], $path, route($route, $params, $fullUrl));
 }
 
 function bbcode($text, $uid, $options = [])
