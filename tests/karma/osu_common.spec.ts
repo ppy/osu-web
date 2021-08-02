@@ -20,13 +20,13 @@ import GroupJson from 'interfaces/group-json';
 import * as React from 'react';
 
 describe('osu_common', () => {
-  describe('test locale file loaded in test runner', () => {
+  describe('locale file loaded in test runner', () => {
     it('should be loaded', () => {
       expect(Lang.has('common.confirmation')).toBe(true);
     })
   })
 
-  describe('test groupColour', () => {
+  describe('groupColour', () => {
     const group: GroupJson = {
       colour: '#abcdef',
       has_listing: true,
@@ -57,7 +57,7 @@ describe('osu_common', () => {
     })
   })
 
-  describe('test jsonClone', () => {
+  describe('jsonClone', () => {
     it('should return same object', () => {
       expect(osu.jsonClone({ test: '1234' })).toEqual({ test: '1234' });
     })
@@ -71,7 +71,7 @@ describe('osu_common', () => {
     })
   })
 
-  describe('test linkify', () => {
+  describe('linkify', () => {
     const textWithLink = 'Please visit https://link.com';
 
     it('should return correct anchor', () => {
@@ -87,7 +87,7 @@ describe('osu_common', () => {
     })
   })
 
-  describe('test formatBytes', () => {
+  describe('formatBytes', () => {
     it('should return same value in bytes', () => {
       expect(osu.formatBytes(100)).toBe('100 B');
     })
@@ -105,7 +105,7 @@ describe('osu_common', () => {
     })
   })
 
-  describe('test formatNumber', () => {
+  describe('formatNumber', () => {
     it('should return null', () => {
       expect(osu.formatNumber(null)).toBe(null);
     })
@@ -119,7 +119,7 @@ describe('osu_common', () => {
     })
   })
 
-  describe('test presence', () => {
+  describe('presence', () => {
     it('should return same string', () => {
       expect(osu.presence('test')).toBe('test');
     })
@@ -137,7 +137,7 @@ describe('osu_common', () => {
     })
   })
 
-  describe('test present', () => {
+  describe('present', () => {
     it('should return true for non empty string', () => {
       expect(osu.present('test')).toBe(true);
     })
@@ -155,7 +155,7 @@ describe('osu_common', () => {
     })
   })
 
-  describe('test trans', () => {
+  describe('trans', () => {
     it('should return correct translation', () => {
       expect(osu.trans('common.confirmation')).toBe('Are you sure?');
     })
@@ -165,7 +165,7 @@ describe('osu_common', () => {
     })
   })
 
-  describe('test transArray', () => {
+  describe('transArray', () => {
     it('should empty string for empty array', () => {
       expect(osu.transArray([])).toBe('');
     })
@@ -183,7 +183,7 @@ describe('osu_common', () => {
     })
   })
 
-  describe('test transExists', () => {
+  describe('transExists', () => {
     it('should return true for existed translation', () => {
       expect(osu.transExists('common.confirmation')).toBe(true);
     })
@@ -193,7 +193,7 @@ describe('osu_common', () => {
     })
   })
 
-  describe('test updateQueryString', () => {
+  describe('updateQueryString', () => {
     it('should add the new parameter to the query string', () => {
       const params = {
         foo: 'bar',
