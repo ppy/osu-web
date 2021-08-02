@@ -151,7 +151,7 @@ return [
         'lastvisit_online' => 'Attualmente online',
         'missingtext' => 'Potresti aver fatto un errore di battitura! (o l\'utente potrebbe essere stato bannato)',
         'origin_country' => 'da :country',
-        'previous_usernames' => 'precedentemente conosciuto come',
+        'previous_usernames' => 'conosciuto in precedenza come',
         'plays_with' => 'Gioca con :devices',
         'title' => "Profilo di :username",
 
@@ -400,7 +400,7 @@ return [
             'medals' => 'Medaglie',
             'play_count' => 'Partite giocate',
             'play_time' => 'Tempo totale di gioco',
-            'ranked_score' => 'Punteggio Rankato',
+            'ranked_score' => 'Punteggio Classificato',
             'replays_watched_by_others' => 'Replay Guardati da Altri',
             'score_ranks' => 'Rank dei Punteggi',
             'total_hits' => 'Colpi Totali',
