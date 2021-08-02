@@ -105,7 +105,7 @@ return [
                 'unsaved' => '尚未儲存',
                 'timestamp' => [
                     'all-diff' => '',
-                    'diff' => '',
+                    'diff' => '如果這個 :type 開頭是時間戳，時間戳會在「時間軸」下顯示。',
                 ],
             ],
             'insert-block' => [

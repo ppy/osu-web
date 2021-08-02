@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Libraries\OsuWiki;
+use App\Traits\Memoizes;
 use Carbon\Carbon;
 use Exception;
 
@@ -29,6 +30,8 @@ use Exception;
  */
 class ChangelogEntry extends Model
 {
+    use Memoizes;
+
     protected $casts = [
         'private' => 'boolean',
         'major' => 'boolean',
@@ -250,12 +253,21 @@ class ChangelogEntry extends Model
         }
     }
 
-    public function messageHTML()
+    public function publicMessageHtml()
     {
-        [$private, $public] = static::splitMessage($this->message);
+        return $this->memoize(__FUNCTION__, function () {
+            $message = $this->publicMessage();
 
-        if ($public !== null) {
-            return markdown($public, 'changelog_entry');
-        }
+            if ($message !== null) {
+                return markdown($message, 'changelog_entry');
+            }
+        });
+    }
+
+    public function publicMessage()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            return static::splitMessage($this->message)[1];
+        });
     }
 }
