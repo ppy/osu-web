@@ -97,6 +97,10 @@ describe('osu_common', () => {
         `Please visit <a href="https://link.com" rel="nofollow noreferrer" target="_blank">link.com</a>`
       )
     })
+
+    it('does not change the string', () => {
+      expect(osu.linkify('plain text')).toBe('plain text');
+    })
   })
 
   describe('formatBytes', () => {
