@@ -259,7 +259,18 @@ The `Resource Owner` is the user that a token acts on behalf of.
 
 For [Authorization Code Grant](#authorization-code-grant) tokens, the Resource Owner is the user authorizing the token.
 
-[Client Credentials Grant](#client-credentials-grant) tokens do not have a Resource Owner (i.e. is a guest user), unless they have been granted the {{ ApidocRouteHelper::scopeBadge('bot') }} scope. The Resource Owner of tokens with the {{ ApidocRouteHelper::scopeBadge('bot') }} scope is the owner of the OAuth Application that was granted the token. Currently, only [Chat Bot]({{ $wikiUrl }})s are allowed to request the {{ ApidocRouteHelper::scopeBadge('bot') }} scope.
+[Client Credentials Grant](#client-credentials-grant) tokens do not have a Resource Owner (i.e. is a guest user), unless they have been granted the {{ ApidocRouteHelper::scopeBadge('bot') }} scope. The Resource Owner of tokens with the {{ ApidocRouteHelper::scopeBadge('bot') }} scope is the owner of the OAuth Application that was granted the token.
+
+
+## Client Credentials Delegation
+
+While Client Credentials Grant tokens normally do not have an associated user by additionally requesting the {{ ApidocRouteHelper::scopeBadge('bot') }} scope, they may be allowed to act on behalf of the owner of the OAuth client (delegation). When using delegation, scopes that support delegation cannot be used together with scopes that do not support delegation.
+
+The following scopes currently support delegation:
+
+Name   |
+-------|
+{{ ApidocRouteHelper::scopeBadge('chat.write') }}
 
 
 ## Scopes
@@ -268,8 +279,8 @@ The following scopes are currently supported:
 
 @php
 $scopeDescriptions = [
-    'bot' => "[Chat Bot]({$wikiUrl}) and [Client Credentials Grant](#client-credentials-grant) exclusive scope.",
-    'chat.write' => "Allows sending chat messages on a user's behalf; exclusive to [Chat Bot]({$wikiUrl})s",
+    'bot' => "Allows acting as the owner of a client; only available for [Client Credentials Grant](#client-credentials-grant).",
+    'chat.write' => "Allows sending chat messages on a user's behalf.",
     'forum.write' => "Allows creating and editing forum posts on a user's behalf.",
     'friends.read' => 'Allows reading of the user\'s friend list.',
     'identify' => 'Allows reading of the public profile of the user (`/me`).',
@@ -280,12 +291,16 @@ $scopeDescriptions = [
 Name   | Description
 -------|-------------------------------
 @foreach ($scopeDescriptions as $scope => $description)
-<a class="scope scope--{{ $scope }}" name="scope-{{ $scope }}">{{ $scope }}</a> | {{ $description }}
+<a class="badge badge-scope badge-scope-{{ $scope }}" name="scope-{{ $scope }}">{{ $scope }}</a> | {{ $description }}
 @endforeach
 
 `identify` is the default scope for the [Authorization Code Grant](#authorization-code-grant) and always implicitly provided. The [Client Credentials Grant](#client-credentials-grant) does not currently have any default scopes.
 
 Routes marked with <a class="badge badge-scope badge-scope-lazer" name="scope-lazer">lazer</a> are intended for use by the [osu!lazer](https://github.com/ppy/osu) client and not currently available for use with Authorization Code or Client Credentials grants.
+
+Using the {{ ApidocRouteHelper::scopeBadge('chat.write') }} scope requires either
+- [Client Credentials Delegation](#client-credentials-delegation); to send messages as the client's owner, or,
+- a [Chat Bot]({{ $wikiUrl }}) account to send messages as other users.
 
 
 ## Managing OAuth applications
