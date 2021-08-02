@@ -86,13 +86,13 @@ describe('osu_common', () => {
   describe('linkify', () => {
     const textWithLink = 'Please visit https://link.com';
 
-    it('should return correct anchor', () => {
+    it('replaces the link with an anchor element', () => {
       expect(osu.linkify(textWithLink)).toBe(
         `Please visit <a href="https://link.com" rel="nofollow noreferrer">link.com</a>`
       )
     })
 
-    it('should return correct anchor with target blank', () => {
+    it('replaces the link with an anchor element with target blank', () => {
       expect(osu.linkify(textWithLink, true)).toBe(
         `Please visit <a href="https://link.com" rel="nofollow noreferrer" target="_blank">link.com</a>`
       )
