@@ -549,9 +549,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
         $beatmaps = $this->beatmaps();
 
-        if (isset($beatmapIds) && empty(array_diff($beatmapIds, $beatmaps->get()->modelKeys()))) {
-            $beatmaps = $beatmaps->whereIn('beatmap_id', $beatmapIds);
+        if (isset($beatmapIds)) {
+            if ($beatmaps->whereKey($beatmapIds)->count() === count($beatmapIds)) {
+                $beatmaps = $beatmaps->whereIn('beatmap_id', $beatmapIds);
+            } else {
+                throw new InvariantException('beatmap id contains invalid id');
+            }
         }
+
+        $this->save();
 
         $beatmaps->update(['approved' => $this->approved]);
 
