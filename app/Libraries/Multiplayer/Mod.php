@@ -27,6 +27,7 @@ class Mod
     const WIND_DOWN = 'WD';
     const RANDOM = 'RD';
     const MIRROR = 'MR';
+    const MUTED = 'MU';
 
     // osu-specific
     const OSU_AUTOPILOT = 'AP';
@@ -87,6 +88,7 @@ class Mod
         self::SUDDENDEATH,
         self::WIND_DOWN,
         self::WIND_UP,
+        self::MUTED,
     ];
 
     // Defines mutual-exclusivity for groups of mods, i.e. only one mod within each group can be active at a time
@@ -213,6 +215,12 @@ class Mod
         ],
         self::MIRROR => [
             'reflection' => 'int',
+        ],
+        self::MUTED => [
+            'enable_metronome' => 'bool',
+            'mute_combo_count' => 'int',
+            'inverse_muting' => 'bool',
+            'affects_hit_sounds' => 'bool',
         ],
     ];
 

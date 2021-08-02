@@ -31,7 +31,7 @@ export BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = [], 
       if icon?
         span className: 'btn-osu-big__icon',
           # ensure no random width change when changing icon
-          span className: 'fa-fw',
+          span className: 'fa fa-fw',
             if isBusy
               el Spinner
             else
