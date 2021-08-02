@@ -230,7 +230,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
         icon = discussionTypeIcons[type];
         break;
       case 'paragraph':
-        icon = 'fas fa-fw fa-indent';
+        icon = 'fas fa-indent';
         break;
     }
 
