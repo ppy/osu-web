@@ -136,33 +136,33 @@ describe('osu_common', () => {
       expect(osu.presence('test')).toBe('test');
     })
 
-    it('should return null for empty string', () => {
+    it('should check for empty string', () => {
       expect(osu.presence('')).toBe(null);
     })
 
-    it('should return null for null', () => {
-      expect(osu.presence('')).toBe(null);
+    it('should check for null', () => {
+      expect(osu.presence(null)).toBe(null);
     })
 
-    it('should return null for undefined', () => {
+    it('should check for undefined', () => {
       expect(osu.presence()).toBe(null);
     })
   })
 
   describe('present', () => {
-    it('should return true for non empty string', () => {
+    it('should check for non empty string', () => {
       expect(osu.present('test')).toBe(true);
     })
 
-    it('should return false for empty string', () => {
+    it('should check for empty string', () => {
       expect(osu.present('')).toBe(false);
     })
 
-    it('should return false for null', () => {
+    it('should check for null', () => {
       expect(osu.present(null)).toBe(false);
     })
 
-    it('should return false for undefined', () => {
+    it('should check for undefined', () => {
       expect(osu.present()).toBe(false);
     })
   })
