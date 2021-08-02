@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
+    'missing_route' => 'Ongeldige Url of onjuiste aanvraagmethode.',
     'no_restricted_access' => 'Je mag dit niet doen terwijl je account de restricted status heeft.',
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
     'unknown' => 'Een onbekende fout trad op.',

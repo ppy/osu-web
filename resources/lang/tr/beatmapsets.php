@@ -34,7 +34,7 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Karma bir beatmap seti, adaylık için en az bir oyun modu seçmenizi gerektirir.',
         'incorrect_mode' => ':mode modunu aday göstermek için izniniz yok.',
-        'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için tam aday gösterici olmanız gerekmektedir.',
+        'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için asil aday gösterici olmanız gerekmektedir.',
         'too_many' => 'Adaylık şartı zaten yerine getirildi.',
 
         'dialog' => [
