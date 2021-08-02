@@ -545,8 +545,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $this->approvedby_id = null;
         }
 
-        $this->save();
-
         $beatmaps = $this->beatmaps();
 
         if (isset($beatmapIds)) {
