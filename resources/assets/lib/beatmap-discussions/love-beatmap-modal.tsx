@@ -119,7 +119,7 @@ export default class LoveConfirmation extends React.Component<Props> {
       $.publish('beatmapsetDiscussions:update', { beatmapset: response });
       this.props.onClose();
     }).fail(osu.ajaxError)
-      .always(LoadingOverlay.hide());
+      .always(LoadingOverlay.hide);
   };
 
   private renderDiffMode(mode: GameMode, beatmaps: BeatmapJson[]) {
