@@ -66,6 +66,14 @@ describe('osu_common', () => {
       expect(result).not.toBe(obj);
     })
 
+    it('should clone nested object', () => {
+      const obj = { test: { inner: '1234' } };
+      const result = osu.jsonClone(obj);
+
+      expect(result.test).toEqual(obj.test);
+      expect(result.test).not.toBe(obj.test);
+    })
+
     it('should clone null', () => {
       expect(osu.jsonClone(null)).toBe(null);
     })
