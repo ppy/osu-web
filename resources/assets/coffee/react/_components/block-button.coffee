@@ -4,7 +4,9 @@
 import * as React from 'react'
 import { button, div, i, span } from 'react-dom-factories'
 import { Spinner } from 'spinner'
+import { classWithModifiers } from 'utils/css'
 import { nextVal } from 'utils/seq'
+
 el = React.createElement
 
 bn = 'textual-button'
@@ -73,7 +75,7 @@ export class BlockButton extends React.PureComponent
   render: =>
     return null unless @isVisible()
 
-    blockClass = osu.classWithModifiers(bn, ['block'].concat(@props.modifiers))
+    blockClass = classWithModifiers(bn, ['block'].concat(@props.modifiers))
     if @props.wrapperClass?
       wrapperClass = @props.wrapperClass
       contentClass = blockClass

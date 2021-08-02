@@ -3,8 +3,9 @@
 
 import * as React from 'react'
 import { div, span } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
 
-baseClass = osu.classWithModifiers('contest__voting-star', ['smaller'])
+baseClass = classWithModifiers('contest__voting-star', ['smaller'])
 selectedClass = 'contest__voting-star--selected'
 
 export VoteSummary = ({voteCount, maxVotes}) ->

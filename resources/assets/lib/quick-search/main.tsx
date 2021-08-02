@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { StringWithComponent } from 'string-with-component';
+import { classWithModifiers } from 'utils/css';
 import Beatmapset from './beatmapset';
 import User from './user';
 import { ResultMode, Section } from './worker';
@@ -34,7 +35,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   };
 
   render() {
-    let blockClass = osu.classWithModifiers('quick-search', this.props.modifiers);
+    let blockClass = classWithModifiers('quick-search', this.props.modifiers);
     blockClass += ' u-fancy-scrollbar';
 
     return (
@@ -190,10 +191,12 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     if (this.count('forum_post') === 0 && this.count('wiki_page') === 0) {
       return (
         <span className='quick-search-items quick-search-items--empty'>
-          {osu.trans('quick_search.result.empty_for', { modes: osu.transArray([
-            osu.trans('quick_search.mode.forum_post'),
-            osu.trans('quick_search.mode.wiki_page'),
-          ]) })}
+          {osu.trans('quick_search.result.empty_for', {
+            modes: osu.transArray([
+              osu.trans('quick_search.mode.forum_post'),
+              osu.trans('quick_search.mode.wiki_page'),
+            ]),
+          })}
         </span>
       );
     }
@@ -238,7 +241,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <a
-        className={osu.classWithModifiers('search-result-more', active ? ['active'] : [])}
+        className={classWithModifiers('search-result-more', active ? ['active'] : [])}
         href={route('search', { mode, query: this.props.worker.query })}
       >
         <div className='search-result-more__content'>

@@ -50,7 +50,7 @@ class ScoreTest extends TestCase
         $this->assertEquals($legacy->rank, 'S');
     }
 
-    public function testLegacyFailScoreIsRankF()
+    public function testLegacyFailScoreIsRankD()
     {
         $score = new Score([
             'mods' => [],
@@ -70,12 +70,12 @@ class ScoreTest extends TestCase
         ]);
 
         $this->assertFalse($score->passed);
-        $this->assertEquals($score->rank, 'F');
+        $this->assertEquals($score->rank, 'D');
 
         $legacy = $score->createLegacyEntry();
 
         $this->assertFalse($legacy->perfect);
-        $this->assertEquals($legacy->rank, 'F');
+        $this->assertEquals($legacy->rank, 'D');
     }
 
     public function testModsPropertyType()

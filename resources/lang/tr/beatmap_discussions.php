@@ -81,6 +81,7 @@ return [
             'external_references' => 'incelemede, bu incelemeye ait olmayan sorunlara göndermeler mevcut',
             'invalid_block_type' => 'geçersiz blok türü',
             'invalid_document' => 'geçersiz inceleme',
+            'invalid_discussion_type' => '',
             'minimum_issues' => 'inceleme en az :count sorun içermelidir|inceleme en az :count sorun içermelidir',
             'missing_text' => 'blokta yazı eksik',
             'too_many_blocks' => 'incelemeler yalnızca :count paragraf/sorun içerebilir|incelemeler sadece en fazla :count paragraf/sorun içerebilir',

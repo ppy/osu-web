@@ -100,8 +100,8 @@ return [
             ],
 
             'change_username' => [
-                'title' => 'Perubahan Nama Pengguna',
-                'description' => 'Apabila kamu pernah memiliki supporter tag, kamu dapat mengubah nama penggunamu secara cuma-cuma.',
+                'title' => 'Mengganti Nama Pengguna',
+                'description' => 'Apabila kamu pernah memiliki supporter tag, kamu dapat mengubah nama gratis untuk satu kali.',
             ],
 
             'skinnables' => [

@@ -81,6 +81,7 @@ return [
             'external_references' => 'l\'avis contient des références à des problèmes qui n\'appartiennent pas à cet avis',
             'invalid_block_type' => 'type de bloc invalide',
             'invalid_document' => 'review invalide',
+            'invalid_discussion_type' => '',
             'minimum_issues' => 'le review doit contenir un minimum de :count problème|le review doit contenir un minimum de :count problèmes',
             'missing_text' => 'le bloc manque du texte',
             'too_many_blocks' => 'les avis ne doivent contenir que :count paragraphes/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',

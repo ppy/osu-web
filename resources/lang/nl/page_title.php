@@ -111,13 +111,13 @@ return [
             '_' => 'wachtwoord opnieuw instellen',
         ],
         'ranking_controller' => [
-            '_' => 'ranglijst',
+            '_' => 'rankings',
         ],
         'scores_controller' => [
             '_' => 'prestatie',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'winkel',
         ],
         'tournaments_controller' => [
             '_' => 'toernooien',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'waarschuwing',
         ],
         'wiki_controller' => [
-            '_' => 'kennisbank',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -136,7 +136,7 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'winkel',
     ],
     'users' => [
         'modding_history_controller' => [

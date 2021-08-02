@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'Den valda betalningsmetoden blev avvisad av Paypal.',
     'invalid_resource_id' => 'Ingen betalningsinformation kunde hittas.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "Betalningen avvisades, men vi är inte säkra på varför.",
 ];

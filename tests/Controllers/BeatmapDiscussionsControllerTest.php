@@ -260,8 +260,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->mapper = factory(User::class)->create();
         $this->user = factory(User::class)->create();
         $this->anotherUser = factory(User::class)->create();
-        $this->bngUser = factory(User::class)->create();
-        $this->bngUser->addToGroup(app('groups')->byIdentifier('bng'));
+        $this->bngUser = $this->createUserWithGroup('bng');
         $this->beatmapset = factory(Beatmapset::class)->create([
             'user_id' => $this->mapper->user_id,
             'discussion_enabled' => true,

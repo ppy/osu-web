@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import * as d3 from 'd3';
 import BeatmapJson from 'interfaces/beatmap-json';
 import { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
 import GameMode from 'interfaces/game-mode';
@@ -17,6 +18,12 @@ function isVisibleBeatmap(beatmap: BeatmapJson) {
 
   return true;
 }
+
+const difficultyColourSpectrum = d3.scaleLinear<string>()
+  .domain([1.5, 2, 2.5, 3.25, 4.5, 6, 7, 8])
+  .clamp(true)
+  .range(['#4FC0FF', '#4FFFD5', '#7CFF4F', '#F6F05C', '#FF8068', '#FF3C71', '#6563DE', '#18158E'])
+  .interpolate(d3.interpolateRgb.gamma(2.2));
 
 interface FindDefaultParams<T> {
   group?: Map<GameMode, T[]>;
@@ -80,6 +87,11 @@ export function getDiffRating(rating: number) {
   if (rating < 5.3) return 'insane';
   if (rating < 6.5) return 'expert';
   return 'expert-plus';
+}
+
+export function getDiffColour(rating?: number | null) {
+  rating ??= 0;
+  return rating >= 8 ? '#000000' : difficultyColourSpectrum(rating);
 }
 
 // TODO: should make a Beatmapset proxy object or something

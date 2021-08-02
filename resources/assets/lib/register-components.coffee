@@ -51,9 +51,8 @@ core.reactTurbolinks.register 'blockButton', (container) ->
 
 core.reactTurbolinks.register 'beatmap-discussion-events', (container) ->
   props = {
-    container
-    discussions: osu.parseJson('json-discussions')
     events: osu.parseJson('json-events')
+    mode: 'list'
     posts: osu.parseJson('json-posts')
   }
 

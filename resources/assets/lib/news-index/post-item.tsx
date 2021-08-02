@@ -6,8 +6,9 @@ import { route } from 'laroute';
 import * as moment from 'moment';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
+import { classWithModifiers } from 'utils/css';
 
-export default function PostItem({modifiers, post}: {modifiers?: string[]; post: PostJson}) {
+export default function PostItem({ modifiers, post }: { modifiers?: string[]; post: PostJson }) {
   let cover;
 
   if (post.first_image != null) {
@@ -22,7 +23,7 @@ export default function PostItem({modifiers, post}: {modifiers?: string[]; post:
 
   return (
     <a
-      className={osu.classWithModifiers('news-card', modifiers ?? ['index', 'hover'])}
+      className={classWithModifiers('news-card', modifiers ?? ['index', 'hover'])}
       href={route('news.show', { news: post.slug })}
     >
       <div className='news-card__cover-container'>

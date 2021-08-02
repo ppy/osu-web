@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5395c48796c5187eadd07231c914ff39",
+    "content-hash": "69fe925f992d548d287b2503e2484aa0",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -7034,16 +7034,16 @@
         },
         {
             "name": "sentry/sentry-laravel",
-            "version": "2.7.0",
+            "version": "dev-feature/laravel-octane-support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-laravel.git",
-                "reference": "91d6644fee3ba447769dc73eda2487a93218c04e"
+                "reference": "820227c75372ef11d178ab5e2fcaf136c6d9e02a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-laravel/zipball/91d6644fee3ba447769dc73eda2487a93218c04e",
-                "reference": "91d6644fee3ba447769dc73eda2487a93218c04e",
+                "url": "https://api.github.com/repos/getsentry/sentry-laravel/zipball/820227c75372ef11d178ab5e2fcaf136c6d9e02a",
+                "reference": "820227c75372ef11d178ab5e2fcaf136c6d9e02a",
                 "shasum": ""
             },
             "require": {
@@ -7109,7 +7109,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-laravel/issues",
-                "source": "https://github.com/getsentry/sentry-laravel/tree/2.7.0"
+                "source": "https://github.com/getsentry/sentry-laravel/tree/feature/laravel-octane-support"
             },
             "funding": [
                 {
@@ -7121,7 +7121,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-06-16T09:26:40+00:00"
+            "time": "2021-06-18T08:24:19+00:00"
         },
         {
             "name": "shalvah/clara",
@@ -13346,10 +13346,18 @@
             "time": "2020-07-12T23:59:07+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "sentry/sentry-laravel",
+            "version": "dev-feature/laravel-octane-support",
+            "alias": "2.8",
+            "alias_normalized": "2.8.0.0"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "itsgoingd/clockwork": 20
+        "itsgoingd/clockwork": 20,
+        "sentry/sentry-laravel": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

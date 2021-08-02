@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Melakukan kecurangan',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Menggunakan lebih dari satu akun',
             'insults' => 'Menghina saya / orang lain',
             'spam' => 'Spam',
             'unwanted_content' => 'Menautkan konten yang tidak pantas',
@@ -302,7 +302,7 @@ return [
                 'title' => 'Medali',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Pertandingan-Pertandingan Multiplayer',
             ],
             'posts' => [
                 'title' => 'Posting',

@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => '違規 / 作弊',
-            'multiple_accounts' => '',
+            'multiple_accounts' => '使用多個帳號',
             'insults' => '侮辱我 / 其他人',
             'spam' => '垃圾訊息',
             'unwanted_content' => '鏈接不適當的內容',
@@ -302,7 +302,7 @@ return [
                 'title' => '成就',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => '多人遊戲',
             ],
             'posts' => [
                 'title' => '貼文',

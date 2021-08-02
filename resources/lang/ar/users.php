@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'لعب مؤذي/ غش',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'استخدام حسابات متعددة',
             'insults' => 'اهانتي / اهانة الاخرين',
             'spam' => 'سبام',
             'unwanted_content' => 'ربط عن محتوى غير لائق',
@@ -302,7 +302,7 @@ return [
                 'title' => 'الاوسمة',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'المباريات الجماعية',
             ],
             'posts' => [
                 'title' => 'المنشورات',
