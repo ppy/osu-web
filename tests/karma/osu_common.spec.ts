@@ -58,8 +58,12 @@ describe('osu_common', () => {
   })
 
   describe('jsonClone', () => {
-    it('should return same object', () => {
-      expect(osu.jsonClone({ test: '1234' })).toEqual({ test: '1234' });
+    it('should clone object with different reference', () => {
+      const obj = { test: '1234' };
+      const result = osu.jsonClone(obj);
+
+      expect(result).toEqual(obj);
+      expect(result).not.toBe(obj);
     })
 
     it('should return null', () => {
