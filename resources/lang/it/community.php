@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Carica di più',
-                'description' => 'Slot addizionali per beatmap in attesa (per beatmap rankate) fino ad un massimo di 10.',
+                'description' => 'Spazi addizionali per beatmap in attesa (per beatmap classificate) fino ad un massimo di 10.',
             ],
 
             'early_access' => [
@@ -86,7 +86,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Filtri Beatmap',
-                'description' => 'I filtri per beatmap cercano tra mappe giocate e non giocate, o in base al rank ottenuto.',
+                'description' => 'Filtra le ricerche beatmap per mappe giocate e non giocate, o per grado raggiunto (se disponibile).',
             ],
 
             'yellow_fellow' => [
