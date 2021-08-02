@@ -58,7 +58,7 @@ describe('osu_common', () => {
   })
 
   describe('jsonClone', () => {
-    it('should clone object with different reference', () => {
+    it('should clone object', () => {
       const obj = { test: '1234' };
       const result = osu.jsonClone(obj);
 
@@ -66,11 +66,11 @@ describe('osu_common', () => {
       expect(result).not.toBe(obj);
     })
 
-    it('should return null', () => {
+    it('should clone null', () => {
       expect(osu.jsonClone(null)).toBe(null);
     })
 
-    it('should return null when object is undefined', () => {
+    it('should clone undefined to null', () => {
       expect(osu.jsonClone(undefined)).toBe(null);
     })
   })
