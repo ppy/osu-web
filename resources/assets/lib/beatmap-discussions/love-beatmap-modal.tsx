@@ -16,7 +16,7 @@ interface Props {
 }
 
 @observer
-export default class LoveConfirmation extends React.PureComponent<Props> {
+export default class LoveConfirmation extends React.Component<Props> {
   @observable private selectedBeatmapIds: Set<number>;
 
   constructor(props: Props) {
