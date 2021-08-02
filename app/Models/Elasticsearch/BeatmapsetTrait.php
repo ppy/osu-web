@@ -82,7 +82,7 @@ trait BeatmapsetTrait
                         continue;
                     }
 
-                    $diff = $beatmap->baseDifficultyRatings->firstWhere('mode', $modeInt);
+                    $diff = $beatmap->baseDifficultyRatings?->firstWhere('mode', $modeInt);
                     $convertValues = $beatmapValues; // is an array, so automatically a copy.
                     $convertValues['convert'] = true;
                     $convertValues['difficultyrating'] = $diff?->diff_unified ?? $beatmap->difficultyrating;
