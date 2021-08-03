@@ -172,7 +172,7 @@ describe('osu_common', () => {
   })
 
   describe('trans', () => {
-    it('should return correct translation', () => {
+    it('returns the translated key', () => {
       expect(osu.trans('common.confirmation')).toBe('Are you sure?');
     })
 
