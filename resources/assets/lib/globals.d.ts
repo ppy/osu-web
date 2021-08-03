@@ -67,7 +67,6 @@ type AjaxError = (xhr: JQuery.jqXHR) => void;
 
 interface OsuCommon {
   ajaxError: AjaxError;
-  classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
