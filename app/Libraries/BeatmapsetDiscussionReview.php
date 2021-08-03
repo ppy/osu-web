@@ -126,7 +126,7 @@ class BeatmapsetDiscussionReview
                 return $this->beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
             }
 
-            if ($event === null && $this->priorOpenProblemCount === 0) {
+            if ($this->beatmapset->isQualified() && $event === null && $this->priorOpenProblemCount === 0) {
                 (new BeatmapsetDiscussionQualifiedProblem(
                     $this->problemDiscussion->startingPost,
                     $this->user

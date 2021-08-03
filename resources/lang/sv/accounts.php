@@ -56,7 +56,7 @@ return [
 
         'options' => [
             '_' => 'leveransalternativ',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'gästsvårighetsgrad',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'privata chattmeddelanden',
             'comment_new' => 'nya kommentarer',

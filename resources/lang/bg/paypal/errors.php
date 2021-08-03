@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'Избраният метод за плащане беше отхвърлен от PayPal.',
     'invalid_resource_id' => 'Информация за плащане не е намерена.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "Заплащането беше отхвърлено, не сме сигурни защо.",
 ];

@@ -38,12 +38,7 @@ interface Comment {
   id: number;
 }
 
-interface DiscussionMessageType {
-  icon: { [key: string]: string };
-}
-
 interface BeatmapDiscussionHelperClass {
-  messageType: DiscussionMessageType;
   TIMESTAMP_REGEX: RegExp;
   format(text: string, options?: any): string;
   formatTimestamp(value: number | null): string | undefined;
@@ -72,7 +67,6 @@ type AjaxError = (xhr: JQuery.jqXHR) => void;
 
 interface OsuCommon {
   ajaxError: AjaxError;
-  classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   formatBytes: (bytes: number, decimals?: number) => string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
@@ -139,7 +133,7 @@ interface BeatmapsetDiscussionJson {
   beatmapset_id: number;
   deleted_at: string | null;
   id: number;
-  message_type: string;
+  message_type: import('beatmap-discussions/discussion-type').DiscussionType;
   parent_id: number | null;
   posts: BeatmapsetDiscussionPostJson[];
   resolved: boolean;

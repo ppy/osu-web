@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Нечестная игра / читы',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Использование нескольких аккаунтов',
             'insults' => 'Оскорбление меня / других',
             'spam' => 'Спам',
             'unwanted_content' => 'Неприемлемый контент',
@@ -302,7 +302,7 @@ return [
                 'title' => 'Медали',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Игры в мультиплеере',
             ],
             'posts' => [
                 'title' => 'Посты',

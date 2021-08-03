@@ -64,21 +64,21 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count개의 배지|:count개의 배지',
+        'badges' => ':count개의 배지',
         'days' => ':count일',
         'hour_short_unit' => '시간',
         'hours' => ':count시간',
-        'item' => ':count unit|:count units',
+        'item' => ':count개',
         'minute_short_unit' => '분',
         'minutes' => ':count분',
         'months' => ':count달',
         'notifications' => '알림 :count_delimited개',
         'plus_others' => '+ :count_delimited 기타!',
-        'post' => ':count_delimited 게시글',
+        'post' => ':count_delimited개의 게시글',
         'second_short_unit' => '초',
-        'star_priority' => ':count_delimited 별 우선 순위',
+        'star_priority' => '별 우선 순위 :count_delimited',
         'update' => ':count_delimited 업데이트',
-        'view' => ':count_delimited 조회',
+        'view' => ':count_delimited회 조회',
         'years' => ':count년',
     ],
 
@@ -145,7 +145,7 @@ return [
 
     'time' => [
         'days_ago' => ':count일 전',
-        'hours_ago' => ':count시간 전|:count시간 전',
+        'hours_ago' => ':count시간 전',
         'now' => '지금',
         'remaining' => '남은 시간',
     ],
