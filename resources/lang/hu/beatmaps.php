@@ -105,7 +105,7 @@ return [
                 'unsaved' => 'Mentetlen',
                 'timestamp' => [
                     'all-diff' => 'Az összes nehézséget tartalmazó posztra posztolni, nem lehet időjelölni.',
-                    'diff' => 'Ha a :type-al fog kezdődni, akkor az idővonal alatt fog megjelenni.',
+                    'diff' => 'Ha :type típussal fog kezdődni, akkor az idővonal alatt fog megjelenni.',
                 ],
             ],
             'insert-block' => [

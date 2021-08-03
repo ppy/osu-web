@@ -23,9 +23,7 @@ trait BeatmapsetTrait
         return static::withoutGlobalScopes()
             ->active()
             ->with('beatmaps') // note that the with query will run with the default scopes.
-            ->with(['beatmaps.difficulty' => function ($query) {
-                $query->where('mods', 0);
-            }]);
+            ->with('beatmaps.baseDifficultyRatings');
     }
 
     public static function esSchemaFile()
@@ -84,10 +82,10 @@ trait BeatmapsetTrait
                         continue;
                     }
 
-                    $diff = $beatmap->difficulty->where('mode', $modeInt)->where('mods', 0)->first();
+                    $diff = $beatmap->baseDifficultyRatings?->firstWhere('mode', $modeInt);
                     $convertValues = $beatmapValues; // is an array, so automatically a copy.
                     $convertValues['convert'] = true;
-                    $convertValues['difficultyrating'] = $diff !== null ? $diff->diff_unified : $beatmap->difficultyrating;
+                    $convertValues['difficultyrating'] = $diff?->diff_unified ?? $beatmap->difficultyrating;
                     $convertValues['playmode'] = $modeInt;
 
                     $values[] = $convertValues;

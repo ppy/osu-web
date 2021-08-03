@@ -160,8 +160,8 @@ return [
         'button' => 'Metti hype!',
         'button_done' => 'Hype già messo!',
         'confirm' => "Sei sicuro? Questo utilizzerà uno dei tuoi :n hype rimanenti e non può essere annullato.",
-        'explanation' => 'Metti hype a questa beatmap per renderla più visibile per la nomina ed il ranking!',
-        'explanation_guest' => 'Effettua l\'accesso e metti hype a questa beatmap per renderla più visibile per la nomina ed il raking!',
+        'explanation' => 'Metti hype a questa beatmap per renderla più visibile per la nomina e il ranking!',
+        'explanation_guest' => 'Effettua l\'accesso e metti hype a questa beatmap per renderla più visibile per la nomina e il raking!',
         'new_time' => "Riceverai un altro hype :new_time.",
         'remaining' => 'Hai ancora :remaining hype rimanenti.',
         'required_text' => 'Hype: :current/:required',
@@ -196,7 +196,7 @@ return [
         'unresolved_issues' => 'Ci sono ancora dei problemi irrisolti che vanno prima sistemati.',
 
         'rank_estimate' => [
-            '_' => 'È stimato che questa mappa verrà rankata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
+            '_' => 'È stimato che questa mappa verrà classificata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
             'queue' => 'coda di ranking',
             'soon' => 'molto vicina',
         ],
@@ -228,7 +228,7 @@ return [
                 'mode' => 'Modalità',
                 'nsfw' => 'Contenuto Esplicito',
                 'played' => 'Giocato',
-                'rank' => 'Rank ottenuto',
+                'rank' => 'Grado Raggiunto',
                 'status' => 'Categorie',
             ],
             'sorting' => [
@@ -237,7 +237,7 @@ return [
                 'difficulty' => 'Difficoltà',
                 'favourites' => 'Preferiti',
                 'updated' => 'Aggiornato',
-                'ranked' => 'Rankata',
+                'ranked' => 'Classificata',
                 'rating' => 'Valutazione',
                 'plays' => 'Giocate',
                 'relevance' => 'Pertinenza',
@@ -272,7 +272,7 @@ return [
         'mine' => 'Le mie mappe',
         'pending' => 'In Attesa & WIP',
         'qualified' => 'Qualificate',
-        'ranked' => 'Rankate',
+        'ranked' => 'Classificate',
     ],
     'genre' => [
         'any' => 'Qualsiasi',

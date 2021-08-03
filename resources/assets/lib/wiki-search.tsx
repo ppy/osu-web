@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import * as osu from 'osu-common';
+import OsuUrlHelper from 'osu-url-helper';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { WikiSearchController } from 'wiki-search-controller';
@@ -51,7 +51,7 @@ export class WikiSearch extends React.Component {
       if (this.controller.selectedItem == null) {
         this.handleSearch();
       } else {
-        osu.navigate(route('wiki.show', { locale: currentLocale, path: this.controller.selectedItem.path }));
+        osu.navigate(OsuUrlHelper.wikiUrl(this.controller.selectedItem.path));
       }
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       this.keepSelectionInView = true;
@@ -107,7 +107,7 @@ export class WikiSearch extends React.Component {
               key={index}
               className={classWithModifiers('wiki-search__suggestion', { active: this.controller.selectedIndex === index })}
               data-index={index}
-              href={route('wiki.show', { locale: currentLocale, path: item.path })}
+              href={OsuUrlHelper.wikiUrl(item.path)}
               onMouseEnter={this.handleSuggestionMouseEnter}
             >
               <span dangerouslySetInnerHTML={{ __html: item.highlight }} />

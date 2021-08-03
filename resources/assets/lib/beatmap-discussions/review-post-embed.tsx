@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'beatmap-icon';
 import * as osu from 'osu-common';
 import * as React from 'react';
@@ -50,7 +51,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
   const messageTypeIcon = () => {
     const type = discussion.message_type;
     return (
-      <div className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={BeatmapDiscussionHelper.messageType.icon[type]} title={osu.trans(`beatmaps.discussions.message_type.${type}`)} /></div>
+      <div className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={discussionTypeIcons[type]} title={osu.trans(`beatmaps.discussions.message_type.${type}`)} /></div>
     );
   };
 

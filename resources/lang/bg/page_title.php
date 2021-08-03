@@ -111,13 +111,13 @@ return [
             '_' => 'въстановяване на парола',
         ],
         'ranking_controller' => [
-            '_' => 'класиране',
+            '_' => 'класации',
         ],
         'scores_controller' => [
             '_' => 'изпълнение',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'магазин',
         ],
         'tournaments_controller' => [
             '_' => 'турнири',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'известие',
         ],
         'wiki_controller' => [
-            '_' => 'база с познания',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -136,7 +136,7 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'магазин',
     ],
     'users' => [
         'modding_history_controller' => [

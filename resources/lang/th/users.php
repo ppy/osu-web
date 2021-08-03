@@ -129,7 +129,7 @@ return [
 
         'options' => [
             'cheating' => 'เล่นผิดกติกา / โกง',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'การใช้หลายบัญชี',
             'insults' => 'ดูหมิ่น เหยียดหยามตนเอง / ผู้อื่น',
             'spam' => 'สแปม',
             'unwanted_content' => 'ส่งลิงก์ที่มีเนื้อหาที่ไม่เหมาะสม',
@@ -303,7 +303,7 @@ return [
                 'title' => 'เหรียญตรา',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'เกมผู้เล่นหลายคน',
             ],
             'posts' => [
                 'title' => 'โพสต์',

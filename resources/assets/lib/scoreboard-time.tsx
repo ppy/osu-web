@@ -11,20 +11,20 @@ interface Props {
 
 let isLocaleConfigured = false;
 
-const translatedUnits = [
-  'past',
-  's',
-  'm',
-  'mm',
-  'h',
-  'hh',
-  'd',
-  'dd',
-  'M',
-  'MM',
-  'y',
-  'yy',
-];
+const translatedUnits = {
+  d: 'd',
+  dd: 'dd',
+  h: 'h',
+  hh: 'hh',
+  m: 'm',
+  mm: 'mm',
+  month: 'M',
+  months: 'MM',
+  past: 'past',
+  s: 's',
+  y: 'y',
+  yy: 'yy',
+};
 
 function setupScoreboardLocale() {
   if (isLocaleConfigured) return;
@@ -32,8 +32,8 @@ function setupScoreboardLocale() {
   const previousLocale = moment.locale();
 
   const relativeTime: Partial<Record<string, string>> = { future: '' };
-  for (const unit of translatedUnits) {
-    relativeTime[unit] = osu.trans(`common.scoreboard_time.${unit}`);
+  for (const [key, unit] of Object.entries(translatedUnits)) {
+    relativeTime[unit] = osu.trans(`common.scoreboard_time.${key}`);
   }
 
   moment.defineLocale('scoreboard', { relativeTime });

@@ -214,7 +214,7 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'anna hakusana...',
+            'prompt' => 'syötä hakusana...',
             'login_required' => 'Kirjaudu sisään hakeaksesi.',
             'options' => 'Enemmän Hakuasetuksia',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',

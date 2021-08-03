@@ -100,7 +100,7 @@ return [
             ],
 
             'change_username' => [
-                'title' => 'Perubahan Nama Pengguna',
+                'title' => 'Penggantian Nama Pengguna',
                 'description' => 'Apabila kamu pernah memiliki supporter tag, kamu dapat mengubah nama penggunamu secara cuma-cuma.',
             ],
 
@@ -116,7 +116,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Opsi Untuk Menyortir',
-                'description' => 'Akses untuk melihat peringkat beatmap berdasarkan negara/teman/mod secara spesifik dalam game.',
+                'description' => 'Kemampuan untuk dapat mengakses papan peringkat negara / teman / mod-specific dari dalam permainan.',
             ],
 
             'more_favourites' => [
