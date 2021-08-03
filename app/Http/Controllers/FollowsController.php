@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvariantException;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\UpdateUserMappingFollowerCountCache;
 use App\Models\BeatmapDiscussion;
@@ -14,6 +15,7 @@ use App\Models\Follow;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicTrack;
 use App\Models\Forum\TopicWatch;
+use App\Models\User;
 use App\Transformers\FollowCommentTransformer;
 use App\Transformers\FollowModdingTransformer;
 use DB;
@@ -21,6 +23,8 @@ use Exception;
 
 class FollowsController extends Controller
 {
+    private User $user;
+
     public function __construct()
     {
         parent::__construct();
@@ -46,20 +50,23 @@ class FollowsController extends Controller
 
     public function index($subtype = null)
     {
-        view()->share('subtype', $subtype);
-
-        switch ($subtype) {
-            case 'comment':
-                return $this->indexComment();
-            case 'forum_topic':
-                return $this->indexForumTopic();
-            case 'mapping':
-                return $this->indexMapping();
-            case 'modding':
-                return $this->indexModding();
-            default:
-                return ujs_redirect(route('follows.index', ['subtype' => Follow::DEFAULT_SUBTYPE]));
+        if (!present($subtype)) {
+            return ujs_redirect(route('follows.index', ['subtype' => Follow::DEFAULT_SUBTYPE]));
         }
+
+        $this->user = auth()->user();
+
+        [$view, $vars] = match ($subtype) {
+            'comment' => $this->indexComment(),
+            'forum_topic' => $this->indexForumTopic(),
+            'mapping' => $this->indexMapping(),
+            'modding' => $this->indexModding(),
+            default => throw new InvariantException('invalid subtype parameter'),
+        };
+
+        $vars['subtype'] = $subtype;
+
+        return ext_view($view, $vars);
     }
 
     public function store()
@@ -96,9 +103,7 @@ class FollowsController extends Controller
 
     private function indexComment()
     {
-        $user = auth()->user();
-
-        $followsQuery = Follow::where(['user_id' => $user->getKey(), 'subtype' => 'comment']);
+        $followsQuery = Follow::where(['user_id' => $this->user->getKey(), 'subtype' => 'comment']);
 
         $recentCommentIds = Comment
             ::selectRaw('MAX(id) latest_comment_id, commentable_type, commentable_id')
@@ -128,31 +133,29 @@ class FollowsController extends Controller
         $followsTransformer = new FollowCommentTransformer($comments);
         $followsJson = json_collection($follows, $followsTransformer, ['commentable_meta', 'latest_comment.user']);
 
-        return ext_view('follows.comment', compact('followsJson'));
+        return ['follows.comment', compact('followsJson')];
     }
 
     private function indexForumTopic()
     {
-        $user = auth()->user();
-        $topics = Topic::watchedByUser($user)->paginate(50);
-        $topicReadStatus = TopicTrack::readStatus($user, $topics);
-        $topicWatchStatus = TopicWatch::watchStatus($user, $topics);
+        $topics = Topic::watchedByUser($this->user)->paginate(50);
+        $topicReadStatus = TopicTrack::readStatus($this->user, $topics);
+        $topicWatchStatus = TopicWatch::watchStatus($this->user, $topics);
 
         $counts = [
             'total' => $topics->total(),
-            'unread' => TopicWatch::unreadCount($user),
+            'unread' => TopicWatch::unreadCount($this->user),
         ];
 
-        return ext_view(
+        return [
             'follows.forum_topic',
-            compact('topics', 'topicReadStatus', 'topicWatchStatus', 'counts')
-        );
+            compact('topics', 'topicReadStatus', 'topicWatchStatus', 'counts'),
+        ];
     }
 
     private function indexMapping()
     {
-        $user = auth()->user();
-        $followsQuery = Follow::where(['user_id' => $user->getKey(), 'subtype' => 'mapping']);
+        $followsQuery = Follow::where(['user_id' => $this->user->getKey(), 'subtype' => 'mapping']);
 
         $recentBeatmapsetIds = Beatmapset
             ::selectRaw('MAX(beatmapset_id) latest_beatmapset_id, user_id')
@@ -181,20 +184,19 @@ class FollowsController extends Controller
         $followsTransformer = new FollowModdingTransformer($beatmapsets);
         $followsJson = json_collection($follows, $followsTransformer, ['latest_beatmapset.beatmaps', 'user']);
 
-        return ext_view('follows.mapping', compact('followsJson'));
+        return ['follows.mapping', compact('followsJson')];
     }
 
     private function indexModding()
     {
-        $user = auth()->user();
-        $watches = $user
+        $watches = $this->user
             ->beatmapsetWatches()
             ->visible()
             ->orderBy('last_notified', 'DESC')
             ->with('beatmapset')
             ->paginate(50);
         $totalCount = $watches->total();
-        $unreadCount = $user->beatmapsetWatches()->visible()->unread()->count();
+        $unreadCount = $this->user->beatmapsetWatches()->visible()->unread()->count();
         $openIssues = BeatmapDiscussion
             ::whereIn('beatmapset_id', $watches->pluck('beatmapset_id'))
             ->openIssues()
@@ -203,6 +205,6 @@ class FollowsController extends Controller
             ->get()
             ->keyBy('beatmapset_id');
 
-        return ext_view('follows.modding', compact('openIssues', 'watches', 'totalCount', 'unreadCount'));
+        return ['follows.modding', compact('openIssues', 'watches', 'totalCount', 'unreadCount')];
     }
 }
