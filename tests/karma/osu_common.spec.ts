@@ -38,19 +38,19 @@ describe('osu_common', () => {
       short_name: 'abc',
     };
 
-    it('should return CSS object with correct colour', () => {
+    it('get CSS object with correct colour', () => {
       expect(osu.groupColour(group)).toEqual({
         '--group-colour': '#abcdef',
       } as React.CSSProperties);
     });
 
-    it('should return CSS object with initial value when colour is null', () => {
+    it('get CSS object with initial value when null', () => {
       expect(osu.groupColour({ ...group, colour: null })).toEqual({
         '--group-colour': 'initial',
       } as React.CSSProperties);
     });
 
-    it('should return CSS object with initial value when group is undefined', () => {
+    it('get CSS object with initial value when undefined', () => {
       expect(osu.groupColour()).toEqual({
         '--group-colour': 'initial',
       } as React.CSSProperties);
@@ -58,7 +58,7 @@ describe('osu_common', () => {
   });
 
   describe('jsonClone', () => {
-    it('should clone object', () => {
+    it('clone object with different reference', () => {
       const obj = { test: '1234' };
       const result = osu.jsonClone(obj);
 
@@ -66,7 +66,7 @@ describe('osu_common', () => {
       expect(result).not.toBe(obj);
     });
 
-    it('should clone nested object', () => {
+    it('clone nested object with different reference', () => {
       const obj = { test: { inner: '1234' } };
       const result = osu.jsonClone(obj);
 
@@ -74,11 +74,11 @@ describe('osu_common', () => {
       expect(result.test).not.toBe(obj.test);
     });
 
-    it('should clone null', () => {
+    it('clone null', () => {
       expect(osu.jsonClone(null)).toBe(null);
     });
 
-    it('should clone undefined to null', () => {
+    it('clone undefined', () => {
       expect(osu.jsonClone(undefined)).toBe(null);
     });
   });
@@ -136,37 +136,37 @@ describe('osu_common', () => {
   });
 
   describe('presence', () => {
-    it('should return same string', () => {
+    it('check for non empty string', () => {
       expect(osu.presence('test')).toBe('test');
     });
 
-    it('should check for empty string', () => {
+    it('check for empty string', () => {
       expect(osu.presence('')).toBe(null);
     });
 
-    it('should check for null', () => {
+    it('check for null', () => {
       expect(osu.presence(null)).toBe(null);
     });
 
-    it('should check for undefined', () => {
+    it('check for undefined', () => {
       expect(osu.presence()).toBe(null);
     });
   });
 
   describe('present', () => {
-    it('should check for non empty string', () => {
+    it('check for non empty string', () => {
       expect(osu.present('test')).toBe(true);
     });
 
-    it('should check for empty string', () => {
+    it('check for empty string', () => {
       expect(osu.present('')).toBe(false);
     });
 
-    it('should check for null', () => {
+    it('check for null', () => {
       expect(osu.present(null)).toBe(false);
     });
 
-    it('should check for undefined', () => {
+    it('check for undefined', () => {
       expect(osu.present()).toBe(false);
     });
   });
