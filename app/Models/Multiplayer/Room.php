@@ -50,8 +50,8 @@ class Room extends Model
     const DEFAULT_SORT = 'created';
 
     const PLAYLIST_TYPE = 'playlists';
-    const REALTIME_DEFAULT_TYPE = 'headtohead';
-    const REALTIME_TYPES = ['headtohead', 'teamvs'];
+    const REALTIME_DEFAULT_TYPE = 'head_to_head';
+    const REALTIME_TYPES = ['head_to_head', 'team_versus'];
 
     protected $casts = [
         'password' => PresentString::class,

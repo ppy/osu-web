@@ -17,11 +17,11 @@ class AddTypeToMultiplayerRooms extends Migration
     public function up()
     {
         Schema::table('multiplayer_rooms', function (Blueprint $table) {
-            $table->enum('type', ['playlists', 'headtohead', 'teamvs'])->after('password');
+            $table->enum('type', ['playlists', 'head_to_head', 'team_versus'])->after('password');
             $table->index(['type', 'category', 'ends_at']);
         });
 
-        DB::table('multiplayer_rooms')->where('category', 'realtime')->update(['type' => 'headtohead', 'category' => 'normal']);
+        DB::table('multiplayer_rooms')->where('category', 'realtime')->update(['type' => 'head_to_head', 'category' => 'normal']);
 
         DB::statement("ALTER TABLE multiplayer_rooms MODIFY COLUMN category enum('normal', 'spotlight') NOT NULL DEFAULT 'normal'");
     }
@@ -35,7 +35,7 @@ class AddTypeToMultiplayerRooms extends Migration
     {
         DB::statement("ALTER TABLE multiplayer_rooms MODIFY COLUMN category enum('normal', 'spotlight', 'realtime') NOT NULL DEFAULT 'normal'");
 
-        DB::table('multiplayer_rooms')->whereIn('type', ['headtohead', 'teamvs'])->update(['category' => 'realtime']);
+        DB::table('multiplayer_rooms')->whereIn('type', ['head_to_head', 'team_versus'])->update(['category' => 'realtime']);
 
         Schema::table('multiplayer_rooms', function (Blueprint $table) {
             $table->dropIndex(['type', 'category', 'ends_at']);
