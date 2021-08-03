@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => '부정 행위 / 치트 사용',
-            'multiple_accounts' => '',
+            'multiple_accounts' => '다중 계정 사용',
             'insults' => '자신 / 다른 사람을 모욕 함',
             'spam' => '도배',
             'unwanted_content' => '부적절한 콘텐츠에 링크 걸기',
@@ -302,7 +302,7 @@ return [
                 'title' => '메달',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => '멀티플레이 게임',
             ],
             'posts' => [
                 'title' => '게시글',
@@ -331,7 +331,7 @@ return [
                 'received' => '받은 투표수 (지난 3개월 간)',
                 'title' => '투표',
                 'title_longer' => '최근 투표',
-                'vote_count' => ':count_delimited 투표',
+                'vote_count' => ':count_delimited개의 투표',
             ],
             'account_standing' => [
                 'title' => '계정 상태',

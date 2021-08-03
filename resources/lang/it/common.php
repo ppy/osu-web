@@ -139,8 +139,8 @@ return [
         'mm' => 'adesso',
         'past' => '',
         's' => 'adesso',
-        'y' => '%dy',
-        'yy' => '%dy',
+        'y' => '%da',
+        'yy' => '%da',
     ],
 
     'time' => [

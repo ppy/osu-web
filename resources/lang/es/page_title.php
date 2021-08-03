@@ -111,13 +111,13 @@ return [
             '_' => 'restablecimiento de contraseña',
         ],
         'ranking_controller' => [
-            '_' => 'clasificación',
+            '_' => 'clasificaciones',
         ],
         'scores_controller' => [
             '_' => 'rendimiento',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'tienda',
         ],
         'tournaments_controller' => [
             '_' => 'torneos',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'aviso',
         ],
         'wiki_controller' => [
-            '_' => 'base de conocimientos',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -136,14 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'tienda',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'información del modder',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'historial de multijugador',
         ],
     ],
 ];

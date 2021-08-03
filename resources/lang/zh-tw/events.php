@@ -23,6 +23,6 @@ return [
         'approved' => '已批准',
         'loved' => 'loved',
         'qualified' => '已核可',
-        'ranked' => '',
+        'ranked' => '已進榜',
     ],
 ];

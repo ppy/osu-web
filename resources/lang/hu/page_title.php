@@ -111,13 +111,13 @@ return [
             '_' => 'jelszó visszaállítása',
         ],
         'ranking_controller' => [
-            '_' => 'rangsorolás',
+            '_' => 'rangsor',
         ],
         'scores_controller' => [
             '_' => 'teljesítmény',
         ],
         'store_controller' => [
-            '_' => 'osu!bolt',
+            '_' => 'áruház',
         ],
         'tournaments_controller' => [
             '_' => 'bajnokságok',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'értesítés',
         ],
         'wiki_controller' => [
-            '_' => 'tudásbázis',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -136,14 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!bolt',
+        '_' => 'áruház',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modding információ',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'többjátékos történelem',
         ],
     ],
 ];
