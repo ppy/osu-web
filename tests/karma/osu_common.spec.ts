@@ -122,15 +122,15 @@ describe('osu_common', () => {
   })
 
   describe('formatNumber', () => {
-    it('should return null', () => {
+    it('format null', () => {
       expect(osu.formatNumber(null)).toBe(null);
     })
 
-    it('should return number with correct precision', () => {
+    it('formats the number with correct precision', () => {
       expect(osu.formatNumber(12.345, 2)).toBe('12.35');
     })
 
-    it('shoudl return integer number', () => {
+    it('formats the number without precision', () => {
       expect(osu.formatNumber(12.34, 0)).toBe('12');
     })
   })
