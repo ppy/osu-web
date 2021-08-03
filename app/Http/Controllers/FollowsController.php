@@ -71,7 +71,7 @@ class FollowsController extends Controller
 
     public function store()
     {
-        $params = $this->getStoreParams();
+        $params = $this->getParams();
         $follow = new Follow($params);
 
         try {
@@ -93,7 +93,7 @@ class FollowsController extends Controller
         return response([], 204);
     }
 
-    private function getStoreParams()
+    private function getParams()
     {
         $params = get_params(request()->all(), 'follow', ['notifiable_type:string', 'notifiable_id:int', 'subtype:string']);
         $params['user_id'] = auth()->user()->getKey();
