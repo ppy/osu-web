@@ -26,7 +26,8 @@ class RoomTransformer extends TransformerAbstract
         return [
             'id' => $room->id,
             'name' => $room->name,
-            'category' => $room->category,
+            'category' => $room->isRealtime() ? 'realtime' : $room->category,
+            'type' => $room->type,
             'user_id' => $room->user_id,
             'starts_at' => json_time($room->starts_at),
             'ends_at' => json_time($room->ends_at),
@@ -68,7 +69,7 @@ class RoomTransformer extends TransformerAbstract
             ->limit(50);
 
         // only return users currently inside for open realtime room
-        if ($room->category === 'realtime' && $room->ends_at === null) {
+        if ($room->isRealtime() && $room->ends_at === null) {
             $highScores->where(['in_room' => true]);
         }
 
