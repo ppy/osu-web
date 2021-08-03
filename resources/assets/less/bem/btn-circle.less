@@ -81,6 +81,24 @@
     vertical-align: middle;
   }
 
+  &--page-toggle {
+    --bg: hsl(var(--hsl-b2));
+    --bg-hover: hsl(var(--hsl-b1));
+    .center-content();
+    .link-plain();
+    .link-white();
+    font-size: 12px; // icon size
+    box-shadow: none;
+
+    .link-hover({
+      box-shadow: none;
+    })
+  }
+
+  &--page-toggle-detail {
+    .circle(40px);
+  }
+
   &--topic-entry {
     .circle(30px);
     box-shadow: none;

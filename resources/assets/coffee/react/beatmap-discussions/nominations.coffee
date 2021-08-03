@@ -3,6 +3,7 @@
 
 import { BigButton } from 'big-button'
 import { Modal } from 'modal'
+import OsuUrlHelper from 'osu-url-helper'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
@@ -318,7 +319,7 @@ export class Nominations extends React.PureComponent
             ':date': date
             ':position': @props.beatmapset.nominations.ranking_queue_position
             ':queue': a
-              href: laroute.route('wiki.show', path: 'Beatmap_ranking_procedure/Ranking_queue', locale: currentLocale)
+              href: OsuUrlHelper.wikiUrl('Beatmap_ranking_procedure/Ranking_queue')
               key: 'queue'
               target: '_blank'
               osu.trans 'beatmaps.nominations.rank_estimate.queue'

@@ -5,10 +5,10 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => '',
+        'new' => 'Tiedoksesi vain, että ":title" on saanut uuden päivityksen poissaolosi aikana.',
         'subject' => 'Uusi päivitys beatmappiin ":title"',
-        'unwatch' => '',
-        'visit' => '',
+        'unwatch' => 'Jos et enää halua seurata tätä beatmappia, voit joko klikata "Lopeta seuraaminen" -linkkiä edellä mainitussa sivussa tai modiseurantalistassa:',
+        'visit' => 'Voit katsoa keskustelua täällä:',
     ],
 
     'common' => [
@@ -19,11 +19,11 @@ return [
 
     'donation_thanks' => [
         'benefit_more' => 'Lisää etuja tukijoille tulee myös tulemaan aikaa myöten!',
-        'feedback' => "",
-        'keep_free' => '',
-        'keep_running' => '',
+        'feedback' => "Jos sinulla on kysyttävää tai palautetta, älä epäröi vastata tähän sähköpostiin; saat vastauksen mahdollisimman pian!",
+        'keep_free' => 'Sinunlaisien henkilöiden ansiosta osu! pystyy pitämään pelin ja yhteisön sujuvasti käynnissä ilman mitään mainoksia tai pakollisia maksuja.',
+        'keep_running' => 'Tukesi ansiosta osu! voi pysyä käynnissä noin :minutes! Se ehkä ei ole paljon, mutta se kasvaa nopeasti :).',
         'subject' => 'Kiitos, osu! <3 sinua',
-        'translation' => '',
+        'translation' => 'Seuraava on yhteisön tuottama käännös tiedostusta varten:',
 
         'benefit' => [
             'gift' => '',
@@ -41,7 +41,7 @@ return [
         'new' => 'Tiedoksesi vain, että ":title" on saanut uuden vastauksen poissaolosi aikana.',
         'subject' => '[osu!] Uusi vastaus aiheessa ":title"',
         'unwatch' => '',
-        'visit' => '',
+        'visit' => 'Siirry viimeiseen vastaukseen käyttämällä seuraavaa linkkiä:',
     ],
 
     'password_reset' => [
