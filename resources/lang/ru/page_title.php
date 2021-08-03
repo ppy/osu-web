@@ -118,7 +118,7 @@ return [
             '_' => 'производительность',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'магазин',
         ],
         'tournaments_controller' => [
             '_' => 'турниры',
@@ -128,7 +128,7 @@ return [
             'disabled' => 'обратите внимание',
         ],
         'wiki_controller' => [
-            '_' => 'база знаний',
+            '_' => 'вики',
         ],
     ],
     'multiplayer' => [
@@ -137,14 +137,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'магазин',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'информация о моддере',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'история мультиплеера',
         ],
     ],
 ];

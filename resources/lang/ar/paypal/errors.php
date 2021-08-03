@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'تم رفض طريقة الدفع المحددة من قبل Paypal.',
     'invalid_resource_id' => 'لم يتم العثور على أي معلومات للدفع.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "تم رفض الدفع، لكننا لسنا متأكدين لماذا.",
 ];

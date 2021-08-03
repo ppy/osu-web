@@ -143,7 +143,7 @@ return [
             '_' => 'informations du moddeur',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'historique multijoueur',
         ],
     ],
 ];

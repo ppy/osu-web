@@ -56,7 +56,7 @@ return [
 
         'options' => [
             '_' => 'способи доставки',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'Складність',
             'beatmapset:modding' => 'моддінг карт',
             'channel_message' => 'особисті повідомлення',
             'comment_new' => 'нові коментарі',

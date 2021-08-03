@@ -81,6 +81,7 @@ return [
             'external_references' => 'المراجعة تحتوي إشارات إلى مشاكل لا تنتمي إلى هذه المراجعة',
             'invalid_block_type' => 'نوع كتلة غير صالح',
             'invalid_document' => 'مراجعة غير صالحة',
+            'invalid_discussion_type' => '',
             'minimum_issues' => 'ألمراجعة يجب ان تحوي :count مشكلة على الأقل|المراجعة يجب ان تحوي :count مشاكل على الأقل',
             'missing_text' => 'الكتلة تفتقد للنص',
             'too_many_blocks' => 'المراجعة يمكن ان تحتوي :count فقرة\مشكلة فقط| المراجعة يمكن ان تحتوي على اكثر من :count فقرات\مشاكل',

@@ -388,9 +388,9 @@ class BeatmapDiscussion extends Model
      */
     public function shouldNotifyQualifiedProblem(?string $event): bool
     {
-        return (
+        return $this->beatmapset->isQualified() && (
             $event === BeatmapsetEvent::ISSUE_REOPEN
-            || $event === null && !$this->exists && $this->isProblem() && $this->beatmapset->isQualified()
+            || $event === null && !$this->exists && $this->isProblem()
         ) && $this->beatmapset->beatmapDiscussions()->openProblems()->count() === 0;
     }
 

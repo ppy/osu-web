@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Kuraldışı oyun / Hile',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Birden fazla hesap kullanımı',
             'insults' => 'Bana / başkalarına hakaret',
             'spam' => 'Spam yapmak',
             'unwanted_content' => 'Uygunsuz içerik paylaşma',
@@ -302,7 +302,7 @@ return [
                 'title' => 'Madalyalar',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Çok Oyunculu Oyunlar',
             ],
             'posts' => [
                 'title' => 'Gönderiler',

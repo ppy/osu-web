@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Tisztességtelen játék / Csalás',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Több fiók használata',
             'insults' => 'Engem / másokat sérteget',
             'spam' => 'Spam',
             'unwanted_content' => 'Nem megfelelő tartalom linkelése',
@@ -302,7 +302,7 @@ return [
                 'title' => 'Medálok',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Többjátékos mód',
             ],
             'posts' => [
                 'title' => 'Bejegyzések',
