@@ -104,19 +104,19 @@ describe('osu_common', () => {
   })
 
   describe('formatBytes', () => {
-    it('should return same value in bytes', () => {
+    it('cenvert to same value in bytes', () => {
       expect(osu.formatBytes(100)).toBe('100 B');
     })
 
-    it('should return correct value in KB', () => {
+    it('convert value to KB', () => {
       expect(osu.formatBytes(1000)).toBe('1.00 KB');
     })
 
-    it('should return correct value in MB', () => {
+    it('convert value to MB', () => {
       expect(osu.formatBytes(1000000)).toBe('1.00 MB');
     })
 
-    it('should return correct value in KB without trailing zero', () => {
+    it('convert value to KB without precision', () => {
       expect(osu.formatBytes(1000, 0)).toBe('1 KB');
     })
   })
