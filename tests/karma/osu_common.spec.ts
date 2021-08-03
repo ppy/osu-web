@@ -176,7 +176,7 @@ describe('osu_common', () => {
       expect(osu.trans('common.confirmation')).toBe('Are you sure?');
     });
 
-    it('should return key for non existed translation', () => {
+    it('returns the untranslated key for missing translation', () => {
       expect(osu.trans('common.this_is_not_existed')).toBe('common.this_is_not_existed');
     });
   });
