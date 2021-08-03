@@ -251,7 +251,7 @@ class Room extends Model
             'user_id' => $owner->getKey(),
         ]);
 
-        if ($params['category'] === 'realtime') {
+        if ($this->isRealtime() || $params['category'] === 'realtime') {
             if (!in_array($this->type, static::REALTIME_TYPES, true)) {
                 $this->type = static::REALTIME_DEFAULT_TYPE;
             }
