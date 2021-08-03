@@ -93,6 +93,11 @@ class Beatmap extends Model
         return array_search_null($int, static::MODES);
     }
 
+    public function scopeBaseDifficultyRatings()
+    {
+        return $this->difficulty()->where('mods', 0);
+    }
+
     public function baseMaxCombo()
     {
         return $this->difficultyAttribs()->noMods()->maxCombo();
@@ -131,9 +136,12 @@ class Beatmap extends Model
     public function getDifficultyratingAttribute($value)
     {
         if ($this->convert) {
-            $difficulty = $this->difficulty->where('mode', $this->playmode)->where('mods', 0)->first();
-
-            $value = optional($difficulty)->diff_unified ?? 0;
+            $value = (
+                $this->relationLoaded('baseDifficultyRatings')
+                    ? $this->baseDifficultyRatings
+                    : $this->baseDifficultyRatings()
+            )->firstWhere('mode', $this->playmode)
+            ?->diff_unified ?? 0;
         }
 
         return round($value, 2);

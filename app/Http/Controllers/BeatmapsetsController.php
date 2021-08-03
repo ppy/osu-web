@@ -317,8 +317,8 @@ class BeatmapsetsController extends Controller
     private function showJson($beatmapset)
     {
         $beatmapset->load([
+            'beatmaps.baseDifficultyRatings',
             'beatmaps.baseMaxCombo',
-            'beatmaps.difficulty',
             'beatmaps.failtimes',
             'genre',
             'language',
