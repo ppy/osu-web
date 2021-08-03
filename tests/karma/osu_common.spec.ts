@@ -200,11 +200,11 @@ describe('osu_common', () => {
   })
 
   describe('transExists', () => {
-    it('should return true for existed translation', () => {
+    it('check if translation exists', () => {
       expect(osu.transExists('common.confirmation')).toBe(true);
     })
 
-    it('should return false for non existed translation', () => {
+    it('check if translation does not exist', () => {
       expect(osu.transExists('common.this_is_not_existed')).toBe(false);
     })
   })
