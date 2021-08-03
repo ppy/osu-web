@@ -110,6 +110,33 @@ class RoomsControllerTest extends TestCase
         $this->assertSame($type, $room->type);
     }
 
+    public function testStoreRealtimeByType()
+    {
+        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $beatmapset = factory(Beatmapset::class)->create();
+        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $type = array_rand_val(Room::REALTIME_TYPES);
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), [
+                'type' => $type,
+                'name' => 'test room',
+                'playlist' => [
+                    [
+                        'beatmap_id' => $beatmap->getKey(),
+                        'ruleset_id' => $beatmap->playmode,
+                    ],
+                ],
+            ])->assertSuccessful();
+
+        $responseJson = json_decode($response->getContent(), true);
+        $room = Room::find($responseJson['id']);
+        $this->assertNotNull($room);
+        $this->assertTrue($room->isRealtime());
+        $this->assertSame($type, $room->type);
+    }
+
     public function testStoreRealtimeWithPassword()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
