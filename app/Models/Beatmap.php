@@ -158,7 +158,7 @@ class Beatmap extends Model
          * Matches client implementation.
          * all round()s here use PHP_ROUND_HALF_EVEN to match C# default Math.Round.
          * References:
-         * - (implmentation) https://github.com/ppy/osu/blob/6bbc23c831cd73bf126b31edb0bb4fa729f947d1/osu.Game.Rulesets.Mania/Beatmaps/ManiaBeatmapConverter.cs#L40
+         * - (implementation) https://github.com/ppy/osu/blob/6bbc23c831cd73bf126b31edb0bb4fa729f947d1/osu.Game.Rulesets.Mania/Beatmaps/ManiaBeatmapConverter.cs#L40
          * - (rounding) https://msdn.microsoft.com/en-us/library/wyk4d9cy(v=vs.110).aspx
          */
         if ($this->mode === 'mania') {
