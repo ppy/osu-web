@@ -50,23 +50,23 @@ class FollowsController extends Controller
 
     public function index($subtype = null)
     {
-        if (!present($subtype)) {
-            return ujs_redirect(route('follows.index', ['subtype' => Follow::DEFAULT_SUBTYPE]));
-        }
-
         $this->user = auth()->user();
 
-        [$view, $vars] = match ($subtype) {
+        $viewArgs = match ($subtype) {
             'comment' => $this->indexComment(),
             'forum_topic' => $this->indexForumTopic(),
             'mapping' => $this->indexMapping(),
             'modding' => $this->indexModding(),
-            default => throw new InvariantException('invalid subtype parameter'),
+            default => null,
         };
 
-        $vars['subtype'] = $subtype;
+        if ($viewArgs === null) {
+            return ujs_redirect(route('follows.index', ['subtype' => Follow::DEFAULT_SUBTYPE]));
+        }
 
-        return ext_view($view, $vars);
+        $viewArgs[1]['subtype'] = $subtype;
+
+        return ext_view(...$viewArgs);
     }
 
     public function store()
