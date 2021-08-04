@@ -523,6 +523,18 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     {
         $currentTime = Carbon::now();
         $oldScoreable = $this->isScoreable();
+        $approvedState = static::STATES[$state];
+        $beatmaps = $this->beatmaps();
+
+        if (isset($beatmapIds)) {
+            if ($beatmaps->whereKey($beatmapIds)->count() === count($beatmapIds)) {
+                $beatmaps = $beatmaps->whereIn('beatmap_id', $beatmapIds);
+            } else {
+                throw new InvariantException('beatmap_ids contains invalid id');
+            }
+        }
+
+        $beatmaps->update(['approved' => $approvedState]);
 
         if ($this->isQualified() && $state === 'pending') {
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
@@ -533,7 +545,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
         }
 
-        $this->approved = static::STATES[$state];
+        $this->approved = $approvedState;
 
         if ($this->approved > 0) {
             $this->approved_date = $currentTime;
@@ -545,19 +557,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $this->approvedby_id = null;
         }
 
-        $beatmaps = $this->beatmaps();
-
-        if (isset($beatmapIds)) {
-            if ($beatmaps->whereKey($beatmapIds)->count() === count($beatmapIds)) {
-                $beatmaps = $beatmaps->whereIn('beatmap_id', $beatmapIds);
-            } else {
-                throw new InvariantException('beatmap_ids contains invalid id');
-            }
-        }
-
         $this->save();
-
-        $beatmaps->update(['approved' => $this->approved]);
 
         if ($this->isScoreable() !== $oldScoreable || $this->isRanked()) {
             dispatch(new RemoveBeatmapsetBestScores($this));
