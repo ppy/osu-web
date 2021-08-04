@@ -47,7 +47,7 @@ return [
 
         'users' => [
             'modding' => 'моддинг',
-            'multiplayer' => '',
+            'multiplayer' => 'мультиплеер',
             'show' => 'информация',
         ],
     ],
@@ -72,7 +72,7 @@ return [
             'chat' => 'чат',
             'contests' => 'конкурсы',
             'dev' => 'разработка',
-            'forum-forums-index' => 'форумы',
+            'forum-forums-index' => 'форум',
             'getLive' => 'прямые трансляции',
             'tournaments' => 'турниры',
         ],

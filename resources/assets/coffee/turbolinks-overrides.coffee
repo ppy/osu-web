@@ -19,7 +19,7 @@ $(document).on 'click', 'a[href^="#"]', (e) ->
 
   e.preventDefault()
   # still behaves weird in cases where push/popping state wouldn't normally result in a scroll.
-  Turbolinks.controller.advanceHistory href if location.href != href
+  Turbolinks.controller.advanceHistory href
   target.scrollIntoView()
 
 
@@ -36,7 +36,7 @@ Turbolinks.HttpRequest::requestLoaded = ->
 
 # may or may not actually work
 Turbolinks.Controller::advanceHistory = (url) ->
-  return if url == document.location.href
+  return if url == _exported.currentUrl().href
 
   snapshot = @view.getSnapshot()
   location = @lastRenderedLocation

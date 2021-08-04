@@ -127,8 +127,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => '不正行為/チート',
-            'multiple_accounts' => '',
+            'cheating' => 'チート',
+            'multiple_accounts' => '複数のアカウントを管理する',
             'insults' => 'あなた/他の人への侮辱',
             'spam' => 'スパム',
             'unwanted_content' => '不適切なコンテンツへのリンク',
@@ -302,7 +302,7 @@ return [
                 'title' => 'メダル',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'マルチプレイ ゲーム',
             ],
             'posts' => [
                 'title' => '投稿',

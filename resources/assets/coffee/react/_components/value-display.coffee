@@ -3,11 +3,13 @@
 
 import * as React from 'react'
 import { div } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
+
 bn = 'value-display'
 
 export ValueDisplay = ({label, value, description, modifiers}) ->
   div
-    className: osu.classWithModifiers(bn, modifiers)
+    className: classWithModifiers(bn, modifiers)
     div className: "#{bn}__label", label
     div className: "#{bn}__value", value
     if description?

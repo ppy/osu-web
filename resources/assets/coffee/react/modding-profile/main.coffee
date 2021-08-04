@@ -13,21 +13,19 @@ import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-con
 import { BlockButton } from 'block-button'
 import { deletedUser } from 'models/user'
 import { NotificationBanner } from 'notification-banner'
+import core from 'osu-core-singleton'
 import { Posts } from "./posts"
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
+import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
 
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
 pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollspy-offset")
-
-currentLocation = ->
-  "#{document.location.pathname}#{document.location.search}"
-
 
 export class Main extends React.PureComponent
   constructor: (props) ->
@@ -41,7 +39,7 @@ export class Main extends React.PureComponent
     @restoredState = @state?
 
     if !@restoredState
-      page = location.hash.slice(1)
+      page = currentUrl().hash.slice(1)
       @initialPage = page if page?
 
       @state =
@@ -78,15 +76,18 @@ export class Main extends React.PureComponent
 
     pageChange()
 
-    @modeScrollUrl = currentLocation()
+    @modeScrollUrl = currentUrlRelative()
 
     if !@restoredState
-      Timeout.set 0, => @pageJump null, @initialPage
+      core.reactTurbolinks.runAfterPageLoad @eventId, =>
+        # The scroll is a bit off on Firefox if not using timeout.
+        Timeout.set 0, => @pageJump(null, @initialPage)
 
 
   componentWillUnmount: =>
     $.unsubscribe ".#{@eventId}"
     $(window).off ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
@@ -300,7 +301,7 @@ export class Main extends React.PureComponent
 
 
   pageScan: =>
-    return if @modeScrollUrl != currentLocation()
+    return if @modeScrollUrl != currentUrlRelative()
 
     return if @scrolling
     return if pages.length == 0

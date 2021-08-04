@@ -11,9 +11,11 @@ import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import OsuUrlHelper from 'osu-url-helper'
 import { fileuploadFailCallback } from 'utils/ajax'
+import { classWithModifiers } from 'utils/css'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { make2x } from 'utils/html'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
+import { currentUrl } from 'utils/turbolinks'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -26,6 +28,8 @@ window.gallery ?= new Gallery
 
 window._exported = {
   OsuUrlHelper
+  classWithModifiers
+  currentUrl
   discussionLinkify
   fileuploadFailCallback
   make2x

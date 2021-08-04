@@ -73,8 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmapin metatietoviestiä ei voida poistaa.',
             'beatmapset_post_no_edit' => 'Beatmapin metatietoviestiä ei voida muokata.',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
+            'first_post_no_delete' => 'Aloitusviestiä ei voi poistaa',
+            'missing_topic' => 'Viestissä puuttuu aihe',
             'only_quote' => 'Sinun vastauksesi sisältää ainoastaan lainauksen.',
 
             'attributes' => [
@@ -84,21 +84,21 @@ return [
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Aiheen otsikko',
             ],
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Identtiset valinnat eivät ole sallittuja.',
             'grace_period_expired' => 'Äänestystä ei voi muokata :limit tunnin jälkeen',
-            'hiding_results_forever' => '',
+            'hiding_results_forever' => 'Ei voi piilottaa tuloksia kyselystä, joka ei koskaan pääty.',
             'invalid_max_options' => 'Valinnat käyttäjää kohti eivät voi ylittää kaikkien valintojen määrää.',
             'minimum_one_selection' => 'Vähintään yksi valinta käyttäjää kohti on vaadittu.',
             'minimum_two_options' => 'Tarvitsee ainakin kaksi valintaa.',
             'too_many_options' => 'Sallittujen valintojen määrä ylittyi.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Kyselyn otsikko',
             ],
         ],
 
@@ -123,7 +123,7 @@ return [
     'user' => [
         'contains_username' => 'Salasana ei saa sisältää käyttäjätunnusta.',
         'email_already_used' => 'Tämä sähköpostiosoite on jo käytössä.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'Sähköpostiosoite ei ole sallittu.',
         'invalid_country' => 'Maata ei ole tietokannassa.',
         'invalid_discord' => 'Virheellinen Discord käyttäjänimi.',
         'invalid_email' => "Ei näytä kelvolliselta sähköpostiosoitteelta.",

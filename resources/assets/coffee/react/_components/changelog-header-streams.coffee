@@ -3,11 +3,13 @@
 
 import * as React from 'react'
 import { a, div, p } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
+
 el = React.createElement
 
 export class ChangelogHeaderStreams extends React.PureComponent
   render: =>
-    div className: osu.classWithModifiers('update-streams-v2', ['with-active' if @props.currentStreamId?]),
+    div className: classWithModifiers('update-streams-v2', ['with-active' if @props.currentStreamId?]),
       div className: 'update-streams-v2__container',
         for stream in @props.updateStreams
           @renderHeaderStream stream: stream
@@ -15,7 +17,7 @@ export class ChangelogHeaderStreams extends React.PureComponent
 
   renderHeaderStream: ({stream}) =>
     streamNameClass = _.kebabCase(stream.display_name)
-    mainClass = osu.classWithModifiers 'update-streams-v2__item', [
+    mainClass = classWithModifiers 'update-streams-v2__item', [
       streamNameClass
       'featured' if stream.is_featured
       'active' if @props.currentStreamId == stream.id
