@@ -9,6 +9,7 @@ use League\CommonMark\Block\Element\ListItem;
 use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\ExtensionInterface;
+use League\CommonMark\Extension\Footnote\Node as FootnoteExtension;
 use League\CommonMark\Extension\Table\Table;
 
 class Extension implements ExtensionInterface
@@ -25,6 +26,7 @@ class Extension implements ExtensionInterface
         $environment
             ->addBlockRenderer(ListItem::class, new Renderers\ListItemRenderer(), 10)
             ->addBlockRenderer(Table::class, new Renderers\TableRenderer(), 10)
+            ->addBlockRenderer(FootnoteExtension\FootnoteContainer::class, new Renderers\FootnoteContainerRenderer(), 10)
             ->addEventListener(DocumentParsedEvent::class, $this->processor);
     }
 }
