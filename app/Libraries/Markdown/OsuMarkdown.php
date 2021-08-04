@@ -219,6 +219,13 @@ class OsuMarkdown
 
         if ($this->config['parse_footnote']) {
             $environment->addExtension(new FootnoteExtension());
+            $environment->mergeConfig([
+                'footnote' => [
+                    'backref_class' => 'osu-md__link',
+                    'backref_symbol' => '&#8593;',
+                    'ref_class' => 'osu-md__link',
+                ],
+            ]);
         }
 
         if ($this->config['style_block_allowed_classes'] !== null) {
