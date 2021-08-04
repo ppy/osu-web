@@ -119,6 +119,9 @@ class DocumentProcessor
             case Block\Paragraph::class:
                 $class = "{$blockClass}__paragraph";
                 break;
+            case FootnoteExtension\Footnote::class:
+                $class = "{$blockClass}__list-item";
+                break;
             case FootnoteExtension\FootnoteContainer::class:
                 $class = "{$blockClass}__list {$blockClass}__list--ordered";
                 break;
