@@ -140,7 +140,7 @@ class ChangelogController extends Controller
      */
     public function index()
     {
-        $this->getUpdateStreams();
+        $updateStreams = $this->getUpdateStreams();
 
         $params = get_params(request()->all(), null, [
             'message_formats:string[]',
@@ -180,7 +180,7 @@ class ChangelogController extends Controller
         $buildsJson = json_collection($builds, 'Build', $buildJsonIncludes);
 
         $indexJson = [
-            'streams' => $this->updateStreams,
+            'streams' => $updateStreams,
             'builds' => $buildsJson,
             'search' => $search,
         ];
@@ -196,7 +196,7 @@ class ChangelogController extends Controller
                 }
             );
 
-            return ext_view('changelog.index', compact('chartConfig', 'indexJson'));
+            return ext_view('changelog.index', compact('chartConfig', 'indexJson', 'updateStreams'));
         }
     }
 
@@ -363,7 +363,7 @@ class ChangelogController extends Controller
             return $buildJson;
         }
 
-        $this->getUpdateStreams();
+        $updateStreams = $this->getUpdateStreams();
 
         $commentBundle = CommentBundle::forEmbed($build);
 
@@ -375,7 +375,13 @@ class ChangelogController extends Controller
             }
         );
 
-        return ext_view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
+        return ext_view('changelog.build', compact(
+            'build',
+            'buildJson',
+            'chartConfig',
+            'commentBundle',
+            'updateStreams',
+        ));
     }
 
     private function buildJson(Build $build): array
@@ -390,7 +396,7 @@ class ChangelogController extends Controller
 
     private function getUpdateStreams()
     {
-        $this->updateStreams = json_collection(
+        return $this->updateStreams ??= json_collection(
             UpdateStream::whereHasBuilds()
                 ->orderByField('stream_id', config('osu.changelog.update_streams'))
                 ->find(config('osu.changelog.update_streams'))
@@ -400,8 +406,6 @@ class ChangelogController extends Controller
             'UpdateStream',
             ['latest_build', 'user_count']
         );
-
-        view()->share('updateStreams', $this->updateStreams);
     }
 
     private function chartConfig($stream)
@@ -411,7 +415,7 @@ class ChangelogController extends Controller
         if ($stream === null) {
             $chartOrder = array_map(function ($b) {
                 return $b['display_name'];
-            }, $this->updateStreams);
+            }, $this->getUpdateStreams());
         } else {
             $chartOrder = $this->buildChartOrder($history);
             $streamName = kebab_case($stream->pretty_name);
