@@ -45,6 +45,7 @@ export class Nominations extends React.PureComponent
         div className: "#{bn}__item", @statusMessage()
         div className: "#{bn}__item", @hypeBar()
         div className: "#{bn}__item", @nominationBar()
+        div className: "#{bn}__item", @disqualificationMessage()
         div className: "#{bn}__item", @nominationResetMessage()
         div className: "#{bn}__item", @discussionLockMessage()
         div className: "#{bn}__item #{bn}__item--nominators", @nominatorsList()
@@ -363,6 +364,17 @@ export class Nominations extends React.PureComponent
           " #{nominationsCount(nominations, 'current')} / #{nominationsCount(nominations, 'required')}"
 
       @renderLightsForNominations(nominations)
+
+
+  disqualificationMessage: =>
+    showHype = @props.beatmapset.can_be_hyped
+    disqualification = @props.beatmapset.nominations.disqualification
+    mapIsQualified = @props.beatmapset.status == 'qualified'
+
+    return null unless showHype && !mapIsQualified && disqualification?
+
+    div dangerouslySetInnerHTML:
+      __html: @resetReason(disqualification)
 
 
   nominationResetMessage: =>

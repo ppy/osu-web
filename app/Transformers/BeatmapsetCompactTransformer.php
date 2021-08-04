@@ -8,6 +8,7 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\DeletedUser;
 use App\Models\User;
@@ -165,12 +166,15 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();
+            $disqualificationEvent = $beatmapset->disqualificationEvent();
             $resetEvent = $beatmapset->resetEvent();
 
-            if ($resetEvent !== null) {
+            if ($resetEvent !== null && $resetEvent->type === BeatmapsetEvent::NOMINATION_RESET) {
                 $result['nomination_reset'] = json_item($resetEvent, 'BeatmapsetEvent');
             }
-
+            if ($disqualificationEvent !== null) {
+                $result['disqualification'] = json_item($disqualificationEvent, 'BeatmapsetEvent');
+            }
             if ($currentUser !== null) {
                 $result['nominated'] = $beatmapset->beatmapsetNominations()->current()->where('user_id', $currentUser->getKey())->exists();
             }
