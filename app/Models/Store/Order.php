@@ -12,6 +12,7 @@ use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -74,6 +75,15 @@ class Order extends Model
     protected static function splitTransactionId($value)
     {
         return explode('-', $value, 2);
+    }
+
+    public static function pendingForUser(?User $user): ?Builder
+    {
+        if ($user === null) {
+            return null;
+        }
+
+        return static::where('user_id', $user->getKey())->processing();
     }
 
     public function items()

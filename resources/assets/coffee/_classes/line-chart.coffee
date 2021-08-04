@@ -21,7 +21,7 @@ class @LineChart
     @options.axisLabels ?= true
 
     @area = d3.select(area)
-      .classed osu.classWithModifiers(bn, @options.modifiers), true
+      .classed _exported.classWithModifiers(bn, @options.modifiers), true
 
     @svg = @area.append 'svg'
 

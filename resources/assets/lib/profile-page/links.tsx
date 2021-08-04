@@ -169,7 +169,7 @@ export default class Links extends React.PureComponent<Props> {
         ))}
         {this.props.user.id === currentUser.id && (
           <div className='profile-links__edit'>
-            <a className='profile-page-toggle' href={route('account.edit')} title={osu.trans('users.show.page.button')}>
+            <a className='btn-circle btn-circle--page-toggle' href={route('account.edit')} title={osu.trans('users.show.page.button')}>
               <span className='fas fa-pencil-alt' />
             </a>
           </div>

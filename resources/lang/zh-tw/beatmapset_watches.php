@@ -9,8 +9,8 @@ return [
         'title_compact' => '摸圖',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => '已關注的圖譜',
+            'unread' => '有新活動的圖譜',
         ],
 
         'table' => [

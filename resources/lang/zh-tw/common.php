@@ -15,7 +15,7 @@ return [
     ],
 
     'badges' => [
-        'new' => '全新功能！',
+        'new' => '全新',
     ],
 
     'buttons' => [

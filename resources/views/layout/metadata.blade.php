@@ -112,7 +112,7 @@
 <script src="{{ unmix('js/app.js') }}" data-turbolinks-track="reload"></script>
 
 <script
-    src="{{ unmix('js/moment-locales/'.current_locale_meta()->moment().'.js') }}"
+    src="{{ unmix("js/moment-locales/{$currentLocaleMeta->moment()}.js") }}"
     data-turbolinks-track="reload"
 ></script>
 

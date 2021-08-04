@@ -11,7 +11,7 @@ return [
     'none' => '沒有通知',
     'see_all' => '查看所有通知',
     'see_channel' => '前往聊天',
-    'verifying' => '請驗證會話以查看通知',
+    'verifying' => '請驗證此工作階段以查看通知',
 
     'filters' => [
         '_' => '全部',

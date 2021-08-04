@@ -3,12 +3,14 @@
 
 import * as React from 'react'
 import { button, span } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
+
 bn = 'profile-cover-selection'
 
 export class CoverSelection extends React.PureComponent
   render: =>
     button
-      className: osu.classWithModifiers(bn, @props.modifiers)
+      className: classWithModifiers(bn, @props.modifiers)
       style:
         backgroundImage: osu.urlPresence(@props.thumbUrl)
       onClick: @onClick

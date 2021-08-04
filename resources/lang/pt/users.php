@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Jogada suja / Fazer batota',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Utilização de contas múltiplas',
             'insults' => 'Insulto a mim ou a outros',
             'spam' => 'Spam',
             'unwanted_content' => 'Enviar ligações com conteúdo impróprio',
@@ -302,7 +302,7 @@ return [
                 'title' => 'Medalhas',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Jogos multijogador',
             ],
             'posts' => [
                 'title' => 'Publicações',
