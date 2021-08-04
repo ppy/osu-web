@@ -26,7 +26,7 @@ class RoomTransformer extends TransformerAbstract
         return [
             'id' => $room->id,
             'name' => $room->name,
-            'category' => $room->isRealtime() ? 'realtime' : $room->category,
+            'category' => $room->category,
             'type' => $room->type,
             'user_id' => $room->user_id,
             'starts_at' => json_time($room->starts_at),
