@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\InvariantException;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\UpdateUserMappingFollowerCountCache;
 use App\Models\BeatmapDiscussion;
