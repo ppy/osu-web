@@ -251,6 +251,7 @@ class Room extends Model
             'user_id' => $owner->getKey(),
         ]);
 
+        // TODO: remove category params support (and forcing default type) once client sends type parameter
         if ($this->isRealtime() || $params['category'] === 'realtime') {
             if (!in_array($this->type, static::REALTIME_TYPES, true)) {
                 $this->type = static::REALTIME_DEFAULT_TYPE;

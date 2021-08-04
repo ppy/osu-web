@@ -137,6 +137,33 @@ class RoomsControllerTest extends TestCase
         $this->assertSame($type, $room->type);
     }
 
+    // TODO: remove once client sends type instead of category
+    public function testStoreRealtimeByCategory()
+    {
+        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $beatmapset = factory(Beatmapset::class)->create();
+        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), [
+                'category' => 'realtime',
+                'name' => 'test room',
+                'playlist' => [
+                    [
+                        'beatmap_id' => $beatmap->getKey(),
+                        'ruleset_id' => $beatmap->playmode,
+                    ],
+                ],
+            ])->assertSuccessful();
+
+        $responseJson = json_decode($response->getContent(), true);
+        $room = Room::find($responseJson['id']);
+        $this->assertNotNull($room);
+        $this->assertTrue($room->isRealtime());
+        $this->assertSame(Room::REALTIME_DEFAULT_TYPE, $room->type);
+    }
+
     public function testStoreRealtimeWithPassword()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
