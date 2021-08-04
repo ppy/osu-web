@@ -27,6 +27,7 @@ class Extension implements ExtensionInterface
             ->addBlockRenderer(ListItem::class, new Renderers\ListItemRenderer(), 10)
             ->addBlockRenderer(Table::class, new Renderers\TableRenderer(), 10)
             ->addBlockRenderer(FootnoteExtension\FootnoteContainer::class, new Renderers\FootnoteContainerRenderer(), 10)
+            ->addBlockRenderer(FootnoteExtension\Footnote::class, new Renderers\FootnoteListItemRenderer(), 10)
             ->addEventListener(DocumentParsedEvent::class, $this->processor);
     }
 }
