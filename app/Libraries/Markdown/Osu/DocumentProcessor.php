@@ -12,6 +12,7 @@ use League\CommonMark\Block\Element as Block;
 use League\CommonMark\EnvironmentInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Table as TableExtension;
+use League\CommonMark\Extension\Footnote\Node as FootnoteExtension;
 use League\CommonMark\Inline\Element as Inline;
 
 class DocumentProcessor
@@ -117,6 +118,9 @@ class DocumentProcessor
                 break;
             case Block\Paragraph::class:
                 $class = "{$blockClass}__paragraph";
+                break;
+            case FootnoteExtension\FootnoteContainer::class:
+                $class = "{$blockClass}__list {$blockClass}__list--ordered";
                 break;
             case Inline\Image::class:
                 $class = "{$blockClass}__image";
