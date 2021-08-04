@@ -37,12 +37,12 @@ export default class LoveConfirmation extends React.Component<Props> {
 
   render() {
     return (
-      <div className='love-beatmap-modal'>
+      <div className='love-beatmap-modal u-fancy-scrollbar'>
         <div className='love-beatmap-modal__row love-beatmap-modal__row--title'>
           {osu.trans('beatmaps.nominations.love_choose')}
         </div>
 
-        <div className='love-beatmap-modal__row love-beatmap-modal__row--content u-fancy-scrollbar'>
+        <div className='love-beatmap-modal__row love-beatmap-modal__row--content'>
           {[...this.groupedBeatmaps].map(([mode, beatmaps]) => this.renderDiffMode(mode, beatmaps))}
         </div>
 
