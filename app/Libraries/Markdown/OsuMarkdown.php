@@ -11,6 +11,7 @@ use League\CommonMark\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
+use League\CommonMark\Extension\Footnote\FootnoteExtension;
 use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\MarkdownConverter;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
@@ -34,6 +35,7 @@ class OsuMarkdown
         'block_name' => 'osu-md',
         'generate_toc' => false,
         'parse_attribute_id' => false,
+        'parse_footnote' => false,
         'parse_yaml_header' => true,
         'record_first_image' => false,
         'relative_url_root' => null,
@@ -73,6 +75,7 @@ class OsuMarkdown
             'block_modifiers' => ['wiki'],
             'generate_toc' => true,
             'parse_attribute_id' => true,
+            'parse_footnote' => true,
             'style_block_allowed_classes' => ['infobox'],
             'title_from_document' => true,
         ],
@@ -212,6 +215,10 @@ class OsuMarkdown
         if ($this->config['parse_attribute_id']) {
             $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());
             $environment->addExtension(new AttributesExtension());
+        }
+
+        if ($this->config['parse_footnote']) {
+            $environment->addExtension(new FootnoteExtension());
         }
 
         if ($this->config['style_block_allowed_classes'] !== null) {
