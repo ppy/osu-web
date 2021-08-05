@@ -70,10 +70,9 @@ trait BeatmapsetTrait
         foreach ($this->beatmaps as $beatmap) {
             $beatmapValues = [];
             foreach ($mappings as $field => $mapping) {
-                $beatmapValues[$field] = $beatmap[$field];
+                $beatmapValues[$field] = $beatmap->$field;
             }
 
-            $beatmapValues['convert'] = false;
             $values[] = $beatmapValues;
 
             if ($beatmap->playmode === Beatmap::MODES['osu']) {
@@ -82,11 +81,13 @@ trait BeatmapsetTrait
                         continue;
                     }
 
-                    $diff = $beatmap->baseDifficultyRatings?->firstWhere('mode', $modeInt);
-                    $convertValues = $beatmapValues; // is an array, so automatically a copy.
-                    $convertValues['convert'] = true;
-                    $convertValues['difficultyrating'] = $diff?->diff_unified ?? $beatmap->difficultyrating;
-                    $convertValues['playmode'] = $modeInt;
+                    $convert = clone $beatmap;
+                    $convert->playmode = $modeInt;
+                    $convert->convert = true;
+                    $convertValues = [];
+                    foreach ($mappings as $field => $mapping) {
+                        $convertValues[$field] = $convert->$field;
+                    }
 
                     $values[] = $convertValues;
                 }

@@ -17,11 +17,11 @@
                 data-url="{{ route('account.options') }}"
             >
                 <label class="account-edit-entry__checkbox">
-                    @include('objects._switch', [
+                    @include('objects._switch', ['locals' => [
                         'additionalClass' => 'js-account-edit__input',
                         'checked' => auth()->user()->pm_friends_only,
                         'name' => 'user[pm_friends_only]',
-                    ])
+                    ]])
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ osu_trans('accounts.privacy.friends_only') }}
@@ -39,11 +39,11 @@
                 data-url="{{ route('account.options') }}"
             >
                 <label class="account-edit-entry__checkbox">
-                    @include('objects._switch', [
+                    @include('objects._switch', ['locals' => [
                         'additionalClass' => 'js-account-edit__input',
                         'checked' => auth()->user()->hide_presence,
                         'name' => 'user[hide_presence]',
-                    ])
+                    ]])
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ osu_trans('accounts.privacy.hide_online') }}

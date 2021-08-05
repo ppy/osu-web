@@ -202,9 +202,11 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
+        $params = get_params(request()->all(), null, ['beatmap_ids:int[]'], ['null_missing' => true]);
+
         priv_check('BeatmapsetLove')->ensureCan();
 
-        $nomination = $beatmapset->love(Auth::user());
+        $nomination = $beatmapset->love(Auth::user(), $params['beatmap_ids']);
         if (!$nomination['result']) {
             return error_popup($nomination['message']);
         }
