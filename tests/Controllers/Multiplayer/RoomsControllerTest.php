@@ -81,11 +81,70 @@ class RoomsControllerTest extends TestCase
         $token = factory(Token::class)->create(['scopes' => ['*']]);
         $beatmapset = factory(Beatmapset::class)->create();
         $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $type = array_rand_val(Room::REALTIME_TYPES);
 
         $roomsCountInitial = Room::count();
         $playlistItemsCountInitial = PlaylistItem::count();
 
-        $this
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), [
+                'category' => 'realtime',
+                'type' => $type,
+                'name' => 'test room',
+                'playlist' => [
+                    [
+                        'beatmap_id' => $beatmap->getKey(),
+                        'ruleset_id' => $beatmap->playmode,
+                    ],
+                ],
+            ])->assertSuccessful();
+
+        $this->assertSame($roomsCountInitial + 1, Room::count());
+        $this->assertSame($playlistItemsCountInitial + 1, PlaylistItem::count());
+
+        $responseJson = json_decode($response->getContent(), true);
+        $room = Room::find($responseJson['id']);
+        $this->assertNotNull($room);
+        $this->assertTrue($room->isRealtime());
+        $this->assertSame($type, $room->type);
+    }
+
+    public function testStoreRealtimeByType()
+    {
+        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $beatmapset = factory(Beatmapset::class)->create();
+        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $type = array_rand_val(Room::REALTIME_TYPES);
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), [
+                'type' => $type,
+                'name' => 'test room',
+                'playlist' => [
+                    [
+                        'beatmap_id' => $beatmap->getKey(),
+                        'ruleset_id' => $beatmap->playmode,
+                    ],
+                ],
+            ])->assertSuccessful();
+
+        $responseJson = json_decode($response->getContent(), true);
+        $room = Room::find($responseJson['id']);
+        $this->assertNotNull($room);
+        $this->assertTrue($room->isRealtime());
+        $this->assertSame($type, $room->type);
+    }
+
+    // TODO: remove once client sends type instead of category
+    public function testStoreRealtimeByCategory()
+    {
+        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $beatmapset = factory(Beatmapset::class)->create();
+        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+
+        $response = $this
             ->actingWithToken($token)
             ->post(route('api.rooms.store'), [
                 'category' => 'realtime',
@@ -98,8 +157,11 @@ class RoomsControllerTest extends TestCase
                 ],
             ])->assertSuccessful();
 
-        $this->assertSame($roomsCountInitial + 1, Room::count());
-        $this->assertSame($playlistItemsCountInitial + 1, PlaylistItem::count());
+        $responseJson = json_decode($response->getContent(), true);
+        $room = Room::find($responseJson['id']);
+        $this->assertNotNull($room);
+        $this->assertTrue($room->isRealtime());
+        $this->assertSame(Room::REALTIME_DEFAULT_TYPE, $room->type);
     }
 
     public function testStoreRealtimeWithPassword()

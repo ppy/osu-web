@@ -12,6 +12,7 @@ use App\Models\Model;
 use App\Models\User;
 use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
+use Ds\Set;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -48,6 +49,10 @@ class Room extends Model
 
     const DEFAULT_SORT = 'created';
 
+    const PLAYLIST_TYPE = 'playlists';
+    const REALTIME_DEFAULT_TYPE = 'head_to_head';
+    const REALTIME_TYPES = ['head_to_head', 'team_versus'];
+
     protected $casts = [
         'password' => PresentString::class,
     ];
@@ -66,10 +71,18 @@ class Room extends Model
         $sort = $params['sort'] ?? null;
 
         $category = presence(get_string($params['category'] ?? null)) ?? 'any';
-        if ($category === 'any') {
-            $query->where('category', '<>', 'realtime');
-        } else {
-            $query->where('category', $category);
+        switch ($category) {
+            case 'any':
+                $query->where('type', static::PLAYLIST_TYPE);
+                break;
+            case 'realtime':
+                $query->whereIn('type', static::REALTIME_TYPES);
+                break;
+            default:
+                $query->where([
+                    'type' => static::PLAYLIST_TYPE,
+                    'category' => $category,
+                ]);
         }
 
         switch ($mode) {
@@ -159,6 +172,15 @@ class Room extends Model
         return $this->ends_at !== null && Carbon::now()->gte($this->ends_at);
     }
 
+    public function isRealtime()
+    {
+        static $realtimeTypes;
+
+        $realtimeTypes ??= new Set(static::REALTIME_TYPES);
+
+        return $realtimeTypes->contains($this->type);
+    }
+
     public function isScoreSubmissionStillAllowed()
     {
         // TODO: move grace period to config or use the beatmap's duration
@@ -218,19 +240,27 @@ class Room extends Model
             'name',
             'password',
             'playlist:array',
+            'type',
         ], ['null_missing' => true]);
 
-        $this->name = $params['name'];
-        $this->user_id = $owner->getKey();
-        $this->max_attempts = $params['max_attempts'];
-        $this->starts_at = now();
+        $this->fill([
+            'max_attempts' => $params['max_attempts'],
+            'name' => $params['name'],
+            'starts_at' => now(),
+            'type' => $params['type'],
+            'user_id' => $owner->getKey(),
+        ]);
 
-        if ($params['category'] === 'realtime') {
-            $this->category = $params['category'];
+        // TODO: remove category params support (and forcing default type) once client sends type parameter
+        if ($this->isRealtime() || $params['category'] === 'realtime') {
+            if (!in_array($this->type, static::REALTIME_TYPES, true)) {
+                $this->type = static::REALTIME_DEFAULT_TYPE;
+            }
             // only for realtime rooms for now
             $this->password = $params['password'];
             $this->ends_at = now()->addSeconds(30);
         } else {
+            $this->type = static::PLAYLIST_TYPE;
             if ($params['ends_at'] !== null) {
                 $this->ends_at = $params['ends_at'];
             } elseif ($params['duration'] !== null) {
@@ -251,7 +281,7 @@ class Room extends Model
 
         $playlistItemsCount = count($playlistItems);
 
-        if ($this->category === 'realtime' && $playlistItemsCount !== 1) {
+        if ($this->isRealtime() && $playlistItemsCount !== 1) {
             throw new InvariantException('realtime room must have exactly one playlist item');
         }
 
@@ -327,7 +357,7 @@ class Room extends Model
             }
         }
 
-        if ($this->category !== 'realtime' && $this->starts_at->addMinutes(30)->gt($this->ends_at)) {
+        if (!$this->isRealtime() && $this->starts_at->addMinutes(30)->gt($this->ends_at)) {
             throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
         }
 
