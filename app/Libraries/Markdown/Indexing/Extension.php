@@ -9,6 +9,7 @@ use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Extension\ExtensionInterface;
+use League\CommonMark\Extension\Footnote\Node as FootnoteExtension;
 use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Inline\Element as Inline;
 
@@ -38,6 +39,8 @@ class Extension implements ExtensionInterface
             Block\ListItem::class => new Renderers\ListItemRenderer(),
             Block\Paragraph::class => new Renderers\BlockRenderer(),
             Block\ThematicBreak::class => new Renderers\BlockRenderer(),
+            FootnoteExtension\Footnote::class => new Renderers\NoopRenderer(),
+            FootnoteExtension\FootnoteContainer::class => new Renderers\NoopRenderer(),
             StyleBlock::class => new Renderers\BlockRenderer(),
             TableExtension\Table::class => new Renderers\TableRenderer(),
             TableExtension\TableCaption::class => new Renderers\NoopRenderer(),
@@ -50,6 +53,8 @@ class Extension implements ExtensionInterface
     private function inlineRenderers()
     {
         return [
+            FootnoteExtension\FootnoteBackref::class => new Renderers\NoopRenderer(),
+            FootnoteExtension\FootnoteRef::class => new Renderers\NoopRenderer(),
             Inline\Code::class => new Renderers\InlineRenderer(),
             Inline\Emphasis::class => new Renderers\InlineRenderer(),
             Inline\HtmlInline::class => new Renderers\NoopRenderer(),
