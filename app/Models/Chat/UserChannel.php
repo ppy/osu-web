@@ -9,6 +9,8 @@ use App\Libraries\Notification\BatchIdentities;
 use App\Models\User;
 use App\Models\UserNotification;
 use DB;
+use Ds\Map;
+use Ds\Set;
 
 /**
  * @property Channel $channel
@@ -66,6 +68,39 @@ class UserChannel extends Model
                 ],
             ],
         ]));
+    }
+
+    public static function channelListForUser(User $user)
+    {
+        $userChannels = static::forUser($user)
+            ->whereHas('channel')
+            ->with('channel')
+            ->get();
+
+        $channels = $userChannels->pluck('channel');
+        $channelsMap = new Map();
+        foreach ($channels as $channel) {
+            $channelsMap->put($channel->getKey(), $channel);
+        }
+
+        $pmUserIds = new Set(
+            static::whereIn('channel_id', $userChannels->pluck('channel_id'))
+                ->whereHas('channel', function ($q) {
+                    $q->where('type', 'PM');
+                })
+                ->pluck('user_id')
+        );
+
+        $users = User::default()->whereIn('user_id', $pmUserIds->toArray())->get();
+        $usersMap = new Map();
+        foreach ($users as $user) {
+            $usersMap->put($user->getKey(), $user);
+        }
+
+        request()->attributes->set('preloadedUsers', $usersMap);
+        request()->attributes->set('preloadedChannels', $channelsMap);
+
+        return $channels;
     }
 
     public static function presenceForUser(User $user)

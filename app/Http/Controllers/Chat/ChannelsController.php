@@ -40,9 +40,24 @@ class ChannelsController extends Controller
      */
     public function index()
     {
+        /** @var User $user */
+        $user = auth()->user();
+
+        $params = get_params(request()->all(), null, [
+            'own:bool',
+        ], ['null_missing' => true]);
+
+        if ($params['own'] === true) {
+            $channels = UserChannel::channelListForUser($user);
+
+            return [
+                'channels' => json_collection($channels, ChannelTransformer::forUser($user), ['last_message_id']),
+            ];
+        }
+
         return json_collection(
             Channel::public()->get(),
-            ChannelTransformer::forUser(auth()->user())
+            ChannelTransformer::forUser($user)
         );
     }
 

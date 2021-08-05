@@ -170,6 +170,12 @@ class Channel extends Model
     public function users()
     {
         return $this->memoize(__FUNCTION__, function () {
+            // use lookup table if it exists
+            $usersMap = request()->attributes->get('preloadedUsers');
+            if ($usersMap !== null) {
+                return collect(array_map(fn ($id) => $usersMap->get($id, null), $this->userIds()));
+            }
+
             // This isn't a has-many-through because the relationship is cross-database.
             return User::whereIn('user_id', $this->userIds())->get();
         });
