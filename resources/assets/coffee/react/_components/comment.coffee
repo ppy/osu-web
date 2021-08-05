@@ -401,13 +401,12 @@ export class Comment extends React.PureComponent
   renderVoteButton: (inline = false) =>
     hasVoted = @hasVoted()
 
-    className = classWithModifiers 'comment-vote', @props.modifiers
-    className += classWithModifiers 'comment-vote',
+    className = classWithModifiers 'comment-vote',
+      @props.modifiers
       disabled: !@props.comment.canVote
       inline: inline
       on: hasVoted
       posting: @state.postingVote
-      true
 
     hover = div className: 'comment-vote__hover', '+1' if !inline && !hasVoted
 
