@@ -38,7 +38,7 @@ class FootnoteRefRenderer implements InlineRendererInterface, ConfigurationAware
                     'class' => $this->blockName . '__link',
                     'href' => \mb_strtolower($inline->getReference()->getDestination())
                 ],
-                $inline->getReference()->getTitle(),
+                '[' . $inline->getReference()->getTitle() . ']',
             ),
         );
     }
