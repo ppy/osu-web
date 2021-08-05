@@ -29,14 +29,17 @@ class FootnoteRefRenderer implements InlineRendererInterface, ConfigurationAware
         $attrs['id'] = 'fnref:' . \mb_strtolower($inline->getReference()->getLabel());
         $attrs['class'] = $this->blockName . '__superscript';
 
+        $target = \mb_strtolower($inline->getReference()->getDestination());
+
         return new HtmlElement(
             'sup',
             $attrs,
             new HtmlElement(
                 'a',
                 [
-                    'class' => $this->blockName . '__link',
-                    'href' => \mb_strtolower($inline->getReference()->getDestination())
+                    'class' => $this->blockName . '__link' . ' js-reference-link',
+                    'data-target' => $target,
+                    'href' => $target,
                 ],
                 '[' . $inline->getReference()->getTitle() . ']',
             ),
