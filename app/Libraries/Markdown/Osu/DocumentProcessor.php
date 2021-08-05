@@ -157,6 +157,11 @@ class DocumentProcessor
 
     private function addListStartAsVariable()
     {
+        if ($this->node instanceof FootnoteExtension\FootnoteContainer) {
+            $this->node->data['attributes']['style'] = '--list-start: 0';
+            return;
+        }
+
         if (!$this->node instanceof Block\ListBlock || !$this->event->isEntering()) {
             return;
         }
