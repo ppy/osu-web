@@ -12,6 +12,8 @@ export default class ReferenceLink {
         text: content,
       },
       hide: {
+        delay: 200,
+        effect: $(content).fadeTo(110, 0),
         fixed: true,
       },
       position: {
@@ -20,6 +22,8 @@ export default class ReferenceLink {
         viewport: $(window),
       },
       show: {
+        delay: 200,
+        effect: $(content).fadeTo(110, 1),
         ready: true,
       },
       style: {
