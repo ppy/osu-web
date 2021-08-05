@@ -51,8 +51,6 @@ export default class ReferenceLinkTooltip {
       tooltipContent.removeChild(backRefLink);
     }
 
-    if (el._tooltip == null) {
-      this.createTooltip(el, tooltipContent);
-    }
+    this.createTooltip(el, tooltipContent);
   };
 }
