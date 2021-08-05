@@ -10,9 +10,12 @@ use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\Model;
 use App\Models\User;
+use App\Traits\Memoizes;
 use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use Ds\Set;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -35,7 +38,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Room extends Model
 {
-    use SoftDeletes, WithDbCursorHelper;
+    use Memoizes, SoftDeletes, WithDbCursorHelper;
 
     const SORTS = [
         'ended' => [
@@ -61,6 +64,29 @@ class Room extends Model
     protected $attributes = [
         'participant_count' => 0,
     ];
+
+    public ?array $preloadedRecentParticipants = null;
+
+    /**
+     * Using this requires the collection to be queried with withRecentParticipantIds scope.
+     */
+    public static function preloadRecentParticipants(Collection $rooms)
+    {
+        $allUserIds = $rooms->map->recent_participant_ids->flatten();
+        $allUsersByKey = User::whereKey($allUserIds)->get()->keyBy('user_id');
+
+        foreach ($rooms as $room) {
+            $users = [];
+            foreach ($room->recent_participant_ids as $userId) {
+                $user = $allUsersByKey[$userId] ?? null;
+
+                if ($user !== null) {
+                    $users[] = $user;
+                }
+            }
+            $room->preloadedRecentParticipants = $users;
+        }
+    }
 
     public static function search($params)
     {
@@ -167,6 +193,33 @@ class Room extends Model
         return $query->where('user_id', $user->user_id);
     }
 
+    public function scopeWithRecentParticipantIds($query, ?int $limit = null)
+    {
+        $limit ??= 10;
+
+        if ($query->getQuery()->columns === null) {
+            $query = $query->select();
+        }
+
+        $highScore = new UserScoreAggregate();
+
+        return $query->selectSub("
+            SELECT json_arrayagg(user_id)
+            FROM (
+                SELECT user_id
+                FROM {$highScore->getTable()}
+                WHERE
+                    {$highScore->qualifyColumn('room_id')} = {$this->qualifyColumn($this->getKeyName())}
+                    AND (
+                        {$this->qualifyColumn('type')} = {$this->getGrammar()->quoteString(static::PLAYLIST_TYPE)}
+                        OR {$highScore->qualifyColumn('in_room')}
+                    )
+                ORDER BY updated_at DESC
+                LIMIT {$limit}
+            ) recent_participants
+        ", 'recent_participant_ids');
+    }
+
     public function hasEnded()
     {
         return $this->ends_at !== null && Carbon::now()->gte($this->ends_at);
@@ -185,6 +238,14 @@ class Room extends Model
     {
         // TODO: move grace period to config or use the beatmap's duration
         return $this->ends_at === null || Carbon::now()->lte($this->ends_at->addMinutes(5));
+    }
+
+    public function getRecentParticipantIdsAttribute()
+    {
+        return $this->memoize(
+            __FUNCTION__,
+            fn () => json_decode($this->attributes['recent_participant_ids'], true) ?? []
+        );
     }
 
     /**
@@ -220,6 +281,35 @@ class Room extends Model
         if (!$this->channel->hasUser($user)) {
             $this->channel->addUser($user);
         }
+    }
+
+    public function participants(): HasMany
+    {
+        $query = $this->userHighScores();
+
+        // only return users currently inside for open realtime room
+        if ($this->isRealtime() && $this->ends_at === null) {
+            $query->where(['in_room' => true]);
+        }
+
+        return $query;
+    }
+
+    public function recentParticipants(): array
+    {
+        if ($this->preloadedRecentParticipants !== null) {
+            return $this->preloadedRecentParticipants;
+        }
+
+        return $this
+            ->participants()
+            ->select('user_id')
+            ->with('user')
+            ->orderBy('updated_at', 'DESC')
+            ->limit(50)
+            ->get()
+            ->pluck('user')
+            ->all();
     }
 
     public function startGame(User $owner, array $rawParams)
