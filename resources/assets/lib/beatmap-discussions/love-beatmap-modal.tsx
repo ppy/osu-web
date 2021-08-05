@@ -7,6 +7,7 @@ import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import * as osu from 'osu-common';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 
