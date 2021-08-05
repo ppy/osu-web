@@ -29,24 +29,16 @@ class RoomsControllerTest extends TestCase
     public function testStore()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
 
         $roomsCountInitial = Room::count();
         $playlistItemsCountInitial = PlaylistItem::count();
 
         $this
             ->actingWithToken($token)
-            ->post(route('api.rooms.store'), [
-                'ends_at' => now()->addHour(),
-                'name' => 'test room',
-                'playlist' => [
-                    [
-                        'beatmap_id' => $beatmap->getKey(),
-                        'ruleset_id' => $beatmap->playmode,
-                    ],
-                ],
-            ])->assertSuccessful();
+            ->post(route('api.rooms.store'), array_merge(
+                $this->createBasicStoreParams(),
+                ['ends_at' => now()->addHour()],
+            ))->assertSuccessful();
 
         $this->assertSame($roomsCountInitial + 1, Room::count());
         $this->assertSame($playlistItemsCountInitial + 1, PlaylistItem::count());
@@ -55,22 +47,16 @@ class RoomsControllerTest extends TestCase
     public function testStoreWithPassword()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
 
         $response = $this
             ->actingWithToken($token)
-            ->post(route('api.rooms.store'), [
-                'ends_at' => now()->addHour(),
-                'name' => 'test room',
-                'password' => 'hunter2',
-                'playlist' => [
-                    [
-                        'beatmap_id' => $beatmap->getKey(),
-                        'ruleset_id' => $beatmap->playmode,
-                    ],
+            ->post(route('api.rooms.store'), array_merge(
+                $this->createBasicStoreParams(),
+                [
+                    'ends_at' => now()->addHour(),
+                    'password' => 'hunter2',
                 ],
-            ])->assertSuccessful();
+            ))->assertSuccessful();
 
         $responseJson = json_decode($response->getContent(), true);
         $this->assertNull(Room::find($responseJson['id'])->password);
@@ -79,8 +65,6 @@ class RoomsControllerTest extends TestCase
     public function testStoreRealtime()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
         $type = array_rand_val(Room::REALTIME_TYPES);
 
         $roomsCountInitial = Room::count();
@@ -88,17 +72,13 @@ class RoomsControllerTest extends TestCase
 
         $response = $this
             ->actingWithToken($token)
-            ->post(route('api.rooms.store'), [
-                'category' => 'realtime',
-                'type' => $type,
-                'name' => 'test room',
-                'playlist' => [
-                    [
-                        'beatmap_id' => $beatmap->getKey(),
-                        'ruleset_id' => $beatmap->playmode,
-                    ],
+            ->post(route('api.rooms.store'), array_merge(
+                $this->createBasicStoreParams(),
+                [
+                    'category' => 'realtime',
+                    'type' => $type,
                 ],
-            ])->assertSuccessful();
+            ))->assertSuccessful();
 
         $this->assertSame($roomsCountInitial + 1, Room::count());
         $this->assertSame($playlistItemsCountInitial + 1, PlaylistItem::count());
@@ -113,22 +93,14 @@ class RoomsControllerTest extends TestCase
     public function testStoreRealtimeByType()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
         $type = array_rand_val(Room::REALTIME_TYPES);
 
         $response = $this
             ->actingWithToken($token)
-            ->post(route('api.rooms.store'), [
-                'type' => $type,
-                'name' => 'test room',
-                'playlist' => [
-                    [
-                        'beatmap_id' => $beatmap->getKey(),
-                        'ruleset_id' => $beatmap->playmode,
-                    ],
-                ],
-            ])->assertSuccessful();
+            ->post(route('api.rooms.store'), array_merge(
+                $this->createBasicStoreParams(),
+                ['type' => $type],
+            ))->assertSuccessful();
 
         $responseJson = json_decode($response->getContent(), true);
         $room = Room::find($responseJson['id']);
@@ -141,21 +113,13 @@ class RoomsControllerTest extends TestCase
     public function testStoreRealtimeByCategory()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
 
         $response = $this
             ->actingWithToken($token)
-            ->post(route('api.rooms.store'), [
-                'category' => 'realtime',
-                'name' => 'test room',
-                'playlist' => [
-                    [
-                        'beatmap_id' => $beatmap->getKey(),
-                        'ruleset_id' => $beatmap->playmode,
-                    ],
-                ],
-            ])->assertSuccessful();
+            ->post(route('api.rooms.store'), array_merge(
+                $this->createBasicStoreParams(),
+                ['category' => 'realtime'],
+            ))->assertSuccessful();
 
         $responseJson = json_decode($response->getContent(), true);
         $room = Room::find($responseJson['id']);
@@ -167,23 +131,17 @@ class RoomsControllerTest extends TestCase
     public function testStoreRealtimeWithPassword()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
         $password = 'hunter2';
 
         $response = $this
             ->actingWithToken($token)
-            ->post(route('api.rooms.store'), [
-                'category' => 'realtime',
-                'name' => 'test room',
-                'password' => $password,
-                'playlist' => [
-                    [
-                        'beatmap_id' => $beatmap->getKey(),
-                        'ruleset_id' => $beatmap->playmode,
-                    ],
+            ->post(route('api.rooms.store'), array_merge(
+                $this->createBasicStoreParams(),
+                [
+                    'password' => $password,
+                    'type' => array_rand_val(Room::REALTIME_TYPES),
                 ],
-            ])->assertSuccessful();
+            ))->assertSuccessful();
 
         $responseJson = json_decode($response->getContent(), true);
         $this->assertSame($password, Room::find($responseJson['id'])->password);
@@ -193,28 +151,22 @@ class RoomsControllerTest extends TestCase
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
         $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap1 = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
-        $beatmap2 = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
 
         $roomsCountInitial = Room::count();
         $playlistItemsCountInitial = PlaylistItem::count();
 
+        $params = $this->createBasicStoreParams();
+        $params['playlist'][] = [
+            'beatmap_id' => $beatmap->getKey(),
+            'ruleset_id' => $beatmap->playmode,
+        ];
+        $params['type'] = array_rand_val(Room::REALTIME_TYPES);
+
         $this
             ->actingWithToken($token)
-            ->post(route('api.rooms.store'), [
-                'category' => 'realtime',
-                'name' => 'test room',
-                'playlist' => [
-                    [
-                        'beatmap_id' => $beatmap1->getKey(),
-                        'ruleset_id' => $beatmap1->playmode,
-                    ],
-                    [
-                        'beatmap_id' => $beatmap2->getKey(),
-                        'ruleset_id' => $beatmap2->playmode,
-                    ],
-                ],
-            ])->assertStatus(422);
+            ->post(route('api.rooms.store'), $params)
+            ->assertStatus(422);
 
         $this->assertSame($roomsCountInitial, Room::count());
         $this->assertSame($playlistItemsCountInitial, PlaylistItem::count());
@@ -223,9 +175,6 @@ class RoomsControllerTest extends TestCase
     public function testStorePlaylistsAllowance()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
-
         $user = $token->user;
 
         for ($i = 0; $i < $user->maxMultiplayerRooms(); $i++) {
@@ -237,16 +186,10 @@ class RoomsControllerTest extends TestCase
 
         $this
             ->actingWithToken($token)
-            ->post(route('api.rooms.store'), [
-                'ends_at' => now()->addHour(),
-                'name' => 'test room',
-                'playlist' => [
-                    [
-                        'beatmap_id' => $beatmap->getKey(),
-                        'ruleset_id' => $beatmap->playmode,
-                    ],
-                ],
-            ])->assertStatus(422);
+            ->post(route('api.rooms.store'), array_merge(
+                $this->createBasicStoreParams(),
+                ['ends_at' => now()->addHour()],
+            ))->assertStatus(422);
 
         $this->assertSame($roomsCountInitial, Room::count());
         $this->assertSame($playlistItemsCountInitial, PlaylistItem::count());
@@ -255,11 +198,7 @@ class RoomsControllerTest extends TestCase
     public function testStorePlaylistsAllowanceSeparateFromRealtime()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
-
         $user = $token->user;
-
         factory(Room::class)->create(['user_id' => $user, 'type' => Room::REALTIME_DEFAULT_TYPE]);
 
         $roomsCountInitial = Room::count();
@@ -267,16 +206,10 @@ class RoomsControllerTest extends TestCase
 
         $this
             ->actingWithToken($token)
-            ->post(route('api.rooms.store'), [
-                'ends_at' => now()->addHour(),
-                'name' => 'test room',
-                'playlist' => [
-                    [
-                        'beatmap_id' => $beatmap->getKey(),
-                        'ruleset_id' => $beatmap->playmode,
-                    ],
-                ],
-            ])->assertSuccessful();
+            ->post(route('api.rooms.store'), array_merge(
+                $this->createBasicStoreParams(),
+                ['ends_at' => now()->addHour()],
+            ))->assertSuccessful();
 
         $this->assertSame($roomsCountInitial + 1, Room::count());
         $this->assertSame($playlistItemsCountInitial + 1, PlaylistItem::count());
@@ -285,8 +218,6 @@ class RoomsControllerTest extends TestCase
     public function testStoreRealtimeAllowance()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
 
         $user = $token->user;
 
@@ -297,16 +228,10 @@ class RoomsControllerTest extends TestCase
 
         $this
             ->actingWithToken($token)
-            ->post(route('api.rooms.store'), [
-                'name' => 'test room',
-                'type' => array_rand_val(Room::REALTIME_TYPES),
-                'playlist' => [
-                    [
-                        'beatmap_id' => $beatmap->getKey(),
-                        'ruleset_id' => $beatmap->playmode,
-                    ],
-                ],
-            ])->assertStatus(422);
+            ->post(route('api.rooms.store'), array_merge(
+                $this->createBasicStoreParams(),
+                ['type' => array_rand_val(Room::REALTIME_TYPES)],
+            ))->assertStatus(422);
 
         $this->assertSame($roomsCountInitial, Room::count());
         $this->assertSame($playlistItemsCountInitial, PlaylistItem::count());
@@ -315,8 +240,6 @@ class RoomsControllerTest extends TestCase
     public function testStoreRealtimeAllowanceSeparateFromPlaylists()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
 
         $user = $token->user;
 
@@ -329,16 +252,10 @@ class RoomsControllerTest extends TestCase
 
         $this
             ->actingWithToken($token)
-            ->post(route('api.rooms.store'), [
-                'type' => Room::REALTIME_DEFAULT_TYPE,
-                'name' => 'test room',
-                'playlist' => [
-                    [
-                        'beatmap_id' => $beatmap->getKey(),
-                        'ruleset_id' => $beatmap->playmode,
-                    ],
-                ],
-            ])->assertSuccessful();
+            ->post(route('api.rooms.store'), array_merge(
+                $this->createBasicStoreParams(),
+                ['type' => array_rand_val(Room::REALTIME_TYPES)],
+            ))->assertSuccessful();
 
         $this->assertSame($roomsCountInitial + 1, Room::count());
         $this->assertSame($playlistItemsCountInitial + 1, PlaylistItem::count());
@@ -376,5 +293,25 @@ class RoomsControllerTest extends TestCase
             ->assertSuccessful();
 
         $this->assertSame($initialUserChannelCount + 1, UserChannel::count());
+    }
+
+    /**
+     * If making playlist, add `ends_at`.
+     * If making realtime, add `type`.
+     */
+    private function createBasicStoreParams()
+    {
+        $beatmapset = factory(Beatmapset::class)->create();
+        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+
+        return [
+            'name' => 'test room '.rand(),
+            'playlist' => [
+                [
+                    'beatmap_id' => $beatmap->getKey(),
+                    'ruleset_id' => $beatmap->playmode,
+                ],
+            ],
+        ];
     }
 }
