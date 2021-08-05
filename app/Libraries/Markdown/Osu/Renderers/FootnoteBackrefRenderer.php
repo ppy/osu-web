@@ -28,6 +28,7 @@ class FootnoteBackrefRenderer implements InlineRendererInterface, ConfigurationA
         $attrs = $inline->getData('attributes', []);
         $attrs['class'] = $this->blockName . '__link';
         $attrs['href'] = \mb_strtolower($inline->getReference()->getDestination());
+        $attrs['title'] = osu_trans('wiki.show.back');
 
         return '&nbsp;' . new HtmlElement('a', $attrs, '&#8593;', true);
     }

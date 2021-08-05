@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'back' => 'Go back',
         'fallback_translation' => 'Requested page is not yet translated to the selected language (:language). Showing English version.',
         'incomplete_or_outdated' => 'The content on this page is incomplete or outdated. If you are able to help out, please consider updating the article!',
         'missing' => 'Requested page ":keyword" could not be found.',
