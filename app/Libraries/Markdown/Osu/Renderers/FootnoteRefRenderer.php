@@ -27,6 +27,7 @@ class FootnoteRefRenderer implements InlineRendererInterface, ConfigurationAware
 
         $attrs = $inline->getData('attributes', []);
         $attrs['id'] = 'fnref:' . \mb_strtolower($inline->getReference()->getLabel());
+        $attrs['class'] = $this->blockName . '__superscript';
 
         return new HtmlElement(
             'sup',
