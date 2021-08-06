@@ -11,6 +11,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, h2, span } from 'react-dom-factories'
 import { Spinner } from 'spinner'
+import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
 
@@ -24,7 +25,7 @@ export class Comments extends React.PureComponent
       comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
       pinnedComments = uiState.comments.pinnedCommentIds.map (id) -> store.comments.get(id)
 
-      div id: 'comments', className: osu.classWithModifiers('comments', @props.modifiers),
+      div className: classWithModifiers('comments', @props.modifiers),
         div className: 'u-has-anchor u-has-anchor--no-event',
           div(className: 'fragment-target', id: 'comments')
         h2 className: 'comments__title',
@@ -45,7 +46,7 @@ export class Comments extends React.PureComponent
         div className: 'comments__items comments__items--toolbar',
           el CommentsSort,
             modifiers: @props.modifiers
-          div className: osu.classWithModifiers('sort', @props.modifiers),
+          div className: classWithModifiers('sort', @props.modifiers),
             div className: 'sort__items',
               @renderFollowToggle()
               @renderShowDeletedToggle()

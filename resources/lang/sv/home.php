@@ -13,7 +13,7 @@ return [
         'see_more_news' => 'se fler nyheter',
 
         'slogan' => [
-            'main' => 'gratis-att-spela rytm spel',
+            'main' => 'det bästaste gratis-att-vinna rytmspelet',
             'sub' => 'rytmen är bara ett klick bort',
         ],
     ],

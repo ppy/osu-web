@@ -202,6 +202,7 @@ const plugins = [
     patterns: [
       { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]') },
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
+      { from: 'node_modules/twemoji-emojis/vendor/svg/*-*.svg', to: 'images/flags/[name].[ext]' },
     ],
   }),
 ];

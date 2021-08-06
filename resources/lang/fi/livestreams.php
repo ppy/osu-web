@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => '',
-        'unpin' => "",
+        'pin' => 'Oletko varma, että haluat kiinnittää tämän suoralähetyksen?',
+        'unpin' => "Oletko varma, että haluat poistaa tämän suoralähetyksen kiinnityksen?",
     ],
 
     'top-headers' => [

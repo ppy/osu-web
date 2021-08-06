@@ -58,7 +58,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Uusi vastaus',
             ],
         ],
 
@@ -135,7 +135,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'foorumilla seuratut',
+            'title_compact' => 'seuratut foorumiaiheet',
 
             'box' => [
                 'total' => 'Seurattuja aiheita',

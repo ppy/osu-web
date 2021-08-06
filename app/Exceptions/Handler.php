@@ -189,8 +189,6 @@ class Handler extends ExceptionHandler
             $scope->setTag('http_code', (string) static::statusCode($e));
         });
 
-        $ref = app('sentry')->captureException($e);
-
-        view()->share('ref', $ref);
+        request()->attributes->set('ref', app('sentry')->captureException($e));
     }
 }

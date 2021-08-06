@@ -2,10 +2,7 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@php
-    $currentLocaleMeta = current_locale_meta();
-@endphp
-@foreach (nav_links() as $section => $links)
+@foreach ($navLinks as $section => $links)
     <div class="navbar-mobile-item">
         <a
             data-click-menu-target="nav-mobile-{{ $section }}"

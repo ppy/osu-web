@@ -28,9 +28,9 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Gast moeilijkheidsgraad',
+                'beatmap_owner_change' => 'Je hebt nu de moeilijkheid ":beatmap" voor beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Je bent nu eigenaar van de moeilijkheidsgraad ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -166,7 +166,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Je bent nu gast van beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [

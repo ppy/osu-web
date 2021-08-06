@@ -4,11 +4,13 @@
 import { ChangelogEntry } from 'changelog-entry'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
+
 el = React.createElement
 
 export class Build extends React.PureComponent
   render: =>
-    blockClass = osu.classWithModifiers 'build', @props.modifiers
+    blockClass = classWithModifiers 'build', @props.modifiers
     entries = _.groupBy(@props.build.changelog_entries, 'category')
     categories = _(entries).keys().sort().value()
 

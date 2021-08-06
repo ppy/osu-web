@@ -3,6 +3,8 @@
 
 import * as React from 'react'
 import { button, div, form, i, label, option, select, span, textarea } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
+
 el = React.createElement
 
 export class BbcodeEditor extends React.Component
@@ -13,7 +15,7 @@ export class BbcodeEditor extends React.Component
 
 
   render: =>
-    blockClass = osu.classWithModifiers('bbcode-editor', @props.modifiers)
+    blockClass = classWithModifiers('bbcode-editor', @props.modifiers)
     blockClass += ' js-bbcode-preview--form'
 
     form

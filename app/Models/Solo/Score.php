@@ -65,10 +65,8 @@ class Score extends Model
         // this should potentially just be validation rather than applying this logic here, but
         // older lazer builds potentially submit incorrect details here (and we still want to
         // accept their scores.
-        //
-        // also, "F" rank is not a thing in lazer yet (and may never be?).
         if (!$this->passed) {
-            $this->rank = 'F';
+            $this->rank = 'D';
         }
 
         $this->save();

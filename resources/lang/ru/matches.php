@@ -7,7 +7,7 @@ return [
     'match' => [
         'beatmap-deleted' => 'удалённая карта',
         'difference' => 'с разницей в :difference очков',
-        'failed' => 'ПРОИГРЫШ',
+        'failed' => 'НЕ ПРОШЁЛ',
         'header' => 'Многопользовательская игра',
         'in-progress' => '(игра в процессе)',
         'in_progress_spinner_label' => 'игра в процессе',
@@ -32,9 +32,9 @@ return [
 
         'score' => [
             'stats' => [
-                'accuracy' => 'точность',
-                'combo' => 'комбо',
-                'score' => 'очки',
+                'accuracy' => 'Точность',
+                'combo' => 'Комбо',
+                'score' => 'Очки',
             ],
         ],
 

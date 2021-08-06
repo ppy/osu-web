@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Нечесна гра / чіти',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Використання кількох аккаунтів',
             'insults' => 'Образа мене / інших',
             'spam' => 'Спам',
             'unwanted_content' => 'Повідомити про неприйнятний вміст',
@@ -302,7 +302,7 @@ return [
                 'title' => 'Досягнення',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Ігри у мультиплеєрі',
             ],
             'posts' => [
                 'title' => 'Пости',

@@ -3,6 +3,7 @@
 import UserAvatar from 'user-avatar'
 import UserGroupBadge from 'user-group-badge'
 import { a, div, i, span } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
 bn = 'beatmap-discussion-user-card'
@@ -14,7 +15,7 @@ export class UserCard extends React.PureComponent
     linkComponent = if @props.user.is_deleted then span else a
 
     div
-      className: osu.classWithModifiers(bn, additionalClasses)
+      className: classWithModifiers(bn, additionalClasses)
       style: osu.groupColour(@props.group)
 
       div className: "#{bn}__avatar",
