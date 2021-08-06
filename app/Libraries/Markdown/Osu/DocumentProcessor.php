@@ -123,7 +123,7 @@ class DocumentProcessor
                 $class = "{$blockClass}__list-item";
                 break;
             case FootnoteExtension\FootnoteContainer::class:
-                $class = "{$blockClass}__list {$blockClass}__list--ordered";
+                $class = "{$blockClass}__list {$blockClass}__list--ordered {$blockClass}__list--footnote";
                 break;
             case Inline\Image::class:
                 $class = "{$blockClass}__image";
@@ -157,11 +157,6 @@ class DocumentProcessor
 
     private function addListStartAsVariable()
     {
-        if ($this->node instanceof FootnoteExtension\FootnoteContainer) {
-            $this->node->data['attributes']['style'] = '--list-start: 0';
-            return;
-        }
-
         if (!$this->node instanceof Block\ListBlock || !$this->event->isEntering()) {
             return;
         }
