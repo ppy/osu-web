@@ -33,6 +33,7 @@ class BeatmapsetNominationSyncCommand extends Command
                                 BeatmapsetNomination::create([
                                     'beatmapset_id' => $event->beatmapset_id,
                                     'event_id' => $event->getKey(),
+                                    'modes' => $event->comment['modes'] ?? null,
                                     'user_id' => $event->user_id,
                                 ]);
                             } catch (QueryException $e) {
