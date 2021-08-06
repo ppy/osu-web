@@ -22,12 +22,12 @@ class FootnoteRefRenderer implements InlineRendererInterface, ConfigurationAware
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
         if (!($inline instanceof FootnoteRef)) {
-            throw new InvalidArgumentException('Incompatible inline type: ' . \get_class($inline));
+            throw new InvalidArgumentException('Incompatible inline type: '.\get_class($inline));
         }
 
         $attrs = $inline->getData('attributes', []);
-        $attrs['id'] = 'fnref:' . \mb_strtolower($inline->getReference()->getLabel());
-        $attrs['class'] = $this->blockName . '__superscript';
+        $attrs['id'] = 'fnref:'.\mb_strtolower($inline->getReference()->getLabel());
+        $attrs['class'] = $this->blockName.'__superscript';
 
         $target = \mb_strtolower($inline->getReference()->getDestination());
 
@@ -37,11 +37,11 @@ class FootnoteRefRenderer implements InlineRendererInterface, ConfigurationAware
             new HtmlElement(
                 'a',
                 [
-                    'class' => $this->blockName . '__link' . ' js-reference-link',
+                    'class' => $this->blockName.'__link'.' js-reference-link',
                     'data-target' => $target,
                     'href' => $target,
                 ],
-                '[' . $inline->getReference()->getTitle() . ']',
+                '['.$inline->getReference()->getTitle().']',
             ),
         );
     }

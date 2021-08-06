@@ -22,16 +22,16 @@ class FootnoteBackrefRenderer implements InlineRendererInterface, ConfigurationA
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
         if (!($inline instanceof FootnoteBackref)) {
-            throw new InvalidArgumentException('Incompatible inline type: ' . \get_class($inline));
+            throw new InvalidArgumentException('Incompatible inline type: '.\get_class($inline));
         }
 
         $attrs = $inline->getData('attributes', []);
-        $attrs['class'] = $this->blockName . '__link';
+        $attrs['class'] = $this->blockName.'__link';
         $attrs['data-backref'] = 'true';
         $attrs['href'] = \mb_strtolower($inline->getReference()->getDestination());
         $attrs['title'] = osu_trans('wiki.show.back');
 
-        return '&nbsp;' . new HtmlElement('a', $attrs, '&#8593;', true);
+        return '&nbsp;'.new HtmlElement('a', $attrs, '&#8593;', true);
     }
 
     public function setConfiguration(ConfigurationInterface $configuration)

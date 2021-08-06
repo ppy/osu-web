@@ -11,8 +11,8 @@ use App\Libraries\OsuWiki;
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\EnvironmentInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
-use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Extension\Footnote\Node as FootnoteExtension;
+use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Inline\Element as Inline;
 
 class DocumentProcessor
