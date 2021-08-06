@@ -32,6 +32,7 @@ class BeatmapsetNominationSyncCommand extends Command
                                 Log::debug('nominate', ['beatmapset_id' => $event->beatmapset_id, 'user_id' => $event->user_id]);
                                 BeatmapsetNomination::create([
                                     'beatmapset_id' => $event->beatmapset_id,
+                                    'created_at' => $event->created_at,
                                     'event_id' => $event->getKey(),
                                     'modes' => $event->comment['modes'] ?? null,
                                     'user_id' => $event->user_id,
