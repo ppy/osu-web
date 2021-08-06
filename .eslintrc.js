@@ -93,6 +93,12 @@ module.exports = {
       ],
       '@typescript-eslint/naming-convention': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      // JQuery's `done`/`fail`/`always` aren't properly supported.
+      // Even if we change `done` to `then` and `fail` to `catch`, there's
+      // no replacement for `always` short of changing the rule itself
+      // or appending empty `.then().catch()`.
+      // Blindly appending `void` isn't all that useful either.
+      '@typescript-eslint/no-floating-promises': 'off',
       '@typescript-eslint/no-invalid-this': 'error',
       '@typescript-eslint/no-parameter-properties': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'warn',
