@@ -316,12 +316,6 @@ class Room extends Model
     {
         priv_check_user($owner, 'MultiplayerRoomCreate')->ensureCan();
 
-        $userRoomCount = static::active()->startedBy($owner)->count();
-
-        if ($userRoomCount >= $owner->maxMultiplayerRooms()) {
-            throw new InvariantException('number of simultaneously active rooms reached');
-        }
-
         $params = get_params($rawParams, null, [
             'category',
             'duration:int',
@@ -340,6 +334,8 @@ class Room extends Model
             'type' => $params['type'],
             'user_id' => $owner->getKey(),
         ]);
+
+        $this->setRelation('user', $owner);
 
         // TODO: remove category params support (and forcing default type) once client sends type parameter
         if ($this->isRealtime() || $params['category'] === 'realtime') {
@@ -432,6 +428,23 @@ class Room extends Model
         return $this->userHighScores()->forRanking()->with('user.country');
     }
 
+    private function assertUserRoomAllowance()
+    {
+        $query = static::active()->startedBy($this->user);
+
+        if ($this->isRealtime()) {
+            $query->whereIn('type', static::REALTIME_TYPES);
+            $max = 1;
+        } else {
+            $query->where('type', static::PLAYLIST_TYPE);
+            $max = $this->user->maxMultiplayerRooms();
+        }
+
+        if ($query->count() >= $max) {
+            throw new InvariantException('number of simultaneously active rooms reached');
+        }
+    }
+
     private function assertValidCompletePlay()
     {
         if (!$this->isScoreSubmissionStillAllowed()) {
@@ -441,6 +454,8 @@ class Room extends Model
 
     private function assertValidStartGame()
     {
+        $this->assertUserRoomAllowance();
+
         foreach (['ends_at', 'name'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("'{$field}' is required");
