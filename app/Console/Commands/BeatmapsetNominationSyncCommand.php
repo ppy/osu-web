@@ -33,6 +33,7 @@ class BeatmapsetNominationSyncCommand extends Command
                                 BeatmapsetNomination::create([
                                     'beatmapset_id' => $event->beatmapset_id,
                                     'event_id' => $event->getKey(),
+                                    'modes' => $event->comment['modes'] ?? null,
                                     'user_id' => $event->user_id,
                                 ]);
                             } catch (QueryException $e) {
@@ -46,11 +47,14 @@ class BeatmapsetNominationSyncCommand extends Command
                         case BeatmapsetEvent::DISQUALIFY:
                         case BeatmapsetEvent::NOMINATION_RESET:
                             Log::debug('nomination reset', ['beatmapset_id' => $event->beatmapset_id, 'user_id' => $event->user_id]);
-                            BeatmapsetNomination::where('beatmapset_id', $event->beatmapset_id)->current()->update([
-                                'reset' => true,
-                                'reset_at' => $event->created_at,
-                                'reset_user_id' => $event->user_id,
-                            ]);
+                            BeatmapsetNomination::current()
+                                ->where('beatmapset_id', $event->beatmapset_id)
+                                ->where('event_id', '<', $event->getKey())
+                                ->update([
+                                    'reset' => true,
+                                    'reset_at' => $event->created_at,
+                                    'reset_user_id' => $event->user_id,
+                                ]);
                             break;
                     }
 
