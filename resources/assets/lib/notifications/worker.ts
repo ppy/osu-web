@@ -35,18 +35,17 @@ const isNotificationEventReadJson = (arg: SocketEventData): arg is NotificationE
  */
 @dispatchListener
 export default class Worker implements DispatchListener {
+  @observable waitingVerification = false;
+  @observable private firstLoadedAt?: Date;
+  private retryDelay = new RetryDelay();
+  private timeout: Partial<Record<string, number>> = {};
+  private xhr: Partial<Record<string, JQueryXHR>> = {};
+  private xhrLoadingState: Partial<Record<string, boolean>> = {};
 
   @computed
   get hasData() {
     return this.firstLoadedAt != null;
   }
-  @observable waitingVerification = false;
-  @observable private firstLoadedAt?: Date;
-
-  private retryDelay = new RetryDelay();
-  private timeout: Partial<Record<string, number>> = {};
-  private xhr: Partial<Record<string, JQueryXHR>> = {};
-  private xhrLoadingState: Partial<Record<string, boolean>> = {};
 
   constructor(private readonly socketWorker: SocketWorker) {
     observe(this.socketWorker, 'connectionStatus', (change) => {

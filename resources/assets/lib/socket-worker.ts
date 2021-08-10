@@ -21,11 +21,6 @@ interface NotificationFeedMetaJson {
 type ConnectionStatus = 'disconnected' | 'disconnecting' | 'connecting' | 'connected';
 
 export default class SocketWorker {
-
-  @computed
-  get isConnected() {
-    return this.connectionStatus === 'connected';
-  }
   @observable connectionStatus: ConnectionStatus = 'disconnected';
   @observable hasConnectedOnce = false;
   userId: number | null = null;
@@ -36,6 +31,11 @@ export default class SocketWorker {
   private ws: WebSocket | null | undefined;
   private xhr: Partial<Record<string, JQueryXHR>> = {};
   private xhrLoadingState: Partial<Record<string, boolean>> = {};
+
+  @computed
+  get isConnected() {
+    return this.connectionStatus === 'connected';
+  }
 
   boot() {
     this.active = this.userId != null;
