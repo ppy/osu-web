@@ -264,7 +264,7 @@ For [Authorization Code Grant](#authorization-code-grant) tokens, the Resource O
 
 ## Client Credentials Delegation
 
-While Client Credentials Grant tokens normally do not have an associated user by additionally requesting the {{ ApidocRouteHelper::scopeBadge('bot') }} scope, they may be allowed to act on behalf of the owner of the OAuth client (delegation). When using delegation, scopes that support delegation cannot be used together with scopes that do not support delegation.
+While Client Credentials Grant tokens normally do not have an associated user, by additionally requesting the {{ ApidocRouteHelper::scopeBadge('bot') }} scope, they may be allowed to act on behalf of the owner of the OAuth client (delegation). When using delegation, scopes that support delegation cannot be used together with scopes that do not support delegation.
 
 The following scopes currently support delegation:
 
