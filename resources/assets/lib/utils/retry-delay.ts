@@ -3,8 +3,8 @@
 
 import { random } from 'lodash';
 
-const initialDelay = 500;
-const maxDelay = 1000; // 30 minutes
+const initialDelay = 7500;
+const maxDelay = 1800000; // 30 minutes
 
 export default class RetryDelay {
   private current = initialDelay;
