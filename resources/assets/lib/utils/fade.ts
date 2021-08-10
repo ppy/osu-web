@@ -3,24 +3,22 @@
 
 type MaybeHTMLElement = HTMLElement | undefined | null;
 
-const Fade = {
-  in: (el: MaybeHTMLElement) => {
-    el?.setAttribute('data-visibility', 'visible');
-  },
+function isVisible(el: MaybeHTMLElement) {
+  return el?.getAttribute('data-visibility') !== 'hidden';
+}
 
-  isVisible: (el: MaybeHTMLElement) => el?.getAttribute('data-visibility') !== 'hidden',
+export function fadeIn(el: MaybeHTMLElement) {
+  el?.setAttribute('data-visibility', 'visible');
+}
 
-  out: (el: MaybeHTMLElement) => {
-    el?.setAttribute('data-visibility', 'hidden');
-  },
+export function fadeOut(el: MaybeHTMLElement) {
+  el?.setAttribute('data-visibility', 'hidden');
+}
 
-  toggle: (el: MaybeHTMLElement, makeVisible?: boolean) => {
-    if (el == null) return;
+export function fadeToggle(el: MaybeHTMLElement, makeVisible?: boolean) {
+  if (el == null) return;
 
-    makeVisible = makeVisible ?? !Fade.isVisible(el);
+  const fn = makeVisible ?? !isVisible(el) ? fadeIn : fadeOut;
 
-    makeVisible ? Fade.in(el) : Fade.out(el);
-  },
-};
-
-export default Fade;
+  fn(el);
+}
