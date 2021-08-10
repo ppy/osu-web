@@ -79,9 +79,7 @@ class Token extends PassportToken
     public function validate()
     {
         static $scopesRequireDelegation;
-        if ($scopesRequireDelegation === null) {
-            $scopesRequireDelegation = new Set(['bot', 'chat.write']);
-        }
+        $scopesRequireDelegation ??= new Set(['bot', 'chat.write']);
 
         if (empty($this->scopes)) {
             throw new InvalidScopeException('Tokens without scopes are not valid.');

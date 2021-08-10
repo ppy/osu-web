@@ -167,9 +167,11 @@ class TokenTest extends TestCase
 
     public function delegationNotAllowedScopesDataProvider()
     {
-        $ids = Passport::scopes()->pluck('id')->filter(fn ($id) => !in_array($id, ['bot', 'chat.write'], true))->values();
-
-        return $ids->map(fn ($id) => [['bot', $id]]);
+        return Passport::scopes()
+            ->pluck('id')
+            ->filter(fn ($id) => !in_array($id, ['bot', 'chat.write'], true))
+            ->map(fn ($id) => [['bot', $id]])
+            ->values();
     }
 
     public function delegationRequiredScopesDataProvider()
