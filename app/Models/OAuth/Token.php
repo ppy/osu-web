@@ -17,11 +17,11 @@ class Token extends PassportToken
     public $timestamps = true;
 
     /**
-     * Whether the token allows resource owner delegation.
+     * Whether the resource owner is delegated to the client's owner.
      *
      * @return bool
      */
-    public function canDelegate(): bool
+    public function delegatesOwner(): bool
     {
         return in_array('bot', $this->scopes, true);
     }
@@ -34,7 +34,7 @@ class Token extends PassportToken
      */
     public function getResourceOwner(): ?User
     {
-        if ($this->isClientCredentials() && $this->canDelegate()) {
+        if ($this->isClientCredentials() && $this->delegatesOwner()) {
             return $this->client->user;
         }
 
@@ -101,7 +101,7 @@ class Token extends PassportToken
             }
 
             if (!$scopes->intersect($scopesRequireDelegation)->isEmpty()) {
-                if (!$this->canDelegate()) {
+                if (!$this->delegatesOwner()) {
                     throw new InvalidScopeException('bot scope is required.');
                 }
 
@@ -112,7 +112,7 @@ class Token extends PassportToken
             }
         } else {
             // delegation is only available for client_credentials.
-            if ($this->canDelegate()) {
+            if ($this->delegatesOwner()) {
                 throw new InvalidScopeException('bot scope is only valid for client_credentials tokens.');
             }
 
