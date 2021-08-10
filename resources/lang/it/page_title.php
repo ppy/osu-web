@@ -62,7 +62,7 @@ return [
         'beatmapsets_controller' => [
             'discussion' => 'discussione beatmap',
             'index' => 'lista beatmap',
-            'show' => 'info beatmap',
+            'show' => 'informazioni beatmap',
         ],
         'changelog_controller' => [
             '_' => 'note di rilascio',
@@ -117,13 +117,13 @@ return [
             '_' => 'performance',
         ],
         'store_controller' => [
-            '_' => 'negozio',
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
             '_' => 'tornei',
         ],
         'users_controller' => [
-            '_' => 'info giocatore',
+            '_' => 'informazioni giocatore',
             'disabled' => 'avviso',
         ],
         'wiki_controller' => [
@@ -132,15 +132,15 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'classifica',
+            '_' => 'classifiche',
         ],
     ],
     'store' => [
-        '_' => 'negozio',
+        '_' => 'osu!store',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'info modder',
+            '_' => 'informazioni modder',
         ],
         'multiplayer_controller' => [
             '_' => 'cronologia multigiocatore',

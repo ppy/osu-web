@@ -143,7 +143,7 @@ return [
             '_' => 'modding információ',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'többjátékos történelem',
         ],
     ],
 ];

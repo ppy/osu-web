@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Valsspelen',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Meerdere accounts gebruiken',
             'insults' => 'Beledigen van mij / anderen',
             'spam' => 'Spammen',
             'unwanted_content' => 'Linken van ongepaste inhoud',
@@ -302,7 +302,7 @@ return [
                 'title' => 'Medailles',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Multiplayer Spellen',
             ],
             'posts' => [
                 'title' => 'Berichten',
