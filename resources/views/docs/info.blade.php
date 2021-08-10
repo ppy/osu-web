@@ -270,7 +270,7 @@ The following scopes currently support delegation:
 
 Name   |
 -------|
-{{ ApidocRouteHelper::scopeBadge('chat.write') }}
+{{ ApidocRouteHelper::scopeBadge('chat.write') }} |
 
 
 ## Scopes
