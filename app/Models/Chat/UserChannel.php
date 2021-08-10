@@ -136,8 +136,7 @@ class UserChannel extends Model
 
         $collection = json_collection($userChannels, function ($userChannel) use ($transformer) {
             $channel = $userChannel->channel;
-            $presence = json_item($channel, $transformer, ['last_message_id', 'users']);
-            $presence['last_read_id'] = $userChannel->last_read_id;
+            $presence = json_item($channel, $transformer, ['last_message_id', 'last_read_id', 'users']);
             // TODO:
             // hide if target is restricted or blocked unless blocked user is a moderator.
             // if (

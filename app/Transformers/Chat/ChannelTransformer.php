@@ -14,6 +14,7 @@ class ChannelTransformer extends TransformerAbstract
     protected $availableIncludes = [
         'first_message_id',
         'last_message_id',
+        'last_read_id',
         'recent_messages',
         'users',
     ];
@@ -48,6 +49,11 @@ class ChannelTransformer extends TransformerAbstract
     public function includeLastMessageId(Channel $channel)
     {
         return $this->primitive($channel->last_message_id);
+    }
+
+    public function includeLastReadId(Channel $channel)
+    {
+        return $this->primitive($channel->lastReadIdFor($this->user));
     }
 
     public function includeRecentMessages(Channel $channel)

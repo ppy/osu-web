@@ -132,6 +132,17 @@ class Channel extends Model
         return $this->pmTargetFor($user)->username;
     }
 
+    // TODO: specific to UserChannel::presence
+    // use preload cache?
+    public function lastReadIdFor(?User $user)
+    {
+        if ($user === null) {
+            return;
+        }
+
+        return $this->userChannelFor($user)?->last_read_id;
+    }
+
     public function messages()
     {
         return $this->hasMany(Message::class);
