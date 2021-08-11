@@ -80,7 +80,7 @@ export default class OsuCore {
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
 
     this.socketWorker = new SocketWorker();
-    this.chatWorker = new ChatWorker(this.socketWorker, this.dataStore.channelStore);
+    this.chatWorker = new ChatWorker(this.dataStore.channelStore);
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);
 
     makeObservable(this);
