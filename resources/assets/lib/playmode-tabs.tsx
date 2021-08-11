@@ -22,12 +22,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
 
   render() {
     return (
-      <div
-        className={classWithModifiers('game-mode', {
-          beatmapsets: true,
-          icon: this.props.iconLink,
-        })}
-      >
+      <div className={classWithModifiers('game-mode', 'beatmapsets', { icon: this.props.iconLink })}>
         <ul className={classWithModifiers('game-mode__items', { icon: this.props.iconLink })}>
           {[...this.props.beatmaps].map(([mode, beatmaps]) => {
             const disabled = beatmaps.length === 0;

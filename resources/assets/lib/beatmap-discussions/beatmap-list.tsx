@@ -51,10 +51,8 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const classModifiers = { selecting: this.state.showingSelector, ...this.getModifiers() };
-
     return (
-      <div className={classWithModifiers('beatmap-list', classModifiers)}>
+      <div className={classWithModifiers('beatmap-list', this.props.modifiers, { selecting: this.state.showingSelector })}>
         <div className='beatmap-list__body'>
           <a
             className='beatmap-list__item beatmap-list__item--selected beatmap-list__item--large js-beatmap-list-selector'
@@ -99,14 +97,6 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
       />
     </a>
   );
-
-  private getModifiers = () => {
-    if (this.props.modifiers === undefined) {
-      return {};
-    }
-
-    return Object.fromEntries(this.props.modifiers.map((modifier) => ([modifier, true])));
-  };
 
   private hideSelector = () => {
     if (this.state.showingSelector) {
