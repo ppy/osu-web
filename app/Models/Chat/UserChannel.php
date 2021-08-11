@@ -134,8 +134,10 @@ class UserChannel extends Model
 
         $transformer = ChannelTransformer::forUser($user);
 
-        $collection = json_collection($userChannels, function ($userChannel) use ($transformer) {
+        $collection = json_collection($userChannels, function ($userChannel) use ($transformer, $user) {
             $channel = $userChannel->channel;
+            // TODO user channel only needed for last_read_id.
+            $channel->setUserChannelFor($user, $userChannel);
             $presence = json_item($channel, $transformer, ['last_message_id', 'last_read_id', 'users']);
             // TODO:
             // hide if target is restricted or blocked unless blocked user is a moderator.

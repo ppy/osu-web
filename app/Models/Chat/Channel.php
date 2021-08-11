@@ -46,6 +46,8 @@ class Channel extends Model
     /** @var \Illuminate\Support\Collection */
     private $pmUsers;
 
+    private ?UserChannel $userChannel;
+
     const TYPES = [
         'public' => 'PUBLIC',
         'private' => 'PRIVATE',
@@ -120,7 +122,7 @@ class Channel extends Model
             return;
         }
 
-        return $this->pmTargetFor($user)->user_avatar;
+        return $this->pmTargetFor($user)?->user_avatar;
     }
 
     public function displayNameFor(?User $user)
@@ -404,6 +406,17 @@ class Channel extends Model
         ])->exists();
     }
 
+    public function setUserChannelFor(User $user, UserChannel $userChannel)
+    {
+        // TOOD: should have some sanity check?
+        if ($userChannel->user_id !== $user->getKey()) {
+            throw new InvariantException('userChannel does not belong to the same user.');
+        }
+
+        $userChannel->setRelation('user', $user);
+        $this->userChannel = $userChannel;
+    }
+
     private function unhide()
     {
         if (!$this->isPM()) {
@@ -423,6 +436,10 @@ class Channel extends Model
         $userId = $user->getKey();
 
         return $this->memoize(__FUNCTION__.':'.$userId, function () use ($user, $userId) {
+            if ($this->userChannel !== null && $this->userChannel->user_id === $userId) {
+                return $this->userChannel;
+            }
+
             $userChannel = UserChannel::where([
                 'channel_id' => $this->channel_id,
                 'user_id' => $userId,
