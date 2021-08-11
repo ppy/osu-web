@@ -81,7 +81,7 @@ return [
             'external_references' => 'granskningen innehåller referenser till problem som inte hör till denna recension',
             'invalid_block_type' => 'ogiltig blocktyp',
             'invalid_document' => 'ogiltig granskning',
-            'invalid_discussion_type' => '',
+            'invalid_discussion_type' => 'ogiltig diskussionstyp',
             'minimum_issues' => 'granskningen måste innehålla minst :count problem|granskningen måste innehålla minst :count problem',
             'missing_text' => 'blocket saknar text',
             'too_many_blocks' => 'granskningarna måste endast innehålla :count stycke/problem granskningarna får endast innehålla upp till :count stycken/problem',

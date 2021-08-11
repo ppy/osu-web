@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Zoeken',
             'deleted' => 'Verwijderde discussies toevoegen',
-            'mode' => '',
+            'mode' => 'Beatmap modus',
             'only_unresolved' => 'Alleen niet-afgehandelde discussies weergeven',
             'types' => 'Berichttypen',
             'username' => 'Gebruikersnaam',
@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Moeilijkheidsgraad Eigenaar',
+        'reset_confirm' => 'Reset eigenaar voor deze moeilijkheid?',
+        'user' => 'Eigenaar',
+        'version' => 'Moeilijkheidsgraad',
     ],
 
     'reply' => [
@@ -81,7 +81,7 @@ return [
             'external_references' => 'review bevat verwijzingen naar kwesties die niet tot deze beoordeling behoren',
             'invalid_block_type' => 'ongeldige bloktype',
             'invalid_document' => 'ongeldige beoordeling',
-            'invalid_discussion_type' => '',
+            'invalid_discussion_type' => 'ongeldige discussie type',
             'minimum_issues' => 'beoordeling moet een minimum van :count issue|review moeten een minimum :count issues bevatten',
             'missing_text' => 'blok mist tekst',
             'too_many_blocks' => 'beoordelingen kunnen alleen :count alinea/issuemaybe beoordelingen bevatten max. :count alinea/issues',

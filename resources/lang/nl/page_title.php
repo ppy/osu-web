@@ -143,7 +143,7 @@ return [
             '_' => 'modder info',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'multiplayer geschiedenis',
         ],
     ],
 ];

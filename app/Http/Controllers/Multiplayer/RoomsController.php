@@ -24,13 +24,19 @@ class RoomsController extends BaseController
         $params['user'] = auth()->user();
 
         $search = Room::search($params);
-        $rooms = $search['query']->with(['host.country', 'playlist.beatmap.beatmapset', 'playlist.beatmap.baseMaxCombo'])->get();
+        $rooms = $search['query']
+            ->with(['host.country', 'playlist.beatmap.beatmapset', 'playlist.beatmap.baseMaxCombo'])
+            ->withRecentParticipantIds()
+            ->get();
+
+        Room::preloadRecentParticipants($rooms);
 
         return json_collection($rooms, new RoomTransformer(), [
             'host.country',
             'playlist.beatmap.beatmapset',
             'playlist.beatmap.checksum',
             'playlist.beatmap.max_combo',
+            'recent_participants',
         ]);
     }
 
