@@ -320,6 +320,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2021-08-11
+- `bot` scope removed in favour for `delegate` scope [Client Credentials Delegation](#client-credentials-delegation).
+
 ### 2021-06-14
 - Removed `description` from [UserGroup](#usergroup). It has been moved to an optional attribute with a different type on [Group](#group).
 
