@@ -129,7 +129,7 @@ class Channel extends Model
             return $this->name;
         }
 
-        return $this->pmTargetFor($user)->username;
+        return $this->pmTargetFor($user)?->username ?? $this->name;
     }
 
     // TODO: specific to UserChannel::presence
