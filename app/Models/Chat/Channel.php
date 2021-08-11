@@ -102,6 +102,23 @@ class Channel extends Model
         return $channel;
     }
 
+    public static function getChannelList(User $user)
+    {
+        $userChannels = UserChannel::forUser($user)
+            ->whereHas('channel')
+            ->with('channel')
+            ->limit(config('osu.chat.channel_limit'))
+            ->get();
+
+        foreach ($userChannels as $userChannel) {
+            // preset userChannel for getting last_read_id.
+            $userChannel->channel->userChannel = $userChannel;
+            $userChannel->setRelation('user', $user);
+        }
+
+        return $userChannels->pluck('channel');
+    }
+
     /**
      * @param User $user1
      * @param User $user2
@@ -406,7 +423,7 @@ class Channel extends Model
         ])->exists();
     }
 
-    public function setUserChannelFor(User $user, UserChannel $userChannel)
+    private function setUserChannelFor(User $user, UserChannel $userChannel)
     {
         // TOOD: should have some sanity check?
         if ($userChannel->user_id !== $user->getKey()) {

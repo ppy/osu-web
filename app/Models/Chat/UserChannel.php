@@ -73,32 +73,22 @@ class UserChannel extends Model
 
     public static function channelListForUser(User $user)
     {
-        $userChannels = static::forUser($user)
-            ->whereHas('channel')
-            ->with('channel')
-            ->get();
-
-        $channels = $userChannels->pluck('channel');
+        $channels = Channel::getChannelList($user);
         $channelsMap = new Map();
         foreach ($channels as $channel) {
             $channelsMap->put($channel->getKey(), $channel);
         }
 
-        $pmUserIds = new Set(
-            static::whereIn('channel_id', $userChannels->pluck('channel_id'))
+        $pmUserIds = (new Set(
+            static::whereIn('channel_id', $channels->pluck('channel_id'))
                 ->whereHas('channel', function ($q) {
                     $q->where('type', 'PM');
                 })
                 ->pluck('user_id')
-        );
+        ))->toArray();
 
-        $users = User::default()->whereIn('user_id', $pmUserIds->toArray())->get();
-        $usersMap = new Map();
-        foreach ($users as $user) {
-            $usersMap->put($user->getKey(), $user);
-        }
+        static::preloadUsers($pmUserIds, $user);
 
-        request()->attributes->set('preloadedUsers', $usersMap);
         request()->attributes->set('preloadedChannels', $channelsMap);
 
         return $channels;
@@ -107,56 +97,39 @@ class UserChannel extends Model
     public static function presenceForUser(User $user)
     {
         // retrieve all the channels the user is in and thse metadata for each
-        $userChannels = static::forUser($user)
-            ->whereHas('channel')
-            ->with('channel')
-            ->limit(config('osu.chat.channel_limit'))
-            ->get();
-
-        $channelIds = $userChannels->pluck('channel_id');
+        $channels = Channel::getChannelList($user);
 
         // Getting user list; Limited to PM channels due to large size of public channels.
         // FIXME: Chat needs reworking so it doesn't need to preload all this extra data every update.
-        $userPmChannels = static::whereIn('channel_id', $channelIds)
+        $userPmChannels = static::whereIn('channel_id', $channels->pluck('channel_id'))
             ->whereHas('channel', function ($q) {
                 $q->where('type', 'PM');
             })
             ->get();
 
-        $userIdsUnique = [];
-        foreach ($userPmChannels as $userPmChannel) {
-            $userIdsUnique[$userPmChannel->user_id] = null;
-        }
+        $userIds = (new Set($userPmChannels->pluck('user_id')))->toArray();
 
-        static::preloadUsers(array_keys($userIdsUnique), $user);
-
-        // End getting user list.
+        static::preloadUsers($userIds, $user);
 
         $transformer = ChannelTransformer::forUser($user);
 
-        $collection = json_collection($userChannels, function ($userChannel) use ($transformer, $user) {
-            $channel = $userChannel->channel;
-            // TODO user channel only needed for last_read_id.
-            $channel->setUserChannelFor($user, $userChannel);
-            $presence = json_item($channel, $transformer, ['last_message_id', 'last_read_id', 'users']);
-            // TODO:
-            // hide if target is restricted or blocked unless blocked user is a moderator.
-            // if (
-            //     !$targetUser
-            //     || $user->hasBlocked($targetUser) && !($targetUser->isModerator() || $targetUser->isAdmin())
-            // ) {
-            //     return [];
-            // }
-            // $presence['moderated'] = $presence['moderated'] || !priv_check_user($user, 'ChatStart', $targetUser)->can();
+        $collection = json_collection($channels, $transformer, ['last_message_id', 'last_read_id', 'users']);
+        // TODO:
+        // hide if target is restricted or blocked unless blocked user is a moderator.
+        // if (
+        //     !$targetUser
+        //     || $user->hasBlocked($targetUser) && !($targetUser->isModerator() || $targetUser->isAdmin())
+        // ) {
+        //     return [];
+        // }
+        // $presence['moderated'] = $presence['moderated'] || !priv_check_user($user, 'ChatStart', $targetUser)->can();
 
-            return $presence;
-        });
 
         // strip out the empty [] elements (from restricted/blocked users)
         return array_values(array_filter($collection));
     }
 
-    private static function forUser(User $user)
+    public static function forUser(User $user)
     {
         return static::where('user_id', $user->getKey())->where('hidden', false);
     }
