@@ -40,14 +40,14 @@ class TokenTest extends TestCase
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
 
         $this->expectException(InvalidScopeException::class);
-        $this->createToken($user, ['bot'], $client);
+        $this->createToken($user, ['delegate'], $client);
     }
 
     public function testClientCredentialResourceOwnerBot()
     {
         $user = factory(User::class)->states('bot')->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-        $token = $this->createToken(null, ['bot'], $client);
+        $token = $this->createToken(null, ['delegate'], $client);
 
         $this->actAsUserWithToken($token);
 
@@ -169,8 +169,8 @@ class TokenTest extends TestCase
     {
         return Passport::scopes()
             ->pluck('id')
-            ->filter(fn ($id) => !in_array($id, ['bot', 'chat.write'], true))
-            ->map(fn ($id) => [['bot', $id]])
+            ->filter(fn ($id) => !in_array($id, ['chat.write', 'delegate'], true))
+            ->map(fn ($id) => [['delegate', $id]])
             ->values();
     }
 
@@ -178,7 +178,7 @@ class TokenTest extends TestCase
     {
         return [
             'chat.write requires delegation' => [['chat.write'], InvalidScopeException::class],
-            'chat.write delegation' => [['bot', 'chat.write'], null],
+            'chat.write delegation' => [['chat.write', 'delegate'], null],
         ];
     }
 

@@ -23,7 +23,7 @@ class Token extends PassportToken
      */
     public function delegatesOwner(): bool
     {
-        return in_array('bot', $this->scopes, true);
+        return in_array('delegate', $this->scopes, true);
     }
 
     /**
@@ -79,7 +79,7 @@ class Token extends PassportToken
     public function validate()
     {
         static $scopesRequireDelegation;
-        $scopesRequireDelegation ??= new Set(['bot', 'chat.write']);
+        $scopesRequireDelegation ??= new Set(['chat.write', 'delegate']);
 
         if (empty($this->scopes)) {
             throw new InvalidScopeException('Tokens without scopes are not valid.');

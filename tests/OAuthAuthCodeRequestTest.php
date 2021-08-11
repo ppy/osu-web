@@ -56,7 +56,7 @@ class OAuthAuthCodeRequestTest extends TestCase
     public function botClientDataProvider()
     {
         return [
-            'cannot request bot scope for auth_code' => ['bot', false],
+            'cannot request delegation with auth_code' => ['delegate', false],
             'can request chat.write scope' => ['chat.write', true],
         ];
     }

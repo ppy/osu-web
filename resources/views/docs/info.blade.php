@@ -279,8 +279,8 @@ The following scopes are currently supported:
 
 @php
 $scopeDescriptions = [
-    'bot' => "Allows acting as the owner of a client; only available for [Client Credentials Grant](#client-credentials-grant).",
     'chat.write' => "Allows sending chat messages on a user's behalf.",
+    'delegate' => "Allows acting as the owner of a client; only available for [Client Credentials Grant](#client-credentials-grant).",
     'forum.write' => "Allows creating and editing forum posts on a user's behalf.",
     'friends.read' => 'Allows reading of the user\'s friend list.',
     'identify' => 'Allows reading of the public profile of the user (`/me`).',
