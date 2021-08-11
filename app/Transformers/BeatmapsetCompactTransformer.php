@@ -176,7 +176,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
                 $result['disqualification'] = json_item($disqualificationEvent, 'BeatmapsetEvent');
             }
             if ($currentUser !== null) {
-                $result['nominated'] = $beatmapset->nominationsSinceReset()->where('user_id', $currentUser->user_id)->exists();
+                $result['nominated'] = $beatmapset->beatmapsetNominations()->current()->where('user_id', $currentUser->getKey())->exists();
             }
         } elseif ($beatmapset->isQualified()) {
             $queueStatus = $beatmapset->rankingQueueStatus();
