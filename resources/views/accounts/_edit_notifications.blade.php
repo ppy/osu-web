@@ -20,11 +20,11 @@
                 data-url="{{ route('account.options') }}"
             >
                 <label class="account-edit-entry__checkbox">
-                    @include('objects._switch', [
+                    @include('objects._switch', ['locals' => [
                         'additionalClass'=> 'js-account-edit__input',
                         'checked' => auth()->user()->user_notify,
                         'name' => 'user[user_notify]',
-                    ])
+                    ]])
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ osu_trans('accounts.notifications.topic_auto_subscribe') }}
@@ -46,11 +46,11 @@
                         $name = App\Models\Notification::COMMENT_NEW;
                         $option = UserNotificationOption::COMMENT_REPLY;
                     @endphp
-                    @include('objects._switch', [
+                    @include('objects._switch', ['locals' => [
                         'additionalClass'=> 'js-account-edit__input',
                         'checked' => $notificationOptions[$name]->details[$option] ?? true,
                         'name' => "user_notification_option[{$name}][details][{$option}]",
-                    ])
+                    ]])
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ osu_trans('accounts.notifications.comment_reply') }}
@@ -81,10 +81,10 @@
                         @endphp
                         @foreach (App\Models\Beatmap::MODES as $key => $_value)
                             <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
-                                @include('objects._switch', [
+                                @include('objects._switch', ['locals' => [
                                     'checked' => in_array($key, $modes, true),
                                     'value' => $key,
-                                ])
+                                ]])
 
                                 <span class="account-edit-entry__checkbox-label">
                                     {{ osu_trans("beatmaps.mode.{$key}") }}
@@ -123,13 +123,13 @@
                             <label
                                 class="account-edit-entry__checkbox account-edit-entry__checkbox--grid"
                             >
-                                @include('objects._switch', [
+                                @include('objects._switch', ['locals' => [
                                     'additionalClass'=> 'js-account-edit__input',
                                     'checked' => $notificationOptions[$name]->details[$mode] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS[$mode],
                                     'defaultValue' => '0',
                                     'modifiers' => ['grid'],
                                     'name' => "user_notification_option[{$name}][details][{$mode}]",
-                                ])
+                                ]])
                             </label>
                         @endforeach
 

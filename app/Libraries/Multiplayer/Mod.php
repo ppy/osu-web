@@ -310,6 +310,7 @@ class Mod
                     self::SCORABLE_COMMON,
                     [
                         self::CATCH_FLOATINGFRUIT,
+                        self::MIRROR,
                     ]
                 ),
 

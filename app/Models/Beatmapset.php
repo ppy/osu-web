@@ -521,10 +521,22 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return true;
     }
 
-    public function setApproved($state, $user)
+    public function setApproved($state, $user, ?array $beatmapIds = null)
     {
         $currentTime = Carbon::now();
         $oldScoreable = $this->isScoreable();
+        $approvedState = static::STATES[$state];
+        $beatmaps = $this->beatmaps();
+
+        if (isset($beatmapIds)) {
+            if ($beatmaps->whereKey($beatmapIds)->count() === count($beatmapIds)) {
+                $beatmaps = $beatmaps->whereIn('beatmap_id', $beatmapIds);
+            } else {
+                throw new InvariantException('beatmap_ids contains invalid id');
+            }
+        }
+
+        $beatmaps->update(['approved' => $approvedState]);
 
         if ($this->isQualified() && $state === 'pending') {
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
@@ -535,7 +547,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
         }
 
-        $this->approved = static::STATES[$state];
+        $this->approved = $approvedState;
 
         if ($this->approved > 0) {
             $this->approved_date = $currentTime;
@@ -548,10 +560,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
 
         $this->save();
-
-        $this
-            ->beatmaps()
-            ->update(['approved' => $this->approved]);
 
         if ($this->isScoreable() !== $oldScoreable || $this->isRanked()) {
             dispatch(new RemoveBeatmapsetBestScores($this));
@@ -766,7 +774,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
     }
 
-    public function love(User $user)
+    public function love(User $user, ?array $beatmapIds = null)
     {
         if (!$this->isLoveable()) {
             return [
@@ -775,9 +783,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             ];
         }
 
-        $this->getConnection()->transaction(function () use ($user) {
+        $this->getConnection()->transaction(function () use ($user, $beatmapIds) {
             $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
-            $this->setApproved('loved', $user);
+            $this->setApproved('loved', $user, $beatmapIds);
 
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
 
