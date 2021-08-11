@@ -8,6 +8,7 @@ namespace Tests\Models\OAuth;
 use App\Events\UserSessionEvent;
 use App\Exceptions\InvalidScopeException;
 use App\Models\OAuth\Client;
+use App\Models\OAuth\Token;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Laravel\Passport\Passport;
@@ -115,6 +116,14 @@ class TokenTest extends TestCase
         }
 
         $this->createToken($user, $scopes, $client);
+    }
+
+    public function testScopesAreSorted()
+    {
+        $token = new Token();
+        $token->scopes = ['i', 'am', 'a', 'scope'];
+
+        $this->assertSame(['a', 'am', 'i', 'scope'], $token->scopes);
     }
 
     /**

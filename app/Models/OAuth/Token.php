@@ -76,6 +76,15 @@ class Token extends PassportToken
         return $query->where('revoked', false)->where('expires_at', '>', $time);
     }
 
+    public function setScopesAttribute(?array $value)
+    {
+        if ($value !== null) {
+            sort($value);
+        }
+
+        $this->attributes['scopes'] = $this->castAttributeAsJson('scopes', $value);
+    }
+
     public function validate()
     {
         static $scopesRequireDelegation;
