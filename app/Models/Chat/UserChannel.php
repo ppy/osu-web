@@ -111,22 +111,18 @@ class UserChannel extends Model
 
         static::preloadUsers($userIds, $user);
 
+        $filteredChannels = $channels->filter(function (Channel $channel) use ($user) {
+            if (!$channel->isPM()) {
+                return true;
+            }
+
+            $targetUser = $channel->pmTargetFor($user);
+            return !($targetUser === null || $user->hasBlocked($targetUser) && !($targetUser->isModerator() || $targetUser->isAdmin()));
+        });
+
         $transformer = ChannelTransformer::forUser($user);
 
-        $collection = json_collection($channels, $transformer, ['last_message_id', 'last_read_id', 'users']);
-        // TODO:
-        // hide if target is restricted or blocked unless blocked user is a moderator.
-        // if (
-        //     !$targetUser
-        //     || $user->hasBlocked($targetUser) && !($targetUser->isModerator() || $targetUser->isAdmin())
-        // ) {
-        //     return [];
-        // }
-        // $presence['moderated'] = $presence['moderated'] || !priv_check_user($user, 'ChatStart', $targetUser)->can();
-
-
-        // strip out the empty [] elements (from restricted/blocked users)
-        return array_values(array_filter($collection));
+        return json_collection($filteredChannels, $transformer, ['last_message_id', 'last_read_id', 'users']);
     }
 
     public static function forUser(User $user)
