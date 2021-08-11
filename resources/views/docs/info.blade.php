@@ -259,12 +259,13 @@ The `Resource Owner` is the user that a token acts on behalf of.
 
 For [Authorization Code Grant](#authorization-code-grant) tokens, the Resource Owner is the user authorizing the token.
 
-[Client Credentials Grant](#client-credentials-grant) tokens do not have a Resource Owner (i.e. is a guest user), unless they have been granted the {{ ApidocRouteHelper::scopeBadge('bot') }} scope. The Resource Owner of tokens with the {{ ApidocRouteHelper::scopeBadge('bot') }} scope is the owner of the OAuth Application that was granted the token.
+[Client Credentials Grant](#client-credentials-grant) tokens do not have a Resource Owner (i.e. is a guest user), unless they have been granted the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope. The Resource Owner of tokens with the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope is the owner of the OAuth Application that was granted the token.
 
 
 ## Client Credentials Delegation
 
-While Client Credentials Grant tokens normally do not have an associated user, by additionally requesting the {{ ApidocRouteHelper::scopeBadge('bot') }} scope, they may be allowed to act on behalf of the owner of the OAuth client (delegation). When using delegation, scopes that support delegation cannot be used together with scopes that do not support delegation.
+Client Credentials Grant tokens may be allowed to act on behalf of the owner of the OAuth client (delegation) by requesting the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope, in addition to other scopes supporting delegation.
+When using delegation, scopes that support delegation cannot be used together with scopes that do not support delegation.
 
 The following scopes currently support delegation:
 
