@@ -1,144 +1,204 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import { button, div, form, i, label, option, select, span, textarea } from 'react-dom-factories'
-import { classWithModifiers } from 'utils/css'
+import { snakeCase } from 'lodash';
+import * as React from 'react';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
-el = React.createElement
+interface OnChangeProps {
+  event?: React.SyntheticEvent;
+  hasChanged: boolean;
+  type: 'cancel' | 'save';
+  value: string | undefined;
+}
 
-export default class BbcodeEditor extends React.Component
-  componentDidMount: =>
-    @sizeSelect.value = ''
-    @body.selectionEnd = 0
-    @body.focus()
+interface Props {
+  disabled: boolean;
+  modifiers: Modifiers;
+  onChange: (props: OnChangeProps) => void;
+  placeholder: string;
+  rawValue: string;
+}
 
+export default class BbcodeEditor extends React.Component<Props> {
+  private readonly bodyRef = React.createRef<HTMLTextAreaElement>();
+  private readonly sizeSelectRef = React.createRef<HTMLSelectElement>();
 
-  render: =>
-    blockClass = classWithModifiers('bbcode-editor', @props.modifiers)
-    blockClass += ' js-bbcode-preview--form'
+  componentDidMount() {
+    if (this.sizeSelectRef.current != null) {
+      this.sizeSelectRef.current.value = '';
+    }
 
-    form
-      className: blockClass
-      'data-state': 'write'
-      div className: 'bbcode-editor__content',
-        textarea
-          className: 'bbcode-editor__body js-bbcode-preview--body'
-          name: 'body'
-          placeholder: @props.placeholder
-          defaultValue: @props.rawValue
-          disabled: @props.disabled
-          onKeyDown: @onKeyDown
-          ref: @setBody
+    if (this.bodyRef.current != null) {
+      this.bodyRef.current.selectionEnd = 0;
+      this.bodyRef.current.focus();
+    }
+  }
 
-        div className: 'bbcode-editor__preview',
-          div className: 'forum-post-content js-bbcode-preview--preview'
+  render() {
+    let blockClass = classWithModifiers('bbcode-editor', this.props.modifiers);
+    blockClass += ' js-bbcode-preview--form';
 
-        div className: 'bbcode-editor__buttons-bar',
-          div className: 'bbcode-editor__buttons bbcode-editor__buttons--toolbar',
-            @renderToolbar()
+    return (
+      <form
+        className={blockClass}
+        data-state='write'
+      >
+        <div className='bbcode-editor__content'>
+          <textarea
+            ref={this.bodyRef}
+            className='bbcode-editor__body js-bbcode-preview--body'
+            defaultValue={this.props.rawValue}
+            disabled={this.props.disabled}
+            name='body'
+            onKeyDown={this.onKeyDown}
+            placeholder={this.props.placeholder}
+          />
 
-          div className: 'bbcode-editor__buttons bbcode-editor__buttons--actions',
-            div className: 'bbcode-editor__button bbcode-editor__button--cancel',
-              @actionButton @_cancel, osu.trans('common.buttons.cancel')
-            div className: 'bbcode-editor__button bbcode-editor__button--hide-on-write',
-              @renderPreviewHideButton()
-            div className: 'bbcode-editor__button bbcode-editor__button--hide-on-preview',
-              @renderPreviewShowButton()
-            div className: 'bbcode-editor__button',
-              @actionButton @_save, osu.trans('common.buttons.save'), 'forum-primary'
+          <div className='bbcode-editor__preview'>
+            <div className='forum-post-content js-bbcode-preview--preview' />
+          </div>
 
+          <div className='bbcode-editor__buttons-bar'>
+            <div className='bbcode-editor__buttons bbcode-editor__buttons--toolbar'>
+              {this.renderToolbar()}
+            </div>
 
-  actionButton: (action, title, modifier = 'forum-secondary') =>
-    button
-      className: "btn-osu-big btn-osu-big--#{modifier}"
-      disabled: @props.disabled
-      type: 'button'
-      onClick: action
-      title
+            <div className='bbcode-editor__buttons bbcode-editor__buttons--actions'>
+              <div className='bbcode-editor__button bbcode-editor__button--cancel'>
+                {this.actionButton(this.cancel, osu.trans('common.buttons.cancel'))}
+              </div>
+              <div className='bbcode-editor__button bbcode-editor__button--hide-on-write'>
+                {this.renderPreviewHideButton()}
+              </div>
+              <div className='bbcode-editor__button bbcode-editor__button--hide-on-preview'>
+                {this.renderPreviewShowButton()}
+              </div>
+              <div className='bbcode-editor__button'>
+                {this.actionButton(this.save, osu.trans('common.buttons.save'), 'forum-primary')}
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    );
+  }
 
+  private actionButton(onClick: (event: React.MouseEvent<HTMLButtonElement>) => void, title: string, modifiers: Modifiers = 'forum-secondary') {
+    return (
+      <button
+        className={classWithModifiers('btn-osu-big', modifiers)}
+        disabled={this.props.disabled}
+        onClick={onClick}
+        type='button'
+      >
+        {title}
+      </button>
+    );
+  }
 
-  toolbarButton: (name, content) =>
-    button
-      className: "btn-circle btn-circle--bbcode js-bbcode-btn--#{name}"
-      disabled: @props.disabled
-      title: osu.trans("bbcode.#{_.snakeCase name}")
-      type: 'button'
+  private cancel = (event?: React.SyntheticEvent) => {
+    if (this.bodyRef.current?.value !== this.props.rawValue && !confirm(osu.trans('common.confirmation_unsaved'))) {
+      return;
+    }
 
-      span className: 'btn-circle__content', content
+    if (this.bodyRef.current != null) {
+      this.bodyRef.current.value = this.props.rawValue;
+    }
+    this.sendOnChange({ event, type: 'cancel' });
+  };
 
+  private onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.keyCode === 27) {
+      this.cancel();
+    }
+  };
 
-  setBody: (element) =>
-    @body = element
+  private renderPreviewHideButton() {
+    return (
+      <button
+        className='js-bbcode-preview--hide btn-osu-big btn-osu-big--forum-secondary'
+        disabled={this.props.disabled}
+        type='button'
+      >
+        {osu.trans('forum.topic.create.preview_hide')}
+      </button>
+    );
+  }
 
+  private renderPreviewShowButton() {
+    return (
+      <button
+        className='js-bbcode-preview--show btn-osu-big btn-osu-big--forum-secondary'
+        disabled={this.props.disabled}
+        type='button'
+      >
+        {osu.trans('forum.topic.create.preview')}
+      </button>
+    );
+  }
 
-  setSizeSelect: (element) =>
-    @sizeSelect = element
+  private renderToolbar() {
+    return (
+      <div className='post-box-toolbar'>
+        {this.toolbarButton('bold', <i className='fas fa-bold' />)}
+        {this.toolbarButton('italic', <i className='fas fa-italic' />)}
+        {this.toolbarButton('strikethrough', <i className='fas fa-strikethrough' />)}
+        {this.toolbarButton('heading', <i className='fas fa-heading' />)}
+        {this.toolbarButton('link', <i className='fas fa-link' />)}
+        {this.toolbarButton('spoilerbox', <i className='fas fa-barcode' />)}
+        {this.toolbarButton('list-numbered', <i className='fas fa-list-ol' />)}
+        {this.toolbarButton('list', <i className='fas fa-list' />)}
+        {this.toolbarButton('image', <i className='fas fa-image' />)}
 
+        <label
+          className='bbcode-size-select'
+          title={osu.trans('bbcode.size._')}
+        >
+          <span className='bbcode-size-select__label'>
+            {osu.trans('bbcode.size._')}
+          </span>
 
-  onKeyDown: (e) =>
-    e.keyCode == 27 && @_cancel()
+          <i className='fas fa-chevron-down' />
 
+          <select
+            ref={this.sizeSelectRef}
+            className='bbcode-size-select__select js-bbcode-btn--size'
+            disabled={this.props.disabled}
+          >
+            <option value='50'>{osu.trans('bbcode.size.tiny')}</option>
+            <option value='85'>{osu.trans('bbcode.size.small')}</option>
+            <option value='100'>{osu.trans('bbcode.size.normal')}</option>
+            <option value='150'>{osu.trans('bbcode.size.large')}</option>
+          </select>
+        </label>
+      </div>
+    );
+  }
 
-  _cancel: (event) =>
-    return if @body.value != @props.rawValue && !confirm(osu.trans('common.confirmation_unsaved'))
+  private save = (event?: React.SyntheticEvent) => {
+    this.sendOnChange({ event, type: 'save' });
+  };
 
-    @body.value = @props.rawValue
-    @sendOnChange(event: event, type: 'cancel')
+  private sendOnChange({event, type}: { event?: React.SyntheticEvent; type: 'cancel' | 'save' }) {
+    this.props.onChange?.({
+      event,
+      hasChanged: this.bodyRef.current?.value !== this.props.rawValue,
+      type,
+      value: this.bodyRef.current?.value,
+    });
+  }
 
-
-  _save: (event) =>
-    @sendOnChange(event: event, type: 'save')
-
-
-  sendOnChange: ({event, type}) =>
-    @props.onChange?(
-      event: event
-      type: type
-      value: @body.value
-      hasChanged: @body.value != @props.rawValue
-    )
-
-
-  renderPreviewHideButton: ->
-    button
-      type: 'button'
-      className: 'js-bbcode-preview--hide btn-osu-big btn-osu-big--forum-secondary'
-      disabled: @props.disabled
-      osu.trans('forum.topic.create.preview_hide')
-
-
-  renderPreviewShowButton: ->
-    button
-      type: 'button'
-      className: 'js-bbcode-preview--show btn-osu-big btn-osu-big--forum-secondary'
-      disabled: @props.disabled
-      osu.trans('forum.topic.create.preview')
-
-
-  renderToolbar: =>
-    div className: 'post-box-toolbar',
-      @toolbarButton 'bold', i(className: 'fas fa-bold')
-      @toolbarButton 'italic', i(className: 'fas fa-italic')
-      @toolbarButton 'strikethrough', i(className: 'fas fa-strikethrough')
-      @toolbarButton 'heading', i(className: 'fas fa-heading')
-      @toolbarButton 'link', i(className: 'fas fa-link')
-      @toolbarButton 'spoilerbox', i(className: 'fas fa-barcode')
-      @toolbarButton 'list-numbered', i(className: 'fas fa-list-ol')
-      @toolbarButton 'list', i(className: 'fas fa-list')
-      @toolbarButton 'image', i(className: 'fas fa-image')
-
-      label
-        className: 'bbcode-size-select'
-        title: osu.trans('bbcode.size._')
-
-        span className: "bbcode-size-select__label", osu.trans('bbcode.size._')
-        i className: "fas fa-chevron-down"
-        select
-          className: 'bbcode-size-select__select js-bbcode-btn--size'
-          disabled: @props.disabled
-          ref: @setSizeSelect
-          option value: '50', osu.trans('bbcode.size.tiny')
-          option value: '85', osu.trans('bbcode.size.small')
-          option value: '100', osu.trans('bbcode.size.normal')
-          option value: '150', osu.trans('bbcode.size.large')
+  private toolbarButton(name: string, content: JSX.Element) {
+    return (
+      <button
+        className={`btn-circle btn-circle--bbcode js-bbcode-btn--${name}`}
+        disabled={this.props.disabled}
+        title={osu.trans(`bbcode.${snakeCase(name)}`)}
+        type='button'
+      >
+        <span className='btn-circle__content'>{content}</span>
+      </button>
+    );
+  }
+}
