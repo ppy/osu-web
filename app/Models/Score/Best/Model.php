@@ -372,7 +372,27 @@ abstract class Model extends BaseModel
             $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
 
             if ($statsColumn !== null && $this->isPersonalBest()) {
-                $this->user?->statistics($this->gameModeString())?->decrement($statsColumn);
+                $userStats = $this->user?->statistics($this->gameModeString());
+
+                if ($userStats !== null) {
+                    $userStats->decrement($statsColumn);
+
+                    $nextBest = static::where([
+                        'beatmap_id' => $this->beatmap_id,
+                        'user_id' => $this->user_id,
+                    ])->where($this->getKeyName(), '<>', $this->getKey())
+                    ->orderBy('score', 'DESC')
+                    ->orderBy($this->getKeyName(), 'DESC')
+                    ->first();
+
+                    if ($nextBest !== null) {
+                        $nextBestStatsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$nextBest->rank] ?? null;
+
+                        if ($nextBestStatsColumn !== null) {
+                            $userStats->increment($nextBestStatsColumn);
+                        }
+                    }
+                }
             }
 
             $this->replayViewCount?->delete();
