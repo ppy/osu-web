@@ -151,27 +151,7 @@ export default class BbcodeEditor extends React.Component<Props> {
         {this.toolbarButton('list', <i className='fas fa-list' />)}
         {this.toolbarButton('image', <i className='fas fa-image' />)}
 
-        <label
-          className='bbcode-size-select'
-          title={osu.trans('bbcode.size._')}
-        >
-          <span className='bbcode-size-select__label'>
-            {osu.trans('bbcode.size._')}
-          </span>
-
-          <i className='fas fa-chevron-down' />
-
-          <select
-            ref={this.sizeSelectRef}
-            className='bbcode-size-select__select js-bbcode-btn--size'
-            disabled={this.props.disabled}
-          >
-            <option value='50'>{osu.trans('bbcode.size.tiny')}</option>
-            <option value='85'>{osu.trans('bbcode.size.small')}</option>
-            <option value='100'>{osu.trans('bbcode.size.normal')}</option>
-            <option value='150'>{osu.trans('bbcode.size.large')}</option>
-          </select>
-        </label>
+        {this.toolbarSizeSelect()}
       </div>
     );
   }
@@ -199,6 +179,32 @@ export default class BbcodeEditor extends React.Component<Props> {
       >
         <span className='btn-circle__content'>{content}</span>
       </button>
+    );
+  }
+
+  private toolbarSizeSelect() {
+    return (
+      <label
+        className='bbcode-size-select'
+        title={osu.trans('bbcode.size._')}
+      >
+        <span className='bbcode-size-select__label'>
+          {osu.trans('bbcode.size._')}
+        </span>
+
+        <i className='fas fa-chevron-down' />
+
+        <select
+          ref={this.sizeSelectRef}
+          className='bbcode-size-select__select js-bbcode-btn--size'
+          disabled={this.props.disabled}
+        >
+          <option value='50'>{osu.trans('bbcode.size.tiny')}</option>
+          <option value='85'>{osu.trans('bbcode.size.small')}</option>
+          <option value='100'>{osu.trans('bbcode.size.normal')}</option>
+          <option value='150'>{osu.trans('bbcode.size.large')}</option>
+        </select>
+      </label>
     );
   }
 }
