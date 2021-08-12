@@ -5,10 +5,12 @@ import { snakeCase } from 'lodash';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
+type ChangeType = 'cancel' | 'save';
+
 interface OnChangeProps {
   event?: React.SyntheticEvent;
   hasChanged: boolean;
-  type: 'cancel' | 'save';
+  type: ChangeType;
   value: string | undefined;
 }
 
@@ -160,7 +162,7 @@ export default class BbcodeEditor extends React.Component<Props> {
     this.sendOnChange({ event, type: 'save' });
   };
 
-  private sendOnChange({event, type}: { event?: React.SyntheticEvent; type: 'cancel' | 'save' }) {
+  private sendOnChange({event, type}: { event?: React.SyntheticEvent; type: ChangeType }) {
     this.props.onChange({
       event,
       hasChanged: this.bodyRef.current?.value !== this.props.rawValue,
