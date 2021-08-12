@@ -6,8 +6,8 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Libraries\Chat;
+use App\Libraries\UserChannelList;
 use App\Models\Chat\Message;
-use App\Models\Chat\UserChannel;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Transformers\Chat\ChannelTransformer;
@@ -180,7 +180,7 @@ class ChatController extends Controller
      */
     public function presence()
     {
-        return UserChannel::presenceForUser(Auth::user());
+        return (new UserChannelList(auth()->user()))->get();
     }
 
     /**

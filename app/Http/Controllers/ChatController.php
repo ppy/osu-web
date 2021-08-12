@@ -5,9 +5,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
-use App\Models\Chat\UserChannel;
 use App\Models\User;
 use Request;
 
@@ -26,7 +26,7 @@ class ChatController extends Controller
 
         $json = [
             'last_message_id' => optional(Message::last())->getKey(),
-            'presence' => UserChannel::presenceForUser($user),
+            'presence' => (new UserChannelList($user))->get(),
         ];
 
         $targetUser = User::lookup(Request::input('sendto'), 'id');

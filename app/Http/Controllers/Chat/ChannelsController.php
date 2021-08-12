@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers\Chat;
 
+use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
@@ -48,7 +49,7 @@ class ChannelsController extends Controller
         ], ['null_missing' => true]);
 
         if ($params['own'] === true) {
-            $channels = UserChannel::channelListForUser($user);
+            $channels = (new UserChannelList($user))->get();
 
             return [
                 'channels' => json_collection($channels, ChannelTransformer::forUser($user), ['last_message_id']),
