@@ -6,7 +6,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Contest;
+use App\Models\DeletedUser;
 use App\Models\UserContestEntry;
+use GuzzleHttp;
+use ZipStream;
 
 class ContestsController extends Controller
 {
@@ -33,55 +36,30 @@ class ContestsController extends Controller
 
     public function gimmeZip($id)
     {
+        // doesn't actually work in octane
         set_time_limit(300);
 
-        $contest = Contest::findOrFail($id);
+        Contest::findOrFail($id);
         $entries = UserContestEntry::where('contest_id', $id)->with('user')->get();
 
-        $tmpBase = sys_get_temp_dir()."/c{$id}-".time();
-        $workingFolder = "$tmpBase/working";
-        $outputFolder = "$tmpBase/out";
+        $zipOutput = "contest-{$id}.zip";
 
-        try {
-            if (!is_dir($workingFolder)) {
-                mkdir($workingFolder, 0755, true);
-            }
-            if (!is_dir($outputFolder)) {
-                mkdir($outputFolder, 0755, true);
-            }
+        return response()->streamDownload(function () use ($entries) {
+            $options = new ZipStream\Option\Archive();
+            $options->setZeroHeader(true);
+            $zip = new ZipStream\ZipStream('out.zip', $options);
 
-            // fetch 'em
+            $client = new GuzzleHttp\Client();
+
+            $deletedUser = new DeletedUser();
             foreach ($entries as $entry) {
-                $targetDir = "{$workingFolder}/".($entry->user ?? (new \App\Models\DeletedUser()))->username." ({$entry->user_id})/";
-                if (!is_dir($targetDir)) {
-                    mkdir($targetDir, 0755, true);
-                }
-
-                copy($entry->fileUrl(), $targetDir.sanitize_filename($entry->original_filename));
+                $targetDir = ($entry->user ?? $deletedUser)->username." ({$entry->user_id})";
+                $filename = sanitize_filename($entry->original_filename);
+                $file = $client->get($entry->fileUrl())->getBody();
+                $zip->addFileFromPsr7Stream("$targetDir/{$filename}", $file);
             }
 
-            // zip 'em
-            $zipOutput = "{$outputFolder}/contest-{$id}.zip";
-
-            $zip = new \ZipArchive();
-            $zip->open($zipOutput, \ZipArchive::CREATE);
-            foreach (glob("{$workingFolder}/**/*.*") as $file) {
-                // we just want the path relative to the working folder root
-                $new_filename = str_replace("$workingFolder/", '', $file);
-                $zip->addFile($file, $new_filename);
-            }
-            $zip->close();
-
-            // send 'em
-            header('Content-Disposition: attachment; filename='.basename($zipOutput));
-            header('Content-Type: application/zip');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: '.filesize($zipOutput));
-            readfile($zipOutput);
-        } finally {
-            deltree($tmpBase);
-        }
+            $zip->finish();
+        }, $zipOutput, ['content-type' => 'application/zip']);
     }
 }
