@@ -12,6 +12,7 @@ use App\Transformers\Chat\ChannelTransformer;
 use DB;
 use Ds\Map;
 use Ds\Set;
+use Illuminate\Support\Collection;
 
 /**
  * @property Channel $channel
@@ -74,31 +75,14 @@ class UserChannel extends Model
     public static function channelListForUser(User $user)
     {
         $channels = Channel::getChannelList($user);
-        $channelsMap = new Map();
-        foreach ($channels as $channel) {
-            $channelsMap->put($channel->getKey(), $channel);
-        }
 
-        $pmUserIds = (new Set(
-            static::whereIn('channel_id', $channels->pluck('channel_id'))
-                ->whereHas('channel', function ($q) {
-                    $q->where('type', 'PM');
-                })
-                ->pluck('user_id')
-        ))->toArray();
-
-        static::preloadUsers($pmUserIds, $user);
-
-        request()->attributes->set('preloadedChannels', $channelsMap);
+        static::preloadUsers(static::pmChannelUserIds($channels), $user);
 
         return $channels;
     }
 
-    public static function presenceForUser(User $user)
+    public static function pmChannelUserIds(Collection $channels)
     {
-        // retrieve all the channels the user is in and thse metadata for each
-        $channels = Channel::getChannelList($user);
-
         // Getting user list; Limited to PM channels due to large size of public channels.
         // FIXME: Chat needs reworking so it doesn't need to preload all this extra data every update.
         $userPmChannels = static::whereIn('channel_id', $channels->pluck('channel_id'))
@@ -107,9 +91,14 @@ class UserChannel extends Model
             })
             ->get();
 
-        $userIds = (new Set($userPmChannels->pluck('user_id')))->toArray();
+        return (new Set($userPmChannels->pluck('user_id')))->toArray();
+    }
 
-        static::preloadUsers($userIds, $user);
+    public static function presenceForUser(User $user)
+    {
+        // retrieve all the channels the user is in and thse metadata for each
+        $channels = Channel::getChannelList($user);
+        static::preloadUsers(static::pmChannelUserIds($channels), $user);
 
         $filteredChannels = $channels->filter(function (Channel $channel) use ($user) {
             if (!$channel->isPM()) {

@@ -112,8 +112,7 @@ class Channel extends Model
 
         foreach ($userChannels as $userChannel) {
             // preset userChannel for getting last_read_id.
-            $userChannel->channel->userChannel = $userChannel;
-            $userChannel->setRelation('user', $user);
+            $userChannel->channel->setUserChannelFor($user, $userChannel);
         }
 
         return $userChannels->pluck('channel');
