@@ -16,7 +16,7 @@ interface Props {
   disabled: boolean;
   modifiers: Modifiers;
   onChange: (props: OnChangeProps) => void;
-  placeholder: string;
+  placeholder?: string;
   rawValue: string;
 }
 
