@@ -134,6 +134,16 @@ class Channel extends Model
         return $this->pmTargetFor($user)?->username ?? $this->name;
     }
 
+    // TODO: change to canSend or something else.
+    public function isModeratedFor(User $user)
+    {
+        if (!$this->isPM()) {
+            return $this->moderated;
+        }
+
+        return $this->moderated || !priv_check_user($user, 'ChatStart', $this->pmTargetFor($user))->can();
+    }
+
     // TODO: specific to UserChannel::presence
     // use preload cache?
     public function lastReadIdFor(?User $user)

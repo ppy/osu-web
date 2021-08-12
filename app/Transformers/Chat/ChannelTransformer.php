@@ -35,7 +35,7 @@ class ChannelTransformer extends TransformerAbstract
             'channel_id' => $channel->channel_id,
             'description' => $channel->description,
             'icon' => $channel->displayIconFor($this->user),
-            'moderated' => $channel->moderated,
+            'moderated' => $channel->isModeratedFor($this->user),
             'name' => $channel->displayNameFor($this->user),
             'type' => $channel->type,
         ];
