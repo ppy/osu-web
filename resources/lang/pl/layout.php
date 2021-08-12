@@ -64,8 +64,8 @@ return [
         'beatmaps' => [
             '_' => 'beatmapy',
             'artists' => 'wyróżnieni artyści',
-            'index' => 'lista',
-            'packs' => 'paczki',
+            'index' => 'lista beatmap',
+            'packs' => 'paczki beatmap',
         ],
         'community' => [
             '_' => 'społeczność',
@@ -104,7 +104,7 @@ return [
         'store' => [
             '_' => 'sklep',
             'cart-show' => 'koszyk',
-            'getListing' => 'przedmioty',
+            'getListing' => 'produkty',
             'orders-index' => 'historia zamówień',
         ],
     ],

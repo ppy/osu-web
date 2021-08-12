@@ -11,12 +11,12 @@ return [
     'last_visit' => 'Nyligen aktiva',
     'new' => 'Nyligen',
     'old' => 'Gammal',
-    'rank' => 'Rang',
+    'rank' => 'Rank',
     'top' => 'Topp',
     'username' => 'Användarnamn',
 
     'forum_posts' => [
-        'created' => '',
+        'created' => 'Inläggstid',
         'relevance' => 'Relevans',
     ],
 

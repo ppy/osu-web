@@ -8,7 +8,7 @@ return [
         'convinced' => [
             'title' => 'Jag är övertygad! :D',
             'support' => 'stödja osu!',
-            'gift' => 'eller ge support till en annan spelare i present',
+            'gift' => 'eller ge supporter till en annan spelare i present',
             'instructions' => 'klicka på hjärtat för att gå till osu!store',
         ],
         'why-support' => [
@@ -19,43 +19,43 @@ return [
                 'description' => 'Ett litet team utvecklar och driver osu!. Ditt stöd hjälper dem att, du vet... leva.',
             ],
             'infra' => [
-                'title' => 'Server infrastruktur',
-                'description' => 'Bidrag går till servrarna för att köra webbplatsen, flerspelartjänster, online topplistor, o.s.v.          ',
+                'title' => 'Server-infrastruktur',
+                'description' => 'Bidrag går till servrarna för att hålla igång webbplatsen, flerspelartjänster, onlinetopplistor, o.s.v.',
             ],
             'featured-artists' => [
-                'title' => 'Utvalda Artister',
-                'description' => 'Med ditt stöd kan vi närma oss ännu mer grymma artister och licensiera mer bra musik för användning i osu!',
+                'title' => 'Utvalda artister',
+                'description' => 'Med ditt stöd kan vi få tag i ännu fler grymma artister och licensiera mer bra musik för användning i osu!',
                 'link_text' => 'Visa den aktuella deltagarlistan &raquo;',
             ],
             'ads' => [
                 'title' => 'Behåll osu! självförsörjande',
-                'description' => 'Dina bidrag hjälper till att hålla spelet oberoende och helt fri från annonser och externa sponsorer.',
+                'description' => 'Dina bidrag hjälper till att hålla spelet oberoende och helt fritt från reklam och externa sponsorer.',
             ],
             'tournaments' => [
                 'title' => 'Officiella turneringar',
-                'description' => 'Hjälp till att finansiera driften av (och priserna för) den officiella osu! VM-murneringar.',
+                'description' => 'Hjälp till att finansiera driften av (och priserna för) de officiella osu! VM-turneringarna.',
                 'link_text' => 'Utforska turneringar &raquo;',
             ],
             'bounty-program' => [
                 'title' => 'Program för öppen källkod',
                 'description' => 'Stöd de bidragsgivare som har gett sin tid och ansträngning för att hjälpa till att göra osu! bättre.',
-                'link_text' => 'Ta reda på mer &raquo;',
+                'link_text' => 'Läs mer &raquo;',
             ],
         ],
         'perks' => [
             'title' => 'Coolt! Vilka förmåner får jag?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'snabb och enkel tillgång till att söka beatmaps utan att lämna spelet.',
+                'description' => 'Få tillgång till att snabbt och enkelt söka efter och ladda ner beatmaps utan att lämna spelet.',
             ],
 
             'friend_ranking' => [
                 'title' => 'Rankning bland vänner',
-                'description' => "Se hur du staplar upp mot dina vänner på en beatmaps topplistor, både i spelet och på hemsidan.",
+                'description' => "Se hur du står dig mot dina vänner på en beatmaps topplistor, både i spelet och på hemsidan.",
             ],
 
             'country_ranking' => [
-                'title' => 'Nationell Rankning',
+                'title' => 'Nationell rankning',
                 'description' => 'Erövra ditt land innan du erövrar världen.',
             ],
 
@@ -65,63 +65,63 @@ return [
             ],
 
             'auto_downloads' => [
-                'title' => 'Automatiska Nedladdningar',
-                'description' => 'Automatiska nedladdningar när du spelar multiplayer, åskådar andra, eller klickar på länkar i chatten!',
+                'title' => 'Automatiska nedladdningar',
+                'description' => 'Beatmaps kommer automatiskt laddas ner i flerspelarläge, när du åskådar andra, eller när du klickar på relevanta länkar i chatten!',
             ],
 
             'upload_more' => [
                 'title' => 'Ladda upp mer',
-                'description' => 'Fler antal avvaktning beatmap platser (per rankad beatmap) upp till 10 stycken.',
+                'description' => 'Fler antal väntande beatmap-platser (per rankad beatmap) upp till 10 stycken.',
             ],
 
             'early_access' => [
                 'title' => 'Tidig tillgång',
-                'description' => 'Tillgång till tidiga utgåvor, där du kan pröva nya funktioner innan dem kommer ut för alla!',
+                'description' => 'Få tidig tillgång till nya utgåvor med nya funktioner innan de blir offentliga!<br/><br/>Detta inkluderar tidig tillgång till nya funktioner på webbplatsen också!',
             ],
 
             'customisation' => [
                 'title' => 'Anpassning',
-                'description' => "Anpassa din profil genom att lägga till en full anpassningsbar användar sida",
+                'description' => "Stå ut i mängden genom att ladda upp en egen omslagsbild eller genom att skapa en helt anpassningsbar \"jag!\"-sektion i din användarprofil.",
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmap Filters',
-                'description' => 'Filtrera beatmap sökningar på spelade och ej spelade maps och rank uppnåd (om det finns).',
+                'title' => 'Beatmapfilter',
+                'description' => 'Filtrera beatmapsökningar efter spelade och ospelade beatmaps, eller efter uppnådd rank.',
             ],
 
             'yellow_fellow' => [
-                'title' => 'Gul Typ',
-                'description' => 'Bli igenkänd i spelet med din nya ljusa gula chat användarnamn färg.',
+                'title' => 'Gul lirare',
+                'description' => 'Bli igenkänd i spelet med din nya neongula namnfärg i chatten.',
             ],
 
             'speedy_downloads' => [
                 'title' => 'Snabbare nedladdningar',
-                'description' => 'Mindre nedladdnings restriktioner, speciellt när du använder osu!direct.',
+                'description' => 'Mindre nedladdningsrestriktioner, speciellt när du använder osu!direct.',
             ],
 
             'change_username' => [
                 'title' => 'Ändra användarnamn',
-                'description' => 'Möjligheten att ändra ditt användarnamn utan extra konstad. (endast en gång)',
+                'description' => 'En gratis namnändring ingår i ditt första köp av supporter.',
             ],
 
             'skinnables' => [
-                'title' => 'Pynt',
-                'description' => 'Extra pynt i spelet, som till exempel huvudmeny bakrund.',
+                'title' => 'Skinnables',
+                'description' => 'Extra skinnables i spelet, som till exempel huvudmenybakgrund.',
             ],
 
             'feature_votes' => [
-                'title' => 'Funktion Röster',
-                'description' => 'Rösta på funktion efterfrågan. (2 gånger per månad)',
+                'title' => 'Funktionsröster',
+                'description' => 'Röster på funktionsförfrågningar. (2 per månad)',
             ],
 
             'sort_options' => [
-                'title' => 'Sortering Inställningar',
-                'description' => 'Möjligheten att visa beatmap land / vän / mod-specifika rankningar i spelet.',
+                'title' => 'Sorteringsalternativ',
+                'description' => 'Möjligheten att visa nationell-, vän-, och modspecifika rankningar i spelet.',
             ],
 
             'more_favourites' => [
                 'title' => 'Fler favoriter',
-                'description' => 'Det maximala antalet beatmaps du kan favorisera ökar från :normally &rarr; :supporter',
+                'description' => 'Det maximala antalet beatmaps du kan favoritmarkera ökar från :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Flera vänner',

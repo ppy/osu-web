@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Ota yhteyttä tukeen palauttaakesi käyttäjä.',
+        'expired' => 'Vahvistuskoodi on vanhentunut.',
+        'invalid' => 'Odottamaton virhe vahvistuskoodissa.',
         'is_privileged' => 'Ota yhteyttä peppyyn ebin :-D',
         'missing_key' => 'Vaaditaan.',
         'too_many_tries' => 'Liian monta epäonnistunutta yritystä.',
