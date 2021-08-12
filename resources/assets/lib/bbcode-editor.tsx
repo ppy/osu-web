@@ -161,7 +161,7 @@ export default class BbcodeEditor extends React.Component<Props> {
   };
 
   private sendOnChange({event, type}: { event?: React.SyntheticEvent; type: 'cancel' | 'save' }) {
-    this.props.onChange?.({
+    this.props.onChange({
       event,
       hasChanged: this.bodyRef.current?.value !== this.props.rawValue,
       type,
