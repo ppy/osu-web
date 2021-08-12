@@ -382,7 +382,7 @@ abstract class Model extends BaseModel
                         'user_id' => $this->user_id,
                     ])->where($this->getKeyName(), '<>', $this->getKey())
                     ->orderBy('score', 'DESC')
-                    ->orderBy($this->getKeyName(), 'DESC')
+                    ->orderBy($this->getKeyName(), 'ASC')
                     ->first();
 
                     if ($nextBest !== null) {
