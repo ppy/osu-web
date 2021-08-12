@@ -144,6 +144,17 @@ class Channel extends Model
         return $this->moderated || !priv_check_user($user, 'ChatStart', $this->pmTargetFor($user))->can();
     }
 
+    public function isVisibleFor(User $user)
+    {
+        if (!$this->isPM()) {
+            return true;
+        }
+
+        $targetUser = $this->pmTargetFor($user);
+
+        return !($targetUser === null || $user->hasBlocked($targetUser) && !($targetUser->isModerator() || $targetUser->isAdmin()));
+    }
+
     // TODO: specific to UserChannel::presence
     // use preload cache?
     public function lastReadIdFor(?User $user)

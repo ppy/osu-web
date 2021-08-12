@@ -26,15 +26,7 @@ class UserChannelList
         $this->getChannels();
         $this->preloadUsers();
 
-        $filteredChannels = $this->channels->filter(function (Channel $channel) {
-            if (!$channel->isPM()) {
-                return true;
-            }
-
-            $targetUser = $channel->pmTargetFor($this->user);
-
-            return !($targetUser === null || $this->user->hasBlocked($targetUser) && !($targetUser->isModerator() || $targetUser->isAdmin()));
-        });
+        $filteredChannels = $this->channels->filter(fn (Channel $channel) => $channel->isVisibleFor($this->user));
 
         $transformer = ChannelTransformer::forUser($this->user);
 
