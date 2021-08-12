@@ -9,7 +9,7 @@ use App\Models\Contest;
 use App\Models\DeletedUser;
 use App\Models\UserContestEntry;
 use GuzzleHttp;
-use ZipStream;
+use ZipStream\ZipStream;
 
 class ContestsController extends Controller
 {
@@ -45,9 +45,7 @@ class ContestsController extends Controller
         $zipOutput = "contest-{$id}.zip";
 
         return response()->streamDownload(function () use ($entries) {
-            $options = new ZipStream\Option\Archive();
-            $options->setZeroHeader(true);
-            $zip = new ZipStream\ZipStream('out.zip', $options);
+            $zip = new ZipStream('out.zip');
 
             $client = new GuzzleHttp\Client();
 
