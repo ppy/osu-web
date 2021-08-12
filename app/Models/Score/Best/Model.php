@@ -338,6 +338,22 @@ abstract class Model extends BaseModel
         return true;
     }
 
+    public function isPersonalBest(): bool
+    {
+        return !static
+            ::where([
+                'user_id' => $this->user_id,
+                'beatmap_id' => $this->beatmap_id,
+            ])->where(function ($q) {
+                return $q
+                    ->where('score', '>', $this->score)
+                    ->orWhere(function ($qq) {
+                        return $qq->where('score', $this->score)
+                            ->where($this->getKeyName(), '<', $this->getKey());
+                    });
+            })->exists();
+    }
+
     public function replayViewCount()
     {
         $class = ReplayViewCount::class.'\\'.get_class_basename(static::class);
@@ -353,17 +369,13 @@ abstract class Model extends BaseModel
     public function delete()
     {
         $result = $this->getConnection()->transaction(function () {
-            $stats = optional($this->user)->statistics($this->gameModeString());
+            $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
 
-            if ($stats !== null) {
-                $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
-
-                if ($statsColumn !== null) {
-                    $stats->decrement($statsColumn);
-                }
+            if ($statsColumn !== null && $this->isPersonalBest()) {
+                $this->user?->statistics($this->gameModeString())?->decrement($statsColumn);
             }
 
-            optional($this->replayViewCount)->delete();
+            $this->replayViewCount?->delete();
 
             return parent::delete();
         });
