@@ -31,13 +31,11 @@ class ChatController extends Controller
 
         $targetUser = User::lookup(Request::input('sendto'), 'id');
         if ($targetUser) {
-            $canMessage = priv_check('ChatStart', $targetUser)->can();
-
             $channel = Channel::findPM($targetUser, $user);
-            optional($channel)->addUser($user);
+            $channel?->addUser($user);
 
             $json['send_to'] = [
-                'can_message' => $canMessage,
+                'can_message' => !$channel->isModeratedFor($user),
                 'channel_id' => optional($channel)->getKey(),
                 'target' => json_item($targetUser, 'UserCompact'),
             ];
