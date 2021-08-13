@@ -3,9 +3,8 @@
   "scripts": {
     "dev": "yarn run development",
     "development": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=webpack.config.js",
-    "eslint": "eslint --cache 'resources/assets/lib/**/*.{js,ts,tsx}' '*.js'",
     "generate-localizations": "node generate-localizations.js",
-    "lint": "tslint -c tslint.json 'resources/assets/lib/**/*.{js,jsx,ts,tsx}' *.js",
+    "lint": "eslint --cache 'resources/assets/lib/**/*.{js,ts,tsx}' '*.js'",
     "localize": "yarn run generate-localizations",
     "prod": "yarn run production",
     "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=webpack.config.js",
@@ -115,8 +114,6 @@
     "terser": "^3.11.0",
     "terser-webpack-plugin": "^1.4.1",
     "ts-loader": "6.0.4",
-    "tslint": "^5.12.0",
-    "tslint-react": "^4.0.0",
     "vue-template-compiler": "^2.5.21",
     "webpack-cli": "^3.3.12",
     "yargs": "^12.0.5"

@@ -1,6 +1,6 @@
 name: ES Lint
 
-on: workflow_dispatch
+on: [push, pull_request]
 
 env:
   APP_ENV: testing
@@ -35,4 +35,4 @@ jobs:
       - name: Install js dependencies
         run: yarn --frozen-lockfile
 
-      - run: yarn eslint
+      - run: yarn lint
