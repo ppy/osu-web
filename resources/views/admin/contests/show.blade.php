@@ -37,8 +37,9 @@
             </div>
             <div class="col-md-4 text-right">
                 {!! Form::open([
+                    'data-loading-overlay' => '0',
+                    'method' => 'POST',
                     'route' => ['admin.contests.get-zip', $contest->id],
-                    'method' => 'POST'
                 ]) !!}
                     <button class="btn-osu-big">
                         <i class="fas fa-fw fa-file-archive"></i>

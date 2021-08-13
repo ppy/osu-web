@@ -1064,7 +1064,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function beatmapsetNominations()
     {
-        return $this->hasMany(BeatmapsetEvent::class)->where('type', BeatmapsetEvent::NOMINATE);
+        return $this->hasMany(BeatmapsetNomination::class);
     }
 
     public function beatmapsetNominationsToday()

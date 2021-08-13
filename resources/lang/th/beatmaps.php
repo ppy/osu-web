@@ -183,6 +183,7 @@ return [
         'disqualify' => 'ตัดสิทธิ์',
         'incorrect_state' => 'เกิดข้อผิดพลาดในการดำเนินการ ลองรีเฟรชหน้าเพจนี้ดู',
         'love' => 'Love',
+        'love_choose' => '',
         'love_confirm' => 'ชอบบีทแมพนี้หรือ?',
         'nominate' => 'เสนอชื่อ',
         'nominate_confirm' => 'เสนอชื่อบีทแมพนี้?',

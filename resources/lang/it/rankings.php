@@ -26,10 +26,10 @@ return [
     ],
 
     'spotlight' => [
-        'end_date' => 'Data Inizio',
+        'end_date' => 'Data Fine',
         'map_count' => 'N° Beatmap',
         'participants' => 'Partecipanti',
-        'start_date' => 'Data Fine',
+        'start_date' => 'Data Inizio',
     ],
 
     'stat' => [

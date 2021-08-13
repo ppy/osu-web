@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .chat-input {
-  padding: 10px 30px 10px 50px;
   color: white;
   position: absolute;
   bottom: 0;
@@ -11,6 +10,7 @@
   background: linear-gradient(to bottom, hsla(var(--hsl-b4), 0), hsla(var(--hsl-b4), 0.95) 40%, hsla(var(--hsl-b4), 0.95) 100%);
   width: calc(100% - 20px); // this prevents the gradient drawing over the browser's scroll-bar
   height: 80px;
+  padding: 10px 30px 10px 50px;
 
   align-items: center;
   display: flex;
@@ -18,13 +18,15 @@
   @media @mobile {
     position: fixed;
     font-size: 16px;
-    padding: 10px 0px 10px 20px;
+    padding-right: 0;
+    padding-left: 20px
   }
 
   &__box {
     .reset-input();
     .default-border-radius();
     .default-box-shadow();
+    max-height: 100%;
     max-width: 100%;
     min-width: 0;
     background: @osu-colour-b6;
