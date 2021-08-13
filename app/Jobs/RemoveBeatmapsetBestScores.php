@@ -9,7 +9,7 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
-use App\Models\Score\Best as ScoreBest;
+use App\Models\Score\Best\Model;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
@@ -32,13 +32,8 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
         $this->beatmapset = $beatmapset;
 
         foreach (Beatmap::MODES as $mode => $_modeInt) {
-            $this->maxScoreIds[$mode] = static::scoreClass($mode)::max('score_id');
+            $this->maxScoreIds[$mode] = Model::getClassByString($mode)::max('score_id');
         }
-    }
-
-    public function scoreClass($mode)
-    {
-        return ScoreBest::class.'\\'.studly_case($mode);
     }
 
     /**
@@ -62,7 +57,7 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
                 'client' => ['ignore' => 404],
             ]);
 
-            $class = static::scoreClass($mode);
+            $class = Model::getClassByString($mode);
             // Just delete until no more matching rows.
             $query = $class
                 ::with('user')
