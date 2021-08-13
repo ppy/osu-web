@@ -17,8 +17,9 @@ module.exports = {
     extends: [
       'plugin:@typescript-eslint/recommended',
       'plugin:@typescript-eslint/recommended-requiring-type-checking',
-      'plugin:react/recommended',
       'plugin:react-hooks/recommended',
+      'plugin:react/recommended',
+      'plugin:typescript-sort-keys/recommended',
     ],
     files: ['resources/assets/lib/**/*.{ts,tsx}'],
     parser: '@typescript-eslint/parser',
@@ -27,8 +28,9 @@ module.exports = {
       sourceType: 'module',
     },
     plugins: [
-      'eslint-plugin-react',
       '@typescript-eslint',
+      'eslint-plugin-react',
+      'typescript-sort-keys',
     ],
     rules: {
       '@typescript-eslint/array-type': [

@@ -45,8 +45,8 @@ interface Props {
   discussion?: BeatmapsetDiscussionJson;
   discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
   document?: string;
-  editing: boolean;
   editMode?: boolean;
+  editing: boolean;
   onChange?: () => void;
   onFocus?: () => void;
 }
