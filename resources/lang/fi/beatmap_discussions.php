@@ -24,8 +24,8 @@ return [
         'form' => [
             '_' => 'Hae',
             'deleted' => 'Sisällytä poistetut keskustelut',
-            'mode' => '',
-            'only_unresolved' => '',
+            'mode' => 'Beatmap-tila',
+            'only_unresolved' => 'Näytä vain ratkaisemattomat keskustelut',
             'types' => 'Viestityypit',
             'username' => 'Käyttäjänimi',
 

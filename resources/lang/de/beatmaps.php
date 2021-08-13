@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Disqualifizieren',
         'incorrect_state' => 'Ein Fehler ist aufgetreten, versuche die Seite zu aktualisieren.',
         'love' => 'Liebe',
+        'love_choose' => '',
         'love_confirm' => 'Liebst du diese Beatmap?',
         'nominate' => 'Nominieren',
         'nominate_confirm' => 'Diese Beatmap nominieren?',

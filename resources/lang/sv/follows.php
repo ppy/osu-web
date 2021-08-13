@@ -6,7 +6,7 @@
 return [
     'comment' => [
         'empty' => 'Inga kommentarer bevakade.',
-        'page_title' => '',
+        'page_title' => 'bevakningslista för kommentarer',
         'title' => 'kommentar',
 
         'table' => [
@@ -25,11 +25,11 @@ return [
 
     'mapping' => [
         'empty' => 'Inga mappare bevakade.',
-        'followers' => '',
-        'page_title' => '',
+        'followers' => 'mapping-prenumeranter',
+        'page_title' => 'mappar-bevakningslista',
         'title' => 'mappare',
-        'to_0' => 'sluta meddela mig när denna användaren laddar upp ny beatmap',
-        'to_1' => 'meddela mig när denna användaren laddar upp ny beatmap',
+        'to_0' => 'sluta notifiera mig när denna användaren laddar upp en ny beatmap',
+        'to_1' => 'notifiera mig när denna användaren laddar upp en ny beatmap',
     ],
 
     'modding' => [
