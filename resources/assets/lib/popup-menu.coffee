@@ -133,7 +133,7 @@ export class PopupMenu extends PureComponent
 
 
   renderMenu: =>
-    # using Fade.in causes rendering glitches from the stacking context due to will-change
+    # using fadeIn causes rendering glitches from the stacking context due to will-change
     return null unless @state.active
 
     div
