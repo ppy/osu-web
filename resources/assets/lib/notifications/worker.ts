@@ -9,6 +9,7 @@ import { route } from 'laroute';
 import { action, computed, observable, observe } from 'mobx';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
 import SocketWorker from 'socket-worker';
+import RetryDelay from 'utils/retry-delay';
 import {
   NotificationEventDelete,
   NotificationEventDeleteJson,
@@ -35,8 +36,8 @@ const isNotificationEventReadJson = (arg: SocketEventData): arg is NotificationE
 @dispatchListener
 export default class Worker implements DispatchListener {
   @observable waitingVerification = false;
-
   @observable private firstLoadedAt?: Date;
+  private retryDelay = new RetryDelay();
   private timeout: Partial<Record<string, number>> = {};
   private xhr: Partial<Record<string, JQueryXHR>> = {};
   private xhrLoadingState: Partial<Record<string, boolean>> = {};
@@ -80,7 +81,7 @@ export default class Worker implements DispatchListener {
   }
 
   private delayedRetryInitialLoadMore() {
-    this.timeout.loadMore = window.setTimeout(this.loadMore, 10000);
+    this.timeout.loadMore = window.setTimeout(this.loadMore, this.retryDelay.get());
   }
 
   @action
@@ -106,11 +107,16 @@ export default class Worker implements DispatchListener {
       }).done((data: NotificationBootJson) => {
         this.waitingVerification = false;
         this.loadBundle(data);
+        this.retryDelay.reset();
       })
       .fail((xhr) => {
         if (xhr.responseJSON != null && xhr.responseJSON.error === 'verification') {
           this.waitingVerification = true;
 
+          return;
+        }
+        // Non-verification 401 error means user has been logged out. Don't retry.
+        if (xhr.status === 401) {
           return;
         }
         this.delayedRetryInitialLoadMore();

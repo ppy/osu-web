@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Απόκλεισε',
         'incorrect_state' => 'Σφάλμα κατά την εκτέλεση αυτής της ενέργειας, δοκιμάστε να ανανεώσετε τη σελίδα.',
         'love' => 'Love',
+        'love_choose' => '',
         'love_confirm' => 'Αγαπάτε αυτό το beatmap;',
         'nominate' => 'Nominate',
         'nominate_confirm' => 'Κάντε nominate αυτό το beatmap;',

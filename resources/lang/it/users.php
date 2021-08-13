@@ -138,7 +138,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Il tuo account è stato limitato!',
-        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
+        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto solitamente entro 24 ore. Se desideri fare appello contro la tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
     ],
     'show' => [
         'age' => ':age anni',
@@ -151,7 +151,7 @@ return [
         'lastvisit_online' => 'Attualmente online',
         'missingtext' => 'Potresti aver fatto un errore di battitura! (o l\'utente potrebbe essere stato bannato)',
         'origin_country' => 'da :country',
-        'previous_usernames' => 'precedentemente conosciuto come',
+        'previous_usernames' => 'conosciuto in precedenza come',
         'plays_with' => 'Gioca con :devices',
         'title' => "Profilo di :username",
 
@@ -323,7 +323,7 @@ return [
                     'title' => 'Migliore Performance',
                 ],
                 'first' => [
-                    'title' => 'Rank Primo Posto',
+                    'title' => 'Primi Posti',
                 ],
             ],
             'votes' => [
@@ -388,19 +388,19 @@ return [
         ],
         'rank' => [
             'country' => 'Rank del paese per :mode',
-            'country_simple' => 'Classifica del Paese',
-            'global' => 'Rank globale :mode',
+            'country_simple' => 'Classifica Nazionale',
+            'global' => 'Posto globale per :mode',
             'global_simple' => 'Classifica globale',
         ],
         'stats' => [
-            'hit_accuracy' => 'Precisione dei colpi',
+            'hit_accuracy' => 'Precisione dei Colpi',
             'level' => 'Livello :level',
             'level_progress' => 'Avanzamento al livello successivo',
             'maximum_combo' => 'Combo Massima',
             'medals' => 'Medaglie',
-            'play_count' => 'Partite giocate',
+            'play_count' => 'Partite Giocate',
             'play_time' => 'Tempo totale di gioco',
-            'ranked_score' => 'Punteggio Rankato',
+            'ranked_score' => 'Punteggio Classificato',
             'replays_watched_by_others' => 'Replay Guardati da Altri',
             'score_ranks' => 'Rank dei Punteggi',
             'total_hits' => 'Colpi Totali',

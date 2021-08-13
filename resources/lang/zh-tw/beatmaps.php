@@ -105,7 +105,7 @@ return [
                 'unsaved' => '尚未儲存',
                 'timestamp' => [
                     'all-diff' => '',
-                    'diff' => '',
+                    'diff' => '如果這個 :type 開頭是時間戳，時間戳會在「時間軸」下顯示。',
                 ],
             ],
             'insert-block' => [
@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => '操作發生錯誤，請重新載入頁面。',
         'love' => '喜歡',
+        'love_choose' => '',
         'love_confirm' => '喜歡這張圖譜嗎？',
         'nominate' => '提名',
         'nominate_confirm' => '確定要提名這張圖譜？',

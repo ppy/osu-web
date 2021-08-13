@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Squalifica',
         'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
         'love' => 'Ama',
+        'love_choose' => '',
         'love_confirm' => 'Ama questa beatmap?',
         'nominate' => 'Nomina',
         'nominate_confirm' => 'Nominare questa beatmap?',
@@ -196,7 +197,7 @@ return [
         'unresolved_issues' => 'Ci sono ancora dei problemi irrisolti che vanno prima sistemati.',
 
         'rank_estimate' => [
-            '_' => 'È stimato che questa mappa verrà rankata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
+            '_' => 'È stimato che questa mappa verrà classificata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
             'queue' => 'coda di ranking',
             'soon' => 'molto vicina',
         ],
@@ -228,7 +229,7 @@ return [
                 'mode' => 'Modalità',
                 'nsfw' => 'Contenuto Esplicito',
                 'played' => 'Giocato',
-                'rank' => 'Rank ottenuto',
+                'rank' => 'Grado Raggiunto',
                 'status' => 'Categorie',
             ],
             'sorting' => [
@@ -237,7 +238,7 @@ return [
                 'difficulty' => 'Difficoltà',
                 'favourites' => 'Preferiti',
                 'updated' => 'Aggiornato',
-                'ranked' => 'Rankata',
+                'ranked' => 'Classificata',
                 'rating' => 'Valutazione',
                 'plays' => 'Giocate',
                 'relevance' => 'Pertinenza',
@@ -272,7 +273,7 @@ return [
         'mine' => 'Le mie mappe',
         'pending' => 'In Attesa & WIP',
         'qualified' => 'Qualificate',
-        'ranked' => 'Rankate',
+        'ranked' => 'Classificate',
     ],
     'genre' => [
         'any' => 'Qualsiasi',

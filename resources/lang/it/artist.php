@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'osu' => 'Profilo di osu!',
+        'osu' => 'Profilo osu!',
         'site' => 'Sito Ufficiale',
     ],
 

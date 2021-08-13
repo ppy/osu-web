@@ -10,8 +10,12 @@ use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\Model;
 use App\Models\User;
+use App\Traits\Memoizes;
 use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
+use Ds\Set;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -34,7 +38,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Room extends Model
 {
-    use SoftDeletes, WithDbCursorHelper;
+    use Memoizes, SoftDeletes, WithDbCursorHelper;
 
     const SORTS = [
         'ended' => [
@@ -48,6 +52,10 @@ class Room extends Model
 
     const DEFAULT_SORT = 'created';
 
+    const PLAYLIST_TYPE = 'playlists';
+    const REALTIME_DEFAULT_TYPE = 'head_to_head';
+    const REALTIME_TYPES = ['head_to_head', 'team_versus'];
+
     protected $casts = [
         'password' => PresentString::class,
     ];
@@ -56,6 +64,29 @@ class Room extends Model
     protected $attributes = [
         'participant_count' => 0,
     ];
+
+    public ?array $preloadedRecentParticipants = null;
+
+    /**
+     * Using this requires the collection to be queried with withRecentParticipantIds scope.
+     */
+    public static function preloadRecentParticipants(Collection $rooms)
+    {
+        $allUserIds = $rooms->map->recent_participant_ids->flatten();
+        $allUsersByKey = User::whereKey($allUserIds)->get()->keyBy('user_id');
+
+        foreach ($rooms as $room) {
+            $users = [];
+            foreach ($room->recent_participant_ids as $userId) {
+                $user = $allUsersByKey[$userId] ?? null;
+
+                if ($user !== null) {
+                    $users[] = $user;
+                }
+            }
+            $room->preloadedRecentParticipants = $users;
+        }
+    }
 
     public static function search($params)
     {
@@ -66,10 +97,18 @@ class Room extends Model
         $sort = $params['sort'] ?? null;
 
         $category = presence(get_string($params['category'] ?? null)) ?? 'any';
-        if ($category === 'any') {
-            $query->where('category', '<>', 'realtime');
-        } else {
-            $query->where('category', $category);
+        switch ($category) {
+            case 'any':
+                $query->where('type', static::PLAYLIST_TYPE);
+                break;
+            case 'realtime':
+                $query->whereIn('type', static::REALTIME_TYPES);
+                break;
+            default:
+                $query->where([
+                    'type' => static::PLAYLIST_TYPE,
+                    'category' => $category,
+                ]);
         }
 
         switch ($mode) {
@@ -154,15 +193,59 @@ class Room extends Model
         return $query->where('user_id', $user->user_id);
     }
 
+    public function scopeWithRecentParticipantIds($query, ?int $limit = null)
+    {
+        $limit ??= 10;
+
+        if ($query->getQuery()->columns === null) {
+            $query = $query->select();
+        }
+
+        $highScore = new UserScoreAggregate();
+
+        return $query->selectSub("
+            SELECT json_arrayagg(user_id)
+            FROM (
+                SELECT user_id
+                FROM {$highScore->getTable()}
+                WHERE
+                    {$highScore->qualifyColumn('room_id')} = {$this->qualifyColumn($this->getKeyName())}
+                    AND (
+                        {$this->qualifyColumn('type')} = {$this->getGrammar()->quoteString(static::PLAYLIST_TYPE)}
+                        OR {$highScore->qualifyColumn('in_room')}
+                    )
+                ORDER BY updated_at DESC
+                LIMIT {$limit}
+            ) recent_participants
+        ", 'recent_participant_ids');
+    }
+
     public function hasEnded()
     {
         return $this->ends_at !== null && Carbon::now()->gte($this->ends_at);
+    }
+
+    public function isRealtime()
+    {
+        static $realtimeTypes;
+
+        $realtimeTypes ??= new Set(static::REALTIME_TYPES);
+
+        return $realtimeTypes->contains($this->type);
     }
 
     public function isScoreSubmissionStillAllowed()
     {
         // TODO: move grace period to config or use the beatmap's duration
         return $this->ends_at === null || Carbon::now()->lte($this->ends_at->addMinutes(5));
+    }
+
+    public function getRecentParticipantIdsAttribute()
+    {
+        return $this->memoize(
+            __FUNCTION__,
+            fn () => json_decode($this->attributes['recent_participant_ids'], true) ?? []
+        );
     }
 
     /**
@@ -200,15 +283,38 @@ class Room extends Model
         }
     }
 
+    public function participants(): HasMany
+    {
+        $query = $this->userHighScores();
+
+        // only return users currently inside for open realtime room
+        if ($this->isRealtime() && $this->ends_at === null) {
+            $query->where(['in_room' => true]);
+        }
+
+        return $query;
+    }
+
+    public function recentParticipants(): array
+    {
+        if ($this->preloadedRecentParticipants !== null) {
+            return $this->preloadedRecentParticipants;
+        }
+
+        return $this
+            ->participants()
+            ->select('user_id')
+            ->with('user')
+            ->orderBy('updated_at', 'DESC')
+            ->limit(50)
+            ->get()
+            ->pluck('user')
+            ->all();
+    }
+
     public function startGame(User $owner, array $rawParams)
     {
         priv_check_user($owner, 'MultiplayerRoomCreate')->ensureCan();
-
-        $userRoomCount = static::active()->startedBy($owner)->count();
-
-        if ($userRoomCount >= $owner->maxMultiplayerRooms()) {
-            throw new InvariantException('number of simultaneously active rooms reached');
-        }
 
         $params = get_params($rawParams, null, [
             'category',
@@ -218,19 +324,29 @@ class Room extends Model
             'name',
             'password',
             'playlist:array',
+            'type',
         ], ['null_missing' => true]);
 
-        $this->name = $params['name'];
-        $this->user_id = $owner->getKey();
-        $this->max_attempts = $params['max_attempts'];
-        $this->starts_at = now();
+        $this->fill([
+            'max_attempts' => $params['max_attempts'],
+            'name' => $params['name'],
+            'starts_at' => now(),
+            'type' => $params['type'],
+            'user_id' => $owner->getKey(),
+        ]);
 
-        if ($params['category'] === 'realtime') {
-            $this->category = $params['category'];
+        $this->setRelation('user', $owner);
+
+        // TODO: remove category params support (and forcing default type) once client sends type parameter
+        if ($this->isRealtime() || $params['category'] === 'realtime') {
+            if (!in_array($this->type, static::REALTIME_TYPES, true)) {
+                $this->type = static::REALTIME_DEFAULT_TYPE;
+            }
             // only for realtime rooms for now
             $this->password = $params['password'];
             $this->ends_at = now()->addSeconds(30);
         } else {
+            $this->type = static::PLAYLIST_TYPE;
             if ($params['ends_at'] !== null) {
                 $this->ends_at = $params['ends_at'];
             } elseif ($params['duration'] !== null) {
@@ -251,7 +367,7 @@ class Room extends Model
 
         $playlistItemsCount = count($playlistItems);
 
-        if ($this->category === 'realtime' && $playlistItemsCount !== 1) {
+        if ($this->isRealtime() && $playlistItemsCount !== 1) {
             throw new InvariantException('realtime room must have exactly one playlist item');
         }
 
@@ -312,6 +428,23 @@ class Room extends Model
         return $this->userHighScores()->forRanking()->with('user.country');
     }
 
+    private function assertUserRoomAllowance()
+    {
+        $query = static::active()->startedBy($this->user);
+
+        if ($this->isRealtime()) {
+            $query->whereIn('type', static::REALTIME_TYPES);
+            $max = 1;
+        } else {
+            $query->where('type', static::PLAYLIST_TYPE);
+            $max = $this->user->maxMultiplayerRooms();
+        }
+
+        if ($query->count() >= $max) {
+            throw new InvariantException('number of simultaneously active rooms reached');
+        }
+    }
+
     private function assertValidCompletePlay()
     {
         if (!$this->isScoreSubmissionStillAllowed()) {
@@ -321,13 +454,15 @@ class Room extends Model
 
     private function assertValidStartGame()
     {
+        $this->assertUserRoomAllowance();
+
         foreach (['ends_at', 'name'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("'{$field}' is required");
             }
         }
 
-        if ($this->category !== 'realtime' && $this->starts_at->addMinutes(30)->gt($this->ends_at)) {
+        if (!$this->isRealtime() && $this->starts_at->addMinutes(30)->gt($this->ends_at)) {
             throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
         }
 

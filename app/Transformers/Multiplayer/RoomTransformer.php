@@ -27,6 +27,7 @@ class RoomTransformer extends TransformerAbstract
             'id' => $room->id,
             'name' => $room->name,
             'category' => $room->category,
+            'type' => $room->type,
             'user_id' => $room->user_id,
             'starts_at' => json_time($room->starts_at),
             'ends_at' => json_time($room->ends_at),
@@ -61,18 +62,7 @@ class RoomTransformer extends TransformerAbstract
 
     public function includeRecentParticipants(Room $room)
     {
-        $highScores = $room
-            ->userHighScores()
-            ->with('user')
-            ->orderBy('updated_at', 'DESC')
-            ->limit(50);
-
-        // only return users currently inside for open realtime room
-        if ($room->category === 'realtime' && $room->ends_at === null) {
-            $highScores->where(['in_room' => true]);
-        }
-
-        return $this->collection($highScores->get()->pluck('user'), new UserCompactTransformer());
+        return $this->collection($room->recentParticipants(), new UserCompactTransformer());
     }
 
     public function includePlaylist(Room $room)
