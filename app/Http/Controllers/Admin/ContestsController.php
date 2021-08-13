@@ -45,7 +45,7 @@ class ContestsController extends Controller
         $zipOutput = "contest-{$id}.zip";
 
         return response()->streamDownload(function () use ($entries) {
-            $zip = new ZipStream('out.zip');
+            $zip = new ZipStream();
 
             $client = new GuzzleHttp\Client();
 
