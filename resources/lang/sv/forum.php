@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'pinned_topics' => 'Nålade Ämnen',
+    'pinned_topics' => 'Fästa ämnen',
     'slogan' => "det är farligt att spela ensam.",
-    'subforums' => 'Subforums',
-    'title' => 'osu! forumen',
+    'subforums' => 'Subforum',
+    'title' => 'osu!forumen',
 
     'covers' => [
         'edit' => 'Redigera omslag',
@@ -15,7 +15,7 @@ return [
         'create' => [
             '_' => 'Välj omslagsbild',
             'button' => 'Ladda upp bild',
-            'info' => 'Omslagsstorlek bör vara :dimensions. Du kan också släppa din bild här för att ladda upp.',
+            'info' => 'Omslagsbildens storlek bör vara :dimensions. Du kan också släppa din bild här för att ladda upp.',
         ],
 
         'destroy' => [
@@ -39,13 +39,13 @@ return [
     'mark_as_read' => [
         'forum' => 'Markera forumet som läst',
         'forums' => 'Markera forumen som läst',
-        'busy' => 'Markera som läst....',
+        'busy' => 'Markera som läst...',
     ],
 
     'post' => [
         'confirm_destroy' => 'Vill du verkligen radera inlägget?',
         'confirm_restore' => 'Vill du verkligen återställa inlägget?',
-        'edited' => 'Senast redigerad av :user :when, redigerad :count gånger totalt.',
+        'edited' => 'Senast redigerad av :user :when, redigerad :count_delimited gånger totalt.|Senast redigerad av :user :when, redigerad :count_delimited gånger totalt.',
         'posted_at' => 'upplagd :when',
         'posted_by' => 'upplagd av :username',
 
@@ -64,7 +64,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited inlägg|:count_delimited inlägg',
-            'topic_starter' => 'Ämnestartare ',
+            'topic_starter' => 'Trådskapare',
         ],
     ],
 
@@ -83,7 +83,7 @@ return [
         'in_forum' => 'i :forum',
         'latest_post' => ':when av :user',
         'latest_reply_by' => 'senaste svar av :user',
-        'new_topic' => 'Lägg upp nytt ämne',
+        'new_topic' => 'Nytt ämne',
         'new_topic_login' => 'Logga in för att lägga upp ett nytt ämne',
         'post_reply' => 'Skicka',
         'reply_box_placeholder' => 'Skriv här för att svara',
@@ -135,23 +135,23 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'forum prenumerationer',
+            'title_compact' => 'forum-bevakningslista',
 
             'box' => [
-                'total' => 'Ämne prenumererade',
+                'total' => 'Ämnesprenumerationer',
                 'unread' => 'Ämnen med nya svar',
             ],
 
             'info' => [
-                'total' => 'Du prenumererade till :total ämnen.',
-                'unread' => 'Du har :unread olästa svar till prenumererade ämnen.',
+                'total' => 'Du prenumererade på :total ämnen.',
+                'unread' => 'Du har :unread olästa svar i dina prenumererade ämnen.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Säga upp prenumeration från ämne?',
-                'title' => 'Säga upp prenumeration',
+                'confirmation' => 'Sluta prenumerera på ämne?',
+                'title' => 'Sluta prenumerera',
             ],
         ],
     ],
@@ -167,27 +167,27 @@ return [
         ],
 
         'create' => [
-            'create_poll' => 'Skapande av enkät',
+            'create_poll' => 'Skapa omröstning',
 
-            'preview' => 'Skicka förhandsvisningen',
+            'preview' => 'Förhandsgranska inlägg',
 
             'create_poll_button' => [
-                'add' => 'Skapa en enkät',
-                'remove' => 'Avbryt skapande av enkät',
+                'add' => 'Skapa en omröstning',
+                'remove' => 'Avbryt skapande av omröstning',
             ],
 
             'poll' => [
-                'hide_results' => 'Dölj resultaten av enkäten.',
-                'hide_results_info' => 'De kommer att visas först efter enkätens avslutande.',
-                'length' => 'Kör enkät i',
+                'hide_results' => 'Dölj resultaten av omröstningen.',
+                'hide_results_info' => 'De kommer att visas först efter omröstningen är avslutad.',
+                'length' => 'Kör omröstning i',
                 'length_days_suffix' => 'dagar',
-                'length_info' => 'Lämna tom för inget avslut av enkät',
+                'length_info' => 'Lämna tom för en omröstning utan avslut',
                 'max_options' => 'Val per användare',
-                'max_options_info' => 'Detta är antalet val varje användare kan välja när man röstar.',
+                'max_options_info' => 'Detta är antalet val varje användare kan välja när de röstar.',
                 'options' => 'Val',
-                'options_info' => 'Sätt varje val på en ny linje. Du kan skriva upp till 10 val.',
+                'options_info' => 'Skriv varje val på en ny rad. Du kan skriva upp till 10 val.',
                 'title' => 'Fråga',
-                'vote_change' => 'Tillåt omröstning.',
+                'vote_change' => 'Tillåt ändring av röst.',
                 'vote_change_info' => 'Om aktiverad, så kan användare ändra sina röster.',
             ],
         ],
@@ -203,30 +203,30 @@ return [
         ],
 
         'issue_tag_added' => [
-            'to_0' => 'Ta bort "tillagd" tagg',
-            'to_0_done' => 'Tog bort "tillagd" tagg',
-            'to_1' => 'Lägg till "tillagd" tagg',
-            'to_1_done' => 'La till "tillagd" tagg',
+            'to_0' => 'Ta bort "tillagd”-tagg',
+            'to_0_done' => 'Tog bort "tillagd"-tagg',
+            'to_1' => 'Lägg till "tillagd"-tagg',
+            'to_1_done' => 'La till "tillagd"-tagg',
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => 'Ta bort "tilldelad" tagg',
-            'to_0_done' => 'Tog bort "tilldelad" tagg',
-            'to_1' => 'Lägg till "tilldelad" tagg',
-            'to_1_done' => 'La till "tilldelad" tagg',
+            'to_0' => 'Ta bort "tilldelad"-tagg',
+            'to_0_done' => 'Tog bort "tilldelad"-tagg',
+            'to_1' => 'Lägg till "tilldelad"-tagg',
+            'to_1_done' => 'La till "tilldelad"-tagg',
         ],
 
         'issue_tag_confirmed' => [
-            'to_0' => 'Ta bort "bekräftad" tagg',
-            'to_0_done' => 'Tog bort "bekräftad" tagg',
-            'to_1' => 'Lägg till "bekräftad" tagg',
-            'to_1_done' => 'La till "bekräftad" tagg',
+            'to_0' => 'Ta bort "bekräftad"-tagg',
+            'to_0_done' => 'Tog bort "bekräftad"-tagg',
+            'to_1' => 'Lägg till "bekräftad"-tagg',
+            'to_1_done' => 'La till "bekräftad"-tagg',
         ],
 
         'issue_tag_duplicate' => [
-            'to_0' => 'Ta bort "duplikat" tagg',
-            'to_0_done' => 'Tog bort "duplikat" tagg',
-            'to_1' => 'Lägg till "duplikat" tagg',
+            'to_0' => 'Ta bort "duplikat"-tagg',
+            'to_0_done' => 'Tog bort "duplikat"-tagg',
+            'to_1' => 'Lägg till "duplikat"-tagg',
             'to_1_done' => 'La till "duplikat" tagg',
         ],
 
@@ -285,33 +285,33 @@ return [
 
                 'info' => [
                     '_' => 'Detta är en :feature_request. Funktionsförfrågningar kan röstas upp av :supporters.',
-                    'feature_request' => 'funktionönskemål',
+                    'feature_request' => 'funktionsönskemål',
                     'supporters' => 'supportrar',
                 ],
 
                 'user' => [
-                    'count' => '{0} ingen röst|{1} :count röst|[2,*] :count röster',
+                    'count' => '{0} inga röster|{1} :count_delimited röst|[2,*] :count_delimited röster',
                     'current' => 'Du har :votes kvar.',
                     'not_enough' => "Du har inga röster kvar",
                 ],
             ],
 
             'poll' => [
-                'edit' => 'Redigera enkät',
-                'edit_warning' => 'Redigering av en enkät kommer att ta bort det aktuella resultatet!',
+                'edit' => 'Redigera omröstning',
+                'edit_warning' => 'Redigering av en omröstning kommer att ta bort det aktuella resultatet!',
                 'vote' => 'Rösta',
 
                 'button' => [
                     'change_vote' => 'Ändra röst',
-                    'edit' => 'Redigera enkät',
-                    'view_results' => 'Hoppa till resultaten',
+                    'edit' => 'Redigera omröstning',
+                    'view_results' => 'Gå till resultaten',
                     'vote' => 'Rösta',
                 ],
 
                 'detail' => [
                     'end_time' => 'Enkät kommer avslutas :time',
                     'ended' => 'Enkät avslutades :time',
-                    'results_hidden' => 'Resultaten kommer att visas efter enkätröstningens slut.',
+                    'results_hidden' => 'Resultaten kommer att visas efter omröstningens slut.',
                     'total' => 'Totala röster: :count',
                 ],
             ],

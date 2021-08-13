@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'アカウントの復元を続行するにはサポートへ連絡してください。',
+        'expired' => '',
+        'invalid' => '',
         'is_privileged' => 'peppyに相談だ',
         'missing_key' => '必須項目',
         'too_many_tries' => '試行回数が多すぎます。',
