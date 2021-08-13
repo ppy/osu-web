@@ -36,11 +36,28 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache yarn
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: Install Composer dependencies
         run: >-
           composer config -g github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
           && composer install --prefer-dist --no-progress
 
+      - name: Install js dependencies
+        run: yarn --frozen-lockfile
+
+      - run: yarn lint --quiet
       - run: ./bin/update_licence.sh -nf
 
       - name: Run PHPCS
