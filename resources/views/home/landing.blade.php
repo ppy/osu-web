@@ -181,8 +181,8 @@
                             <li class="landing-sitemap__item">
                                 <div class="landing-sitemap__header">{{ osu_trans("layout.footer.$section._") }}</div>
                             </li>
-                            @foreach ($links as $transKey => $link)
-                                <li class="landing-sitemap__item"><a href="{{ $link }}" class="landing-sitemap__link">{{ osu_trans($transKey) }}</a></li>
+                            @foreach ($links as $action => $link)
+                                <li class="landing-sitemap__item"><a href="{{ $link }}" class="landing-sitemap__link">{{ osu_trans("layout.footer.$section.$action") }}</a></li>
                             @endforeach
                         </ul>
                     </div>

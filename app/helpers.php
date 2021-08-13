@@ -999,16 +999,16 @@ function footer_landing_links()
 {
     return [
         'general' => [
-            'layout.menu.home._' => route('home'),
-            'page_title.main.changelog_controller._' => route('changelog.index'),
-            'page_title.main.beatmapsets_controller.index' => route('beatmapsets.index'),
-            'page_title.main.home_controller.get_download' => route('download'),
+            'home' => route('home'),
+            'changelog-index' => route('changelog.index'),
+            'beatmaps' => action('BeatmapsetsController@index'),
+            'download' => route('download'),
         ],
         'help' => [
-            'layout.menu.help.getFaq' => wiki_url('FAQ'),
-            'page_title.forum._' => route('forum.forums.index'),
-            'page_title.main.livestreams_controller._' => route('livestreams.index'),
-            'page_title.main.wiki_controller._' => wiki_url('Main_Page'),
+            'faq' => wiki_url('FAQ'),
+            'forum' => route('forum.forums.index'),
+            'livestreams' => route('livestreams.index'),
+            'wiki' => wiki_url('Main_Page'),
         ],
         'legal' => footer_legal_links(),
     ];
@@ -1019,11 +1019,11 @@ function footer_legal_links()
     $locale = app()->getLocale();
 
     return [
-        'layout.footer.legal.terms' => route('legal', ['locale' => $locale, 'path' => 'Terms']),
-        'layout.footer.legal.privacy' => route('legal', ['locale' => $locale, 'path' => 'Privacy']),
-        'layout.footer.legal.copyright' => route('legal', ['locale' => $locale, 'path' => 'Copyright']),
-        'layout.footer.legal.server_status' => osu_url('server_status'),
-        'layout.footer.legal.source_code' => osu_url('source_code'),
+        'terms' => route('legal', ['locale' => $locale, 'path' => 'Terms']),
+        'privacy' => route('legal', ['locale' => $locale, 'path' => 'Privacy']),
+        'copyright' => route('legal', ['locale' => $locale, 'path' => 'Copyright']),
+        'server_status' => osu_url('server_status'),
+        'source_code' => osu_url('source_code'),
     ];
 }
 

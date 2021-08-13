@@ -91,9 +91,18 @@ return [
     'footer' => [
         'general' => [
             '_' => 'General',
+            'home' => 'Home',
+            'changelog-index' => 'Changelog',
+            'beatmaps' => 'Beatmap Listing',
+            'download' => 'Download osu!',
         ],
         'help' => [
             '_' => 'Help & Community',
+            'faq' => 'Frequently Asked Questions',
+            'forum' => 'Community Forums',
+            'livestreams' => 'Live Streams',
+            'report' => 'Report an Issue',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Legal & Status',
