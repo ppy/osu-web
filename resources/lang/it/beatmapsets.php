@@ -142,7 +142,7 @@ return [
             'friend' => 'Classifica Amici',
             'global' => 'Classifica Globale',
             'supporter-link' => 'Clicca <a href=":link">qui</a> per vedere tutte le fantastiche funzionalità che otterrai!',
-            'supporter-only' => 'Devi essere un osu!supporter per vedere le classifiche amici e paese!',
+            'supporter-only' => 'Devi essere un osu!supporter per vedere la classifica amici, nazionale, o con mod specifiche!',
             'title' => 'Classifica',
 
             'headers' => [
@@ -152,7 +152,7 @@ return [
                 'mods' => 'Mod',
                 'player' => 'Giocatore',
                 'pp' => '',
-                'rank' => 'Piazzamento',
+                'rank' => 'Posto',
                 'score_total' => 'Punteggio Totale',
                 'score' => 'Punteggio',
                 'time' => 'Tempo',
@@ -189,7 +189,7 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Rankata',
+            'ranked' => 'Classificata',
             'approved' => 'Approvata',
             'loved' => 'Amata',
             'qualified' => 'Qualificata',

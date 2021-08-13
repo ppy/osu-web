@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Diskalifiye et',
         'incorrect_state' => 'Bu eylemi gerçekleştirirken bir hata oluştu, sayfayı yenilemeyi deneyin.',
         'love' => 'Sevilenlere ekle',
+        'love_choose' => '',
         'love_confirm' => 'Bu beatmapi seviyor musun?',
         'nominate' => 'Aday Göster',
         'nominate_confirm' => 'Beatmap aday gösterilsin mi?',

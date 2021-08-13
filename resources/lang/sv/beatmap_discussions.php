@@ -54,12 +54,12 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Inget av inläggen tar upp min oro',
-        'notice' => 'Det finns inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera detta innan du lägger upp ett inlägg.',
+        'notice' => 'Det finns inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera dessa innan du lägger upp ett inlägg.',
         'unsaved' => ':count i denna recension',
     ],
 
     'owner_editor' => [
-        'button' => 'Svårighetsgradens Ägare',
+        'button' => 'Svårighetsgradens ägare',
         'reset_confirm' => 'Återställ ägare för denna svårighetsgrad?',
         'user' => 'Ägare',
         'version' => 'Svårighetsgrad',

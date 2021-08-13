@@ -64,16 +64,16 @@ return [
         'beatmaps' => [
             '_' => 'beatmapler',
             'artists' => 'featured artist\'ler',
-            'index' => 'katalog',
-            'packs' => 'paketler',
+            'index' => 'beatmap kataloğu',
+            'packs' => 'beatmap paketleri',
         ],
         'community' => [
             '_' => 'topluluk',
             'chat' => 'sohbet',
             'contests' => 'yarışmalar',
             'dev' => 'geliştirme',
-            'forum-forums-index' => 'forumlar',
-            'getLive' => 'canlı',
+            'forum-forums-index' => 'forum',
+            'getLive' => 'canlı yayınlar',
             'tournaments' => 'turnuvalar',
         ],
         'help' => [
@@ -104,7 +104,7 @@ return [
         'store' => [
             '_' => 'mağaza',
             'cart-show' => 'sepet',
-            'getListing' => 'katalog',
+            'getListing' => 'ürünler',
             'orders-index' => 'sipariş geçmişi',
         ],
     ],
