@@ -14,7 +14,7 @@ class ModelTest extends TestCase
 {
     private static function getRandomMode(): string
     {
-        return array_rand_val(array_keys(Beatmap::MODES));
+        return array_rand(Beatmap::MODES);
     }
 
     public function testDelete()
