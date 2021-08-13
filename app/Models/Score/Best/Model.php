@@ -366,6 +366,9 @@ abstract class Model extends BaseModel
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * This doesn't delete the score in elasticsearch.
+     */
     public function delete()
     {
         $result = $this->getConnection()->transaction(function () {
