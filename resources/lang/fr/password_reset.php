@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Veuillez contacter le support pour récupérer votre compte.',
+        'expired' => 'Le code de vérification a expiré.',
+        'invalid' => 'Erreur inattendue dans le code de vérification.',
         'is_privileged' => 'Veuillez contacter un administrateur de haut niveau pour récupérer le compte.',
         'missing_key' => 'Requis.',
         'too_many_tries' => 'Trop de tentatives ratées.',

@@ -33,6 +33,7 @@
     "league/commonmark": "^1.6",
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
+    "maennchen/zipstream-php": "^2.1",
     "mariuzzo/laravel-js-localization": "*",
     "paypal/paypal-checkout-sdk": "*",
     "php-ds/php-ds": "^1.3",

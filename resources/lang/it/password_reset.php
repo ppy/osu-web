@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Si prega di contattare il supporto per ripristinare l\'account.',
+        'expired' => 'Il codice di verifica è scaduto.',
+        'invalid' => 'Errore inatteso nel codice di verifica.',
         'is_privileged' => 'Contatta peppy lulz.',
         'missing_key' => 'Richiesto.',
         'too_many_tries' => 'Troppi tentativi sbagliati.',

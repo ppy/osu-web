@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Zdyskwalifikuj',
         'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej akcji, spróbuj odświeżyć stronę.',
         'love' => 'Nadaj status ulubionej społeczności',
+        'love_choose' => '',
         'love_confirm' => 'Czy chcesz nadać tej beatmapie status ulubionej społeczności?',
         'nominate' => 'Nominuj',
         'nominate_confirm' => 'Nominować tę beatmapę?',
