@@ -10,7 +10,7 @@
 
     if (!($legal ?? false)) {
         $links[] = [
-            'title' => trans('layout.header.help.index'),
+            'title' => osu_trans('layout.header.help.index'),
             'url' => wiki_url('Main_Page', $page->requestedLocale),
         ];
     }
@@ -27,7 +27,7 @@
     $links[] = compact('title', 'url');
 @endphp
 
-@extends('master', [
+@extends('wiki.layout', [
     'titlePrepend' => $page->title(true),
 ])
 
@@ -53,7 +53,7 @@
                         data-mobile-toggle-target="wiki-toc"
                     >
                         <h2 class="sidebar__title">
-                            {{ trans('wiki.show.toc') }}
+                            {{ osu_trans('wiki.show.toc') }}
                         </h2>
 
                         <div class="visible-xs sidebar__mobile-toggle-icon">
@@ -77,11 +77,11 @@
                 @else
                     <div class="wiki-content">
                         <p>
-                            {{ trans('wiki.show.missing', ['keyword' => $page->path ]) }}
+                            {{ osu_trans('wiki.show.missing', ['keyword' => $page->path ]) }}
                         </p>
 
                         <p>
-                            {!! trans('wiki.show.search', ['link' =>
+                            {!! osu_trans('wiki.show.search', ['link' =>
                                 link_to(route('search', ['mode' => 'wiki_page', 'query' => $page->path]), $page->path)
                             ]) !!}
                         </p>

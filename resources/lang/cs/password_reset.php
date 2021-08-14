@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Prosím kontaktujte podporu pro obnovení účtu.',
+        'expired' => '',
+        'invalid' => '',
         'is_privileged' => 'Kontaktujte peppyho lulz.',
         'missing_key' => 'Vyžadováno.',
         'too_many_tries' => 'Příliš mnoho nezdařených pokusů.',

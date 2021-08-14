@@ -12,19 +12,19 @@ return [
             'instructions' => 'klik tombol hati di atas untuk melanjutkan ke osu!store',
         ],
         'why-support' => [
-            'title' => 'Kenapa saya harus mendukung osu!? Ke mana saja uangnya akan disalurkan?',
+            'title' => 'Mengapa saya harus mendukung osu!? Ke mana saja uangnya akan disalurkan?',
 
             'team' => [
                 'title' => 'Dukung Tim Kami',
-                'description' => 'osu! senantiasa dikembangkan dan dikelola oleh sebuah tim yang berukuran relatif kecil. Dukunganmu akan sangat membantu... keberlangsungan hidup mereka.',
+                'description' => 'osu! senantiasa dikembangkan dan dikelola oleh sebuah tim yang berukuran kecil. Dukunganmu akan sangat membantu... keberlangsungan hidup mereka.',
             ],
             'infra' => [
                 'title' => 'Prasarana Server',
-                'description' => 'Kontribusimu akan turut digunakan untuk memenuhi biaya operasional server-server kami dan menjalankan berbagai fasilitas yang kami miliki seperti situs web, multiplayer, papan peringkat, dan lain sebagainya.',
+                'description' => 'Kontribusimu akan digunakan untuk memenuhi biaya operasional server-server kami dan menjalankan berbagai fasilitas yang kami miliki seperti situs web, multiplayer, papan peringkat, dan lain sebagainya.',
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist',
-                'description' => 'Berkat dukunganmu, kami dapat melisensi berbagai lagu pilihan dari musisi-musisi berbakat di seluruh dunia untuk dapat secara bebas dipergunakan di dalam lingkungan osu!.',
+                'description' => 'Berkat dukunganmu, kami dapat melisensi berbagai lagu pilihan karya musisi-musisi berbakat dari seluruh belahan dunia untuk dapat dipergunakan secara legal di dalam lingkungan osu!.',
                 'link_text' => 'Lihat daftar Featured Artist saat ini &raquo;',
             ],
             'ads' => [
@@ -46,7 +46,7 @@ return [
             'title' => 'Oh? Apa saja yang akan saya dapatkan?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Telusuri beatmap-beatmap yang Anda kehendaki dengan cepat dan mudah tanpa harus meninggalkan permainan.',
+                'description' => 'Telusuri beatmap-beatmap yang kamu kehendaki dengan cepat dan mudah tanpa harus meninggalkan permainan.',
             ],
 
             'friend_ranking' => [
@@ -71,17 +71,17 @@ return [
 
             'upload_more' => [
                 'title' => 'Unggah Lebih Banyak',
-                'description' => 'Slot tambahan untuk mengunggah beatmap yang berstatus Pending (satu slot tambahan per beatmap Ranked yang Anda miliki, hingga maksimum 10 beatmap Pending)',
+                'description' => 'Kuota tambahan bagimu untuk dapat mengunggah lebih banyak beatmap (dengan rincian satu kuota tambahan per beatmap Ranked yang kamu miliki, hingga maksimum 10 beatmap)',
             ],
 
             'early_access' => [
                 'title' => 'Akses Pra-Rilis',
-                'description' => 'Akses ke rilisan terbaru lebih awal, di mana Anda dapat mencoba fitur yang bahkan belum dirilis secara publik!',
+                'description' => 'Dapatkan akses ke versi osu! terbaru lebih awal, di mana kamu dapat bebas mencoba fitur yang bahkan belum kami rilis secara publik!',
             ],
 
             'customisation' => [
                 'title' => 'Kustomisasi',
-                'description' => "Buat laman profil Anda lebih menarik dengan tambahan gambar latar dan kolom \"saya!\" yang dapat diisi dengan hal apapun yang Anda kehendaki.",
+                'description' => "Buat laman profilmu lebih menarik dengan tambahan gambar latar dan kolom \"saya!\" yang dapat kamu isi dengan hal apapun yang kamu kehendaki.",
             ],
 
             'beatmap_filters' => [
@@ -100,32 +100,32 @@ return [
             ],
 
             'change_username' => [
-                'title' => 'Perubahan Nama Pengguna',
-                'description' => 'Kemampuan untuk mengubah nama pengguna Anda tanpa biaya tambahan (maksimum sekali).',
+                'title' => 'Penggantian Nama Pengguna',
+                'description' => 'Apabila kamu pernah memiliki supporter tag, kamu dapat mengubah nama penggunamu secara cuma-cuma.',
             ],
 
             'skinnables' => [
                 'title' => 'Elemen Skinning Tambahan',
-                'description' => 'Tambahan elemen skin yang bisa Anda kustomisasi, seperti latar belakang menu utama.',
+                'description' => 'Buat tampilan osu! milikmu menjadi lebih personal dengan berbagai elemen tambahan yang dapat kamu kustomisasi sesuka hatimu, seperti gambar latar pada layar menu utama.',
             ],
 
             'feature_votes' => [
                 'title' => 'Hak Suara Ekstra',
-                'description' => 'Hak suara tambahan yang dapat Anda dipergunakan pada sub-forum Feature Requests. (2 suara per bulan)',
+                'description' => 'Hak suara tambahan yang dapat kamu dipergunakan pada sub-forum Feature Requests. (2 suara per bulan)',
             ],
 
             'sort_options' => [
                 'title' => 'Opsi Untuk Menyortir',
-                'description' => 'Akses untuk melihat peringkat beatmap berdasarkan negara/teman/mod secara spesifik dalam game.',
+                'description' => 'Kemampuan untuk dapat mengakses papan peringkat negara / teman / mod-specific dari dalam permainan.',
             ],
 
             'more_favourites' => [
                 'title' => 'Lebih Banyak Favorit',
-                'description' => 'Jumlah maksimum beatmap yang dapat kamu favoritkan bertambah dari :normally &rarr; :supporter',
+                'description' => 'Batas jumlah beatmap yang dapat kamu favoritkan bertambah dari :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Lebih Banyak Teman',
-                'description' => 'Jumlah maksimum teman yang dapat kamu tambahkan bertambah dari :normally &rarr; :supporter',
+                'description' => 'Batas jumlah teman yang dapat kamu tambahkan bertambah dari :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
                 'title' => 'Unggah Lebih Banyak Beatmap',
@@ -138,11 +138,11 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukungan Anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi finansial senilai :dollars!',
-            'gifted' => ":giftedTags dari pembelian tag Anda telah dihadiahkan (dengan total sebesar :giftedDollars telah dihadiahkan). Terima kasih atas kemurahan hati Anda!",
-            'not_yet' => "Anda belum pernah memiliki supporter tag :(",
-            'valid_until' => 'Supporter Tag Anda saat ini berlaku hingga :date!',
-            'was_valid_until' => 'Supporter Tag Anda berlaku hingga :date.',
+            'contribution' => 'Terima kasih atas dukunganmu! Kamu telah membeli supporter tag sebanyak :tags kali dengan total kontribusi finansial senilai :dollars!',
+            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags supporter tag (yang bernilai :giftedDollars) kepada pemain lain. Terima kasih atas kemurahan hatimu!",
+            'not_yet' => "Kamu belum pernah memiliki supporter tag :(",
+            'valid_until' => 'Supporter tag yang kamu miliki saat ini berlaku hingga :date!',
+            'was_valid_until' => 'Masa berlaku supporter tag milikmu telah berakhir pada :date.',
         ],
     ],
 ];

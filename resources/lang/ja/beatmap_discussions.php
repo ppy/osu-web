@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count 個がこのレビューにあります',
     ],
 
+    'owner_editor' => [
+        'button' => '難易度の所有者',
+        'reset_confirm' => 'この難易度の所有者をリセットしますか？',
+        'user' => '所有者',
+        'version' => '難易度',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'ログインして返信する',
@@ -74,6 +81,7 @@ return [
             'external_references' => 'レビューには、このレビューに属していない問題への参照が含まれています',
             'invalid_block_type' => '無効なブロックタイプ',
             'invalid_document' => '無効なレビュー',
+            'invalid_discussion_type' => '無効なディスカッションタイプ',
             'minimum_issues' => 'レビューには最低:count件の問題が含まれている必要があります',
             'missing_text' => 'ブロックにテキストがありません',
             'too_many_blocks' => 'レビューには:count件の段落/問題のみが含まれている場合があります',

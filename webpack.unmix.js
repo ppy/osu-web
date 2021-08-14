@@ -7,23 +7,16 @@
 const fs = require('fs');
 const path = require('path');
 
-// #region plugin imports
 const Autoprefixer = require('autoprefixer');
-const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SentryPlugin = require('webpack-sentry-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-
-// #endregion
-
-// #region non-plugin imports
 const dotenv = require('dotenv');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const webpack = require('webpack');
-
-// #endregion
+const SentryPlugin = require('webpack-sentry-plugin');
 
 // #region env
 const env = process.env.NODE_ENV || 'development';
@@ -148,6 +141,10 @@ const tsReactComponents = [
   'news-show',
   'notifications-index',
   'scores-show',
+  'user-multiplayer-index',
+];
+
+const extraTs = [
   'store-bootstrap',
 ];
 
@@ -156,6 +153,10 @@ for (const name of coffeeReactComponents) {
 }
 
 for (const name of tsReactComponents) {
+  entry[`react/${name}`] = [resolvePath(`resources/assets/lib/${name}.tsx`)];
+}
+
+for (const name of extraTs) {
   entry[`react/${name}`] = [resolvePath(`resources/assets/lib/${name}.ts`)];
 }
 
@@ -194,6 +195,7 @@ const plugins = [
     patterns: [
       { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]') },
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
+      { from: 'node_modules/twemoji-emojis/vendor/svg/*-*.svg', to: 'images/flags/[name].[ext]' },
     ],
   }),
 ];
@@ -311,9 +313,9 @@ const resolve = {
   alias: {
     '@fonts': path.resolve(__dirname, 'resources/assets/fonts'),
     '@images': path.resolve(__dirname, 'public/images'),
-    'layzr': resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
-    'ziggy': resolvePath('resources/assets/js/ziggy.js'),
-    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist'),
+    layzr: resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
+    ziggy: resolvePath('resources/assets/js/ziggy.js'),
+    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/index.es.js'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
   modules: [

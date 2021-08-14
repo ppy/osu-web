@@ -24,10 +24,12 @@ class BeatmapsetQueryParserTest extends TestCase
         return [
             // basic options
             ['stars=1', ['keywords' => null, 'options' => ['stars' => ['gte' => 0.995, 'lte' => 1.005]]]],
+            ['star=1', ['keywords' => null, 'options' => ['stars' => ['gte' => 0.995, 'lte' => 1.005]]]],
             ['ar=2', ['keywords' => null, 'options' => ['ar' => ['gte' => 1.95, 'lte' => 2.05]]]],
             ['dr=3', ['keywords' => null, 'options' => ['dr' => ['gte' => 2.95, 'lte' => 3.05]]]],
             ['hp<4', ['keywords' => null, 'options' => ['dr' => ['lte' => 3.95]]]],
             ['cs>5', ['keywords' => null, 'options' => ['cs' => ['gte' => 5.05]]]],
+            ['od>=9', ['keywords' => null, 'options' => ['od' => ['gte' => 8.95]]]],
             ['bpm<=6', ['keywords' => null, 'options' => ['bpm' => ['lte' => 6.005]]]],
             ['length<70000ms', ['keywords' => null, 'options' => ['length' => ['lte' => 69.9995]]]],
             ['length>=70', ['keywords' => null, 'options' => ['length' => ['gte' => 69.5]]]],
@@ -77,6 +79,7 @@ class BeatmapsetQueryParserTest extends TestCase
             ['ar>=9 difficult', ['keywords' => 'difficult', 'options' => ['ar' => ['gte' => 8.95]]]],
             ['dr>2 quite specific dr<:6', ['keywords' => 'quite specific', 'options' => ['dr' => ['gte' => 2.05, 'lte' => 6.05]]]],
             ['hp>2 quite specific hp<=6', ['keywords' => 'quite specific', 'options' => ['dr' => ['gte' => 2.05, 'lte' => 6.05]]]],
+            ['od>4 easy od<8', ['keywords' => 'easy', 'options' => ['od' => ['gte' => 4.05, 'lte' => 7.95]]]],
             ['bpm>:200 gotta go fast', ['keywords' => 'gotta go fast', 'options' => ['bpm' => ['gte' => 199.995]]]],
             ['length=6ms time', ['keywords' => 'time', 'options' => ['length' => ['gte' => (6 / 1000 - 1 / 2000), 'lte' => (6 / 1000 + 1 / 2000)]]]],
             ['length=23s time', ['keywords' => 'time', 'options' => ['length' => ['gte' => 22.5, 'lte' => 23.5]]]],

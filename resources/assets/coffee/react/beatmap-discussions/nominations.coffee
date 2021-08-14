@@ -2,11 +2,16 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { BigButton } from 'big-button'
+import { Modal } from 'modal'
+import OsuUrlHelper from 'osu-url-helper'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
+import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
+import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-modal'
 import { Nominator } from 'beatmap-discussions/nominator'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { pageChange } from 'utils/page-change'
 
 el = React.createElement
 
@@ -18,10 +23,13 @@ export class Nominations extends React.PureComponent
     super props
 
     @xhr = {}
+    @state =
+      changeOwnerModal: false
+      loveBeatmapModal: false
 
 
   componentDidMount: =>
-    osu.pageChange()
+    pageChange()
 
 
   componentWillUnmount: =>
@@ -30,11 +38,13 @@ export class Nominations extends React.PureComponent
 
 
   componentDidUpdate: =>
-    osu.pageChange()
+    pageChange()
 
 
   render: =>
     div className: bn,
+      @renderChangeOwnerModal()
+      @renderLoveBeatmapModal()
       div className: "#{bn}__items #{bn}__items--messages",
         div className: "#{bn}__item", @statusMessage()
         div className: "#{bn}__item", @hypeBar()
@@ -60,6 +70,7 @@ export class Nominations extends React.PureComponent
           div className: "#{bn}__item", @loveButton()
           div className: "#{bn}__item", @removeFromLovedButton()
           div className: "#{bn}__item", @deleteButton()
+          div className: "#{bn}__item", @changeOwnerButton()
 
 
   renderLights: (lightsOn, lightsTotal) ->
@@ -157,23 +168,6 @@ export class Nominations extends React.PureComponent
     params = method: 'POST'
 
     @xhr.discussionLock = $.ajax(url, params)
-      .done (response) =>
-        $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
-      .always LoadingOverlay.hide
-
-
-  love: =>
-    return unless confirm(osu.trans('beatmaps.nominations.love_confirm'))
-
-    LoadingOverlay.show()
-
-    @xhr.love?.abort()
-
-    url = laroute.route('beatmapsets.love', beatmapset: @props.beatmapset.id)
-    params = method: 'PUT'
-
-    @xhr.love = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
@@ -312,7 +306,7 @@ export class Nominations extends React.PureComponent
             ':date': date
             ':position': @props.beatmapset.nominations.ranking_queue_position
             ':queue': a
-              href: laroute.route('wiki.show', path: 'Beatmap_ranking_procedure/Ranking_queue', locale: currentLocale)
+              href: OsuUrlHelper.wikiUrl('Beatmap_ranking_procedure/Ranking_queue')
               key: 'queue'
               target: '_blank'
               osu.trans 'beatmaps.nominations.rank_estimate.queue'
@@ -480,7 +474,7 @@ export class Nominations extends React.PureComponent
       icon: 'fas fa-heart'
       modifiers: ['pink']
       props:
-        onClick: @love
+        onClick: @handleLoveBeatmapModal
 
 
   removeFromLovedButton: =>
@@ -503,3 +497,39 @@ export class Nominations extends React.PureComponent
       modifiers: ['danger']
       props:
         onClick: @delete
+
+
+  changeOwnerButton: =>
+    return null unless @props.beatmapset.current_user_attributes?.can_beatmap_update_owner
+
+    el BigButton,
+      text: osu.trans 'beatmap_discussions.owner_editor.button'
+      icon: 'fas fa-pen'
+      props:
+        onClick: @handleChangeOwnerClick
+
+
+  handleChangeOwnerClick: =>
+    @setState changeOwnerModal: !@state.changeOwnerModal
+
+
+  handleLoveBeatmapModal: =>
+    @setState loveBeatmapModal: !@state.loveBeatmapModal
+
+
+  renderChangeOwnerModal: =>
+    return if !@state.changeOwnerModal
+
+    el Modal, visible: true,
+      el BeatmapsOwnerEditor,
+        beatmapset: @props.beatmapset,
+        users: @props.users
+        onClose: @handleChangeOwnerClick
+
+  renderLoveBeatmapModal: =>
+    return if !@state.loveBeatmapModal
+
+    el Modal, visible: true, onClose: @handleLoveBeatmapModal,
+      el LoveBeatmapModal,
+        beatmapset: @props.beatmapset
+        onClose: @handleLoveBeatmapModal

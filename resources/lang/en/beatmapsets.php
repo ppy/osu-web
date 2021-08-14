@@ -36,7 +36,7 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'A hybrid beatmapset requires you to select at least one playmode to nominate for.',
+        'hybrid_requires_modes' => 'A hybrid beatmap requires you to select at least one playmode to nominate for.',
         'incorrect_mode' => 'You do not have permission to nominate for mode: :mode',
         'full_bn_required' => 'You must be a full nominator to perform this qualifying nomination.',
         'too_many' => 'Nomination requirement already fulfilled.',
@@ -58,11 +58,11 @@ return [
 
         'details' => [
             'by_artist' => 'by :artist',
-            'favourite' => 'Favourite this beatmapset',
+            'favourite' => 'Favourite this beatmap',
             'favourite_login' => 'Sign in to favourite this beatmap',
             'logged-out' => 'You need to sign in before downloading any beatmaps!',
             'mapped_by' => 'mapped by :mapper',
-            'unfavourite' => 'Unfavourite this beatmapset',
+            'unfavourite' => 'Unfavourite this beatmap',
             'updated_timeago' => 'last updated :timeago',
 
             'download' => [
@@ -146,7 +146,7 @@ return [
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
-            'supporter-only' => 'You need to be an osu!supporter to access the friend and country rankings!',
+            'supporter-only' => 'You need to be an osu!supporter to access the friend, country, or mod-specific rankings!',
             'title' => 'Scoreboard',
 
             'headers' => [
@@ -164,7 +164,7 @@ return [
 
             'no_scores' => [
                 'country' => 'No one from your country has set a score on this map yet!',
-                'friend' => 'None of your friends has set a score on this map yet!',
+                'friend' => 'None of your friends have set a score on this map yet!',
                 'global' => 'No scores yet. Maybe you should try setting some?',
                 'loading' => 'Loading scores...',
                 'unranked' => 'Unranked beatmap.',

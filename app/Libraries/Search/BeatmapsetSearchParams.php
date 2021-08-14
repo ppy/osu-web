@@ -13,6 +13,8 @@ class BeatmapsetSearchParams extends SearchParams
     const PLAYED_STATES = ['played', 'unplayed'];
     const STATUSES_NO_CACHE = ['favourites', 'mine'];
 
+    public ?array $accuracy = null;
+
     /** @var array|null */
     public $ar;
 
@@ -111,13 +113,12 @@ class BeatmapsetSearchParams extends SearchParams
     /**
      * {@inheritdoc}
      */
-    public function getCacheKey(): string
+    public function getCacheKeyVars(): array
     {
-        $vars = get_object_vars($this);
+        $vars = parent::getCacheKeyVars();
         unset($vars['user']);
-        ksort($vars);
 
-        return 'beatmapset-search:'.json_encode($vars);
+        return $vars;
     }
 
     /**

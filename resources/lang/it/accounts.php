@@ -16,7 +16,7 @@ return [
 
         'email' => [
             'current' => 'email attuale',
-            'new' => 'nuova e-mail',
+            'new' => 'nuova email',
             'new_confirmation' => 'conferma email',
             'title' => 'Email',
         ],
@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'opzioni di notifica',
+            'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'modding delle beatmap',
             'channel_message' => 'messaggi privati',
             'comment_new' => 'nuovi commenti',

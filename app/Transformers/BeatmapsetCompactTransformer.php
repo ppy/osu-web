@@ -111,6 +111,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $hypeValidation = $beatmapset->validateHypeBy($currentUser);
 
         return $this->primitive([
+            'can_beatmap_update_owner' => priv_check('BeatmapUpdateOwner', $beatmapset)->can(),
             'can_delete' => !$beatmapset->isScoreable() && priv_check('BeatmapsetDelete', $beatmapset)->can(),
             'can_edit_metadata' => priv_check('BeatmapsetMetadataEdit', $beatmapset)->can(),
             'can_hype' => $hypeValidation['result'],
@@ -176,7 +177,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
                 $result['disqualification'] = json_item($disqualificationEvent, 'BeatmapsetEvent');
             }
             if ($currentUser !== null) {
-                $result['nominated'] = $beatmapset->nominationsSinceReset()->where('user_id', $currentUser->user_id)->exists();
+                $result['nominated'] = $beatmapset->beatmapsetNominations()->current()->where('user_id', $currentUser->getKey())->exists();
             }
         } elseif ($beatmapset->isQualified()) {
             $queueStatus = $beatmapset->rankingQueueStatus();
@@ -211,7 +212,8 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function includeRelatedUsers(Beatmapset $beatmapset)
     {
-        $userIds = [$beatmapset->user_id];
+        $userIds = $beatmapset->allBeatmaps->pluck('user_id')->toArray();
+        $userIds[] = $beatmapset->user_id;
 
         foreach ($beatmapset->beatmapDiscussions as $discussion) {
             if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {

@@ -44,9 +44,9 @@ class ChatController extends Controller
      *   Note that this returns messages for all channels the user has joined.
      * </aside>
      *
-     * @queryParam since required The `message_id` of the last message to retrieve messages since
-     * @queryParam channel_id If provided, will only return messages for the given channel
-     * @queryParam limit number of messages to return (max of 50)
+     * @queryParam since integer required The `message_id` of the last message to retrieve messages since
+     * @queryParam channel_id integer If provided, will only return messages for the given channel
+     * @queryParam limit integer number of messages to return (max of 50)
      *
      * @response {
      *   "presence": [

@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approuvé.',
+        'beatmap_owner_change' => 'Propriétaire de la difficulté :beatmap changé par :new_user.',
         'discussion_delete' => 'Un modérateur a supprimé la discussion :discussion.',
         'discussion_lock' => 'La discussion pour cette beatmap a été désactivée. (:text)',
         'discussion_post_delete' => 'Un modérateur a supprimé le post de la discussion :discussion.',
@@ -27,6 +28,8 @@ return [
         'nominate' => 'Nominée par :user.',
         'nominate_modes' => 'Nominée par :user (:modes).',
         'nomination_reset' => 'Le nouveau problème :discussion (:text) a déclenché une réinitialisation de la nomination.',
+        'nomination_reset_received' => 'La nomination de :user a été réinitialisée par :source_user (:text)',
+        'nomination_reset_received_profile' => 'La nomination a été réinitialisée par :user (:text)',
         'qualify' => 'Cette beatmap a atteint le nombre requis de nominations et a été qualifiée.',
         'rank' => 'Classée.',
         'remove_from_loved' => 'Supprimé des Loved par :user. (:text)',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Approbation',
+        'beatmap_owner_change' => 'Changement du propriétaire de la difficulté',
         'discussion_delete' => 'Suppression de la discussion',
         'discussion_post_delete' => 'Suppression des réponses aux discussions',
         'discussion_post_restore' => 'Restauration des réponses aux discussions',
@@ -71,6 +75,7 @@ return [
         'love' => 'Aimé',
         'nominate' => 'Nomination',
         'nomination_reset' => 'Réinitialisation de la nomination',
+        'nomination_reset_received' => 'La nomination a été réinitialisée',
         'nsfw_toggle' => 'Marque explicite',
         'qualify' => 'Qualification',
         'rank' => 'Classement',

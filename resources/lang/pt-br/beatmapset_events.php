@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Aprovado.',
+        'beatmap_owner_change' => 'Dono(a) da dificuldade :beatmap mudado(a) para :new_user.',
         'discussion_delete' => 'Moderador excluiu a discussão :discussion.',
         'discussion_lock' => 'A discussão para este beatmap foi desabilitada. (:text)',
         'discussion_post_delete' => 'Um moderador excluiu a publicação da discussão :discussion.',
@@ -27,6 +28,8 @@ return [
         'nominate' => 'Nomeado por :user.',
         'nominate_modes' => 'Nomeado por :user (:modes).',
         'nomination_reset' => 'Novo problema :discussion reiniciou a contagem de nomeação.',
+        'nomination_reset_received' => 'Nomeação por :user foi redefinida por :source_user (:text)',
+        'nomination_reset_received_profile' => 'A nomeação foi redefinida por :user (:text)',
         'qualify' => 'Este beatmap alcançou o número de nomeações necessárias e se tornou qualificado.',
         'rank' => 'Ranqueado.',
         'remove_from_loved' => 'Removido dos Loved por :user. (:text)',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Aprovação',
+        'beatmap_owner_change' => 'Mudar dono(a) da dificuldade',
         'discussion_delete' => 'Exclusão de Discussão',
         'discussion_post_delete' => 'Exclusão de respostas da discussão',
         'discussion_post_restore' => 'Restauração de respostas da discussão',
@@ -70,7 +74,8 @@ return [
         'language_edit' => 'Edição de língua',
         'love' => 'Love',
         'nominate' => 'Nomeação',
-        'nomination_reset' => 'Redefinição de Nomeação',
+        'nomination_reset' => 'Redefinição de nomeação',
+        'nomination_reset_received' => 'Redefinição de nomeação recebida',
         'nsfw_toggle' => 'Marcação explícita',
         'qualify' => 'Qualificações',
         'rank' => 'Classificação',

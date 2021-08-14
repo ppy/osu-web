@@ -1,8 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Fade from 'fade';
 import { route } from 'laroute';
+import core from 'osu-core-singleton';
+import { fadeIn, fadeOut, fadeToggle } from 'utils/fade';
 import { createClickCallback } from 'utils/html';
 
 interface ReissueCodeJson {
@@ -148,7 +149,7 @@ export default class UserVerification {
   private reposition = () => {
     if (!this.isActive() || this.modal == null) return;
 
-    if (osu.isMobile()) {
+    if (core.windowSize.isMobile) {
       this.float(true, this.modal);
     } else {
       const referenceBottom = this.reference?.getBoundingClientRect().bottom ?? 0;
@@ -166,7 +167,7 @@ export default class UserVerification {
     if (message == null) return;
 
     if (text == null || text.length === 0) {
-      Fade.out(message);
+      fadeOut(message);
       return;
     }
 
@@ -176,8 +177,8 @@ export default class UserVerification {
     if (messageText == null || spinner == null) return;
 
     messageText.textContent = text;
-    Fade.toggle(spinner, withSpinner);
-    Fade.in(message);
+    fadeToggle(spinner, withSpinner);
+    fadeIn(message);
   };
 
   private setModal = () => {

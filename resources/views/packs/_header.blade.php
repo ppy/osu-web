@@ -5,7 +5,7 @@
 @php
     $links = [
         [
-            'title' => trans('beatmappacks.index.nav_title'),
+            'title' => osu_trans('beatmappacks.index.nav_title'),
             'url' => route('packs.index'),
         ],
     ];
@@ -28,12 +28,12 @@
     <div class="beatmap-packs-header">
         @php
             $scaryTexts = [
-                tag('span', ['class' => 'beatmap-packs-header__scary'], trans('beatmappacks.index.blurb.instruction.scary')),
-                tag('span', ['class' => 'beatmap-packs-header__scary'], trans('beatmappacks.index.blurb.note.scary')),
+                tag('span', ['class' => 'beatmap-packs-header__scary'], osu_trans('beatmappacks.index.blurb.instruction.scary')),
+                tag('span', ['class' => 'beatmap-packs-header__scary'], osu_trans('beatmappacks.index.blurb.note.scary')),
             ];
         @endphp
-        <p class="beatmap-packs-header__important">{{ trans('beatmappacks.index.blurb.important') }}</p>
-        <p>{!! trans('beatmappacks.index.blurb.instruction._', ['scary' => $scaryTexts[0]]) !!}</p>
-        <p>{!! trans('beatmappacks.index.blurb.note._', ['scary' => $scaryTexts[1]]) !!}</p>
+        <p class="beatmap-packs-header__important">{{ osu_trans('beatmappacks.index.blurb.important') }}</p>
+        <p>{!! osu_trans('beatmappacks.index.blurb.instruction._', ['scary' => $scaryTexts[0]]) !!}</p>
+        <p>{!! osu_trans('beatmappacks.index.blurb.note._', ['scary' => $scaryTexts[1]]) !!}</p>
     </div>
 </div>

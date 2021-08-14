@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'видалено',
+    'deleted_by' => 'видалено :user :timeago',
+    'deleted_by_system' => 'система',
     'deleted_count' => ':count_delimited коментар видалено|:count_delimited коментарів видалено',
     'edited' => ':user відредагував :timeago',
     'pinned' => 'закріплено',

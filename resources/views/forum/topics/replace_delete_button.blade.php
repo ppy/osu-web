@@ -30,7 +30,7 @@ Timeout.set(0, function () {
                 'type' => $type,
             ])->render()) !!});
         @endforeach
-        osu.pageChange();
+        _exported.pageChange();
     @endif
 
     window.forum.setTotalPosts(window.forum.totalPosts() + {{ $countDifference }});

@@ -56,7 +56,7 @@ $factory->define(User::class, function (Faker\Generator $faker) {
     ];
 });
 
-foreach (['admin', 'bng', 'bot', 'gmt', 'nat'] as $identifier) {
+foreach (['admin', 'bng', 'bng_limited', 'bot', 'gmt', 'nat'] as $identifier) {
     $attribs = ['group_id' => app('groups')->byIdentifier($identifier)->getKey()];
 
     $factory->state(User::class, $identifier, function () use ($attribs) {

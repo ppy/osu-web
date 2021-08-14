@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => 'Gast moeilijkheidsgraad',
+                'beatmap_owner_change' => 'Je hebt nu de moeilijkheid ":beatmap" voor beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Je bent nu eigenaar van de moeilijkheidsgraad ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Beatmap discussies',
                 'beatmapset_discussion_lock' => 'Beatmap ":title" is vergrendeld voor discussie.',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Je bent nu gast van beatmap ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'De discussie op ":title" is vergrendeld',
                 'beatmapset_discussion_post_new' => 'De discussie over ":title" heeft nieuwe updates',

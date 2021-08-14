@@ -117,7 +117,7 @@ return [
             '_' => '表现',
         ],
         'store_controller' => [
-            '_' => 'osu! 商店',
+            '_' => '商店',
         ],
         'tournaments_controller' => [
             '_' => '比赛',
@@ -127,7 +127,7 @@ return [
             'disabled' => '通知',
         ],
         'wiki_controller' => [
-            '_' => '知识库',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -136,11 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu! 商店',
+        '_' => '商店',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => '摸图者信息',
+        ],
+        'multiplayer_controller' => [
+            '_' => '多人游戏历史',
         ],
     ],
 ];

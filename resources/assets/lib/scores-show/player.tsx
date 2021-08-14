@@ -46,14 +46,8 @@ export default function Player(props: Props) {
         <div className='score-player__rank score-player__rank--label'>
           {osu.trans('scores.show.player.rank.global')}
         </div>
-        <div className='score-player__rank score-player__rank--label'>
-          {osu.trans('scores.show.player.rank.country')}
-        </div>
         <div className='score-player__rank score-player__rank--value'>
           {props.score.rank_global == null ? '-' : `#${osu.formatNumber(props.score.rank_global)}`}
-        </div>
-        <div className='score-player__rank score-player__rank--value'>
-          {props.score.rank_country == null ? '-' : `#${osu.formatNumber(props.score.rank_country)}`}
         </div>
       </div>
     </div>

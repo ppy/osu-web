@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => 'Bugg fixar och mindre förbättringar.',
+    'generic' => 'Buggfixar och mindre förbättringar',
 
     'build' => [
         'title' => 'förändringar i :version',
@@ -20,7 +20,7 @@ return [
 
     'index' => [
         'page_title' => [
-            '_' => 'ändringsloggs lista',
+            '_' => 'ändringsloggslista',
             '_from' => 'förändringar sedan :from',
             '_from_to' => 'ändringar mellan :from och :to',
             '_stream' => 'ändringar i :stream',
@@ -34,7 +34,7 @@ return [
     'support' => [
         'heading' => 'Älskar du den här uppdateringen?',
         'text_1' => 'Stöd ytterligare utveckling av osu! och :link idag!',
-        'text_1_link' => 'bli en supporter',
+        'text_1_link' => 'bli en osu!supporter',
         'text_2' => 'Du kommer inte bara hjälpa till med att skynda på utvecklingen, du får extra funktioner och anpassningar också!',
     ],
 ];

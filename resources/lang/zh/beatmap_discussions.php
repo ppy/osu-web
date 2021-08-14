@@ -58,6 +58,13 @@ return [
         'unsaved' => '此审阅中有 :count',
     ],
 
+    'owner_editor' => [
+        'button' => '难度作者',
+        'reset_confirm' => '重置此难度的作者？',
+        'user' => '作者/拥有者',
+        'version' => '难度',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => '登录以回复',
@@ -74,6 +81,7 @@ return [
             'external_references' => '审阅包含不属于此审阅的 issues 的引用',
             'invalid_block_type' => '板块类型无效',
             'invalid_document' => '审阅无效',
+            'invalid_discussion_type' => '讨论类型无效',
             'minimum_issues' => '审阅时必须指出最少 :count 个问题',
             'missing_text' => '该版块缺少文本。',
             'too_many_blocks' => '审阅只能包含 :count 个段落或问题',

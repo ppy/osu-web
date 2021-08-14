@@ -11,24 +11,24 @@
 ]])
     @slot('contentAppend')
         <div class="download-page-header">
-            <span class="download-page-header__tagline">{!! trans('home.download.tagline') !!}</span>
+            <span class="download-page-header__tagline">{!! osu_trans('home.download.tagline') !!}</span>
 
             <div class="download-page-header__icon">
                 <i class="fas fa-download" aria-hidden="true"></i>
             </div>
 
             <a class="btn-osu-big btn-osu-big--download-page" href="{{ config('osu.urls.installer') }}">
-                <span class="btn-osu-big__text-top">{{ trans('home.download.action') }}</span>
-                <span class="btn-osu-big__text-bottom">{{ trans('home.download.os.windows') }}</span>
+                <span class="btn-osu-big__text-top">{{ osu_trans('home.download.action') }}</span>
+                <span class="btn-osu-big__text-bottom">{{ osu_trans('home.download.os.windows') }}</span>
             </a>
 
             <p class="download-page-header__text">
                 <a class="download-page-header__extra-link" href="{{ config('osu.urls.installer-mirror') }}">
-                    {{ trans('home.download.mirror') }}
+                    {{ osu_trans('home.download.mirror') }}
                 </a>
                 &middot;
                 <a class="download-page-header__extra-link" href="{{ config('osu.urls.osx') }}">
-                    {{ trans('home.download.macos-fallback') }}
+                    {{ osu_trans('home.download.macos-fallback') }}
                 </a>
             </p>
         </div>
@@ -39,32 +39,32 @@
         <div class="download-page__step">
             <div class="download-page__text download-page__text--title">
                 <span class="download-page__step-number">1</span>
-                {{ trans("home.download.steps.download.title") }}
+                {{ osu_trans("home.download.steps.download.title") }}
             </div>
             <div class="download-page__text download-page__text--description">
-                {{ trans("home.download.steps.download.description") }}
+                {{ osu_trans("home.download.steps.download.description") }}
             </div>
         </div>
         <div class="download-page__step">
             <div class="download-page__text download-page__text--title">
                 <span class="download-page__step-number">2</span>
-                {{ trans('home.download.steps.register.title') }}
+                {{ osu_trans('home.download.steps.register.title') }}
             </div>
             <div class="download-page__text download-page__text--description">
-                {{ trans('home.download.steps.register.description') }}
+                {{ osu_trans('home.download.steps.register.description') }}
             </div>
         </div>
         <div class="download-page__step">
             <div class="download-page__text download-page__text--title">
                 <span class="download-page__step-number">3</span>
-                {{ trans("home.download.steps.beatmaps.title") }}
+                {{ osu_trans("home.download.steps.beatmaps.title") }}
             </div>
             <div class="download-page__text download-page__text--description">
-                {!! trans('home.download.steps.beatmaps.description._', [
+                {!! osu_trans('home.download.steps.beatmaps.description._', [
                     'browse' => tag(
                         'a',
                         ['href' => route('beatmapsets.index')],
-                        trans('home.download.steps.beatmaps.description.browse')
+                        osu_trans('home.download.steps.beatmaps.description.browse')
                     )
                 ]) !!}
             </div>
@@ -72,15 +72,15 @@
 
         @if (config('services.enchant.id') !== null)
             <div class="download-page__help">
-                {!! trans('home.download.help._', [
+                {!! osu_trans('home.download.help._', [
                     'support_button' => tag('a', [
                         'class' => 'js-enchant--show',
                         'role' => 'button',
                         'href' => '#',
-                    ], trans('home.download.help.support_button')),
+                    ], osu_trans('home.download.help.support_button')),
                     'help_forum_link' => tag('a', [
                         'href' => route('forum.forums.show', ['forum' => config('osu.forum.help_forum_id')]),
-                    ], trans('home.download.help.help_forum_link')),
+                    ], osu_trans('home.download.help.help_forum_link')),
                 ]) !!}
             </div>
 
@@ -92,7 +92,7 @@
 <div class="osu-page osu-page--download">
     <div class="download-page-video">
         <div class="download-page-video__title">
-            {{ trans('home.download.video-guide') }}
+            {{ osu_trans('home.download.video-guide') }}
         </div>
 
         <div class="download-page-video__embed">

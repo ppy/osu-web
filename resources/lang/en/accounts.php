@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'delivery options',
+            'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private chat messages',
             'comment_new' => 'new comments',

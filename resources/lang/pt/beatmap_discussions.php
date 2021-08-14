@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count nesta revisão',
     ],
 
+    'owner_editor' => [
+        'button' => 'Dono da Dificuldade',
+        'reset_confirm' => 'Redefinir o proprietário para esta dificuldade?',
+        'user' => 'Dono',
+        'version' => 'Dificuldade',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Inicia sessão para responder',
@@ -74,6 +81,7 @@ return [
             'external_references' => 'a revisão contém referências a problemas que não pertencem a esta revisão',
             'invalid_block_type' => 'tipo de bloco inválido',
             'invalid_document' => 'análise inválida',
+            'invalid_discussion_type' => 'tipo de discussão inválido',
             'minimum_issues' => 'a revisão deve conter um mínimo de :count problema|a revisão deve conter um mínimo de :count problemas',
             'missing_text' => 'o bloco tem texto em falta',
             'too_many_blocks' => 'as revisões só podem conter :count parágrafo/problema|as revisões só podem conter até :count parágrafos/problemas',

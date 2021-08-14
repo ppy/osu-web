@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => 'Guest difficulty',
+                'beatmap_owner_change' => 'Anda telah terdaftar sebagai pembuat tingkat kesulitan ":beatmap" pada beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Anda telah terdaftar sebagai pemilik dari tingkat kesulitan ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Laman diskusi beatmap',
                 'beatmapset_discussion_lock' => 'Diskusi untuk beatmap ":title" telah ditutup.',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Anda telah terdaftar sebagai pembuat guest difficulty pada beatmap ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Topik diskusi ":title" telah dikunci',
                 'beatmapset_discussion_post_new' => 'Terdapat pembaruan baru pada topik diskusi ":title"',

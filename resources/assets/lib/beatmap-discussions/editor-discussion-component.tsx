@@ -9,6 +9,7 @@ import * as React from 'react';
 import { Element as SlateElement, Path, Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
+import { classWithModifiers } from 'utils/css';
 import { DraftsContext } from './drafts-context';
 import EditorBeatmapSelector from './editor-beatmap-selector';
 import EditorIssueTypeSelector from './editor-issue-type-selector';
@@ -44,7 +45,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   componentDidMount = () => {
     // reset timestamp to null on clone
     if (this.editable()) {
-      Transforms.setNodes(this.context, {timestamp: undefined}, {at: this.path()});
+      Transforms.setNodes(this.context, { timestamp: undefined }, { at: this.path() });
     }
   };
 
@@ -58,7 +59,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
     if (this.props.element.beatmapId) {
       const content = this.props.element.children[0].text as string;
-      const matches = content.match(BeatmapDiscussionHelper.TIMESTAMP_REGEX);
+      const matches = BeatmapDiscussionHelper.TIMESTAMP_REGEX.exec(content);
       let timestamp: string | undefined;
 
       // only extract timestamp if it occurs at the start of the issue
@@ -70,9 +71,9 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         purgeCache = true;
       }
 
-      Transforms.setNodes(this.context, {timestamp}, {at: path});
+      Transforms.setNodes(this.context, { timestamp }, { at: path });
     } else {
-      Transforms.setNodes(this.context, {timestamp: undefined}, {at: path});
+      Transforms.setNodes(this.context, { timestamp: undefined }, { at: path });
       purgeCache = true;
     }
 
@@ -128,7 +129,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   delete = () => {
     // Timeout is used to let Slate handle the click event before the node is removed - otherwise a "Cannot find a descendant at path" error gets thrown.
-    window.setTimeout(() => Transforms.delete(this.context, {at: this.path()}), 0);
+    window.setTimeout(() => Transforms.delete(this.context, { at: this.path() }), 0);
   };
 
   destroyTooltip = () => {
@@ -216,7 +217,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         });
 
       if (nearbyUnsaved.length > 1) {
-        timestamps.push(osu.trans('beatmap_discussions.nearby_posts.unsaved', {count: nearbyUnsaved.length - 1}));
+        timestamps.push(osu.trans('beatmap_discussions.nearby_posts.unsaved', { count: nearbyUnsaved.length - 1 }));
       }
 
       const timestampsString = osu.transArray(timestamps);
@@ -289,7 +290,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
             contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
             title={osu.trans('beatmaps.discussions.review.embed.unsaved')}
           >
-            <i className='fas fa-pencil-alt'/>
+            <i className='fas fa-pencil-alt' />
           </div>
         )
         : null;
@@ -301,14 +302,14 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         suppressContentEditableWarning
         {...this.props.attributes}
       >
-        <div className={osu.classWithModifiers(this.bn, classMods)}>
+        <div className={classWithModifiers(this.bn, classMods)}>
           <div className={`${this.bn}__content`}>
             <div
               className={`${this.bn}__selectors`}
               contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
             >
-              <EditorBeatmapSelector {...this.props} disabled={this.props.readOnly || !canEdit}/>
-              <EditorIssueTypeSelector {...this.props} disabled={this.props.readOnly || !canEdit}/>
+              <EditorBeatmapSelector {...this.props} disabled={this.props.readOnly || !canEdit} />
+              <EditorIssueTypeSelector {...this.props} disabled={this.props.readOnly || !canEdit} />
               <div
                 className={`${this.bn}__timestamp`}
                 contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense

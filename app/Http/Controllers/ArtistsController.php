@@ -14,7 +14,7 @@ class ArtistsController extends Controller
 {
     public function index()
     {
-        $artists = Artist::with('label')->withCount('tracks')->orderBy('name', 'asc');
+        $artists = Artist::with('label')->withMax('tracks', 'created_at')->withCount('tracks')->orderBy('name', 'asc');
         $user = Auth::user();
 
         if ($user === null || !$user->isAdmin()) {
@@ -61,7 +61,7 @@ class ArtistsController extends Controller
 
         if ($artist->user_id) {
             $links[] = [
-                'title' => trans('artist.links.osu'),
+                'title' => osu_trans('artist.links.osu'),
                 'url' => route('users.show', $artist->user_id),
                 'icon' => 'fas fa-user',
                 'class' => 'osu',
@@ -79,7 +79,7 @@ class ArtistsController extends Controller
 
         if ($artist->website) {
             $links[] = [
-                'title' => trans('artist.links.site'),
+                'title' => osu_trans('artist.links.site'),
                 'url' => $artist->website,
                 'icon' => 'fas fa-link',
                 'class' => 'website',

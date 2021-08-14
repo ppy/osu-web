@@ -28,6 +28,18 @@
       color: @contest-selected-colour;
     }
 
+    &--vote-progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      cursor: default;
+
+      && {
+        background-image: none;
+      }
+    }
+
     // last so it overrides everything else
     &--disabled {
       cursor: default;

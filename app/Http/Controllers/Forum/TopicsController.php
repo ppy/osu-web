@@ -230,7 +230,7 @@ class TopicsController extends Controller
      *
      * [ForumPost](#forum-post) with `body` included.
      *
-     * @urlParam topic required Id of the topic to be replied to. Example: 1
+     * @urlParam topic integer required Id of the topic to be replied to. Example: 1
      *
      * @bodyParam body string required Content of the reply post. Example: hello
      */
@@ -272,7 +272,7 @@ class TopicsController extends Controller
      * posts  | [ForumPost](#forum-post)[] | Includes `body`.
      * topic  | [ForumTopic](#forum-topic) | |
      *
-     * @urlParam topic Id of the topic. Example: 1
+     * @urlParam topic integer required Id of the topic. Example: 1
      *
      * @queryParam cursor [Cursor](#cursor) for pagination. No-example
      * @queryParam sort Post sorting option. Valid values are `id_asc` (default) and `id_desc`. No-example
@@ -513,7 +513,7 @@ class TopicsController extends Controller
      *
      * The edited [ForumTopic](#forum-topic).
      *
-     * @urlParam topic required Id of the topic. Example: 1
+     * @urlParam topic integer required Id of the topic. Example: 1
      * @bodyParam forum_topic[topic_title] string New topic title. Example: titled
      */
     public function update($id)

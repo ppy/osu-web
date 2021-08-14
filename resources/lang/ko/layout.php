@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => '모딩',
+            'multiplayer' => '멀티플레이',
             'show' => '정보',
         ],
     ],

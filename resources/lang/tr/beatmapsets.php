@@ -34,7 +34,7 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Karma bir beatmap seti, adaylık için en az bir oyun modu seçmenizi gerektirir.',
         'incorrect_mode' => ':mode modunu aday göstermek için izniniz yok.',
-        'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için tam aday gösterici olmanız gerekmektedir.',
+        'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için asil aday gösterici olmanız gerekmektedir.',
         'too_many' => 'Adaylık şartı zaten yerine getirildi.',
 
         'dialog' => [
@@ -88,10 +88,10 @@ return [
         ],
 
         'hype' => [
-            'action' => '<strong>Dereceli</strong> statüsüne erişmesi için eğer beğendiyseniz bu haritayı gazlayın.',
+            'action' => 'Eğer beğendiyseniz <strong>Dereceli</strong> statüsüne erişmesine yardımcı olmak için bu mapi gazlayın.',
 
             'current' => [
-                '_' => 'Bu harita şu an :status.',
+                '_' => 'Bu map şu anda :status.',
 
                 'status' => [
                     'pending' => 'beklemede',
@@ -159,8 +159,8 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Ülkenizde hiç kimse henüz bu haritada bir skora sahip değil!',
-                'friend' => 'Hiçbir arkadaşın henüz bu haritada bir skora sahip değil!',
+                'country' => 'Ülkenizde hiç kimse henüz bu mapte bir skora sahip değil!',
+                'friend' => 'Hiçbir arkadaşın henüz bu mapte bir skora sahip değil!',
                 'global' => 'Henüz skor yok. Biraz skor yapmaya ne dersin?',
                 'loading' => 'Skorlar yükleniyor...',
                 'unranked' => 'Derecelendirilmemiş beatmap.',

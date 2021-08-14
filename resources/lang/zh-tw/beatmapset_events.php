@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => '已批准。',
+        'beatmap_owner_change' => '難度 :beatmap 的作者已變更為 :new_user。',
         'discussion_delete' => '管理員刪除了 :discussion 。',
         'discussion_lock' => '此圖譜的討論已被禁用。（:text）',
         'discussion_post_delete' => '管理員在 :discussion 中刪除了這條回覆。',
@@ -14,7 +15,7 @@ return [
         'discussion_unlock' => '此圖譜的討論已被啟用。',
         'disqualify' => '由於 :discussion (:text) 被 :user DQ。',
         'disqualify_legacy' => '該圖譜因 :text 被 DQ',
-        'genre_edit' => '',
+        'genre_edit' => '曲風由 :old 更改為 :new。',
         'issue_reopen' => '問題 :discussion 被重新打開。',
         'issue_resolve' => '問題 :discussion 被標記為 “已解決”。',
         'kudosu_allow' => '討論 :discussion 的 kudosu 移除操作已被重置。',
@@ -27,6 +28,8 @@ return [
         'nominate' => '被 :user 提名',
         'nominate_modes' => '由 :user 提名 (:modes)。',
         'nomination_reset' => '新問題 :discussion 導致提名被重置。',
+        'nomination_reset_received' => ':source_user 重置了 :user 的提名 (:text)',
+        'nomination_reset_received_profile' => ':user 重置了提名 (:text)',
         'qualify' => '這張圖譜已經達到所需的提名數量，並已經 qualified。',
         'rank' => '進榜',
         'remove_from_loved' => '由 :user 從 Loved 中移除。(:text)',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Approval',
+        'beatmap_owner_change' => '難度作者變更',
         'discussion_delete' => '刪除討論',
         'discussion_post_delete' => '刪除討論的回覆',
         'discussion_post_restore' => '恢復已刪除的討論的回覆',
@@ -71,9 +75,10 @@ return [
         'love' => 'Love',
         'nominate' => '被提名',
         'nomination_reset' => '被取消提名',
+        'nomination_reset_received' => '收到提名重置',
         'nsfw_toggle' => '成人內容標記',
         'qualify' => 'Qualification',
         'rank' => 'Ranking',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Loved 移除',
     ],
 ];

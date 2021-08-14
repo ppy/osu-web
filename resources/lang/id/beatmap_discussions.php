@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count pada kajian ini',
     ],
 
+    'owner_editor' => [
+        'button' => 'Kepemilikan Tingkat Kesulitan',
+        'reset_confirm' => 'Atur ulang pemilik tingkat kesulitan ini?',
+        'user' => 'Pemilik',
+        'version' => 'Tingkat Kesulitan',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Masuk untuk Menanggapi',
@@ -74,6 +81,7 @@ return [
             'external_references' => 'kajian ini mengandung satu atau lebih poin yang mengacu pada isu-isu yang tidak berasal dari beatmap ini',
             'invalid_block_type' => 'tipe blok tidak sah',
             'invalid_document' => 'kajian tidak sah',
+            'invalid_discussion_type' => 'tipe diskusi tidak valid',
             'minimum_issues' => 'kajian harus tersusun atas setidaknya :count isu|kajian harus tersusun atas setidaknya :count isu',
             'missing_text' => 'tidak terdapat tulisan pada blok',
             'too_many_blocks' => 'kajian hanya dapat tersusun sepanjang maksimal :count paragraf/isu|kajian hanya dapat tersusun sepanjang maksimal :count paragraf/isu',

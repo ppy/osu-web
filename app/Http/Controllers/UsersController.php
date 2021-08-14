@@ -6,9 +6,11 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
 use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
+use App\Libraries\User\FindForProfilePage;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -71,7 +73,11 @@ class UsersController extends Controller
 
     public function card($id)
     {
-        $user = $this->lookupUser($id) ?? UserNotFound::instance();
+        try {
+            $user = FindForProfilePage::find($id, null, false);
+        } catch (UserProfilePageLookupException $e) {
+            $user = UserNotFound::instance();
+        }
 
         return json_item($user, 'UserCompact', UserCompactTransformer::CARD_INCLUDES);
     }
@@ -174,23 +180,24 @@ class UsersController extends Controller
      *
      * Returns the beatmaps of specified user.
      *
-     * | Type                |
-     * |---------------------|
-     * | favourite           |
-     * | graveyard           |
-     * | loved               |
-     * | most_played         |
-     * | ranked_and_approved |
-     * | unranked            |
+     * | Type        | Notes
+     * |------------ | -----
+     * | favourite   | |
+     * | graveyard   | |
+     * | loved       | |
+     * | most_played | |
+     * | pending     | Previously `unranked`
+     * | ranked      | Previously `ranked_and_approved`
      *
      * ---
      *
      * ### Response format
      *
-     * Array of [Beatmapset](#beatmapset).
+     * Array of [BeatmapPlaycount](#beatmapplaycount) when `type` is `most_played`;
+     * array of [Beatmapset](#beatmapset), otherwise.
      *
-     * @urlParam user required Id of the user. Example: 1
-     * @urlParam type required Beatmap type. Example: favourite
+     * @urlParam user integer required Id of the user. Example: 1
+     * @urlParam type string required Beatmap type. Example: favourite
      *
      * @queryParam limit Maximum number of results.
      * @queryParam offset Result offset for pagination. Example: 1
@@ -213,8 +220,12 @@ class UsersController extends Controller
             'graveyard' => 'graveyardBeatmapsets',
             'loved' => 'lovedBeatmapsets',
             'most_played' => 'beatmapPlaycounts',
-            'ranked_and_approved' => 'rankedAndApprovedBeatmapsets',
-            'unranked' => 'unrankedBeatmapsets',
+            'ranked' => 'rankedBeatmapsets',
+            'pending' => 'pendingBeatmapsets',
+
+            // TODO: deprecated
+            'ranked_and_approved' => 'rankedBeatmapsets',
+            'unranked' => 'pendingBeatmapsets',
         ];
 
         $page = $mapping[$type] ?? abort(404);
@@ -304,7 +315,7 @@ class UsersController extends Controller
      *
      * Array of [KudosuHistory](#kudosuhistory).
      *
-     * @urlParam user required Id of the user. Example: 1
+     * @urlParam user integer required Id of the user. Example: 1
      *
      * @queryParam limit Maximum number of results.
      * @queryParam offset Result offset for pagination. Example: 1
@@ -336,7 +347,7 @@ class UsersController extends Controller
      *
      * Array of [Event](#event).
      *
-     * @urlParam user required Id of the user. Example: 1
+     * @urlParam user integer required Id of the user. Example: 1
      *
      * @queryParam limit Maximum number of results.
      * @queryParam offset Result offset for pagination. Example: 1
@@ -376,8 +387,8 @@ class UsersController extends Controller
      * weight     | Only for type `best`.
      * user       | |
      *
-     * @urlParam user required Id of the user. Example: 1
-     * @urlParam type required Score type. Must be one of these: `best`, `firsts`, `recent`. Example: best
+     * @urlParam user integer required Id of the user. Example: 1
+     * @urlParam type string required Score type. Must be one of these: `best`, `firsts`, `recent`. Example: best
      *
      * @queryParam include_fails Only for recent scores, include scores of failed plays. Set to 1 to include them. Defaults to 0. Example: 0
      * @queryParam mode [GameMode](#gamemode) of the scores to be returned. Defaults to the specified `user`'s mode. Example: osu
@@ -433,7 +444,7 @@ class UsersController extends Controller
      *
      * See [Get User](#get-user).
      *
-     * @urlParam mode [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
+     * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
      *
      * @response "See User object section"
      */
@@ -456,35 +467,37 @@ class UsersController extends Controller
      * ### Response format
      *
      * Returns [User](#user) object.
-     * Following attributes are included in the response object when applicable.
+     * The following [optional attributes on UserCompact](#usercompact-optionalattributes) are included:
      *
-     * Attribute                            | Notes
-     * -------------------------------------|------
-     * account_history                      | |
-     * active_tournament_banner             | |
-     * badges                               | |
-     * beatmap_playcounts_count             | |
-     * favourite_beatmapset_count           | |
-     * follower_count                       | |
-     * graveyard_beatmapset_count           | |
-     * groups                               | |
-     * loved_beatmapset_count               | |
-     * monthly_playcounts                   | |
-     * page                                 | |
-     * previous_usernames                   | |
-     * rank_history                         | For specified mode.
-     * ranked_and_approved_beatmapset_count | |
-     * replays_watched_counts               | |
-     * scores_best_count                    | For specified mode.
-     * scores_first_count                   | For specified mode.
-     * scores_recent_count                  | For specified mode.
-     * statistics                           | For specified mode. Inluces `rank` and `variants` attributes.
-     * support_level                        | |
-     * unranked_beatmapset_count            | |
-     * user_achievements                    | |
+     * - account_history
+     * - active_tournament_banner
+     * - badges
+     * - beatmap_playcounts_count
+     * - favourite_beatmapset_count
+     * - follower_count
+     * - graveyard_beatmapset_count
+     * - groups
+     * - loved_beatmapset_count
+     * - mapping_follower_count
+     * - monthly_playcounts
+     * - page
+     * - pending_beatmapset_count
+     * - previous_usernames
+     * - rank_history
+     * - ranked_beatmapset_count
+     * - replays_watched_counts
+     * - scores_best_count
+     * - scores_first_count
+     * - scores_recent_count
+     * - statistics
+     * - statistics.country_rank
+     * - statistics.rank
+     * - statistics.variants
+     * - support_level
+     * - user_achievements
      *
-     * @urlParam user required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
-     * @urlParam mode [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
+     * @urlParam user integer required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
+     * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
      *
      * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found.
      *
@@ -492,19 +505,7 @@ class UsersController extends Controller
      */
     public function show($id, $mode = null)
     {
-        $user = $this->lookupUser($id, get_string(request('key')));
-
-        if ($user === null) {
-            if (is_json_request()) {
-                abort(404);
-            }
-
-            return ext_view('users.show_not_found', null, null, 404);
-        }
-
-        if (!is_api_request() && (string) $user->user_id !== (string) $id) {
-            return ujs_redirect(route('users.show', compact('user', 'mode')));
-        }
+        $user = FindForProfilePage::find($id, get_string(request('key')));
 
         $currentMode = $mode ?? $user->playmode;
 
@@ -513,22 +514,19 @@ class UsersController extends Controller
         }
 
         $userIncludes = [
+            ...UserTransformer::PROFILE_HEADER_INCLUDES,
             'account_history',
-            'active_tournament_banner',
-            'badges',
             'beatmap_playcounts_count',
             'favourite_beatmapset_count',
-            'follower_count',
             'graveyard_beatmapset_count',
-            'groups',
             'loved_beatmapset_count',
             'mapping_follower_count',
             'monthly_playcounts',
             'page',
-            'previous_usernames',
+            'pending_beatmapset_count',
             'rankHistory',
             'rank_history',
-            'ranked_and_approved_beatmapset_count',
+            'ranked_beatmapset_count',
             'replays_watched_counts',
             'scores_best_count',
             'scores_first_count',
@@ -537,9 +535,11 @@ class UsersController extends Controller
             'statistics.country_rank',
             'statistics.rank',
             'statistics.variants',
-            'support_level',
-            'unranked_beatmapset_count',
             'user_achievements',
+
+            // TODO: deprecated
+            'ranked_and_approved_beatmapset_count',
+            'unranked_beatmapset_count',
         ];
 
         if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
@@ -547,11 +547,9 @@ class UsersController extends Controller
             $userIncludes[] = 'account_history.supporting_url';
         }
 
-        $transformer = new UserTransformer();
-        $transformer->mode = $currentMode;
         $userArray = json_item(
             $user,
-            $transformer,
+            (new UserTransformer())->setMode($currentMode),
             $userIncludes
         );
 
@@ -574,10 +572,10 @@ class UsersController extends Controller
 
                 'beatmapPlaycounts' => 5,
                 'favouriteBeatmapsets' => 6,
-                'rankedAndApprovedBeatmapsets' => 6,
-                'lovedBeatmapsets' => 6,
-                'unrankedBeatmapsets' => 6,
                 'graveyardBeatmapsets' => 2,
+                'lovedBeatmapsets' => 6,
+                'pendingBeatmapsets' => 6,
+                'rankedBeatmapsets' => 6,
 
                 'recentActivity' => 5,
                 'recentlyReceivedKudosu' => 5,
@@ -625,34 +623,17 @@ class UsersController extends Controller
                 ]);
             }
 
-            return ['html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']])];
+            return ['html' => $user->userPage->bodyHTML(['modifiers' => ['profile-page']])];
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
     }
 
-    // Find matching id or username
-    // If no user is found, search for a previous username
-    // only if parameter is not a number (assume number is an id lookup).
-    private function lookupUser($id, ?string $type = null)
-    {
-        $user = User::lookupWithHistory($id, $type, true);
-
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
-            return null;
-        }
-
-        return $user;
-    }
-
     private function parsePaginationParams()
     {
-        $this->user = User::lookup(Request::route('user'), 'id', true);
-        if ($this->user === null || !priv_check('UserShow', $this->user)->can()) {
-            abort(404);
-        }
+        $this->user = FindForProfilePage::find(request()->route('user'), 'id');
 
-        $this->mode = Request::route('mode') ?? Request::input('mode') ?? $this->user->playmode;
+        $this->mode = request()->route('mode') ?? request()->input('mode') ?? $this->user->playmode;
         if (!Beatmap::isModeValid($this->mode)) {
             abort(404);
         }
@@ -669,7 +650,7 @@ class UsersController extends Controller
 
     private function sanitizedLimitParam()
     {
-        return clamp(get_int(request('limit')) ?? 5, 1, 51);
+        return clamp(get_int(request('limit')) ?? 5, 1, 100);
     }
 
     private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
@@ -705,16 +686,16 @@ class UsersController extends Controller
                     $query = $user->profileBeatmapsetsLoved()
                         ->orderBy('approved_date', 'desc');
                     break;
-                case 'rankedAndApprovedBeatmapsets':
+                case 'rankedBeatmapsets':
                     $transformer = 'Beatmapset';
                     $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsRankedAndApproved()
+                    $query = $user->profileBeatmapsetsRanked()
                         ->orderBy('approved_date', 'desc');
                     break;
-                case 'unrankedBeatmapsets':
+                case 'pendingBeatmapsets':
                     $transformer = 'Beatmapset';
                     $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsUnranked()
+                    $query = $user->profileBeatmapsetsPending()
                         ->orderBy('last_update', 'desc');
                     break;
 

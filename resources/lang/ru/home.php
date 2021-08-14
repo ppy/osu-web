@@ -23,7 +23,7 @@ return [
         'button' => 'Найти',
         'empty_result' => 'Ничего не найдено!',
         'keyword_required' => 'Требуется ключевое слово для поиска',
-        'placeholder' => 'введите для поиска',
+        'placeholder' => 'начните печатать',
         'title' => 'Поиск',
 
         'beatmapset' => [
@@ -77,7 +77,7 @@ return [
 
         'help' => [
             '_' => 'если у вас появились проблемы с запуском игры или регистрацией аккаунта, :help_forum_link или :support_button.',
-            'help_forum_link' => 'проверьте форум поддержки',
+            'help_forum_link' => 'зайдите в раздел помощь на форуме',
             'support_button' => 'свяжитесь с поддержкой',
         ],
 
@@ -124,7 +124,7 @@ return [
         'beatmaps' => [
             'new' => 'Новые рейтинговые карты',
             'popular' => 'Популярные карты',
-            'by_user' => 'от:user',
+            'by_user' => 'от :user',
         ],
         'buttons' => [
             'download' => 'Скачать osu!',

@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Tisztességtelen játék / Csalás',
+            'multiple_accounts' => 'Több fiók használata',
             'insults' => 'Engem / másokat sérteget',
             'spam' => 'Spam',
             'unwanted_content' => 'Nem megfelelő tartalom linkelése',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Szeretett Beatmap-ek',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmap-ek',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Pending Beatmap-ek',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Approved Beatmap-ek',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "Ez a felhasználó még nem rendelkezik egyel sem. ;_;",
                 'recent' => 'Legújabb',
                 'title' => 'Medálok',
+            ],
+            'multiplayer' => [
+                'title' => 'Többjátékos mód',
             ],
             'posts' => [
                 'title' => 'Bejegyzések',
@@ -402,10 +406,10 @@ return [
             'total_hits' => 'Találatok Száma',
             'total_score' => 'Összpontszám',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rankedelt & jóváhagyott beatmapek',
-            'loved_beatmapset_count' => 'Kedvelt beatmapek',
-            'unranked_beatmapset_count' => 'Függőben lévő beatmapek',
             'graveyard_beatmapset_count' => 'Eltemetett beatmapek',
+            'loved_beatmapset_count' => 'Kedvelt beatmapek',
+            'pending_beatmapset_count' => 'Függőben lévő beatmapek',
+            'ranked_beatmapset_count' => 'Rankedelt & jóváhagyott beatmapek',
         ],
     ],
 

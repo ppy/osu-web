@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Được Chấp Nhận.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderator đã xóa cuộc thảo luận :discussion.',
         'discussion_lock' => 'Chức năng bàn luận của beatmap này đã bị vô hiệu hóa. (:text)',
         'discussion_post_delete' => 'Moderator đã xóa bài viết từ cuộc thảo luận :discussion.',
@@ -27,6 +28,8 @@ return [
         'nominate' => 'Được đề cử (nominated) bởi :user.',
         'nominate_modes' => '',
         'nomination_reset' => 'Vấn đề mới :discussion đã khiến cho đề cử bị hoàn lại.',
+        'nomination_reset_received' => '',
+        'nomination_reset_received_profile' => '',
         'qualify' => 'Beatmap này đã đạt được số đề cử (nominations) cần thiết và đã qualified.',
         'rank' => 'Đã được xếp hạng (Ranked).',
         'remove_from_loved' => '',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Chấp nhận',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Xóa cuộc thảo luận',
         'discussion_post_delete' => 'Xóa trả lời của cuộc thảo luận',
         'discussion_post_restore' => 'Phục hồi trả lời của cuộc thảo luận',
@@ -71,6 +75,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Đề cử',
         'nomination_reset' => 'Đặt lại đề cử',
+        'nomination_reset_received' => '',
         'nsfw_toggle' => '',
         'qualify' => 'Qualification',
         'rank' => 'Xếp hạng',

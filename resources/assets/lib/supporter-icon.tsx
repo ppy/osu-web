@@ -3,6 +3,7 @@
 
 import { times } from 'lodash';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   level?: number;
@@ -10,7 +11,7 @@ interface Props {
 }
 
 export const SupporterIcon = (props: Props) => {
-  const className = osu.classWithModifiers('supporter-icon', props.modifiers);
+  const className = classWithModifiers('supporter-icon', props.modifiers);
 
   return (
     <span className={className} title={osu.trans('users.show.is_supporter')}>

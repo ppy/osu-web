@@ -93,6 +93,12 @@ module.exports = {
       ],
       '@typescript-eslint/naming-convention': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      // JQuery's `done`/`fail`/`always` aren't properly supported.
+      // Even if we change `done` to `then` and `fail` to `catch`, there's
+      // no replacement for `always` short of changing the rule itself
+      // or appending empty `.then().catch()`.
+      // Blindly appending `void` isn't all that useful either.
+      '@typescript-eslint/no-floating-promises': 'off',
       '@typescript-eslint/no-invalid-this': 'error',
       '@typescript-eslint/no-parameter-properties': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'warn',
@@ -123,7 +129,7 @@ module.exports = {
       '@typescript-eslint/unified-signatures': 'error',
       'dot-notation': 'off',
       'no-invalid-this': 'off',
-      'quotes': 'off',
+      quotes: 'off',
       'react-hooks/exhaustive-deps': 'error',
       'react/jsx-boolean-value': 'error',
       'react/jsx-curly-spacing': 'error',
@@ -135,7 +141,7 @@ module.exports = {
       'react/no-deprecated': 'warn',
       'react/no-unsafe': 'off',
       'react/self-closing-comp': 'error',
-      'semi': 'off',
+      semi: 'off',
     },
     settings: {
       react: {
@@ -155,11 +161,11 @@ module.exports = {
     'arrow-parens': 'error',
     'brace-style': 'error',
     'comma-dangle': ['error', 'always-multiline'],
-    'complexity': 'off',
-    'curly': ['error', 'multi-line'],
+    complexity: 'off',
+    curly: ['error', 'multi-line'],
     'dot-notation': 'error',
     'eol-last': 'error',
-    'eqeqeq': ['error', 'smart'],
+    eqeqeq: ['error', 'smart'],
     'guard-for-in': 'error',
     'id-blacklist': [
       'error',
@@ -174,7 +180,7 @@ module.exports = {
       'undefined',
     ],
     'id-match': 'error',
-    'import/order': 'error',
+    'import/order': ['error', { alphabetize: { order: 'asc' } }],
     'jsdoc/check-alignment': 'error',
     'jsdoc/check-indentation': 'error',
     'jsdoc/newline-after-description': 'error',
@@ -193,18 +199,17 @@ module.exports = {
     'no-throw-literal': 'error',
     'no-trailing-spaces': 'error',
     'no-undef-init': 'error',
-    'no-underscore-dangle': 'error',
     'no-unsafe-finally': 'error',
     'object-shorthand': 'error',
     'one-var': ['error', 'never'],
-    'quote-props': ['error', 'consistent-as-needed'],
-    'quotes': [
+    'quote-props': ['error', 'as-needed'],
+    quotes: [
       'error',
       'single',
       { avoidEscape: true },
     ],
-    'radix': 'error',
-    'semi': ['error', 'always'],
+    radix: 'error',
+    semi: ['error', 'always'],
     'sort-keys': ['error', 'asc', { caseSensitive: false }],
     'space-before-function-paren': [
       'error',

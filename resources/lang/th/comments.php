@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'ถูกลบไปแล้ว',
+    'deleted_by' => 'ถูกลบ :timeago โดย :user',
+    'deleted_by_system' => 'ระบบ',
     'deleted_count' => ':count_delimited คอมเม้นต์ที่ลบไป|:count_delimited คอมเม้นต์ที่ลบไป',
     'edited' => 'แก้ไขเมื่อ :timeago โดย :user',
     'pinned' => 'ปักหมุดแล้ว',
@@ -35,9 +37,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'ความคิดเห็น',
         'nav_title' => 'รายการ',
-        'no_comments' => '',
+        'no_comments' => 'ไม่พบความคิดเห็น...',
     ],
 
     'placeholder' => [

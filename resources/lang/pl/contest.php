@@ -27,11 +27,15 @@ return [
             'remove' => 'Cofnij głos',
             'used_up' => 'Nie masz już więcej głosów',
         ],
+
+        'progress' => [
+            '_' => 'oddano :used z :max głosów',
+        ],
     ],
     'entry' => [
         '_' => 'zgłoszenie',
         'login_required' => 'Zaloguj się, aby uczestniczyć w tym konkursie.',
-        'silenced_or_restricted' => 'Nie możesz uczestniczyć w konkursach podczas uciszenia bądź blokady konta.',
+        'silenced_or_restricted' => 'Nie możesz uczestniczyć w konkursach po tym, jak twoje konto zostało ograniczone lub uciszone.',
         'preparation' => 'Ten konkurs jest obecnie przygotowywany. Czekaj cierpliwie!',
         'drop_here' => 'Tutaj umieść swoje zgłoszenie',
         'download' => 'Pobierz plik .osz',

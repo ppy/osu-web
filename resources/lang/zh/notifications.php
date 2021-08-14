@@ -27,6 +27,14 @@ return [
         'beatmapset' => [
             '_' => '谱面',
 
+            'beatmap_owner_change' => [
+                '_' => '客串难度',
+                'beatmap_owner_change' => '您现在是:title内:beatmap难度的作者
+',
+                'beatmap_owner_change_compact' => '您现在是:beatmap难度的作者
+',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => '谱面讨论',
                 'beatmapset_discussion_lock' => '谱面 :title 已被锁定以供讨论。',
@@ -159,6 +167,11 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '您现在是:title的客串作者
+',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '谱面“:title”的讨论已被锁定',
                 'beatmapset_discussion_post_new' => '谱面“:title”的讨论有新动态',
