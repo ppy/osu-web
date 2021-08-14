@@ -2,6 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-beatmap-picker {
+  --stripe-height: 1px;
+  --stripe-height-active: 5px;
+
   display: flex;
   flex-wrap: wrap;
   width: fit-content;
@@ -18,15 +21,16 @@
 
     &:hover {
       opacity: 1;
+      --stripe-height: var(--stripe-height-active);
     }
 
     &::before {
       content: '';
       background-color: var(--stripe-colour);
       width: 100%;
-      height: 1px;
+      height: var(--stripe-height);
       position: absolute;
-      bottom: 0;
+      bottom: calc(var(--stripe-height) / -2);
       left: 0;
       border-radius: @border-radius--large;
       transition-property: height, bottom;
@@ -34,21 +38,9 @@
       transition-timing-function: ease-in-out;
     }
 
-    .full-stripe() {
-      height: 5px;
-      bottom: -2px;
-    }
-
-    &:hover::before {
-      .full-stripe();
-    }
-
     &--active {
       opacity: 1;
-
-      &::before {
-        .full-stripe();
-      }
+      --stripe-height: var(--stripe-height-active);
     }
   }
 }
