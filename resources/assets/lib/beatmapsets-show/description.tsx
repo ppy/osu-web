@@ -11,7 +11,7 @@ interface Props {
 }
 
 interface State {
-  description?: { bbcode: string; description: string };
+  description?: BeatmapsetExtendedJson['description'];
   isBusy: boolean;
   isEditing: boolean;
 }
@@ -95,7 +95,7 @@ export default class Description extends React.PureComponent<Props, State> {
         description: value,
       },
       method: 'PATCH',
-    }).done((data) => {
+    }).done((data: BeatmapsetExtendedJson) => {
       this.setState({
         description: data.description,
         isEditing: false,
