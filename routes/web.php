@@ -529,6 +529,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::group(['namespace' => 'InterOp'], function () {
         Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy']]);
         Route::post('beatmapsets/{beatmapset}/broadcast-new', 'BeatmapsetsController@broadcastNew');
+        Route::post('beatmapsets/{beatmapset}/disqualify', 'BeatmapsetsController@disqualify');
 
         Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
             Route::apiResource('bulk', 'Indexing\BulkController', ['only' => ['store']]);
