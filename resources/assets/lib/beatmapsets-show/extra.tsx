@@ -3,7 +3,6 @@
 
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import { round } from 'lodash';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
@@ -32,7 +31,7 @@ export default class Extra extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const successRate = round((this.props.beatmap.passcount / this.props.beatmap.playcount) * 100, 1);
+    const successRate = osu.formatNumber(this.props.beatmap.passcount === 0 ? 0 : (this.props.beatmap.passcount / this.props.beatmap.playcount) * 100, 2);
     const ratings = this.getRatings();
 
     return (
@@ -90,7 +89,7 @@ export default class Extra extends React.PureComponent<Props, State> {
     { negative: 0, positive: 0 },
   );
 
-  private renderBar(fill: number, fromRight = false) {
+  private renderBar(fill: number | string, fromRight = false) {
     return (
       <div className='beatmapset-bar beatmapset-bar--beatmapset-extra'>
         <div
