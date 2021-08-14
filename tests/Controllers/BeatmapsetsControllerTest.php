@@ -185,8 +185,8 @@ class BeatmapsetsControllerTest extends TestCase
             'user_id' => $owner->getKey(),
         ]);
 
-        $lastEventBeforeTry = BeatmapsetEvent::orderBy('created_at', 'desc')->first();
-        $newOffset = 25;
+        $eventCountBeforeTry = BeatmapsetEvent::count();
+        $newOffset = $beatmapset->offset + 25;
 
         $this->actingAsVerified($owner)
             ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
@@ -198,7 +198,7 @@ class BeatmapsetsControllerTest extends TestCase
         $beatmapset->refresh();
 
         $this->assertSame($newOffset, $beatmapset->offset);
-        $this->assertNotSame(BeatmapsetEvent::orderBy('created_at', 'desc')->first(), $lastEventBeforeTry);
+        $this->assertSame(BeatmapsetEvent::count() + 1, $eventCountBeforeTry);
     }
 
     public function testBeatmapsetUpdateOffsetSame()
@@ -209,7 +209,7 @@ class BeatmapsetsControllerTest extends TestCase
             'user_id' => $owner->getKey(),
         ]);
 
-        $lastEventBeforeTry = BeatmapsetEvent::orderBy('created_at', 'desc')->first();
+        $eventCountBeforeTry = BeatmapsetEvent::count();
         $oldOffset = $beatmapset->offset;
 
         $this->actingAsVerified($owner)
@@ -222,7 +222,7 @@ class BeatmapsetsControllerTest extends TestCase
         $beatmapset->refresh();
 
         $this->assertSame($oldOffset, $beatmapset->offset);
-        $this->assertSame(BeatmapsetEvent::orderBy('created_at', 'desc')->first(), $lastEventBeforeTry);
+        $this->assertSame(BeatmapsetEvent::count(), $eventCountBeforeTry);
     }
 
     public function beatmapsetStatesDataProvider()

@@ -89,12 +89,12 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
           </div>
 
           <input
-            type='text'
-            name='beatmapset[offset]'
             className='simple-form__input simple-form__input--modal'
             maxLength={6}
-            value={this.state.offset}
+            name='beatmapset[offset]'
             onChange={this.setOffset}
+            type='text'
+            value={this.state.offset}
           />
         </label>
 
@@ -152,7 +152,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
         genre_id: this.state.genreId,
         language_id: this.state.languageId,
         nsfw: this.state.nsfw,
-        offset: isNaN(Number(this.state.offset)) ? 0 : this.state.offset,
+        offset: isNaN(Number(this.state.offset)) ? undefined : this.state.offset,
       } },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJson) => $.publish('beatmapset:set', { beatmapset }))

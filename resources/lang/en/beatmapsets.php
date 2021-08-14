@@ -183,7 +183,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Circle Count',
             'count_sliders' => 'Slider Count',
-            'offset' => 'Online offset',
+            'offset' => 'Online offset: :offset',
             'user-rating' => 'User Rating',
             'rating-spread' => 'Rating Spread',
             'nominations' => 'Nominations',

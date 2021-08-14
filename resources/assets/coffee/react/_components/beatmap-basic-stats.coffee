@@ -38,7 +38,7 @@ export BeatmapBasicStats = ({beatmap, beatmapset}) ->
             hit_length: formatDuration(beatmap['hit_length'])
 
       if stat == 'bpm' && beatmapset.offset != 0
-        title += " (#{osu.trans 'beatmapsets.show.stats.offset'}: #{beatmapset.offset})"
+        title += " (#{osu.trans 'beatmapsets.show.stats.offset', offset: osu.formatNumber(beatmapset.offset)})"
 
       div
         className: "#{bn}__entry"
