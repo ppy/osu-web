@@ -24,6 +24,8 @@ interface BbcodeEditorOnChangeParams {
 }
 
 export default class Description extends React.PureComponent<Props, State> {
+  private xhr?: JQueryXHR;
+
   constructor(props: Props) {
     super(props);
 
@@ -31,6 +33,10 @@ export default class Description extends React.PureComponent<Props, State> {
       isBusy: false,
       isEditing: false,
     };
+  }
+
+  componentWillUnmount() {
+    this.xhr?.abort();
   }
 
   render() {
@@ -90,7 +96,7 @@ export default class Description extends React.PureComponent<Props, State> {
   private saveDescription = ({ event, value }: BbcodeEditorOnChangeParams) => {
     this.setState({ isBusy: true });
 
-    void $.ajax(route('beatmapsets.update', { beatmapset: this.props.beatmapset.id }), {
+    this.xhr = $.ajax(route('beatmapsets.update', { beatmapset: this.props.beatmapset.id }), {
       data: {
         description: value,
       },
