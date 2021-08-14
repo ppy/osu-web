@@ -5,7 +5,9 @@
 
 return [
     'deleted' => 'poistettu',
-    'deleted_count' => ':count_delimited poistettu kommentti|:count_delimited poistettuja kommentteja',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
+    'deleted_count' => ':count_delimited poistettu kommentti|:count_delimited poistettua kommenttia',
     'edited' => ':user muokkasi :timeago sitten',
     'pinned' => 'kiinnitetty',
     'empty' => 'Ei vielä kommentteja.',

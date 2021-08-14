@@ -19,7 +19,7 @@ import { Transition } from 'react-transition-group';
 import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
-import { getArtist, getDiffRating, getTitle, group as groupBeatmaps } from 'utils/beatmap-helper';
+import { getArtist, getDiffColour, getTitle, group as groupBeatmaps } from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumberSuffixed } from 'utils/html';
@@ -43,16 +43,11 @@ const displayDateMap: Record<BeatmapsetStatus, 'last_updated' | 'ranked_date'> =
   wip: 'last_updated',
 };
 
-// hides img elements that have errored (hides native browser broken-image icons)
-const hideImage = (e: React.SyntheticEvent<HTMLElement>) => {
-  e.currentTarget.style.display = 'none';
-};
-
 const BeatmapDot = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
   <div
     className='beatmapset-panel__beatmap-dot'
     style={{
-      '--bg': `var(--diff-${getDiffRating(beatmap.difficulty_rating)})`,
+      '--bg': getDiffColour(beatmap.difficulty_rating),
     } as React.CSSProperties}
   />
 ));
@@ -378,7 +373,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           {this.showVisual && (
             <Img2x
               className='beatmapset-panel__cover'
-              onError={hideImage}
+              hideOnError
               src={this.props.beatmapset.covers.list}
             />
           )}
@@ -388,7 +383,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           {this.showVisual && core.windowSize.isDesktop && (
             <Img2x
               className='beatmapset-panel__cover'
-              onError={hideImage}
+              hideOnError
               src={this.props.beatmapset.covers.card}
             />
           )}

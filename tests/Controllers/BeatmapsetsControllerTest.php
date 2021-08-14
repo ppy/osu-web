@@ -43,7 +43,7 @@ class BeatmapsetsControllerTest extends TestCase
             ->put(route('beatmapsets.nominate', ['beatmapset' => $beatmapset->getKey(), 'playmodes' => [$beatmap->mode]]))
             ->assertSuccessful();
 
-        $this->assertSame(1, $beatmapset->nominationsSinceReset()->count());
+        $this->assertSame(1, $beatmapset->beatmapsetNominations()->current()->count());
     }
 
     public function testBeatmapsetNominateOwnBeatmapset()
@@ -60,7 +60,7 @@ class BeatmapsetsControllerTest extends TestCase
             ->put(route('beatmapsets.nominate', ['beatmapset' => $beatmapset->getKey(), 'playmodes' => [$beatmap->mode]]))
             ->assertStatus(403);
 
-        $this->assertSame(0, $beatmapset->nominationsSinceReset()->count());
+        $this->assertSame(0, $beatmapset->beatmapsetNominations()->current()->count());
     }
 
     public function testBeatmapsetNominateOwnBeatmap()
@@ -77,7 +77,7 @@ class BeatmapsetsControllerTest extends TestCase
             ->put(route('beatmapsets.nominate', ['beatmapset' => $beatmapset->getKey(), 'playmodes' => [$beatmap->mode]]))
             ->assertStatus(403);
 
-        $this->assertSame(0, $beatmapset->nominationsSinceReset()->count());
+        $this->assertSame(0, $beatmapset->beatmapsetNominations()->current()->count());
     }
 
     /**

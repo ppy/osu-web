@@ -39,7 +39,7 @@ return [
             'verify_link' => 'пацверджанне ўліковага запісу',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'ліцэнзаваныя мастакі',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'допісы ў абмеркаваннях бітмап',
@@ -117,7 +117,7 @@ return [
             '_' => 'прадукцыйнасць',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'крама',
         ],
         'tournaments_controller' => [
             '_' => 'турніры',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'звярніце ўвагу',
         ],
         'wiki_controller' => [
-            '_' => 'база ведаў',
+            '_' => 'вікі',
         ],
     ],
     'multiplayer' => [
@@ -137,11 +137,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'крама',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'інфармацыя пра модэра',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'мультыплэерная гісторыя',
         ],
     ],
 ];

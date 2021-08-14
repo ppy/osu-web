@@ -16,7 +16,7 @@
     data-url="{{ route('forum.posts.edit', $post) }}"
     data-remote="1"
     @if ($type === 'circle')
-        title="{{ trans('forum.post.actions.edit') }}"
+        title="{{ osu_trans('forum.post.actions.edit') }}"
     @endif
 >
     @if ($type === 'circle')
@@ -24,6 +24,6 @@
             <i class="fas fa-pencil-alt"></i>
         </span>
     @else
-        {{ trans('forum.post.actions.edit') }}
+        {{ osu_trans('forum.post.actions.edit') }}
     @endif
 </button>

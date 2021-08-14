@@ -5,12 +5,14 @@
 
 return [
     'deleted' => '삭제됨',
+    'deleted_by' => ':user에 의해 :timeago에 제거됨',
+    'deleted_by_system' => '시스템',
     'deleted_count' => ':count_delimited개의 삭제된 댓글',
-    'edited' => ':user에 의해 :timeago전에 수정됨.',
+    'edited' => ':user에 의해 :timeago에 수정됨',
     'pinned' => '고정됨',
     'empty' => '아직 댓글이 없습니다.',
     'load_replies' => '답글 불러오기',
-    'replies_count' => ':count_delimited 답글',
+    'replies_count' => '답글 :count_delimited개',
     'title' => '댓글',
 
     'commentable_name' => [
@@ -22,7 +24,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'enter를 눌러 :action. shift+enter를 눌러 줄 바꿈',
+            '_' => 'enter를 눌러 :action. shift+enter를 눌러 줄 바꿈.',
             'edit' => '저장',
             'new' => '게시',
             'reply' => '답변하기',

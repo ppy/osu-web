@@ -2,10 +2,7 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@php
-    $currentLocaleMeta = current_locale_meta();
-@endphp
-@foreach (nav_links() as $section => $links)
+@foreach ($navLinks as $section => $links)
     <div class="navbar-mobile-item">
         <a
             data-click-menu-target="nav-mobile-{{ $section }}"
@@ -20,7 +17,7 @@
                 <i class="fas fa-chevron-down"></i>
             </span>
 
-            {{ trans("layout.menu.{$section}._") }}
+            {{ osu_trans("layout.menu.{$section}._") }}
         </a>
 
         <ul class="navbar-mobile-item__submenu js-click-menu" data-click-menu-id="nav-mobile-{{ $section }}">
@@ -33,7 +30,7 @@
                         class="navbar-mobile-item__submenu-item js-click-menu--close"
                         href="{{ $link }}"
                     >
-                        {{ trans("layout.menu.$section.$action") }}
+                        {{ osu_trans("layout.menu.$section.$action") }}
                     </a>
                 </li>
             @endforeach

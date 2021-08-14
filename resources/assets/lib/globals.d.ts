@@ -1,6 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+interface Window {
+  newBody?: HTMLElement;
+  newUrl?: URL | Location | null;
+}
+
 // interfaces for using process.env
 interface Process {
   env: ProcessEnv;
@@ -33,12 +38,7 @@ interface Comment {
   id: number;
 }
 
-interface DiscussionMessageType {
-  icon: {[key: string]: string};
-}
-
 interface BeatmapDiscussionHelperClass {
-  messageType: DiscussionMessageType;
   TIMESTAMP_REGEX: RegExp;
   format(text: string, options?: any): string;
   formatTimestamp(value: number | null): string | undefined;
@@ -60,15 +60,14 @@ interface BeatmapDiscussionHelperClass {
 interface JQueryStatic {
   publish: (eventName: string, data?: any) => void;
   subscribe: (eventName: string, handler: (...params: any[]) => void) => void;
-  unsubscribe: (eventName: string) => void;
+  unsubscribe: (eventName: string, handler?: unknown) => void;
 }
 
 type AjaxError = (xhr: JQuery.jqXHR) => void;
 
 interface OsuCommon {
   ajaxError: AjaxError;
-  classWithModifiers: (baseName: string, modifiers?: string[]) => string;
-  diffColour: (difficultyRating?: string | null) => React.CSSProperties;
+  formatBytes: (bytes: number, decimals?: number) => string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
@@ -134,7 +133,7 @@ interface BeatmapsetDiscussionJson {
   beatmapset_id: number;
   deleted_at: string | null;
   id: number;
-  message_type: string;
+  message_type: import('beatmap-discussions/discussion-type').DiscussionType;
   parent_id: number | null;
   posts: BeatmapsetDiscussionPostJson[];
   resolved: boolean;

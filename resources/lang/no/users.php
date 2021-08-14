@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Lureri / Juks',
+            'multiple_accounts' => '',
             'insults' => 'Fornærmer meg / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Deling av upassende innhold',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Denne brukeren har ikke fått noen ennå. ;_;",
                 'recent' => 'Nyeste',
                 'title' => 'Medaljer',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Innlegg',

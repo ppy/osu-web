@@ -91,11 +91,11 @@ class SupporterTag
         $username = $item->extra_data['username'] ?? '';
 
         return $html
-            ? blade_safe(trans($transKey, [
+            ? blade_safe(osu_trans($transKey, [
                 'duration' => e($durationText),
                 'name' => e($item->product->name),
                 'username' => link_to_user($item->extra_data['target_id'], $username),
-            ])) : trans($transKey, [
+            ])) : osu_trans($transKey, [
                 'duration' => $durationText,
                 'name' => $item->product->name,
                 'username' => $username,
@@ -110,11 +110,11 @@ class SupporterTag
         $texts = [];
 
         if ($years > 0) {
-            $texts[] = trans_choice('common.count.years', $years, [], $locale);
+            $texts[] = osu_trans_choice('common.count.years', $years, [], $locale);
         }
 
         if ($months > 0) {
-            $texts[] = trans_choice('common.count.months', $months, [], $locale);
+            $texts[] = osu_trans_choice('common.count.months', $months, [], $locale);
         }
 
         return implode(', ', $texts);

@@ -27,6 +27,10 @@ return [
             'remove' => 'Verwijder stem',
             'used_up' => 'Je hebt al je stemmen opgebruikt',
         ],
+
+        'progress' => [
+            '_' => ':used / :max stemmen',
+        ],
     ],
     'entry' => [
         '_' => 'inzending',

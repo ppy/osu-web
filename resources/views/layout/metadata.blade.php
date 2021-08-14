@@ -11,7 +11,7 @@
 <meta name="theme-color" content="hsl({{ $currentHue }}, 10%, 40%)"> {{-- @osu-colour-b1 --}}
 
 <meta charset="utf-8">
-<meta name="description" content="{{ $pageDescription ?? trans('layout.defaults.page_description') }}">
+<meta name="description" content="{{ $pageDescription ?? osu_trans('layout.defaults.page_description') }}">
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -112,7 +112,7 @@
 <script src="{{ unmix('js/app.js') }}" data-turbolinks-track="reload"></script>
 
 <script
-    src="{{ unmix('js/moment-locales/'.current_locale_meta()->moment().'.js') }}"
+    src="{{ unmix("js/moment-locales/{$currentLocaleMeta->moment()}.js") }}"
     data-turbolinks-track="reload"
 ></script>
 
@@ -122,4 +122,10 @@
 
 @if (isset($canonicalUrl))
     <link rel="canonical" href="{{ $canonicalUrl }}">
+@endif
+
+@if (isset($translatedPages))
+    @foreach ($translatedPages as $l => $url)
+        <link rel="alternate" hreflang="{{ $l }}" href="{{ $url }}" />
+    @endforeach
 @endif

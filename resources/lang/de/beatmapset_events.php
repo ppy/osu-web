@@ -28,6 +28,8 @@ return [
         'nominate' => 'Von :user nominiert.',
         'nominate_modes' => 'Nominiert von :user (:modes).',
         'nomination_reset' => 'Neues Problem :discussion hat die Nominierung zurückgesetzt.',
+        'nomination_reset_received' => 'Nominierung von :user wurde von :source_user zurückgesetzt (:text)',
+        'nomination_reset_received_profile' => 'Nominierung wurde von :user zurückgesetzt (:text)',
         'qualify' => 'Diese Beatmap hat die erforderliche Anzahl an Nominierungen erreicht und wurde qualifiziert.',
         'rank' => 'Ranked.',
         'remove_from_loved' => 'Aus Loved entfernt von :user. (:text)',
@@ -55,7 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Approval',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Schwierigkeitsstufenbesitzeränderung',
         'discussion_delete' => 'Diskussion löschen',
         'discussion_post_delete' => 'Löschen der Diskussionsantwort',
         'discussion_post_restore' => 'Diskussionsantwort wiederherstellen',
@@ -73,6 +75,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Nominierung',
         'nomination_reset' => 'Nominierung zurücksetzten',
+        'nomination_reset_received' => 'Nomination Reset erhalten',
         'nsfw_toggle' => 'Explizit-Markierung',
         'qualify' => 'Qualifikation',
         'rank' => 'Ranking',

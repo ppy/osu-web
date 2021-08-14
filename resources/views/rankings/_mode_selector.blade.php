@@ -14,7 +14,7 @@
                     "
                     href="{{ $route($tab, $type) }}"
                 >
-                    {{ trans("beatmaps.mode.{$tab}") }}
+                    {{ osu_trans("beatmaps.mode.{$tab}") }}
                 </a>
             </li>
         @endforeach

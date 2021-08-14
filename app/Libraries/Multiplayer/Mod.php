@@ -26,6 +26,8 @@ class Mod
     const WIND_UP = 'WU';
     const WIND_DOWN = 'WD';
     const RANDOM = 'RD';
+    const MIRROR = 'MR';
+    const MUTED = 'MU';
 
     // osu-specific
     const OSU_AUTOPILOT = 'AP';
@@ -55,7 +57,6 @@ class Mod
     const MANIA_KEY10 = '10K';
     const MANIA_DUALSTAGES = 'DS';
     const MANIA_FADEIN = 'FI';
-    const MANIA_MIRROR = 'MR';
     const MANIA_INVERT = 'IN';
     const MANIA_CONSTANTSPEED = 'CS';
 
@@ -87,6 +88,7 @@ class Mod
         self::SUDDENDEATH,
         self::WIND_DOWN,
         self::WIND_UP,
+        self::MUTED,
     ];
 
     // Defines mutual-exclusivity for groups of mods, i.e. only one mod within each group can be active at a time
@@ -208,6 +210,18 @@ class Mod
             'scale' => 'float',
             'style' => 'int',
         ],
+        self::OSU_TARGET => [
+            'seed' => 'int',
+        ],
+        self::MIRROR => [
+            'reflection' => 'int',
+        ],
+        self::MUTED => [
+            'enable_metronome' => 'bool',
+            'mute_combo_count' => 'int',
+            'inverse_muting' => 'bool',
+            'affects_hit_sounds' => 'bool',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
@@ -280,6 +294,7 @@ class Mod
                         self::OSU_BARRELROLL,
                         self::RANDOM,
                         self::OSU_APPROACH_DIFFERENT,
+                        self::MIRROR,
                     ]
                 ),
 
@@ -295,6 +310,7 @@ class Mod
                     self::SCORABLE_COMMON,
                     [
                         self::CATCH_FLOATINGFRUIT,
+                        self::MIRROR,
                     ]
                 ),
 
@@ -313,7 +329,7 @@ class Mod
                         self::MANIA_KEY10,
                         self::MANIA_DUALSTAGES,
                         self::MANIA_FADEIN,
-                        self::MANIA_MIRROR,
+                        self::MIRROR,
                         self::MANIA_INVERT,
                         self::MANIA_CONSTANTSPEED,
                         self::RANDOM,
@@ -336,11 +352,56 @@ class Mod
                     [
                         [
                             self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_DEFLATE,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::HIDDEN,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_SPININ,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_TARGET,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_DEFLATE,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::HIDDEN,
+                        ],
+                        [
                             self::OSU_TRACEABLE,
                             self::OSU_SPININ,
-                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_TARGET,
+                        ],
+                        [
+                            self::OSU_SPININ,
                             self::OSU_DEFLATE,
+                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_SPININ,
                             self::HIDDEN,
+                        ],
+                        [
+                            self::HARDROCK,
+                            self::MIRROR,
                         ],
                     ]
                 ),

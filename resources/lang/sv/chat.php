@@ -9,8 +9,8 @@ return [
     'title_compact' => 'chatt',
 
     'cannot_send' => [
-        'channel' => 'Du kan inte meddela denna kanal just nu. Detta kan bero på någon av följande skäl:',
-        'user' => 'Du kan inte meddela användaren just nu. Detta kan bero på någon av följande skäl:',
+        'channel' => 'Du kan inte skicka ett meddelande i denna kanal just nu. Detta kan bero på någon av följande skäl:',
+        'user' => 'Du kan inte skicka ett meddelande till denna användare just nu. Detta kan bero på någon av följande skäl:',
         'reasons' => [
             'blocked' => 'Du blockerades av mottagaren',
             'channel_moderated' => 'Kanalen har modererats',
@@ -29,7 +29,7 @@ return [
     ],
     'no-conversations' => [
         'howto' => "Starta konversationer från en användares profil eller en usercard popup.",
-        'lazer' => 'Offentliga kanaler du går med via <a href=":link">osu!lazer</a> kommer också att synas här.',
+        'lazer' => 'Offentliga kanaler du går med i via <a href=":link">osu!lazer</a> kommer också att synas här.',
         'title' => 'inga konversationer ännu',
     ],
 ];

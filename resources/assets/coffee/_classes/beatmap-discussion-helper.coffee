@@ -73,16 +73,6 @@ class @BeatmapDiscussionHelper
         osu.link(_exported.OsuUrlHelper.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
 
 
-  @messageType:
-    icon:
-      hype: 'fas fa-bullhorn'
-      mapperNote: 'far fa-sticky-note'
-      praise: 'fas fa-heart'
-      problem: 'fas fa-exclamation-circle'
-      review: 'fas fa-tasks'
-      suggestion: 'far fa-circle'
-
-
   @nearbyDiscussions: (discussions, timestamp) =>
     return [] if !timestamp?
 
@@ -207,7 +197,7 @@ class @BeatmapDiscussionHelper
   @urlParse: (urlString, discussions, options = {}) =>
     options.forceDiscussionId ?= false
 
-    url = new URL(urlString ? document.location.href)
+    url = new URL(urlString ? _exported.currentUrl().href)
     [__, pathBeatmapsets, beatmapsetId, pathDiscussions, beatmapId, mode, filter] = url.pathname.split /\/+/
 
     return if pathBeatmapsets != 'beatmapsets' || pathDiscussions != 'discussion'

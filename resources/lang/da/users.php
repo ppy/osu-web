@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Uærligt spil / Snyd',
+            'multiple_accounts' => '',
             'insults' => 'Fornærmede mig / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Sender links med upassende indhold',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Denne bruger har ikke fået nogle endnu. ;_;",
                 'recent' => 'Seneste',
                 'title' => 'Medaljer',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Opslag',

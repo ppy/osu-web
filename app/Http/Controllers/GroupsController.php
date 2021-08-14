@@ -23,15 +23,11 @@ class GroupsController extends Controller
             ->get();
 
         $groupJson = json_item($group, 'Group', ['description']);
-        $transformer = new UserCompactTransformer();
-        $transformer->mode = $currentMode;
-        $usersJson = json_collection($users, $transformer, [
-            'country',
-            'cover',
-            'groups',
-            'statistics',
-            'support_level',
-        ]);
+        $usersJson = json_collection(
+            $users,
+            (new UserCompactTransformer())->setMode($currentMode),
+            UserCompactTransformer::LIST_INCLUDES,
+        );
 
         return ext_view('groups.show', compact('groupJson', 'usersJson'));
     }

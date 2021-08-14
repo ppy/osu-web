@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Juega sucio o hace trampa',
+            'multiple_accounts' => 'Utiliza multiples cuentas',
             'insults' => 'Insulta a mí o a otros',
             'spam' => 'Envía mensajes spam',
             'unwanted_content' => 'Enlaza contenido inapropiado',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Este usuario aún no ha conseguido ninguna. ;_;",
                 'recent' => 'Más reciente',
                 'title' => 'Medallas',
+            ],
+            'multiplayer' => [
+                'title' => 'Partidas multijugador',
             ],
             'posts' => [
                 'title' => 'Publicaciones',

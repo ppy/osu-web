@@ -88,7 +88,7 @@ return [
         'failed' => 'Gagal masuk',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silahkan sign in untuk melanjutkan',
-        'invalid_captcha' => 'Anda telah gagal memasukkan kredesial pengguna yang valid dalam jumlah yang melampaui batas wajar. Harap selesaikan captcha berikut dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
+        'invalid_captcha' => 'Anda telah berulang kali gagal memasukkan kredensial pengguna yang valid. Harap selesaikan captcha berikut dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
         'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
         'password' => 'Kata Sandi',
         'register' => "Belum memiliki akun osu!? Buat sekarang",
@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Melakukan kecurangan',
+            'multiple_accounts' => 'Menggunakan lebih dari satu akun',
             'insults' => 'Menghina saya / orang lain',
             'spam' => 'Spam',
             'unwanted_content' => 'Menautkan konten yang tidak pantas',
@@ -155,7 +156,7 @@ return [
         'title' => "profil :username",
 
         'comments_count' => [
-            '_' => 'Telah menulis :link',
+            '_' => 'Telah mengirimkan :link',
             'count' => ':count_delimited komentar|:count_delimited komentar',
         ],
         'edit' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "Pengguna ini belum membuka medali apapun. ;_;",
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
+            ],
+            'multiplayer' => [
+                'title' => 'Pertandingan-Pertandingan Multiplayer',
             ],
             'posts' => [
                 'title' => 'Posting',

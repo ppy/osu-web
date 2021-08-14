@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => 'multiplayer',
             'show' => 'info',
         ],
     ],
@@ -63,16 +64,16 @@ return [
         'beatmaps' => [
             '_' => 'beatmaps',
             'artists' => 'featured artists',
-            'index' => 'listing',
-            'packs' => 'packs',
+            'index' => 'beatmap listing',
+            'packs' => 'beatmap packs',
         ],
         'community' => [
             '_' => 'community',
             'chat' => 'chat',
             'contests' => 'contests',
             'dev' => 'development',
-            'forum-forums-index' => 'forums',
-            'getLive' => 'live',
+            'forum-forums-index' => 'forum',
+            'getLive' => 'live stream',
             'tournaments' => 'tournaments',
         ],
         'help' => [
@@ -103,7 +104,7 @@ return [
         'store' => [
             '_' => 'store',
             'cart-show' => 'cart',
-            'getListing' => 'listing',
+            'getListing' => 'products',
             'orders-index' => 'order history',
         ],
     ],

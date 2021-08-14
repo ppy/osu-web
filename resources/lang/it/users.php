@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Gioco scorretto / Cheating',
+            'multiple_accounts' => 'Uso di account multipli',
             'insults' => 'Insulti a me / altri',
             'spam' => 'Spamming',
             'unwanted_content' => 'Condivisione di contenuti inappropriati',
@@ -137,7 +138,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Il tuo account è stato limitato!',
-        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
+        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto solitamente entro 24 ore. Se desideri fare appello contro la tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
     ],
     'show' => [
         'age' => ':age anni',
@@ -150,7 +151,7 @@ return [
         'lastvisit_online' => 'Attualmente online',
         'missingtext' => 'Potresti aver fatto un errore di battitura! (o l\'utente potrebbe essere stato bannato)',
         'origin_country' => 'da :country',
-        'previous_usernames' => 'precedentemente conosciuto come',
+        'previous_usernames' => 'conosciuto in precedenza come',
         'plays_with' => 'Gioca con :devices',
         'title' => "Profilo di :username",
 
@@ -207,10 +208,10 @@ return [
                     'title' => 'Beatmap Amate',
                 ],
                 'pending' => [
-                    'title' => 'Beatmap in Attesa',
+                    'title' => 'Beatmap In Attesa',
                 ],
                 'ranked' => [
-                    'title' => 'Beatmap Classificate & Approvate',
+                    'title' => 'Beatmap Classificate',
                 ],
             ],
             'discussions' => [
@@ -232,7 +233,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'volte giocata',
-                    'title' => 'Beatmap più Giocate',
+                    'title' => 'Beatmap Più Giocate',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisione: :percentage',
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Più recenti',
                 'title' => 'Medaglie',
             ],
+            'multiplayer' => [
+                'title' => 'Partite Multigiocatore',
+            ],
             'posts' => [
                 'title' => 'Post',
                 'title_longer' => 'Post Recenti',
@@ -319,7 +323,7 @@ return [
                     'title' => 'Migliore Performance',
                 ],
                 'first' => [
-                    'title' => 'Rank Primo Posto',
+                    'title' => 'Primi Posti',
                 ],
             ],
             'votes' => [
@@ -384,19 +388,19 @@ return [
         ],
         'rank' => [
             'country' => 'Rank del paese per :mode',
-            'country_simple' => 'Classifica del Paese',
-            'global' => 'Rank globale :mode',
+            'country_simple' => 'Classifica Nazionale',
+            'global' => 'Posto globale per :mode',
             'global_simple' => 'Classifica globale',
         ],
         'stats' => [
-            'hit_accuracy' => 'Precisione dei colpi',
+            'hit_accuracy' => 'Precisione dei Colpi',
             'level' => 'Livello :level',
             'level_progress' => 'Avanzamento al livello successivo',
             'maximum_combo' => 'Combo Massima',
             'medals' => 'Medaglie',
-            'play_count' => 'Partite giocate',
+            'play_count' => 'Partite Giocate',
             'play_time' => 'Tempo totale di gioco',
-            'ranked_score' => 'Punteggio Rankato',
+            'ranked_score' => 'Punteggio Classificato',
             'replays_watched_by_others' => 'Replay Guardati da Altri',
             'score_ranks' => 'Rank dei Punteggi',
             'total_hits' => 'Colpi Totali',
@@ -404,8 +408,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap Abbandonate',
             'loved_beatmapset_count' => 'Beatmap Amate',
-            'pending_beatmapset_count' => 'Beatmap in Attesa',
-            'ranked_beatmapset_count' => 'Beatmap Classificate & Approvate',
+            'pending_beatmapset_count' => 'Beatmap In Attesa',
+            'ranked_beatmapset_count' => 'Beatmap Classificate',
         ],
     ],
 
@@ -429,6 +433,6 @@ return [
     'view_mode' => [
         'brick' => 'Vista a blocchi',
         'card' => 'Vista a schede',
-        'list' => 'Vista ad elenco',
+        'list' => 'Vista a elenco',
     ],
 ];

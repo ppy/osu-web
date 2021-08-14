@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => '摸图',
+            'multiplayer' => '多人游戏',
             'show' => '信息',
         ],
     ],
@@ -210,7 +211,7 @@ return [
             'account-edit' => '设置',
             'follows' => '订阅',
             'friends' => '好友',
-            'logout' => '退出',
+            'logout' => '登出',
             'profile' => '资料',
         ],
     ],

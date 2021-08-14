@@ -1,9 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'beatmap-icon';
 import * as React from 'react';
-import { FunctionComponent } from 'react';
+import { classWithModifiers } from 'utils/css';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
 
@@ -13,7 +14,7 @@ interface Props {
   };
 }
 
-export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
+export const ReviewPostEmbed = ({ data }: Props) => {
   const bn = 'beatmap-discussion-review-post-embed-preview';
   const discussions = React.useContext(DiscussionsContext);
   const beatmaps = React.useContext(BeatmapsContext);
@@ -22,7 +23,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
   if (!discussion) {
     // if a discussion has been deleted or is otherwise missing
     return (
-      <div className={osu.classWithModifiers(bn, ['deleted', 'lighter'])}>
+      <div className={classWithModifiers(bn, ['deleted', 'lighter'])}>
         <div className={`${bn}__missing`}>{osu.trans('beatmaps.discussions.review.embed.missing')}</div>
       </div>
     );
@@ -49,7 +50,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
   const messageTypeIcon = () => {
     const type = discussion.message_type;
     return (
-      <div className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={BeatmapDiscussionHelper.messageType.icon[type]} title={osu.trans(`beatmaps.discussions.message_type.${type}`)} /></div>
+      <div className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={discussionTypeIcons[type]} title={osu.trans(`beatmaps.discussions.message_type.${type}`)} /></div>
     );
   };
 
@@ -72,17 +73,17 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
       <div className={`${bn}__link`}>
         <a
           className={`${bn}__link-text js-beatmap-discussion--jump`}
-          href={BeatmapDiscussionHelper.url({discussion})}
+          href={BeatmapDiscussionHelper.url({ discussion })}
           title={osu.trans('beatmap_discussions.review.go_to_child')}
         >
-          <i className='fas fa-external-link-alt'/>
+          <i className='fas fa-external-link-alt' />
         </a>
       </div>
     );
   };
 
   return (
-    <div className={osu.classWithModifiers(bn, additionalClasses)}>
+    <div className={classWithModifiers(bn, additionalClasses)}>
       <div className={`${bn}__content`}>
         <div className={`${bn}__selectors`}>
           <div className='icon-dropdown-menu icon-dropdown-menu--disabled'>
@@ -102,7 +103,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
         </div>
         <div className={`${bn}__stripe`} />
         <div className={`${bn}__message-container`}>
-          <div className={`${bn}__body`} dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format((discussion.starting_post || discussion.posts[0]).message)}} />
+          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: BeatmapDiscussionHelper.format((discussion.starting_post || discussion.posts[0]).message) }} />
         </div>
         {parentLink()}
       </div>

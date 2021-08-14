@@ -1,8 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DispatcherAction from 'actions/dispatcher-action';
-import { UserLogoutAction } from 'actions/user-login-actions';
 import UserJson from 'interfaces/user-json';
 import { action, observable } from 'mobx';
 import User from 'models/user';
@@ -41,12 +39,6 @@ export default class UserStore {
     }
 
     return user;
-  }
-
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof UserLogoutAction) {
-      this.flushStore();
-    }
   }
 
   @action

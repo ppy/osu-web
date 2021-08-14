@@ -11,7 +11,7 @@ return [
     'none' => '沒有通知',
     'see_all' => '查看所有通知',
     'see_channel' => '前往聊天',
-    'verifying' => '',
+    'verifying' => '請驗證此工作階段以查看通知',
 
     'filters' => [
         '_' => '全部',
@@ -41,17 +41,17 @@ return [
                 'beatmapset_discussion_post_new_empty' => ':username發布了主題為:title的新貼文',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主題',
                 'beatmapset_discussion_post_new_compact_empty' => ':username 的新主題',
-                'beatmapset_discussion_review_new' => '',
-                'beatmapset_discussion_review_new_compact' => '',
+                'beatmapset_discussion_review_new' => ':username 在《:title》上發表了新的審閱，问题：:problems，建议：:suggestions，赞：:praises',
+                'beatmapset_discussion_review_new_compact' => ':username 发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
                 'beatmapset_discussion_unlock' => '討論於 ":title" 已解鎖',
                 'beatmapset_discussion_unlock_compact' => '討論已被解鎖',
             ],
 
             'beatmapset_problem' => [
                 '_' => 'Qualified 圖譜問題',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_qualified_problem' => ':username 在「:title」中回報問題：「:content」',
+                'beatmapset_discussion_qualified_problem_empty' => ':username 在「:title」中回報問題',
+                'beatmapset_discussion_qualified_problem_compact' => ':username 回報問題「:content」',
                 'beatmapset_discussion_qualified_problem_compact_empty' => '由 :username 回報',
             ],
 
@@ -67,8 +67,8 @@ return [
                 'beatmapset_qualify_compact' => '圖譜已進入上架列隊',
                 'beatmapset_rank' => '「:title」已進榜',
                 'beatmapset_rank_compact' => '圖譜已進榜',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '「:title」已從 Loved 中移除',
+                'beatmapset_remove_from_loved_compact' => '圖譜已從 Loved 中移除',
                 'beatmapset_reset_nominations' => '「:title」的提名已被重置',
                 'beatmapset_reset_nominations_compact' => '提名已被重置',
             ],
@@ -78,8 +78,8 @@ return [
 
                 'comment_new' => ':username 在「:title」中評論了 「:content」',
                 'comment_new_compact' => ':username 評論了 「:content」',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username 在「:title」中回覆了「:content」',
+                'comment_reply_compact' => ':username 回覆了「:content」',
             ],
         ],
 
@@ -104,8 +104,8 @@ return [
 
                 'comment_new' => ':username 在「:title」中評論了 「:content」',
                 'comment_new_compact' => ':username 評論了 「:content」',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username 在「:title」中回覆了「:content」',
+                'comment_reply_compact' => ':username 回覆了「:content」',
             ],
         ],
 
@@ -117,8 +117,8 @@ return [
 
                 'comment_new' => ':username 在「:title」中評論了 「:content」',
                 'comment_new_compact' => ':username 評論了 「:content」',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username 在「:title」中回覆了「:content」',
+                'comment_reply_compact' => ':username 回覆了「:content」',
             ],
         ],
 
@@ -146,8 +146,8 @@ return [
                 '_' => '新圖譜',
 
                 'user_beatmapset_new' => ':username 上傳了標題為 “:title” 的新圖譜',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new_compact' => '新圖譜 ":title"',
+                'user_beatmapset_new_group' => ':username 上傳了新圖譜',
             ],
         ],
 
@@ -170,27 +170,27 @@ return [
             ],
 
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => '「:title」的討論已被鎖定',
+                'beatmapset_discussion_post_new' => '「:title」的討論有新的更新',
+                'beatmapset_discussion_unlock' => '「:title」的討論已解除鎖定',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => '「:title」中被回報了一個新問題',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
+                'beatmapset_disqualify' => '「:title」已被取消資格',
+                'beatmapset_love' => '「:title」被提升為 loved',
                 'beatmapset_nominate' => '":title" 已被提名',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_qualify' => '「:title」已獲得足夠的提名，因此進入了上架隊列',
+                'beatmapset_rank' => '「:title」已進榜',
+                'beatmapset_remove_from_loved' => '「:title」已從 Loved 中移除',
+                'beatmapset_reset_nominations' => '「:title」的提名已被重置',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => '圖譜【:title】中有新的留言',
             ],
         ],
 
@@ -202,25 +202,25 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => '更新日誌【:title】中有新的留言',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => '新聞【:title】中有新的留言',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => '":title" 中有新的回覆',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
+                'user_achievement_unlock' => ':username 解鎖了新成就，":title"！',
                 'user_achievement_unlock_self' => '您已解鎖了新成就 ":title"！',
             ],
 

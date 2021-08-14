@@ -18,6 +18,7 @@ use App\Traits\WithDbCursorHelper;
  * @property int $completed
  * @property \Carbon\Carbon $created_at
  * @property int $id
+ * @property bool $in_room
  * @property float|null $pp
  * @property int $room_id
  * @property int $total_score
@@ -37,6 +38,9 @@ class UserScoreAggregate extends Model
 
     const DEFAULT_SORT = 'score_asc';
 
+    protected $casts = [
+        'in_room' => 'boolean',
+    ];
     protected $table = 'multiplayer_rooms_high';
 
     public $isNew = false;

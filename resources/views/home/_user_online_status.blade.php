@@ -8,7 +8,7 @@
 <div class="user-online-status">
     <div class="user-online-status__item">
         <div class="user-online-status__label">
-            {{ trans('home.user.header.stats.friends') }}
+            {{ osu_trans('home.user.header.stats.friends') }}
         </div>
         <div class="user-online-status__value">
             {{ i18n_number_format($stats->onlineFriends) }}
@@ -17,7 +17,7 @@
 
     <div class="user-online-status__item">
         <div class="user-online-status__label">
-            {{ trans('home.user.header.stats.games') }}
+            {{ osu_trans('home.user.header.stats.games') }}
         </div>
         <div class="user-online-status__value">
             {{ i18n_number_format($stats->currentGames) }}
@@ -26,7 +26,7 @@
 
     <div class="user-online-status__item">
         <div class="user-online-status__label">
-            {{ trans('home.user.header.stats.online') }}
+            {{ osu_trans('home.user.header.stats.online') }}
         </div>
         <div class="user-online-status__value">
             <strong>{{ i18n_number_format($stats->currentOnline) }}</strong>

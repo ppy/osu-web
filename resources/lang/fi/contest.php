@@ -27,6 +27,10 @@ return [
             'remove' => 'Poista ääni',
             'used_up' => 'Olet käyttänyt kaikki äänesi',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'ehdokas',
@@ -43,11 +47,11 @@ return [
         'too_big' => 'Tähän kilpailuun voi lähettää korkeintaan :limit työtä.',
     ],
     'beatmaps' => [
-        'download' => 'Lataa ehdokas',
+        'download' => 'Lataa beatmappi',
     ],
     'vote' => [
         'list' => 'äänet',
-        'count' => ':count ääni|:count ääntä',
+        'count' => ':count_delimited ääni|:count_delimited ääntä',
         'points' => ':count piste|:count pistettä',
     ],
     'dates' => [
@@ -55,7 +59,7 @@ return [
         'ended_no_date' => 'Päättyi',
 
         'starts' => [
-            '_' => 'Alkoi :date',
+            '_' => 'Alkaa :date',
             'soon' => 'pian™',
         ],
     ],

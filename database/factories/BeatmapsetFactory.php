@@ -59,6 +59,13 @@ $factory->state(Beatmapset::class, 'no_discussion', function () {
     return ['discussion_enabled' => false];
 });
 
+$factory->state(Beatmapset::class, 'pending', function () {
+    return [
+        'approved' => Beatmapset::STATES['pending'],
+        'approved_date' => null,
+    ];
+});
+
 $factory->state(Beatmapset::class, 'qualified', function () {
     $approvedAt = now();
 
@@ -80,7 +87,7 @@ $factory->afterCreatingState(Beatmapset::class, 'with_discussion', function (App
 
     if (
         !$beatmapset->beatmapDiscussions()->save(
-            factory(BeatmapDiscussion::class)->states('general')->make(['user_id' => $beatmapset->user_id])
+            factory(BeatmapDiscussion::class)->states('general')->make(['message_type' => 'praise', 'user_id' => $beatmapset->user_id])
         )
     ) {
         throw new Exception();

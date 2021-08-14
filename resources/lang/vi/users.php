@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Chơi xấu / Gian lận',
+            'multiple_accounts' => '',
             'insults' => 'Xúc phạm tôi / những người khác',
             'spam' => 'Spamming',
             'unwanted_content' => 'Có những nội dung không phù hợp',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Người dùng này chưa có huy chương nào cả. ;_;",
                 'recent' => 'Gần Nhất',
                 'title' => 'Huy Chương',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Bài viết',
