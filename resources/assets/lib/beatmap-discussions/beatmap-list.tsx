@@ -6,7 +6,7 @@ import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import * as React from 'react';
 import { getBeatmapMapper } from 'utils/beatmap-helper';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { nextVal } from 'utils/seq';
 import BeatmapListItem from './beatmap-list-item';
 
@@ -17,7 +17,7 @@ interface Props {
   currentBeatmap: BeatmapJsonExtended;
   getCount?: (beatmap: BeatmapJsonExtended) => number | undefined;
   large: boolean;
-  modifiers?: string[];
+  modifiers?: Modifiers;
   onSelectBeatmap: (beatmapId: number) => void;
 }
 
