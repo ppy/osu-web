@@ -286,9 +286,10 @@ export class Main extends React.Component
       ]
 
     el HeaderV4,
-      theme: 'beatmapsets'
+      backgroundImage: @state.beatmapset.covers.cover
       links: links
       linksAppend: linksAppend
+      theme: 'beatmapsets'
 
   saveStateToContainer: =>
     @state.beatmapsArray = Array.from(@state.beatmaps)
