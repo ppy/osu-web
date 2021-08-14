@@ -40,7 +40,7 @@ export default class Extra extends React.PureComponent<Props, State> {
         <div className='beatmapset-extra__item'>
           {osu.trans('beatmapsets.show.info.success-rate')}
         </div>
-        <div className='beatmapset-extra__item'>
+        <div className='beatmapset-extra__item beatmapset-extra__item--value'>
           <div className='beatmapset-extra__right'>
             {`${successRate}%`}
           </div>
@@ -52,7 +52,7 @@ export default class Extra extends React.PureComponent<Props, State> {
         <div className='beatmapset-extra__item'>
           {osu.trans('beatmapsets.show.stats.user-rating')}
         </div>
-        <div className='beatmapset-extra__item beatmapset-extra__item--ratings'>
+        <div className='beatmapset-extra__item beatmapset-extra__item--value beatmapset-extra__item--ratings'>
           <div>
             {ratings.negative}
           </div>

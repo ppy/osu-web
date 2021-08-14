@@ -21,13 +21,17 @@
     }
   }
 
-  &__tags {
-    max-height: 30px;
-    overflow-y: auto;
-  }
-
   &__spacer {
     height: 10px;
     grid-column: 1/span 2;
+  }
+
+  &__value {
+    font-weight: bold;
+
+    &--tags {
+      max-height: 30px;
+      overflow-y: auto;
+    }
   }
 }

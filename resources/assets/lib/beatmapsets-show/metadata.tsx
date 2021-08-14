@@ -44,7 +44,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
         <div>
           {osu.trans('beatmapsets.show.info.creator')}
         </div>
-        <div>
+        <div className='beatmapset-metadata__value'>
           <UserLink
             user={{
               id: this.props.beatmapset.user_id,
@@ -58,7 +58,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
             <div>
               {osu.trans('beatmapsets.show.info.source')}
             </div>
-            <div >
+            <div className='beatmapset-metadata__value'>
               <a href={route('beatmapsets.index', { q: this.props.beatmapset.source })}>
                 {this.props.beatmapset.source}
               </a>
@@ -69,7 +69,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
         <div>
           {osu.trans('beatmapsets.show.info.genre')}
         </div>
-        <div >
+        <div className='beatmapset-metadata__value'>
           <a href={route('beatmapsets.index', { g: this.props.beatmapset.genre.id })}>
             {this.props.beatmapset.genre.name}
           </a>
@@ -80,7 +80,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
         <div>
           {osu.trans('beatmapsets.show.info.language')}
         </div>
-        <div>
+        <div className='beatmapset-metadata__value'>
           <a href={route('beatmapsets.index', { l: this.props.beatmapset.language.id })}>
             {this.props.beatmapset.language.name}
           </a>
@@ -91,7 +91,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
             <div>
               {osu.trans('beatmapsets.show.info.tags')}
             </div>
-            <div className='beatmapset-metadata__tags u-fancy-scrollbar'>
+            <div className='beatmapset-metadata__value beatmapset-metadata__value--tags u-fancy-scrollbar'>
               {tags.map((tag, idx) => (
                 <React.Fragment key={`${tag}-${idx}`}>
                   <a href={route('beatmapsets.index', { q: tag })}>
@@ -111,7 +111,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
             <div>
               {osu.trans('beatmapsets.show.info.nominators')}
             </div>
-            <div>
+            <div className='beatmapset-metadata__value'>
               {nominators.map((nominator, idx) => (
                 <React.Fragment key={nominator.id}>
                   <UserLink user={{ id: nominator.id, username: nominator.username }} />
@@ -125,7 +125,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
         <div>
           {osu.trans('beatmapsets.show.info.submitted')}
         </div>
-        <div >
+        <div className='beatmapset-metadata__value'>
           {this.renderDate(this.props.beatmapset.submitted_date)}
         </div>
 
@@ -134,7 +134,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
             <div>
               {osu.trans(`beatmapsets.show.info.${this.props.beatmapset.status}`)}
             </div>
-            <div>
+            <div className='beatmapset-metadata__value'>
               {this.renderDate(this.props.beatmapset.ranked_date)}
             </div>
           </>
@@ -143,7 +143,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
             <div>
               {osu.trans('beatmapsets.show.info.updated')}
             </div>
-            <div>
+            <div className='beatmapset-metadata__value'>
               {this.renderDate(this.props.beatmapset.last_updated)}
             </div>
           </>
