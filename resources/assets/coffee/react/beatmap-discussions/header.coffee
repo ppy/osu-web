@@ -24,6 +24,10 @@ export class Header extends React.PureComponent
   render: =>
     el React.Fragment, null,
       el HeaderV4,
+        links: [
+          { title: 'Info', url: laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id)},
+          { title: 'Modding', url: laroute.route('beatmapsets.discussion', beatmapset: @props.beatmapset.id), active: true},
+        ]
         theme: 'beatmapsets'
         titleAppend: el PlaymodeTabs,
           beatmaps: @props.beatmaps
