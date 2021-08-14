@@ -92,9 +92,9 @@ export default class Metadata extends React.PureComponent<Props, State> {
               {osu.trans('beatmapsets.show.info.tags')}
             </div>
             <div className='beatmapset-metadata__tags u-fancy-scrollbar'>
-              {tags.map((tag) => (
-                <React.Fragment key={tag}>
-                  <a key={tag} href={route('beatmapsets.index', { q: tag })}>
+              {tags.map((tag, idx) => (
+                <React.Fragment key={`${tag}-${idx}`}>
+                  <a href={route('beatmapsets.index', { q: tag })}>
                     {tag}
                   </a>
                   {' '}
