@@ -47,11 +47,6 @@ const DownloadButton = ({
 
 export default class Toolbar extends React.PureComponent<Props> {
   render() {
-    const favouriteButton = {
-      action: this.props.hasFavourited ? 'unfavourite' : 'favourite',
-      icon: `${this.props.hasFavourited ? 'fas' : 'far'} fa-heart`,
-    };
-
     return (
       <div className='beatmapset-toolbar'>
         <div className='beatmapset-toolbar__count'>
@@ -75,7 +70,7 @@ export default class Toolbar extends React.PureComponent<Props> {
         </div>
 
         <div className='beatmapset-toolbar__buttons'>
-          {this.renderFavouriteButton(favouriteButton)}
+          {this.renderFavouriteButton()}
           {this.renderDownloadButtons()}
           {this.renderDiscussionButtons()}
           {this.renderLoginButton()}
@@ -148,20 +143,21 @@ export default class Toolbar extends React.PureComponent<Props> {
     }
   }
 
-  private renderFavouriteButton({ action, icon }: { action: string; icon: string }) {
-    if (currentUser.id) {
-      return (
-        <button
-          className='btn-osu-big btn-osu-big--beatmapset-favourite btn-osu-big--pink'
-          onClick={this.toggleFavourite}
-          title={osu.trans(`beatmapsets.show.details.${action}`)}
-        >
-          <i className={icon} />
-          {' '}
-          {this.props.favcount}
-        </button>
-      );
-    }
+  private renderFavouriteButton() {
+    const action = this.props.hasFavourited ? 'unfavourite' : 'favourite';
+    const icon = `${this.props.hasFavourited ? 'fas' : 'far'} fa-heart`;
+
+    return (
+      <button
+        className='btn-osu-big btn-osu-big--beatmapset-favourite btn-osu-big--pink'
+        onClick={this.toggleFavourite}
+        title={osu.trans(`beatmapsets.show.details.${action}`)}
+      >
+        <i className={icon} />
+        {' '}
+        {this.props.favcount}
+      </button>
+    );
   }
 
   private renderLoginButton() {
