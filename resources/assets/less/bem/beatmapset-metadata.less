@@ -2,23 +2,23 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-metadata {
-  @top: beatmapset-metadata;
+  --edit-button-opacity: 0;
 
   display: grid;
   grid-template-columns: auto 2fr;
   column-gap: 10px;
   position: relative;
 
+  &:hover {
+    --edit-button-opacity: 1;
+  }
+
   &__edit-button {
     position: absolute;
     top: 0;
     right: 0;
-    opacity: 0;
+    opacity: var(--edit-button-opacity);
     transition: opacity 120ms ease-in-out;
-
-    .@{top}:hover & {
-      opacity: 1;
-    }
   }
 
   &__spacer {
