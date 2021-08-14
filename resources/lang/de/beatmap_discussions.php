@@ -81,7 +81,7 @@ return [
             'external_references' => 'rezension enthält verweise auf probleme, die nicht zu dieser rezension gehören',
             'invalid_block_type' => 'ungültiger Block-Typ',
             'invalid_document' => 'ungültige Rezension',
-            'invalid_discussion_type' => '',
+            'invalid_discussion_type' => 'ungültiger Diskussionstyp',
             'minimum_issues' => 'Rezension muss ein Minimum von :count Problem beinhalten|Rezensionen müssen ein Minimum von :count Problemen beinhalten',
             'missing_text' => 'block fehlt Text',
             'too_many_blocks' => 'Rezensionen dürfen nur :count Paragraph/Problem enthalten|Rezensionen dürfen nur bis zu :count Paragraphen/Probleme enthalten',

@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Contacta al soporte técnico para recuperar tu contraseña.',
+        'expired' => 'El código de verificación ha expirado.',
+        'invalid' => 'Error inesperado en el código de verificación.',
         'is_privileged' => 'Por favor, póngase en contacto con un administrador de alto nivel para recuperar la cuenta.',
         'missing_key' => 'Requerido.',
         'too_many_tries' => 'Demasiados intentos fallidos.',

@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Vui lòng liên hệ hỗ trợ để khôi phục tài khoản của bạn.',
+        'expired' => '',
+        'invalid' => '',
         'is_privileged' => 'Liên hệ peppy ấy lulz.',
         'missing_key' => 'Bắt buộc.',
         'too_many_tries' => 'Quá nhiều lần thử không thành công.',

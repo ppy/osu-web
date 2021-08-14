@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Diskvalifikovať',
         'incorrect_state' => 'Chyba pri vykonávaní akcie, skúste obnoviť stránku.',
         'love' => 'Obľuba',
+        'love_choose' => '',
         'love_confirm' => 'Obľúbil si si túto beatmapu?',
         'nominate' => 'Nominovať',
         'nominate_confirm' => 'Nominovať túto beatmapu?',
