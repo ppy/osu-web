@@ -61,6 +61,6 @@ class BeatmapsetsController extends Controller
             $discussion->beatmapset->disqualifyOrResetNominations($user, $discussion);
         });
 
-        $beatmapset->disqualifyOrResetNominations($user, $discussion);
+        return ['beatmapset_discussion_id' => $discussion->getKey()];
     }
 }
