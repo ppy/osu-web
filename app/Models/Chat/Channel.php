@@ -135,7 +135,7 @@ class Channel extends Model
         return $this->pmTargetFor($user)?->user_avatar;
     }
 
-    public function displayNameFor(?User $user)
+    public function displayNameFor(?User $user): string
     {
         if (!$this->isPM() || $user === null) {
             return $this->name;
@@ -155,8 +155,10 @@ class Channel extends Model
         return !($targetUser === null || $user->hasBlocked($targetUser) && !($targetUser->isModerator() || $targetUser->isAdmin()));
     }
 
-    // TODO: specific to UserChannel::presence
-    // use preload cache?
+    /**
+     * Preset the UserChannel with Channel::setUserChannelFor when handling multiple channels.
+     * UserChannelList will automatically do this.
+     */
     public function lastReadIdFor(?User $user)
     {
         if ($user === null) {
@@ -429,7 +431,6 @@ class Channel extends Model
 
     public function setUserChannelFor(User $user, UserChannel $userChannel)
     {
-        // TOOD: should have some sanity check?
         if ($userChannel->user_id !== $user->getKey()) {
             throw new InvariantException('userChannel does not belong to the same user.');
         }

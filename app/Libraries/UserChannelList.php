@@ -66,7 +66,7 @@ class UserChannelList
         $users = User::default()
             ->whereIn('user_id', $userIds)
             ->with([
-                // only fetch data related to $user, to be used by ChatStart privilege check
+                // only fetch data related to $user, to be used by ChatPmStart/ChatChannelCanMessage privilege check
                 'friends' => function ($query) {
                     $query->where('zebra_id', $this->user->getKey());
                 },
