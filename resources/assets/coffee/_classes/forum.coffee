@@ -56,7 +56,7 @@ class @Forum
 
 
   topicMeta: ->
-    newBody.querySelector('.js-forum--topic-meta').dataset
+    newBody.querySelector('.js-forum--topic-meta')?.dataset
 
 
   totalPosts: =>
@@ -217,6 +217,7 @@ class @Forum
               else
                 $(post).offset().top
 
+    $.publish 'sync-height:force'
     postTop = window.stickyHeader.scrollOffset(postTop) if postTop != 0
 
     # using jquery smooth scrollTo will cause unwanted events to trigger on the way down.
@@ -248,6 +249,13 @@ class @Forum
 
   initialScrollTo: =>
     topicMeta = @topicMeta()
+
+    return if !topicMeta?
+
+    history.scrollRestoration = 'manual'
+    $(document).one 'turbolinks:before-cache', ->
+      history.scrollRestoration = 'auto'
+
     shouldScroll = _exported.currentUrl().hash == '' && osu.present(topicMeta.postJumpTo)
 
     if shouldScroll
