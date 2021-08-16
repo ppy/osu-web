@@ -15,6 +15,8 @@ use Illuminate\Support\Collection;
 
 class UserChannelList
 {
+    const PRELOADED_USERS_KEY = 'preloadedUsers';
+
     private Collection $channels;
 
     public function __construct(private User $user)
@@ -88,6 +90,6 @@ class UserChannelList
             $usersMap->put($user->getKey(), $user);
         }
 
-        request()->attributes->set('preloadedUsers', $usersMap);
+        request()->attributes->set(static::PRELOADED_USERS_KEY, $usersMap);
     }
 }

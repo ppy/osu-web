@@ -8,6 +8,7 @@ namespace App\Models\Chat;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\ChannelMessage;
+use App\Libraries\UserChannelList;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
@@ -205,7 +206,7 @@ class Channel extends Model
     {
         return $this->memoize(__FUNCTION__, function () {
             // use lookup table if it exists
-            $usersMap = request()->attributes->get('preloadedUsers');
+            $usersMap = request()->attributes->get(UserChannelList::PRELOADED_USERS_KEY);
             if ($usersMap !== null) {
                 return collect(array_map(fn ($id) => $usersMap->get($id, null), $this->userIds()));
             }
