@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
-    'pageDescription' => trans('forum.title'),
+    'pageDescription' => osu_trans('forum.title'),
     'searchParams' => ['mode' => 'forum_post'],
 ])
 

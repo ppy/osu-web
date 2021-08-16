@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'kudosu verweigern',
         'edit' => 'bearbeiten',
         'edited' => 'Zuletzt bearbeitet von :editor (:update_time).',
+        'guest' => 'Gästeschwierigkeit von :user',
         'kudosu_denied' => 'Dir wurde kudosu verweigert.',
         'message_placeholder_deleted_beatmap' => 'Diese Schwierigkeitsstufe wurde gelöscht und kann nicht mehr diskutiert werden.',
         'message_placeholder_locked' => 'Die Diskussion für diese Beatmap wurde deaktiviert.',
@@ -54,7 +55,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Dieser Beitrag wird den generellen Beatmapdiskussionen hinzugefügt. Um diese Beatmap zu modden, beginne die Nachricht mit einer Timestamp (z.B. 00:12:345).',
+            'in_general' => 'Dieser Beitrag wird den generellen Beatmapdiskussionen hinzugefügt. Um diese Beatmap zu modden, beginne die Nachricht mit einem Zeitstempel (z.B. 00:12:345).',
             'in_timeline' => 'Um an mehreren Zeitpunkten zu modden, musst du mehrere Beiträge erstellen (ein Beitrag pro Timestamp).',
         ],
 
@@ -182,6 +183,7 @@ return [
         'disqualify' => 'Disqualifizieren',
         'incorrect_state' => 'Ein Fehler ist aufgetreten, versuche die Seite zu aktualisieren.',
         'love' => 'Liebe',
+        'love_choose' => '',
         'love_confirm' => 'Liebst du diese Beatmap?',
         'nominate' => 'Nominieren',
         'nominate_confirm' => 'Diese Beatmap nominieren?',
@@ -250,7 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Konvertierte Beatmaps miteinbeziehen',
-        'follows' => '',
+        'follows' => 'Abonnierte Mapper',
         'recommended' => 'Empfohlene Schwierigkeit',
     ],
     'mode' => [
@@ -309,11 +311,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Alle',

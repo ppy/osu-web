@@ -30,7 +30,7 @@ export default class Message {
   }
 
   static fromJson(json: MessageJson): Message {
-    const message = Object.create(Message.prototype);
+    const message = new Message();
     return Object.assign(message, {
       channelId: json.channel_id,
       content: json.content,

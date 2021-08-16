@@ -1,0 +1,39 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmaps-owner-editor {
+  .page-width-default();
+  .default-box-shadow();
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: @border-radius-large;
+  background-color: hsl(var(--hsl-b5));
+  margin: auto;
+  width: auto;
+
+  @media @desktop {
+    width: auto;
+  }
+
+  &__row {
+    .default-gutter-v2();
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &--content {
+      display: grid;
+      grid-gap: 5px;
+      font-size: @font-size--normal;
+      // mode-icon version avatar username buttons
+      grid-template-columns: auto minmax(20px, auto) auto minmax(20px, 150px) 70px;
+      align-items: center;
+      overflow-y: auto;
+      max-height: calc(var(--vh) * 60);
+    }
+
+    &--footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

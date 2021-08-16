@@ -11,7 +11,7 @@ return [
     'none' => 'لا إشعارات',
     'see_all' => 'أِظهار جميع الإشعارات',
     'see_channel' => 'انتقل للمُحادثة',
-    'verifying' => '',
+    'verifying' => 'الرجاء التحقق من الجلسة لعرض الإشعارات',
 
     'filters' => [
         '_' => 'الكل',
@@ -27,8 +27,14 @@ return [
         'beatmapset' => [
             '_' => 'المقطوعة',
 
+            'beatmap_owner_change' => [
+                '_' => 'صعوبة الضيف',
+                'beatmap_owner_change' => 'أنت الآن مالك صعوبة ":beatmap" على الخريطة ":title"',
+                'beatmap_owner_change_compact' => 'أنت الآن مالك صعوبة ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
-                '_' => 'منشاقشة المقطوعة',
+                '_' => 'مناقشة الخريطة',
                 'beatmapset_discussion_lock' => 'تم اقفال مناقشة على ":title"',
                 'beatmapset_discussion_lock_compact' => 'المناقشة مقفلة',
                 'beatmapset_discussion_post_new' => 'منشور جديد على ":title" من قبل :username',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'أنت الآن ضيف خريطة ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'تم قفل المناقشة على ":title"',
                 'beatmapset_discussion_post_new' => 'المناقشة حول ":title" تحتوي على تحديثات جديدة',

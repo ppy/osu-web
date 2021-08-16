@@ -152,14 +152,14 @@ class Tournament extends Model
         if ($this->info_url !== null) {
             $links[] = [
                 'url' => $this->info_url,
-                'title' => trans('tournament.show.info_page'),
+                'title' => osu_trans('tournament.show.info_page'),
             ];
         }
 
         if ($this->isStoreBannerAvailable()) {
             $links[] = [
                 'url' => route('store.products.show', $this->tournament_banner_product_id),
-                'title' => trans('tournament.show.banner'),
+                'title' => osu_trans('tournament.show.banner'),
             ];
         }
 

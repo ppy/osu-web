@@ -13,14 +13,14 @@
     <input type="hidden" name="item[id]" value="{{ $item->id }}">
 
     <span class="store-order-item__name">
-        {{ $item->getDisplayName() }}
+        {{ $item->getDisplayName(true) }}
     </span>
 
     <div class="store-order-item__quantity">
     {{-- anything where stock is null either allows multiple or is max_quantity 1--}}
         @if($item->product->allow_multiple || $item->product->stock <= 0)
             <span class="store-order-item__quantity">
-                {{ trans_choice('common.count.item', $item->quantity) }}
+                {{ osu_trans_choice('common.count.item', $item->quantity) }}
             </span>
         @else
             <div class="form-select">

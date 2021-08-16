@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Hidasta vähän, pelaa enemmän.',
     ],
 
     'index' => [
@@ -53,7 +53,9 @@ return [
         'discussion' => 'Keskustelu',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
+            'favourite_login' => '',
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
             'mapped_by' => 'luonut: :mapper',
             'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
@@ -103,9 +105,9 @@ return [
             ],
 
             'report' => [
-                '_' => '',
+                '_' => 'Jos löydät jonkun ongelman tämän beatmapin kanssa, olmoita siitä :link hälyttääksesi tiimiä.',
                 'button' => 'Ilmoita Ongelma',
-                'link' => '',
+                'link' => 'täällä',
             ],
         ],
 
@@ -120,6 +122,7 @@ return [
             'storyboard' => '',
             'success-rate' => 'Läpäisyprosentti',
             'tags' => 'Tunnisteet',
+            'video' => '',
         ],
 
         'nsfw_warning' => [
@@ -129,7 +132,7 @@ return [
             'buttons' => [
                 'disable' => '',
                 'listing' => '',
-                'show' => '',
+                'show' => 'Näytä',
             ],
         ],
 

@@ -16,7 +16,7 @@ return [
 
         'email' => [
             'current' => 'huidige e-mail',
-            'new' => 'nieuwe e-mail',
+            'new' => 'nieuwe email',
             'new_confirmation' => 'e-mail bevestiging',
             'title' => 'E-mail',
         ],
@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'verzend methodes',
+            'beatmap_owner_change' => 'gast moeilijkheid',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'privéberichten',
             'comment_new' => 'nieuwe reacties',

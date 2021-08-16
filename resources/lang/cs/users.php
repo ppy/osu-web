@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Faulové hráni / Podvádění',
+            'multiple_accounts' => '',
             'insults' => 'Uráží mě / jiné',
             'spam' => 'Spamování',
             'unwanted_content' => 'Linkovaní nebezpečného obsahu',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Oblíbené Beatmapy',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Hodnocené & Schválené Beatmapy',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Čekající Beatmapy',
+                ],
+                'ranked' => [
+                    'title' => 'Hodnocené & Schválené Beatmapy',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "Tento uživatel zatím žádné neobdržel ;_;",
                 'recent' => 'Nejnovější',
                 'title' => 'Medaile',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Příspěvky',
@@ -402,10 +406,10 @@ return [
             'total_hits' => 'Celkově zásahů',
             'total_score' => 'Celkové skóre',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => 'Oblíbené Beatmapy',
-            'unranked_beatmapset_count' => 'Čekající Beatmapy',
             'graveyard_beatmapset_count' => '',
+            'loved_beatmapset_count' => 'Oblíbené Beatmapy',
+            'pending_beatmapset_count' => 'Čekající Beatmapy',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

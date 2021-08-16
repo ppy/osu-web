@@ -15,7 +15,7 @@ class ModsHelper
         [4, 'HR'],
         [9, 'NC', [6]],
         [6, 'DT'],
-        [7, 'Relax'],
+        [7, 'RX'],
         [8, 'HT'],
         [10, 'FL'],
         [12, 'SO'],

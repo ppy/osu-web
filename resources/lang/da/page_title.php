@@ -111,13 +111,13 @@ return [
             '_' => 'nulstil adgangskode',
         ],
         'ranking_controller' => [
-            '_' => 'rang',
+            '_' => 'rangering',
         ],
         'scores_controller' => [
             '_' => '',
         ],
         'store_controller' => [
-            '_' => 'osu!butik',
+            '_' => 'butik',
         ],
         'tournaments_controller' => [
             '_' => 'turneringer',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'notits',
         ],
         'wiki_controller' => [
-            '_' => 'vidensbase',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -136,11 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!butik',
+        '_' => 'butik',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder info',
+        ],
+        'multiplayer_controller' => [
+            '_' => '',
         ],
     ],
 ];

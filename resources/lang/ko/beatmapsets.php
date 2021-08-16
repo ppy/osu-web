@@ -53,11 +53,13 @@ return [
         'discussion' => '토론',
 
         'details' => [
+            'by_artist' => ':artist 님이 만듦',
             'favourite' => '즐겨찾기',
+            'favourite_login' => '로그인하여 이 비트맵을 즐겨찾기 하세요.',
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
             'mapped_by' => ':mapper님의 맵',
             'unfavourite' => '즐겨찾기 해제',
-            'updated_timeago' => ':timeago에 마지막으로 수정됨',
+            'updated_timeago' => ':timeago에 마지막으로 수정',
 
             'download' => [
                 '_' => '다운로드',
@@ -73,16 +75,16 @@ return [
         ],
 
         'details_date' => [
-            'approved' => ':timeago 전 approved 됨',
-            'loved' => ':timeago 전 loved 됨',
-            'qualified' => ':timeago 전 qualified 됨',
-            'ranked' => ':timeago ranked 됨',
-            'submitted' => ':timeago 제출됨',
-            'updated' => ':timeago 마지막으로 수정됨',
+            'approved' => ':timeago에 approved 됨',
+            'loved' => ':timeago에 loved 됨',
+            'qualified' => ':timeago에 qualified 됨',
+            'ranked' => ':timeago에 ranked 됨',
+            'submitted' => ':timeago에 제출됨',
+            'updated' => ':timeago에 마지막으로 수정',
         ],
 
         'favourites' => [
-            'limit_reached' => '즐겨찾기 한 비트맵이 너무 많습니다! 계속하기 전에 즐겨찾기 수를 줄여주세요.',
+            'limit_reached' => '즐겨찾기 한 비트맵이 너무 많아요. 추가하기 전에 즐겨찾기 한 곡들의 수를 줄여주세요.',
         ],
 
         'hype' => [
@@ -117,9 +119,10 @@ return [
             'nsfw' => '부적절한 내용',
             'points-of-failure' => '실패 지점',
             'source' => '원작',
-            'storyboard' => '이 비트맵은 스토리보드를 포함합니다',
+            'storyboard' => '이 비트맵은 스토리보드를 포함합니다.',
             'success-rate' => '클리어 비율',
             'tags' => '태그',
+            'video' => '이 비트맵은 영상을 포함합니다.',
         ],
 
         'nsfw_warning' => [

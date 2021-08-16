@@ -15,7 +15,9 @@
     }
 
     &.js-mobile-toggle--active {
-      margin-bottom: 10px;
+      @media @mobile {
+        margin-bottom: 10px;
+      }
     }
 
     &--mobile-only {

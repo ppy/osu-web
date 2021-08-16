@@ -14,7 +14,7 @@
     class="{{ $class }}"
     data-tooltip-position="top center"
     @if ($type === 'circle')
-        title="{{ trans('forum.post.actions.report') }}"
+        title="{{ osu_trans('forum.post.actions.report') }}"
     @endif
 >
     @if ($type === 'circle')
@@ -22,6 +22,6 @@
             <i class="fas fa-exclamation-triangle"></i>
         </span>
     @else
-        {{ trans('forum.post.actions.report') }}
+        {{ osu_trans('forum.post.actions.report') }}
     @endif
 </button>

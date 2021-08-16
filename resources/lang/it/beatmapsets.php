@@ -8,7 +8,7 @@ return [
         'disabled' => 'Questa beatmap non è al momento disponibile per il download.',
         'parts-removed' => 'Porzioni di questa beatmap sono state rimosse su richiesta del creatore o di un titolare di copyright di terze parti.',
         'more-info' => 'Controlla qui per maggiori informazioni.',
-        'rule_violation' => '',
+        'rule_violation' => 'Alcuni elementi contenuti in questa mappa sono stati rimossi dopo che sono stati giudicati non idonei per l\'uso in osu!.',
     ],
 
     'download' => [
@@ -21,7 +21,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'nessuna beatmap',
 
         'download' => [
             'all' => 'scarica',
@@ -32,15 +32,15 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Un beatmapset ibrido richiede che venga selezionata almeno una modalità di gioco per poterla nominare.',
+        'incorrect_mode' => 'Non hai il permesso di nominare per la modalità: :mode',
+        'full_bn_required' => 'Devi essere un nominatore completo per eseguire questa nomina qualificante.',
+        'too_many' => 'Requisito di nomina già soddisfatto.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
+            'confirmation' => 'Sei sicuro di voler nominare questa beatmap?',
+            'header' => 'Nomina Beatmap',
+            'hybrid_warning' => 'nota: puoi nominare una sola volta, quindi assicurati di nominare per tutte le modalità di gioco che vuoi',
             'which_modes' => 'Nominare per quali modalità?',
         ],
     ],
@@ -53,7 +53,9 @@ return [
         'discussion' => 'Discussione',
 
         'details' => [
+            'by_artist' => 'di :artist',
             'favourite' => 'Mi piace questo beatmapset',
+            'favourite_login' => 'Accedi per aggiungere questa beatmap ai preferiti',
             'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'mapped_by' => 'mappata da :mapper',
             'unfavourite' => 'Non mi piace questo beatmapset',
@@ -76,7 +78,7 @@ return [
             'approved' => 'approvata :timeago',
             'loved' => 'amata :timeago',
             'qualified' => 'qualificata :timeago',
-            'ranked' => 'rankata :timeago',
+            'ranked' => 'classificata :timeago',
             'submitted' => 'inviata :timeago',
             'updated' => 'ultimo aggiornamento :timeago',
         ],
@@ -120,6 +122,7 @@ return [
             'storyboard' => 'Questa beatmap contiene storyboard',
             'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
+            'video' => 'Questa beatmap contiene video',
         ],
 
         'nsfw_warning' => [
@@ -135,11 +138,11 @@ return [
 
         'scoreboard' => [
             'achieved' => 'ottenuto :when',
-            'country' => 'Rank del Paese',
-            'friend' => 'Rank degli Amici',
-            'global' => 'Rank Globale',
+            'country' => 'Classifica Nazionale',
+            'friend' => 'Classifica Amici',
+            'global' => 'Classifica Globale',
             'supporter-link' => 'Clicca <a href=":link">qui</a> per vedere tutte le fantastiche funzionalità che otterrai!',
-            'supporter-only' => 'Devi essere un osu!supporter per vedere i rank degli amici e del paese!',
+            'supporter-only' => 'Devi essere un osu!supporter per vedere la classifica amici, nazionale, o con mod specifiche!',
             'title' => 'Classifica',
 
             'headers' => [
@@ -149,7 +152,7 @@ return [
                 'mods' => 'Mod',
                 'player' => 'Giocatore',
                 'pp' => '',
-                'rank' => 'Rank',
+                'rank' => 'Posto',
                 'score_total' => 'Punteggio Totale',
                 'score' => 'Punteggio',
                 'time' => 'Tempo',
@@ -157,7 +160,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Nessuno dal tuo paese ha fatto un punteggio in questa mappa!',
-                'friend' => 'Nessuno dei tuoi amici ha fatto un punteggio in questa mappa!',
+                'friend' => 'Nessuno dei tuoi amici ha ancora fatto un punteggio su questa mappa!',
                 'global' => 'Ancora nessun punteggio. Perché non provi a farne uno?',
                 'loading' => 'Caricamento punteggi...',
                 'unranked' => 'Beatmap non classificata.',
@@ -186,7 +189,7 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Rankata',
+            'ranked' => 'Classificata',
             'approved' => 'Approvata',
             'loved' => 'Amata',
             'qualified' => 'Qualificata',

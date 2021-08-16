@@ -33,4 +33,18 @@ class UserGroup extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function getGroupAttribute(): Group
+    {
+        return app('groups')->byId($this->group_id);
+    }
+
+    public function getPlaymodesAttribute(?string $value): ?array
+    {
+        if ($this->group->has_playmodes) {
+            return json_decode($value) ?? [];
+        }
+
+        return null;
+    }
 }

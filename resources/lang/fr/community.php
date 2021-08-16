@@ -24,11 +24,11 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Artistes mis en avant',
-                'description' => 'Avec votre soutien, nous pouvons approcher encore plus d\'artistes géniaux et obtenir les licences de plus de musique pour l\'utilisation de osu!',
+                'description' => 'Avec votre soutien, nous pouvons approcher encore plus d\'artistes géniaux et obtenir les licences de plus de musique pour leur utilisation dans osu!',
                 'link_text' => 'Voir la liste courante &raquo;',
             ],
             'ads' => [
-                'title' => 'Garder osu ! auto-soutenant',
+                'title' => 'Garder osu! auto-soutenant',
                 'description' => 'Vos contributions aident à garder le jeu indépendant et totalement exempt des annonces et des sponsors extérieurs.',
             ],
             'tournaments' => [
@@ -43,15 +43,15 @@ return [
             ],
         ],
         'perks' => [
-            'title' => 'Ah ? Qu\'est-ce que j\'aurais en plus ?!',
+            'title' => 'Cool ! Quels sont les avantages dont je bénéficie ?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'accès rapide à la recherche et au téléchargement de beatmap sans quitter le jeu.',
+                'description' => 'Bénéficiez d\'un accès rapide et facile pour rechercher et télécharger des beatmaps sans avoir à quitter le jeu.',
             ],
 
             'friend_ranking' => [
                 'title' => 'Classement des amis',
-                'description' => "Voyez comment vous vous accumulez contre vos amis sur le classement d'une beatmap, tant en jeu que sur le site web.",
+                'description' => "Comparez vos résultats à ceux de vos amis dans le classement d'une beatmap, à la fois dans le jeu et sur le site Web.",
             ],
 
             'country_ranking' => [
@@ -66,74 +66,74 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Téléchargements automatiques',
-                'description' => 'Téléchargements automatiques en multijoueur, lorsque vous observez ou dans le chat!',
+                'description' => 'Les beatmaps se téléchargent automatiquement dans les jeux multijoueurs, lorsque vous observez les autres ou lorsque vous cliquez sur les liens pertinents dans le tchat !',
             ],
 
             'upload_more' => [
                 'title' => 'Plus de slots d\'upload',
-                'description' => 'Slots de beatmaps additionnels jusqu\'à 10.',
+                'description' => 'Emplacements supplémentaires pour les beatmaps en attente (par beatmaps classée), jusqu\'à un maximum de 10.',
             ],
 
             'early_access' => [
                 'title' => 'Accès anticipé',
-                'description' => 'Accès aux versions anticipées, vous obtiendrez les nouvelles fonctions avant tout le monde!',
+                'description' => 'Bénéficiez d\'un accès anticipé aux nouvelles versions avec de nouvelles fonctionnalités avant qu\'elles ne soient rendues publiques !<br/><br/> Cela inclut également un accès anticipé aux nouvelles fonctionnalités du site web !',
             ],
 
             'customisation' => [
                 'title' => 'Personnalisation',
-                'description' => "Personnalisez votre profil avec une page utilisateur complètement changeable.",
+                'description' => "Démarquez-vous en téléchargeant une image de couverture personnalisée ou en créant une section \"moi !\" entièrement personnalisable dans votre profil d'utilisateur.",
             ],
 
             'beatmap_filters' => [
                 'title' => 'Filtres de beatmaps',
-                'description' => 'Filtrez les recherches de beatmaps par les jouées et les non-jouées et les notes obtenues (si une).',
+                'description' => 'Filtrez les recherches des beatmaps par cartes jouées et non jouées, ou par rang atteint.',
             ],
 
             'yellow_fellow' => [
-                'title' => 'Compagnon jaune',
-                'description' => 'Soyez reconnu en jeu avec un pseudo couleur or.',
+                'title' => 'Pseudo jaune',
+                'description' => 'Soyez reconnu dans le jeu grâce à la nouvelle couleur jaune vif de votre nom d\'utilisateur dans le tchat.',
             ],
 
             'speedy_downloads' => [
-                'title' => 'Téléchargements rapides',
-                'description' => 'Moins de restrictions de téléchargements, surtout grâce à osu!direct.',
+                'title' => 'Téléchargements plus rapides',
+                'description' => 'Des restrictions de téléchargement plus clémentes, notamment grâce à osu!direct.',
             ],
 
             'change_username' => [
                 'title' => 'Changez de pseudo',
-                'description' => 'Vous pouvez changer votre pseudo sans coûts. (une fois seulement)',
+                'description' => 'Un changement de nom gratuit est inclus dans l\'achat de votre premier supporter.',
             ],
 
             'skinnables' => [
                 'title' => 'Skin',
-                'description' => 'Plus d\'options de skin, comme le fond du menu principal.',
+                'description' => 'Des éléments skinnables supplémentaires dans le jeu, comme le fond du menu principal.',
             ],
 
             'feature_votes' => [
                 'title' => 'Votes de fonctionnalités',
-                'description' => 'Votez pour les demandes de fonctionnalités. (2x par mois)',
+                'description' => 'Votez pour les demandes de fonctionnalités. (2 fois par mois)',
             ],
 
             'sort_options' => [
                 'title' => 'Options de filtrage',
-                'description' => 'La capacité de filtrer le classement par pays / amis / mods spécifiques.',
+                'description' => 'La possibilité d\'afficher en jeu les classements par pays, par ami ou par mods sur les beatmaps.',
             ],
 
             'more_favourites' => [
                 'title' => 'Plus de favoris',
-                'description' => 'Le nombre maximum de beatmaps que vous pouvez préférer est augmenté de :normally &rarr; :supporter',
+                'description' => 'Le nombre maximum de beatmaps que vous pouvez ajouter au favoris est augmenté de :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Plus d\'amis',
                 'description' => 'Le nombre maximum d\'amis que vous pouvez avoir est augmenté de :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => 'Mettre en ligne plus de Beatmaps',
-                'description' => 'Le nombre maximal de beatmaps non-classées que vous pouvez avoir est calculé à partir d\'une valeur de base, augmentée pour chacune de vos beatmaps classées, jusqu\'à une certaine limite.<br/><br/>Normalement ce nombre est de 4 plus 1 pour chaque beatmap classée (jusqu\'à un maximum de 2). Avec osu!supporter, le maximum passe à 8 plus 1 par beatmap classée (jusqu\'à un maximum de 12).',
+                'title' => 'Mettre en ligne plus de beatmaps',
+                'description' => 'Le nombre de beatmaps en attente que vous pouvez avoir en même temps est calculé à partir d\'une valeur de base plus un bonus supplémentaire pour chaque beatmap classée que vous avez actuellement (jusqu\'à une limite).<br/><br/>Normalement, cela est :base plus :bonus par beatmap classé (jusqu\'à :bonus_max). Avec supporter, cela passe à :supporter_base plus :supporter_bonus par beatmap classé (jusqu\'à :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Classement des amis',
-                'description' => 'Compétez avec vos amis et voyez comment vous montez contre eux !*<br/><br/><small>* pas encore disponible sur le nouveau site, comingsoon(tm)</small>',
+                'description' => 'Faites concurrence à vos amis et voyez comment vous vous situez par rapport à eux !',
             ],
 
         ],
@@ -141,8 +141,8 @@ return [
             'contribution' => 'Merci beaucoup de votre support ! Vous avez contribué pour un total de :dollars avec :tags achats de tags !',
             'gifted' => ":giftedTags de vos achats de tags ont été offerts en cadeau (pour un total de :giftedDollars offerts), quelle générosité !",
             'not_yet' => "Vous n'avez pas de tag supporter :(",
-            'valid_until' => 'Votre tag supporter expire :date!',
-            'was_valid_until' => 'Votre tag supporter a expiré :date.',
+            'valid_until' => 'Votre badge osu!supporter actuel est valable jusqu\'au :date!',
+            'was_valid_until' => 'Votre badge osu!supporter était valable jusqu\'au :date.',
         ],
     ],
 ];

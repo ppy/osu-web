@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'الاِقتراح',
+            'multiplayer' => 'متعدد اللاعبين',
             'show' => 'معلومات',
         ],
     ],
@@ -160,7 +161,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'تجاوزت افصى حد',
             'description' => '',
         ],
         '500' => [

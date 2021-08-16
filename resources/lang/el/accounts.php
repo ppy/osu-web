@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'επιλογές παράδοσης',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => '',
             'channel_message' => 'ιδιωτικά μηνύματα',
             'comment_new' => 'νέα σχόλια',

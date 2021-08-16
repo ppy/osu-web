@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => 'multijogador',
             'show' => 'informação',
         ],
     ],
@@ -72,7 +73,7 @@ return [
             'contests' => 'concursos',
             'dev' => 'desenvolvimento',
             'forum-forums-index' => 'fóruns',
-            'getLive' => 'ao vivo',
+            'getLive' => 'em direto',
             'tournaments' => 'torneios',
         ],
         'help' => [
@@ -117,10 +118,10 @@ return [
             'download' => 'Descarrega o osu!',
         ],
         'help' => [
-            '_' => 'Ajuda e comunidade',
-            'faq' => 'Perguntas frequentes (em brasileiro)',
+            '_' => 'Ajuda e Comunidade',
+            'faq' => 'Perguntas frequentes',
             'forum' => 'Fóruns da comunidade',
-            'livestreams' => 'Transmissões ao vivo',
+            'livestreams' => 'Transmissões em direto',
             'report' => 'Comunicar um problema',
             'wiki' => 'Wiki',
         ],

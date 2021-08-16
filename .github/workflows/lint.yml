@@ -20,7 +20,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2
-          php-version: '7.4'
+          php-version: '8.0'
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -60,7 +60,7 @@ jobs:
       - run: yarn lint
       - run: ./bin/update_licence.sh -nf
 
-      - name: PHP_CodeSniffer check
-        uses: chekalsky/phpcs-action@v1
-        with:
-          phpcs_bin_path: './vendor/bin/phpcs'
+      - name: Run PHPCS
+        run: |
+          echo "::add-matcher::${PWD}/.github/workflows/lint/problem-matcher.json"
+          ./vendor/bin/phpcs --report=checkstyle --basepath="$PWD"

@@ -8,7 +8,7 @@
             href="{{ route('follows.index', ['subtype' => $menuSubtype]) }}"
             class="page-tabs__tab {{ $subtype === $menuSubtype ? 'page-tabs__tab--active' : '' }}"
         >
-            {{ trans("follows.{$menuSubtype}.title") }}
+            {{ osu_trans("follows.{$menuSubtype}.title") }}
         </a>
     @endforeach
 </div>

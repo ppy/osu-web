@@ -11,7 +11,7 @@ return [
 
         'table' => [
             'latest_comment_empty' => '沒有評論',
-            'latest_comment_value' => '',
+            'latest_comment_value' => ':time 於 :username 發出',
         ],
     ],
 
@@ -25,11 +25,11 @@ return [
 
     'mapping' => [
         'empty' => '沒有正在關注的譜師。',
-        'followers' => '',
+        'followers' => '作圖追蹤者',
         'page_title' => '關注的譜師',
         'title' => '作圖者',
-        'to_0' => '',
-        'to_1' => '',
+        'to_0' => '停止通知我這個用戶上傳新的圖譜',
+        'to_1' => '當這個用戶上傳新的圖譜時通知我',
     ],
 
     'modding' => [

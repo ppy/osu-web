@@ -30,7 +30,8 @@ class WikiController extends Controller
      *
      * Returns [WikiPage](#wikipage).
      *
-     * @urlParam page The path name of the wiki page.
+     * @urlParam locale string required Two-letter language code of the wiki page. Example: en
+     * @urlParam path string required The path name of the wiki page. Example: Welcome
      */
     public function show($locale = null, $path = null)
     {
@@ -61,13 +62,14 @@ class WikiController extends Controller
             return ujs_redirect(wiki_url($path, $queryLocale));
         }
 
-        // normalize path by making sure no trailing slash
-        if (substr(request()->getPathInfo(), -1) === '/') {
+        // normalize path by making sure no trailing slash and encoded forward slash (%2F)
+        $rawPath = request()->getPathInfo();
+        if (substr($rawPath, -1) === '/' || strpos($rawPath, '%2F') !== false) {
             return ujs_redirect(wiki_url(rtrim($path, '/'), $locale));
         }
 
         // legal pages should be displayed with their own style etc
-        if (starts_with("{$path}/", "Legal/")) {
+        if (starts_with("{$path}/", 'Legal/')) {
             return ujs_redirect(wiki_url($path, $locale));
         }
 

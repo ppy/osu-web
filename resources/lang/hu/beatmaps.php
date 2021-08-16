@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'kudosu megtagadása',
         'edit' => 'szerkesztés',
         'edited' => 'Utoljára frissítve :editor által, :update_time-kor.',
+        'guest' => 'Vendég nehézség :user által',
         'kudosu_denied' => 'Kudosu szerzéstől megtagadva.',
         'message_placeholder_deleted_beatmap' => 'Ez a nehézség törölve lett, ezért a beszélgetés nem lehetséges.',
         'message_placeholder_locked' => 'A beatmap megbeszélése meg lett tiltva.',
@@ -104,7 +105,7 @@ return [
                 'unsaved' => 'Mentetlen',
                 'timestamp' => [
                     'all-diff' => 'Az összes nehézséget tartalmazó posztra posztolni, nem lehet időjelölni.',
-                    'diff' => 'Ha a :type-al fog kezdődni, akkor az idővonal alatt fog megjelenni.',
+                    'diff' => 'Ha :type típussal fog kezdődni, akkor az idővonal alatt fog megjelenni.',
                 ],
             ],
             'insert-block' => [
@@ -182,6 +183,7 @@ return [
         'disqualify' => 'Diszkvalifikálás',
         'incorrect_state' => 'Hiba a művelet végrehajtása közben, próbáld meg újratölteni az oldalt.',
         'love' => 'Love',
+        'love_choose' => '',
         'love_confirm' => 'Love-olod ezt a beatmap-et?',
         'nominate' => 'Nominálás',
         'nominate_confirm' => 'Nominálod ezt a beatmapot?',
@@ -220,7 +222,7 @@ return [
             'not-found' => 'nincs találat',
             'not-found-quote' => '... nope, semmit sem találtam.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Általános',
                 'genre' => 'Műfaj',
                 'language' => 'Nyelv',
@@ -266,7 +268,7 @@ return [
         'approved' => 'Jóváhagyott',
         'favourites' => 'Kedvencek',
         'graveyard' => 'Temető',
-        'leaderboard' => 'Van Ranglistája',
+        'leaderboard' => 'Ranglistás',
         'loved' => 'Loved',
         'mine' => 'Saját mapjaim',
         'pending' => 'Függőben lévő & WIP',
@@ -309,11 +311,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Összes',
@@ -335,7 +337,7 @@ return [
 
     'nsfw' => [
         'exclude' => 'Elrejtés',
-        'include' => 'Mutasson',
+        'include' => 'Mutatás',
     ],
 
     'played' => [

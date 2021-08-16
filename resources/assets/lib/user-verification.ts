@@ -1,8 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Fade from 'fade';
 import { route } from 'laroute';
+import core from 'osu-core-singleton';
+import { fadeIn, fadeOut, fadeToggle } from 'utils/fade';
 import { createClickCallback } from 'utils/html';
 
 interface ReissueCodeJson {
@@ -20,7 +21,7 @@ interface UserVerificationXhr extends JQuery.jqXHR {
 }
 
 const isUserVerificationXhr = (arg: JQuery.jqXHR): arg is UserVerificationXhr => (
-    arg.status === 401 && arg.responseJSON?.authentication === 'verify'
+  arg.status === 401 && arg.responseJSON?.authentication === 'verify'
 );
 
 export default class UserVerification {
@@ -73,7 +74,7 @@ export default class UserVerification {
     this.show(xhr.responseJSON.box, callback);
 
     return true;
-  }
+  };
 
   private $modal() {
     return $('.js-user-verification');
@@ -101,11 +102,11 @@ export default class UserVerification {
       .post(route('account.verify'), { verification_key: inputKey })
       .done(this.success)
       .fail(this.error);
-  }
+  };
 
   private error = (xhr: JQuery.jqXHR) => {
     this.setMessage(osu.xhrErrorMessage(xhr));
-  }
+  };
 
   private float = (float: boolean, modal: HTMLElement, referenceBottom?: number) => {
     if (float) {
@@ -115,11 +116,9 @@ export default class UserVerification {
       modal.classList.remove('js-user-verification--center');
       modal.style.paddingTop = `${referenceBottom ?? 0}px`;
     }
-  }
+  };
 
-  private isActive = () => {
-    return this.modal?.classList.contains('js-user-verification--active');
-  }
+  private isActive = () => this.modal?.classList.contains('js-user-verification--active');
 
   private isVerificationPage() {
     return document.querySelector('.js-user-verification--on-load') != null;
@@ -127,12 +126,12 @@ export default class UserVerification {
 
   private onError = (e: { target: unknown }, xhr: JQuery.jqXHR) => (
     this.showOnError(xhr, createClickCallback(e.target))
-  )
+  );
 
   private prepareForRequest = (type: string) => {
     this.request?.abort();
     this.setMessage(osu.trans(`user_verification.box.${type}`), true);
-  }
+  };
 
   private reissue = (e: JQuery.Event) => {
     e.preventDefault();
@@ -145,30 +144,30 @@ export default class UserVerification {
         this.setMessage(data.message);
       })
       .fail(this.error);
-  }
+  };
 
   private reposition = () => {
     if (!this.isActive() || this.modal == null) return;
 
-    if (osu.isMobile()) {
+    if (core.windowSize.isMobile) {
       this.float(true, this.modal);
     } else {
       const referenceBottom = this.reference?.getBoundingClientRect().bottom ?? 0;
 
       this.float(referenceBottom < 0, this.modal, referenceBottom);
     }
-  }
+  };
 
   private setDelayShow = () => {
     this.delayShow = true;
-  }
+  };
 
-  private setMessage = (text?: string, withSpinner: boolean = false) => {
+  private setMessage = (text?: string, withSpinner = false) => {
     const message = this.message;
     if (message == null) return;
 
     if (text == null || text.length === 0) {
-      Fade.out(message);
+      fadeOut(message);
       return;
     }
 
@@ -178,15 +177,15 @@ export default class UserVerification {
     if (messageText == null || spinner == null) return;
 
     messageText.textContent = text;
-    Fade.toggle(spinner, withSpinner);
-    Fade.in(message);
-  }
+    fadeToggle(spinner, withSpinner);
+    fadeIn(message);
+  };
 
   private setModal = () => {
     const modal = document.querySelector('.js-user-verification');
 
     this.modal = modal instanceof HTMLElement ? modal : undefined;
-  }
+  };
 
   private show = (html?: string, callback?: () => void) => {
     if (this.delayShow) {
@@ -201,15 +200,15 @@ export default class UserVerification {
     }
 
     this.$modal()
-    .modal({
-      backdrop: 'static',
-      keyboard: false,
-      show: true,
-    })
-    .addClass('js-user-verification--active');
+      .modal({
+        backdrop: 'static',
+        keyboard: false,
+        show: true,
+      })
+      .addClass('js-user-verification--active');
 
     this.reposition();
-  }
+  };
 
   // for pages which require authentication
   // and being visited directly from outside
@@ -222,7 +221,7 @@ export default class UserVerification {
     } else if (this.isVerificationPage()) {
       this.show();
     }
-  }
+  };
 
   private success = () => {
     if (!this.isActive() || this.modal == null) return;
@@ -245,5 +244,5 @@ export default class UserVerification {
     }
 
     callback?.();
-  }
+  };
 }

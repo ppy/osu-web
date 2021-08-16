@@ -6,6 +6,7 @@ import * as React from 'react';
 import { Spinner } from 'spinner';
 import { onErrorWithClick } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { nextVal } from 'utils/seq';
 
 interface Props {
   alwaysVisible?: boolean;
@@ -25,7 +26,7 @@ const bn = 'user-action-button';
 
 export default class FollowUserMappingButton extends React.Component<Props, State> {
   private buttonRef = React.createRef<HTMLButtonElement>();
-  private eventId = `follow-user-mapping-button-${osu.uuid()}`;
+  private eventId = `follow-user-mapping-button-${nextVal()}`;
   private xhr?: JQueryXHR;
 
   constructor(props: Props) {
@@ -63,18 +64,21 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
       ? osu.trans(`follows.mapping.${this.state.following ? 'to_0' : 'to_1'}`)
       : osu.trans('follows.mapping.followers');
 
-    let blockClass = classWithModifiers(bn, this.props.modifiers);
-    blockClass += classWithModifiers(bn, { friend: this.state.following }, true);
+    const blockClass = classWithModifiers(
+      bn,
+      this.props.modifiers,
+      { friend: this.state.following },
+    );
 
     const disabled = this.state.loading || !canToggle;
 
     return (
       <div title={title}>
         <button
+          ref={this.buttonRef}
           className={blockClass}
           disabled={disabled}
           onClick={this.onClick}
-          ref={this.buttonRef}
         >
           {this.renderIcon()}
           {this.renderCounter()}

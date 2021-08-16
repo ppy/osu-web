@@ -4,7 +4,7 @@
 --}}
 @extends('master', [
     'blank' => true,
-    'titlePrepend' => trans('client_verifications.completed.title'),
+    'titlePrepend' => osu_trans('client_verifications.completed.title'),
 ])
 
 @section('content')
@@ -14,7 +14,7 @@
 
             <div class="dialog-form__row dialog-form__row--title">
                 <div class="dialog-form__logo"></div>
-                <h1 class="dialog-form__title">{{ trans('client_verifications.create.title') }}</h1>
+                <h1 class="dialog-form__title">{{ osu_trans('client_verifications.create.title') }}</h1>
             </div>
 
             <div class="dialog-form__row dialog-form__row--client-verification-completed">
@@ -24,24 +24,25 @@
                     </div>
 
                     <div class="account-verification-message__title">
-                        {{ trans('client_verifications.completed.title') }}
+                        {{ osu_trans('client_verifications.completed.title') }}
                     </div>
                 </div>
             </div>
 
             <div class="dialog-form__row dialog-form__row--client-verification-completed-buttons">
                 <a href="{{ route('home') }}" class="dialog-form__button">
-                    {{ trans('client_verifications.completed.home') }}
+                    {{ osu_trans('client_verifications.completed.home') }}
                 </a>
 
                 <button
-                    class="dialog-form__extra-link dialog-form__extra-link--small"
-                    data-confirm="{{ trans('users.logout_confirm') }}"
+                    class="js-logout-link dialog-form__extra-link dialog-form__extra-link--small"
+                    data-confirm="{{ osu_trans('users.logout_confirm') }}"
                     data-method="DELETE"
+                    data-redirect-home='1'
                     data-remote="1"
-                    data-url="{{ route('logout', ['redirect_home' => 1]) }}"
+                    data-url="{{ route('logout') }}"
                 >
-                    {{ trans('client_verifications.completed.logout') }}
+                    {{ osu_trans('client_verifications.completed.logout') }}
                 </button>
             </div>
         </div>

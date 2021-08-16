@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'verwijderd',
+    'deleted_by' => ':timeago verwijderd door :user',
+    'deleted_by_system' => 'systeem',
     'deleted_count' => ':count_delimited verwijderde opmerking|:count_delimited verwijderde opmerkingen',
     'edited' => 'gewijzigd :timeago door :user',
     'pinned' => 'vast gezet',

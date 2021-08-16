@@ -7,6 +7,7 @@ import { BeatmapsetSearchFilters, BeatmapsetSearchParams } from 'beatmapset-sear
 import { route } from 'laroute';
 import { debounce, intersection, map } from 'lodash';
 import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe, runInAction } from 'mobx';
+import { currentUrl } from 'utils/turbolinks';
 
 export interface SearchStatus {
   error?: any;
@@ -32,6 +33,7 @@ export class BeatmapsetSearchController {
     state: 'completed',
   };
 
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   private readonly debouncedFilterChangedSearch = debounce(this.filterChangedSearch, 500);
   private filtersObserver!: Lambda;
   private initialErrorMessage?: string;
@@ -115,7 +117,7 @@ export class BeatmapsetSearchController {
   @action
   async search(from = 0, restore = false) {
     if (this.isSupporterMissing || from < 0) {
-      this.searchStatus = { state: 'completed', error: null, from, restore };
+      this.searchStatus = { error: null, from, restore, state: 'completed' };
       return;
     }
 
@@ -133,7 +135,7 @@ export class BeatmapsetSearchController {
     }
 
     runInAction(() => {
-      this.searchStatus = { state: 'completed', error, from, restore };
+      this.searchStatus = { error, from, restore, state: 'completed' };
       this.currentResultSet = this.beatmapsetSearch.getResultSet(this.filters);
     });
   }
@@ -166,12 +168,13 @@ export class BeatmapsetSearchController {
 
   @action
   private restoreStateFromUrl() {
-    const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(location.href);
+    const url = currentUrl().href;
+    const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(url);
 
     if (this.filtersObserver != null) {
       this.filtersObserver();
     }
-    this.filters = new BeatmapsetSearchFilters(location.href);
+    this.filters = new BeatmapsetSearchFilters(url);
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 
     this.isExpanded = intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0;

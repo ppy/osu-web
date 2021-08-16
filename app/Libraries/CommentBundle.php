@@ -11,14 +11,13 @@ use App\Models\User;
 
 class CommentBundle
 {
-    public $depth;
-    public $includeDeleted;
-    public $includePinned;
-    public $params;
+    public int $depth;
+    public bool $includeDeleted;
+    public bool $includePinned;
+    public CommentBundleParams $params;
 
-    private $commentable;
-    private $comment;
-    private $user;
+    private ?Comment $comment;
+    private ?User $user;
 
     public static function forComment(Comment $comment, bool $includeNested = false)
     {
@@ -36,11 +35,10 @@ class CommentBundle
         return new static($commentable, ['params' => ['parent_id' => 0]]);
     }
 
-    public function __construct($commentable, array $options = [])
-    {
-        $this->commentable = $commentable;
 
-        $this->user = $options['user'] ?? auth()->user();
+    public function __construct(private ?Commentable $commentable, array $options = [])
+    {
+        $this->user = auth()->user();
 
         $this->params = new CommentBundleParams($options['params'] ?? [], $this->user);
 
@@ -124,7 +122,7 @@ class CommentBundle
             $result['total'] = $this->commentsQuery()->count();
         }
 
-        $commentables = $comments->pluck('commentable')->concat([null]);
+        $commentables = $comments->pluck('commentable')->uniqueStrict('commentable_identifier')->concat([null]);
         $result['commentable_meta'] = json_collection($commentables, 'CommentableMeta');
 
         return $result;
@@ -218,6 +216,10 @@ class CommentBundle
     {
         $userIds = $comments->pluck('user_id')
             ->concat($comments->pluck('edited_by_id'));
+
+        if (priv_check('CommentModerate')->can()) {
+            $userIds = $userIds->concat($comments->pluck('deleted_by_id'));
+        }
 
         return User::whereIn('user_id', $userIds)->get();
     }

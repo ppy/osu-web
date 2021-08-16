@@ -35,4 +35,4 @@ class @PostPreview
       $preview.html data
       $preview.attr 'data-raw', body
       $previewBox.removeClass 'hidden'
-      osu.pageChange()
+      _exported.pageChange()

@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'tolak kudosu',
         'edit' => 'sunting',
         'edited' => 'Terakhir disunting oleh :editor :update_time.',
+        'guest' => 'Guest difficulty oleh :user',
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
         'message_placeholder_locked' => 'Laman diskusi pada beatmap ini telah ditutup.',
@@ -69,7 +70,7 @@ return [
             'disqualify' => 'Diskualifikasi',
             'hype' => 'Hype!',
             'mapper_note' => 'Catatan',
-            'nomination_reset' => 'Hilangkan Status Nominasi',
+            'nomination_reset' => 'Anulir Nominasi',
             'praise' => 'Pujian',
             'problem' => 'Masalah',
             'review' => 'Kajian',
@@ -182,6 +183,7 @@ return [
         'disqualify' => 'Diskualifikasi',
         'incorrect_state' => 'Ditemukan kesalahan saat melakukan tindakan ini, silakan muat ulang laman.',
         'love' => 'Love',
+        'love_choose' => '',
         'love_confirm' => 'Love beatmap ini?',
         'nominate' => 'Nominasi',
         'nominate_confirm' => 'Nominasikan beatmap ini?',
@@ -201,13 +203,13 @@ return [
         ],
 
         'reset_at' => [
-            'nomination_reset' => 'Proses nominasi diulang :time_ago oleh :user akibat ditemukannya masalah baru :discussion (:message).',
+            'nomination_reset' => 'Proses nominasi dianulir :time_ago oleh :user akibat ditemukannya masalah baru :discussion (:message).',
             'disqualify' => 'Didiskualifikasi :time_ago oleh :user akibat ditemukannya masalah baru :discussion (:message).',
         ],
 
         'reset_confirm' => [
             'nomination_reset' => 'Apakah Anda yakin? Memposting masalah baru akan mengulang proses nominasi.',
-            'disqualify' => 'Apakah Anda yakin? Tindakan ini akan menganulir status Qualified pada beatmap ini dan mengulang proses nominasi dari awal.',
+            'disqualify' => 'Apakah Anda yakin? Tindakan ini akan melepas beatmap ini dari kategori Qualified dan mengulang proses nominasi dari awal.',
         ],
     ],
 
@@ -249,8 +251,8 @@ return [
         ],
     ],
     'general' => [
-        'converts' => 'Sertakan beatmap yang dikonversi',
-        'follows' => 'Mapper yang dipantau',
+        'converts' => 'Sertakan map-map convert',
+        'follows' => 'Tampilkan hanya mapper-mapper yang dipantau',
         'recommended' => 'Tingkat kesulitan yang disarankan',
     ],
     'mode' => [
@@ -268,7 +270,7 @@ return [
         'graveyard' => 'Graveyard',
         'leaderboard' => 'Memiliki Leaderboard',
         'loved' => 'Loved',
-        'mine' => 'Map Saya',
+        'mine' => 'Map-Map Milik Saya',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
@@ -309,11 +311,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Semua',

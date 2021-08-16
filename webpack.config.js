@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-const path = require('path');
 const { spawnSync } = require('child_process');
+const path = require('path');
 const Watchpack = require('watchpack');
 const spawnOptions = { stdio: 'inherit' };
 
@@ -52,13 +52,13 @@ function configPromise(env, argv) {
 
     const wp = new Watchpack(options);
     wp.watch(
-      watches.filter(x => x.type === 'file').map(x => x.path),
-      watches.filter(x => x.type === 'dir').map(x => x.path),
+      watches.filter((x) => x.type === 'file').map((x) => x.path),
+      watches.filter((x) => x.type === 'dir').map((x) => x.path),
     ); // files and directories are different arguments.
 
     // directory watchers cause change events on start, file watchers don't;
     // run the callback for each file watcher once.
-    watches.filter(x => x.type === 'file').forEach((watched) => {
+    watches.filter((x) => x.type === 'file').forEach((watched) => {
       watched.callback();
       watched.ranOnce = true;
     });

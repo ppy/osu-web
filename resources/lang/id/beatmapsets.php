@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang sudah Anda miliki terlebih dahulu.',
+        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang telah Anda miliki terlebih dahulu.',
     ],
 
     'index' => [
@@ -38,10 +38,10 @@ return [
         'too_many' => 'Persyaratan nominasi telah terpenuhi.',
 
         'dialog' => [
-            'confirmation' => 'Apakah Anda yakin untuk menominasikan Beatmap ini?',
+            'confirmation' => 'Apakah Anda yakin untuk menominasikan beatmap ini?',
             'header' => 'Nominasikan Beatmap',
             'hybrid_warning' => 'catatan: Anda hanya dapat memberikan satu nominasi, sehingga pastikan Anda memberikan nominasi pada mode permainan yang memang Anda kehendaki',
-            'which_modes' => 'Mode permainan apa yang akan Anda nominasikan?',
+            'which_modes' => 'Mode permainan apa yang hendak Anda nominasikan?',
         ],
     ],
 
@@ -53,10 +53,12 @@ return [
         'discussion' => 'Diskusi',
 
         'details' => [
-            'favourite' => 'Tambahkan beatmapset ini ke dalam daftar Beatmap Favorit',
+            'by_artist' => 'oleh :artist',
+            'favourite' => 'Tambahkan beatmap ini ke dalam daftar Beatmap Favorit',
+            'favourite_login' => 'Silakan masuk untuk menambahkan beatmap ini ke Beatmap Favorit',
             'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
             'mapped_by' => 'dibuat oleh :mapper',
-            'unfavourite' => 'Hapus beatmapset ini dari daftar Beatmap Favorit',
+            'unfavourite' => 'Hapus beatmap ini dari daftar Beatmap Favorit',
             'updated_timeago' => 'terakhir diperbarui :timeago',
 
             'download' => [
@@ -89,7 +91,7 @@ return [
             'action' => 'Apabila Anda menyukai beatmap ini, berikanlah hype Anda untuk mendorong beatmap ini agar dapat selangkah lebih dekat menuju status <strong>Ranked</strong>.',
 
             'current' => [
-                '_' => 'Map ini sedang berstatus :status.',
+                '_' => 'Beatmap ini sedang berstatus :status.',
 
                 'status' => [
                     'pending' => 'pending',
@@ -117,9 +119,10 @@ return [
             'nsfw' => 'Konten eksplisit',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
-            'storyboard' => 'Beatmap ini mengandung storyboard',
+            'storyboard' => 'Beatmap ini menyertakan storyboard',
             'success-rate' => 'Tingkat Keberhasilan',
             'tags' => 'Tag',
+            'video' => 'Beatmap ini menyertakan video',
         ],
 
         'nsfw_warning' => [

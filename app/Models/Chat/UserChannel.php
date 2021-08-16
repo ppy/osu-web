@@ -148,7 +148,7 @@ class UserChannel extends Model
 
             $presence['users'] = $channelUserIds;
 
-            if ($channel->type === Channel::TYPES['pm']) {
+            if ($channel->isPM()) {
                 // remove ourselves from $channelUserIds, leaving only the other party.
                 // array_shift doesn't require array_values to be called first.
                 $members = array_diff($channelUserIds, [$user->getKey()]);

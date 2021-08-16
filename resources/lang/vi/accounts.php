@@ -10,12 +10,12 @@ return [
 
         'avatar' => [
             'title' => 'Ảnh đại diện',
-            'rules' => 'Hãy chắc rằng ảnh đại diện của bạn tuân thủ :link.<br/>Điều này có nghĩa rằng ảnh phải <strong>phù hợp với mọi lứa tuổi</strong>. Ví dụ như không có nội dung khỏa thân, thô tục hoặc gợi tưởng.',
+            'rules' => 'Hãy chắc rằng ảnh đại diện của bạn tuân thủ :link.<br/>Điều này có nghĩa rằng ảnh phải <strong>phù hợp với mọi lứa tuổi</strong>. Ví dụ như không có nội dung khiêu gợi, thô tục hoặc gợi tưởng.',
             'rules_link' => 'những tiêu chuẩn cộng đồng',
         ],
 
         'email' => [
-            'current' => 'Email hiện tại',
+            'current' => 'email hiện tại.',
             'new' => 'email mới',
             'new_confirmation' => 'xác nhận email',
             'title' => 'Email',
@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'phương thức giao hàng',
+            'beatmap_owner_change' => 'Độ khó khách mời',
             'beatmapset:modding' => 'sửa đổi beatmap',
             'channel_message' => 'tin nhắn riêng tư',
             'comment_new' => 'bình luận mới',

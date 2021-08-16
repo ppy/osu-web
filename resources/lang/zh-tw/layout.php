@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => '摸圖',
+            'multiplayer' => '多人遊戲',
             'show' => '資訊',
         ],
     ],
@@ -200,7 +201,7 @@ return [
 
         'register' => [
             'download' => '下載',
-            'info' => '點擊下方的註冊按鈕以成為 osu! 大家庭中的一員！',
+            'info' => '立即下載 osu! 來創造您專屬的帳號!',
             'title' => "沒有帳號？",
         ],
     ],

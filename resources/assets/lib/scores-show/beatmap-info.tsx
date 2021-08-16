@@ -8,7 +8,7 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
-import { getArtist, getDiffRating, getTitle } from 'utils/beatmap-helper';
+import { getArtist, getDiffColour, getTitle } from 'utils/beatmap-helper';
 
 interface Props {
   beatmap: BeatmapJsonExtended;
@@ -39,7 +39,7 @@ const BeatmapInfo = (props: Props) => {
         <span className='score-beatmap__detail-item score-beatmap__detail-item--difficulty'>
           <span
             className='score-beatmap__star'
-            style={osu.diffColour(getDiffRating(beatmap.difficulty_rating))}
+            style={{'--diff': getDiffColour(beatmap.difficulty_rating)} as React.CSSProperties}
           >
             <span className='fas fa-star' />
           </span>
@@ -47,14 +47,13 @@ const BeatmapInfo = (props: Props) => {
         </span>
 
         <span className='score-beatmap__detail-item'>
-          <a href={beatmapUrl} className='score-beatmap__link-plain'>
+          <a className='score-beatmap__link-plain' href={beatmapUrl}>
             {beatmap.version}
           </a>
           {' '}
 
           <span className='score-beatmap__mapper'>
             <StringWithComponent
-              pattern={osu.trans('beatmapsets.show.details.mapped_by')}
               mappings={{
                 ':mapper':
                   <UserLink
@@ -62,6 +61,7 @@ const BeatmapInfo = (props: Props) => {
                     user={{ id: beatmapset.user_id, username: beatmapset.creator }}
                   />,
               }}
+              pattern={osu.trans('beatmapsets.show.details.mapped_by')}
             />
           </span>
         </span>

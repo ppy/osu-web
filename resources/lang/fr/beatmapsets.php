@@ -6,8 +6,8 @@
 return [
     'availability' => [
         'disabled' => 'Cette beatmap n\'est actuellement pas disponible au téléchargement.',
-        'parts-removed' => 'Des parties de cette beatmap ont été supprimées suite à la requête du créateur ou d\'un titulaire de droits tiers',
-        'more-info' => 'Voir ici pour plus d\'informations.',
+        'parts-removed' => 'Des parties de cette beatmap ont été supprimées suite à la requête du créateur ou d\'un titulaire de droits tiers.',
+        'more-info' => 'Pour plus d\'informations, cliquez ici.',
         'rule_violation' => 'Certains éléments contenus dans cette map ont été supprimés après avoir été jugés inappropriés pour être utilisés dans osu!.',
     ],
 
@@ -38,9 +38,9 @@ return [
         'too_many' => 'L\'exigence de nomination est déjà remplie.',
 
         'dialog' => [
-            'confirmation' => 'Êtes-vous sûr de vouloir nominer cette Beatmap ?',
+            'confirmation' => 'Êtes-vous sûr de vouloir nominer cette beatmap ?',
             'header' => 'Nominer la beatmap',
-            'hybrid_warning' => 'remarque : vous ne pouvez nominer qu\'une seule fois, donc assurez-vous que vous êtes en nomination pour tous les modes de jeu que vous avez l\'intention de proposer',
+            'hybrid_warning' => 'remarque : vous ne pouvez nominer qu\'une seule fois, assurez-vous que vous êtes en nomination pour tous les modes de jeu que vous avez l\'intention de proposer',
             'which_modes' => 'Nominer pour quels modes ?',
         ],
     ],
@@ -53,14 +53,16 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
+            'by_artist' => 'par :artist',
             'favourite' => 'Ajouter ce beatmapset aux favoris',
+            'favourite_login' => 'Connectez-vous pour ajouter cette beatmap aux favoris',
             'logged-out' => 'Vous devez vous connecter pour pouvoir télécharger des beatmaps !',
             'mapped_by' => 'mappée par :mapper',
-            'unfavourite' => 'Retirer ce beatmapset des favoris',
-            'updated_timeago' => 'dernière mise à jour :timeago',
+            'unfavourite' => 'Retirer cette beatmapset des favoris',
+            'updated_timeago' => 'dernière mise à jour le :timeago',
 
             'download' => [
-                '_' => 'télécharger',
+                '_' => 'Télécharger',
                 'direct' => '',
                 'no-video' => 'sans Vidéo',
                 'video' => 'avec Vidéo',
@@ -73,12 +75,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => 'approuvé :timeago',
-            'loved' => 'a aimé :timeago',
-            'qualified' => 'qualifiée :timeago',
-            'ranked' => 'classée :timeago',
-            'submitted' => 'envoyée :timeago',
-            'updated' => 'dernière mise à jour :timeago',
+            'approved' => 'approuvé le :timeago',
+            'loved' => 'a été loved le :timeago',
+            'qualified' => 'qualifiée le :timeago',
+            'ranked' => 'classée le :timeago',
+            'submitted' => 'envoyée le :timeago',
+            'updated' => 'dernière mise à jour le :timeago',
         ],
 
         'favourites' => [
@@ -94,7 +96,7 @@ return [
                 'status' => [
                     'pending' => 'en attente',
                     'qualified' => 'qualifiée',
-                    'wip' => 'travail en cours',
+                    'wip' => 'work in progress',
                 ],
             ],
 
@@ -117,9 +119,10 @@ return [
             'nsfw' => 'Contenu explicite',
             'points-of-failure' => 'Répartition des échecs',
             'source' => 'Source',
-            'storyboard' => 'Ce beatmap contient un storyboard',
+            'storyboard' => 'Cette beatmap contient un storyboard',
             'success-rate' => 'Taux de réussite',
             'tags' => 'Tags',
+            'video' => 'Cette beatmap contient une vidéo',
         ],
 
         'nsfw_warning' => [
@@ -139,7 +142,7 @@ return [
             'friend' => 'Classement des amis',
             'global' => 'Classement global',
             'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenues avec !',
-            'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité !',
+            'supporter-only' => 'Vous devez être un osu!supporter pour accéder à cette fonctionnalité !',
             'title' => 'Tableaux des scores',
 
             'headers' => [
@@ -157,10 +160,10 @@ return [
 
             'no_scores' => [
                 'country' => 'Personne de votre pays n\'a encore fait un score !',
-                'friend' => 'Aucun de vos amis n\'a de score sur cette map !',
+                'friend' => 'Aucun de vos amis n\'a encore établi de score sur cette map !',
                 'global' => 'Pas de scores. Peut-être devriez vous en faire un ?',
                 'loading' => 'Chargement des scores...',
-                'unranked' => 'Beatmap non classifié.',
+                'unranked' => 'Beatmap non classée.',
             ],
             'score' => [
                 'first' => 'En Tête',
@@ -171,24 +174,24 @@ return [
         'stats' => [
             'cs' => 'Taille des Cercles',
             'cs-mania' => 'Nombre de touches',
-            'drain' => 'Drainage PV',
+            'drain' => 'Drain de santé',
             'accuracy' => 'Précision',
-            'ar' => 'Niveau d\'approche',
+            'ar' => 'Taux d\'approche',
             'stars' => 'Difficulté en étoiles',
-            'total_length' => 'Longueur',
+            'total_length' => 'Longueur (Longueur de drain : :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Nombre de Cercles',
             'count_sliders' => 'Nombre de Sliders',
             'user-rating' => 'Évaluation des joueurs',
-            'rating-spread' => 'Propagation note',
+            'rating-spread' => 'Écart de notation',
             'nominations' => 'Nominations',
-            'playcount' => 'Nombre de joueurs',
+            'playcount' => 'Nombre de jeux',
         ],
 
         'status' => [
             'ranked' => 'Classée',
             'approved' => 'Approuvée',
-            'loved' => 'Aimée',
+            'loved' => 'Loved',
             'qualified' => 'Qualifiée',
             'wip' => 'WIP',
             'pending' => 'En attente',

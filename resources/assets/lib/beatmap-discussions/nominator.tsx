@@ -162,12 +162,12 @@ export class Nominator extends React.PureComponent<Props, State> {
 
     const button = (disabled = false) => (
       <BigButton
-        text={osu.trans('beatmaps.nominations.nominate')}
         icon='fas fa-thumbs-up'
         props={{
           disabled,
           onClick: this.showNominationModal,
         }}
+        text={osu.trans('beatmaps.nominations.nominate')}
       />
     );
 
@@ -187,27 +187,27 @@ export class Nominator extends React.PureComponent<Props, State> {
     const content = this.hybridMode() ? this.modalContentHybrid() : this.modalContentNormal();
 
     return (
-      <Modal visible={this.state.visible} onClose={this.hideNominationModal}>
+      <Modal onClose={this.hideNominationModal} visible={this.state.visible}>
         <div className={this.bn}>
           <div className={`${this.bn}__header`}>{osu.trans('beatmapsets.nominate.dialog.header')}</div>
           {content}
           <div className={`${this.bn}__buttons`}>
             <BigButton
-              text={osu.trans('beatmaps.nominations.nominate')}
               icon='fas fa-thumbs-up'
               isBusy={this.state.loading}
               props={{
                 disabled: (this.hybridMode() && this.state.selectedModes.length < 1) || this.state.loading,
                 onClick: this.nominate,
               }}
+              text={osu.trans('beatmaps.nominations.nominate')}
             />
             <BigButton
-              text={osu.trans('common.buttons.cancel')}
               icon='fas fa-times'
               props={{
                 disabled: this.state.loading,
                 onClick: this.hideNominationModal,
               }}
+              text={osu.trans('common.buttons.cancel')}
             />
           </div>
         </div>
@@ -263,9 +263,16 @@ export class Nominator extends React.PureComponent<Props, State> {
       (userNominatable[mode] === 'limited' && !this.requiresFullNomination(mode));
   };
 
-  userHasNominatePermission = () => !this.userIsOwner() && (this.props.currentUser.is_admin || this.props.currentUser.is_bng || this.props.currentUser.is_nat);
+  userHasNominatePermission = () => this.props.currentUser.is_admin || (!this.userIsOwner() && (this.props.currentUser.is_bng || this.props.currentUser.is_nat));
 
-  userIsOwner = () => this.props.currentUser?.id === this.props.beatmapset.user_id;
+  userIsOwner = () => {
+    const userId = this.props.currentUser?.id;
+
+    return (userId != null && (
+      userId === this.props.beatmapset.user_id
+      || (this.props.beatmapset.beatmaps ?? []).some((beatmap) => userId === beatmap.user_id)
+    ));
+  };
 
   userNominatableModes = () => {
     if (!this.mapCanBeNominated() || !this.userHasNominatePermission()) {
@@ -276,24 +283,23 @@ export class Nominator extends React.PureComponent<Props, State> {
   };
 
   private modalContentHybrid = () => {
-    let renderPlaymodes;
     const playmodes = _.keys(this.props.beatmapset.nominations?.required);
 
-    renderPlaymodes = _.map(playmodes, (mode: GameMode) => {
+    const renderPlaymodes = _.map(playmodes, (mode: GameMode) => {
       const disabled = !this.userCanNominateMode(mode);
       return (
         <label
-          className={classWithModifiers('osu-switch-v2', { disabled })}
           key={mode}
+          className={classWithModifiers('osu-switch-v2', { disabled })}
         >
           <input
+            checked={this.state.selectedModes.includes(mode)}
             className='osu-switch-v2__input'
-            type='checkbox'
+            disabled={disabled}
             name='nomination_modes'
             onChange={this.updateCheckboxes}
+            type='checkbox'
             value={mode}
-            checked={this.state.selectedModes.includes(mode)}
-            disabled={disabled}
           />
           <span className='osu-switch-v2__content'/>
           <div
@@ -308,7 +314,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     return (
       <>
         {osu.trans('beatmapsets.nominate.dialog.which_modes')}
-        <div className={`${this.bn}__checkboxes`} ref={this.checkboxContainerRef}>
+        <div ref={this.checkboxContainerRef} className={`${this.bn}__checkboxes`}>
           {renderPlaymodes}
         </div>
         <div className={`${this.bn}__warn`}>

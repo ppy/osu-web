@@ -9,7 +9,7 @@ use App\Exceptions\AuthorizationException;
 use App\Models\Beatmap;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetEvent;
+use App\Models\BeatmapsetNomination;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\Notification;
@@ -41,7 +41,7 @@ class BeatmapsetTest extends TestCase
     public function testNominate()
     {
         $beatmapset = $this->createBeatmapset();
-        $user = $this->createGroupUserWithPlaymodes('bng', $beatmapset->playmodesStr());
+        $user = $this->createUserWithGroupPlaymodes('bng', $beatmapset->playmodesStr());
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -60,7 +60,7 @@ class BeatmapsetTest extends TestCase
     public function testQualify()
     {
         $beatmapset = $this->createBeatmapset();
-        $user = $this->createGroupUserWithPlaymodes('bng', $beatmapset->playmodesStr());
+        $user = $this->createUserWithGroupPlaymodes('bng', $beatmapset->playmodesStr());
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -80,7 +80,7 @@ class BeatmapsetTest extends TestCase
         $beatmapset = $this->createBeatmapset();
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng', $beatmapset->playmodesStr()[0]);
 
-        $nominator = $this->createGroupUserWithPlaymodes('bng_limited', $beatmapset->playmodesStr());
+        $nominator = $this->createUserWithGroupPlaymodes('bng_limited', $beatmapset->playmodesStr());
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
 
@@ -95,7 +95,7 @@ class BeatmapsetTest extends TestCase
         $beatmapset = $this->createBeatmapset();
         $this->fillNominationsExceptLastForMode($beatmapset, 'nat', $beatmapset->playmodesStr()[0]);
 
-        $nominator = $this->createGroupUserWithPlaymodes('bng_limited', $beatmapset->playmodesStr());
+        $nominator = $this->createUserWithGroupPlaymodes('bng_limited', $beatmapset->playmodesStr());
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
 
@@ -110,7 +110,7 @@ class BeatmapsetTest extends TestCase
         $beatmapset = $this->createBeatmapset();
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', $beatmapset->playmodesStr()[0]);
 
-        $nominator = $this->createGroupUserWithPlaymodes('bng_limited', $beatmapset->playmodesStr());
+        $nominator = $this->createUserWithGroupPlaymodes('bng_limited', $beatmapset->playmodesStr());
 
         $this->assertFalse($beatmapset->isQualified());
         $beatmapset->nominate($nominator);
@@ -122,10 +122,10 @@ class BeatmapsetTest extends TestCase
             'genre_id' => Genre::UNSPECIFIED,
             'language_id' => Language::UNSPECIFIED,
         ]);
-        $nominator = $this->createGroupUserWithPlaymodes('bng', $beatmapset->playmodesStr());
+        $nominator = $this->createUserWithGroupPlaymodes('bng', $beatmapset->playmodesStr());
 
         $this->expectException(AuthorizationException::class);
-        $this->expectExceptionMessage(trans('authorization.beatmap_discussion.nominate.set_metadata'));
+        $this->expectExceptionMessage(osu_trans('authorization.beatmap_discussion.nominate.set_metadata'));
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
     }
 
@@ -198,13 +198,13 @@ class BeatmapsetTest extends TestCase
     // region multi-playmode beatmap sets (aka hybrid)
     public function testHybridLegacyNominate(): void
     {
-        $user = $this->createGroupUserWithPlaymodes('bng', ['osu']);
+        $user = $this->createUserWithGroupPlaymodes('bng', ['osu']);
         $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
 
         // create legacy nomination event to enable legacy nomination mode
-        $beatmapset->events()->create([
-            'type' => BeatmapsetEvent::NOMINATE,
-            'user_id' => $this->createGroupUserWithPlaymodes('bng', $beatmapset->playmodesStr())->getKey(),
+        BeatmapsetNomination::factory()->create([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'user_id' => $this->createUserWithGroupPlaymodes('bng', $beatmapset->playmodesStr())->getKey(),
         ]);
 
         $notifications = Notification::count();
@@ -223,19 +223,19 @@ class BeatmapsetTest extends TestCase
 
     public function testHybridLegacyQualify(): void
     {
-        $user = $this->createGroupUserWithPlaymodes('bng', ['osu']);
+        $user = $this->createUserWithGroupPlaymodes('bng', ['osu']);
         $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
 
         // create legacy nomination event to enable legacy nomination mode
-        $beatmapset->events()->create([
-            'type' => BeatmapsetEvent::NOMINATE,
-            'user_id' => $this->createGroupUserWithPlaymodes('bng', $beatmapset->playmodesStr())->getKey(),
+        BeatmapsetNomination::factory()->create([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'user_id' => $this->createUserWithGroupPlaymodes('bng', $beatmapset->playmodesStr())->getKey(),
         ]);
 
         // fill with legacy nominations
         $count = $beatmapset->requiredNominationCount() - $beatmapset->currentNominationCount() - 1;
         for ($i = 0; $i < $count; $i++) {
-            $beatmapset->nominate($this->createGroupUserWithPlaymodes('bng', ['osu']));
+            $beatmapset->nominate($this->createUserWithGroupPlaymodes('bng', ['osu']));
         }
 
         $notifications = Notification::count();
@@ -266,7 +266,7 @@ class BeatmapsetTest extends TestCase
         $result = $beatmapset->nominate($user);
 
         $this->assertFalse($result['result']);
-        $this->assertSame($result['message'], trans('beatmapsets.nominate.hybrid_requires_modes'));
+        $this->assertSame($result['message'], osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
 
         $this->assertSame($notifications, Notification::count());
         $this->assertSame($userNotifications, UserNotification::count());
@@ -275,7 +275,7 @@ class BeatmapsetTest extends TestCase
 
     public function testHybridNominateWithNoPlaymodePermission(): void
     {
-        $user = $this->createGroupUserWithPlaymodes('bng', ['osu']);
+        $user = $this->createUserWithGroupPlaymodes('bng', ['osu']);
         $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
 
         $notifications = Notification::count();
@@ -287,7 +287,7 @@ class BeatmapsetTest extends TestCase
         $result = $beatmapset->nominate($user, ['taiko']);
 
         $this->assertFalse($result['result']);
-        $this->assertSame($result['message'], trans('beatmapsets.nominate.incorrect_mode', ['mode' => 'taiko']));
+        $this->assertSame($result['message'], osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => 'taiko']));
 
         $this->assertSame($notifications, Notification::count());
         $this->assertSame($userNotifications, UserNotification::count());
@@ -296,7 +296,7 @@ class BeatmapsetTest extends TestCase
 
     public function testHybridNominateWithPlaymodePermissionSingleMode(): void
     {
-        $user = $this->createGroupUserWithPlaymodes('bng', ['osu']);
+        $user = $this->createUserWithGroupPlaymodes('bng', ['osu']);
         $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
 
         $notifications = Notification::count();
@@ -315,24 +315,24 @@ class BeatmapsetTest extends TestCase
 
     public function testHybridNominateWithPlaymodePermissionTooMany(): void
     {
-        $user = $this->createGroupUserWithPlaymodes('bng', ['osu']);
+        $user = $this->createUserWithGroupPlaymodes('bng', ['osu']);
         $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
 
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng', 'osu');
 
-        $result = $beatmapset->nominate($this->createGroupUserWithPlaymodes('bng', ['osu']), ['osu']);
+        $result = $beatmapset->nominate($this->createUserWithGroupPlaymodes('bng', ['osu']), ['osu']);
         $this->assertTrue($result['result']);
 
         $result = $beatmapset->fresh()->nominate($user, ['osu']);
 
         $this->assertFalse($result['result']);
-        $this->assertSame($result['message'], trans('beatmaps.nominations.too_many'));
+        $this->assertSame($result['message'], osu_trans('beatmaps.nominations.too_many'));
         $this->assertTrue($beatmapset->fresh()->isPending());
     }
 
     public function testHybridNominateWithPlaymodePermissionMultipleModes(): void
     {
-        $user = $this->createGroupUserWithPlaymodes('bng', ['osu', 'taiko']);
+        $user = $this->createUserWithGroupPlaymodes('bng', ['osu', 'taiko']);
         $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
 
         $notifications = Notification::count();
@@ -351,7 +351,7 @@ class BeatmapsetTest extends TestCase
 
     public function testHybridNominationBNGQualifyingBNGNominatedPartial(): void
     {
-        $user = $this->createGroupUserWithPlaymodes('bng_limited', ['osu', 'taiko']);
+        $user = $this->createUserWithGroupPlaymodes('bng_limited', ['osu', 'taiko']);
         $beatmapset = $this->createHybridBeatmapset();
 
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng', 'osu');
@@ -365,7 +365,7 @@ class BeatmapsetTest extends TestCase
 
     public function testHybridNominationLimitedBNGQualifyingLimitedBNGNominated(): void
     {
-        $user = $this->createGroupUserWithPlaymodes('bng_limited', ['osu', 'taiko']);
+        $user = $this->createUserWithGroupPlaymodes('bng_limited', ['osu', 'taiko']);
         $beatmapset = $this->createHybridBeatmapset();
 
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', 'osu');
@@ -374,13 +374,13 @@ class BeatmapsetTest extends TestCase
         $result = $beatmapset->fresh()->nominate($user, ['osu', 'taiko']);
 
         $this->assertFalse($result['result']);
-        $this->assertSame($result['message'], trans('beatmapsets.nominate.full_bn_required'));
+        $this->assertSame($result['message'], osu_trans('beatmapsets.nominate.full_bn_required'));
         $this->assertTrue($beatmapset->fresh()->isPending());
     }
 
     public function testHybridNominationLimitedBNGQualifyingBNGNominated(): void
     {
-        $user = $this->createGroupUserWithPlaymodes('bng', ['osu', 'taiko']);
+        $user = $this->createUserWithGroupPlaymodes('bng', ['osu', 'taiko']);
         $beatmapset = $this->createHybridBeatmapset();
 
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', 'osu');
@@ -394,7 +394,7 @@ class BeatmapsetTest extends TestCase
 
     public function testHybridNominationBNGQualifyingLimitedBNGNominated(): void
     {
-        $user = $this->createGroupUserWithPlaymodes('bng_limited', ['osu', 'taiko']);
+        $user = $this->createUserWithGroupPlaymodes('bng_limited', ['osu', 'taiko']);
         $beatmapset = $this->createHybridBeatmapset();
 
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng', 'osu');
@@ -457,25 +457,11 @@ class BeatmapsetTest extends TestCase
         return $beatmapset;
     }
 
-    private function createGroupUserWithPlaymodes($group = 'bng', $playmodes = ['osu'])
-    {
-        app('groups')->byIdentifier($group)->update(['has_playmodes' => true]);
-        app('groups')->resetCache();
-        $user = factory(User::class)->create();
-        $user->userGroups()->create([
-            'group_id' => app('groups')->byIdentifier($group)->getKey(),
-            'playmodes' => $playmodes,
-            'user_pending' => 0,
-        ]);
-
-        return $user;
-    }
-
     private function fillNominationsExceptLastForMode(Beatmapset $beatmapset, string $group, string $playmode): void
     {
         $count = $beatmapset->requiredNominationCount()[$playmode] - $beatmapset->currentNominationCount()[$playmode] - 1;
         for ($i = 0; $i < $count; $i++) {
-            $beatmapset->nominate($this->createGroupUserWithPlaymodes($group, [$playmode]), [$playmode]);
+            $beatmapset->nominate($this->createUserWithGroupPlaymodes($group, [$playmode]), [$playmode]);
         }
     }
 

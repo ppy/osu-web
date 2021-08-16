@@ -1,12 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GroupJson from 'interfaces/group-json';
+import UserGroupJson from 'interfaces/user-group-json';
+import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
-  group?: GroupJson;
+  group?: UserGroupJson;
   modifiers?: Modifiers;
 }
 
@@ -15,28 +16,39 @@ export default function UserGroupBadge({group, modifiers}: Props) {
     return null;
   }
 
-  const style = osu.groupColour(group);
+  let children;
+  let title = group.name;
 
-  let blockClass = classWithModifiers('user-group-badge', {
-    probationary: group.is_probationary,
-    [group.identifier]: true,
-  });
-  blockClass += classWithModifiers('user-group-badge', modifiers, true);
+  if (group.playmodes != null && group.playmodes.length > 0) {
+    children = (
+      <div className='user-group-badge__modes'>
+        {group.playmodes.map((playmode) => (
+          <i key={playmode} className={`fal fa-extra-mode-${playmode}`} />
+        ))}
+      </div>
+    );
 
-  const playModes: JSX.Element[] = (group.playmodes ?? []).map((mode) => <i className={`fal fa-extra-mode-${mode}`} key={mode} />);
+    const playmodeNames = group.playmodes
+      .map((playmode) => osu.trans(`beatmaps.mode.${playmode}`))
+      .join(', ');
 
-  return (
-    <div
-      className={blockClass}
-      data-label={group.short_name}
-      style={style}
-      title={group.name}
-    >
-      {playModes.length > 0 &&
-        <div className={'user-group-badge__modes'}>
-          {playModes}
-        </div>
-      }
-    </div>
-  );
+    title += ` (${playmodeNames})`;
+  }
+
+  const props = {
+    children,
+    className: classWithModifiers(
+      'user-group-badge',
+      { probationary: group.is_probationary },
+      group.identifier,
+      modifiers,
+    ),
+    'data-label': group.short_name,
+    style: osu.groupColour(group),
+    title,
+  };
+
+  return group.has_listing
+    ? <a {...props} href={route('groups.show', { group: group.id })} />
+    : <div {...props} />;
 }

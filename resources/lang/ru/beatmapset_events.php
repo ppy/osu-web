@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Одобрена.',
+        'beatmap_owner_change' => 'Владелец сложности :beatmap изменен на :new_user.',
         'discussion_delete' => 'Модератор удалил отзыв :discussion.',
         'discussion_lock' => 'Обсуждение для этой карты было отключено. (:text)',
         'discussion_post_delete' => 'Модератор удалил публикацию из отзыва :discussion.',
@@ -27,6 +28,8 @@ return [
         'nominate' => 'Номинирована :user.',
         'nominate_modes' => 'Номинатор: :user (:modes).',
         'nomination_reset' => 'Из-за новой проблемы в :discussion статус номинации был сброшен.',
+        'nomination_reset_received' => 'Номинация пользователя :user была сброшена :source_user (:text)',
+        'nomination_reset_received_profile' => 'Номинация была сброшена :user (:text)',
         'qualify' => 'Эта карта была номинирована достаточное количество раз для квалификации.',
         'rank' => 'Рейтинговая.',
         'remove_from_loved' => ':user удалил карту из Любимых (:text)',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Одобрено',
+        'beatmap_owner_change' => 'Сменить владельца сложности',
         'discussion_delete' => 'Удаление обсуждения',
         'discussion_post_delete' => 'Удаление ответов в обсуждении',
         'discussion_post_restore' => 'Восстановление ответов в обсуждении',
@@ -71,6 +75,7 @@ return [
         'love' => 'Любовь',
         'nominate' => 'Номинация',
         'nomination_reset' => 'Сброс номинации',
+        'nomination_reset_received' => 'Получен сброс номинации',
         'nsfw_toggle' => 'Контент 18+',
         'qualify' => 'Квалификация',
         'rank' => 'Рейтинг',

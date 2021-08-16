@@ -18,7 +18,7 @@
         <div class='user-home-beatmapset__title u-ellipsis-overflow'>{{$beatmapset->title}}</div>
         <div class='user-home-beatmapset__artist u-ellipsis-overflow'>{{$beatmapset->artist}}</div>
         <div class='user-home-beatmapset__creator u-ellipsis-overflow'>
-            {!! trans('home.user.beatmaps.by_user', ['user' => tag(
+            {!! osu_trans('home.user.beatmaps.by_user', ['user' => tag(
                 'span',
                 ['data-user-id' => $beatmapset->user_id, 'class' => 'js-usercard'],
                 e($beatmapset->creator)

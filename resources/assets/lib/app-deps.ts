@@ -19,7 +19,7 @@ import 'jquery-ui/ui/widgets/sortable.js';
 import 'jquery-ui/ui/keycode.js';
 import 'blueimp-file-upload/js/jquery.fileupload.js';
 
-// tslint:enable: ordered-imports
+/* eslint-enable import/order */
 
 import Lang from 'lang.js';
 import * as moment from 'moment';

@@ -17,7 +17,6 @@ class @ForumTopicReply
     $(document).on 'ajax:success', '.js-forum-topic-reply--quote', @activateWithReply
 
     $(document).on 'focus', '.js-forum-topic-reply--input', @activate
-    $(document).on 'input change', '.js-forum-topic-reply--input', _.debounce(@inputChange, 500)
 
     $.subscribe 'stickyFooter', @stickOrUnstick
 
@@ -32,7 +31,6 @@ class @ForumTopicReply
     return unless @available()
 
     @deleteState 'sticking'
-    @input[0].value = @getState('text') || ''
     @activate() if @getState('active') == '1'
 
 
@@ -40,15 +38,15 @@ class @ForumTopicReply
 
 
   deleteState: (key) =>
-    localStorage.removeItem "forum-topic-reply--#{document.location.pathname}--#{key}"
+    localStorage.removeItem "forum-topic-reply--#{_exported.currentUrl().pathname}--#{key}"
 
 
   getState: (key) =>
-    localStorage.getItem "forum-topic-reply--#{document.location.pathname}--#{key}"
+    localStorage.getItem "forum-topic-reply--#{_exported.currentUrl().pathname}--#{key}"
 
 
   setState: (key, value) =>
-    localStorage.setItem "forum-topic-reply--#{document.location.pathname}--#{key}", value
+    localStorage.setItem "forum-topic-reply--#{_exported.currentUrl().pathname}--#{key}", value
 
 
   activate: =>
@@ -72,8 +70,7 @@ class @ForumTopicReply
     currentInput = $input.val()
     data = "#{currentInput}\n\n#{data}" if currentInput
 
-    $input.val(data)
-    @inputChange()
+    $input.val(data).trigger('input')
     $input[0].selectionStart = data.length
 
     @activate()
@@ -96,16 +93,11 @@ class @ForumTopicReply
     Timeout.set 500, @disableFlash # so animation doesn't play again when element gets transplanted from unsticking.
 
 
-  inputChange: =>
-    @setState 'text', @input[0].value
-
-
   posted: (e, data) =>
     input = @input[0]
 
     @deactivate()
     input.value = ''
-    @setState 'text', ''
     @bbcodePreview.hidePreview(target: input)
 
     $newPost = $(data)
@@ -118,14 +110,14 @@ class @ForumTopicReply
     else
       @forum.setTotalPosts(@forum.totalPosts() + 1)
       @forum.endPost().insertAdjacentHTML 'afterend', data
-      osu.pageChange()
+      _exported.pageChange()
 
       @forum.endPost().scrollIntoView()
 
 
   stickOrUnstick: (_e, target) =>
     stick =
-      if osu.isDesktop()
+      if osuCore.windowSize.isDesktop
         target == 'forum-topic-reply'
       else
         @getState('active') == '1'
@@ -150,7 +142,7 @@ class @ForumTopicReply
     isSticking = @getState('sticking') == '1'
 
     document.body.style.overflow =
-      if !stick || osu.isDesktop()
+      if !stick || osuCore.windowSize.isDesktop
         ''
       else
         'hidden'
@@ -174,4 +166,4 @@ class @ForumTopicReply
     target.insertBefore(box, target.firstChild)
 
     $input.focus() if inputFocused
-    osu.pageChange() # sync reply box height
+    _exported.pageChange() # sync reply box height

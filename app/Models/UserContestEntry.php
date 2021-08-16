@@ -43,7 +43,7 @@ class UserContestEntry extends Model
         DB::transaction(function () use ($entry, $file, $user, $contest) {
             $entry->save(); // get id
 
-            $entry->filesize = $file->getClientSize();
+            $entry->filesize = $file->getSize();
             $entry->original_filename = $file->getClientOriginalName();
             $entry->user()->associate($user);
             $entry->contest()->associate($contest);

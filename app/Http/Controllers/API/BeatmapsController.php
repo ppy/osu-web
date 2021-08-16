@@ -35,7 +35,7 @@ class BeatmapsController extends Controller
      * failtimes                            | |
      * max_combo                            | |
      *
-     * @urlParam beatmap required The ID of the beatmap.
+     * @urlParam beatmap integer required The ID of the beatmap.
      *
      * @response "See Beatmap object section."
      */

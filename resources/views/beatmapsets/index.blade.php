@@ -6,7 +6,7 @@
     $canAdvancedSearch = priv_check('BeatmapsetAdvancedSearch')->can();
 @endphp
 @extends('master', [
-  'pageDescription' => trans('beatmapsets.index.title'),
+  'pageDescription' => osu_trans('beatmapsets.index.title'),
 ])
 
 @section('content')
@@ -39,5 +39,5 @@
     {!! json_encode($beatmaps) !!}
   </script>
 
-  @include('layout._extra_js', ['src' => 'js/react/beatmaps.js'])
+  @include('layout._react_js', ['src' => 'js/react/beatmaps.js'])
 @stop

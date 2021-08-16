@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved.',
+        'beatmap_owner_change' => ':beatmap 난이도의 주인이 :new_user로 변경되었습니다.',
         'discussion_delete' => 'Moderator가 :discussion 토론을 삭제했습니다.',
         'discussion_lock' => '이 비트맵에 대한 토론이 비활성화되었습니다. (:text)',
         'discussion_post_delete' => 'Moderator가 :discussion 토론에 달린 글을 삭제했습니다.',
@@ -27,6 +28,8 @@ return [
         'nominate' => ':user 님이 추천함.',
         'nominate_modes' => ':user (:modes) 님이 추천함.',
         'nomination_reset' => '새로운 문제 :discussion (:text)가 추천 상태를 초기화시켰습니다.',
+        'nomination_reset_received' => ':user의 추천이 :source_user에게 초기화됨 (:text)',
+        'nomination_reset_received_profile' => '추천이 :user에게 초기화됨 (:text)',
         'qualify' => '이 비트맵은 충분한 추천을 받았고 qualified 상태로 전환되었습니다.',
         'rank' => 'Ranked.',
         'remove_from_loved' => ':user 님에 의해 Loved 상태에서 제거됨 (:text)',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => '승인',
+        'beatmap_owner_change' => '난이도 주인 변경',
         'discussion_delete' => '토론 삭제',
         'discussion_post_delete' => '토론 답글 삭제',
         'discussion_post_restore' => '토론 답글 복원',
@@ -71,6 +75,7 @@ return [
         'love' => '러브',
         'nominate' => '추천',
         'nomination_reset' => '추천 초기화',
+        'nomination_reset_received' => '추천이 초기화 됨',
         'nsfw_toggle' => '부적절한 콘텐츠로 표시',
         'qualify' => 'Qualification',
         'rank' => '랭킹',

@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Αναζήτηση',
             'deleted' => 'Συμπεριλάμβανε διαγραμμένες συζητήσεις',
+            'mode' => '',
             'only_unresolved' => '',
             'types' => 'Τύποι μηνυμάτων',
             'username' => 'Όνομα χρήστη',
@@ -57,6 +58,13 @@ return [
         'unsaved' => '',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Συνδεθείτε για να Aπαντήσετε',
@@ -73,6 +81,7 @@ return [
             'external_references' => '',
             'invalid_block_type' => '',
             'invalid_document' => '',
+            'invalid_discussion_type' => '',
             'minimum_issues' => '',
             'missing_text' => '',
             'too_many_blocks' => '',

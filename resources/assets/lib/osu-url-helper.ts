@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import * as laroute from 'laroute';
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import { TurbolinksLocation } from 'turbolinks';
 
@@ -16,10 +16,13 @@ export default class OsuUrlHelper {
     'community',
     'help',
     'home',
+    'groups',
     'legal',
     'multiplayer',
+    'notifications',
     'oauth',
     'rankings',
+    'scores',
     'session',
     'store',
     'users',
@@ -35,7 +38,7 @@ export default class OsuUrlHelper {
   }
 
   static changelogBuild(build: ChangelogBuild): string {
-    return laroute.route('changelog.build', {stream: build.update_stream.name, build: build.version});
+    return route('changelog.build', { build: build.version, stream: build.update_stream.name });
   }
 
   static isHTML(location: TurbolinksLocation): boolean {
@@ -50,5 +53,10 @@ export default class OsuUrlHelper {
   // external link
   static openBeatmapEditor(timestampWithRange: string): string {
     return `osu://edit/${timestampWithRange}`;
+  }
+
+  static wikiUrl(path: string, locale?: string | null | undefined) {
+    return route('wiki.show', { locale: locale ?? currentLocale, path: 'WIKI_PATH' })
+      .replace('WIKI_PATH', encodeURI(path));
   }
 }

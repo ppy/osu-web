@@ -111,13 +111,13 @@ return [
             '_' => 'resetează parola',
         ],
         'ranking_controller' => [
-            '_' => 'clasament',
+            '_' => 'clasamente',
         ],
         'scores_controller' => [
             '_' => 'performanță',
         ],
         'store_controller' => [
-            '_' => 'osu!magazin',
+            '_' => 'magazin',
         ],
         'tournaments_controller' => [
             '_' => 'turnee',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'observație',
         ],
         'wiki_controller' => [
-            '_' => 'bază de cunoștințe',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -136,11 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!magazin',
+        '_' => 'magazin',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'info modder',
+        ],
+        'multiplayer_controller' => [
+            '_' => '',
         ],
     ],
 ];

@@ -61,7 +61,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap tartışma',
-            'index' => 'beatmap listesi',
+            'index' => 'beatmap kataloğu',
             'show' => 'beatmap bilgisi',
         ],
         'changelog_controller' => [
@@ -117,7 +117,7 @@ return [
             '_' => 'performans',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'mağaza',
         ],
         'tournaments_controller' => [
             '_' => 'turnuvalar',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'bildirim',
         ],
         'wiki_controller' => [
-            '_' => 'bilgi bankası',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -136,11 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'mağaza',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder bilgisi',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'çok oyunculu geçmişi',
         ],
     ],
 ];

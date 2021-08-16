@@ -4,7 +4,7 @@
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as _ from 'lodash';
 import * as React from 'react';
-import { getDiffRating } from 'utils/beatmap-helper';
+import { getDiffColour, getDiffRating } from 'utils/beatmap-helper';
 
 interface Props {
   beatmap: BeatmapJsonExtended;
@@ -33,14 +33,16 @@ export const BeatmapIcon = (props: Props) => {
     className += ' beatmap-icon--with-hover js-beatmap-tooltip';
   }
 
-  const style = osu.diffColour(difficultyRating);
+  const style = {
+    '--diff': getDiffColour(beatmap.difficulty_rating),
+  } as React.CSSProperties;
 
   return (
     <div
       className={className}
       data-beatmap-title={showTitle ? beatmap.version : null}
-      data-stars={_.round(beatmap.difficulty_rating, 2)}
       data-difficulty={difficultyRating}
+      data-stars={_.round(beatmap.difficulty_rating, 2)}
       style={style}
     >
       <i className={`fal fa-extra-mode-${mode}`} />

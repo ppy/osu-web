@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ScoreJson from 'interfaces/score-json';
-import { route } from 'laroute';
 import * as React from 'react';
+import Buttons from './buttons';
 import Dial from './dial';
 import Player from './player';
 import Tower from './tower';
@@ -38,7 +38,7 @@ export default function Info(props: Props) {
       </div>
 
       <div className='score-info__item score-info__item--dial'>
-        <Dial rank={score.rank} accuracy={score.accuracy} mode={score.mode} />
+        <Dial accuracy={score.accuracy} mode={score.mode} rank={score.rank} />
       </div>
 
       <div className='score-info__item score-info__item--player'>
@@ -46,14 +46,7 @@ export default function Info(props: Props) {
       </div>
 
       <div className='score-info__item score-info__item--buttons'>
-        {score.replay && (
-          <a
-            href={route('scores.download', { mode: score.mode, score: score.best_id })}
-            className='btn-osu-big btn-osu-big--rounded'
-          >
-            {osu.trans('users.show.extra.top_ranks.download_replay')}
-          </a>
-        )}
+        <Buttons score={score} />
       </div>
     </div>
   );

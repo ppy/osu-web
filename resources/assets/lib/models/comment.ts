@@ -11,17 +11,18 @@ export class Comment {
   commentableType: string; // TODO: type?
   createdAt: string;
   deletedAt: string | null;
+  deletedById?: number | null;
   editedAt: string | null;
   editedById: number | null;
   id: number;
   legacyName: string | null;
-  message: string;
-  messageHtml: string;
+  message?: string;
+  messageHtml?: string;
   parentId: number | null;
   pinned: boolean;
   repliesCount: number;
   updatedAt: string;
-  userId: number;
+  userId: number | null;
   votesCount: number;
 
   constructor(json: CommentJson) {
@@ -29,6 +30,7 @@ export class Comment {
     this.commentableType = json.commentable_type;
     this.createdAt = json.created_at;
     this.deletedAt = json.deleted_at;
+    this.deletedById = json.deleted_by_id;
     this.editedAt = json.edited_at;
     this.editedById = json.edited_by_id;
     this.id = json.id;

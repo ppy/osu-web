@@ -36,7 +36,7 @@ class UserReport extends Model
 
     const BEATMAPSET_TYPE_REASONS = ['UnwantedContent', 'Other'];
     const POST_TYPE_REASONS = ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'];
-    const SCORE_TYPE_REASONS = ['Cheating', 'Other'];
+    const SCORE_TYPE_REASONS = ['Cheating', 'MultipleAccounts', 'Other'];
 
     const ALLOWED_REASONS = [
         MorphMap::MAP[Beatmapset::class] => self::BEATMAPSET_TYPE_REASONS,
@@ -70,7 +70,7 @@ class UserReport extends Model
 
     public function routeNotificationForSlack(?Notification $_notification): ?string
     {
-        if ($this->reason === 'Cheating') {
+        if ($this->reason === 'Cheating' || $this->reason === 'MultipleAccounts') {
             return config('osu.user_report_notification.endpoint_cheating');
         } else {
             return config('osu.user_report_notification.endpoint_moderation');

@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Chơi xấu / Gian lận',
+            'multiple_accounts' => '',
             'insults' => 'Xúc phạm tôi / những người khác',
             'spam' => 'Spamming',
             'unwanted_content' => 'Có những nội dung không phù hợp',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmap Đang Chờ (:count)',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "Người dùng này chưa có huy chương nào cả. ;_;",
                 'recent' => 'Gần Nhất',
                 'title' => 'Huy Chương',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Bài viết',
@@ -402,10 +406,10 @@ return [
             'total_hits' => 'Tổng Lần Bấm',
             'total_score' => 'Tổng Điểm',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

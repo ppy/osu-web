@@ -50,12 +50,13 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'motta varsler for nye problemer på kvalifiserte beatmaps av følgende moduser',
         'beatmapset_disqualify' => 'få varsler når beatmaperav de følgende moduser er diskvalifisert',
-        'comment_reply' => '',
+        'comment_reply' => 'motta varsler for svar på dine kommentarer',
         'title' => 'Varsler',
         'topic_auto_subscribe' => 'aktiver automatiske varslinger på nye forum emner som du lager',
 
         'options' => [
             '_' => 'leveringsalternativer',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private meldinger',
             'comment_new' => 'nye kommentar',
@@ -74,7 +75,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'skjul advarsler for eksplisitt innhold i beatmaps',
         'beatmapset_title_show_original' => 'vis beatmap metadata på originalspråket',
         'title' => 'Innstillinger',
 

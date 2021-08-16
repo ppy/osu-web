@@ -7,32 +7,32 @@ return [
     'deleted' => '[مستخدم محذوف]',
 
     'beatmapset_activities' => [
-        'title' => "سِجِل اِقتراحات:user",
-        'title_compact' => 'ألأِقتِراحات',
+        'title' => "سجل اقتراحات :user",
+        'title_compact' => 'الإقتراحات',
 
         'discussions' => [
-            'title_recent' => 'مناقشة بدأت مؤخرا',
+            'title_recent' => 'المناقشات التي بدأت مؤخرا',
         ],
 
         'events' => [
-            'title_recent' => 'الأحداث الأخيرة',
+            'title_recent' => 'آخر الأحداث',
         ],
 
         'posts' => [
-            'title_recent' => 'المنشورات الحديثة',
+            'title_recent' => 'المنشورات الأخيرة',
         ],
 
         'votes_received' => [
-            'title_most' => 'الاكثر تصويتاََ بواسطة (اخر ٣ اشهر)',
+            'title_most' => 'الأكثر تصويتاََ بواسطة (آخر ٣ اشهر)',
         ],
 
         'votes_made' => [
-            'title_most' => 'الاكثر تصويتاََ (اخر ٣ اشهر)',
+            'title_most' => 'الأكثر تصويتاََ (آخر ٣ اشهر)',
         ],
     ],
 
     'blocks' => [
-        'banner_text' => 'لقد حظرت هذا المستخدم.',
+        'banner_text' => 'لقد قمت بحظر هذا المستخدم.',
         'blocked_count' => 'المستخدمون المحظورون (:count)',
         'hide_profile' => 'إخفاء الملف الشخصي',
         'not_blocked' => 'هذا المستخدم ليس محظوراََ.',
@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'لعب مؤذي/ غش',
+            'multiple_accounts' => 'استخدام حسابات متعددة',
             'insults' => 'اهانتي / اهانة الاخرين',
             'spam' => 'سبام',
             'unwanted_content' => 'ربط عن محتوى غير لائق',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'الخرائط المُحَبَبة',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'الخرائط المصفوفة والمقبولة',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'الخرائط المعلقة',
+                ],
+                'ranked' => [
+                    'title' => 'الخرائط المصفوفة والمقبولة',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "هذا المستخدم لم يحصل على أي شيئ حتى الآن. ;_;",
                 'recent' => 'الأخير',
                 'title' => 'الاوسمة',
+            ],
+            'multiplayer' => [
+                'title' => 'المباريات الجماعية',
             ],
             'posts' => [
                 'title' => 'المنشورات',
@@ -402,16 +406,16 @@ return [
             'total_hits' => 'مجموع التصويبات',
             'total_score' => 'مجموع النقاط',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'الخرائط المصفوفة والمقبولة',
-            'loved_beatmapset_count' => 'الخرائط المُحَبَبة',
-            'unranked_beatmapset_count' => 'الخرائط المعلقة',
             'graveyard_beatmapset_count' => 'الخرائط المقبورة',
+            'loved_beatmapset_count' => 'الخرائط المُحَبَبة',
+            'pending_beatmapset_count' => 'الخرائط المعلقة',
+            'ranked_beatmapset_count' => 'الخرائط المصفوفة والمقبولة',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'أنت مُقيد (صامت) حاليا.',
+        'message' => 'قد تكون بعض الإجراءات غير متوفرة.',
     ],
 
     'status' => [

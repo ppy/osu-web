@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username 在 :title [:version] 上的成績',
 
         'beatmap' => [
             'by' => '作曲者 :artist',

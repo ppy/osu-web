@@ -8,11 +8,11 @@ import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
+import ShowMoreLink from 'show-more-link';
 import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
 import { StringWithComponent } from 'string-with-component';
-import { UserAvatar } from 'user-avatar';
+import UserAvatar from 'user-avatar';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
@@ -67,7 +67,7 @@ export default class ConversationView extends React.Component<Props> {
           conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
           currentGroup = [];
         }
-        conversationStack.push(<MessageDivider key={`read-${message.timestamp}`} ref={this.unreadMarkerRef} type='UNREAD_MARKER' timestamp={message.timestamp} />);
+        conversationStack.push(<MessageDivider key={`read-${message.timestamp}`} ref={this.unreadMarkerRef} timestamp={message.timestamp} type='UNREAD_MARKER' />);
       }
 
       // check whether the day-change header needs to be shown
@@ -76,7 +76,7 @@ export default class ConversationView extends React.Component<Props> {
           conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
           currentGroup = [];
         }
-        conversationStack.push(<MessageDivider key={`day-${message.timestamp}`} type='DAY_MARKER' timestamp={message.timestamp} />);
+        conversationStack.push(<MessageDivider key={`day-${message.timestamp}`} timestamp={message.timestamp} type='DAY_MARKER' />);
         currentDay = moment(message.timestamp).date();
       }
 
@@ -223,16 +223,16 @@ export default class ConversationView extends React.Component<Props> {
     }
 
     return (
-      <div className='chat-conversation' onScroll={this.onScroll} ref={this.chatViewRef}>
+      <div ref={this.chatViewRef} className='chat-conversation' onScroll={this.onScroll}>
         <div className='chat-conversation__new-chat-avatar'>
-          <UserAvatar user={{id: 0, avatar_url: channel.icon}} />
+          <UserAvatar user={{ avatar_url: channel.icon }} />
         </div>
         <div className='chat-conversation__chat-label'>
           {channel.pmTarget != null ? (
             <StringWithComponent
-              pattern={osu.trans('chat.talking_with')}
-              // TODO: rework this once the user class situation is resolved
               mappings={{':name': <a key='user' className='js-usercard' data-user-id={channel.pmTarget} href={route('users.show', {user: channel.pmTarget})}>{channel.name}</a>}}
+              // TODO: rework this once the user class situation is resolved
+              pattern={osu.trans('chat.talking_with')}
             />
           ) : (
             osu.trans('chat.talking_in', {channel: channel.name})

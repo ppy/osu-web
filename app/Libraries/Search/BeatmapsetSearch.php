@@ -74,6 +74,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addStatusFilter($query);
 
         $nested = new BoolQuery();
+        $this->addManiaKeysFilter($nested);
         $this->addModeFilter($nested);
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
@@ -171,6 +172,17 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
+    private function addManiaKeysFilter(BoolQuery $nestedQuery): void
+    {
+        if ($this->params->keys === null) {
+            return;
+        }
+
+        $nestedQuery
+            ->filter(['range' => ['beatmaps.diff_size' => $this->params->keys]])
+            ->filter(['term' => ['beatmaps.playmode' => Beatmap::MODES['mania']]]);
+    }
+
     private function addModeFilter($query)
     {
         if (!$this->params->includeConverts) {
@@ -234,14 +246,18 @@ class BeatmapsetSearch extends RecordSearch
     {
         if ($this->params->ranked !== null) {
             $query
-                ->filter(['term' => ['approved' => Beatmapset::STATES['ranked']]])
-                ->filter(['range' => ['approved_date' => $this->params->ranked]]);
+                ->filter(['terms' => ['approved' => [
+                    Beatmapset::STATES['ranked'],
+                    Beatmapset::STATES['approved'],
+                    Beatmapset::STATES['loved'],
+                ]]])->filter(['range' => ['approved_date' => $this->params->ranked]]);
         }
     }
 
     private function addSimpleFilters(BoolQuery $query, BoolQuery $nested): void
     {
         static $filters = [
+            'accuracy' => ['field' => 'beatmaps.diff_overall', 'type' => 'range'],
             'ar' => ['field' => 'beatmaps.diff_approach', 'type' => 'range'],
             'bpm' => ['field' => 'bpm', 'type' => 'range'],
             'created' => ['field' => 'submit_date', 'type' => 'range'],
@@ -249,7 +265,6 @@ class BeatmapsetSearch extends RecordSearch
             'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],
             'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
             'hitLength' => ['field' => 'beatmaps.hit_length', 'type' => 'range'],
-            'keys' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
             'statusRange' => ['field' => 'beatmaps.approved', 'type' => 'range'],
             // (unsupported) 'divisor' => ['field' => ???, 'type' => 'range'],
         ];

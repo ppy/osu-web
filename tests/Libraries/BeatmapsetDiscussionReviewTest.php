@@ -15,7 +15,6 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
-use App\Models\Group;
 use App\Models\Notification;
 use App\Models\User;
 use Faker;
@@ -284,13 +283,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
 
         $playmode = $beatmapset->playmodesStr()[0];
-        $natUser = factory(User::class)->create();
-        $natUser->userGroups()->create([
-            'group_id' => app('groups')->byIdentifier('nat')->getKey(),
-            'playmodes' => [$playmode],
-            'user_pending' => 0,
-        ]);
-
+        $natUser = $this->createUserWithGroupPlaymodes('nat', [$playmode]);
         $watchingUser = factory(User::class)->create();
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
 
@@ -328,10 +321,13 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     }
 
     // valid document containing issue embeds should reset nominations (for GMT)
-    public function testCreateDocumentDocumentValidWithNewIssuesShouldNotify()
+    /**
+     * @dataProvider dataProviderForQualifiedProblem
+     */
+    public function testCreateDocumentDocumentValidWithNewIssuesShouldNotify($state, $shouldNotify)
     {
         $gmtUser = factory(User::class)->states('gmt')->create();
-        $beatmapset = factory(Beatmapset::class)->states('qualified')->create();
+        $beatmapset = factory(Beatmapset::class)->states($state)->create();
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make(['playmode' => 0]));
 
         $notificationOption = $gmtUser->notificationOptions()->firstOrCreate([
@@ -355,13 +351,19 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             $this->user
         );
 
-        // ensure beatmap is still qualified
-        $this->assertSame($beatmapset->approved, Beatmapset::STATES['qualified']);
+        // ensure beatmap status hasn't changed.
+        $this->assertSame($beatmapset->status(), $state);
 
-        // ensure a new problem notification is dispatched
-        Queue::assertPushed(BeatmapsetDiscussionQualifiedProblem::class);
-        $this->runFakeQueue();
-        Event::assertDispatched(NewPrivateNotificationEvent::class);
+        if ($shouldNotify) {
+            // ensure a new problem notification is dispatched
+            Queue::assertPushed(BeatmapsetDiscussionQualifiedProblem::class);
+            $this->runFakeQueue();
+            Event::assertDispatched(NewPrivateNotificationEvent::class);
+        } else {
+            Queue::assertNotPushed(BeatmapsetDiscussionQualifiedProblem::class);
+            $this->runFakeQueue();
+            Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+        }
     }
 
     //endregion
@@ -602,13 +604,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
 
         $playmode = $beatmapset->playmodesStr()[0];
-        $natUser = factory(User::class)->create();
-        $natUser->userGroups()->create([
-            'group_id' => app('groups')->byIdentifier('nat')->getKey(),
-            'playmodes' => [$playmode],
-            'user_pending' => 0,
-        ]);
-
+        $natUser = $this->createUserWithGroupPlaymodes('nat', [$playmode]);
         $review = $this->setUpPraiseOnlyReview($beatmapset, $natUser);
 
         // ensure qualified beatmap is pending
@@ -644,10 +640,13 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
 
-    public function testUpdateDocumentWithNewIssueShouldNotifyIfQualified()
+    /**
+     * @dataProvider dataProviderForQualifiedProblem
+     */
+    public function testUpdateDocumentWithNewIssueShouldNotifyIfQualified($state, $shouldNotify)
     {
         $gmtUser = factory(User::class)->states('gmt')->create();
-        $beatmapset = factory(Beatmapset::class)->states('qualified')->create();
+        $beatmapset = factory(Beatmapset::class)->states($state)->create();
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make(['playmode' => 0]));
 
         $notificationOption = $gmtUser->notificationOptions()->firstOrCreate([
@@ -658,7 +657,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $review = $this->setUpPraiseOnlyReview($beatmapset, $gmtUser);
 
         // ensure qualified beatmap is qualified
-        $this->assertSame($beatmapset->approved, Beatmapset::STATES['qualified']);
+        $this->assertSame($beatmapset->status(), $state);
 
         $document = json_decode($review->startingPost->message, true);
         $document[] = [
@@ -671,13 +670,19 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
         $beatmapset->refresh();
 
-        // ensure beatmap is still qualified
-        $this->assertSame($beatmapset->approved, Beatmapset::STATES['qualified']);
+        // ensure beatmap status hasn't changed.
+        $this->assertSame($beatmapset->status(), $state);
 
-        // ensure a new problem notification is dispatched
-        Queue::assertPushed(BeatmapsetDiscussionQualifiedProblem::class);
-        $this->runFakeQueue();
-        Event::assertDispatched(NewPrivateNotificationEvent::class);
+        if ($shouldNotify) {
+            // ensure a new problem notification is dispatched
+            Queue::assertPushed(BeatmapsetDiscussionQualifiedProblem::class);
+            $this->runFakeQueue();
+            Event::assertDispatched(NewPrivateNotificationEvent::class);
+        } else {
+            Queue::assertNotPushed(BeatmapsetDiscussionQualifiedProblem::class);
+            $this->runFakeQueue();
+            Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+        }
     }
 
     // removing/unlinking an embed from an existing issue
@@ -710,6 +715,14 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
     //endregion
 
+    public function dataProviderForQualifiedProblem()
+    {
+        return [
+            ['qualified', true],
+            ['pending', false],
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -725,9 +738,6 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-
-        Group::find(app('groups')->byIdentifier('nat')->getKey())->update(['has_playmodes' => true]);
-        app('groups')->resetCache();
     }
 
     protected function setUpReview($beatmapset = null): BeatmapDiscussion

@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count in this review',
     ],
 
+    'owner_editor' => [
+        'button' => 'Difficulty Owner',
+        'reset_confirm' => 'Reset owner for this difficulty?',
+        'user' => 'Owner',
+        'version' => 'Difficulty',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Sign in to Respond',
@@ -74,6 +81,7 @@ return [
             'external_references' => 'review contains references to issues that don\'t belong to this review',
             'invalid_block_type' => 'invalid block type',
             'invalid_document' => 'invalid review',
+            'invalid_discussion_type' => 'invalid discussion type',
             'minimum_issues' => 'review must contain a minimum of :count issue|review must contain a minimum of :count issues',
             'missing_text' => 'block is missing text',
             'too_many_blocks' => 'reviews may only contain :count paragraph/issue|reviews may only contain up to :count paragraphs/issues',

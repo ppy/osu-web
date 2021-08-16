@@ -18,10 +18,11 @@ return [
         'deny_kudosu' => 'hylkää kudosu',
         'edit' => 'muokkaa',
         'edited' => 'Viimeksi muokannut :editor :update_time.',
+        'guest' => '',
         'kudosu_denied' => 'Evätty saamasta kudosua.',
         'message_placeholder_deleted_beatmap' => 'Tämä vaikeustaso on poistettu, joten siitä ei voi enää keskustella.',
         'message_placeholder_locked' => 'Keskustelu tällä beatmapille on poistettu käytöstä.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_silenced' => "Keskusteluun ei voi osallistua mykistettynä.",
         'message_type_select' => 'Valitse kommentin tyyppi',
         'reply_notice' => 'Vastaa painamalla enter-näppäintä.',
         'reply_placeholder' => 'Kirjoita vastauksesi tähän',
@@ -61,7 +62,7 @@ return [
         'message_placeholder' => [
             'general' => 'Kirjoita tähän lähettääksesi viestin Yleiseen (:version)',
             'generalAll' => 'Kirjoita tähän lähettääksesi viestin Yleiseen (Kaikki vaikeustasot)',
-            'review' => '',
+            'review' => 'Kirjoitä tähän lähettääksesi arvostelun',
             'timeline' => 'Kirjoita tähän lähettääksesi viestin Aikajanalle (:version)',
         ],
 
@@ -72,14 +73,14 @@ return [
             'nomination_reset' => 'Nollaa Suositus',
             'praise' => 'Kehu',
             'problem' => 'Ongelma',
-            'review' => '',
+            'review' => 'Arvostelu',
             'suggestion' => 'Ehdotus',
         ],
 
         'mode' => [
             'events' => 'Historia',
             'general' => 'Yleinen :scope',
-            'reviews' => '',
+            'reviews' => 'Arvostelut',
             'timeline' => 'Aikajana',
             'scopes' => [
                 'general' => 'Tämä vaikeustaso',
@@ -96,9 +97,9 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => 'Uusi arvostelu',
             'embed' => [
-                'delete' => '',
+                'delete' => 'Poista',
                 'missing' => '[KESKUSTELU POISTETTU]',
                 'unlink' => '',
                 'unsaved' => '',
@@ -108,9 +109,9 @@ return [
                 ],
             ],
             'insert-block' => [
-                'paragraph' => '',
-                'praise' => '',
-                'problem' => '',
+                'paragraph' => 'lisää kappale',
+                'praise' => 'lisää ylistystä',
+                'problem' => 'lisää ongelma',
                 'suggestion' => 'lisää ehdotus',
             ],
         ],
@@ -182,22 +183,23 @@ return [
         'disqualify' => 'Hylkää',
         'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
         'love' => 'Rakasta',
+        'love_choose' => '',
         'love_confirm' => 'Rakasta tätä beatmappia?',
         'nominate' => 'Suosittele',
         'nominate_confirm' => 'Suosittele tätä beatmappia?',
         'nominated_by' => 'suositellut :users',
-        'not_enough_hype' => "",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'not_enough_hype' => "Ei ole riittävästi hypetystä.",
+        'remove_from_loved' => 'Poista rakastetuista beatmapeista',
+        'remove_from_loved_prompt' => 'Rakastetuista beatmapeista poistamisen syy:',
         'required_text' => 'Suositukset: :current/:required',
         'reset_message_deleted' => 'poistettu',
         'title' => 'Suositusten Tila',
         'unresolved_issues' => 'Vanhat ongelmat on ratkaistava ensin.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Tämän beatmapin arvioidaan tulla hyväksytyksi :date, jos mitään ongelmia ei löydy. Se on #:position :queue.',
+            'queue' => 'hyväksytysjonossa',
+            'soon' => 'pian',
         ],
 
         'reset_at' => [
@@ -213,7 +215,7 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'anna hakusana...',
+            'prompt' => 'syötä hakusana...',
             'login_required' => 'Kirjaudu sisään hakeaksesi.',
             'options' => 'Enemmän Hakuasetuksia',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
@@ -250,11 +252,11 @@ return [
     ],
     'general' => [
         'converts' => 'Sisällytä muunnetut beatmapit',
-        'follows' => '',
+        'follows' => 'Tilatut kartoittajat',
         'recommended' => 'Suositeltu vaikeustaso',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Kaikki',
         'any' => 'Kaikki',
         'osu' => '',
         'taiko' => '',
@@ -271,7 +273,7 @@ return [
         'mine' => 'Mappini',
         'pending' => 'Vireillä & WIP',
         'qualified' => 'Esihyväksytty',
-        'ranked' => '',
+        'ranked' => 'Hyväksytty',
     ],
     'genre' => [
         'any' => 'Kaikki',
@@ -309,14 +311,14 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Pisteytys V2',
+        'V2' => '',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Kaikki',
         'english' => 'englanti',
         'chinese' => 'kiina',
         'french' => 'ranska',
@@ -334,8 +336,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Piilota',
+        'include' => 'Näytä',
     ],
 
     'played' => [

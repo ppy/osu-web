@@ -9,7 +9,7 @@ interface Props {
   type: string;
 }
 
-export const MessageDivider = React.forwardRef<HTMLDivElement, Props>(({timestamp, type}, innerRef) => {
+const MessageDividerBase = ({timestamp, type}: Props, innerRef: React.Ref<HTMLDivElement>) => {
   switch (type) {
     case 'DAY_MARKER':
       return (<div ref={innerRef} className='chat-conversation__day-divider'>{moment(timestamp).format('LL')}</div>);
@@ -20,4 +20,6 @@ export const MessageDivider = React.forwardRef<HTMLDivElement, Props>(({timestam
     default:
       return null;
   }
-});
+};
+
+export const MessageDivider = React.forwardRef(MessageDividerBase);

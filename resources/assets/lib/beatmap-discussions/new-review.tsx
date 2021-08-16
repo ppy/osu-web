@@ -6,6 +6,7 @@ import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import Editor from './editor';
 
 interface Props {
@@ -46,11 +47,11 @@ export default class NewReview extends React.Component<Props, State> {
 
   componentDidMount(): void {
     this.setTop();
-    $(window).on('resize.new-review', this.setTop);
+    $(window).on('resize', this.setTop);
   }
 
   componentWillUnmount(): void {
-    $(window).off('.new-review');
+    $(window).off('resize', this.setTop);
   }
 
   cssTop = (sticky: boolean) => {
@@ -75,7 +76,7 @@ export default class NewReview extends React.Component<Props, State> {
     }
 
     return (
-      <div className={osu.classWithModifiers(floatClass, floatMods)} style={{top: this.state.cssTop}}>
+      <div className={classWithModifiers(floatClass, floatMods)} style={{ top: this.state.cssTop }}>
         <div className={`${floatClass}__floatable ${floatClass}__floatable--pinned`}>
           <div className={`${floatClass}__content`}>
             <div className='osu-page osu-page--small'>
@@ -97,8 +98,8 @@ export default class NewReview extends React.Component<Props, State> {
                     <DiscussionsContext.Consumer>
                       {
                         (discussions) => (<Editor
-                          beatmapset={this.props.beatmapset}
                           beatmaps={this.props.beatmaps}
+                          beatmapset={this.props.beatmapset}
                           currentBeatmap={this.props.currentBeatmap}
                           currentDiscussions={this.props.currentDiscussions}
                           discussions={discussions}

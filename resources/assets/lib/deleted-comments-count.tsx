@@ -3,6 +3,7 @@
 
 import { Comment } from 'models/comment';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   comments: Comment[];
@@ -18,7 +19,7 @@ export default class DeletedCommentsCount extends React.Component<Props> {
     }
 
     return (
-      <div className={osu.classWithModifiers('deleted-comments-count', this.props.modifiers)}>
+      <div className={classWithModifiers('deleted-comments-count', this.props.modifiers)}>
         <span className='deleted-comments-count__icon'>
           <span className='far fa-trash-alt' />
         </span>

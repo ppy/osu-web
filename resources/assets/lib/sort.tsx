@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   currentValue: string;
@@ -28,9 +29,9 @@ export class Sort extends React.PureComponent<Props> {
 
       return (
         <button
+          key={value}
           className={cssClasses}
           data-value={value}
-          key={value}
           onClick={this.props.onChange}
         >
           {/* FIXME: add icon support */}
@@ -46,7 +47,7 @@ export class Sort extends React.PureComponent<Props> {
     });
 
     return (
-      <div className={osu.classWithModifiers('sort', this.props.modifiers)}>
+      <div className={classWithModifiers('sort', this.props.modifiers)}>
         <div className='sort__items'>
           {this.props.showTitle && (
             <span className='sort__item sort__item--title'>{this.props.title ?? osu.trans('sort._')}</span>

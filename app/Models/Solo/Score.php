@@ -5,9 +5,12 @@
 
 namespace App\Models\Solo;
 
-use App\Exceptions\GameCompletedException;
+use App\Exceptions\InvariantException;
+use App\Libraries\ModsHelper;
 use App\Libraries\ScoreCheck;
+use App\Models\Beatmap;
 use App\Models\Model;
+use App\Models\Score as LegacyScore;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -39,7 +42,7 @@ class Score extends Model
     protected $dates = ['started_at', 'ended_at'];
     protected $casts = [
         'passed' => 'boolean',
-        'mods' => 'array',
+        'mods' => 'object',
         'statistics' => 'array',
     ];
 
@@ -55,14 +58,84 @@ class Score extends Model
 
     public function complete(array $params): void
     {
-        if ($this->isCompleted()) {
-            throw new GameCompletedException('cannot modify score after submission');
-        }
-
         $this->fill($params);
 
         ScoreCheck::assertCompleted($this);
 
+        // this should potentially just be validation rather than applying this logic here, but
+        // older lazer builds potentially submit incorrect details here (and we still want to
+        // accept their scores.
+        if (!$this->passed) {
+            $this->rank = 'D';
+        }
+
         $this->save();
+    }
+
+    public function createLegacyEntry()
+    {
+        if (!$this->isCompleted()) {
+            throw new InvariantException('creating legacy entry requires completed score');
+        }
+
+        $statAttrs = [
+            'Good',
+            'Great',
+            'LargeTickHit',
+            'LargeTickMiss',
+            'Meh',
+            'Miss',
+            'Ok',
+            'Perfect',
+            'SmallTickMiss',
+        ];
+        $statistics = $this->statistics;
+
+        foreach ($statAttrs as $attr) {
+            $statistics[$attr] = get_int($statistics[$attr] ?? 0) ?? 0;
+        }
+
+        $scoreClass = LegacyScore\Model::getClass($this->ruleset_id);
+
+        $score = new $scoreClass([
+            'beatmap_id' => $this->beatmap_id,
+            'beatmapset_id' => optional($this->beatmap)->beatmapset_id ?? 0,
+            'countmiss' => $statistics['Miss'],
+            'enabled_mods' => ModsHelper::toBitset(array_column($this->mods, 'acronym')),
+            'maxcombo' => $this->max_combo,
+            'pass' => $this->passed,
+            'perfect' => $this->passed && $statistics['Miss'] + $statistics['LargeTickMiss'] === 0,
+            'rank' => $this->rank,
+            'score' => $this->total_score,
+            'scorechecksum' => "\0",
+            'user_id' => $this->user_id,
+        ]);
+
+        switch (Beatmap::modeStr($this->ruleset_id)) {
+            case 'osu':
+                $score['count300'] = $statistics['Great'];
+                $score['count100'] = $statistics['Ok'];
+                $score['count50'] = $statistics['Meh'];
+                break;
+            case 'taiko':
+                $score['count300'] = $statistics['Great'];
+                $score['count100'] = $statistics['Ok'];
+                break;
+            case 'fruits':
+                $score['count300'] = $statistics['Great'];
+                $score['count100'] = $statistics['LargeTickHit'];
+                $score['countkatu'] = $statistics['SmallTickMiss'];
+                break;
+            case 'mania':
+                $score['countgeki'] = $statistics['Perfect'];
+                $score['count300'] = $statistics['Great'];
+                $score['countkatu'] = $statistics['Good'];
+                $score['count100'] = $statistics['Ok'];
+                $score['count50'] = $statistics['Meh'];
+                break;
+        }
+
+        $score->saveOrExplode();
+        return $score;
     }
 }

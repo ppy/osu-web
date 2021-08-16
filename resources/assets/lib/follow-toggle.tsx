@@ -6,6 +6,7 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { nextVal } from 'utils/seq';
 
 interface Props {
   follow: FollowJson;
@@ -25,7 +26,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
 
   state: State;
 
-  private eventId = `follow-toggle-${osu.uuid()}`;
+  private eventId = `follow-toggle-${nextVal()}`;
   private toggleXhr: null | JQueryXHR = null;
 
   constructor(props: Props) {
@@ -50,10 +51,10 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
   render() {
     return (
       <button
-        type='button'
         className={classWithModifiers('btn-circle', this.props.modifiers)}
-        onClick={this.onClick}
         disabled={this.state.toggling}
+        onClick={this.onClick}
+        type='button'
       >
         <span className='btn-circle__content'>
           {this.renderToggleIcon()}
@@ -76,7 +77,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
     this.toggleXhr?.abort();
 
     this.setState({ toggling: true }, () => {
-      this.toggleXhr = $.ajax(route('follows.store'), { method, data: params })
+      this.toggleXhr = $.ajax(route('follows.store'), { data: params, method })
         .done(() => {
           if (this.props.follow.subtype === 'mapping') {
             $.publish('user:followUserMapping:update', {

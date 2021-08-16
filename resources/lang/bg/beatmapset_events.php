@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Одобрен.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Модератор изтри дискусията :discussion.',
         'discussion_lock' => 'Дискусията за този бийтмап бе деактивирана. (:text)',
         'discussion_post_delete' => 'Модератор изтри съобщение от дискусията :discussion.',
@@ -27,6 +28,8 @@ return [
         'nominate' => 'Номиниран от :user.',
         'nominate_modes' => '',
         'nomination_reset' => 'Нов проблем :discussion (:text) задейства нулиране на номинацията.',
+        'nomination_reset_received' => '',
+        'nomination_reset_received_profile' => '',
         'qualify' => 'Този бийтмап достигна максимум брой номинации и бе квалифициран за класиране.',
         'rank' => 'Класиран.',
         'remove_from_loved' => '',
@@ -54,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Одобрение',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Изтриване на дискусия',
         'discussion_post_delete' => 'Изтриване на отговор от дискусия',
         'discussion_post_restore' => 'Възстановяване на отговор от дискусия',
@@ -71,6 +75,7 @@ return [
         'love' => 'Обичан',
         'nominate' => 'Номинация',
         'nomination_reset' => 'Анулиране на номинацията',
+        'nomination_reset_received' => '',
         'nsfw_toggle' => '',
         'qualify' => 'Квалификация',
         'rank' => 'Класиране',

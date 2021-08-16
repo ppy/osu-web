@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => 'Kirjaudu sisään äänestääksesi.',
         'over' => 'Äänestys tälle kilpailulle on päättynyt',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Näytä äänestetyt',
 
         'best_of' => [
             'none_played' => "Näyttäisi siltä, ettet ole pelannut tähän kilpailuun kelpuutettuja mappeja!",
@@ -26,6 +26,10 @@ return [
             'add' => 'Äänestä',
             'remove' => 'Poista ääni',
             'used_up' => 'Olet käyttänyt kaikki äänesi',
+        ],
+
+        'progress' => [
+            '_' => '',
         ],
     ],
     'entry' => [
@@ -43,11 +47,11 @@ return [
         'too_big' => 'Tähän kilpailuun voi lähettää korkeintaan :limit työtä.',
     ],
     'beatmaps' => [
-        'download' => 'Lataa ehdokas',
+        'download' => 'Lataa beatmappi',
     ],
     'vote' => [
         'list' => 'äänet',
-        'count' => ':count ääni|:count ääntä',
+        'count' => ':count_delimited ääni|:count_delimited ääntä',
         'points' => ':count piste|:count pistettä',
     ],
     'dates' => [
@@ -55,7 +59,7 @@ return [
         'ended_no_date' => 'Päättyi',
 
         'starts' => [
-            '_' => 'Alkoi :date',
+            '_' => 'Alkaa :date',
             'soon' => 'pian™',
         ],
     ],
