@@ -52,7 +52,7 @@ describe('app-dispatcher', () => {
     expect(dispatcher.has(obj2)).toBe(true);
   });
 
-  it('can override global dispatch', () => {
+  it('global dispatch is just dispatcher dispatch', () => {
     expect(dispatch).toBe(dispatcher.dispatch);
   });
 });
