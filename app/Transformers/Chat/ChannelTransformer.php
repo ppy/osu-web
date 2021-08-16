@@ -38,9 +38,7 @@ class ChannelTransformer extends TransformerAbstract
             'channel_id' => $channel->channel_id,
             'description' => $channel->description,
             'icon' => $channel->displayIconFor($this->user),
-            // TODO: pm channels use $canMessage for compatibility with existing clients.
-            // This is deprecated and will be changed to just use moderated in the future.
-            'moderated' => $channel->isPM() ? $canMessage : $channel->moderated,
+            'moderated' => $channel->moderated,
             'name' => $channel->displayNameFor($this->user),
             'type' => $channel->type,
         ];
