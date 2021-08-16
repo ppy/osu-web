@@ -117,13 +117,21 @@ class Channel extends Model
         return '#pm_'.implode('-', $userIds);
     }
 
-    public function canMessage(User $user)
+    /**
+     * This check is for whether the user can enter into the input box for the channel,
+     * not if a message is actually allowed to be sent.
+     */
+    public function canMessage(User $user): bool
     {
-        if (!$this->isPM()) {
-            return !$this->moderated || $user->isModerator();
+        if ($user->isModerator() || $user->isAdmin()) {
+            return true;
         }
 
-        return priv_check_user($user, 'ChatStart', $this->pmTargetFor($user))->can() && !$this->moderated;
+        if ($this->moderated) {
+            return false;
+        }
+
+        return priv_check_user($user, 'ChatStart', $this->pmTargetFor($user))->can();
     }
 
     public function displayIconFor(?User $user)
