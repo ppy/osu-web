@@ -1,25 +1,29 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+replaceUrl = (url) ->
+  Turbolinks.controller.replaceHistory url
+
+# browsers have limit on replaceState calls
+debouncedReplaceUrl = _.debounce replaceUrl, 250
+
 class @Forum
   boot: =>
-    @refreshCounter()
+    @refreshCounterPaused = true
     @refreshLoadMoreLinks()
 
-    # Scroll last because other actions may change page's height.
     @initialScrollTo()
 
 
   constructor: ->
     @_totalPostsDiv = document.getElementsByClassName('js-forum__total-count')
     @_deletedPostsDiv = document.getElementsByClassName('js-forum__deleted-count')
-    @_firstPostDiv = document.getElementsByClassName('js-forum__topic-first-post-id')
-    @_userCanModerateDiv = document.getElementsByClassName('js-forum__topic-user-can-moderate')
     @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
     @posts = document.getElementsByClassName('js-forum-post')
     @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
     @throttledBoot = _.throttle @boot, 100
+    @refreshCounterPaused = true
 
     @maxPosts = 250
 
@@ -32,10 +36,11 @@ class @Forum
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
     $(document).on 'keyup', @keyboardNavigation
     $(document).on 'click', '.js-forum-topic-moderate--toggle-deleted', @toggleDeleted
+    $(document).on 'turbolinks:before-cache', debouncedReplaceUrl.cancel
 
 
   userCanModerate: ->
-    @_userCanModerateDiv[0].getAttribute('data-user-can-moderate') == '1'
+    @topicMeta().userCanModerate == '1'
 
 
   postPosition: (el) =>
@@ -43,11 +48,15 @@ class @Forum
 
 
   firstPostId: ->
-    parseInt @_firstPostDiv[0].getAttribute('data-first-post-id'), 10
+    parseInt @topicMeta().firstPostId, 10
 
 
   postId: (el) ->
     parseInt el.getAttribute('data-post-id'), 10
+
+
+  topicMeta: ->
+    newBody.querySelector('.js-forum--topic-meta').dataset
 
 
   totalPosts: =>
@@ -85,7 +94,7 @@ class @Forum
     @currentPostPosition = @postPosition(currentPost)
 
     @setTotalPosts(@currentPostPosition) if @currentPostPosition > @totalPosts()
-    window.reloadUrl = @postUrlN @currentPostPosition
+    debouncedReplaceUrl @postUrlN(@currentPostPosition)
 
     @_postsCounter[0].textContent = osu.formatNumber @currentPostPosition
     @_postsProgress[0].style.width = "#{100 * @currentPostPosition / @totalPosts()}%"
@@ -143,6 +152,8 @@ class @Forum
 
 
   refreshCounter: =>
+    return if @refreshCounterPaused
+
     return if @_postsCounter.length == 0
 
     currentPost = null
@@ -197,6 +208,10 @@ class @Forum
 
     return unless post
 
+    # Mainly for post located near the end as the page scroll may hit the end
+    # and thus cause the counter to show last post instead of the intended
+    # post. To be resumed after scrolling.
+    @refreshCounterPaused = true
     postTop = if @postPosition(post) == 1
                 0
               else
@@ -207,6 +222,10 @@ class @Forum
     # using jquery smooth scrollTo will cause unwanted events to trigger on the way down.
     window.scrollTo window.pageXOffset, postTop
     @highlightPost post
+    @setCounter post
+    # allow scroll to finish before reenabling counter check
+    reenableRefreshCounter = => @refreshCounterPaused = false
+    setTimeout reenableRefreshCounter, 0
 
 
   highlightPost: (post) ->
@@ -228,12 +247,15 @@ class @Forum
 
 
   initialScrollTo: =>
-    return if _exported.currentUrl().hash != '' ||
-      !window.postJumpTo? ||
-      window.postJumpTo == 0
+    topicMeta = @topicMeta()
+    shouldScroll = _exported.currentUrl().hash == '' && osu.present(topicMeta.postJumpTo)
 
-    @scrollTo window.postJumpTo
-    window.postJumpTo = 0
+    if shouldScroll
+      @scrollTo parseInt(topicMeta.postJumpTo, 10)
+      topicMeta.postJumpTo = ''
+    else
+      @refreshCounterPaused = false
+      @refreshCounter()
 
 
   postUrlClick: (e) =>
