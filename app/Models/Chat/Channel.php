@@ -117,6 +117,15 @@ class Channel extends Model
         return '#pm_'.implode('-', $userIds);
     }
 
+    public function canMessage(User $user)
+    {
+        if (!$this->isPM()) {
+            return !$this->moderated || $user->isModerator();
+        }
+
+        return priv_check_user($user, 'ChatStart', $this->pmTargetFor($user))->can() && !$this->moderated;
+    }
+
     public function displayIconFor(?User $user)
     {
         if (!$this->isPM() || $user === null) {
@@ -133,16 +142,6 @@ class Channel extends Model
         }
 
         return $this->pmTargetFor($user)?->username ?? $this->name;
-    }
-
-    // TODO: change to canSend or something else.
-    public function isModeratedFor(User $user)
-    {
-        if (!$this->isPM()) {
-            return $this->moderated;
-        }
-
-        return $this->moderated || !priv_check_user($user, 'ChatStart', $this->pmTargetFor($user))->can();
     }
 
     public function isVisibleFor(User $user)

@@ -35,7 +35,7 @@ class ChatController extends Controller
             $channel?->addUser($user);
 
             $json['send_to'] = [
-                'can_message' => !$channel->isModeratedFor($user),
+                'can_message' => !$channel->canMessage($user),
                 'channel_id' => optional($channel)->getKey(),
                 'target' => json_item($targetUser, 'UserCompact'),
             ];

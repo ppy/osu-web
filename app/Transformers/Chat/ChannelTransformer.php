@@ -31,11 +31,16 @@ class ChannelTransformer extends TransformerAbstract
 
     public function transform(Channel $channel)
     {
+        $canMessage = $channel->canMessage($this->user);
+
         return [
+            'can_message' => $canMessage,
             'channel_id' => $channel->channel_id,
             'description' => $channel->description,
             'icon' => $channel->displayIconFor($this->user),
-            'moderated' => $channel->isModeratedFor($this->user),
+            // TODO: pm channels use $canMessage for compatibility with existing clients.
+            // This is deprecated and will be changed to just use moderated in the future.
+            'moderated' => $channel->isPM() ? $canMessage : $channel->moderated,
             'name' => $channel->displayNameFor($this->user),
             'type' => $channel->type,
         ];
