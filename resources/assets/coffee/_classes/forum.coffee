@@ -161,9 +161,11 @@ class @Forum
     if osu.bottomPage()
       currentPost = @posts[@posts.length - 1]
     else
+      scrollOffset = window.stickyHeader.scrollOffsetValue()
+
       for post in @posts
         postTop = post.getBoundingClientRect().top
-        if Math.floor(window.stickyHeader.scrollOffset(postTop)) <= 0
+        if Math.floor(postTop - scrollOffset) <= 0
           currentPost = post
         else
           break
