@@ -31,10 +31,8 @@ class ChannelTransformer extends TransformerAbstract
 
     public function transform(Channel $channel)
     {
-        $canMessage = $channel->canMessage($this->user);
-
         return [
-            'can_message' => $canMessage,
+            'can_message' => $channel->canMessage($this->user),
             'channel_id' => $channel->channel_id,
             'description' => $channel->description,
             'icon' => $channel->displayIconFor($this->user),

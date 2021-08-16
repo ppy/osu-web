@@ -258,7 +258,7 @@ export default class ConversationView extends React.Component<Props> {
           </div>
         }
         {this.conversationStack}
-        {channel.moderated &&
+        {!channel.canMessage &&
           this.noCanSendMessage()
         }
       </div>

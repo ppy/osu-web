@@ -86,7 +86,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
 
   render(): React.ReactNode {
     const channel = this.currentChannel;
-    const disableInput = !channel || channel.moderated;
+    const disableInput = !channel || !channel.canMessage;
 
     return (
       <div className='chat-input'>

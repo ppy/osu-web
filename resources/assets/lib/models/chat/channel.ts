@@ -10,6 +10,7 @@ import Message from './message';
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
 
+  @observable canMessage = true;
   @observable channelId: number;
   @observable description?: string;
   @observable firstMessageId = -1;
@@ -20,7 +21,6 @@ export default class Channel {
   @observable loading = false;
   @observable loadingEarlierMessages = false;
   @observable messages: Message[] = observable([]);
-  @observable moderated = false;
   @observable name = '';
   @observable newPmChannel = false;
   newPmChannelTransient = false;
@@ -161,11 +161,11 @@ export default class Channel {
 
   @action
   updateWithJson(json: ChannelJson) {
+    this.canMessage = json.can_message;
     this.name = json.name;
     this.description = json.description;
     this.type = json.type;
     this.icon = json?.icon ?? Channel.defaultIcon;
-    this.moderated = json.moderated;
     this.users = json.users ?? this.users;
 
     this.initialLastMessageId = json.last_message_id ?? this.lastMessageId;
