@@ -123,15 +123,7 @@ class Channel extends Model
      */
     public function canMessage(User $user): bool
     {
-        if ($user->isModerator() || $user->isAdmin()) {
-            return true;
-        }
-
-        if ($this->moderated) {
-            return false;
-        }
-
-        return priv_check_user($user, 'ChatStart', $this->pmTargetFor($user))->can();
+        return priv_check_user($user, 'ChatChannelCanMessage', $this)->can();
     }
 
     public function displayIconFor(?User $user)

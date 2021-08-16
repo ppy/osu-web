@@ -89,6 +89,31 @@ class ChannelTest extends TestCase
             'foe' => true,
         ]);
 
+        // this assertion to make sure the correct block direction is being tested.
+        $this->assertTrue($user->hasBlocked($otherUser));
+        $this->assertSame($canMessage, $channel->canMessage($user));
+    }
+
+    /**
+     * @dataProvider channelCanMessageModeratedChannelDataProvider
+     */
+    public function testChannelCanMessagePmChannelWhenBlocking($group, $canMessage)
+    {
+        $channel = factory(Channel::class)->states('pm')->create();
+        $user = factory(User::class)->states($group)->create();
+        $otherUser = factory(User::class)->create();
+
+        $channel->addUser($user);
+        $channel->addUser($otherUser);
+
+        UserRelation::create([
+            'user_id' => $otherUser->getKey(),
+            'zebra_id' => $user->getKey(),
+            'foe' => true,
+        ]);
+
+        // this assertion to make sure the correct block direction is being tested.
+        $this->assertTrue($otherUser->hasBlocked($user));
         $this->assertSame($canMessage, $channel->canMessage($user));
     }
 

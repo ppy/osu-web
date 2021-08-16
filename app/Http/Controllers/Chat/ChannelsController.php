@@ -255,7 +255,7 @@ class ChannelsController extends Controller
         if ($params['type'] === Channel::TYPES['pm']) {
             $target = User::findOrFail($params['target_id']);
 
-            priv_check('ChatStart', $target)->ensureCan();
+            priv_check('ChatPmStart', $target)->ensureCan();
 
             $channel = Channel::findPM($sender, $target) ?? new Channel();
 
