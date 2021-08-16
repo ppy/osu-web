@@ -73,13 +73,13 @@ describe('osu_common', () => {
 
     it('replaces the link with an anchor element', () => {
       expect(osu.linkify(textWithLink)).toBe(
-        `Please visit <a href="https://link.com" rel="nofollow noreferrer">link.com</a>`,
+        'Please visit <a href="https://link.com" rel="nofollow noreferrer">link.com</a>',
       );
     });
 
     it('replaces the link with an anchor element with target blank', () => {
       expect(osu.linkify(textWithLink, true)).toBe(
-        `Please visit <a href="https://link.com" rel="nofollow noreferrer" target="_blank">link.com</a>`,
+        'Please visit <a href="https://link.com" rel="nofollow noreferrer" target="_blank">link.com</a>',
       );
     });
 
