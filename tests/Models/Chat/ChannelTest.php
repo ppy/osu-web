@@ -117,6 +117,26 @@ class ChannelTest extends TestCase
         $this->assertSame($canMessage, $channel->canMessage($user));
     }
 
+    public function testPmChannelIcon()
+    {
+        $user = factory(User::class)->create();
+        $otherUser = factory(User::class)->create();
+
+        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $this->assertSame($otherUser->user_avatar, $channel->displayIconFor($user));
+        $this->assertSame($user->user_avatar, $channel->displayIconFor($otherUser));
+    }
+
+    public function testPmChannelName()
+    {
+        $user = factory(User::class)->create();
+        $otherUser = factory(User::class)->create();
+
+        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $this->assertSame($otherUser->username, $channel->displayNameFor($user));
+        $this->assertSame($user->username, $channel->displayNameFor($otherUser));
+    }
+
     public function channelCanMessageModeratedChannelDataProvider()
     {
         return [
@@ -137,5 +157,15 @@ class ChannelTest extends TestCase
             ['gmt', true],
             ['nat', true],
         ];
+    }
+
+    private function createChannel(array $users, ...$types): Channel
+    {
+        $channel = factory(Channel::class)->states($types)->create();
+        foreach ($users as $user) {
+            $channel->addUser($user);
+        }
+
+        return $channel;
     }
 }
