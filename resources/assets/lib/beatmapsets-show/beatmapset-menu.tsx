@@ -10,16 +10,18 @@ interface Props {
   beatmapset: BeatmapsetJson;
 }
 
-export const BeatmapsetMenu = (props: Props) => (
-  <PopupMenuPersistent>
-    {(dismiss: () => void) => (
-      <ReportReportable
-        className='simple-menu__item'
-        icon
-        reportableId={props.beatmapset.id.toString()}
-        reportableType='beatmapset'
-        user={{username: props.beatmapset.creator}}
-      />
-    )}
-  </PopupMenuPersistent>
-);
+export default function BeatmapsetMenu(props: Props) {
+  return (
+    <PopupMenuPersistent>
+      {(dismiss: () => void) => (
+        <ReportReportable
+          className='simple-menu__item'
+          icon
+          reportableId={props.beatmapset.id.toString()}
+          reportableType='beatmapset'
+          user={{username: props.beatmapset.creator}}
+        />
+      )}
+    </PopupMenuPersistent>
+  );
+}
