@@ -17,10 +17,9 @@ class ChannelTest extends TestCase
 {
     public function testPublicChannelDoesNotShowUsers()
     {
-        $channel = factory(Channel::class)->states('public')->create();
         $user = factory(User::class)->create();
+        $channel = $this->createChannel([$user], 'public');
 
-        $channel->addUser($user);
         $this->assertSame(1, $channel->users()->count());
         $this->assertEmpty($channel->visibleUsers());
     }
@@ -28,14 +27,11 @@ class ChannelTest extends TestCase
     /**
      * @dataProvider channelWithBlockedUserVisibilityDataProvider
      */
-    public function testChannelWithBlockedUserVisibility(array|string $otherUserGroup, $expectVisible)
+    public function testChannelWithBlockedUserVisibility(array|string $otherUserGroup, bool $expectVisible)
     {
-        $channel = factory(Channel::class)->states('pm')->create();
         $user = factory(User::class)->create();
         $otherUser = $this->createUserWithGroup($otherUserGroup);
-
-        $channel->addUser($user);
-        $channel->addUser($otherUser);
+        $channel = $this->createChannel([$user, $otherUser], 'pm');
 
         UserRelation::create([
             'user_id' => $user->getKey(),
@@ -49,14 +45,11 @@ class ChannelTest extends TestCase
     /**
      * @dataProvider channelCanMessageModeratedChannelDataProvider
      */
-    public function testChannelCanMessageModeratedPmChannel($group, $canMessage)
+    public function testChannelCanMessageModeratedPmChannel(array|string $group, bool $canMessage)
     {
-        $channel = factory(Channel::class)->states('moderated', 'pm')->create();
         $user = factory(User::class)->states($group)->create();
         $otherUser = factory(User::class)->create();
-
-        $channel->addUser($user);
-        $channel->addUser($otherUser);
+        $channel = $this->createChannel([$user, $otherUser], 'moderated', 'pm');
 
         $this->assertSame($canMessage, $channel->canMessage($user));
     }
@@ -64,12 +57,10 @@ class ChannelTest extends TestCase
     /**
      * @dataProvider channelCanMessageModeratedChannelDataProvider
      */
-    public function testChannelCanMessageModeratedPublicChannel($group, $canMessage)
+    public function testChannelCanMessageModeratedPublicChannel(array|string $group, bool $canMessage)
     {
-        $channel = factory(Channel::class)->states('moderated', 'public')->create();
         $user = factory(User::class)->states($group)->create();
-
-        $channel->addUser($user);
+        $channel = $this->createChannel([$user], 'moderated', 'public');
 
         $this->assertSame($canMessage, $channel->canMessage($user));
     }
@@ -77,14 +68,11 @@ class ChannelTest extends TestCase
     /**
      * @dataProvider channelCanMessageModeratedChannelDataProvider
      */
-    public function testChannelCanMessagePmChannelWhenBlocked($group, $canMessage)
+    public function testChannelCanMessagePmChannelWhenBlocked(array|string $group, bool $canMessage)
     {
-        $channel = factory(Channel::class)->states('pm')->create();
         $user = factory(User::class)->states($group)->create();
         $otherUser = factory(User::class)->create();
-
-        $channel->addUser($user);
-        $channel->addUser($otherUser);
+        $channel = $this->createChannel([$user, $otherUser], 'pm');
 
         UserRelation::create([
             'user_id' => $user->getKey(),
@@ -100,14 +88,11 @@ class ChannelTest extends TestCase
     /**
      * @dataProvider channelCanMessageModeratedChannelDataProvider
      */
-    public function testChannelCanMessagePmChannelWhenBlocking($group, $canMessage)
+    public function testChannelCanMessagePmChannelWhenBlocking(array|string $group, bool $canMessage)
     {
-        $channel = factory(Channel::class)->states('pm')->create();
         $user = factory(User::class)->states($group)->create();
         $otherUser = factory(User::class)->create();
-
-        $channel->addUser($user);
-        $channel->addUser($otherUser);
+        $channel = $this->createChannel([$user, $otherUser], 'pm');
 
         UserRelation::create([
             'user_id' => $otherUser->getKey(),
@@ -129,6 +114,7 @@ class ChannelTest extends TestCase
 
         $user = factory(User::class)->create();
         $otherUser = factory(User::class)->create();
+
         $testFile = new SplFileInfo(public_path('images/layout/avatar-guest.png'));
         $user->setAvatar($testFile);
         $otherUser->setAvatar($testFile);
