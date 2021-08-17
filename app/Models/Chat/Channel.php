@@ -126,16 +126,16 @@ class Channel extends Model
         return priv_check_user($user, 'ChatChannelCanMessage', $this)->can();
     }
 
-    public function displayIconFor(?User $user)
+    public function displayIconFor(?User $user): ?string
     {
         if (!$this->isPM() || $user === null) {
-            return;
+            return null;
         }
 
         return $this->pmTargetFor($user)?->user_avatar;
     }
 
-    public function displayNameFor(?User $user): string
+    public function displayNameFor(?User $user): ?string
     {
         if (!$this->isPM() || $user === null) {
             return $this->name;
@@ -144,7 +144,7 @@ class Channel extends Model
         return $this->pmTargetFor($user)?->username ?? $this->name;
     }
 
-    public function isVisibleFor(User $user)
+    public function isVisibleFor(User $user): bool
     {
         if (!$this->isPM()) {
             return true;
@@ -159,10 +159,10 @@ class Channel extends Model
      * Preset the UserChannel with Channel::setUserChannelFor when handling multiple channels.
      * UserChannelList will automatically do this.
      */
-    public function lastReadIdFor(?User $user)
+    public function lastReadIdFor(?User $user): ?int
     {
         if ($user === null) {
-            return;
+            return null;
         }
 
         return $this->userChannelFor($user)?->last_read_id;
