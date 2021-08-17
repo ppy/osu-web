@@ -5,7 +5,6 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import GameMode from 'interfaces/game-mode';
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
-import User from 'models/user';
 
 interface BeatmapsetCovers {
   card: string;
