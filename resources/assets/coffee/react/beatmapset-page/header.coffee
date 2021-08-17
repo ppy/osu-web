@@ -10,7 +10,7 @@ import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import OsuUrlHelper from 'osu-url-helper'
 import * as React from 'react'
-import { button, div, span, a, img, ol, li, i } from 'react-dom-factories'
+import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { createClickCallback } from 'utils/html'
@@ -188,7 +188,7 @@ export class Header extends React.Component
 
             if currentUser.id? && currentUser.id != @props.beatmapset.user_id
               div className: 'beatmapset-header__more',
-                button className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail',
+                div className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail',
                   el BeatmapsetMenu,
                     beatmapset: @props.beatmapset
 
