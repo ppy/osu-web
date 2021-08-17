@@ -128,20 +128,16 @@ class Channel extends Model
 
     public function displayIconFor(?User $user): ?string
     {
-        if (!$this->isPM() || $user === null) {
-            return null;
-        }
-
         return $this->pmTargetFor($user)?->user_avatar;
     }
 
     public function displayNameFor(?User $user): ?string
     {
-        if (!$this->isPM() || $user === null) {
+        if (!$this->isPM()) {
             return $this->name;
         }
 
-        return $this->pmTargetFor($user)?->username ?? $this->name;
+        return $this->pmTargetFor($user)?->username;
     }
 
     public function isVisibleFor(User $user): bool
@@ -292,10 +288,10 @@ class Channel extends Model
         return $this->belongsTo(LegacyMatch::class, 'match_id');
     }
 
-    public function pmTargetFor(User $user)
+    public function pmTargetFor(?User $user): ?User
     {
-        if (!$this->isPM()) {
-            return;
+        if (!$this->isPM() || $user === null) {
+            return null;
         }
 
         $userId = $user->getKey();
