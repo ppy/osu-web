@@ -9,5 +9,5 @@ export ExtraHeader = (props) ->
   div className: 'u-relative',
     h2 className: 'title title--page-extra', osu.trans("users.show.extra.#{props.name}.title")
     if props.withEdit
-      span className: 'page-extra__dragdrop-toggle hidden-xs js-profile-page-extra--sortable-handle',
+      span className: 'page-extra-dragdrop hidden-xs js-profile-page-extra--sortable-handle',
         i className: 'fas fa-bars'
