@@ -8,6 +8,9 @@ namespace Tests\Models;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use App\Models\UserRelation;
+use Illuminate\Filesystem\Filesystem;
+use SplFileInfo;
+use Storage;
 use Tests\TestCase;
 
 class ChannelTest extends TestCase
@@ -119,8 +122,16 @@ class ChannelTest extends TestCase
 
     public function testPmChannelIcon()
     {
+        Storage::fake('local-avatar');
+        $this->beforeApplicationDestroyed(function () {
+            (new Filesystem())->deleteDirectory(storage_path('framework/testing/disks/local-avatar'));
+        });
+
         $user = factory(User::class)->create();
         $otherUser = factory(User::class)->create();
+        $testFile = new SplFileInfo(public_path('images/layout/avatar-guest.png'));
+        $user->setAvatar($testFile);
+        $otherUser->setAvatar($testFile);
 
         $channel = $this->createChannel([$user, $otherUser], 'pm');
         $this->assertSame($otherUser->user_avatar, $channel->displayIconFor($user));
