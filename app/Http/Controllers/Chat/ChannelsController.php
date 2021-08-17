@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers\Chat;
 
-use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
