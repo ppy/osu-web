@@ -7,28 +7,19 @@ import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
 
 interface Props {
-    beatmapset: BeatmapsetJson;
+  beatmapset: BeatmapsetJson;
 }
 
-export default class BeatmapsetMenu extends React.PureComponent<Props> {
-    render() {
-        const { beatmapset } = this.props;
-
-        const children = () => (
-            <ReportReportable
-                className='simple-menu__item'
-                icon
-                key='report'
-                reportableId={beatmapset.id.toString()}
-                reportableType='beatmapset'
-                user={beatmapset.user}
-            />
-        );
-
-        return (
-            <PopupMenuPersistent>
-                {children}
-            </PopupMenuPersistent>
-        );
-    }
-}
+export const BeatmapsetMenu = (props: Props) => (
+  <PopupMenuPersistent>
+    {(dismiss: () => void) => (
+      <ReportReportable
+        className='simple-menu__item'
+        icon
+        reportableId={props.beatmapset.id.toString()}
+        reportableType='beatmapset'
+        user={{username: props.beatmapset.creator}}
+      />
+    )}
+  </PopupMenuPersistent>
+);

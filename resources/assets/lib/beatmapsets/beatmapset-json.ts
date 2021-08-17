@@ -101,7 +101,6 @@ export interface BeatmapsetJson {
   status: BeatmapsetStatus;
   title: string;
   title_unicode: string;
-  user: User;
   user_id: number;
   video: boolean;
 }
