@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'الرجاء الاتصال بالدعم لاسترداد الحساب.',
+        'expired' => '',
+        'invalid' => '',
         'is_privileged' => 'اتصل بـ peppy للنكت.',
         'missing_key' => 'مطلوب.',
         'too_many_tries' => 'الكثير من المحاولات الفاشلة.',

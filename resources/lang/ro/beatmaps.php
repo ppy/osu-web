@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Descalificare',
         'incorrect_state' => 'S-a produs o eroare la efectuarea acestei acțiuni, încearcă să reîmprospătezi pagina.',
         'love' => 'Love',
+        'love_choose' => '',
         'love_confirm' => '\'Love\' acest beatmap?',
         'nominate' => 'Nominalizează',
         'nominate_confirm' => 'Nominalizezi acest beatmap?',
