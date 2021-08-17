@@ -16,7 +16,6 @@ export class WikiSearchController {
   @observable shouldShowSuggestions = false;
   @observable suggestions: SuggestionJson[] = [];
 
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   private debouncedFetchSuggestions = debounce(this.fetchSuggestions, 200);
   @observable private query = '';
   private xhr?: JQueryXHR;

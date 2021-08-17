@@ -886,7 +886,7 @@ function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
         }
     }
 
-    return str_replace($params['path'], $path, route($route, $params, $fullUrl));
+    return rtrim(str_replace($params['path'], $path, route($route, $params, $fullUrl)), '/');
 }
 
 function bbcode($text, $uid, $options = [])

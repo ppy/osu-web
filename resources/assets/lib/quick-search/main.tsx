@@ -103,7 +103,14 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     }
   };
 
-  private onMouseLeave = (event: React.MouseEvent<HTMLInputElement>) => {
+  private onMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
+    const section = event.currentTarget.dataset.section as Section;
+    const index = parseInt(event.currentTarget.dataset.index ?? '0', 10);
+
+    this.selectBox(section, index);
+  };
+
+  private onMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
     this.props.worker.selectNone();
   };
 
@@ -114,26 +121,26 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items'>
-        {this.props.worker.searchResult.beatmapset.beatmapsets.map((beatmapset, idx) => {
-          const selectBeatmapset = () => this.selectBox('beatmapset', idx);
-          return (
-            <div
-              key={beatmapset.id}
-              className='quick-search-items__item'
-              onMouseEnter={selectBeatmapset}
-              onMouseLeave={this.onMouseLeave}
-            >
-              <Beatmapset
-                beatmapset={beatmapset}
-                modifiers={this.boxIsActive('beatmapset', idx) ? ['active'] : []}
-              />
-            </div>
-          );
-        })}
+        {this.props.worker.searchResult.beatmapset.beatmapsets.map((beatmapset, idx) => (
+          <div
+            key={beatmapset.id}
+            className='quick-search-items__item'
+            data-index={idx}
+            data-section='beatmapset'
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          >
+            <Beatmapset
+              beatmapset={beatmapset}
+              modifiers={this.boxIsActive('beatmapset', idx) ? ['active'] : []}
+            />
+          </div>
+        ))}
 
         <div
           className='quick-search-items__item'
-          onMouseEnter={this.selectBeatmapsetOthers}
+          data-section='beatmapset_others'
+          onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
         >
           {this.renderResultLink('beatmapset', this.boxIsActive('beatmapset_others', 0))}
@@ -151,20 +158,18 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items'>
-        {modes.map((mode, idx) => {
-          const selectOthers = () => this.selectBox('others', idx);
-
-          return (
-            <div
-              key={mode}
-              className='quick-search-items__item'
-              onMouseEnter={selectOthers}
-              onMouseLeave={this.onMouseLeave}
-            >
-              {this.renderResultLink(mode, this.boxIsActive('others', idx))}
-            </div>
-          );
-        })}
+        {modes.map((mode, idx) => (
+          <div
+            key={mode}
+            className='quick-search-items__item'
+            data-index={idx}
+            data-section='others'
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          >
+            {this.renderResultLink(mode, this.boxIsActive('others', idx))}
+          </div>
+        ))}
       </div>
     );
   }
@@ -283,45 +288,39 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items'>
-        {this.props.worker.searchResult.user.users.map((user, idx) => {
-          const selectUser = () => this.selectBox('user', idx);
-          return (
-            <div
-              key={user.id}
-              className='quick-search-items__item'
-              onMouseEnter={selectUser}
-              onMouseLeave={this.onMouseLeave}
-            >
-              <User
-                modifiers={this.boxIsActive('user', idx) ? ['active'] : []}
-                user={user}
-              />
-            </div>
-          );
-        })}
+        {this.props.worker.searchResult.user.users.map((user, idx) => (
+          <div
+            key={user.id}
+            className='quick-search-items__item'
+            data-index={idx}
+            data-section='user'
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          >
+            <User
+              modifiers={this.boxIsActive('user', idx) ? ['active'] : []}
+              user={user}
+            />
+          </div>
+        ))}
 
-        {this.count('user') > this.props.worker.searchResult.user.users.length
-          ? (
-            <div
-              className='quick-search-items__item'
-              onMouseEnter={this.selectUserOthers}
-              onMouseLeave={this.onMouseLeave}
-            >
-              {this.renderResultLink('user', this.boxIsActive('user_others', 0))}
-            </div>
-          ) : null
-        }
+        {this.count('user') > this.props.worker.searchResult.user.users.length && (
+          <div
+            className='quick-search-items__item'
+            data-section='user_others'
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          >
+            {this.renderResultLink('user', this.boxIsActive('user_others', 0))}
+          </div>
+        )}
       </div>
     );
   }
 
-  private selectBeatmapsetOthers = () => this.selectBox('beatmapset_others');
-
   private selectBox(section: Section, index = 0) {
     this.props.worker.setSelected(section, index);
   }
-
-  private selectUserOthers = () => this.selectBox('user_others');
 
   private updateQuery = (event: React.SyntheticEvent<HTMLInputElement>) => {
     this.props.worker.updateQuery(event.currentTarget.value);
