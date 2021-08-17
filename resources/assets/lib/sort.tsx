@@ -7,11 +7,11 @@ import { classWithModifiers } from 'utils/css';
 interface Props {
   currentValue: string;
   modifiers?: string[];
+  onChange(event: React.MouseEvent<HTMLButtonElement>): void;
   showTitle?: boolean;
   title?: string;
   transPrefix: string;
   values: string[];
-  onChange(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export class Sort extends React.PureComponent<Props> {
