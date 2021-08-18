@@ -35,7 +35,7 @@ type Props = {
   [key in Section]: BeatmapsetExtendedJson[];
 };
 
-export default class Beatmaps extends React.PureComponent<Props> {
+export default class Beatmapsets extends React.PureComponent<Props> {
   render() {
     return (
       <div className='page-extra'>
