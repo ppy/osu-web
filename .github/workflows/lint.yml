@@ -57,7 +57,7 @@ jobs:
       - name: Install js dependencies
         run: yarn --frozen-lockfile
 
-      - run: yarn lint
+      - run: yarn lint --quiet
       - run: ./bin/update_licence.sh -nf
 
       - name: Run PHPCS

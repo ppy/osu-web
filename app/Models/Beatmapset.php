@@ -101,7 +101,7 @@ use Illuminate\Database\QueryException;
  */
 class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 {
-    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, Memoizes, SoftDeletes, Validatable;
+    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, Memoizes, Reportable, SoftDeletes, Validatable;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -1393,6 +1393,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function url()
     {
         return route('beatmapsets.show', $this);
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'UnwantedContent',
+            'user_id' => $this->user_id,
+        ];
     }
 
     protected static function boot()
