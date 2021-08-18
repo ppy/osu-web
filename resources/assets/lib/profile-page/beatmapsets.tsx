@@ -12,7 +12,7 @@ import ExtraHeader from './extra-header';
 
 type Section = 'favouriteBeatmapsets' | 'rankedBeatmapsets' | 'lovedBeatmapsets' | 'pendingBeatmapsets' | 'graveyardBeatmapsets';
 
-const sectionNames: [Section, string][] = [
+const sectionKeys: [Section, string][] = [
   ['favouriteBeatmapsets', 'favourite'],
   ['rankedBeatmapsets', 'ranked'],
   ['lovedBeatmapsets', 'loved'],
@@ -40,7 +40,7 @@ export default class Beatmapsets extends React.PureComponent<Props> {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
-        {sectionNames.map(([section, key]) => this.renderBeatmapsets(section, key))}
+        {sectionKeys.map(([section, key]) => this.renderBeatmapsets(section, key))}
       </div>
     );
   }
