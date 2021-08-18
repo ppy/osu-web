@@ -87,5 +87,5 @@ export default class Beatmapsets extends React.PureComponent<Props> {
         )}
       </React.Fragment>
     );
-  }
+  };
 }
