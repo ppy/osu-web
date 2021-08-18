@@ -11,25 +11,7 @@ interface Props {
   beatmapset: BeatmapsetExtendedJson;
 }
 
-interface State {
-  chartAreaBound: DOMRect | null;
-}
-
-export default class Extra extends React.PureComponent<Props, State> {
-  private chartAreaRef = React.createRef<HTMLDivElement>();
-
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      chartAreaBound: null,
-    };
-  }
-
-  componentDidMount() {
-    this.setState({ chartAreaBound: this.chartAreaRef.current?.getBoundingClientRect() ?? null });
-  }
-
+export default class Extra extends React.PureComponent<Props> {
   render() {
     const successRate = osu.formatNumber(this.props.beatmap.passcount === 0 ? 0 : (this.props.beatmap.passcount / this.props.beatmap.playcount) * 100, 2);
     const ratings = this.getRatings();
@@ -68,7 +50,7 @@ export default class Extra extends React.PureComponent<Props, State> {
             <div className='beatmapset-extra__item'>
               {osu.trans('beatmapsets.show.stats.rating-spread')}
             </div>
-            <div ref={this.chartAreaRef} className='beatmapset-extra__item beatmapset-extra__item--chart'>
+            <div className='beatmapset-extra__item beatmapset-extra__item--chart'>
               {this.renderChart(this.props.beatmapset.ratings.slice(1))}
             </div>
           </>
@@ -103,36 +85,17 @@ export default class Extra extends React.PureComponent<Props, State> {
   }
 
   private renderChart(ratings: number[]) {
-    const areaWidth = this.state.chartAreaBound?.width ?? 0;
-    const areaHeight = this.state.chartAreaBound?.height ?? 0;
-
-    const spacing = 2;
-    const barCounts = ratings.length;
-    const barWidth = (areaWidth - ((barCounts - 1) * spacing)) / barCounts;
-
     const maxRating = Math.max(...ratings);
 
-    return (
-      <svg height={areaHeight} width={areaWidth}>
-        <defs>
-          <clipPath id='bar-chart'>
-            {ratings.map((rating, idx) => {
-              const barHeight = (rating / maxRating) * areaHeight;
-
-              return (
-                <rect
-                  key={`bar-${rating}-${idx}`}
-                  height={barHeight}
-                  rx={2}
-                  width={barWidth}
-                  x={idx * (barWidth + spacing)}
-                  y={areaHeight - barHeight}
-                />
-              );
-            })}
-          </clipPath>
-        </defs>
-      </svg>
-    );
+    return ratings.map((rating, idx) => (
+      <div
+        key={idx}
+        className='beatmapset-extra__chart-bar'
+        style={{
+          '--background-position': `${idx * 10}%`,
+          '--bar-height': `${rating === 0 ? 0 : osu.formatNumber((rating / maxRating) * 100, 2)}%`,
+        } as React.CSSProperties}
+      />
+    ));
   }
 }
