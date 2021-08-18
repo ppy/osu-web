@@ -70,8 +70,8 @@ export default class Header extends React.PureComponent<Props> {
 
           <CountBadge
             data={{
-              length: formatDuration(this.props.currentBeatmap.total_length),
-              song_bpm: this.props.currentBeatmap.bpm > 1000 ? '∞' : osu.formatNumber(this.props.currentBeatmap.bpm),
+              length: formatDuration(showedBeatmap.total_length),
+              song_bpm: showedBeatmap.bpm > 1000 ? '∞' : osu.formatNumber(showedBeatmap.bpm),
             }}
             modifiers='length-bpm'
           />
