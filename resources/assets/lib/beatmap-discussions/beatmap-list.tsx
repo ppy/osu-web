@@ -13,7 +13,6 @@ import BeatmapListItem from './beatmap-list-item';
 interface Props {
   beatmaps: BeatmapJsonExtended[];
   beatmapset: BeatmapsetExtendedJson;
-  createLink: (beatmap: BeatmapJsonExtended) => string;
   currentBeatmap: BeatmapJsonExtended;
   getCount?: (beatmap: BeatmapJsonExtended) => number | undefined;
   large: boolean;
@@ -54,9 +53,8 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
     return (
       <div className={classWithModifiers('beatmap-list', this.props.modifiers, { selecting: this.state.showingSelector })}>
         <div className='beatmap-list__body'>
-          <a
+          <div
             className='beatmap-list__item beatmap-list__item--selected beatmap-list__item--large js-beatmap-list-selector'
-            href={this.props.createLink(this.props.currentBeatmap)}
             onClick={this.toggleSelector}
           >
             <div className='beatmap-list__selected beatmap-list__selected--icons'>
@@ -72,7 +70,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
                 withButton='fas fa-chevron-down'
               />
             </div>
-          </a>
+          </div>
 
           <div className='beatmap-list__selector u-fancy-scrollbar'>
             {this.props.beatmaps.map(this.beatmapListItem)}
@@ -83,11 +81,10 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   }
 
   private beatmapListItem = (beatmap: BeatmapJsonExtended) => (
-    <a
+    <div
       key={beatmap.id}
       className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.currentBeatmap.id })}
       data-id={beatmap.id}
-      href={this.props.createLink(beatmap)}
       onClick={this.selectBeatmap}
     >
       <BeatmapListItem
@@ -95,7 +92,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
         count={this.props.getCount?.(beatmap)}
         mapper={getBeatmapMapper(this.props.beatmapset, beatmap)}
       />
-    </a>
+    </div>
   );
 
   private hideSelector = () => {
@@ -116,7 +113,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
 
   private selectBeatmap = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
-    e.preventDefault();
+    if ($(e.target).is('a')) return;
 
     const beatmapId = parseInt(e.currentTarget.dataset.id ?? '', 10);
     this.props.onSelectBeatmap(beatmapId);
@@ -134,7 +131,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
 
   private toggleSelector = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
-    e.preventDefault();
+    if ($(e.target).is('a')) return;
 
     this.setSelector(!this.state.showingSelector);
   };
