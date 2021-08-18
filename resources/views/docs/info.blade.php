@@ -266,6 +266,7 @@ For [Authorization Code Grant](#authorization-code-grant) tokens, the Resource O
 
 Client Credentials Grant tokens may be allowed to act on behalf of the owner of the OAuth client (delegation) by requesting the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope, in addition to other scopes supporting delegation.
 When using delegation, scopes that support delegation cannot be used together with scopes that do not support delegation.
+Delegation is only available to [Chat Bot]({{ $wikiUrl }})s.
 
 The following scopes currently support delegation:
 
@@ -300,8 +301,8 @@ Name   | Description
 Routes marked with <a class="badge badge-scope badge-scope-lazer" name="scope-lazer">lazer</a> are intended for use by the [osu!lazer](https://github.com/ppy/osu) client and not currently available for use with Authorization Code or Client Credentials grants.
 
 Using the {{ ApidocRouteHelper::scopeBadge('chat.write') }} scope requires either
-- [Client Credentials Delegation](#client-credentials-delegation); to send messages as the client's owner, or,
-- a [Chat Bot]({{ $wikiUrl }}) account to send messages as other users.
+- a [Chat Bot]({{ $wikiUrl }}) account to send messages on behalf of other users.
+- Authorization code grant where the user is the same as the client's owner (send as yourself).
 
 
 ## Managing OAuth applications
