@@ -4,11 +4,12 @@
 import DifficultyBadge from 'difficulty-badge';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import * as _ from 'lodash';
+import { padStart } from 'lodash';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
 import { getBeatmapMapper } from 'utils/beatmap-helper';
+import CountBadge from './count-badge';
 import Extra from './extra';
 import Metadata from './metadata';
 import Stats from './stats';
@@ -26,9 +27,9 @@ function formatDuration(value: number) {
   const h = Math.floor(value / 3600);
 
   if (h > 0) {
-    return `${h}:${_.padStart(String(m), 2, '0')}:${_.padStart(String(s), 2, '0')}`;
+    return `${h}:${padStart(String(m), 2, '0')}:${padStart(String(s), 2, '0')}`;
   } else {
-    return `${m}:${_.padStart(String(s), 2, '0')}`;
+    return `${m}:${padStart(String(s), 2, '0')}`;
   }
 }
 
@@ -40,60 +41,40 @@ export default class Header extends React.PureComponent<Props> {
     return (
       <div className='beatmapset-info'>
         <div className='beatmapset-info__item beatmapset-info__item--diff'>
-          <div className='beatmapset-info__diff-item beatmapset-info__diff-item--details'>
+          <div className='beatmapset-info__diff-detail u-ellipsis-overflow'>
             <div className='beatmapset-info__diff-icon'>
               <i className={`fal fa-extra-mode-${showedBeatmap.mode}`} />
             </div>
 
-            <DifficultyBadge modifiers={['beatmapset-info']} rating={showedBeatmap.difficulty_rating} />
+            <DifficultyBadge modifiers='beatmapset-info' rating={showedBeatmap.difficulty_rating} />
 
-            <div className='beatmapset-info__diff-name'>
-              {showedBeatmap.version}
-            </div>
-
-            <div className='beatmapset-info__diff-mapper'>
-              <StringWithComponent
-                mappings={{
-                  ':mapper':
-                    <UserLink
-                      key='mapper'
-                      user={{ id: mapper.id, username: mapper.username }}
-                    />,
-                }}
-                pattern={osu.trans('beatmapsets.show.details.mapped_by')}
-              />
-            </div>
-          </div>
-
-          <div className='beatmapset-info__diff-item beatmapset-info__diff-item--length-bpm'>
-            <div>
-              <StringWithComponent
-                mappings={{
-                  ':length':
-                    <span key='length' className='beatmapset-info__length-bpm-value'>
-                      {formatDuration(this.props.currentBeatmap.total_length)}
-                    </span>,
-                }}
-                pattern={osu.trans('beatmapsets.show.details.length')}
-              />
-            </div>
-
-            <div>
-              <StringWithComponent
-                mappings={{
-                  ':bpm':
-                    <span key='bpm' className='beatmapset-info__length-bpm-value'>
-                      {
-                        this.props.currentBeatmap.bpm > 1000
-                          ? '∞'
-                          : osu.formatNumber(this.props.currentBeatmap.bpm)
-                      }
-                    </span>,
-                }}
-                pattern={osu.trans('beatmapsets.show.details.bpm')}
-              />
+            <div className='u-ellipsis-overflow'>
+              <span className='beatmapset-info__diff-name'>
+                {showedBeatmap.version}
+              </span>
+              {' '}
+              <span className='beatmapset-info__diff-mapper'>
+                <StringWithComponent
+                  mappings={{
+                    ':mapper':
+                      <UserLink
+                        key='mapper'
+                        user={{ id: mapper.id, username: mapper.username }}
+                      />,
+                  }}
+                  pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+                />
+              </span>
             </div>
           </div>
+
+          <CountBadge
+            data={{
+              length: formatDuration(this.props.currentBeatmap.total_length),
+              song_bpm: this.props.currentBeatmap.bpm > 1000 ? '∞' : osu.formatNumber(this.props.currentBeatmap.bpm),
+            }}
+            modifiers='length-bpm'
+          />
         </div>
 
         <div className='beatmapset-info__item beatmapset-info__item--stats'>

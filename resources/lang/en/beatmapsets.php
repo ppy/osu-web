@@ -53,16 +53,16 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
-            'bpm' => 'BPM :bpm',
             'by_artist' => 'by :artist',
-            'circle_count' => 'Circle Count :count',
+            'circle_count' => 'Circle Count :value',
             'created_by' => 'created by :creator',
             'favourite' => 'Favourite this beatmap',
             'favourite_login' => 'Sign in to favourite this beatmap',
-            'length' => 'Length :length',
+            'length' => 'Length :value',
             'logged-out' => 'You need to sign in before downloading any beatmaps!',
             'mapped_by' => 'mapped by :mapper',
-            'slider_count' => 'Slider Count :count',
+            'slider_count' => 'Slider Count :value',
+            'song_bpm' => 'BPM :value',
             'unfavourite' => 'Unfavourite this beatmap',
             'updated_timeago' => 'last updated :timeago',
 

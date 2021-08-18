@@ -10,33 +10,14 @@
     font-size: 20px; // icon size
   }
 
-  &__diff-item {
+  &__diff-detail {
     display: flex;
     align-items: center;
+    column-gap: 7px;
+    flex: 1;
 
-    &--details {
-      column-gap: 7px;
-
-      @media @mobile {
-        display: none;
-      }
-    }
-
-    &--length-bpm {
-      margin-left: auto;
-      font-size: @font-size--title-small;
-      font-weight: 600;
-      background-color: hsl(var(--hsl-b4));
-      padding: 3px 20px;
-      border-radius: @border-radius--large;
-      column-gap: 15px;
-      justify-content: center;
-
-      @media @mobile {
-        margin-left: 0;
-        width: 100%;
-        font-size: @font-size--normal;
-      }
+    @media @mobile {
+      display: none;
     }
   }
 
