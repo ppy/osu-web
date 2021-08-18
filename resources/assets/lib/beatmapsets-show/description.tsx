@@ -44,7 +44,7 @@ export default class Description extends React.PureComponent<Props, State> {
     const description = this.state.description ?? this.props.beatmapset.description;
 
     return (
-      <div className='beatmapset-description'>
+      <div className='beatmapset-description u-fancy-scrollbar'>
         {this.state.isEditing && canEdit ? (
           <BbcodeEditor
             disabled={this.state.isBusy}
@@ -53,7 +53,7 @@ export default class Description extends React.PureComponent<Props, State> {
             rawValue={description.bbcode ?? ''}
           />
         ) : (
-          <div className='beatmapset-description__container u-fancy-scrollbar'>
+          <div className='beatmapset-description__container'>
             <div
               className='beatmapset-description__content'
               dangerouslySetInnerHTML={{ __html: description.description ?? '' }}
