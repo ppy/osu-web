@@ -10,23 +10,17 @@ use App\Models\Log;
 
 class TopicLogsController extends Controller
 {
-    public function __construct()
+    public function index($topicId)
     {
-        return parent::__construct();
-    }
+        $topic = Topic::withTrashed()->findOrFail($topicId);
 
-    public function show($id)
-    {
-        if (priv_check('ForumTopicLogsView')->can() === false) {
-            abort(403);
-        }
-
-        $topic = Topic::withTrashed()->findOrFail($id);
+        priv_check('ForumModerate', $topic->forum)->ensureCan();
 
         $logs = $topic->logs()
             ->where('log_type', Log::LOG_FORUM_MOD)
+            ->orderByDesc('log_time')
             ->paginate(30);
 
-        return ext_view('forum.topics.logs.show', ['logs' => $logs, 'topic' => $topic]);
+        return ext_view('forum.topics.logs.show', compact('logs', 'topic'));
     }
 }

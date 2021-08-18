@@ -94,7 +94,13 @@ class Log extends Model
 
     public function translationKey()
     {
-        return strtolower(str_replace('LOG_', '', $this->log_operation));
+        $logOperation = $this->log_operation;
+
+        if (str_starts_with($logOperation, 'LOG_')) {
+            $logOperation = substr($logOperation, 4);
+        }
+
+        return strtolower($logOperation);
     }
 
     public function forum()

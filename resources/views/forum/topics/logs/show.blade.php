@@ -21,7 +21,6 @@
                     <tr>
                         <th>{{ trans('forum.topic.logs.columns.date') }}</th>
                         <th>{{ trans('forum.topic.logs.columns.user') }}</th>
-                        <th>{{ trans('forum.topic.logs.columns.ip') }}</th>
                         <th>{{ trans('forum.topic.logs.columns.action') }}</th>
                     </tr>
                 </thead>
@@ -39,7 +38,6 @@
                                     {{ $log->user->username }}
                                 </a>
                             </td>
-                            <td class="forum-topic-logs-table__col">{{ $log->log_ip }}</td>
                             <td class="forum-topic-logs-table__col">
                                 {{ trans("forum.topic.logs.operations.{$log->translationKey()}") }}
                                 <div class="forum-topic-logs-table__log-data">
