@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 /* eslint-disable max-classes-per-file */
-/* tslint:disable:max-classes-per-file */
 
 import DispatcherAction from 'actions/dispatcher-action';
 import NotificationJson, { NotificationBundleJson } from 'interfaces/notification-json';

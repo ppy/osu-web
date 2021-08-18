@@ -15,9 +15,9 @@ import ChatAPI from './chat-api';
 export default class ChatWorker implements DispatchListener {
   private api = new ChatAPI();
   private lastHistoryId: number | null = null;
-  private pollingEnabled = true;
   private pollTime = 1000;
   private pollTimeIdle = 5000;
+  private pollingEnabled = true;
   private retryDelay = new RetryDelay();
   private updateTimerId?: number;
   private updateXHR = false;

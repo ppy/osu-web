@@ -8,14 +8,25 @@ export default class Dispatcher {
   private listeners = new Set<DispatchListener>();
   private trace = false;
 
-  dispatch(action: DispatcherAction) {
+  get size() {
+    return this.listeners.size;
+  }
+
+  clear() {
+    this.listeners.clear();
+  }
+
+  dispatch = (action: DispatcherAction) => {
     if (this.trace) {
-      // eslint-disable-next-line no-console
       console.debug('Dispatcher::dispatch', action);
     }
     this.listeners.forEach((listener) => {
       listener.handleDispatchAction(action);
     });
+  };
+
+  has(listener: DispatchListener) {
+    return this.listeners.has(listener);
   }
 
   register(listener: DispatchListener) {
