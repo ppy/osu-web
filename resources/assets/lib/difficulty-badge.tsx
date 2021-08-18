@@ -8,7 +8,7 @@ import { classWithModifiers, Modifiers } from 'utils/css';
 export default function DifficultyBadge(props: { modifiers?: Modifiers; rating: number }) {
   return (
     <div
-      className={classWithModifiers('difficulty-badge', {
+      className={classWithModifiers('difficulty-badge', props.modifiers, {
         'expert-plus': props.rating >= 6.5,
       })}
       style={{
