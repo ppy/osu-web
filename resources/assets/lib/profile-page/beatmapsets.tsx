@@ -12,13 +12,13 @@ import ExtraHeader from './extra-header';
 
 type Section = 'favouriteBeatmapsets' | 'rankedBeatmapsets' | 'lovedBeatmapsets' | 'pendingBeatmapsets' | 'graveyardBeatmapsets';
 
-const sectionNames = new Map<Section, string>([
+const sectionNames: [Section, string][] = [
   ['favouriteBeatmapsets', 'favourite'],
   ['rankedBeatmapsets', 'ranked'],
   ['lovedBeatmapsets', 'loved'],
   ['pendingBeatmapsets', 'pending'],
   ['graveyardBeatmapsets', 'graveyard'],
-]);
+];
 
 interface Pagination {
   hasMore: boolean;
@@ -40,7 +40,7 @@ export default class Beatmapsets extends React.PureComponent<Props> {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
-        {[...sectionNames].map(([section, key]) => this.renderBeatmapsets(section, key))}
+        {sectionNames.map(([section, key]) => this.renderBeatmapsets(section, key))}
       </div>
     );
   }
