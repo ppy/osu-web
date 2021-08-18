@@ -47,6 +47,11 @@ class Token extends PassportToken
         return $this->user_id === null;
     }
 
+    public function isOwnToken(): bool
+    {
+        return $this->client->user_id !== null && $this->client->user_id === $this->user_id;
+    }
+
     public function refreshToken()
     {
         return $this->hasOne(RefreshToken::class, 'access_token_id');
@@ -109,9 +114,13 @@ class Token extends PassportToken
                 throw new InvalidScopeException('* is not allowed with Client Credentials');
             }
 
+            if ($this->delegatesOwner() && !$this->client->user->isBot()) {
+                throw new InvalidScopeException('Delegation with Client Credentials is only available to chat bots.');
+            }
+
             if (!$scopes->intersect($scopesRequireDelegation)->isEmpty()) {
                 if (!$this->delegatesOwner()) {
-                    throw new InvalidScopeException('bot scope is required.');
+                    throw new InvalidScopeException('delegate scope is required.');
                 }
 
                 // delegation is only allowed if scopes given allow delegation.
@@ -122,12 +131,13 @@ class Token extends PassportToken
         } else {
             // delegation is only available for client_credentials.
             if ($this->delegatesOwner()) {
-                throw new InvalidScopeException('bot scope is only valid for client_credentials tokens.');
+                throw new InvalidScopeException('delegate scope is only valid for client_credentials tokens.');
             }
 
             // only clients owned by bots are allowed to act on behalf of another user.
-            if ($scopes->contains('chat.write') && !$this->client->user->isBot()) {
-                throw new InvalidScopeException('This scope is only available for chat bots.');
+            // the user's own client can send messages as themselves for authorization code flows.
+            if ($scopes->contains('chat.write') && !($this->isOwnToken() || $this->client->user->isBot())) {
+                throw new InvalidScopeException('This scope is only available for chat bots or your own clients.');
             }
         }
 

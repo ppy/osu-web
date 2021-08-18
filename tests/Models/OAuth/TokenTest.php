@@ -17,6 +17,18 @@ use Tests\TestCase;
 
 class TokenTest extends TestCase
 {
+    public function testAuthCodeChatWriteAllowsSelf()
+    {
+        $user = factory(User::class)->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+
+        $token = $this->createToken($user, ['chat.write'], $client);
+        $this->actAsUserWithToken($token);
+
+        $this->assertTrue($user->is($token->getResourceOwner()));
+        $this->assertTrue($user->is(auth()->user()));
+    }
+
     /**
      * @dataProvider authCodeChatWriteRequiresBotGroupDataProvider
      */
@@ -87,7 +99,7 @@ class TokenTest extends TestCase
      */
     public function testDelegationRequiredScopes(array $scopes, ?string $expectedException)
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('bot')->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
 
         if ($expectedException !== null) {
@@ -97,6 +109,24 @@ class TokenTest extends TestCase
         }
 
         $this->createToken(null, $scopes, $client);
+    }
+
+    /**
+     * @dataProvider delegationRequiresChatBotDataProvider
+     */
+    public function testDelegationRequiresChatBot(?string $group, ?string $expectedException)
+    {
+        $user = factory(User::class)->states($group ?? [])->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $tokenUser = factory(User::class)->create();
+
+        if ($expectedException !== null) {
+            $this->expectException($expectedException);
+        } else {
+            $this->expectNotToPerformAssertions();
+        }
+
+        $this->createToken(null, ['delegate'], $client);
     }
 
     /**
@@ -188,6 +218,18 @@ class TokenTest extends TestCase
         return [
             'chat.write requires delegation' => [['chat.write'], InvalidScopeException::class],
             'chat.write delegation' => [['chat.write', 'delegate'], null],
+        ];
+    }
+
+    public function delegationRequiresChatBotDataProvider()
+    {
+        return [
+            [null, InvalidScopeException::class],
+            ['admin', InvalidScopeException::class],
+            ['bng', InvalidScopeException::class],
+            ['bot', null],
+            ['gmt', InvalidScopeException::class],
+            ['nat', InvalidScopeException::class],
         ];
     }
 
