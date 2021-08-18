@@ -10,6 +10,7 @@ import NewsHeader from 'news-header';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
+import { nextVal } from 'utils/seq';
 import PostItem from './post-item';
 
 interface Props {
@@ -41,16 +42,12 @@ interface State {
 }
 
 export default class Main extends React.Component<Props, State> {
-  private eventId = `news-index-${osu.uuid()}`;
+  private readonly eventId = `news-index-${nextVal()}`;
 
   constructor(props: Props) {
     super(props);
 
-    this.restoreState();
-
-    if (this.state == null) {
-      this.state = this.newStateFromData(props.data);
-    }
+    this.state = this.restoreState() ?? this.newStateFromData(props.data);
   }
 
   componentDidMount = () => {
@@ -137,9 +134,11 @@ export default class Main extends React.Component<Props, State> {
 
   private restoreState = () => {
     const savedState = this.props.container.dataset.lastState;
+
     if (savedState != null) {
-      this.state = JSON.parse(savedState) as State;
       delete this.props.container.dataset.lastState;
+
+      return JSON.parse(savedState) as State;
     }
   };
 

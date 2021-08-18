@@ -81,6 +81,7 @@ return [
             'external_references' => '',
             'invalid_block_type' => '',
             'invalid_document' => '',
+            'invalid_discussion_type' => '',
             'minimum_issues' => '',
             'missing_text' => '',
             'too_many_blocks' => '',

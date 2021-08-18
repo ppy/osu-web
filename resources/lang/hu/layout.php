@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modolás',
+            'multiplayer' => 'többjátékos',
             'show' => 'információ',
         ],
     ],

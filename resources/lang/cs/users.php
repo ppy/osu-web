@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Faulové hráni / Podvádění',
+            'multiple_accounts' => '',
             'insults' => 'Uráží mě / jiné',
             'spam' => 'Spamování',
             'unwanted_content' => 'Linkovaní nebezpečného obsahu',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Tento uživatel zatím žádné neobdržel ;_;",
                 'recent' => 'Nejnovější',
                 'title' => 'Medaile',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Příspěvky',

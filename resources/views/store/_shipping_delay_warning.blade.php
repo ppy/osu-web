@@ -7,7 +7,7 @@
     <p><em class="store-text store-text--emphasis">IMPORTANT: SHIPPING DELAYS</em></p>
 
     <p>
-        {!! markdown(config('store.delayed_shipping_order_message') ?: trans('store.checkout.delayed_shipping')) !!}
+        {!! markdown(config('store.delayed_shipping_order_message') ?: osu_trans('store.checkout.delayed_shipping')) !!}
     </p>
 
     <p>

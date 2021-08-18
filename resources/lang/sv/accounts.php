@@ -33,7 +33,7 @@ return [
 
             'user' => [
                 'user_discord' => '',
-                'user_from' => 'nuvarande position',
+                'user_from' => 'nuvarande plats',
                 'user_interests' => 'intressen',
                 'user_occ' => 'sysselsättning',
                 'user_twitter' => '',
@@ -48,7 +48,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'ta emot meddelanden om nya problem på kvalificerade beatmaps över följande lägen',
+        'beatmapset_discussion_qualified_problem' => 'ta emot aviseringar om nya problem på kvalificerade beatmaps i följande spellägen',
         'beatmapset_disqualify' => 'ta emot aviseringar när beatmaps för följande lägen diskvalificeras',
         'comment_reply' => 'motta aviseringar för svar på dina kommentarer',
         'title' => 'Aviseringar',
@@ -56,13 +56,13 @@ return [
 
         'options' => [
             '_' => 'leveransalternativ',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'gästsvårighetsgrad',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'privata chattmeddelanden',
             'comment_new' => 'nya kommentarer',
             'forum_topic_reply' => 'ämnessvar',
             'mail' => 'mail',
-            'mapping' => 'beatmap ägare',
+            'mapping' => 'beatmap-ägare',
             'push' => 'push',
             'user_achievement_unlock' => 'användarmedalj upplåst',
         ],
@@ -90,13 +90,13 @@ return [
     'playstyles' => [
         'keyboard' => 'tangentbord',
         'mouse' => 'mus',
-        'tablet' => 'platta',
-        'title' => 'Spelsätt',
+        'tablet' => 'ritplatta',
+        'title' => 'Spelstil',
         'touch' => 'pekskärm',
     ],
 
     'privacy' => [
-        'friends_only' => 'Blockera privata meddelanden från icke-vänner',
+        'friends_only' => 'blockera privata meddelanden från icke-vänner',
         'hide_online' => 'dölj din online-närvaro',
         'title' => 'Sekretess',
     ],
@@ -124,6 +124,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => 'Ogiltig eller utgånget verifieringslänk',
+        'title' => 'Ogiltig eller utgången verifieringslänk',
     ],
 ];

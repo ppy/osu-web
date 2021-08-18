@@ -1,8 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-/* eslint-disable import/order */
-// tslint:disable:ordered-imports
 // import jquery + plugins
 import * as $ from 'jquery';
 import 'jquery-ujs';
@@ -19,8 +17,6 @@ import 'jquery-ui/ui/widgets/sortable.js';
 import 'jquery-ui/ui/keycode.js';
 import 'blueimp-file-upload/js/jquery.fileupload.js';
 
-/* eslint-enable import/order */
-
 import Lang from 'lang.js';
 import * as moment from 'moment';
 import Turbolinks from 'turbolinks';
@@ -28,11 +24,11 @@ import Turbolinks from 'turbolinks';
 declare global {
   interface Window {
     $: any;
-    jQuery: any;
     Lang: Lang;
     LangMessages: unknown;
-    moment: any;
     Turbolinks: Turbolinks;
+    jQuery: any;
+    moment: any;
   }
 }
 

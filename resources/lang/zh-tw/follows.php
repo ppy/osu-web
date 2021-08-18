@@ -11,7 +11,7 @@ return [
 
         'table' => [
             'latest_comment_empty' => '沒有評論',
-            'latest_comment_value' => '',
+            'latest_comment_value' => ':time 於 :username 發出',
         ],
     ],
 

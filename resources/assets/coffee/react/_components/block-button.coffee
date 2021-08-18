@@ -4,6 +4,9 @@
 import * as React from 'react'
 import { button, div, i, span } from 'react-dom-factories'
 import { Spinner } from 'spinner'
+import { classWithModifiers } from 'utils/css'
+import { nextVal } from 'utils/seq'
+
 el = React.createElement
 
 bn = 'textual-button'
@@ -16,7 +19,7 @@ export class BlockButton extends React.PureComponent
     super props
 
     @button = React.createRef()
-    @eventId = "blockButton-#{@props.userId}-#{osu.uuid()}"
+    @eventId = "blockButton-#{@props.userId}-#{nextVal()}"
     @state =
       block: _.find(currentUser.blocks, target_id: props.userId)
 
@@ -72,7 +75,7 @@ export class BlockButton extends React.PureComponent
   render: =>
     return null unless @isVisible()
 
-    blockClass = osu.classWithModifiers(bn, ['block'].concat(@props.modifiers))
+    blockClass = classWithModifiers(bn, ['block'].concat(@props.modifiers))
     if @props.wrapperClass?
       wrapperClass = @props.wrapperClass
       contentClass = blockClass

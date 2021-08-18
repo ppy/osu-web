@@ -39,7 +39,7 @@ return [
         'play_count' => 'Nombres de parties',
         'performance' => 'Performance',
         'total_score' => 'Score total',
-        'ranked_score' => 'Score classée',
+        'ranked_score' => 'Score Classé',
         'average_score' => 'Score Moyen',
         'average_performance' => 'Performance moyenne.',
         'ss' => '',

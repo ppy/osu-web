@@ -13,32 +13,32 @@ import { TopRanks } from './top-ranks'
 import { UserPage } from './user-page'
 import { BlockButton } from 'block-button'
 import { NotificationBanner } from 'notification-banner'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
 import * as BeatmapHelper from 'utils/beatmap-helper'
 import { pageChange } from 'utils/page-change'
+import { nextVal } from 'utils/seq'
+import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
 
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
 pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollspy-offset")
 
-currentLocation = ->
-  "#{document.location.pathname}#{document.location.search}"
-
-
 export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "users-show-#{nextVal()}"
     @tabs = React.createRef()
     @pages = React.createRef()
     @state = JSON.parse(props.container.dataset.profilePageState ? null)
     @restoredState = @state?
 
     if !@restoredState
-      page = location.hash.slice(1)
+      page = currentUrl().hash.slice(1)
       @initialPage = page if page?
 
       @state =
@@ -72,12 +72,12 @@ export class Main extends React.PureComponent
 
 
   componentDidMount: =>
-    $.subscribe 'user:update.profilePage', @userUpdate
-    $.subscribe 'user:page:update.profilePage', @userPageUpdate
-    $.subscribe 'profile:showMore.profilePage', @showMore
-    $.subscribe 'profile:page:jump.profilePage', @pageJump
-    $(window).on 'scroll.profilePage', @pageScan
-    $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
+    $.subscribe "user:update.#{@eventId}", @userUpdate
+    $.subscribe "user:page:update.#{@eventId}", @userPageUpdate
+    $.subscribe "profile:showMore.#{@eventId}", @showMore
+    $.subscribe "profile:page:jump.#{@eventId}", @pageJump
+    $(window).on "scroll.#{@eventId}", @pageScan
+    $(document).on "turbolinks:before-cache.#{@eventId}", @saveStateToContainer
 
     $(@pages.current).sortable
       cursor: 'move'
@@ -105,15 +105,18 @@ export class Main extends React.PureComponent
 
     pageChange()
 
-    @modeScrollUrl = currentLocation()
+    @modeScrollUrl = currentUrlRelative()
 
     if !@restoredState
-      Timeout.set 0, => @pageJump null, @initialPage
+      core.reactTurbolinks.runAfterPageLoad @eventId, =>
+        # The scroll is a bit off on Firefox if not using timeout.
+        Timeout.set 0, => @pageJump(null, @initialPage)
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.profilePage'
-    $(window).off '.profilePage'
+    $.unsubscribe ".#{@eventId}"
+    $(window).off ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
     for sortable in [@pages, @tabs]
       $(sortable.current).sortable 'destroy'
@@ -322,7 +325,7 @@ export class Main extends React.PureComponent
 
 
   pageScan: =>
-    return if @modeScrollUrl != currentLocation()
+    return if @modeScrollUrl != currentUrlRelative()
 
     return if @scrolling
     return if pages.length == 0

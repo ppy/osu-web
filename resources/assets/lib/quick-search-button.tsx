@@ -7,6 +7,7 @@ import { Modal } from 'modal';
 import QuickSearch from 'quick-search/main';
 import Worker from 'quick-search/worker';
 import * as React from 'react';
+import { currentUrl } from 'utils/turbolinks';
 
 interface Props {
   worker: Worker;
@@ -22,7 +23,7 @@ interface State {
   state: State = { open: false };
 
   private get isSearchPage() {
-    return document.location.pathname === this.searchPath;
+    return currentUrl().pathname === this.searchPath;
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
@@ -34,7 +35,7 @@ interface State {
   render() {
     let className = 'nav2__menu-link-main nav2__menu-link-main--search';
 
-    if (this.state.open || document.location.pathname === route('search', null, false)) {
+    if (this.state.open || currentUrl().pathname === route('search', null, false)) {
       className += ' u-section--bg-normal';
     }
 

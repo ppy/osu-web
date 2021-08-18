@@ -8,7 +8,7 @@ import { NotificationEventMoreLoaded } from 'notifications/notification-events';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
-core.reactTurbolinks.register('notifications-index', true, (container: HTMLElement) => {
+core.reactTurbolinks.register('notifications-index', (container: HTMLElement) => {
   const bundle = osu.parseJson<NotificationBundleJson>('json-notifications');
   dispatch(new NotificationEventMoreLoaded(bundle, { isWidget: false }));
 

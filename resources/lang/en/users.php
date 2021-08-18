@@ -127,7 +127,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Foul play / Cheating',
+            'cheating' => 'Cheating',
+            'multiple_accounts' => 'Using multiple accounts',
             'insults' => 'Insulting me / others',
             'spam' => 'Spamming',
             'unwanted_content' => 'Linking inappropriate content',
@@ -299,6 +300,9 @@ return [
                 'empty' => "This user hasn't gotten any yet. ;_;",
                 'recent' => 'Latest',
                 'title' => 'Medals',
+            ],
+            'multiplayer' => [
+                'title' => 'Multiplayer Games',
             ],
             'posts' => [
                 'title' => 'Posts',

@@ -5,21 +5,21 @@
 
 return [
     'audio' => [
-        'autoplay' => 'Spela nästa spår automatiskt',
+        'autoplay' => 'Spela nästa låt automatiskt',
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Rytmen är bara ett *klick* bort!  Med Ouendan/EBA, Taiko och originala spel lägen, och en full funktionell nivå redigerare.',
+        'page_description' => 'osu! - Rytmen är bara ett *klick* bort!  Med Ouendan/EBA, Taiko och originella spellägen, dessutom med en fullt funktionell nivåredigerare.',
     ],
 
     'header' => [
         'admin' => [
             'beatmapset' => 'beatmapset',
-            'beatmapset_covers' => 'beatmapset omslag',
+            'beatmapset_covers' => 'beatmapset-omslag',
             'contest' => 'tävling',
             'contests' => 'tävlingar',
             'root' => 'konsol',
-            'store_orders' => 'butik admin',
+            'store_orders' => 'butiksadmin',
         ],
 
         'artists' => [
@@ -47,13 +47,14 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => 'flerspelarläge',
             'show' => 'info',
         ],
     ],
 
     'gallery' => [
         'close' => 'Stäng (Esc)',
-        'fullscreen' => 'Växla fullskärm',
+        'fullscreen' => 'Fullskärm på/av',
         'zoom' => 'Zooma in/ut',
         'previous' => 'Föregående (vänsterpil)',
         'next' => 'Nästa (högerpil)',
@@ -64,7 +65,7 @@ return [
             '_' => 'beatmaps',
             'artists' => 'utvalda artister',
             'index' => 'listning',
-            'packs' => 'samling',
+            'packs' => 'beatmapsamlingar',
         ],
         'community' => [
             '_' => 'gemenskap',
@@ -72,7 +73,7 @@ return [
             'contests' => 'tävlingar',
             'dev' => 'utveckling',
             'forum-forums-index' => 'forum',
-            'getLive' => 'live',
+            'getLive' => 'livestream',
             'tournaments' => 'turneringar',
         ],
         'help' => [
@@ -80,7 +81,7 @@ return [
             'getAbuse' => 'rapportera missbruk',
             'getFaq' => 'faq',
             'getRules' => 'regler',
-            'getSupport' => 'support',
+            'getSupport' => 'nej, på riktigt, jag behöver hjälp!',
             'getWiki' => 'wiki',
         ],
         'home' => [
@@ -93,7 +94,7 @@ return [
         ],
         'rankings' => [
             '_' => 'rankning',
-            'charts' => 'diagram',
+            'charts' => 'i rampljuset',
             'country' => 'land',
             'index' => 'prestanda',
             'kudosu' => 'kudosu',
@@ -114,22 +115,22 @@ return [
             '_' => 'Allmänt',
             'home' => 'Hem',
             'changelog-index' => 'Ändringslogg',
-            'beatmaps' => 'Beatmap Listningar',
-            'download' => 'Ladda Ner osu!',
+            'beatmaps' => 'Beatmap-listningar',
+            'download' => 'Ladda ner osu!',
         ],
         'help' => [
-            '_' => 'Hjälp & Gemenskap',
-            'faq' => 'Vanliga Frågor',
-            'forum' => 'GemenskapsForum',
-            'livestreams' => 'Live Strömmar',
-            'report' => 'Rapportera ett Problem',
+            '_' => 'Hjälp & gemenskap',
+            'faq' => 'Vanliga frågor',
+            'forum' => 'Gemenskaps-forum',
+            'livestreams' => 'Livestreams',
+            'report' => 'Rapportera ett problem',
             'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => 'Juridik & Status',
+            '_' => 'Juridik & status',
             'copyright' => 'Copyright (DMCA)',
             'privacy' => 'Sekretess',
-            'server_status' => 'Server Status',
+            'server_status' => 'Serverstatus',
             'source_code' => 'Källkod',
             'terms' => 'Användarvillkor',
         ],
@@ -142,35 +143,35 @@ return [
         ],
         '404' => [
             'error' => 'Sida saknas',
-            'description' => "Förlåt, men sidan du frågade efter finns inte här!",
+            'description' => "Förlåt, men sidan du efterfrågade finns inte här!",
         ],
         '403' => [
-            'error' => "Du bör inte vara här",
+            'error' => "Du borde inte vara här.",
             'description' => 'Du kan däremot försöka gå tillbaka.',
         ],
         '401' => [
-            'error' => "Du bör inte vara här",
+            'error' => "Du borde inte vara här.",
             'description' => 'Du kan däremot försöka gå tillbaka. Eller kanske logga in.',
         ],
         '405' => [
             'error' => 'Sida saknas',
-            'description' => "Förlåt, men sidan du frågade efter finns inte här!",
+            'description' => "Förlåt, men sidan du efterfrågade finns inte här!",
         ],
         '422' => [
             'error' => 'Ogiltiga förfrågningsparametrar',
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Gränsen har överskridits',
             'description' => '',
         ],
         '500' => [
-            'error' => 'Oh nej! Något gick isönder! ;_;',
-            'description' => "Vi blir automatiskt notifierade av varje fel",
+            'error' => 'Åh nej! Något gick sönder! ;_;',
+            'description' => "Vi blir automatiskt notifierade om varje fel.",
         ],
         'fatal' => [
-            'error' => 'Oh nej! Något gick verkligen isönder! ;_;',
-            'description' => "Vi blir automatiskt notifierade av varje fel",
+            'error' => 'Åh nej! Något gick (verkligen) sönder! ;_;',
+            'description' => "Vi blir automatiskt notifierade om varje fel.",
         ],
         '503' => [
             'error' => 'Nere för underhåll!',
@@ -185,23 +186,23 @@ return [
     ],
 
     'popup_login' => [
-        'button' => 'logga in / registrera',
+        'button' => 'logga in / registrera dig ',
 
         'login' => [
-            'forgot' => "Jag har glömt mina detaljer",
+            'forgot' => "Jag har glömt mina uppgifter",
             'password' => 'lösenord',
-            'title' => 'Logga In För Att Fortsätta',
+            'title' => 'Logga in för att fortsätta',
             'username' => 'användarnamn',
 
             'error' => [
-                'email' => "Användarnamn eller email adress finns inte",
-                'password' => 'Inkorrekt lösenord',
+                'email' => "Användarnamn eller e-postadress finns inte",
+                'password' => 'Fel lösenord',
             ],
         ],
 
         'register' => [
             'download' => 'Ladda ner',
-            'info' => 'Herrn, du behöver ett konto. Varför har du inte ett redan?',
+            'info' => 'Ladda ner osu! för att skapa ditt eget konto!',
             'title' => "Har du inte ett konto?",
         ],
     ],
@@ -209,10 +210,10 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Inställningar',
-            'follows' => 'Bevakningslista',
+            'follows' => 'Bevakningslistor',
             'friends' => 'Vänner',
-            'logout' => 'Logga Ut',
-            'profile' => 'Min Profil',
+            'logout' => 'Logga ut',
+            'profile' => 'Min profil',
         ],
     ],
 

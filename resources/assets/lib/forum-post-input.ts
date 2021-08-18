@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { currentUrl } from 'utils/turbolinks';
+
 export function getInputFromElement(element: unknown) {
   if (!(element instanceof HTMLElement)) return;
 
@@ -66,7 +68,7 @@ export default class ForumPostInput {
 
     // try migrating from old storage system for reply boxes
     if (key.startsWith('forum-post-input:topic:')) {
-      const legacyKey = `forum-topic-reply--${document.location.pathname}--text`;
+      const legacyKey = `forum-topic-reply--${currentUrl().pathname}--text`;
 
       const fromLegacyStorage = localStorage.getItem(legacyKey);
 

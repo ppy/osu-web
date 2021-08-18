@@ -19,7 +19,7 @@ $(document).on 'click', 'a[href^="#"]', (e) ->
 
   e.preventDefault()
   # still behaves weird in cases where push/popping state wouldn't normally result in a scroll.
-  Turbolinks.controller.advanceHistory href if location.href != href
+  Turbolinks.controller.advanceHistory href
   target.scrollIntoView()
 
 
@@ -36,13 +36,21 @@ Turbolinks.HttpRequest::requestLoaded = ->
 
 # may or may not actually work
 Turbolinks.Controller::advanceHistory = (url) ->
-  return if url == document.location.href
+  return if url == _exported.currentUrl().href
 
   snapshot = @view.getSnapshot()
   location = @lastRenderedLocation
   @cache.put location, snapshot.clone()
   @lastRenderedLocation = Turbolinks.Location.wrap(url)
   @pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
+
+
+# @lastRenderedLocation must be updated so the most recent url will be used for @cache
+Turbolinks.Controller::replaceHistory = (url) ->
+  return if url == _exported.currentUrl().href
+
+  history.replaceState history.state, '', url
+  @lastRenderedLocation = Turbolinks.Location.wrap(url)
 
 
 # Ignore anchor check on loading snapshot to prevent repeating requesting page

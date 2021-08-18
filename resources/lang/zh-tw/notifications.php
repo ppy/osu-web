@@ -11,7 +11,7 @@ return [
     'none' => '沒有通知',
     'see_all' => '查看所有通知',
     'see_channel' => '前往聊天',
-    'verifying' => '',
+    'verifying' => '請驗證此工作階段以查看通知',
 
     'filters' => [
         '_' => '全部',
@@ -41,8 +41,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => ':username發布了主題為:title的新貼文',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主題',
                 'beatmapset_discussion_post_new_compact_empty' => ':username 的新主題',
-                'beatmapset_discussion_review_new' => '',
-                'beatmapset_discussion_review_new_compact' => '',
+                'beatmapset_discussion_review_new' => ':username 在《:title》上發表了新的審閱，问题：:problems，建议：:suggestions，赞：:praises',
+                'beatmapset_discussion_review_new_compact' => ':username 发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
                 'beatmapset_discussion_unlock' => '討論於 ":title" 已解鎖',
                 'beatmapset_discussion_unlock_compact' => '討論已被解鎖',
             ],

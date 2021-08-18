@@ -9,14 +9,14 @@
     if ($isIndex) {
         $links = [
             [
-                'title' => trans('forum.forums.index.title'),
+                'title' => osu_trans('forum.forums.index.title'),
                 'url' => route('forum.forums.index'),
             ]
         ];
     } else {
         $links = [];
         $links[] = [
-            'title' => trans('forum.title'),
+            'title' => osu_trans('forum.title'),
             'url' => route('forum.forums.index'),
         ];
 

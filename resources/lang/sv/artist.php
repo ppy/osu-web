@@ -29,7 +29,7 @@ return [
     'songs' => [
         '_' => 'Låtar',
         'count' => ':count låt|:count låtar',
-        'exclusive' => 'osu! exklusivt',
+        'exclusive' => 'osu!-exklusivt',
     ],
 
     'tracklist' => [

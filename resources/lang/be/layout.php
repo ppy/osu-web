@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'модынг',
+            'multiplayer' => 'мультыплэер',
             'show' => 'інфармацыя',
         ],
     ],
@@ -62,7 +63,7 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'бітмапы',
-            'artists' => 'featured artists',
+            'artists' => 'ліцэнзаваныя мастакі',
             'index' => 'спіс',
             'packs' => 'пакеты',
         ],

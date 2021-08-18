@@ -62,7 +62,7 @@ return [
         'beatmapsets_controller' => [
             'discussion' => 'discussione beatmap',
             'index' => 'lista beatmap',
-            'show' => 'info beatmap',
+            'show' => 'informazioni beatmap',
         ],
         'changelog_controller' => [
             '_' => 'note di rilascio',
@@ -111,7 +111,7 @@ return [
             '_' => 'reimpostazione password',
         ],
         'ranking_controller' => [
-            '_' => 'classifica',
+            '_' => 'classifiche',
         ],
         'scores_controller' => [
             '_' => 'performance',
@@ -123,16 +123,16 @@ return [
             '_' => 'tornei',
         ],
         'users_controller' => [
-            '_' => 'info giocatore',
+            '_' => 'informazioni giocatore',
             'disabled' => 'avviso',
         ],
         'wiki_controller' => [
-            '_' => 'base delle conoscenze',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'classifica',
+            '_' => 'classifiche',
         ],
     ],
     'store' => [
@@ -140,7 +140,10 @@ return [
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'info modder',
+            '_' => 'informazioni modder',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'cronologia multigiocatore',
         ],
     ],
 ];

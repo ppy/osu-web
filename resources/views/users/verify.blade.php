@@ -8,7 +8,7 @@
     @include('layout._page_header_v4')
 
     <div class="osu-page osu-page--generic js-user-verification--on-load">
-        {{ trans('users.verify.title') }}
+        {{ osu_trans('users.verify.title') }}
     </div>
 @endsection
 

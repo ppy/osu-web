@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Fade from 'fade';
+import { fadeIn, fadeOut } from 'utils/fade';
 
 export default class ClickMenu {
   private current: string | null | undefined = null;
@@ -64,11 +64,11 @@ export default class ClickMenu {
       const menuId = menu.dataset.clickMenuId;
 
       if (menuId == null || tree.indexOf(menuId) === -1) {
-        Fade.out(menu);
+        fadeOut(menu);
         menu.classList.remove('js-click-menu--active');
         this.menuLink(menuId)?.classList.remove('js-click-menu--active');
       } else {
-        Fade.in(menu);
+        fadeIn(menu);
         menu.classList.add('js-click-menu--active');
         this.menuLink(menuId)?.classList.add('js-click-menu--active');
         validCurrent = true;
@@ -120,7 +120,7 @@ export default class ClickMenu {
     let traverseId: string | null | undefined = this.current;
     const tree = [traverseId];
 
-    while (true) {
+    for (;;) {
       traverseId = this.closestMenuId(this.menuLink(traverseId));
 
       if (traverseId == null) {

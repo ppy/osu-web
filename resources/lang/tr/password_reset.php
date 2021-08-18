@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Hesabınızı kurtarmak için lütfen destek ile iletişime geçin.',
+        'expired' => 'Doğrulama kodunun süresi doldu.',
+        'invalid' => 'Doğrulama koduyla ilgili beklenmeyen bir hata oluştu.',
         'is_privileged' => 'Hesabınızı kurtarmak için lütfen üst düzey bir yönetici ile iletişime geçin.',
         'missing_key' => 'Gerekli.',
         'too_many_tries' => 'Çok fazla sayıda başarısız deneme yapıldı.',

@@ -17,10 +17,10 @@ interface Props {
 }
 
 interface State {
+  [key: string]: unknown;
+
   isSecretVisible: boolean;
   redirect: string;
-
-  [key: string]: unknown;
 }
 
 @observer

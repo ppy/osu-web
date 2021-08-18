@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Väärin pelaaminen / Huijaaminen',
+            'multiple_accounts' => 'Käyttää useita tilejä',
             'insults' => 'Haukkuu minua / muita',
             'spam' => 'Spämmii',
             'unwanted_content' => 'Sopimattoman sisällön jakaminen',
@@ -156,7 +157,7 @@ return [
 
         'comments_count' => [
             '_' => 'Julkaistu :link',
-            'count' => ':count_delimited kommentti|:count_delimited kommentteja',
+            'count' => ':count_delimited kommentti|:count_delimited kommenttia',
         ],
         'edit' => [
             'cover' => [
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Viimeisin',
                 'title' => 'Mitalit',
             ],
+            'multiplayer' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => 'Julkaisut',
                 'title_longer' => 'Viimeisimmät julkaisut',
@@ -428,7 +432,7 @@ return [
 
     'view_mode' => [
         'brick' => 'Tiilinäkymä',
-        'card' => 'Kortin näkymä',
+        'card' => 'Korttinäkymä',
         'list' => 'Luettelonäkymä',
     ],
 ];

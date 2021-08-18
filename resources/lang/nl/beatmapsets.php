@@ -53,9 +53,9 @@ return [
         'discussion' => 'Discussie',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => 'door :artist',
             'favourite' => 'Markeer deze beatmapset als favoriet',
-            'favourite_login' => '',
+            'favourite_login' => 'Log in om deze beatmap favoriet te maken',
             'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
             'mapped_by' => 'gemapped door :mapper',
             'unfavourite' => 'Verwijder markering als favoriet',
@@ -122,7 +122,7 @@ return [
             'storyboard' => 'Deze beatmap bevat verhaalborden',
             'success-rate' => 'Slagingspercentage',
             'tags' => 'Labels',
-            'video' => '',
+            'video' => 'Deze beatmap bevat een video',
         ],
 
         'nsfw_warning' => [

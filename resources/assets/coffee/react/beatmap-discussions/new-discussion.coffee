@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { MessageLengthCounter } from './message-length-counter'
+import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
 import { BigButton } from 'big-button'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -30,12 +31,12 @@ export class NewDiscussion extends React.PureComponent
 
   componentDidMount: =>
     @setTop()
-    $(window).on 'resize.new-discussion', @setTop
+    $(window).on 'resize', @setTop
     @inputBox.current?.focus() if @props.autoFocus
 
 
   componentWillUnmount: =>
-    $(window).off '.new-discussion'
+    $(window).off 'resize', @setTop
     @postXhr?.abort()
     @throttledPost.cancel()
 
@@ -63,10 +64,10 @@ export class NewDiscussion extends React.PureComponent
       @props.mode == 'generalAll'
 
     canPostNote =
-      (@props.currentUser.id == @props.beatmapset.user_id && @props.mode == 'generalAll') ||
+      @props.currentUser.id == @props.beatmapset.user_id ||
       (@props.currentUser.id == @props.currentBeatmap.user_id && @props.mode in ['general', 'timeline']) ||
       @props.currentUser.is_bng ||
-      @props.currentUser.is_nat
+      BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
 
     buttonCssClasses = 'btn-circle'
     buttonCssClasses += ' btn-circle--activated' if @props.pinned
@@ -323,7 +324,7 @@ export class NewDiscussion extends React.PureComponent
 
     el BigButton,
       modifiers: ['beatmap-discussion-new']
-      icon: BeatmapDiscussionHelper.messageType.icon[_.camelCase(type)]
+      icon: discussionTypeIcons[type]
       isBusy: @state.posting == type
       text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type

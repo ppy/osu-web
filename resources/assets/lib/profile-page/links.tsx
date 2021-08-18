@@ -65,7 +65,7 @@ const linkMapping: Record<LinkKey, (user: UserJsonExtended) => LinkProps> = {
 
 const textMapping: Record<TextKey, (user: UserJsonExtended) => StringWithComponentProps> = {
   comments_count: (user: UserJsonExtended) => {
-    const count = osu.transChoice('users.show.comments_count.count', user.comments_count);
+    const count = osu.transChoice('users.show.comments_count.count', user.comments_count ?? 0);
     const url = route('comments.index', { user_id: user.id });
 
     return {
@@ -169,7 +169,7 @@ export default class Links extends React.PureComponent<Props> {
         ))}
         {this.props.user.id === currentUser.id && (
           <div className='profile-links__edit'>
-            <a className='profile-page-toggle' href={route('account.edit')} title={osu.trans('users.show.page.button')}>
+            <a className='btn-circle btn-circle--page-toggle' href={route('account.edit')} title={osu.trans('users.show.page.button')}>
               <span className='fas fa-pencil-alt' />
             </a>
           </div>

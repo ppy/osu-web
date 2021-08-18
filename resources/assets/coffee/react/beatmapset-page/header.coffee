@@ -4,9 +4,11 @@
 import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
+import BeatmapsetMenu from 'beatmapsets-show/beatmapset-menu'
 import { BigButton } from 'big-button'
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
+import OsuUrlHelper from 'osu-url-helper'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
@@ -184,6 +186,12 @@ export class Header extends React.Component
 
             @renderLoginButton()
 
+            if currentUser.id? && currentUser.id != @props.beatmapset.user_id
+              div className: 'beatmapset-header__more',
+                div className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail',
+                  el BeatmapsetMenu,
+                    beatmapset: @props.beatmapset
+
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           @renderStatusBar()
           el Stats,
@@ -196,7 +204,7 @@ export class Header extends React.Component
     return unless currentUser.id? && @hasAvailabilityInfo()
 
     href = if @props.beatmapset.availability.more_information == 'rule_violation'
-              "#{route('wiki.show', locale: currentLocale, path: 'Rules')}#beatmap-submission-rules"
+              "#{OsuUrlHelper.wikiUrl('Rules')}#beatmap-submission-rules"
             else
               @props.beatmapset.availability.more_information
 

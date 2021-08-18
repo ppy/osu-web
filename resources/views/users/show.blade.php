@@ -8,13 +8,7 @@
 ])
 
 @section('content')
-    @if (Auth::user() && Auth::user()->isAdmin() && $user->isRestricted())
-        @include('objects._notification_banner', [
-            'type' => 'warning',
-            'title' => trans('admin.users.restricted_banner.title'),
-            'message' => trans('admin.users.restricted_banner.message'),
-        ])
-    @endif
+    @include('users._restricted_banner', compact('user'))
 
     <div class="js-react--profile-page osu-layout osu-layout--full"></div>
 @endsection
@@ -32,5 +26,5 @@
         </script>
     @endforeach
 
-    @include('layout._extra_js', ['src' => 'js/react/profile-page.js'])
+    @include('layout._react_js', ['src' => 'js/react/profile-page.js'])
 @endsection

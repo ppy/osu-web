@@ -5,7 +5,7 @@
 
 return [
     'edit' => [
-        'title_compact' => 'definições',
+        'title_compact' => 'definições da conta',
         'username' => 'nome de utilizador',
 
         'avatar' => [

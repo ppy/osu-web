@@ -5,7 +5,7 @@ import Main from 'news-show/main';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
-core.reactTurbolinks.register('news-show', true, (container: HTMLElement) => (
+core.reactTurbolinks.register('news-show', (container: HTMLElement) => (
   <Main
     container={container}
     post={osu.parseJson('json-show')}

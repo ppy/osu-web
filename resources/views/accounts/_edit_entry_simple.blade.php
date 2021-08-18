@@ -17,7 +17,7 @@
     >
 
     <div class="account-edit-entry__label">
-        {{ trans("accounts.edit.profile.user.{$field}") }}
+        {{ osu_trans("accounts.edit.profile.user.{$field}") }}
     </div>
 
     @include('accounts._edit_entry_status')

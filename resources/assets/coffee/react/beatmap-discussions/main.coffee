@@ -15,6 +15,8 @@ import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-con
 import { div } from 'react-dom-factories'
 import NewReview from 'beatmap-discussions/new-review'
 import * as BeatmapHelper from 'utils/beatmap-helper'
+import { nextVal } from 'utils/seq'
+import { currentUrl } from 'utils/turbolinks'
 
 el = React.createElement
 
@@ -22,6 +24,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "beatmap-discussions-#{nextVal()}"
     @modeSwitcherRef = React.createRef()
     @newDiscussionRef = React.createRef()
 
@@ -33,7 +36,7 @@ export class Main extends React.PureComponent
     @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
     @restoredState = @state?
     # FIXME: update url handler to recognize this instead
-    @focusNewDiscussion = document.location.hash == '#new'
+    @focusNewDiscussion = currentUrl().hash == '#new'
 
     if @restoredState
       @state.readPostIds = new Set(@state.readPostIdsArray)
@@ -58,16 +61,16 @@ export class Main extends React.PureComponent
 
 
   componentDidMount: =>
-    $.subscribe 'playmode:set.beatmapDiscussions', @setCurrentPlaymode
+    $.subscribe "playmode:set.#{@eventId}", @setCurrentPlaymode
 
-    $.subscribe 'beatmapsetDiscussions:update.beatmapDiscussions', @update
-    $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
-    $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
-    $.subscribe 'beatmapDiscussionPost:toggleShowDeleted.beatmapDiscussions', @toggleShowDeleted
+    $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @update
+    $.subscribe "beatmapDiscussion:jump.#{@eventId}", @jumpTo
+    $.subscribe "beatmapDiscussionPost:markRead.#{@eventId}", @markPostRead
+    $.subscribe "beatmapDiscussionPost:toggleShowDeleted.#{@eventId}", @toggleShowDeleted
 
-    $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
-    $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
-    $(document).on 'turbolinks:before-cache.beatmapDiscussions', @saveStateToContainer
+    $(document).on "ajax:success.#{@eventId}", '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
+    $(document).on "click.#{@eventId}", '.js-beatmap-discussion--jump', @jumpToClick
+    $(document).on "turbolinks:before-cache.#{@eventId}", @saveStateToContainer
 
     @jumpToDiscussionByHash() if !@restoredState
     @timeouts.checkNew = Timeout.set @checkNewTimeoutDefault, @checkNew
@@ -89,8 +92,8 @@ export class Main extends React.PureComponent
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.beatmapDiscussions'
-    $(document).off '.beatmapDiscussions'
+    $.unsubscribe ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
     Timeout.clear(timeout) for _name, timeout of @timeouts
     xhr?.abort() for _name, xhr of @xhr
