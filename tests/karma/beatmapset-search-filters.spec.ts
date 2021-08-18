@@ -49,7 +49,7 @@ describe('BeatmapsetSearchFilters', () => {
     });
 
     it('should not reset sort if status nor query changes', () => {
-      subject.update({ mode: 'osu', genre: 'bar' });
+      subject.update({ genre: 'bar', mode: 'osu' });
 
       expect(subject.sort).toBe('title_desc');
     });
