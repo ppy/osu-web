@@ -3,7 +3,7 @@
 
 import { AccountStanding } from './account-standing'
 import { ExtraTab } from './extra-tab'
-import { Beatmaps } from './beatmaps'
+import Beatmaps from 'profile-page/beatmaps'
 import { Header } from './header'
 import { Historical } from './historical'
 import { Kudosu } from './kudosu'

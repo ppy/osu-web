@@ -1,58 +1,91 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import ExtraHeader from 'profile-page/extra-header'
-import BeatmapsetPanel from 'beatmapset-panel'
-import { observable } from 'mobx'
-import * as React from 'react'
-import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
-import ShowMoreLink from 'show-more-link'
-el = React.createElement
+import BeatmapsetPanel from 'beatmapset-panel';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
+import { observable } from 'mobx';
+import * as React from 'react';
+import ShowMoreLink from 'show-more-link';
+import ExtraHeader from './extra-header';
 
-sections = [
-  'favouriteBeatmapsets'
-  'rankedBeatmapsets'
-  'lovedBeatmapsets'
-  'pendingBeatmapsets'
-  'graveyardBeatmapsets'
-]
+type Section = 'favouriteBeatmapsets' | 'rankedBeatmapsets' | 'lovedBeatmapsets' | 'pendingBeatmapsets' | 'graveyardBeatmapsets';
 
-export class Beatmaps extends React.PureComponent
-  render: =>
-    div
-      className: 'page-extra'
-      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
-      sections.map @renderBeatmapsets
+const sectionNames = new Map<Section, string>([
+  ['favouriteBeatmapsets', 'favourite'],
+  ['rankedBeatmapsets', 'ranked'],
+  ['lovedBeatmapsets', 'loved'],
+  ['pendingBeatmapsets', 'pending'],
+  ['graveyardBeatmapsets', 'graveyard'],
+]);
 
+interface Pagination {
+  hasMore: boolean;
+  loading: boolean;
+}
 
-  renderBeatmapsets: (section) =>
-    sectionSnaked = _.replace(_.snakeCase(section), '_beatmapsets', '')
-    count = @props.counts[section]
-    beatmapsets = @props[section]
+type Props = {
+  counts: Record<Section, number>;
+  name: string;
+  pagination: Record<Section, Pagination>;
+  user: UserJson;
+  withEdit: boolean;
+} & {
+  [key in Section]: BeatmapsetExtendedJson[];
+};
 
-    el React.Fragment, key: section,
-      h3
-        className: 'title title--page-extra-small'
-        osu.trans("users.show.extra.beatmaps.#{sectionSnaked}.title")
-        span className: 'title__count', osu.formatNumber(count)
+export default class Beatmaps extends React.PureComponent<Props> {
+  render() {
+    return (
+      <div className='page-extra'>
+        <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
+        {[...sectionNames].map(([section, key]) => this.renderBeatmapsets(section, key))}
+      </div>
+    );
+  }
 
-      if beatmapsets.length > 0
-        div className: 'osu-layout__col-container osu-layout__col-container--with-gutter js-audio--group',
-          for beatmapset in beatmapsets
-            div
-              key: beatmapset.id
-              className: 'osu-layout__col osu-layout__col--sm-6'
-              el BeatmapsetPanel, beatmapset: observable(beatmapset)
+  private readonly renderBeatmapsets = (section: Section, key: string) => {
+    const count = this.props.counts[section];
+    const beatmapsets = this.props[section];
+    const pagination = this.props.pagination[section];
 
-          div
-            className: 'osu-layout__col',
-            el ShowMoreLink,
-              modifiers: ['profile-page', 't-greyseafoam-dark']
-              event: 'profile:showMore'
-              hasMore: @props.pagination[section].hasMore
-              loading: @props.pagination[section].loading
-              data:
-                name: section
-                url: laroute.route 'users.beatmapsets',
-                  user: @props.user.id
-                  type: sectionSnaked
+    return (
+      <React.Fragment key={section}>
+        <h3 className='title title--page-extra-small'>
+          {osu.trans(`users.show.extra.beatmaps.${key}.title`)}
+          <span className='title__count'>{osu.formatNumber(count)}</span>
+        </h3>
+
+        {beatmapsets.length > 0 && (
+          <div className='osu-layout__col-container osu-layout__col-container--with-gutter js-audio--group'>
+            {beatmapsets.map((beatmapset) => (
+              <div
+                key={beatmapset.id}
+                className='osu-layout__col osu-layout__col--sm-6'
+              >
+                <BeatmapsetPanel beatmapset={observable(beatmapset)} />
+              </div>
+            ))}
+
+            <div className='osu-layout__col'>
+              <ShowMoreLink
+                data={{
+                  name: section,
+                  url: route('users.beatmapsets', {
+                    type: key,
+                    user: this.props.user.id,
+                  }),
+                }}
+                event='profile:showMore'
+                hasMore={pagination.hasMore}
+                loading={pagination.loading}
+                modifiers={['profile-page', 't-greyseafoam-dark']}
+              />
+            </div>
+          </div>
+        )}
+      </React.Fragment>
+    );
+  }
+}
