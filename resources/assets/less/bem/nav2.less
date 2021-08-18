@@ -44,6 +44,12 @@
     display: flex;
     flex: none;
 
+    &--icons {
+      .nav2__col {
+        margin-left: 10px;
+      }
+    }
+
     &--menu {
       margin-right: auto;
     }
@@ -171,8 +177,14 @@
     }
   }
 
+  &__notification-container {
+    padding: 3px;
+    border: 2px solid #fff;
+    border-radius: 30px;
+  }
+
   &__notification-count {
     margin-left: 5px;
-    font-size: @font-size--small;
+    font-size: @font-size--normal-2;
   }
 }
