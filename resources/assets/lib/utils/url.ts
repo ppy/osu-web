@@ -5,58 +5,56 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import { TurbolinksLocation } from 'turbolinks';
 
-export default class OsuUrlHelper {
-  private static internalUrls = [
-    'admin',
-    'api/v2',
-    'beatmaps',
-    'beatmapsets',
-    'client-verifications',
-    'comments',
-    'community',
-    'help',
-    'home',
-    'groups',
-    'legal',
-    'multiplayer',
-    'notifications',
-    'oauth',
-    'rankings',
-    'scores',
-    'session',
-    'store',
-    'users',
-    'wiki',
-  ].join('|');
+const internalUrls = [
+  'admin',
+  'api/v2',
+  'beatmaps',
+  'beatmapsets',
+  'client-verifications',
+  'comments',
+  'community',
+  'help',
+  'home',
+  'groups',
+  'legal',
+  'multiplayer',
+  'notifications',
+  'oauth',
+  'rankings',
+  'scores',
+  'session',
+  'store',
+  'users',
+  'wiki',
+].join('|');
 
-  static beatmapDownloadDirect(id: string | number): string {
-    return `osu://b/${id}`;
-  }
+export function beatmapDownloadDirect(id: string | number): string {
+  return `osu://b/${id}`;
+}
 
-  static beatmapsetDownloadDirect(id: string | number): string {
-    return `osu://s/${id}`;
-  }
+export function beatmapsetDownloadDirect(id: string | number): string {
+  return `osu://s/${id}`;
+}
 
-  static changelogBuild(build: ChangelogBuild): string {
-    return route('changelog.build', { build: build.version, stream: build.update_stream.name });
-  }
+export function changelogBuild(build: ChangelogBuild): string {
+  return route('changelog.build', { build: build.version, stream: build.update_stream.name });
+}
 
-  static isHTML(location: TurbolinksLocation): boolean {
-    // Some changelog builds have `.` in their version, failing turbolinks' check.
-    return location.isHTML() || _.startsWith(location.getPath(), '/home/changelog/');
-  }
+export function isHTML(location: TurbolinksLocation): boolean {
+  // Some changelog builds have `.` in their version, failing turbolinks' check.
+  return location.isHTML() || _.startsWith(location.getPath(), '/home/changelog/');
+}
 
-  static isInternal(location: TurbolinksLocation): boolean {
-    return RegExp(`^/(?:${this.internalUrls})(?:$|/|#)`).test(location.getPath());
-  }
+export function isInternal(location: TurbolinksLocation): boolean {
+  return RegExp(`^/(?:${internalUrls})(?:$|/|#)`).test(location.getPath());
+}
 
-  // external link
-  static openBeatmapEditor(timestampWithRange: string): string {
-    return `osu://edit/${timestampWithRange}`;
-  }
+// external link
+export function openBeatmapEditor(timestampWithRange: string): string {
+  return `osu://edit/${timestampWithRange}`;
+}
 
-  static wikiUrl(path: string, locale?: string | null | undefined) {
-    return route('wiki.show', { locale: locale ?? currentLocale, path: 'WIKI_PATH' })
-      .replace('WIKI_PATH', encodeURI(path));
-  }
+export function wikiUrl(path: string, locale?: string | null | undefined) {
+  return route('wiki.show', { locale: locale ?? currentLocale, path: 'WIKI_PATH' })
+    .replace('WIKI_PATH', encodeURI(path));
 }
