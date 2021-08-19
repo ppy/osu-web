@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BbcodeEditor } from 'bbcode-editor';
+import BbcodeEditor, { OnChangeProps } from 'bbcode-editor';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
 import * as React from 'react';
@@ -14,13 +14,6 @@ interface State {
   description?: BeatmapsetExtendedJson['description'];
   isBusy: boolean;
   isEditing: boolean;
-}
-
-interface BbcodeEditorOnChangeParams {
-  event: React.MouseEvent<HTMLElement>;
-  hasChanged: boolean;
-  type: 'cancel' | 'save';
-  value: string;
 }
 
 export default class Description extends React.PureComponent<Props, State> {
@@ -48,7 +41,7 @@ export default class Description extends React.PureComponent<Props, State> {
         {this.state.isEditing && canEdit ? (
           <BbcodeEditor
             disabled={this.state.isBusy}
-            modifiers={['beatmapset-description-editor']}
+            modifiers={'beatmapset-description-editor'}
             onChange={this.onEditorChange}
             rawValue={description.bbcode ?? ''}
           />
@@ -78,7 +71,7 @@ export default class Description extends React.PureComponent<Props, State> {
     );
   }
 
-  private onEditorChange = (action: BbcodeEditorOnChangeParams) => {
+  private onEditorChange = (action: OnChangeProps) => {
     switch (action.type) {
       case 'cancel':
         this.setState({ isEditing: false });
@@ -93,7 +86,7 @@ export default class Description extends React.PureComponent<Props, State> {
     }
   };
 
-  private saveDescription = ({ event, value }: BbcodeEditorOnChangeParams) => {
+  private saveDescription = ({ event, value }: OnChangeProps) => {
     this.setState({ isBusy: true });
 
     this.xhr = $.ajax(route('beatmapsets.update', { beatmapset: this.props.beatmapset.id }), {
@@ -107,7 +100,9 @@ export default class Description extends React.PureComponent<Props, State> {
         isEditing: false,
       });
     }).fail(() => {
-      osu.emitAjaxError(event.target);
+      if (event != null) {
+        osu.emitAjaxError(event.target);
+      }
     }).always(() => {
       this.setState({ isBusy: false });
     });
