@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Моля обърнете се към поддръжка за възстановяване на акаунта.',
+        'expired' => '',
+        'invalid' => '',
         'is_privileged' => 'Пишете на peppy лол.',
         'missing_key' => 'Задължително.',
         'too_many_tries' => 'Прекалено много неуспешни опити.',

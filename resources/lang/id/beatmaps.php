@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Diskualifikasi',
         'incorrect_state' => 'Ditemukan kesalahan saat melakukan tindakan ini, silakan muat ulang laman.',
         'love' => 'Love',
+        'love_choose' => '',
         'love_confirm' => 'Love beatmap ini?',
         'nominate' => 'Nominasi',
         'nominate_confirm' => 'Nominasikan beatmap ini?',

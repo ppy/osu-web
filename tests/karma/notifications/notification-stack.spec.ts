@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import { dispatcher } from 'app-dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
@@ -23,16 +8,29 @@ import NotificationStore from 'stores/notification-store';
 import { makeNotificationJson, makeStackJson } from './helpers';
 
 const identities = [
-  { id: 1003, objectType: 'beatmapset', objectId: 1, category: 'beatmapset_discussion' },
-  { id: 1002, objectType: 'beatmapset', objectId: 2, category: 'beatmapset_discussion' },
-  { id: 1001, objectType: 'beatmapset', objectId: 1, category: 'beatmapset_discussion' },
+  {
+    category: 'beatmapset_discussion',
+    id: 1003,
+    objectId: 1,
+    objectType: 'beatmapset',
+  },
+  {
+    category: 'beatmapset_discussion',
+    id: 1002,
+    objectId: 2,
+    objectType: 'beatmapset',
+  },
+  {
+    category: 'beatmapset_discussion',
+    id: 1001,
+    objectId: 1,
+    objectType: 'beatmapset',
+  },
 ];
 
 describe('Widget Notification Stack', () => {
-  // @ts-ignore
-  beforeEach(() => dispatcher.listeners.clear());
-  // @ts-ignore
-  afterEach(() => dispatcher.listeners.clear());
+  beforeEach(() => dispatcher.clear());
+  afterEach(() => dispatcher.clear());
 
   const bundle: NotificationBundleJson = {
     notifications: identities.map(toJson).map(makeNotificationJson),
