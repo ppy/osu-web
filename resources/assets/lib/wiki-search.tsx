@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { observer } from 'mobx-react';
-import OsuUrlHelper from 'osu-url-helper';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { wikiUrl } from 'utils/url';
 import { WikiSearchController } from 'wiki-search-controller';
 
 @observer
@@ -50,7 +50,7 @@ export class WikiSearch extends React.Component {
       if (this.controller.selectedItem == null) {
         this.handleSearch();
       } else {
-        osu.navigate(OsuUrlHelper.wikiUrl(this.controller.selectedItem.path));
+        osu.navigate(wikiUrl(this.controller.selectedItem.path));
       }
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       this.keepSelectionInView = true;
@@ -106,7 +106,7 @@ export class WikiSearch extends React.Component {
               key={index}
               className={classWithModifiers('wiki-search__suggestion', { active: this.controller.selectedIndex === index })}
               data-index={index}
-              href={OsuUrlHelper.wikiUrl(item.path)}
+              href={wikiUrl(item.path)}
               onMouseEnter={this.handleSuggestionMouseEnter}
             >
               <span dangerouslySetInnerHTML={{ __html: item.highlight }} />
