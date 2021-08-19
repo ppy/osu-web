@@ -92,6 +92,11 @@ export default class UIStateStore {
   }
 
   @action
+  updateFromCommentUpdated(commentBundle: CommentBundleJson) {
+    this.updatePinnedCommentIds(commentBundle);
+  }
+
+  @action
   updateFromCommentsAdded(commentBundle: CommentBundleJson) {
     this.comments.hasMoreComments[commentBundle.has_more_id] = commentBundle.has_more;
     if (commentBundle.top_level_count && commentBundle.total) {
@@ -126,11 +131,6 @@ export default class UIStateStore {
       this.populateOrderedCommentsForParentId(parentId);
       this.orderedCommentsByParentId[parentId].unshift(comment);
     }
-  }
-
-  @action
-  updateFromCommentUpdated(commentBundle: CommentBundleJson) {
-    this.updatePinnedCommentIds(commentBundle);
   }
 
   private orderComments(comments: Comment[]) {

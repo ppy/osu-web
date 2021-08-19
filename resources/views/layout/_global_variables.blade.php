@@ -5,7 +5,6 @@
 <script data-turbolinks-eval="always">
     var csrf = "{{ csrf_token() }}";
     var canonicalUrl = "{{ $canonicalUrl ?? '' }}";
-    var reloadUrl = "{{ $reloadUrl ?? '' }}";
 </script>
 
 @include ('layout._current_user')

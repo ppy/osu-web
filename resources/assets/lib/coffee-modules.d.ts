@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 /* eslint-disable max-classes-per-file */
-/* tslint:disable:max-classes-per-file */
 
 // importable coffeescript modules
 declare module 'back-to-top' {
