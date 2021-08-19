@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Diskwalificeer',
         'incorrect_state' => 'Fout tijdens het uitvoeren van deze bewerking, probeer de pagina te herladen.',
         'love' => 'Love',
+        'love_choose' => '',
         'love_confirm' => 'Love deze beatmap?',
         'nominate' => 'Nomineer',
         'nominate_confirm' => 'Nomineer deze beatmap?',

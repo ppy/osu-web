@@ -6,6 +6,7 @@
 
   --padding: 20px;
   --gutter: @gutter-profile-page;
+  --dragdrop-margin: 0;
 
   .own-layer();
   .default-box-shadow();
@@ -31,6 +32,7 @@
   &--userpage {
     padding-right: 0px;
     padding-bottom: 0px;
+    --dragdrop-margin: var(--gutter);
   }
 
   &__actions {
@@ -114,23 +116,6 @@
       margin-right: (-@gutter-profile-page-desktop);
       padding-left: @gutter-profile-page-desktop;
       padding-right: @gutter-profile-page-desktop;
-    }
-  }
-
-  &__dragdrop-toggle {
-    width: @profile-page-action;
-    font-size: 18px; // icon size
-    position: absolute;
-    right: 0;
-    top: 0;
-    cursor: move;
-
-    .@{top}--userpage & {
-      margin-right: @gutter-profile-page;
-
-      @media @desktop {
-        margin-right: @gutter-profile-page-desktop;
-      }
     }
   }
 }

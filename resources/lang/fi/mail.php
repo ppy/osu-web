@@ -96,7 +96,7 @@ return [
 
     'user_verification' => [
         'code' => 'Vahvistuskoodisi on:',
-        'code_hint' => '',
+        'code_hint' => 'Voit syöttää koodin välilyönneillä tai ilman niitä.',
         'link' => '',
         'report' => 'Jos et ole pyytänyt tätä, ole hyvä ja VASTAA HETI, koska tilisi voi olla vaarassa.',
         'subject' => 'osu! tilin vahvistaminen',

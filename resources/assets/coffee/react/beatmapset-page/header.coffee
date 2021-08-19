@@ -4,6 +4,7 @@
 import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
+import BeatmapsetMenu from 'beatmapsets-show/beatmapset-menu'
 import { BigButton } from 'big-button'
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
@@ -184,6 +185,12 @@ export class Header extends React.Component
                   href: @props.beatmapset.legacy_thread_url
 
             @renderLoginButton()
+
+            if currentUser.id? && currentUser.id != @props.beatmapset.user_id
+              div className: 'beatmapset-header__more',
+                div className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail',
+                  el BeatmapsetMenu,
+                    beatmapset: @props.beatmapset
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           @renderStatusBar()

@@ -886,7 +886,7 @@ function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
         }
     }
 
-    return str_replace($params['path'], $path, route($route, $params, $fullUrl));
+    return rtrim(str_replace($params['path'], $path, route($route, $params, $fullUrl)), '/');
 }
 
 function bbcode($text, $uid, $options = [])
@@ -952,44 +952,44 @@ function nav_links()
 
     $links['home'] = [
         '_' => route('home'),
-        'news-index' => route('news.index'),
-        'team' => wiki_url('Team'),
-        'changelog-index' => route('changelog.index'),
-        'getDownload' => route('download'),
-        'search' => route('search'),
+        'page_title.main.news_controller._' => route('news.index'),
+        'layout.menu.home.team' => wiki_url('Team'),
+        'page_title.main.changelog_controller._' => route('changelog.index'),
+        'page_title.main.home_controller.get_download' => route('download'),
+        'page_title.main.home_controller.search' => route('search'),
     ];
     $links['beatmaps'] = [
-        'index' => route('beatmapsets.index'),
-        'artists' => route('artists.index'),
-        'packs' => route('packs.index'),
+        'page_title.main.beatmapsets_controller.index' => route('beatmapsets.index'),
+        'page_title.main.artists_controller._' => route('artists.index'),
+        'page_title.main.beatmap_packs_controller._' => route('packs.index'),
     ];
     $links['rankings'] = [
-        'index' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
-        'charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
-        'score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
-        'country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
-        'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
-        'kudosu' => osu_url('rankings.kudosu'),
+        'rankings.type.performance' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
+        'rankings.type.charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
+        'rankings.type.score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
+        'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
+        'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
+        'layout.menu.rankings.kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['community'] = [
-        'forum-forums-index' => route('forum.forums.index'),
-        'chat' => route('chat.index'),
-        'contests' => route('contests.index'),
-        'tournaments' => route('tournaments.index'),
-        'getLive' => route('livestreams.index'),
-        'dev' => osu_url('dev'),
+        'page_title.forum._' => route('forum.forums.index'),
+        'page_title.main.chat_controller._' => route('chat.index'),
+        'page_title.main.contests_controller._' => route('contests.index'),
+        'page_title.main.tournaments_controller._' => route('tournaments.index'),
+        'page_title.main.livestreams_controller._' => route('livestreams.index'),
+        'layout.menu.community.dev' => osu_url('dev'),
     ];
     $links['store'] = [
-        'getListing' => action('StoreController@getListing'),
-        'cart-show' => route('store.cart.show'),
-        'orders-index' => route('store.orders.index'),
+        'layout.header.store.products' => route('store.products.index'),
+        'layout.header.store.cart' => route('store.cart.show'),
+        'layout.header.store.orders' => route('store.orders.index'),
     ];
     $links['help'] = [
-        'getWiki' => wiki_url('Main_Page'),
-        'getFaq' => wiki_url('FAQ'),
-        'getRules' => wiki_url('Rules'),
-        'getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
-        'getSupport' => wiki_url('Help_Centre'),
+        'page_title.main.wiki_controller._' => wiki_url('Main_Page'),
+        'layout.menu.help.getFaq' => wiki_url('FAQ'),
+        'layout.menu.help.getRules' => wiki_url('Rules'),
+        'layout.menu.help.getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
+        'layout.menu.help.getSupport' => wiki_url('Help_Centre'),
     ];
 
     return $links;

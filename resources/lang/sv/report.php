@@ -16,7 +16,7 @@ return [
 
     'forum_post' => [
         'button' => 'Anmäl',
-        'title' => 'Anmäl inlägg från :username?',
+        'title' => 'Anmäla inlägg från :username?',
     ],
 
     'scores' => [

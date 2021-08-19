@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Squalifica',
         'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
         'love' => 'Ama',
+        'love_choose' => '',
         'love_confirm' => 'Ama questa beatmap?',
         'nominate' => 'Nomina',
         'nominate_confirm' => 'Nominare questa beatmap?',

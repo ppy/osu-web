@@ -5,11 +5,11 @@
 
 return [
     'title_compact' => 'vänner',
-    'too_many' => 'Vän gräns uppnådd.',
+    'too_many' => 'Maximalt antal vänner nått',
 
     'buttons' => [
         'add' => 'lägg till vän',
-        'disabled' => 'vänner',
+        'disabled' => 'följare',
         'remove' => 'ta bort vän',
     ],
 ];
