@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapPlaycount } from './beatmap-playcount'
-import { ExtraHeader } from './extra-header'
+import ExtraHeader from 'profile-page/extra-header'
 import core from 'osu-core-singleton'
 import { PlayDetailList } from 'play-detail-list'
 import * as React from 'react'

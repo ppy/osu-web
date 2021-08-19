@@ -14,17 +14,19 @@ import NotificationStore from 'stores/notification-store';
 import { makeNotificationJson, makeStackJson } from './helpers';
 
 const baseUnreadCount = 10;
-const stackIdentity  = { objectType: 'beatmapset', objectId: 1, category: 'beatmapset_discussion' };
+const stackIdentity  = {
+  category: 'beatmapset_discussion',
+  objectId: 1,
+  objectType: 'beatmapset',
+};
 const identities = [
   { id: 1000, ...stackIdentity },
   { id: 1002, ...stackIdentity },
 ];
 
 describe('Notification Events', () => {
-  // @ts-ignore
-  beforeEach(() => dispatcher.listeners.clear());
-  // @ts-ignore
-  afterEach(() => dispatcher.listeners.clear());
+  beforeEach(() => dispatcher.clear());
+  afterEach(() => dispatcher.clear());
 
   describe('on NotificationEventRead', () => {
     describe('when single notification read', () => {
@@ -61,7 +63,7 @@ describe('Notification Events', () => {
           const extra = { ...stackIdentity, id: 1003, objectId: 2 };
           const bundle = { ...bundleBase } as NotificationBundleJson;
 
-          bundle.stacks?.push(makeStackJson(extra, 5, 'beatmapset_discussion_post_new', identity.id - 100))
+          bundle.stacks?.push(makeStackJson(extra, 5, 'beatmapset_discussion_post_new', identity.id - 100));
           bundle.notifications = [
             makeNotificationJson(toJson(identity)),
             makeNotificationJson(toJson(extra)),
@@ -231,7 +233,12 @@ describe('Notification Events', () => {
 
       describe('when some unread notifications have not been loaded yet', () => {
         // id needs to be less than cursor too.
-        const unreadIdentity = { id: 500, objectType: 'beatmapset', objectId: 1, category: 'beatmapset_discussion' };
+        const unreadIdentity = {
+          category: 'beatmapset_discussion',
+          id: 500,
+          objectId: 1,
+          objectType: 'beatmapset',
+        };
         const identity = identities[0];
         const unreadEventData = [identity, unreadIdentity];
 
@@ -558,7 +565,7 @@ describe('Notification Events', () => {
         });
 
         describe('notification does not belong to an existing stack', () => {
-          const newNotificationIdentity = { ...toJson(identities[0]), object_id: 2, id: identities[0].id + 100 };
+          const newNotificationIdentity = { ...toJson(identities[0]), id: identities[0].id + 100, object_id: 2 };
           const newNotificationJson = makeNotificationJson(newNotificationIdentity);
 
           beforeEach(() => {

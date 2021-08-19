@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { ExtraHeader } from './extra-header'
+import ExtraHeader from 'profile-page/extra-header'
 import TimeWithTooltip from 'time-with-tooltip'
 import * as React from 'react'
 import { a, div, span, h3, table, thead, tbody, tr, th, td } from 'react-dom-factories'

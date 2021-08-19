@@ -44,11 +44,10 @@ interface SearchResultUser extends SearchResultSummary {
 const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
 export default class Worker {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   debouncedSearch = debounce(this.search, 500);
   @observable query = '';
-  @observable searching = false;
   @observable searchResult: SearchResult | null = null;
+  @observable searching = false;
   @observable selected: SelectedItem | null = null;
 
   private xhr: JQueryXHR | null = null;
