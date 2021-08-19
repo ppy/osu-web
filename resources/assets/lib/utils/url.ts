@@ -28,6 +28,8 @@ const internalUrls = [
   'wiki',
 ].join('|');
 
+const internalUrlRegExp = RegExp(`^/(?:${internalUrls})(?:$|/|#)`);
+
 export function beatmapDownloadDirect(id: string | number): string {
   return `osu://b/${id}`;
 }
@@ -46,7 +48,7 @@ export function isHTML(location: TurbolinksLocation): boolean {
 }
 
 export function isInternal(location: TurbolinksLocation): boolean {
-  return RegExp(`^/(?:${internalUrls})(?:$|/|#)`).test(location.getPath());
+  return internalUrlRegExp.test(location.getPath());
 }
 
 // external link
