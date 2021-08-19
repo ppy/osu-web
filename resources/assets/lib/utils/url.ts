@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
-import * as _ from 'lodash';
+import { startsWith } from 'lodash';
 import { TurbolinksLocation } from 'turbolinks';
 
 const internalUrls = [
@@ -44,7 +44,7 @@ export function changelogBuild(build: ChangelogBuild): string {
 
 export function isHTML(location: TurbolinksLocation): boolean {
   // Some changelog builds have `.` in their version, failing turbolinks' check.
-  return location.isHTML() || _.startsWith(location.getPath(), '/home/changelog/');
+  return location.isHTML() || startsWith(location.getPath(), '/home/changelog/');
 }
 
 export function isInternal(location: TurbolinksLocation): boolean {
