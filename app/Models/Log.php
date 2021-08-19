@@ -75,7 +75,6 @@ class Log extends Model
                     $params['username'] = $logData[1];
                 } else {
                     $params['username'] = $post->user->username;
-                    $translationKey = 'post_operation';
                     $url = $post->url();
                 }
 
