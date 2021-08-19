@@ -2,23 +2,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
-import Captcha from 'core/captcha';
 import ChatWorker from 'chat/chat-worker';
+import Captcha from 'core/captcha';
 import ClickMenu from 'core/click-menu';
 import Enchant from 'core/enchant';
 import ForumPoll from 'core/forum/forum-poll';
 import ForumPostEdit from 'core/forum/forum-post-edit';
 import ForumPostInput from 'core/forum/forum-post-input';
-import CurrentUser from 'interfaces/current-user';
 import Localtime from 'core/localtime';
 import MobileToggle from 'core/mobile-toggle';
-import { observable } from 'mobx';
-import NotificationsWorker from 'notifications/worker';
 import OsuAudio from 'core/osu-audio/main';
 import OsuLayzr from 'core/osu-layzr';
 import ReactTurbolinks from 'core/react-turbolinks';
-import SocketWorker from 'socket-worker';
-import RootDataStore from 'stores/root-data-store';
 import Timeago from 'core/timeago';
 import TurbolinksReload from 'core/turbolinks-reload';
 import UserLogin from 'core/user/user-login';
@@ -27,6 +22,11 @@ import UserPreferences from 'core/user/user-preferences';
 import UserVerification from 'core/user/user-verification';
 import WindowFocusObserver from 'core/window-focus-observer';
 import WindowSize from 'core/window-size';
+import CurrentUser from 'interfaces/current-user';
+import { observable } from 'mobx';
+import NotificationsWorker from 'notifications/worker';
+import SocketWorker from 'socket-worker';
+import RootDataStore from 'stores/root-data-store';
 
 declare global {
   interface Window {
