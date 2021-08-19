@@ -129,7 +129,6 @@ return [
 
         'logs' => [
             '_' => 'Topic logs',
-            'title' => 'topic logs',
 
             'columns' => [
                 'action' => 'Action',

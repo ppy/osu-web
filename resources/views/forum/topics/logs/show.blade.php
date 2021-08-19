@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
-    'titlePrepend' => trans('forum.topic.logs.title'),
+    'titlePrepend' => $topic->topic_title,
 ])
 
 @section('content')
