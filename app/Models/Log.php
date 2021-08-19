@@ -14,6 +14,8 @@ namespace App\Models;
  * @property string $log_operation
  * @property int $log_time
  * @property int $log_type
+ * @property Forum\Post $post
+ * @property int $post_id
  * @property User $reportee
  * @property int $reportee_id
  * @property Forum\Topic $topic
@@ -52,47 +54,73 @@ class Log extends Model
         $this->attributes['log_data'] = serialize($value);
     }
 
-    public function dataForDisplay()
+    public function dataForDisplay(): array|null
     {
-        if ($this->log_operation === 'LOG_TOPIC_TYPE') {
-            switch ($this->log_data['type']) {
-                case 0:
-                    $translationString = 'unpin';
-                    break;
-                case 1:
-                    $translationString = 'pin';
-                    break;
-                case 2:
-                    $translationString = 'announcement';
-                    break;
-            }
-
-            return trans("forum.topic.logs.data.{$translationString}");
-        }
-
-        $data = $this->log_data[0];
+        $logData = $this->log_data;
+        $logOperation = $this->log_operation;
         $translationKey = $this->translationKey();
 
-        $noTranslation = ['LOG_DELETE_TOPIC', 'LOG_LOCK', 'LOG_RESTORE_TOPIC', 'LOG_UNLOCK'];
+        $params = [];
 
-        if (in_array($this->log_operation, $noTranslation, true)) {
-            return $data; // topic title only
+        switch ($logOperation) {
+            case 'LOG_DELETED_POST':
+            case 'LOG_POST_EDITED':
+            case 'LOG_RESTORE_POST':
+                $post = $this->post;
+                $translationKey = 'post_operation';
+
+                if ($post === null && $logOperation !== 'LOG_POST_EDITED') {
+                    return null;
+                } else if ($post === null) {
+                    $params['username'] = $logData[1];
+                } else {
+                    $params['username'] = $post->user->username;
+                    $translationKey = 'post_operation';
+                    $url = $post->url();
+                }
+
+                break;
+
+            case 'LOG_EDIT_TOPIC':
+                $params['title'] = $logData[0];
+                break;
+
+            case 'LOG_FORK':
+                $params['topic'] = $logData[0];
+                break;
+
+            case 'LOG_ISSUE_TAG':
+                $state = $logData['state'] ? 'add' : 'remove';
+                $params['tag'] = $logData['issueTag'];
+                $translationKey = "{$state}_tag";
+                break;
+
+            case 'LOG_MOVE':
+            case 'LOG_SPLIT_SOURCE':
+                $params['forum'] = $logData[0];
+                $translationKey = 'source_forum_operation';
+                break;
+
+            case 'LOG_TOPIC_TYPE':
+                $translationKey = match ($logData['type']) {
+                    0 => 'unpin',
+                    1 => 'pin',
+                    2 => 'announcement',
+                };
+
+                break;
+
+            default:
+                return null;
         }
 
-        if ($this->log_operation === 'LOG_ISSUE_TAG') {
-            $state = $this->log_data['state'] ? 'add' : 'remove';
-            $data = $this->log_data['issueTag'];
-            $translationKey = "{$state}_tag";
-        }
-
-        if ($this->log_operation === 'LOG_POST_EDITED') {
-            $data = $this->log_data[1]; // username instead of topic title
-        }
-
-        return trans("forum.topic.logs.data.{$translationKey}", ['data' => $data]);
+        return [
+            'text' => osu_trans("forum.topic.logs.data.{$translationKey}", $params),
+            'url' => $url ?? null,
+        ];
     }
 
-    public function translationKey()
+    public function translationKey(): string
     {
         $logOperation = $this->log_operation;
 
@@ -106,6 +134,11 @@ class Log extends Model
     public function forum()
     {
         return $this->belongsTo(Forum\Forum::class, 'forum_id');
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(Forum\Post::class, 'post_id')->withTrashed();
     }
 
     public function topic()
@@ -130,6 +163,7 @@ class Log extends Model
             'reportee_id',
             'log_type',
             'forum_id',
+            'post_id',
             'topic_id',
             'log_ip',
             'log_operation',

@@ -16,7 +16,7 @@
 
     <div class="osu-page osu-page--generic osu-page--full">
         @if ($logs->count() > 0)
-            <table class="forum-topic-logs-table table">
+            <table class="forum-topic-logs-table">
                 <thead class="forum-topic-logs-table__header">
                     <tr>
                         <th>{{ trans('forum.topic.logs.columns.date') }}</th>
@@ -27,9 +27,13 @@
 
                 <tbody class="forum-topic-logs-table__body">
                     @foreach ($logs as $log)
+                        @php
+                            $dataForDisplay = $log->dataForDisplay();
+                        @endphp
+
                         <tr class="forum-topic-logs-table__row">
-                            <td class="forum-topic-logs-table__col forum-topic-logs-table__col--date">{!! timeago($log->log_time) !!}</td>
-                            <td class="forum-topic-logs-table__col">
+                            <td class="forum-topic-logs-table__date">{!! timeago($log->log_time) !!}</td>
+                            <td >
                                 <a
                                     class="js-usercard"
                                     data-user-id="{{$log->user->getKey()}}"
@@ -38,11 +42,20 @@
                                     {{ $log->user->username }}
                                 </a>
                             </td>
-                            <td class="forum-topic-logs-table__col">
+                            <td>
                                 {{ trans("forum.topic.logs.operations.{$log->translationKey()}") }}
-                                <div class="forum-topic-logs-table__log-data">
-                                    {{ $log->dataForDisplay() }}
-                                </div>
+
+                                @if ($dataForDisplay !== null)
+                                    <div class="forum-topic-logs-table__log-data">
+                                        @if ($dataForDisplay['url'] !== null)
+                                            <a href="{{ $dataForDisplay['url'] }}">
+                                                {!! $dataForDisplay['text'] !!}
+                                            </a>
+                                        @else
+                                            {!! $dataForDisplay['text'] !!}
+                                        @endif
+                                    </div>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
