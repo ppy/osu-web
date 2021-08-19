@@ -34,15 +34,13 @@
             'url' => route("forum.forums.show", $forum->forum_id),
         ];
 
-        if (isset($isTopicLogs) && $isTopicLogs === true) {
-            $links[] = [
-                'title' => $topic->topic_title,
-                'url' => route('forum.topics.show', $topic->getKey()),
-            ];
-
-            $links[] = [
-                'title' => trans('forum.topic.logs._'),
-            ];
+        if (isset($additionalLinks)) {
+            foreach ($additionalLinks as $link) {
+                $links[] = [
+                    'title' => $link['title'],
+                    'url' => $link['url'] ?? null,
+                ];
+            }
         }
     }
 @endphp

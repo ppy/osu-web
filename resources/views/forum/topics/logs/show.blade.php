@@ -9,7 +9,15 @@
 @section('content')
     @include('forum.topics._floating_header')
     @include('forum._header', [
-        'isTopicLogs' => true,
+        'additionalLinks' => [
+            [
+                'title' => $topic->topic_title,
+                'url' => route('forum.topics.show', $topic->getKey()),
+            ],
+            [
+                'title' => trans('forum.topic.logs._'),
+            ]
+        ],
         'forum' => $topic->forum,
         'topic' => $topic,
     ])
