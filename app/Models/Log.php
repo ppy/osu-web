@@ -111,6 +111,7 @@ class Log extends Model
                 break;
 
             default:
+                // the remaining ones don't contain any useful data and are self-explanatory without further info
                 return null;
         }
 
