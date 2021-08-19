@@ -128,7 +128,7 @@ return [
         ],
 
         'logs' => [
-            '_' => 'Topic logs',
+            '_' => 'Browse topic logs',
 
             'columns' => [
                 'action' => 'Action',
