@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { autorun } from 'mobx';
-import UserPreferences from 'user-preferences';
+import UserPreferences from 'core/user/user-preferences';
 import Slider from './slider';
 import { format, TimeFormat } from './time-format';
 

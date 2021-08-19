@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import TurbolinksReload from 'turbolinks-reload';
+import TurbolinksReload from 'core/turbolinks-reload';
 import { currentUrl } from 'utils/turbolinks';
 
 type ElementFn = (container: HTMLElement) => React.ReactElement;
