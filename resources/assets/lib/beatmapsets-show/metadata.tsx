@@ -34,7 +34,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
     const nominators = getNominators(this.props.beatmapset);
 
     return (
-      <div className='beatmapset-metadata'>
+      <div className='beatmapset-metadata u-fancy-scrollbar'>
         {this.state.isEditing && (
           <Modal onClose={this.toggleEditing} visible>
             <MetadataEditor beatmapset={this.props.beatmapset} onClose={this.toggleEditing} />
@@ -91,7 +91,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
             <div>
               {osu.trans('beatmapsets.show.info.tags')}
             </div>
-            <div className='beatmapset-metadata__value beatmapset-metadata__value--tags u-fancy-scrollbar'>
+            <div className='beatmapset-metadata__value beatmapset-metadata__value--tags'>
               {tags.map((tag, idx) => (
                 <React.Fragment key={`${tag}-${idx}`}>
                   <a href={route('beatmapsets.index', { q: tag })}>
