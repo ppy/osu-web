@@ -3,7 +3,6 @@
 
 import * as React from 'react'
 import { div, h2, a, img, span } from 'react-dom-factories'
-import { ValueDisplay } from 'value-display'
 import { Post } from "../beatmap-discussions/post"
 
 el = React.createElement
