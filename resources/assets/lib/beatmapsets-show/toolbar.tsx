@@ -6,9 +6,9 @@ import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
-import OsuUrlHelper from 'osu-url-helper';
 import * as React from 'react';
 import { createClickCallback } from 'utils/html';
+import { beatmapDownloadDirect } from 'utils/url';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
@@ -132,7 +132,7 @@ export default class Toolbar extends React.PureComponent<Props> {
           <DownloadButton
             key='direct'
             href={currentUser.is_supporter
-              ? OsuUrlHelper.beatmapDownloadDirect(this.props.currentBeatmap.id)
+              ? beatmapDownloadDirect(this.props.currentBeatmap.id)
               : route('support-the-game')
             }
             osuDirect
