@@ -4,8 +4,8 @@
 import Blackout from 'blackout';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import { deletedUser } from 'models/user';
 import * as React from 'react';
-import { getBeatmapMapper } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { nextVal } from 'utils/seq';
 import BeatmapListItem from './beatmap-list-item';
@@ -66,7 +66,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
               <BeatmapListItem
                 beatmap={this.props.currentBeatmap}
                 large={this.props.large}
-                mapper={getBeatmapMapper(this.props.beatmapset, this.props.currentBeatmap)}
+                mapper={this.props.currentBeatmap.user ?? deletedUser.toJson()}
                 withButton='fas fa-chevron-down'
               />
             </div>
@@ -90,7 +90,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
       <BeatmapListItem
         beatmap={beatmap}
         count={this.props.getCount?.(beatmap)}
-        mapper={getBeatmapMapper(this.props.beatmapset, beatmap)}
+        mapper={beatmap.user ?? deletedUser.toJson()}
       />
     </div>
   );
