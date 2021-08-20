@@ -3,16 +3,15 @@
 
 import BeatmapsetPanel from 'beatmapset-panel';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { observable } from 'mobx';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import ExtraHeader from './extra-header';
+import { BeatmapsetSection } from './extra-page-props';
+import ExtraPageProps from './extra-page-props';
 
-type Section = 'favouriteBeatmapsets' | 'rankedBeatmapsets' | 'lovedBeatmapsets' | 'pendingBeatmapsets' | 'graveyardBeatmapsets';
-
-const sectionKeys: [Section, string][] = [
+const sectionKeys: [BeatmapsetSection, string][] = [
   ['favouriteBeatmapsets', 'favourite'],
   ['rankedBeatmapsets', 'ranked'],
   ['lovedBeatmapsets', 'loved'],
@@ -20,20 +19,11 @@ const sectionKeys: [Section, string][] = [
   ['graveyardBeatmapsets', 'graveyard'],
 ];
 
-interface Pagination {
-  hasMore: boolean;
-  loading: boolean;
-}
-
 type Props = {
-  counts: Record<Section, number>;
-  name: string;
-  pagination: Record<Section, Pagination>;
-  user: UserJson;
-  withEdit: boolean;
+  counts: Record<BeatmapsetSection, number>;
 } & {
-  [key in Section]: BeatmapsetExtendedJson[];
-};
+  [key in BeatmapsetSection]: BeatmapsetExtendedJson[];
+} & ExtraPageProps;
 
 export default class Beatmapsets extends React.PureComponent<Props> {
   render() {
@@ -45,7 +35,7 @@ export default class Beatmapsets extends React.PureComponent<Props> {
     );
   }
 
-  private readonly renderBeatmapsets = (section: Section, key: string) => {
+  private readonly renderBeatmapsets = (section: BeatmapsetSection, key: string) => {
     const count = this.props.counts[section];
     const beatmapsets = this.props[section];
     const pagination = this.props.pagination[section];
