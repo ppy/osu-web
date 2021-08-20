@@ -79,11 +79,11 @@ export default class SocketWorker {
 
     const token = tokenEl.getAttribute('content');
     this.ws = new WebSocket(`${this.endpoint}?csrf=${token}`);
-    this.ws.addEventListener('open', () => {
+    this.ws.addEventListener('open', action(() => {
       this.retryDelay.reset();
       this.connectionStatus = 'connected';
       this.hasConnectedOnce = true;
-    });
+    }));
     this.ws.addEventListener('close', this.reconnectWebSocket);
     this.ws.addEventListener('message', this.handleNewEvent);
   }
