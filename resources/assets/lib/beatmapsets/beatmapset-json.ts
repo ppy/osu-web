@@ -91,6 +91,7 @@ export interface BeatmapsetJson {
   artist: string;
   artist_unicode: string;
   beatmaps?: BeatmapJson[];
+  beatmapset_nominations?: BeatmapsetNomination[];
   covers: BeatmapsetCovers;
   creator: string;
   current_user_attributes?: CurrentUserAttributes;
