@@ -4,7 +4,7 @@
 import { dispatch } from 'app-dispatcher';
 import { route } from 'laroute';
 import { forEach } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
 import core from 'osu-core-singleton';
 import SocketMessageEvent, { isSocketEventData, SocketEventData } from 'socket-message-event';
@@ -35,6 +35,10 @@ export default class SocketWorker {
   @computed
   get isConnected() {
     return this.connectionStatus === 'connected';
+  }
+
+  constructor() {
+    makeObservable(this);
   }
 
   boot() {

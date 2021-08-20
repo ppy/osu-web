@@ -6,7 +6,7 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
-import { action, computed, observable, observe } from 'mobx';
+import { action, computed, makeObservable, observable, observe } from 'mobx';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
 import SocketWorker from 'socket-worker';
 import RetryDelay from 'utils/retry-delay';
@@ -57,6 +57,8 @@ export default class Worker implements DispatchListener {
     $.subscribe('user-verification:success.notifications-worker', () => {
       this.loadMore();
     });
+
+    makeObservable(this);
   }
 
   handleDispatchAction(event: DispatcherAction) {

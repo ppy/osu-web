@@ -5,7 +5,7 @@ import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 export type Section = 'user' | 'user_others' | 'beatmapset' | 'beatmapset_others' | 'others';
 const SECTIONS: Section[] = [
@@ -51,6 +51,10 @@ export default class Worker {
   @observable selected: SelectedItem | null = null;
 
   private xhr: JQueryXHR | null = null;
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action cycleSelectedItem(direction: number) {
     let newSelected: SelectedItem | null;

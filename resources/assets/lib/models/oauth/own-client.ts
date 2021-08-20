@@ -3,7 +3,7 @@
 
 import { OwnClientJson } from 'interfaces/own-client-json';
 import { route } from 'laroute';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { Client } from 'models/oauth/client';
 
 export class OwnClient extends Client {
@@ -17,6 +17,8 @@ export class OwnClient extends Client {
 
     this.redirect = client.redirect;
     this.secret = client.secret;
+
+    makeObservable(this);
   }
 
   @action
