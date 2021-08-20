@@ -2,12 +2,12 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import ExtraHeader from 'profile-page/extra-header'
-import OsuUrlHelper from 'osu-url-helper'
 import * as React from 'react'
 import { a, div, h3, ul, li, p, span } from 'react-dom-factories'
 import ShowMoreLink from 'show-more-link'
 import { StringWithComponent } from 'string-with-component'
-import { ValueDisplay } from 'value-display'
+import { wikiUrl } from 'utils/url'
+import ValueDisplay from 'value-display'
 el = React.createElement
 
 export class Kudosu extends React.Component
@@ -24,7 +24,7 @@ export class Kudosu extends React.Component
             el StringWithComponent,
               mappings:
                 ':link': a
-                  href: OsuUrlHelper.wikiUrl('Kudosu')
+                  href: wikiUrl('Kudosu')
                   key: 'link'
                   osu.trans 'users.show.extra.kudosu.total_info.link'
               pattern: osu.trans('users.show.extra.kudosu.total_info._')
