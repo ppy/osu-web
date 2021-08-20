@@ -17,6 +17,17 @@ export function isBeatmapsetNominationEvent(x: BeatmapsetEvent): x is Beatmapset
   return x.type === 'nominate' && Array.isArray(x.comment?.modes);
 }
 
+export interface BeatmapsetNomination {
+  beatmapset_id: number;
+  created_at: string;
+  id: number;
+  modes: GameMode[];
+  reset: number;
+  reset_user_id: number | null;
+  updated_at: string | null;
+  user_id: number;
+}
+
 export interface BeatmapsetNominationEvent extends BeatmapsetEvent {
   comment: {
     modes: GameMode[];
