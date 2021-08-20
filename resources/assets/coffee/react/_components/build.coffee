@@ -5,6 +5,7 @@ import { ChangelogEntry } from 'changelog-entry'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { changelogBuild } from 'utils/url'
 
 el = React.createElement
 
@@ -20,7 +21,7 @@ export class Build extends React.PureComponent
 
         a
           className: 'build__version-link'
-          href: _exported.OsuUrlHelper.changelogBuild @props.build
+          href: changelogBuild @props.build
           span className: 'build__stream', @props.build.update_stream.display_name
           ' '
           span className: 'u-changelog-stream--text', @props.build.display_version
@@ -51,7 +52,7 @@ export class Build extends React.PureComponent
     if build?
       a
         className: 'build__version-link'
-        href: _exported.OsuUrlHelper.changelogBuild build
+        href: changelogBuild build
         title: build.display_version
         i className: icon
     else
