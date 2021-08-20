@@ -106,7 +106,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
 
         <div className='beatmapset-metadata__spacer' />
 
-        {nominators != null && (
+        {nominators != null && nominators.length > 0 && (
           <>
             <div>
               {osu.trans('beatmapsets.show.info.nominators')}
