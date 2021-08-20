@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from './beatmap-json';
+import UserJson from './user-json';
 
 export function isValid(x: BeatmapJson | BeatmapJsonExtended): x is BeatmapJsonExtended {
   return (x as BeatmapJsonExtended).accuracy != null;
@@ -30,4 +31,5 @@ export default interface BeatmapJsonExtended extends BeatmapJson {
   status: string;
   total_length: number;
   url: string;
+  user?: UserJson;
 }

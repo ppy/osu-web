@@ -15,6 +15,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
         'checksum',
         'failtimes',
         'max_combo',
+        'user',
     ];
 
     protected $beatmapsetTransformer = BeatmapsetCompactTransformer::class;
@@ -69,5 +70,10 @@ class BeatmapCompactTransformer extends TransformerAbstract
     public function includeMaxCombo(Beatmap $beatmap)
     {
         return $this->primitive($beatmap->maxCombo());
+    }
+
+    public function includeUser(Beatmap $beatmap)
+    {
+        return $this->item($beatmap->user, new UserCompactTransformer());
     }
 }
