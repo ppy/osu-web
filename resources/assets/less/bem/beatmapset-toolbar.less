@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  position: relative;
 
   @media @mobile {
     flex-direction: column;
@@ -41,5 +42,16 @@
   &__count-value {
     font-size: @font-size--title-small;
     color: hsl(var(--hsl-c2));
+  }
+
+  &__menu {
+    .center-content();
+    position: relative;
+
+    @media @desktop {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
   }
 }

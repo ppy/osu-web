@@ -9,6 +9,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { createClickCallback } from 'utils/html';
 import { beatmapDownloadDirect } from 'utils/url';
+import BeatmapsetMenu from './beatmapset-menu';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
@@ -74,6 +75,7 @@ export default class Toolbar extends React.PureComponent<Props> {
           {this.renderDownloadButtons()}
           {this.renderDiscussionButtons()}
           {this.renderLoginButton()}
+          {this.renderMenuButton()}
         </div>
       </div>
     );
@@ -171,6 +173,18 @@ export default class Toolbar extends React.PureComponent<Props> {
             top: osu.trans('beatmapsets.show.details.login_required.top'),
           }}
         />
+      );
+    }
+  }
+
+  private renderMenuButton() {
+    if (currentUser.id && currentUser.id !== this.props.beatmapset.user_id) {
+      return (
+        <div className='beatmapset-toolbar__menu'>
+          <div className='btn-circle btn-circle--page-toggle'>
+            <BeatmapsetMenu beatmapset={this.props.beatmapset} />
+          </div>
+        </div>
       );
     }
   }
