@@ -13,7 +13,6 @@ import { sum, values } from 'lodash';
 import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
-import OsuUrlHelper from 'osu-url-helper';
 import * as React from 'react';
 import { Transition } from 'react-transition-group';
 import { StringWithComponent } from 'string-with-component';
@@ -23,6 +22,7 @@ import { getArtist, getDiffColour, getTitle, group as groupBeatmaps } from 'util
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumberSuffixed } from 'utils/html';
+import { beatmapsetDownloadDirect } from 'utils/url';
 
 export const beatmapsetCardSizes = ['normal', 'extra'] as const;
 export type BeatmapsetCardSize = typeof beatmapsetCardSizes[number];
@@ -147,7 +147,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     let titleVariant: string;
 
     if (type === 'direct') {
-      url = OsuUrlHelper.beatmapsetDownloadDirect(this.props.beatmapset.id);
+      url = beatmapsetDownloadDirect(this.props.beatmapset.id);
       titleVariant = 'direct';
     } else {
       const params: Record<string, string|number> = {

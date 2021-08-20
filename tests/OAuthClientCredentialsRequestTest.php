@@ -57,19 +57,22 @@ class OAuthClientCredentialsRequestTest extends TestCase
     public function botRequestingScopeDataProvider()
     {
         return [
+            '* cannot be requested' => ['*', 400],
+            'cannot request empty scope' => ['', 400],
+            'delegate scope allows chat.write' => ['chat.write delegate ', 200],
             'chat.write cannot be requested by itself' => ['chat.write', 400],
-            'bot scope allows chat.write' => ['bot chat.write', 200],
-            'bot can delegate' => ['bot', 200],
-            'bot can use public scope' => ['public', 200],
+            'mixing scope delegation is not allowed' => ['chat.write delegate forum.write', 400],
+            'public scope is allowed' => ['public', 200],
         ];
     }
 
     public function nonBotRequestingScopeDataProvider()
     {
         return [
-            'chat.write is not allowed' => ['chat.write', 400],
-            'bot is not allowed' => ['bot', 400],
-            'public is allowed' => ['public', 200],
+            '* cannot be requested' => ['*', 400],
+            'cannot request empty scope' => ['', 400],
+            'cannot request delegation' => ['chat.write delegate ', 400],
+            'public scope is allowed' => ['public', 200],
         ];
     }
 
