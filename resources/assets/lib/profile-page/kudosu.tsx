@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
-import UserExtendedJson from 'interfaces/user-json-extended';
 import { route } from 'laroute';
 import ExtraHeader from 'profile-page/extra-header';
+import ExtraPageProps from 'profile-page/extra-page-props';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { StringWithComponent } from 'string-with-component';
@@ -44,17 +44,8 @@ function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
   );
 }
 
-interface Props {
-  name: string;
-  pagination: {
-    recentlyReceivedKudosu: {
-      hasMore: boolean;
-      loading: boolean;
-    };
-  };
+interface Props extends ExtraPageProps {
   recentlyReceivedKudosu?: KudosuHistoryJson[];
-  user: UserExtendedJson;
-  withEdit: boolean;
 }
 
 export default class Kudosu extends React.Component<Props> {
