@@ -155,7 +155,7 @@ export default class Toolbar extends React.PureComponent<Props> {
       >
         <i className={icon} />
         {' '}
-        {this.props.favcount}
+        {osu.formatNumber(this.props.favcount)}
       </button>
     );
   }
