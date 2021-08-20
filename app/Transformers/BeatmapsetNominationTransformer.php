@@ -9,6 +9,10 @@ use App\Models\BeatmapsetNomination;
 
 class BeatmapsetNominationTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = [
+        'user',
+    ];
+
     public function transform(BeatmapsetNomination $nomination)
     {
         return [
@@ -21,5 +25,10 @@ class BeatmapsetNominationTransformer extends TransformerAbstract
             'updated_at' => json_time($nomination->updated_at),
             'user_id' => $nomination->user_id,
         ];
+    }
+
+    public function includeUser(BeatmapsetNomination $nomination)
+    {
+        return $this->item($nomination->user, new UserCompactTransformer());
     }
 }

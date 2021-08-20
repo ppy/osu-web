@@ -5,6 +5,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import GameMode from 'interfaces/game-mode';
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
+import UserJson from 'interfaces/user-json';
 
 interface BeatmapsetCovers {
   card: string;
@@ -25,6 +26,7 @@ export interface BeatmapsetNomination {
   reset: number;
   reset_user_id: number | null;
   updated_at: string | null;
+  user?: UserJson;
   user_id: number;
 }
 
