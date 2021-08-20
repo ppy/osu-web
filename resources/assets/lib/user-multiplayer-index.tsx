@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJsonExtended from 'interfaces/user-json-extended';
+import UserExtendedJson from 'interfaces/user-extended-json';
 import UserMultiplayerHistoryJson from 'interfaces/user-multiplayer-history-json';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -9,7 +9,7 @@ import UserMultiplayerHistoryContext, { makeStore, updateStore } from 'user-mult
 import Main from 'user-multiplayer-index/main';
 
 core.reactTurbolinks.register('user-multiplayer-index', () => {
-  const jsonUser = osu.parseJson<UserJsonExtended>('json-user');
+  const jsonUser = osu.parseJson<UserExtendedJson>('json-user');
   const json = osu.parseJson<UserMultiplayerHistoryJson>('json-user-multiplayer-index');
   const store = makeStore();
   updateStore(store, json);
