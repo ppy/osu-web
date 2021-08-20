@@ -19,6 +19,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmaps',
+        'beatmapset_nominations',
         'converts',
         'current_user_attributes',
         'description',
@@ -71,6 +72,14 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $rel = $params->get('with_trashed') ? 'allBeatmaps' : 'beatmaps';
 
         return $this->collection($beatmapset->$rel, new $this->beatmapTransformer());
+    }
+
+    public function includeBeatmapsetNominations(Beatmapset $beatmapset)
+    {
+        return $this->collection(
+            $beatmapset->beatmapsetNominations,
+            new BeatmapsetNominationTransformer(),
+        );
     }
 
     public function includeConverts(Beatmapset $beatmapset)
