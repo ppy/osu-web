@@ -6,6 +6,7 @@
 namespace App\Transformers;
 
 use App\Models\BeatmapsetNomination;
+use App\Models\DeletedUser;
 
 class BeatmapsetNominationTransformer extends TransformerAbstract
 {
@@ -29,6 +30,9 @@ class BeatmapsetNominationTransformer extends TransformerAbstract
 
     public function includeUser(BeatmapsetNomination $nomination)
     {
-        return $this->item($nomination->user, new UserCompactTransformer());
+        return $this->item(
+            $nomination->user ?? (new DeletedUser()),
+            new UserCompactTransformer(),
+        );
     }
 }

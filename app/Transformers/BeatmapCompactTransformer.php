@@ -7,6 +7,7 @@ namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapFailtimes;
+use App\Models\DeletedUser;
 
 class BeatmapCompactTransformer extends TransformerAbstract
 {
@@ -74,6 +75,9 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
     public function includeUser(Beatmap $beatmap)
     {
-        return $this->item($beatmap->user, new UserCompactTransformer());
+        return $this->item(
+            $beatmap->user ?? (new DeletedUser()),
+            new UserCompactTransformer(),
+        );
     }
 }
