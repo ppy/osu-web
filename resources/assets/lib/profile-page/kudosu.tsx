@@ -12,6 +12,38 @@ import TimeWithTooltip from 'time-with-tooltip';
 import { wikiUrl } from 'utils/url';
 import ValueDisplay from 'value-display';
 
+function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
+  const textMappings = {
+    ':amount': (
+      <strong key='amount' className='profile-extra-entries__kudosu-amount'>
+        {osu.trans('users.show.extra.kudosu.entry.amount', { amount: osu.formatNumber(Math.abs(kudosu.amount)) })}
+      </strong>
+    ),
+    ':giver': kudosu.giver == null
+      ? osu.trans('users.deleted')
+      : <a key='giver' href={kudosu.giver.url}>{kudosu.giver.username}</a>,
+    ':post': kudosu.post.url == null
+      ? kudosu.post.title
+      : <a key='post' href={kudosu.post.url}>{kudosu.post.title}</a>,
+  };
+
+  return (
+    <li className='profile-extra-entries__item'>
+      <div className='profile-extra-entries__detail'>
+        <div className='profile-extra-entries__text'>
+          <StringWithComponent
+            mappings={textMappings}
+            pattern={osu.trans(`users.show.extra.kudosu.entry.${kudosu.model}.${kudosu.action}`)}
+          />
+        </div>
+      </div>
+      <div className='profile-extra-entries__time'>
+        <TimeWithTooltip dateTime={kudosu.created_at} relative />
+      </div>
+    </li>
+  );
+}
+
 interface Props {
   name: string;
   pagination: {
@@ -51,62 +83,37 @@ export default class Kudosu extends React.Component<Props> {
           />
         </div>
 
-        {this.props.recentlyReceivedKudosu != null && this.props.recentlyReceivedKudosu.length > 0
-          ? (
-            <ul className='profile-extra-entries profile-extra-entries--kudosu'>
-              {this.props.recentlyReceivedKudosu.map((kudosu) => {
-                if (kudosu.id === null) return null;
-
-                const textMappings = {
-                  ':amount': (
-                    <strong key='amount' className='profile-extra-entries__kudosu-amount'>
-                      {osu.trans('users.show.extra.kudosu.entry.amount', { amount: Math.abs(kudosu.amount) })}
-                    </strong>
-                  ),
-                  ':giver': kudosu.giver == null
-                    ? osu.trans('users.deleted')
-                    : <a key='giver' href={kudosu.giver.url}>{kudosu.giver.username}</a>,
-                  ':post': kudosu.post.url == null
-                    ? kudosu.post.title
-                    : <a key='post' href={kudosu.post.url}>{kudosu.post.title}</a>,
-                };
-
-                return (
-                  <li key={`kudosu-${kudosu.id}`} className='profile-extra-entries__item'>
-                    <div className='profile-extra-entries__detail'>
-                      <div className='profile-extra-entries__text'>
-                        <StringWithComponent
-                          mappings={textMappings}
-                          pattern={osu.trans(`users.show.extra.kudosu.entry.${kudosu.model}.${kudosu.action}`)}
-                        />
-                      </div>
-                    </div>
-                    <div className='profile-extra-entries__time'>
-                      <TimeWithTooltip dateTime={kudosu.created_at} relative />
-                    </div>
-                  </li>
-                );
-              })}
-
-              <li className='profile-extra-entries__item'>
-                <ShowMoreLink
-                  data={{
-                    name: 'recentlyReceivedKudosu',
-                    url: route('users.kudosu', { user: this.props.user.id }),
-                  }}
-                  event='profile:showMore'
-                  hasMore={this.props.pagination.recentlyReceivedKudosu.hasMore}
-                  loading={this.props.pagination.recentlyReceivedKudosu.loading}
-                  modifiers={['profile-page', 't-greyseafoam-dark']}
-                />
-              </li>
-            </ul>
-          ) : (
-            <div className='profile-extra-entries profile-extra-entries--kudosu'>
-              {osu.trans('users.show.extra.kudosu.entry.empty')}
-            </div>
-          )}
+        {this.renderEntries()}
       </div>
+    );
+  }
+
+  private renderEntries() {
+    if (this.props.recentlyReceivedKudosu == null || this.props.recentlyReceivedKudosu.length === 0) {
+      return (
+        <div className='profile-extra-entries profile-extra-entries--kudosu'>
+          {osu.trans('users.show.extra.kudosu.entry.empty')}
+        </div>
+      );
+    }
+
+    return (
+      <ul className='profile-extra-entries profile-extra-entries--kudosu'>
+        {this.props.recentlyReceivedKudosu.map((kudosu) => <Entry key={`kudosu-${kudosu.id}`} kudosu={kudosu} />)}
+
+        <li className='profile-extra-entries__item'>
+          <ShowMoreLink
+            data={{
+              name: 'recentlyReceivedKudosu',
+              url: route('users.kudosu', { user: this.props.user.id }),
+            }}
+            event='profile:showMore'
+            hasMore={this.props.pagination.recentlyReceivedKudosu.hasMore}
+            loading={this.props.pagination.recentlyReceivedKudosu.loading}
+            modifiers={['profile-page', 't-greyseafoam-dark']}
+          />
+        </li>
+      </ul>
     );
   }
 }
