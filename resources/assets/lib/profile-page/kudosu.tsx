@@ -90,7 +90,7 @@ export default class Kudosu extends React.Component<Props> {
 
     return (
       <ul className='profile-extra-entries profile-extra-entries--kudosu'>
-        {this.props.recentlyReceivedKudosu.map((kudosu) => <Entry key={`kudosu-${kudosu.id}`} kudosu={kudosu} />)}
+        {this.props.recentlyReceivedKudosu.map((kudosu) => <Entry key={kudosu.id} kudosu={kudosu} />)}
 
         <li className='profile-extra-entries__item'>
           <ShowMoreLink
