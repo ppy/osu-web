@@ -63,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'featured artists',
-            'index' => 'liste',
-            'packs' => 'pakker',
         ],
         'community' => [
             '_' => 'samfunnet',
-            'chat' => 'chat',
-            'contests' => 'konkurranser',
             'dev' => 'utvikling',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'direktesendinger',
-            'tournaments' => 'turneringer',
         ],
         'help' => [
             '_' => 'hjelp',
@@ -82,30 +74,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nei, virkelig, jeg trenger hjelp!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'hjem',
-            'changelog-index' => 'endringslogg',
-            'getDownload' => 'last ned',
-            'news-index' => 'nyheter',
-            'search' => 'søk',
             'team' => 'skapere',
         ],
         'rankings' => [
             '_' => 'rangering',
-            'charts' => 'rampelyset',
-            'country' => 'land',
-            'index' => 'prestasjon',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'flerspiller',
-            'score' => 'poengsum',
         ],
         'store' => [
             '_' => 'butikk',
-            'cart-show' => 'handlekurv',
-            'getListing' => 'katalog',
-            'orders-index' => 'bestillingshistorikk',
         ],
     ],
 

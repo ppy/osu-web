@@ -63,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'бийтмапове',
-            'artists' => 'препоръчани изпълнители',
-            'index' => 'списък',
-            'packs' => 'пакети',
         ],
         'community' => [
             '_' => 'колектив',
-            'chat' => 'чат',
-            'contests' => 'конкурси',
             'dev' => 'разработка',
-            'forum-forums-index' => 'форуми',
-            'getLive' => 'на живо',
-            'tournaments' => 'турнири',
         ],
         'help' => [
             '_' => 'помощ',
@@ -82,30 +74,17 @@ return [
             'getFaq' => 'чзв',
             'getRules' => 'правилник',
             'getSupport' => 'не, наистина, имам нужда от помощ!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'начало',
-            'changelog-index' => 'списък на промените',
-            'getDownload' => 'изтегли',
-            'news-index' => 'новини',
-            'search' => 'търсене',
             'team' => 'отбор',
         ],
         'rankings' => [
             '_' => 'класации',
-            'charts' => 'препоръчани',
-            'country' => 'държава',
-            'index' => 'изпълнение',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'мултиплейър',
-            'score' => 'резултат',
         ],
         'store' => [
             '_' => 'магазин',
-            'cart-show' => 'количка',
-            'getListing' => 'списък',
-            'orders-index' => 'история на поръчките',
         ],
     ],
 
