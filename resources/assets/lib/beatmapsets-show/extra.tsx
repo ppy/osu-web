@@ -12,31 +12,46 @@ interface Props {
 }
 
 export default class Extra extends React.PureComponent<Props> {
-  render() {
-    const successRate = osu.formatNumber(this.props.beatmap.passcount === 0 ? 0 : (this.props.beatmap.passcount / this.props.beatmap.playcount) * 100, 2);
-    const ratings = this.getRatings();
+  private get userRating() {
+    return this.props.beatmapset.ratings.slice(1).reduce(
+      (result, count, rating) => {
+        result[rating < 5 ? 'negative' : 'positive'] += count;
+        return result;
+      },
+      { negative: 0, positive: 0 },
+    );
+  }
 
+  private get successRate() {
+    if (this.props.beatmap.playcount === 0) {
+      return 0;
+    }
+
+    return (this.props.beatmap.passcount / this.props.beatmap.playcount) * 100;
+  }
+
+  render() {
     return (
       <div className='beatmapset-extra'>
         <div className='beatmapset-extra__item'>
           {osu.trans('beatmapsets.show.info.success-rate')}
         </div>
         <div className='beatmapset-extra__item beatmapset-extra__item--value beatmapset-extra__item--success-rate'>
-          {successRate}%
+          {osu.formatNumber(this.successRate, 2)}%
         </div>
         <div className='beatmapset-extra__item beatmapset-extra__item--bar'>
-          {this.renderBar(successRate)}
+          {this.renderBar(this.successRate)}
         </div>
 
         <div className='beatmapset-extra__item'>
           {osu.trans('beatmapsets.show.stats.user-rating')}
         </div>
         <div className='beatmapset-extra__item beatmapset-extra__item--value beatmapset-extra__item--user-rating'>
-          <div>{ratings.negative}</div>
-          <div>{ratings.positive}</div>
+          <div>{this.userRating.negative}</div>
+          <div>{this.userRating.positive}</div>
         </div>
         <div className='beatmapset-extra__item beatmapset-extra__item--bar'>
-          {this.renderBar((ratings.positive * 100) / (ratings.positive + ratings.negative), true)}
+          {this.renderBar((this.userRating.positive * 100) / (this.userRating.positive + this.userRating.negative), true)}
         </div>
 
         {this.props.beatmapset.is_scoreable && (
@@ -53,19 +68,7 @@ export default class Extra extends React.PureComponent<Props> {
     );
   }
 
-  private getRatings = () => this.props.beatmapset.ratings.reduce(
-    (result, count, rating) => {
-      if (rating >= 1 && rating <= 5) {
-        result.negative += count;
-      } else if (rating >= 6 && rating <= 10) {
-        result.positive += count;
-      }
-      return result;
-    },
-    { negative: 0, positive: 0 },
-  );
-
-  private renderBar(fill: number | string, rating = false) {
+  private renderBar(fill: number, rating = false) {
     return (
       <div className={classWithModifiers('bar', 'beatmapset-extra', { 'beatmapset-extra-rating': rating })}>
         <div
