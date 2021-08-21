@@ -63,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmapy',
-            'artists' => 'významní umelci',
-            'index' => 'výpis',
-            'packs' => 'balíčky',
         ],
         'community' => [
             '_' => 'komunita',
-            'chat' => 'konverzácia',
-            'contests' => 'súťaže',
             'dev' => 'vývoj',
-            'forum-forums-index' => 'fórum',
-            'getLive' => 'naživo',
-            'tournaments' => 'turnaje',
         ],
         'help' => [
             '_' => 'pomoc',
@@ -82,30 +74,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'pravidlá',
             'getSupport' => 'nie, vážne, potrebujem pomoc!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'domov',
-            'changelog-index' => 'záznam zmien',
-            'getDownload' => 'stiahnúť',
-            'news-index' => 'novinky',
-            'search' => 'hľadať',
             'team' => 'tím',
         ],
         'rankings' => [
             '_' => 'rebríčky',
-            'charts' => 'výber',
-            'country' => 'krajina',
-            'index' => 'výkon',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
-            'score' => 'skóre',
         ],
         'store' => [
             '_' => 'obchod',
-            'cart-show' => 'košík',
-            'getListing' => 'výpis',
-            'orders-index' => 'história objednávok',
         ],
     ],
 

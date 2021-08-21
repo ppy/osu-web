@@ -53,7 +53,7 @@ return [
         'show_less' => 'mostrar menos',
         'show_more' => 'mostrar más',
         'show_more_options' => 'mostrar más opciones',
-        'submit' => '',
+        'submit' => 'Enviar',
         'unpin' => 'desanclar',
         'update' => 'Actualizar',
         'upload_image' => 'subir imagen',
@@ -104,7 +104,7 @@ return [
         'keyboard' => 'teclado',
         'mouse' => 'ratón',
         'tablet' => 'tableta',
-        'touch' => 'pantalla táctil',
+        'touch' => 'Pantalla Táctil',
     ],
 
     'dropzone' => [
