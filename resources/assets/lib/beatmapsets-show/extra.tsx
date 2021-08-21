@@ -21,10 +21,8 @@ export default class Extra extends React.PureComponent<Props> {
         <div className='beatmapset-extra__item'>
           {osu.trans('beatmapsets.show.info.success-rate')}
         </div>
-        <div className='beatmapset-extra__item beatmapset-extra__item--value'>
-          <div className='beatmapset-extra__right'>
-            {`${successRate}%`}
-          </div>
+        <div className='beatmapset-extra__item beatmapset-extra__item--value beatmapset-extra__item--success-rate'>
+          {successRate}%
         </div>
         <div className='beatmapset-extra__item beatmapset-extra__item--bar'>
           {this.renderBar(successRate)}
@@ -33,13 +31,9 @@ export default class Extra extends React.PureComponent<Props> {
         <div className='beatmapset-extra__item'>
           {osu.trans('beatmapsets.show.stats.user-rating')}
         </div>
-        <div className='beatmapset-extra__item beatmapset-extra__item--value beatmapset-extra__item--ratings'>
-          <div>
-            {ratings.negative}
-          </div>
-          <div className='beatmapset-extra__right'>
-            {ratings.positive}
-          </div>
+        <div className='beatmapset-extra__item beatmapset-extra__item--value beatmapset-extra__item--user-rating'>
+          <div>{ratings.negative}</div>
+          <div>{ratings.positive}</div>
         </div>
         <div className='beatmapset-extra__item beatmapset-extra__item--bar'>
           {this.renderBar((ratings.positive * 100) / (ratings.positive + ratings.negative), true)}

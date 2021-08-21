@@ -54,7 +54,7 @@ export default class Stats extends React.PureComponent<Props> {
             : this.props.beatmap[stat]
           }
         </div>
-        <div className='beatmapset-stats__bar-container'>
+        <div className='beatmapset-stats__bar'>
           <div className='bar bar--beatmap-stats'>
             <div
               className='bar__fill'
