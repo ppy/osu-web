@@ -88,7 +88,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Wenn du es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
+            'action' => 'Wenn es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
 
             'current' => [
                 '_' => 'Die Map ist zurzeit :status.',
