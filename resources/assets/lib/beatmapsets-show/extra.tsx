@@ -71,13 +71,11 @@ export default class Extra extends React.PureComponent<Props> {
     { negative: 0, positive: 0 },
   );
 
-  private renderBar(fill: number | string, fromRight = false) {
+  private renderBar(fill: number | string, rating = false) {
     return (
-      <div className='beatmapset-bar beatmapset-bar--beatmapset-extra'>
+      <div className={classWithModifiers('bar', 'beatmapset-extra', { 'beatmapset-extra-rating': rating })}>
         <div
-          className={classWithModifiers('beatmapset-bar__fill', {
-            right: fromRight,
-          })}
+          className='bar__fill'
           style={{ width: `${fill}%` }}
         />
       </div>
