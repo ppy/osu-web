@@ -28,8 +28,10 @@ return [
         'nominate' => 'Nominata da :user.',
         'nominate_modes' => 'Nominata da :user (:modes).',
         'nomination_reset' => 'Il nuovo problema :discussion (:text) ha comportato un reset di nomina.',
+        'nomination_reset_received' => 'La nomina di :user è stata azzerata da :source_user (:text)',
+        'nomination_reset_received_profile' => 'La nomina è stata azzerata da :user (:text)',
         'qualify' => 'Questa beatmap ha raggiunto il numero richiesto di nomine ed è stata qualificata.',
-        'rank' => 'Rankata.',
+        'rank' => 'Classificata.',
         'remove_from_loved' => 'Rimossa dalle amate da :user. (:text)',
 
         'nsfw_toggle' => [
@@ -73,6 +75,7 @@ return [
         'love' => 'Ama',
         'nominate' => 'Nominazione',
         'nomination_reset' => 'Reset delle nominazioni',
+        'nomination_reset_received' => 'Reset di nomina ricevuto',
         'nsfw_toggle' => 'Esplicito',
         'qualify' => 'Qualificazione',
         'rank' => 'Classificazione',

@@ -101,7 +101,7 @@ use Illuminate\Database\QueryException;
  */
 class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 {
-    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, Memoizes, SoftDeletes, Validatable;
+    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, Memoizes, Reportable, SoftDeletes, Validatable;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -521,10 +521,22 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return true;
     }
 
-    public function setApproved($state, $user)
+    public function setApproved($state, $user, ?array $beatmapIds = null)
     {
         $currentTime = Carbon::now();
         $oldScoreable = $this->isScoreable();
+        $approvedState = static::STATES[$state];
+        $beatmaps = $this->beatmaps();
+
+        if (isset($beatmapIds)) {
+            if ($beatmaps->whereKey($beatmapIds)->count() === count($beatmapIds)) {
+                $beatmaps = $beatmaps->whereIn('beatmap_id', $beatmapIds);
+            } else {
+                throw new InvariantException('beatmap_ids contains invalid id');
+            }
+        }
+
+        $beatmaps->update(['approved' => $approvedState]);
 
         if ($this->isQualified() && $state === 'pending') {
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
@@ -535,7 +547,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
         }
 
-        $this->approved = static::STATES[$state];
+        $this->approved = $approvedState;
 
         if ($this->approved > 0) {
             $this->approved_date = $currentTime;
@@ -548,10 +560,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
 
         $this->save();
-
-        $this
-            ->beatmaps()
-            ->update(['approved' => $this->approved]);
 
         if ($this->isScoreable() !== $oldScoreable || $this->isRanked()) {
             dispatch(new RemoveBeatmapsetBestScores($this));
@@ -602,7 +610,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
 
         $this->getConnection()->transaction(function () use ($event, $notificationClass, $post, $user) {
-            $nominators = $this->nominationsSinceReset()->with('user')->get()->pluck('user');
+            $nominators = User::whereIn('user_id', $this->beatmapsetNominations()->current()->select('user_id'))->get();
+
             BeatmapsetEvent::log($event, $user, $post, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
             foreach ($nominators as $nominator) {
                 BeatmapsetEvent::log(
@@ -707,7 +716,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 }
             }
 
-            $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
+            $nomination = $this->beatmapsetNominations()->current()->where('user_id', $user->getKey());
             if (!$nomination->exists()) {
                 $eventParams = [
                     'type' => BeatmapsetEvent::NOMINATE,
@@ -765,7 +774,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
     }
 
-    public function love(User $user)
+    public function love(User $user, ?array $beatmapIds = null)
     {
         if (!$this->isLoveable()) {
             return [
@@ -774,9 +783,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             ];
         }
 
-        $this->getConnection()->transaction(function () use ($user) {
+        $this->getConnection()->transaction(function () use ($user, $beatmapIds) {
             $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
-            $this->setApproved('loved', $user);
+            $this->setApproved('loved', $user, $beatmapIds);
 
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
 
@@ -988,23 +997,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function currentNominationCount()
     {
         if ($this->isLegacyNominationMode()) {
-            return $this->nominationsSinceReset()->count();
+            return $this->beatmapsetNominations()->current()->count();
         }
 
-        $currentNominations = [];
-        foreach ($this->playmodesStr() as $playmode) {
-            $currentNominations[$playmode] = 0;
-        }
+        $currentNominations = array_fill_keys($this->playmodesStr(), 0);
 
-        $nominations = $this->nominationsSinceReset()->get();
+        $nominations = $this->beatmapsetNominations()->current()->get();
         foreach ($nominations as $nomination) {
-            foreach ($nomination->nominationModes as $nomMode) {
-                if (!isset($currentNominations[$nomMode])) {
+            foreach ($nomination->modes as $mode) {
+                if (!isset($currentNominations[$mode])) {
                     continue;
                 }
 
-                $currentNominations[$nomMode] = $currentNominations[$nomMode] ?? 0;
-                $currentNominations[$nomMode]++;
+                $currentNominations[$mode]++;
             }
         }
 
@@ -1033,13 +1038,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function isLegacyNominationMode()
     {
         return $this->memoize(__FUNCTION__, function () {
-            return $this->nominationsSinceReset()->whereNull('comment')->exists();
+            return $this->beatmapsetNominations()->current()->whereNull('modes')->exists();
         });
     }
 
     public function hasNominations()
     {
-        return $this->nominationsSinceReset()->exists();
+        return $this->beatmapsetNominations()->current()->exists();
     }
 
     public function playmodes()
@@ -1101,26 +1106,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         });
     }
 
-    public function eventsSinceReset()
-    {
-        $events = $this->events();
-
-        $resetEvent = $this->resetEvent();
-        if ($resetEvent) {
-            $events->where('id', '>=', $resetEvent->id);
-        }
-
-        return $events;
-    }
-
-    public function nominationsSinceReset()
-    {
-        return $this->eventsSinceReset()->nominations();
-    }
-
     public function hasFullBNNomination($mode = null)
     {
-        return $this->nominationsSinceReset()
+        return $this->beatmapsetNominations()
+            ->current()
             ->with('user')
             ->get()
             ->pluck('user')
@@ -1404,6 +1393,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function url()
     {
         return route('beatmapsets.show', $this);
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'UnwantedContent',
+            'user_id' => $this->user_id,
+        ];
     }
 
     protected static function boot()

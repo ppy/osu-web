@@ -3,10 +3,10 @@
 
 import { AccountStanding } from './account-standing'
 import { ExtraTab } from './extra-tab'
-import { Beatmaps } from './beatmaps'
+import Beatmapsets from 'profile-page/beatmapsets'
 import { Header } from './header'
 import { Historical } from './historical'
-import { Kudosu } from './kudosu'
+import Kudosu from 'profile-page/kudosu'
 import { Medals } from './medals'
 import { RecentActivity } from './recent-activity'
 import { TopRanks } from './top-ranks'
@@ -233,7 +233,7 @@ export class Main extends React.PureComponent
             pendingBeatmapsets: @state.user.pending_beatmapset_count
             graveyardBeatmapsets: @state.user.graveyard_beatmapset_count
           pagination: @state.showMorePagination
-        component: Beatmaps
+        component: Beatmapsets
 
       when 'medals'
         props:

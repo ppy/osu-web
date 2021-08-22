@@ -27,7 +27,7 @@ return [
         'title' => '搜尋',
 
         'beatmapset' => [
-            'login_required' => '登入以搜索譜面',
+            'login_required' => '登入以搜尋圖譜',
             'more' => '搜尋到 :count 張圖譜',
             'more_simple' => '查看更多搜尋結果',
             'title' => '圖譜',

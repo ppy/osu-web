@@ -245,8 +245,8 @@ class Store extends \Illuminate\Session\Store
     {
         $isGuest = $this->isGuestSession();
 
-        if ($isGuest && $this->handler instanceof CacheBasedSessionHandler) {
-            $this->handler->setMinutes(120);
+        if ($this->handler instanceof CacheBasedSessionHandler) {
+            $this->handler->setMinutes($isGuest ? 120 : config('session.lifetime'));
         }
 
         // Overriden to track user sessions in Redis

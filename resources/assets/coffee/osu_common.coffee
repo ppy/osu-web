@@ -14,21 +14,8 @@
     (body.scrollHeight - body.scrollTop) - body.clientHeight
 
 
-  classWithModifiers: (className, modifiers) ->
-    ret = className
-
-    if modifiers?
-      ret += " #{className}--#{modifier}" for modifier in modifiers when modifier?
-
-    ret
-
-
   currentUserIsFriendsWith: (user_id) ->
     _.find currentUser.friends, target_id: user_id
-
-
-  diffColour: (difficultyRating) ->
-    '--diff': "var(--diff-#{difficultyRating ? 'default'})"
 
 
   groupColour: (group) ->
@@ -163,15 +150,7 @@
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
 
-    url =
-      if !_.isEmpty window.reloadUrl
-        window.reloadUrl
-      else
-        _exported.currentUrl().href
-
-    window.reloadUrl = null
-
-    osu.navigate url, keepScroll, action: 'replace'
+    osu.navigate _exported.currentUrl().href, keepScroll, action: 'replace'
 
 
   urlPresence: (url) ->

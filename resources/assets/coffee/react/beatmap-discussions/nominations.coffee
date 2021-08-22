@@ -1,15 +1,17 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
+import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-modal'
+import { Nominator } from 'beatmap-discussions/nominator'
 import { BigButton } from 'big-button'
 import { Modal } from 'modal'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
-import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
-import { Nominator } from 'beatmap-discussions/nominator'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { pageChange } from 'utils/page-change'
+import { wikiUrl } from 'utils/url'
 
 el = React.createElement
 
@@ -21,7 +23,9 @@ export class Nominations extends React.PureComponent
     super props
 
     @xhr = {}
-    @state = changeOwnerModal: false
+    @state =
+      changeOwnerModal: false
+      loveBeatmapModal: false
 
 
   componentDidMount: =>
@@ -40,6 +44,7 @@ export class Nominations extends React.PureComponent
   render: =>
     div className: bn,
       @renderChangeOwnerModal()
+      @renderLoveBeatmapModal()
       div className: "#{bn}__items #{bn}__items--messages",
         div className: "#{bn}__item", @statusMessage()
         div className: "#{bn}__item", @hypeBar()
@@ -163,23 +168,6 @@ export class Nominations extends React.PureComponent
     params = method: 'POST'
 
     @xhr.discussionLock = $.ajax(url, params)
-      .done (response) =>
-        $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
-      .always LoadingOverlay.hide
-
-
-  love: =>
-    return unless confirm(osu.trans('beatmaps.nominations.love_confirm'))
-
-    LoadingOverlay.show()
-
-    @xhr.love?.abort()
-
-    url = laroute.route('beatmapsets.love', beatmapset: @props.beatmapset.id)
-    params = method: 'PUT'
-
-    @xhr.love = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
@@ -318,7 +306,7 @@ export class Nominations extends React.PureComponent
             ':date': date
             ':position': @props.beatmapset.nominations.ranking_queue_position
             ':queue': a
-              href: laroute.route('wiki.show', path: 'Beatmap_ranking_procedure/Ranking_queue', locale: currentLocale)
+              href: wikiUrl('Beatmap_ranking_procedure/Ranking_queue')
               key: 'queue'
               target: '_blank'
               osu.trans 'beatmaps.nominations.rank_estimate.queue'
@@ -486,7 +474,7 @@ export class Nominations extends React.PureComponent
       icon: 'fas fa-heart'
       modifiers: ['pink']
       props:
-        onClick: @love
+        onClick: @handleLoveBeatmapModal
 
 
   removeFromLovedButton: =>
@@ -525,6 +513,10 @@ export class Nominations extends React.PureComponent
     @setState changeOwnerModal: !@state.changeOwnerModal
 
 
+  handleLoveBeatmapModal: =>
+    @setState loveBeatmapModal: !@state.loveBeatmapModal
+
+
   renderChangeOwnerModal: =>
     return if !@state.changeOwnerModal
 
@@ -533,3 +525,11 @@ export class Nominations extends React.PureComponent
         beatmapset: @props.beatmapset,
         users: @props.users
         onClose: @handleChangeOwnerClick
+
+  renderLoveBeatmapModal: =>
+    return if !@state.loveBeatmapModal
+
+    el Modal, visible: true, onClose: @handleLoveBeatmapModal,
+      el LoveBeatmapModal,
+        beatmapset: @props.beatmapset
+        onClose: @handleLoveBeatmapModal

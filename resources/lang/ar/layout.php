@@ -47,7 +47,7 @@ return [
 
         'users' => [
             'modding' => 'الاِقتراح',
-            'multiplayer' => '',
+            'multiplayer' => 'متعدد اللاعبين',
             'show' => 'معلومات',
         ],
     ],
@@ -63,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'خرائط الموسيقى',
-            'artists' => 'الفنانين الموصى بهم',
-            'index' => 'القائمة',
-            'packs' => 'حزم',
         ],
         'community' => [
             '_' => 'المجتمع',
-            'chat' => 'محادثة',
-            'contests' => 'مسابقة',
             'dev' => 'التطوير',
-            'forum-forums-index' => 'المنتديات',
-            'getLive' => 'مباشر',
-            'tournaments' => 'البطولات',
         ],
         'help' => [
             '_' => 'مساعدة',
@@ -82,30 +74,17 @@ return [
             'getFaq' => 'الأسئلة الشائعة',
             'getRules' => 'القوانين',
             'getSupport' => 'لا، حقاً، أنا بحاجة إلى مساعدة!',
-            'getWiki' => 'ويكي',
         ],
         'home' => [
             '_' => 'الرئيسية',
-            'changelog-index' => 'سِجل التغييرات',
-            'getDownload' => 'تحميل',
-            'news-index' => 'الأخبار',
-            'search' => 'البحث',
             'team' => 'الفريق',
         ],
         'rankings' => [
             '_' => 'الترتيب',
-            'charts' => 'منطقة ألأضواء',
-            'country' => 'الدولة',
-            'index' => 'الأداء',
             'kudosu' => 'كودوسو',
-            'multiplayer' => 'متعدد اللاعبين',
-            'score' => 'النتيجة',
         ],
         'store' => [
             '_' => 'المتجر',
-            'cart-show' => 'عربة التسوق',
-            'getListing' => 'القائمة',
-            'orders-index' => 'تاريخ الطلب',
         ],
     ],
 

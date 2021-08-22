@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'Zvolený spôsob platby bol zamietnutý službou Paypal.',
     'invalid_resource_id' => 'Platobné informácie neboli nájdené.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "Platba bola zamietnutá, ale nie sme istí prečo.",
 ];

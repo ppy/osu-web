@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { ExtraHeader } from './extra-header'
+import ExtraHeader from 'profile-page/extra-header'
 import { UserPageEditor } from './user-page-editor'
 import * as React from 'react'
 import { a, button, div, span, p } from 'react-dom-factories'
@@ -21,7 +21,7 @@ export class UserPage extends React.Component
           button
             type: 'button'
             title: osu.trans('users.show.page.button')
-            className: 'profile-page-toggle'
+            className: 'btn-circle btn-circle--page-toggle'
             onClick: @editStart
             span className: 'fas fa-pencil-alt'
 

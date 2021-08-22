@@ -2,15 +2,16 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $currentLocaleMeta = current_locale_meta();
+    $navLinks = nav_links();
+@endphp
+
 @extends('master', [
     'titleOverride' => osu_trans('home.landing.title'),
     'blank' => 'true',
     'bodyAdditionalClasses' => 'osu-layout--body-landing'
 ])
-
-@php
-    $currentLocaleMeta = current_locale_meta();
-@endphp
 
 @section('content')
     <nav class="osu-layout__row">
@@ -20,9 +21,9 @@
         <!-- Desktop Navigation -->
         <div class="landing-nav hidden-xs">
             <div class="landing-nav__section">
-                @foreach (nav_links() as $section => $links)
+                @foreach ($navLinks as $section => $links)
                     <a
-                        href="{{ $links['_'] ?? array_values($links)[0] }}"
+                        href="{{ array_first($links) }}"
                         class="landing-nav__link {{ ($section == "home") ? "landing-nav__link--bold" : "" }}"
                     >
                         {{ osu_trans("layout.menu.$section._") }}

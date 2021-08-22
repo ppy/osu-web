@@ -13,7 +13,7 @@ return [
 
         'player' => [
             'by' => 'Spelad av',
-            'submitted_on' => 'Inlämnad den',
+            'submitted_on' => 'Uppladdat den',
 
             'rank' => [
                 'country' => 'Nationell rankning',

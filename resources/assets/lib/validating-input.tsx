@@ -4,6 +4,7 @@
 import { FormErrors } from 'form-errors';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   blockName: string;
@@ -27,7 +28,7 @@ export class ValidatingInput extends React.Component<Props> {
     return (
       <>
         <input
-          className={osu.classWithModifiers(`${blockName}__input`, messages.length > 0 ? ['has-error'] : [])}
+          className={classWithModifiers(`${blockName}__input`, messages.length > 0 ? ['has-error'] : [])}
           name={name}
           {...otherProps}
         />

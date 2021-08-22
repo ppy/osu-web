@@ -38,12 +38,7 @@ interface Comment {
   id: number;
 }
 
-interface DiscussionMessageType {
-  icon: {[key: string]: string};
-}
-
 interface BeatmapDiscussionHelperClass {
-  messageType: DiscussionMessageType;
   TIMESTAMP_REGEX: RegExp;
   format(text: string, options?: any): string;
   formatTimestamp(value: number | null): string | undefined;
@@ -72,14 +67,16 @@ type AjaxError = (xhr: JQuery.jqXHR) => void;
 
 interface OsuCommon {
   ajaxError: AjaxError;
-  classWithModifiers: (baseName: string, modifiers?: string[]) => string;
-  diffColour: (difficultyRating?: string | null) => React.CSSProperties;
+  formatBytes: (bytes: number, decimals?: number) => string;
+  formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
+  formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: OsuLinkOptions) => string;
   linkify: (text: string, newWindow?: boolean) => string;
   navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
+  parseJson<T = any>(id: string, remove?: boolean): T;
   popup: (message: string, type: string) => void;
   popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
@@ -91,14 +88,11 @@ interface OsuCommon {
   transArray: (array: any[], key?: string) => string;
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
   transExists: (key: string, locale?: string) => boolean;
+  updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
   urlPresence: (url?: string | null) => string;
   urlRegex: RegExp;
   uuid: () => string;
   xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
-  formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
-  formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
-  parseJson<T = any>(id: string, remove?: boolean): T;
-  updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
 }
 
 interface OsuLinkOptions {
@@ -139,7 +133,7 @@ interface BeatmapsetDiscussionJson {
   beatmapset_id: number;
   deleted_at: string | null;
   id: number;
-  message_type: string;
+  message_type: import('beatmap-discussions/discussion-type').DiscussionType;
   parent_id: number | null;
   posts: BeatmapsetDiscussionPostJson[];
   resolved: boolean;

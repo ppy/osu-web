@@ -47,7 +47,7 @@ return [
 
         'users' => [
             'modding' => '모딩',
-            'multiplayer' => '',
+            'multiplayer' => '멀티플레이',
             'show' => '정보',
         ],
     ],
@@ -63,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => '비트맵',
-            'artists' => '공식 아티스트',
-            'index' => '목록',
-            'packs' => '맵팩',
         ],
         'community' => [
             '_' => '커뮤니티',
-            'chat' => '채팅',
-            'contests' => '콘테스트',
             'dev' => '개발',
-            'forum-forums-index' => '포럼',
-            'getLive' => '라이브 스트림',
-            'tournaments' => '토너먼트',
         ],
         'help' => [
             '_' => '도움말',
@@ -82,30 +74,17 @@ return [
             'getFaq' => 'FAQ',
             'getRules' => '규칙',
             'getSupport' => '지원 센터',
-            'getWiki' => '위키',
         ],
         'home' => [
             '_' => '메인',
-            'changelog-index' => '변경 사항',
-            'getDownload' => '다운로드',
-            'news-index' => '소식',
-            'search' => '검색',
             'team' => '운영진',
         ],
         'rankings' => [
             '_' => '순위',
-            'charts' => '스포트라이트',
-            'country' => '국가',
-            'index' => '퍼포먼스',
             'kudosu' => 'kudosu',
-            'multiplayer' => '멀티플레이어',
-            'score' => '점수',
         ],
         'store' => [
             '_' => '상점',
-            'cart-show' => '장바구니',
-            'getListing' => '목록',
-            'orders-index' => '주문 내역',
         ],
     ],
 

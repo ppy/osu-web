@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Diskvalifiser',
         'incorrect_state' => 'Feil under utføringen av denne handlingen, prøv å oppdatere siden.',
         'love' => 'Elsker',
+        'love_choose' => '',
         'love_confirm' => 'Elsk dette beatmappet?',
         'nominate' => 'Nominer',
         'nominate_confirm' => 'Nominer dette beatmappet?',

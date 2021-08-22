@@ -4,7 +4,7 @@
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 
-export default interface UserJsonExtended extends UserJson {
+export default interface UserExtendedJson extends UserJson {
   country: Country;
   cover: Cover;
   discord: string | null;

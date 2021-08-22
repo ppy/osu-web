@@ -5,6 +5,7 @@ import { NewReply } from './new-reply'
 import { Post } from './post'
 import { SystemPost } from './system-post'
 import { UserCard } from './user-card'
+import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
@@ -318,7 +319,7 @@ export class Discussion extends React.PureComponent
             span
               className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{_.kebabCase(@props.discussion.message_type)}"
               i
-                className: BeatmapDiscussionHelper.messageType.icon[_.camelCase(@props.discussion.message_type)]
+                className: discussionTypeIcons[@props.discussion.message_type]
                 title: osu.trans "beatmaps.discussions.message_type.#{@props.discussion.message_type}"
 
           if @props.discussion.resolved

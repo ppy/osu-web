@@ -19,6 +19,29 @@ class ChangelogController extends Controller
 {
     private $updateStreams = null;
 
+    private static function changelogEntryMessageIncludes(?array $formats): array
+    {
+        static $validFormats = [
+            'html' => 'changelog_entries.message_html',
+            'markdown' => 'changelog_entries.message',
+        ];
+
+        if (is_api_request()) {
+            $ret = [];
+            foreach ($formats ?? [] as $format) {
+                if (array_key_exists($format, $validFormats)) {
+                    $ret[$format] ??= $validFormats[$format];
+                }
+            }
+
+            return count($ret) === 0
+                ? [$validFormats['html'], $validFormats['markdown']]
+                : array_values($ret);
+        } else {
+            return [$validFormats['html']];
+        }
+    }
+
     /**
      * Get Changelog Listing
      *
@@ -30,7 +53,7 @@ class ChangelogController extends Controller
      *
      * Field         | Type                            | Notes
      * --------------|---------------------------------|------
-     * builds        | [Build](#build)[]               | Includes `changelog_entries` and `changelog_entries.github_user`.
+     * builds        | [Build](#build)[]               | Includes `changelog_entries`, `changelog_entries.github_user`, and changelog entry message in requested formats.
      * search.from   | string?                         | `from` input.
      * search.limit  | number                          | Always `21`.
      * search.max_id | number?                         | `max_id` input.
@@ -42,6 +65,7 @@ class ChangelogController extends Controller
      * @queryParam max_id integer Maximum build ID. No-example
      * @queryParam stream string Stream name to return builds from. No-example
      * @queryParam to string Maximum build version. No-example
+     * @queryParam message_formats[] string `html`, `markdown`. Default to both.
      * @response {
      *   "streams": [
      *     {
@@ -116,13 +140,21 @@ class ChangelogController extends Controller
      */
     public function index()
     {
-        $this->getUpdateStreams();
+        $updateStreams = $this->getUpdateStreams();
+
+        $params = get_params(request()->all(), null, [
+            'message_formats:string[]',
+            'from',
+            'max_id:int',
+            'stream',
+            'to',
+        ], ['null_missing' => true]);
 
         $search = [
-            'stream' => presence(request('stream')),
-            'from' => presence(request('from')),
-            'to' => presence(request('to')),
-            'max_id' => get_int(request('max_id')),
+            'stream' => $params['stream'],
+            'from' => $params['from'],
+            'to' => $params['to'],
+            'max_id' => $params['max_id'],
             'limit' => 21,
         ];
 
@@ -140,13 +172,15 @@ class ChangelogController extends Controller
             return ujs_redirect(build_url($builds[0]));
         }
 
-        $buildsJson = json_collection($builds, 'Build', [
+        $buildJsonIncludes = [
             'changelog_entries',
             'changelog_entries.github_user',
-        ]);
+            ...static::changelogEntryMessageIncludes($params['message_formats']),
+        ];
+        $buildsJson = json_collection($builds, 'Build', $buildJsonIncludes);
 
         $indexJson = [
-            'streams' => $this->updateStreams,
+            'streams' => $updateStreams,
             'builds' => $buildsJson,
             'search' => $search,
         ];
@@ -162,7 +196,7 @@ class ChangelogController extends Controller
                 }
             );
 
-            return ext_view('changelog.index', compact('chartConfig', 'indexJson'));
+            return ext_view('changelog.index', compact('chartConfig', 'indexJson', 'updateStreams'));
         }
     }
 
@@ -209,6 +243,7 @@ class ChangelogController extends Controller
      *
      * @urlParam changelog string required Build version, update stream name, or build ID. Example: 20210520.2
      * @queryParam key string Unset to query by build version or stream name, or `id` to query by build ID. No-example
+     * @queryParam message_formats[] string `html`, `markdown`. Default to both.
      * @response See "Get Changelog Build" response.
      */
     public function show($version)
@@ -328,7 +363,7 @@ class ChangelogController extends Controller
             return $buildJson;
         }
 
-        $this->getUpdateStreams();
+        $updateStreams = $this->getUpdateStreams();
 
         $commentBundle = CommentBundle::forEmbed($build);
 
@@ -340,7 +375,13 @@ class ChangelogController extends Controller
             }
         );
 
-        return ext_view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
+        return ext_view('changelog.build', compact(
+            'build',
+            'buildJson',
+            'chartConfig',
+            'commentBundle',
+            'updateStreams',
+        ));
     }
 
     private function buildJson(Build $build): array
@@ -348,13 +389,14 @@ class ChangelogController extends Controller
         return json_item($build, 'Build', [
             'changelog_entries',
             'changelog_entries.github_user',
+            ...static::changelogEntryMessageIncludes(get_arr(request('message_formats'))),
             'versions',
         ]);
     }
 
     private function getUpdateStreams()
     {
-        $this->updateStreams = json_collection(
+        return $this->updateStreams ??= json_collection(
             UpdateStream::whereHasBuilds()
                 ->orderByField('stream_id', config('osu.changelog.update_streams'))
                 ->find(config('osu.changelog.update_streams'))
@@ -364,8 +406,6 @@ class ChangelogController extends Controller
             'UpdateStream',
             ['latest_build', 'user_count']
         );
-
-        view()->share('updateStreams', $this->updateStreams);
     }
 
     private function chartConfig($stream)
@@ -375,7 +415,7 @@ class ChangelogController extends Controller
         if ($stream === null) {
             $chartOrder = array_map(function ($b) {
                 return $b['display_name'];
-            }, $this->updateStreams);
+            }, $this->getUpdateStreams());
         } else {
             $chartOrder = $this->buildChartOrder($history);
             $streamName = kebab_case($stream->pretty_name);

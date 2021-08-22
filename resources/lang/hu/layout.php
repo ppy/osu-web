@@ -47,7 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modolás',
-            'multiplayer' => '',
+            'multiplayer' => 'többjátékos',
             'show' => 'információ',
         ],
     ],
@@ -63,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmap-ek',
-            'artists' => 'kiemelt előadók',
-            'index' => 'lista',
-            'packs' => 'csomagok',
         ],
         'community' => [
             '_' => 'közösség',
-            'chat' => 'chat',
-            'contests' => 'versenyek',
             'dev' => 'fejlesztés',
-            'forum-forums-index' => 'fórumok',
-            'getLive' => 'élő',
-            'tournaments' => 'bajnokságok',
         ],
         'help' => [
             '_' => 'segítség',
@@ -82,30 +74,17 @@ return [
             'getFaq' => 'gyik',
             'getRules' => 'szabályok',
             'getSupport' => 'nem, tényleg segítség kell!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'főoldal',
-            'changelog-index' => 'változtatások',
-            'getDownload' => 'letöltés',
-            'news-index' => 'újdonságok',
-            'search' => 'keresés',
             'team' => 'csapat',
         ],
         'rankings' => [
             '_' => 'rangsor',
-            'charts' => 'kiemeltek',
-            'country' => 'ország',
-            'index' => 'teljesítmény',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'többjátékos',
-            'score' => 'pontszám',
         ],
         'store' => [
             '_' => 'áruház',
-            'cart-show' => 'kosár',
-            'getListing' => 'lista',
-            'orders-index' => 'rendelési előzmények',
         ],
     ],
 

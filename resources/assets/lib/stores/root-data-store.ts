@@ -21,8 +21,8 @@ export default class RootDataStore {
   channelStore: ChannelStore;
   chatState: ChatStateStore;
   clientStore: ClientStore;
-  commentableMetaStore: CommentableMetaStore;
   commentStore: CommentStore;
+  commentableMetaStore: CommentableMetaStore;
   notificationStore: NotificationStore;
   ownClientStore: OwnClientStore;
   uiState: UIStateStore;

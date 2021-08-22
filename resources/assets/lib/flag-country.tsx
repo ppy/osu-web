@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   country?: Country;
@@ -17,14 +18,14 @@ const flagUrl = (code: string) => {
   return `/assets/images/flags/${baseFileName}.svg`;
 };
 
-export default function FlagCountry({country, modifiers}: Props) {
+export default function FlagCountry({ country, modifiers }: Props) {
   if (country == null || country.code == null) {
     return null;
   }
 
   return (
     <div
-      className={osu.classWithModifiers('flag-country', modifiers)}
+      className={classWithModifiers('flag-country', modifiers)}
       style={{
         backgroundImage: `url('${flagUrl(country.code)}')`,
       }}

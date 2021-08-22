@@ -6,6 +6,8 @@ import * as React from 'react'
 import { a, div, table, tr, th, thead, tbody } from 'react-dom-factories'
 import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
 import { shouldShowPp } from 'utils/beatmap-helper'
+import { classWithModifiers } from 'utils/css'
+
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
@@ -26,7 +28,7 @@ export class ScoreboardTable extends React.PureComponent
       value:
         activeKeyDidChange: @activeKeyDidChange
 
-      div className: osu.classWithModifiers(bn, classMods),
+      div className: classWithModifiers(bn, classMods),
         table
           className: "#{bn}__table"
           thead {},

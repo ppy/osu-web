@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Disqualifiée',
         'incorrect_state' => 'Erreur lors de l\'action, merci de réessayer.',
         'love' => 'Aimer',
+        'love_choose' => 'Choisissez la difficulté pour loved',
         'love_confirm' => 'Vous aimez cette beatmap ?',
         'nominate' => 'Nominer',
         'nominate_confirm' => 'Nominer cette beatmap?',

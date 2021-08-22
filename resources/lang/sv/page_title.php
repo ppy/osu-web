@@ -61,7 +61,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmapdiskussioner',
-            'index' => 'beatmap listningar',
+            'index' => 'beatmaplistning',
             'show' => 'beatmapinfo',
         ],
         'changelog_controller' => [
@@ -89,8 +89,8 @@ return [
             'get_download' => 'ladda ner',
             'index' => 'kontrollpanel',
             'search' => 'sök',
-            'support_the_game' => 'stödja spelet',
-            'testflight' => 'testflyg',
+            'support_the_game' => 'stötta spelet',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'information',
@@ -99,7 +99,7 @@ return [
             '_' => 'direktsändningar',
         ],
         'matches_controller' => [
-            '_' => 'matchningar',
+            '_' => 'matcher',
         ],
         'news_controller' => [
             '_' => 'nyheter',
@@ -117,7 +117,7 @@ return [
             '_' => 'prestation',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'butik',
         ],
         'tournaments_controller' => [
             '_' => 'turneringar',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'notera',
         ],
         'wiki_controller' => [
-            '_' => 'kunskapsbas',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -136,14 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'butik',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder info',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'flerspelarhistorik',
         ],
     ],
 ];

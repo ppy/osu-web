@@ -78,7 +78,7 @@ return [
             'approved' => 'approvata :timeago',
             'loved' => 'amata :timeago',
             'qualified' => 'qualificata :timeago',
-            'ranked' => 'rankata :timeago',
+            'ranked' => 'classificata :timeago',
             'submitted' => 'inviata :timeago',
             'updated' => 'ultimo aggiornamento :timeago',
         ],
@@ -138,21 +138,21 @@ return [
 
         'scoreboard' => [
             'achieved' => 'ottenuto :when',
-            'country' => 'Rank del Paese',
-            'friend' => 'Rank degli Amici',
-            'global' => 'Rank Globale',
+            'country' => 'Classifica Nazionale',
+            'friend' => 'Classifica Amici',
+            'global' => 'Classifica Globale',
             'supporter-link' => 'Clicca <a href=":link">qui</a> per vedere tutte le fantastiche funzionalità che otterrai!',
-            'supporter-only' => 'Devi essere un osu!supporter per vedere i rank degli amici e del paese!',
+            'supporter-only' => 'Devi essere un osu!supporter per vedere la classifica amici, nazionale, o con mod specifiche!',
             'title' => 'Classifica',
 
             'headers' => [
                 'accuracy' => 'Precisione',
-                'combo' => 'Max Combo',
+                'combo' => 'Combo Massima',
                 'miss' => 'Miss',
                 'mods' => 'Mod',
                 'player' => 'Giocatore',
                 'pp' => '',
-                'rank' => 'Rank',
+                'rank' => 'Posto',
                 'score_total' => 'Punteggio Totale',
                 'score' => 'Punteggio',
                 'time' => 'Tempo',
@@ -160,7 +160,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Nessuno dal tuo paese ha fatto un punteggio in questa mappa!',
-                'friend' => 'Nessuno dei tuoi amici ha fatto un punteggio in questa mappa!',
+                'friend' => 'Nessuno dei tuoi amici ha ancora fatto un punteggio su questa mappa!',
                 'global' => 'Ancora nessun punteggio. Perché non provi a farne uno?',
                 'loading' => 'Caricamento punteggi...',
                 'unranked' => 'Beatmap non classificata.',
@@ -189,7 +189,7 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Rankata',
+            'ranked' => 'Classificata',
             'approved' => 'Approvata',
             'loved' => 'Amata',
             'qualified' => 'Qualificata',

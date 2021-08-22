@@ -47,7 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => '',
+            'multiplayer' => 'multigiocatore',
             'show' => 'info',
         ],
     ],
@@ -63,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmap',
-            'artists' => 'artisti in primo piano',
-            'index' => 'lista',
-            'packs' => 'pacchetti',
         ],
         'community' => [
             '_' => 'comunità',
-            'chat' => 'chat',
-            'contests' => 'concorsi',
             'dev' => 'sviluppo',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'live',
-            'tournaments' => 'tornei',
         ],
         'help' => [
             '_' => 'aiuto',
@@ -82,30 +74,17 @@ return [
             'getFaq' => 'domande frequenti',
             'getRules' => 'regole',
             'getSupport' => 'davvero, mi serve aiuto!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'home',
-            'changelog-index' => 'note di rilascio',
-            'getDownload' => 'download',
-            'news-index' => 'notizie',
-            'search' => 'cerca',
             'team' => 'team',
         ],
         'rankings' => [
             '_' => 'classifiche',
-            'charts' => 'spotlight',
-            'country' => 'paese',
-            'index' => 'performance',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multigiocatore',
-            'score' => 'punteggio',
         ],
         'store' => [
             '_' => 'negozio',
-            'cart-show' => 'carrello',
-            'getListing' => 'lista',
-            'orders-index' => 'cronologia ordini',
         ],
     ],
 

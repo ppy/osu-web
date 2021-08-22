@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'Paypal hylkäsi valitun maksutavan.',
     'invalid_resource_id' => 'Maksutietoja ei löytynyt.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "Maksu hylättiin, mutta emme ole varmoja miksi.",
 ];
