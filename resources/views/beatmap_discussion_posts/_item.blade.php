@@ -28,7 +28,29 @@
                         @include('beatmapset_activities._user', ['user' => $post->user])
 
                         <div class="beatmap-discussion-post__message-container">
-                            <div class="beatmap-discussion-post__message">{{$post->message}}</div>
+                            <div class="beatmap-discussion-post__message">
+                                @if ($post->system)
+                                    @php
+                                        $message = $post->message;
+                                        $messageValue = $message['value'];
+                                        $isResolving = $message['type'] === 'resolved';
+                                    @endphp
+                                    @if ($isResolving)
+                                        @php
+                                            $messageValue = $message['value'] ? 'true' : 'false';
+                                        @endphp
+                                        @if ($message['value'])
+                                            <i class="fas fa-check-circle"></i>
+                                        @else
+                                            <i class="fas fa-times-circle"></i>
+                                        @endif
+                                    @endif
+
+                                    {{ osu_trans("beatmap_discussions.system.{$message['type']}.{$messageValue}", ['user' => $post->user->username]) }}
+                                @else
+                                    {{ $post->message }}
+                                @endif
+                            </div>
                             <div class="beatmap-discussion-post__info-container">
                                 <span class="beatmap-discussion-post__info">{!! timeago($post->created_at) !!}</span>
                                 @if ($post->deleted_at !== null)

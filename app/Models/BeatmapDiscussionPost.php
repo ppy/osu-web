@@ -9,6 +9,7 @@ use App\Exceptions\ModelNotSavedException;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
+use Ds\Set;
 
 /**
  * @property BeatmapDiscussion $beatmapDiscussion
@@ -62,17 +63,15 @@ class BeatmapDiscussionPost extends Model
             }
         }
 
-        // only find replies (i.e. exclude discussion starting-posts)
-        $query->whereExists(function ($postQuery) {
-            $table = (new self())->getTable();
+        $types = (new Set(get_arr($rawParams['types'] ?? null, 'get_string') ?? []))
+            ->intersect(new Set(['first', 'reply', 'system']));
 
-            $postQuery->selectRaw(1)
-                ->from(DB::raw("{$table} d"))
-                ->whereRaw('beatmap_discussion_id = beatmap_discussion_posts.beatmap_discussion_id')
-                ->whereRaw("d.id < {$table}.id");
-        });
+        if ($types->isEmpty()) {
+            $types->add('reply');
+        }
 
-        $query->where('system', 0);
+        $query->byTypes($types);
+        $params['types'] = $types->toArray();
 
         if (isset($rawParams['sort'])) {
             $sort = explode('_', strtolower($rawParams['sort']));
@@ -362,6 +361,27 @@ class BeatmapDiscussionPost extends Model
     public function timestamp()
     {
         return static::parseTimestamp($this->message);
+    }
+
+    public function scopeByTypes($query, Set $types)
+    {
+        $query->where(function ($q) use ($types) {
+            $q->orWhere('system', $types->contains('system'));
+
+            if ($types->intersect(new Set(['first', 'reply']))->count() === 1) {
+                $condition = $types->contains('first')
+                    ? 'orWhereNotExists'
+                    : 'orWhereExists';
+                $q->$condition(function ($subquery) {
+                    $table = (new static())->getTable();
+
+                    $subquery->selectRaw(1)
+                        ->from(DB::raw("{$table} d"))
+                        ->whereRaw("d.beatmap_discussion_id = {$table}.beatmap_discussion_id")
+                        ->whereRaw("d.id < {$table}.id");
+                });
+            }
+        });
     }
 
     public function scopeWithoutTrashed($query)
