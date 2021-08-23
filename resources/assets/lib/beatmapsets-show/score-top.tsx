@@ -25,9 +25,6 @@ interface Props {
 
 export default class ScoreTop extends React.PureComponent<Props> {
   render() {
-    if (this.props.score.mode == null) {
-      throw new Error('score json is missing mode');
-    }
     return (
       <div className={classWithModifiers('beatmap-score-top', this.props.modifiers)}>
         <a
@@ -131,7 +128,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
             </div>
 
             <div className='beatmap-score-top__stats beatmap-score-top__stats--wrappable'>
-              {modeAttributesMap[this.props.score.mode].map((attr) => (
+              {modeAttributesMap[this.props.beatmap.mode].map((attr) => (
                 <div key={attr.attribute} className='beatmap-score-top__stat'>
                   <div className='beatmap-score-top__stat-header'>
                     {attr.attribute === 'count_miss' ? osu.trans('beatmapsets.show.scoreboard.headers.miss') : attr.label}
