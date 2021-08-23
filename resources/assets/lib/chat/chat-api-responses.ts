@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ChannelJson from 'interfaces/channel-json';
+import MessageJson from 'interfaces/message-json';
 import UserJson from 'interfaces/user-json';
 
 interface ChatSilenceJson {
@@ -27,15 +28,6 @@ export interface GetUpdatesJson {
 export type MarkAsReadJson =
   null;
 
-export interface MessageJson {
-  channel_id: number;
-  content: string;
-  is_action: boolean;
-  message_id: number;
-  sender?: UserJson;
-  sender_id: number;
-  timestamp: string;
-}
 
 export interface NewConversationJson {
   channel: ChannelJson;
