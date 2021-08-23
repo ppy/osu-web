@@ -123,16 +123,21 @@ class ChatController extends Controller
      */
     public function updates()
     {
-        $params = request()->all();
+        $params = get_params(request()->all(), null, [
+            'channel_id:int',
+            'history_since:int',
+            'limit:int',
+            'since:int',
+        ], ['null_missing' => true]);
 
-        if (!present($params['since'] ?? null)) {
+        if ($params['since'] === null) {
             abort(422);
         }
 
         $presence = $this->presence();
 
         $since = $params['since'];
-        $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+        $limit = clamp($params['limit'] ?? 50, 1, 50);
 
         // this is used to filter out messages from restricted users/etc
         $channelIds = array_map(function ($e) {
@@ -146,14 +151,14 @@ class ChatController extends Controller
             ->limit($limit)
             ->orderBy('message_id', 'DESC');
 
-        if (present($params['channel_id'] ?? null)) {
-            $messages->where('channel_id', get_int($params['channel_id']));
+        if ($params['channel_id'] !== null) {
+            $messages->where('channel_id', $params['channel_id']);
         }
 
         $messages = $messages->get()->reverse();
 
         $silenceQuery = UserAccountHistory::bans()->limit(100);
-        $lastHistoryId = get_int($params['history_since'] ?? null);
+        $lastHistoryId = $params['history_since'];
 
         if ($lastHistoryId === null) {
             $previousMessage = Message::where('message_id', '<=', $since)->last();
