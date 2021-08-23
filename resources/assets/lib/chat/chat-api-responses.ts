@@ -1,28 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ChannelJson from 'interfaces/channel-json';
 import UserJson from 'interfaces/user-json';
 
 interface ChatSilenceJson {
   id: number;
   user_id: number;
-}
-
-export type ChannelType = 'PUBLIC'|'PRIVATE'|'MULTIPLAYER'|'SPECTATOR'|'TEMPORARY'|'PM'|'GROUP'|'NEW';
-
-// This is the one that matches the php-side transformer response.
-export interface ChannelJson {
-  channel_id: number;
-  current_user_attributes?: {
-    can_message: boolean;
-    last_read_id: number;
-  };
-  description?: string;
-  icon?: string;
-  last_message_id?: number;
-  name: string;
-  type: ChannelType;
-  users?: number[];
 }
 
 export interface ChatInitialJson {
