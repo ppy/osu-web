@@ -4,7 +4,7 @@
 import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
-import { SocketConnectedAction } from 'actions/socket-connected-action';
+import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
@@ -50,8 +50,8 @@ export default class ChatStateStore implements DispatchListener {
       this.autoScroll = true;
     } else if (event instanceof ChatNewConversationAdded) {
       this.handleChatNewConversationAdded(event);
-    } else if (event instanceof SocketConnectedAction) {
-      this.handleReconnect();
+    } else if (event instanceof SocketStateChangedAction) {
+      this.handleSocketStateChanged(event);
     } else if (event instanceof WindowFocusAction) {
       this.handleWindowFocusAction();
     }
@@ -102,9 +102,11 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  private handleReconnect() {
-    this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
-    this.channelStore.loadChannel(this.selected);
+  private handleSocketStateChanged(event: SocketStateChangedAction) {
+    if (event.connected) {
+      this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
+      this.channelStore.loadChannel(this.selected);
+    }
   }
 
   @action

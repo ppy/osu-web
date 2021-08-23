@@ -3,5 +3,6 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 
-export class SocketConnectedAction implements DispatcherAction {
+export default class SocketStateChangedAction implements DispatcherAction {
+  constructor(public connected: boolean) {}
 }
