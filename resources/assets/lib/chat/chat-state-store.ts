@@ -7,15 +7,17 @@ import DispatcherAction from 'actions/dispatcher-action';
 import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatchListener } from 'app-dispatcher';
+import ChatApi from 'chat/chat-api';
 import DispatchListener from 'dispatch-listener';
-import { clamp } from 'lodash';
-import { action, computed, makeObservable, observable, observe } from 'mobx';
+import { clamp, maxBy } from 'lodash';
+import { action, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import ChannelStore from 'stores/channel-store';
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
   @observable autoScroll = false;
   @observable selectedBoxed = observable.box(0);
+  private lastHistoryId: number | null = null;
   private selectedIndex = 0;
 
   @computed
@@ -104,6 +106,8 @@ export default class ChatStateStore implements DispatchListener {
   @action
   private handleSocketStateChanged(event: SocketStateChangedAction) {
     if (event.connected) {
+      this.updateChannelList();
+
       this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
       this.channelStore.loadChannel(this.selected);
     }
@@ -124,5 +128,22 @@ export default class ChatStateStore implements DispatchListener {
     } else {
       this.focusChannelAtIndex(this.selectedIndex);
     }
+  }
+
+  @action
+  private async updateChannelList() {
+    console.log('updating channels');
+    const json = await ChatApi.getUpdates(this.channelStore.lastPolledMessageId, this.lastHistoryId);
+    if (!json) return; // FIXME: fix response
+
+    runInAction(() => {
+      const newHistoryId = maxBy(json.silences, 'id')?.id;
+
+      if (newHistoryId != null) {
+        this.lastHistoryId = newHistoryId;
+      }
+
+      this.channelStore.updateWithJson(json);
+    });
   }
 }
