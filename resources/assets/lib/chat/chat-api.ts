@@ -28,8 +28,8 @@ export default class ChatApi {
     return $.get(route('chat.channels.messages.index', { channel: channelId, ...params })) as JQuery.jqXHR<MessageJson[]>;
   }
 
-  static getUpdates(since: number, lastHistoryId?: number | null) {
-    return $.get(route('chat.updates'), { history_since: lastHistoryId, since }) as JQuery.jqXHR<ChatUpdatesJson>;
+  static getUpdates(since: number, summary: boolean, lastHistoryId?: number | null) {
+    return $.get(route('chat.updates'), { history_since: lastHistoryId, since, summary }) as JQuery.jqXHR<ChatUpdatesJson>;
   }
 
   static markAsRead(channelId: number, messageId: number) {

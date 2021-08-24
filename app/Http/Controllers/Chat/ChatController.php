@@ -128,34 +128,37 @@ class ChatController extends Controller
             'history_since:int',
             'limit:int',
             'since:int',
+            'summary:bool',
         ], ['null_missing' => true]);
 
         if ($params['since'] === null) {
             abort(422);
         }
 
-        $presence = $this->presence();
-
         $since = $params['since'];
         $limit = clamp($params['limit'] ?? 50, 1, 50);
+        $summary = $params['summary'] ?? false;
 
-        // this is used to filter out messages from restricted users/etc
-        $channelIds = array_map(function ($e) {
-            return $e['channel_id'];
-        }, $presence);
+        $presence = $this->presence();
 
-        $messages = Message
-            ::with('sender')
-            ->whereIn('channel_id', $channelIds)
-            ->since($since)
-            ->limit($limit)
-            ->orderBy('message_id', 'DESC');
+        if ($summary) {
+            $messages = collect();
+        } else {
+            $channelIds = array_pluck($presence, 'channel_id');
 
-        if ($params['channel_id'] !== null) {
-            $messages->where('channel_id', $params['channel_id']);
+            $messages = Message
+                ::with('sender')
+                ->whereIn('channel_id', $channelIds)
+                ->since($since)
+                ->limit($limit)
+                ->orderBy('message_id', 'DESC');
+
+            if ($params['channel_id'] !== null) {
+                $messages->where('channel_id', $params['channel_id']);
+            }
+
+            $messages = $messages->get()->reverse();
         }
-
-        $messages = $messages->get()->reverse();
 
         $silenceQuery = UserAccountHistory::bans()->limit(100);
         $lastHistoryId = $params['history_since'];
@@ -174,7 +177,7 @@ class ChatController extends Controller
 
         $silences = $silenceQuery->get();
 
-        if ($messages->isEmpty() && $silences->isEmpty()) {
+        if (!$summary && $messages->isEmpty() && $silences->isEmpty()) {
             return response([], 204);
         }
 

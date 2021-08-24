@@ -48,23 +48,4 @@ export default class ChatWorker implements DispatchListener {
       dispatch(dispatchAction);
     }
   }
-
-  // FIXME: placeholder function
-  update() {
-    ChatApi.getUpdates(this.channelStore.lastPolledMessageId, this.lastHistoryId).then((updateJson) => {
-      if (!updateJson) {
-        return;
-      }
-
-      transaction(() => {
-        const newHistoryId = maxBy(updateJson.silences, 'id')?.id;
-
-        if (newHistoryId != null) {
-          this.lastHistoryId = newHistoryId;
-        }
-
-        this.channelStore.updateWithJson(updateJson);
-      });
-    });
-  }
 }
