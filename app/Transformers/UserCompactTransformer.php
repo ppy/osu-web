@@ -336,7 +336,7 @@ class UserCompactTransformer extends TransformerAbstract
         $rankHistoryData = $user->rankHistories()
             ->where('mode', Beatmap::modeInt($this->mode))
             ->first()
-            ->setRelation('user', $user);
+            ?->setRelation('user', $user);
 
         return $rankHistoryData === null
             ? $this->primitive(null)
