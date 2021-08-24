@@ -755,6 +755,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->attributes['osu_subscriptionexpiry'] = optional($value)->startOfDay();
     }
 
+    public function getUserRankAttribute($value)
+    {
+        return $value === 0 ? null : $value;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Permission Checker Functions
