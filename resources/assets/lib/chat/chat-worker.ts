@@ -3,15 +3,11 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import ChatApi from 'chat/chat-api';
 import { ChatChannelJoinEvent, ChatChannelPartEvent, ChatMessageNewEvent, isChannelEvent, isMessageEvent } from 'chat/chat-events';
 import DispatchListener from 'dispatch-listener';
-import { maxBy } from 'lodash';
-import { transaction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
-import ChannelStore from 'stores/channel-store';
 
 function newDispatchActionFromJson(json: SocketEventData) {
   if (isMessageEvent(json)) {
@@ -34,11 +30,6 @@ function newDispatchActionFromJson(json: SocketEventData) {
 
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
-  private lastHistoryId: number | null = null;
-
-  constructor(private channelStore: ChannelStore) {
-  }
-
   handleDispatchAction(event: DispatcherAction) {
     if (!(event instanceof SocketMessageEvent)) return;
 

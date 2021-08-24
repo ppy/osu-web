@@ -38,7 +38,7 @@ declare global {
 export default class OsuCore {
   beatmapsetSearchController: BeatmapsetSearchController;
   readonly captcha = new Captcha();
-  chatWorker: ChatWorker;
+  readonly chatWorker = new ChatWorker();
   readonly clickMenu = new ClickMenu();
   @observable currentUser?: CurrentUser;
   dataStore: RootDataStore;
@@ -80,7 +80,6 @@ export default class OsuCore {
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
 
     this.socketWorker = new SocketWorker();
-    this.chatWorker = new ChatWorker(this.dataStore.channelStore);
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);
 
     makeObservable(this);
