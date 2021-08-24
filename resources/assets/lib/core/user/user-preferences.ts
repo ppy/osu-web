@@ -4,7 +4,7 @@
 import CurrentUser from 'interfaces/current-user';
 import { defaultUserPreferencesJson, UserPreferencesJson } from 'interfaces/current-user';
 import { route } from 'laroute';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { onErrorWithCallback } from 'utils/ajax';
 
 export default class UserPreferences {
@@ -14,6 +14,8 @@ export default class UserPreferences {
 
   constructor() {
     this.current = Object.assign({}, defaultUserPreferencesJson, this.fromStorage());
+
+    makeObservable(this);
   }
 
   get<T extends keyof UserPreferencesJson>(key: T) {

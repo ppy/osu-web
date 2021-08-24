@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { observable } from 'mobx';
+import { observable, makeObservable } from 'mobx';
 
 export default class WindowSize {
   @observable privateIsDesktop = false;
@@ -17,6 +17,8 @@ export default class WindowSize {
   constructor() {
     $(window).on('resize', this.handleResize);
     this.handleResize();
+
+    makeObservable(this);
   }
 
   handleResize = () => {
