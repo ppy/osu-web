@@ -11,6 +11,7 @@ import ScoreboardTime from 'scoreboard-time';
 import PpValue from 'scores/pp-value';
 import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
+import UserAvatar from 'user-avatar';
 import { UserLink } from 'user-link';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
@@ -25,6 +26,8 @@ interface Props {
 
 export default class ScoreTop extends React.PureComponent<Props> {
   render() {
+    const avatar = <UserAvatar user={this.props.score.user} />;
+
     return (
       <div className={classWithModifiers('beatmap-score-top', this.props.modifiers)}>
         <a
@@ -46,13 +49,14 @@ export default class ScoreTop extends React.PureComponent<Props> {
 
             <div className='beatmap-score-top__avatar'>
               {this.props.score.user.is_deleted ? (
-                <span className='avatar avatar--guest' />
+                avatar
               ) : (
                 <a
-                  className='avatar u-hover'
+                  className='u-hover'
                   href={route('users.show', { user: this.props.score.user_id })}
-                  style={{ backgroundImage: osu.urlPresence(this.props.score.user.avatar_url) }}
-                />
+                >
+                  {avatar}
+                </a>
               )}
             </div>
 
