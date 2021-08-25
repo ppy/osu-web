@@ -7,7 +7,6 @@ import * as React from 'react';
 interface Props {
   dateTime: string | moment.Moment;
   format?: string;
-  key?: string;
   relative?: boolean;
 }
 
