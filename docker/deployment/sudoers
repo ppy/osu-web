@@ -1,1 +1,0 @@
-osuweb  ALL=(ALL) NOPASSWD: /app/docker/deployment/symlink-k8s-env.sh

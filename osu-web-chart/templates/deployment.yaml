@@ -35,7 +35,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
             - /app/docker/deployment/entrypoint.sh
-            - nginx
+            - octane
           ports:
             - name: http
               containerPort: 8000
@@ -55,19 +55,13 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-            - mountPath: /var/env-secret
+            - mountPath: /app/.env
               name: env-secret
+              subPath: .env
               readOnly: true
             - mountPath: /app/storage/passport
               name: oauth-secret
               readOnly: true
-          lifecycle:
-            postStart:
-              exec:
-                command:
-                  - /bin/sh
-                  - -c
-                  - sudo /app/docker/deployment/symlink-k8s-env.sh
       volumes:
         - name: oauth-secret
           secret:

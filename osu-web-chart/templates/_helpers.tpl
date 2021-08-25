@@ -60,3 +60,7 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "osu-web-chart.dotenv-var" -}}
+{{- if not .value }}#{{ end }}{{- .name | upper -}}={{- .value -}}
+{{- end }}

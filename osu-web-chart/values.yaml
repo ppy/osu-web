@@ -5,14 +5,14 @@
 config:
   laravel:
     url: http://localhost:8080 # APP_URL
-    env: local # APP_ENV
-    debug: true # APP_DEBUG
+    env: production # APP_ENV
+    debug: false # APP_DEBUG
     appKey: "" # APP_KEY
     extraEnv: ""
 
-    sentry:
-      url: "" # APP_SENTRY
-      public_url: "" # APP_SENTRY_PUBLIC
+    sentry: {}
+      # url: "" # APP_SENTRY
+      # public_url: "" # APP_SENTRY_PUBLIC
 
     log:
       driver: log # BROADCAST_DRIVER
@@ -20,44 +20,44 @@ config:
 
     cache:
       driver: file # CACHE_DRIVER
-      localDriver: file # CACHE_DRIVER_LOCAL
+      # localDriver: file # CACHE_DRIVER_LOCAL
 
     session:
       driver: file # SESSION_DRIVER
-      domain: "" # SESSION_DOMAIN
-      secureCookie: false # SESSION_SECURE_COOKIE
+      # domain: "" # SESSION_DOMAIN
+      # secureCookie: false # SESSION_SECURE_COOKIE
 
     legacy:
-      sharedInteropSecret: "" # SHARED_INTEROP_SECRET
+      # sharedInteropSecret: "" # SHARED_INTEROP_SECRET
       banchoBotUserId: "" # BANCHO_BOT_USER_ID
 
-    filesystem:
-      disk: local # FILESYSTEM_DISK
+    filesystem: {}
+      # disk: local # FILESYSTEM_DISK
 
-    scoreReplaysStorage: local # SCORE_REPLAYS_STORAGE # Either "s3" or "local".
-    queueDriver: "" # QUEUE_DRIVER
+    # scoreReplaysStorage: local # SCORE_REPLAYS_STORAGE # Either "s3" or "local".
+    # queueDriver: "" # QUEUE_DRIVER
 
-    camo:
-      key: "" # CAMO_KEY
-      prefix: "" # CAMO_PREFIX
+    camo: {}
+      # key: "" # CAMO_KEY
+      # prefix: "" # CAMO_PREFIX
 
     oauth:
       publicKey: ""
       privateKey: ""
 
-    githubToken: "" # GITHUB_TOKEN
-    changelogGithubToken: "" # CHANGELOG_GITHUB_TOKEN
+    # githubToken: "" # GITHUB_TOKEN
+    # changelogGithubToken: "" # CHANGELOG_GITHUB_TOKEN
 
     datadog:
-      enabled: false # DATADOG_ENABLED
-      prefix: osu.web # DATADOG_PREFIX
-      apiKey: "" # DATADOG_API_KEY
-      appKey: "" # DATADOG_APP_KEY
-      host: https://app.datadoghq.com # DATADOG_HOST
-      statsd:
-        host: "" # DATADOG_STATSD_HOST
-        port: "" # DATADOG_STATSD_PORT
-        socket: "" # DATADOG_STATSD_SOCKET
+      #enabled: true # DATADOG_ENABLED
+      #prefix: osu.web # DATADOG_PREFIX
+      #apiKey: "" # DATADOG_API_KEY
+      #appKey: "" # DATADOG_APP_KEY
+      #host: https://app.datadoghq.com # DATADOG_HOST
+      statsd: {}
+        #host: localhost # DATADOG_STATSD_HOST
+        #port: 8125 # DATADOG_STATSD_PORT
+        #socket: "" # DATADOG_STATSD_SOCKET
 
     payments:
       sandbox: true # PAYMENT_SANDBOX
@@ -111,70 +111,70 @@ config:
     host: localhost # DB_HOST
     database: osu # DB_DATABASE
     user: osuweb # DB_USERNAME
-    password: "" # DB_PASSWORD
+    # password: "" # DB_PASSWORD
 
   dbName:
     chat: "" # default to osu_chat
 
   redis:
-    app:
-      host: 127.0.0.1 # REDIS_HOST
-      port: 6379 # REDIS_PORT
-      db: 0 # REDIS_DB
-    cache:
-      host: 127.0.0.1 # CACHE_REDIS_HOST
-      port: 6379 # CACHE_REDIS_PORT
-      db: 0 # CACHE_REDIS_DB
+    app: {}
+      # host: 127.0.0.1 # REDIS_HOST
+      # port: 6379 # REDIS_PORT
+      # db: 0 # REDIS_DB
+    cache: {}
+      # host: 127.0.0.1 # CACHE_REDIS_HOST
+      # port: 6379 # CACHE_REDIS_PORT
+      # db: 0 # CACHE_REDIS_DB
     notification:
       host: 127.0.0.1 # NOTIFICATION_REDIS_HOST
       port: 6379 # NOTIFICATION_REDIS_PORT
       db: 0 # NOTIFICATION_REDIS_DB
 
-  memcache:
-    persistent_id: "" # MEMCACHED_PERSISTENT_ID
-    username: "" # MEMCACHED_USERNAME
-    password: "" # MEMCACHED_PASSWORD
-    host: 127.0.0.1 # MEMCACHED_HOST
-    port: 11211 # MEMCACHED_PORT
+  memcache: {}
+    # persistent_id: "" # MEMCACHED_PERSISTENT_ID
+    # username: "" # MEMCACHED_USERNAME
+    # password: "" # MEMCACHED_PASSWORD
+    # host: 127.0.0.1 # MEMCACHED_HOST
+    # port: 11211 # MEMCACHED_PORT
 
-  mail:
-    driver: log # MAIL_DRIVER
-    host: "" # MAIL_HOST
-    port: "" # MAIL_PORT
-    encryption: "" # MAIL_ENCRYPTION
-    username: "" # MAIL_USERNAME
-    password: "" # MAIL_PASSWORD
+  mail: {}
+    # driver: log # MAIL_DRIVER
+    # host: "" # MAIL_HOST
+    # port: "" # MAIL_PORT
+    # encryption: "" # MAIL_ENCRYPTION
+    # username: "" # MAIL_USERNAME
+    # password: "" # MAIL_PASSWORD
 
-  beatmapsProcessor:
-    mirrors: 1 # BM_PROCESSOR_MIRRORS
-    thumbnailer: http://localhost:4001 # BM_PROCESSOR_THUMBNAILER
-    sentry: "" # BM_PROCESSOR_SENTRY
+  beatmapsProcessor: {}
+    # mirrors: 1 # BM_PROCESSOR_MIRRORS
+    # thumbnailer: http://localhost:4001 # BM_PROCESSOR_THUMBNAILER
+    # sentry: "" # BM_PROCESSOR_SENTRY
 
   s3:
-    default:
-      key: "" # S3_KEY
-      secret: "" # S3_SECRET
-      region: "" # S3_REGION
-      bucket: "" # S3_BUCKET
-    avatar:
-      key: "" # S3_AVATAR_KEY
-      secret: "" # S3_AVATAR_SECRET
-      region: "" # S3_AVATAR_REGION
-      bucket: "" # S3_AVATAR_BUCKET
-      storage: local-avatar # AVATAR_STORAGE
-      cache_purge_prefix: "" # AVATAR_CACHE_PURGE_PREFIX
+    default: {}
+      # key: "" # S3_KEY
+      # secret: "" # S3_SECRET
+      # region: "" # S3_REGION
+      # bucket: "" # S3_BUCKET
+    avatar: {}
+      # key: "" # S3_AVATAR_KEY
+      # secret: "" # S3_AVATAR_SECRET
+      # region: "" # S3_AVATAR_REGION
+      # bucket: "" # S3_AVATAR_BUCKET
+      # storage: local-avatar # AVATAR_STORAGE
+      # cache_purge_prefix: "" # AVATAR_CACHE_PURGE_PREFIX
 
   elasticsearch:
-    host: localhost:9200 # ES_HOST
-    scores:
-      host: localhost:9200 # ES_SCORES_HOST
-    indexPrefix: "" # ES_INDEX_PREFIX
-    clientTimeout: 5 # ES_CLIENT_TIMEOUT
-    clientConnectTimeout: 0.5 # ES_CLIENT_CONNECT_TIMEOUT
-    searchTimeout: 5s # ES_SEARCH_TIMEOUT
+    # host: localhost:9200 # ES_HOST
+    scores: {}
+      # host: localhost:9200 # ES_SCORES_HOST
+    # indexPrefix: "" # ES_INDEX_PREFIX
+    # clientTimeout: 5 # ES_CLIENT_TIMEOUT
+    # clientConnectTimeout: 0.5 # ES_CLIENT_CONNECT_TIMEOUT
+    # searchTimeout: 5s # ES_SEARCH_TIMEOUT
 
   notificationServer:
-    publicUrl: wss://notify.ppy.sh # NOTIFICATION_ENDPOINT
+    # publicUrl: /home/notifications/feed # NOTIFICATION_ENDPOINT
 
 replicaCount: 1
 
