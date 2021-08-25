@@ -12,56 +12,68 @@ import { classWithModifiers } from 'utils/css';
 import ExtraPageProps from './extra-page-props';
 
 const bn = 'profile-extra-recent-infringements';
-const columns = ['date', 'action', 'length', 'description'];
+const columns = ['date', 'action', 'length', 'description'] as const;
+type Column = typeof columns[number];
 
 // TODO: remove once translations are updated
 function stripTags(str: string) {
   return str.replace(/<[^>]*>/g, '');
 }
 
-function HistoryRow({ history }: { history: UserAccountHistoryJson }) {
-  return (
-    <tr>
-      <td className={`${bn}__table-cell ${bn}__table-cell--date`}>
-        <TimeWithTooltip dateTime={history.timestamp} relative />
-      </td>
-
-      <td className={`${bn}__table-cell ${bn}__table-cell--action`}>
-        <div className={`${bn}__action ${bn}__action--${history.type}`}>
-          {osu.trans(`users.show.extra.account_standing.recent_infringements.actions.${history.type}`)}
-        </div>
-      </td>
-
-      <td className={`${bn}__table-cell ${bn}__table-cell--length`}>
-        {history.type === 'restriction'
-          ? (
-            <div className={`${bn}__action ${bn}__action--restriction`}>
-              {osu.trans('users.show.extra.account_standing.recent_infringements.length_permanent')}
-            </div>
-          ) : (history.type === 'note' ? '' : moment.duration(history.length, 'seconds').humanize())
-        }
-      </td>
-
-      <td className={`${bn}__table-cell ${bn}__table-cell--description`}>
-        <span className={`${bn}__description`}>
-          {history.supporting_url != null
-            ? <a href={history.supporting_url}>{history.description}</a>
-            : history.description
-          }
-
-          {history.actor != null && (
-            <span className={`${bn}__actor`}>
-              <StringWithComponent
-                mappings={{ ':username': <UserLink key='username' user={history.actor} /> }}
-                pattern={osu.trans('users.show.extra.account_standing.recent_infringements.actor')}
-              />
-            </span>
-          )}
-        </span>
-      </td>
-    </tr>
-  );
+interface ColumnProps {
+  history: UserAccountHistoryJson;
 }
+
+const ColumnAction = ({ history }: ColumnProps) => (
+  <div className={`${bn}__action ${bn}__action--${history.type}`}>
+    {osu.trans(`users.show.extra.account_standing.recent_infringements.actions.${history.type}`)}
+  </div>
+);
+
+const ColumnDate = ({ history }: ColumnProps) => (
+  <TimeWithTooltip dateTime={history.timestamp} relative />
+);
+
+const ColumnDescription = ({ history }: ColumnProps) => (
+  <span className={`${bn}__description`}>
+    {history.supporting_url != null
+      ? <a href={history.supporting_url}>{history.description}</a>
+      : history.description
+    }
+
+    {history.actor != null && (
+      <span className={`${bn}__actor`}>
+        <StringWithComponent
+          mappings={{ ':username': <UserLink key='username' user={history.actor} /> }}
+          pattern={osu.trans('users.show.extra.account_standing.recent_infringements.actor')}
+        />
+      </span>
+    )}
+  </span>
+);
+
+const ColumnLength = ({ history }: ColumnProps) => {
+  if (history.type === 'restriction') {
+    return (
+      <div className={`${bn}__action ${bn}__action--restriction`}>
+        {osu.trans('users.show.extra.account_standing.recent_infringements.length_permanent')}
+      </div>
+    );
+  }
+
+  if (history.type === 'note') {
+    return null;
+  }
+
+  return <>{moment.duration(history.length, 'seconds').humanize()}</>;
+};
+
+const content: Record<Column, (props: ColumnProps) => JSX.Element | null> = {
+  action: ColumnAction,
+  date: ColumnDate,
+  description: ColumnDescription,
+  length: ColumnLength,
+};
 
 export default class AccountStanding extends React.PureComponent<ExtraPageProps> {
   render() {
@@ -103,22 +115,35 @@ export default class AccountStanding extends React.PureComponent<ExtraPageProps>
           <table className={`${bn}__table`}>
             <thead>
               <tr>
-                {columns.map((column) => (
-                  <th
-                    key={column}
-                    className={classWithModifiers(`${bn}__table-cell`, 'header', column)}
-                  >
-                    {osu.trans(`users.show.extra.account_standing.recent_infringements.${column}`)}
-                  </th>
-                ))}
+                {columns.map(this.renderHeaderColumn)}
               </tr>
             </thead>
             <tbody>
-              {this.props.user.account_history.map((h) => <HistoryRow key={h.id} history={h} />)}
+              {this.props.user.account_history.map((h) => (
+                <tr key={h.id}>
+                  {columns.map((column) => this.renderColumn(column, h))}
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
       </div>
     );
   }
+
+  private readonly renderColumn = (column: Column, history: UserAccountHistoryJson) => {
+    const ColumnContent = content[column];
+
+    return (
+      <td key={column} className={classWithModifiers(`${bn}__table-cell`, column)}>
+        <ColumnContent history={history} />
+      </td>
+    );
+  };
+
+  private readonly renderHeaderColumn = (column: Column) => (
+    <th key={column} className={classWithModifiers(`${bn}__table-cell`, 'header', column)}>
+      {osu.trans(`users.show.extra.account_standing.recent_infringements.${column}`)}
+    </th>
+  );
 }
