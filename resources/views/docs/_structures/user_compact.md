@@ -88,9 +88,10 @@ image         | string      | |
 Field       | Type      | Description
 ------------|-----------|------------
 description | string?   | |
-type        | string    | `note`, `restriction`, or `silence`.
-timestamp   | Timestamp | |
+id          | number    | |
 length      | number    | In seconds.
+timestamp   | Timestamp | |
+type        | string    | `note`, `restriction`, or `silence`.
 
 <div id="usercompact-userbadge" data-unique="usercompact-userbadge"></div>
 
