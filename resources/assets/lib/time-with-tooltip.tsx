@@ -5,19 +5,30 @@ import * as moment from 'moment';
 import * as React from 'react';
 
 interface Props {
-  dateTime: string;
+  dateTime: string | moment.Moment;
   format?: string;
   key?: string;
   relative?: boolean;
 }
 
 export default function TimeWithTooltip(props: Props) {
-  const { format = 'll', relative = false, ...otherProps } = props;
+  const { dateTime, format = 'll', relative = false, ...otherProps } = props;
   const className = relative ? 'js-timeago' : 'js-tooltip-time';
 
+  let dateTimeAttr: string;
+  let dateTimeMoment: moment.Moment;
+
+  if (typeof dateTime === 'string') {
+    dateTimeAttr = dateTime;
+    dateTimeMoment = moment(dateTime);
+  } else {
+    dateTimeAttr = dateTime.format();
+    dateTimeMoment = dateTime;
+  }
+
   return (
-    <time className={className} title={props.dateTime} {...otherProps}>
-      {moment(props.dateTime).format(format)}
+    <time className={className} dateTime={dateTimeAttr} title={dateTimeAttr} {...otherProps}>
+      {dateTimeMoment.format(format)}
     </time>
   );
 }
