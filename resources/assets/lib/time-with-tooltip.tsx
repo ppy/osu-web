@@ -12,23 +12,25 @@ interface Props {
 }
 
 export default function TimeWithTooltip(props: Props) {
-  const { dateTime, format = 'll', relative = false, ...otherProps } = props;
-  const className = relative ? 'js-timeago' : 'js-tooltip-time';
+  const { dateTime, format, relative = false, ...otherProps } = props;
 
-  let dateTimeAttr: string;
-  let dateTimeMoment: moment.Moment;
+  const dateTimeAttr = typeof dateTime === 'string' ? dateTime : dateTime.format();
 
-  if (typeof dateTime === 'string') {
-    dateTimeAttr = dateTime;
-    dateTimeMoment = moment(dateTime);
+  let className: string;
+  let label = dateTimeAttr;
+
+  if (relative) {
+    className = 'js-timeago';
   } else {
-    dateTimeAttr = dateTime.format();
-    dateTimeMoment = dateTime;
+    className = 'js-tooltip-time';
+
+    const dateTimeMoment = typeof dateTime === 'string' ? moment(dateTime) : dateTime;
+    label = dateTimeMoment.format(format ?? 'll');
   }
 
   return (
     <time className={className} dateTime={dateTimeAttr} title={dateTimeAttr} {...otherProps}>
-      {dateTimeMoment.format(format)}
+      {label}
     </time>
   );
 }
