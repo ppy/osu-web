@@ -366,22 +366,38 @@ class BeatmapDiscussionPost extends Model
     public function scopeByTypes($query, Set $types)
     {
         $query->where(function ($q) use ($types) {
-            $q->orWhere('system', $types->contains('system'));
+            if ($types->contains('system')) {
+                $q->where('system', true);
+            }
 
-            if ($types->intersect(new Set(['first', 'reply']))->count() === 1) {
-                $condition = $types->contains('first')
-                    ? 'orWhereNotExists'
-                    : 'orWhereExists';
-                $q->$condition(function ($subquery) {
-                    $table = (new static())->getTable();
+            $firstOrReplyCount = $types->intersect(new Set(['first', 'reply']))->count();
+            if ($firstOrReplyCount > 0) {
+                $q->orWhere(function ($replyQuery) use ($firstOrReplyCount, $types) {
+                    $replyQuery->where('system', false);
 
-                    $subquery->selectRaw(1)
-                        ->from(DB::raw("{$table} d"))
-                        ->whereRaw("d.beatmap_discussion_id = {$table}.beatmap_discussion_id")
-                        ->whereRaw("d.id < {$table}.id");
+                    if ($firstOrReplyCount === 1) {
+                        $replyQuery->where(fn ($q) => $q->firstFilter($types->contains('first')));
+                    }
+
+                    return $replyQuery;
                 });
             }
+
+            return $q;
         });
+    }
+
+    public function scopeFirstFilter($query, $isFirst = true)
+    {
+        $table = $this->getTable();
+
+        $condition = $isFirst ? 'whereNotExists' : 'whereExists';
+
+        return $query->$condition(fn ($q) => $q
+            ->selectRaw(1)
+            ->from(DB::raw("{$table} d"))
+            ->whereRaw("d.beatmap_discussion_id = {$table}.beatmap_discussion_id")
+            ->whereRaw("d.id < {$table}.id"));
     }
 
     public function scopeWithoutTrashed($query)
