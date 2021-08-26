@@ -7,24 +7,24 @@ import ExtraHeader from 'profile-page/extra-header';
 import ExtraPageProps from 'profile-page/extra-page-props';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { wikiUrl } from 'utils/url';
 import ValueDisplay from 'value-display';
 
 function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
   const textMappings = {
-    ':amount': (
-      <strong key='amount' className='profile-extra-entries__kudosu-amount'>
+    amount: (
+      <strong className='profile-extra-entries__kudosu-amount'>
         {osu.trans('users.show.extra.kudosu.entry.amount', { amount: osu.formatNumber(Math.abs(kudosu.amount)) })}
       </strong>
     ),
-    ':giver': kudosu.giver == null
+    giver: kudosu.giver == null
       ? osu.trans('users.deleted')
-      : <a key='giver' href={kudosu.giver.url}>{kudosu.giver.username}</a>,
-    ':post': kudosu.post.url == null
+      : <a href={kudosu.giver.url}>{kudosu.giver.username}</a>,
+    post: kudosu.post.url == null
       ? kudosu.post.title
-      : <a key='post' href={kudosu.post.url}>{kudosu.post.title}</a>,
+      : <a href={kudosu.post.url}>{kudosu.post.title}</a>,
   };
 
   return (
@@ -59,8 +59,8 @@ export default class Kudosu extends React.Component<Props> {
             description={(
               <StringWithComponent
                 mappings={{
-                  ':link': (
-                    <a key='link' href={wikiUrl('Kudosu')}>
+                  link: (
+                    <a href={wikiUrl('Kudosu')}>
                       {osu.trans('users.show.extra.kudosu.total_info.link')}
                     </a>
                   ),
