@@ -135,7 +135,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
               {modeAttributesMap[this.props.beatmap.mode].map((attr) => (
                 <div key={attr.attribute} className='beatmap-score-top__stat'>
                   <div className='beatmap-score-top__stat-header'>
-                    {attr.attribute === 'count_miss' ? osu.trans('beatmapsets.show.scoreboard.headers.miss') : attr.label}
+                    {attr.label}
                   </div>
                   <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller'>
                     {osu.formatNumber(this.props.score.statistics[attr.attribute])}
