@@ -53,7 +53,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
               ) : (
                 <a
                   className='u-hover'
-                  href={route('users.show', { user: this.props.score.user_id })}
+                  href={route('users.show', { mode: this.props.score.mode, user: this.props.score.user_id })}
                 >
                   {avatar}
                 </a>
@@ -63,6 +63,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
             <div className='beatmap-score-top__user-box'>
               <UserLink
                 className='beatmap-score-top__username u-hover'
+                mode={this.props.score.mode}
                 user={this.props.score.user}
               />
 
