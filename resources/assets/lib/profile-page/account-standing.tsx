@@ -99,7 +99,7 @@ export default class AccountStanding extends React.PureComponent<ExtraPageProps>
           <div className='page-extra__alert page-extra__alert--info'>
             <StringWithComponent
               mappings={{
-                ':duration': <TimeWithTooltip dateTime={endTime} relative />,
+                ':duration': <TimeWithTooltip key='duration' dateTime={endTime} relative />,
                 ':username': <strong key='username'>{this.props.user.username}</strong>,
               }}
               pattern={stripTags(osu.trans('users.show.extra.account_standing.remaining_silence'))}
