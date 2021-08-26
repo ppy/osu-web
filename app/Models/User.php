@@ -147,7 +147,7 @@ use Request;
  * @property string $user_post_sortby_dir
  * @property string $user_post_sortby_type
  * @property int $user_posts
- * @property int $user_rank
+ * @property int|null $user_rank
  * @property \Carbon\Carbon $user_regdate
  * @property mixed $user_sig
  * @property string $user_sig_bbcode_bitfield
