@@ -8,7 +8,7 @@ import { BigButton } from 'big-button'
 import { Modal } from 'modal'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { pageChange } from 'utils/page-change'
 import { wikiUrl } from 'utils/url'
@@ -303,11 +303,10 @@ export class Nominations extends React.PureComponent
 
         el StringWithComponent,
           mappings:
-            ':date': date
-            ':position': @props.beatmapset.nominations.ranking_queue_position
-            ':queue': a
+            date: date
+            position: @props.beatmapset.nominations.ranking_queue_position
+            queue: a
               href: wikiUrl('Beatmap_ranking_procedure/Ranking_queue')
-              key: 'queue'
               target: '_blank'
               osu.trans 'beatmaps.nominations.rank_estimate.queue'
           pattern: osu.trans 'beatmaps.nominations.rank_estimate._'

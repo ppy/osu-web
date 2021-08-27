@@ -5,7 +5,7 @@ import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { Spinner } from 'spinner';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import { classWithModifiers } from 'utils/css';
 import Beatmapset from './beatmapset';
 import User from './user';
@@ -266,7 +266,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return (
       <h2 className='title'>
         <StringWithComponent
-          mappings={{ ':mode': <strong key='mode'>{osu.trans(`quick_search.mode.${mode}`)}</strong> }}
+          mappings={{ mode: <strong>{osu.trans(`quick_search.mode.${mode}`)}</strong> }}
           pattern={osu.trans('quick_search.result.title')}
         />
       </h2>

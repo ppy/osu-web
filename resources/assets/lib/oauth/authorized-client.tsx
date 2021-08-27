@@ -5,7 +5,7 @@ import { BigButton } from 'big-button';
 import { observer } from 'mobx-react';
 import { Client } from 'models/oauth/client';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import { UserLink } from 'user-link';
 
 interface Props {
@@ -16,9 +16,6 @@ interface Props {
 export class AuthorizedClient extends React.Component<Props> {
   render() {
     const client = this.props.client;
-    const mappings = {
-      ':user': <UserLink key='user' user={client.user} />,
-    };
 
     return (
       <div className='oauth-client'>
@@ -27,7 +24,12 @@ export class AuthorizedClient extends React.Component<Props> {
             {client.name}
           </div>
           <span className='oauth-client__owner'>
-            <StringWithComponent mappings={mappings} pattern={osu.trans('oauth.authorized_clients.owned_by')} />
+            <StringWithComponent
+              mappings={{
+                user: <UserLink user={client.user} />,
+              }}
+              pattern={osu.trans('oauth.authorized_clients.owned_by')}
+            />
           </span>
           <div className='oauth-client__scopes'>
             {this.renderPermissions()}
