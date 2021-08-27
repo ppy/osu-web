@@ -35,7 +35,7 @@ class ChatController extends Controller
             $channel?->addUser($user);
 
             $json['send_to'] = [
-                'can_message' => $channel?->canMessage($user) ?? false,
+                'can_message' => $channel?->canMessage($user) ?? priv_check('ChatPmStart', $targetUser),
                 'channel_id' => $channel?->getKey(),
                 'target' => json_item($targetUser, 'UserCompact'),
             ];

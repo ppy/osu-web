@@ -854,10 +854,6 @@ class OsuAuthorize
             return $prefix.'moderated';
         }
 
-        if (!$channel->exists) {
-            return $prefix.'no_channel';
-        }
-
         if ($channel->isPM()) {
             $target = $channel->pmTargetFor($user);
             if ($target === null) {
@@ -868,6 +864,8 @@ class OsuAuthorize
             if (!$chatPmStartPermission->can()) {
                 return $chatPmStartPermission->rawMessage();
             }
+        } else if (!$channel->exists) {
+            return $prefix.'no_channel';
         }
 
         // TODO: add actual permission checks for bancho multiplayer games?
