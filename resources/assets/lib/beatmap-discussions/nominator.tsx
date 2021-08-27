@@ -2,7 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BigButton } from 'big-button';
-import BeatmapsetJson, { BeatmapsetEvent, isBeatmapsetNominationEvent } from 'interfaces/beatmapset-json';
+import BeatmapsetEventJson, { isBeatmapsetNominationEvent } from 'interfaces/beatmapset-event-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import UserJson from 'interfaces/user-json';
@@ -46,7 +47,7 @@ export class Nominator extends React.PureComponent<Props, State> {
   }
 
   hasFullNomination = (mode: GameMode) => {
-    const eventUserIsFullNominator = (event: BeatmapsetEvent, gameMode?: GameMode) => {
+    const eventUserIsFullNominator = (event: BeatmapsetEventJson, gameMode?: GameMode) => {
       if (!event.user_id) {
         return false;
       }
@@ -127,7 +128,7 @@ export class Nominator extends React.PureComponent<Props, State> {
   };
 
   nominationEvents = () => {
-    const nominations: BeatmapsetEvent[] = [];
+    const nominations: BeatmapsetEventJson[] = [];
 
     _.forEachRight(this.props.beatmapset.events ?? [], (event) => {
       if (event.type === 'nomination_reset') {

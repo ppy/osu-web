@@ -4,6 +4,17 @@
 import BeatmapsetJson from './beatmapset-json';
 import GameMode from './game-mode';
 
+export function isBeatmapsetNominationEvent(x: BeatmapsetEventJson): x is BeatmapsetNominationEvent {
+  return x.type === 'nominate' && Array.isArray(x.comment?.modes);
+}
+
+export interface BeatmapsetNominationEvent extends BeatmapsetEventJson {
+  comment: {
+    modes: GameMode[];
+  };
+  type: 'nominate';
+}
+
 export default interface BeatmapsetEventJson {
   beatmapset?: BeatmapsetJson;
   comment: any; // TODO: make always an object instead of object or string.
