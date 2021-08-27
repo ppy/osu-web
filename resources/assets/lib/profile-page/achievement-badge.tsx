@@ -2,25 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Img2x from 'img2x';
-import GameMode from 'interfaces/game-mode';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
 import { nextVal } from 'utils/seq';
-
-interface AchievementJson {
-  description: string;
-  grouping: string;
-  icon_url: string;
-  id: number;
-  instructions: string | null;
-  mode: GameMode;
-  name: string;
-  ordering: number;
-  slug: string;
-}
+import AchievementJson from 'interfaces/achievement-json';
+import UserAchievementJson from 'interfaces/user-achievement-json';
 
 type AchievementBadgeIconProps = {
   achievement: AchievementJson;
@@ -102,11 +91,6 @@ function AchievementBadgePopup({ achievement, userAchievement }: AchievementBadg
       </div>
     </>
   );
-}
-
-interface UserAchievementJson {
-  achieved_at: string;
-  achievement_id: number;
 }
 
 interface Props {
