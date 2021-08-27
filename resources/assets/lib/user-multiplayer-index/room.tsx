@@ -10,7 +10,7 @@ import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import { UserLink } from 'user-link';
 import UserMultiplayerHistoryContext from 'user-multiplayer-history-context';
 import { getDiffColour } from 'utils/beatmap-helper';
@@ -109,7 +109,7 @@ export default class Room extends React.Component<Props> {
     return (
       <div className='multiplayer-room__host'>
         <StringWithComponent
-          mappings={{ ':user': <UserLink key='user' className='u-hover' user={this.props.room.host} /> }}
+          mappings={{ user: <UserLink className='u-hover' user={this.props.room.host} /> }}
           pattern={osu.trans('multiplayer.room.hosted_by')}
         />
       </div>

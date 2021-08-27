@@ -6,7 +6,7 @@ import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import { route } from 'laroute';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import { UserLink } from 'user-link';
 import { getArtist, getDiffColour, getTitle } from 'utils/beatmap-helper';
 
@@ -55,11 +55,7 @@ const BeatmapInfo = (props: Props) => {
           <span className='score-beatmap__mapper'>
             <StringWithComponent
               mappings={{
-                ':mapper':
-                  <UserLink
-                    key='user'
-                    user={{ id: beatmapset.user_id, username: beatmapset.creator }}
-                  />,
+                mapper: <UserLink user={{ id: beatmapset.user_id, username: beatmapset.creator }} />,
               }}
               pattern={osu.trans('beatmapsets.show.details.mapped_by')}
             />

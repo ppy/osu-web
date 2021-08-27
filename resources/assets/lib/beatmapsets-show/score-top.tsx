@@ -9,7 +9,7 @@ import Mod from 'mod';
 import * as React from 'react';
 import ScoreboardTime from 'scoreboard-time';
 import PpValue from 'scores/pp-value';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import UserAvatar from 'user-avatar';
 import { UserLink } from 'user-link';
@@ -70,7 +70,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
               <div className='beatmap-score-top__achieved u-hover'>
                 <StringWithComponent
                   mappings={{
-                    ':when': <TimeWithTooltip key='achieved' dateTime={this.props.score.created_at} relative />,
+                    when: <TimeWithTooltip dateTime={this.props.score.created_at} relative />,
                   }}
                   pattern={osu.trans('beatmapsets.show.scoreboard.achieved')}
                 />

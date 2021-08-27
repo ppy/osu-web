@@ -5,7 +5,7 @@ import { BigButton } from 'big-button'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, p, span } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 el = React.createElement
 
 bn = 'beatmapset-hype'
@@ -25,9 +25,8 @@ export class Hype extends React.PureComponent
             className: "#{bn}__description-row #{bn}__description-row--action"
             el StringWithComponent,
               mappings:
-                ':link': a
+                link: a
                   href: @reportUrl()
-                  key: 'link'
                   osu.trans 'beatmapsets.show.hype.report.link'
               pattern:
                 if @userCanDisqualify()

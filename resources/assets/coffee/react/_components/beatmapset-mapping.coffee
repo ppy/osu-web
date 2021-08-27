@@ -3,7 +3,7 @@
 
 import * as React from 'react'
 import { a, div, span, strong, time } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 import TimeWithTooltip from 'time-with-tooltip'
 el = React.createElement
 
@@ -47,9 +47,8 @@ export class BeatmapsetMapping extends React.PureComponent
       el StringWithComponent,
         pattern: osu.trans "beatmapsets.show.details_date.#{key}"
         mappings:
-          ':timeago':
-            strong
-              key: 'timeago'
+          timeago:
+            strong null,
               el TimeWithTooltip,
                 dateTime: @props.beatmapset[attribute]
                 relative: Math.abs(moment().diff(moment(@props.beatmapset[attribute]), 'weeks')) < 4
