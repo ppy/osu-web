@@ -5,7 +5,7 @@ import AchievementJson from 'interfaces/achievement-json';
 import UserAchievementJson from 'interfaces/user-achievement-json';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
+import { mergeModifiers, Modifiers } from 'utils/css';
 import { nextVal } from 'utils/seq';
 import AchievementBadgeIcon from './achievement-badge-icon';
 import AchievementBadgePopup from './achievement-badge-popup';
@@ -51,7 +51,6 @@ export default class AchievementBadge extends React.PureComponent<Props> {
     }
 
     elem._tooltip = this.tooltipId;
-    const classes = classWithModifiers('qtip tooltip-achievement', { locked: this.props.userAchievement == null });
 
     const options = {
       content: $content,
@@ -74,7 +73,7 @@ export default class AchievementBadge extends React.PureComponent<Props> {
         ready: true,
       },
       style: {
-        classes: `${classes} qtip`,
+        classes: `tooltip-achievement qtip`,
         tip: {
           height: 20,
           width: 30,
