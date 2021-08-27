@@ -7,7 +7,7 @@ import { route } from 'laroute';
 import { compact } from 'lodash';
 import * as moment from 'moment';
 import * as React from 'react';
-import { Props as StringWithComponentProps, StringWithComponent } from 'string-with-component';
+import StringWithComponent, { Props as StringWithComponentProps } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers } from 'utils/css';
 
@@ -69,7 +69,7 @@ const textMapping: Record<TextKey, (user: UserExtendedJson) => StringWithCompone
     const url = route('comments.index', { user_id: user.id });
 
     return {
-      mappings: { ':link': <a key='link' className={classWithModifiers('profile-links__value', ['link'])} href={url}>{count}</a> },
+      mappings: { link: <a className={classWithModifiers('profile-links__value', 'link')} href={url}>{count}</a> },
       pattern: osu.trans('users.show.comments_count._'),
     };
   },
@@ -90,12 +90,8 @@ const textMapping: Record<TextKey, (user: UserExtendedJson) => StringWithCompone
     }
 
     const mappings = {
-      ':date': (
-        <span
-          key='date'
-          className={className}
-          title={joinDateTitle}
-        >
+      date: (
+        <span className={className} title={joinDateTitle}>
           {text}
         </span>
       ),
@@ -112,7 +108,11 @@ const textMapping: Record<TextKey, (user: UserExtendedJson) => StringWithCompone
     }
 
     return {
-      mappings: { ':date': <span key='date' className='profile-links__value'><TimeWithTooltip dateTime={user.last_visit ?? ''} relative /></span> },
+      mappings: { date: (
+        <span className='profile-links__value'>
+          <TimeWithTooltip dateTime={user.last_visit ?? ''} relative />
+        </span>
+      ) },
       pattern: osu.trans('users.show.lastvisit'),
     };
   },
@@ -120,7 +120,7 @@ const textMapping: Record<TextKey, (user: UserExtendedJson) => StringWithCompone
     const playsWith = user.playstyle.map((s) => osu.trans(`common.device.${s}`)).join(', ');
 
     return {
-      mappings: { ':devices': <span key='devices' className='profile-links__value'>{playsWith}</span> },
+      mappings: { devices: <span className='profile-links__value'>{playsWith}</span> },
       pattern: osu.trans('users.show.plays_with'),
     };
   },
@@ -129,7 +129,7 @@ const textMapping: Record<TextKey, (user: UserExtendedJson) => StringWithCompone
     const url = route('users.posts', { user: user.id });
 
     return {
-      mappings: { ':link': <a key='link' className={classWithModifiers('profile-links__value', ['link'])} href={url}>{count}</a> },
+      mappings: { link: <a className={classWithModifiers('profile-links__value', 'link')} href={url}>{count}</a> },
       pattern: osu.trans('users.show.post_count._'),
     };
   },

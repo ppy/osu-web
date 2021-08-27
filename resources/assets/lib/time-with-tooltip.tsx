@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function TimeWithTooltip(props: Props) {
-  const { dateTime, format, relative = false, ...otherProps } = props;
+  const { dateTime, format = 'll', relative = false, ...otherProps } = props;
 
   const dateTimeAttr = typeof dateTime === 'string' ? dateTime : dateTime.format();
 
@@ -24,7 +24,7 @@ export default function TimeWithTooltip(props: Props) {
     className = 'js-tooltip-time';
 
     const dateTimeMoment = typeof dateTime === 'string' ? moment(dateTime) : dateTime;
-    label = dateTimeMoment.format(format ?? 'll');
+    label = dateTimeMoment.format(format);
   }
 
   return (
