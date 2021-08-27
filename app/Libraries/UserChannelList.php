@@ -44,7 +44,7 @@ class UserChannelList
 
         foreach ($userChannels as $userChannel) {
             // preset userChannel for getting last_read_id.
-            $userChannel->channel->setUserChannelFor($this->user, $userChannel);
+            $userChannel->channel->setUserChannel($userChannel);
         }
 
         $this->channels = $userChannels->pluck('channel');

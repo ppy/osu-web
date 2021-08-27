@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use LaravelRedis as Redis;
 
@@ -45,10 +46,8 @@ class Channel extends Model
         'creation_time',
     ];
 
-    /** @var \Illuminate\Support\Collection */
-    private $pmUsers;
-
-    private ?UserChannel $userChannel;
+    private ?Collection $pmUsers;
+    private array $preloadedUserChannels = [];
 
     const TYPES = [
         'public' => 'PUBLIC',
@@ -153,7 +152,7 @@ class Channel extends Model
     }
 
     /**
-     * Preset the UserChannel with Channel::setUserChannelFor when handling multiple channels.
+     * Preset the UserChannel with Channel::setUserChannel when handling multiple channels.
      * UserChannelList will automatically do this.
      */
     public function lastReadIdFor(?User $user): ?int
@@ -426,14 +425,13 @@ class Channel extends Model
         ])->exists();
     }
 
-    public function setUserChannelFor(User $user, UserChannel $userChannel)
+    public function setUserChannel(UserChannel $userChannel)
     {
-        if ($userChannel->user_id !== $user->getKey()) {
-            throw new InvariantException('userChannel does not belong to the same user.');
+        if ($userChannel->channel_id !== $this->getKey()) {
+            throw new InvariantException('userChannel does not belong to the channel.');
         }
 
-        $userChannel->setRelation('user', $user);
-        $this->userChannel = $userChannel;
+        $this->preloadedUserChannels[$userChannel->user_id] = $userChannel;
     }
 
     private function unhide()
@@ -455,18 +453,12 @@ class Channel extends Model
         $userId = $user->getKey();
 
         return $this->memoize(__FUNCTION__.':'.$userId, function () use ($user, $userId) {
-            if (isset($this->userChannel) && $this->userChannel->user_id === $userId) {
-                return $this->userChannel;
-            }
-
-            $userChannel = UserChannel::where([
+            $userChannel = $this->preloadedUserChannels[$userId] ?? UserChannel::where([
                 'channel_id' => $this->channel_id,
                 'user_id' => $userId,
             ])->first();
 
-            if ($userChannel !== null) {
-                $userChannel->setRelation('user', $user);
-            }
+            $userChannel?->setRelation('user', $user);
 
             return $userChannel;
         });
