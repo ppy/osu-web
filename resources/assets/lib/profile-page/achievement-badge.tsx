@@ -5,8 +5,6 @@ import AchievementJson from 'interfaces/achievement-json';
 import UserAchievementJson from 'interfaces/user-achievement-json';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import StringWithComponent from 'string-with-component';
-import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
 import { nextVal } from 'utils/seq';
 import AchievementBadgeIcon from './achievement-badge-icon';
