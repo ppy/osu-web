@@ -131,15 +131,11 @@ export default class AccountStanding extends React.PureComponent<ExtraPageProps>
     );
   }
 
-  private readonly renderColumn = (column: Column, history: UserAccountHistoryJson) => {
-    const ColumnContent = content[column];
-
-    return (
-      <td key={column} className={classWithModifiers(`${bn}__table-cell`, column)}>
-        <ColumnContent history={history} />
-      </td>
-    );
-  };
+  private readonly renderColumn = (column: Column, history: UserAccountHistoryJson) => (
+    <td key={column} className={classWithModifiers(`${bn}__table-cell`, column)}>
+      {React.createElement(content[column], { history })}
+    </td>
+  );
 
   private readonly renderHeaderColumn = (column: Column) => (
     <th key={column} className={classWithModifiers(`${bn}__table-cell`, 'header', column)}>
