@@ -2,14 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapIcon } from 'beatmap-icon';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
 import { generate as generateHash } from 'utils/beatmapset-page-hash';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
   active: boolean;
-  beatmap: BeatmapJsonExtended;
+  beatmap: BeatmapExtendedJson;
 }
 
 export default class BeatmapSelection extends React.PureComponent<Props> {

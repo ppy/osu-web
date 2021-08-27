@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapIcon } from 'beatmap-icon';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
@@ -11,7 +11,7 @@ import { UserLink } from 'user-link';
 import { getArtist, getDiffColour, getTitle } from 'utils/beatmap-helper';
 
 interface Props {
-  beatmap: BeatmapJsonExtended;
+  beatmap: BeatmapExtendedJson;
   beatmapset: BeatmapsetJson;
 }
 

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapReviewDiscussionType } from 'interfaces/beatmap-discussion-review';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import * as _ from 'lodash';
 import * as React from 'react';
@@ -24,9 +24,9 @@ interface Cache {
 }
 
 interface Props extends RenderElementProps {
-  beatmaps: BeatmapJsonExtended[];
+  beatmaps: BeatmapExtendedJson[];
   beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJsonExtended;
+  currentBeatmap: BeatmapExtendedJson;
   discussionId?: number;
   discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
   editMode?: boolean;

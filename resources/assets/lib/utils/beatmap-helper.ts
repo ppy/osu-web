@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as d3 from 'd3';
+import { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
-import { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
 import * as _ from 'lodash';
