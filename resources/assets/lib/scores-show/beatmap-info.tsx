@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapIcon } from 'beatmap-icon';
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import StringWithComponent from 'string-with-component';

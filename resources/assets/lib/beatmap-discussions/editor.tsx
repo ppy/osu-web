@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import { CircularProgress } from 'circular-progress';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
 import * as _ from 'lodash';

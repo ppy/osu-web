@@ -1,12 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import {
-  BeatmapsetEvent,
-  BeatmapsetJson,
-  isBeatmapsetNominationEvent,
-} from 'beatmapsets/beatmapset-json';
 import { BigButton } from 'big-button';
+import BeatmapsetJson, { BeatmapsetEvent, isBeatmapsetNominationEvent } from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import UserJson from 'interfaces/user-json';
