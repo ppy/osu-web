@@ -84,7 +84,7 @@ class ChannelsController extends Controller
             $channel->addUser($user);
         }
 
-        return json_item($channel, ChannelTransformer::forUser($user), ['first_message_id', 'last_message_id', 'users']);
+        return json_item($channel, ChannelTransformer::forUser($user), ['current_user_attributes', 'first_message_id', 'last_message_id', 'users']);
     }
 
     /**
@@ -186,7 +186,12 @@ class ChannelsController extends Controller
         priv_check('ChatChannelRead', $channel)->ensureCan();
 
         return [
-            'channel' => json_item($channel, ChannelTransformer::forUser(auth()->user()), ['first_message_id', 'last_message_id', 'users']),
+            'channel' => json_item($channel, ChannelTransformer::forUser(auth()->user()), [
+                'current_user_attributes',
+                'first_message_id',
+                'last_message_id',
+                'users',
+            ]),
             // TODO: probably going to need a better way to list/fetch/update users on larger channels without sending user on every message.
             'users' => json_collection($channel->visibleUsers(), 'UserCompact'),
         ];

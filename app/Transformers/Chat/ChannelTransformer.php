@@ -12,6 +12,7 @@ use App\Transformers\TransformerAbstract;
 class ChannelTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
+        'current_user_attributes',
         'first_message_id',
         'last_message_id',
         'last_read_id',
@@ -32,7 +33,6 @@ class ChannelTransformer extends TransformerAbstract
     public function transform(Channel $channel)
     {
         return [
-            'can_message' => $channel->canMessage($this->user),
             'channel_id' => $channel->channel_id,
             'description' => $channel->description,
             'icon' => $channel->displayIconFor($this->user),
@@ -40,6 +40,13 @@ class ChannelTransformer extends TransformerAbstract
             'name' => $channel->displayNameFor($this->user),
             'type' => $channel->type,
         ];
+    }
+
+    public function includeCurrentUserAttributes(Channel $channel)
+    {
+        return $this->primitive([
+            'can_message' => $channel->canMessage($this->user),
+        ]);
     }
 
     public function includeFirstMessageId(Channel $channel)

@@ -161,7 +161,6 @@ export default class Channel {
 
   @action
   updateWithJson(json: ChannelJson) {
-    this.canMessage = json.can_message;
     this.name = json.name;
     this.description = json.description;
     this.type = json.type;
@@ -169,6 +168,10 @@ export default class Channel {
     this.users = json.users ?? this.users;
 
     this.initialLastMessageId = json.last_message_id ?? this.lastMessageId;
+
+    if (json.current_user_attributes != null) {
+      this.canMessage = json.current_user_attributes.can_message;
+    }
   }
 
   @action

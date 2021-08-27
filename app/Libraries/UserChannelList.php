@@ -30,7 +30,7 @@ class UserChannelList
 
         $transformer = ChannelTransformer::forUser($this->user);
 
-        return json_collection($filteredChannels, $transformer, ['last_message_id', 'last_read_id', 'users']);
+        return json_collection($filteredChannels, $transformer, ['current_user_attributes', 'last_message_id', 'last_read_id', 'users']);
     }
 
     private function loadChannels()

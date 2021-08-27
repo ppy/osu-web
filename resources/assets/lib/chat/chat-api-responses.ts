@@ -12,7 +12,9 @@ export type ChannelType = 'PUBLIC'|'PRIVATE'|'MULTIPLAYER'|'SPECTATOR'|'TEMPORAR
 
 // This is the one that matches the php-side transformer response.
 export interface ChannelJson {
-  can_message: boolean;
+  current_user_attributes?: {
+    can_message: boolean;
+  };
   channel_id: number;
   description?: string;
   first_message_id?: number;
