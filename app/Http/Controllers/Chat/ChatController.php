@@ -257,7 +257,7 @@ class ChatController extends Controller
             get_bool($params['is_action'] ?? null)
         );
 
-        $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ['first_message_id', 'last_message_id', 'users']);
+        $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ChannelTransformer::CONVERSATION_INCLUDES);
 
         return [
             'channel' => $channelJson,

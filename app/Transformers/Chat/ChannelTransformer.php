@@ -11,6 +11,17 @@ use App\Transformers\TransformerAbstract;
 
 class ChannelTransformer extends TransformerAbstract
 {
+    const CONVERSATION_INCLUDES = [
+        'first_message_id',
+        'last_message_id',
+        'users',
+    ];
+
+    const LISTING_INCLUDES = [
+        'current_user_attributes',
+        ...self::CONVERSATION_INCLUDES,
+    ];
+
     protected $availableIncludes = [
         'current_user_attributes',
         'first_message_id',
