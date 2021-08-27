@@ -5,7 +5,7 @@ import UserAccountHistoryJson from 'interfaces/user-account-history-json';
 import * as moment from 'moment';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
 import { classWithModifiers } from 'utils/css';
@@ -44,7 +44,7 @@ const ColumnDescription = ({ history }: ColumnProps) => (
     {history.actor != null && (
       <span className={`${bn}__actor`}>
         <StringWithComponent
-          mappings={{ ':username': <UserLink key='username' user={history.actor} /> }}
+          mappings={{ username: <UserLink user={history.actor} /> }}
           pattern={osu.trans('users.show.extra.account_standing.recent_infringements.actor')}
         />
       </span>
@@ -89,7 +89,7 @@ export default class AccountStanding extends React.PureComponent<ExtraPageProps>
         {latest != null && (
           <div className='page-extra__alert page-extra__alert--warning'>
             <StringWithComponent
-              mappings={{ ':username': <strong key='username'>{this.props.user.username}</strong> }}
+              mappings={{ username: <strong>{this.props.user.username}</strong> }}
               pattern={stripTags(osu.trans('users.show.extra.account_standing.bad_standing'))}
             />
           </div>
@@ -99,8 +99,8 @@ export default class AccountStanding extends React.PureComponent<ExtraPageProps>
           <div className='page-extra__alert page-extra__alert--info'>
             <StringWithComponent
               mappings={{
-                ':duration': <TimeWithTooltip key='duration' dateTime={endTime} relative />,
-                ':username': <strong key='username'>{this.props.user.username}</strong>,
+                duration: <TimeWithTooltip dateTime={endTime} relative />,
+                username: <strong>{this.props.user.username}</strong>,
               }}
               pattern={stripTags(osu.trans('users.show.extra.account_standing.remaining_silence'))}
             />
