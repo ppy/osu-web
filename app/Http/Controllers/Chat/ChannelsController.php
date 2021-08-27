@@ -149,7 +149,6 @@ class ChannelsController extends Controller
      *     "icon": "/images/layout/avatar-guest@2x.png",
      *     "type": "PM",
      *     "first_message_id": 10,
-     *     "last_read_id": 9150005005,
      *     "last_message_id": 9150005005,
      *     "moderated": false,
      *     "users": [
