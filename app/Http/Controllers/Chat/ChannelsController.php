@@ -58,10 +58,10 @@ class ChannelsController extends Controller
      * Returns the joined [ChatChannel](#chatchannel).
      *
      * @response {
+     *   "channel_id": 5,
      *   "current_user_attributes": {
      *     "can_message": true
      *   },
-     *   "channel_id": 5,
      *   "description": "The official osu! channel (english only).",
      *   "first_message_id": 1,
      *   "icon": "https://a.ppy.sh/2?1519081077.png",
@@ -140,10 +140,10 @@ class ChannelsController extends Controller
      *
      * @response {
      *   "channel": {
+     *     "channel_id": 1337,
      *     "current_user_attributes": {
      *       "can_message": true
      *     },
-     *     "channel_id": 1337,
      *     "name": "test channel",
      *     "description": "wheeeee",
      *     "icon": "/images/layout/avatar-guest@2x.png",
