@@ -1163,7 +1163,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 'discussions.posts',
                 'discussions.votes',
                 'events',
-                'events.nomination_modes',
                 'nominations',
                 'related_users',
                 'related_users.groups',

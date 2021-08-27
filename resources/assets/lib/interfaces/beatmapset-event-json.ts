@@ -21,8 +21,6 @@ export default interface BeatmapsetEventJson {
   created_at: string;
   discussion?: BeatmapsetDiscussionJson;
   id: number;
-  nomination_modes?: GameMode[];
-  starting_post?: string; // used when looking at user modding profile.
   type: string;
   user_id?: number;
 }
