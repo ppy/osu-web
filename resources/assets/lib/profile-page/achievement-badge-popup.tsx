@@ -16,55 +16,53 @@ interface Props {
 
 export default function AchievementBadgePopup({ achievement, userAchievement }: Props) {
   return (
-    <>
-      <div className='tooltip-achievement__main'>
-        <div className='tooltip-achievement__badge'>
-          <AchievementBadgeIcon
-            achievement={achievement}
-            modifiers={{
-              'dynamic-height': true,
-              locked: userAchievement == null,
-            }}
+    <div className='tooltip-achievement'>
+      <div className='tooltip-achievement__badge'>
+        <AchievementBadgeIcon
+          achievement={achievement}
+          modifiers={{
+            'dynamic-height': true,
+            locked: userAchievement == null,
+          }}
+        />
+      </div>
+
+      <div className='tooltip-achievement__grouping'>
+        {achievement.grouping}
+      </div>
+
+      <div className={classWithModifiers('tooltip-achievement__detail-container', { hoverable: achievement.instructions != null })}>
+        <div className='tooltip-achievement__detail tooltip-achievement__detail--normal'>
+          <div className='tooltip-achievement__name'>
+            {achievement.name}
+          </div>
+          <div
+            className='tooltip-achievement__description'
+            dangerouslySetInnerHTML={{ __html: achievement.description }}
           />
         </div>
-
-        <div className='tooltip-achievement__grouping'>
-          {achievement.grouping}
-        </div>
-
-        <div className={classWithModifiers('tooltip-achievement__detail-container', { hoverable: achievement.instructions != null })}>
-          <div className='tooltip-achievement__detail tooltip-achievement__detail--normal'>
-            <div className='tooltip-achievement__name'>
-              {achievement.name}
-            </div>
+        {achievement.instructions != null && (
+          <div className='tooltip-achievement__detail tooltip-achievement__detail--hover'>
             <div
-              className='tooltip-achievement__description'
-              dangerouslySetInnerHTML={{ __html: achievement.description }}
+              className='tooltip-achievement__instructions'
+              dangerouslySetInnerHTML={{ __html: achievement.instructions }}
             />
-          </div>
-          {achievement.instructions != null && (
-            <div className='tooltip-achievement__detail tooltip-achievement__detail--hover'>
-              <div
-                className='tooltip-achievement__instructions'
-                dangerouslySetInnerHTML={{ __html: achievement.instructions }}
-              />
-            </div>
-          )}
-        </div>
-
-        {userAchievement != null ? (
-          <div className='tooltip-achievement__date'>
-            <StringWithComponent
-              mappings={{ date: <TimeWithTooltip dateTime={userAchievement.achieved_at} /> }}
-              pattern={osu.trans('users.show.extra.achievements.achieved-on')}
-            />
-          </div>
-        ) : (
-          <div className='tooltip-achievement__date'>
-            {osu.trans('users.show.extra.achievements.locked')}
           </div>
         )}
       </div>
-    </>
+
+      {userAchievement != null ? (
+        <div className='tooltip-achievement__date'>
+          <StringWithComponent
+            mappings={{ date: <TimeWithTooltip dateTime={userAchievement.achieved_at} /> }}
+            pattern={osu.trans('users.show.extra.achievements.achieved-on')}
+          />
+        </div>
+      ) : (
+        <div className='tooltip-achievement__date'>
+          {osu.trans('users.show.extra.achievements.locked')}
+        </div>
+      )}
+    </div>
   );
 }
