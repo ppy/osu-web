@@ -1,10 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { ScoreTop } from './score-top'
 import { ScoreboardTab } from './scoreboard-tab'
 import { ScoreboardTable } from './scoreboard-table'
 import ScoreboardMod from 'beatmapsets-show/scoreboard-mod'
+import ScoreTop from 'beatmapsets-show/score-top'
 import * as React from 'react'
 import { div, h2, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
@@ -125,4 +125,3 @@ export class Scoreboard extends React.PureComponent
       position: rank
       beatmap: @props.beatmap
       modifiers: modifiers
-      hitTypeMapping: @hitTypeMapping()
