@@ -23,7 +23,7 @@ class UserChannelList
 
     public function get()
     {
-        $this->getChannels();
+        $this->loadChannels();
         $this->preloadUsers();
 
         $filteredChannels = $this->channels->filter(fn (Channel $channel) => $channel->isVisibleFor($this->user));
@@ -33,7 +33,7 @@ class UserChannelList
         return json_collection($filteredChannels, $transformer, ['last_message_id', 'last_read_id', 'users']);
     }
 
-    private function getChannels()
+    private function loadChannels()
     {
         $userChannels = UserChannel::where('user_id', $this->user->getKey())
             ->where('hidden', false)
