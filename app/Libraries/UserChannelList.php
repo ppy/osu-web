@@ -54,9 +54,7 @@ class UserChannelList
     {
         // Getting user list; Limited to PM channels due to large size of public channels.
         $userPmChannels = UserChannel::whereIn('channel_id', $this->channels->pluck('channel_id'))
-            ->whereHas('channel', function ($q) {
-                $q->where('type', 'PM');
-            })
+            ->whereHas('channel', fn ($q) => $q->where('type', 'PM'))
             ->get();
 
         $userIds = (new Set($userPmChannels->pluck('user_id')))->toArray();
@@ -65,12 +63,8 @@ class UserChannelList
             ->whereIn('user_id', $userIds)
             ->with([
                 // only fetch data related to $user, to be used by ChatPmStart/ChatChannelCanMessage privilege check
-                'friends' => function ($query) {
-                    $query->where('zebra_id', $this->user->getKey());
-                },
-                'blocks' => function ($query) {
-                    $query->where('zebra_id', $this->user->getKey());
-                },
+                'friends' => fn ($query) => $query->where('zebra_id', $this->user->getKey()),
+                'blocks' => fn ($query) => $query->where('zebra_id', $this->user->getKey()),
             ])
             ->get();
 
@@ -78,9 +72,7 @@ class UserChannelList
         $blockedIds = $users->pluck('user_id')->intersect($this->user->blocks->pluck('user_id'));
         if ($blockedIds->isNotEmpty()) {
             // Yes, the sql will look stupid.
-            $users->load(['userGroups' => function ($query) use ($blockedIds) {
-                $query->whereIn('user_id', $blockedIds);
-            }]);
+            $users->load(['userGroups' => fn ($query) => $query->whereIn('user_id', $blockedIds)]);
         }
 
         $usersMap = new Map();
