@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import { Cancelable, throttle } from 'lodash';
 import { Portal } from 'portal';
 import * as React from 'react';
@@ -12,7 +12,7 @@ import { nextVal } from 'utils/seq';
 import { SlateContext } from './slate-context';
 
 interface Props {
-  currentBeatmap: BeatmapJsonExtended;
+  currentBeatmap: BeatmapExtendedJson;
 }
 
 export class EditorInsertionMenu extends React.Component<Props> {

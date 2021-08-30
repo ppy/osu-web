@@ -3,12 +3,12 @@
 
 import BeatmapJson from './beatmap-json';
 
-export function isValid(x: BeatmapJson | BeatmapJsonExtended): x is BeatmapJsonExtended {
-  return (x as BeatmapJsonExtended).accuracy != null;
+export function isValid(x: BeatmapJson | BeatmapExtendedJson): x is BeatmapExtendedJson {
+  return (x as BeatmapExtendedJson).accuracy != null;
 }
 
 // TODO: incomplete
-export default interface BeatmapJsonExtended extends BeatmapJson {
+export default interface BeatmapExtendedJson extends BeatmapJson {
   accuracy: number;
   ar: number;
   convert: boolean | null;
