@@ -53,7 +53,7 @@ return [
         'show_less' => 'afficher moins',
         'show_more' => 'voir plus',
         'show_more_options' => 'afficher plus d’options',
-        'submit' => '',
+        'submit' => 'Envoyer',
         'unpin' => 'désépingler',
         'update' => 'Modifier',
         'upload_image' => 'mettre en ligne une image',

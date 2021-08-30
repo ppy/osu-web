@@ -15,7 +15,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Transition } from 'react-transition-group';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
 import { getArtist, getDiffColour, getTitle, group as groupBeatmaps } from 'utils/beatmap-helper';
@@ -416,7 +416,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--mapper'>
           <div className='u-ellipsis-overflow'>
             <StringWithComponent
-              mappings={{ ':mapper': <MapperLink key='mapper' beatmapset={this.props.beatmapset} /> }}
+              mappings={{ mapper: <MapperLink beatmapset={this.props.beatmapset} /> }}
               pattern={osu.trans('beatmapsets.show.details.mapped_by')}
             />
           </div>

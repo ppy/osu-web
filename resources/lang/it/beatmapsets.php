@@ -147,7 +147,7 @@ return [
 
             'headers' => [
                 'accuracy' => 'Precisione',
-                'combo' => 'Max Combo',
+                'combo' => 'Combo Massima',
                 'miss' => 'Miss',
                 'mods' => 'Mod',
                 'player' => 'Giocatore',

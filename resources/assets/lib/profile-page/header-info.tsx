@@ -3,7 +3,7 @@
 
 import FlagCountry from 'flag-country';
 import GameMode from 'interfaces/game-mode';
-import UserJsonExtended from 'interfaces/user-json-extended';
+import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
@@ -13,7 +13,7 @@ import UserGroupBadges from 'user-group-badges';
 interface Props {
   coverUrl: string | null;
   currentMode: GameMode | null;
-  user: UserJsonExtended;
+  user: UserExtendedJson;
 }
 
 function doNothing() {

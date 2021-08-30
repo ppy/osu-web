@@ -228,7 +228,7 @@ return [
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
-                    'title' => 'Play-Verlauf',
+                    'title' => 'Spielverlauf',
                     'count_label' => 'Spiele',
                 ],
                 'most_played' => [

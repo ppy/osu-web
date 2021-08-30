@@ -8,8 +8,8 @@ import {
 } from 'beatmapsets/beatmapset-json';
 import { BigButton } from 'big-button';
 import GameMode from 'interfaces/game-mode';
+import UserExtendedJson from 'interfaces/user-extended-json';
 import UserJson from 'interfaces/user-json';
-import UserJSONExtended from 'interfaces/user-json-extended';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import { Modal } from 'modal';
@@ -19,7 +19,7 @@ import { classWithModifiers } from 'utils/css';
 interface Props {
   beatmapset: BeatmapsetJson;
   currentHype: number;
-  currentUser: UserJSONExtended;
+  currentUser: UserExtendedJson;
   unresolvedIssues: number;
   users: UserJson[];
 }

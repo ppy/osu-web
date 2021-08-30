@@ -68,6 +68,7 @@ class BeatmapDiscussionPostsController extends Controller
      * @queryParam limit Maximum number of results.
      * @queryParam page Search result page.
      * @queryParam sort `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
+     * @queryParam types[] `first`, `reply`, `system` are the valid values. Defaults to `reply`.
      * @queryParam user The `id` of the [User](#user).
      * @queryParam with_deleted This param has no effect as api calls do not currently receive group permissions.
      */

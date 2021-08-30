@@ -12,7 +12,7 @@ import { a, button, div, span, textarea } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
 import ShowMoreLink from 'show-more-link'
 import { Spinner } from 'spinner'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 import TimeWithTooltip from 'time-with-tooltip'
 import UserAvatar from 'user-avatar'
 import { UserLink } from 'user-link'
@@ -228,14 +228,13 @@ export class Comment extends React.PureComponent
         el StringWithComponent,
           pattern: osu.trans('comments.deleted_by')
           mappings:
-            ':timeago':
+            timeago:
               el TimeWithTooltip,
-                key: 'timeago'
                 dateTime: @props.comment.deletedAt
                 relative: true
-            ':user':
+            user:
               if @props.comment.deletedById?
-                el UserLink, key: 'user', user: (userStore.get(@props.comment.deletedById) ? deletedUser)
+                el UserLink, user: (userStore.get(@props.comment.deletedById) ? deletedUser)
               else
                 osu.trans('comments.deleted_by_system')
 
