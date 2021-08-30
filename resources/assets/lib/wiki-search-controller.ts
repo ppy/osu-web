@@ -3,7 +3,7 @@
 
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 interface SuggestionJson {
   highlight: string;
@@ -30,6 +30,10 @@ export class WikiSearchController {
 
   @computed get displayText() {
     return this.selectedItem == null ? this.query : this.selectedItem.title;
+  }
+
+  constructor() {
+    makeObservable(this);
   }
 
   @action

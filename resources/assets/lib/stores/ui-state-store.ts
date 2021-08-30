@@ -3,7 +3,7 @@
 
 import { CommentBundleJson } from 'interfaces/comment-json';
 import { Dictionary, orderBy } from 'lodash';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { Comment, CommentSort } from 'models/comment';
 import { OwnClient } from 'models/oauth/own-client';
 import CommentStore from 'stores/comment-store';
@@ -51,6 +51,7 @@ export default class UIStateStore {
   private orderedCommentsByParentId: Dictionary<Comment[]> = {};
 
   constructor(protected commentStore: CommentStore) {
+    makeObservable(this);
   }
 
   exportCommentsUIState() {

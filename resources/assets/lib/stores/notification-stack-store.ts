@@ -6,7 +6,7 @@ import { UserLoginAction } from 'actions/user-login-actions';
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import NotificationJson, { NotificationBundleJson, NotificationStackJson, NotificationTypeJson } from 'interfaces/notification-json';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
@@ -47,6 +47,8 @@ export default class NotificationStackStore implements DispatchListener {
   constructor(protected notificationStore: NotificationStore) {
     // 'all' type should always exist; makes testing deterministic.
     this.getOrCreateType({ objectType: null });
+
+    makeObservable(this);
   }
 
   @action

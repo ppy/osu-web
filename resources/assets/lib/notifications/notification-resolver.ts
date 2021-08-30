@@ -5,7 +5,7 @@ import { dispatch } from 'app-dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import Notification from 'models/notification';
 import { NotificationContextData } from 'notifications-context';
 import NotificationDeletable from 'notifications/notification-deletable';
@@ -21,6 +21,10 @@ export class NotificationResolver {
   private deleteByIdsQueue = new Map<number, Notification>();
   private queuedMarkedAsRead = new Map<number, Notification>();
   private queuedMarkedAsReadIdentities = new Map<string, NotificationReadable>();
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   delete(deletable: NotificationDeletable) {

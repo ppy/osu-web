@@ -10,7 +10,7 @@ import { BeatmapsetSearchFilters } from 'beatmapset-search-filters';
 import DispatchListener from 'dispatch-listener';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
-import { action, observable, runInAction } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export interface SearchResponse {
@@ -28,7 +28,9 @@ export class BeatmapsetSearch implements DispatchListener {
 
   private xhr?: JQueryXHR;
 
-  constructor(private beatmapsetStore: BeatmapsetStore) {}
+  constructor(private beatmapsetStore: BeatmapsetStore) {
+    makeObservable(this);
+  }
 
   cancel() {
     if (this.xhr) {
