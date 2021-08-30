@@ -9,7 +9,7 @@ import { classWithModifiers, Modifiers } from 'utils/css';
 type Props = {
   achievement: AchievementJson;
   modifiers: Modifiers;
-} & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export default function AchievementBadgeIcon(props: Props) {
   const { achievement, modifiers, ...divProps } = props;
