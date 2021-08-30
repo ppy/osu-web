@@ -63,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'featured artists',
-            'index' => 'listare',
-            'packs' => 'pachete',
         ],
         'community' => [
             '_' => 'comunitate',
-            'chat' => 'chat',
-            'contests' => 'concursuri',
             'dev' => 'dezvoltare',
-            'forum-forums-index' => 'forumuri',
-            'getLive' => 'în direct',
-            'tournaments' => 'turnee',
         ],
         'help' => [
             '_' => 'ajutor',
@@ -82,30 +74,17 @@ return [
             'getFaq' => 'întrebări frecvente',
             'getRules' => 'reguli',
             'getSupport' => 'nu, de fapt, am nevoie de ajutor!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'acasă',
-            'changelog-index' => 'jurnalul modificărilor',
-            'getDownload' => 'descarcă',
-            'news-index' => 'ştiri',
-            'search' => 'căutare',
             'team' => 'echipă',
         ],
         'rankings' => [
             '_' => 'clasamente',
-            'charts' => 'în lumina reflectoarelor',
-            'country' => 'țară',
-            'index' => 'performanță',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multiplayer',
-            'score' => 'scor',
         ],
         'store' => [
             '_' => 'magazin',
-            'cart-show' => 'coș',
-            'getListing' => 'listare',
-            'orders-index' => 'istoric comenzi',
         ],
     ],
 

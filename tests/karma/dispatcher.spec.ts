@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+/* eslint-disable max-classes-per-file */
 import DispatcherAction from 'actions/dispatcher-action';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
 
-/* tslint:disable:max-classes-per-file */
 class ClassA implements DispatchListener {
   count = 0;
   handleDispatchAction(action: DispatcherAction) {
@@ -39,8 +39,7 @@ describe('Dispatcher', () => {
       const obj = new ClassA();
       subject.register(obj);
       subject.register(obj);
-      // @ts-ignore
-      expect(subject.listeners.size).toBe(1);
+      expect(subject.size).toBe(1);
     });
 
     it('should register different instances', () => {
@@ -48,8 +47,7 @@ describe('Dispatcher', () => {
       const obj2 = new ClassA();
       subject.register(obj1);
       subject.register(obj2);
-      // @ts-ignore
-      expect(subject.listeners.size).toBe(2);
+      expect(subject.size).toBe(2);
     });
 
     it('should register different class instances', () => {
@@ -57,8 +55,7 @@ describe('Dispatcher', () => {
       const obj2 = new ClassB();
       subject.register(obj1);
       subject.register(obj2);
-      // @ts-ignore
-      expect(subject.listeners.size).toBe(2);
+      expect(subject.size).toBe(2);
     });
 
     it('should register subclasses separately', () => {
@@ -66,8 +63,7 @@ describe('Dispatcher', () => {
       const obj2 = new ClassAC();
       subject.register(obj1);
       subject.register(obj2);
-      // @ts-ignore
-      expect(subject.listeners.size).toBe(2);
+      expect(subject.size).toBe(2);
     });
   });
 

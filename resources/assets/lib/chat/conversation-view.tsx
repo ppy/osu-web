@@ -11,7 +11,7 @@ import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import UserAvatar from 'user-avatar';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
@@ -230,7 +230,15 @@ export default class ConversationView extends React.Component<Props> {
         <div className='chat-conversation__chat-label'>
           {channel.pmTarget != null ? (
             <StringWithComponent
-              mappings={{':name': <a key='user' className='js-usercard' data-user-id={channel.pmTarget} href={route('users.show', {user: channel.pmTarget})}>{channel.name}</a>}}
+              mappings={{ name: (
+                <a
+                  className='js-usercard'
+                  data-user-id={channel.pmTarget}
+                  href={route('users.show', {user: channel.pmTarget})}
+                >
+                  {channel.name}
+                </a>
+              ) }}
               // TODO: rework this once the user class situation is resolved
               pattern={osu.trans('chat.talking_with')}
             />

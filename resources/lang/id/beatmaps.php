@@ -183,7 +183,7 @@ return [
         'disqualify' => 'Diskualifikasi',
         'incorrect_state' => 'Ditemukan kesalahan saat melakukan tindakan ini, silakan muat ulang laman.',
         'love' => 'Love',
-        'love_choose' => '',
+        'love_choose' => 'Pilih tingkat kesulitan untuk diangkat ke kategori Loved',
         'love_confirm' => 'Love beatmap ini?',
         'nominate' => 'Nominasi',
         'nominate_confirm' => 'Nominasikan beatmap ini?',
@@ -253,7 +253,7 @@ return [
     'general' => [
         'converts' => 'Sertakan map-map convert',
         'follows' => 'Tampilkan hanya mapper-mapper yang dipantau',
-        'recommended' => 'Tingkat kesulitan yang disarankan',
+        'recommended' => 'Rentang kesulitan yang disarankan',
     ],
     'mode' => [
         'all' => 'Semua',

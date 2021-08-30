@@ -63,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmapler',
-            'artists' => 'featured artist\'ler',
-            'index' => 'beatmap kataloğu',
-            'packs' => 'beatmap paketleri',
         ],
         'community' => [
             '_' => 'topluluk',
-            'chat' => 'sohbet',
-            'contests' => 'yarışmalar',
             'dev' => 'geliştirme',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'canlı yayınlar',
-            'tournaments' => 'turnuvalar',
         ],
         'help' => [
             '_' => 'yardım',
@@ -82,30 +74,17 @@ return [
             'getFaq' => 'sss',
             'getRules' => 'kurallar',
             'getSupport' => 'hayır, gerçekten, yardıma ihtiyacım var!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'anasayfa',
-            'changelog-index' => 'değişiklikler',
-            'getDownload' => 'indir',
-            'news-index' => 'haberler',
-            'search' => 'arama',
             'team' => 'ekip',
         ],
         'rankings' => [
             '_' => 'sıralama',
-            'charts' => 'öne çıkanlar',
-            'country' => 'ülke',
-            'index' => 'performans',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'çok oyunculu',
-            'score' => 'skor',
         ],
         'store' => [
             '_' => 'mağaza',
-            'cart-show' => 'sepet',
-            'getListing' => 'ürünler',
-            'orders-index' => 'sipariş geçmişi',
         ],
     ],
 

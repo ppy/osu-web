@@ -184,7 +184,7 @@ return [
         'disqualify' => 'Desqualificar',
         'incorrect_state' => 'Erro ao desempenhar essa ação, tenta recarregar a página.',
         'love' => 'Adorar',
-        'love_choose' => '',
+        'love_choose' => 'Escolher dificuldade para adorado',
         'love_confirm' => 'Queres adorar este beatmap?',
         'nominate' => 'Nomear',
         'nominate_confirm' => 'Pretendes nomear este beatmap?',

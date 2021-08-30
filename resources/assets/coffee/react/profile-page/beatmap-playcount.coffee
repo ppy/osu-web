@@ -3,7 +3,7 @@
 
 import * as React from 'react'
 import { a, div, h2, h3, img, p, small, span, strong } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 import { UserLink } from 'user-link'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { showVisual } from 'utils/beatmapset-helper'
@@ -46,20 +46,17 @@ export class BeatmapPlaycount extends React.PureComponent
               el StringWithComponent,
                 pattern: osu.trans 'users.show.extra.beatmaps.by_artist'
                 mappings:
-                  ':artist':
-                    strong
-                      key: 'artist'
-                      getArtist(beatmapset)
+                  artist:
+                    strong null, getArtist(beatmapset)
             ' ' # separator for overflow tooltip
             span
               className: "#{bn}__mapper"
               el StringWithComponent,
                 pattern: osu.trans 'beatmapsets.show.details.mapped_by'
                 mappings:
-                  ':mapper':
+                  mapper:
                     el UserLink,
                       className: "#{bn}__mapper-link"
-                      key: 'mapper'
                       user:
                         id: beatmapset.user_id
                         username: beatmapset.creator

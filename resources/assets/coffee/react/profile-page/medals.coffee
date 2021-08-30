@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { AchievementBadge } from './achievement-badge'
-import { ExtraHeader } from './extra-header'
+import ExtraHeader from 'profile-page/extra-header'
 import * as React from 'react'
 import { div, h2, h3 } from 'react-dom-factories'
 el = React.createElement

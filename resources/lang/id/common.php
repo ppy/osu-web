@@ -53,7 +53,7 @@ return [
         'show_less' => 'tampilkan lebih sedikit',
         'show_more' => 'tampilkan lebih banyak',
         'show_more_options' => 'tampilkan pilihan lainnya',
-        'submit' => '',
+        'submit' => 'Kirim',
         'unpin' => 'lepas sematan',
         'update' => 'Perbarui',
         'upload_image' => 'unggah gambar',

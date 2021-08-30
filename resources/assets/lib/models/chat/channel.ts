@@ -3,7 +3,7 @@
 
 import { ChannelJson, ChannelJsonExtended, ChannelType, MessageJson } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import User from 'models/user';
 import Message from './message';
 
@@ -92,6 +92,8 @@ export default class Channel {
 
   constructor(channelId: number) {
     this.channelId = channelId;
+
+    makeObservable(this);
   }
 
   static newPM(target: User, channelId: number | null): Channel {

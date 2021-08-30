@@ -3,7 +3,7 @@
 
 import { MessageJson } from 'chat/chat-api-responses';
 import { escape } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import User from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
@@ -27,6 +27,10 @@ export default class Message {
   @computed
   get sender() {
     return core.dataStore.userStore.get(this.senderId) ?? new User(-1);
+  }
+
+  constructor() {
+    makeObservable(this);
   }
 
   static fromJson(json: MessageJson): Message {

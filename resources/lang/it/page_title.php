@@ -108,7 +108,7 @@ return [
             '_' => 'cronologia notifiche',
         ],
         'password_reset_controller' => [
-            '_' => 'reimpostazione password',
+            '_' => 'reset password',
         ],
         'ranking_controller' => [
             '_' => 'classifiche',

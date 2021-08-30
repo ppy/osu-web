@@ -40,12 +40,12 @@
                         data-menu-id="nav2-menu-popup-{{ $section }}"
                         data-visibility="hidden"
                     >
-                        @foreach ($links as $action => $link)
-                            @if ($action === '_')
+                        @foreach ($links as $transKey => $link)
+                            @if ($transKey === '_')
                                 @continue
                             @endif
                             <a class="simple-menu__item u-section-{{ $section }}--before-bg-normal" href="{{ $link }}">
-                                {{ osu_trans("layout.menu.{$section}.{$action}") }}
+                                {{ osu_trans($transKey) }}
                             </a>
                         @endforeach
                     </div>

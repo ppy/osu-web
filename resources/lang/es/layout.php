@@ -63,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'mapas',
-            'artists' => 'artistas destacados',
-            'index' => 'listado',
-            'packs' => 'paquetes',
         ],
         'community' => [
             '_' => 'comunidad',
-            'chat' => 'chat',
-            'contests' => 'concursos',
             'dev' => 'desarrollo',
-            'forum-forums-index' => 'foros',
-            'getLive' => 'en vivo',
-            'tournaments' => 'torneos',
         ],
         'help' => [
             '_' => 'ayuda',
@@ -82,30 +74,17 @@ return [
             'getFaq' => 'preguntas frecuentes',
             'getRules' => 'reglas',
             'getSupport' => 'no, en serio, ¡necesito ayuda!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'inicio',
-            'changelog-index' => 'listado de cambios',
-            'getDownload' => 'descargar',
-            'news-index' => 'novedades',
-            'search' => 'buscar',
             'team' => 'equipo',
         ],
         'rankings' => [
             '_' => 'clasificaciones',
-            'charts' => 'destacados',
-            'country' => 'país',
-            'index' => 'rendimiento',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multijugador',
-            'score' => 'puntuación',
         ],
         'store' => [
             '_' => 'tienda',
-            'cart-show' => 'carrito',
-            'getListing' => 'listado',
-            'orders-index' => 'historial de pedidos',
         ],
     ],
 
