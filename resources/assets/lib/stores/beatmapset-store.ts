@@ -3,7 +3,7 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction } from 'actions/user-login-actions';
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { action, makeObservable, observable } from 'mobx';
 
 export class BeatmapsetStore {
