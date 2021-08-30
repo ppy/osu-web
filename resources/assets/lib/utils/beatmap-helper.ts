@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as d3 from 'd3';
-import { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-extended-json';
+import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
@@ -12,7 +12,7 @@ import core from 'osu-core-singleton';
 export const modes: GameMode[] = ['osu', 'taiko', 'fruits', 'mania'];
 
 function isVisibleBeatmap(beatmap: BeatmapJson) {
-  if (isBeatmapJsonExtended(beatmap)) {
+  if (isBeatmapExtendedJson(beatmap)) {
     return beatmap.deleted_at == null && !beatmap.convert;
   }
 
