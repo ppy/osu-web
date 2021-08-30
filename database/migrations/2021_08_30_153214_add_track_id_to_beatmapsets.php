@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFeaturedArtistFieldsToBeatmapsets extends Migration
+class AddTrackIdToBeatmapsets extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ class AddFeaturedArtistFieldsToBeatmapsets extends Migration
     public function up()
     {
         Schema::table('osu_beatmapsets', function (Blueprint $table) {
-            $table->bigInteger('artist_id')->unsigned()->nullable();
+            $table->bigInteger('track_id')->unsigned()->nullable();
         });
     }
 
@@ -29,8 +29,7 @@ class AddFeaturedArtistFieldsToBeatmapsets extends Migration
     public function down()
     {
         Schema::table('osu_beatmapsets', function (Blueprint $table) {
-            $table->dropColumn('artist_id');
-            $table->dropColumn('featured_artist');
+            $table->dropColumn('track_id');
         });
     }
 }

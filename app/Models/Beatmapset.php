@@ -42,7 +42,6 @@ use Illuminate\Database\QueryException;
  * @property int|null $approvedby_id
  * @property User $approver
  * @property string $artist
- * @property int|null $artist_id
  * @property string $artist_unicode
  * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
  * @property \Illuminate\Database\Eloquent\Collection $beatmaps Beatmap
@@ -93,6 +92,8 @@ use Illuminate\Database\QueryException;
  * @property int $thread_id
  * @property string $title
  * @property string $title_unicode
+ * @property \Illuminate\Database\Eloquent\Collection $track ArtistTrack
+ * @property int $track_id
  * @property User $user
  * @property \Illuminate\Database\Eloquent\Collection $userRatings BeatmapsetUserRating
  * @property int $user_id
@@ -1190,6 +1191,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function topic()
     {
         return $this->belongsTo(Forum\Topic::class, 'thread_id');
+    }
+
+    public function track()
+    {
+        return $this->belongsTo(ArtistTrack::class, 'track_id');
     }
 
     public function userRatings()

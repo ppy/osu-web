@@ -14,6 +14,7 @@ class ArtistTrackTransformer extends TransformerAbstract
         return [
             'id' => $track->id,
             'album_id' => $track->album_id,
+            'artist_id' => $track->artist_id,
             'title' => $track->title,
             'version' => $track->version,
             'length' => format_duration_for_display($track->length),

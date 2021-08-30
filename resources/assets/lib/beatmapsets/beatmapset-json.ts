@@ -76,7 +76,6 @@ export interface CurrentUserAttributes {
 // TODO: incomplete
 export interface BeatmapsetJson {
   artist: string;
-  artist_id?: number;
   artist_unicode: string;
   beatmaps?: BeatmapJson[];
   covers: BeatmapsetCovers;
@@ -101,6 +100,7 @@ export interface BeatmapsetJson {
   status: BeatmapsetStatus;
   title: string;
   title_unicode: string;
+  track_id: number;
   user_id: number;
   video: boolean;
 }

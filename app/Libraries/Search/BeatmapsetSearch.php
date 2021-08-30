@@ -9,6 +9,7 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\FunctionScore;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
+use App\Models\Artist;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
@@ -119,10 +120,10 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addArtistIdFilter($query)
     {
-        $artistId = $this->params->artistId;
+        $trackIds = Artist::find($this->params->artistId)?->tracks->pluck('id');
 
-        if ($artistId) {
-            $query->filter(['term' => ['artist_id' => $artistId]]);
+        if ($trackIds) {
+            $query->filter(['terms' => ['track_id' => $trackIds]]);
         }
     }
 
@@ -163,7 +164,7 @@ class BeatmapsetSearch extends RecordSearch
     private function addFeaturedArtistsFilter($query)
     {
         if ($this->params->showFeaturedArtists) {
-            $query->filter(['exists' => ['field' => 'artist_id']]);
+            $query->filter(['exists' => ['field' => 'track_id']]);
         }
     }
 

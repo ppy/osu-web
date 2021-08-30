@@ -31,6 +31,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'ratings',
         'recent_favourites',
         'related_users',
+        'track',
         'user',
     ];
 
@@ -45,7 +46,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     {
         return [
             'artist' => $beatmapset->artist,
-            'artist_id' => $beatmapset->artist_id,
             'artist_unicode' => $beatmapset->artist_unicode,
             'covers' => $beatmapset->allCoverURLs(),
             'creator' => $beatmapset->creator,
@@ -62,6 +62,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'status' => $beatmapset->status(),
             'title' => $beatmapset->title,
             'title_unicode' => $beatmapset->title_unicode,
+            'track_id' => $beatmapset->track_id,
             'user_id' => $beatmapset->user_id,
             'video' => $beatmapset->video,
         ];
@@ -248,5 +249,14 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $users = User::with('userGroups')->whereIn('user_id', $userIds)->get();
 
         return $this->collection($users, new UserCompactTransformer());
+    }
+
+    public function includeTrack(Beatmapset $beatmapset)
+    {
+        if ($beatmapset->track === null) {
+            return;
+        }
+
+        return $this->item($beatmapset->track, new ArtistTrackTransformer());
     }
 }

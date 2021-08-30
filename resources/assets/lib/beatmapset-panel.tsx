@@ -411,7 +411,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
             {osu.trans('beatmapsets.show.details.by_artist', { artist: getArtist(this.props.beatmapset) })}
           </a>
-          {(this.props.beatmapset.artist_id !== null) && <FeaturedArtistBadge />}
+          {(this.props.beatmapset.track_id !== null) && <FeaturedArtistBadge />}
         </div>
 
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--source'>

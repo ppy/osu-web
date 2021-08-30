@@ -10,7 +10,6 @@ use App\Traits\Memoizes;
 /**
  * @property \Illuminate\Database\Eloquent\Collection $albums ArtistAlbum
  * @property string|null $bandcamp
- * @property \Illuminate\Database\Eloquent\Collection $beatmapsets Beatmapset
  * @property string|null $cover_url
  * @property \Carbon\Carbon|null $created_at
  * @property string $description
@@ -47,7 +46,7 @@ class Artist extends Model
 
     public function beatmapsets()
     {
-        return $this->hasMany(Beatmapset::class);
+        return Beatmapset::whereIn('track_id', $this->tracks->pluck('id'));
     }
 
     public function tracks()

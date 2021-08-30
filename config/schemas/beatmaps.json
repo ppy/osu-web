@@ -23,9 +23,6 @@
             }
           }
         },
-        "artist_id": {
-          "type": "long"
-        },
         "artist_unicode": {
           "type": "text",
           "fields": {
@@ -223,6 +220,9 @@
               "type": "keyword"
             }
           }
+        },
+        "track_id": {
+          "type": "long"
         },
         "user_id": {
           "type": "long"
