@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsPopup from 'beatmapset-panel/beatmaps-popup';
-import { BeatmapsetJson, BeatmapsetStatus } from 'beatmapsets/beatmapset-json';
 import { CircularProgress } from 'circular-progress';
 import Img2x from 'img2x';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import BeatmapsetJson, { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { sum, values } from 'lodash';

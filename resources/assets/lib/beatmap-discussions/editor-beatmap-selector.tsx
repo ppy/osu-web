@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapIcon } from 'beatmap-icon';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
 import { Node, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
@@ -10,7 +10,7 @@ import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
 import { SlateContext } from './slate-context';
 
 interface Props {
-  beatmaps: BeatmapJsonExtended[];
+  beatmaps: BeatmapExtendedJson[];
   disabled: boolean;
   element: Node;
 }
@@ -27,7 +27,7 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
       label: osu.trans('beatmaps.discussions.mode.scopes.generalAll'),
     });
 
-    this.props.beatmaps.forEach((beatmap: BeatmapJsonExtended) => {
+    this.props.beatmaps.forEach((beatmap: BeatmapExtendedJson) => {
       if (beatmap.deleted_at) {
         return;
       }
