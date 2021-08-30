@@ -4,7 +4,7 @@
 import UserJson from 'interfaces/user-json';
 import UserMultiplayerHistoryJson from 'interfaces/user-multiplayer-history-json';
 import { route } from 'laroute';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
@@ -25,6 +25,12 @@ export default class MultiplayerHistory extends React.Component<Props> {
   @computed
   private get hasMore() {
     return this.context.cursor != null;
+  }
+
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
   }
 
   render() {

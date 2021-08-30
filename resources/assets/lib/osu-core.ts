@@ -23,7 +23,7 @@ import UserVerification from 'core/user/user-verification';
 import WindowFocusObserver from 'core/window-focus-observer';
 import WindowSize from 'core/window-size';
 import CurrentUser from 'interfaces/current-user';
-import { makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import NotificationsWorker from 'notifications/worker';
 import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
@@ -94,6 +94,7 @@ export default class OsuCore {
     this.setCurrentUser(window.currentUser);
   };
 
+  @action
   private setCurrentUser = (user: CurrentUser) => {
     this.dataStore.userStore.getOrCreate(user.id, user);
     this.socketWorker.setUserId(user.id);

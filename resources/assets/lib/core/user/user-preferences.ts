@@ -4,7 +4,7 @@
 import CurrentUser from 'interfaces/current-user';
 import { defaultUserPreferencesJson, UserPreferencesJson } from 'interfaces/current-user';
 import { route } from 'laroute';
-import { makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { onErrorWithCallback } from 'utils/ajax';
 
 export default class UserPreferences {
@@ -22,6 +22,7 @@ export default class UserPreferences {
     return this.current[key];
   }
 
+  @action
   set<T extends keyof UserPreferencesJson>(key: T, value: UserPreferencesJson[T]) {
     if (this.current[key] === value) return;
 
@@ -45,6 +46,7 @@ export default class UserPreferences {
     });
   }
 
+  @action
   setUser(user?: CurrentUser) {
     this.user = user;
 

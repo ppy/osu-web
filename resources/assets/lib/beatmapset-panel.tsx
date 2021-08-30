@@ -10,7 +10,7 @@ import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { sum, values } from 'lodash';
-import { computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -230,6 +230,12 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id});
   }
 
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   componentWillUnmount() {
     $(document).off('click', this.onDocumentClick);
     Object.values(this.timeouts).forEach((timeout) => {
@@ -277,9 +283,9 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
     if (!this.beatmapsPopupHover) return;
 
-    this.timeouts.beatmapsPopup = window.setTimeout(() => {
+    this.timeouts.beatmapsPopup = window.setTimeout(action(() => {
       this.beatmapsPopupHover = false;
-    }, 500);
+    }), 500);
   };
 
   private beatmapsPopupDelayedShow = () => {
@@ -287,17 +293,19 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
     if (this.beatmapsPopupHover) return;
 
-    this.timeouts.beatmapsPopup = window.setTimeout(() => {
+    this.timeouts.beatmapsPopup = window.setTimeout(action(() => {
       this.beatmapsPopupHover = true;
-    }, 100);
+    }), 100);
   };
 
+  @action
   private beatmapsPopupHide = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
     this.beatmapsPopupHover = false;
   };
 
+  @action
   private beatmapsPopupKeep = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
@@ -312,6 +320,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     this.beatmapsPopupDelayedHide();
   };
 
+  @action
   private onDocumentClick = (e: JQuery.ClickEvent) => {
     // only for shrinking
     if (!this.mobileExpanded) return;
@@ -332,6 +341,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     this.beatmapsPopupDelayedHide();
   };
 
+  @action
   private onMobileExpandToggleClick = () => {
     this.mobileExpanded = !this.mobileExpanded;
     if (this.mobileExpanded) {
