@@ -1,17 +1,17 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BigButton } from 'big-button'
-import { Modal } from 'modal'
-import OsuUrlHelper from 'osu-url-helper'
-import * as React from 'react'
-import { a, div, i, span } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
 import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
 import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-modal'
 import { Nominator } from 'beatmap-discussions/nominator'
+import { BigButton } from 'big-button'
+import { Modal } from 'modal'
+import * as React from 'react'
+import { a, div, i, span } from 'react-dom-factories'
+import StringWithComponent from 'string-with-component'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { pageChange } from 'utils/page-change'
+import { wikiUrl } from 'utils/url'
 
 el = React.createElement
 
@@ -303,11 +303,10 @@ export class Nominations extends React.PureComponent
 
         el StringWithComponent,
           mappings:
-            ':date': date
-            ':position': @props.beatmapset.nominations.ranking_queue_position
-            ':queue': a
-              href: OsuUrlHelper.wikiUrl('Beatmap_ranking_procedure/Ranking_queue')
-              key: 'queue'
+            date: date
+            position: @props.beatmapset.nominations.ranking_queue_position
+            queue: a
+              href: wikiUrl('Beatmap_ranking_procedure/Ranking_queue')
               target: '_blank'
               osu.trans 'beatmaps.nominations.rank_estimate.queue'
           pattern: osu.trans 'beatmaps.nominations.rank_estimate._'

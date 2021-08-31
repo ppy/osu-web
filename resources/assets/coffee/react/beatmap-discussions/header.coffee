@@ -13,7 +13,7 @@ import { deletedUser } from 'models/user'
 import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { a, div, h1, h2, p, span } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 import { UserLink } from 'user-link'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { showVisual } from 'utils/beatmapset-helper'
@@ -127,7 +127,7 @@ export class Header extends React.PureComponent
                 span null,
                   el StringWithComponent,
                     mappings:
-                      ':user': el(UserLink, key: 'user', user: @props.users[@props.currentBeatmap.user_id] ? deletedUser)
+                      user: el(UserLink, user: @props.users[@props.currentBeatmap.user_id] ? deletedUser)
                     pattern: osu.trans('beatmaps.discussions.guest')
             el BeatmapBasicStats, beatmap: @props.currentBeatmap
 

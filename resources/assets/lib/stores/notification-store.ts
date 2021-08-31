@@ -5,7 +5,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction } from 'actions/user-login-actions';
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import Notification from 'models/notification';
 import { NotificationEventDelete, NotificationEventRead } from 'notifications/notification-events';
 import { NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
@@ -19,6 +19,10 @@ export default class NotificationStore implements DispatchListener {
   @observable notifications = new Map<number, Notification>();
   readonly stacks = new NotificationStackStore(this);
   readonly unreadStacks = new WidgetNotificationStackStore(this);
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   add(notification: Notification) {

@@ -3,8 +3,8 @@
 
 declare module 'turbolinks' {
   interface Controller {
-    currentVisit?: Visit;
     advanceHistory(url: string): void;
+    currentVisit?: Visit;
   }
 
   interface Location {
@@ -26,11 +26,10 @@ declare module 'turbolinks' {
   }
 
   export default interface TurbolinksStatic {
-    controller: Controller;
-    supported: boolean;
-
     clearCache(): void;
+    controller: Controller;
     setProgressBarDelay(delayInMilliseconds: number): void;
+    supported: boolean;
     uuid(): string;
     visit(location: string, options?: TurbolinksAction): void;
   }

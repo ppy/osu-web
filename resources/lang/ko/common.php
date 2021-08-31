@@ -53,7 +53,7 @@ return [
         'show_less' => '간략히 보기',
         'show_more' => '더 보기',
         'show_more_options' => '더 많은 옵션 보기',
-        'submit' => '',
+        'submit' => '제출',
         'unpin' => '고정 해제',
         'update' => '업데이트',
         'upload_image' => '이미지 올리기',

@@ -73,7 +73,7 @@ return [
         'changed_to' => '您 osu! 账户绑定的邮箱地址已被更改为 :email 。',
         'check' => '请确认您修改后的新邮箱收到了此邮件，以防绑定失败导致您以后无法再登录 osu! 账户。',
         'sent' => '为了保证账户安全，我们将此邮件发送给了您的原邮箱和修改后的邮箱地址。',
-        'subject' => 'osu! 帐户邮箱更改确认',
+        'subject' => 'osu! 账户邮箱更改确认',
     ],
 
     'user_force_reactivation' => [
@@ -91,7 +91,7 @@ return [
 
     'user_password_updated' => [
         'confirmation' => '您的 osu! 账户密码已被修改。',
-        'subject' => 'osu! 帐户密码更改确认',
+        'subject' => 'osu! 账户密码更改确认',
     ],
 
     'user_verification' => [
@@ -102,7 +102,7 @@ return [
         'subject' => 'osu! 账户认证',
 
         'action_from' => [
-            '_' => '您的帐号有一个来自 :country 的操作需要验证。',
+            '_' => '您的账号有一个来自 :country 的操作需要验证。',
             'unknown_country' => '未知国家',
         ],
     ],

@@ -57,7 +57,7 @@ export interface CurrentUserAttributes {
 }
 
 // TODO: incomplete
-export interface BeatmapsetJson {
+export default interface BeatmapsetJson {
   artist: string;
   artist_unicode: string;
   beatmaps?: BeatmapJson[];

@@ -30,8 +30,12 @@
     ])
 
     <div class="js-react--forum-post-report hidden"></div>
-    <div class="js-forum__topic-user-can-moderate hidden" data-user-can-moderate="{{ $userCanModerate }}"></div>
-    <div class="js-forum__topic-first-post-id hidden" data-first-post-id="{{ $topic->topic_first_post_id }}"></div>
+    <div
+        class="hidden js-forum--topic-meta"
+        data-user-can-moderate="{{ $userCanModerate }}"
+        data-first-post-id="{{ $topic->topic_first_post_id }}"
+        data-post-jump-to="{{ $jumpTo }}"
+    ></div>
 
     <div class="js-sticky-header"></div>
 
@@ -152,12 +156,4 @@
     @parent
 
     @include('forum.topics._nav')
-@endsection
-
-@section('script')
-    @parent
-
-    <script data-turbolinks-eval="always">
-        window.postJumpTo = {{ $jumpTo }};
-    </script>
 @endsection

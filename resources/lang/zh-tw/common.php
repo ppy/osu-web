@@ -53,7 +53,7 @@ return [
         'show_less' => '收起',
         'show_more' => '顯示更多',
         'show_more_options' => '顯示更多選項',
-        'submit' => '',
+        'submit' => '送出',
         'unpin' => '取消置頂',
         'update' => '更新',
         'upload_image' => '上傳圖片',

@@ -9,7 +9,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import { ValidatingInput } from 'validating-input';
 
 const store = core.dataStore.ownClientStore;
@@ -58,15 +58,6 @@ export class NewClient extends React.Component {
   };
 
   render() {
-    const link = (
-      <a
-        key='link'
-        href={`${process.env.DOCS_URL}#terms-of-use`}
-      >
-        {osu.trans('oauth.new_client.terms_of_use.link')}
-      </a>
-    );
-
     return (
       <div className='oauth-client-details'>
         <div className='oauth-client-details__header'>
@@ -90,7 +81,14 @@ export class NewClient extends React.Component {
           ))}
 
           <div>
-            <StringWithComponent mappings={{ ':link': link }} pattern={osu.trans('oauth.new_client.terms_of_use._')} />
+            <StringWithComponent
+              mappings={{ link: (
+                <a href={`${process.env.DOCS_URL}#terms-of-use`}>
+                  {osu.trans('oauth.new_client.terms_of_use.link')}
+                </a>
+              ) }}
+              pattern={osu.trans('oauth.new_client.terms_of_use._')}
+            />
           </div>
 
           <div className='oauth-client-details__buttons'>

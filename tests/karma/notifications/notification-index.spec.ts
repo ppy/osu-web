@@ -10,15 +10,23 @@ import NotificationStore from 'stores/notification-store';
 import { makeNotificationJson, makeStackJson } from './helpers';
 
 const identities = [
-  { id: 1002, objectType: 'beatmapset', objectId: 2, category: 'beatmapset_discussion' },
-  { id: 1001, objectType: 'beatmapset', objectId: 1, category: 'beatmapset_discussion' },
+  {
+    category: 'beatmapset_discussion',
+    id: 1002,
+    objectId: 2,
+    objectType: 'beatmapset',
+  },
+  {
+    category: 'beatmapset_discussion',
+    id: 1001,
+    objectId: 1,
+    objectType: 'beatmapset',
+  },
 ];
 
 describe('Notification Index', () => {
-  // @ts-ignore
-  beforeEach(() => dispatcher.listeners.clear());
-  // @ts-ignore
-  afterEach(() => dispatcher.listeners.clear());
+  beforeEach(() => dispatcher.clear());
+  afterEach(() => dispatcher.clear());
 
   const bundle: NotificationBundleJson = {
     notifications: [identities[0]].map(toJson).map(makeNotificationJson),

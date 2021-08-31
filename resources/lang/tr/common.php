@@ -53,7 +53,7 @@ return [
         'show_less' => 'daha az göster',
         'show_more' => 'daha fazla göster',
         'show_more_options' => 'daha fazla seçenek göster',
-        'submit' => '',
+        'submit' => 'Gönder',
         'unpin' => 'sabitlemeyi kaldır',
         'update' => 'Güncelle',
         'upload_image' => 'görsel yükle',

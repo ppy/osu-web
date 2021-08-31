@@ -10,7 +10,7 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
 import { ChannelJson, ChannelType, GetUpdatesJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
 import { groupBy, maxBy } from 'lodash';
-import { action, computed, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
@@ -72,6 +72,7 @@ export default class ChannelStore {
   }
 
   constructor(protected userStore: UserStore) {
+    makeObservable(this);
   }
 
   @action

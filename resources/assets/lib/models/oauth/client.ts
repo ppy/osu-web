@@ -4,7 +4,7 @@
 import { ClientJson } from 'interfaces/client-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
 export class Client {
   id: number;
@@ -21,6 +21,8 @@ export class Client {
     this.scopes = new Set(client.scopes);
     this.userId = client.user_id;
     this.user = client.user;
+
+    makeObservable(this);
   }
 
   @action

@@ -2,16 +2,17 @@
   "compilerOptions": {
     "baseUrl": "./resources/assets/lib",
     "experimentalDecorators": true,
-    "sourceMap": true,
     "jsx": "react",
     "lib": ["dom", "dom.iterable", "es2020"],
     "module": "es2020",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noUnusedLocals": true,
+    "sourceMap": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "es2015"
+    "target": "es2015",
+    "useDefineForClassFields": true
   },
   "include": [
     "resources/assets/lib"

@@ -183,7 +183,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => '操作出错了，请刷新页面。',
         'love' => '喜欢',
-        'love_choose' => '',
+        'love_choose' => '选择要提名 Loved 的难度',
         'love_confirm' => '喜欢这张谱面吗？',
         'nominate' => '提名',
         'nominate_confirm' => '提名这张谱面？',
