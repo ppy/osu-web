@@ -92,8 +92,8 @@ use Illuminate\Database\QueryException;
  * @property int $thread_id
  * @property string $title
  * @property string $title_unicode
- * @property \Illuminate\Database\Eloquent\Collection $track ArtistTrack
- * @property int $track_id
+ * @property ArtistTrack $track
+ * @property int|null $track_id
  * @property User $user
  * @property \Illuminate\Database\Eloquent\Collection $userRatings BeatmapsetUserRating
  * @property int $user_id
