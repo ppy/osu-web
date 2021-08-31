@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 export type Section = 'user' | 'user_others' | 'beatmapset' | 'beatmapset_others' | 'others';
 const SECTIONS: Section[] = [
@@ -51,6 +51,10 @@ export default class Worker {
   @observable selected: SelectedItem | null = null;
 
   private xhr: JQueryXHR | null = null;
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action cycleSelectedItem(direction: number) {
     let newSelected: SelectedItem | null;

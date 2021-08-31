@@ -2,10 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { CommentableMetaJson } from 'interfaces/comment-json';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
 export default class CommentableMetaStore {
   @observable meta = observable.map<string | null, CommentableMetaJson>();
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   flushStore() {
