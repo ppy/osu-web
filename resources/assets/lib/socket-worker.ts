@@ -5,7 +5,7 @@ import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { dispatch } from 'app-dispatcher';
 import { route } from 'laroute';
 import { forEach } from 'lodash';
-import { action, computed, makeObservable, observable, observe } from 'mobx';
+import { action, computed, makeObservable, observable, reaction } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
 import core from 'osu-core-singleton';
 import SocketMessageEvent, { isSocketEventData, SocketEventData } from 'socket-message-event';
@@ -41,11 +41,11 @@ export default class SocketWorker {
   constructor() {
     makeObservable(this);
 
-    observe(this, 'isConnected', (change) => {
-      if (change.newValue && change.newValue !== change.oldValue) {
-        dispatch(new SocketStateChangedAction(change.newValue));
-      }
-    }, true);
+    reaction(
+      () => this.isConnected,
+      (value) => dispatch(new SocketStateChangedAction(value)),
+      { fireImmediately: true },
+    );
   }
 
   boot() {
