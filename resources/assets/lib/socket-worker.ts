@@ -39,13 +39,13 @@ export default class SocketWorker {
   }
 
   constructor() {
+    makeObservable(this);
+
     observe(this, 'isConnected', (change) => {
       if (change.newValue && change.newValue !== change.oldValue) {
         dispatch(new SocketStateChangedAction(change.newValue));
       }
     }, true);
-
-    makeObservable(this);
   }
 
   boot() {
