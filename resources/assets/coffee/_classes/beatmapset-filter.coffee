@@ -22,6 +22,7 @@ class @BeatmapsetFilter
 
 
   @charToKey:
+    bundled: 'bundled'
     c: 'general'
     e: 'extra'
     g: 'genre'
@@ -56,6 +57,7 @@ class @BeatmapsetFilter
 
 
   @defaults:
+    bundled: 'any'
     general: ''
     extra: ''
     genre: null
@@ -67,7 +69,7 @@ class @BeatmapsetFilter
     status: 'leaderboard'
 
 
-  @expand: ['genre', 'language', 'extra', 'rank', 'played']
+  @expand: ['genre', 'language', 'extra', 'rank', 'played', 'bundled']
 
   @fillDefaults: (filters) =>
     ret = {}
@@ -105,6 +107,7 @@ class @BeatmapsetFilter
 
   # TODO: look at combining with the one in beatmapset-search-filter.ts
   @keys: [
+    'bundled'
     'general'
     'extra'
     'genre'

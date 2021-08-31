@@ -7,6 +7,7 @@ interface FilterOption {
 }
 
 export default interface AvailableFilters {
+  bundled: FilterOption[];
   extras: FilterOption[];
   general: FilterOption[];
   genres: FilterOption[];

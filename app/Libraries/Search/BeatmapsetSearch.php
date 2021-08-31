@@ -65,6 +65,7 @@ class BeatmapsetSearch extends RecordSearch
 
         $this->addBlacklistFilter($query);
         $this->addBlockedUsersFilter($query);
+        $this->addBundledFilter($query);
         $this->addFollowsFilter($query);
         $this->addGenreFilter($query);
         $this->addLanguageFilter($query);
@@ -140,6 +141,22 @@ class BeatmapsetSearch extends RecordSearch
     private function addBlockedUsersFilter($query)
     {
         $query->mustNot(['terms' => ['user_id' => $this->params->blockedUserIds()]]);
+    }
+
+    private function addBundledFilter($query)
+    {
+        switch ($this->params->bundledFilter) {
+            case 'currently':
+                $query->filter(['term' => ['bundled' => true]]);
+                break;
+            case 'previously':
+                $query->filter(['term' => ['bundled' => false]]);
+                $query->filter(['term' => ['can_bundle' => true]]);
+                break;
+            case 'never':
+                $query->filter(['term' => ['can_bundle' => false]]);
+                break;
+        }
     }
 
     private function addExtraFilter($query)

@@ -20,6 +20,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     const AVAILABLE_GENERAL = ['recommended', 'converts', 'follows'];
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
     const AVAILABLE_RANKS = ['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'];
+    const AVAILABLE_BUNDLED = ['any', 'currently', 'previously', 'never'];
 
     const LEGACY_STATUS_MAP = [
         '0' => 'ranked',
@@ -97,6 +98,11 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             if (isset($includeNsfw)) {
                 $this->includeNsfw = $includeNsfw;
             }
+
+            $this->bundledFilter = $request['bundled'] ?? null;
+            if (!in_array($this->bundledFilter, static::BUNDLED_STATES, true)) {
+                $this->bundledFilter = null;
+            }
         } else {
             $sort = null;
         }
@@ -126,11 +132,16 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $modes[] = ['id' => $id, 'name' => osu_trans("beatmaps.mode.{$name}")];
         }
 
+        $bundled = [];
         $extras = [];
         $general = [];
         $played = [];
         $ranks = [];
         $statuses = [];
+
+        foreach (static::AVAILABLE_BUNDLED as $id) {
+            $bundled[] = ['id' => $id, 'name' => trans("beatmaps.bundled.{$id}")];
+        }
 
         foreach (static::AVAILABLE_EXTRAS as $id) {
             $extras[] = ['id' => $id, 'name' => osu_trans("beatmaps.extra.{$id}")];
@@ -157,7 +168,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             ['id' => true, 'name' => osu_trans('beatmaps.nsfw.include')],
         ];
 
-        return compact('extras', 'general', 'genres', 'languages', 'modes', 'nsfw', 'played', 'ranks', 'statuses');
+        return compact('bundled', 'extras', 'general', 'genres', 'languages', 'modes', 'nsfw', 'played', 'ranks', 'statuses');
     }
 
     public function getSort(): ?string

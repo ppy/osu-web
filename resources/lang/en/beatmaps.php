@@ -222,6 +222,7 @@ return [
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
+                'bundled' => 'Bundled',
                 'extra' => 'Extra',
                 'general' => 'General',
                 'genre' => 'Genre',
@@ -344,6 +345,12 @@ return [
         'any' => 'Any',
         'played' => 'Played',
         'unplayed' => 'Unplayed',
+    ],
+    'bundled' => [
+        'any' => 'Any',
+        'currently' => 'Currently',
+        'previously' => 'Previously',
+        'never' => 'Never',
     ],
     'extra' => [
         'video' => 'Has Video',

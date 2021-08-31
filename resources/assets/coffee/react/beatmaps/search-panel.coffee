@@ -218,6 +218,10 @@ export class SearchPanel extends React.Component
           options: filters.played
 
         @renderFilter
+          name: 'bundled'
+          options: filters.bundled
+
+        @renderFilter
           name: 'nsfw'
           options: filters.nsfw
 

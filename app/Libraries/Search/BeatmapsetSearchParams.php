@@ -10,6 +10,7 @@ use App\Models\Beatmap;
 
 class BeatmapsetSearchParams extends SearchParams
 {
+    const BUNDLED_STATES = ['currently', 'previously', 'never'];
     const PLAYED_STATES = ['played', 'unplayed'];
     const STATUSES_NO_CACHE = ['favourites', 'mine'];
 
@@ -23,6 +24,13 @@ class BeatmapsetSearchParams extends SearchParams
 
     /** @var array|null */
     public $bpm;
+
+    /**
+     * null means any state.
+     *
+     * @var string|null
+     */
+    public $bundledFilter = null;
 
     /** @var array|null */
     public $created;

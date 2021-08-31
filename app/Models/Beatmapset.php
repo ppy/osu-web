@@ -49,6 +49,8 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $beatmapsetNominations BeatmapsetNomination
  * @property mixed|null $body_hash
  * @property float $bpm
+ * @property bool $bundled
+ * @property bool $can_bundle
  * @property string $commentable_identifier
  * @property Comment $comments
  * @property \Carbon\Carbon|null $cover_updated_at
@@ -109,6 +111,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     protected $casts = [
         'active' => 'boolean',
+        'bundled' => 'boolean',
+        'can_bundle' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
         'nsfw' => 'boolean',
@@ -329,6 +333,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         })->whereDoesntHave('beatmaps', function ($query) use ($modeInts) {
             $query->where('playmode', '<', min($modeInts));
         });
+    }
+
+    public function scopeBundled($query)
+    {
+        return $query->where('bundled', true);
     }
 
     // one-time checks

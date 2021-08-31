@@ -3,7 +3,7 @@
 
 import { action, computed, intercept, makeObservable, observable } from 'mobx';
 
-const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
+const keyNames = ['bundled', 'extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
 
 export type BeatmapsetSearchParams = {
   [key in FilterKey]: filterValueType
@@ -13,6 +13,7 @@ export type FilterKey = (typeof keyNames)[number];
 type filterValueType = string | null;
 
 export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
+  @observable bundled: filterValueType = null;
   @observable extra: filterValueType = null;
   @observable general: filterValueType = null;
   @observable genre: filterValueType = null;
