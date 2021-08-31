@@ -7,13 +7,16 @@ import { ChatChannelJoinEvent, ChatChannelPartEvent, ChatMessageNewEvent, isChan
 import DispatchListener from 'dispatch-listener';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
+import core from 'osu-core-singleton';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
 
 function newDispatchActionFromJson(json: SocketEventData) {
   if (isMessageEvent(json)) {
     switch (json.event) {
       case 'chat.message.new':
-        return new ChatMessageNewEvent(Message.fromJson(json.data));
+        // TODO
+        core.dataStore.userStore.updateWithJson(json.data.users);
+        return new ChatMessageNewEvent(Message.fromJson(json.data.messages[0]));
     }
   } else if (isChannelEvent(json)) {
     switch (json.event) {

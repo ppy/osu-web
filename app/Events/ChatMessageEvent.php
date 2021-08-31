@@ -7,6 +7,7 @@ namespace App\Events;
 
 use App\Models\Chat\Message;
 use App\Transformers\Chat\MessageTransformer;
+use App\Transformers\UserCompactTransformer;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
@@ -46,6 +47,9 @@ class ChatMessageEvent implements ShouldBroadcastNow
 
     public function broadcastWith()
     {
-        return json_item($this->message, new MessageTransformer());
+        return [
+            'messages' => json_collection([$this->message], new MessageTransformer()),
+            'users' => json_collection([$this->message->sender], new UserCompactTransformer()),
+        ];
     }
 }

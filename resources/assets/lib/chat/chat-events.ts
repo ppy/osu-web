@@ -7,6 +7,7 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import ChannelJson from 'interfaces/channel-json';
 import MessageJson from 'interfaces/message-json';
+import UserJson from 'interfaces/user-json';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import { SocketEventData } from 'socket-message-event';
@@ -19,7 +20,10 @@ export interface ChatChannelEventJson {
 }
 
 export interface ChatMessageEventJson {
-  data: MessageJson;
+  data: {
+    messages: MessageJson[];
+    users: UserJson[];
+  };
   event: string;
 }
 
