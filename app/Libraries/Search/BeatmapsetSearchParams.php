@@ -28,7 +28,7 @@ class BeatmapsetSearchParams extends SearchParams
     public ?int $genre = null;
     public bool $includeConverts = false;
     public bool $includeNsfw = false;
-    public ?array $keys= null;
+    public ?array $keys = null;
     public ?int $language = null;
     public ?int $mode = null;
     public ?string $playedFilter = null; // null means any state
