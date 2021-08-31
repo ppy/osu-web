@@ -1155,6 +1155,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 'beatmapDiscussions.beatmapset',
                 'beatmapDiscussions.beatmap',
                 'beatmapDiscussions.beatmapDiscussionVotes',
+                'track',
             ])->find($this->getKey()),
             'Beatmapset',
             [
@@ -1168,6 +1169,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 'nominations',
                 'related_users',
                 'related_users.groups',
+                'track',
             ]
         );
     }
