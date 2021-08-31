@@ -12,7 +12,6 @@ use App\Transformers\TransformerAbstract;
 class ChannelTransformer extends TransformerAbstract
 {
     const CONVERSATION_INCLUDES = [
-        'first_message_id',
         'last_message_id',
         'users',
     ];
@@ -24,7 +23,6 @@ class ChannelTransformer extends TransformerAbstract
 
     protected $availableIncludes = [
         'current_user_attributes',
-        'first_message_id',
         'last_message_id',
         'last_read_id',
         'recent_messages',

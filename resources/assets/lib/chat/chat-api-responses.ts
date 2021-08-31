@@ -17,7 +17,6 @@ export interface ChannelJson {
     can_message: boolean;
   };
   description?: string;
-  first_message_id?: number;
   icon?: string;
   last_message_id?: number;
   name: string;

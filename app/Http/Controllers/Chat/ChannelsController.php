@@ -63,7 +63,6 @@ class ChannelsController extends Controller
      *     "can_message": true
      *   },
      *   "description": "The official osu! channel (english only).",
-     *   "first_message_id": 1,
      *   "icon": "https://a.ppy.sh/2?1519081077.png",
      *   "last_message_id": 1029,
      *   "moderated": false,
@@ -148,7 +147,6 @@ class ChannelsController extends Controller
      *     "description": "wheeeee",
      *     "icon": "/images/layout/avatar-guest@2x.png",
      *     "type": "PM",
-     *     "first_message_id": 10,
      *     "last_message_id": 9150005005,
      *     "moderated": false,
      *     "users": [
