@@ -46,7 +46,7 @@ class Artist extends Model
 
     public function beatmapsets()
     {
-        return Beatmapset::whereIn('track_id', $this->tracks->pluck('id'));
+        return $this->hasManyThrough(Beatmapset::class, ArtistTrack::class, null, 'track_id');
     }
 
     public function tracks()

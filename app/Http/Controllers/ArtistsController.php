@@ -70,8 +70,8 @@ class ArtistsController extends Controller
 
         if ($artist->beatmapsets()->count() > 0) {
             $links[] = [
-                'title' => trans('artist.links.beatmaps'),
-                'url' => route('beatmapsets.index', ['a' => $artist->id]),
+                'title' => osu_trans('artist.links.beatmaps'),
+                'url' => route('beatmapsets.index', ['q' => "featured_artist={$artist->getKey()}"]),
                 'icon' => 'fas fa-bars',
                 'class' => 'osu',
             ];

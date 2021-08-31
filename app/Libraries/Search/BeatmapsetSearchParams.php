@@ -7,6 +7,7 @@ namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\SearchParams;
 use App\Models\Beatmap;
+use App\Models\User;
 
 class BeatmapsetSearchParams extends SearchParams
 {
@@ -14,94 +15,35 @@ class BeatmapsetSearchParams extends SearchParams
     const STATUSES_NO_CACHE = ['favourites', 'mine'];
 
     public ?array $accuracy = null;
+    public ?array $ar = null;
+    public ?string $artist = null;
+    public ?array $bpm = null;
+    public ?array $created = null;
+    public ?string $creator = null;
+    public ?array $cs = null;
+    public ?array $difficultyRating = null;
+    public ?array $drain = null;
+    public array $extra = [];
+    public ?int $featuredArtist = null;
+    public ?int $genre = null;
+    public bool $includeConverts = false;
+    public bool $includeNsfw = false;
+    public ?array $keys= null;
+    public ?int $language = null;
+    public ?int $mode = null;
+    public ?string $playedFilter = null; // null means any state
+    public ?string $queryString = null;
+    public array $rank = [];
+    public ?array $ranked = null;
+    public bool $showFeaturedArtists = false;
+    public bool $showFollows = false;
+    public bool $showRecommended = false;
+    public ?string $status = null;
+    public ?array $statusRange = null;
+    public ?array $hitLength = null;
+    public ?User $user = null;
 
-    /** @var array|null */
-    public $ar;
-
-    /** @var int|null */
-    public $artistId;
-
-    /** @var string|null */
-    public $artist;
-
-    /** @var array|null */
-    public $bpm;
-
-    /** @var array|null */
-    public $created;
-
-    /** @var string|null */
-    public $creator;
-
-    /** @var array|null */
-    public $cs;
-
-    /** @var array|null */
-    public $difficultyRating;
-
-    /** @var array|null */
-    public $drain;
-
-    /** @var array */
-    public $extra = [];
-
-    /** @var int|null */
-    public $genre = null;
-
-    /** @var bool */
-    public $includeConverts = false;
-
-    /** @var bool */
-    public $includeNsfw = false;
-
-    /** @var array|null */
-    public $keys;
-
-    /** @var int|null */
-    public $language = null;
-
-    /** @var int|null */
-    public $mode = null;
-
-    /**
-     * null means any state.
-     *
-     * @var string|null
-     */
-    public $playedFilter = null;
-
-    /** @var string|null */
-    public $queryString = null;
-
-    /** @var array */
-    public $rank = [];
-
-    /** @var array|null */
-    public $ranked;
-
-    /** @var bool */
-    public $showFeaturedArtists = false;
-
-    /** @var bool */
-    public $showFollows = false;
-
-    /** @var bool */
-    public $showRecommended = false;
-
-    /** @var string|null */
-    public $status = null;
-
-    /** @var array|null */
-    public $statusRange;
-
-    /** @var array|null */
-    public $hitLength;
-
-    /** @var User|null */
-    public $user = null;
-
-    /** @var float|null */
-    private $recommendedDifficulty;
+    private ?float $recommendedDifficulty = null;
 
     public function __construct()
     {

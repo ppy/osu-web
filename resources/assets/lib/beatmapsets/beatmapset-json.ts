@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ArtistTrack from 'interfaces/artist-track';
 import BeatmapJson from 'interfaces/beatmap-json';
 import GameMode from 'interfaces/game-mode';
 import GenreJson from 'interfaces/genre-json';
@@ -100,7 +101,7 @@ export interface BeatmapsetJson {
   status: BeatmapsetStatus;
   title: string;
   title_unicode: string;
-  track_id: number;
+  track?: ArtistTrack;
   user_id: number;
   video: boolean;
 }

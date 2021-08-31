@@ -68,7 +68,7 @@ const BeatmapDots = observer(({ compact, beatmaps, mode }: { beatmaps: BeatmapJs
 ));
 
 const FeaturedArtistBadge = () => (
-  <span className='featured-artist-badge featured-artist-badge--panel'>
+  <span className='beatmapset-badge beatmapset-badge--featured-artist beatmapset-badge--panel'>
     {osu.trans('beatmapsets.featured_artist_badge.label')}
   </span>
 );
@@ -81,7 +81,7 @@ const MapperLink = observer(({ beatmapset }: { beatmapset: BeatmapsetJson }) => 
 ));
 
 const NsfwBadge = () => (
-  <span className='nsfw-badge nsfw-badge--panel'>
+  <span className='beatmapset-badge beatmapset-badge--nsfw beatmapset-badge--panel'>
     {osu.trans('beatmapsets.nsfw_badge.label')}
   </span>
 );
@@ -411,7 +411,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
             {osu.trans('beatmapsets.show.details.by_artist', { artist: getArtist(this.props.beatmapset) })}
           </a>
-          {(this.props.beatmapset.track_id !== null) && <FeaturedArtistBadge />}
+          {(this.props.beatmapset.track !== null) && <FeaturedArtistBadge />}
         </div>
 
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--source'>

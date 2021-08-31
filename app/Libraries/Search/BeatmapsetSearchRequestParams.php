@@ -72,7 +72,6 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $status = presence($request['s'] ?? null);
             $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
 
-            $this->artistId = get_int($request['a'] ?? null);
             $this->genre = get_int($request['g'] ?? null);
             $this->language = get_int($request['l'] ?? null);
             $this->extra = array_intersect(
@@ -227,6 +226,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'creator' => 'creator',
             'cs' => 'cs',
             'dr' => 'drain',
+            'featured_artist' => 'featuredArtist',
             'keys' => 'keys',
             'length' => 'hitLength',
             'od' => 'accuracy',

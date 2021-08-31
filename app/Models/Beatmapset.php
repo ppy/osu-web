@@ -1195,7 +1195,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function track()
     {
-        return $this->belongsTo(ArtistTrack::class, 'track_id');
+        return $this->belongsTo(ArtistTrack::class);
     }
 
     public function userRatings()

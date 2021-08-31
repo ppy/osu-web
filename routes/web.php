@@ -41,6 +41,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['prefix' => 'beatmaps'], function () {
         // featured artists
         Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
+        Route::resource('artists/tracks', 'ArtistTracksController', ['only' => 'show']);
+
         Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
         Route::get('packs/{pack}/raw', 'BeatmapPacksController@raw')->name('packs.raw');
 

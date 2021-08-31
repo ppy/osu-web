@@ -18,6 +18,7 @@ class AddTrackIdToBeatmapsets extends Migration
     {
         Schema::table('osu_beatmapsets', function (Blueprint $table) {
             $table->bigInteger('track_id')->unsigned()->nullable();
+            $table->index('track_id');
         });
     }
 
@@ -30,6 +31,7 @@ class AddTrackIdToBeatmapsets extends Migration
     {
         Schema::table('osu_beatmapsets', function (Blueprint $table) {
             $table->dropColumn('track_id');
+            $table->dropIndex('track_id');
         });
     }
 }
