@@ -58,11 +58,6 @@ class ChannelTransformer extends TransformerAbstract
         ]);
     }
 
-    public function includeFirstMessageId(Channel $channel)
-    {
-        return $this->primitive($channel->messages()->select('message_id')->orderBy('message_id')->first()->message_id ?? null);
-    }
-
     public function includeLastMessageId(Channel $channel)
     {
         return $this->primitive($channel->last_message_id);
