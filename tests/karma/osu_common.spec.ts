@@ -64,7 +64,7 @@ describe('osu_common', () => {
     });
 
     it('clone undefined', () => {
-      expect(osu.jsonClone(undefined)).toBe(null);
+      expect(osu.jsonClone(undefined)).toBe(undefined);
     });
   });
 
