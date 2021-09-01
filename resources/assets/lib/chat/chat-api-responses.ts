@@ -59,6 +59,9 @@ export interface NewConversationJson {
   new_channel_id: number;
 }
 
+export type PresenceJson =
+  ChannelJsonExtended[];
+
 export type SendMessageJson =
   MessageJson;
 
