@@ -18,6 +18,7 @@ class ChannelTransformer extends TransformerAbstract
 
     const LISTING_INCLUDES = [
         'current_user_attributes',
+        'last_read_id',
         ...self::CONVERSATION_INCLUDES,
     ];
 
