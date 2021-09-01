@@ -15,6 +15,7 @@ export interface ChannelJson {
   channel_id: number;
   current_user_attributes?: {
     can_message: boolean;
+    last_read_id: number;
   };
   description?: string;
   icon?: string;
@@ -22,12 +23,6 @@ export interface ChannelJson {
   name: string;
   type: ChannelType;
   users?: number[];
-}
-
-// This is the version used by 'presence'.
-export interface ChannelJsonExtended extends ChannelJson {
-  last_message_id: number;
-  last_read_id: number;
 }
 
 export interface ChatInitialJson {

@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChannelJson, ChannelJsonExtended, ChannelType, MessageJson } from 'chat/chat-api-responses';
+import { ChannelJson, ChannelType, MessageJson } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import User from 'models/user';
@@ -152,13 +152,16 @@ export default class Channel {
   }
 
   @action
-  updatePresence = (json: ChannelJsonExtended) => {
+  updatePresence = (json: ChannelJson) => {
     this.updateWithJson(json);
     // clear flag otherwise presence updates might not close the channel when closed in a different window.
     if (this.newPmChannelTransient) {
       this.newPmChannelTransient = false;
     }
-    this.setLastReadId(json.last_read_id);
+
+    if (json.current_user_attributes != null) {
+      this.setLastReadId(json.current_user_attributes.last_read_id);
+    }
   };
 
   @action

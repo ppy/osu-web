@@ -52,6 +52,10 @@ class ChatController extends Controller
      *   "presence": [
      *     {
      *       "channel_id": 5,
+     *       "current_user_attributes": {
+     *         "can_message": true,
+     *         "last_read_id": 9150005005
+     *       },
      *       "name": "#osu",
      *       "description": "The official osu! channel (english only).",
      *       "type": "public",
@@ -60,6 +64,10 @@ class ChatController extends Controller
      *     },
      *     {
      *       "channel_id": 12345,
+     *       "current_user_attributes": {
+     *         "can_message": true,
+     *         "last_read_id": 9150001235
+     *       },
      *       "type": "PM",
      *       "name": "peppy",
      *       "icon": "https://a.ppy.sh/2?1519081077.png",
@@ -210,6 +218,10 @@ class ChatController extends Controller
      *   "channel": [
      *     {
      *       "channel_id": 1234,
+     *       "current_user_attributes": {
+     *         "can_message": true,
+     *         "last_read_id": 9150005005
+     *       },
      *       "name": "peppy",
      *       "description": "",
      *       "type": "PM",

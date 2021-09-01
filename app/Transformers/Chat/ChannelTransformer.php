@@ -24,7 +24,7 @@ class ChannelTransformer extends TransformerAbstract
     protected $availableIncludes = [
         'current_user_attributes',
         'last_message_id',
-        'last_read_id',
+        'last_read_id', // deprecated
         'recent_messages',
         'users',
     ];
@@ -55,6 +55,7 @@ class ChannelTransformer extends TransformerAbstract
     {
         return $this->primitive([
             'can_message' => $channel->canMessage($this->user),
+            'last_read_id' => $channel->lastReadIdFor($this->user),
         ]);
     }
 
