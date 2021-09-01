@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChannelJson, ChannelJsonExtended, ChannelType, MessageJson } from 'chat/chat-api-responses';
+import { ChannelJson, ChannelType, MessageJson } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import User from 'models/user';
@@ -10,6 +10,7 @@ import Message from './message';
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
 
+  @observable canMessage = true;
   @observable channelId: number;
   @observable description?: string;
   @observable firstMessageId = -1;
@@ -20,7 +21,6 @@ export default class Channel {
   @observable loading = false;
   @observable loadingEarlierMessages = false;
   @observable messages: Message[] = observable([]);
-  @observable moderated = false;
   @observable name = '';
   @observable newPmChannel = false;
   newPmChannelTransient = false;
@@ -152,13 +152,16 @@ export default class Channel {
   }
 
   @action
-  updatePresence = (json: ChannelJsonExtended) => {
+  updatePresence = (json: ChannelJson) => {
     this.updateWithJson(json);
     // clear flag otherwise presence updates might not close the channel when closed in a different window.
     if (this.newPmChannelTransient) {
       this.newPmChannelTransient = false;
     }
-    this.setLastReadId(json.last_read_id);
+
+    if (json.current_user_attributes != null) {
+      this.setLastReadId(json.current_user_attributes.last_read_id);
+    }
   };
 
   @action
@@ -167,10 +170,13 @@ export default class Channel {
     this.description = json.description;
     this.type = json.type;
     this.icon = json?.icon ?? Channel.defaultIcon;
-    this.moderated = json.moderated;
     this.users = json.users ?? this.users;
 
     this.initialLastMessageId = json.last_message_id ?? this.lastMessageId;
+
+    if (json.current_user_attributes != null) {
+      this.canMessage = json.current_user_attributes.can_message;
+    }
   }
 
   @action

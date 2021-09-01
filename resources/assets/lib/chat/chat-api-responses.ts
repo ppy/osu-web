@@ -13,25 +13,21 @@ export type ChannelType = 'PUBLIC'|'PRIVATE'|'MULTIPLAYER'|'SPECTATOR'|'TEMPORAR
 // This is the one that matches the php-side transformer response.
 export interface ChannelJson {
   channel_id: number;
+  current_user_attributes?: {
+    can_message: boolean;
+    last_read_id: number;
+  };
   description?: string;
-  first_message_id?: number;
   icon?: string;
   last_message_id?: number;
-  moderated: boolean;
   name: string;
   type: ChannelType;
   users?: number[];
 }
 
-// This is the version used by 'presence'.
-export interface ChannelJsonExtended extends ChannelJson {
-  last_message_id: number;
-  last_read_id: number;
-}
-
 export interface ChatInitialJson {
   last_message_id: number | null;
-  presence: PresenceJson;
+  presence: ChannelJson[];
   send_to?: SendToJson;
 }
 
@@ -40,7 +36,7 @@ export type GetMessagesJson =
 
 export interface GetUpdatesJson {
   messages: MessageJson[];
-  presence: PresenceJson;
+  presence: ChannelJson[];
   silences: ChatSilenceJson[];
 }
 
@@ -62,9 +58,6 @@ export interface NewConversationJson {
   message: MessageJson;
   new_channel_id: number;
 }
-
-export type PresenceJson =
-  ChannelJsonExtended[];
 
 export type SendMessageJson =
   MessageJson;
