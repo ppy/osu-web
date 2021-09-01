@@ -84,6 +84,7 @@ export default interface BeatmapsetJson {
   title: string;
   title_unicode: string;
   track?: ArtistTrack;
+  track_id: number | null;
   user_id: number;
   video: boolean;
 }

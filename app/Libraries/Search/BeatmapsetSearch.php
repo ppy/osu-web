@@ -154,7 +154,7 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addFeaturedArtistFilter($query)
     {
-        if ($this->params->featuredArtist) {
+        if ($this->params->featuredArtist !== null) {
             $trackIds = ArtistTrack::where('artist_id', $this->params->featuredArtist)->pluck('id');
             $query->filter(['terms' => ['track_id' => $trackIds]]);
         }

@@ -92,7 +92,7 @@ export class Header extends React.PureComponent
           h2
             className: "#{bn}__title #{bn}__title--artist"
             getArtist(@props.beatmapset)
-            if @props.beatmapset.track?
+            if @props.beatmapset.track_id?
               a
                 className: 'beatmapset-badge beatmapset-badge--featured-artist'
                 href: laroute.route 'tracks.show', @props.beatmapset.track_id

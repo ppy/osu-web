@@ -324,7 +324,6 @@ class BeatmapsetsController extends Controller
             'beatmaps.failtimes',
             'genre',
             'language',
-            'track',
             'user',
         ]);
 
@@ -340,7 +339,6 @@ class BeatmapsetsController extends Controller
             'language',
             'ratings',
             'recent_favourites',
-            'track',
             'user',
         ]);
     }
