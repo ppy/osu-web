@@ -3,7 +3,8 @@
 {
   "channel_id": 1337,
   "current_user_attributes": {
-    "can_message": true
+    "can_message": true,
+    "last_read_id": 9150005005,
   },
   "name": "test channel",
   "description": "wheeeee",
@@ -30,7 +31,7 @@ name                    | string                                           | |
 description             | string?                                          | |
 icon*                   | string                                           | display icon for the channel
 type                    | string                                           | see channel types below
-last_read_id*           | number?                                          | `message_id` of last message read (only returned in presence responses)
+last_read_id*           | number?                                          | Deprecated; use `current_user_attributes.last_read_id`.
 last_message_id*        | number?                                          | `message_id` of last known message (only returned in presence responses)
 recent_messages         | ChatMessage[]?                                   | up to 50 most recent messages
 moderated*              | boolean                                          | user can't send message when the value is `true` (only returned in presence responses)
