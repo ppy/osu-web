@@ -26,10 +26,9 @@ export class SearchFilter extends React.PureComponent
 
       div className: 'beatmapsets-search-filter__items',
         for option, i in @props.options
-          cssClasses = classWithModifiers 'beatmapsets-search-filter__item', [
-            'active' if @selected(option.id)
-            'featured-artists' if option.id == 'featured_artists'
-          ]
+          cssClasses = classWithModifiers 'beatmapsets-search-filter__item',
+            active: @selected(option.id)
+            'featured-artists': option.id == 'featured_artists'
 
           text = option.name
           if @props.name == 'general' && option.id == 'recommended' && @props.recommendedDifficulty?
