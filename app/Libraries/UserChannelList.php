@@ -53,14 +53,15 @@ class UserChannelList
     private function preloadUsers()
     {
         // Getting user list; Limited to PM channels due to large size of public channels.
-        $userPmChannels = UserChannel::whereIn('channel_id', $this->channels->pluck('channel_id'))
-            ->whereHas('channel', fn ($q) => $q->where('type', 'PM'))
-            ->get();
-
-        $userIds = (new Set($userPmChannels->pluck('user_id')))->toArray();
+        $userIds = new Set();
+        foreach ($this->channels as $channel) {
+            if ($channel->isPM()) {
+                $userIds->add(...$channel->userIds());
+            }
+        }
 
         $users = User::default()
-            ->whereIn('user_id', $userIds)
+            ->whereIn('user_id', $userIds->toArray())
             ->with([
                 // only fetch data related to $user, to be used by ChatPmStart/ChatChannelCanMessage privilege check
                 'friends' => fn ($query) => $query->where('zebra_id', $this->user->getKey()),

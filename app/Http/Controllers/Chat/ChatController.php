@@ -11,7 +11,6 @@ use App\Models\Chat\Message;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Transformers\Chat\ChannelTransformer;
-use Auth;
 
 /**
  * @group Chat
@@ -139,11 +138,12 @@ class ChatController extends Controller
             return $e['channel_id'];
         }, $presence);
 
-        $messages = Message::forUser(Auth::user())
-            ->with('sender')
+        $messages = Message
+            ::with('sender')
             ->whereIn('channel_id', $channelIds)
             ->since($since)
-            ->limit($limit);
+            ->limit($limit)
+            ->orderBy('message_id', 'DESC');
 
         if (present($params['channel_id'] ?? null)) {
             $messages->where('channel_id', get_int($params['channel_id']));
