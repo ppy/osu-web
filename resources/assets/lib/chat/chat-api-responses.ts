@@ -27,7 +27,7 @@ export interface ChannelJson {
 
 export interface ChatInitialJson {
   last_message_id: number | null;
-  presence: PresenceJson;
+  presence: ChannelJson[];
   send_to?: SendToJson;
 }
 
@@ -36,7 +36,7 @@ export type GetMessagesJson =
 
 export interface GetUpdatesJson {
   messages: MessageJson[];
-  presence: PresenceJson;
+  presence: ChannelJson[];
   silences: ChatSilenceJson[];
 }
 
@@ -58,9 +58,6 @@ export interface NewConversationJson {
   message: MessageJson;
   new_channel_id: number;
 }
-
-export type PresenceJson =
-  ChannelJsonExtended[];
 
 export type SendMessageJson =
   MessageJson;
