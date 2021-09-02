@@ -5,6 +5,8 @@ import UserExtendedJson from 'interfaces/user-extended-json';
 
 export type BeatmapsetSection = 'favouriteBeatmapsets' | 'rankedBeatmapsets' | 'lovedBeatmapsets' | 'pendingBeatmapsets' | 'graveyardBeatmapsets';
 
+type ProfilePageUserJson = UserExtendedJson & Required<Pick<UserExtendedJson, 'account_history'>>;
+
 interface Pagination {
   hasMore: boolean;
   loading: boolean;
@@ -13,6 +15,6 @@ interface Pagination {
 export default interface ExtraPageProps {
   name: string;
   pagination: Record<BeatmapsetSection | 'recentlyReceivedKudosu', Pagination>;
-  user: UserExtendedJson;
+  user: ProfilePageUserJson;
   withEdit: boolean;
 }
