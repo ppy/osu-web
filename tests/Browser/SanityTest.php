@@ -100,7 +100,7 @@ class SanityTest extends DuskTestCase
 
         // factories for /beatmaps/artists/*
         self::$scaffolding['artist'] = factory(\App\Models\Artist::class)->create();
-        self::$scaffolding['track'] = factory(\App\Models\ArtistTrack::class)->create([
+        self::$scaffolding['track'] = \App\Models\ArtistTrack::factory()->create([
             'artist_id' => self::$scaffolding['artist']->getKey(),
         ]);
 
