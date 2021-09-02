@@ -15,7 +15,7 @@ namespace App\Models;
  * @property int $log_time
  * @property int $log_type
  * @property Forum\Post $post
- * @property int $post_id
+ * @property int|null $post_id
  * @property User $reportee
  * @property int $reportee_id
  * @property Forum\Topic $topic
@@ -54,7 +54,7 @@ class Log extends Model
         $this->attributes['log_data'] = serialize($value);
     }
 
-    public function dataForDisplay(): array|null
+    public function dataForDisplay(): ?array
     {
         $logData = $this->log_data;
         $logOperation = $this->log_operation;
