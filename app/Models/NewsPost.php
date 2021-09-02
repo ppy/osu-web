@@ -296,7 +296,9 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         $rawPage = $file->content();
 
         $this->page = (new OsuMarkdown('news', [
-            'relative_url_root' => route('news.show', $this->slug),
+            'osu_extension' => [
+                'relative_url_root' => route('news.show', $this->slug),
+            ],
         ]))->load($rawPage)->toArray();
 
         $this->version = static::pageVersion();

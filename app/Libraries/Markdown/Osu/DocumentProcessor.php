@@ -49,11 +49,11 @@ class DocumentProcessor
 
         // The config value should come from route() call which means it's percent encoded
         // but it'll be reused as parameter for another route() call so decode it here.
-        $this->relativeUrlRoot = urldecode($this->config->get('relative_url_root'));
-        $generateToc = $this->config->get('generate_toc');
-        $recordFirstImage = $this->config->get('record_first_image');
-        $titleFromDocument = $this->config->get('title_from_document');
-        $this->wikiLocale = $this->config->get('wiki_locale');
+        $this->relativeUrlRoot = urldecode($this->config->get('osu_extension/relative_url_root'));
+        $generateToc = $this->config->get('osu_extension/generate_toc');
+        $recordFirstImage = $this->config->get('osu_extension/record_first_image');
+        $titleFromDocument = $this->config->get('osu_extension/title_from_document');
+        $this->wikiLocale = $this->config->get('osu_extension/wiki_locale');
 
         $this->setWikiPaths();
 
@@ -101,7 +101,7 @@ class DocumentProcessor
             return;
         }
 
-        $blockClass = $this->config->get('block_name');
+        $blockClass = $this->config->get('osu_extension/block_name');
 
         switch (get_class($this->node)) {
             case Block\ListBlock::class:
@@ -247,7 +247,7 @@ class DocumentProcessor
             return;
         }
 
-        $blockClass = $this->config->get('block_name');
+        $blockClass = $this->config->get('osu_extension/block_name');
 
         $image = $this->node->children()[0];
         $this->node->data['attributes']['class'] = "{$blockClass}__figure-container";

@@ -50,8 +50,12 @@ class ProcessorTest extends TestCase
 
         return [
             (new OsuMarkdown('default', [
-                'parse_attribute_id' => true,
-                'style_block_allowed_classes' => ['class-name'],
+                'osu_markdown' => [
+                    'parse_attribute_id' => true,
+                ],
+                'osu_extension' => [
+                    'style_block_allowed_classes' => ['class-name'],
+                ],
             ]))->load(file_get_contents($mdFilePath)),
             file_get_contents($textFilePath),
         ];

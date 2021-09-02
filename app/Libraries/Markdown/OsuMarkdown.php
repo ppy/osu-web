@@ -30,15 +30,21 @@ class OsuMarkdown
         'renderer' => ['soft_break' => '<br />'],
 
         // OsuMarkdownProcessor options
-        'block_modifiers' => [],
-        'block_name' => 'osu-md',
-        'generate_toc' => false,
-        'parse_attribute_id' => false,
-        'parse_yaml_header' => true,
-        'record_first_image' => false,
-        'relative_url_root' => null,
-        'style_block_allowed_classes' => null,
-        'title_from_document' => false,
+        'osu_extension' => [
+            'block_name' => 'osu-md',
+            'generate_toc' => false,
+            'record_first_image' => false,
+            'relative_url_root' => null,
+            'style_block_allowed_classes' => null,
+            'title_from_document' => false,
+            'wiki_locale' => null,
+        ],
+
+        'osu_markdown' => [
+            'block_modifiers' => [],
+            'parse_attribute_id' => false,
+            'parse_yaml_header' => true,
+        ],
     ];
 
     const PRESETS = [
@@ -47,34 +53,48 @@ class OsuMarkdown
             'html_input' => 'allow',
         ],
         'comment' => [
-            'block_modifiers' => ['comment'],
+            'osu_markdown' => [
+                'block_modifiers' => ['comment'],
+            ],
         ],
         'default' => [],
         'group' => [
-            'block_modifiers' => ['group'],
+            'osu_markdown' => [
+                'block_modifiers' => ['group'],
+            ],
         ],
         'news' => [
-            'block_modifiers' => ['news'],
             'generate_toc' => true,
             'html_input' => 'allow',
             'record_first_image' => true,
+            'osu_markdown' => [
+                'block_modifiers' => ['news'],
+            ],
         ],
         'store' => [
-            'block_modifiers' => ['store'],
             'html_input' => 'allow',
+            'osu_markdown' => [
+                'block_modifiers' => ['store'],
+            ],
         ],
         'store-product' => [
-            'block_modifiers' => ['store-product'],
+            'osu_markdown' => [
+                'block_modifiers' => ['store-product'],
+            ],
         ],
         'store-product-small' => [
-            'block_modifiers' => ['store-product', 'store-product-small'],
+            'osu_markdown' => [
+                'block_modifiers' => ['store-product', 'store-product-small'],
+            ],
         ],
         'wiki' => [
-            'block_modifiers' => ['wiki'],
             'generate_toc' => true,
-            'parse_attribute_id' => true,
             'style_block_allowed_classes' => ['infobox'],
             'title_from_document' => true,
+            'osu_markdown' => [
+                'block_modifiers' => ['wiki'],
+                'parse_attribute_id' => true,
+            ],
         ],
     ];
 
@@ -109,7 +129,7 @@ class OsuMarkdown
 
     public function __construct($preset, $config = [])
     {
-        $this->config = array_merge(
+        $this->config = array_merge_recursive(
             static::DEFAULT_CONFIG,
             static::PRESETS[$preset],
             $config
@@ -121,11 +141,14 @@ class OsuMarkdown
         return $this->memoize(__FUNCTION__, function () {
             [$converter, $osuExtension] = $this->getHtmlConverterAndExtension();
 
-            $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
+            $blockClass = class_with_modifiers(
+                $this->config['osu_extension']['block_name'],
+                $this->config['osu_markdown']['block_modifiers'],
+            );
             $converted = $converter->convertToHtml($this->document)->getContent();
             $processor = $osuExtension->processor;
 
-            if ($this->config['title_from_document']) {
+            if ($this->config['osu_extension']['title_from_document']) {
                 $this->header['title'] = $processor->title;
             }
 
@@ -142,7 +165,7 @@ class OsuMarkdown
 
         $rawInput = strip_utf8_bom($rawInput);
 
-        if ($this->config['parse_yaml_header']) {
+        if ($this->config['osu_markdown']['parse_yaml_header']) {
             $parsed = static::parseYamlHeader($rawInput);
             $this->document = $parsed['document'];
             $this->header = $parsed['header'];
@@ -205,12 +228,15 @@ class OsuMarkdown
 
     private function createBaseEnvironment(): Environment
     {
-        $environment = new Environment($this->config);
+        $config = $this->config;
+        unset($config['osu_markdown']);
+
+        $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
         $environment->addExtension(new AutolinkExtension());
         $environment->addExtension(new TableExtension());
 
-        if ($this->config['parse_attribute_id']) {
+        if ($this->config['osu_markdown']['parse_attribute_id']) {
             $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());
             $environment->addExtension(new AttributesExtension());
         }

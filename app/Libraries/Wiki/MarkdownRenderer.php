@@ -18,8 +18,10 @@ class MarkdownRenderer extends Renderer
     public function render()
     {
         return (new OsuMarkdown('wiki', [
-            'wiki_locale' => $this->page->locale,
-            'relative_url_root' => wiki_url($this->page->path, $this->page->locale, false, false),
+            'osu_extension' => [
+                'wiki_locale' => $this->page->locale,
+                'relative_url_root' => wiki_url($this->page->path, $this->page->locale, false, false),
+            ],
         ]))->load($this->body)->toArray();
     }
 
@@ -29,8 +31,10 @@ class MarkdownRenderer extends Renderer
     public function renderIndexable()
     {
         return (new OsuMarkdown('wiki', [
-            'wiki_locale' => $this->page->locale,
-            'relative_url_root' => wiki_url($this->page->path, $this->page->locale, false, false),
+            'osu_extension' => [
+                'wiki_locale' => $this->page->locale,
+                'relative_url_root' => wiki_url($this->page->path, $this->page->locale, false, false),
+            ],
         ]))->load($this->body)->toIndexable();
     }
 }
