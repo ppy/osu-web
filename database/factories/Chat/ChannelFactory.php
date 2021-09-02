@@ -12,6 +12,10 @@ $factory->define(Channel::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->state(Channel::class, 'moderated', function (Faker\Generator $faker) {
+    return ['moderated' => true];
+});
+
 $factory->state(Channel::class, 'public', function (Faker\Generator $faker) {
     return ['type' => Channel::TYPES['public']];
 });

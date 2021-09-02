@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
-import { computed, observable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
@@ -23,6 +23,8 @@ export default class LoveConfirmation extends React.Component<Props> {
     super(props);
 
     this.selectedBeatmapIds = new Set(this.beatmaps.map((beatmap) => beatmap.id));
+
+    makeObservable(this);
   }
 
   @computed

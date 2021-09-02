@@ -4,7 +4,7 @@
 import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatch, dispatcher, dispatchListener } from 'app-dispatcher';
+import { dispatch, dispatcher } from 'app-dispatcher';
 import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import * as _ from 'lodash';
@@ -22,7 +22,6 @@ interface Props {
 
 @inject('dataStore')
 @observer
-@dispatchListener
 export default class InputBox extends React.Component<Props> implements DispatchListener {
   readonly dataStore: RootDataStore = this.props.dataStore!;
 
@@ -35,6 +34,8 @@ export default class InputBox extends React.Component<Props> implements Dispatch
 
   constructor(props: Props) {
     super(props);
+
+    dispatcher.register(this);
 
     disposeOnUnmount(
       this,
@@ -86,7 +87,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
 
   render(): React.ReactNode {
     const channel = this.currentChannel;
-    const disableInput = !channel || channel.moderated;
+    const disableInput = !channel || !channel.canMessage;
 
     return (
       <div className='chat-input'>

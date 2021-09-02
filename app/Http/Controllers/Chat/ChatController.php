@@ -6,12 +6,11 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Libraries\Chat;
+use App\Libraries\UserChannelList;
 use App\Models\Chat\Message;
-use App\Models\Chat\UserChannel;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Transformers\Chat\ChannelTransformer;
-use Auth;
 
 /**
  * @group Chat
@@ -52,6 +51,10 @@ class ChatController extends Controller
      *   "presence": [
      *     {
      *       "channel_id": 5,
+     *       "current_user_attributes": {
+     *         "can_message": true,
+     *         "last_read_id": 9150005005
+     *       },
      *       "name": "#osu",
      *       "description": "The official osu! channel (english only).",
      *       "type": "public",
@@ -60,6 +63,10 @@ class ChatController extends Controller
      *     },
      *     {
      *       "channel_id": 12345,
+     *       "current_user_attributes": {
+     *         "can_message": true,
+     *         "last_read_id": 9150001235
+     *       },
      *       "type": "PM",
      *       "name": "peppy",
      *       "icon": "https://a.ppy.sh/2?1519081077.png",
@@ -131,11 +138,12 @@ class ChatController extends Controller
             return $e['channel_id'];
         }, $presence);
 
-        $messages = Message::forUser(Auth::user())
-            ->with('sender')
+        $messages = Message
+            ::with('sender')
             ->whereIn('channel_id', $channelIds)
             ->since($since)
-            ->limit($limit);
+            ->limit($limit)
+            ->orderBy('message_id', 'DESC');
 
         if (present($params['channel_id'] ?? null)) {
             $messages->where('channel_id', get_int($params['channel_id']));
@@ -180,7 +188,7 @@ class ChatController extends Controller
      */
     public function presence()
     {
-        return UserChannel::presenceForUser(Auth::user());
+        return (new UserChannelList(auth()->user()))->get();
     }
 
     /**
@@ -210,6 +218,10 @@ class ChatController extends Controller
      *   "channel": [
      *     {
      *       "channel_id": 1234,
+     *       "current_user_attributes": {
+     *         "can_message": true,
+     *         "last_read_id": 9150005005
+     *       },
      *       "name": "peppy",
      *       "description": "",
      *       "type": "PM",
@@ -257,7 +269,7 @@ class ChatController extends Controller
             get_bool($params['is_action'] ?? null)
         );
 
-        $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ['first_message_id', 'last_message_id', 'users']);
+        $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ChannelTransformer::CONVERSATION_INCLUDES);
 
         return [
             'channel' => $channelJson,

@@ -321,6 +321,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2021-09-01
+- `last_read_id` in [ChatChannel](#chatchannel) is deprecated, use `current_user_attributes.last_read_id` instead.
+
 ### 2021-08-11
 - `bot` scope removed in favour for `delegate` scope [Client Credentials Delegation](#client-credentials-delegation).
 
