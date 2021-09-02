@@ -38,17 +38,6 @@ class Message extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeForUser($query, User $user)
-    {
-        $channelIds = UserChannel::where([
-            'user_id' => $user->user_id,
-            'hidden' => false,
-        ])->pluck('channel_id');
-
-        return $query->whereIn('channel_id', $channelIds)
-            ->orderBy('message_id', 'desc');
-    }
-
     public function scopeSince($query, $messageId)
     {
         return $query->where('message_id', '>', $messageId);

@@ -19,7 +19,7 @@ class Chat
             abort(422, "can't send message to same user");
         }
 
-        priv_check_user($sender, 'ChatStart', $target)->ensureCan();
+        priv_check_user($sender, 'ChatPmStart', $target)->ensureCan();
 
         return (new Channel())->getConnection()->transaction(function () use ($sender, $target, $message, $isAction) {
             $channel = Channel::findPM($target, $sender);

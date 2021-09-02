@@ -3,7 +3,7 @@
 
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
@@ -32,6 +32,8 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
         this.userByName.set(user.username, user);
       }
     }
+
+    makeObservable(this);
   }
 
   render() {

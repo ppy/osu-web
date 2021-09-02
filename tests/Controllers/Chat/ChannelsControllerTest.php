@@ -228,6 +228,7 @@ class ChannelsControllerTest extends TestCase
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
+            ->assertJsonPath('0.current_user_attributes.last_read_id', $this->publicMessage->message_id)
             ->assertJsonFragment([
                 'channel_id' => $this->publicChannel->channel_id,
                 'last_read_id' => $this->publicMessage->message_id,
@@ -258,6 +259,7 @@ class ChannelsControllerTest extends TestCase
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
+            ->assertJsonPath('0.current_user_attributes.last_read_id', $newerPublicMessage->message_id)
             ->assertJsonFragment([
                 'channel_id' => $this->publicChannel->channel_id,
                 'last_read_id' => $newerPublicMessage->message_id,
@@ -277,6 +279,7 @@ class ChannelsControllerTest extends TestCase
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
+            ->assertJsonPath('0.current_user_attributes.last_read_id', $newerPublicMessage->message_id)
             ->assertJsonFragment([
                 'channel_id' => $this->publicChannel->channel_id,
                 'last_read_id' => $newerPublicMessage->message_id,

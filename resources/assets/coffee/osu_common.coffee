@@ -69,7 +69,10 @@
 
   # make a clone of json-like object (object with simple values)
   jsonClone: (object) ->
-    JSON.parse JSON.stringify(object ? null)
+    if object?
+      JSON.parse JSON.stringify(object)
+    else
+      object
 
 
   isInputElement: (el) ->
