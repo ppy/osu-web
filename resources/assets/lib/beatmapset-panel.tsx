@@ -558,7 +558,11 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private renderPlayArea() {
     return (
       <div className='beatmapset-panel__play-container'>
-        {this.showVisual && <button className='beatmapset-panel__play js-audio--play' type='button' />}
+        {this.showVisual && (
+          <button className='beatmapset-panel__play js-audio--play' type='button'>
+            <span className='play-button' />
+          </button>
+        )}
         <div className='beatmapset-panel__play-progress'>
           <CircularProgress
             current={0}
