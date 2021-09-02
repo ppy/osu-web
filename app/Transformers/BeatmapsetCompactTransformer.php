@@ -31,7 +31,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'ratings',
         'recent_favourites',
         'related_users',
-        'track',
         'user',
     ];
 
@@ -249,14 +248,5 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $users = User::with('userGroups')->whereIn('user_id', $userIds)->get();
 
         return $this->collection($users, new UserCompactTransformer());
-    }
-
-    public function includeTrack(Beatmapset $beatmapset)
-    {
-        if ($beatmapset->track === null) {
-            return;
-        }
-
-        return $this->item($beatmapset->track, new ArtistTrackTransformer());
     }
 }
