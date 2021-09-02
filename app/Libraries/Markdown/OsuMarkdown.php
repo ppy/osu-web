@@ -6,11 +6,11 @@
 namespace App\Libraries\Markdown;
 
 use App\Traits\Memoizes;
-use League\CommonMark\ConfigurableEnvironmentInterface;
-use League\CommonMark\Environment;
+use League\CommonMark\Environment\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\MarkdownConverter;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
@@ -122,7 +122,7 @@ class OsuMarkdown
             [$converter, $osuExtension] = $this->getHtmlConverterAndExtension();
 
             $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
-            $converted = $converter->convertToHtml($this->document);
+            $converted = $converter->convertToHtml($this->document)->getContent();
             $processor = $osuExtension->processor;
 
             if ($this->config['title_from_document']) {
@@ -171,7 +171,7 @@ class OsuMarkdown
     public function toIndexable(): string
     {
         return $this->memoize(__FUNCTION__, function () {
-            return $this->getIndexableConverter()->convertToHtml($this->document);
+            return $this->getIndexableConverter()->convertToHtml($this->document)->getContent();
         });
     }
 
@@ -203,11 +203,12 @@ class OsuMarkdown
         return $this->indexableConverter;
     }
 
-    private function createBaseEnvironment(): ConfigurableEnvironmentInterface
+    private function createBaseEnvironment(): Environment
     {
-        $environment = Environment::createCommonMarkEnvironment()
-            ->addExtension(new AutolinkExtension())
-            ->addExtension(new TableExtension());
+        $environment = new Environment($this->config);
+        $environment->addExtension(new CommonMarkCoreExtension());
+        $environment->addExtension(new AutolinkExtension());
+        $environment->addExtension(new TableExtension());
 
         if ($this->config['parse_attribute_id']) {
             $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());
@@ -217,8 +218,6 @@ class OsuMarkdown
         if ($this->config['style_block_allowed_classes'] !== null) {
             $environment->addExtension(new StyleBlock\Extension());
         }
-
-        $environment->mergeConfig($this->config);
 
         return $environment;
     }

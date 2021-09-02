@@ -5,13 +5,13 @@
 
 namespace App\Libraries\Markdown\Indexing\Renderers;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\Inline\Element\AbstractInline;
+use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Node\Block\TightBlockInterface;
 use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
 
-class BlockRenderer implements BlockRendererInterface
+class BlockRenderer implements NodeRendererInterface
 {
     /**
      * Finds the enclosing parent level block element for a given node.
@@ -32,23 +32,18 @@ class BlockRenderer implements BlockRendererInterface
     }
 
     /**
-     * @param AbstractBlock $block
-     * @param ElementRendererInterface $htmlRenderer
-     * @param bool $inTightList
+     * @param Node $node
+     * @param ChildNodeRendererInterface $childRenderer
      *
      * @return string
      */
-    public function render(AbstractBlock $block, ElementRendererInterface $renderer, $inTightList = false)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): string
     {
         $rendered = [];
 
-        $children = $block->children();
+        $children = $node->children();
         foreach ($children as $child) {
-            if ($child instanceof AbstractBlock) {
-                $rendered[] = $renderer->renderBlock($child, $inTightList);
-            } elseif ($child instanceof AbstractInline) {
-                $rendered[] = $renderer->renderInlines([$child]);
-            }
+            $rendered[] = $childRenderer->renderNodes([$child]);
         }
 
         $text = implode('', $rendered);
@@ -57,6 +52,10 @@ class BlockRenderer implements BlockRendererInterface
             return '';
         }
 
-        return $inTightList ? $text : $text."\n";
+        if ($node instanceof TightBlockInterface) {
+            return $node->isTight() ? $text : $text."\n";
+        }
+
+        return $text;
     }
 }

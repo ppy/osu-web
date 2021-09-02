@@ -6,27 +6,32 @@
 namespace App\Libraries\Wiki;
 
 use App\Libraries\Markdown\OsuMarkdown;
-use League\CommonMark\Block\Element as Block;
-use League\CommonMark\DocParser;
-use League\CommonMark\Environment;
-use League\CommonMark\HtmlRenderer;
-use League\CommonMark\Inline\Element as Inline;
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
+use League\CommonMark\Extension\CommonMark\Node\Inline\AbstractWebResource;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
+use League\CommonMark\Node\Block\Document;
+use League\CommonMark\Node\Block\Paragraph;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Node\NodeWalkerEvent;
+use League\CommonMark\Parser\MarkdownParser;
+use League\CommonMark\Renderer\HtmlRenderer;
 
 class MainPageRenderer extends Renderer
 {
-    /** @var DocParser */
-    private $parser;
+    private MarkdownParser $parser;
 
-    /** @var HtmlRenderer */
-    private $renderer;
+    private HtmlRenderer $renderer;
 
     public function __construct($page, $body)
     {
         parent::__construct($page, $body);
 
-        $env = Environment::createCommonMarkEnvironment(OsuMarkdown::DEFAULT_CONFIG);
+        $env = new Environment(OsuMarkdown::DEFAULT_CONFIG);
+        $env->addExtension(new CommonMarkCoreExtension());
 
-        $this->parser = new DocParser($env);
+        $this->parser = new MarkdownParser($env);
         $this->renderer = new HtmlRenderer($env);
     }
 
@@ -42,7 +47,7 @@ class MainPageRenderer extends Renderer
 
         $page = [
             'header' => $body['header'],
-            'output' => $this->renderer->renderBlock($document),
+            'output' => $this->renderer->renderDocument($document),
         ];
 
         return $page;
@@ -61,7 +66,7 @@ class MainPageRenderer extends Renderer
      * @param \League\CommonMark\Block\Element\Document $document
      * @return void
      */
-    private function addClasses($document)
+    private function addClasses(Document $document)
     {
         $walker = $document->walker();
 
@@ -78,13 +83,13 @@ class MainPageRenderer extends Renderer
             $class = '';
 
             switch (get_class($node)) {
-                case Block\Heading::class:
+                case Heading::class:
                     $class = "{$blockClass}__heading";
                     break;
-                case Block\Paragraph::class:
+                case Paragraph::class:
                     $class = "{$blockClass}__paragraph";
                     break;
-                case Inline\Link::class:
+                case Link::class:
                     $class = "{$blockClass}__link";
                     break;
             }
@@ -95,9 +100,9 @@ class MainPageRenderer extends Renderer
         }
     }
 
-    private function fixLinks($event, $node)
+    private function fixLinks(NodeWalkerEvent $event, Node $node)
     {
-        if (!$event->isEntering() || !($node instanceof Inline\AbstractWebResource)) {
+        if (!$event->isEntering() || !($node instanceof AbstractWebResource)) {
             return;
         }
 

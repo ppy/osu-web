@@ -6,7 +6,7 @@
 namespace App\Libraries\Markdown\Osu;
 
 use League\CommonMark\Block\Element\ListItem;
-use League\CommonMark\ConfigurableEnvironmentInterface;
+use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\ExtensionInterface;
 use League\CommonMark\Extension\Table\Table;
@@ -18,13 +18,13 @@ class Extension implements ExtensionInterface
      */
     public $processor;
 
-    public function register(ConfigurableEnvironmentInterface $environment): void
+    public function register(EnvironmentBuilderInterface $environment): void
     {
         $this->processor = new DocumentProcessor($environment);
 
         $environment
-            ->addBlockRenderer(ListItem::class, new Renderers\ListItemRenderer(), 10)
-            ->addBlockRenderer(Table::class, new Renderers\TableRenderer(), 10)
+            ->addRenderer(ListItem::class, new Renderers\ListItemRenderer(), 10)
+            ->addRenderer(Table::class, new Renderers\TableRenderer(), 10)
             ->addEventListener(DocumentParsedEvent::class, $this->processor);
     }
 }

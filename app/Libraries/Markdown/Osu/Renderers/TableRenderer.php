@@ -5,27 +5,24 @@
 
 namespace App\Libraries\Markdown\Osu\Renderers;
 
-use InvalidArgumentException;
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
-use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\Extension\Table\Table;
-use League\CommonMark\HtmlElement;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
+use League\CommonMark\Util\HtmlElement;
 
-class TableRenderer implements BlockRendererInterface
+class TableRenderer implements NodeRendererInterface
 {
-    public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, bool $inTightList = false)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer)
     {
-        if (!$block instanceof Table) {
-            throw new InvalidArgumentException('Incompatible block type: '.get_class($block));
-        }
+        Table::assertInstanceOf($node);
 
-        $attrs = $block->getData('attributes', []);
+        $attrs = $node->data->getData('attributes');
 
-        $separator = $htmlRenderer->getOption('inner_separator', "\n");
+        $separator = $childRenderer->getInnerSeparator();
 
-        $table = new HtmlElement('table', [], $separator.$htmlRenderer->renderBlocks($block->children()).$separator);
+        $table = new HtmlElement('table', [], $separator.$childRenderer->renderNodes($node->children()).$separator);
 
-        return new HtmlElement('div', $attrs, $separator.$table.$separator);
+        return new HtmlElement('div', $attrs->export(), $separator.$table.$separator);
     }
 }

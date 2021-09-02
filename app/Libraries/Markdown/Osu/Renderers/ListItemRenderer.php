@@ -5,27 +5,29 @@
 
 namespace App\Libraries\Markdown\Osu\Renderers;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
-use League\CommonMark\Block\Renderer\ListItemRenderer as BaseListItemRenderer;
-use League\CommonMark\ElementRendererInterface;
+use League\CommonMark\Extension\CommonMark\Renderer\Block\ListItemRenderer as BaseListItemRenderer;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
+use League\CommonMark\Util\HtmlElement;
 
-class ListItemRenderer implements BlockRendererInterface
+class ListItemRenderer implements NodeRendererInterface
 {
-    private $baseRenderer;
+    private BaseListItemRenderer $baseRenderer;
 
     public function __construct()
     {
         $this->baseRenderer = new BaseListItemRenderer();
     }
 
-    public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, bool $inTightList = false)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer)
     {
-        $li = $this->baseRenderer->render($block, $htmlRenderer, $inTightList);
+        $li = $this->baseRenderer->render($node, $childRenderer);
 
-        $contents = $li->getContents();
-
-        $li->setContents("<div>{$contents}</div>");
+        if ($li instanceof HtmlElement) {
+            $contents = $li->getContents();
+            $li->setContents("<div>{$contents}</div>");
+        }
 
         return $li;
     }

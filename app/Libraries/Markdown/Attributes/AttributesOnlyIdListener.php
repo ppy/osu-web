@@ -21,7 +21,7 @@ class AttributesOnlyIdListener
                 continue;
             }
 
-            $attributes = $node->getAttributes();
+            $attributes = $node->data->getData('attributes')->export();
 
             $newAttributes = [];
             if (isset($attributes['id'])) {
@@ -29,7 +29,7 @@ class AttributesOnlyIdListener
             }
 
             if ($node instanceof AttributesInline) {
-                $node->attributes = $newAttributes;
+                $node->setAttributes($newAttributes);
             } else if ($node instanceof Attributes) {
                 $node->replaceWith(new $node($newAttributes));
             }

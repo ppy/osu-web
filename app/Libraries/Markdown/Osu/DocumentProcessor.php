@@ -8,11 +8,14 @@ namespace App\Libraries\Markdown\Osu;
 use App\Libraries\LocaleMeta;
 use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
 use App\Libraries\OsuWiki;
-use League\CommonMark\Block\Element as Block;
-use League\CommonMark\EnvironmentInterface;
+use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
+use League\CommonMark\Extension\CommonMark\Node\Block;
+use League\CommonMark\Extension\CommonMark\Node\Inline;
 use League\CommonMark\Extension\Table as TableExtension;
-use League\CommonMark\Inline\Element as Inline;
+use League\CommonMark\Node\Block\Paragraph;
+use League\CommonMark\Node\Inline\Text;
+use League\Config\ConfigurationInterface;
 
 class DocumentProcessor
 {
@@ -20,7 +23,8 @@ class DocumentProcessor
     public $title;
     public $toc;
 
-    private $environment;
+    private ConfigurationInterface $config;
+    private EnvironmentBuilderInterface $environment;
     private $event;
     private $node;
 
@@ -32,9 +36,10 @@ class DocumentProcessor
     private $wikiPathToRoot;
     private $wikiAbsoluteRootPath;
 
-    public function __construct(EnvironmentInterface $environment)
+    public function __construct(EnvironmentBuilderInterface $environment)
     {
         $this->environment = $environment;
+        $this->config = $this->environment->getConfiguration();
     }
 
     public function __invoke(DocumentParsedEvent $event): void
@@ -44,11 +49,11 @@ class DocumentProcessor
 
         // The config value should come from route() call which means it's percent encoded
         // but it'll be reused as parameter for another route() call so decode it here.
-        $this->relativeUrlRoot = urldecode($this->environment->getConfig('relative_url_root'));
-        $generateToc = $this->environment->getConfig('generate_toc');
-        $recordFirstImage = $this->environment->getConfig('record_first_image');
-        $titleFromDocument = $this->environment->getConfig('title_from_document');
-        $this->wikiLocale = $this->environment->getConfig('wiki_locale');
+        $this->relativeUrlRoot = urldecode($this->config->get('relative_url_root'));
+        $generateToc = $this->config->get('generate_toc');
+        $recordFirstImage = $this->config->get('record_first_image');
+        $titleFromDocument = $this->config->get('title_from_document');
+        $this->wikiLocale = $this->config->get('wiki_locale');
 
         $this->setWikiPaths();
 
@@ -96,7 +101,7 @@ class DocumentProcessor
             return;
         }
 
-        $blockClass = $this->environment->getConfig('block_name');
+        $blockClass = $this->config->get('block_name');
 
         switch (get_class($this->node)) {
             case Block\ListBlock::class:
@@ -115,7 +120,7 @@ class DocumentProcessor
             case Block\Heading::class:
                 $class = "{$blockClass}__header {$blockClass}__header--".$this->node->getLevel();
                 break;
-            case Block\Paragraph::class:
+            case Paragraph::class:
                 $class = "{$blockClass}__paragraph";
                 break;
             case Inline\Image::class:
@@ -234,7 +239,7 @@ class DocumentProcessor
 
     private function parseFigure()
     {
-        if (!$this->node instanceof Block\Paragraph || !$this->event->isEntering()) {
+        if (!$this->node instanceof Paragraph || !$this->event->isEntering()) {
             return;
         }
 
@@ -242,14 +247,14 @@ class DocumentProcessor
             return;
         }
 
-        $blockClass = $this->environment->getConfig('block_name');
+        $blockClass = $this->config->get('block_name');
 
         $image = $this->node->children()[0];
         $this->node->data['attributes']['class'] = "{$blockClass}__figure-container";
         $image->data['attributes']['class'] = "{$blockClass}__figure-image";
 
         if (present($image->data['title'] ?? null)) {
-            $text = new Inline\Text($image->data['title']);
+            $text = new Text($image->data['title']);
             $textContainer = new Inline\Emphasis();
             $textContainer->data['attributes']['class'] = "{$blockClass}__figure-caption";
             $textContainer->appendChild($text);
