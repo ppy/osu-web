@@ -3,7 +3,7 @@
 
 import * as React from 'react'
 import { a, i, span, tr, td } from 'react-dom-factories'
-import { TrackPreview } from 'track-preview'
+import TrackPreview from 'track-preview'
 el = React.createElement
 
 export class TracklistTrack extends React.Component
