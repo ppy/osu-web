@@ -1,5 +1,0 @@
-{{{ Class Name
-
-paragraph
-
-}}}
