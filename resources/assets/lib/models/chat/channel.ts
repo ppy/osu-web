@@ -80,10 +80,10 @@ export default class Channel {
 
   @computed
   get loaded() {
-    return this.loadingState.messages && this.loadingState.metadata;
+    return this.loadingState.metadata;
+    // return this.loadingState.messages && this.loadingState.metadata;
   }
 
-  @computed
   get loading() {
     return this.loadingState.messages === false || this.loadingState.metadata === false;
   }
@@ -158,11 +158,7 @@ export default class Channel {
     // call load and then wait for ChatChannelJoin to arrive over the websocket.
     void this.loadMetadata();
 
-    if (this.loadingState.messages) {
-      void this.loadMoreMessages();
-    } else {
-      void this.loadMessages();
-    }
+    this.refreshMessages();
   }
 
   @action
@@ -201,34 +197,6 @@ export default class Channel {
   }
 
   @action
-  async loadMessages() {
-    if (this.newPmChannel || this.loadingState.messages != null) return;
-
-    this.loadingState.messages = false;
-
-    try {
-      const response = await ChatApi.getMessages(this.channelId);
-
-      runInAction(() => {
-        // TODO: something about User; map in api? or lazy load?
-        const messages = response.map((messageJson) => Message.fromJson(messageJson));
-
-        if (messages.length === 0) {
-          // assume no more messages.
-          this.firstMessageId = this.minMessageId;
-          return;
-        }
-
-        this.addMessages(messages);
-        this.needsRefresh = false;
-        this.loadingState.messages = true;
-      });
-    } catch {
-      // TODO: revert state
-    }
-  }
-
-  @action
   async loadMetadata() {
     if (this.loadingState.metadata != null) return;
 
@@ -240,24 +208,6 @@ export default class Channel {
       runInAction(() => {
         this.updateWithJson(response.channel);
         this.loadingState.metadata = true;
-      });
-    } catch {
-      // TODO: revert state
-    }
-  }
-
-  @action
-  async loadMoreMessages() {
-    if (!this.needsRefresh) return;
-
-    try {
-      const response = await ChatApi.getMessages(this.channelId, { since: this.lastMessageId });
-
-      runInAction(() => {
-        // TODO: something about User; map in api? or lazy load?
-        const messages = response.map((messageJson) => Message.fromJson(messageJson));
-        this.addMessages(messages);
-        this.needsRefresh = false;
       });
     } catch {
       // TODO: revert state
@@ -309,6 +259,41 @@ export default class Channel {
 
     if (json.current_user_attributes != null) {
       this.canMessage = json.current_user_attributes.can_message;
+    }
+  }
+
+  @action
+  private async refreshMessages() {
+    if (!this.needsRefresh) return;
+
+    this.loadingState.messages = false;
+
+    let since: number | undefined;
+    // no messages loaded but we know there's more
+    // messages loaded but not enough
+    if (this.messages.length > 0 && this.lastMessageId > 0) {
+      since = this.lastMessageId;
+    }
+
+    try {
+      const response = await ChatApi.getMessages(this.channelId, { since });
+
+      runInAction(() => {
+        // TODO: something about User; map in api? or lazy load?
+        const messages = response.map((messageJson) => Message.fromJson(messageJson));
+        this.addMessages(messages);
+
+        this.needsRefresh = false;
+        this.loadingState.messages = true;
+
+        if (messages.length === 0 && since == null) {
+          // assume no more messages.
+          this.firstMessageId = this.minMessageId;
+          return;
+        }
+      });
+    } catch {
+      // TODO: revert state
     }
   }
 
