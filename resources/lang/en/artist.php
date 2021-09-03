@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Songs',
         'count' => ':count_delimited song|:count_delimited songs',
-        'exclusive' => 'osu! exclusive',
+        'original' => 'osu! original',
     ],
 
     'tracklist' => [
