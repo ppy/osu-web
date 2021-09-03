@@ -16,23 +16,21 @@ export default class Tracklist extends React.PureComponent<Props> {
     }
 
     return (
-      <div className='tracklist js-audio--group'>
-        <table className='tracklist__table'>
-          <thead>
-            <tr className='tracklist__row--header'>
-              <th className='tracklist__col tracklist__col--preview' />
-              <th className='tracklist__col tracklist__col--title'>{osu.trans('artist.tracklist.title')}</th>
-              <th className='tracklist__col tracklist__col--length'>{osu.trans('artist.tracklist.length')}</th>
-              <th className='tracklist__col tracklist__col--bpm'>{osu.trans('artist.tracklist.bpm')}</th>
-              <th className='tracklist__col tracklist__col--genre'>{osu.trans('artist.tracklist.genre')}</th>
-              <th className='tracklist__col tracklist__col--dl' />
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.tracks.map((track) => <TracklistTrack key={track.id} track={track} /> )}
-          </tbody>
-        </table>
-      </div>
+      <table className='tracklist js-audio--group'>
+        <thead>
+          <tr className='tracklist__row--header'>
+            <th className='tracklist__col tracklist__col--preview' />
+            <th className='tracklist__col tracklist__col--title'>{osu.trans('artist.tracklist.title')}</th>
+            <th className='tracklist__col tracklist__col--length'>{osu.trans('artist.tracklist.length')}</th>
+            <th className='tracklist__col tracklist__col--bpm'>{osu.trans('artist.tracklist.bpm')}</th>
+            <th className='tracklist__col tracklist__col--genre'>{osu.trans('artist.tracklist.genre')}</th>
+            <th className='tracklist__col tracklist__col--dl' />
+          </tr>
+        </thead>
+        <tbody>
+          {this.props.tracks.map((track) => <TracklistTrack key={track.id} track={track} /> )}
+        </tbody>
+      </table>
     );
   }
 }
