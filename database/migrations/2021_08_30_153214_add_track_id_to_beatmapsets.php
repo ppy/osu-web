@@ -17,7 +17,7 @@ class AddTrackIdToBeatmapsets extends Migration
     public function up()
     {
         Schema::table('osu_beatmapsets', function (Blueprint $table) {
-            $table->bigInteger('track_id')->unsigned()->nullable();
+            $table->integer('track_id')->unsigned()->nullable();
             $table->index('track_id');
         });
     }
