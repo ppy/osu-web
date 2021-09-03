@@ -6,7 +6,6 @@
 namespace App\Libraries\Markdown\Osu;
 
 use App\Libraries\LocaleMeta;
-use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
 use App\Libraries\OsuWiki;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
@@ -128,9 +127,6 @@ class DocumentProcessor
                 break;
             case Inline\Link::class:
                 $class = "{$blockClass}__link";
-                break;
-            case StyleBlock::class:
-                $class = "{$blockClass}__{$this->node->getClass()}";
                 break;
             case TableExtension\Table::class:
                 $class = "{$blockClass}__table";

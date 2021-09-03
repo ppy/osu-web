@@ -241,10 +241,6 @@ class OsuMarkdown
             $environment->addExtension(new AttributesExtension());
         }
 
-        if ($this->config['style_block_allowed_classes'] !== null) {
-            $environment->addExtension(new StyleBlock\Extension());
-        }
-
         return $environment;
     }
 }

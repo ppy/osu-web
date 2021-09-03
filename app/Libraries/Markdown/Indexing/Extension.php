@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Markdown\Indexing;
 
-use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\CommonMark\Node\Block as ExtensionBlock;
 use League\CommonMark\Extension\CommonMark\Node\Inline as ExtensionInline;
@@ -40,7 +39,6 @@ class Extension implements ExtensionInterface
             ExtensionBlock\ListBlock::class => new Renderers\ListBlockRenderer(),
             ExtensionBlock\ListItem::class => new Renderers\ListItemRenderer(),
             ExtensionBlock\ThematicBreak::class => new Renderers\BlockRenderer(),
-            StyleBlock::class => new Renderers\BlockRenderer(),
             TableExtension\Table::class => new Renderers\TableRenderer(),
             TableExtension\TableCaption::class => new Renderers\NoopRenderer(),
             TableExtension\TableSection::class => new Renderers\TableRenderer(),
