@@ -48,16 +48,15 @@ export default class TracklistTrack extends React.PureComponent<Props> {
         <td className='tracklist__bpm'>{this.props.track.bpm}bpm</td>
         <td className='tracklist__genre u-ellipsis-overflow'>{this.props.track.genre}</td>
         <td className='tracklist__dl'>
-          {this.props.track.osz != null
-            ? (
-              <a className='tracklist__link' href={this.props.track.osz} title={osu.trans('artist.beatmaps.download')}>
-                <span className='fas fa-fw fa-download' />
-              </a>
-            ) : (
-              <span className='tracklist__link--disabled' title={osu.trans('artist.beatmaps.download-na')}>
-                <span className='fas fa-fw fa-download' />
-              </span>
-            )}
+          {this.props.track.osz != null ? (
+            <a className='tracklist__link' href={this.props.track.osz} title={osu.trans('artist.beatmaps.download')}>
+              <span className='fas fa-fw fa-download' />
+            </a>
+          ) : (
+            <span className='tracklist__link--disabled' title={osu.trans('artist.beatmaps.download-na')}>
+              <span className='fas fa-fw fa-download' />
+            </span>
+          )}
         </td>
       </tr>
     );
