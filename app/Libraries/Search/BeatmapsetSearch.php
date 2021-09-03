@@ -9,6 +9,7 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\FunctionScore;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
+use App\Models\ArtistTrack;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
@@ -65,6 +66,8 @@ class BeatmapsetSearch extends RecordSearch
 
         $this->addBlacklistFilter($query);
         $this->addBlockedUsersFilter($query);
+        $this->addFeaturedArtistFilter($query);
+        $this->addFeaturedArtistsFilter($query);
         $this->addFollowsFilter($query);
         $this->addGenreFilter($query);
         $this->addLanguageFilter($query);
@@ -146,6 +149,21 @@ class BeatmapsetSearch extends RecordSearch
     {
         foreach ($this->params->extra as $val) {
             $query->filter(['term' => [$val => true]]);
+        }
+    }
+
+    private function addFeaturedArtistFilter($query)
+    {
+        if ($this->params->featuredArtist !== null) {
+            $trackIds = ArtistTrack::where('artist_id', $this->params->featuredArtist)->pluck('id');
+            $query->filter(['terms' => ['track_id' => $trackIds]]);
+        }
+    }
+
+    private function addFeaturedArtistsFilter($query)
+    {
+        if ($this->params->showFeaturedArtists) {
+            $query->filter(['exists' => ['field' => 'track_id']]);
         }
     }
 
