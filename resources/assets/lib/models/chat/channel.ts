@@ -180,7 +180,19 @@ export default class Channel {
 
     try {
       const response = await ChatApi.getMessages(this.channelId, { until });
-      this.addMessages(response.map((json) => Message.fromJson(json)));
+
+      runInAction(() => {
+        // TODO: something about User; map in api? or lazy load?
+        const messages = response.map((messageJson) => Message.fromJson(messageJson));
+
+        if (messages.length === 0) {
+          // assume no more messages.
+          this.firstMessageId = this.minMessageId;
+          return;
+        }
+
+        this.addMessages(messages);
+      });
     } finally {
       runInAction(() => {
         this.loadingEarlierMessages = false;
