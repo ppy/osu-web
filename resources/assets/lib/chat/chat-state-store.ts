@@ -108,6 +108,8 @@ export default class ChatStateStore implements DispatchListener {
     if (event.connected) {
       this.updateChannelList();
 
+      // TODO: always delay this until getting new metadata is complete
+      // so that last_message_id from server is up to date.
       this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
       this.channelStore.loadChannel(this.selected);
     }

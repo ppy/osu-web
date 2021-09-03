@@ -36,7 +36,7 @@ export default class Channel {
   @observable type: ChannelType = 'NEW';
   @observable users: number[] = [];
 
-  private initialLastMessageId?: number;
+  private serverLastMessageId?: number;
 
   @computed
   get firstMessage() {
@@ -70,7 +70,7 @@ export default class Channel {
       }
     }
 
-    return this.initialLastMessageId ?? -1;
+    return this.serverLastMessageId ?? -1;
   }
 
   @computed
@@ -255,7 +255,7 @@ export default class Channel {
     this.icon = json.icon ?? Channel.defaultIcon;
     this.users = json.users ?? this.users;
 
-    this.initialLastMessageId = json.last_message_id ?? this.lastMessageId;
+    this.serverLastMessageId = json.last_message_id;
 
     if (json.current_user_attributes != null) {
       this.canMessage = json.current_user_attributes.can_message;
@@ -269,8 +269,7 @@ export default class Channel {
     this.loadingState.messages = false;
 
     let since: number | undefined;
-    // no messages loaded but we know there's more
-    // messages loaded but not enough
+
     if (this.messages.length > 0 && this.lastMessageId > 0) {
       since = this.lastMessageId;
     }
