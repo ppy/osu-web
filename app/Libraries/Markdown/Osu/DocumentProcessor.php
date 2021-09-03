@@ -14,26 +14,27 @@ use League\CommonMark\Extension\CommonMark\Node\Inline;
 use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Node\Block\Paragraph;
 use League\CommonMark\Node\Inline\Text;
+use League\CommonMark\Node\NodeWalkerEvent;
 use League\Config\ConfigurationInterface;
 
 class DocumentProcessor
 {
-    public $firstImage;
-    public $title;
-    public $toc;
+    public ?string $firstImage;
+    public ?string $title;
+    public ?array $toc;
 
     private ConfigurationInterface $config;
     private EnvironmentBuilderInterface $environment;
-    private $event;
+    private ?NodeWalkerEvent $event;
     private $node;
 
-    private $listLevel;
-    private $tocSlugs;
+    private int $listLevel;
+    private array $tocSlugs;
 
-    private $relativeUrlRoot;
-    private $wikiLocale;
-    private $wikiPathToRoot;
-    private $wikiAbsoluteRootPath;
+    private ?string $relativeUrlRoot;
+    private ?string $wikiLocale;
+    private string $wikiPathToRoot;
+    private string $wikiAbsoluteRootPath;
 
     public function __construct(EnvironmentBuilderInterface $environment)
     {
@@ -96,7 +97,7 @@ class DocumentProcessor
 
     private function addClass()
     {
-        if ($this->event->isEntering() || isset($this->node->data['attributes']['class'])) {
+        if (!$this->event->isEntering() || isset($this->node->data->getData('attributes')->export()['class'])) {
             return;
         }
 
@@ -134,18 +135,18 @@ class DocumentProcessor
             case TableExtension\TableCell::class:
                 $class = "{$blockClass}__table-data";
 
-                if ($this->node->align !== null) {
-                    $class .= " {$blockClass}__table-data--{$this->node->align}";
+                if ($this->node->getAlign() !== null) {
+                    $class .= " {$blockClass}__table-data--{$this->node->getAlign()}";
                 }
 
-                if ($this->node->type === 'th') {
+                if ($this->node->gettype() === 'header') {
                     $class .= " {$blockClass}__table-data--header";
                 }
                 break;
         }
 
         if (isset($class)) {
-            $this->node->data['attributes']['class'] = $class;
+            $this->node->data->set('attributes/class', $class);
         }
     }
 
@@ -158,7 +159,7 @@ class DocumentProcessor
         if ($this->node->getListData()->type === Block\ListBlock::TYPE_ORDERED) {
             $start = ($this->node->getListData()->start ?? 1) - 1;
 
-            $this->node->data['attributes']['style'] = "--list-start: {$start}";
+            $this->node->data->set('attributes/style', "--list-start: {$start}");
         }
     }
 
@@ -195,8 +196,8 @@ class DocumentProcessor
             if ($child instanceof Inline\Image) {
                 // avoid using image title as text
                 continue;
-            } elseif (method_exists($child, 'getContent')) {
-                $text .= $child->getContent();
+            } elseif (method_exists($child, 'getLiteral')) {
+                $text .= $child->getLiteral();
             } elseif (method_exists($child, 'children')) {
                 $text .= $this->getText($child);
             }
@@ -216,7 +217,7 @@ class DocumentProcessor
         }
 
         $title = $this->getText($this->node);
-        $slug = $this->node->data['attributes']['id'] ?? presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
+        $slug = $this->node->data->get('attributes/id') ?? presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
             $this->tocSlugs[$slug] += 1;
@@ -230,7 +231,7 @@ class DocumentProcessor
             $this->toc[$slug] = compact('title', 'level');
         }
 
-        $this->node->data['attributes']['id'] = $slug;
+        $this->node->data->set('attributes/id', $slug);
     }
 
     private function parseFigure()
@@ -246,13 +247,13 @@ class DocumentProcessor
         $blockClass = $this->config->get('osu_extension/block_name');
 
         $image = $this->node->children()[0];
-        $this->node->data['attributes']['class'] = "{$blockClass}__figure-container";
-        $image->data['attributes']['class'] = "{$blockClass}__figure-image";
+        $this->node->data->set('attributes/class', "{$blockClass}__figure-container");
+        $image->data->set('attributes/class', "{$blockClass}__figure-image");
 
-        if (present($image->data['title'] ?? null)) {
-            $text = new Text($image->data['title']);
+        if (present($image->getTitle() ?? null)) {
+            $text = new Text($image->getTitle());
             $textContainer = new Inline\Emphasis();
-            $textContainer->data['attributes']['class'] = "{$blockClass}__figure-caption";
+            $textContainer->data->set('attributes/class', "{$blockClass}__figure-caption");
             $textContainer->appendChild($text);
             $this->node->appendChild($textContainer);
         }
