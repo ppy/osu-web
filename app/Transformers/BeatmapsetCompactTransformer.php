@@ -61,6 +61,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'status' => $beatmapset->status(),
             'title' => $beatmapset->title,
             'title_unicode' => $beatmapset->title_unicode,
+            'track_id' => $beatmapset->track_id,
             'user_id' => $beatmapset->user_id,
             'video' => $beatmapset->video,
         ];
