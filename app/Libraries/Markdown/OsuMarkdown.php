@@ -11,8 +11,17 @@ use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListBlock;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
+use League\CommonMark\Extension\DefaultAttributes\DefaultAttributesExtension;
+use League\CommonMark\Extension\Table\Table;
+use League\CommonMark\Extension\Table\TableCell;
 use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\MarkdownConverter;
+use League\CommonMark\Node\Block\Paragraph;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -231,6 +240,9 @@ class OsuMarkdown
         $config = $this->config;
         unset($config['osu_markdown']);
 
+        $defaultAttributeConfig = $this->createDefaultAttributesConfig();
+        $config = array_merge($config, $defaultAttributeConfig);
+
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
         $environment->addExtension(new AutolinkExtension());
@@ -241,6 +253,63 @@ class OsuMarkdown
             $environment->addExtension(new AttributesExtension());
         }
 
+        $environment->addExtension(new DefaultAttributesExtension());
+
         return $environment;
+    }
+
+    private function createDefaultAttributesConfig(): array
+    {
+        $blockClass = $this->config['osu_extension']['block_name'];
+
+        $config = [
+            'default_attributes' => [
+                Heading::class => [
+                    'class' => static fn (Heading $node) => class_with_modifiers(
+                        "{$blockClass}__header",
+                        [$node->getLevel()],
+                    ),
+                ],
+                Image::class => [
+                    'class' => "{$blockClass}__image",
+                ],
+                Link::class => [
+                    'class' => "{$blockClass}__link",
+                ],
+                ListBlock::class => [
+                    'class' => static fn (ListBlock $node) => class_with_modifiers(
+                        "{$blockClass}__list",
+                        ['ordered' => $node->getListData()->type === ListBlock::TYPE_ORDERED]
+                    ),
+                    'style' => static function (ListBlock $node) {
+                        if ($node->getListData()->type === ListBlock::TYPE_ORDERED) {
+                            $start = ($node->getListData()->start ?? 1) - 1;
+                            return "--list-start: {$start}";
+                        }
+                        return null;
+                    },
+                ],
+                ListItem::class => [
+                    'class' => "{$blockClass}__list-item",
+                ],
+                Paragraph::class => [
+                    'class' => "{$blockClass}__paragraph",
+                ],
+                Table::class => [
+                    'class' => "{$blockClass}__table",
+                ],
+                TableCell::class => [
+                    'class' => static fn (TableCell $node) => class_with_modifiers(
+                        "{$blockClass}__table-data",
+                        [
+                            $node->getAlign() => $node->getAlign() !== null,
+                            'header' => $node->getType() === TableCell::TYPE_HEADER,
+                        ]
+                    ),
+                ],
+            ],
+        ];
+
+        return $config;
     }
 }

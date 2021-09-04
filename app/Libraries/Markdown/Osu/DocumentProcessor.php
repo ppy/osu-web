@@ -87,11 +87,6 @@ class DocumentProcessor
             $this->parseFigure();
 
             $this->proxyImage();
-
-            $this->addListStartAsVariable();
-
-            // last to prevent possible conflict
-            $this->addClass();
         }
     }
 
