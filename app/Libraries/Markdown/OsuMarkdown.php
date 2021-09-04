@@ -226,7 +226,7 @@ class OsuMarkdown
     private function getIndexableConverter(): MarkdownConverter
     {
         if ($this->indexableConverter === null) {
-            $environment = $this->createBaseEnvironment();
+            $environment = $this->createBaseEnvironment(true);
             $environment->addExtension(new Indexing\Extension());
 
             $this->indexableConverter = new MarkdownConverter($environment);
@@ -235,10 +235,14 @@ class OsuMarkdown
         return $this->indexableConverter;
     }
 
-    private function createBaseEnvironment(): Environment
+    private function createBaseEnvironment(bool $isIndexing = false): Environment
     {
         $config = $this->config;
         unset($config['osu_markdown']);
+
+        if ($isIndexing) {
+            unset($config['osu_extension']);
+        }
 
         $defaultAttributeConfig = $this->createDefaultAttributesConfig();
         $config = array_merge($config, $defaultAttributeConfig);
