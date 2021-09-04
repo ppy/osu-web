@@ -11,7 +11,6 @@ use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\CommonMark\Node\Block;
 use League\CommonMark\Extension\CommonMark\Node\Inline;
-use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Node\Block\Paragraph;
 use League\CommonMark\Node\Inline\Text;
 use League\CommonMark\Node\NodeWalkerEvent;
@@ -24,11 +23,9 @@ class DocumentProcessor
     public ?array $toc;
 
     private ConfigurationInterface $config;
-    private EnvironmentBuilderInterface $environment;
     private ?NodeWalkerEvent $event;
     private $node;
 
-    private int $listLevel;
     private array $tocSlugs;
 
     private ?string $relativeUrlRoot;
@@ -38,8 +35,7 @@ class DocumentProcessor
 
     public function __construct(EnvironmentBuilderInterface $environment)
     {
-        $this->environment = $environment;
-        $this->config = $this->environment->getConfiguration();
+        $this->config = $environment->getConfiguration();
     }
 
     public function __invoke(DocumentParsedEvent $event): void
@@ -61,7 +57,6 @@ class DocumentProcessor
         $this->title = null;
         $this->toc = [];
         $this->tocSlugs = [];
-        $this->listLevel = 0;
 
         while (($this->event = $walker->next()) !== null) {
             $this->node = $this->event->getNode();
@@ -74,8 +69,6 @@ class DocumentProcessor
                 $this->recordFirstImage();
             }
 
-            $this->trackListLevel();
-
             if ($titleFromDocument) {
                 $this->setTitle();
             }
@@ -87,74 +80,6 @@ class DocumentProcessor
             $this->parseFigure();
 
             $this->proxyImage();
-        }
-    }
-
-    private function addClass()
-    {
-        if (!$this->event->isEntering() || isset($this->node->data->getData('attributes')->export()['class'])) {
-            return;
-        }
-
-        $blockClass = $this->config->get('osu_extension/block_name');
-
-        switch (get_class($this->node)) {
-            case Block\ListBlock::class:
-                $class = "{$blockClass}__list";
-                if ($this->node->getListData()->type === Block\ListBlock::TYPE_ORDERED) {
-                    $class .= " {$blockClass}__list--ordered";
-                }
-                break;
-            case Block\ListItem::class:
-                $class = "{$blockClass}__list-item";
-
-                if ($this->listLevel > 1) {
-                    $class .= " {$blockClass}__list-item--deep";
-                }
-                break;
-            case Block\Heading::class:
-                $class = "{$blockClass}__header {$blockClass}__header--".$this->node->getLevel();
-                break;
-            case Paragraph::class:
-                $class = "{$blockClass}__paragraph";
-                break;
-            case Inline\Image::class:
-                $class = "{$blockClass}__image";
-                break;
-            case Inline\Link::class:
-                $class = "{$blockClass}__link";
-                break;
-            case TableExtension\Table::class:
-                $class = "{$blockClass}__table";
-                break;
-            case TableExtension\TableCell::class:
-                $class = "{$blockClass}__table-data";
-
-                if ($this->node->getAlign() !== null) {
-                    $class .= " {$blockClass}__table-data--{$this->node->getAlign()}";
-                }
-
-                if ($this->node->gettype() === 'header') {
-                    $class .= " {$blockClass}__table-data--header";
-                }
-                break;
-        }
-
-        if (isset($class)) {
-            $this->node->data->set('attributes/class', $class);
-        }
-    }
-
-    private function addListStartAsVariable()
-    {
-        if (!$this->node instanceof Block\ListBlock || !$this->event->isEntering()) {
-            return;
-        }
-
-        if ($this->node->getListData()->type === Block\ListBlock::TYPE_ORDERED) {
-            $start = ($this->node->getListData()->start ?? 1) - 1;
-
-            $this->node->data->set('attributes/style', "--list-start: {$start}");
         }
     }
 
@@ -321,19 +246,6 @@ class DocumentProcessor
         }
 
         $this->title = presence($this->node->getStringContent());
-    }
-
-    private function trackListLevel()
-    {
-        if (!$this->node instanceof Block\ListBlock) {
-            return;
-        }
-
-        if ($this->event->isEntering()) {
-            $this->listLevel += 1;
-        } else {
-            $this->listLevel -= 1;
-        }
     }
 
     private function updateLocaleLink()
