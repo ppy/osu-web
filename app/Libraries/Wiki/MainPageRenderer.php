@@ -28,7 +28,7 @@ class MainPageRenderer extends Renderer
     {
         parent::__construct($page, $body);
 
-        $env = new Environment(OsuMarkdown::DEFAULT_CONFIG);
+        $env = new Environment(OsuMarkdown::DEFAULT_COMMONMARK_CONFIG);
         $env->addExtension(new CommonMarkCoreExtension());
 
         $this->parser = new MarkdownParser($env);
