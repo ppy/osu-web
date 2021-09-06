@@ -43,7 +43,7 @@ export default class Message {
       persisted: true,
       senderId: json.sender_id,
       timestamp: json.timestamp,
-      uuid: osu.uuid(),
+      uuid: json.uuid ?? message.uuid,
     });
   }
 

@@ -6,6 +6,7 @@ import ChatApi from 'chat/chat-api';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import * as _ from 'lodash';
+import { last } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import Message from 'models/chat/message';
 import User from 'models/user';
@@ -111,7 +112,18 @@ export default class Channel {
 
   @action
   addMessages(messages: Message[], skipSort = false) {
-    this.messages.push(...messages);
+    // TODO: less hacky
+    // check if message coming over socket matches pending message
+    const lastMessage = last(this.messages);
+    const receivedMessage = last(messages);
+
+    if (lastMessage != null && receivedMessage != null && lastMessage.uuid === receivedMessage.uuid) {
+      lastMessage.messageId = receivedMessage.messageId;
+      lastMessage.timestamp = receivedMessage.timestamp;
+      lastMessage.persist();
+    } else {
+      this.messages.push(...messages);
+    }
 
     if (!skipSort) {
       this.resortMessages();
