@@ -13,7 +13,7 @@ use ChaseConey\LaravelDatadogHelper\Datadog;
 class Chat
 {
     // Do the restricted user lookup before calling this.
-    public static function sendPrivateMessage(User $sender, User $target, ?string $message, ?bool $isAction)
+    public static function sendPrivateMessage(User $sender, User $target, ?string $message, ?bool $isAction, ?string $uuid = null)
     {
         if ($target->is($sender)) {
             abort(422, "can't send message to same user");
@@ -21,7 +21,7 @@ class Chat
 
         priv_check_user($sender, 'ChatPmStart', $target)->ensureCan();
 
-        return (new Channel())->getConnection()->transaction(function () use ($sender, $target, $message, $isAction) {
+        return (new Channel())->getConnection()->transaction(function () use ($sender, $target, $message, $isAction, $uuid) {
             $channel = Channel::findPM($target, $sender);
 
             $newChannel = $channel === null;
@@ -32,7 +32,7 @@ class Chat
                 $channel->addUser($sender);
             }
 
-            $ret = static::sendMessage($sender, $channel, $message, $isAction);
+            $ret = static::sendMessage($sender, $channel, $message, $isAction, $uuid);
 
             if ($newChannel) {
                 Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
@@ -42,7 +42,7 @@ class Chat
         });
     }
 
-    public static function sendMessage(User $sender, Channel $channel, ?string $message, ?bool $isAction)
+    public static function sendMessage(User $sender, Channel $channel, ?string $message, ?bool $isAction, ?string $uuid = null)
     {
         if ($channel->isPM()) {
             // restricted users should be treated as if they do not exist
@@ -54,7 +54,7 @@ class Chat
         priv_check_user($sender, 'ChatChannelSend', $channel)->ensureCan();
 
         try {
-            return $channel->receiveMessage($sender, $message, $isAction ?? false);
+            return $channel->receiveMessage($sender, $message, $isAction ?? false, $uuid);
         } catch (API\ChatMessageEmptyException $e) {
             abort(422, $e->getMessage());
         } catch (API\ChatMessageTooLongException $e) {

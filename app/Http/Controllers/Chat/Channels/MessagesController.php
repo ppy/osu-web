@@ -164,6 +164,7 @@ class MessagesController extends BaseController
         $params = get_params(request()->all(), null, [
             'is_action:bool',
             'message',
+            'uuid',
         ], ['null_missing' => true]);
 
         $message = Chat::sendMessage(
@@ -171,6 +172,7 @@ class MessagesController extends BaseController
             Channel::findOrFail(get_int($channelId)),
             $params['message'],
             $params['is_action'] ?? false,
+            $params['uuid']
         );
 
         return json_item(

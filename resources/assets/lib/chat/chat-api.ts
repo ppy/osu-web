@@ -44,6 +44,7 @@ export default class ChatApi {
       is_action: message.isAction,
       message: message.content,
       target_id: userId,
+      uuid: message.uuid,
     }) as JQuery.jqXHR<NewConversationJson>;
   }
 
@@ -62,6 +63,7 @@ export default class ChatApi {
       message: message.content,
       target_id: message.channelId,
       target_type: 'channel',
+      uuid: message.uuid,
     }) as JQuery.jqXHR<MessageJson>;
   }
 }

@@ -305,7 +305,7 @@ class Channel extends Model
         });
     }
 
-    public function receiveMessage(User $sender, ?string $content, bool $isAction = false)
+    public function receiveMessage(User $sender, ?string $content, bool $isAction = false, ?string $uuid = null)
     {
         $content = str_replace(["\r", "\n"], ' ', trim($content));
 
@@ -368,6 +368,7 @@ class Channel extends Model
             $userChannel->markAsRead($message->message_id);
         }
 
+        $message->uuid = $uuid; // rely any message uuid back.
         event(new ChatMessageEvent($message));
 
         if ($this->isPM()) {

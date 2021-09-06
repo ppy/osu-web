@@ -24,6 +24,7 @@ class MessageTransformer extends TransformerAbstract
             'timestamp' => json_time($message->timestamp),
             'content' => $message->content,
             'is_action' => $message->is_action,
+            'uuid' => $message->uuid,
         ];
     }
 
