@@ -53,7 +53,7 @@ export default class TracklistTrack extends React.PureComponent<Props> {
             </span>
           )}
           {this.props.track.is_new && (
-            <span className='pill-badge pill-badge--lime pill-badge--with-shadow'>
+            <span className='pill-badge pill-badge--yellow pill-badge--with-shadow'>
               {osu.trans('common.badges.new')}
             </span>
           )}
