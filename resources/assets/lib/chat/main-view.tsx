@@ -6,14 +6,12 @@ import Img2x from 'img2x';
 import { observer, Provider } from 'mobx-react';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
-import ChatWorker from './chat-worker';
 import ConversationList from './conversation-list';
 import ConversationView from './conversation-view';
 import InputBox from './input-box';
 
 interface Props {
   dataStore: RootDataStore;
-  worker: ChatWorker;
 }
 
 @observer

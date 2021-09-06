@@ -68,5 +68,5 @@ core.reactTurbolinks.register('chat', action(() => {
     void dataStore.chatState.selectChannel(initialChannel);
   }
 
-  return <MainView dataStore={core.dataStore} worker={core.chatWorker} />;
+  return <MainView dataStore={core.dataStore} />;
 }));
