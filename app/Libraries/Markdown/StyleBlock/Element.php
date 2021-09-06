@@ -11,14 +11,14 @@ class Element extends AbstractBlock
 {
     private string $className;
 
-    private string $fence;
+    private string $fenceChar;
 
-    public function __construct(string $className, string $fence)
+    public function __construct(string $className, string $fenceChar)
     {
         parent::__construct();
 
         $this->className = $className;
-        $this->fence = $fence;
+        $this->fenceChar = $fenceChar;
     }
 
     public function getClassName(): string
@@ -27,8 +27,8 @@ class Element extends AbstractBlock
     }
 
 
-    public function getFence(): string
+    public function getFenceChar(): string
     {
-        return $this->fence;
+        return $this->fenceChar;
     }
 }

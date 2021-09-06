@@ -10,16 +10,15 @@ use League\CommonMark\Parser\Block\AbstractBlockContinueParser;
 use League\CommonMark\Parser\Block\BlockContinue;
 use League\CommonMark\Parser\Block\BlockContinueParserInterface;
 use League\CommonMark\Parser\Cursor;
-use League\CommonMark\Util\RegexHelper;
 
 class Parser extends AbstractBlockContinueParser
 {
     private Element $block;
 
 
-    public function __construct(string $className, string $fence)
+    public function __construct(string $className, string $fenceChar)
     {
-        $this->block = new Element($className, $fence);
+        $this->block = new Element($className, $fenceChar);
     }
 
     public function getBlock(): AbstractBlock
@@ -39,11 +38,14 @@ class Parser extends AbstractBlockContinueParser
 
     public function tryContinue(Cursor $cursor, BlockContinueParserInterface $activeBlockParser): ?BlockContinue
     {
-        if (!$cursor->isIndented() && $cursor->getNextNonSpaceCharacter() === ':') {
-            $match = RegexHelper::matchFirst('/^(?:\:{3,})(?=.*$)/', $cursor->getLine(), $cursor->getNextNonSpacePosition());
-            if ($match !== null && $match[0] === $this->block->getFence()) {
-                return BlockContinue::finished();
-            }
+        $currentLine = $cursor->getLine();
+
+        if ($currentLine === '}}}' && $this->block->getFenceChar() === '{') {
+            return BlockContinue::finished();
+        }
+
+        if ($currentLine === ':::' && $this->block->getFenceChar() === ':') {
+            return BlockContinue::finished();
         }
 
         return BlockContinue::at($cursor);

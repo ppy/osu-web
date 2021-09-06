@@ -14,17 +14,13 @@ class StartParser implements BlockStartParserInterface
 {
     public function tryStart(Cursor $cursor, MarkdownParserStateInterface $parserState): ?BlockStart
     {
-        if ($cursor->isIndented() || $cursor->getNextNonSpaceCharacter() !== ':') {
+        $currentLine = $cursor->getLine();
+
+        if (!starts_with($currentLine, '{{{') && !starts_with($currentLine, ':::')) {
             return BlockStart::none();
         }
 
-        $fence = $cursor->match('/^(?:\:{3,}(?!.*\:))/');
-
-        if ($fence === null) {
-            return BlockStart::none();
-        }
-
-        $className = mb_strtolower(str_replace(' ', '-', trim($cursor->getRemainder())));
+        $className = mb_strtolower(str_replace(' ', '-', trim($currentLine, ' :{')));
 
         if (!present($className)) {
             return BlockStart::none();
@@ -32,6 +28,6 @@ class StartParser implements BlockStartParserInterface
 
         $cursor->advanceToEnd();
 
-        return BlockStart::of(new Parser($className, $fence))->at($cursor);
+        return BlockStart::of(new Parser($className, $currentLine[0]))->at($cursor);
     }
 }
