@@ -289,7 +289,9 @@ class OsuMarkdown
             $environment->addExtension(new AttributesExtension());
         }
 
-        $environment->addExtension(new DefaultAttributesExtension());
+        if ($isHtml) {
+            $environment->addExtension(new DefaultAttributesExtension());
+        }
 
         return $environment;
     }
