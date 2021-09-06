@@ -7,7 +7,7 @@ import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatcher } from 'app-dispatcher';
 import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
-import * as _ from 'lodash';
+import { trim } from 'lodash';
 import { computed, observe } from 'mobx';
 import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
@@ -121,7 +121,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
   }
 
   sendMessage(messageText?: string) {
-    if (!messageText || !osu.present(_.trim(messageText))) {
+    if (!messageText || !osu.present(trim(messageText))) {
       return;
     }
 
@@ -135,7 +135,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
       }
 
       command = messageText.substring(1, split);
-      messageText = _.trim(messageText.substring(split + 1));
+      messageText = trim(messageText.substring(split + 1));
 
       // we only support /me commands for now
       if (command !== 'me' || !osu.present(messageText)) {
