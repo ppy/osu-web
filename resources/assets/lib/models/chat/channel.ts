@@ -21,12 +21,7 @@ export default class Channel {
   @observable inputText = '';
   @observable lastReadId?: number;
   @observable loadingEarlierMessages = false;
-  @observable loadingState = {
-    // null: not loaded
-    // false: loading
-    // true: loaded
-    messages: null as boolean | null,
-  };
+  @observable loadingMessages = false;
   @observable messages: Message[] = observable([]);
   @observable name = '';
   needsRefresh = true;
@@ -75,11 +70,6 @@ export default class Channel {
   @computed
   get isDisplayable() {
     return this.name.length > 0 && this.icon != null;
-  }
-
-  @computed
-  get loading() {
-    return this.loadingState.messages === false;
   }
 
   @computed
@@ -147,7 +137,7 @@ export default class Channel {
   @action
   load() {
     // nothing to load
-    if (this.newPmChannel || this.loading) return;
+    if (this.newPmChannel) return;
 
     this.refreshMessages();
   }
@@ -237,12 +227,11 @@ export default class Channel {
 
   @action
   private async refreshMessages() {
-    if (!this.needsRefresh) return;
+    if (!this.needsRefresh || this.loadingMessages) return;
 
-    this.loadingState.messages = false;
+    this.loadingMessages = true;
 
     let since: number | undefined;
-
     if (this.messages.length > 0 && this.lastMessageId > 0) {
       since = this.lastMessageId;
     }
@@ -256,7 +245,7 @@ export default class Channel {
         this.addMessages(messages);
 
         this.needsRefresh = false;
-        this.loadingState.messages = true;
+        this.loadingMessages = false;
 
         if (messages.length === 0 && since == null) {
           // assume no more messages.
@@ -266,6 +255,7 @@ export default class Channel {
       });
     } catch {
       // TODO: revert state
+      runInAction(() => this.loadingMessages = false);
     }
   }
 

@@ -128,7 +128,7 @@ export default class ConversationView extends React.Component<Props> {
   @action
   componentDidUpdate(prevProps?: Props, prevState?: Readonly<Record<string, never>>, snapshot?: Snapshot) {
     const chatView = this.chatViewRef.current;
-    if (!chatView) {
+    if (!chatView || !this.currentChannel) {
       return;
     }
 
@@ -141,7 +141,7 @@ export default class ConversationView extends React.Component<Props> {
       this.didSwitchChannel = false;
     } else {
       snapshot = snapshot ?? blankSnapshot();
-      const prepending = this.firstMessage !== this.currentChannel?.firstMessage;
+      const prepending = this.firstMessage !== this.currentChannel.firstMessage;
 
       if (prepending && this.chatViewRef.current != null) {
         const chatEl = this.chatViewRef.current;
@@ -250,16 +250,14 @@ export default class ConversationView extends React.Component<Props> {
             {channel.description}
           </div>
         }
-        {!channel.loading &&
-          <ShowMoreLink
-            callback={this.loadEarlierMessages}
-            direction={'up'}
-            hasMore={channel.hasEarlierMessages}
-            loading={channel.loadingEarlierMessages}
-            modifiers={['chat-conversation-earlier-messages']}
-          />
-        }
-        {channel.loading &&
+        <ShowMoreLink
+          callback={this.loadEarlierMessages}
+          direction={'up'}
+          hasMore={channel.hasEarlierMessages}
+          loading={channel.loadingEarlierMessages}
+          modifiers={['chat-conversation-earlier-messages']}
+        />
+        {channel.loadingMessages &&
           <div className='chat-conversation__day-divider'>
             <Spinner />
           </div>
