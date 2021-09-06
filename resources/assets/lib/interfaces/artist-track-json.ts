@@ -1,8 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ArtistJson from './artist-json';
+
 export default interface ArtistTrackJson {
   album_id: number | null;
+  artist?: ArtistJson;
   bpm: number;
   cover_url: string;
   exclusive: boolean;

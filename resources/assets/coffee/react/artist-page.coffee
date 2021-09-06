@@ -6,4 +6,6 @@ import { createElement } from 'react'
 import Tracklist from 'tracklist'
 
 core.reactTurbolinks.register 'artistTracklist', (container) ->
-  createElement Tracklist, tracks: osu.parseJson(container.dataset.src)
+  createElement Tracklist,
+    artist: osu.parseJson(container.dataset.artistSrc)
+    tracks: osu.parseJson(container.dataset.src)

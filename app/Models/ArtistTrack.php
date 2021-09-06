@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string|null $cover_url
  * @property \Carbon\Carbon|null $created_at
  * @property int|null $display_order
- * @property int $exclusive
+ * @property bool $exclusive
  * @property string $genre
  * @property int $id
  * @property int $length
@@ -30,6 +30,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class ArtistTrack extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'exclusive' => 'boolean',
+    ];
 
     public function artist()
     {

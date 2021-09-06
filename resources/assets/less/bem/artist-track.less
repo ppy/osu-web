@@ -1,0 +1,83 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.artist-track {
+  .default-box-shadow();
+  .default-border-radius();
+  --bg-hover: hsl(var(--hsl-b3));
+  --cover-size: 40px;
+  width: 100%;
+  background-color: hsl(var(--hsl-b4));
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  font-size: @font-size--normal;
+
+  &:hover {
+    background-color: var(--bg-hover);
+  }
+
+  &__button {
+    .reset-input();
+    .link-white();
+    .link-plain();
+    margin: 0 10px;
+    font-size: 18px; // icon size
+  }
+
+  &--original {
+    background-image: linear-gradient(to right, hsla(var(--hsl-pink-1), 0.2), hsla(var(--hsl-pink-1), 0) 50%);
+  }
+
+  &__col {
+    flex: none;
+    padding: 0 10px;
+
+    &--badges {
+      padding: 0;
+    }
+
+    &--buttons {
+      padding: 0 5px;
+    }
+
+    &--genre {
+      width: 120px;
+      padding-left: 15px;
+      color: hsl(var(--hsl-c2));
+    }
+
+    &--length {
+      width: 50px;
+      text-align: right;
+    }
+
+    &--names {
+      flex: 1;
+      padding-left: 15px;
+      min-width: 0;
+    }
+
+    &--preview {
+      .default-border-radius();
+      width: var(--cover-size);
+      height: var(--cover-size);
+      background-size: cover;
+      background-position: center;
+      margin-right: 5px;
+    }
+  }
+
+  &__info {
+    color: hsl(var(--hsl-c2));
+  }
+
+  &__title {
+    font-size: @font-size--title-small-3;
+  }
+
+  &__version {
+    color: hsl(var(--hsl-c2));
+    font-size: @font-size--normal;
+  }
+}

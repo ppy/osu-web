@@ -1,11 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ArtistJson from 'interfaces/artist-json';
 import ArtistTrackJson from 'interfaces/artist-track-json';
 import * as React from 'react';
 import TracklistTrack from 'tracklist-track';
 
 interface Props {
+  artist: ArtistJson;
   tracks: ArtistTrackJson[];
 }
 
@@ -16,21 +18,16 @@ export default class Tracklist extends React.PureComponent<Props> {
     }
 
     return (
-      <table className='tracklist js-audio--group'>
-        <thead>
-          <tr className='tracklist__row--header'>
-            <th className='tracklist__col tracklist__col--preview' />
-            <th className='tracklist__col tracklist__col--title'>{osu.trans('artist.tracklist.title')}</th>
-            <th className='tracklist__col tracklist__col--length'>{osu.trans('artist.tracklist.length')}</th>
-            <th className='tracklist__col tracklist__col--bpm'>{osu.trans('artist.tracklist.bpm')}</th>
-            <th className='tracklist__col tracklist__col--genre'>{osu.trans('artist.tracklist.genre')}</th>
-            <th className='tracklist__col tracklist__col--dl' />
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.tracks.map((track) => <TracklistTrack key={track.id} track={track} /> )}
-        </tbody>
-      </table>
+      <div className='artist-tracks js-audio--group'>
+        {this.props.tracks.map((track) => (
+          <div key={track.id} className='artist-tracks__item'>
+            <TracklistTrack
+              artist={this.props.artist}
+              track={track}
+            />
+          </div>
+        ))}
+      </div>
     );
   }
 }
