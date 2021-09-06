@@ -88,6 +88,9 @@ export default class InputBox extends React.Component<Props> implements Dispatch
   render(): React.ReactNode {
     const channel = this.currentChannel;
     const disableInput = !channel || !channel.canMessage;
+    const buttonDisabled = disableInput || !this.dataStore.chatState.isReady;
+    const buttonIcon = this.dataStore.chatState.isReady ? 'fas fa-reply' : 'fas fa-times';
+    const buttonText = osu.trans(this.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
 
     return (
       <div className='chat-input'>
@@ -105,13 +108,13 @@ export default class InputBox extends React.Component<Props> implements Dispatch
         />
 
         <BigButton
-          icon='fas fa-reply'
+          icon={buttonIcon}
           modifiers={['chat-send']}
           props={{
-            disabled: disableInput,
+            disabled: buttonDisabled,
             onClick: this.buttonClicked,
           }}
-          text={osu.trans('chat.input.send')}
+          text={buttonText}
         />
       </div>
     );

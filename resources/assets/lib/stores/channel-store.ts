@@ -81,9 +81,6 @@ export default class ChannelStore implements DispatchListener {
   addNewConversation(json: ChannelJson, message: MessageJson) {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
-    // prevent new PM channel from being deleted from presence updates requested before the new conversation but
-    // the response arrives after.
-    channel.newPmChannelTransient = true;
     // TODO: need to handle user
     channel.addMessages([Message.fromJson(message)]);
 
@@ -222,7 +219,7 @@ export default class ChannelStore implements DispatchListener {
 
     // remove parted channels
     this.channels.forEach((channel) => {
-      if (channel.newPmChannel || channel.newPmChannelTransient) {
+      if (channel.newPmChannel) {
         return;
       }
 

@@ -17,6 +17,7 @@ import ChannelStore from 'stores/channel-store';
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
   @observable autoScroll = false;
+  @observable isReady = false;
   @observable selectedBoxed = observable.box(0);
   private lastHistoryId: number | null = null;
   private selectedIndex = 0;
@@ -127,6 +128,9 @@ export default class ChatStateStore implements DispatchListener {
       // so that last_message_id from server is up to date.
       this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
       this.channelStore.loadChannel(this.selected);
+      this.isReady = true;
+    } else {
+      this.isReady = false;
     }
   }
 

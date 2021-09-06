@@ -26,7 +26,6 @@ export default class Channel {
   @observable name = '';
   needsRefresh = true;
   @observable newPmChannel = false;
-  newPmChannelTransient = false;
   @observable type: ChannelType = 'NEW';
   @observable users: number[] = [];
 
@@ -200,10 +199,6 @@ export default class Channel {
   @action
   updatePresence = (json: ChannelJson) => {
     this.updateWithJson(json);
-    // clear flag otherwise presence updates might not close the channel when closed in a different window.
-    if (this.newPmChannelTransient) {
-      this.newPmChannelTransient = false;
-    }
 
     if (json.current_user_attributes != null) {
       this.setLastReadId(json.current_user_attributes.last_read_id);
