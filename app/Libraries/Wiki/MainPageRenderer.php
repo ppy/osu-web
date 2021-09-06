@@ -28,7 +28,12 @@ class MainPageRenderer extends Renderer
     {
         parent::__construct($page, $body);
 
-        $env = new Environment(OsuMarkdown::DEFAULT_COMMONMARK_CONFIG);
+        $config = array_merge(
+            OsuMarkdown::DEFAULT_COMMONMARK_CONFIG,
+            ['html_input' => 'allow'],
+        );
+
+        $env = new Environment($config);
         $env->addExtension(new CommonMarkCoreExtension());
 
         $this->parser = new MarkdownParser($env);
@@ -47,7 +52,7 @@ class MainPageRenderer extends Renderer
 
         $page = [
             'header' => $body['header'],
-            'output' => $this->renderer->renderDocument($document),
+            'output' => $this->renderer->renderDocument($document)->getContent(),
         ];
 
         return $page;
@@ -95,7 +100,7 @@ class MainPageRenderer extends Renderer
             }
 
             if (present($class)) {
-                $node->data['attributes']['class'] = $class;
+                $node->data->set('attributes/class', $class);
             }
         }
     }
