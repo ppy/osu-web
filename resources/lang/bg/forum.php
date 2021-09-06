@@ -47,12 +47,12 @@ return [
         'confirm_restore' => 'Наистина ли искате да възстановите публикацията?',
         'edited' => 'Последно редактирано от :user :when, Редактирано общо :count пъти.',
         'posted_at' => 'публикувано :when',
-        'posted_by' => '',
+        'posted_by' => 'публикуван от :username',
 
         'actions' => [
             'destroy' => 'Изтрий публикацията',
             'edit' => 'Редактиране на публикацията',
-            'report' => '',
+            'report' => 'Докладвай мнението',
             'restore' => 'Възстанови публикацията',
         ],
 
@@ -75,12 +75,12 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Наистина ли да се изтрие темата?',
+        'confirm_restore' => 'Наистина ли да се възстанови темата?',
         'deleted' => 'изтрита тема',
         'go_to_latest' => 'виж най-новата публикация',
-        'has_replied' => '',
-        'in_forum' => '',
+        'has_replied' => 'Вече отговорихте на тази тема',
+        'in_forum' => 'в :forum',
         'latest_post' => ':when от :user',
         'latest_reply_by' => 'последният отговор от :user',
         'new_topic' => 'Създай нова тема',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'започнато от :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Изтрий тема',
+            'restore' => 'Възстанови тема',
         ],
 
         'create' => [

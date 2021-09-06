@@ -16,8 +16,8 @@ return [
     'username' => 'Потребителско име',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Дата',
+        'relevance' => 'Уместност',
     ],
 
     'forum_topics' => [
@@ -26,7 +26,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Уместност',
+        'username' => 'Име',
     ],
 ];

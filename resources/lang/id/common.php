@@ -41,7 +41,7 @@ return [
         'read_more' => 'baca selengkapnya',
         'reply' => 'Balas',
         'reply_reopen' => 'Balas dan Buka Kembali',
-        'reply_resolve' => 'Balas dan Tandai Selesai',
+        'reply_resolve' => 'Balas dan Tutup',
         'reset' => 'Atur Ulang',
         'restore' => 'Pulihkan',
         'save' => 'Simpan',

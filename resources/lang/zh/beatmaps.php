@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => '包括转谱',
+        'featured_artists' => '',
         'follows' => '已关注谱师',
         'recommended' => '推荐难度',
     ],

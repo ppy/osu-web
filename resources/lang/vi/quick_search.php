@@ -16,6 +16,6 @@ return [
         'empty' => 'Không có kết quả',
         'empty_for' => 'Không có kết quả cho chế độ :modes',
         'more' => '',
-        'title' => '',
+        'title' => ':mode Kết quả tìm kiếm',
     ],
 ];

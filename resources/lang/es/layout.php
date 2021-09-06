@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - ¡El ritmo está a solo un *clic* de distancia! Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
+        'page_description' => 'osu! - ¡El ritmo está a un solo *clic* de distancia! Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
     ],
 
     'header' => [

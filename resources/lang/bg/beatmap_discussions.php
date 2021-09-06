@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Търсене',
             'deleted' => 'Включете изтрити дискусии',
-            'mode' => '',
+            'mode' => ' Бийтмап вид',
             'only_unresolved' => 'Покажи само нерешените дискусии',
             'types' => 'Тип съобщения',
             'username' => 'Потребителско име',
@@ -55,14 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'Нито един от постовете ме интересуват',
         'notice' => 'Има постове около :timestamp (:existing_timestamps). Моля проверете ги преди да публикувате.',
-        'unsaved' => '',
+        'unsaved' => ':count в това ревю',
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Собственик на трудността',
+        'reset_confirm' => 'Занули собственика на тази трудност?',
+        'user' => 'Собственик',
+        'version' => 'Трудност',
     ],
 
     'reply' => [
@@ -73,7 +73,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max блокирания',
         'go_to_parent' => 'Виж ревюто',
         'go_to_child' => 'Виж дискусията',
         'validation' => [
@@ -81,7 +81,7 @@ return [
             'external_references' => 'ревюто съдържа препратки до проблеми, които не принадлежат на това ревю',
             'invalid_block_type' => 'невалиден тип блок',
             'invalid_document' => 'невалидно ревю',
-            'invalid_discussion_type' => '',
+            'invalid_discussion_type' => 'невалиден вид дискусия',
             'minimum_issues' => 'ревюто трябва да съдържа минимум :count проблем|ревюто трябва да съдържа минимум :count проблема',
             'missing_text' => 'липсва текст в блока',
             'too_many_blocks' => 'ревютата може да съдържат само :count параграфа/проблема|ревютата може да съдържат до :count параграфа/проблема ',

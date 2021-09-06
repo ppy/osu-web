@@ -53,7 +53,7 @@ return [
         'show_less' => 'покажи по-малко',
         'show_more' => 'покажи още',
         'show_more_options' => 'покажи още опции',
-        'submit' => '',
+        'submit' => 'Изпрати',
         'unpin' => 'откачи',
         'update' => 'Актуализирай',
         'upload_image' => 'качи снимка',

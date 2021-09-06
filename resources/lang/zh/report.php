@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => '举报',
+        'title' => '举报 :username 的谱面？',
     ],
 
     'beatmapset_discussion_post' => [

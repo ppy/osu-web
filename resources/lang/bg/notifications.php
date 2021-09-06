@@ -5,13 +5,13 @@
 
 return [
     'all_read' => 'Всички известия са прочетени!',
-    'delete' => '',
-    'loading' => '',
+    'delete' => 'Изтрий :type',
+    'loading' => 'Зареждане на непрочетени известия...',
     'mark_read' => 'Изчисти :type',
     'none' => 'Няма известия',
     'see_all' => 'виж всички известия',
-    'see_channel' => '',
-    'verifying' => '',
+    'see_channel' => 'иди в чат',
+    'verifying' => 'Моля, потвърдете сесията за преглед на известия',
 
     'filters' => [
         '_' => 'всички',
@@ -28,9 +28,9 @@ return [
             '_' => 'Бийтмап',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Трудности от гостите',
+                'beatmap_owner_change' => 'Вие вече сте притежател на трудността за ":beatmap" от бийтмап ":title"',
+                'beatmap_owner_change_compact' => 'Вие вече сте притежател на трудността за ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -67,7 +67,7 @@ return [
                 'beatmapset_qualify_compact' => 'Бийтмапът влезе на опашката за класиране',
                 'beatmapset_rank' => '":title" бе класиран',
                 'beatmapset_rank_compact' => 'Бийтмапът бе класиран',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" беше премахнат от Обичани',
                 'beatmapset_remove_from_loved_compact' => 'Бийтмапът бе премахнат от Обичани',
                 'beatmapset_reset_nominations' => 'Номинацията на ":title" бе анулирана',
                 'beatmapset_reset_nominations_compact' => 'Номинацията бе анулирана',
@@ -78,7 +78,7 @@ return [
 
                 'comment_new' => ':username коментира ":content" в темата ":title"',
                 'comment_new_compact' => ':username коментира ":content"',
-                'comment_reply' => '',
+                'comment_reply' => ':username отговори ":content" в ":title"',
                 'comment_reply_compact' => ':username отговори в темата ":content"',
             ],
         ],
@@ -104,8 +104,8 @@ return [
 
                 'comment_new' => ':username коментира ":content" в темата ":title"',
                 'comment_new_compact' => ':username коментира ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username отговори ":content" в ":title"',
+                'comment_reply_compact' => ':username отговори ":content"',
             ],
         ],
 
@@ -117,8 +117,8 @@ return [
 
                 'comment_new' => ':username коментира ":content" в темата ":title"',
                 'comment_new_compact' => ':username коментира ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username отговори ":content" в ":title"',
+                'comment_reply_compact' => ':username отговори ":content"',
             ],
         ],
 
@@ -143,11 +143,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Нов бийтмап',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Нов бийтмап ":title" от :username',
+                'user_beatmapset_new_compact' => 'Нов бийтмап ":title"',
+                'user_beatmapset_new_group' => 'Нов бийтмап от :username',
             ],
         ],
 
@@ -166,25 +166,25 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Вие сега сте гост на бийтмапа ":title"',
             ],
 
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'Дискусията за ":title" беше заключена',
+                'beatmapset_discussion_post_new' => 'Дискусията за ":title" има новости',
+                'beatmapset_discussion_unlock' => 'Дискусията за ":title" беше отключена',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Докладван е проблем за ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
+                'beatmapset_disqualify' => '":title" беше дисквалифициран',
+                'beatmapset_love' => '":title" беше означен като обичан',
+                'beatmapset_nominate' => '":title" беше номиниран',
+                'beatmapset_qualify' => '":title" получи достатъчно номинации и влезе в опашката за класиране',
+                'beatmapset_rank' => '":title" беше класиран',
                 'beatmapset_remove_from_loved' => '":title" бе премахнат от Обичани',
                 'beatmapset_reset_nominations' => 'Номинацията на ":title" бе анулирана',
             ],
@@ -202,7 +202,7 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'В списъка с промените ":title" има нов коментар',
             ],
         ],
 
@@ -225,7 +225,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username създаде нов бийтмап',
             ],
         ],
     ],

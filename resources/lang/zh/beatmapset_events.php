@@ -57,7 +57,7 @@ return [
     ],
 
     'type' => [
-        'approve' => '推荐',
+        'approve' => '被 Approved',
         'beatmap_owner_change' => '难度作者变更',
         'discussion_delete' => '删除讨论',
         'discussion_post_delete' => '删除讨论的回复',

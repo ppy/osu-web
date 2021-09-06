@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'osu! profil',
         'site' => 'Oficiálna Webstránka',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Skladby',
         'count' => ':count skladba|:count skladby',
-        'exclusive' => 'osu! exkluzívne',
+        'original' => '',
     ],
 
     'tracklist' => [

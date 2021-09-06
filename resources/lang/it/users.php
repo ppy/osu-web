@@ -390,7 +390,7 @@ return [
             'country' => 'Rank del paese per :mode',
             'country_simple' => 'Classifica Nazionale',
             'global' => 'Posto globale per :mode',
-            'global_simple' => 'Classifica globale',
+            'global_simple' => 'Classifica Globale',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei Colpi',
