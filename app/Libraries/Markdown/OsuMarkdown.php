@@ -43,6 +43,7 @@ class OsuMarkdown
         'generate_toc' => false,
         'record_first_image' => false,
         'relative_url_root' => null,
+        'style_block_allowed_classes' => null,
         'title_from_document' => false,
         'wiki_locale' => null,
     ];
@@ -107,6 +108,7 @@ class OsuMarkdown
         'wiki' => [
             'osu_extension' => [
                 'generate_toc' => true,
+                'style_block_allowed_classes' => ['infobox'],
                 'title_from_document' => true,
             ],
             'osu_markdown' => [
@@ -289,6 +291,10 @@ class OsuMarkdown
             $environment->addExtension(new AttributesExtension());
         }
 
+        if ($this->osuExtensionConfig['style_block_allowed_classes'] !== null) {
+            $environment->addExtension(new StyleBlock\Extension());
+        }
+
         if ($isHtml) {
             $environment->addExtension(new DefaultAttributesExtension());
         }
@@ -331,6 +337,9 @@ class OsuMarkdown
             ],
             Paragraph::class => [
                 'class' => "{$blockClass}__paragraph",
+            ],
+            StyleBlock\Element::class => [
+                'class' => static fn (StyleBlock\Element $node) => "{$blockClass}__{$node->getClassName()}",
             ],
             Table::class => [
                 'class' => "{$blockClass}__table",

@@ -27,6 +27,7 @@ class Extension implements ConfigurableExtensionInterface
             'generate_toc' => Expect::bool(),
             'record_first_image' => Expect::bool(),
             'relative_url_root' => Expect::string()->nullable(),
+            'style_block_allowed_classes' => Expect::array()->nullable(),
             'title_from_document' => Expect::bool(),
             'wiki_locale' => Expect::string()->nullable(),
         ]));
