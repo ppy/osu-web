@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => '',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Listarea beatmapurilor',
         'guest_title' => 'Beatmaps',

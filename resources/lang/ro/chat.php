@@ -18,7 +18,7 @@ return [
             'not_enough_plays' => 'Nu ai jucat jocul destul',
             'not_verified' => 'Sesiunea dvs. nu a fost verificată',
             'restricted' => 'Ești restricționat în prezent',
-            'silenced' => '',
+            'silenced' => 'Ești momentan mut',
             'target_restricted' => 'Destinatarul este restricționat în prezent',
         ],
     ],

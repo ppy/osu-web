@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Dönüştürülmüş beatmapleri dahil et',
+        'featured_artists' => '',
         'follows' => 'Abone olunan mapperlar',
         'recommended' => 'Önerilen zorluk seviyesi',
     ],

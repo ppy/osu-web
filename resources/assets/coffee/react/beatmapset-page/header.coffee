@@ -142,13 +142,18 @@ export class Header extends React.Component
               href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
               getTitle(@props.beatmapset)
             if @props.beatmapset.nsfw
-              span className: 'nsfw-badge', osu.trans('beatmapsets.nsfw_badge.label')
+              span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
 
           span className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
             a
               className: 'beatmapset-header__details-text-link'
               href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
               getArtist(@props.beatmapset)
+            if @props.beatmapset.track_id?
+              a
+                className: 'beatmapset-badge beatmapset-badge--featured-artist'
+                href: laroute.route 'tracks.show', @props.beatmapset.track_id
+                osu.trans('beatmapsets.featured_artist_badge.label')
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 

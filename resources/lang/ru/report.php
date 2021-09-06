@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Пожаловаться',
+        'title' => 'Пожаловаться на карту :username?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -16,7 +16,7 @@ return [
 
     'comment' => [
         'button' => 'Пожаловаться',
-        'title' => 'Пожаловать на комментарий :username?',
+        'title' => 'Пожаловаться на комментарий :username?',
     ],
 
     'forum_post' => [

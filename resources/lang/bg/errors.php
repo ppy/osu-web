@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
+    'missing_route' => 'Невалидна връзка или вид на заявката.',
     'no_restricted_access' => 'Не сте в състояние да изпълните това действие, докато акаунта ви е с ограничен статут.',
     'supporter_only' => 'Трябва да сте osu!supporter, за да използвате тази функция.',
     'unknown' => 'Изникна необичайна грешка.',

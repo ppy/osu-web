@@ -73,8 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Изтриването на метаданните на този бийтмап не е позволено.',
             'beatmapset_post_no_edit' => 'Редактирането на метаданните на този бийтмап не е позволено.',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
+            'first_post_no_delete' => 'Не може да изтриете първоначалната тема',
+            'missing_topic' => 'За поста липсва тема',
             'only_quote' => 'Вашият отговор съдържа само цитат.',
 
             'attributes' => [
@@ -123,7 +123,7 @@ return [
     'user' => [
         'contains_username' => 'Паролата не може да съдържа в себе си потребителското име.',
         'email_already_used' => 'Този имейл адрес вече се използва.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'Имейл адресът не е разрешен.',
         'invalid_country' => 'Страната не е в базата данни.',
         'invalid_discord' => 'Потребителското име за Discord е невалидно.',
         'invalid_email' => "Това не изглежда да е валиден имейл адрес.",

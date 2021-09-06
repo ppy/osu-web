@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Bao gồm beatmap được chuyển đổi',
+        'featured_artists' => '',
         'follows' => '',
         'recommended' => 'Độ khó đề nghị',
     ],

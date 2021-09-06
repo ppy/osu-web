@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Include beatmaps convertite',
+        'featured_artists' => '',
         'follows' => '',
         'recommended' => 'Dificultatea recomandată',
     ],

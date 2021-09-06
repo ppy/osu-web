@@ -13,8 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Vui lòng liên hệ hỗ trợ để khôi phục tài khoản của bạn.',
-        'expired' => '',
-        'invalid' => '',
+        'expired' => 'Mã xác nhận đã hết hạn.',
+        'invalid' => 'Lỗi không xác định trong mã xác nhận.',
         'is_privileged' => 'Liên hệ peppy ấy lulz.',
         'missing_key' => 'Bắt buộc.',
         'too_many_tries' => 'Quá nhiều lần thử không thành công.',
@@ -38,8 +38,8 @@ return [
         'username' => 'Nhập địa chỉ email hoặc tên tài khoản',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Cần nhiều sự giúp đỡ hơn? Liên hệ với chúng tôi bằng :button.',
+            'button' => 'hệ thống hỗ trợ',
         ],
     ],
 ];

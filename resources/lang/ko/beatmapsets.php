@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => '잠시 멈추시고, 좀 더 플레이해보세요.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => '비트맵 목록',
         'guest_title' => '비트맵',
