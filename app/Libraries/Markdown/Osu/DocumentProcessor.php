@@ -14,6 +14,7 @@ use League\CommonMark\Extension\CommonMark\Node\Inline;
 use League\CommonMark\Node\Block\Paragraph;
 use League\CommonMark\Node\Inline\Text;
 use League\CommonMark\Node\NodeWalkerEvent;
+use League\CommonMark\Node\StringContainerHelper;
 use League\Config\ConfigurationInterface;
 
 class DocumentProcessor
@@ -104,28 +105,6 @@ class DocumentProcessor
         }
     }
 
-    /**
-     * @param \League\CommonMark\Node\Node $node
-     * @return string
-     */
-    private function getText($node)
-    {
-        $text = '';
-
-        foreach ($node->children() as $child) {
-            if ($child instanceof Inline\Image) {
-                // avoid using image title as text
-                continue;
-            } elseif (method_exists($child, 'getLiteral')) {
-                $text .= $child->getLiteral();
-            } elseif (method_exists($child, 'children')) {
-                $text .= $this->getText($child);
-            }
-        }
-
-        return presence($text);
-    }
-
     private function loadToc()
     {
         if (
@@ -136,8 +115,8 @@ class DocumentProcessor
             return;
         }
 
-        $title = $this->getText($this->node);
-        $slug = $this->node->data->get('attributes/id') ?? presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
+        $title = presence(StringContainerHelper::getChildText($this->node, [Inline\Image::class]));
+        $slug = $this->node->data['attributes']['id'] ?? presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
             $this->tocSlugs[$slug] += 1;
@@ -245,7 +224,7 @@ class DocumentProcessor
             return;
         }
 
-        $this->title = presence($this->node->getStringContent());
+        $this->title = presence(StringContainerHelper::getChildText($this->node));
     }
 
     private function updateLocaleLink()
