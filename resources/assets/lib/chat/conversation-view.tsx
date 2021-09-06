@@ -132,10 +132,6 @@ export default class ConversationView extends React.Component<Props> {
       return;
     }
 
-    if (!this.currentChannel?.loaded) {
-      return;
-    }
-
     if (this.didSwitchChannel) {
       if (this.unreadMarkerRef.current) {
         this.scrollToUnread();

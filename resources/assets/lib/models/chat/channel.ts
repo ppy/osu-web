@@ -26,11 +26,10 @@ export default class Channel {
     // false: loading
     // true: loaded
     messages: null as boolean | null,
-    metadata: null as boolean | null,
   };
   @observable messages: Message[] = observable([]);
   @observable name = '';
-  needsRefresh = false;
+  needsRefresh = true;
   @observable newPmChannel = false;
   newPmChannelTransient = false;
   @observable type: ChannelType = 'NEW';
@@ -79,13 +78,8 @@ export default class Channel {
   }
 
   @computed
-  get loaded() {
-    return this.loadingState.metadata;
-    // return this.loadingState.messages && this.loadingState.metadata;
-  }
-
   get loading() {
-    return this.loadingState.messages === false || this.loadingState.metadata === false;
+    return this.loadingState.messages === false;
   }
 
   @computed
@@ -155,9 +149,6 @@ export default class Channel {
     // nothing to load
     if (this.newPmChannel || this.loading) return;
 
-    // call load and then wait for ChatChannelJoin to arrive over the websocket.
-    void this.loadMetadata();
-
     this.refreshMessages();
   }
 
@@ -193,24 +184,6 @@ export default class Channel {
       runInAction(() => {
         this.loadingEarlierMessages = false;
       });
-    }
-  }
-
-  @action
-  async loadMetadata() {
-    if (this.loadingState.metadata != null) return;
-
-    this.loadingState.metadata = false;
-
-    try {
-      const response = await ChatApi.getChannel(this.channelId);
-
-      runInAction(() => {
-        this.updateWithJson(response.channel);
-        this.loadingState.metadata = true;
-      });
-    } catch {
-      // TODO: revert state
     }
   }
 

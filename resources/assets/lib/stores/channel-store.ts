@@ -137,6 +137,7 @@ export default class ChannelStore implements DispatchListener {
     }
   }
 
+  // TODO: load is async, needs to be reflected somewhere.
   @action
   loadChannel(channelId: number) {
     const channel = this.getOrCreate(channelId);
