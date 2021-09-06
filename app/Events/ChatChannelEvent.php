@@ -35,6 +35,6 @@ class ChatChannelEvent implements ShouldBroadcastNow
     public function broadcastWith()
     {
         // TODO: parting channel only needs channel id.
-        return json_item($this->channel, ChannelTransformer::forUser($this->user), ['first_message_id', 'last_message_id', 'users']);
+        return json_item($this->channel, ChannelTransformer::forUser($this->user), ChannelTransformer::LISTING_INCLUDES);
     }
 }
