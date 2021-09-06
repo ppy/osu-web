@@ -33,7 +33,7 @@ class Renderer implements NodeRendererInterface, ConfigurationAwareInterface
 
         $renderedChildren = $childRenderer->renderNodes($node->children());
 
-        if (!present($className) || !\in_array($className, $allowedClasses)) {
+        if (!present($className) || !\in_array($className, $allowedClasses, true)) {
             return $renderedChildren;
         }
 
