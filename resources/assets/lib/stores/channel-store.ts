@@ -186,8 +186,8 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  partChannel(channelId: number) {
-    if (channelId > 0) {
+  partChannel(channelId: number, remote = true) {
+    if (channelId > 0 && remote) {
       ChatApi.partChannel(channelId, window.currentUser.id);
     }
 

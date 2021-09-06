@@ -8,6 +8,7 @@ import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatchListener } from 'app-dispatcher';
 import ChatApi from 'chat/chat-api';
+import { ChatChannelJoinEvent, ChatChannelPartEvent } from 'chat/chat-events';
 import DispatchListener from 'dispatch-listener';
 import { clamp, maxBy } from 'lodash';
 import { action, computed, makeObservable, observable, observe, runInAction } from 'mobx';
@@ -48,7 +49,11 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof ChatMessageSendAction) {
+    if (event instanceof ChatChannelJoinEvent) {
+      this.handleChatChannelJoinEvent(event);
+    } else if (event instanceof ChatChannelPartEvent) {
+      this.handleChatChannelPartEvent(event);
+    } else if (event instanceof ChatMessageSendAction) {
       this.autoScroll = true;
     } else if (event instanceof ChatNewConversationAdded) {
       this.handleChatNewConversationAdded(event);
@@ -94,6 +99,16 @@ export default class ChatStateStore implements DispatchListener {
     const channel = this.channelStore.channelList[nextIndex];
 
     this.selectChannel(channel.channelId);
+  }
+
+  @action
+  private handleChatChannelJoinEvent(event: ChatChannelJoinEvent) {
+    this.channelStore.channels.set(event.channel.channelId, event.channel);
+  }
+
+  @action
+  private handleChatChannelPartEvent(event: ChatChannelPartEvent) {
+    this.channelStore.partChannel(event.channelId, false);
   }
 
   @action
