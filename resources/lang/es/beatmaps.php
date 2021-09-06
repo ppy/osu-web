@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Incluir mapas convertidos',
+        'featured_artists' => '',
         'follows' => 'Mapeadores suscritos',
         'recommended' => 'Dificultades recomendadas',
     ],

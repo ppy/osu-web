@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => '報告',
+        'title' => ':usernameのビートマップを報告しますか？',
     ],
 
     'beatmapset_discussion_post' => [

@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'perfil do osu!',
         'site' => 'Site oficial',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Músicas',
         'count' => ':count música|:count músicas',
-        'exclusive' => 'exclusivo do osu!',
+        'original' => '',
     ],
 
     'tracklist' => [

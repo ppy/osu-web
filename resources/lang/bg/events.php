@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> промени своето име на <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'одобрен',
+        'loved' => 'обичан',
+        'qualified' => 'квалифициран',
+        'ranked' => 'класиран',
     ],
 ];

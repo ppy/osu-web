@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'osu!-profiili',
         'site' => 'Virallinen Nettisivu',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Kappaleet',
         'count' => ':count kappale|:count kappaletta',
-        'exclusive' => 'vain osu!ssa',
+        'original' => '',
     ],
 
     'tracklist' => [

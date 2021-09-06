@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'profilul osu!',
         'site' => 'Site-ul oficial',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Melodii',
         'count' => ':count melodie|:count melodii',
-        'exclusive' => 'exclusiv osu!',
+        'original' => '',
     ],
 
     'tracklist' => [

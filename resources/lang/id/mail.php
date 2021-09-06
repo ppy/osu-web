@@ -98,7 +98,7 @@ return [
         'code' => 'Kode verifikasi Anda adalah:',
         'code_hint' => 'Kamu dapat memasukkan kodenya dengan atau tanpa spasi.',
         'link' => 'Atau, kamu juga dapat mengunjungi tautan di bawah ini untuk menyelesaikan proses verifikasi:',
-        'report' => 'Jika kamu tidak mengetahui aksi ini, harap SEGERA BALAS email ini karena akun kamu mungkin dalam bahaya.',
+        'report' => 'Apabila Anda tidak merasa melakukan sesuatu yang membutuhkan kode verifikasi dari kami, harap SEGERA BALAS email ini karena akun Anda mungkin sedang berada dalam bahaya.',
         'subject' => 'Verifikasi akun osu!',
 
         'action_from' => [

@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'osu! profili',
         'site' => 'Resmi Website',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Şarkılar',
         'count' => ':count_delimited şarkı|:count_delimited şarkı',
-        'exclusive' => 'osu!\'ya özel',
+        'original' => '',
     ],
 
     'tracklist' => [
