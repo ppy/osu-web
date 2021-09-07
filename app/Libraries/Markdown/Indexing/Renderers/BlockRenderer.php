@@ -52,8 +52,16 @@ class BlockRenderer implements NodeRendererInterface
             return '';
         }
 
-        $inTightList = $node->parent() instanceof TightBlockInterface;
+        return static::inTightList($node) ? $text : $text . "\n";
+    }
 
-        return $inTightList ? $text : $text."\n";
+    private static function inTightList(Node $node): bool
+    {
+        $parent = $node->parent();
+        if ($parent instanceof TightBlockInterface) {
+            return $parent->isTight();
+        }
+
+        return false;
     }
 }
