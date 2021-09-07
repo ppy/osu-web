@@ -15,7 +15,6 @@ class Parser extends AbstractBlockContinueParser
 {
     private Element $block;
 
-
     public function __construct(string $className)
     {
         $this->block = new Element($className);
