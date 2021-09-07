@@ -15,14 +15,12 @@ class Element extends AbstractBlock
      */
     protected $class;
 
-    /**
-     * @var static[]
-     */
-    protected $containedStyleBlocks = [];
+    private string $fenceChar;
 
-    public function __construct(string $class)
+    public function __construct(string $class, string $fenceChar)
     {
         $this->class = $class;
+        $this->fenceChar = $fenceChar;
     }
 
     public function getClass(): string
@@ -32,10 +30,6 @@ class Element extends AbstractBlock
 
     public function canContain(AbstractBlock $block): bool
     {
-        if ($block instanceof static) {
-            $this->containedStyleBlocks[] = $block;
-        }
-
         return true;
     }
 
@@ -46,25 +40,17 @@ class Element extends AbstractBlock
 
     public function matchesNextLine(Cursor $cursor): bool
     {
-        // Make sure the most nested open StyleBlock tries to handle this first
-        if ($cursor->getRemainder() === '}}}' && !$this->containsOpenStyleBlock()) {
+        $currentLine = $cursor->getRemainder();
+
+        if (
+            ($currentLine === '}}}' && $this->fenceChar === '{') ||
+            ($currentLine === ':::' && $this->fenceChar === ':')
+        ) {
             $cursor->advanceToEnd();
 
             return false;
         }
 
         return true;
-    }
-
-    private function containsOpenStyleBlock(): bool
-    {
-        // Assumes that these StyleBlocks are never removed from descendant tree
-        foreach ($this->containedStyleBlocks as $styleBlock) {
-            if ($styleBlock->isOpen()) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

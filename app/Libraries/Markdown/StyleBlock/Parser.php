@@ -13,16 +13,20 @@ class Parser implements BlockParserInterface
 {
     public function parse(ContextInterface $context, Cursor $cursor): bool
     {
-        if (!starts_with($cursor->getRemainder(), '{{{')) {
+        $currentLine = $cursor->getRemainder();
+
+        if (!starts_with($currentLine, '{{{') && !starts_with($currentLine, ':::')) {
             return false;
         }
 
-        $cursor->advanceBy(3);
+        $class = mb_strtolower(str_replace(' ', '-', trim($currentLine, ' {:')));
 
-        $class = mb_strtolower(str_replace(' ', '-', trim($cursor->getRemainder())));
+        if (!present($class)) {
+            return false;
+        }
 
         $cursor->advanceToEnd();
-        $context->addBlock(new Element($class));
+        $context->addBlock(new Element($class, $currentLine[0]));
 
         return true;
     }
