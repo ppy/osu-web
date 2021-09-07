@@ -1,15 +1,21 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapsetJson, { BeatmapsetNominationsInterface, isLegacyNominationsInterface } from 'interfaces/beatmapset-json';
+import BeatmapsetJson, { BeatmapsetNominationsInterface, BeatmapsetStatus, isLegacyNominationsInterface } from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import { sum } from 'lodash';
 import { action } from 'mobx';
 import core from 'osu-core-singleton';
 import { error } from 'utils/ajax';
 
+const reportableStatuses: BeatmapsetStatus[] = ['graveyard', 'wip', 'pending'];
+
 interface FavouriteResponse {
   favourite_count: number;
+}
+
+export function isReportable(beatmapset: BeatmapsetJson) {
+  return reportableStatuses.includes(beatmapset.status);
 }
 
 export function nominationsCount(nominations: BeatmapsetNominationsInterface, type: 'current' | 'required'): number {
