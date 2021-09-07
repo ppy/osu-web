@@ -114,6 +114,13 @@ class UserReport extends Model
             }
         }
 
+        if ($this->reportable instanceof Beatmapset && $this->reportable->isScoreable()) {
+            $this->validationErrors()->add(
+                'reason',
+                '.no_ranked_beatmapset'
+            );
+        }
+
         return $this->validationErrors()->isEmpty();
     }
 

@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => 'Ranked beatmaps cannot be reported',
         'reason_not_valid' => ':reason is not valid for this report type.',
         'self' => "You can't report yourself!",
     ],
