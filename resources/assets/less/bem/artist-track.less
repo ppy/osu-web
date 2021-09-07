@@ -6,14 +6,19 @@
   .default-border-radius();
   --bg-hover: hsl(var(--hsl-b3));
   --cover-size: 40px;
-  width: 100%;
   background-color: hsl(var(--hsl-b4));
-  display: grid;
-  align-items: center;
-  padding: 5px;
   font-size: @font-size--normal;
 
+  width: 100%;
+  padding: 5px;
+  display: grid;
   grid-template-columns: auto 1fr auto auto auto auto;
+  gap: 5px;
+  align-items: center;
+
+  @media @desktop {
+    gap: 0;
+  }
 
   &:hover {
     background-color: var(--bg-hover);
@@ -32,30 +37,42 @@
   }
 
   &__col {
-    padding: 0 10px;
+    @media @desktop {
+      margin: 0 10px;
+    }
 
     &--badges {
-      padding: 0;
+      @media @desktop {
+        margin: 0;
+      }
     }
 
     &--buttons {
-      padding: 0 5px;
+      @media @desktop {
+        margin: 0 5px;
+      }
     }
 
     &--genre {
-      width: 120px;
-      padding-left: 15px;
       color: hsl(var(--hsl-c2));
+      width: 60px;
+
+      @media @desktop {
+        width: 100px;
+      }
     }
 
     &--length {
-      width: 50px;
+      width: 30px;
       text-align: right;
     }
 
     &--names {
-      padding-left: 15px;
       min-width: 0;
+
+      @media @desktop {
+        margin-left: 20px;
+      }
     }
 
     &--preview {
@@ -64,7 +81,7 @@
       height: var(--cover-size);
       background-size: cover;
       background-position: center;
-      margin-right: 5px;
+      margin: 0;
     }
   }
 

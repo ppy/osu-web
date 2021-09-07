@@ -60,7 +60,7 @@ export default class TracklistTrack extends React.PureComponent<Props> {
         </div>
 
         <div className='artist-track__col artist-track__col--genre'>
-          <div>{this.props.track.genre}</div>
+          <div className='u-ellipsis-overflow'>{this.props.track.genre}</div>
           <div>{this.props.track.bpm}bpm</div>
         </div>
 
