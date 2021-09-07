@@ -52,7 +52,7 @@ class BlockRenderer implements NodeRendererInterface
             return '';
         }
 
-        return static::inTightList($node) ? $text : $text . "\n";
+        return static::inTightList($node) ? $text : $text."\n";
     }
 
     private static function inTightList(Node $node): bool
