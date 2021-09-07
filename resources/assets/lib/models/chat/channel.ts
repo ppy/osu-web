@@ -114,13 +114,11 @@ export default class Channel {
    * May include relayed messages that are were just sent.
    */
   @action
-  addMessage(newMessage: Message) {
+  addMessage(json: MessageJson) {
     for (let i = this.messages.length; i > 0; i--) {
       const message = this.messages[i - 1];
-      if (message.uuid === newMessage.uuid) {
-        message.messageId = newMessage.messageId;
-        message.timestamp = newMessage.timestamp;
-        message.persist();
+      if (message.uuid === json.uuid) {
+        message.persist(json);
         return;
       }
     }
@@ -144,9 +142,7 @@ export default class Channel {
   @action
   afterSendMesssage(message: Message, json: MessageJson | null) {
     if (json != null) {
-      message.messageId = json.message_id;
-      message.timestamp = json.timestamp;
-      message.persist();
+      message.persist(json);
       this.setLastReadId(json.message_id);
     } else {
       message.errored = true;

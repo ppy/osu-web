@@ -9,7 +9,6 @@ import ChannelJson from 'interfaces/channel-json';
 import MessageJson from 'interfaces/message-json';
 import UserJson from 'interfaces/user-json';
 import Channel from 'models/chat/channel';
-import Message from 'models/chat/message';
 import { SocketEventData } from 'socket-message-event';
 
 export type ChatEventJson = ChatChannelEventJson | ChatMessageEventJson;
@@ -48,7 +47,7 @@ export class ChatChannelPartEvent extends DispatcherAction {
 }
 
 export class ChatMessageNewEvent extends DispatcherAction {
-  constructor(readonly message: Message) {
+  constructor(readonly json: MessageJson) {
     super();
   }
 }

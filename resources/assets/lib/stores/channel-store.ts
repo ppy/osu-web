@@ -231,10 +231,10 @@ export default class ChannelStore implements DispatchListener {
 
   @action
   private handleChatMessageNewEvent(event: ChatMessageNewEvent) {
-    const channel = this.channels.get(event.message.channelId);
+    const channel = this.channels.get(event.json.channel_id);
     if (channel == null) return;
 
-    channel.addMessage(event.message);
+    channel.addMessage(event.json);
   }
 
   @action

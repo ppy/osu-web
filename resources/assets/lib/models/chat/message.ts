@@ -48,9 +48,9 @@ export default class Message {
   }
 
   @action
-  persist(): Message {
+  persist(json: MessageJson) {
+    this.messageId = json.message_id;
+    this.timestamp = json.timestamp;
     this.persisted = true;
-
-    return this;
   }
 }
