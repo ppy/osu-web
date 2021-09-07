@@ -16,9 +16,9 @@ class Parser extends AbstractBlockContinueParser
     private Element $block;
 
 
-    public function __construct(string $className, string $fenceChar)
+    public function __construct(string $className)
     {
-        $this->block = new Element($className, $fenceChar);
+        $this->block = new Element($className);
     }
 
     public function getBlock(): AbstractBlock
@@ -40,11 +40,7 @@ class Parser extends AbstractBlockContinueParser
     {
         $currentLine = $cursor->getLine();
 
-        if ($currentLine === '}}}' && $this->block->getFenceChar() === '{') {
-            return BlockContinue::finished();
-        }
-
-        if ($currentLine === ':::' && $this->block->getFenceChar() === ':') {
+        if ($currentLine === ':::') {
             return BlockContinue::finished();
         }
 

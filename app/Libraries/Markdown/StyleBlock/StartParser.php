@@ -16,11 +16,11 @@ class StartParser implements BlockStartParserInterface
     {
         $currentLine = $cursor->getLine();
 
-        if (!starts_with($currentLine, '{{{') && !starts_with($currentLine, ':::')) {
+        if (!starts_with($currentLine, ':::')) {
             return BlockStart::none();
         }
 
-        $className = mb_strtolower(str_replace(' ', '-', trim($currentLine, ' :{')));
+        $className = mb_strtolower(str_replace(' ', '-', trim($currentLine, ' :')));
 
         if (!present($className)) {
             return BlockStart::none();
