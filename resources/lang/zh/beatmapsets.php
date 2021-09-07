@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => '慢一点，打几张图再回来吧。',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => '谱面列表',
         'guest_title' => '谱面',

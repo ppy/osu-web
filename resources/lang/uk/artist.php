@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'профіль osu!',
         'site' => 'Офіційний веб-сайт',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Пісні',
         'count' => ':count|пісня:count пісні',
-        'exclusive' => 'osu! ексклюзив',
+        'original' => '',
     ],
 
     'tracklist' => [

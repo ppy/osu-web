@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Ralentissez, jouez plus.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Liste des beatmaps',
         'guest_title' => 'Beatmaps',

@@ -191,7 +191,7 @@ export class Header extends React.Component
 
             @renderLoginButton()
 
-            if currentUser.id? && currentUser.id != @props.beatmapset.user_id
+            if currentUser.id? && currentUser.id != @props.beatmapset.user_id && !@props.beatmapset.is_scoreable
               div className: 'beatmapset-header__more',
                 div className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail',
                   el BeatmapsetMenu,

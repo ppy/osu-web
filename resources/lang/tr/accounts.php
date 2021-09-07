@@ -49,8 +49,8 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'belirtilen modlardaki nitelikli maplerin yeni sorunlarında bildirim al ',
-        'beatmapset_disqualify' => 'belirtilen modlardaki beatmapler diskalifiye edildiğinde bildirim al',
-        'comment_reply' => 'yorumlara yapılan yanıtlar için bildirim al',
+        'beatmapset_disqualify' => 'belirtilen modların beatmapleri diskalifiye edildiğinde bildirim al',
+        'comment_reply' => 'yorumlarına yapılan yanıtlar için bildirim al',
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'oluşturduğunuz yeni forum başlıklarında bildirimleri otomatik olarak etkinleştir',
 
@@ -61,10 +61,10 @@ return [
             'channel_message' => 'özel sohbet mesajları',
             'comment_new' => 'yeni yorumlar',
             'forum_topic_reply' => 'konu yanıtı',
-            'mail' => 'e-posta',
+            'mail' => 'posta',
             'mapping' => 'beatmap mapper',
             'push' => 'anlık',
-            'user_achievement_unlock' => 'madalya açıldı',
+            'user_achievement_unlock' => 'kullanıcı madalyası açıldı',
         ],
     ],
 

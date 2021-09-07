@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'забрани kudosu',
         'edit' => 'редактирай',
         'edited' => 'Последно редактирано от :editor :update_time.',
-        'guest' => '',
+        'guest' => 'Guest difficulty по :user',
         'kudosu_denied' => 'Забранено получаване на kudosu.',
         'message_placeholder_deleted_beatmap' => 'Тази трудност е била изтрита, така че тя вече не може да се обсъжда.',
         'message_placeholder_locked' => 'Дискусията за този бийтмап бе деактивирана.',
@@ -183,23 +183,23 @@ return [
         'disqualify' => 'Дисквалифицирайте',
         'incorrect_state' => 'Грешка при извършване на това действие, опитайте да презаредите страницата.',
         'love' => 'Обич',
-        'love_choose' => '',
+        'love_choose' => 'Избери трудност за обичан',
         'love_confirm' => 'Маркирайте този бийтмап като любим?',
         'nominate' => 'Номинирай',
         'nominate_confirm' => 'Номинирай този бийтмап?',
         'nominated_by' => 'номиниран от :users',
         'not_enough_hype' => "Няма достатъчно надъхвания.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Премахни от Обичани',
+        'remove_from_loved_prompt' => 'Причина за премахване от Обичани:',
         'required_text' => 'Номинации: :current/:required',
         'reset_message_deleted' => 'изтрито',
         'title' => 'Статус на Номиниране',
         'unresolved_issues' => 'Все още има нерешени проблеми, те трябва да бъдат проверени първо.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Този бийтмап ще бъде класиран на :date ако не открием проблеми. Той е #:position на :queue.',
+            'queue' => 'опашката',
+            'soon' => 'скоро',
         ],
 
         'reset_at' => [
@@ -227,7 +227,7 @@ return [
                 'genre' => 'Жанр',
                 'language' => 'Език',
                 'mode' => 'Игра',
-                'nsfw' => '',
+                'nsfw' => 'Explicit Content',
                 'played' => 'Изигран',
                 'rank' => 'Постигнат Ранг',
                 'status' => 'Категории',
@@ -252,11 +252,12 @@ return [
     ],
     'general' => [
         'converts' => 'Включи конвертирани бийтмапове',
-        'follows' => '',
+        'featured_artists' => '',
+        'follows' => 'Абонирани създатели',
         'recommended' => 'Препоръчана трудност',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Всички',
         'any' => 'Всички',
         'osu' => '',
         'taiko' => '',
@@ -277,7 +278,7 @@ return [
     ],
     'genre' => [
         'any' => 'Всички',
-        'unspecified' => 'Неопределени',
+        'unspecified' => 'Неопределен',
         'video-game' => 'Видеоигра',
         'anime' => 'Аниме',
         'rock' => 'Рок',
@@ -318,7 +319,7 @@ return [
         'V2' => '',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Всеки',
         'english' => 'Английски',
         'chinese' => 'Китайски',
         'french' => 'Френски',
@@ -336,8 +337,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Скрий',
+        'include' => 'Покажи',
     ],
 
     'played' => [

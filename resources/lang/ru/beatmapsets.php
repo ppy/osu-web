@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Притормози, поиграй больше.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Библиотека карт',
         'guest_title' => 'Карты',

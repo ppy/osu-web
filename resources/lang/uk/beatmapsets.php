@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Повільніше, грайте більше.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Бібліотека мап',
         'guest_title' => 'Бітмапи',

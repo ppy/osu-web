@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'osu!のプロフィール',
         'site' => '公式ウェブサイト',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => '楽曲一覧',
         'count' => ':count_delimited 曲',
-        'exclusive' => 'osu! 限定',
+        'original' => '',
     ],
 
     'tracklist' => [

@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'تَمهل, ألعب أكثر.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'قائمة الخرائط',
         'guest_title' => 'الخرائط',

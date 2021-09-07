@@ -13,7 +13,7 @@ return [
     ],
 
     'scopes' => [
-        'bot' => 'Bir sohbet botu gibi davranır.',
+        'bot' => 'Bir sohbet botu gibi davran.',
         'identify' => 'Kim olduğunuzu ve herkese açık profilinizi görüntüleyebilir.',
 
         'chat' => [

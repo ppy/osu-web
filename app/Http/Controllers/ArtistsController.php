@@ -68,7 +68,7 @@ class ArtistsController extends Controller
             ];
         }
 
-        if ($artist->beatmapsets()->count() > 0) {
+        if ($artist->beatmapsets()->exists()) {
             $links[] = [
                 'title' => osu_trans('artist.links.beatmaps'),
                 'url' => route('beatmapsets.index', ['q' => "featured_artist={$artist->getKey()}"]),

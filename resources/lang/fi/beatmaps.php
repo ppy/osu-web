@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Sisällytä muunnetut beatmapit',
+        'featured_artists' => '',
         'follows' => 'Tilatut kartoittajat',
         'recommended' => 'Suositeltu vaikeustaso',
     ],
