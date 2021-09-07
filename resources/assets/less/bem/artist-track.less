@@ -8,10 +8,12 @@
   --cover-size: 40px;
   width: 100%;
   background-color: hsl(var(--hsl-b4));
-  display: flex;
+  display: grid;
   align-items: center;
   padding: 5px;
   font-size: @font-size--normal;
+
+  grid-template-columns: auto 1fr auto auto auto auto;
 
   &:hover {
     background-color: var(--bg-hover);
@@ -30,7 +32,6 @@
   }
 
   &__col {
-    flex: none;
     padding: 0 10px;
 
     &--badges {
@@ -53,7 +54,6 @@
     }
 
     &--names {
-      flex: 1;
       padding-left: 15px;
       min-width: 0;
     }
