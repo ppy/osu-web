@@ -6,7 +6,6 @@ import ChatApi from 'chat/chat-api';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import * as _ from 'lodash';
-import { last } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import Message from 'models/chat/message';
 import User from 'models/user';
@@ -110,24 +109,36 @@ export default class Channel {
     return channel;
   }
 
+  /**
+   * For handling messages that come over the socket.
+   * May include relayed messages that are were just sent.
+   */
   @action
-  addMessages(messages: Message[], skipSort = false) {
-    // TODO: less hacky
-    // check if message coming over socket matches pending message
-    const lastMessage = last(this.messages);
-    const receivedMessage = last(messages);
-
-    if (lastMessage != null && receivedMessage != null && lastMessage.uuid === receivedMessage.uuid) {
-      lastMessage.messageId = receivedMessage.messageId;
-      lastMessage.timestamp = receivedMessage.timestamp;
-      lastMessage.persist();
-    } else {
-      this.messages.push(...messages);
+  addMessage(newMessage: Message) {
+    for (let i = this.messages.length; i > 0; i--) {
+      const message = this.messages[i - 1];
+      if (message.uuid === newMessage.uuid) {
+        message.messageId = newMessage.messageId;
+        message.timestamp = newMessage.timestamp;
+        message.persist();
+        return;
+      }
     }
+  }
 
-    if (!skipSort) {
-      this.resortMessages();
-    }
+  /**
+   * Batch adding messages from updating channels.
+   */
+  @action
+  addMessages(messages: Message[]) {
+    this.messages.push(...messages);
+    this.resortMessages();
+  }
+
+  @action
+  addSendingMessage(message: Message) {
+    this.messages.push(message);
+    this.markAsRead();
   }
 
   @action

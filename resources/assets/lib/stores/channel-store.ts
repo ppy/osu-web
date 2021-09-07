@@ -234,15 +234,14 @@ export default class ChannelStore implements DispatchListener {
     const channel = this.channels.get(event.message.channelId);
     if (channel == null) return;
 
-    channel.addMessages([event.message]);
+    channel.addMessage(event.message);
   }
 
   @action
   private async handleChatMessageSendAction(event: ChatMessageSendAction) {
     const message = event.message;
     const channel = this.getOrCreate(message.channelId);
-    channel.addMessages([message], true);
-    channel.markAsRead();
+    channel.addSendingMessage(message);
 
     try {
       if (channel.newPmChannel) {
