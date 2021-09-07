@@ -80,6 +80,11 @@ class ChannelTest extends TestCase
             'foe' => true,
         ]);
 
+        // reset caches from previous steps.
+        $user->refresh();
+        $otherUser->refresh();
+        app('OsuAuthorize')->resetCache();
+
         // this assertion to make sure the correct block direction is being tested.
         $this->assertTrue($user->hasBlocked($otherUser));
         $this->assertSame($canMessage, $channel->canMessage($user));
@@ -99,6 +104,11 @@ class ChannelTest extends TestCase
             'zebra_id' => $user->getKey(),
             'foe' => true,
         ]);
+
+        // reset caches from previous steps.
+        $user->refresh();
+        $otherUser->refresh();
+        app('OsuAuthorize')->resetCache();
 
         // this assertion to make sure the correct block direction is being tested.
         $this->assertTrue($otherUser->hasBlocked($user));
