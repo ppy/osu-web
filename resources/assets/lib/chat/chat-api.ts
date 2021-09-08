@@ -4,14 +4,8 @@
 import ChannelJson from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
 import MessageJson from 'interfaces/chat/message-json';
-import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import Message from 'models/chat/message';
-
-interface GetChannelResponse {
-  channel: ChannelJson;
-  users: UserJson[];
-}
 
 interface NewConversationJson {
   channel: ChannelJson;
@@ -20,10 +14,6 @@ interface NewConversationJson {
 }
 
 export default class ChatApi {
-  static getChannel(channelId: number) {
-    return $.get(route('chat.channels.show', { channel: channelId })) as JQuery.jqXHR<GetChannelResponse>;
-  }
-
   static getMessages(channelId: number, params?: { since?: number; until?: number }) {
     return $.get(route('chat.channels.messages.index', { channel: channelId, ...params })) as JQuery.jqXHR<MessageJson[]>;
   }
