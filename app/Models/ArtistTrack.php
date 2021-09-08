@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Libraries\Elasticsearch\Indexable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string|null $cover_url
  * @property \Carbon\Carbon|null $created_at
  * @property int|null $display_order
- * @property int $exclusive
+ * @property bool $exclusive
  * @property string $genre
  * @property int $id
  * @property int $length
@@ -27,9 +28,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class ArtistTrack extends Model
+class ArtistTrack extends Model implements Indexable
 {
-    use HasFactory;
+    use Elasticsearch\ArtistTrackTrait, HasFactory;
+
+    protected $casts = [
+        'exclusive' => 'boolean',
+    ];
 
     public function artist()
     {
