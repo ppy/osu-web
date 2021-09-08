@@ -19,11 +19,13 @@ export interface ChatChannelEventJson {
 }
 
 export interface ChatMessageEventJson {
-  data: {
-    messages: MessageJson[];
-    users: UserJson[];
-  };
+  data: ChatMessagesNewJson;
   event: string;
+}
+
+interface ChatMessagesNewJson {
+  messages: MessageJson[];
+  users: UserJson[];
 }
 
 export function isChannelEvent(arg: SocketEventData): arg is ChatChannelEventJson {
@@ -47,7 +49,7 @@ export class ChatChannelPartEvent extends DispatcherAction {
 }
 
 export class ChatMessageNewEvent extends DispatcherAction {
-  constructor(readonly json: MessageJson) {
+  constructor(readonly json: ChatMessagesNewJson) {
     super();
   }
 }

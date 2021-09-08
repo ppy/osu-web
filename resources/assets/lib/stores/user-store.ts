@@ -1,11 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import DispatcherAction from 'actions/dispatcher-action';
+import { dispatchListener } from 'app-dispatcher';
+import { ChatMessageNewEvent } from 'chat/chat-events';
+import DispatchListener from 'dispatch-listener';
 import UserJson from 'interfaces/user-json';
 import { action, makeObservable, observable } from 'mobx';
 import User from 'models/user';
 
-export default class UserStore {
+@dispatchListener
+export default class UserStore implements DispatchListener {
   @observable users = observable.map<number, User>();
 
   constructor() {
@@ -43,6 +48,12 @@ export default class UserStore {
     }
 
     return user;
+  }
+
+  handleDispatchAction(event: DispatcherAction) {
+    if (event instanceof ChatMessageNewEvent) {
+      this.updateWithJson(event.json.users);
+    }
   }
 
   @action
