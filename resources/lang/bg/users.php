@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Потребители по вид игра',
     ],
 
     'force_reactivation' => [
@@ -88,7 +88,7 @@ return [
         'failed' => 'Неправилен опит за влизане',
         'forgot' => 'Забравихте си паролата?',
         'info' => 'Моля влезте в профила си, за да продължите',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Прекалено много неуспешни опити за влизане! Докажете, че не сте робот и опитайте отново. (Обновете страницата, в случай че не се вижда задачата)',
         'locked_ip' => 'Вашият IP адрес е блокиран. Моля изчакайте няколко минути.',
         'password' => 'Парола',
         'register' => "Нямате osu! акаунт? Направете си един",
@@ -114,7 +114,7 @@ return [
     ],
     'logout_confirm' => 'Сигурни ли сте, че искате да излезете от профила си? :(',
     'report' => [
-        'button_text' => 'докладвай',
+        'button_text' => 'Докладвай',
         'comments' => 'Допълнителни коментари',
         'placeholder' => 'Моля предоставете всякаква информация, която смятате, че ще бъде полезна.',
         'reason' => 'Причина',
@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Нечестна игра / Измама',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Използва няколко профила',
             'insults' => 'Обижда ме / други',
             'spam' => 'Спам',
             'unwanted_content' => 'Изпраща неприлично съдържание',
@@ -156,8 +156,8 @@ return [
         'title' => "профила на :username",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Публикувани :link',
+            'count' => ':count_delimited коментар|:count_delimited коментара',
         ],
         'edit' => [
             'cover' => [
@@ -302,7 +302,7 @@ return [
                 'title' => 'Медали',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Игри в Мултиплеър',
             ],
             'posts' => [
                 'title' => 'Публикации',
@@ -331,7 +331,7 @@ return [
                 'received' => 'Получени гласове (за последните 3 месеца)',
                 'title' => 'Гласове',
                 'title_longer' => 'Скорошни гласове',
-                'vote_count' => ':count_delimited глас|:count_delimited гласове',
+                'vote_count' => ':count_delimited глас|:count_delimited гласа',
             ],
             'account_standing' => [
                 'title' => 'Състояние на акаунта',
@@ -384,7 +384,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Приноси :link',
-            'count' => ':count съобщение в форума|:count съобщения в форума',
+            'count' => ':count_delimited съобщение във форума|:count_delimited съобщения във форума',
         ],
         'rank' => [
             'country' => 'Класация на държавата за :mode',
@@ -414,8 +414,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'В момента сте заглушен.',
+        'message' => 'Някои действия може да са недостъпни.',
     ],
 
     'status' => [

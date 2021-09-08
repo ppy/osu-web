@@ -88,10 +88,15 @@ export class Header extends React.PureComponent
             className: "#{bn}__title"
             getTitle(@props.beatmapset)
             if @props.beatmapset.nsfw
-              span className: 'nsfw-badge', osu.trans('beatmapsets.nsfw_badge.label')
+              span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
           h2
             className: "#{bn}__title #{bn}__title--artist"
             getArtist(@props.beatmapset)
+            if @props.beatmapset.track_id?
+              a
+                className: 'beatmapset-badge beatmapset-badge--featured-artist'
+                href: laroute.route 'tracks.show', @props.beatmapset.track_id
+                osu.trans('beatmapsets.featured_artist_badge.label')
 
         div
           className: "#{bn}__filters"

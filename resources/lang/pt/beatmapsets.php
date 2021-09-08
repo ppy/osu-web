@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Abranda, joga mais.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Listagem de beatmaps',
         'guest_title' => 'Beatmaps',

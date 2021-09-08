@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'Одобрен.',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Собственикът на трудността за :beatmap вече е :new_user.',
         'discussion_delete' => 'Модератор изтри дискусията :discussion.',
         'discussion_lock' => 'Дискусията за този бийтмап бе деактивирана. (:text)',
         'discussion_post_delete' => 'Модератор изтри съобщение от дискусията :discussion.',
@@ -26,17 +26,17 @@ return [
         'language_edit' => 'Езикът бе сменен от :old на :new.',
         'love' => 'Заобичан от :user',
         'nominate' => 'Номиниран от :user.',
-        'nominate_modes' => '',
+        'nominate_modes' => 'Номиниран от :user (:modes).',
         'nomination_reset' => 'Нов проблем :discussion (:text) задейства нулиране на номинацията.',
-        'nomination_reset_received' => '',
-        'nomination_reset_received_profile' => '',
-        'qualify' => 'Този бийтмап достигна максимум брой номинации и бе квалифициран за класиране.',
+        'nomination_reset_received' => 'Номинацията на :user беше занулена от :source_user (:text)',
+        'nomination_reset_received_profile' => 'Номинацията беше занулена от :user (:text)',
+        'qualify' => 'Този бийтмап достигна нужния брой номинации и бе квалифициран за класиране.',
         'rank' => 'Класиран.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Премахнат от Обичани от :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Не е означен като explicit',
+            'to_1' => 'Означен като explicit',
         ],
     ],
 
@@ -57,7 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Одобрение',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Промени собственика на трудността',
         'discussion_delete' => 'Изтриване на дискусия',
         'discussion_post_delete' => 'Изтриване на отговор от дискусия',
         'discussion_post_restore' => 'Възстановяване на отговор от дискусия',
@@ -75,10 +75,10 @@ return [
         'love' => 'Обичан',
         'nominate' => 'Номинация',
         'nomination_reset' => 'Анулиране на номинацията',
-        'nomination_reset_received' => '',
-        'nsfw_toggle' => '',
+        'nomination_reset_received' => 'Номинация за зануляване е приета',
+        'nsfw_toggle' => 'Explicit знак',
         'qualify' => 'Квалификация',
         'rank' => 'Класиране',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Премахни от Обичани',
     ],
 ];

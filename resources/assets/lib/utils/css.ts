@@ -32,3 +32,11 @@ export function classWithModifiers(className: string, ...modifiersArray: Modifie
 
   return ret;
 }
+
+export function mergeModifiers(...modifiersArray: Modifiers[]) {
+  const ret: string[] = [];
+
+  eachModifier(modifiersArray, (m) => ret.push(m));
+
+  return ret;
+}

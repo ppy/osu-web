@@ -5,8 +5,8 @@
 
 return [
     'deleted' => 'șters',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
+    'deleted_by' => 'șters de :timeago de :user',
+    'deleted_by_system' => 'sistem',
     'deleted_count' => ':count_delimited comentariu șters|:count_delimited comentariu șters',
     'edited' => 'editat :timeago de :user',
     'pinned' => 'fixat',

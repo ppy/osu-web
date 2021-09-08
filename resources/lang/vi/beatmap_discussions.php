@@ -60,7 +60,7 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => 'Chủ Sở Hữu Khó Khăn ',
+        'button' => 'Chủ Sở Hữu Độ Khó',
         'reset_confirm' => 'Đặt lại chủ sở hữu cho khó khăn này?',
         'user' => 'Chủ Sở hữu',
         'version' => 'Khó Khăn',

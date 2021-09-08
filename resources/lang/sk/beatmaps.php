@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Zahrnúť konvertované beatmapy',
+        'featured_artists' => '',
         'follows' => '',
         'recommended' => 'Odporúčaná obtiažnosť',
     ],

@@ -31,7 +31,7 @@ return [
                 '_' => '客串难度',
                 'beatmap_owner_change' => '您现在是:title内:beatmap难度的作者
 ',
-                'beatmap_owner_change_compact' => '您现在是:beatmap难度的作者
+                'beatmap_owner_change_compact' => '您现在是谱面 :beatmap 的作者
 ',
             ],
 

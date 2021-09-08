@@ -10,7 +10,7 @@ return [
         'title' => 'comentariu',
 
         'table' => [
-            'latest_comment_empty' => 'niciun comentariu',
+            'latest_comment_empty' => 'nici un comentariu',
             'latest_comment_value' => '',
         ],
     ],
@@ -28,8 +28,8 @@ return [
         'followers' => '',
         'page_title' => '',
         'title' => '',
-        'to_0' => 'nu mă mai notifica atunci când acest utilizator încarcă un nou beatmap',
-        'to_1' => 'notifică-mă când acest utilizator încarcă un nou beatmap',
+        'to_0' => 'nu mă mai notifica atunci când acest utilizator încarcă un beatmap nou',
+        'to_1' => 'notifică-mă când acest utilizator încarcă un beatmap nou',
     ],
 
     'modding' => [

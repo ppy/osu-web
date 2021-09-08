@@ -53,7 +53,7 @@ return [
         'show_less' => 'arată mai puțin',
         'show_more' => 'arată mai mult',
         'show_more_options' => 'arată mai multe opţiuni',
-        'submit' => '',
+        'submit' => 'Trimite',
         'unpin' => 'nu mai fixa',
         'update' => 'Actualizează',
         'upload_image' => 'încarcă imaginea',
