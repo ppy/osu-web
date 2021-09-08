@@ -9,6 +9,7 @@ import * as _ from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import Message from 'models/chat/message';
 import User from 'models/user';
+import core from 'osu-core-singleton';
 
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
@@ -115,13 +116,19 @@ export default class Channel {
    */
   @action
   addMessage(json: MessageJson) {
-    for (let i = this.messages.length; i > 0; i--) {
-      const message = this.messages[i - 1];
-      if (message.uuid === json.uuid) {
-        message.persist(json);
-        return;
+    // find any pending message being sent.
+    if (json.uuid != null && json.sender_id === core.currentUser?.id) {
+      // TODO: limit the extent of back searching (because current tab might not be the sender)
+      for (let i = this.messages.length; i > 0; i--) {
+        const message = this.messages[i - 1];
+        if (message.uuid === json.uuid) {
+          message.persist(json);
+          return;
+        }
       }
     }
+
+    this.messages.push(Message.fromJson(json));
   }
 
   /**
