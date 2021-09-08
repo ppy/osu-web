@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Transformers\Chat\ChannelTransformer;
 use App\Transformers\Chat\MessageTransformer;
+use App\Transformers\Chat\UserSilenceTransformer;
 
 /**
  * @group Chat
@@ -188,7 +189,7 @@ class ChatController extends Controller
                 new MessageTransformer(),
                 ['sender']
             ),
-            'silences' => json_collection($silences, 'Chat\UserSilence'),
+            'silences' => json_collection($silences, new UserSilenceTransformer()),
         ];
     }
 
