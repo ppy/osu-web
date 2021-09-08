@@ -12,4 +12,4 @@ export class TrackPreview extends React.Component
         className: 'tracklist__preview js-audio--play js-audio--player'
         href: '#'
         'data-audio-url': @props.track.preview
-        span className: 'tracklist__preview-icon'
+        span className: 'play-button'

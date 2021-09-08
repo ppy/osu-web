@@ -83,24 +83,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    --icon: @fa-var-play;
 
     &:hover, &:focus {
       text-decoration: none;
       color: white;
-    }
-
-    &[data-audio-state="loading"],
-    &[data-audio-state="playing"] {
-      --icon: @fa-var-pause;
-    }
-  }
-
-  &__preview-icon {
-    .fas();
-
-    &::before {
-      content: var(--icon);
     }
   }
 

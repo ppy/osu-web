@@ -44,7 +44,6 @@
   --progress: 0;
   --play-bg: transparent;
   --play-icon-opacity: 0;
-  --play-icon: @fa-var-play;
   --play-width: 80px;
   --source-display: flex;
   --stats-grid-template: "hype nominations favourite-count play-count date" / auto auto auto auto auto;
@@ -91,7 +90,6 @@
   &[data-audio-state="playing"] {
     --play-bg: hsla(var(--hsl-b6), 0.8);
     --play-icon-opacity: 1;
-    --play-icon: @fa-var-pause;
   }
 
   &--beatmaps-popup-visible {
@@ -391,7 +389,6 @@
     .reset-input();
     .full-size();
     .center-content();
-    .fas();
     font-size: 14px; // icon size
     padding: 15px;
     pointer-events: auto;
@@ -399,11 +396,6 @@
 
     &:hover {
       color: hsl(var(--hsl-orange-1));
-    }
-
-    &::before {
-      display: block;
-      content: var(--play-icon);
     }
 
     @media @mobile {
@@ -460,7 +452,6 @@
   &__play-progress {
     .full-size();
     .center-content();
-    transition: var(--transition);
     opacity: var(--play-icon-opacity);
   }
 
