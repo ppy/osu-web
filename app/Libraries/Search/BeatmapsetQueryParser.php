@@ -45,6 +45,9 @@ class BeatmapsetQueryParser
                     $parsed = static::parseLength($m['value']);
                     $option = static::makeFloatRangeOption($op, $parsed['value'], $parsed['scale'] / 2.0);
                     break;
+                case 'featured_artist':
+                    $option = static::makeIntOption($op, $m['value']);
+                    break;
                 case 'key':
                 case 'keys':
                     $key = 'keys';
@@ -170,6 +173,13 @@ class BeatmapsetQueryParser
                 return [
                     'gte' => $value - $tolerance,
                 ];
+        }
+    }
+
+    private static function makeIntOption($operator, $value)
+    {
+        if (is_numeric($value) && $operator === '=') {
+            return get_int($value);
         }
     }
 

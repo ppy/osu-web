@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Inkluder konvertert beatmeaps',
+        'featured_artists' => '',
         'follows' => 'Subscribed mappers
 ',
         'recommended' => 'Rekommenderat sværhedsgrad',

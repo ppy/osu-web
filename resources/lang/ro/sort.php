@@ -26,7 +26,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Relevanţă',
+        'username' => 'Nume',
     ],
 ];

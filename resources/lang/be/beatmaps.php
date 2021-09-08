@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Уключыць канвертаваныя бітмапы',
+        'featured_artists' => '',
         'follows' => 'Падпісаныя маперы',
         'recommended' => 'Рэкамендавана цяжкасць',
     ],

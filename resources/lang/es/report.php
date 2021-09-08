@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Denunciar',
+        'title' => '¿Denunciar el mapa de :username?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -31,6 +31,6 @@ return [
 
     'user' => [
         'button' => 'Denunciar',
-        'title' => '¿Denunciar :username?',
+        'title' => '¿Denunciar a :username?',
     ],
 ];

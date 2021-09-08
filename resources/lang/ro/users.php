@@ -415,7 +415,7 @@ return [
 
     'silenced_banner' => [
         'title' => '',
-        'message' => '',
+        'message' => 'Unele acțiuni pot fi indisponibile.',
     ],
 
     'status' => [

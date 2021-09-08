@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Докладвай',
+        'title' => 'Докладване бийтмапа на :username?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -20,8 +20,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Докладвай',
+        'title' => 'Докладване публикацията на :username?',
     ],
 
     'scores' => [

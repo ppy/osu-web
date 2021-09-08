@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => '个性化',
-                'description' => "自定义个人资料页。",
+                'description' => "在个人资料中可上传自定义封面，同时还有一个完全由你掌控的“me!”面板。",
             ],
 
             'beatmap_filters' => [

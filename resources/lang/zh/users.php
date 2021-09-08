@@ -211,7 +211,7 @@ return [
                     'title' => 'Pending 的谱面',
                 ],
                 'ranked' => [
-                    'title' => 'Ranked & Approved 的谱面',
+                    'title' => 'Ranked 的谱面',
                 ],
             ],
             'discussions' => [
@@ -409,7 +409,7 @@ return [
             'graveyard_beatmapset_count' => '坟场里的谱面',
             'loved_beatmapset_count' => 'Loved 的谱面',
             'pending_beatmapset_count' => 'Pending 的谱面',
-            'ranked_beatmapset_count' => 'Ranked & Approved 的谱面',
+            'ranked_beatmapset_count' => 'Ranked 的谱面',
         ],
     ],
 

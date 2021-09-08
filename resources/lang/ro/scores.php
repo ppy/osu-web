@@ -24,6 +24,6 @@ return [
 
     'status' => [
         'non_best' => '',
-        'processing' => '',
+        'processing' => 'Acest scor este încă în calculare și va fi afișat în curând',
     ],
 ];

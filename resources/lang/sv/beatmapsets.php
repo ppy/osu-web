@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Sakta ner, spela mer.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmaps Listning',
         'guest_title' => 'Beatmaps',

@@ -142,13 +142,18 @@ export class Header extends React.Component
               href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
               getTitle(@props.beatmapset)
             if @props.beatmapset.nsfw
-              span className: 'nsfw-badge', osu.trans('beatmapsets.nsfw_badge.label')
+              span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
 
           span className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
             a
               className: 'beatmapset-header__details-text-link'
               href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
               getArtist(@props.beatmapset)
+            if @props.beatmapset.track_id?
+              a
+                className: 'beatmapset-badge beatmapset-badge--featured-artist'
+                href: laroute.route 'tracks.show', @props.beatmapset.track_id
+                osu.trans('beatmapsets.featured_artist_badge.label')
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 
@@ -186,7 +191,7 @@ export class Header extends React.Component
 
             @renderLoginButton()
 
-            if currentUser.id? && currentUser.id != @props.beatmapset.user_id
+            if currentUser.id? && currentUser.id != @props.beatmapset.user_id && !@props.beatmapset.is_scoreable
               div className: 'beatmapset-header__more',
                 div className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail',
                   el BeatmapsetMenu,

@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'ادخال الخرائط المتحولة',
+        'featured_artists' => '',
         'follows' => 'ألمنشئين المشتركين',
         'recommended' => 'الصعوبة الموصاة',
     ],

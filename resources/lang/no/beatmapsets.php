@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Ro ned, spill mer.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmapsliste',
         'guest_title' => 'Beatmaps',

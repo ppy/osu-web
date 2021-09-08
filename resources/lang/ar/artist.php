@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'ملف شخصي في osu!',
         'site' => 'موقع رسمي',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'الأغاني',
         'count' => ':count_delimited أغنية|:count_delimited أغاني',
-        'exclusive' => 'حصرياً على osu!',
+        'original' => '',
     ],
 
     'tracklist' => [

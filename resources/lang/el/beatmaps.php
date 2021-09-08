@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Συμπεριλάμβανε beatmaps που έχουν μετατραπεί',
+        'featured_artists' => '',
         'follows' => '',
         'recommended' => 'Προτεινόμενη δυσκολία',
     ],

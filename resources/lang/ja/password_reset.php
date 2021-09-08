@@ -13,8 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'アカウントの復元を続行するにはサポートへ連絡してください。',
-        'expired' => '',
-        'invalid' => '',
+        'expired' => '認証コードの有効期限が切れています。',
+        'invalid' => '確認コードに予期しないエラーが発生しました。',
         'is_privileged' => 'peppyに相談だ',
         'missing_key' => '必須項目',
         'too_many_tries' => '試行回数が多すぎます。',
