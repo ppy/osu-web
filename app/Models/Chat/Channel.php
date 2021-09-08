@@ -356,6 +356,7 @@ class Channel extends Model
             'timestamp' => $now,
         ]);
 
+        $message->uuid = $uuid; // relay any message uuid back.
         $message->sender()->associate($sender);
         $message->channel()->associate($this);
         $message->save();
@@ -368,7 +369,6 @@ class Channel extends Model
             $userChannel->markAsRead($message->message_id);
         }
 
-        $message->uuid = $uuid; // rely any message uuid back.
         event(new ChatMessageEvent($message));
 
         if ($this->isPM()) {
