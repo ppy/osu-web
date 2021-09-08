@@ -14,7 +14,7 @@
         @foreach($forums as $category)
             <div class="forum-list">
                 <div class="u-has-anchor u-has-anchor--no-event">
-                    <div class="fragment-target" id="forum-{{ $category->getKey() }}"></div>
+                    <div id="forum-{{ $category->getKey() }}"></div>
                 </div>
                 <div class="forum-list__header t-forum-{{ $category->categorySlug() }}">
                     <div class="forum-title u-forum--before-bg">

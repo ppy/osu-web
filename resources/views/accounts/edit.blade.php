@@ -63,7 +63,7 @@
     </div>
 
     <div class="osu-page u-has-anchor">
-        <div id="avatar" class="fragment-target">{{-- anchor won't offset properly if included in the flex container below --}}</div>
+        <div id="avatar">{{-- anchor won't offset properly if included in the flex container below --}}</div>
         <div class="account-edit">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
@@ -142,7 +142,7 @@
     </div>
 
     <div class="osu-page u-has-anchor">
-        <div id="notifications" class="fragment-target"></div>
+        <div id="notifications"></div>
         @include('accounts._edit_notifications')
     </div>
 
@@ -163,7 +163,7 @@
     </div>
 
     <div class="osu-page u-has-anchor">
-        <div id="oauth" class="fragment-target"></div>
+        <div id="oauth"></div>
         @include('accounts._edit_oauth')
     </div>
 @endsection

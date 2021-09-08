@@ -27,7 +27,7 @@ export class Comments extends React.PureComponent
 
       div className: classWithModifiers('comments', @props.modifiers),
         div className: 'u-has-anchor u-has-anchor--no-event',
-          div(className: 'fragment-target', id: 'comments')
+          div(id: 'comments')
         h2 className: 'comments__title',
           osu.trans('comments.title')
           span className: 'comments__count', osu.formatNumber(uiState.comments.total)
