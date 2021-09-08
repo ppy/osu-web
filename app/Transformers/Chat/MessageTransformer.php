@@ -5,6 +5,7 @@
 
 namespace App\Transformers\Chat;
 
+use App\Models\Chat\Message;
 use App\Models\DeletedUser;
 use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
@@ -13,6 +14,7 @@ class MessageTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'sender',
+        'uuid',
     ];
 
     public function transform($message)
@@ -24,15 +26,19 @@ class MessageTransformer extends TransformerAbstract
             'timestamp' => json_time($message->timestamp),
             'content' => $message->content,
             'is_action' => $message->is_action,
-            'uuid' => $message->uuid,
         ];
     }
 
-    public function includeSender($message)
+    public function includeSender(Message $message)
     {
         return $this->item(
             $message->sender ?? (new DeletedUser()),
             new UserCompactTransformer()
         );
+    }
+
+    public function includeUuid(Message $message)
+    {
+        return $this->primitive($message->uuid);
     }
 }
