@@ -386,8 +386,8 @@ class Channel extends Model
         $userChannel = $this->userChannelFor($user);
 
         if ($userChannel) {
+            // already in channel, just broadcast event.
             if (!$userChannel->isHidden()) {
-                // tell notification server to forward events for this user.
                 event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
 
                 return;
@@ -404,7 +404,6 @@ class Channel extends Model
 
         event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
 
-        // TODO: probably need to update so it doesn't increment if user is already in channel?
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
     }
 
