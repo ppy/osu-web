@@ -126,8 +126,7 @@
             ])
         @endif
 
-        <div class="ranking-page">
-            <div class="ranking-page__jump-target" id="scores"></div>
+        <div class="ranking-page" id="scores">
             @yield('scores')
         </div>
 
