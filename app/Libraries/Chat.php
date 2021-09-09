@@ -44,12 +44,6 @@ class Chat
 
     public static function sendMessage(User $sender, Channel $channel, ?string $message, ?bool $isAction)
     {
-        $isAction = $isAction ?? false;
-
-        if (!present($message) || !is_string($message)) {
-            abort(422, "can't send empty message");
-        }
-
         if ($channel->isPM()) {
             // restricted users should be treated as if they do not exist
             if (optional($channel->pmTargetFor($sender))->isRestricted()) {
@@ -60,7 +54,7 @@ class Chat
         priv_check_user($sender, 'ChatChannelSend', $channel)->ensureCan();
 
         try {
-            return $channel->receiveMessage($sender, $message, $isAction);
+            return $channel->receiveMessage($sender, $message, $isAction ?? false);
         } catch (API\ChatMessageEmptyException $e) {
             abort(422, $e->getMessage());
         } catch (API\ChatMessageTooLongException $e) {
