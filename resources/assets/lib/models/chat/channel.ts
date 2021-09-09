@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import ChannelJson, { ChannelType } from 'interfaces/channel-json';
-import MessageJson from 'interfaces/message-json';
+import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
+import MessageJson from 'interfaces/chat/message-json';
 import * as _ from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import User from 'models/user';

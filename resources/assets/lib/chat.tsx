@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import MainView from 'chat/main-view';
-import ChannelJson from 'interfaces/channel-json';
+import ChannelJson from 'interfaces/chat/channel-json';
 import UserJson from 'interfaces/user-json';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
