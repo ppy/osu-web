@@ -75,11 +75,16 @@ class MessagesController extends BaseController
      */
     public function index($channelId)
     {
-        $request = request()->all();
+        $params = get_params(request()->all(), null, [
+            'limit:int',
+            'since:int',
+            'until:int',
+        ], ['null_missing' => true]);
+
+        $since = $params['since'];
+        $until = $params['until'];
+        $limit = clamp($params['limit'] ?? 50, 1, 50);
         $user = auth()->user();
-        $since = get_int($request['since'] ?? null);
-        $until = get_int($request['until'] ?? null);
-        $limit = clamp(get_int($request['limit'] ?? null) ?? 50, 1, 50);
 
         $userChannel = UserChannel::where([
             'user_id' => $user->getKey(),
