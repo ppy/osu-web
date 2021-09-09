@@ -18,14 +18,13 @@ export default class Tracklist extends React.PureComponent<Props> {
     }
 
     return (
-      <div className='artist-tracks js-audio--group'>
+      <div className='grid-items grid-items--2 js-audio--group'>
         {this.props.tracks.map((track) => (
-          <div key={track.id} className='artist-tracks__item'>
-            <TracklistTrack
-              artist={this.props.artist}
-              track={track}
-            />
-          </div>
+          <TracklistTrack
+            key={track.id}
+            artist={this.props.artist}
+            track={track}
+          />
         ))}
       </div>
     );
