@@ -8,7 +8,6 @@ namespace App\Http\Controllers\Chat\Channels;
 use App\Http\Controllers\Chat\Controller as BaseController;
 use App\Libraries\Chat;
 use App\Models\Chat\Channel;
-use App\Models\Chat\UserChannel;
 use App\Transformers\Chat\MessageTransformer;
 
 /**
