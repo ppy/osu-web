@@ -349,10 +349,10 @@ class Channel extends Model
         }
 
         $message = new Message();
-        $message->user_id = $sender->user_id;
         $message->content = $content;
         $message->is_action = $isAction;
         $message->timestamp = $now;
+        $message->sender()->associate($sender);
         $message->channel()->associate($this);
         $message->save();
 

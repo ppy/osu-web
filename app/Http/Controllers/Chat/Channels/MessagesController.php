@@ -7,8 +7,9 @@ namespace App\Http\Controllers\Chat\Channels;
 
 use App\Http\Controllers\Chat\Controller as BaseController;
 use App\Libraries\Chat;
+use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
-use Auth;
+use App\Transformers\Chat\MessageTransformer;
 
 /**
  * @group Chat
@@ -75,13 +76,13 @@ class MessagesController extends BaseController
     public function index($channelId)
     {
         $request = request()->all();
-        $userId = Auth::user()->user_id;
+        $user = auth()->user();
         $since = get_int($request['since'] ?? null);
         $until = get_int($request['until'] ?? null);
         $limit = clamp(get_int($request['limit'] ?? null) ?? 50, 1, 50);
 
         $userChannel = UserChannel::where([
-            'user_id' => $userId,
+            'user_id' => $user->getKey(),
             'channel_id' => $channelId,
             'hidden' => false,
         ])->firstOrFail();
@@ -92,7 +93,7 @@ class MessagesController extends BaseController
 
         if ($userChannel->channel->isPM()) {
             // restricted users should be treated as if they do not exist
-            if (optional($userChannel->channel->pmTargetFor(Auth::user()))->isRestricted()) {
+            if (optional($userChannel->channel->pmTargetFor($user))->isRestricted()) {
                 abort(404);
             }
         }
@@ -116,7 +117,7 @@ class MessagesController extends BaseController
 
         return json_collection(
             $messages,
-            'Chat\Message',
+            new MessageTransformer(),
             ['sender']
         );
     }
@@ -163,18 +164,21 @@ class MessagesController extends BaseController
      */
     public function store($channelId)
     {
-        $params = request()->all();
+        $params = get_params(request()->all(), null, [
+            'is_action:bool',
+            'message',
+        ], ['null_missing' => true]);
 
         $message = Chat::sendMessage(
             auth()->user(),
-            get_int($channelId),
-            presence($params['message'] ?? null),
-            get_bool($params['is_action'] ?? null) ?? false
+            Channel::findOrFail(get_int($channelId)),
+            $params['message'],
+            $params['is_action'] ?? false,
         );
 
         return json_item(
             $message,
-            'Chat\Message',
+            new MessageTransformer(),
             ['sender']
         );
     }
