@@ -185,7 +185,7 @@ export default class Channel {
 
       runInAction(() => {
         // TODO: something about User; map in api? or lazy load?
-        const messages = response.map((messageJson) => Message.fromJson(messageJson));
+        const messages = response.messages.map((messageJson) => Message.fromJson(messageJson));
 
         if (messages.length === 0) {
           // assume no more messages.
@@ -262,7 +262,7 @@ export default class Channel {
 
       runInAction(() => {
         // TODO: something about User; map in api? or lazy load?
-        const messages = response.map((messageJson) => Message.fromJson(messageJson));
+        const messages = response.messages.map((messageJson) => Message.fromJson(messageJson));
         this.addMessages(messages);
 
         this.needsRefresh = false;

@@ -4,8 +4,16 @@
 import ChannelJson from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
 import MessageJson from 'interfaces/chat/message-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
+import { runInAction } from 'mobx';
 import Message from 'models/chat/message';
+import core from 'osu-core-singleton';
+
+interface GetMessagesResponse {
+  messages: MessageJson[];
+  users: UserJson[];
+}
 
 interface NewConversationJson {
   channel: ChannelJson;
@@ -15,7 +23,12 @@ interface NewConversationJson {
 
 export default class ChatApi {
   static getMessages(channelId: number, params?: { since?: number; until?: number }) {
-    return $.get(route('chat.channels.messages.index', { channel: channelId, ...params })) as JQuery.jqXHR<MessageJson[]>;
+    const request = $.get(route('chat.channels.messages.index', { channel: channelId, return_object: 1, ...params })) as JQuery.jqXHR<GetMessagesResponse>;
+    request.done((response) => {
+      runInAction(() => core.dataStore.userStore.updateWithJson(response.users));
+    });
+
+    return request;
   }
 
   static getUpdates(since: number, summary: boolean, lastHistoryId?: number | null) {
