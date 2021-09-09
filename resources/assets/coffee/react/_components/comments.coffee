@@ -25,9 +25,7 @@ export class Comments extends React.PureComponent
       comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
       pinnedComments = uiState.comments.pinnedCommentIds.map (id) -> store.comments.get(id)
 
-      div className: classWithModifiers('comments', @props.modifiers),
-        div className: 'u-has-anchor u-has-anchor--no-event',
-          div(id: 'comments')
+      div className: classWithModifiers('comments', @props.modifiers), id: 'comments',
         h2 className: 'comments__title',
           osu.trans('comments.title')
           span className: 'comments__count', osu.formatNumber(uiState.comments.total)

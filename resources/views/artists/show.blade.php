@@ -51,8 +51,7 @@
                 @if (count($albums) > 0)
                     <div class="artist__albums">
                         @foreach ($albums as $album)
-                            <div class="artist-album">
-                                <a name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
+                            <div class="artist-album" id="album-{{$album['id']}}">
                                 <div class="artist-album__header">
                                     <div class="artist-album__header-overlay{{$album['is_new'] ? ' artist-album__header-overlay--new' : ''}}" style="background-image: url({{$album['cover_url']}});"></div>
                                     <img class="artist-album__cover" src="{{$album['cover_url']}}">

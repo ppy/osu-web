@@ -12,10 +12,7 @@
 
     <div class="osu-page osu-page--forum">
         @foreach($forums as $category)
-            <div class="forum-list">
-                <div class="u-has-anchor u-has-anchor--no-event">
-                    <div id="forum-{{ $category->getKey() }}"></div>
-                </div>
+            <div class="forum-list" id="forum-{{ $category->getKey() }}">
                 <div class="forum-list__header t-forum-{{ $category->categorySlug() }}">
                     <div class="forum-title u-forum--before-bg">
                         <h3 class="forum-title__name">{{ $category->forum_name }}</h3>
