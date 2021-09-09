@@ -86,24 +86,19 @@ class MessagesController extends BaseController
         $limit = clamp($params['limit'] ?? 50, 1, 50);
         $user = auth()->user();
 
-        $userChannel = UserChannel::where([
-            'user_id' => $user->getKey(),
-            'channel_id' => $channelId,
-            'hidden' => false,
-        ])->firstOrFail();
-
-        if ($userChannel->channel === null) {
+        $channel = Channel::findOrFail($channelId);
+        if (!$channel->hasUser($user)) {
             abort(404);
         }
 
-        if ($userChannel->channel->isPM()) {
+        if ($channel->isPM()) {
             // restricted users should be treated as if they do not exist
-            if (optional($userChannel->channel->pmTargetFor($user))->isRestricted()) {
+            if (optional($channel->pmTargetFor($user))->isRestricted()) {
                 abort(404);
             }
         }
 
-        $messages = $userChannel->channel
+        $messages = $channel
             ->filteredMessages()
             ->with('sender')
             ->limit($limit);
