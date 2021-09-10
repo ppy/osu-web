@@ -4,7 +4,7 @@
 import MainView from 'chat/main-view';
 import ChannelJson from 'interfaces/chat/channel-json';
 import UserJson from 'interfaces/user-json';
-import { runInAction } from 'mobx';
+import { action } from 'mobx';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -22,7 +22,7 @@ interface SendToJson {
   target: UserJson;
 }
 
-core.reactTurbolinks.register('chat', () => {
+core.reactTurbolinks.register('chat', action(() => {
   const dataStore = core.dataStore;
   const initial = osu.parseJson<ChatInitialJson | null>('json-chat-initial', true);
 
@@ -51,20 +51,18 @@ core.reactTurbolinks.register('chat', () => {
       initialChannel = channel.channelId;
     }
   } else {
-    runInAction(() => {
-      const channelId = parseInt(currentUrlParams().get('channel_id') ?? '', 10);
+    const channelId = parseInt(currentUrlParams().get('channel_id') ?? '', 10);
 
-      // TODO: should clear query string as well (and maybe update on channel selection?)
-      initialChannel = dataStore.channelStore.get(channelId) != null ? channelId : dataStore.chatState.selected;
+    // TODO: should clear query string as well (and maybe update on channel selection?)
+    initialChannel = dataStore.channelStore.get(channelId) != null ? channelId : dataStore.chatState.selected;
 
-      if (initialChannel === 0) {
-        if (dataStore.channelStore.nonPmChannels.length > 0) {
-          initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
-        } else if (dataStore.channelStore.pmChannels.length > 0) {
-          initialChannel = dataStore.channelStore.pmChannels[0].channelId;
-        }
+    if (initialChannel === 0) {
+      if (dataStore.channelStore.nonPmChannels.length > 0) {
+        initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
+      } else if (dataStore.channelStore.pmChannels.length > 0) {
+        initialChannel = dataStore.channelStore.pmChannels[0].channelId;
       }
-    });
+    }
   }
 
   if (initialChannel !== 0) {
@@ -72,4 +70,4 @@ core.reactTurbolinks.register('chat', () => {
   }
 
   return <MainView dataStore={core.dataStore} worker={core.chatWorker} />;
-});
+}));
