@@ -36,7 +36,7 @@
 
   box-shadow:
     0 calc(var(--border-size) - var(--move)) var(--inset-colour),
-    0 calc(var(--border-size) - var(--move) + @box-shadow-y) @box-shadow-radius @box-shadow-color;
+    0 calc(var(--border-size) + @box-shadow-y - var(--move)) @box-shadow-radius @box-shadow-color;
 
   &:focus {
     --bg-move: -10px;
