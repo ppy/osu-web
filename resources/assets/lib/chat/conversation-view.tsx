@@ -3,7 +3,7 @@
 
 import { route } from 'laroute';
 import { each, isEmpty, last, throttle } from 'lodash';
-import { computed, observe, runInAction } from 'mobx';
+import { action, computed, makeObservable, observe } from 'mobx';
 import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
@@ -108,6 +108,8 @@ export default class ConversationView extends React.Component<Props> {
 
     this.dataStore = props.dataStore!;
 
+    makeObservable(this);
+
     disposeOnUnmount(
       this,
       observe(this.dataStore.chatState.selectedBoxed, (change) => {
@@ -123,42 +125,40 @@ export default class ConversationView extends React.Component<Props> {
     $(window).on('scroll', throttle(this.onScroll, 1000));
   }
 
+  @action
   componentDidUpdate(prevProps?: Props, prevState?: Readonly<Record<string, never>>, snapshot?: Snapshot) {
-    // FIXME: decorating componentDidUpdate isn't enough for some reason?
-    runInAction(() => {
-      const chatView = this.chatViewRef.current;
-      if (!chatView) {
-        return;
-      }
+    const chatView = this.chatViewRef.current;
+    if (!chatView) {
+      return;
+    }
 
-      if (!this.currentChannel?.loaded) {
-        return;
-      }
+    if (!this.currentChannel?.loaded) {
+      return;
+    }
 
-      if (this.didSwitchChannel) {
-        if (this.unreadMarkerRef.current) {
-          this.scrollToUnread();
-        } else {
+    if (this.didSwitchChannel) {
+      if (this.unreadMarkerRef.current) {
+        this.scrollToUnread();
+      } else {
+        this.scrollToBottom();
+      }
+      this.didSwitchChannel = false;
+    } else {
+      snapshot = snapshot ?? blankSnapshot();
+      const prepending = this.firstMessage !== this.currentChannel?.firstMessage;
+
+      if (prepending && this.chatViewRef.current != null) {
+        const chatEl = this.chatViewRef.current;
+        const newHeight = chatEl.scrollHeight;
+        chatEl.scrollTo(chatEl.scrollLeft, snapshot.chatTop + (newHeight - snapshot.chatHeight));
+      } else {
+        if (this.dataStore.chatState.autoScroll) {
           this.scrollToBottom();
         }
-        this.didSwitchChannel = false;
-      } else {
-        snapshot = snapshot ?? blankSnapshot();
-        const prepending = this.firstMessage !== this.currentChannel?.firstMessage;
-
-        if (prepending && this.chatViewRef.current != null) {
-          const chatEl = this.chatViewRef.current;
-          const newHeight = chatEl.scrollHeight;
-          chatEl.scrollTo(chatEl.scrollLeft, snapshot.chatTop + (newHeight - snapshot.chatHeight));
-        } else {
-          if (this.dataStore.chatState.autoScroll) {
-            this.scrollToBottom();
-          }
-        }
       }
+    }
 
-      this.firstMessage = this.currentChannel.firstMessage;
-    });
+    this.firstMessage = this.currentChannel.firstMessage;
   }
 
   getSnapshotBeforeUpdate() {
