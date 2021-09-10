@@ -58,7 +58,7 @@
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "turbolinks": "^5.1.1",
     "twemoji-emojis": "^14.1.0",
-    "typescript": "^4.3.5",
+    "typescript": "^4.4.2",
     "unified": "^8.4.2",
     "unist-util-visit": "^2.0.1",
     "url-polyfill": "^1.1.6",
