@@ -10,7 +10,7 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
 import { ChannelJson, ChannelType, GetUpdatesJson, MessageJson } from 'chat/chat-api-responses';
 import { groupBy, maxBy } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, comparer, computed, makeObservable, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
@@ -49,7 +49,8 @@ export default class ChannelStore {
     });
   }
 
-  @computed
+  // change in lastMessageId may still result in same channel order.
+  @computed({ equals: comparer.shallow })
   get pmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
