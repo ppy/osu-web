@@ -30,13 +30,13 @@
   --move: 0px;
   --inset-colour: hsl(var(--colour-h), var(--colour-s), calc(var(--colour-l) - 10%));
 
-  transform: translate(0, calc(-1 * var(--move)));
+  transform: translate(0, var(--move));
   background-color: hsl(var(--colour-h), var(--colour-s), calc(var(--colour-l) + var(--bg-l-adjust)));
   background-position: calc(50% + var(--bg-move)) 50%;
 
   box-shadow:
-    0 calc(var(--border-size) + var(--move)) var(--inset-colour),
-    0 calc(var(--border-size) + var(--move) + @box-shadow-y) @box-shadow-radius @box-shadow-color;
+    0 calc(var(--border-size) - var(--move)) var(--inset-colour),
+    0 calc(var(--border-size) - var(--move) + @box-shadow-y) @box-shadow-radius @box-shadow-color;
 
   &:focus {
     --bg-move: -10px;
@@ -49,7 +49,7 @@
   }
 
   &:active {
-    --move: -2px;
+    --move: 2px;
   }
 
   &--c-green {
