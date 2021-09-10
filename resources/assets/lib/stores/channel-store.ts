@@ -31,7 +31,7 @@ export default class ChannelStore {
     return [...this.nonPmChannels, ...this.pmChannels];
   }
 
-  @computed
+  @computed({ equals: comparer.shallow })
   get nonPmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
@@ -49,7 +49,6 @@ export default class ChannelStore {
     });
   }
 
-  // change in lastMessageId may still result in same channel order.
   @computed({ equals: comparer.shallow })
   get pmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
