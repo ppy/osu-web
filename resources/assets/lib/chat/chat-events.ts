@@ -5,8 +5,8 @@
 /* tslint:disable: max-classes-per-file */
 
 import DispatcherAction from 'actions/dispatcher-action';
-import ChannelJson from 'interfaces/channel-json';
-import MessageJson from 'interfaces/message-json';
+import ChannelJson from 'interfaces/chat/channel-json';
+import MessageJson from 'interfaces/chat/message-json';
 import UserJson from 'interfaces/user-json';
 import Channel from 'models/chat/channel';
 import { SocketEventData } from 'socket-message-event';
