@@ -13,7 +13,6 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
 class ChatMessageEvent implements ShouldBroadcastNow
 {
-    // TODO: just get sender from message?
     public function __construct(public Message $message)
     {
     }
