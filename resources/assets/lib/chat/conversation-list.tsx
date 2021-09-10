@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
@@ -32,7 +31,6 @@ export default class ConversationList extends React.Component {
     return channels.map((conversation) => <ConversationListItem key={conversation.channelId} channelId={conversation.channelId} />);
   }
 
-  @action
   private renderSeparator() {
     if (this.nonPmChannels.length === 0 || this.pmChannels.length === 0) {
       return null;

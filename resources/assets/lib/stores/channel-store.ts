@@ -198,7 +198,7 @@ export default class ChannelStore {
 
     channel.markAsRead();
 
-    const currentTimeout = window.setTimeout(() => {
+    const currentTimeout = window.setTimeout(action(() => {
       // allow next debounce to be queued again
       if (this.markingAsRead[channelId] === currentTimeout) {
         delete this.markingAsRead[channelId];
@@ -212,7 +212,7 @@ export default class ChannelStore {
       }
 
       this.api.markAsRead(channel.channelId, channel.lastMessageId);
-    }, 1000);
+    }), 1000);
 
     this.markingAsRead[channelId] = currentTimeout;
   }
