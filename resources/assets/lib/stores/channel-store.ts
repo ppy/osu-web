@@ -8,7 +8,9 @@ import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
-import { ChannelJson, ChannelType, GetUpdatesJson, MessageJson } from 'chat/chat-api-responses';
+import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
+import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
+import MessageJson from 'interfaces/chat/message-json';
 import { groupBy, maxBy } from 'lodash';
 import { action, comparer, computed, makeObservable, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
@@ -227,7 +229,7 @@ export default class ChannelStore {
   }
 
   @action
-  updateWithJson(updateJson: GetUpdatesJson) {
+  updateWithJson(updateJson: ChatUpdatesJson) {
     this.updateWithPresence(updateJson.presence);
 
     this.lastPolledMessageId = maxBy(updateJson.messages, 'message_id')?.message_id ?? this.lastPolledMessageId;
