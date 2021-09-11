@@ -82,7 +82,7 @@ export class CommentEditor extends React.PureComponent
               text:
                 top:
                   if @state.posting
-                    el Spinner
+                    el Spinner, modifiers: 'center-inline'
                   else
                     @buttonText()
         else
