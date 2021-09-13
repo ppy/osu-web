@@ -193,20 +193,26 @@ export default class ChannelStore implements DispatchListener {
 
   @action
   updateWithJson(updateJson: ChatUpdatesJson) {
-    this.updateWithPresence(updateJson.presence);
-
-    this.lastPolledMessageId = maxBy(updateJson.messages, 'message_id')?.message_id ?? this.lastPolledMessageId;
-
-    const groups = groupBy(updateJson.messages, 'channel_id');
-    for (const key of Object.keys(groups)) {
-      const channelId = parseInt(key, 10);
-      const messages = groups[channelId].map(Message.fromJson);
-      this.channels.get(channelId)?.addMessages(messages);
+    if (updateJson.presence != null) {
+      this.updateWithPresence(updateJson.presence);
     }
 
-    // TODO: convert silence handling back to action when updating through websocket is figured out.
-    const silencedUserIds = new Set<number>(updateJson.silences.map((json) => json.user_id));
-    this.removePublicMessagesFromUserIds(silencedUserIds);
+    if (updateJson.messages != null) {
+      this.lastPolledMessageId = maxBy(updateJson.messages, 'message_id')?.message_id ?? this.lastPolledMessageId;
+
+      const groups = groupBy(updateJson.messages, 'channel_id');
+      for (const key of Object.keys(groups)) {
+        const channelId = parseInt(key, 10);
+        const messages = groups[channelId].map(Message.fromJson);
+        this.channels.get(channelId)?.addMessages(messages);
+      }
+    }
+
+    if (updateJson.silences != null) {
+      // TODO: convert silence handling back to action when updating through websocket is figured out.
+      const silencedUserIds = new Set<number>(updateJson.silences.map((json) => json.user_id));
+      this.removePublicMessagesFromUserIds(silencedUserIds);
+    }
   }
 
   @action

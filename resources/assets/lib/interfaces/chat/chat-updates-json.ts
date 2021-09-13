@@ -5,9 +5,9 @@ import ChannelJson from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 
 export default interface ChatUpdatesJson {
-  messages: MessageJson[];
-  presence: ChannelJson[];
-  silences: ChatSilenceJson[];
+  messages?: MessageJson[];
+  presence?: ChannelJson[];
+  silences?: ChatSilenceJson[];
 }
 
 interface ChatSilenceJson {
