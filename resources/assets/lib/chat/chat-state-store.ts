@@ -39,14 +39,14 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   constructor(protected channelStore: ChannelStore) {
+    makeObservable(this);
+
     observe(channelStore.channels, (changes) => {
       // refocus channels if any gets removed
       if (changes.type === 'delete') {
         this.refocusSelectedChannel();
       }
     });
-
-    makeObservable(this);
   }
 
   handleDispatchAction(event: DispatcherAction) {
