@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Libraries\Elasticsearch\Indexable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -27,9 +28,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class ArtistTrack extends Model
+class ArtistTrack extends Model implements Indexable
 {
-    use HasFactory;
+    use Elasticsearch\ArtistTrackTrait, HasFactory;
+
+    protected $casts = [
+        'exclusive' => 'boolean',
+    ];
 
     protected $casts = [
         'exclusive' => 'boolean',
