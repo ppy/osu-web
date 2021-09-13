@@ -9,6 +9,7 @@ import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatchListener } from 'app-dispatcher';
 import ChatApi from 'chat/chat-api';
 import { ChatChannelJoinEvent, ChatChannelPartEvent } from 'chat/chat-events';
+import SilencePoller from 'chat/silence-poller';
 import DispatchListener from 'dispatch-listener';
 import { clamp, maxBy } from 'lodash';
 import { action, computed, makeObservable, observable, observe, runInAction } from 'mobx';
@@ -21,6 +22,7 @@ export default class ChatStateStore implements DispatchListener {
   @observable selectedBoxed = observable.box(0);
   private lastHistoryId: number | null = null;
   private selectedIndex = 0;
+  private silencePoller: SilencePoller;
 
   @computed
   get selected() {
@@ -47,6 +49,8 @@ export default class ChatStateStore implements DispatchListener {
         this.refocusSelectedChannel();
       }
     });
+
+    this.silencePoller = new SilencePoller(channelStore);
   }
 
   handleDispatchAction(event: DispatcherAction) {
@@ -120,17 +124,21 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  private handleSocketStateChanged(event: SocketStateChangedAction) {
+  private async handleSocketStateChanged(event: SocketStateChangedAction) {
     if (event.connected) {
-      this.updateChannelList();
+      await this.updateChannelList();
 
-      // TODO: always delay this until getting new metadata is complete
-      // so that last_message_id from server is up to date.
-      this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
-      this.channelStore.loadChannel(this.selected);
-      this.isReady = true;
+      runInAction(() => {
+        // TODO: always delay this until getting new metadata is complete
+        // so that last_message_id from server is up to date.
+        this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
+        this.channelStore.loadChannel(this.selected);
+        this.isReady = true;
+        this.silencePoller.start();
+      });
     } else {
       this.isReady = false;
+      this.silencePoller.stop();
     }
   }
 

@@ -10,7 +10,7 @@ export default interface ChatUpdatesJson {
   silences?: ChatSilenceJson[];
 }
 
-interface ChatSilenceJson {
+export interface ChatSilenceJson {
   id: number;
   user_id: number;
 }
