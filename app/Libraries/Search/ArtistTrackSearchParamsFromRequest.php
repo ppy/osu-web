@@ -34,7 +34,7 @@ class ArtistTrackSearchParamsFromRequest
         $params->artist = $paramsArray['artist'];
         $params->bpm = ComparatorParam::make($paramsArray['bpm'], 'float', 0.005);
         $params->genre = $paramsArray['genre'];
-        $params->length = ComparatorParam::make($paramsArray['length'], 'int', 0.5);
+        $params->length = ComparatorParam::make($paramsArray['length'], 'float', 0.5);
         $params->parseSort($paramsArray['sort'], $paramsArray['is_default_sort']);
         $params->searchAfter = SearchAfterParam::make($params, $paramsArray['cursor']); // TODO: filter cursor param
 
