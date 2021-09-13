@@ -138,16 +138,17 @@ class ChatController extends Controller
             'silences:bool',
         ], ['null_missing' => true]);
 
-        if ($params['since'] === null) {
-            abort(422);
-        }
-
         $since = $params['since'];
+        $lastHistoryId = $params['history_since'];
         $limit = clamp($params['limit'] ?? 50, 1, 50);
 
         $includeMessages = $includes['messages'] ?? true;
         $includePresence = $includes['presence'] ?? true;
         $includeSilences = $includes['silences'] ?? true;
+
+        if ($since === null && ($includeMessages || $includeSilences && $lastHistoryId === null)) {
+            abort(422);
+        }
 
         $response = [];
 
@@ -184,7 +185,6 @@ class ChatController extends Controller
 
         if ($includeSilences) {
             $silenceQuery = UserAccountHistory::bans()->limit(100);
-            $lastHistoryId = $params['history_since'];
 
             if ($lastHistoryId === null) {
                 $previousMessage = Message::where('message_id', '<=', $since)->last();
