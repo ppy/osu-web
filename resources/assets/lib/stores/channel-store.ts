@@ -24,7 +24,7 @@ const skippedChannelTypes = new Set<ChannelType>(['MULTIPLAYER', 'TEMPORARY']);
 @dispatchListener
 export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
-  lastPolledMessageId = 0;
+  lastReceivedMessageId = 0;
 
   private markingAsRead: Partial<Record<number, number>> = {};
 
@@ -198,7 +198,7 @@ export default class ChannelStore implements DispatchListener {
     }
 
     if (updateJson.messages != null) {
-      this.lastPolledMessageId = maxBy(updateJson.messages, 'message_id')?.message_id ?? this.lastPolledMessageId;
+      this.updateLastReceivedMessageId(updateJson.messages);
 
       const groups = groupBy(updateJson.messages, 'channel_id');
       for (const key of Object.keys(groups)) {
@@ -243,6 +243,8 @@ export default class ChannelStore implements DispatchListener {
 
       channel.addMessage(message);
     }
+
+    this.updateLastReceivedMessageId(event.json.messages);
   }
 
   @action
@@ -283,5 +285,12 @@ export default class ChannelStore implements DispatchListener {
     this.nonPmChannels.forEach((channel) => {
       channel.removeMessagesFromUserIds(userIds);
     });
+  }
+
+  @action
+  private updateLastReceivedMessageId(json?: MessageJson[]) {
+    if (json == null) return;
+
+    this.lastReceivedMessageId = maxBy(json, 'message_id')?.message_id ?? this.lastReceivedMessageId;
   }
 }

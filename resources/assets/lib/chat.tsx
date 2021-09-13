@@ -32,7 +32,7 @@ core.reactTurbolinks.register('chat', action(() => {
       dataStore.channelStore.updateWithPresence(initial.presence);
     }
 
-    dataStore.channelStore.lastPolledMessageId = initial.last_message_id ?? 0;
+    dataStore.channelStore.lastReceivedMessageId = initial.last_message_id ?? 0;
   }
 
   let initialChannel = 0;
