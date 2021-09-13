@@ -4,6 +4,7 @@
 import MainView from 'chat/main-view';
 import ChannelJson from 'interfaces/chat/channel-json';
 import UserJson from 'interfaces/user-json';
+import { action } from 'mobx';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -21,7 +22,7 @@ interface SendToJson {
   target: UserJson;
 }
 
-core.reactTurbolinks.register('chat', () => {
+core.reactTurbolinks.register('chat', action(() => {
   const dataStore = core.dataStore;
   const initial = osu.parseJson<ChatInitialJson | null>('json-chat-initial', true);
 
@@ -68,4 +69,4 @@ core.reactTurbolinks.register('chat', () => {
   }
 
   return <MainView dataStore={core.dataStore} worker={core.chatWorker} />;
-});
+}));

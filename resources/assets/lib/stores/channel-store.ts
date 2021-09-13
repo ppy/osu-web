@@ -12,7 +12,7 @@ import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { groupBy, maxBy } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, comparer, computed, makeObservable, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
@@ -33,7 +33,7 @@ export default class ChannelStore {
     return [...this.nonPmChannels, ...this.pmChannels];
   }
 
-  @computed
+  @computed({ equals: comparer.shallow })
   get nonPmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
@@ -51,7 +51,7 @@ export default class ChannelStore {
     });
   }
 
-  @computed
+  @computed({ equals: comparer.shallow })
   get pmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
@@ -200,7 +200,7 @@ export default class ChannelStore {
 
     channel.markAsRead();
 
-    const currentTimeout = window.setTimeout(() => {
+    const currentTimeout = window.setTimeout(action(() => {
       // allow next debounce to be queued again
       if (this.markingAsRead[channelId] === currentTimeout) {
         delete this.markingAsRead[channelId];
@@ -214,7 +214,7 @@ export default class ChannelStore {
       }
 
       this.api.markAsRead(channel.channelId, channel.lastMessageId);
-    }, 1000);
+    }), 1000);
 
     this.markingAsRead[channelId] = currentTimeout;
   }
