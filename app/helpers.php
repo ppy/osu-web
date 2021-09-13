@@ -1251,6 +1251,47 @@ function get_int($string)
     }
 }
 
+function get_length($string): ?array
+{
+    static $scales = [
+        'ms' => 0.001,
+        's' => 1,
+        'm' => 60,
+        'h' => 3600,
+    ];
+
+    $string = get_string($string);
+
+    if ($string === null) {
+        return null;
+    }
+
+    $scaleKey = substr($string, -2);
+
+    if (!isset($scales[$scaleKey])) {
+        $scaleKey = substr($scaleKey, -1);
+    }
+
+    if (!isset($scales[$scaleKey])) {
+        $scaleKey = 's';
+        $string .= $scaleKey;
+    }
+
+    $value = get_float(substr($string, 0, -strlen($scaleKey)));
+
+    if ($value === null) {
+        return null;
+    }
+
+    $scale = $scales[$scaleKey] ?? 1;
+    $value *= $scale;
+
+    return [
+        'scale' => $scale,
+        'value' => $value,
+    ];
+}
+
 function get_file($input)
 {
     if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
@@ -1342,6 +1383,8 @@ function get_param_value($input, $type)
             return get_file($input);
         case 'float':
             return get_float($input);
+        case 'length':
+            return get_length($input);
         case 'string':
             return get_string($input);
         case 'string_split':

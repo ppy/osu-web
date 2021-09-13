@@ -23,15 +23,28 @@ class ComparatorParam
             return null;
         }
 
-        $ret = null;
+        $ret = [
+            null,
+            null,
+        ];
 
         foreach (static::OPERATIONS as $op => $toleranceMultiplier) {
             if (isset($rawParam[$op])) {
                 $value = get_param_value($rawParam[$op], $type);
 
                 if ($value !== null) {
-                    $ret ??= [];
-                    $ret[$op] = $value + $toleranceMultiplier * $tolerance;
+                    if (is_array($value)) {
+                        $scale = $value['scale'];
+                        $value = $value['value'];
+                    } else {
+                        $scale = 1;
+                    }
+
+                    $ret[0] ??= [];
+                    $ret[0][$op] = $value + $toleranceMultiplier * $tolerance * $scale;
+
+                    $ret[1] ??= [];
+                    $ret[1][$op] = $rawParam[$op];
                 }
             }
         }

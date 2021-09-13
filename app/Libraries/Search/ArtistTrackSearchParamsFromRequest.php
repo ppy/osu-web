@@ -32,9 +32,9 @@ class ArtistTrackSearchParamsFromRequest
         $params->queryString = presence(trim($paramsArray['query'] ?? ''));
         $params->album = $paramsArray['album'];
         $params->artist = $paramsArray['artist'];
-        $params->bpm = ComparatorParam::make($paramsArray['bpm'], 'float', 0.005);
+        [$params->bpm, $params->bpmInput] = ComparatorParam::make($paramsArray['bpm'], 'float', 0.005);
         $params->genre = $paramsArray['genre'];
-        $params->length = ComparatorParam::make($paramsArray['length'], 'float', 0.5);
+        [$params->length, $params->lengthInput] = ComparatorParam::make($paramsArray['length'], 'length', 0.5);
         $params->parseSort($paramsArray['sort'], $paramsArray['is_default_sort']);
         $params->searchAfter = SearchAfterParam::make($params, $paramsArray['cursor']); // TODO: filter cursor param
 
@@ -46,10 +46,10 @@ class ArtistTrackSearchParamsFromRequest
         return array_filter([
             'album' => $params->album,
             'artist' => $params->artist,
-            'bpm' => $params->bpm,
+            'bpm' => $params->bpmInput,
             'genre' => $params->genre,
             'is_default_sort' => $params->isDefaultSort,
-            'length' => $params->length,
+            'length' => $params->lengthInput,
             'query' => $params->queryString,
             'sort' => "{$params->sortField}_{$params->sortOrder}",
         ], fn ($value) => $value !== null);
