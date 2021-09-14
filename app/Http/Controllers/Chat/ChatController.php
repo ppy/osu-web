@@ -271,7 +271,7 @@ class ChatController extends Controller
         $message = Chat::sendPrivateMessage(
             $sender,
             $target,
-            presence($params['message']),
+            $params['message'],
             $params['is_action']
         );
 
