@@ -134,12 +134,11 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   private async handleSocketStateChanged(event: SocketStateChangedAction) {
+    // TODO: this should be skipped if not actually on chat.
     if (event.connected) {
       await this.updateChannelList();
 
       runInAction(() => {
-        // TODO: always delay this until getting new metadata is complete
-        // so that last_message_id from server is up to date.
         this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
         this.channelStore.loadChannel(this.selected);
         this.isReady = true;
