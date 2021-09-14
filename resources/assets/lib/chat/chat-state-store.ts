@@ -12,12 +12,13 @@ import { ChatChannelJoinEvent, ChatChannelPartEvent } from 'chat/chat-events';
 import PingService from 'chat/ping-service';
 import DispatchListener from 'dispatch-listener';
 import { clamp, maxBy } from 'lodash';
-import { action, computed, makeObservable, observable, observe, runInAction } from 'mobx';
+import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import ChannelStore from 'stores/channel-store';
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
   @observable autoScroll = false;
+  @observable isChatMounted = false;
   @observable isReady = false;
   @observable selectedBoxed = observable.box(0);
   private lastHistoryId: number | null = null;
@@ -47,6 +48,14 @@ export default class ChatStateStore implements DispatchListener {
       // refocus channels if any gets removed
       if (changes.type === 'delete') {
         this.refocusSelectedChannel();
+      }
+    });
+
+    autorun(() => {
+      if (this.isReady && this.isChatMounted) {
+        this.pingService.start();
+      } else {
+        this.pingService.stop();
       }
     });
 
@@ -134,11 +143,9 @@ export default class ChatStateStore implements DispatchListener {
         this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
         this.channelStore.loadChannel(this.selected);
         this.isReady = true;
-        this.pingService.start();
       });
     } else {
       this.isReady = false;
-      this.pingService.stop();
     }
   }
 
