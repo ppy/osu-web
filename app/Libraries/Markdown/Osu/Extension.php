@@ -33,7 +33,6 @@ class Extension implements ConfigurableExtensionInterface
         ]));
     }
 
-
     public function register(EnvironmentBuilderInterface $environment): void
     {
         $this->processor = new DocumentProcessor($environment);
