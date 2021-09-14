@@ -18,16 +18,12 @@ class Extension implements ExtensionInterface
 {
     public function register(EnvironmentBuilderInterface $environment): void
     {
-        foreach ($this->blockRenderers() as $class => $renderer) {
-            $environment->addRenderer($class, $renderer, 10);
-        }
-
-        foreach ($this->inlineRenderers() as $class => $renderer) {
+        foreach ($this->renderers() as $class => $renderer) {
             $environment->addRenderer($class, $renderer, 10);
         }
     }
 
-    private function blockRenderers()
+    private function renderers()
     {
         return [
             Block\Document::class => new Renderers\BlockRenderer(),
@@ -40,18 +36,6 @@ class Extension implements ExtensionInterface
             ExtensionBlock\ListBlock::class => new Renderers\ListBlockRenderer(),
             ExtensionBlock\ListItem::class => new Renderers\ListItemRenderer(),
             ExtensionBlock\ThematicBreak::class => new Renderers\BlockRenderer(),
-            StyleBlock::class => new Renderers\BlockRenderer(),
-            TableExtension\Table::class => new Renderers\TableRenderer(),
-            TableExtension\TableCaption::class => new Renderers\NoopRenderer(),
-            TableExtension\TableSection::class => new Renderers\TableRenderer(),
-            TableExtension\TableRow::class => new Renderers\TableRenderer(),
-            TableExtension\TableCell::class => new Renderers\TableRenderer(),
-        ];
-    }
-
-    private function inlineRenderers()
-    {
-        return [
             ExtensionInline\Code::class => new Renderers\InlineRenderer(),
             ExtensionInline\Emphasis::class => new Renderers\InlineRenderer(),
             ExtensionInline\HtmlInline::class => new Renderers\NoopRenderer(),
@@ -60,6 +44,12 @@ class Extension implements ExtensionInterface
             ExtensionInline\Strong::class => new Renderers\InlineRenderer(),
             Inline\Newline::class => new Renderers\NewlineRenderer(),
             Inline\Text::class => new Renderers\InlineRenderer(),
+            StyleBlock::class => new Renderers\BlockRenderer(),
+            TableExtension\Table::class => new Renderers\TableRenderer(),
+            TableExtension\TableCaption::class => new Renderers\NoopRenderer(),
+            TableExtension\TableSection::class => new Renderers\TableRenderer(),
+            TableExtension\TableRow::class => new Renderers\TableRenderer(),
+            TableExtension\TableCell::class => new Renderers\TableRenderer(),
         ];
     }
 }
