@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 
-import ChatApi from 'chat/chat-api';
+import { getMessages } from 'chat/chat-api';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import * as _ from 'lodash';
@@ -181,7 +181,7 @@ export default class Channel {
     }
 
     try {
-      const response = await ChatApi.getMessages(this.channelId, { until });
+      const response = await getMessages(this.channelId, { until });
 
       runInAction(() => {
         // TODO: something about User; map in api? or lazy load?
@@ -258,7 +258,7 @@ export default class Channel {
     }
 
     try {
-      const response = await ChatApi.getMessages(this.channelId, { since });
+      const response = await getMessages(this.channelId, { since });
 
       runInAction(() => {
         // TODO: something about User; map in api? or lazy load?

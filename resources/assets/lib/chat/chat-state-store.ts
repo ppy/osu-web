@@ -7,7 +7,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatchListener } from 'app-dispatcher';
-import ChatApi from 'chat/chat-api';
+import { getUpdates } from 'chat/chat-api';
 import { ChatChannelJoinEvent, ChatChannelPartEvent } from 'chat/chat-events';
 import SilencePoller from 'chat/silence-poller';
 import DispatchListener from 'dispatch-listener';
@@ -162,7 +162,7 @@ export default class ChatStateStore implements DispatchListener {
   @action
   private async updateChannelList() {
     console.log('updating channels');
-    const json = await ChatApi.getUpdates(this.channelStore.lastReceivedMessageId, true, this.lastHistoryId);
+    const json = await getUpdates(this.channelStore.lastReceivedMessageId, true, this.lastHistoryId);
     if (!json) return; // FIXME: fix response
 
     runInAction(() => {

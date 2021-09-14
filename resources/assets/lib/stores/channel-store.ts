@@ -7,7 +7,7 @@ import {
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import ChatApi from 'chat/chat-api';
+import { markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
 import { ChatMessageNewEvent } from 'chat/chat-events';
 import DispatchListener from 'dispatch-listener';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
@@ -176,7 +176,7 @@ export default class ChannelStore implements DispatchListener {
         return;
       }
 
-      ChatApi.markAsRead(channel.channelId, channel.lastMessageId);
+      apiMarkAsRead(channel.channelId, channel.lastMessageId);
     }), 1000);
 
     this.markingAsRead[channelId] = currentTimeout;
@@ -185,7 +185,7 @@ export default class ChannelStore implements DispatchListener {
   @action
   partChannel(channelId: number, remote = true) {
     if (channelId > 0 && remote) {
-      ChatApi.partChannel(channelId, window.currentUser.id);
+      apiPartChannel(channelId, window.currentUser.id);
     }
 
     this.channels.delete(channelId);
@@ -263,14 +263,14 @@ export default class ChannelStore implements DispatchListener {
           return;
         }
 
-        const response = await ChatApi.newConversation(userId, message);
+        const response = await newConversation(userId, message);
         runInAction(() => {
           this.channels.delete(message.channelId);
           const newChannel = this.addNewConversation(response.channel, response.message);
           dispatch(new ChatNewConversationAdded(newChannel.channelId));
         });
       } else {
-        const response = await ChatApi.sendMessage(message);
+        const response = await sendMessage(message);
         channel.afterSendMesssage(message, response);
       }
     } catch (error) {
