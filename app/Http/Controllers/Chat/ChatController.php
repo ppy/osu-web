@@ -28,6 +28,111 @@ class ChatController extends Controller
     }
 
     /**
+     * Create New PM
+     *
+     * This endpoint allows you to create a new PM channel.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field            | Type
+     * ---------------- | -----------------
+     * new_channel_id   | `channel_id` of newly created [ChatChannel](#chatchannel)
+     * presence         | array of [ChatChannel](#chatchannel)
+     * message          | the sent [ChatMessage](#chatmessage)
+     *
+     * <aside class="notice">
+     *   This endpoint will only allow the creation of PMs initially, group chat support will come later.
+     * </aside>
+     *
+     * @bodyParam target_id integer required `user_id` of user to start PM with
+     * @bodyParam message string required message to send
+     * @bodyParam is_action boolean required whether the message is an action
+     *
+     * @response {
+     *   "channel": [
+     *     {
+     *       "channel_id": 1234,
+     *       "current_user_attributes": {
+     *         "can_message": true,
+     *         "last_read_id": 9150005005
+     *       },
+     *       "name": "peppy",
+     *       "description": "",
+     *       "type": "PM",
+     *       "last_read_id": 9150005005,
+     *       "last_message_id": 9150005005
+     *     }
+     *   ],
+     *   "message": {
+     *     "message_id": 9150005005,
+     *     "sender_id": 102,
+     *     "channel_id": 1234,
+     *     "timestamp": "2018-07-06T06:33:42+00:00",
+     *     "content": "i can haz featured artist plz?",
+     *     "is_action": 0,
+     *     "sender": {
+     *       "id": 102,
+     *       "username": "nekodex",
+     *       "profile_colour": "#333333",
+     *       "avatar_url": "https://a.ppy.sh/102?1500537068",
+     *       "country_code": "AU",
+     *       "is_active": true,
+     *       "is_bot": false,
+     *       "is_online": true,
+     *       "is_supporter": true
+     *     }
+     *   },
+     *   "new_channel_id": 1234,
+     * }
+     */
+    public function newConversation()
+    {
+        $params = get_params(request()->all(), null, [
+            'is_action:bool',
+            'message',
+            'target_id:int',
+        ], ['null_missing' => true]);
+
+        $target = User::lookup($params['target_id'], 'id');
+        if ($target === null) {
+            abort(422, 'target user not found');
+        }
+
+        $sender = auth()->user();
+
+        /** @var Message $message */
+        $message = Chat::sendPrivateMessage(
+            $sender,
+            $target,
+            $params['message'],
+            $params['is_action']
+        );
+
+        $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ChannelTransformer::CONVERSATION_INCLUDES);
+
+        return [
+            'channel' => $channelJson,
+            'message' => json_item(
+                $message,
+                new MessageTransformer(),
+                ['sender']
+            ),
+            'new_channel_id' => $message->channel_id,
+        ];
+    }
+
+    // TODO: I don't think anything actually calls this?
+    /**
+     * @group Undocumented
+     */
+    public function presence()
+    {
+        return (new UserChannelList(auth()->user()))->get();
+    }
+
+    /**
      * Get Updates
      *
      * This endpoint returns new messages since the given `message_id` along with updated channel 'presence' data.
@@ -206,109 +311,5 @@ class ChatController extends Controller
         $isEmpty = array_reduce($response, fn ($acc, $val) => $acc + count($val), 0) === 0;
 
         return $isEmpty ? response([], 204) : $response;
-    }
-
-    /**
-     * @group Undocumented
-     */
-    public function presence()
-    {
-        return (new UserChannelList(auth()->user()))->get();
-    }
-
-    /**
-     * Create New PM
-     *
-     * This endpoint allows you to create a new PM channel.
-     *
-     * ---
-     *
-     * ### Response Format
-     *
-     * Field            | Type
-     * ---------------- | -----------------
-     * new_channel_id   | `channel_id` of newly created [ChatChannel](#chatchannel)
-     * presence         | array of [ChatChannel](#chatchannel)
-     * message          | the sent [ChatMessage](#chatmessage)
-     *
-     * <aside class="notice">
-     *   This endpoint will only allow the creation of PMs initially, group chat support will come later.
-     * </aside>
-     *
-     * @bodyParam target_id integer required `user_id` of user to start PM with
-     * @bodyParam message string required message to send
-     * @bodyParam is_action boolean required whether the message is an action
-     *
-     * @response {
-     *   "channel": [
-     *     {
-     *       "channel_id": 1234,
-     *       "current_user_attributes": {
-     *         "can_message": true,
-     *         "last_read_id": 9150005005
-     *       },
-     *       "name": "peppy",
-     *       "description": "",
-     *       "type": "PM",
-     *       "last_read_id": 9150005005,
-     *       "last_message_id": 9150005005
-     *     }
-     *   ],
-     *   "message": {
-     *     "message_id": 9150005005,
-     *     "sender_id": 102,
-     *     "channel_id": 1234,
-     *     "timestamp": "2018-07-06T06:33:42+00:00",
-     *     "content": "i can haz featured artist plz?",
-     *     "is_action": 0,
-     *     "sender": {
-     *       "id": 102,
-     *       "username": "nekodex",
-     *       "profile_colour": "#333333",
-     *       "avatar_url": "https://a.ppy.sh/102?1500537068",
-     *       "country_code": "AU",
-     *       "is_active": true,
-     *       "is_bot": false,
-     *       "is_online": true,
-     *       "is_supporter": true
-     *     }
-     *   },
-     *   "new_channel_id": 1234,
-     * }
-     */
-    public function newConversation()
-    {
-        $params = get_params(request()->all(), null, [
-            'is_action:bool',
-            'message',
-            'target_id:int',
-        ], ['null_missing' => true]);
-
-        $target = User::lookup($params['target_id'], 'id');
-        if ($target === null) {
-            abort(422, 'target user not found');
-        }
-
-        $sender = auth()->user();
-
-        /** @var Message $message */
-        $message = Chat::sendPrivateMessage(
-            $sender,
-            $target,
-            $params['message'],
-            $params['is_action']
-        );
-
-        $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ChannelTransformer::CONVERSATION_INCLUDES);
-
-        return [
-            'channel' => $channelJson,
-            'message' => json_item(
-                $message,
-                new MessageTransformer(),
-                ['sender']
-            ),
-            'new_channel_id' => $message->channel_id,
-        ];
     }
 }
