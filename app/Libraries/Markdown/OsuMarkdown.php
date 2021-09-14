@@ -29,7 +29,7 @@ class OsuMarkdown
 {
     use Memoizes;
 
-    const VERSION = 12;
+    const VERSION = 13;
 
     const DEFAULT_COMMONMARK_CONFIG = [
         'allow_unsafe_links' => false,
