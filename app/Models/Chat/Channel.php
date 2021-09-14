@@ -348,10 +348,12 @@ class Channel extends Model
             $content = str_replace($filter->match, $filter->replacement, $content);
         }
 
-        $message = new Message();
-        $message->content = $content;
-        $message->is_action = $isAction;
-        $message->timestamp = $now;
+        $message = new Message([
+            'content' => $content,
+            'is_action' => $isAction,
+            'timestamp' => $now,
+        ]);
+
         $message->sender()->associate($sender);
         $message->channel()->associate($this);
         $message->save();
