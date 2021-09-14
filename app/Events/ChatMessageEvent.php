@@ -5,6 +5,7 @@
 
 namespace App\Events;
 
+use App\Libraries\Chat;
 use App\Models\Chat\Message;
 use App\Transformers\Chat\MessageTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -29,9 +30,11 @@ class ChatMessageEvent implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
+        $userIds = Chat::filterActive($this->message->channel->userIds());
+
         return array_map(function ($userId) {
             return new Channel("private:user:{$userId}");
-        }, $this->message->channel->userIds());
+        }, $userIds);
     }
 
     public function broadcastWith()

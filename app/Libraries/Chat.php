@@ -17,7 +17,12 @@ class Chat
 
     public static function ack(User $user)
     {
-        Redis::setex("chat:ack:{$user->getKey()}", static::CHAT_ACTIVITY_TIMEOUT, '1');
+        Redis::setex("chat:ack:{$user->getKey()}", static::CHAT_ACTIVITY_TIMEOUT, $user->getKey());
+    }
+
+    public static function filterActive(array $userIds)
+    {
+        return array_values(array_filter(Redis::mget(array_map(fn ($userId) => "chat:ack:{$userId}", $userIds))));
     }
 
     // Do the restricted user lookup before calling this.
