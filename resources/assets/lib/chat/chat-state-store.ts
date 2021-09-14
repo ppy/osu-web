@@ -9,7 +9,7 @@ import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatchListener } from 'app-dispatcher';
 import { getUpdates } from 'chat/chat-api';
 import { ChatChannelJoinEvent, ChatChannelPartEvent } from 'chat/chat-events';
-import SilencePoller from 'chat/silence-poller';
+import PingService from 'chat/ping-service';
 import DispatchListener from 'dispatch-listener';
 import { clamp, maxBy } from 'lodash';
 import { action, computed, makeObservable, observable, observe, runInAction } from 'mobx';
@@ -21,8 +21,8 @@ export default class ChatStateStore implements DispatchListener {
   @observable isReady = false;
   @observable selectedBoxed = observable.box(0);
   private lastHistoryId: number | null = null;
+  private pingService: PingService;
   private selectedIndex = 0;
-  private silencePoller: SilencePoller;
 
   @computed
   get selected() {
@@ -50,7 +50,7 @@ export default class ChatStateStore implements DispatchListener {
       }
     });
 
-    this.silencePoller = new SilencePoller(channelStore);
+    this.pingService = new PingService(channelStore);
   }
 
   handleDispatchAction(event: DispatcherAction) {
@@ -134,11 +134,11 @@ export default class ChatStateStore implements DispatchListener {
         this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
         this.channelStore.loadChannel(this.selected);
         this.isReady = true;
-        this.silencePoller.start();
+        this.pingService.start();
       });
     } else {
       this.isReady = false;
-      this.silencePoller.stop();
+      this.pingService.stop();
     }
   }
 

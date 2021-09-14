@@ -9,9 +9,17 @@ use App\Exceptions\API;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use ChaseConey\LaravelDatadogHelper\Datadog;
+use LaravelRedis as Redis;
 
 class Chat
 {
+    const CHAT_ACTIVITY_TIMEOUT = 60;
+
+    public static function ack(User $user)
+    {
+        Redis::setex("chat:ack:{$user->getKey()}", static::CHAT_ACTIVITY_TIMEOUT, '1');
+    }
+
     // Do the restricted user lookup before calling this.
     public static function sendPrivateMessage(User $sender, User $target, ?string $message, ?bool $isAction, ?string $uuid = null)
     {
