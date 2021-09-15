@@ -182,12 +182,9 @@ export default class Channel {
     }
 
     try {
-      const response = await getMessages(this.channelId, { until });
+      const messages = await getMessages(this.channelId, { until });
 
       runInAction(() => {
-        // TODO: something about User; map in api? or lazy load?
-        const messages = response.messages.map((messageJson) => Message.fromJson(messageJson));
-
         if (messages.length === 0) {
           // assume no more messages.
           this.firstMessageId = this.minMessageId;
@@ -254,11 +251,9 @@ export default class Channel {
     }
 
     try {
-      const response = await getMessages(this.channelId);
+      const messages = await getMessages(this.channelId);
 
       runInAction(() => {
-        const messages = response.messages.map((messageJson) => Message.fromJson(messageJson));
-
         // gap in messages, just clear all messages instead of dealing with the gap.
         const minMessageId = minBy(messages, 'messageId')?.messageId ?? -1;
         if (minMessageId > this.lastMessageId) {

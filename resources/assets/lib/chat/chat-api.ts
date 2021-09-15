@@ -28,11 +28,14 @@ export function ack() {
 
 export function getMessages(channelId: number, params?: { until?: number }) {
   const request = $.get(route('chat.channels.messages.index', { channel: channelId, return_object: 1, ...params })) as JQuery.jqXHR<GetMessagesResponse>;
-  request.done((response) => {
-    runInAction(() => core.dataStore.userStore.updateWithJson(response.users));
-  });
 
-  return request;
+  return request.then((response) => {
+    runInAction(() => {
+      core.dataStore.userStore.updateWithJson(response.users);
+    });
+
+    return response.messages.map((messageJson) => Message.fromJson(messageJson));
+  });
 }
 
 export function getUpdates(since: number, summary: boolean, lastHistoryId?: number | null) {
