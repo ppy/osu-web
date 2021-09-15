@@ -21,7 +21,9 @@ export default class ChatStateStore implements DispatchListener {
   @observable isChatMounted = false;
   @observable isReady = false;
   @observable selectedBoxed = observable.box(0);
+  @observable private isConnected = false;
   private lastHistoryId: number | null = null;
+  @observable private needsRefresh = true;
   private pingService: PingService;
   private selectedIndex = 0;
 
@@ -42,6 +44,8 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   constructor(protected channelStore: ChannelStore) {
+    this.pingService = new PingService(channelStore);
+
     makeObservable(this);
 
     observe(channelStore.channels, (changes) => {
@@ -59,7 +63,15 @@ export default class ChatStateStore implements DispatchListener {
       }
     });
 
-    this.pingService = new PingService(channelStore);
+    autorun(async () => {
+      if (this.isConnected && this.isChatMounted && this.needsRefresh) {
+        await this.updateChannelList();
+        runInAction(() => {
+          this.channelStore.loadChannel(this.selected);
+          this.isReady = true;
+        });
+      }
+    });
   }
 
   handleDispatchAction(event: DispatcherAction) {
@@ -133,17 +145,11 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  private async handleSocketStateChanged(event: SocketStateChangedAction) {
-    // TODO: this should be skipped if not actually on chat.
-    if (event.connected) {
-      await this.updateChannelList();
-
-      runInAction(() => {
-        this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
-        this.channelStore.loadChannel(this.selected);
-        this.isReady = true;
-      });
-    } else {
+  private handleSocketStateChanged(event: SocketStateChangedAction) {
+    this.isConnected = event.connected;
+    if (!event.connected) {
+      this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
+      this.needsRefresh = true;
       this.isReady = false;
     }
   }
