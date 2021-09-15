@@ -278,8 +278,13 @@ class ChatController extends Controller
      */
     public function newConversation()
     {
-        $params = request()->all();
-        $target = User::lookup(get_int($params['target_id'] ?? null), 'id');
+        $params = get_params(request()->all(), null, [
+            'is_action:bool',
+            'message',
+            'target_id:int',
+        ], ['null_missing' => true]);
+
+        $target = User::lookup($params['target_id'], 'id');
         if ($target === null) {
             abort(422, 'target user not found');
         }
@@ -290,8 +295,8 @@ class ChatController extends Controller
         $message = Chat::sendPrivateMessage(
             $sender,
             $target,
-            presence($params['message'] ?? null),
-            get_bool($params['is_action'] ?? null)
+            $params['message'],
+            $params['is_action']
         );
 
         $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ChannelTransformer::CONVERSATION_INCLUDES);
@@ -300,7 +305,7 @@ class ChatController extends Controller
             'channel' => $channelJson,
             'message' => json_item(
                 $message,
-                'Chat\Message',
+                new MessageTransformer(),
                 ['sender']
             ),
             'new_channel_id' => $message->channel_id,
