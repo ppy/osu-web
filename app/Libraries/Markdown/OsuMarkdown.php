@@ -306,7 +306,7 @@ class OsuMarkdown
     {
         $blockClass = $this->osuExtensionConfig['block_name'];
 
-        $config = [
+        return [
             Heading::class => [
                 'class' => static fn (Heading $node) => class_with_modifiers(
                     "{$blockClass}__header",
@@ -354,7 +354,5 @@ class OsuMarkdown
                 ),
             ],
         ];
-
-        return $config;
     }
 }
