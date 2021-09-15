@@ -5,7 +5,6 @@
 
 namespace App\Models\Solo;
 
-use App\Exceptions\InvariantException;
 use App\Libraries\ModsHelper;
 use App\Libraries\ScoreCheck;
 use App\Models\Beatmap;

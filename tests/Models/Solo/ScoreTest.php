@@ -5,7 +5,6 @@
 
 namespace Tests\Models\Solo;
 
-use App\Exceptions\InvariantException;
 use App\Models\Solo\Score;
 use Carbon\Carbon;
 use stdClass;
