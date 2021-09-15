@@ -175,6 +175,6 @@ class Score extends Model
     {
         $this->attributes['data'] = json_encode($this->data);
 
-        parent::save($options);
+        return parent::save($options);
     }
 }
