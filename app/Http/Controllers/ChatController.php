@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\Chat;
 use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
@@ -23,6 +24,7 @@ class ChatController extends Controller
     public function index()
     {
         $user = auth()->user();
+        Chat::ack($user);
 
         $json = [
             'last_message_id' => optional(Message::last())->getKey(),
