@@ -27,25 +27,6 @@ class ChatController extends Controller
         return parent::__construct();
     }
 
-    private function getSilences(?int $lastHistoryId, ?int $since)
-    {
-        $silenceQuery = UserAccountHistory::bans()->limit(100);
-
-        if ($lastHistoryId === null) {
-            $previousMessage = Message::where('message_id', '<=', $since)->last();
-
-            if ($previousMessage === null) {
-                $silenceQuery->none();
-            } else {
-                $silenceQuery->where('timestamp', '>', $previousMessage->timestamp);
-            }
-        } else {
-            $silenceQuery->where('ban_id', '>', $lastHistoryId)->reorderBy('ban_id', 'DESC');
-        }
-
-        return $silenceQuery->get();
-    }
-
     public function ack()
     {
         Chat::ack(auth()->user());
@@ -323,5 +304,24 @@ class ChatController extends Controller
         $isEmpty = array_reduce($response, fn ($acc, $val) => $acc + count($val), 0) === 0;
 
         return $isEmpty ? response([], 204) : $response;
+    }
+
+    private function getSilences(?int $lastHistoryId, ?int $since)
+    {
+        $silenceQuery = UserAccountHistory::bans()->limit(100);
+
+        if ($lastHistoryId === null) {
+            $previousMessage = Message::where('message_id', '<=', $since)->last();
+
+            if ($previousMessage === null) {
+                $silenceQuery->none();
+            } else {
+                $silenceQuery->where('timestamp', '>', $previousMessage->timestamp);
+            }
+        } else {
+            $silenceQuery->where('ban_id', '>', $lastHistoryId)->reorderBy('ban_id', 'DESC');
+        }
+
+        return $silenceQuery->get();
     }
 }
