@@ -5,7 +5,9 @@
 
 namespace App\Libraries\Markdown\Osu\Renderers;
 
+use InvalidArgumentException;
 use League\CommonMark\Extension\Table\Table;
+use League\CommonMark\Extension\Table\TableRenderer as BaseTableRenderer;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
@@ -13,16 +15,25 @@ use League\CommonMark\Util\HtmlElement;
 
 class TableRenderer implements NodeRendererInterface
 {
+    private BaseTableRenderer $baseRenderer;
+
+    public function __construct()
+    {
+        $this->baseRenderer = new BaseTableRenderer();
+    }
+
     public function render(Node $node, ChildNodeRendererInterface $childRenderer)
     {
         Table::assertInstanceOf($node);
 
-        $attrs = $node->data->getData('attributes');
+        $baseTable = $this->baseRenderer->render($node, $childRenderer);
 
-        $separator = $childRenderer->getInnerSeparator();
+        if (!($baseTable instanceof HtmlElement)) {
+            throw new InvalidArgumentException('Invalid element type: '.get_class($baseTable));
+        }
 
-        $table = new HtmlElement('table', [], $separator.$childRenderer->renderNodes($node->children()).$separator);
+        $table = new HtmlElement('table', [], $baseTable->getContents());
 
-        return new HtmlElement('div', $attrs->export(), $separator.$table.$separator);
+        return new HtmlElement('div', $baseTable->getAllAttributes(), $table);
     }
 }
