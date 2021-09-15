@@ -5,6 +5,7 @@ import {
   ChatMessageSendAction,
 } from 'actions/chat-message-send-action';
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
+import { ChatUpdateSilences } from 'actions/chat-update-silences';
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import { markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
@@ -131,6 +132,8 @@ export default class ChannelStore implements DispatchListener {
       this.handleChatMessageNewEvent(event);
     } else if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
+    } else if (event instanceof ChatUpdateSilences) {
+      this.handleChatUpdateSilences(event);
     }
   }
 
@@ -209,9 +212,7 @@ export default class ChannelStore implements DispatchListener {
     }
 
     if (updateJson.silences != null) {
-      // TODO: convert silence handling back to action when updating through websocket is figured out.
-      const silencedUserIds = new Set<number>(updateJson.silences.map((json) => json.user_id));
-      this.removePublicMessagesFromUserIds(silencedUserIds);
+      dispatch(new ChatUpdateSilences(updateJson.silences));
     }
   }
 
@@ -278,6 +279,12 @@ export default class ChannelStore implements DispatchListener {
       // FIXME: this seems like the wrong place to tigger an error popup.
       osu.ajaxError(error);
     }
+  }
+
+  @action
+  private handleChatUpdateSilences(event: ChatUpdateSilences) {
+    const silencedUserIds = new Set<number>(event.json.map((json) => json.user_id));
+    this.removePublicMessagesFromUserIds(silencedUserIds);
   }
 
   @action

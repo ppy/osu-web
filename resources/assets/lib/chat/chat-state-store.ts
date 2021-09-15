@@ -24,7 +24,7 @@ export default class ChatStateStore implements DispatchListener {
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
   @observable private needsRefresh = true;
-  private pingService: PingService;
+  private pingService = new PingService();
   private selectedIndex = 0;
 
   @computed
@@ -44,8 +44,6 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   constructor(protected channelStore: ChannelStore) {
-    this.pingService = new PingService(channelStore);
-
     makeObservable(this);
 
     observe(channelStore.channels, (changes) => {
