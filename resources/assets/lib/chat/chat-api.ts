@@ -38,7 +38,7 @@ export function getMessages(channelId: number, params?: { until?: number }) {
   });
 }
 
-export function getUpdates(since: number, summary: boolean, lastHistoryId?: number | null) {
+export function getUpdates(since: number, lastHistoryId?: number | null) {
   return $.get(
     route('chat.updates'),
     {
