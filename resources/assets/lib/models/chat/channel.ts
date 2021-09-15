@@ -6,6 +6,7 @@ import { getMessages } from 'chat/chat-api';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import * as _ from 'lodash';
+import { minBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import Message from 'models/chat/message';
 import User from 'models/user';
@@ -258,11 +259,18 @@ export default class Channel {
     }
 
     try {
-      const response = await getMessages(this.channelId, { since });
+      const response = await getMessages(this.channelId);
 
       runInAction(() => {
-        // TODO: something about User; map in api? or lazy load?
         const messages = response.messages.map((messageJson) => Message.fromJson(messageJson));
+
+        // gap in messages, just clear all messages instead of dealing with the gap.
+        const minMessageId = minBy(messages, 'messageId')?.messageId ?? -1;
+        if (minMessageId > this.lastMessageId) {
+          // TODO: force scroll to the end.
+          this.messages.length = 0;
+        }
+
         this.addMessages(messages);
 
         this.needsRefresh = false;

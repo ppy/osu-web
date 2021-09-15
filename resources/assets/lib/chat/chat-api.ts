@@ -26,7 +26,7 @@ export function ack() {
   return $.post(route('chat.ack')) as JQuery.jqXHR<AckResponseJson>;
 }
 
-export function getMessages(channelId: number, params?: { since?: number; until?: number }) {
+export function getMessages(channelId: number, params?: { until?: number }) {
   const request = $.get(route('chat.channels.messages.index', { channel: channelId, return_object: 1, ...params })) as JQuery.jqXHR<GetMessagesResponse>;
   request.done((response) => {
     runInAction(() => core.dataStore.userStore.updateWithJson(response.users));
