@@ -242,7 +242,14 @@ class OsuMarkdown
     private function getHtmlConverterAndExtension(): array
     {
         if ($this->htmlConverterAndExtension === null) {
-            $environment = $this->createBaseEnvironment(true);
+            $extraConfig = [
+                'osu_extension' => $this->osuExtensionConfig,
+                'default_attributes' => $this->createDefaultAttributesConfig(),
+            ];
+
+            $environment = $this->createEnvironment($extraConfig);
+            $environment->addExtension(new DefaultAttributesExtension());
+
             $osuExtension = new Osu\Extension();
             $environment->addExtension($osuExtension);
 
@@ -258,7 +265,7 @@ class OsuMarkdown
     private function getIndexableConverter(): MarkdownConverter
     {
         if ($this->indexableConverter === null) {
-            $environment = $this->createBaseEnvironment();
+            $environment = $this->createEnvironment();
             $environment->addExtension(new Indexing\Extension());
 
             $this->indexableConverter = new MarkdownConverter($environment);
@@ -267,19 +274,9 @@ class OsuMarkdown
         return $this->indexableConverter;
     }
 
-    private function createBaseEnvironment(bool $isHtml = false): Environment
+    private function createEnvironment(array $extraConfig = []): Environment
     {
-        $config = $this->commonmarkConfig;
-
-        if ($isHtml) {
-            $config = array_merge(
-                $config,
-                [
-                    'osu_extension' => $this->osuExtensionConfig,
-                    'default_attributes' => $this->createDefaultAttributesConfig(),
-                ]
-            );
-        }
+        $config = array_merge($this->commonmarkConfig, $extraConfig);
 
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
@@ -293,10 +290,6 @@ class OsuMarkdown
 
         if ($this->osuExtensionConfig['style_block_allowed_classes'] !== null) {
             $environment->addExtension(new StyleBlock\Extension());
-        }
-
-        if ($isHtml) {
-            $environment->addExtension(new DefaultAttributesExtension());
         }
 
         return $environment;
