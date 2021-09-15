@@ -219,11 +219,6 @@ export default class Channel {
   }
 
   @action
-  unload() {
-    this.messages = observable([]);
-  }
-
-  @action
   updatePresence = (json: ChannelJson) => {
     this.updateWithJson(json);
 
@@ -283,7 +278,6 @@ export default class Channel {
         }
       });
     } catch {
-      // TODO: revert state
       runInAction(() => this.loadingMessages = false);
     }
   }
