@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Markdown\Osu\Renderers;
 
+use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Renderer\Block\ListItemRenderer as BaseListItemRenderer;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
@@ -24,10 +25,11 @@ class ListItemRenderer implements NodeRendererInterface
     {
         $li = $this->baseRenderer->render($node, $childRenderer);
 
-        if ($li instanceof HtmlElement) {
-            $contents = $li->getContents();
-            $li->setContents("<div>{$contents}</div>");
+        if (!($li instanceof HtmlElement)) {
+            throw new InvalidArgumentException('Invalid element type: '.get_class($li));
         }
+
+        $li->setContents(new HtmlElement('div', [], $li->getContents()));
 
         return $li;
     }
