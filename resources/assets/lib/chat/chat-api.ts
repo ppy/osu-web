@@ -22,8 +22,8 @@ interface NewConversationJson {
   new_channel_id: number;
 }
 
-export function ack() {
-  return $.post(route('chat.ack')) as JQuery.jqXHR<AckResponseJson>;
+export function ack(since: number, lastHistoryId?: number) {
+  return $.post(route('chat.ack'), { history_since: lastHistoryId, since }) as JQuery.jqXHR<AckResponseJson>;
 }
 
 export function getMessages(channelId: number, params?: { until?: number }) {

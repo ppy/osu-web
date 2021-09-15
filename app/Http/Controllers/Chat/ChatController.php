@@ -31,8 +31,13 @@ class ChatController extends Controller
     {
         Chat::ack(auth()->user());
 
+        $params = get_params(request()->all(), null, [
+            'history_since:int',
+            'since:int',
+        ], ['null_missing' => true]);
+
         return [
-            'silences' => json_collection($this->getSilences(0, null), new UserSilenceTransformer()),
+            'silences' => json_collection($this->getSilences($params['history_since'], $params['since']), new UserSilenceTransformer()),
         ];
     }
 

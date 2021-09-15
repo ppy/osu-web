@@ -6,12 +6,16 @@ import { dispatch } from 'app-dispatcher';
 import { ack } from 'chat/chat-api';
 import AckResponseJson from 'interfaces/chat/ack-response-json';
 import { maxBy } from 'lodash';
+import ChannelStore from 'stores/channel-store';
 
 export default class PingService {
-  private lastHistoryId: number | null = null;
+  private lastHistoryId?: number;
   private pollingTime = 5000;
   private timerId?: number;
   private xhr?: JQuery.jqXHR<AckResponseJson>;
+
+  constructor(private channelStore: ChannelStore) {
+  }
 
   start() {
     if (this.timerId == null) {
@@ -28,7 +32,7 @@ export default class PingService {
   }
 
   private ping = () => {
-    this.xhr = ack().done((json) => {
+    this.xhr = ack(this.channelStore.lastReceivedMessageId, this.lastHistoryId).done((json) => {
       const newHistoryId = maxBy(json.silences, 'id')?.id;
 
       if (newHistoryId != null) {
