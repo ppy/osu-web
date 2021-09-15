@@ -32,6 +32,16 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     return this.dataStore.chatState.selectedChannel;
   }
 
+  @computed
+  get inputDisabled() {
+    return !this.currentChannel?.canMessage;
+  }
+
+  @computed
+  get sendDisabled() {
+    return this.inputDisabled || !this.dataStore.chatState.isReady;
+  }
+
   constructor(props: Props) {
     super(props);
 
@@ -55,8 +65,10 @@ export default class InputBox extends React.Component<Props> implements Dispatch
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.keyCode === 13) {
       e.preventDefault();
-      this.sendMessage(this.currentChannel?.inputText);
-      this.currentChannel?.setInputText('');
+      if (!this.sendDisabled) {
+        this.sendMessage(this.currentChannel?.inputText);
+        this.currentChannel?.setInputText('');
+      }
     }
   };
 
@@ -87,8 +99,6 @@ export default class InputBox extends React.Component<Props> implements Dispatch
 
   render(): React.ReactNode {
     const channel = this.currentChannel;
-    const disableInput = !channel || !channel.canMessage;
-    const buttonDisabled = disableInput || !this.dataStore.chatState.isReady;
     const buttonIcon = this.dataStore.chatState.isReady ? 'fas fa-reply' : 'fas fa-times';
     const buttonText = osu.trans(this.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
 
@@ -97,13 +107,13 @@ export default class InputBox extends React.Component<Props> implements Dispatch
         <TextareaAutosize
           ref={this.inputBoxRef}
           autoComplete='off'
-          className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
-          disabled={disableInput}
+          className={`chat-input__box${this.inputDisabled ? ' chat-input__box--disabled' : ''}`}
+          disabled={this.inputDisabled}
           maxRows={3}
           name='textbox'
           onChange={this.handleChange}
           onKeyDown={this.checkIfEnterPressed}
-          placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
+          placeholder={this.inputDisabled ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
           value={channel?.inputText}
         />
 
@@ -111,7 +121,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
           icon={buttonIcon}
           modifiers={['chat-send']}
           props={{
-            disabled: buttonDisabled,
+            disabled: this.sendDisabled,
             onClick: this.buttonClicked,
           }}
           text={buttonText}
