@@ -30,4 +30,8 @@
     <div class="wiki-notice">
         {{ osu_trans('wiki.show.needs_cleanup_or_rewrite') }}
     </div>
+@elseif ($page->isStub())
+    <div class="wiki-notice">
+        {{ osu_trans('wiki.show.stub') }}
+    </div>
 @endif
