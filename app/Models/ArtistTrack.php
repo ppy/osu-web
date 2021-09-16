@@ -6,7 +6,6 @@
 namespace App\Models;
 
 use App\Libraries\Elasticsearch\Indexable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property ArtistAlbum $album
@@ -30,7 +29,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class ArtistTrack extends Model implements Indexable
 {
-    use Elasticsearch\ArtistTrackTrait, HasFactory;
+    use Elasticsearch\ArtistTrackTrait;
 
     protected $casts = [
         'exclusive' => 'boolean',

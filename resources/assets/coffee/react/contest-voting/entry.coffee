@@ -4,7 +4,7 @@
 import { Voter } from './voter'
 import * as React from 'react'
 import { a,i,div,span } from 'react-dom-factories'
-import { TrackPreview } from 'track-preview'
+import TrackPreview from 'track-preview'
 el = React.createElement
 
 export class Entry extends React.Component

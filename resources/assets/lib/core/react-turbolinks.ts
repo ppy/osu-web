@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import TurbolinksReload from 'core/turbolinks-reload';
+import { runInAction } from 'mobx';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { currentUrl } from 'utils/turbolinks';
@@ -35,7 +36,10 @@ export default class ReactTurbolinks {
         }
 
         this.renderedContainers.add(container);
-        ReactDOM.render(elementFn(container), container);
+
+        runInAction(() => {
+          ReactDOM.render(elementFn(container), container);
+        });
       }
     }
   };
