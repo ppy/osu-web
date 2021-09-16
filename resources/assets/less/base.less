@@ -4,6 +4,14 @@
 // main: compiled.less
 @import "app";
 
+html {
+  scroll-padding-top: @nav2-height--pinned;
+
+  @media @mobile {
+    scroll-padding-top: @navbar-height;
+  }
+}
+
 blockquote {
   font-size: inherit;
   border-left: 2px solid hsl(var(--hsl-c2));
