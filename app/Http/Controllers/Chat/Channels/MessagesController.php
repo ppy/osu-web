@@ -7,8 +7,8 @@ namespace App\Http\Controllers\Chat\Channels;
 
 use App\Http\Controllers\Chat\Controller as BaseController;
 use App\Libraries\Chat;
-use App\Models\Chat\UserChannel;
-use Auth;
+use App\Models\Chat\Channel;
+use App\Transformers\Chat\MessageTransformer;
 
 /**
  * @group Chat
@@ -74,30 +74,28 @@ class MessagesController extends BaseController
      */
     public function index($channelId)
     {
-        $request = request()->all();
-        $userId = Auth::user()->user_id;
-        $since = get_int($request['since'] ?? null);
-        $until = get_int($request['until'] ?? null);
-        $limit = clamp(get_int($request['limit'] ?? null) ?? 50, 1, 50);
+        ['limit' => $limit, 'since' => $since, 'until' => $until] = get_params(request()->all(), null, [
+            'limit:int',
+            'since:int',
+            'until:int',
+        ], ['null_missing' => true]);
 
-        $userChannel = UserChannel::where([
-            'user_id' => $userId,
-            'channel_id' => $channelId,
-            'hidden' => false,
-        ])->firstOrFail();
+        $limit = clamp($limit ?? 50, 1, 50);
+        $user = auth()->user();
 
-        if ($userChannel->channel === null) {
+        $channel = Channel::findOrFail($channelId);
+        if (!$channel->hasUser($user)) {
             abort(404);
         }
 
-        if ($userChannel->channel->isPM()) {
+        if ($channel->isPM()) {
             // restricted users should be treated as if they do not exist
-            if (optional($userChannel->channel->pmTargetFor(Auth::user()))->isRestricted()) {
+            if (optional($channel->pmTargetFor($user))->isRestricted()) {
                 abort(404);
             }
         }
 
-        $messages = $userChannel->channel
+        $messages = $channel
             ->filteredMessages()
             ->with('sender')
             ->limit($limit);
@@ -116,7 +114,7 @@ class MessagesController extends BaseController
 
         return json_collection(
             $messages,
-            'Chat\Message',
+            new MessageTransformer(),
             ['sender']
         );
     }
@@ -163,18 +161,21 @@ class MessagesController extends BaseController
      */
     public function store($channelId)
     {
-        $params = request()->all();
+        $params = get_params(request()->all(), null, [
+            'is_action:bool',
+            'message',
+        ], ['null_missing' => true]);
 
         $message = Chat::sendMessage(
             auth()->user(),
-            get_int($channelId),
-            presence($params['message'] ?? null),
-            get_bool($params['is_action'] ?? null) ?? false
+            Channel::findOrFail(get_int($channelId)),
+            $params['message'],
+            $params['is_action'] ?? false,
         );
 
         return json_item(
             $message,
-            'Chat\Message',
+            new MessageTransformer(),
             ['sender']
         );
     }
