@@ -421,6 +421,12 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
+    /**
+     * Marks the Order as cancelled. Does not do anything if already cancelled.
+     *
+     * @param User|null $user The User requesting to cancel the order, null for system.
+     * @return void
+     */
     public function cancel(?User $user = null)
     {
         if ($this->status === 'cancelled') {
