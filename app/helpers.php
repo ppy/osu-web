@@ -426,7 +426,7 @@ function markdown_plain($input)
         ]);
     }
 
-    return $converter->convertToHtml($input);
+    return $converter->convertToHtml($input)->getContent();
 }
 
 function max_offset($page, $limit)
