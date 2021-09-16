@@ -24,6 +24,7 @@ class Extension implements ConfigurableExtensionInterface
     {
         $builder->addSchema('osu_extension', Expect::structure([
             'block_name' => Expect::string(),
+            'fix_wiki_url' => Expect::bool(),
             'generate_toc' => Expect::bool(),
             'record_first_image' => Expect::bool(),
             'relative_url_root' => Expect::string()->nullable(),
