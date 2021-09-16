@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
 import * as React from 'react';
@@ -12,6 +13,7 @@ interface Props {
   messages: Message[];
 }
 
+@observer
 export default class MessageGroup extends React.Component<Props, any> {
   render(): React.ReactNode {
     const messages = this.props.messages;
