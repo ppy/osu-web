@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Anti-jeu / Tricherie',
+            'multiple_accounts' => 'Utilisation de plusieurs comptes',
             'insults' => 'M’insulte / insulte les autres',
             'spam' => 'Spam',
             'unwanted_content' => 'Envoi de contenu inapproprié',
@@ -239,7 +240,7 @@ return [
                     'title' => 'Parties récentes (dernières 24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Historique des replays regardées',
+                    'title' => 'Historique des replays regardés',
                     'count_label' => 'Replays regardés',
                 ],
             ],
@@ -299,6 +300,9 @@ return [
                 'empty' => "Cet utilisateur n'en a encore jamais reçue. ;_;",
                 'recent' => 'Dernier',
                 'title' => 'Médailles',
+            ],
+            'multiplayer' => [
+                'title' => 'Parties multijoueurs',
             ],
             'posts' => [
                 'title' => 'Messages',
@@ -403,7 +407,7 @@ return [
             'total_score' => 'Score total',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmaps dans le cimetière',
-            'loved_beatmapset_count' => 'Beatmaps adorées',
+            'loved_beatmapset_count' => 'Beatmaps loved',
             'pending_beatmapset_count' => 'Beatmaps en attente',
             'ranked_beatmapset_count' => 'Beatmaps classées et approuvées',
         ],

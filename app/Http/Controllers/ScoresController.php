@@ -32,7 +32,7 @@ class ScoresController extends Controller
             ->firstOrFail();
 
         if (!is_api_request() && !from_app_url()) {
-            return ujs_redirect(route('scores.show', ['score' => $id, 'mode' => $mode]));
+            return ujs_redirect(route('scores.show', ['score' => $score->getKey(), 'mode' => $mode]));
         }
 
         $replayFile = $score->replayFile();
@@ -71,7 +71,6 @@ class ScoresController extends Controller
         $scoreJson = json_item($score, 'Score', array_merge([
             'beatmap.max_combo',
             'beatmapset',
-            'rank_country',
             'rank_global',
         ], $userIncludes));
 

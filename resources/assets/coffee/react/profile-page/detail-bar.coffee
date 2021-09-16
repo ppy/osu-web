@@ -10,6 +10,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
+import { nextVal } from 'utils/seq'
 
 el = React.createElement
 bn = 'profile-detail-bar'
@@ -18,7 +19,7 @@ export class DetailBar extends React.Component
   constructor: (props) ->
     super props
 
-    @eventId = "profile-page-#{osu.uuid()}"
+    @eventId = "profile-page-#{nextVal()}"
 
 
   render: =>
@@ -29,7 +30,7 @@ export class DetailBar extends React.Component
       div className: bn,
         div className: "#{bn}__page-toggle",
           button
-            className: 'profile-page-toggle'
+            className: 'btn-circle btn-circle--page-toggle'
             onClick: @toggleExtend
             title: osu.trans("common.buttons.#{if expanded then 'collapse' else 'expand'}")
             if expanded
@@ -115,7 +116,7 @@ export class DetailBar extends React.Component
 
     div className: "#{bn}__entry",
       button
-        className: 'profile-page-toggle profile-page-toggle--detail js-click-menu'
+        className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail js-click-menu'
         title: osu.trans('common.buttons.show_more_options')
         'data-click-menu-target': "profile-page-bar-#{@eventId}"
         span className: 'fas fa-ellipsis-v'

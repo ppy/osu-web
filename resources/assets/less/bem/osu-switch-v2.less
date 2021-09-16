@@ -58,6 +58,13 @@
       }
     }
 
+    .@{_top}__input[type=checkbox][data-indeterminate='true'] + & {
+      &::after {
+        .fas();
+        content: '\f068';
+      }
+    }
+
     .@{_top}__input[type=radio] + & {
       border-radius: 50%;
 

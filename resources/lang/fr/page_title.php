@@ -39,7 +39,7 @@ return [
             'verify_link' => 'vérification du compte',
         ],
         'artists_controller' => [
-            '_' => 'artistes en vedette',
+            '_' => 'artistes associés',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'posts de discussion sur la beatmap',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'remarque',
         ],
         'wiki_controller' => [
-            '_' => 'base de connaissances',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -141,6 +141,9 @@ return [
     'users' => [
         'modding_history_controller' => [
             '_' => 'informations du moddeur',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'historique multijoueur',
         ],
     ],
 ];

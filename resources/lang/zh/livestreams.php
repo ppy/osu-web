@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => '',
-        'unpin' => "",
+        'pin' => '你确定想要宣传这个直播吗？',
+        'unpin' => "你确定要移除这个直播的宣传吗？",
     ],
 
     'top-headers' => [

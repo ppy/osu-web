@@ -6,6 +6,7 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { nextVal } from 'utils/seq';
 
 interface Props {
   follow: FollowJson;
@@ -25,7 +26,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
 
   state: State;
 
-  private eventId = `follow-toggle-${osu.uuid()}`;
+  private eventId = `follow-toggle-${nextVal()}`;
   private toggleXhr: null | JQueryXHR = null;
 
   constructor(props: Props) {

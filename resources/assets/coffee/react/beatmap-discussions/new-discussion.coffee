@@ -2,7 +2,8 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { MessageLengthCounter } from './message-length-counter'
-import { BigButton } from 'big-button'
+import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
+import BigButton from 'big-button'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
@@ -30,12 +31,12 @@ export class NewDiscussion extends React.PureComponent
 
   componentDidMount: =>
     @setTop()
-    $(window).on 'resize.new-discussion', @setTop
+    $(window).on 'resize', @setTop
     @inputBox.current?.focus() if @props.autoFocus
 
 
   componentWillUnmount: =>
-    $(window).off '.new-discussion'
+    $(window).off 'resize', @setTop
     @postXhr?.abort()
     @throttledPost.cancel()
 
@@ -322,16 +323,16 @@ export class NewDiscussion extends React.PureComponent
     typeText = if type == 'problem' then @problemType() else type
 
     el BigButton,
-      modifiers: ['beatmap-discussion-new']
-      icon: BeatmapDiscussionHelper.messageType.icon[_.camelCase(type)]
-      isBusy: @state.posting == type
-      text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type
+      disabled: !@validPost() || @state.posting? || !@canPost()
+      icon: discussionTypeIcons[type]
+      isBusy: @state.posting == type
+      modifiers: 'beatmap-discussion-new'
+      text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       props: _.merge
-          disabled: !@validPost() || @state.posting? || !@canPost()
-          'data-type': type
-          onClick: @post
-          extraProps
+        'data-type': type
+        onClick: @post
+        extraProps
 
 
   timestamp: =>

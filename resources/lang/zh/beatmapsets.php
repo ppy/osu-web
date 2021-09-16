@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => '慢一点，打几张图再回来吧。',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => '谱面列表',
         'guest_title' => '谱面',
@@ -57,7 +61,7 @@ return [
             'favourite' => '收藏这张谱面',
             'favourite_login' => '登录以收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
-            'mapped_by' => '作图者: :mapper',
+            'mapped_by' => '谱师：:mapper',
             'unfavourite' => '取消收藏',
             'updated_timeago' => '上次更新于 :timeago',
 

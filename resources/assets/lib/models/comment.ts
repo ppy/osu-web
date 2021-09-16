@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { CommentJson } from 'interfaces/comment-json';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 
 export type CommentSort = 'new' | 'old' | 'top';
 
@@ -43,6 +43,8 @@ export class Comment {
     this.updatedAt = json.updated_at;
     this.userId = json.user_id;
     this.votesCount = json.votes_count;
+
+    makeObservable(this);
   }
 
   @computed

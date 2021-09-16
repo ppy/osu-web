@@ -4,7 +4,7 @@
 import { MessageLengthCounter } from './message-length-counter'
 import { UserCard } from './user-card'
 import { ReviewPost } from 'beatmap-discussions/review-post'
-import { BigButton } from 'big-button'
+import BigButton from 'big-button'
 import ClickToCopy from 'click-to-copy'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -143,17 +143,17 @@ export class Post extends React.PureComponent
         div className: "#{bn}__actions-group",
           div className: "#{bn}__action",
             el BigButton,
-              text: osu.trans 'common.buttons.cancel'
+              disabled: @state.posting
               props:
                 onClick: @editCancel
-                disabled: @state.posting
+              text: osu.trans 'common.buttons.cancel'
 
           div className: "#{bn}__action",
             el BigButton,
-              text: osu.trans 'common.buttons.save'
+              disabled: !canPost
               props:
                 onClick: @throttledUpdatePost
-                disabled: !canPost
+              text: osu.trans 'common.buttons.save'
 
 
   messageViewer: =>

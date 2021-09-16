@@ -105,7 +105,7 @@ return [
                 'unsaved' => 'Mentetlen',
                 'timestamp' => [
                     'all-diff' => 'Az összes nehézséget tartalmazó posztra posztolni, nem lehet időjelölni.',
-                    'diff' => 'Ha a :type-al fog kezdődni, akkor az idővonal alatt fog megjelenni.',
+                    'diff' => 'Ha :type típussal fog kezdődni, akkor az idővonal alatt fog megjelenni.',
                 ],
             ],
             'insert-block' => [
@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Diszkvalifikálás',
         'incorrect_state' => 'Hiba a művelet végrehajtása közben, próbáld meg újratölteni az oldalt.',
         'love' => 'Love',
+        'love_choose' => 'Nehézség választása a kedvelteknek',
         'love_confirm' => 'Love-olod ezt a beatmap-et?',
         'nominate' => 'Nominálás',
         'nominate_confirm' => 'Nominálod ezt a beatmapot?',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Konvertált beatmap-ek tartalmazása',
+        'featured_artists' => '',
         'follows' => 'Követett készítők',
         'recommended' => 'Ajánlott nehézség',
     ],

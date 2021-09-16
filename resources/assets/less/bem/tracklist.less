@@ -68,42 +68,6 @@
     }
   }
 
-  &__cover {
-    width: 32px;
-    height: 32px;
-    background-size: cover;
-    background-position: center;
-  }
-
-  &__preview {
-    background-color: rgba(0,0,0,0.75);
-    color: @osu-colour-b1;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    --icon: @fa-var-play;
-
-    &:hover, &:focus {
-      text-decoration: none;
-      color: white;
-    }
-
-    &[data-audio-state="loading"],
-    &[data-audio-state="playing"] {
-      --icon: @fa-var-pause;
-    }
-  }
-
-  &__preview-icon {
-    .fas();
-
-    &::before {
-      content: var(--icon);
-    }
-  }
-
   &__exclusive-icon {
     font-size: 1.8em;
     margin-left: -2px;

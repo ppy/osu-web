@@ -3,7 +3,7 @@
 
 import { route } from 'laroute';
 import { each, isEmpty, last, throttle } from 'lodash';
-import { computed, observe } from 'mobx';
+import { action, computed, makeObservable, observe } from 'mobx';
 import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
@@ -11,7 +11,7 @@ import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import UserAvatar from 'user-avatar';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
@@ -108,6 +108,8 @@ export default class ConversationView extends React.Component<Props> {
 
     this.dataStore = props.dataStore!;
 
+    makeObservable(this);
+
     disposeOnUnmount(
       this,
       observe(this.dataStore.chatState.selectedBoxed, (change) => {
@@ -123,6 +125,7 @@ export default class ConversationView extends React.Component<Props> {
     $(window).on('scroll', throttle(this.onScroll, 1000));
   }
 
+  @action
   componentDidUpdate(prevProps?: Props, prevState?: Readonly<Record<string, never>>, snapshot?: Snapshot) {
     const chatView = this.chatViewRef.current;
     if (!chatView) {
@@ -230,7 +233,15 @@ export default class ConversationView extends React.Component<Props> {
         <div className='chat-conversation__chat-label'>
           {channel.pmTarget != null ? (
             <StringWithComponent
-              mappings={{':name': <a key='user' className='js-usercard' data-user-id={channel.pmTarget} href={route('users.show', {user: channel.pmTarget})}>{channel.name}</a>}}
+              mappings={{ name: (
+                <a
+                  className='js-usercard'
+                  data-user-id={channel.pmTarget}
+                  href={route('users.show', {user: channel.pmTarget})}
+                >
+                  {channel.name}
+                </a>
+              ) }}
               // TODO: rework this once the user class situation is resolved
               pattern={osu.trans('chat.talking_with')}
             />
@@ -258,7 +269,7 @@ export default class ConversationView extends React.Component<Props> {
           </div>
         }
         {this.conversationStack}
-        {channel.moderated &&
+        {!channel.canMessage &&
           this.noCanSendMessage()
         }
       </div>

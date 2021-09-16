@@ -59,29 +59,19 @@
     }
 
     &--preview {
-      .fas();
       .link-plain();
       .link-white();
       display: flex;
       align-items: center;
       justify-content: center;
       --progress: 0;
-      --icon: @fa-var-play;
       font-size: 18px; // icon size
       padding: 10px;
       cursor: pointer;
       position: relative;
 
-      &::before {
-        content: var(--icon);
-      }
-
       &:hover {
         background-color: hsla(var(--hsl-b6), 0.75);
-      }
-
-      &[data-audio-state="playing"] {
-        --icon: @fa-var-pause;
       }
     }
 

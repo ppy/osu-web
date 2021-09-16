@@ -79,14 +79,19 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         $cursor = get_arr($params['cursor'] ?? null);
         $query->cursorSort($cursorHelper, $cursor);
 
-        $query->year(get_int($params['year'] ?? null));
+        $year = get_int($params['year'] ?? null);
+        $query->year($year);
 
         $query->limit($limit);
 
         return [
             'cursorHelper' => $cursorHelper,
             'query' => $query,
-            'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
+            'params' => [
+                'limit' => $limit,
+                'sort' => $cursorHelper->getSortName(),
+                'year' => $year,
+            ],
         ];
     }
 
@@ -290,9 +295,10 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         $rawPage = $file->content();
 
-        $this->page = (new OsuMarkdown('news', [
-            'relative_url_root' => route('news.show', $this->slug),
-        ]))->load($rawPage)->toArray();
+        $this->page = (new OsuMarkdown(
+            'news',
+            osuExtensionConfig: ['relative_url_root' => route('news.show', $this->slug)]
+        ))->load($rawPage)->toArray();
 
         $this->version = static::pageVersion();
         $this->published_at = $this->pagePublishedAt();

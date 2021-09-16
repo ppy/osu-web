@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => '계정을 복구하려면 지원 페이지를 통해 문의해주세요.',
+        'expired' => '인증 코드가 만료되었습니다.',
+        'invalid' => '인증 코드에 예상치 못한 오류가 있습니다.',
         'is_privileged' => '그냥 peppy한테 문의하지 뭐 ㅋㅋ.',
         'missing_key' => '요구됨.',
         'too_many_tries' => '실패한 횟수가 너무 많습니다.',

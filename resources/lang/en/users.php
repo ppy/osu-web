@@ -127,7 +127,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Foul play / Cheating',
+            'cheating' => 'Cheating',
+            'multiple_accounts' => 'Using multiple accounts',
             'insults' => 'Insulting me / others',
             'spam' => 'Spamming',
             'unwanted_content' => 'Linking inappropriate content',
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Latest',
                 'title' => 'Medals',
             ],
+            'multiplayer' => [
+                'title' => 'Multiplayer Games',
+            ],
             'posts' => [
                 'title' => 'Posts',
                 'title_longer' => 'Recent Posts',
@@ -331,8 +335,8 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Account Standing',
-                'bad_standing' => "<strong>:username's</strong> account is not in a good standing :(",
-                'remaining_silence' => '<strong>:username</strong> will be able to speak again :duration.',
+                'bad_standing' => ":username's account is not in a good standing :(",
+                'remaining_silence' => ':username will be able to speak again :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Recent Infringements',

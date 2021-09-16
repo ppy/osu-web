@@ -34,23 +34,23 @@ return [
     'blocks' => [
         'banner_text' => 'Bạn đã chặn người dùng này.',
         'blocked_count' => 'người dùng đã bị chặn (:count)',
-        'hide_profile' => 'ẩn trang cá nhân',
+        'hide_profile' => 'Ẩn trang cá nhân',
         'not_blocked' => 'Người dùng này chưa bị chặn.',
-        'show_profile' => 'hiển thị trang cá nhân',
+        'show_profile' => 'Hiển thị trang cá nhân',
         'too_many' => 'Đã đạt giới hạn số người bị chặn.',
         'button' => [
-            'block' => 'chặn',
-            'unblock' => 'bỏ chặn',
+            'block' => 'Chặn',
+            'unblock' => 'Bỏ chặn',
         ],
     ],
 
     'card' => [
         'loading' => 'Đang tải...',
-        'send_message' => 'gửi tin nhắn',
+        'send_message' => 'Gửi tin nhắn',
     ],
 
     'disabled' => [
-        'title' => 'Hỏng rồi! Có vẻ tài khoản của bạn đã bị vô hiệu hóa.',
+        'title' => 'Ôi không! Có vẻ tài khoản của bạn đã bị vô hiệu hóa.',
         'warning' => "",
 
         'if_mistake' => [
@@ -76,7 +76,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Tài khoản của bạn đã không sử dụng trong một thời gian dài.",
         ],
     ],
 
@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Chơi xấu / Gian lận',
+            'multiple_accounts' => 'Sử dụng nhiều tài khoản',
             'insults' => 'Xúc phạm tôi / những người khác',
             'spam' => 'Spamming',
             'unwanted_content' => 'Có những nội dung không phù hợp',
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Gần Nhất',
                 'title' => 'Huy Chương',
             ],
+            'multiplayer' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => 'Bài viết',
                 'title_longer' => 'Bài viết gần đây',
@@ -374,8 +378,8 @@ return [
             'placeholder' => 'Nhập nội dung trang vào đây',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Bạn cần trở thành một :link để mở khoá tính năng này.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [

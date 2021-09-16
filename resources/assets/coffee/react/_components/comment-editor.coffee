@@ -1,13 +1,15 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BigButton } from 'big-button'
+import BigButton from 'big-button'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, span } from 'react-dom-factories'
 import { Spinner } from 'spinner'
 import UserAvatar from 'user-avatar'
 import { onErrorWithCallback } from 'utils/ajax'
+import { classWithModifiers } from 'utils/css'
+
 el = React.createElement
 
 bn = 'comment-editor'
@@ -38,7 +40,7 @@ export class CommentEditor extends React.PureComponent
 
 
   render: =>
-    blockClass = osu.classWithModifiers bn, @props.modifiers
+    blockClass = classWithModifiers bn, @props.modifiers
     blockClass += " #{bn}--fancy" if @mode() == 'new'
 
     div className: blockClass,
@@ -63,29 +65,31 @@ export class CommentEditor extends React.PureComponent
         if @props.close?
           div className: "#{bn}__footer-item",
             el BigButton,
-              modifiers: ['comment-editor']
-              text: osu.trans('common.buttons.cancel')
+              disabled: @state.posting
+              modifiers: 'comment-editor'
               props:
                 onClick: @props.close
-                disabled: @state.posting
+              text: osu.trans('common.buttons.cancel')
 
         if currentUser.id?
           div className: "#{bn}__footer-item",
             el BigButton,
-              modifiers: ['comment-editor']
-              text:
-                if @state.posting
-                  el Spinner
-                else
-                  @buttonText()
+              disabled: @state.posting || !@isValid()
+              isBusy: @state.posting
+              modifiers: 'comment-editor'
               props:
                 onClick: @throttledPost
-                disabled: @state.posting || !@isValid()
+              text:
+                top:
+                  if @state.posting
+                    el Spinner, modifiers: 'center-inline'
+                  else
+                    @buttonText()
         else
           div className: "#{bn}__footer-item",
             el BigButton,
-              modifiers: ['comment-editor']
               extraClasses: ['js-user-link']
+              modifiers: 'comment-editor'
               text: osu.trans("comments.guest_button.#{@mode()}")
 
 

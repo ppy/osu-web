@@ -6,6 +6,7 @@ import { createElement as el, PureComponent } from 'react'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
+import { classWithModifiers } from 'utils/css';
 
 osu = window.osu
 
@@ -26,7 +27,7 @@ export class PlayDetailList extends PureComponent
         activeKeyDidChange: @activeKeyDidChange
 
       div
-        className: osu.classWithModifiers('play-detail-list', classMods)
+        className: classWithModifiers('play-detail-list', classMods)
 
         @props.scores.map (score, key) =>
           activated = @state.activeKey == key

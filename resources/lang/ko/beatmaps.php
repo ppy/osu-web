@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다, 페이지를 새로 고쳐보세요.',
         'love' => '하트',
+        'love_choose' => 'Loved 비트맵의 난이도 선택',
         'love_confirm' => '이 비트맵이 마음에 드시나요?',
         'nominate' => '추천',
         'nominate_confirm' => '이 비트맵을 추천하시겠습니까?',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => '변환된 비트맵 포함',
+        'featured_artists' => '',
         'follows' => '구독한 비트맵 제작자',
         'recommended' => '권장 난이도',
     ],

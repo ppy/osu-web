@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'Có lỗi khi thực hiện việc này, hãy thử tải lại trang.',
         'love' => 'Yêu thích',
+        'love_choose' => '',
         'love_confirm' => 'Yêu thích beatmap này?',
         'nominate' => 'Đề Cử',
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Bao gồm beatmap được chuyển đổi',
+        'featured_artists' => '',
         'follows' => '',
         'recommended' => 'Độ khó đề nghị',
     ],

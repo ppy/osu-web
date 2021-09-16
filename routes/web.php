@@ -41,6 +41,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['prefix' => 'beatmaps'], function () {
         // featured artists
         Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
+        Route::resource('artists/tracks', 'ArtistTracksController', ['only' => 'show']);
+
         Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
         Route::get('packs/{pack}/raw', 'BeatmapPacksController@raw')->name('packs.raw');
 
@@ -262,26 +264,28 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
-    Route::get('users/{user}/card', 'UsersController@card')->name('users.card');
 
-    // extras
     Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
+        Route::get('card', 'UsersController@card')->name('card');
         Route::put('page', 'UsersController@updatePage')->name('page');
+        Route::group(['namespace' => 'Users'], function () {
+            Route::resource('multiplayer', 'MultiplayerController', ['only' => 'index']);
+
+            Route::group(['as' => 'modding.', 'prefix' => 'modding'], function () {
+                Route::get('/', 'ModdingHistoryController@index')->name('index');
+                Route::get('/posts', 'ModdingHistoryController@posts')->name('posts');
+                Route::get('/votes-given', 'ModdingHistoryController@votesGiven')->name('votes-given');
+                Route::get('/votes-received', 'ModdingHistoryController@votesReceived')->name('votes-received');
+            });
+        });
+
+        Route::get('kudosu', 'UsersController@kudosu')->name('kudosu');
+        Route::get('recent_activity', 'UsersController@recentActivity')->name('recent-activity');
+        Route::get('scores/{type}', 'UsersController@scores')->name('scores');
+        Route::get('beatmapsets/{type}', 'UsersController@beatmapsets')->name('beatmapsets');
     });
-    Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');
-    Route::get('users/{user}/recent_activity', 'UsersController@recentActivity')->name('users.recent-activity');
-    Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
-    Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
     Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
-
-    Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
-        Route::get('/', 'ModdingHistoryController@index')->name('index');
-        Route::get('/posts', 'ModdingHistoryController@posts')->name('posts');
-        Route::get('/votes-given', 'ModdingHistoryController@votesGiven')->name('votes-given');
-        Route::get('/votes-received', 'ModdingHistoryController@votesReceived')->name('votes-received');
-    });
-
     Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
     Route::resource('users', 'UsersController', ['only' => 'store']);
 
@@ -380,7 +384,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                 Route::get('scores', 'BeatmapsController@scores')->name('scores');
 
                 Route::group(['as' => 'solo.', 'prefix' => 'solo'], function () {
-                    Route::resource('scores', 'Solo\ScoresController', ['only' => ['store', 'update']]);
+                    Route::group(['namespace' => 'Solo'], function () {
+                        Route::post('scores', 'ScoreTokensController@store')->name('score-tokens.store');
+                        Route::put('scores/{token}', 'ScoresController@store')->name('scores.store');
+                    });
                 });
             });
         });
@@ -526,6 +533,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
             Route::group(['prefix' => '{beatmapset}'], function () {
                 Route::post('broadcast-new', 'BeatmapsetsController@broadcastNew')->name('broadcast-new');
                 Route::post('broadcast-revive', 'BeatmapsetsController@broadcastRevive')->name('broadcast-revive');
+                Route::post('disqualify', 'BeatmapsetsController@disqualify')->name('disqualify');
             });
         });
         Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy']]);

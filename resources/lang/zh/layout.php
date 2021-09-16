@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => '摸图',
+            'multiplayer' => '多人游戏',
             'show' => '信息',
         ],
     ],
@@ -62,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => '谱面',
-            'artists' => '精选艺术家',
-            'index' => '列表',
-            'packs' => '曲包',
         ],
         'community' => [
             '_' => '社区',
-            'chat' => '聊天',
-            'contests' => '评选',
             'dev' => '开发',
-            'forum-forums-index' => '论坛',
-            'getLive' => '直播',
-            'tournaments' => '官方比赛',
         ],
         'help' => [
             '_' => '帮助',
@@ -81,30 +74,17 @@ return [
             'getFaq' => '常见问题',
             'getRules' => '规章制度',
             'getSupport' => '帮助中心',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => '主页',
-            'changelog-index' => '更新日志',
-            'getDownload' => '下载',
-            'news-index' => '新闻',
-            'search' => '搜索',
             'team' => '团队',
         ],
         'rankings' => [
             '_' => '排名',
-            'charts' => '月赛',
-            'country' => '国家和地区',
-            'index' => '表现',
             'kudosu' => 'kudosu',
-            'multiplayer' => '聚光灯',
-            'score' => '得分',
         ],
         'store' => [
             '_' => '商店',
-            'cart-show' => '购物车',
-            'getListing' => '列表',
-            'orders-index' => '历史订单',
         ],
     ],
 
@@ -210,7 +190,7 @@ return [
             'account-edit' => '设置',
             'follows' => '订阅',
             'friends' => '好友',
-            'logout' => '退出',
+            'logout' => '登出',
             'profile' => '资料',
         ],
     ],

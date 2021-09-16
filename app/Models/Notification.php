@@ -18,7 +18,7 @@ use App\Models\Forum\Topic;
  * @property string $notifiable_type
  * @property int $notifiable_id
  * @property int $priority
- * @property User $source
+ * @property User|null $source
  * @property int|null $source_user_id
  * @property string $name
  * @property \Carbon\Carbon|null $updated_at

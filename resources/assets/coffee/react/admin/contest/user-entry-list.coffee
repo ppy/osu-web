@@ -5,12 +5,14 @@ import { UserEntry } from './user-entry'
 import { UserArtEntry } from './user-art-entry'
 import * as React from 'react'
 import { div, table, tr, a, tbody, h4, thead, th } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class UserEntryList extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "admin-contests-show-user-entries-#{nextVal()}"
     @state =
       contest: props.contest
       entries: props.entries
@@ -29,11 +31,11 @@ export class UserEntryList extends React.Component
     @updateEntry(data.entry, false)
 
   componentDidMount: =>
-    $.subscribe 'admin:contest:entries:destroy.contestUserEntryList', @delete
-    $.subscribe 'admin:contest:entries:restore.contestUserEntryList', @restore
+    $.subscribe "admin:contest:entries:destroy.#{@eventId}", @delete
+    $.subscribe "admin:contest:entries:restore.#{@eventId}", @restore
 
   componentWillUnmount: =>
-    $.unsubscribe '.contestUserEntryList'
+    $.unsubscribe ".#{@eventId}"
 
   toggleShowDeleted: (e) =>
     e.preventDefault()

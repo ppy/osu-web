@@ -6,7 +6,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Cần phải đăng nhập để chỉnh sửa.',
+            'null_user' => 'Bạn cần phải đăng nhập để chỉnh sửa nó',
             'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo bởi hệ thống.',
             'wrong_user' => 'Chỉ chủ bài đăng mới được chỉnh sửa.',
         ],
@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Tìm kiếm',
             'deleted' => 'Bao gồm cuộc thảo luận đã xóa',
-            'mode' => '',
+            'mode' => 'Chế độ Beatmap',
             'only_unresolved' => 'Chỉ hiện các cuộc thảo luận chưa được giải quyết',
             'types' => 'Kiểu tin nhắn',
             'username' => 'Tên người dùng',
@@ -32,10 +32,10 @@ return [
             'beatmapset_status' => [
                 '_' => 'Tình trạng Beatmap',
                 'all' => 'Tất cả',
-                'disqualified' => 'Disqualified ',
-                'never_qualified' => 'Chưa bao giờ Qualified',
-                'qualified' => 'Qualified',
-                'ranked' => 'Ranked',
+                'disqualified' => 'Bị Loại',
+                'never_qualified' => 'Chưa bao giờ Đủ Điều Kiện',
+                'qualified' => 'Đủ Điều Kiện',
+                'ranked' => 'Xếp Hạng',
             ],
 
             'user' => [
@@ -49,20 +49,21 @@ return [
         'created_at' => 'Ngày đăng',
         'deleted_at' => 'Ngày xóa',
         'message_type' => 'Loại',
-        'permalink' => 'Permalink',
+        'permalink' => 'Liên Kết Tĩnh',
     ],
 
     'nearby_posts' => [
         'confirm' => 'Không bài đăng nào đề cập đến vấn đề của tôi',
-        'notice' => 'Có một vài bài đăng vào khoảng :timestamp (:existing_timestamps). Hãy xem chúng trước khi đăng.',
+        'notice' => 'Có một vài bài đăng vào khoảng :timestamp
+(:existing_timestamps). Hãy xem chúng trước khi đăng.',
         'unsaved' => ':count trong bài đánh giá này',
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Chủ Sở Hữu Độ Khó',
+        'reset_confirm' => 'Đặt lại chủ sở hữu cho khó khăn này?',
+        'user' => 'Chủ Sở hữu',
+        'version' => 'Khó Khăn',
     ],
 
     'reply' => [
@@ -73,30 +74,31 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max khối được sử dụng',
         'go_to_parent' => 'Xem Bài viết Đánh giá',
         'go_to_child' => 'Xem cuộc thảo luận',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
-            'invalid_block_type' => '',
+            'block_too_large' => 'mỗi khối chỉ có thể chứa tối đa :limit giới hạn kí tự',
+            'external_references' => 'bài đánh giá có chứa tham chiếu đến các vấn đề không thuộc bài đánh giá này',
+            'invalid_block_type' => 'Loại khối không hợp lệ',
             'invalid_document' => 'đánh giá không phù hợp',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'invalid_discussion_type' => '',
+            'minimum_issues' => 'đánh giá phải chứa tối thiểu :count vấn_đề|đánh_giá phải chứa tối thiểu :count vấn đề',
+            'missing_text' => 'khối bị thiếu văn bản',
+            'too_many_blocks' => 'đánh giá chỉ có thể chứa :count đoạn_văn/vấn_đề|đanh_giá chỉ có thể chứa tối đa :count đoạn_văn/vấn_đề',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => 'Đã đánh dấu là được giải quyết bởi :user',
+            'true' => 'Đã giải quyết bởi :user',
             'false' => 'Đã mở lại bởi :user',
         ],
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'Chung',
+        'general_all' => 'Chung (tất cả)',
     ],
 
     'user_filter' => [

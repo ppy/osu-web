@@ -2,15 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
+import { UserLoginAction } from 'actions/user-login-actions';
 import { dispatchListener } from 'app-dispatcher';
 import ResultSet from 'beatmaps/result-set';
 import SearchResults from 'beatmaps/search-results';
 import { BeatmapsetSearchFilters } from 'beatmapset-search-filters';
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import DispatchListener from 'dispatch-listener';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
-import { action, observable, runInAction } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export interface SearchResponse {
@@ -28,7 +28,9 @@ export class BeatmapsetSearch implements DispatchListener {
 
   private xhr?: JQueryXHR;
 
-  constructor(private beatmapsetStore: BeatmapsetStore) {}
+  constructor(private beatmapsetStore: BeatmapsetStore) {
+    makeObservable(this);
+  }
 
   cancel() {
     if (this.xhr) {
@@ -73,8 +75,7 @@ export class BeatmapsetSearch implements DispatchListener {
   }
 
   handleDispatchAction(dispatcherAction: DispatcherAction) {
-    if (dispatcherAction instanceof UserLoginAction
-      || dispatcherAction instanceof UserLogoutAction) {
+    if (dispatcherAction instanceof UserLoginAction) {
       this.clear();
     }
   }

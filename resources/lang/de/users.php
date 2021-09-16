@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
+            'multiple_accounts' => 'Verwendet mehrere Konten',
             'insults' => 'Beleidigt mich / andere',
             'spam' => 'Spamming',
             'unwanted_content' => 'Verlinkt unangemessene Inhalte',
@@ -227,7 +228,7 @@ return [
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
-                    'title' => 'Play-Verlauf',
+                    'title' => 'Spielverlauf',
                     'count_label' => 'Spiele',
                 ],
                 'most_played' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "Dieser Nutzer hat noch keine erhalten. ;_;",
                 'recent' => 'Neueste',
                 'title' => 'Medaillen',
+            ],
+            'multiplayer' => [
+                'title' => 'Mehrspielerspiele',
             ],
             'posts' => [
                 'title' => 'Beiträge',

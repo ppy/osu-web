@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Melakukan kecurangan',
+            'multiple_accounts' => 'Menggunakan lebih dari satu akun',
             'insults' => 'Menghina saya / orang lain',
             'spam' => 'Spam',
             'unwanted_content' => 'Menautkan konten yang tidak pantas',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Pengguna ini belum membuka medali apapun. ;_;",
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
+            ],
+            'multiplayer' => [
+                'title' => 'Pertandingan-Pertandingan Multiplayer',
             ],
             'posts' => [
                 'title' => 'Posting',

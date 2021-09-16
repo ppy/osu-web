@@ -10,7 +10,6 @@
     hidden-xs
     no-print
     nav2-header
-    {{ optional(Auth::user())->isRestricted() ? 'nav2-header--restricted' : '' }}
 ">
     <div class="nav2-header__body">
         <div class="nav2-header__menu-bg js-nav2--menu-bg" data-visibility="hidden"></div>

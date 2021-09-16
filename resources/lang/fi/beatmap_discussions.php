@@ -24,8 +24,8 @@ return [
         'form' => [
             '_' => 'Hae',
             'deleted' => 'Sisällytä poistetut keskustelut',
-            'mode' => '',
-            'only_unresolved' => '',
+            'mode' => 'Beatmap-tila',
+            'only_unresolved' => 'Näytä vain ratkaisemattomat keskustelut',
             'types' => 'Viestityypit',
             'username' => 'Käyttäjänimi',
 
@@ -81,6 +81,7 @@ return [
             'external_references' => '',
             'invalid_block_type' => '',
             'invalid_document' => '',
+            'invalid_discussion_type' => '',
             'minimum_issues' => '',
             'missing_text' => '',
             'too_many_blocks' => '',

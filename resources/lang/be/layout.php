@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'модынг',
+            'multiplayer' => 'мультыплэер',
             'show' => 'інфармацыя',
         ],
     ],
@@ -62,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'бітмапы',
-            'artists' => 'featured artists',
-            'index' => 'спіс',
-            'packs' => 'пакеты',
         ],
         'community' => [
             '_' => 'супольнасць',
-            'chat' => 'чат',
-            'contests' => 'конкурсы',
             'dev' => 'распрацоўка',
-            'forum-forums-index' => 'форумы',
-            'getLive' => 'жывыя трансляцыі',
-            'tournaments' => 'турніры',
         ],
         'help' => [
             '_' => 'дапамога',
@@ -81,30 +74,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'правілы',
             'getSupport' => 'ды не ж, мне праўда патрэбна дапамога!',
-            'getWiki' => 'вікі',
         ],
         'home' => [
             '_' => 'галоўная',
-            'changelog-index' => 'спic змен',
-            'getDownload' => 'спампаваць',
-            'news-index' => 'навіны',
-            'search' => 'пошук',
             'team' => 'каманда',
         ],
         'rankings' => [
             '_' => 'рэйтынг',
-            'charts' => 'па графіках',
-            'country' => 'па краінах',
-            'index' => 'прадукцыйнасць',
             'kudosu' => 'кудосу',
-            'multiplayer' => 'мультыплэер',
-            'score' => 'па ачках',
         ],
         'store' => [
             '_' => 'крама',
-            'cart-show' => 'кошык',
-            'getListing' => 'спіс',
-            'orders-index' => 'сартаванне гісторыі',
         ],
     ],
 

@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Descalificar',
         'incorrect_state' => 'Error al realizar esa acción, intente actualizar la página.',
         'love' => 'Amar',
+        'love_choose' => 'Elegir dificultad para el amado',
         'love_confirm' => '¿Te gusta este mapa?',
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este mapa?',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Incluir mapas convertidos',
+        'featured_artists' => '',
         'follows' => 'Mapeadores suscritos',
         'recommended' => 'Dificultades recomendadas',
     ],

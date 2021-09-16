@@ -81,13 +81,16 @@
                         {{ osu_trans('beatmap_discussions.index.form.types') }}
                     </div>
                     <div class="simple-form__checkboxes-inline">
+                        @php
+                            $selectedMessageTypes = new Ds\Set($search['message_types']);
+                        @endphp
                         @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $messageType)
                             <label class="simple-form__checkbox simple-form__checkbox--inline">
-                                @include('objects._switch', [
-                                    'checked' => in_array($messageType, $search['message_types'], true),
+                                @include('objects._switch', ['locals' => [
+                                    'checked' => $selectedMessageTypes->contains($messageType),
                                     'name' => 'message_types[]',
                                     'value' => $messageType,
-                                ])
+                                ]])
                                 {{ osu_trans("beatmaps.discussions.message_type.{$messageType}") }}
                             </label>
                         @endforeach
@@ -96,10 +99,10 @@
 
                 <div class="simple-form__row simple-form__row--no-label">
                     <label class="simple-form__checkbox">
-                        @include('objects._switch', [
+                        @include('objects._switch', ['locals' => [
                             'checked' => $search['only_unresolved'],
                             'name' => 'only_unresolved',
-                        ])
+                        ]])
                         {{ osu_trans('beatmap_discussions.index.form.only_unresolved') }}
                     </label>
                 </div>
@@ -107,10 +110,10 @@
                 @if (priv_check('BeatmapDiscussionModerate')->can())
                     <div class="simple-form__row simple-form__row--no-label">
                         <label class="simple-form__checkbox">
-                            @include('objects._switch', [
+                            @include('objects._switch', ['locals' => [
                                 'checked' => $search['with_deleted'],
                                 'name' => 'with_deleted',
-                            ])
+                            ]])
                             {{ osu_trans('beatmap_discussions.index.form.deleted') }}
                         </label>
                     </div>
@@ -146,5 +149,5 @@
         {!! json_encode($json) !!}
     </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/beatmap-discussions-history.js'])
+    @include('layout._react_js', ['src' => 'js/react/beatmap-discussions-history.js'])
 @endsection

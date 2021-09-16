@@ -5,14 +5,14 @@
 
 return [
     'promote' => [
-        'pin' => '',
-        'unpin' => "",
+        'pin' => 'Apakah Anda yakin untuk mempromosikan siaran langsung ini?',
+        'unpin' => "Apakah Anda yakin untuk menghentikan promosi siaran langsung ini?",
     ],
 
     'top-headers' => [
         'headline' => 'Siaran Langsung',
-        'description' => 'Data di bawah ini diambil dari twitch.tv setiap lima menit berdasarkan direktori yang disediakan oleh Twitch. Jangan ragu untuk mulai menyiarkan dirimu di mata dunia! Untuk mengetahui informasi lebih lanjut seputar cara menyiarkan osu! secara langsung, harap kunjungi :link.',
+        'description' => 'Daftar siaran-siaran langsung yang ada di bawah ini senantiasa diperbaharui per lima menitnya mengikuti data yang tersedia pada situs web twitch.tv. Jangan ragu untuk mulai menyiarkan dirimu di mata dunia! Untuk dapat mengetahui informasi lebih lanjut seputar cara menyiarkan osu! secara langsung, harap kunjungi :link.',
 
-        'link' => 'panduan livestreaming di osu!wiki berikut',
+        'link' => 'laman wiki berikut',
     ],
 ];

@@ -2,9 +2,6 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@php
-    $currentLocaleMeta = current_locale_meta();
-@endphp
 <div class="nav2 js-nav-button">
     <div class="nav2__colgroup nav2__colgroup--menu js-nav-button--container">
         <div class="nav2__col nav2__col--logo">
@@ -14,7 +11,7 @@
             </a>
         </div>
 
-        @foreach (nav_links() as $section => $links)
+        @foreach ($navLinks as $section => $links)
             <div class="nav2__col nav2__col--menu">
                 <a
                     class="nav2__menu-link-main js-menu"
@@ -43,12 +40,12 @@
                         data-menu-id="nav2-menu-popup-{{ $section }}"
                         data-visibility="hidden"
                     >
-                        @foreach ($links as $action => $link)
-                            @if ($action === '_')
+                        @foreach ($links as $transKey => $link)
+                            @if ($transKey === '_')
                                 @continue
                             @endif
                             <a class="simple-menu__item u-section-{{ $section }}--before-bg-normal" href="{{ $link }}">
-                                {{ osu_trans("layout.menu.{$section}.{$action}") }}
+                                {{ osu_trans($transKey) }}
                             </a>
                         @endforeach
                     </div>

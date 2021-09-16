@@ -26,21 +26,26 @@ class BeatmapsController extends Controller
     public function show($id)
     {
         $beatmap = Beatmap::findOrFail($id);
-        $set = $beatmap->beatmapset;
+        $beatmapset = $beatmap->beatmapset;
 
-        if ($set === null) {
+        if ($beatmapset === null) {
             abort(404);
         }
 
-        $requestedMode = presence(request('mode'));
+        if ($beatmap->mode === 'osu') {
+            $params = get_params(request()->all(), null, [
+                'm:int', // legacy parameter
+                'mode:string',
+            ], ['null_missing' => true]);
 
-        if (Beatmap::isModeValid($requestedMode) && $beatmap->mode === 'osu') {
-            $mode = $requestedMode;
-        } else {
-            $mode = $beatmap->mode;
+            $mode = Beatmap::isModeValid($params['mode'])
+                ? $params['mode']
+                : Beatmap::modeStr($params['m']);
         }
 
-        return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $set->beatmapset_id]).'#'.$mode.'/'.$id);
+        $mode ??= $beatmap->mode;
+
+        return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $beatmapset->getKey()]).'#'.$mode.'/'.$beatmap->getKey());
     }
 
     /**

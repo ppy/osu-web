@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'Paypal відхилив обраний спосіб оплати.',
     'invalid_resource_id' => 'Не знайдено платіжної інформації.',
+    'invalid_token' => '',
+    'old_format' => '',
+    'resource_not_found' => '',
     'unknown' => "Оплата була відхилена з невідомої причини.",
 ];

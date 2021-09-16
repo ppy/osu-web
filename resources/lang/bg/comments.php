@@ -5,14 +5,14 @@
 
 return [
     'deleted' => 'изтрито',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
-    'deleted_count' => ':count_delimited изтрит коментар|:count_delimited изтрити коментари',
+    'deleted_by' => 'изтрит :timeago от :user',
+    'deleted_by_system' => 'система',
+    'deleted_count' => ':count_delimited изтрит коментар|:count_delimited изтрити коментара',
     'edited' => 'редактирано :timeago от :user',
     'pinned' => 'закачено',
     'empty' => 'Все още няма коментари.',
     'load_replies' => 'зареди отговори',
-    'replies_count' => ':count_delimited отговор|:count_delimited отговори',
+    'replies_count' => ':count_delimited отговор|:count_delimited отговора',
     'title' => 'Коментари',
 
     'commentable_name' => [
@@ -24,22 +24,22 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Натиснете Enter за :action. Използвайте Shift + Enter за нов ред.',
+            '_' => 'Натисни Enter за :action. Използвай Shift + Enter за нов ред.',
             'edit' => 'запази',
-            'new' => 'публикувай',
-            'reply' => 'отговори',
+            'new' => 'публикуване',
+            'reply' => 'отговор',
         ],
     ],
 
     'guest_button' => [
-        'new' => 'За коментар влезте в профила си',
-        'reply' => 'За отговор влезте в профила си',
+        'new' => 'Влез за да коментираш',
+        'reply' => 'Влез за да отговориш',
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'коментари',
         'nav_title' => 'списък',
-        'no_comments' => '',
+        'no_comments' => 'не са намерени коментари...',
     ],
 
     'placeholder' => [

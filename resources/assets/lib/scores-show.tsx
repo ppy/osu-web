@@ -5,6 +5,6 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import Main from 'scores-show/main';
 
-core.reactTurbolinks.register('scores-show', true, () => (
+core.reactTurbolinks.register('scores-show', () => (
   <Main score={osu.parseJson('json-show')} />
 ));

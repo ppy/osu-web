@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { MessageLengthCounter } from './message-length-counter'
-import { BigButton } from 'big-button'
+import BigButton from 'big-button'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -101,24 +101,24 @@ export class NewReply extends React.PureComponent
     div
       className: "#{bn} #{bn}--reply #{bn}--new-reply #{bn}--new-reply-placeholder"
       el BigButton,
-        text: text
+        disabled: disabled
         icon: icon
-        modifiers: ['beatmap-discussion-reply-open']
+        modifiers: 'beatmap-discussion-reply-open'
         props:
-          disabled: disabled
           onClick: @editStart
+        text: text
 
 
   renderReplyButton: (action) =>
     div className: "#{bn}__action",
       el BigButton,
-        text: osu.trans("common.buttons.#{action}")
+        disabled: !@validPost() || @state.posting?
         icon: ACTION_ICONS[action]
         isBusy: @state.posting == action
+        text: osu.trans("common.buttons.#{action}")
         props:
-          disabled: !@validPost() || @state.posting?
-          onClick: @throttledPost
           'data-action': action
+          onClick: @throttledPost
 
 
   canReopen: =>

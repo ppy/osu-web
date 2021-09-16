@@ -5,34 +5,34 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'Không có bình luận nào đã xem.',
+        'page_title' => 'danh sách theo dõi bình luận',
+        'title' => 'bình luận',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'không có bình luận ',
+            'latest_comment_value' => ':time bởi :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'diễn đàn topic',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'danh sách theo dõi',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'empty' => 'Không có người lập bản đồ nào đã xem.',
+        'followers' => 'bản đồ đã đăng kí',
+        'page_title' => 'danh sách người vẽ bản đồ',
+        'title' => 'người vẽ bản đồ',
+        'to_0' => 'ngừng thông báo cho tôi khi người dùng này tải lên "beatmap" mới',
+        'to_1' => 'thông báo cho tôi khi người dùng này tải lên beatmap mới',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'góc thảo luận beatmap ',
     ],
 ];

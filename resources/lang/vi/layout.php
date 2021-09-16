@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => '',
             'show' => 'thông tin',
         ],
     ],
@@ -62,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'nghệ sĩ tiêu biểu',
-            'index' => 'danh sách',
-            'packs' => 'gói',
         ],
         'community' => [
             '_' => 'cộng đồng',
-            'chat' => 'chat',
-            'contests' => 'cuộc thi',
             'dev' => 'phát triển',
-            'forum-forums-index' => 'diễn đàn',
-            'getLive' => 'live stream',
-            'tournaments' => 'giải đấu',
         ],
         'help' => [
             '_' => 'trợ giúp',
@@ -81,30 +74,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'quy tắc',
             'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'trang chủ',
-            'changelog-index' => 'changelog',
-            'getDownload' => 'tải xuống',
-            'news-index' => 'tin tức',
-            'search' => 'tìm kiếm',
             'team' => 'team',
         ],
         'rankings' => [
             '_' => 'xếp hạng',
-            'charts' => 'tiêu điểm',
-            'country' => 'quốc gia',
-            'index' => 'performance',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
-            'score' => 'điểm',
         ],
         'store' => [
             '_' => 'cửa hàng',
-            'cart-show' => 'giỏ hàng',
-            'getListing' => 'danh sách',
-            'orders-index' => 'lịch sử đơn hàng',
         ],
     ],
 

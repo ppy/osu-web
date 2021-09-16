@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Kuraldışı oyun / Hile',
+            'multiple_accounts' => 'Birden fazla hesap kullanımı',
             'insults' => 'Bana / başkalarına hakaret',
             'spam' => 'Spam yapmak',
             'unwanted_content' => 'Uygunsuz içerik paylaşma',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Bu kullanıcı daha hiç almamış. ;_;",
                 'recent' => 'En Son',
                 'title' => 'Madalyalar',
+            ],
+            'multiplayer' => [
+                'title' => 'Çok Oyunculu Oyunlar',
             ],
             'posts' => [
                 'title' => 'Gönderiler',

@@ -6,6 +6,7 @@ import * as React from 'react'
 import { button, div, span } from 'react-dom-factories'
 import ShowMoreLink from 'show-more-link'
 import { Spinner } from 'spinner'
+import { classWithModifiers } from 'utils/css'
 
 
 el = React.createElement
@@ -33,7 +34,7 @@ export class CommentShowMore extends React.PureComponent
     return null if @props.comments.length >= @props.total
     return null unless (uiState.comments.hasMoreComments[@props.parent?.id ? null] ? true)
 
-    blockClass = osu.classWithModifiers bn, @props.modifiers
+    blockClass = classWithModifiers bn, @props.modifiers
 
     if 'top' in @props.modifiers
       remaining = @props.total - @props.comments.length

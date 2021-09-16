@@ -4,7 +4,7 @@
 import { snakeCase, size } from 'lodash'
 import * as React from 'react'
 import { a, div, li, span, ul } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 el = React.createElement
 
 export class ModeSwitcher extends React.PureComponent
@@ -56,20 +56,18 @@ export class ModeSwitcher extends React.PureComponent
                       el StringWithComponent,
                         pattern: osu.trans('beatmaps.discussions.mode.general'),
                         mappings:
-                          ':scope':
+                          scope:
                             span
                               className: 'page-mode-link__subtitle'
-                              key: 'scope'
                               "(#{@props.currentBeatmap.version})"
 
                     else if mode == 'generalAll'
                       el StringWithComponent,
                         pattern: osu.trans('beatmaps.discussions.mode.general'),
                         mappings:
-                          ':scope':
+                          scope:
                             span
                               className: 'page-mode-link__subtitle'
-                              key: 'scope'
                               "(#{osu.trans('beatmaps.discussions.mode.scopes.generalAll')})"
 
                     else

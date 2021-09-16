@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Diskvalifikovat',
         'incorrect_state' => 'Chyba při vykonávání akce. Prosím načtete stránku znovu.',
         'love' => 'Láska',
+        'love_choose' => '',
         'love_confirm' => 'Miluješ tuto beatmapu?',
         'nominate' => 'Nominovat',
         'nominate_confirm' => 'Nominovat tuto beatmapu?',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Zahrň konvertované beatmapy',
+        'featured_artists' => '',
         'follows' => '',
         'recommended' => 'Doporučená obtížnost',
     ],

@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Докладвай',
+        'title' => 'Докладване бийтмапа на :username?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Докладвай',
         'title' => 'Докладване публикацията на :username?',
@@ -15,8 +20,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Докладвай',
+        'title' => 'Докладване публикацията на :username?',
     ],
 
     'scores' => [

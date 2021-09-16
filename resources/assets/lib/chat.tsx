@@ -1,13 +1,28 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatInitialJson } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
+import ChannelJson from 'interfaces/chat/channel-json';
+import UserJson from 'interfaces/user-json';
+import { action } from 'mobx';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { currentUrlParams } from 'utils/turbolinks';
 
-core.reactTurbolinks.register('chat', false, () => {
+interface ChatInitialJson {
+  last_message_id: number | null;
+  presence: ChannelJson[];
+  send_to?: SendToJson;
+}
+
+interface SendToJson {
+  can_message: boolean;
+  channel_id: number | null;
+  target: UserJson;
+}
+
+core.reactTurbolinks.register('chat', action(() => {
   const dataStore = core.dataStore;
   const initial = osu.parseJson<ChatInitialJson | null>('json-chat-initial', true);
 
@@ -31,12 +46,12 @@ core.reactTurbolinks.register('chat', false, () => {
       initialChannel = channel.channelId;
     } else if (!target.is(core.currentUser)) {
       channel = Channel.newPM(target, sendTo.channel_id);
-      channel.moderated = !sendTo.can_message; // TODO: move can_message to a user prop?
+      channel.canMessage = sendTo.can_message; // TODO: move can_message to a user prop?
       dataStore.channelStore.channels.set(channel.channelId, channel);
       initialChannel = channel.channelId;
     }
   } else {
-    const channelId = parseInt(new URL(location.href).searchParams.get('channel_id') ?? '', 10);
+    const channelId = parseInt(currentUrlParams().get('channel_id') ?? '', 10);
     // TODO: should clear query string as well (and maybe update on channel selection?)
     initialChannel = dataStore.channelStore.get(channelId) != null ? channelId : dataStore.chatState.selected;
 
@@ -54,4 +69,4 @@ core.reactTurbolinks.register('chat', false, () => {
   }
 
   return <MainView dataStore={core.dataStore} worker={core.chatWorker} />;
-});
+}));
