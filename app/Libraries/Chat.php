@@ -13,7 +13,7 @@ use ChaseConey\LaravelDatadogHelper\Datadog;
 class Chat
 {
     // Do the restricted user lookup before calling this.
-    public static function sendPrivateMessage(User $sender, User $target, $message, $isAction)
+    public static function sendPrivateMessage(User $sender, User $target, ?string $message, ?bool $isAction)
     {
         if ($target->is($sender)) {
             abort(422, "can't send message to same user");
@@ -42,22 +42,8 @@ class Chat
         });
     }
 
-    public static function sendMessage($sender, $channel, $message, $isAction)
+    public static function sendMessage(User $sender, Channel $channel, ?string $message, ?bool $isAction)
     {
-        $isAction = $isAction ?? false;
-
-        if (!($sender instanceof User)) {
-            $sender = User::findOrFail($sender);
-        }
-
-        if (!($channel instanceof Channel)) {
-            $channel = Channel::findOrFail($channel);
-        }
-
-        if (!present($message) || !is_string($message)) {
-            abort(422, "can't send empty message");
-        }
-
         if ($channel->isPM()) {
             // restricted users should be treated as if they do not exist
             if (optional($channel->pmTargetFor($sender))->isRestricted()) {
@@ -68,7 +54,7 @@ class Chat
         priv_check_user($sender, 'ChatChannelSend', $channel)->ensureCan();
 
         try {
-            return $channel->receiveMessage($sender, $message, $isAction);
+            return $channel->receiveMessage($sender, $message, $isAction ?? false);
         } catch (API\ChatMessageEmptyException $e) {
             abort(422, $e->getMessage());
         } catch (API\ChatMessageTooLongException $e) {

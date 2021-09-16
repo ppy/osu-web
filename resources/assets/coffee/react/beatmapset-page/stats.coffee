@@ -47,6 +47,7 @@ export class Stats extends React.Component
         type: 'button'
         className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview js-audio--play js-audio--player"
         'data-audio-url': @props.beatmapset.preview_url
+        span className: 'play-button'
         div className: 'beatmapset-stats__elapsed-bar'
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
