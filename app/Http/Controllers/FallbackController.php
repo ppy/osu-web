@@ -9,21 +9,21 @@ class FallbackController extends Controller
 {
     public function __construct()
     {
-        parent::__construct();
-
         if (is_api_request()) {
             $this->middleware('api');
         } else {
             $this->middleware('web');
         }
 
-        app('route-section')->setError(404);
+        parent::__construct();
     }
 
     public function index()
     {
-        if (is_api_request()) {
-            return response([], 404);
+        app('route-section')->setError(404);
+
+        if (is_json_request()) {
+            return error_popup(osu_trans('errors.missing_route'), 404);
         }
 
         return ext_view('layout.error', ['statusCode' => 404], 'html', 404);

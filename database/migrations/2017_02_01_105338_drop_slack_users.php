@@ -25,10 +25,9 @@ class DropSlackUsers extends Migration
      */
     public function down()
     {
-        //
-        (new CreateOsuSlackUsersTable)->up();
-        (new ChangePrimaryKeyOnSlackUsers)->up();
-        (new OsuSlackUserMakeSlackIdNullable)->up();
-        (new AddIndexOnSlackId)->up();
+        (new CreateOsuSlackUsersTable())->up();
+        (new ChangePrimaryKeyOnSlackUsers())->up();
+        (new OsuSlackUserMakeSlackIdNullable())->up();
+        (new AddIndexOnSlackId())->up();
     }
 }

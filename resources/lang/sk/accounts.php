@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'súčasná poloha',
                 'user_interests' => 'záujmy',
-                'user_msnm' => '',
                 'user_occ' => 'povolanie',
                 'user_twitter' => '',
                 'user_website' => 'webstránka',
@@ -50,20 +49,22 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'dostávať notifikácie pre nové problémy na kvalifikovaných beatmapách pre následujúce módy',
-        'beatmapset_disqualify' => '',
-        'comment_reply' => '',
+        'beatmapset_disqualify' => 'prijímať upozornenia, keď sú beatmapy diskvalifikované s týchto módov',
+        'comment_reply' => 'prijímať upozornenia pre odpovede na moje komentáre',
         'title' => 'Oznámenia',
         'topic_auto_subscribe' => 'automaticky zapnúť notifikácie pre nové fórove témy ktoré vytvoríte',
 
         'options' => [
             '_' => 'spôsoby doručenia',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'módovanie beatmáp',
             'channel_message' => 'súkromné správy',
             'comment_new' => 'nové komentáre
 ',
             'forum_topic_reply' => 'odpoveď na tému',
             'mail' => 'pošta',
-            'push' => '',
+            'mapping' => '',
+            'push' => 'upozornenia na stránke',
             'user_achievement_unlock' => 'hráčska medaila odomknutá',
         ],
     ],
@@ -75,16 +76,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'zobraziť metadáta beatmapy v originálnom jazyku',
         'title' => 'Možnosti',
 
         'beatmapset_download' => [
-            '_' => '',
+            '_' => 'predvolený druh sťahovania beatmáp',
             'all' => 's videom, ak je dostupné',
-            'no_video' => 'bez videa',
             'direct' => 'otvoriť v osu!direct',
+            'no_video' => 'bez videa',
         ],
-
-        'beatmapset_title_show_original' => 'zobraziť metadáta beatmapy v originálnom jazyku',
     ],
 
     'playstyles' => [

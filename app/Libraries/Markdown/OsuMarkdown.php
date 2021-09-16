@@ -5,76 +5,133 @@
 
 namespace App\Libraries\Markdown;
 
-use App\Libraries\Markdown\Indexing\RendererExtension as IndexingRendererExtension;
-use League\CommonMark\CommonMarkConverter;
-use League\CommonMark\Environment;
+use App\Traits\Memoizes;
+use League\CommonMark\Environment\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
+use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
-use League\CommonMark\Extension\Table as TableExtension;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListBlock;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
+use League\CommonMark\Extension\DefaultAttributes\DefaultAttributesExtension;
+use League\CommonMark\Extension\Table\Table;
+use League\CommonMark\Extension\Table\TableCell;
+use League\CommonMark\Extension\Table\TableExtension;
+use League\CommonMark\MarkdownConverter;
+use League\CommonMark\Node\Block\Paragraph;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
 use Symfony\Component\Yaml\Yaml;
 
 class OsuMarkdown
 {
-    const VERSION = 12;
+    use Memoizes;
 
-    const DEFAULT_CONFIG = [
-        // CommonMark options
+    const VERSION = 13;
+
+    const DEFAULT_COMMONMARK_CONFIG = [
         'allow_unsafe_links' => false,
         'html_input' => 'strip',
         'max_nesting_level' => 20,
         'renderer' => ['soft_break' => '<br />'],
+    ];
 
-        // OsuMarkdownProcessor options
-        'block_modifiers' => [],
+    const DEFAULT_OSU_EXTENSION_CONFIG = [
         'block_name' => 'osu-md',
+        'fix_wiki_url' => false,
         'generate_toc' => false,
-        'parse_yaml_header' => true,
         'record_first_image' => false,
         'relative_url_root' => null,
+        'style_block_allowed_classes' => null,
         'title_from_document' => false,
+        'wiki_locale' => null,
+    ];
+
+    // this config is only used in this class
+    const DEFAULT_OSU_MARKDOWN_CONFIG = [
+        'block_modifiers' => [],
+        'parse_attribute_id' => false,
+        'parse_yaml_header' => true,
     ];
 
     const PRESETS = [
         'changelog_entry' => [
-            'block_name' => 'changelog-md',
-            'html_input' => 'allow',
+            'commonmark' => [
+                'html_input' => 'allow',
+            ],
+            'osu_extension' => [
+                'block_name' => 'changelog-md',
+            ],
         ],
         'comment' => [
-            'block_modifiers' => ['comment'],
+            'osu_markdown' => [
+                'block_modifiers' => ['comment'],
+            ],
         ],
         'default' => [],
+        'group' => [
+            'osu_markdown' => [
+                'block_modifiers' => ['group'],
+            ],
+        ],
         'news' => [
-            'block_modifiers' => ['news'],
-            'generate_toc' => true,
-            'html_input' => 'allow',
-            'record_first_image' => true,
+            'commonmark' => [
+                'html_input' => 'allow',
+            ],
+            'osu_extension' => [
+                'fix_wiki_url' => true,
+                'generate_toc' => true,
+                'record_first_image' => true,
+            ],
+            'osu_markdown' => [
+                'block_modifiers' => ['news'],
+            ],
         ],
         'store' => [
-            'block_modifiers' => ['store'],
-            'html_input' => 'allow',
+            'commonmark' => [
+                'html_input' => 'allow',
+            ],
+            'osu_markdown' => [
+                'block_modifiers' => ['store'],
+            ],
         ],
         'store-product' => [
-            'block_modifiers' => ['store-product'],
+            'osu_markdown' => [
+                'block_modifiers' => ['store-product'],
+            ],
         ],
         'store-product-small' => [
-            'block_modifiers' => ['store-product', 'store-product-small'],
+            'osu_markdown' => [
+                'block_modifiers' => ['store-product', 'store-product-small'],
+            ],
         ],
         'wiki' => [
-            'generate_toc' => true,
-            'title_from_document' => true,
-            'block_modifiers' => ['wiki'],
+            'osu_extension' => [
+                'fix_wiki_url' => true,
+                'generate_toc' => true,
+                'style_block_allowed_classes' => ['infobox'],
+                'title_from_document' => true,
+            ],
+            'osu_markdown' => [
+                'block_modifiers' => ['wiki'],
+                'parse_attribute_id' => true,
+            ],
         ],
     ];
 
-    private $config;
+    private array $commonmarkConfig;
+    private array $osuExtensionConfig;
+    private array $osuMarkdownConfig;
+
     private $document = '';
     private $firstImage;
     private $header;
-    private $html;
-    private $indexable;
-    private $processor;
     private $toc;
+
+    private $htmlConverterAndExtension;
+    private $indexableConverter;
 
     public static function parseYamlHeader($input)
     {
@@ -96,42 +153,63 @@ class OsuMarkdown
         return compact('header', 'document');
     }
 
-    public function __construct($preset, $config = [])
-    {
-        $this->config = array_merge(
-            static::DEFAULT_CONFIG,
-            static::PRESETS[$preset],
-            $config
+    public function __construct(
+        $preset,
+        $commonmarkConfig = [],
+        $osuExtensionConfig = [],
+        $osuMarkdownConfig = [],
+    ) {
+        $presetConfig = static::PRESETS[$preset];
+
+        $this->commonmarkConfig = array_merge(
+            static::DEFAULT_COMMONMARK_CONFIG,
+            $presetConfig['commonmark'] ?? [],
+            $commonmarkConfig,
         );
 
-        $env = Environment::createCommonMarkEnvironment();
-        $this->processor = new OsuMarkdownProcessor($env);
-        $env->addEventListener(DocumentParsedEvent::class, [$this->processor, 'onDocumentParsed']);
+        $this->osuExtensionConfig = array_merge(
+            static::DEFAULT_OSU_EXTENSION_CONFIG,
+            $presetConfig['osu_extension'] ?? [],
+            $osuExtensionConfig,
+        );
 
-        $env->addExtension(new TableExtension\TableExtension);
-        $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer);
-
-        $env->addExtension(new AutolinkExtension);
-
-        $this->converter = new CommonMarkConverter($this->config, $env);
+        $this->osuMarkdownConfig = array_merge(
+            static::DEFAULT_OSU_MARKDOWN_CONFIG,
+            $presetConfig['osu_markdown'] ?? [],
+            $osuMarkdownConfig,
+        );
     }
 
-    public function html()
+    public function html(): string
     {
-        if ($this->html === null) {
-            $this->process();
-        }
+        return $this->memoize(__FUNCTION__, function () {
+            [$converter, $osuExtension] = $this->getHtmlConverterAndExtension();
 
-        return $this->html;
+            $blockClass = class_with_modifiers(
+                $this->osuExtensionConfig['block_name'],
+                $this->osuMarkdownConfig['block_modifiers'],
+            );
+            $converted = $converter->convertToHtml($this->document)->getContent();
+            $processor = $osuExtension->processor;
+
+            if ($this->osuExtensionConfig['title_from_document']) {
+                $this->header['title'] = $processor->title;
+            }
+
+            $this->firstImage = $processor->firstImage;
+            $this->toc = $processor->toc;
+
+            return "<div class='{$blockClass}'>{$converted}</div>";
+        });
     }
 
     public function load($rawInput)
     {
-        $this->reset();
+        $this->resetMemoized();
 
         $rawInput = strip_utf8_bom($rawInput);
 
-        if ($this->config['parse_yaml_header']) {
+        if ($this->osuMarkdownConfig['parse_yaml_header']) {
             $parsed = static::parseYamlHeader($rawInput);
             $this->document = $parsed['document'];
             $this->header = $parsed['header'];
@@ -157,38 +235,120 @@ class OsuMarkdown
         ];
     }
 
-    public function toIndexable()
+    public function toIndexable(): string
     {
-        if ($this->indexable === null) {
-            $env = Environment::createCommonMarkEnvironment();
-            $env->addExtension(new TableExtension\TableExtension);
-            $env->addExtension(new IndexingRendererExtension);
-            $converter = new CommonMarkConverter($this->config, $env);
-            $this->indexable = $converter->convertToHtml($this->document);
-        }
-
-        return $this->indexable;
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->getIndexableConverter()->convertToHtml($this->document)->getContent();
+        });
     }
 
-    private function process()
+    private function getHtmlConverterAndExtension(): array
     {
-        $converted = $this->converter->convertToHtml($this->document);
+        if ($this->htmlConverterAndExtension === null) {
+            $extraConfig = [
+                'osu_extension' => $this->osuExtensionConfig,
+                'default_attributes' => $this->createDefaultAttributesConfig(),
+            ];
 
-        $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
+            $environment = $this->createEnvironment($extraConfig);
+            $environment->addExtension(new DefaultAttributesExtension());
 
-        $this->html = "<div class='{$blockClass}'>{$converted}</div>";
+            $osuExtension = new Osu\Extension();
+            $environment->addExtension($osuExtension);
 
-        if ($this->config['title_from_document']) {
-            $this->header['title'] = $this->processor->title;
+            $this->htmlConverterAndExtension = [
+                new MarkdownConverter($environment),
+                $osuExtension,
+            ];
         }
 
-        $this->toc = $this->processor->toc;
-        $this->firstImage = $this->processor->firstImage;
+        return $this->htmlConverterAndExtension;
     }
 
-    private function reset()
+    private function getIndexableConverter(): MarkdownConverter
     {
-        $this->html = null;
-        $this->indexable = null;
+        if ($this->indexableConverter === null) {
+            $environment = $this->createEnvironment();
+            $environment->addExtension(new Indexing\Extension());
+
+            $this->indexableConverter = new MarkdownConverter($environment);
+        }
+
+        return $this->indexableConverter;
+    }
+
+    private function createEnvironment(array $extraConfig = []): Environment
+    {
+        $config = array_merge($this->commonmarkConfig, $extraConfig);
+
+        $environment = new Environment($config);
+        $environment->addExtension(new CommonMarkCoreExtension());
+        $environment->addExtension(new AutolinkExtension());
+        $environment->addExtension(new TableExtension());
+
+        if ($this->osuMarkdownConfig['parse_attribute_id']) {
+            $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());
+            $environment->addExtension(new AttributesExtension());
+        }
+
+        if ($this->osuExtensionConfig['style_block_allowed_classes'] !== null) {
+            $environment->addExtension(new StyleBlock\Extension());
+        }
+
+        return $environment;
+    }
+
+    private function createDefaultAttributesConfig(): array
+    {
+        $blockClass = $this->osuExtensionConfig['block_name'];
+
+        return [
+            Heading::class => [
+                'class' => static fn (Heading $node) => class_with_modifiers(
+                    "{$blockClass}__header",
+                    [$node->getLevel()],
+                ),
+            ],
+            Image::class => [
+                'class' => "{$blockClass}__image",
+            ],
+            Link::class => [
+                'class' => "{$blockClass}__link",
+            ],
+            ListBlock::class => [
+                'class' => static fn (ListBlock $node) => class_with_modifiers(
+                    "{$blockClass}__list",
+                    ['ordered' => $node->getListData()->type === ListBlock::TYPE_ORDERED]
+                ),
+                'style' => static function (ListBlock $node) {
+                    if ($node->getListData()->type === ListBlock::TYPE_ORDERED) {
+                        $start = ($node->getListData()->start ?? 1) - 1;
+                        return "--list-start: {$start}";
+                    }
+                    return null;
+                },
+            ],
+            ListItem::class => [
+                'class' => "{$blockClass}__list-item",
+            ],
+            Paragraph::class => [
+                'class' => "{$blockClass}__paragraph",
+            ],
+            StyleBlock\Element::class => [
+                'class' => static fn (StyleBlock\Element $node) => "{$blockClass}__{$node->getClassName()}",
+            ],
+            Table::class => [
+                'class' => "{$blockClass}__table",
+            ],
+            TableCell::class => [
+                'class' => static fn (TableCell $node) => class_with_modifiers(
+                    "{$blockClass}__table-data",
+                    [
+                        $node->getAlign() => $node->getAlign() !== null,
+                        'header' => $node->getType() === TableCell::TYPE_HEADER,
+                    ]
+                ),
+            ],
+        ];
     }
 }

@@ -10,7 +10,7 @@ return [
 
     'cart' => [
         'checkout' => '结账',
-        'info' => '购物车里有 :count_delimited 件商品（$:subtotal）|购物车里有 :count_delimited 件商品（$:subtotal）',
+        'info' => '购物车里有 :count_delimited 件商品（$:subtotal）',
         'more_goodies' => '在完成订单之前，我想看看其他商品',
         'shipping_fees' => '运费',
         'title' => '购物车',
@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '订单支付于 :date',
-
+        'cancel' => '取消订单',
+        'cancel_confirm' => '此订单将被取消，不能再支付。支付提供商可能不会立刻退款。您确定吗？',
+        'cancel_not_allowed' => '目前无法取消订单。',
         'invoice' => '查看发票',
         'no_orders' => '没有可显示的订单。',
-        'resume' => '恢复结帐',
+        'paid_on' => '订单支付于 :date',
+        'resume' => '恢复结账',
+        'shopify_expired' => '此订单的结账链接已过期。',
 
         'item' => [
             'display_name' => [

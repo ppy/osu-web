@@ -14,28 +14,28 @@
     @include('layout._page_header_v4', ['params' => ['theme' => 'beatmapsets']])
     <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
-            <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
+            <h3>{{ osu_trans('beatmap_discussions.index.title') }}</h3>
 
             <form class="simple-form simple-form--search-box">
                 <h2 class="simple-form__row simple-form__row--title">
-                    {{ trans('beatmap_discussions.index.form._') }}
+                    {{ osu_trans('beatmap_discussions.index.form._') }}
                 </h2>
 
                 <label class="simple-form__row">
                     <div class="simple-form__label">
-                        {{ trans('beatmap_discussions.index.form.username') }}
+                        {{ osu_trans('beatmap_discussions.index.form.username') }}
                     </div>
 
                     <input
                         class="simple-form__input"
                         name="user"
-                        value="{{ $search['params']['user'] ?? '' }}"
+                        value="{{ $search['user'] ?? '' }}"
                     >
                 </label>
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
-                        {{ trans('beatmap_discussions.index.form.beatmapset_status._') }}
+                        {{ osu_trans('beatmap_discussions.index.form.beatmapset_status._') }}
                     </div>
                     <div class="simple-form__select">
                         <div class="form-select form-select--simple-form">
@@ -43,9 +43,9 @@
                                 @foreach ($statusOptions as $option)
                                     <option
                                         value="{{$option}}"
-                                        {{ $option === $search['params']['beatmapset_status'] ? "selected" : "" }}
+                                        {{ $option === $search['beatmapset_status'] ? "selected" : "" }}
                                     >
-                                        {{ trans("beatmap_discussions.index.form.beatmapset_status.{$option}") }}
+                                        {{ osu_trans("beatmap_discussions.index.form.beatmapset_status.{$option}") }}
                                     </option>
                                 @endforeach
                             </select>
@@ -55,21 +55,43 @@
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
-                        {{ trans('beatmap_discussions.index.form.types') }}
+                        {{ osu_trans('beatmap_discussions.index.form.mode') }}
+                    </div>
+                    <div class="simple-form__select">
+                        <div class="form-select form-select--simple-form">
+                            <select class="form-select__input" name="mode">
+                                <option>
+                                    {{ osu_trans('beatmaps.mode.all') }}
+                                </option>
+                                @foreach (App\Models\Beatmap::MODES as $modeStr => $modeInt)
+                                    <option
+                                        value="{{ $modeStr }}"
+                                        {{ isset($search['mode']) && $modeStr === $search['mode'] ? "selected" : "" }}
+                                    >
+                                        {{ osu_trans("beatmaps.mode.{$modeStr}") }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="simple-form__row">
+                    <div class="simple-form__label">
+                        {{ osu_trans('beatmap_discussions.index.form.types') }}
                     </div>
                     <div class="simple-form__checkboxes-inline">
+                        @php
+                            $selectedMessageTypes = new Ds\Set($search['message_types']);
+                        @endphp
                         @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $messageType)
-                            {{-- TODO: remove this when reviews are released --}}
-                            @if (!config('osu.beatmapset.discussion_review_enabled') && $messageType === 'review')
-                                @continue
-                            @endif
                             <label class="simple-form__checkbox simple-form__checkbox--inline">
-                                @include('objects._switch', [
-                                    'checked' => in_array($messageType, $search['params']['message_types'], true),
+                                @include('objects._switch', ['locals' => [
+                                    'checked' => $selectedMessageTypes->contains($messageType),
                                     'name' => 'message_types[]',
                                     'value' => $messageType,
-                                ])
-                                {{ trans("beatmaps.discussions.message_type.{$messageType}") }}
+                                ]])
+                                {{ osu_trans("beatmaps.discussions.message_type.{$messageType}") }}
                             </label>
                         @endforeach
                     </div>
@@ -77,22 +99,22 @@
 
                 <div class="simple-form__row simple-form__row--no-label">
                     <label class="simple-form__checkbox">
-                        @include('objects._switch', [
-                            'checked' => $search['params']['only_unresolved'],
+                        @include('objects._switch', ['locals' => [
+                            'checked' => $search['only_unresolved'],
                             'name' => 'only_unresolved',
-                        ])
-                        {{ trans('beatmap_discussions.index.form.only_unresolved') }}
+                        ]])
+                        {{ osu_trans('beatmap_discussions.index.form.only_unresolved') }}
                     </label>
                 </div>
 
                 @if (priv_check('BeatmapDiscussionModerate')->can())
                     <div class="simple-form__row simple-form__row--no-label">
                         <label class="simple-form__checkbox">
-                            @include('objects._switch', [
-                                'checked' => $search['params']['with_deleted'],
+                            @include('objects._switch', ['locals' => [
+                                'checked' => $search['with_deleted'],
                                 'name' => 'with_deleted',
-                            ])
-                            {{ trans('beatmap_discussions.index.form.deleted') }}
+                            ]])
+                            {{ osu_trans('beatmap_discussions.index.form.deleted') }}
                         </label>
                     </div>
                 @endif
@@ -101,7 +123,7 @@
                     <button class="btn-osu-big btn-osu-big--rounded" type="submit">
                         <span class="btn-osu-big__content">
                             <span class="btn-osu-big__left">
-                                {{ trans('common.buttons.search') }}
+                                {{ osu_trans('common.buttons.search') }}
                             </span>
                             <span class="btn-osu-big__icon btn-osu-big__icon--normal">
                                 <i class="fas fa-search"></i>
@@ -123,11 +145,9 @@
 @section ("script")
     @parent
 
-    @foreach ($jsonChunks as $name => $data)
-        <script id="json-{{$name}}" type="application/json">
-            {!! json_encode($data) !!}
-        </script>
-    @endforeach
+    <script id="json-index" type="application/json">
+        {!! json_encode($json) !!}
+    </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/beatmap-discussions-history.js'])
+    @include('layout._react_js', ['src' => 'js/react/beatmap-discussions-history.js'])
 @endsection

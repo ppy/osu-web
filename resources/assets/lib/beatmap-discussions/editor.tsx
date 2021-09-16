@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import { CircularProgress } from 'circular-progress';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
 import * as _ from 'lodash';
@@ -13,11 +13,14 @@ import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { Spinner } from 'spinner';
 import { sortWithMode } from 'utils/beatmap-helper';
+import { nominationsCount } from 'utils/beatmapset-helper';
+import { classWithModifiers } from 'utils/css';
 import { DraftsContext } from './drafts-context';
 import EditorDiscussionComponent from './editor-discussion-component';
 import {
   blockCount,
   insideEmbed,
+  insideEmptyNode,
   serializeSlateDocument,
   slateDocumentContainsNewProblem,
   slateDocumentIsEmpty,
@@ -30,27 +33,28 @@ import { ReviewEditorConfigContext } from './review-editor-config-context';
 import { SlateContext } from './slate-context';
 
 interface CacheInterface {
-  draftEmbeds?: SlateNode[];
-  sortedBeatmaps?: BeatmapJsonExtended[];
+  draftEmbeds?: SlateElement[];
+  sortedBeatmaps?: BeatmapExtendedJson[];
 }
 
 interface Props {
-  beatmaps: Record<number, BeatmapJsonExtended>;
+  beatmaps: Partial<Record<number, BeatmapExtendedJson>>;
   beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJsonExtended;
-  currentDiscussions: BeatmapDiscussion[];
-  discussion?: BeatmapDiscussion;
-  discussions: Record<number, BeatmapDiscussion>;
+  currentBeatmap: BeatmapExtendedJson;
+  currentDiscussions: BeatmapsetDiscussionJson[];
+  discussion?: BeatmapsetDiscussionJson;
+  discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
   document?: string;
-  editing: boolean;
   editMode?: boolean;
+  editing: boolean;
+  onChange?: () => void;
   onFocus?: () => void;
 }
 
 interface State {
   blockCount: number;
   posting: boolean;
-  value: SlateNode[];
+  value: SlateElement[];
 }
 
 interface TimestampRange extends Range {
@@ -65,7 +69,8 @@ export default class Editor extends React.Component<Props, State> {
 
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
-  emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
+  declare context: React.ContextType<typeof ReviewEditorConfigContext>;
+  emptyDocTemplate = [{ children: [{ text: '' }], type: 'paragraph' }];
   insertMenuRef: React.RefObject<EditorInsertionMenu>;
   localStorageKey: string;
   scrollContainerRef: React.RefObject<HTMLDivElement>;
@@ -80,17 +85,22 @@ export default class Editor extends React.Component<Props, State> {
     this.scrollContainerRef = React.createRef();
     this.toolbarRef = React.createRef();
     this.insertMenuRef = React.createRef();
-
-    let initialValue = this.emptyDocTemplate;
     this.localStorageKey = `newDiscussion-${this.props.beatmapset.id}`;
-    const saved = localStorage.getItem(this.localStorageKey);
-    if (!props.editMode && saved) {
-      try {
-        initialValue = JSON.parse(saved);
-      } catch (error) {
-        // tslint:disable-next-line:no-console
-        console.error('invalid json in localStorage, ignoring');
-        localStorage.removeItem(this.localStorageKey);
+
+    let initialValue: SlateElement[] = this.emptyDocTemplate;
+
+    if (props.editMode) {
+      initialValue = this.valueFromProps();
+    } else {
+      const saved = localStorage.getItem(this.localStorageKey);
+
+      if (saved != null) {
+        try {
+          initialValue = JSON.parse(saved);
+        } catch (error) {
+          console.error('invalid json in localStorage, ignoring');
+          localStorage.removeItem(this.localStorageKey);
+        }
       }
     }
 
@@ -101,12 +111,14 @@ export default class Editor extends React.Component<Props, State> {
     };
   }
 
-  blockWrapper = (children: JSX.Element) => {
-    return (
-      <div className={`${this.bn}__block`}>
-        {children}
-      </div>
-    );
+  blockWrapper = (children: JSX.Element) => (
+    <div className={`${this.bn}__block`}>
+      {children}
+    </div>
+  );
+
+  get canSave() {
+    return !this.state.posting && this.state.blockCount <= this.context.max_blocks;
   }
 
   componentDidMount() {
@@ -121,8 +133,13 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
-    if (this.props.editing !== prevProps.editing) {
-      this.toggleEditing();
+    if (this.props.document !== prevProps.document) {
+      const newValue = this.valueFromProps();
+
+      this.setState({
+        blockCount: blockCount(newValue),
+        value: newValue,
+      });
     }
   }
 
@@ -147,19 +164,33 @@ export default class Editor extends React.Component<Props, State> {
     const regex = RegExp(BeatmapDiscussionHelper.TIMESTAMP_REGEX, 'g');
     let match;
 
-    // tslint:disable-next-line:no-conditional-assignment
     while ((match = regex.exec(node.text)) !== null) {
       ranges.push({
-        anchor: {path, offset: match.index},
-        focus: {path, offset: match.index + match[0].length},
+        anchor: { offset: match.index, path },
+        focus: { offset: match.index + match[0].length, path },
         timestamp: match[0],
       });
     }
 
     return ranges;
-  }
+  };
 
-  onChange = (value: SlateNode[]) => {
+  /**
+   * Type guard for checking if the beatmap is part of currently selected beatmapset
+   *
+   * @param beatmap
+   * @returns boolean
+   */
+  isCurrentBeatmap = (beatmap?: BeatmapExtendedJson): beatmap is BeatmapExtendedJson => (
+    beatmap != null && beatmap.beatmapset_id === this.props.beatmapset.id
+  );
+
+  onChange = (value: SlateElement[]) => {
+    // prevent document from becoming empty (and invalid) - ideally this would be handled in `withNormalization`, but that isn't run on every change
+    if (value.length === 0) {
+      value = this.emptyDocTemplate;
+    }
+
     if (!this.props.editMode) {
       const content = JSON.stringify(value);
 
@@ -170,15 +201,20 @@ export default class Editor extends React.Component<Props, State> {
       }
     }
 
-    this.setState({
-      blockCount: blockCount(value),
-      value,
-    });
+    this.setState(
+      {
+        blockCount: blockCount(value),
+        value,
+      },
+      () => {
+        if (ReactEditor.isFocused(this.slateEditor) && this.props.onFocus) {
+          this.props.onFocus();
+        }
 
-    if (ReactEditor.isFocused(this.slateEditor) && this.props.onFocus) {
-      this.props.onFocus();
-    }
-  }
+        this.props.onChange?.();
+      },
+    );
+  };
 
   onKeyDown = (event: KeyboardEvent) => {
     if (isHotkey('mod+b', event)) {
@@ -192,30 +228,34 @@ export default class Editor extends React.Component<Props, State> {
         event.preventDefault();
         this.slateEditor.insertText('\n');
       }
+    } else if (isHotkey('delete', event) || isHotkey('backspace', event)) {
+      if (insideEmptyNode(this.slateEditor)) {
+        event.preventDefault();
+        Transforms.removeNodes(this.slateEditor);
+      }
     }
-  }
+  };
 
   post = () => {
     if (this.showConfirmationIfRequired()) {
-      this.setState({posting: true}, () => {
-        this.xhr = $.ajax(route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
-          data: {document: this.serialize()},
+      this.setState({ posting: true }, () => {
+        this.xhr = $.ajax(route('beatmapsets.discussion.review', { beatmapset: this.props.beatmapset.id }), {
+          data: { document: this.serialize() },
           method: 'POST',
         })
-        .done((data) => {
-          $.publish('beatmapsetDiscussions:update', {beatmapset: data});
-          this.resetInput();
-        })
-        .fail(osu.ajaxError)
-        .always(() => this.setState({posting: false}));
+          .done((data) => {
+            $.publish('beatmapsetDiscussions:update', { beatmapset: data });
+            this.resetInput();
+          })
+          .fail(osu.ajaxError)
+          .always(() => this.setState({ posting: false }));
       });
     }
-  }
+  };
 
   render(): React.ReactNode {
     const editorClass = 'beatmap-discussion-editor';
     const modifiers = this.props.editMode ? ['edit-mode'] : [];
-    const overLimit = this.state.blockCount > this.context.max_blocks;
     if (this.state.posting) {
       modifiers.push('readonly');
     }
@@ -223,25 +263,25 @@ export default class Editor extends React.Component<Props, State> {
     this.updateDrafts();
 
     return (
-      <div className={osu.classWithModifiers(editorClass, modifiers)}>
+      <div className={classWithModifiers(editorClass, modifiers)}>
         <div className={`${editorClass}__content`}>
           <SlateContext.Provider value={this.slateEditor}>
             <Slate
               editor={this.slateEditor}
-              value={this.state.value}
               onChange={this.onChange}
+              value={this.state.value}
             >
               <div ref={this.scrollContainerRef} className={`${editorClass}__input-area`}>
                 <EditorToolbar ref={this.toolbarRef} />
-                <EditorInsertionMenu currentBeatmap={this.props.currentBeatmap} ref={this.insertMenuRef} />
+                <EditorInsertionMenu ref={this.insertMenuRef} currentBeatmap={this.props.currentBeatmap} />
                 <DraftsContext.Provider value={this.cache.draftEmbeds || []}>
                   <Editable
                     decorate={this.decorateTimestamps}
                     onKeyDown={this.onKeyDown}
+                    placeholder={osu.trans('beatmaps.discussions.message_placeholder.review')}
                     readOnly={this.state.posting}
                     renderElement={this.renderElement}
                     renderLeaf={this.renderLeaf}
-                    placeholder={osu.trans('beatmaps.discussions.message_placeholder.review')}
                   />
                 </DraftsContext.Provider>
               </div>
@@ -250,13 +290,13 @@ export default class Editor extends React.Component<Props, State> {
                   {this.renderBlockCount('lighter')}
                 </div>
               }
-              { !this.props.editMode &&
+              {!this.props.editMode &&
                 <div className={`${editorClass}__button-bar`}>
                   <button
                     className='btn-osu-big btn-osu-big--forum-secondary'
                     disabled={this.state.posting}
-                    type='button'
                     onClick={this.resetInput}
+                    type='button'
                   >
                     {osu.trans('common.buttons.clear')}
                   </button>
@@ -266,9 +306,9 @@ export default class Editor extends React.Component<Props, State> {
                     </span>
                     <button
                       className='btn-osu-big btn-osu-big--forum-primary'
-                      disabled={this.state.posting || overLimit}
-                      type='submit'
+                      disabled={!this.canSave}
                       onClick={this.post}
+                      type='submit'
                     >
                       {this.state.posting ? <Spinner /> : osu.trans('common.buttons.post')}
                     </button>
@@ -282,17 +322,18 @@ export default class Editor extends React.Component<Props, State> {
     );
   }
 
-  renderBlockCount = (theme?: string) => {
-    return (
-      <CircularProgress
-        current={this.state.blockCount}
-        max={this.context.max_blocks}
-        onlyShowAsWarning={true}
-        theme={theme}
-        tooltip={osu.trans('beatmap_discussions.review.block_count', {used: this.state.blockCount, max: this.context.max_blocks})}
-      />
-    );
-  }
+  renderBlockCount = (theme?: string) => (
+    <CircularProgress
+      current={this.state.blockCount}
+      max={this.context.max_blocks}
+      onlyShowAsWarning
+      theme={theme}
+      tooltip={osu.trans('beatmap_discussions.review.block_count', {
+        max: this.context.max_blocks,
+        used: this.state.blockCount,
+      })}
+    />
+  );
 
   renderElement = (props: RenderElementProps) => {
     let el;
@@ -301,11 +342,11 @@ export default class Editor extends React.Component<Props, State> {
       case 'embed':
         el = (
           <EditorDiscussionComponent
+            beatmaps={this.sortedBeatmaps()}
             beatmapset={this.props.beatmapset}
             currentBeatmap={this.props.currentBeatmap}
             discussions={this.props.discussions}
             editMode={this.props.editMode}
-            beatmaps={this.sortedBeatmaps()}
             readOnly={this.state.posting}
             {...props}
           />
@@ -317,7 +358,7 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     return this.blockWrapper(el);
-  }
+  };
 
   renderLeaf = (props: RenderLeafProps) => {
     let children = props.children;
@@ -330,14 +371,13 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     if (props.leaf.timestamp) {
-      // TODO: fix this nested stuff
-      return <span className='beatmapset-discussion-message' {...props.attributes}><span className={'beatmapset-discussion-message__timestamp'}>{children}</span></span>;
+      return <span className='beatmap-discussion-timestamp-decoration' {...props.attributes}>{children}</span>;
     }
 
     return (
       <span {...props.attributes}>{children}</span>
     );
-  }
+  };
 
   resetInput = (event?: React.MouseEvent) => {
     if (event) {
@@ -350,7 +390,7 @@ export default class Editor extends React.Component<Props, State> {
 
     Transforms.deselect(this.slateEditor);
     this.onChange(this.emptyDocTemplate);
-  }
+  };
 
   serialize = () => serializeSlateDocument(this.state.value);
 
@@ -361,7 +401,7 @@ export default class Editor extends React.Component<Props, State> {
     const canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng;
     const willReset =
       this.props.beatmapset.status === 'pending' &&
-      this.props.beatmapset.nominations && this.props.beatmapset.nominations.current > 0 &&
+      this.props.beatmapset.nominations && nominationsCount(this.props.beatmapset.nominations, 'current') > 0 &&
       docContainsProblem;
 
     if (canDisqualify && willDisqualify) {
@@ -373,37 +413,32 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     return true;
-  }
+  };
 
   sortedBeatmaps = () => {
     if (this.cache.sortedBeatmaps == null) {
       // filter to only include beatmaps from the current discussion's beatmapset (for the modding profile page)
-      const beatmaps = _.filter(this.props.beatmaps, {beatmapset_id: this.props.beatmapset.id});
+      const beatmaps = _.filter(this.props.beatmaps, this.isCurrentBeatmap);
       this.cache.sortedBeatmaps = sortWithMode(beatmaps);
     }
 
     return this.cache.sortedBeatmaps;
-  }
-
-  toggleEditing = () => {
-    if (!this.props.document || !this.props.discussions || _.isEmpty(this.props.discussions)) {
-      return;
-    }
-
-    const value = this.props.editing ? parseFromJson(this.props.document, this.props.discussions) : [];
-
-    this.setState({
-      blockCount: blockCount(value),
-      value,
-    });
-  }
+  };
 
   updateDrafts = () => {
     this.cache.draftEmbeds = this.state.value.filter((block) => block.type === 'embed' && !block.discussion_id);
-  }
+  };
 
   withNormalization = (editor: ReactEditor) => {
-    const { normalizeNode } = editor;
+    const { insertData, normalizeNode } = editor;
+
+    editor.insertData = (data) => {
+      if (insideEmbed(this.slateEditor)) {
+        editor.insertText(data.getData('text/plain'));
+      } else {
+        insertData(data);
+      }
+    };
 
     editor.normalizeNode = (entry) => {
       const [node, path] = entry;
@@ -428,16 +463,26 @@ export default class Editor extends React.Component<Props, State> {
             return;
           }
 
-          // clear invalid beatmapId references (for pasted embed content)
-          if (node.beatmapId && (!this.props.beatmaps[node.beatmapId] || this.props.beatmaps[node.beatmapId].deleted_at)) {
-            Transforms.setNodes(editor, {beatmapId: null}, {at: path});
+          if (node.beatmapId != null) {
+            const beatmap = typeof node.beatmapId === 'number' ? this.props.beatmaps[node.beatmapId] : undefined;
+            if (beatmap == null || beatmap.deleted_at != null) {
+              Transforms.setNodes(editor, { beatmapId: undefined }, { at: path });
+            }
           }
         }
       }
 
-      return normalizeNode(entry);
+      normalizeNode(entry);
     };
 
     return editor;
+  };
+
+  private valueFromProps() {
+    if (!this.props.editing || this.props.document == null || this.props.discussions == null) {
+      return [];
+    }
+
+    return parseFromJson(this.props.document, this.props.discussions);
   }
 }

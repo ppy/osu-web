@@ -32,12 +32,12 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => '이 사용자를 차단했습니다.',
-        'blocked_count' => '차단된 사용자 (:count)',
+        'banner_text' => '해당 유저를 차단했습니다.',
+        'blocked_count' => '차단된 유저 (:count)',
         'hide_profile' => '프로필 숨기기',
         'not_blocked' => '해당 유저는 차단되어있지 않습니다.',
         'show_profile' => '프로필 표시',
-        'too_many' => '차단 한계에 도달했습니다.',
+        'too_many' => '차단 한계치에 도달했습니다.',
         'button' => [
             'block' => '차단',
             'unblock' => '차단 해제',
@@ -45,13 +45,13 @@ return [
     ],
 
     'card' => [
-        'loading' => '로딩중...',
+        'loading' => '로딩 중...',
         'send_message' => '메시지 보내기',
     ],
 
     'disabled' => [
         'title' => '이런! 계정이 비활성화 된 것 같네요.',
-        'warning' => "규칙을 어긴 경우, 일반적으로 한 달의 기간동안 어느 사면 요청도 받지 않습니다. 이 기간이 끝나면, 필요하다고 판단 할 경우 언제든지 저희에게 연락하실 수 있습니다. 하나의 계정이 비활성화 된 이후 새로운 계정을 만들면 <strong>이 한 달 기간이 연장될 수 있음</strong>을 명심해주세요. 또한, <strong>계정을 새로 만들 때마다 더욱 규칙을 위반</strong>한다는 것을 잊지 마세요. 이 길은 절대로 걷지 말아주시기 바랍니다!",
+        'warning' => "규칙을 어긴 경우, 일반적으로 한 달 동안 어떠한 사면 요청도 받고 있지 않습니다. 해당 기간이 끝난 후, 사면이 필요하다고 판단될 경우 언제든지 저희에게 연락하실 수 있습니다. 하나의 계정이 비활성화된 이후 새로운 계정을 만들면 <strong>한 달의 기간이 연장될 수 있음</strong>을 명심해주세요. 또한, <strong>계정을 새로 만들 때마다 더욱 규칙 위반으로 간주</strong>한다는 것을 잊지 마세요. 이 길은 절대로 건너지 말아 주시기 바랍니다!",
 
         'if_mistake' => [
             '_' => '만약 실수라고 생각된다면, 저희에게 연락할 수 있습니다 (:email 이나 이 페이지의 오른쪽 하단 버튼 "?"을 클릭).',
@@ -60,14 +60,18 @@ return [
 
         'reasons' => [
             'compromised' => '계정 도용이 의심됩니다. 신원이 확인될 때까지 계정이 비활성화될 수 있습니다.',
-            'opening' => '계정 비활성화를 초래하는 여러 가지 이유는 다음과 같습니다:',
+            'opening' => '계정 비활성화가 될 수 있는 이유는 다음과 같습니다:',
 
             'tos' => [
-                '_' => '당신은 저희의 :community_rules 또는 :tos 를 위반했습니다.',
+                '_' => '해당 계정은 :community_rules 또는 :tos 를 위반했습니다.',
                 'community_rules' => '커뮤니티 규칙',
-                'tos' => '서비스 약관',
+                'tos' => '이용 약관',
             ],
         ],
+    ],
+
+    'filtering' => [
+        'by_game_mode' => '게임 모드 별 멤버',
     ],
 
     'force_reactivation' => [
@@ -80,12 +84,12 @@ return [
         '_' => '로그인',
         'button' => '로그인',
         'button_posting' => '로그인 중...',
-        'email_login_disabled' => '이메일로 로그인하는 것은 현재 이용 불가능합니다. 대신 사용자 이름을 사용해 주세요.',
+        'email_login_disabled' => '현재 이메일로 로그인할 수 없습니다. 대신 유저 이름을 사용해 주세요.',
         'failed' => '계정 정보가 올바르지 않습니다',
         'forgot' => '비밀번호를 잊어버리셨나요?',
         'info' => '계속 하시려면 로그인 해주세요',
         'invalid_captcha' => 'Captcha가 올바르지 않습니다. 페이지를 새로 고친 후 다시 시도해주세요.',
-        'locked_ip' => 'IP 주소가 잠겨있습니다. 잠시 기다려주세요.',
+        'locked_ip' => '당신의 IP 주소가 잠겨있습니다. 잠시만 기다려주세요.',
         'password' => 'Password',
         'register' => "osu!계정이 없으신가요? 새로 하나 만들어보세요",
         'remember' => '이 컴퓨터에서 계정 정보 기억하기',
@@ -124,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => '부정 행위 / 치트 사용',
+            'multiple_accounts' => '다중 계정 사용',
             'insults' => '자신 / 다른 사람을 모욕 함',
             'spam' => '도배',
             'unwanted_content' => '부적절한 콘텐츠에 링크 걸기',
@@ -150,6 +155,10 @@ return [
         'plays_with' => '플레이 장비: :devices',
         'title' => ":username님의 프로필",
 
+        'comments_count' => [
+            '_' => ':link 작성됨',
+            'count' => '댓글 :count_delimited개',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '프로필 표지 변경',
@@ -198,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Loved 비트맵',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked / Approved 된 비트맵',
+                'pending' => [
+                    'title' => '대기 중인 비트맵',
                 ],
-                'unranked' => [
-                    'title' => 'Pending 비트맵',
+                'ranked' => [
+                    'title' => '새로 랭크된 비트맵',
                 ],
             ],
             'discussions' => [
@@ -292,6 +301,9 @@ return [
                 'recent' => '최근 획득',
                 'title' => '메달',
             ],
+            'multiplayer' => [
+                'title' => '멀티플레이 게임',
+            ],
             'posts' => [
                 'title' => '게시글',
                 'title_longer' => '최근 게시글',
@@ -319,7 +331,7 @@ return [
                 'received' => '받은 투표수 (지난 3개월 간)',
                 'title' => '투표',
                 'title_longer' => '최근 투표',
-                'vote_count' => ':count_delimited 투표',
+                'vote_count' => ':count_delimited개의 투표',
             ],
             'account_standing' => [
                 'title' => '계정 상태',
@@ -345,13 +357,11 @@ return [
         ],
 
         'info' => [
-            'discord' => '디스코드',
+            'discord' => '',
             'interests' => '관심 분야',
-            'lastfm' => 'Last.fm',
             'location' => '거주지',
             'occupation' => '직업',
-            'skype' => '스카이프',
-            'twitter' => '트위터',
+            'twitter' => '',
             'website' => '웹사이트',
         ],
         'not_found' => [
@@ -396,11 +406,16 @@ return [
             'total_hits' => '총 타격 횟수',
             'total_score' => '총 점수',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked 및 Approved 상태의 비트맵',
-            'loved_beatmapset_count' => 'Loved 비트맵',
-            'unranked_beatmapset_count' => '대기 중인 비트맵',
             'graveyard_beatmapset_count' => '묻힌 비트맵',
+            'loved_beatmapset_count' => 'Loved 비트맵',
+            'pending_beatmapset_count' => '대기 중인 비트맵',
+            'ranked_beatmapset_count' => '랭크된 비트맵',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '당신은 현재 침묵 상태입니다.',
+        'message' => '몇몇 동작이 수행 불가능할 수 있습니다.',
     ],
 
     'status' => [

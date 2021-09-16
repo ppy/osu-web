@@ -2,26 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-discussion-message {
-  @_top: beatmapset-discussion-message;
   display: inline;
   color: white;
-
-  &__timestamp {
-    .link-plain();
-
-    border-radius: @border-radius-large;
-    padding: 1px 5px;
-    background-color: @osu-colour-b6;
-    font-weight: 600;
-    font-size: 85%;
-    color: @osu-colour-f1;
-
-    // required for the cursor to be visible when contentEditable is used (for the beatmap review editor)
-    display: inline-block;
-
-    .link-hover({
-      background-color: @osu-colour-b5;
-      color: @osu-colour-l1;
-    });
-  }
 }

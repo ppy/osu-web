@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 $factory->define(App\Models\Store\OrderItem::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'order_id' => function () {
             return factory(App\Models\Store\Order::class)->create()->order_id;
         },
@@ -16,10 +16,8 @@ $factory->define(App\Models\Store\OrderItem::class, function (Faker\Generator $f
     ];
 });
 
-$factory->defineAs(App\Models\Store\OrderItem::class, 'supporter_tag', function (Faker\Generator $faker) use ($factory) {
-    $raw = $factory->raw(App\Models\Store\OrderItem::class);
-
-    return array_merge($raw, [
+$factory->state(App\Models\Store\OrderItem::class, 'supporter_tag', function (Faker\Generator $faker) use ($factory) {
+    return [
         'product_id' => App\Models\Store\Product::customClass('supporter-tag')->first(),
         'cost' => 4,
         'extra_data' => function (array $self) {
@@ -33,15 +31,13 @@ $factory->defineAs(App\Models\Store\OrderItem::class, 'supporter_tag', function 
                 'duration' => 1,
             ];
         },
-    ]);
+    ];
 });
 
-$factory->defineAs(App\Models\Store\OrderItem::class, 'username_change', function (Faker\Generator $faker) use ($factory) {
-    $raw = $factory->raw(App\Models\Store\OrderItem::class);
-
-    return array_merge($raw, [
+$factory->state(App\Models\Store\OrderItem::class, 'username_change', function (Faker\Generator $faker) use ($factory) {
+    return [
         'product_id' => App\Models\Store\Product::customClass('username-change')->first(),
         'cost' => 0,
         'extra_info' => 'new_username',
-    ]);
+    ];
 });

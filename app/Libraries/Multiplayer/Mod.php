@@ -25,6 +25,9 @@ class Mod
     const SUDDENDEATH = 'SD';
     const WIND_UP = 'WU';
     const WIND_DOWN = 'WD';
+    const RANDOM = 'RD';
+    const MIRROR = 'MR';
+    const MUTED = 'MU';
 
     // osu-specific
     const OSU_AUTOPILOT = 'AP';
@@ -37,6 +40,9 @@ class Mod
     const OSU_DEFLATE = 'DF';
     const OSU_SPININ = 'SI';
     const OSU_TRACEABLE = 'TC';
+    const OSU_CLASSIC = 'CL';
+    const OSU_BARRELROLL = 'BR';
+    const OSU_APPROACH_DIFFERENT = 'AD';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -51,12 +57,14 @@ class Mod
     const MANIA_KEY10 = '10K';
     const MANIA_DUALSTAGES = 'DS';
     const MANIA_FADEIN = 'FI';
-    const MANIA_MIRROR = 'MR';
-    const MANIA_RANDOM = 'RD';
     const MANIA_INVERT = 'IN';
+    const MANIA_CONSTANTSPEED = 'CS';
+
+    // catch-specific
+    const CATCH_FLOATINGFRUIT = 'FF';
 
     // taiko-specific
-    const TAIKO_RANDOM = 'RD';
+    const TAIKO_SWAP = 'SW';
 
     // non-scorable
     const AUTOPLAY = 'AT';
@@ -80,6 +88,7 @@ class Mod
         self::SUDDENDEATH,
         self::WIND_DOWN,
         self::WIND_UP,
+        self::MUTED,
     ];
 
     // Defines mutual-exclusivity for groups of mods, i.e. only one mod within each group can be active at a time
@@ -89,6 +98,9 @@ class Mod
             self::SUDDENDEATH,
             self::NOFAIL,
             self::PERFECT,
+            self::OSU_AUTOPILOT,
+        ],
+        [
             self::OSU_AUTOPILOT,
             self::OSU_SPUNOUT,
         ],
@@ -142,6 +154,9 @@ class Mod
             'overall_difficulty' => 'float',
             'circle_size' => 'float',
             'approach_rate' => 'float',
+            'extended_limits' => 'bool',
+            'scroll_speed' => 'float',
+            'hard_rock_offsets' => 'bool',
         ],
         self::DOUBLETIME => [
             'speed_change' => 'float',
@@ -168,13 +183,77 @@ class Mod
             'final_rate' => 'float',
             'adjust_pitch' => 'bool',
         ],
+        self::FLASHLIGHT => [
+            'follow_delay' => 'float',
+        ],
         self::OSU_GROW => [
             'start_scale' => 'float',
         ],
         self::OSU_DEFLATE => [
             'start_scale' => 'float',
         ],
+        self::OSU_CLASSIC => [
+            'classic_note_lock' => 'bool',
+            'fixed_follow_circle_hit_area' => 'bool',
+            'no_slider_head_accuracy' => 'bool',
+            'no_slider_head_movement' => 'bool',
+            'always_play_tail_sample' => 'bool',
+        ],
+        self::OSU_BARRELROLL => [
+            'spin_speed' => 'float',
+            'direction' => 'int',
+        ],
+        self::RANDOM => [
+            'seed' => 'int',
+        ],
+        self::OSU_APPROACH_DIFFERENT => [
+            'scale' => 'float',
+            'style' => 'int',
+        ],
+        self::OSU_TARGET => [
+            'seed' => 'int',
+        ],
+        self::MIRROR => [
+            'reflection' => 'int',
+        ],
+        self::MUTED => [
+            'enable_metronome' => 'bool',
+            'mute_combo_count' => 'int',
+            'inverse_muting' => 'bool',
+            'affects_hit_sounds' => 'bool',
+        ],
+        self::SUDDENDEATH => [
+            'restart' => 'bool',
+        ],
+        self::PERFECT => [
+            'restart' => 'bool',
+        ],
     ];
+
+    public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
+    {
+        $exclusiveRequiredIds = [];
+
+        foreach (static::exclusivityByRuleset()[$ruleset] as $group) {
+            $intersection = array_intersect($requiredIds, $group);
+
+            if (count($intersection) > 1) {
+                throw new InvariantException('incompatible mods: '.implode(', ', $intersection));
+            }
+
+            if (count($intersection) === 1) {
+                $exclusiveRequiredIds = array_merge($exclusiveRequiredIds, $group);
+            }
+        }
+
+        $invalidAllowedIds = array_intersect($exclusiveRequiredIds, $allowedIds);
+
+        if (count($invalidAllowedIds) > 0) {
+            throw new InvariantException('allowed mods conflict with required mods: '.implode(', ', $invalidAllowedIds));
+        }
+
+        return true;
+    }
 
     public static function filterSettings($mod, $settings)
     {
@@ -217,20 +296,27 @@ class Mod
                         self::OSU_DEFLATE,
                         self::OSU_SPININ,
                         self::OSU_TRACEABLE,
+                        self::OSU_CLASSIC,
+                        self::OSU_BARRELROLL,
+                        self::RANDOM,
+                        self::OSU_APPROACH_DIFFERENT,
+                        self::MIRROR,
                     ]
                 ),
 
                 Ruleset::TAIKO => array_merge(
                     self::SCORABLE_COMMON,
                     [
-                        self::TAIKO_RANDOM,
+                        self::TAIKO_SWAP,
+                        self::RANDOM,
                     ]
                 ),
 
                 Ruleset::CATCH => array_merge(
                     self::SCORABLE_COMMON,
                     [
-                        // catch-specific mods go here
+                        self::CATCH_FLOATINGFRUIT,
+                        self::MIRROR,
                     ]
                 ),
 
@@ -249,9 +335,10 @@ class Mod
                         self::MANIA_KEY10,
                         self::MANIA_DUALSTAGES,
                         self::MANIA_FADEIN,
-                        self::MANIA_MIRROR,
-                        self::MANIA_RANDOM,
+                        self::MIRROR,
                         self::MANIA_INVERT,
+                        self::MANIA_CONSTANTSPEED,
+                        self::RANDOM,
                     ]
                 ),
             ];
@@ -266,8 +353,73 @@ class Mod
 
         if (!$value) {
             $value = [
-                Ruleset::OSU => self::EXCLUSIVITY_COMMON,
-                Ruleset::TAIKO => self::EXCLUSIVITY_COMMON,
+                Ruleset::OSU => array_merge(
+                    self::EXCLUSIVITY_COMMON,
+                    [
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_DEFLATE,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::HIDDEN,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_SPININ,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_TARGET,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_DEFLATE,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::HIDDEN,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_SPININ,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_TARGET,
+                        ],
+                        [
+                            self::OSU_SPININ,
+                            self::OSU_DEFLATE,
+                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_SPININ,
+                            self::HIDDEN,
+                        ],
+                        [
+                            self::HARDROCK,
+                            self::MIRROR,
+                        ],
+                    ]
+                ),
+                Ruleset::TAIKO => array_merge(
+                    self::EXCLUSIVITY_COMMON,
+                    [
+                        [
+                            self::RANDOM,
+                            self::TAIKO_SWAP,
+                        ],
+                    ]
+                ),
                 Ruleset::CATCH => self::EXCLUSIVITY_COMMON,
                 Ruleset::MANIA => array_merge(
                     self::EXCLUSIVITY_COMMON,
@@ -300,7 +452,7 @@ class Mod
         return in_array($acronym, static::validModsForRuleset($ruleset), true);
     }
 
-    public static function validateSelection($mods, $ruleset, $skipExclusivityCheck = false)
+    public static function validateSelection($mods, $ruleset)
     {
         if (!in_array($ruleset, Ruleset::ALL, true)) {
             throw new InvariantException('invalid ruleset');
@@ -317,15 +469,6 @@ class Mod
             }
 
             $checkedMods[$mod] = true;
-        }
-
-        if (!$skipExclusivityCheck) {
-            foreach (static::exclusivityByRuleset()[$ruleset] as $group) {
-                $intersection = array_intersect($mods, $group);
-                if (count($intersection) > 1) {
-                    throw new InvariantException('incompatible mods: '.implode(', ', $intersection));
-                }
-            }
         }
 
         return true;
@@ -351,7 +494,7 @@ class Mod
 
         $cleanMods = array_values($filteredMods);
 
-        static::validateSelection(array_column($cleanMods, 'acronym'), $ruleset, true);
+        static::validateSelection(array_column($cleanMods, 'acronym'), $ruleset);
 
         return $cleanMods;
     }

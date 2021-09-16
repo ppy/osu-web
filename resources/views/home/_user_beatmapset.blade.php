@@ -4,15 +4,21 @@
 --}}
 
 <a class='user-home-beatmapset' href="{{route('beatmapsets.show', $beatmapset->beatmapset_id)}}">
-    <img class='user-home-beatmapset__cover'
-        src="{{$beatmapset->allCoverURLs()['list']}}"
-        srcSet="{{$beatmapset->allCoverURLs()['list']}} 1x, {{$beatmapset->allCoverURLs()['list@2x']}} 2x">
+    @if ($beatmapset->nsfw && !$showNsfw)
+        <div class="user-home-beatmapset__cover user-home-beatmapset__cover--blank"></div>
+    @else
+        <img
+            class='user-home-beatmapset__cover'
+            src="{{$beatmapset->allCoverURLs()['list']}}"
+            srcSet="{{$beatmapset->allCoverURLs()['list']}} 1x, {{$beatmapset->allCoverURLs()['list@2x']}} 2x"
+        />
+    @endif
 
     <div class="user-home-beatmapset__meta">
         <div class='user-home-beatmapset__title u-ellipsis-overflow'>{{$beatmapset->title}}</div>
         <div class='user-home-beatmapset__artist u-ellipsis-overflow'>{{$beatmapset->artist}}</div>
         <div class='user-home-beatmapset__creator u-ellipsis-overflow'>
-            {!! trans('home.user.beatmaps.by_user', ['user' => tag(
+            {!! osu_trans('home.user.beatmaps.by_user', ['user' => tag(
                 'span',
                 ['data-user-id' => $beatmapset->user_id, 'class' => 'js-usercard'],
                 e($beatmapset->creator)

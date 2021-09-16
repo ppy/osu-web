@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'törölve',
+    'deleted_by' => ':user által törölve :timeago',
+    'deleted_by_system' => 'rendszer',
     'deleted_count' => ':count_delimited törölt komment|:count_delimited törölt kommentek',
     'edited' => ':user által szerkesztve :timeago',
     'pinned' => 'rögzített',
@@ -35,7 +37,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'hozzászolások',
         'nav_title' => 'lista',
+        'no_comments' => 'nem találtunk hozzászólást...',
     ],
 
     'placeholder' => [

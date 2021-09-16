@@ -5,6 +5,7 @@ import { Discussion } from './discussion'
 import { IconExpand } from 'icon-expand'
 import * as React from 'react'
 import { a, button, div, i, p, span } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 bn = 'beatmap-discussions'
@@ -40,12 +41,26 @@ export class Discussions extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapset-discussions-#{nextVal()}"
+
     @state =
+      discussionCollapses: {}
+      discussionDefaultCollapsed: false
+      highlightedDiscussionId: null
       sort:
         generalAll: 'updated_at'
         general: 'updated_at'
         timeline: 'timeline'
         reviews: 'updated_at'
+
+
+  componentDidMount: ->
+    $.subscribe "beatmapset-discussions:collapse.#{@eventId}", @toggleCollapse
+    $.subscribe "beatmapset-discussions:highlight.#{@eventId}", @setHighlight
+
+
+  componentWillUnmount: ->
+    $.unsubscribe ".#{@eventId}"
 
 
   render: =>
@@ -150,16 +165,16 @@ export class Discussions extends React.PureComponent
   discussionPage: (discussion) =>
     return if !discussion.id?
 
-    className = "#{bn}__discussion"
     visible = @props.currentDiscussions.byFilter[@props.currentFilter][@props.mode][discussion.id]?
-    className += ' u-hide-by-height' unless visible
+
+    return unless visible
 
     if discussion.parent_id?
-      parentDiscussion = _.find(@props.currentDiscussions.reviews, {id: discussion.parent_id})
+      parentDiscussion = @props.currentDiscussions.byFilter.total.reviews[discussion.parent_id]
 
     div
       key: discussion.id
-      className: className
+      className: "#{bn}__discussion"
       el Discussion,
         discussion: discussion
         users: @props.users
@@ -171,6 +186,8 @@ export class Discussions extends React.PureComponent
         visible: visible
         showDeleted: @props.showDeleted
         parentDiscussion: parentDiscussion
+        collapsed: @isDiscussionCollapsed(discussion.id)
+        highlighted: @state.highlightedDiscussionId == discussion.id
 
 
   changeSort: (e) =>
@@ -189,8 +206,9 @@ export class Discussions extends React.PureComponent
 
 
   expand: (e) =>
-    e.preventDefault()
-    $.publish 'beatmapDiscussionEntry:collapse', collapse: e.currentTarget.dataset.type
+    @setState
+      discussionCollapses: {}
+      discussionDefaultCollapsed: e.currentTarget.dataset.type == 'collapse'
 
 
   hidden: (discussion) =>
@@ -202,8 +220,16 @@ export class Discussions extends React.PureComponent
       else false
 
 
+  isDiscussionCollapsed: (discussionId) ->
+    @state.discussionCollapses[discussionId] ? @state.discussionDefaultCollapsed
+
+
   isTimelineVisible: =>
     @props.mode == 'timeline' && @currentSort() == 'timeline'
+
+
+  setHighlight: (_event, {discussionId}) =>
+    @setState highlightedDiscussionId: discussionId
 
 
   sortedDiscussions: ->
@@ -226,6 +252,13 @@ export class Discussions extends React.PureComponent
     div
       'data-visibility': if !@isTimelineVisible() then 'hidden'
       className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"
+
+
+  toggleCollapse: (_event, {discussionId}) =>
+    newDiscussionCollapses = Object.assign({}, @state.discussionCollapses)
+    newDiscussionCollapses[discussionId] = !(@isDiscussionCollapsed(discussionId))
+
+    @setState discussionCollapses: newDiscussionCollapses
 
 
   toggleShowDeleted: =>

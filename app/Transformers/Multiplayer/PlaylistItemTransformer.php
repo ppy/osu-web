@@ -24,6 +24,7 @@ class PlaylistItemTransformer extends TransformerAbstract
             'ruleset_id' => $item->ruleset_id,
             'allowed_mods' => $item->allowed_mods,
             'required_mods' => $item->required_mods,
+            'expired' => $item->expired,
         ];
     }
 
@@ -31,7 +32,7 @@ class PlaylistItemTransformer extends TransformerAbstract
     {
         return $this->item(
             $item->beatmap,
-            new BeatmapCompactTransformer
+            new BeatmapCompactTransformer()
         );
     }
 }

@@ -18,4 +18,11 @@ return [
     'user_support_first' => '<strong>:user</strong> 님이 osu! 서포터가 되셨습니다. - 감사합니다!',
     'user_support_gift' => '<strong>:user</strong> 님이 osu! 서포터를 선물받았습니다!',
     'username_change' => '<strong>:previousUsername</strong> 님이 이름을 <strong><em>:user</em></strong> 으(로) 변경했습니다!',
+
+    'beatmapset_status' => [
+        'approved' => 'approved',
+        'loved' => 'loved',
+        'qualified' => 'qualified',
+        'ranked' => 'ranked',
+    ],
 ];

@@ -3,7 +3,7 @@
 
 import * as React from 'react'
 import { a, i, span, tr, td } from 'react-dom-factories'
-import { TrackPreview } from 'track-preview'
+import TrackPreview from 'track-preview'
 el = React.createElement
 
 export class TracklistTrack extends React.Component
@@ -12,7 +12,7 @@ export class TracklistTrack extends React.Component
       td {},
         el TrackPreview, track: @props.track
       td className: "tracklist__title#{if @props.track.exclusive then ' tracklist__title--exclusive' else ''}",
-        i className: 'fal fa-fw fa-extra-osu tracklist__exclusive-icon', title: osu.trans('artist.songs.exclusive') if @props.track.exclusive
+        i className: 'fal fa-fw fa-extra-osu tracklist__exclusive-icon', title: osu.trans('artist.songs.original') if @props.track.exclusive
         span className: 'tracklist__name u-ellipsis-overflow',
           "#{@props.track.title} "
           span className: 'tracklist__version', @props.track.version

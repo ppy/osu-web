@@ -12,7 +12,7 @@
     'hasMode' => false,
     'hasPager' => true,
     'spotlight' => null,
-    'titlePrepend' => trans('rankings.type.multiplayer').': '.$room->name,
+    'titlePrepend' => osu_trans('rankings.type.multiplayer').': '.$room->name,
     'type' => 'multiplayer',
 ])
 
@@ -38,23 +38,25 @@
         <div class="grid-items">
             <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
-                    {{ trans('rankings.spotlight.start_date') }}
+                    {{ osu_trans('rankings.spotlight.start_date') }}
                 </div>
                 <div class="counter-box__count">
                     {{ $room->starts_at->formatLocalized('%Y-%m-%d') }}
                 </div>
             </div>
+            @if ($room->ends_at !== null)
+                <div class="counter-box counter-box--info">
+                    <div class="counter-box__title">
+                        {{ osu_trans('rankings.spotlight.end_date') }}
+                    </div>
+                    <div class="counter-box__count">
+                        {{ $room->ends_at->formatLocalized('%Y-%m-%d') }}
+                    </div>
+                </div>
+            @endif
             <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
-                    {{ trans('rankings.spotlight.end_date') }}
-                </div>
-                <div class="counter-box__count">
-                    {{ $room->ends_at->formatLocalized('%Y-%m-%d') }}
-                </div>
-            </div>
-            <div class="counter-box counter-box--info">
-                <div class="counter-box__title">
-                    {{ trans('rankings.spotlight.map_count') }}
+                    {{ osu_trans('rankings.spotlight.map_count') }}
                 </div>
                 <div class="counter-box__count">
                     {{ i18n_number_format(count($beatmaps)) }}
@@ -62,7 +64,7 @@
             </div>
             <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
-                    {{ trans('rankings.spotlight.participants') }}
+                    {{ osu_trans('rankings.spotlight.participants') }}
                 </div>
                 <div class="counter-box__count">
                     {{ i18n_number_format($room->participant_count) }}

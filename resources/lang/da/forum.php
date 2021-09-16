@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Gendan opslag?',
         'edited' => 'Sidst redigeret af :user den :when, redigeret i alt :count gange.',
         'posted_at' => 'slået op på :when',
+        'posted_by' => 'Nyt oplsag af :username',
 
         'actions' => [
             'destroy' => 'Slet opslag',
-            'restore' => 'Gendan opslag',
             'edit' => 'Rediger opslag',
+            'report' => '',
+            'restore' => 'Gendan opslag',
         ],
 
         'create' => [
@@ -73,9 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Slet opslag?',
+        'confirm_restore' => 'Gendan opslag?',
         'deleted' => 'slettede emne',
         'go_to_latest' => 'vis det seneste opslag',
         'has_replied' => '',
+        'in_forum' => '',
         'latest_post' => ':when af :user',
         'latest_reply_by' => 'seneste svar af :user',
         'new_topic' => 'Nyt emne',
@@ -85,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'af :user',
         'started_by_verbose' => 'startet af :user',
+
+        'actions' => [
+            'destroy' => 'Slet emne',
+            'restore' => 'Gendan emne',
+        ],
 
         'create' => [
             'close' => 'Luk',

@@ -1,37 +1,42 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { route } from 'laroute';
-import * as _ from 'lodash';
+import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
 import * as React from 'react';
 import { Spinner } from 'spinner';
+import UserAvatar from 'user-avatar';
+import { UserLink } from 'user-link';
 
 interface Props {
   messages: Message[];
 }
 
+@observer
 export default class MessageGroup extends React.Component<Props, any> {
   render(): React.ReactNode {
     const messages = this.props.messages;
-    const sender = messages[0].sender;
 
-    if (_.isEmpty(messages)) {
+    if (messages.length === 0) {
       return;
     }
 
+    const sender = messages[0].sender;
+
     let className = 'chat-message-group';
-    if (messages[0] && sender.id === currentUser.id) {
+    if (sender.id === currentUser.id) {
       className += ' chat-message-group--own';
     }
 
     return (
       <div className={className}>
         <div className='chat-message-group__sender'>
-          <a className='js-usercard' data-user-id={sender.id} data-tooltip-position='top center' href={route('users.show', { user: sender.id })}>
-            <img className='chat-message-group__avatar' src={sender.avatarUrl} />
-          </a>
+          <UserLink tooltipPosition='top center' user={sender}>
+            <div className='chat-message-group__avatar'>
+              <UserAvatar modifiers={['full-circle']} user={{ avatar_url: sender.avatarUrl }} />
+            </div>
+          </UserLink>
           <div className='u-ellipsis-overflow' style={{maxWidth: '60px'}}>
             {sender.username}
           </div>
@@ -60,7 +65,7 @@ export default class MessageGroup extends React.Component<Props, any> {
               (moment(message.timestamp).format('LT') !== moment(messages[key + 1].timestamp).format('LT'));
 
             return (
-              <div className={classes} key={message.uuid}>
+              <div key={message.uuid} className={classes}>
                 <div className='chat-message-group__message-entry'>
                   <span className={contentClasses} dangerouslySetInnerHTML={{__html: message.parsedContent}} />
                   {!message.persisted && !message.errored &&

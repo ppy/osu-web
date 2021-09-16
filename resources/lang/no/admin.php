@@ -6,19 +6,19 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Regenerer',
-            'regenerating' => 'Regenererer...',
-            'remove' => 'Fjern',
-            'removing' => 'Fjerner...',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
             'title' => '',
         ],
         'show' => [
             'covers' => '',
             'discussion' => [
                 '_' => '',
-                'activate' => 'aktiver',
+                'activate' => '',
                 'activate_confirm' => '',
-                'active' => 'aktiv',
+                'active' => '',
                 'inactive' => '',
             ],
         ],
@@ -27,15 +27,15 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Slett',
+                'delete' => '',
 
                 'forum-name' => '',
 
                 'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Lagre',
-                    'update' => 'Oppdater',
+                    'save' => '',
+                    'update' => '',
                 ],
 
                 'title' => '',
@@ -58,9 +58,9 @@ return [
         'root' => [
             'sections' => [
                 'beatmapsets' => '',
-                'forum' => 'Forum',
-                'general' => 'Generelt',
-                'store' => 'Butikk',
+                'forum' => '',
+                'general' => '',
+                'store' => '',
             ],
         ],
     ],

@@ -13,8 +13,8 @@ return [
         ],
 
         'title' => [
-            '_' => 'Nouvelles :info',
-            'info' => 'FrontPage',
+            '_' => 'news',
+            'info' => 'page d\'accueil',
         ],
     ],
 
@@ -22,13 +22,13 @@ return [
         'by' => 'par :user',
 
         'nav' => [
-            'newer' => 'Article le plus récent',
-            'older' => 'Article le plus ancien',
+            'newer' => 'Article suivant',
+            'older' => 'Article précédent',
         ],
 
         'title' => [
-            '_' => 'Nouvelles :info',
-            'info' => 'Article',
+            '_' => 'news',
+            'info' => 'post',
         ],
     ],
 
@@ -43,6 +43,6 @@ return [
 
     'update' => [
         'button' => 'Mettre à jour',
-        'ok' => 'Post modifié.',
+        'ok' => 'Post mis à jour.',
     ],
 ];

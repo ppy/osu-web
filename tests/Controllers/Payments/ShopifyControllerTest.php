@@ -12,20 +12,9 @@ use Tests\TestCase;
 
 class ShopifyControllerTest extends TestCase
 {
-    public function testWebhookOrdersIdIsRequired()
-    {
-        $this->payload = [
-            'note_attributes' => [],
-        ];
-
-        $response = $this->sendCallbackRequest();
-
-        $response->assertStatus(500);
-    }
-
     public function testWebhookOrdersCancelled()
     {
-        $order = factory(Order::class, 'paid')->states('shopify')->create();
+        $order = factory(Order::class)->states('paid')->states('shopify')->create();
         $payment = new Payment([
             'provider' => Order::PROVIDER_SHOPIFY,
             'transaction_id' => $order->getProviderReference(),
@@ -35,9 +24,9 @@ class ShopifyControllerTest extends TestCase
         $order->payments()->save($payment);
         $order->paid($payment);
 
-        $this->payload = [
+        $this->setShopifyPayload([
             'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
-        ];
+        ]);
 
         $response = $this->sendCallbackRequest(['X-Shopify-Topic' => 'orders/cancelled']);
 
@@ -51,9 +40,9 @@ class ShopifyControllerTest extends TestCase
     public function testWebhookOrdersCreate()
     {
         $order = factory(Order::class)->states('shopify', 'processing')->create();
-        $this->payload = [
+        $this->setShopifyPayload([
             'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
-        ];
+        ]);
 
         $response = $this->sendCallbackRequest(['X-Shopify-Topic' => 'orders/create']);
 
@@ -65,9 +54,9 @@ class ShopifyControllerTest extends TestCase
     public function testWebhookOrdersFulfilled()
     {
         $order = factory(Order::class)->states('shopify', 'checkout')->create();
-        $this->payload = [
+        $this->setShopifyPayload([
             'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
-        ];
+        ]);
 
         $response = $this->sendCallbackRequest(['X-Shopify-Topic' => 'orders/fulfilled']);
 
@@ -80,9 +69,9 @@ class ShopifyControllerTest extends TestCase
     public function testWebhookOrdersPaid()
     {
         $order = factory(Order::class)->states('shopify', 'processing')->create();
-        $this->payload = [
+        $this->setShopifyPayload([
             'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
-        ];
+        ]);
 
         $response = $this->sendCallbackRequest(['X-Shopify-Topic' => 'orders/paid']);
 
@@ -94,12 +83,12 @@ class ShopifyControllerTest extends TestCase
 
     public function testReplacementOrdersManuallyCreatedShouldBeIgnored()
     {
-        $this->payload = [
+        $this->setShopifyPayload([
             'note_attributes' => [],
             'gateway' => 'manual',
             'payment_gateway_names' => ['manual'],
             'processing_method' => 'manual',
-        ];
+        ]);
 
         $response = $this->sendCallbackRequest();
 
@@ -113,13 +102,13 @@ class ShopifyControllerTest extends TestCase
         $order = factory(Order::class)->states('shopify', 'shipped')->create();
         $oldUpdatedAt = $order->updated_at->copy();
 
-        $this->payload = [
+        $this->setShopifyPayload([
             'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
             'gateway' => 'manual',
             'payment_gateway_names' => ['manual'],
             'processing_method' => 'manual',
             'source_name' => 'shopify_draft_order',
-        ];
+        ]);
 
         $response = $this->sendCallbackRequest();
 
@@ -144,5 +133,13 @@ class ShopifyControllerTest extends TestCase
         $headers = array_merge(['X-Shopify-Hmac-Sha256' => $validSignature], $extraHeaders);
 
         return $this->json('POST', $this->url, $this->payload, $headers);
+    }
+
+    private function setShopifyPayload(array $params)
+    {
+        $this->payload = array_merge([
+            'id' => 1,
+            'order_number' => 1,
+        ], $params);
     }
 }

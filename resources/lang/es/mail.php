@@ -14,7 +14,7 @@ return [
     'common' => [
         'closing' => 'Atentamente,',
         'hello' => 'Hola :user,',
-        'report' => 'Por favor responde a este correo INMEDIATAMENTE si no solicitaste este cambio.',
+        'report' => 'Por favor, responda a este correo electrónico INMEDIATAMENTE si no ha solicitado este cambio.',
     ],
 
     'donation_thanks' => [
@@ -79,7 +79,7 @@ return [
     'user_force_reactivation' => [
         'main' => 'Se sospecha que su cuenta ha sido comprometida, tiene actividad sospechosa reciente o una contraseña MUY débil. Como resultado, requerimos que establezca una nueva contraseña. Asegúrese de elegir una contraseña SEGURA.',
         'perform_reset' => 'Puede realizar el restablecimiento desde :url',
-        'reason' => 'Razón:',
+        'reason' => 'Motivo:',
         'subject' => 'Reactivación de cuenta osu! requerida',
     ],
 
@@ -98,7 +98,7 @@ return [
         'code' => 'Su código de verificación es:',
         'code_hint' => 'Puede introducir el código con o sin espacios.',
         'link' => 'También puede visitar el siguiente enlace para terminar la verificación:',
-        'report' => 'Si no ha solicitado esto, por favor RESPONDA INMEDIATAMENTE ya que su cuenta puede estar en peligro.',
+        'report' => 'Si no ha solicitado esto, por favor, RESPONDA INMEDIATAMENTE ya que su cuenta puede estar en peligro.',
         'subject' => 'Verificación de la cuenta de osu!',
 
         'action_from' => [

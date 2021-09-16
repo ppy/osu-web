@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Naozaj chceš tento príspevok obnoviť?',
         'edited' => 'Naposledy upravil :user :when, celkový počet úprav :count.',
         'posted_at' => 'publikované :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Odstraniť príspevok',
-            'restore' => 'Obnoviť príspevok',
             'edit' => 'Upraviť príspevok',
+            'report' => '',
+            'restore' => 'Obnoviť príspevok',
         ],
 
         'create' => [
@@ -73,9 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'odstranená téma',
         'go_to_latest' => 'zobraziť najnovší príspevok',
         'has_replied' => '',
+        'in_forum' => 'v :forum',
         'latest_post' => ':when použivateľom :user',
         'latest_reply_by' => 'posledná odpoveď od :user',
         'new_topic' => 'Založiť novú tému',
@@ -85,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'od :user',
         'started_by_verbose' => 'začaté použivateľom :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Zavrieť',

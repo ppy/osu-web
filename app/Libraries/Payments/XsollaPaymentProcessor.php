@@ -107,8 +107,10 @@ class XsollaPaymentProcessor extends PaymentProcessor
         }
 
         // order should be in the correct state
-        if ($this->getNotificationType() === NotificationType::PAYMENT
-            && $order->isAwaitingPayment() === false) {
+        if (
+            $this->getNotificationType() === NotificationType::PAYMENT
+            && $order->isAwaitingPayment() === false
+        ) {
             $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
         }
 

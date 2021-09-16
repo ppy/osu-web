@@ -1,33 +1,52 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import * as d3 from 'd3';
+import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
-import { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
 import * as _ from 'lodash';
+import core from 'osu-core-singleton';
 
 export const modes: GameMode[] = ['osu', 'taiko', 'fruits', 'mania'];
 
 function isVisibleBeatmap(beatmap: BeatmapJson) {
-  if (isBeatmapJsonExtended(beatmap)) {
+  if (isBeatmapExtendedJson(beatmap)) {
     return beatmap.deleted_at == null && !beatmap.convert;
   }
 
   return true;
 }
 
+const difficultyColourSpectrum = d3.scaleLinear<string>()
+  .domain([1.5, 2, 2.5, 3.25, 4.5, 6, 7, 8])
+  .clamp(true)
+  .range(['#4FC0FF', '#4FFFD5', '#7CFF4F', '#F6F05C', '#FF8068', '#FF3C71', '#6563DE', '#18158E'])
+  .interpolate(d3.interpolateRgb.gamma(2.2));
+
 interface FindDefaultParams<T> {
-  group?: Partial<Record<GameMode, T[]>>;
+  group?: Map<GameMode, T[]>;
   items?: T[];
   mode?: GameMode;
 }
 
 export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
-    return _.findLast<T>(params.items, isVisibleBeatmap)
-      ?? _.last(params.items)
-      ?? null;
+    let currentDiffDelta: number;
+    let currentItem: T | null = null;
+    const targetDiff = userRecommendedDifficulty(params.mode ?? modes[0]);
+
+    params.items.forEach((item) => {
+      const diffDelta = Math.abs(item.difficulty_rating - targetDiff);
+
+      if (isVisibleBeatmap(item) && (currentDiffDelta == null || diffDelta < currentDiffDelta)) {
+        currentDiffDelta = diffDelta;
+        currentItem = item;
+      }
+    });
+
+    return currentItem ?? _.last(params.items) ?? null;
   }
 
   if (params.group == null) return null;
@@ -35,7 +54,7 @@ export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>)
   const findModes = params.mode == null ? userModes() : [params.mode];
 
   for (const m of findModes) {
-    const beatmap = findDefault({ items: params.group[m] });
+    const beatmap = findDefault({ items: params.group.get(m) ?? [], mode: m });
 
     if (beatmap != null) return beatmap;
   }
@@ -44,7 +63,7 @@ export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>)
 }
 
 interface FindParams<T> {
-  group: Partial<Record<GameMode, T[]>>;
+  group: Map<GameMode, T[]>;
   id: number;
   mode?: GameMode;
 }
@@ -53,7 +72,7 @@ export function find<T extends BeatmapJson>(params: FindParams<T>): T | null {
   const findModes = params.mode == null ? userModes() : [params.mode];
 
   for (const m of findModes) {
-    const item = (params.group[m] ?? []).find((i) => i.id === params.id);
+    const item = params.group.get(m)?.find((i) => i.id === params.id);
 
     if (item != null) return item;
   }
@@ -70,31 +89,41 @@ export function getDiffRating(rating: number) {
   return 'expert-plus';
 }
 
+export function getDiffColour(rating?: number | null) {
+  rating ??= 0;
+  return rating >= 8 ? '#000000' : difficultyColourSpectrum(rating);
+}
+
 // TODO: should make a Beatmapset proxy object or something
 export function getArtist(beatmapset: BeatmapsetJson) {
-  if (currentUser?.user_preferences?.beatmapset_title_show_original) {
-    return osu.presence(beatmapset.artist_unicode) ?? beatmapset.artist;
+  if (core.userPreferences.get('beatmapset_title_show_original')) {
+    return beatmapset.artist_unicode;
   }
 
   return beatmapset.artist;
 }
 
 export function getTitle(beatmapset: BeatmapsetJson) {
-  if (currentUser?.user_preferences?.beatmapset_title_show_original) {
-    return osu.presence(beatmapset.title_unicode) ?? beatmapset.title;
+  if (core.userPreferences.get('beatmapset_title_show_original')) {
+    return beatmapset.title_unicode;
   }
 
   return beatmapset.title;
 }
 
-export function group<T extends BeatmapJson>(beatmaps: T[]): Partial<Record<GameMode, T[]>> {
-  const grouped = _.groupBy(beatmaps, 'mode');
+export function group<T extends BeatmapJson>(beatmaps?: T[] | null): Map<GameMode, T[]> {
+  const grouped = _.groupBy(beatmaps ?? [], 'mode');
+  const ret = new Map<GameMode, T[]>();
 
-  _.forOwn(grouped, (items, mode) => {
-    grouped[mode] = sort(items);
+  modes.forEach((mode) => {
+    ret.set(mode, sort(grouped[mode] ?? []));
   });
 
-  return grouped;
+  return ret;
+}
+
+export function shouldShowPp(beatmap: BeatmapJson) {
+  return beatmap.status === 'ranked' || beatmap.status === 'approved';
 }
 
 export function sort<T extends BeatmapJson>(beatmaps: T[]): T[] {
@@ -110,9 +139,7 @@ export function sort<T extends BeatmapJson>(beatmaps: T[]): T[] {
 }
 
 export function sortWithMode<T extends BeatmapJson>(beatmaps: T[]): T[] {
-  const grouped = group(beatmaps);
-
-  return _.flatten(modes.map((mode) => grouped[mode] || []));
+  return [...group(beatmaps).values()].flat();
 }
 
 function userModes() {
@@ -125,4 +152,17 @@ function userModes() {
   ret.unshift(currentMode);
 
   return ret;
+}
+
+let userRecommendedDifficultyCache: Partial<Record<GameMode, number>> | null = null;
+
+function userRecommendedDifficulty(mode: GameMode) {
+  if (userRecommendedDifficultyCache == null) {
+    userRecommendedDifficultyCache = osu.parseJson<Record<GameMode, number> | null>('json-recommended-star-difficulty-all') ?? {};
+    $(document).one('turbolinks:before-cache', () => {
+      userRecommendedDifficultyCache = null;
+    });
+  }
+
+  return userRecommendedDifficultyCache[mode] ?? 1.0;
 }

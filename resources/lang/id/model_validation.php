@@ -12,8 +12,8 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Keterangan waktu telah ditentukan tetapi beatmap tidak ada.',
-        'beatmapset_no_hype' => "Beatmap tidak dapat dihype.",
-        'hype_requires_null_beatmap' => 'Hype harus dilakukan di bagian General (All difficulties).',
+        'beatmapset_no_hype' => "Beatmap ini tidak dapat di-hype.",
+        'hype_requires_null_beatmap' => 'Hype hanya dapat diberikan pada kolom diskusi Umum (Seluruh tingkat kesulitan).',
         'invalid_beatmap_id' => 'Tingkat kesulitan yang tidak valid ditentukan.',
         'invalid_beatmapset_id' => 'Beatmap yang tidak valid ditentukan.',
         'locked' => 'Diskusi dikunci.',
@@ -27,9 +27,9 @@ return [
             'discussion_locked' => "Anda tidak dapat memberikan hype karena fitur diskusi untuk beatmap ini sedang dibekukan oleh moderator",
             'guest' => 'Silakan masuk untuk dapat memberikan hype.',
             'hyped' => 'Anda telah memberikan hype untuk beatmap ini.',
-            'limit_exceeded' => 'Anda telah menggunakan semua hype Anda.',
-            'not_hypeable' => 'Beatmap ini tidak dapat di-hype.',
-            'owner' => 'Tidak dapat memberikan hype pada beatmap anda sendiri.',
+            'limit_exceeded' => 'Anda telah mempergunakan seluruh hype yang Anda miliki.',
+            'not_hypeable' => 'Beatmap ini tidak dapat di-hype',
+            'owner' => 'Anda tidak dapat memberikan hype pada beatmap milik sendiri.',
         ],
 
         'timestamp' => [
@@ -48,7 +48,7 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => 'Membalas komentar yang sudah dihapus tidak diperbolehkan.',
+        'deleted_parent' => 'Anda tidak dapat membalas komentar yang sudah dihapus sebelumnya.',
         'top_only' => 'Tidak diperbolehkan menyemat balasan komentar.',
 
         'attributes' => [
@@ -57,7 +57,7 @@ return [
     ],
 
     'follow' => [
-        'invalid' => ':attribute yang Ditentukan Tidak Valid.',
+        'invalid' => ':attribute yang ditentukan tidak valid.',
     ],
 
     'forum' => [
@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Menghapus posting metadata beatmap tidak diizinkan.',
             'beatmapset_post_no_edit' => 'Menyunting posting metadata beatmap tidak diizinkan.',
+            'first_post_no_delete' => 'Tidak dapat menghapus postingan awal',
+            'missing_topic' => 'Postingan ini tidak memiliki topik',
             'only_quote' => 'Balasan Anda hanya berisi kutipan.',
 
             'attributes' => [
@@ -109,7 +111,7 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => 'Jumlah aplikasi OAuth melebihi batas maksimal.',
-            'url' => 'Harap masukkan URL valid.',
+            'url' => 'Harap masukkan URL yang valid.',
 
             'attributes' => [
                 'name' => 'Nama Aplikasi',
@@ -120,13 +122,14 @@ return [
 
     'user' => [
         'contains_username' => 'Nama pengguna tidak diperbolehkan untuk berada di dalam kata sandi.',
-        'email_already_used' => 'Alamat email sudah digunakan.',
+        'email_already_used' => 'Alamat email ini sudah digunakan sebelumnya.',
+        'email_not_allowed' => 'Alamat email ini tidak diperbolehkan.',
         'invalid_country' => 'Negara tidak ada dalam basis data.',
         'invalid_discord' => 'Nama pengguna Discord tidak valid.',
         'invalid_email' => "Tampaknya bukan alamat email yang valid.",
         'invalid_twitter' => 'Nama pengguna Twitter tidak valid.',
         'too_short' => 'Kata sandi baru terlalu pendek.',
-        'unknown_duplicate' => 'Nama pengguna atau alamat email sudah digunakan.',
+        'unknown_duplicate' => 'Nama pengguna atau alamat email ini sudah digunakan sebelumnya.',
         'username_available_in' => 'Nama pengguna ini akan tersedia untuk digunakan dalam :duration.',
         'username_available_soon' => 'Nama pengguna ini dapat digunakan sekarang!',
         'username_invalid_characters' => 'Nama pengguna yang diminta mengandung karakter yang tidak valid.',
@@ -150,7 +153,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => 'Anda tidak dapat mengganti nama pengguna Anda selama dibatasi.',
+            'restricted' => 'Anda tidak dapat mengganti nama pengguna ketika akun Anda sedang di-restrict.',
             'supporter_required' => [
                 '_' => 'Anda harus menjadi :link untuk mengubah nama Anda!',
                 'link_text' => 'osu!supporter',

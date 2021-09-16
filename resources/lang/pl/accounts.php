@@ -32,12 +32,11 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'obecna lokalizacja',
                 'user_interests' => 'zainteresowania',
-                'user_msnm' => 'skype',
                 'user_occ' => 'zajęcia',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'strona internetowa',
             ],
         ],
@@ -50,18 +49,20 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
-        'beatmapset_disqualify' => 'otrzymuj powiadomienia o dyskwalifikacjach beatmap następujących trybów',
-        'comment_reply' => '',
+        'beatmapset_disqualify' => 'otrzymuj powiadomienia o dyskwalifikacjach beatmap z następujących trybów',
+        'comment_reply' => 'otrzymuj powiadomienia o odpowiedziach do twoich komentarzy',
         'title' => 'Powiadomienia',
         'topic_auto_subscribe' => 'automatycznie włączaj powiadomienia dla twoich wątków na forum',
 
         'options' => [
             '_' => 'opcje wysyłania',
+            'beatmap_owner_change' => 'gościnny poziom trudności',
             'beatmapset:modding' => 'dyskusje beatmap',
             'channel_message' => 'wiadomości prywatne na czacie',
             'comment_new' => 'nowe komentarze',
             'forum_topic_reply' => 'odpowiedzi do wątków',
             'mail' => 'e-mail',
+            'mapping' => 'twórca',
             'push' => 'push',
             'user_achievement_unlock' => 'odblokowanie medalu',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'ukryj ostrzeżenia o treściach dla pełnoletnich w beatmapach',
+        'beatmapset_title_show_original' => 'pokaż metadane beatmapy w oryginalnym języku',
         'title' => 'Ustawienia strony',
 
         'beatmapset_download' => [
             '_' => 'domyślny sposób pobierania beatmap',
             'all' => 'z wideo, jeżeli jest ono dostępne',
-            'no_video' => 'bez wideo',
             'direct' => 'otwórz w osu!direct',
+            'no_video' => 'bez wideo',
         ],
-
-        'beatmapset_title_show_original' => 'pokaż metadane beatmapy w oryginalnym języku',
     ],
 
     'playstyles' => [

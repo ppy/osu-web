@@ -12,6 +12,8 @@ use App\Models\Score\Best;
 
 trait UserScoreable
 {
+    private $beatmapBestScoreIds = [];
+
     public function aggregatedScoresBest(string $mode, int $size): SearchResponse
     {
         $index = config('osu.elasticsearch.prefix')."high_scores_{$mode}";
@@ -21,7 +23,7 @@ trait UserScoreable
         $search
             ->size(0) // don't care about hits
             ->query(
-                (new BoolQuery)
+                (new BoolQuery())
                     ->filter(['term' => ['user_id' => $this->getKey()]])
             )
             ->setAggregations([
@@ -54,39 +56,48 @@ trait UserScoreable
         return $response;
     }
 
-    public function beatmapBestScoreIds(string $mode, int $size)
+    public function beatmapBestScoreIds(string $mode)
     {
-        // FIXME: should return some sort of error on error...but the layers above can't handle them.
-        $buckets = $this->aggregatedScoresBest($mode, $size)->aggregations('by_beatmaps')['buckets'] ?? [];
+        if (!isset($this->beatmapBestScoreIds[$mode])) {
+            // aggregations do not support regular pagination.
+            // always fetching 100 to cache; we're not supporting beyond 100, either.
+            $this->beatmapBestScoreIds[$mode] = cache_remember_mutexed(
+                "search-cache:beatmapBestScores:{$this->getKey()}:{$mode}",
+                config('osu.scores.es_cache_duration'),
+                [],
+                function () use ($mode) {
+                    // FIXME: should return some sort of error on error
+                    $buckets = $this->aggregatedScoresBest($mode, 100)->aggregations('by_beatmaps')['buckets'] ?? [];
 
-        return array_map(function ($bucket) {
-            return array_get($bucket, 'top_scores.hits.hits.0._id');
-        }, $buckets);
+                    return array_map(function ($bucket) {
+                        return array_get($bucket, 'top_scores.hits.hits.0._id');
+                    }, $buckets);
+                },
+                function () {
+                    // TODO: propagate a more useful message back to the client
+                    // for now we just mark the exception as handled.
+                    return true;
+                }
+            );
+        }
+
+        return $this->beatmapBestScoreIds[$mode];
     }
 
     public function beatmapBestScores(string $mode, int $limit, int $offset = 0, $with = [])
     {
-        // aggregations do not support regular pagination.
-        // always fetching 100 to cache; we're not supporting beyond 100, either.
-        $key = "search-cache:beatmapBestScores:{$this->getKey()}:{$mode}";
-        $ids = cache_remember_mutexed($key, config('osu.scores.es_cache_duration'), [], function () use ($mode) {
-            return $this->beatmapBestScoreIds($mode, 100);
-        }, function () {
-            // TODO: propagate a more useful message back to the client
-            // for now we just mark the exception as handled.
-            return true;
-        });
-
-        $ids = array_slice($ids, $offset, $limit);
+        $ids = array_slice($this->beatmapBestScoreIds($mode), $offset, $limit);
         $clazz = Best\Model::getClassByString($mode);
 
         $results = $clazz::whereIn('score_id', $ids)->orderByField('score_id', $ids)->with($with)->get();
 
         // fill in positions for weighting
+        // also preload the user relation
         $position = $offset;
         foreach ($results as $result) {
             $result->position = $position;
             $result->weight = pow(0.95, $position);
+            $result->setRelation('user', $this);
             $position++;
         }
 

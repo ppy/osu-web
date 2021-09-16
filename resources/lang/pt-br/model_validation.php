@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Deletar postagem de metadados de um beatmap não é permitido.',
             'beatmapset_post_no_edit' => 'Editar postagem de metadados de um beatmap não é permitido.',
+            'first_post_no_delete' => 'Não é possível excluir a publicação inicial',
+            'missing_topic' => 'Está faltando um tópico na publicação',
             'only_quote' => 'Sua resposta contém apenas uma citação.',
 
             'attributes' => [
@@ -121,6 +123,7 @@ return [
     'user' => [
         'contains_username' => 'Senha não deve conter seu nome de usuário.',
         'email_already_used' => 'Email já utilizado.',
+        'email_not_allowed' => 'Endereço de email não permitido.',
         'invalid_country' => 'País não presente no banco de dados.',
         'invalid_discord' => 'Nome de usuário do Discord inválido.',
         'invalid_email' => "Não parece ser um email válido.",

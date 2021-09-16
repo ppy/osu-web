@@ -13,7 +13,16 @@ return [
     ],
 
     'scopes' => [
+        'bot' => 'Toimi chat-bottina.',
         'identify' => 'Tunnista itsesi ja lue julkista profiiliasi.',
+
+        'chat' => [
+            'write' => 'Lähetä viestejä puolestasi.',
+        ],
+
+        'forum' => [
+            'write' => '',
+        ],
 
         'friends' => [
             'read' => 'Näe ketä seuraat.',

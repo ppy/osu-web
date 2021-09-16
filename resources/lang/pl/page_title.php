@@ -22,6 +22,7 @@ return [
             '401-verification' => 'weryfikacja konta',
             '405' => 'nie znaleziono',
             '422' => 'nieprawidłowe żądanie',
+            '429' => 'zbyt wiele zapytań',
             '500' => 'coś się popsuło',
             '503' => 'przerwa techniczna',
         ],
@@ -75,6 +76,9 @@ return [
         'contests_controller' => [
             '_' => 'konkursy',
         ],
+        'follows_controller' => [
+            'index' => 'strona główna',
+        ],
         'friends_controller' => [
             'index' => 'strona główna',
         ],
@@ -107,13 +111,13 @@ return [
             '_' => 'resetowanie hasła',
         ],
         'ranking_controller' => [
-            '_' => 'ranking',
+            '_' => 'rankingi',
         ],
         'scores_controller' => [
             '_' => 'wynik',
         ],
         'store_controller' => [
-            '_' => 'sklep osu!',
+            '_' => 'sklep',
         ],
         'tournaments_controller' => [
             '_' => 'turnieje',
@@ -123,20 +127,23 @@ return [
             'disabled' => 'powiadomienie',
         ],
         'wiki_controller' => [
-            '_' => 'baza wiedzy',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'ranking',
+            '_' => 'rankingi',
         ],
     ],
     'store' => [
-        '_' => 'sklep osu!',
+        '_' => 'sklep',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'informacje o modowaniu',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'historia gier w trybie wieloosobowym',
         ],
     ],
 ];

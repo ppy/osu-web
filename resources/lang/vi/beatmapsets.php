@@ -8,6 +8,15 @@ return [
         'disabled' => 'Hiện tại beatmap này không có sẵn để tải xuống.',
         'parts-removed' => 'Một phần của beatmap này đã bị xóa bỏ theo yêu cầu của người tạo lập hoặc bên người có quyền bên thứ ba.',
         'more-info' => 'Nhấp vào đây để biết thêm thông tin.',
+        'rule_violation' => 'Một số nội dung có trong bản đồ này đã bị xóa sau khi bị đánh giá là không phù hợp để sử dụng trong osu!.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Chậm lại, chơi nhiều hơn.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
@@ -16,19 +25,41 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'không beatmaps',
+
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'tải xuống',
+            'video' => 'tải xuống cùng video',
+            'no_video' => 'tải xuống không video',
+            'direct' => 'mở trong osu!direct',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => 'Bản đồ nhịp kết hợp yêu cầu bạn chọn ít nhất một chế độ chơi để đề cử.',
+        'incorrect_mode' => 'Bạn không có sự cho phép để đề cử cho chế độ: :mode',
+        'full_bn_required' => 'Bạn phải là người được đề cử đầy đủ để thực hiện đề cử đủ điều kiện này.',
+        'too_many' => 'Yêu cầu đề cử đã được đáp ứng.',
+
+        'dialog' => [
+            'confirmation' => 'Bạn có chắc chắn muốn đề cử beatmap này không?',
+            'header' => 'Đề cử Beatmap',
+            'hybrid_warning' => 'lưu ý: bạn chỉ có thể đề cử một lần, vì vậy hãy đảm bảo rằng bạn đang đề cử cho tất cả các chế độ chơi mà bạn dự định',
+            'which_modes' => 'Đề cử cho những chế độ nào?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Minh bạch',
     ],
 
     'show' => [
         'discussion' => 'Góc Thảo Luận',
 
         'details' => [
+            'by_artist' => 'bởi :artist',
             'favourite' => 'Yêu thích beatmapset này',
+            'favourite_login' => 'Đăng nhập để yêu thích beatmap này',
             'logged-out' => 'Bạn cần phải đăng nhập trước khi tải xuống beatmap!',
             'mapped_by' => 'được tạo bởi :mapper',
             'unfavourite' => 'Bỏ yêu thích beatmapset này',
@@ -36,7 +67,7 @@ return [
 
             'download' => [
                 '_' => 'Tải Xuống',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'không Video',
                 'video' => 'cùng Video',
             ],
@@ -50,7 +81,7 @@ return [
         'details_date' => [
             'approved' => 'được chấp nhận :timeago',
             'loved' => 'được yêu thích :timeago',
-            'qualified' => '',
+            'qualified' => 'đủ tiêu chuẩn :timeago',
             'ranked' => 'được xếp hạng :timeago',
             'submitted' => 'được đăng :timeago',
             'updated' => 'cập nhật lần cuối :timeago',
@@ -74,11 +105,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Nếu bạn thấy có vấn đề với bản beatmap này, vui lòng loại bỏ nó :link.',
             ],
 
             'report' => [
-                '_' => '',
+                '_' => 'Nếu bạn tìm thấy vấn đề với bản đồ này, vui lòng báo cáo nó :link để cảnh báo cho nhóm.',
                 'button' => 'Báo cáo vấn đề',
                 'link' => 'đây',
             ],
@@ -89,10 +120,24 @@ return [
             'genre' => 'Thể Loại',
             'language' => 'Ngôn Ngữ',
             'no_scores' => 'Vẫn đang tính toán dữ liệu...',
+            'nsfw' => 'Nội dung thô tục',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',
             'source' => 'Nguồn',
+            'storyboard' => 'Beatmap này chứa storyboard',
             'success-rate' => 'Tỉ Lệ Thành Công',
             'tags' => 'Tags',
+            'video' => 'Beatmap này chứa video',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Beatmap này chứa nội dung thô tục, xúc phạm, hoặc đáng lo ngại. Bạn có muốn xem nó không?',
+            'title' => 'Nội dung thô tục',
+
+            'buttons' => [
+                'disable' => 'Ẩn thông báo',
+                'listing' => 'Danh sách beatmap',
+                'show' => 'Hiển thị',
+            ],
         ],
 
         'scoreboard' => [
@@ -110,11 +155,11 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'player' => 'Người Chơi',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Xếp Hạng',
                 'score_total' => 'Tổng Điểm',
                 'score' => 'Điểm',
-                'time' => '',
+                'time' => 'Thời gian',
             ],
 
             'no_scores' => [
@@ -152,7 +197,7 @@ return [
             'approved' => 'Được Chấp Nhận',
             'loved' => 'Được yêu thích',
             'qualified' => 'Qualified',
-            'wip' => '',
+            'wip' => 'WIP',
             'pending' => 'Đang Chờ',
             'graveyard' => 'Graveyard',
         ],

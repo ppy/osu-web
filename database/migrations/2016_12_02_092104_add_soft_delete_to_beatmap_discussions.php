@@ -15,7 +15,6 @@ class AddSoftDeleteToBeatmapDiscussions extends Migration
      */
     public function up()
     {
-        //
         Schema::table('beatmap_discussions', function ($table) {
             $table->softDeletes();
             $table->unsignedMediumInteger('deleted_by_id')->nullable();
@@ -33,7 +32,6 @@ class AddSoftDeleteToBeatmapDiscussions extends Migration
      */
     public function down()
     {
-        //
         Schema::table('beatmap_discussions', function ($table) {
             $table->dropSoftDeletes();
             $table->dropForeign(['deleted_by_id']);

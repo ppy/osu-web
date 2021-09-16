@@ -11,7 +11,7 @@ return [
     'wrong_confirmation' => 'Confirmation does not match.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Timestamp is specified but beatmap is missing.',
+        'beatmap_missing' => 'Timestamp is specified but beatmap difficulty is missing.',
         'beatmapset_no_hype' => "Beatmap can't be hyped.",
         'hype_requires_null_beatmap' => 'Hype must be done in the General (all difficulties) section.',
         'invalid_beatmap_id' => 'Invalid difficulty specified.',
@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Deleting beatmap metadata post is not allowed.',
             'beatmapset_post_no_edit' => 'Editing beatmap metadata post is not allowed.',
+            'first_post_no_delete' => 'Can\'t delete starting post',
+            'missing_topic' => 'Post is missing topic',
             'only_quote' => 'Your reply contains only a quote.',
 
             'attributes' => [
@@ -121,6 +123,7 @@ return [
     'user' => [
         'contains_username' => 'Password may not contain username.',
         'email_already_used' => 'Email address already used.',
+        'email_not_allowed' => 'Email address not allowed.',
         'invalid_country' => 'Country not in database.',
         'invalid_discord' => 'Discord username invalid.',
         'invalid_email' => "Doesn't seem to be a valid email address.",
@@ -160,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => 'Ranked beatmaps cannot be reported',
         'reason_not_valid' => ':reason is not valid for this report type.',
         'self' => "You can't report yourself!",
     ],

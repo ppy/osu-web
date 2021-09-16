@@ -4,23 +4,33 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Bildir',
+        'title' => ':username kullanıcısının beatmapi bildirilsin mi?',
+    ],
+
     'beatmapset_discussion_post' => [
-        'button' => 'Rapor Et',
-        'title' => ':username adlı kişinin postu raporlansın mı?',
+        'button' => 'Bildir',
+        'title' => ':username kullanıcısının gönderisi bildirilsin mi?',
     ],
 
     'comment' => [
-        'button' => 'Rapor Et',
-        'title' => ':username adlı kişinin skoru raporlansın mı?',
+        'button' => 'Bildir',
+        'title' => ':username kullanıcısının yorumunu bildirilsin mi?',
+    ],
+
+    'forum_post' => [
+        'button' => 'Bildir',
+        'title' => ':username: kullanıcısının gönderisi bildirilsin mi?',
     ],
 
     'scores' => [
-        'button' => 'Skoru Raporla',
-        'title' => ':username adlı kişinin skoru raporlansın mı?',
+        'button' => 'Skoru Bildir',
+        'title' => ':username kullanıcısının skoru bildirilsin mi?',
     ],
 
     'user' => [
-        'button' => 'Rapor Et',
-        'title' => ':username adlı kişi rapor edilsin mi?',
+        'button' => 'Bildir',
+        'title' => ':username kullanıcısı bildirilsin mi?',
     ],
 ];

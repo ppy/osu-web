@@ -13,7 +13,16 @@ return [
     ],
 
     'scopes' => [
+        'bot' => '',
         'identify' => 'Identifikovať vás a prezerať verejný profil.',
+
+        'chat' => [
+            'write' => '',
+        ],
+
+        'forum' => [
+            'write' => '',
+        ],
 
         'friends' => [
             'read' => 'Pozrieť koho sledujete.',

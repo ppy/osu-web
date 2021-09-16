@@ -5,9 +5,13 @@
 
 return [
     'all_read' => 'Alle varsler lest!',
+    'delete' => '',
+    'loading' => '',
     'mark_read' => 'Tøm :type',
     'none' => 'Ingen varsler',
     'see_all' => 'se alle varsler',
+    'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'alle',
@@ -23,6 +27,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
+
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Beatmapdiskusjon',
@@ -58,6 +68,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmappen er i kø for å bli rangert',
                 'beatmapset_rank' => '":title" har blitt rangert',
                 'beatmapset_rank_compact' => 'Beatmappet var rangert',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Problemstilling skrevet av :username nullstilte nominasjonen av beatmappet ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Nominasjonen ble tilbakestilt',
             ],
@@ -130,6 +142,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medaljer',
 
@@ -137,12 +159,17 @@ return [
                 '_' => 'Ny medalje',
                 'user_achievement_unlock' => '":title" låst opp!',
                 'user_achievement_unlock_compact' => '":title" låst opp!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Diskusjonen om ":title" har blitt låst',
                 'beatmapset_discussion_post_new' => 'Diskusjonen om ":title" har nye oppdateringer',
@@ -159,6 +186,7 @@ return [
                 'beatmapset_nominate' => '',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
 
@@ -195,6 +223,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username har låst opp en ny medalje, ":title"!',
                 'user_achievement_unlock_self' => 'Du har låst opp en ny medalje, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

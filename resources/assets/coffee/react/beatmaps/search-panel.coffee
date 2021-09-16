@@ -30,13 +30,13 @@ export class SearchPanel extends React.Component
 
 
   componentDidMount: =>
-    $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
+    $(document).on 'sticky-header:sticking', @setHeaderPinned
     @mountPortal @breadcrumbsPortal, @breadcrumbsElement
     @mountPortal @contentPortal, @contentElement
 
 
   componentWillUnmount: =>
-    $(document).off '.search-panel'
+    $(document).off 'sticky-header:sticking', @setHeaderPinned
     @unmountPortal @breadcrumbsPortal, @breadcrumbsElement
     @unmountPortal @contentPortal, @contentElement
 
@@ -217,6 +217,10 @@ export class SearchPanel extends React.Component
           name: 'played'
           options: filters.played
 
+        @renderFilter
+          name: 'nsfw'
+          options: filters.nsfw
+
 
   setHeaderPinned: (_event, pinned) =>
     if pinned && document.activeElement == @inputRef.current
@@ -227,7 +231,7 @@ export class SearchPanel extends React.Component
 
   mountPortal: (portal, root) ->
     # clean up any existing element when navigating backwards.
-    existingElement = document.getElementById(portal.id)
+    existingElement = newBody.querySelector("##{portal.id}")
     existingElement?.remove()
 
     root?.appendChild portal

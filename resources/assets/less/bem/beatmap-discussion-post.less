@@ -117,18 +117,9 @@
       flex: 1;
     }
 
-    // Thread starter post is styled slightly differently.
-    // The post itself doesn't contain user card.
-    // On desktop, it means the left side should have slightly smaller gutter.
-    // On mobile, user card located on top of the content and already has
-    // bottom margin. Reduce the padding here to compensate.
+    // Paddings for thread starter is handled by its parent.
     .@{_top}--discussion & {
-      padding-top: 5px;
-
-      @media @desktop {
-        padding-top: 10px;
-        padding-left: 10px;
-      }
+      padding: 0;
     }
 
     .@{_top}--reply & {

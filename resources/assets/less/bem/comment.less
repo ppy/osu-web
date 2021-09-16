@@ -8,8 +8,8 @@
   @_line-margin: 10px;
   @_top: comment;
   @_spacing: 10px;
-  @_gutter-desktop-left: @gutter-desktop;
-  @_gutter-desktop-right: @gutter-desktop;
+  @_gutter-desktop-left: @gutter-v2-desktop;
+  @_gutter-desktop-right: @gutter-v2-desktop;
 
   margin-top: @_spacing;
   font-size: @font-size--normal-2;
@@ -19,7 +19,7 @@
   &--top {
     border-bottom-width: 1px;
     margin-top: 0;
-    padding: (@_spacing + 5px) @gutter;
+    padding: (@_spacing + 5px) @gutter-v2;
 
     .@{_top}--single& {
       border-bottom-width: 0;
@@ -67,7 +67,7 @@
 
     .@{_top}--single & {
       margin-left: 0;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       flex-direction: column;
       font-size: @font-size--title;
     }
@@ -243,6 +243,12 @@
     .link-hover({
       color: @osu-colour-l1;
     });
+  }
+
+  &__toolbar {
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
   }
 
   &__top-show-replies {

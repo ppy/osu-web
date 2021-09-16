@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => '',
+            'multiplayer' => '',
             'show' => '',
         ],
     ],
@@ -62,48 +63,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'επιλεγμένοι καλλιτέχνες',
-            'index' => 'λίστα',
-            'packs' => 'πακέτα',
         ],
         'community' => [
             '_' => 'κοινότητα',
-            'chat' => 'συνομιλία',
-            'contests' => 'διαγωνισμοί',
             'dev' => 'προγραμματισμός',
-            'forum-forums-index' => 'φόρουμ',
-            'getLive' => 'ζωντανά',
-            'tournaments' => 'τουρνουά',
         ],
         'help' => [
             '_' => 'βοήθεια',
+            'getAbuse' => '',
             'getFaq' => 'συχνές ερωτήσεις',
             'getRules' => 'κανόνες',
             'getSupport' => 'όχι, πραγματικά, χρειάζομαι βοήθεια!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'αρχική σελίδα',
-            'changelog-index' => 'αρχείο καταγραφής αλλαγών',
-            'getDownload' => 'λήψη',
-            'news-index' => 'ειδήσεις',
-            'search' => 'αναζήτηση',
             'team' => 'ομάδα',
         ],
         'rankings' => [
             '_' => 'κατατάξεις',
-            'charts' => 'spotlights',
-            'country' => 'χώρα',
-            'index' => 'επίδοση',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
-            'score' => 'βαθμολογία',
         ],
         'store' => [
             '_' => 'κατάστημα',
-            'cart-show' => 'καλάθι',
-            'getListing' => 'λίστα',
-            'orders-index' => 'ιστορικό παραγγελιών',
         ],
     ],
 
@@ -158,6 +139,10 @@ return [
             'error' => '',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Ωχ όχι! Κάτι χάλασε! ;_;',
             'description' => "Eιδοποιούμαστε αυτόματα για κάθε σφάλμα.",
@@ -203,6 +188,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ρυθμίσεις',
+            'follows' => '',
             'friends' => 'Φίλοι',
             'logout' => 'Αποσύνδεση',
             'profile' => 'Το Προφίλ μου',

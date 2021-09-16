@@ -17,35 +17,34 @@
     width: 8px;
     flex: none;
     align-self: stretch;
+    background-color: var(--bg, transparent);
 
-    .type(@name, @bg-color) {
-      &--@{name} {
-        background-color: @bg-color;
-      }
-    }
-
-    .type(approve, @blue);
-    .type(discussion-delete, @yellow);
-    .type(discussion-lock, @red);
-    .type(discussion-post-delete, @yellow);
-    .type(discussion-post-restore, @blue);
-    .type(discussion-restore, @blue);
-    .type(discussion-unlock, @green);
-    .type(disqualify, @red);
-    .type(genre-edit, @blue);
-    .type(issue-reopen, @yellow);
-    .type(issue-resolve, @green);
-    .type(kudosu-allow, @blue);
-    .type(kudosu-deny, @red);
-    .type(kudosu-gain, @blue);
-    .type(kudosu-lost, @red);
-    .type(kudosu-recalculate, #ccc);
-    .type(language-edit, @blue);
-    .type(love, @pink);
-    .type(nominate, @blue);
-    .type(nomination-reset, @red);
-    .type(qualify, @blue);
-    .type(rank, @green);
+    --bg-approve: @blue;
+    --bg-beatmap-owner-change: @blue;
+    --bg-discussion-delete: @yellow;
+    --bg-discussion-lock: @red;
+    --bg-discussion-post-delete: @yellow;
+    --bg-discussion-post-restore: @blue;
+    --bg-discussion-restore: @blue;
+    --bg-discussion-unlock: @green;
+    --bg-disqualify: @red;
+    --bg-genre-edit: @blue;
+    --bg-issue-reopen: @yellow;
+    --bg-issue-resolve: @green;
+    --bg-kudosu-allow: @blue;
+    --bg-kudosu-deny: @red;
+    --bg-kudosu-gain: @blue;
+    --bg-kudosu-lost: @red;
+    --bg-kudosu-recalculate: #ccc;
+    --bg-language-edit: @blue;
+    --bg-love: @pink;
+    --bg-nominate: @blue;
+    --bg-nomination-reset: @red;
+    --bg-nomination-reset-received: @red;
+    --bg-nsfw-toggle: @blue;
+    --bg-qualify: @blue;
+    --bg-rank: @green;
+    --bg-remove-from-loved: @red;
 
     &--beatmapset-activities {
       margin: 0 10px;

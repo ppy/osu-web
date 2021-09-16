@@ -3,23 +3,33 @@
 
 import * as React from 'react';
 
-interface Props {
-  mappings: any;
+export interface Props {
+  mappings: Partial<Record<string, React.ReactNode>>;
   pattern: string;
 }
 
-export function StringWithComponent(props: Props) {
+export default function StringWithComponent(props: Props) {
   const keys = Object.keys(props.mappings);
-  const regex = new RegExp(`(${keys.join('|')})`);
+
+  if (keys.length === 0) {
+    return <>{props.pattern}</>;
+  }
+
+  const regex = new RegExp(`(:${keys.join('|:')})`);
   const parts = props.pattern.split(regex);
 
   return (
     <>
-      {
-        parts.map((part) => {
-          return props.mappings[part] ? props.mappings[part] : part;
-        })
-      }
+      {parts.map((part) => {
+        const key = part[0] === ':' ? part.slice(1) : null;
+        const content = key == null || props.mappings[key] == null
+          ? part
+          : props.mappings[key];
+
+        return typeof content === 'string'
+          ? content
+          : <React.Fragment key={part}>{content}</React.Fragment>;
+      })}
     </>
   );
 }

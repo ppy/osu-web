@@ -39,13 +39,14 @@ class CheckUserBanStatus
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check()
+        if (
+            $this->auth->check()
             && ($this->auth->user()->isBanned() || $this->auth->user()->isLoginBlocked())
         ) {
             logout();
 
             if (is_api_request()) {
-                abort(403, trans('users.disabled.title'));
+                abort(403, osu_trans('users.disabled.title'));
             } else {
                 return ujs_redirect(route('users.disabled'));
             }

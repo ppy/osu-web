@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => '',
             'show' => 'info',
         ],
     ],
@@ -62,48 +63,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'featured artists',
-            'index' => 'liste',
-            'packs' => 'pakker',
         ],
         'community' => [
             '_' => 'samfunnet',
-            'chat' => 'chat',
-            'contests' => 'konkurranser',
             'dev' => 'utvikling',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'direktesendinger',
-            'tournaments' => 'turneringer',
         ],
         'help' => [
             '_' => 'hjelp',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nei, virkelig, jeg trenger hjelp!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'hjem',
-            'changelog-index' => 'endringslogg',
-            'getDownload' => 'last ned',
-            'news-index' => 'nyheter',
-            'search' => 'søk',
             'team' => 'skapere',
         ],
         'rankings' => [
             '_' => 'rangering',
-            'charts' => 'rampelyset',
-            'country' => 'land',
-            'index' => 'prestasjon',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'flerspiller',
-            'score' => 'poengsum',
         ],
         'store' => [
             '_' => 'butikk',
-            'cart-show' => 'handlekurv',
-            'getListing' => 'katalog',
-            'orders-index' => 'bestillingshistorikk',
         ],
     ],
 
@@ -158,6 +139,10 @@ return [
             'error' => 'Ugyldig parameter i forespørsel',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Åh nei! Noe gikk i stykker! ;_;',
             'description' => "Vi blir automatisk informert om hver feilstilling.",
@@ -203,6 +188,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Innstillinger',
+            'follows' => '',
             'friends' => 'Venner',
             'logout' => 'Logg Ut',
             'profile' => 'Min Profil',

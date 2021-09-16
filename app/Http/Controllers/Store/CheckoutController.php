@@ -12,7 +12,6 @@ use App\Traits\StoreNotifiable;
 use Auth;
 use DB;
 use Exception;
-use Request;
 
 class CheckoutController extends Controller
 {
@@ -68,7 +67,7 @@ class CheckoutController extends Controller
         if (!empty($validationErrors)) {
             return $this->setAndRedirectCheckoutError(
                 $order,
-                trans('store.checkout.cart_problems'),
+                osu_trans('store.checkout.cart_problems'),
                 $validationErrors
             );
         }

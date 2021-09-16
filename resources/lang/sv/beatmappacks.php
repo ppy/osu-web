@@ -28,8 +28,12 @@ return [
     'show' => [
         'download' => 'Ladda ner',
         'item' => [
-            'cleared' => 'rensad',
-            'not_cleared' => 'ej rensad',
+            'cleared' => 'avklarad',
+            'not_cleared' => 'ej avklarad',
+        ],
+        'no_diff_reduction' => [
+            '_' => ':link kan inte användas för att avklara detta paket.',
+            'link' => 'Mods för minskad svårighetsgrad',
         ],
     ],
 

@@ -8,6 +8,15 @@ return [
         'disabled' => 'Tato beatmapa není momentálně dostupná ke stažení.',
         'parts-removed' => 'Část této beatmapy byla smazána na žádost tvůrce nebo vlastníka třetí strany.',
         'more-info' => 'Pro více informací klikněte zde.',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
@@ -16,6 +25,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'stáhnout',
             'video' => 'stáhnout s videem',
@@ -24,11 +35,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Explicitní',
+    ],
+
     'show' => [
         'discussion' => 'Diskuze',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Přidat do mých oblíbených',
+            'favourite_login' => '',
             'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
             'mapped_by' => 'beatmapu vytvořil :mapper',
             'unfavourite' => 'Odebrat z mých oblíbených',
@@ -48,12 +79,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
+            'approved' => 'schváleno :timeago',
             'loved' => '',
-            'qualified' => '',
+            'qualified' => 'kvalifikováno :timeago',
             'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'submitted' => 'odesláno :timeago',
+            'updated' => 'naposledy aktualizováno :timeago',
         ],
 
         'favourites' => [
@@ -74,11 +105,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Pokud najdete problém s touto mapou, diskvalifikujte ji prosím :link.',
             ],
 
             'report' => [
-                '_' => '',
+                '_' => 'Pokud najdete problém s touto mapou, nahlaste jej :link k upozornění týmu.',
                 'button' => 'Nahlásit problém',
                 'link' => 'zde',
             ],
@@ -89,10 +120,24 @@ return [
             'genre' => 'Žánr',
             'language' => 'Jazyk',
             'no_scores' => 'Data se vypočítávají...',
+            'nsfw' => 'Explicitní obsah',
             'points-of-failure' => 'Body neúspěchů',
             'source' => 'Zdroj',
+            'storyboard' => '',
             'success-rate' => 'Úspěšnost',
             'tags' => 'Tagy',
+            'video' => '',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Tato beatmapa obsahuje explicitní, urážlivý nebo rušivý obsah. Chcete ji přesto zobrazit?',
+            'title' => 'Explicitní obsah',
+
+            'buttons' => [
+                'disable' => 'Vypnout varování',
+                'listing' => 'Seznam beatmap',
+                'show' => 'Zobrazit',
+            ],
         ],
 
         'scoreboard' => [
@@ -114,7 +159,7 @@ return [
                 'rank' => 'Umístění',
                 'score_total' => 'Celkové skóre',
                 'score' => 'Skóre',
-                'time' => '',
+                'time' => 'Čas',
             ],
 
             'no_scores' => [

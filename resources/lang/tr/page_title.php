@@ -22,6 +22,7 @@ return [
             '401-verification' => 'hesap doğrulama',
             '405' => 'mevcut değil',
             '422' => 'geçersiz istek',
+            '429' => 'çok fazla istek',
             '500' => 'bir şeyler yanlış',
             '503' => 'bakım',
         ],
@@ -38,7 +39,7 @@ return [
             'verify_link' => 'hesap doğrulama',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'featured artist\'ler',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'beatmap tartışma gönderileri',
@@ -60,7 +61,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap tartışma',
-            'index' => 'beatmap listesi',
+            'index' => 'beatmap kataloğu',
             'show' => 'beatmap bilgisi',
         ],
         'changelog_controller' => [
@@ -74,6 +75,9 @@ return [
         ],
         'contests_controller' => [
             '_' => 'yarışmalar',
+        ],
+        'follows_controller' => [
+            'index' => 'kontrol paneli',
         ],
         'friends_controller' => [
             'index' => 'kontrol paneli',
@@ -113,7 +117,7 @@ return [
             '_' => 'performans',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'mağaza',
         ],
         'tournaments_controller' => [
             '_' => 'turnuvalar',
@@ -123,7 +127,7 @@ return [
             'disabled' => 'bildirim',
         ],
         'wiki_controller' => [
-            '_' => 'bilgi bankası',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -132,11 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'mağaza',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder bilgisi',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'çok oyunculu geçmişi',
         ],
     ],
 ];

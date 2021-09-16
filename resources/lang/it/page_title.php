@@ -22,6 +22,7 @@ return [
             '401-verification' => 'verifica account',
             '405' => 'mancante',
             '422' => 'richiesta non valida',
+            '429' => 'troppe richieste',
             '500' => 'qualcosa è andato storto',
             '503' => 'manutenzione',
         ],
@@ -61,7 +62,7 @@ return [
         'beatmapsets_controller' => [
             'discussion' => 'discussione beatmap',
             'index' => 'lista beatmap',
-            'show' => 'info beatmap',
+            'show' => 'informazioni beatmap',
         ],
         'changelog_controller' => [
             '_' => 'note di rilascio',
@@ -74,6 +75,9 @@ return [
         ],
         'contests_controller' => [
             '_' => 'concorsi',
+        ],
+        'follows_controller' => [
+            'index' => 'dashboard',
         ],
         'friends_controller' => [
             'index' => 'dashboard',
@@ -104,10 +108,10 @@ return [
             '_' => 'cronologia notifiche',
         ],
         'password_reset_controller' => [
-            '_' => 'reimpostazione password',
+            '_' => 'reset password',
         ],
         'ranking_controller' => [
-            '_' => 'classifica',
+            '_' => 'classifiche',
         ],
         'scores_controller' => [
             '_' => 'performance',
@@ -119,16 +123,16 @@ return [
             '_' => 'tornei',
         ],
         'users_controller' => [
-            '_' => 'info giocatore',
+            '_' => 'informazioni giocatore',
             'disabled' => 'avviso',
         ],
         'wiki_controller' => [
-            '_' => 'base delle conoscenze',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'classifica',
+            '_' => 'classifiche',
         ],
     ],
     'store' => [
@@ -136,7 +140,10 @@ return [
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'info modder',
+            '_' => 'informazioni modder',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'cronologia multigiocatore',
         ],
     ],
 ];

@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Ordine effettuato :date',
-
+        'cancel' => 'Annulla Ordine',
+        'cancel_confirm' => 'Quest\'ordine verrà annullato insieme al suo pagamento. Il provider del pagamento potrebbe non rilasciare immediatamente i fondi riservati. Sei sicuro?',
+        'cancel_not_allowed' => 'Quest\'ordine non può essere annullato al momento.',
         'invoice' => 'Mostra Ricevuta',
         'no_orders' => 'Nessun ordine da visualizzare.',
-        'resume' => 'Riprendi il checkout',
+        'paid_on' => 'Ordine effettuato :date',
+        'resume' => 'Riprendi Pagamento',
+        'shopify_expired' => 'Il link del pagamento per quest\'ordine è scaduto.',
 
         'item' => [
             'display_name' => [
@@ -106,8 +109,8 @@ return [
         'name' => 'Nome',
 
         'stock' => [
-            'out' => 'Attualmente non disponibile :(. Controlla più tardi.',
-            'out_with_alternative' => 'Questo tipo non è attualmente disponibile :(. Prova con un altro tipo o controlla più tardi.',
+            'out' => 'Questo elemento è attualmente esaurito. Controlla più tardi!',
+            'out_with_alternative' => 'Sfortunatamente questo elemento è esaurito. Usa il menu a discesa per sceglierne un altro tipo oppure controlla più tardi!',
         ],
 
         'add_to_cart' => 'Aggiungi al carrello',

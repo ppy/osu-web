@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
 import { Discussion } from "../beatmap-discussions/discussion"
@@ -14,30 +15,30 @@ export class Discussions extends React.Component
         if @props.discussions.length == 0
           div className: 'modding-profile-list__empty', osu.trans('users.show.extra.none')
         else
-          [
-            for discussion in @props.discussions
-              div
-                className: 'modding-profile-list__row'
-                key: discussion.id,
+          el BeatmapsContext.Consumer, null, (beatmaps) =>
+            el React.Fragment, null,
+              for discussion in @props.discussions
+                div
+                  className: 'modding-profile-list__row'
+                  key: discussion.id,
 
-                a
-                  className: 'modding-profile-list__thumbnail'
-                  href: BeatmapDiscussionHelper.url(discussion: discussion),
+                  a
+                    className: 'modding-profile-list__thumbnail'
+                    href: BeatmapDiscussionHelper.url(discussion: discussion),
 
-                  img className: 'beatmapset-cover', src: discussion.beatmapset.covers.list
+                    img className: 'beatmapset-cover', src: discussion.beatmapset.covers.list
 
-                el Discussion,
-                  discussion: discussion
-                  users: @props.users
-                  currentUser: currentUser
-                  beatmapset: discussion.beatmapset
-                  isTimelineVisible: false
-                  visible: false
-                  showDeleted: true
-                  preview: true
-            a
-              key: 'show-more'
-              className: 'modding-profile-list__show-more'
-              href: laroute.route('beatmap-discussions.index', {user: @props.user.id}),
-              osu.trans('users.show.extra.discussions.show_more')
-          ]
+                  el Discussion,
+                    discussion: discussion
+                    users: @props.users
+                    currentBeatmap: beatmaps[discussion.beatmap_id]
+                    currentUser: currentUser
+                    beatmapset: discussion.beatmapset
+                    isTimelineVisible: false
+                    visible: false
+                    showDeleted: true
+                    preview: true
+              a
+                className: 'modding-profile-list__show-more'
+                href: laroute.route('beatmapsets.discussions.index', {user: @props.user.id}),
+                osu.trans('users.show.extra.discussions.show_more')

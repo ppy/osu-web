@@ -5,22 +5,22 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Kaikki',
+        'title' => 'Maa',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Näytä',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Variantti',
         ],
     ],
 
     'type' => [
         'charts' => 'Valokeilassa',
         'country' => 'Maa',
-        'multiplayer' => '',
+        'multiplayer' => 'moninpeli',
         'performance' => 'Suorituskyky',
         'score' => 'Piste',
     ],
@@ -39,7 +39,7 @@ return [
         'play_count' => 'Pelikerrat',
         'performance' => 'Suorituskyky',
         'total_score' => 'Kokonaispisteet',
-        'ranked_score' => 'Pisteet (hyväksytyt)',
+        'ranked_score' => 'Tilastoidut pisteet',
         'average_score' => 'Keskim. pisteet',
         'average_performance' => 'Keskim. PP',
         'ss' => '',

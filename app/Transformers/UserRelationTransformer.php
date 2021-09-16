@@ -25,6 +25,6 @@ class UserRelationTransformer extends TransformerAbstract
 
     public function includeTarget(UserRelation $userRelation)
     {
-        return $this->item($userRelation->target, new UserCompactTransformer);
+        return $this->item($userRelation->target, new UserCompactTransformer());
     }
 }

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => 'How about playing some osu! instead?',
     'require_login' => 'Please sign in to proceed.',
     'require_verification' => 'Please verify to proceed.',
     'restricted' => "Can't do that while restricted.",
@@ -17,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
-            'full_bn_required' => 'You must be a full nominator to perform this qualifying nomination.',
-            'full_bn_required_hybrid' => 'You must be a full nominator to nominate beatmap sets with more than one game mode.',
             'incorrect_state' => 'Error performing that action, try refreshing the page.',
             'owner' => "Can't nominate own beatmap.",
             'set_metadata' => 'You must set the genre and language before nominating.',
@@ -69,6 +68,7 @@ return [
         'moderated' => 'That channel is currently moderated.',
         'no_access' => 'You do not have access to that channel.',
         'restricted' => 'You cannot send messages while silenced, restricted or banned.',
+        'silenced' => 'You cannot send messages while silenced, restricted or banned.',
     ],
 
     'comment' => [
@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
+
+        'entry' => [
+            'limit_reached' => 'You have reached the entry limit for this contest',
+            'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
+        ],
     ],
 
     'forum' => [

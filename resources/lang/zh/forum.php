@@ -47,11 +47,13 @@ return [
         'confirm_restore' => '恢复此回复？',
         'edited' => '最后由 :user 于 :when 编辑，总共编辑了 :count 次。',
         'posted_at' => '发表于 :when',
+        'posted_by' => '发帖人：:username',
 
         'actions' => [
             'destroy' => '删除回复',
-            'restore' => '恢复回复',
             'edit' => '编辑回复',
+            'report' => '举报帖子',
+            'restore' => '恢复回复',
         ],
 
         'create' => [
@@ -61,7 +63,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count_delimited 帖子',
+            'post_count' => ':count_delimited 篇帖子',
             'topic_starter' => '楼主',
         ],
     ],
@@ -73,9 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '删除此主题？',
+        'confirm_restore' => '恢复此主题？',
         'deleted' => '已删除的主题',
-        'go_to_latest' => '查看最后的帖子',
+        'go_to_latest' => '查看最新的帖子',
         'has_replied' => '你已回复过此主题',
+        'in_forum' => '在 :forum',
         'latest_post' => ':when :user',
         'latest_reply_by' => '最后回复： :user',
         'new_topic' => '发表新主题',
@@ -85,6 +90,11 @@ return [
         'reply_title_prefix' => '回复',
         'started_by' => '发帖人： :user',
         'started_by_verbose' => '由 :user 发起',
+
+        'actions' => [
+            'destroy' => '删除主题',
+            'restore' => '恢复主题',
+        ],
 
         'create' => [
             'close' => '关闭',
@@ -280,8 +290,8 @@ return [
                 ],
 
                 'user' => [
-                    'count' => ':count 票',
-                    'current' => '还有 :votes 。',
+                    'count' => '{0} 0票|{1} :count_delimited 票|[2,*] :count_delimited 票',
+                    'current' => '还有 :votes 张选票。',
                     'not_enough' => "没有票了",
                 ],
             ],

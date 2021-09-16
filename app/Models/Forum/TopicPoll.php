@@ -122,11 +122,11 @@ class TopicPoll
                 ->pollOptions()
                 ->delete();
 
-            for ($i = 0; $i < count($this->params['options']); $i++) {
+            foreach ($this->params['options'] as $index => $value) {
                 PollOption::create([
                     'topic_id' => $this->topic->topic_id,
-                    'poll_option_id' => $i,
-                    'poll_option_text' => $this->params['options'][$i],
+                    'poll_option_id' => $index,
+                    'poll_option_text' => $value,
                 ]);
             }
 

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => 'Que tal jogar um pouco de osu! em vez disso?',
     'require_login' => 'Por favor, inicie a sessão para continuar.',
     'require_verification' => 'Por favor verifique para prosseguir.',
     'restricted' => "Não é possível fazer isso enquanto restrito.",
@@ -17,10 +18,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Você atingiu o limite de nomeações diárias, tente novamente amanhã.',
-            'full_bn_required' => 'Você precisa ser um nominator completo para realizar essa nomeação de qualificação.',
-            'full_bn_required_hybrid' => 'Você precisa ser um nominator completo para nomear grupos de beatmaps com mais de um modo de jogo.',
             'incorrect_state' => 'Erro ao realizar esta ação, tente atualizar a página.',
-            'owner' => "Não é possível nominar o próprio beatmap.",
+            'owner' => "Não é possível nomear o próprio beatmap.",
             'set_metadata' => 'Você deve definir o gênero e o idioma antes de nomear.',
         ],
         'resolve' => [
@@ -32,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Não é possível votar na discussão feita pelo bot",
             'limit_exceeded' => 'Por favor, espere um pouco antes de votar mais vezes',
             'owner' => "Não é possível votar na própria discussão.",
             'wrong_beatmapset_state' => 'Só é possível votar nas discussões de beatmaps pendentes.',
@@ -59,7 +58,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => 'Você não pode alterar os metadados de um mapa nominado. Entre em contato com um membro do BN ou NAT se você acha que ele está definido incorretamente.',
+            'nominated' => 'Você não pode alterar os metadados de um mapa nomeado. Entre em contato com um membro do BN ou NAT se você acha que ele está definido incorretamente.',
         ],
     ],
 
@@ -69,6 +68,7 @@ return [
         'moderated' => 'O canal atual está sendo moderado.',
         'no_access' => 'Você não tem acesso a esse canal.',
         'restricted' => 'Você não pode enviar mensagens enquanto silenciado, restrito ou banido.',
+        'silenced' => 'Você não pode enviar mensagens enquanto silenciado, restrito ou banido.',
     ],
 
     'comment' => [
@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Não é possível alterar o voto após o fim do período de votação.',
+
+        'entry' => [
+            'limit_reached' => 'Você atingiu o limite de inscrições para este concurso',
+            'over' => 'Agradecemos a sua participação! As inscrições para este concurso foram encerradas e a votação abrirá em breve.',
+        ],
     ],
 
     'forum' => [

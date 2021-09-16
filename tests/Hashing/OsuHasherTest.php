@@ -13,7 +13,7 @@ class OsuHasherTest extends TestCase
 {
     public function testBasicHashing()
     {
-        $hasher = new OsuHasher;
+        $hasher = new OsuHasher();
         $value = $hasher->make('password');
         $this->assertNotSame('password', $value);
         $this->assertNotSame(md5('password'), $value);
@@ -25,7 +25,7 @@ class OsuHasherTest extends TestCase
 
     public function testImplementsHasher()
     {
-        $hasher = new OsuHasher;
+        $hasher = new OsuHasher();
         $this->assertInstanceOf(Hasher::class, $hasher);
     }
 }

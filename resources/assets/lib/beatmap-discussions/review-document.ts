@@ -4,7 +4,7 @@
 import * as markdown from 'remark-parse';
 import { Node as SlateNode } from 'slate';
 import * as unified from 'unified';
-import { Node as UnistNode } from 'unist';
+import type { Node as UnistNode } from 'unist';
 import { BeatmapDiscussionReview, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
@@ -12,7 +12,7 @@ interface ParsedDocumentNode extends UnistNode {
   children: SlateNode[];
 }
 
-export function parseFromJson(json: string, discussions: Record<number, BeatmapDiscussion>) {
+export function parseFromJson(json: string, discussions: Partial<Record<number, BeatmapsetDiscussionJson>>) {
   let srcDoc: BeatmapDiscussionReview;
 
   try {
@@ -35,7 +35,7 @@ export function parseFromJson(json: string, discussions: Record<number, BeatmapD
   srcDoc.forEach((block) => {
     switch (block.type) {
       // paragraph
-      case 'paragraph':
+      case 'paragraph': {
         if (!osu.present(block.text.trim())) {
           // empty block (aka newline)
           doc.push({
@@ -58,11 +58,12 @@ export function parseFromJson(json: string, discussions: Record<number, BeatmapD
           });
         }
         break;
-      case 'embed':
+      }
+      case 'embed': {
         // embed
         const existingEmbedBlock = block as PersistedDocumentIssueEmbed;
-        const discussion = existingEmbedBlock.discussion_id && discussions[existingEmbedBlock.discussion_id];
-        if (!discussion) {
+        const discussion = discussions[existingEmbedBlock.discussion_id];
+        if (discussion == null) {
           console.error('unknown/external discussion referenced', existingEmbedBlock.discussion_id);
           break;
         }
@@ -77,6 +78,7 @@ export function parseFromJson(json: string, discussions: Record<number, BeatmapD
           type: 'embed',
         });
         break;
+      }
       default:
         console.error('unknown block encountered', block);
     }
@@ -94,7 +96,7 @@ export function parseFromJson(json: string, discussions: Record<number, BeatmapD
 //   becomes:
 // paragraph -> text (with bold and italic properties set)
 //
-function squash(items: SlateNode[], currentMarks?: {bold: boolean, italic: boolean}) {
+function squash(items: SlateNode[], currentMarks?: {bold: boolean; italic: boolean}) {
   let flat: SlateNode[] = [];
   const marks = currentMarks ?? {
     bold: false,
@@ -115,7 +117,7 @@ function squash(items: SlateNode[], currentMarks?: {bold: boolean, italic: boole
       flat = flat.concat(squash(item.children, newMarks));
     } else {
       const newItem: SlateNode = {
-        text: item.value || '',
+        text: (item.value as string) || '',
       };
 
       if (newMarks.bold) {

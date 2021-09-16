@@ -48,7 +48,7 @@ class EsCreateSearchBlacklist extends Command
         $this->info("{$alias} does exist, creating aliased index {$index}...");
         $client->indices()->create([
             'body' => [
-                'aliases' => [$alias => new \stdClass],
+                'aliases' => [$alias => new \stdClass()],
                 'settings' => ['number_of_shards' => 1],
             ],
             'index' => $index,

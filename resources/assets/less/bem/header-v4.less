@@ -20,7 +20,7 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
-    .at2x-fallback(--header-bg, '/images/headers/generic.jpg');
+    .at2x-fallback(--header-bg, '~@images/headers/generic.jpg');
 
     &::before {
       content: '';
@@ -33,19 +33,19 @@
     }
 
     .@{_top}--artists & {
-      .at2x-simple("/images/headers/featured-artists.jpg");
+      .at2x-simple("~@images/headers/featured-artists.jpg");
     }
 
     .@{_top}--beatmappacks & {
-      .at2x-simple('/images/headers/beatmappacks.jpg');
+      .at2x-simple('~@images/headers/beatmappacks.jpg');
     }
 
     .@{_top}--changelog & {
-      .at2x-simple('/images/headers/changelog.jpg');
+      .at2x-simple('~@images/headers/changelog.jpg');
     }
 
     .@{_top}--chat & {
-      .at2x-simple('/images/headers/chat.jpg');
+      .at2x-simple('~@images/headers/chat.jpg');
       filter: hue-rotate(115deg); // fix colour
 
       &::before {
@@ -54,11 +54,11 @@
     }
 
     .@{_top}--contests & {
-      .at2x-fallback(--header-bg, '/images/headers/contest.jpg');
+      .at2x-fallback(--header-bg, '~@images/headers/contest.jpg');
     }
 
     .@{_top}--download & {
-      .at2x-simple('/images/headers/download.jpg');
+      .at2x-simple('~@images/headers/download.jpg');
       opacity: 0.5;
 
       @media @desktop {
@@ -67,54 +67,54 @@
     }
 
     .@{_top}--forum & {
-      .at2x-simple('/images/headers/forum-topic-covers/forum-cover-category-osu.jpg');
+      .at2x-simple('~@images/headers/forum-topic-covers/forum-cover-category-osu.jpg');
     }
 
     .@{_top}--forums-index & {
-      .at2x-simple('/images/headers/forum-index.jpg');
+      .at2x-simple('~@images/headers/forum-index.jpg');
     }
 
     .@{_top}--help & {
-      .at2x-simple("/images/headers/wiki.jpg");
+      .at2x-simple("~@images/headers/wiki.jpg");
     }
 
     .@{_top}--mp-history & {
-      .at2x-simple('/images/headers/mp-history.jpg');
+      .at2x-simple('~@images/headers/mp-history.jpg');
     }
 
     .@{_top}--news & {
-      .at2x-simple('/images/headers/news.png');
+      .at2x-simple('~@images/headers/news.png');
     }
 
     .@{_top}--password-reset & {
-      .at2x-simple('/images/headers/password-reset.jpg');
+      .at2x-simple('~@images/headers/password-reset.jpg');
     }
 
     .@{_top}--rankings & {
-      .at2x-simple('/images/headers/rankings.jpg');
+      .at2x-simple('~@images/headers/rankings.jpg');
     }
 
     .@{_top}--search & {
-      .at2x-simple('/images/headers/search.jpg');
+      .at2x-simple('~@images/headers/search.jpg');
     }
 
     .@{_top}--store & {
       opacity: 0.7;
-      .at2x-simple('/images/headers/store.png');
+      .at2x-simple('~@images/headers/store.png');
     }
 
     .@{_top}--supporter & {
       opacity: 0.2;
-      .at2x-simple('/images/headers/supporter.jpg');
+      .at2x-simple('~@images/headers/supporter.jpg');
     }
 
     .@{_top}--tournaments & {
-      .at2x-simple('/images/headers/tournament-v2.jpg');
+      .at2x-simple('~@images/headers/tournament-v2.jpg');
     }
 
     .@{_top}--users & {
       opacity: 1;
-      .at2x-simple('/images/headers/supporter.jpg');
+      .at2x-simple('~@images/headers/supporter.jpg');
     }
   }
 
@@ -173,7 +173,7 @@
   }
 
   &__icon {
-    background-image: url('/images/icons/home.svg');
+    background-image: url('~@images/icons/home.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -184,95 +184,95 @@
     background-size: 75%;
 
     .@{_top}--artists & {
-      background-image: url('/images/icons/artists.svg');
+      background-image: url('~@images/icons/artists.svg');
     }
 
     .@{_top}--beatmappacks & {
-      background-image: url('/images/icons/beatmappacks.svg');
+      background-image: url('~@images/icons/beatmappacks.svg');
     }
 
     .@{_top}--beatmapsets & {
-      background-image: url('/images/icons/beatmapsets.svg');
+      background-image: url('~@images/icons/beatmapsets.svg');
     }
 
     .@{_top}--changelog & {
-      background-image: url('/images/icons/changelog.svg');
+      background-image: url('~@images/icons/changelog.svg');
     }
 
     .@{_top}--chat & {
-      background-image: url('/images/icons/chat.svg');
+      background-image: url('~@images/icons/chat.svg');
     }
 
     .@{_top}--comments & {
-      background-image: url('/images/icons/chat.svg');
+      background-image: url('~@images/icons/chat.svg');
     }
 
     .@{_top}--contests & {
-      background-image: url('/images/icons/contests.svg');
+      background-image: url('~@images/icons/contests.svg');
     }
 
     .@{_top}--error & {
-      background-image: url('/images/icons/notifications.svg');
+      background-image: url('~@images/icons/notifications.svg');
     }
 
     .@{_top}--forum & {
-      background-image: url('/images/icons/forum.svg');
+      background-image: url('~@images/icons/forum.svg');
     }
 
     .@{_top}--forums-index & {
-      background-image: url('/images/icons/forum.svg');
+      background-image: url('~@images/icons/forum.svg');
     }
 
     .@{_top}--friends & {
-      background-image: url('/images/icons/friends.svg');
+      background-image: url('~@images/icons/friends.svg');
     }
 
     .@{_top}--help & {
-      background-image: url('/images/icons/help.svg');
+      background-image: url('~@images/icons/help.svg');
     }
 
     .@{_top}--home & {
-      background-image: url('/images/icons/home.svg');
+      background-image: url('~@images/icons/home.svg');
     }
 
     .@{_top}--livestreams & {
-      background-image: url('/images/icons/forum.svg');
+      background-image: url('~@images/icons/forum.svg');
     }
 
     .@{_top}--news & {
-      background-image: url('/images/icons/news.svg');
+      background-image: url('~@images/icons/news.svg');
     }
 
     .@{_top}--notifications & {
-      background-image: url('/images/icons/notifications.svg');
+      background-image: url('~@images/icons/notifications.svg');
     }
 
     .@{_top}--password-reset & {
-      background-image: url('/images/icons/settings.svg');
+      background-image: url('~@images/icons/settings.svg');
     }
 
     .@{_top}--rankings & {
-      background-image: url('/images/icons/rankings.svg');
+      background-image: url('~@images/icons/rankings.svg');
     }
 
     .@{_top}--search & {
-      background-image: url('/images/icons/search.svg');
+      background-image: url('~@images/icons/search.svg');
     }
 
     .@{_top}--settings & {
-      background-image: url('/images/icons/settings.svg');
+      background-image: url('~@images/icons/settings.svg');
     }
 
     .@{_top}--store & {
-      background-image: url('/images/icons/store.svg');
+      background-image: url('~@images/icons/store.svg');
     }
 
     .@{_top}--tournaments & {
-      background-image: url('/images/icons/tournaments.svg');
+      background-image: url('~@images/icons/tournaments.svg');
     }
 
     .@{_top}--users & {
-      background-image: url('/images/icons/profile.svg');
+      background-image: url('~@images/icons/profile.svg');
     }
   }
 
@@ -312,7 +312,7 @@
     .center-content();
     .full-size();
     font-size: 60px;
-    background-color: osu-hsla(@osu-colour-b6, 0.5);
+    background-color: hsla(var(--hsl-b6), 0.5);
     color: @osu-colour-c1;
     display: none;
 

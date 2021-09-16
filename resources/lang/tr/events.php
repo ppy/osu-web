@@ -18,4 +18,11 @@ return [
     'user_support_first' => '<strong>:user</strong> osu! supporter satın aldı - cömertliğinden dolayı teşekkür ederiz!',
     'user_support_gift' => '<strong>:user</strong> osu! supporter hediyesi aldı!',
     'username_change' => '<strong>:previousUsername</strong> kullanıcı adını <strong><em>:user</strong></em> olarak değiştirdi!',
+
+    'beatmapset_status' => [
+        'approved' => 'onaylı',
+        'loved' => 'sevilen',
+        'qualified' => 'nitelikli',
+        'ranked' => 'dereceli',
+    ],
 ];

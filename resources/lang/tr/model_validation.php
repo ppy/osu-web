@@ -12,8 +12,8 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Zaman damgası belirtildi, ancak beatmap eksik.',
-        'beatmapset_no_hype' => "Bu beatmap'e destek oyu verilemez.",
-        'hype_requires_null_beatmap' => 'Gaz Genel (tüm zorluklar) sekmesinde verilmelidir.',
+        'beatmapset_no_hype' => "Beatmap gazlanamaz.",
+        'hype_requires_null_beatmap' => 'Gaz, Genel (tüm zorluklar) sekmesinde verilmelidir.',
         'invalid_beatmap_id' => 'Yanlış zorluk belirtildi.',
         'invalid_beatmapset_id' => 'Yanlış beatmap belirtildi.',
         'locked' => 'Tartışma kilitli.',
@@ -24,12 +24,12 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Bu beatmap şu anda tartışmaya kapalı ve gazlanamaz",
-            'guest' => 'Destek oyu vermek için giriş yapmalısın.',
-            'hyped' => 'Bu beatmap\'e zaten destek oyu kullandın.',
-            'limit_exceeded' => 'Tüm destek oylarını kullandın.',
-            'not_hypeable' => 'Bu beatmap gaza getirilemez',
-            'owner' => 'Kendi beatmapine destek oy kullanamazsın.',
+            'discussion_locked' => "Bu beatmap şu anda tartışmaya kapalıdır ve gazlanamaz",
+            'guest' => 'Gazlamak giriş yapmalısın.',
+            'hyped' => 'Bu beatmapi çoktan gazladın.',
+            'limit_exceeded' => 'Bütün gazını kullandın.',
+            'not_hypeable' => 'Bu beatmap gazlanamaz',
+            'owner' => 'Kendi beatmapini gazlayamazsın.',
         ],
 
         'timestamp' => [
@@ -62,7 +62,7 @@ return [
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Yalnızca bir özellik isteğine oy verebilirsiniz.',
+            'not_feature_topic' => 'Yalnızca bir özellik talebine oy verebilirsiniz.',
             'not_enough_feature_votes' => 'Yetersiz oy.',
         ],
 
@@ -71,8 +71,10 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Beatmap üstverisi gönderisinin silinmesi yasaktır.',
-            'beatmapset_post_no_edit' => 'Beatmap üstverisi gönderisini düzenlemek yasaktır.',
+            'beatmapset_post_no_delete' => 'Beatmap metaveri gönderisinin silinmesi yasaktır.',
+            'beatmapset_post_no_edit' => 'Beatmap metaveri gönderisini düzenlemek yasaktır.',
+            'first_post_no_delete' => 'Başlangıç gönderisi silinemez',
+            'missing_topic' => 'Gönderinin konusu eksik',
             'only_quote' => 'Cevabınız sadece bir alıntı içeriyor.',
 
             'attributes' => [
@@ -121,6 +123,7 @@ return [
     'user' => [
         'contains_username' => 'Şifre kullanıcı adını içeremez.',
         'email_already_used' => 'E-posta adresi zaten kullanılıyor.',
+        'email_not_allowed' => 'E-posta adresine izin verilmiyor.',
         'invalid_country' => 'Ülke, veritabanında bulunmuyor.',
         'invalid_discord' => 'Discord kullanıcı adı hatalı.',
         'invalid_email' => "Geçerli bir e-posta adresi gibi görünmüyor.",

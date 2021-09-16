@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Nahlásiť',
         'title' => '',
@@ -11,6 +16,11 @@ return [
 
     'comment' => [
         'button' => 'Nahlásiť',
+        'title' => '',
+    ],
+
+    'forum_post' => [
+        'button' => '',
         'title' => '',
     ],
 

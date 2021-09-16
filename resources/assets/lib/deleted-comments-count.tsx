@@ -3,27 +3,27 @@
 
 import { Comment } from 'models/comment';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   comments: Comment[];
   modifiers: string[] | undefined;
-  showDeleted: boolean;
 }
 
 export default class DeletedCommentsCount extends React.Component<Props> {
   render() {
     const deletedCount = this.props.comments.filter((c) => c.deletedAt != null).length;
 
-    if (this.props.showDeleted || deletedCount === 0) {
+    if (deletedCount === 0) {
       return null;
     }
 
     return (
-      <div className={osu.classWithModifiers('deleted-comments-count', this.props.modifiers)}>
+      <div className={classWithModifiers('deleted-comments-count', this.props.modifiers)}>
         <span className='deleted-comments-count__icon'>
           <span className='far fa-trash-alt' />
         </span>
-          {osu.transChoice('comments.deleted_count', deletedCount)}
+        {osu.transChoice('comments.deleted_count', deletedCount)}
       </div>
     );
   }

@@ -18,22 +18,23 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'poistettu',
-        'none_found' => '',
+        'none_found' => 'Hakukriteereihin täsmääviä keskusteluja ei löytynyt.',
         'title' => 'Beatmapkeskustelut',
 
         'form' => [
             '_' => 'Hae',
             'deleted' => 'Sisällytä poistetut keskustelut',
-            'only_unresolved' => '',
+            'mode' => 'Beatmap-tila',
+            'only_unresolved' => 'Näytä vain ratkaisemattomat keskustelut',
             'types' => 'Viestityypit',
             'username' => 'Käyttäjänimi',
 
             'beatmapset_status' => [
-                '_' => '',
+                '_' => 'Beatmapin tila',
                 'all' => 'Kaikki',
-                'disqualified' => '',
+                'disqualified' => 'Hylätty',
                 'never_qualified' => '',
-                'qualified' => '',
+                'qualified' => 'Hyväksytty',
                 'ranked' => '',
             ],
 
@@ -57,6 +58,13 @@ return [
         'unsaved' => '',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Kirjaudu sisään vastataksesi',
@@ -73,6 +81,7 @@ return [
             'external_references' => '',
             'invalid_block_type' => '',
             'invalid_document' => '',
+            'invalid_discussion_type' => '',
             'minimum_issues' => '',
             'missing_text' => '',
             'too_many_blocks' => '',

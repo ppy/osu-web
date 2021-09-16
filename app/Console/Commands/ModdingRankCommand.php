@@ -69,7 +69,7 @@ class ModdingRankCommand extends Command
         $toBeRankedQuery = Beatmapset::qualified()
             ->withoutTrashed()
             ->withModesForRanking($modeInt)
-            ->where('queued_at', '<', now()->subDays(7));
+            ->where('queued_at', '<', now()->subDays(config('osu.beatmapset.minimum_days_for_rank')));
 
         $rankingQueue = $toBeRankedQuery->count();
 

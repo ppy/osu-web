@@ -22,6 +22,7 @@ return [
             '401-verification' => '',
             '405' => 'chybějící',
             '422' => '',
+            '429' => '',
             '500' => '',
             '503' => '',
         ],
@@ -75,6 +76,9 @@ return [
         'contests_controller' => [
             '_' => '',
         ],
+        'follows_controller' => [
+            'index' => '',
+        ],
         'friends_controller' => [
             'index' => '',
         ],
@@ -107,13 +111,13 @@ return [
             '_' => '',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'žebříček',
         ],
         'scores_controller' => [
             '_' => '',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'obchod',
         ],
         'tournaments_controller' => [
             '_' => '',
@@ -123,7 +127,7 @@ return [
             'disabled' => 'oznámení',
         ],
         'wiki_controller' => [
-            '_' => 'nápověda',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -132,10 +136,13 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'obchod',
     ],
     'users' => [
         'modding_history_controller' => [
+            '_' => '',
+        ],
+        'multiplayer_controller' => [
             '_' => '',
         ],
     ],

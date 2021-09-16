@@ -26,6 +26,6 @@ class CountryStatisticsTransformer extends TransformerAbstract
     {
         return $stat->country === null
             ? $this->primitive(null)
-            : $this->item($stat->country, new CountryTransformer);
+            : $this->item($stat->country, new CountryTransformer());
     }
 }

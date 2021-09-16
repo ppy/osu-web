@@ -5,9 +5,9 @@
 
 return [
     'username_change' => [
-        'only_one' => 'Kun ét brugernavnsskift er tilladt pr. ordre.',
-        'insufficient_paid' => 'Brugernavnsskifte koster mere, end der er blevet betalt (:expected > :actual)',
-        'reverting_username_mismatch' => 'Det nuværende brugernavn (:current) er ikke det samme i modsætning til (:username)',
+        'only_one' => '',
+        'insufficient_paid' => '',
+        'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'Donationen er mindre end det påkrævede for at sende et supporter tag som gave (:actual > :expected)',

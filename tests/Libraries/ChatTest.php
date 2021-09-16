@@ -5,6 +5,7 @@
 
 namespace Tests\Libraries;
 
+use App\Exceptions\VerificationRequiredException;
 use App\Libraries\Chat;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
@@ -14,6 +15,28 @@ use Tests\TestCase;
 
 class ChatTest extends TestCase
 {
+    /**
+     * @dataProvider verifiedDataProvider
+     */
+    public function testSendMessage(bool $verified, $expectedException)
+    {
+        $sender = factory(User::class)->create();
+        $channel = factory(Channel::class)->states('public')->create();
+        $channel->addUser($sender);
+
+        if ($verified) {
+            $sender->markSessionVerified();
+        }
+
+        if ($expectedException === null) {
+            $this->expectNotToPerformAssertions();
+        } else {
+            $this->expectException($expectedException);
+        }
+
+        Chat::sendMessage($sender, $channel, 'test', false);
+    }
+
     public function testSendPM()
     {
         $sender = factory(User::class)->create();
@@ -114,6 +137,14 @@ class ChatTest extends TestCase
             ['gmt', true],
             ['nat', true],
             [[], false],
+        ];
+    }
+
+    public function verifiedDataProvider()
+    {
+        return [
+            [false, VerificationRequiredException::class],
+            [true, null],
         ];
     }
 }

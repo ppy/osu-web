@@ -29,8 +29,13 @@
         'background' => $headerCover,
     ])
 
-    <div class="js-forum__topic-user-can-moderate hidden" data-user-can-moderate="{{ $userCanModerate }}"></div>
-    <div class="js-forum__topic-first-post-id hidden" data-first-post-id="{{ $firstPostId }}"></div>
+    <div class="js-react--forum-post-report hidden"></div>
+    <div
+        class="hidden js-forum--topic-meta"
+        data-user-can-moderate="{{ $userCanModerate }}"
+        data-first-post-id="{{ $topic->topic_first_post_id }}"
+        data-post-jump-to="{{ $jumpTo }}"
+    ></div>
 
     <div class="js-sticky-header"></div>
 
@@ -56,7 +61,7 @@
                         @endif
                     </div>
                     <div class="forum-topic-title__post-time">
-                        {!! trans("forum.post.posted_at", ["when" => timeago($topic->topic_time)]) !!}
+                        {!! osu_trans("forum.post.posted_at", ["when" => timeago($topic->topic_time)]) !!}
                     </div>
                 </div>
 
@@ -79,7 +84,7 @@
                                 type="button"
                                 class="btn-osu-big btn-osu-big--forum-secondary js-forum-topic-title--cancel"
                             >
-                                {{ trans('common.buttons.cancel') }}
+                                {{ osu_trans('common.buttons.cancel') }}
                             </button>
                         </div>
 
@@ -88,7 +93,7 @@
                                 type="button"
                                 class="btn-osu-big btn-osu-big--forum-primary js-forum-topic-title--save"
                             >
-                                {{ trans('common.buttons.save') }}
+                                {{ osu_trans('common.buttons.save') }}
                             </button>
                         </div>
 
@@ -97,7 +102,7 @@
                                 type="button"
                                 class="btn-osu-big btn-osu-big--forum-secondary js-forum-topic-title--edit-start"
                             >
-                                {{ trans('forum.topics.edit_title.start') }}
+                                {{ osu_trans('forum.topics.edit_title.start') }}
                             </button>
                         </div>
                     @endif
@@ -127,7 +132,7 @@
             'additionalClasses' => 'js-header--alt js-forum-posts-show-more js-forum__posts-show-more--previous',
             'arrow' => 'up',
             'attributes' => ['data-mode' => 'previous'],
-            'hidden' => $posts->first()->post_id === $firstPostId,
+            'hidden' => $posts->first()->post_id === $topic->topic_first_post_id,
             'modifiers' => ['forum-topic'],
             'url' => route('forum.topics.show', ['topic' => $topic, 'end' => ($posts->first()->post_id - 1), 'with_deleted' => $showDeleted ? '1' : '0']),
         ])
@@ -137,7 +142,7 @@
         @include('objects._show_more_link', [
             'additionalClasses' => 'js-forum-posts-show-more js-forum__posts-show-more--next',
             'attributes' => ['data-mode' => 'next'],
-            'hidden' => $firstPostPosition + sizeof($posts) - 1 >= $topic->postsCount(),
+            'hidden' => $firstPostPosition + sizeof($posts) - 1 >= $topic->postCount(),
             'modifiers' => ['forum-topic'],
             'url' => route('forum.topics.show', ['topic' => $topic, 'start' => $posts->last()->post_id + 1, 'with_deleted' => $showDeleted ? '1' : '0']),
         ])
@@ -150,210 +155,5 @@
 @section('permanent-fixed-footer')
     @parent
 
-    <div class="forum-topic-nav u-fancy-scrollbar">
-        <div class="forum-topic-nav__seek-tooltip js-forum-posts-seek--tooltip" data-visibility="hidden">
-            <div class="forum-topic-nav__seek-tooltip-number js-forum-posts-seek-tooltip-number">0</div>
-        </div>
-
-        <div class="js-forum__posts-seek forum-topic-nav__seek-bar-container">
-            <div class="
-                forum-topic-nav__seek-bar
-                forum-topic-nav__seek-bar--all
-                u-forum--bg-link
-            "></div>
-
-            <div
-                class="
-                    js-forum__posts-progress
-                    forum-topic-nav__seek-bar
-                    u-forum--bg-link
-                "
-            >
-            </div>
-        </div>
-
-        <div class="forum-topic-nav__content">
-            <div class="forum-topic-nav__group">
-                @include('forum.topics._lock', compact('topic'))
-
-                @if ($userCanModerate)
-                    @include('forum.topics._moderate_pin', compact('topic'))
-                    @include('forum.topics._moderate_move', compact('topic'))
-
-                    @if ($topic->isIssue())
-                        @foreach ($topic::ISSUE_TAGS as $type)
-                            @include("forum.topics._issue_tag_{$type}")
-                        @endforeach
-                    @endif
-
-                    @include('forum.topics._moderate_toggle_deleted')
-                @endif
-
-                @include('forum.topics._watch', ['topic' => $topic, 'state' => $watch])
-            </div>
-
-            <div class="forum-topic-nav__group forum-topic-nav__group--main">
-                <a
-                    href="{{ route("forum.topics.show", $topic->topic_id) }}"
-                    class="js-forum-posts-seek--jump
-                        forum-topic-nav__item
-                        forum-topic-nav__item--main
-                        forum-topic-nav__item--button"
-                    data-jump-target="first"
-                    data-tooltip-float="fixed"
-                    title="{{ trans('forum.topic.jump.first') }}"
-                >
-                    <span class="forum-topic-nav__item-content">
-                        <i class="fas fa-angle-double-left"></i>
-                    </span>
-                </a>
-
-                <button
-                    type="button"
-                    class="js-forum-posts-seek--jump
-                        forum-topic-nav__item
-                        forum-topic-nav__item--main
-                        forum-topic-nav__item--button"
-                    data-jump-target="previous"
-                    data-tooltip-float="fixed"
-                    title="{{ trans('forum.topic.jump.previous') }}"
-                >
-                    <span class="forum-topic-nav__item-content">
-                        <i class="fas fa-angle-left"></i>
-                    </span>
-                </button>
-
-                <div class="
-                    post-counter
-                    forum-topic-nav__item
-                    forum-topic-nav__item--main
-                    forum-topic-nav__item--counter
-                    js-forum-topic-post-jump--container
-                ">
-                    <form method="get" class="js-forum-posts-jump-to js-forum-topic-post-jump--form">
-                        <input
-                            type="text"
-                            class="forum-topic-nav__counter
-                                forum-topic-nav__counter--left
-                                forum-topic-nav__counter--input
-                                js-forum-topic-post-jump--input"
-                            name="n"
-                            autocomplete="off" />
-                    </form>
-
-                    <span class="
-                        forum-topic-nav__counter
-                        forum-topic-nav__counter--left
-                        js-forum__posts-counter
-                        js-forum-topic-post-jump--counter
-                    ">{{ $firstPostPosition }}</span>
-
-                    <span class="forum-topic-nav__counter
-                        forum-topic-nav__counter--middle"
-                    >/</span>
-
-                    <span
-                        class="forum-topic-nav__counter
-                            forum-topic-nav__counter--right
-                            js-forum__total-count
-                        "
-                        data-total="{{ $topic->postsCount() }}"
-                    >{{ i18n_number_format($topic->postsCount()) }}</span>
-
-                    <div
-                        class="js-forum-topic-post-jump--cover forum-topic-nav__counter-cover"
-                        data-tooltip-float="fixed"
-                        title="{{ trans('forum.topic.jump.enter') }}"
-                    ></div>
-                </div>
-
-                <button
-                    type="button"
-                    class="js-forum-posts-seek--jump
-                        forum-topic-nav__item
-                        forum-topic-nav__item--main
-                        forum-topic-nav__item--button"
-                    data-jump-target="next"
-                    data-tooltip-float="fixed"
-                    title="{{ trans('forum.topic.jump.next') }}"
-                >
-                    <span class="forum-topic-nav__item-content">
-                        <i class="fas fa-angle-right"></i>
-                    </span>
-                </button>
-
-                <a
-                    href="{{ route('forum.topics.show', ['topic' => $topic, 'end' => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
-                    class="js-forum-posts-seek--jump
-                        forum-topic-nav__item
-                        forum-topic-nav__item--main
-                        forum-topic-nav__item--button"
-                    data-jump-target="last"
-                    data-tooltip-float="fixed"
-                    title="{{ trans('forum.topic.jump.last') }}"
-                >
-                    <span class="forum-topic-nav__item-content">
-                        <i class="fas fa-angle-double-right"></i>
-                    </span>
-                </a>
-            </div>
-
-            <div class="forum-topic-nav__group forum-topic-nav__group--right">
-                <a
-                    href="{{ route('search', ['mode' => 'forum_post', 'topic_id' => $topic->getKey()]) }}"
-                    class="btn-circle btn-circle--topic-nav"
-                    data-tooltip-float="fixed"
-                    title="{{ trans('forum.topics.actions.search') }}"
-                >
-                    <span class="btn-circle__content">
-                        <i class="fas fa-search"></i>
-                    </span>
-                </a>
-
-                @if (Auth::check())
-                    <button
-                        type="button"
-                        class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--toggle"
-                    >
-                        <span class="btn-osu-big__content">
-                            <span class="btn-osu-big__left">
-                                <span class="btn-osu-big__text-top">
-                                    {{ trans('forum.topics.actions.reply') }}
-                                </span>
-                            </span>
-
-                            <span class="btn-osu-big__toggle">
-                                <i class="fas fa-dot-circle"></i>
-                            </span>
-                        </span>
-                    </button>
-                @else
-                    <button
-                        type="button"
-                        class="btn-osu-big btn-osu-big--forum-reply js-user-link"
-                    >
-                        <span class="btn-osu-big__content">
-                            <span class="btn-osu-big__icon">
-                                <i class="fas fa-sign-in-alt"></i>
-                            </span>
-
-                            <span class="btn-osu-big__left">
-                                <span class="btn-osu-big__text-top">
-                                    {{ trans('forum.topics.actions.login_reply') }}
-                                </span>
-                            </span>
-                        </span>
-                    </button>
-                @endif
-            </div>
-        </div>
-    </div>
-@endsection
-
-@section('script')
-    @parent
-
-    <script data-turbolinks-eval="always">
-        window.postJumpTo = {{ $jumpTo }};
-    </script>
+    @include('forum.topics._nav')
 @endsection

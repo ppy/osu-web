@@ -17,24 +17,32 @@ interface Props {
 export default class ItemSingular extends React.Component<Props> {
   render() {
     const item = this.props.stack.first;
-    if (item == null) { return null; }
+    if (item == null) {
+      return null;
+    }
 
     return (
       <Item
-        markRead={this.handleMarkAsRead}
-        markingAsRead={item.isMarkingAsRead}
+        delete={this.handleDelete}
         icons={nameToIcons[item.name || '']}
+        isDeleting={item.isDeleting}
+        isMarkingAsRead={item.isMarkingAsRead}
         item={item}
+        markRead={this.handleMarkAsRead}
         message={formatMessage(item)}
         modifiers={['one']}
         url={urlSingular(item)}
-        withCategory={true}
-        withCoverImage={true}
+        withCategory
+        withCoverImage
       />
     );
   }
 
+  private handleDelete = () => {
+    this.props.stack.deleteItem(this.props.stack.first);
+  };
+
   private handleMarkAsRead = () => {
     this.props.stack.markAsRead(this.props.stack.first);
-  }
+  };
 }

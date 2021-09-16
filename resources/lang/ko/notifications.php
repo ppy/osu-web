@@ -5,9 +5,13 @@
 
 return [
     'all_read' => '모든 알림을 읽었어요!',
+    'delete' => ':type 삭제',
+    'loading' => '읽지 않은 알림 불러오는 중...',
     'mark_read' => ':type 비우기',
     'none' => '알림 없음',
     'see_all' => '모든 알림 보기',
+    'see_channel' => '채팅으로 이동',
+    'verifying' => '알림을 보려면 세션을 검증해주세요.',
 
     'filters' => [
         '_' => '전체',
@@ -22,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => '비트맵',
+
+            'beatmap_owner_change' => [
+                '_' => '게스트 난이도',
+                'beatmap_owner_change' => '당신은 이제 비트맵 ":title"에 대한 ":beatmap" 난이도의 주인이 되었습니다.',
+                'beatmap_owner_change_compact' => '당신은 이제 ":beatmap" 난이도의 주인이 되었습니다.',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => '비트맵 토론',
@@ -57,6 +67,8 @@ return [
                 'beatmapset_qualify_compact' => '비트맵이 랭크맵 대기열에 등록되었습니다.',
                 'beatmapset_rank' => '":title" 이(가) ranked 상태가 되었습니다.',
                 'beatmapset_rank_compact' => '비트맵이 ranked 상태가 되었습니다.',
+                'beatmapset_remove_from_loved' => '":title" 이(가) loved 상태에서 제거되었습니다.',
+                'beatmapset_remove_from_loved_compact' => '비트맵이 Loved 상태에서 제거되었습니다.',
                 'beatmapset_reset_nominations' => '비트맵 ":title"의 추천이 초기화되었습니다.',
                 'beatmapset_reset_nominations_compact' => '추천이 초기화되었습니다.',
             ],
@@ -129,6 +141,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '새 비트맵',
+
+                'user_beatmapset_new' => ':username 님의 새로운 비트맵 ":title"',
+                'user_beatmapset_new_compact' => '새 비트맵 ":title"',
+                'user_beatmapset_new_group' => ':username 님의 새 비트맵',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => '메달',
 
@@ -136,12 +158,17 @@ return [
                 '_' => '새 메달',
                 'user_achievement_unlock' => '":title" 해제!',
                 'user_achievement_unlock_compact' => '":title" 달성!',
+                'user_achievement_unlock_group' => '메달 언락함!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '당신은 이제 비트맵 ":title"의 게스트가 되었습니다.',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '토론 ":title" 의 토론이 잠겼습니다.',
                 'beatmapset_discussion_post_new' => '토론 ":title" 에 새로운 업데이트가 있습니다.',
@@ -158,6 +185,7 @@ return [
                 'beatmapset_nominate' => '":title" 이(가) 추천되었습니다.',
                 'beatmapset_qualify' => '":title" 이(가) 충분한 추천을 받아 랭킹 대기열에 등록되었습니다.',
                 'beatmapset_rank' => '":title" 이(가) ranked 상태가 되었습니다.',
+                'beatmapset_remove_from_loved' => '":title" 이(가) loved 상태에서 제거되었습니다.',
                 'beatmapset_reset_nominations' => '비트맵 ":title"의 추천이 초기화되었습니다.',
             ],
 
@@ -194,6 +222,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username 님이 ":title" 메달을 획득하셨습니다!',
                 'user_achievement_unlock_self' => '":title" 메달을 획득하셨습니다!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username 님이 새 비트맵을 제작했습니다',
             ],
         ],
     ],

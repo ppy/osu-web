@@ -11,7 +11,7 @@ return [
     'wrong_confirmation' => 'Bestätigung stimmt nicht überein.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Ein Zeitpunkt ist angegeben, aber die Beatmap fehlt.',
+        'beatmap_missing' => 'Ein Zeitstempel ist angegeben, aber die Beatmapschwierigkeitsstufe fehlt.',
         'beatmapset_no_hype' => "Diese Beatmap kann nicht gehypt werden.",
         'hype_requires_null_beatmap' => 'Hypen muss in der "Generell"-Sektion (für alle Schwierigkeitsstufen) stattfinden.',
         'invalid_beatmap_id' => 'Ungültige Schwierigkeitsstufe gewählt.',
@@ -33,8 +33,8 @@ return [
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Der gewählte Zeitpunkt ist nach dem Ende der Beatmap.',
-            'negative' => "Der Zeitpunkt muss positiv sein.",
+            'exceeds_beatmapset_length' => 'Der gewählte Zeitstempel ist nach dem Ende der Beatmap.',
+            'negative' => "Der Zeitstempel muss positiv sein.",
         ],
     ],
 
@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Den Metadaten-Beitrag einer Beatmap kann man nicht löschen.',
             'beatmapset_post_no_edit' => 'Den Metadaten-Beitrag einer Beatmap kann man nicht bearbeiten.',
+            'first_post_no_delete' => 'Der erste Beitrag kann nicht gelöscht werden',
+            'missing_topic' => 'Dem Post fehlt ein Thread',
             'only_quote' => 'In deiner Antwort ist nur ein Zitat enthalten.',
 
             'attributes' => [
@@ -121,6 +123,7 @@ return [
     'user' => [
         'contains_username' => 'Das Passwort darf den Nutzernamen nicht enthalten.',
         'email_already_used' => 'E-Mail-Adresse wird bereits verwendet.',
+        'email_not_allowed' => 'E-Mail-Adresse nicht erlaubt.',
         'invalid_country' => 'Das Land ist nicht in der Datenbank.',
         'invalid_discord' => 'Discordname ungültig.',
         'invalid_email' => "Scheint keine gültige E-Mail-Adresse zu sein.",

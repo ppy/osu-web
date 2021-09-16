@@ -47,11 +47,13 @@ return [
         'confirm_restore' => '投稿を本当に復元しますか？',
         'edited' => ':userが:whenに最終編集、合計:count_delimited回の編集',
         'posted_at' => '投稿日時 :when',
+        'posted_by' => ':username による投稿',
 
         'actions' => [
             'destroy' => '投稿を削除',
-            'restore' => '投稿を復元',
             'edit' => '投稿を編集',
+            'report' => '投稿を報告',
+            'restore' => '投稿を復元',
         ],
 
         'create' => [
@@ -73,9 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'トピックを本当に削除しますか？',
+        'confirm_restore' => 'トピックを本当に復元しますか？',
         'deleted' => '削除されたトピック',
         'go_to_latest' => '最新の投稿を見る',
-        'has_replied' => '',
+        'has_replied' => 'このトピックに返信しました',
+        'in_forum' => ':forum',
         'latest_post' => ':when by :user',
         'latest_reply_by' => '最新の投稿 by :user',
         'new_topic' => 'トピックの新規作成',
@@ -85,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'by :user',
         'started_by_verbose' => '開始したユーザー: :user',
+
+        'actions' => [
+            'destroy' => 'トピックを削除',
+            'restore' => 'トピックを復元',
+        ],
 
         'create' => [
             'close' => '閉じる',
@@ -125,7 +135,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'フォーラムサブスクリプション',
+            'title_compact' => 'フォーラムトピック ウォッチリスト',
 
             'box' => [
                 'total' => 'サブスクライブ中のトピック',

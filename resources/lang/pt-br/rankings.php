@@ -27,7 +27,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Data de Término',
-        'map_count' => 'Contagem do Map',
+        'map_count' => 'Contagem de Map',
         'participants' => 'Participantes',
         'start_date' => 'Data de Ínicio',
     ],
@@ -42,8 +42,8 @@ return [
         'ranked_score' => 'Pontuação Ranqueada',
         'average_score' => 'Pont. Média',
         'average_performance' => 'Perf. Média',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

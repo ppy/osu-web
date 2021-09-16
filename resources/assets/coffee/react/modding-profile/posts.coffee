@@ -3,7 +3,6 @@
 
 import * as React from 'react'
 import { div, h2, a, img, span } from 'react-dom-factories'
-import { ValueDisplay } from 'value-display'
 import { Post } from "../beatmap-discussions/post"
 
 el = React.createElement
@@ -19,7 +18,6 @@ export class Posts extends React.Component
           [
             for post in @props.posts
               canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(currentUser)
-              canBeDeleted = canModeratePosts || currentUser.id? == post.user_id
 
               discussionClasses = 'beatmap-discussion beatmap-discussion--preview'
 
@@ -39,7 +37,9 @@ export class Posts extends React.Component
                 div className: "modding-profile-list__timestamp hidden-xs",
                   div className: "beatmap-discussion-timestamp",
                     div className: "beatmap-discussion-timestamp__icons-container",
-                      span className: "fas fa-reply"
+                      span
+                        className: 'fas fa-reply'
+                        title: osu.trans 'common.buttons.reply'
 
                 div className: discussionClasses,
                   div className: "beatmap-discussion__discussion",
@@ -52,9 +52,11 @@ export class Posts extends React.Component
                       users: @props.users
                       user: @props.users[post.user_id]
                       read: true
-                      lastEditor: @props.users[post.last_editor_id]
-                      canBeEdited: currentUser.is_admin || currentUser.id? == post.user_id
-                      canBeDeleted: canBeDeleted
+                      lastEditor: @props.users[post.last_editor_id] ? @props.users[null] if post.last_editor_id?
+                      # FIXME: These permissions are more restrictive than the correct ones in discussion
+                      # because they don't have the right data to check.
+                      canBeEdited: currentUser.is_admin
+                      canBeDeleted: canModeratePosts
                       canBeRestored: canModeratePosts
                       currentUser: currentUser
             a

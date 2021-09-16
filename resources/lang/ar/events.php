@@ -18,4 +18,11 @@ return [
     'user_support_first' => '<strong>:user</strong> أَصبحَ osu!supporter - شكرا لكَرَمِك!',
     'user_support_gift' => '<strong>:user</strong> حصل على osu!supporter كهدية!',
     'username_change' => '<strong>:previousUsername</strong> غير اسمه الى <strong><em>:user</strong></em>!',
+
+    'beatmapset_status' => [
+        'approved' => 'مقبولة',
+        'loved' => 'محبوبة',
+        'qualified' => 'مؤهلة',
+        'ranked' => 'مصفوفة',
+    ],
 ];

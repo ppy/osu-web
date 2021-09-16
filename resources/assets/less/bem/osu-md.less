@@ -3,12 +3,12 @@
 
 .osu-md {
   @_top: osu-md;
-  @_paragraph-space: 1.5em;
 
   .content-font();
   color: inherit;
   font-size: @font-size--wiki;
   word-wrap: break-word;
+  --paragraph-space: @md-paragraph-space;
 
   code {
     .default-border-radius();
@@ -53,7 +53,10 @@
 
   > *:last-child {
     margin-bottom: 0;
-    padding-bottom: 0;
+  }
+
+  &--group {
+    --paragraph-space: 10px;
   }
 
   &--news {
@@ -75,7 +78,7 @@
   }
 
   &__figure-container {
-    margin: @_paragraph-space 0;
+    margin: var(--paragraph-space) 0;
     text-align: center;
 
     .@{_top}--comment & {
@@ -192,8 +195,50 @@
     }
   }
 
+  &__infobox {
+    padding: 10px;
+    margin: var(--paragraph-space) 0;
+    border: 1px solid hsl(var(--hsl-b4));
+    .default-border-radius();
+    text-align: center;
+
+    @media (min-width: 300px * 2 + @gutter-v2 * 2) {
+      float: right;
+      width: 50%;
+      max-width: 300px;
+      margin: 0;
+      margin-left: 10px;
+    }
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tbody > tr:first-child > td {
+      border-top: none;
+    }
+
+    td {
+      vertical-align: top;
+    }
+  }
+
   &__list {
     padding-left: 20px;
+
+    &--ordered {
+      list-style: none;
+      padding-left: 0;
+      counter-reset: c var(--list-start);
+    }
   }
 
   &__list-item {
@@ -202,10 +247,28 @@
     .@{_top}--store & {
       margin-left: 10px;
     }
+
+    .@{_top}__list--ordered > & {
+      counter-increment: c;
+      display: flex;
+
+      &::before {
+        content: counter(c) ". ";
+        min-width: 30px;
+        padding-right: 5px;
+        flex: none;
+      }
+
+      // can't have class due to how it's rendered
+      > div {
+        flex: 1;
+        min-width: 0;
+      }
+    }
   }
 
   &__paragraph {
-    margin-bottom: @_paragraph-space;
+    margin-bottom: var(--paragraph-space);
     line-height: 1.5;
 
     .@{_top}--store & {

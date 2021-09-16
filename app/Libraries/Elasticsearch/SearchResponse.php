@@ -91,7 +91,7 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
             return;
         }
 
-        $key = (new $this->recordType)->getKeyName();
+        $key = (new $this->recordType())->getKeyName();
         $ids = $this->innerHitsIds($name, $this->idField);
 
         return $this->recordType::whereIn($key, $ids)->orderByField($key, $ids);
@@ -108,7 +108,7 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
             return;
         }
 
-        $key = (new $this->recordType)->getKeyName();
+        $key = (new $this->recordType())->getKeyName();
         $ids = $this->ids($this->idField);
 
         return $this->recordType::whereIn($key, $ids)->orderByField($key, $ids);
@@ -126,7 +126,10 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
 
     public function total()
     {
-        return $this->raw()['hits']['total'];
+        $total = $this->raw()['hits']['total'];
+
+        // total an object in elasticsearch 7+
+        return is_array($total) ? $total['value'] : $total;
     }
 
     //================

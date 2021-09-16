@@ -31,6 +31,10 @@ return [
             'cleared' => '클리어한 맵',
             'not_cleared' => '클리어 기록 없음',
         ],
+        'no_diff_reduction' => [
+            '_' => ':link는 이 팩을 지우는 데 사용할 수 없습니다.',
+            'link' => '난이도 감소 모드',
+        ],
     ],
 
     'mode' => [

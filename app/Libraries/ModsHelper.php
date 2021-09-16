@@ -15,7 +15,7 @@ class ModsHelper
         [4, 'HR'],
         [9, 'NC', [6]],
         [6, 'DT'],
-        [7, 'Relax'],
+        [7, 'RX'],
         [8, 'HT'],
         [10, 'FL'],
         [12, 'SO'],
@@ -35,6 +35,7 @@ class ModsHelper
 
         [29, 'V2'],
     ];
+    const DIFFICULTY_REDUCTION_MODS = ['NF', 'EZ', 'HT', 'SO'];
     const PREFERENCE_MODS_BITSET = 0b01000000000000000100001000100000; // SD, NC, PF, MR
 
     public static function toArray($bitset)

@@ -22,6 +22,7 @@ return [
             '401-verification' => 'Fiók hitelesítése',
             '405' => 'hiányzó',
             '422' => 'Érvénytelen lekérés',
+            '429' => 'túl sok kérés',
             '500' => 'Valami nincs rendben',
             '503' => 'karbantartás',
         ],
@@ -75,6 +76,9 @@ return [
         'contests_controller' => [
             '_' => 'versenyek',
         ],
+        'follows_controller' => [
+            'index' => 'áttekintés',
+        ],
         'friends_controller' => [
             'index' => 'irányítópult',
         ],
@@ -107,13 +111,13 @@ return [
             '_' => 'jelszó visszaállítása',
         ],
         'ranking_controller' => [
-            '_' => 'rangsorolás',
+            '_' => 'rangsor',
         ],
         'scores_controller' => [
             '_' => 'teljesítmény',
         ],
         'store_controller' => [
-            '_' => 'osu!bolt',
+            '_' => 'áruház',
         ],
         'tournaments_controller' => [
             '_' => 'bajnokságok',
@@ -123,7 +127,7 @@ return [
             'disabled' => 'értesítés',
         ],
         'wiki_controller' => [
-            '_' => 'tudásbázis',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -132,11 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!bolt',
+        '_' => 'áruház',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modding információ',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'többjátékos történelem',
         ],
     ],
 ];

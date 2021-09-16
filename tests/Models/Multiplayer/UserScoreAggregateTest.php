@@ -86,7 +86,8 @@ class UserScoreAggregateTest extends TestCase
         $playlistItem = $this->playlistItem();
         $agg = UserScoreAggregate::new($user, $this->room);
 
-        $agg->addScore(factory(Score::class)
+        $agg->addScore(
+            factory(Score::class)
             ->states('completed', 'passed')
             ->create([
                 'room_id' => $this->room->getKey(),

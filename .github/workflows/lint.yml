@@ -1,0 +1,66 @@
+name: Lint
+
+on: [push, pull_request]
+
+env:
+  APP_ENV: testing
+
+jobs:
+  lint:
+    name: Lint all
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Set php version
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: composer:v2
+          php-version: '8.0'
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache composer
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache yarn
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Composer dependencies
+        run: >-
+          composer config -g github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+          && composer install --prefer-dist --no-progress
+
+      - name: Install js dependencies
+        run: yarn --frozen-lockfile
+
+      - run: yarn lint --quiet
+      - run: ./bin/update_licence.sh -nf
+
+      - name: Run PHPCS
+        run: |
+          echo "::add-matcher::${PWD}/.github/workflows/lint/problem-matcher.json"
+          ./vendor/bin/phpcs --report=checkstyle --basepath="$PWD"

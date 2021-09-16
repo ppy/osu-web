@@ -15,8 +15,18 @@ return [
     'top' => 'Водещи',
     'username' => 'Потребителско име',
 
+    'forum_posts' => [
+        'created' => 'Дата',
+        'relevance' => 'Уместност',
+    ],
+
     'forum_topics' => [
-        'new' => 'Последен отговор',
         'feature_votes' => 'Приоритет по звезди',
+        'new' => 'Последен отговор',
+    ],
+
+    'users' => [
+        'relevance' => 'Уместност',
+        'username' => 'Име',
     ],
 ];

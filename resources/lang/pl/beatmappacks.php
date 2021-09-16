@@ -34,6 +34,10 @@ return [
             'cleared' => 'ukończona',
             'not_cleared' => 'nieukończona',
         ],
+        'no_diff_reduction' => [
+            '_' => 'Nie możesz korzystać z :link do zaliczania beatmap z tej paczki.',
+            'link' => 'modyfikatorów ułatwiających rozgrywkę',
+        ],
     ],
 
     'mode' => [

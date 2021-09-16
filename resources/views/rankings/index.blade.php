@@ -28,7 +28,7 @@
     foreach (['performance', 'charts', 'score', 'country', 'multiplayer'] as $tab) {
         $links[] = [
             'active' => $tab === $type,
-            'title' => trans("rankings.type.{$tab}"),
+            'title' => osu_trans("rankings.type.{$tab}"),
             'url' => $selectorParams['route']($mode, $tab),
         ];
     }
@@ -45,7 +45,7 @@
     $hasFilter = $hasFilter ?? true;
 @endphp
 
-@extends('master', ['titlePrepend' => $titlePrepend ?? trans("rankings.type.{$type}")])
+@extends('master', ['titlePrepend' => $titlePrepend ?? osu_trans("rankings.type.{$type}")])
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
@@ -74,11 +74,11 @@
                     <div class="ranking-filter__item ranking-filter__item--full">
                         @if ($type === 'performance')
                             <div class="ranking-filter__item--title">
-                                {{ trans('rankings.countries.title') }}
+                                {{ osu_trans('rankings.countries.title') }}
                             </div>
                             <div class="ranking-select-options">
                                 <div class="ranking-select-options__select">
-                                    <div class="ranking-select-options__option">{{ optional($country)->name ?? trans('rankings.countries.all') }}</div>
+                                    <div class="ranking-select-options__option">{{ optional($country)->name ?? osu_trans('rankings.countries.all') }}</div>
                                 </div>
                             </div>
                         @endif
@@ -86,12 +86,12 @@
                     @if (auth()->check())
                         <div class="ranking-filter__item">
                             <div class="ranking-filter__item--title">
-                                {{ trans('rankings.filter.title') }}
+                                {{ osu_trans('rankings.filter.title') }}
                             </div>
                             <div class="sort">
                                 <div class="sort__items">
-                                    <button class="sort__item sort__item--button">{{ trans('sort.all') }}</button>
-                                    <button class="sort__item sort__item--button">{{ trans('sort.friends')}}</button>
+                                    <button class="sort__item sort__item--button">{{ osu_trans('sort.all') }}</button>
+                                    <button class="sort__item sort__item--button">{{ osu_trans('sort.friends')}}</button>
                                 </div>
                             </div>
                         </div>
@@ -99,13 +99,13 @@
                     @if (isset($variants))
                         <div class="ranking-filter__item">
                             <div class="ranking-filter__item--title">
-                                {{ trans('rankings.filter.variant.title') }}
+                                {{ osu_trans('rankings.filter.variant.title') }}
                             </div>
                             <div class="sort">
                                 <div class="sort__items">
                                     @foreach ($variants as $v)
                                         <button class="sort__item sort__item--button">
-                                            {{ trans("beatmaps.variant.{$mode}.{$v}") }}
+                                            {{ osu_trans("beatmaps.variant.{$mode}.{$v}") }}
                                         </button>
                                     @endforeach
                                 </div>

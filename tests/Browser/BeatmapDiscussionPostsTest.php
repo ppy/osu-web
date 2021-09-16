@@ -66,9 +66,8 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
     {
         $browser->loginAs($user)
             ->visit('/_dusk/verify')
-            ->visitRoute('beatmap-discussions.show', [
-                'beatmapset' => $this->beatmapset->getKey(),
-                'beatmap_discussion' => $this->beatmapDiscussion->getKey(),
+            ->visitRoute('beatmapsets.discussions.show', [
+                'discussion' => $this->beatmapDiscussion->getKey(),
             ]);
     }
 
@@ -110,13 +109,15 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
         $this->beatmapset = factory(Beatmapset::class)->create([
             'user_id' => $this->mapper->getKey(),
         ]);
-        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $this->beatmapDiscussion = factory(BeatmapDiscussion::class, 'timeline')->create([
+        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
+            'user_id' => $this->mapper->getKey(),
+        ]));
+        $this->beatmapDiscussion = factory(BeatmapDiscussion::class)->states('timeline')->create([
             'beatmapset_id' => $this->beatmapset->getKey(),
             'beatmap_id' => $this->beatmap->getKey(),
             'user_id' => $this->user->getKey(),
         ]);
-        $post = factory(BeatmapDiscussionPost::class, 'timeline')->make([
+        $post = factory(BeatmapDiscussionPost::class)->states('timeline')->make([
             'user_id' => $this->user->getKey(),
         ]);
         $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);

@@ -7,26 +7,25 @@ namespace Tests\Controllers;
 
 use App\Models\Forum;
 use App\Models\User;
-use App\Models\UserGroup;
 use App\Models\UserStatistics\Osu as StatisticsOsu;
-use DB;
 use Tests\TestCase;
 
 class ForumTopicsControllerTest extends TestCase
 {
-    public function testReply()
+    public function testDestroy()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
         $user = factory(User::class)->create()->fresh();
-        $userGroup = $this->defaultUserGroup($user);
+        $group = app('groups')->byIdentifier('default');
+        $user->setDefaultGroup($group);
         $authOption = Forum\AuthOption::firstOrCreate([
             'auth_option' => 'f_reply',
         ]);
         Forum\Authorize::create([
-            'group_id' => $userGroup->group_id,
+            'group_id' => $group->group_id,
             'forum_id' => $forum->forum_id,
             'auth_option_id' => $authOption->auth_option_id,
             'auth_setting' => 1,
@@ -48,8 +47,6 @@ class ForumTopicsControllerTest extends TestCase
 
         // add some plays so it passes
         $this->addPlaycount($user);
-        // reset auth
-        app()->make('OsuAuthorize')->cacheReset();
 
         $this
             ->actingAsVerified($user)
@@ -62,9 +59,105 @@ class ForumTopicsControllerTest extends TestCase
         $this->assertSame($initialTopicCount, Forum\Topic::count());
     }
 
+    public function testPin()
+    {
+        $forum = factory(Forum\Forum::class)->states('child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->getKey(),
+            'topic_status' => Forum\Topic::TYPES['normal'],
+        ]);
+        $user = $this->createUserWithGroup('gmt');
+        $type = 'sticky';
+        $typeInt = Forum\Topic::TYPES[$type];
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.pin', $topic->getKey()), [
+                'pin' => $typeInt,
+            ])
+            ->assertSuccessful();
+
+        $this->assertSame($type, Forum\Topic::typeStr($topic->fresh()->topic_type));
+    }
+
+    public function testReply()
+    {
+        $forum = factory(Forum\Forum::class)->states('child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+        $user = factory(User::class)->create()->fresh();
+        $group = app('groups')->byIdentifier('default');
+        $user->setDefaultGroup($group);
+        $authOption = Forum\AuthOption::firstOrCreate([
+            'auth_option' => 'f_reply',
+        ]);
+        Forum\Authorize::create([
+            'group_id' => $group->group_id,
+            'forum_id' => $forum->forum_id,
+            'auth_option_id' => $authOption->auth_option_id,
+            'auth_setting' => 1,
+        ]);
+
+        $initialPostCount = Forum\Post::count();
+        $initialTopicCount = Forum\Topic::count();
+
+        // fail because no plays =)
+        $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.reply', $topic->topic_id), [
+                'body' => 'This is test reply',
+            ])
+            ->assertStatus(403);
+
+        $this->assertSame($initialPostCount, Forum\Post::count());
+        $this->assertSame($initialTopicCount, Forum\Topic::count());
+
+        // add some plays so it passes
+        $this->addPlaycount($user);
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.reply', $topic->topic_id), [
+                'body' => 'This is test reply',
+            ])
+            ->assertStatus(200);
+
+        $this->assertSame($initialPostCount + 1, Forum\Post::count());
+        $this->assertSame($initialTopicCount, Forum\Topic::count());
+    }
+
+    public function testRestore()
+    {
+        $forum = factory(Forum\Forum::class)->states('child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+        $poster = factory(User::class)->create()->fresh();
+        $poster->setDefaultGroup(app('groups')->byIdentifier('default'));
+        Forum\Post::createNew($topic, $poster, 'test', false);
+
+        $topic->refresh();
+        $topic->delete();
+
+        $user = factory(User::class)->create()->fresh();
+        $user->setDefaultGroup(app('groups')->byIdentifier('gmt'));
+
+        $initialTopicCount = Forum\Topic::count();
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.restore', $topic))
+            ->assertSuccessful();
+
+        $topic->refresh();
+
+        $this->assertSame($initialTopicCount + 1, Forum\Topic::count());
+    }
+
     public function testShow()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -78,9 +171,58 @@ class ForumTopicsControllerTest extends TestCase
             ->assertStatus(200);
     }
 
+    public function testShowNoMorePosts()
+    {
+        $forum = factory(Forum\Forum::class)->states('child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+        $post = factory(Forum\Post::class)->create([
+            'forum_id' => $forum->forum_id,
+            'topic_id' => $topic->topic_id,
+        ]);
+
+        $this
+            ->get(route('forum.topics.show', [
+                'start' => $post->getKey() + 1,
+                'topic' => $topic->getKey(),
+            ]))->assertStatus(302);
+    }
+
+    public function testShowNoMorePostsWithSkipLayout()
+    {
+        $forum = factory(Forum\Forum::class)->states('child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+        $post = factory(Forum\Post::class)->create([
+            'forum_id' => $forum->forum_id,
+            'topic_id' => $topic->topic_id,
+        ]);
+
+        $this
+            ->get(route('forum.topics.show', [
+                'skip_layout' => 1,
+                'start' => $post->getKey() + 1,
+                'topic' => $topic->getKey(),
+            ]))->assertStatus(204);
+    }
+
+    public function testShowMissingPosts()
+    {
+        $forum = factory(Forum\Forum::class)->states('child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+
+        $this
+            ->get(route('forum.topics.show', $topic->topic_id))
+            ->assertStatus(404);
+    }
+
     public function testShowNewUser()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -98,14 +240,15 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testStore()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $user = factory(User::class)->create()->fresh();
-        $userGroup = $this->defaultUserGroup($user);
+        $group = app('groups')->byIdentifier('default');
+        $user->setDefaultGroup($group);
         $authOption = Forum\AuthOption::firstOrCreate([
             'auth_option' => 'f_post',
         ]);
         Forum\Authorize::create([
-            'group_id' => $userGroup->group_id,
+            'group_id' => $group->getKey(),
             'forum_id' => $forum->forum_id,
             'auth_option_id' => $authOption->auth_option_id,
             'auth_setting' => 1,
@@ -130,8 +273,6 @@ class ForumTopicsControllerTest extends TestCase
 
         // add some plays so it passes
         $this->addPlaycount($user);
-        // reset auth
-        app()->make('OsuAuthorize')->cacheReset();
 
         $this
             ->actingAsVerified($user)
@@ -151,9 +292,10 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testUpdateTitle()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $user = factory(User::class)->create();
-        $userGroup = $this->defaultUserGroup($user);
+        $group = app('groups')->byIdentifier('default');
+        $user->setDefaultGroup($group);
         $initialTitle = 'New topic';
         $topic = Forum\Topic::createNew($forum, [
             'title' => $initialTitle,
@@ -177,9 +319,10 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testUpdateTitleBlank()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $user = factory(User::class)->create();
-        $userGroup = $this->defaultUserGroup($user);
+        $group = app('groups')->byIdentifier('default');
+        $user->setDefaultGroup($group);
         $initialTitle = 'New topic';
         $topic = Forum\Topic::createNew($forum, [
             'title' => $initialTitle,
@@ -206,26 +349,6 @@ class ForumTopicsControllerTest extends TestCase
         // initial user for forum posts and stuff
         // FIXME: this is actually a hidden dependency
         factory(User::class)->create();
-    }
-
-    private function defaultUserGroup($user)
-    {
-        $table = (new UserGroup)->getTable();
-
-        $conditions = [
-            'user_id' => $user->user_id,
-            'group_id' => app('groups')->byIdentifier('default')->getKey(),
-        ];
-
-        $existingUserGroup = UserGroup::where($conditions)->first();
-
-        if ($existingUserGroup !== null) {
-            return $existingUserGroup;
-        }
-
-        DB::table($table)->insert($conditions);
-
-        return UserGroup::where($conditions)->first();
     }
 
     private function addPlaycount($user, $playcount = null)

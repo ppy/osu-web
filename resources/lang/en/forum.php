@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Really restore post?',
         'edited' => 'Last edited by :user :when, edited :count_delimited time in total.|Last edited by :user :when, edited :count_delimited times in total.',
         'posted_at' => 'posted :when',
+        'posted_by' => 'posted by :username',
 
         'actions' => [
             'destroy' => 'Delete post',
-            'restore' => 'Restore post',
             'edit' => 'Edit post',
+            'report' => 'Report post',
+            'restore' => 'Restore post',
         ],
 
         'create' => [
@@ -73,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Really delete topic?',
+        'confirm_restore' => 'Really restore topic?',
         'deleted' => 'deleted topic',
         'go_to_latest' => 'view latest post',
         'has_replied' => 'You have replied to this topic',
@@ -86,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'by :user',
         'started_by_verbose' => 'started by :user',
+
+        'actions' => [
+            'destroy' => 'Delete topic',
+            'restore' => 'Restore topic',
+        ],
 
         'create' => [
             'close' => 'Close',
@@ -126,7 +135,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'forum subscriptions',
+            'title_compact' => 'forum topic watchlist',
 
             'box' => [
                 'total' => 'Topics subscribed',

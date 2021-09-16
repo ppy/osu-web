@@ -2,47 +2,36 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .flag-country {
-  .default-box-shadow();
-  .default-border-radius();
+  --height: 1em;
+  --width-height-ratio: calc(100 / 75);
 
-  height: 20px;
-  width: 30px;
+  height: var(--height);
+  width: calc(var(--height) * var(--width-height-ratio));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  display: inline-block;
+  border-radius: 3px;
+  position: relative;
+  filter: saturate(1.1);
 
-  &--full {
-    width: 100%;
-    height: 100%;
-    box-shadow: none;
-    border-radius: 0;
+  &::after {
+    .full-size();
+    background: inherit;
+    border-radius: inherit;
+    filter: contrast(0) brightness(2);
+    opacity: 0.25;
+    content: '';
   }
 
-  &--inline {
-    width: 100%;
-    height: auto;
-    padding-bottom: 66.67%;
-  }
-
-  &--small-box {
-    width: 19px;
-    height: 13px;
-    border-radius: 0;
-    box-shadow: none;
-    background-color: transparent;
-  }
-
-  &--userinfo-small {
-    margin: 0 0 0 8px;
+  &--flat {
     box-shadow: none;
   }
 
-  &--scoreboard {
-    box-shadow: none;
+  &--medium {
+    --height: 20px;
   }
 
-  &--wrapped {
-    display: block;
+  &--small {
+    --height: 13px;
   }
 }

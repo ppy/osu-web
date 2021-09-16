@@ -38,12 +38,12 @@ class UserContestEntry extends Model
 
     public static function upload(UploadedFile $file, $user, $contest = null)
     {
-        $entry = new static;
+        $entry = new static();
 
         DB::transaction(function () use ($entry, $file, $user, $contest) {
             $entry->save(); // get id
 
-            $entry->filesize = $file->getClientSize();
+            $entry->filesize = $file->getSize();
             $entry->original_filename = $file->getClientOriginalName();
             $entry->user()->associate($user);
             $entry->contest()->associate($contest);

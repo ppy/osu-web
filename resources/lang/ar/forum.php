@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'اتريد حقاََ اِسترجاع المنشور؟',
         'edited' => 'التعديل الأخير تم بواسطة :user :when، عُدِلَ ::count_delimited مرة في المجموع.|التعديل الأخير تم بواسطة :user:when, عُدِلَ ::count_delimited مرات في المجموع.',
         'posted_at' => 'نُشِر :when',
+        'posted_by' => 'منشور بواسطة :username',
 
         'actions' => [
             'destroy' => 'منشور محذوف',
-            'restore' => 'اِستعادة المنشور',
             'edit' => 'تعديل المنشور',
+            'report' => 'الإبلاغ عن المنشور',
+            'restore' => 'اِستعادة المنشور',
         ],
 
         'create' => [
@@ -73,9 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'حذف الموضوع حقاً؟',
+        'confirm_restore' => 'استعادة الموضوع حقاً؟',
         'deleted' => 'موضوع محذوف',
         'go_to_latest' => 'عرض اخر منشور',
         'has_replied' => 'لقد قمت بالرد على هذا الموضوع',
+        'in_forum' => 'في :forum',
         'latest_post' => ':when بواسطة :user',
         'latest_reply_by' => 'آخر رد من :user',
         'new_topic' => 'موضوع جديد',
@@ -85,6 +90,11 @@ return [
         'reply_title_prefix' => 'إعادة',
         'started_by' => 'بواسطة :user',
         'started_by_verbose' => 'بدأت بواسطة :user',
+
+        'actions' => [
+            'destroy' => 'حذف الموضوع',
+            'restore' => 'استعادة الموضوع',
+        ],
 
         'create' => [
             'close' => 'إغلاق',

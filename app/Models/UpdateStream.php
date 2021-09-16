@@ -42,7 +42,7 @@ class UpdateStream extends Model
     public function scopeWhereHasBuilds($query)
     {
         $query->whereHas('builds', function ($q) {
-            $buildInstance = new Build;
+            $buildInstance = new Build();
             $table = $buildInstance->getTable();
             $database = $buildInstance->dbName();
             $qualifiedTable = "{$database}.{$table}";

@@ -1,42 +1,33 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import {
-  ChatChannelSwitchAction,
-  ChatMessageAddAction,
-  ChatMessageSendAction,
-  ChatMessageUpdateAction,
-  ChatPresenceUpdateAction,
-} from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
-import UserSilenceAction from 'actions/user-silence-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatch, dispatchListener } from 'app-dispatcher';
+import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
+import { maxBy } from 'lodash';
 import { transaction } from 'mobx';
-import Message from 'models/chat/message';
-import RootDataStore from 'stores/root-data-store';
+import ChannelStore from 'stores/channel-store';
+import RetryDelay from 'utils/retry-delay';
 import ChatAPI from './chat-api';
-import { MessageJSON } from './chat-api-responses';
 
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
-  private api: ChatAPI;
-  private pollingEnabled: boolean = true;
-  private pollTime: number = 1000;
-  private pollTimeIdle: number = 5000;
+  private api = new ChatAPI();
+  private lastHistoryId: number | null = null;
+  private pollTime = 1000;
+  private pollTimeIdle = 5000;
+  private pollingEnabled = true;
+  private retryDelay = new RetryDelay();
   private updateTimerId?: number;
-  private updateXHR: boolean = false;
-  private windowIsActive: boolean = true;
+  private updateXHR = false;
+  private windowIsActive = true;
 
-  constructor(private rootDataStore: RootDataStore) {
-    this.api = new ChatAPI();
+  constructor(private channelStore: ChannelStore) {
   }
 
   handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof ChatMessageSendAction) {
-      this.sendMessage(action.message);
-    } else if (action instanceof WindowFocusAction) {
+    if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
     } else if (action instanceof WindowBlurAction) {
       this.windowIsActive = false;
@@ -47,16 +38,15 @@ export default class ChatWorker implements DispatchListener {
     if (this.updateXHR) {
       return;
     }
+
     this.updateXHR = true;
 
-    const maxMessageId = this.rootDataStore.channelStore.maxMessageId;
-    const lastHistoryId = this.rootDataStore.channelStore.lastHistoryId;
-
-    this.api.getUpdates(maxMessageId, lastHistoryId)
+    this.api.getUpdates(this.channelStore.lastPolledMessageId, this.lastHistoryId)
       .then((updateJson) => {
+        this.retryDelay.reset();
         this.updateXHR = false;
         if (this.pollingEnabled) {
-          this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
+          this.updateTimerId = window.setTimeout(this.pollForUpdates, this.pollingTime());
         }
 
         if (!updateJson) {
@@ -64,100 +54,37 @@ export default class ChatWorker implements DispatchListener {
         }
 
         transaction(() => {
-          updateJson.messages.forEach((message: MessageJSON) => {
-            const newMessage = Message.fromJSON(message);
-            newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
-            dispatch(new ChatMessageAddAction(newMessage));
-          });
+          const newHistoryId = maxBy(updateJson.silences, 'id')?.id;
 
-          let newHistoryId: number | null = null;
-          const silencedUserIds = new Set<number>();
-          updateJson.silences.forEach((silence) => {
-            silencedUserIds.add(silence.user_id);
-
-            if (newHistoryId == null) {
-              newHistoryId = silence.id;
-            } else {
-              if (silence.id > newHistoryId) {
-                newHistoryId = silence.id;
-              }
-            }
-          });
-
-          dispatch(new UserSilenceAction(silencedUserIds));
           if (newHistoryId != null) {
-            this.rootDataStore.channelStore.lastHistoryId = newHistoryId;
+            this.lastHistoryId = newHistoryId;
           }
 
-          dispatch(new ChatPresenceUpdateAction(updateJson.presence));
+          this.channelStore.updateWithJson(updateJson);
         });
       })
       .catch((err) => {
         // silently ignore errors and continue polling
         this.updateXHR = false;
         if (this.pollingEnabled) {
-          this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
+          this.updateTimerId = window.setTimeout(this.pollForUpdates, this.retryDelay.get());
         }
       });
-  }
+  };
 
   pollingTime(): number {
     return this.windowIsActive ? this.pollTime : this.pollTimeIdle;
   }
 
-  sendMessage(message: Message) {
-    const channelId = message.channelId;
-    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-
-    if (channel.newChannel) {
-      const users = channel.users.slice();
-      const userId = users.find((user) => {
-        return user !== currentUser.id;
-      });
-
-      if (!userId) {
-        console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
-        return;
-      }
-
-      this.api.newConversation(userId, message.content, message.isAction)
-        .then((response) => {
-          transaction(() => {
-            this.rootDataStore.channelStore.channels.delete(channelId);
-            this.rootDataStore.channelStore.addNewConversation(response.channel, response.message);
-            dispatch(new ChatChannelSwitchAction(response.channel.channel_id));
-          });
-        })
-        .catch(() => {
-          message.errored = true;
-          dispatch(new ChatMessageUpdateAction(message));
-        });
-    } else {
-      this.api.sendMessage(channelId, message.content, message.isAction)
-        .then((updateJson) => {
-          if (updateJson) {
-            message.messageId = updateJson.message_id;
-          } else {
-            message.errored = true;
-          }
-          dispatch(new ChatMessageUpdateAction(message));
-        })
-        .catch(() => {
-          message.errored = true;
-          dispatch(new ChatMessageUpdateAction(message));
-        });
-    }
-  }
-
   startPolling() {
     if (!this.updateTimerId) {
-      this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
+      this.updateTimerId = window.setTimeout(this.pollForUpdates, this.pollingTime());
     }
   }
 
   stopPolling() {
     if (this.updateTimerId) {
-      Timeout.clear(this.updateTimerId);
+      window.clearTimeout(this.updateTimerId);
       this.updateTimerId = undefined;
       this.updateXHR = false;
     }

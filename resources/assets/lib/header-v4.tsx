@@ -4,9 +4,10 @@
 import HeaderLink from 'interfaces/header-link';
 import * as React from 'react';
 import { Spinner } from 'spinner';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  backgroundImage?: string;
+  backgroundImage?: string | null;
   contentAppend?: React.ReactNode;
   contentPrepend?: React.ReactNode;
   isCoverUpdating?: boolean;
@@ -95,9 +96,9 @@ export default class HeaderV4 extends React.Component<Props> {
       }
 
       return (
-        <li className='header-nav-v4__item' key={`${link.url}-${link.title}`}>
+        <li key={`${link.url}-${link.title}`} className='header-nav-v4__item'>
           <a
-            className={osu.classWithModifiers('header-nav-v4__link', linkModifiers)}
+            className={classWithModifiers('header-nav-v4__link', linkModifiers)}
             href={link.url}
             onClick={this.props.onLinkClick}
             {...link.data}
@@ -116,7 +117,7 @@ export default class HeaderV4 extends React.Component<Props> {
     modifiers.push(this.props.linksBreadcrumb ? 'breadcrumb' : 'list');
 
     return (
-      <List className={osu.classWithModifiers('header-nav-v4', modifiers)}>
+      <List className={classWithModifiers('header-nav-v4', modifiers)}>
         {items}
       </List>
     );
@@ -172,7 +173,7 @@ export default class HeaderV4 extends React.Component<Props> {
           data-click-menu-id='header-nav-mobile'
           data-visibility='hidden'
         >
-            {items}
+          {items}
         </ul>
       </div>
     );

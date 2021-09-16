@@ -7,7 +7,7 @@ $factory->define(App\Models\Spotlight::class, function (Faker\Generator $faker) 
     $startDate = $faker->dateTimeBetween('-6 years', 'now');
     $endDate = Carbon\Carbon::instance($startDate)->addMonths(1);
 
-    return  [
+    return [
         'acronym' => 'T'.strtoupper(substr(uniqid(), 8)),
         'name' => $faker->realText(40),
         'start_date' => $startDate,
@@ -18,10 +18,10 @@ $factory->define(App\Models\Spotlight::class, function (Faker\Generator $faker) 
     ];
 });
 
-$factory->defineAs(App\Models\Spotlight::class, 'monthly', function (Faker\Generator $faker) {
+$factory->state(App\Models\Spotlight::class, 'monthly', function (Faker\Generator $faker) {
     $chartDate = Carbon\Carbon::instance($faker->dateTimeBetween('-6 years', 'now'))->startOfMonth();
 
-    return  [
+    return [
         'acronym' => function (array $self) {
             return "MONTH{$self['chart_month']->format('ym')}";
         },
@@ -41,10 +41,10 @@ $factory->defineAs(App\Models\Spotlight::class, 'monthly', function (Faker\Gener
     ];
 });
 
-$factory->defineAs(App\Models\Spotlight::class, 'bestof', function (Faker\Generator $faker) {
+$factory->state(App\Models\Spotlight::class, 'bestof', function (Faker\Generator $faker) {
     $chartDate = Carbon\Carbon::instance($faker->dateTimeBetween('-6 years', 'now'))->endOfYear();
 
-    return  [
+    return [
         'acronym' => function (array $self) {
             return "BEST{$self['chart_month']->format('Y')}";
         },

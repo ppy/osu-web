@@ -3,13 +3,13 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 
-@extends('master')
+@extends('wiki.layout')
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
         'links' => [[
-            'title' => trans('layout.header.help.index'),
-            'url' => wiki_url('Main_Page'),
+            'title' => osu_trans('layout.header.help.index'),
+            'url' => wiki_url('Main_Page', $page->requestedLocale),
         ]],
         'linksBreadcrumb' => true,
         'theme' => 'help',

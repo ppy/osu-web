@@ -37,8 +37,10 @@ abstract class Message extends Notification implements ShouldQueue
     public function via($notifiable)
     {
         // FIXME: remove this after adding the right checks to the tests
-        if (config('app.env') === 'testing'
-            && presence(env('STORE_NOTIFICATION_TESTS'), false) === false) {
+        if (
+            config('app.env') === 'testing'
+            && presence(env('STORE_NOTIFICATION_TESTS'), false) === false
+        ) {
             return [];
         }
 

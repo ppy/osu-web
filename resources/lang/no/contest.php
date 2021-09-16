@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Avstemmingen for denne konkurransen har avsluttet',
         'login_required' => 'Vennligst logg inn for å stemme.',
+        'over' => 'Avstemmingen for denne konkurransen har avsluttet',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "Det ser ikke ut som du har spilt noen av beatmappene som kvaliseres for denne konkurransen!",
@@ -26,14 +27,16 @@ return [
             'remove' => 'Fjern stemme',
             'used_up' => 'Du har brukt opp alle stemmene dine',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'deltager',
         'login_required' => 'Vennligst logg inn for å delta i konkurransen.',
         'silenced_or_restricted' => 'Du kan ikke bli med i konkurranser mens du er begrenset eller stum.',
         'preparation' => 'Vi driver for tiden å forbereder denne konkurransen. Vennligst vent tålmodig!',
-        'over' => 'Takk for dine bidrag! Påmeldingen for denne konkurransen har stengt og avstemningen vil åpne snart.',
-        'limit_reached' => 'Du har nådd maks antall bidrag for denne konkurransen',
         'drop_here' => 'Slipp bidraget ditt her',
         'download' => 'Last ned .osz',
         'wrong_type' => [

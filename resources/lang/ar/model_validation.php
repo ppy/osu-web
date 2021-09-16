@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'غير مسموح بحذف منشور موارد الخريطة.',
             'beatmapset_post_no_edit' => 'غير مسموح بتعديل منشور موارد الخريطة.',
+            'first_post_no_delete' => 'لا يمكن حذف المنشور الأول',
+            'missing_topic' => 'المنشور يفتقد لـ موضوع',
             'only_quote' => 'الرد الخاص بك يحتوي على اقتباس فقط.',
 
             'attributes' => [
@@ -121,6 +123,7 @@ return [
     'user' => [
         'contains_username' => 'كلمة المرور يجب أن لا تحتوي على اسم المستخدم.',
         'email_already_used' => 'البريد الإلكتروني مستخدم مسبقاََ.',
+        'email_not_allowed' => 'عنوان البريد الإلكتروني غير مسموح به.',
         'invalid_country' => 'الدولة ليست في قاعدة البيانات.',
         'invalid_discord' => 'اِسم خلاف غير صالح.',
         'invalid_email' => "لا يبدو وكأنه بريد الكتروني صالح.",

@@ -26,8 +26,8 @@ class Count extends Model
         return static::find('usercount')->count ?? 0;
     }
 
-    public static function lastMailNotificationIdSent()
+    public static function lastMailUserNotificationIdSent()
     {
-        return static::firstOrNew(['name' => 'last_mail_notification_id_sent'], ['count' => 0]);
+        return static::firstOrNew(['name' => 'last_mail_user_notification_id_sent'], ['count' => 0]);
     }
 }

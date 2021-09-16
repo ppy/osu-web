@@ -6,6 +6,7 @@
 namespace App\Libraries;
 
 use App\Models\Smiley;
+use App\Models\User;
 
 class BBCodeForDB
 {
@@ -34,7 +35,7 @@ class BBCodeForDB
 
     public function parseAudio($text)
     {
-        preg_match_all("#\[audio\](?<url>.*?)\[/audio\]#", $text, $audio, PREG_SET_ORDER);
+        preg_match_all('#\[audio\](?<url>.*?)\[/audio\]#', $text, $audio, PREG_SET_ORDER);
 
         foreach ($audio as $a) {
             $escapedUrl = $this->extraEscapes($a['url']);
@@ -65,7 +66,7 @@ class BBCodeForDB
 
     public function parseBox($text)
     {
-        $text = preg_replace("#\[box=([^]]*?)\]#s", "[box=\\1:{$this->uid}]", $text);
+        $text = preg_replace('#\[box=([^]]*?)\]#s', "[box=\\1:{$this->uid}]", $text);
         $text = str_replace('[/box]', "[/box:{$this->uid}]", $text);
         $text = str_replace('[spoilerbox]', "[spoilerbox:{$this->uid}]", $text);
         $text = str_replace('[/spoilerbox]', "[/spoilerbox:{$this->uid}]", $text);
@@ -89,7 +90,7 @@ class BBCodeForDB
     public function parseColour($text)
     {
         return preg_replace(
-            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.*?)\[(/color)\],s",
+            ',\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.*?)\[(/color)\],s',
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );
@@ -97,7 +98,7 @@ class BBCodeForDB
 
     public function parseEmail($text)
     {
-        $emailPattern = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+";
+        $emailPattern = '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+';
         $text = preg_replace(
             "#\[email\]({$emailPattern})\[/email\]#",
             "[email:{$this->uid}]\\1[/email:{$this->uid}]",
@@ -114,7 +115,7 @@ class BBCodeForDB
 
     public function parseImage($text)
     {
-        preg_match_all("#\[img\](?<url>.*?)\[/img\]#", $text, $images, PREG_SET_ORDER);
+        preg_match_all('#\[img\](?<url>.*?)\[/img\]#', $text, $images, PREG_SET_ORDER);
 
         foreach ($images as $i) {
             $escapedUrl = $this->extraEscapes($i['url']);
@@ -150,7 +151,7 @@ class BBCodeForDB
     public function parseHeading($text)
     {
         $text = preg_replace(
-            "#\[heading](.*?)\[/heading\]#",
+            '#\[heading](.*?)\[/heading\]#',
             "[heading:{$this->uid}]\\1[/heading:{$this->uid}]",
             $text
         );
@@ -160,7 +161,7 @@ class BBCodeForDB
 
     public function parseLinks($text)
     {
-        $spaces = ["(^|\[.+?\]|\s(?:&lt;|[.:([])*)", "((?:\[.+?\]|&gt;|[.:)\]])*(?:$|\s|\n|\r))"];
+        $spaces = ['(^|\[.+?\]|\s(?:&lt;|[.:([])*)', "((?:\[.+?\]|&gt;|[.:)\]])*(?:$|\s|\n|\r))"];
         $internalUrl = rtrim(preg_quote(config('app.url'), '#'), '/');
 
         // internal url
@@ -199,7 +200,7 @@ class BBCodeForDB
 
     public function parseList($text)
     {
-        $patterns = ["/\[(list(?:=.+?)?)\]/", '[/list]'];
+        $patterns = ['/\[(list(?:=.+?)?)\]/', '[/list]'];
         $counts = [preg_match_all($patterns[0], $text), substr_count($text, $patterns[1])];
         $limit = min($counts);
 
@@ -217,27 +218,60 @@ class BBCodeForDB
         return preg_replace(
             "#\[(notice)\](.*?)\[/\\1\]#s",
             "[\\1:{$this->uid}]\\2[/\\1:{$this->uid}]",
-            $text);
+            $text
+        );
     }
 
     public function parseProfile($text)
     {
-        return preg_replace_callback(
-            "#\[profile\](.+?)\[/profile\]#",
-            function ($m) {
-                $name = $this->extraEscapes($m[1]);
+        preg_match_all('#\[profile(?:=(?<id>[0-9]+))?\](?<name>.+?)\[/profile\]#', $text, $tags);
 
-                return "[profile:{$this->uid}]{$name}[/profile:{$this->uid}]";
-            },
-            $text
-        );
+        $count = count($tags[0]);
+
+        if ($count > 0) {
+            $users = User
+                ::whereIn('user_id', $tags['id'])
+                ->orWhereIn('username', $tags['name'])
+                ->orWhereIn('username_clean', $tags['name'])
+                ->get();
+
+            $usersBy = [];
+
+            foreach ($users as $user) {
+                foreach (['user_id', 'username', 'username_clean'] as $key) {
+                    $usersBy[$key][mb_strtolower($user->$key)] = $user;
+                }
+            }
+
+            for ($i = 0; $i < $count; $i++) {
+                $tag = presence($tags[0][$i]);
+                $name = $tags['name'][$i];
+                $nameNormalized = mb_strtolower($name);
+                $id = presence($tags['id'][$i]);
+
+                $user = $usersBy['user_id'][$id] ?? $usersBy['username'][$nameNormalized] ?? $usersBy['username_clean'][$nameNormalized] ?? null;
+
+                if ($user === null || !$user->hasProfileVisible()) {
+                    $idText = '';
+                } else {
+                    $idText = "={$user->getKey()}";
+                    $name = $user->username;
+                }
+
+                $name = $this->extraEscapes($name);
+
+                $text = str_replace($tag, "[profile{$idText}:{$this->uid}]{$name}[/profile:{$this->uid}]", $text);
+            }
+        }
+
+        return $text;
     }
 
     // this is quite different and much more dumb than the one in phpbb
 
     public function parseQuote($text)
     {
-        $patterns = ["/\[(quote(?:=&quot;.+?&quot;)?)\]/", '[/quote]'];
+        $patterns = ['/\[(quote(?:=&quot;.+?&quot;)?)\]/', '[/quote]'];
         $counts = [preg_match_all($patterns[0], $text), substr_count($text, $patterns[1])];
         $limit = min($counts);
 
@@ -250,7 +284,7 @@ class BBCodeForDB
     public function parseSize($text)
     {
         return preg_replace(
-            "#\[(size=(?:\d+))\](.*?)\[(/size)\]#s",
+            '#\[(size=(?:\d+))\](.*?)\[(/size)\]#s',
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );
@@ -306,7 +340,7 @@ class BBCodeForDB
     public function parseYoutube($text)
     {
         return preg_replace_callback(
-            "#\[youtube\](.+?)\[/youtube\]#",
+            '#\[youtube\](.+?)\[/youtube\]#',
             function ($m) {
                 $videoId = preg_replace('/\?.*/', '', $this->extraEscapes($m[1]));
 
@@ -328,6 +362,7 @@ class BBCodeForDB
         $text = $this->parseList($text);
 
         $text = $this->parseBlockSimple($text);
+        $text = $this->parseProfile($text);
         $text = $this->parseImage($text);
         $text = $this->parseInlineSimple($text);
         $text = $this->parseHeading($text);
@@ -337,7 +372,6 @@ class BBCodeForDB
         $text = $this->parseSize($text);
         $text = $this->parseColour($text);
         $text = $this->parseYoutube($text);
-        $text = $this->parseProfile($text);
 
         $text = $this->parseSmiley($text);
         $text = $this->parseLinks($text);

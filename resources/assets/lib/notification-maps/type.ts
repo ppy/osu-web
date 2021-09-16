@@ -3,7 +3,12 @@
 
 import Notification from 'models/notification';
 
+// FIXME: this mapping is not used anymore as it has been replaced by "filters"/objectType/NotificationType
 export function displayType(item: Notification) {
+  if (item.name === 'legacy_pm') {
+    return 'legacy_pm';
+  }
+
   if (item.objectType == null || item.objectId == null) {
     return;
   }

@@ -8,7 +8,6 @@ namespace App\Libraries;
 use App\Exceptions\InvariantException;
 use App\Libraries\Payments\InvalidOrderStateException;
 use App\Models\Store\Order;
-use App\Models\User;
 use DB;
 use Request;
 
@@ -185,19 +184,19 @@ class OrderCheckout
 
             // Checkout process level validations, should not be part of OrderItem validation.
             if ($item->product === null || !$item->product->isAvailable()) {
-                $messages[] = trans('model_validation/store/product.not_available');
+                $messages[] = osu_trans('model_validation/store/product.not_available');
             }
 
             if (!$item->product->inStock($item->quantity)) {
-                $messages[] = trans('model_validation/store/product.insufficient_stock');
+                $messages[] = osu_trans('model_validation/store/product.insufficient_stock');
             }
 
             if ($item->quantity > $item->product->max_quantity) {
-                $messages[] = trans('model_validation/store/product.too_many', ['count' => $item->product->max_quantity]);
+                $messages[] = osu_trans('model_validation/store/product.too_many', ['count' => $item->product->max_quantity]);
             }
 
             if ($shouldShopify && !$item->product->isShopify()) {
-                $messages[] = trans('model_validation/store/product.must_separate');
+                $messages[] = osu_trans('model_validation/store/product.must_separate');
             }
 
             $customClass = $item->getCustomClassInstance();

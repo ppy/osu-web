@@ -5,8 +5,10 @@
 
 return [
     'deleted' => 'supprimé',
-    'deleted_count' => ':count_delimited a supprimé le commentaire|:count_delimited a supprimé les commentaires',
-    'edited' => 'édité par :user :timeago',
+    'deleted_by' => 'supprimé :timeago par :user',
+    'deleted_by_system' => 'système',
+    'deleted_count' => ':count_delimited commentaire supprimé|:count_delimited commentaires supprimés',
+    'edited' => 'édité par :user il y a :timeago',
     'pinned' => 'épinglé',
     'empty' => 'Il n’y a pas encore de commentaires.',
     'load_replies' => 'charger les réponses',
@@ -15,8 +17,8 @@ return [
 
     'commentable_name' => [
         'beatmapset' => 'Beatmap',
-        'build' => 'Mises à jour',
-        'news_post' => 'Nouveau',
+        'build' => 'Changelog',
+        'news_post' => 'News',
         '_deleted' => 'Élément supprimé',
     ],
 
@@ -24,7 +26,7 @@ return [
         'textarea_hint' => [
             '_' => 'Appuyez sur entrée pour :action. Utilisez shift+entrée pour une nouvelle ligne.',
             'edit' => 'sauvegarder',
-            'new' => 'poster',
+            'new' => 'post',
             'reply' => 'répondre',
         ],
     ],
@@ -35,7 +37,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'commentaires',
         'nav_title' => 'liste',
+        'no_comments' => 'aucun commentaire trouvé...',
     ],
 
     'placeholder' => [

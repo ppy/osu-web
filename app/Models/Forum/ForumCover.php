@@ -48,7 +48,7 @@ class ForumCover extends Model
 
     public static function upload($filePath, $user, $forum = null)
     {
-        $cover = new static;
+        $cover = new static();
 
         DB::transaction(function () use ($cover, $filePath, $user, $forum) {
             $cover->save(); // get id

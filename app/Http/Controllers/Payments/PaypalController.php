@@ -15,13 +15,11 @@ use App\Libraries\Payments\PaypalPaymentProcessor;
 use App\Libraries\Payments\PaypalSignature;
 use App\Models\Store\Order;
 use App\Traits\CheckoutErrorSettable;
-use Auth;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request as HttpRequest;
 use Lang;
 use Log;
-use PayPal\Exception\PayPalConnectionException;
-use Request;
+use PayPalHttp\HttpException;
 
 class PaypalController extends Controller
 {
@@ -39,19 +37,30 @@ class PaypalController extends Controller
     // When user has approved a payment at Paypal and is redirected back here.
     public function approved()
     {
-        $paymentId = Request::input('paymentId');
-        $payerId = Request::input('PayerID');
-        $orderId = Request::input('order_id');
+        // new uses token
+        $params = get_params(request()->all(), null, [
+            'order_id:int',
+            'paymentId:string',
+            'token:string',
+        ], ['null_missing' => true]);
 
-        $order = Order::where('user_id', Auth::user()->user_id)
+        $order = auth()->user()
+            ->orders()
             ->processing()
-            ->findOrFail($orderId);
+            ->findOrFail($params['order_id']);
+
+        if (present($params['paymentId'])) {
+            return $this->setAndRedirectCheckoutError($order, osu_trans('paypal/errors.old_format'));
+        }
+
+        $token = $params['token'];
+        if (!present($token) || $token !== $order->reference) {
+            return $this->setAndRedirectCheckoutError($order, osu_trans('paypal/errors.invalid_token'));
+        }
 
         try {
-            $command = new PaypalExecutePayment($order, compact('paymentId', 'payerId'));
-            $payment = $command->run();
-            Log::debug($payment);
-        } catch (PayPalConnectionException $e) {
+            (new PaypalExecutePayment($order))->run();
+        } catch (HttpException $e) {
             return $this->setAndRedirectCheckoutError($order, $this->userErrorMessage($e));
         }
 
@@ -61,21 +70,19 @@ class PaypalController extends Controller
     // Begin process of approving a payment.
     public function create()
     {
-        $orderId = Request::input('order_id');
+        $orderId = get_int(request('order_id'));
 
-        $order = Order::where('user_id', Auth::user()->user_id)->processing()->findOrFail($orderId);
-        $command = new PaypalCreatePayment($order);
-        $link = $command->getApprovalLink();
+        $order = auth()->user()->orders()->processing()->findOrFail($orderId);
 
-        return $link;
+        return (new PaypalCreatePayment($order))->run();
     }
 
     // Payment declined by user.
     public function declined()
     {
-        $orderId = Request::input('order_id');
+        $orderId = get_int(request('order_id'));
 
-        $order = Order::where('user_id', Auth::user()->user_id)->processing()->find($orderId);
+        $order = auth()->user()->orders()->processing()->find($orderId);
 
         if ($order === null) {
             return ujs_redirect(route('store.cart.show'));
@@ -83,7 +90,7 @@ class PaypalController extends Controller
 
         (new OrderCheckout($order, Order::PROVIDER_PAYPAL))->failCheckout();
 
-        return $this->setAndRedirectCheckoutError($order, trans('store.checkout.declined'));
+        return $this->setAndRedirectCheckoutError($order, osu_trans('store.checkout.declined'));
     }
 
     // Called by Paypal.
@@ -103,8 +110,10 @@ class PaypalController extends Controller
             return response(['message' => $exception->getMessage()], 406);
         } catch (QueryException $exception) {
             // can get multiple cancellations for the same order from paypal.
-            if (is_sql_unique_exception($exception)
-                && $processor->getNotificationType() === NotificationType::REFUND) {
+            if (
+                is_sql_unique_exception($exception)
+                && $processor->getNotificationType() === NotificationType::REFUND
+            ) {
                 return 'ok';
             }
 
@@ -114,14 +123,14 @@ class PaypalController extends Controller
         return 'ok';
     }
 
-    private function userErrorMessage($e)
+    private function userErrorMessage(HttpException $e)
     {
-        $json = json_decode($e->getData());
+        $json = json_decode($e->getMessage());
         $key = 'paypal/errors.'.strtolower($json->name ?? 'unknown');
         if (!Lang::has($key)) {
             $key = 'paypal/errors.unknown';
         }
 
-        return trans($key);
+        return osu_trans($key);
     }
 }

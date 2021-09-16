@@ -4,7 +4,7 @@
 import { CoverSelection } from './cover-selection'
 import * as React from 'react'
 import { a, div, label, p, strong } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 import { classWithModifiers } from 'utils/css'
 el = React.createElement
 
@@ -45,7 +45,7 @@ export class CoverUploader extends React.Component
       done: (_e, data) ->
         $.publish 'user:update', data.result
 
-      fail: osu.fileuploadFailCallback(@$uploadButton)
+      fail: _exported.fileuploadFailCallback
 
       complete: ->
         $.publish 'user:cover:upload:state', false
@@ -71,9 +71,8 @@ export class CoverUploader extends React.Component
           strong null,
             el StringWithComponent,
               mappings:
-                ':link': a
+                link: a
                   href: laroute.route('store.products.show', product: 'supporter-tag')
-                  key: 'link'
                   target: '_blank'
                   osu.trans 'users.show.edit.cover.upload.restriction_info.link'
               pattern: osu.trans 'users.show.edit.cover.upload.restriction_info._'

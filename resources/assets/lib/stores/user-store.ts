@@ -1,15 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DispatcherAction from 'actions/dispatcher-action';
-import { UserLogoutAction } from 'actions/user-login-actions';
-import UserJSON from 'interfaces/user-json';
-import { action, observable } from 'mobx';
+import UserJson from 'interfaces/user-json';
+import { action, makeObservable, observable } from 'mobx';
 import User from 'models/user';
-import Store from 'stores/store';
 
-export default class UserStore extends Store {
+export default class UserStore {
   @observable users = observable.map<number, User>();
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   flushStore() {
@@ -21,7 +22,7 @@ export default class UserStore extends Store {
   }
 
   @action
-  getOrCreate(userId: number, props?: UserJSON): User {
+  getOrCreate(userId: number, props?: UserJson): User {
     let user = this.users.get(userId);
 
     // TODO: update from props if newer?
@@ -30,7 +31,7 @@ export default class UserStore extends Store {
     }
 
     if (props) {
-      user = User.fromJSON(props);
+      user = User.fromJson(props);
     } else {
       user = new User(userId);
     }
@@ -44,17 +45,11 @@ export default class UserStore extends Store {
     return user;
   }
 
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof UserLogoutAction) {
-      this.flushStore();
-    }
-  }
-
   @action
-  updateWithJSON(data: UserJSON[] | undefined | null) {
-    if (data == null) { return; }
+  updateWithJson(data: UserJson[] | undefined | null) {
+    if (data == null) return;
     for (const json of data) {
-      const user = User.fromJSON(json);
+      const user = User.fromJson(json);
       this.users.set(user.id, user);
     }
   }

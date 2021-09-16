@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Raportează',
+        'title' => 'Raportați beatmap-ul lui :username?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Raportează',
         'title' => 'Raportează postarea lui :username?',
@@ -12,6 +17,11 @@ return [
     'comment' => [
         'button' => 'Raportează',
         'title' => 'Raportezi comentariul lui :username?',
+    ],
+
+    'forum_post' => [
+        'button' => 'Raportează',
+        'title' => 'Raportează postarea lui :username?',
     ],
 
     'scores' => [

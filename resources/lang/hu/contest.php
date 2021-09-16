@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Erre a versenyre már véget ért a szavazás',
         'login_required' => 'Kérlek jelentkezz be a szavazáshoz.',
+        'over' => 'Erre a versenyre már véget ért a szavazás',
+        'show_voted_only' => 'Szavazottak mutatása',
 
         'best_of' => [
             'none_played' => "Úgy tűnik, hogy egyetlen beatmap-et sem játszottál ami megfelelne ennek a versenynek!",
@@ -26,14 +27,16 @@ return [
             'remove' => 'Szavazat eltávolítása',
             'used_up' => 'Felhasználtad az összes szavazatodat',
         ],
+
+        'progress' => [
+            '_' => ':used / :max szavazás használva',
+        ],
     ],
     'entry' => [
         '_' => 'jelentkezés',
         'login_required' => 'Kérlek jelentkezz be a versenyhez való csatlakozáshoz.',
         'silenced_or_restricted' => 'Felfüggesztve illetve némítva nem jelentkezhetsz versenyekre.',
         'preparation' => 'Ez a verseny előkészítés alatt áll. Kérjük várj türelmesen!',
-        'over' => 'Köszönjük a jelentkezéseidet! A beküldési lehetőség lezárult erre a versenyre és a szavazás hamarosan indul.',
-        'limit_reached' => 'Elérted a jelentkezési limited erre a versenyre',
         'drop_here' => 'Húzd a jelentkezésedet ide',
         'download' => '.osz letöltése',
         'wrong_type' => [

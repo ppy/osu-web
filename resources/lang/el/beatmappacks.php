@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Προ-πακεταρισμένες συλλογές beatmaps βασισμένες σε ένα κοινό θέμα.',
-        'nav_title' => '',
+        'nav_title' => 'λίστα',
         'title' => 'Πακέτα Beatmaps',
 
         'blurb' => [
@@ -27,6 +27,10 @@ return [
         'item' => [
             'cleared' => 'ολοκληρώθηκε',
             'not_cleared' => 'δεν ολοκληρώθηκε',
+        ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
         ],
     ],
 

@@ -8,17 +8,17 @@
     <div class="contest__description">{!! markdown($contestMeta->description_enter) !!}</div>
     @include('contests._countdown', ['deadline' => $contestMeta->currentPhaseEndDate()])
     @if (!Auth::check())
-      <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.login_required')}}</div>
+      <div class='contest__voting-notice contest__voting-notice--padding'>{{osu_trans('contest.entry.login_required')}}</div>
     @else
       @if (Auth::user()->isSilenced() || Auth::user()->isRestricted())
-        <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.silenced_or_restricted')}}</div>
+        <div class='contest__voting-notice contest__voting-notice--padding'>{{osu_trans('contest.entry.silenced_or_restricted')}}</div>
       @else
         @if (!$contestMeta->isSubmissionOpen())
           @if ($contestMeta->entry_starts_at !== null && $contestMeta->entry_starts_at->isPast())
-            <div class='contest__voting-notice'>{{trans('contest.entry.over')}}</div>
+            <div class='contest__voting-notice'>{{osu_trans('authorization.contest.entry.over')}}</div>
             <div class='js-react--userContestEntry'></div>
           @else
-            <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.preparation')}}</div>
+            <div class='contest__voting-notice contest__voting-notice--padding'>{{osu_trans('contest.entry.preparation')}}</div>
           @endif
         @else
           <div class='js-react--userContestEntry'></div>
@@ -35,5 +35,5 @@
   <script id="json-userEntries" type="application/json">
     {!! json_encode($contest->userEntries(Auth::user())) !!}
   </script>
-  @include('layout._extra_js', ['src' => 'js/react/contest-entry.js'])
+  @include('layout._react_js', ['src' => 'js/react/contest-entry.js'])
 @stop

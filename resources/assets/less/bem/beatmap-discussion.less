@@ -3,6 +3,10 @@
 
 .beatmap-discussion {
   @_top: beatmap-discussion;
+
+  @_top-padding-y: 10px;
+  @_top-padding-x: 15px;
+
   .own-layer();
   display: flex;
 
@@ -32,14 +36,13 @@
         content: ' ';
         width: 1px;
         right: 100%;
-        background-image: linear-gradient(to bottom, osu-hsla(@osu-colour-b1, 0), @osu-colour-b1 50%, osu-hsla(@osu-colour-b1, 0));
+        background-image: linear-gradient(to bottom, hsla(var(--hsl-b1), 0), @osu-colour-b1 50%, hsla(var(--hsl-b1), 0));
       }
     }
   }
 
   &__discussion {
     .default-box-shadow();
-    .default-border-radius();
 
     flex: 1;
     min-width: 0;
@@ -64,6 +67,10 @@
           100% { opacity: 0.5; }
         }
       }
+    }
+
+    @media @desktop {
+      .default-border-radius();
     }
   }
 
@@ -129,6 +136,7 @@
     display: grid;
     grid-template-areas: "user actions" "message message";
     grid-template-columns: 1fr auto;
+    gap: 10px;
 
     .@{_top}--horizontal-desktop & {
       @media @desktop {
@@ -149,6 +157,11 @@
     .@{_top}--review & {
       border-top: 2px solid var(--group-colour, transparent);
     }
+
+    .@{_top}--single & {
+      display: block;
+      padding: @_top-padding-y @_top-padding-x;
+    }
   }
 
   &__top-actions {
@@ -160,15 +173,22 @@
 
   &__top-message {
     grid-area: message;
-  }
-
-  &__top-user {
-    margin-top: 10px;
-    margin-left: 15px;
+    margin: 0 @_top-padding-x @_top-padding-y;
 
     .@{_top}--horizontal-desktop & {
       @media @desktop {
-        margin-bottom: 10px;
+        margin: @_top-padding-y 0;
+      }
+    }
+  }
+
+  &__top-user {
+    margin-top: @_top-padding-y;
+    margin-left: @_top-padding-x;
+
+    .@{_top}--horizontal-desktop & {
+      @media @desktop {
+        margin-bottom: @_top-padding-y;
         border-right: 2px solid var(--group-colour, hsl(var(--hsl-b5)));
       }
     }

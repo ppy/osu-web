@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'ไม่อนุญาตให้ลบโพสต์ Metadata ของบีทแมพ',
             'beatmapset_post_no_edit' => 'ไม่อนุญาตให้ดัดแปลงโพสต์ Metadata ของบีทแมพ',
+            'first_post_no_delete' => 'ไม่สามารถลบโพสต์ที่เริ่มต้นได้',
+            'missing_topic' => 'โพสต์ไม่มีหัวข้อ',
             'only_quote' => 'การตอบกลับของคุณมีแค่คำพูด',
 
             'attributes' => [
@@ -121,6 +123,7 @@ return [
     'user' => [
         'contains_username' => 'รหัสผ่านต้องไม่ประกอบด้วยชื่อผู้ใช้',
         'email_already_used' => 'อีเมลนี้ถูกใช้ไปแล้ว',
+        'email_not_allowed' => 'ที่อยู่อีเมลไม่ได้รับการอนุญาติ',
         'invalid_country' => 'ประเทศไม่ได้อยู่ในฐานข้อมูล',
         'invalid_discord' => 'ชื่อผู้ใช้ Discord ไม่ถูกต้อง',
         'invalid_email' => "เหมือนกับว่ามันไม่ใช่ที่อยู่อีเมล",

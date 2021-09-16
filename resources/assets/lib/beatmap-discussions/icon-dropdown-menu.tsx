@@ -4,6 +4,7 @@
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import { SlateContext } from './slate-context';
 
 export interface MenuItem {
@@ -21,6 +22,7 @@ interface Props {
 
 export default class IconDropdownMenu extends React.Component<Props> {
   static contextType = SlateContext;
+  declare context: React.ContextType<typeof SlateContext>;
 
   render(): React.ReactNode {
     return (
@@ -46,16 +48,16 @@ export default class IconDropdownMenu extends React.Component<Props> {
 
     return (
       <div
-        className={osu.classWithModifiers(bn, mods)}
-        contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-        onClick={toggle}
         ref={ref}
+        className={classWithModifiers(bn, mods)} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+        contentEditable={false}
+        onClick={toggle}
       >
         {selected.icon}
         {children}
       </div>
     );
-  }
+  };
 
   renderMenuItem = (menuItem: MenuItem) => {
     const baseClass = 'simple-menu__item';
@@ -68,12 +70,12 @@ export default class IconDropdownMenu extends React.Component<Props> {
 
     return (
       <button
-        className={osu.classWithModifiers(baseClass, mods)}
         key={menuItem.id}
+        className={classWithModifiers(baseClass, mods)}
         data-id={menuItem.id}
         onClick={this.select}
       >
-        <div className={osu.classWithModifiers(iconClass, ['icon-dropdown-menu'])}>
+        <div className={classWithModifiers(iconClass, ['icon-dropdown-menu'])}>
           {menuItem.icon}
         </div>
         <div className='simple-menu__label'>
@@ -81,7 +83,7 @@ export default class IconDropdownMenu extends React.Component<Props> {
         </div>
       </button>
     );
-  }
+  };
 
   select = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
@@ -93,5 +95,5 @@ export default class IconDropdownMenu extends React.Component<Props> {
     }
 
     this.props.onSelect(target.dataset.id ?? '');
-  }
+  };
 }

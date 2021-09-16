@@ -20,7 +20,7 @@ return [
             ],
             'infra' => [
                 'title' => 'Cơ sở hạ tầng máy chủ',
-                'description' => 'Đóng góp hướng tới máy chủ chạy trang web, dịch vụ nhiều người chơi, bảng xếp hạng trực tuyến, v.v.',
+                'description' => 'Phần đóng góp sẽ được sử dụng cho các máy chủ để chạy trang web, dịch vụ multiplayer, bảng xếp hạng trực tuyến, v.v.',
             ],
             'featured-artists' => [
                 'title' => 'Featured Artists',
@@ -60,13 +60,13 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => '',
+                'title' => 'Lọc theo Mods',
                 'description' => 'Chỉ liên kết với những người chơi HDHR ư? Không vấn đề gì!',
             ],
 
             'auto_downloads' => [
                 'title' => 'Tải Tự Động',
-                'description' => 'Tự tải khi đang chơi multiplayer, theo dõi người chơi khác, hay chỉ nhấn link trong chat!',
+                'description' => 'Beatmap sẽ tự động tải khi đang chơi multiplayer, theo dõi người chơi khác, hoặc khi click vào link beatmap trong kênh chat!',
             ],
 
             'upload_more' => [
@@ -121,18 +121,18 @@ return [
 
             'more_favourites' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'Lượng beatmap tối đa bạn có thể yêu thích được tăng từ :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Thêm bạn bè',
-                'description' => '',
+                'description' => 'Lượng bàn bè tối đa bạn có thể có được tăng từ :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Đăng tải Nhiều Beatmap hơn',
+                'description' => 'Số beatmap bạn sở hữu cùng lúc được tính từ một giá trị cơ sở cộng với lượng thưởng thêm ứng với mỗi beatmap được xếp hạng mà bạn đang có (tới một ngưỡng)<br/><br/>Thông thường nó là :base + :bonus với mỗi beatmap được xếp hạng (lên tới :bonus_max). Với việc làm người ủng hộ, nó sẽ tăng lên :supporter_base + :supporter_bonus với mỗi beatmap được xếp hạng (lên tới :supporter_bonus_max).',
             ],
             'friend_filtering' => [
-                'title' => '',
+                'title' => 'Bảng xếp hạng Bạn bè',
                 'description' => '',
             ],
 

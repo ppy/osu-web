@@ -1,25 +1,22 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { action, computed, observable } from 'mobx';
-import { getValidName, Name as NotificationTypeName } from 'models/notification-type';
+import { action, computed, makeObservable, observable } from 'mobx';
+import NotificationType, { getValidName, Name as NotificationTypeName, typeNames } from 'models/notification-type';
 import { NotificationContextData } from 'notifications-context';
 import NotificationStackStore from 'stores/notification-stack-store';
 import NotificationStore from 'stores/notification-store';
+import { currentUrl, currentUrlParams } from 'utils/turbolinks';
 
 export default class NotificationController {
   @observable currentFilter: NotificationTypeName;
 
   private store: NotificationStackStore;
-
-  @computed
-  get legacyPm() {
-    return this.store.legacyPm;
-  }
+  private readonly typeNamesWithoutNull = typeNames.filter((name) => !(name == null || this.isExcluded(name)));
 
   @computed
   get stacks() {
-    return this.store.orderedStacksOfType(this.currentFilter);
+    return this.store.orderedStacksOfType(this.currentFilter).filter((stack) => stack.hasVisibleNotifications && !this.isExcluded(stack.objectType));
   }
 
   @computed
@@ -28,9 +25,7 @@ export default class NotificationController {
   }
 
   private get typeNameFromUrl() {
-    const url = new URL(location.href);
-
-    return getValidName(url.searchParams.get('type'));
+    return getValidName(currentUrlParams().get('type'));
   }
 
   constructor(
@@ -42,11 +37,36 @@ export default class NotificationController {
     this.currentFilter = filter !== undefined ? filter : this.typeNameFromUrl;
 
     this.store = contextType.isWidget ? notificationStore.unreadStacks : notificationStore.stacks;
+
+    makeObservable(this);
+  }
+
+  getTotal(type: NotificationType) {
+    if (type.name == null) {
+      return this.typeNamesWithoutNull.reduce((acc, current) => acc + this.store.getOrCreateType({ objectType: current }).total, 0);
+    }
+
+    return type.total;
+  }
+
+  getType(name: NotificationTypeName) {
+    return this.store.getOrCreateType({ objectType: name });
   }
 
   @action
   loadMore() {
     this.type?.loadMore(this.contextType);
+  }
+
+  @action
+  markCurrentTypeAsRead() {
+    if (this.type.name == null) {
+      for (const name of this.typeNamesWithoutNull) {
+        this.store.getOrCreateType({ objectType: name }).markTypeAsRead();
+      }
+    } else {
+      this.type.markTypeAsRead();
+    }
   }
 
   @action
@@ -60,7 +80,7 @@ export default class NotificationController {
     if (!this.contextType.isWidget) {
       let href: string;
       if (type == null) {
-        const url = new URL(window.location.href);
+        const url = new URL(currentUrl().href);
         url.searchParams.delete('type');
 
         href = url.href;
@@ -70,5 +90,9 @@ export default class NotificationController {
 
       Turbolinks.controller.advanceHistory(href);
     }
+  }
+
+  private isExcluded(name: NotificationTypeName) {
+    return this.contextType.excludes.includes(name);
   }
 }

@@ -10,16 +10,20 @@
 
     right: 0;
     top: 0;
-    margin-right: 10px;
-    margin-top: 10px;
-  }
+    width: 100%;
+    padding: 10px 10px 0;
+    flex-direction: column;
+    display: flex;
 
-  &__chart {
-    height: 150px;
+    @media @narrow-up {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   &__content {
     .light-header-overlay();
+    .at2x-simple('~@images/layout/beatmaps/default-bg.png');
     padding: 70px 40px 0;
     background-size: cover;
     background-position: center;
@@ -75,6 +79,12 @@
       justify-content: space-between;
       flex-direction: row;
     }
+  }
+
+  &__guest {
+    font-size: @font-size--title-small;
+    display: flex;
+    align-items: center;
   }
 
   &__stats {

@@ -25,10 +25,10 @@ class ChangeUsername
     {
         $link = link_to(
             route('support-the-game'),
-            trans('model_validation.user.change_username.supporter_required.link_text')
+            osu_trans('model_validation.user.change_username.supporter_required.link_text')
         );
 
-        return trans('model_validation.user.change_username.supporter_required._', ['link' => $link]);
+        return osu_trans('model_validation.user.change_username.supporter_required._', ['link' => $link]);
     }
 
     public function __construct(User $user, string $newUsername, string $type = 'paid')
@@ -53,7 +53,7 @@ class ChangeUsername
             return $this->validationErrors()->addTranslated('username', static::requireSupportedMessage());
         }
 
-        if ($this->username === $this->user->username) {
+        if (User::cleanUsername($this->username) === $this->user->username_clean) {
             return $this->validationErrors()->add('username', '.change_username.username_is_same');
         }
 

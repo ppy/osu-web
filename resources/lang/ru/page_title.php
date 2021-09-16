@@ -22,6 +22,7 @@ return [
             '401-verification' => 'подтверждение аккаунта',
             '405' => 'не найдено',
             '422' => 'неверный запрос',
+            '429' => 'слишком много запросов',
             '500' => 'что-то сломалось',
             '503' => 'технические работы',
         ],
@@ -38,7 +39,7 @@ return [
             'verify_link' => 'верификация аккаунта',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'избранные исполнители',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'публикации в обсуждений карты',
@@ -56,7 +57,8 @@ return [
             '_' => 'история карты',
         ],
         'beatmapset_watches_controller' => [
-            'index' => 'инфопанель',
+            'index' => 'главная страница
+',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'обсуждение карты',
@@ -64,7 +66,7 @@ return [
             'show' => 'информация о карте',
         ],
         'changelog_controller' => [
-            '_' => 'история изменений',
+            '_' => 'список изменений',
         ],
         'chat_controller' => [
             '_' => 'чат',
@@ -75,17 +77,20 @@ return [
         'contests_controller' => [
             '_' => 'конкурсы',
         ],
+        'follows_controller' => [
+            'index' => 'главная страница',
+        ],
         'friends_controller' => [
-            'index' => 'инфопанель',
+            'index' => 'главная страница',
         ],
         'groups_controller' => [
             'show' => 'группы',
         ],
         'home_controller' => [
             'get_download' => 'скачать игру',
-            'index' => 'инфопанель',
+            'index' => 'главная страница',
             'search' => 'поиск',
-            'support_the_game' => 'поддержите игру',
+            'support_the_game' => 'поддержать игру',
             'testflight' => 'testflight',
         ],
         'legal_controller' => [
@@ -113,7 +118,7 @@ return [
             '_' => 'производительность',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'магазин',
         ],
         'tournaments_controller' => [
             '_' => 'турниры',
@@ -123,7 +128,7 @@ return [
             'disabled' => 'обратите внимание',
         ],
         'wiki_controller' => [
-            '_' => 'база знаний',
+            '_' => 'вики',
         ],
     ],
     'multiplayer' => [
@@ -132,11 +137,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'магазин',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'информация о моддере',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'история мультиплеера',
         ],
     ],
 ];

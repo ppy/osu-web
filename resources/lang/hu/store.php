@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Megrendelés feladva :date',
-
+        'cancel' => 'Megrendelés törlése',
+        'cancel_confirm' => 'Ez a megrendelés törlésre kerül, és fizetést nem fogadunk el érte. Előfordulhat, hogy a pénzforgalmi szolgáltató nem enged fel azonnal tartalékot. Biztos vagy ebben?',
+        'cancel_not_allowed' => 'Ez a megrendelés jelenleg nem törölhető.',
         'invoice' => 'Számla megtekintése',
         'no_orders' => 'Nincs megtekinthető megrendelés.',
+        'paid_on' => 'Megrendelés feladva :date',
         'resume' => 'Fizetés Folytatása',
+        'shopify_expired' => 'A rendelés fizetési linkje lejárt.',
 
         'item' => [
             'display_name' => [

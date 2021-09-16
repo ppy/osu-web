@@ -14,7 +14,7 @@ return [
 
         'slogan' => [
             'main' => 'el mejor juego de ritmo gratis',
-            'sub' => 'el ritmo está solo a un clic de distancia',
+            'sub' => 'el ritmo está a un solo clic de distancia',
         ],
     ],
 
@@ -76,9 +76,9 @@ return [
         'action' => 'Descargar osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'si tiene problemas para iniciar el juego o para obtener una cuenta, :help_forum_link o :support_button.',
+            'help_forum_link' => 'consulte el foro de ayuda',
+            'support_button' => 'contacte al soporte técnico',
         ],
 
         'os' => [

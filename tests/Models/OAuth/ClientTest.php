@@ -6,10 +6,10 @@
 namespace Tests\Models\OAuth;
 
 use App\Models\OAuth\Client;
-use App\Models\OAuth\RefreshToken;
 use App\Models\OAuth\Token;
 use App\Models\User;
 use Laravel\Passport\AuthCode;
+use Laravel\Passport\RefreshToken;
 use Tests\TestCase;
 
 class ClientTest extends TestCase
@@ -251,6 +251,17 @@ class ClientTest extends TestCase
         $this->actAsUserWithToken($token);
 
         $this->get(route('api.me'))->assertUnauthorized();
+    }
+
+    public function testPassportCreateClientCommand()
+    {
+        $countBefore = Client::count();
+
+        $this->artisan('passport:client', ['--password' => true])
+            ->expectsQuestion('What should we name the password grant client?', 'potato')
+            ->expectsQuestion('Which user provider should this client use to retrieve users?', 'user');
+
+        $this->assertSame($countBefore + 1, Client::count(), 'client was not created.');
     }
 
     protected function setUp(): void

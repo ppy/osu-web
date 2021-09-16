@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Нельзя удалить метаданные карты.',
             'beatmapset_post_no_edit' => 'Нельзя изменить метаданные карты.',
+            'first_post_no_delete' => 'Невозможно удалить первую публикацию',
+            'missing_topic' => 'В публикации отсутствует тема',
             'only_quote' => 'Ваш ответ содержит только цитату.',
 
             'attributes' => [
@@ -121,6 +123,7 @@ return [
     'user' => [
         'contains_username' => 'Пароль не должен содержать никнейм.',
         'email_already_used' => 'Почта уже использована.',
+        'email_not_allowed' => 'Недопустимый адрес электронной почты.',
         'invalid_country' => 'Вашей страны нет в базе данных.',
         'invalid_discord' => 'Неверное имя пользователя Discord.',
         'invalid_email' => "Это не похоже на адрес электронной почты.",

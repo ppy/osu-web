@@ -13,8 +13,6 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class TableTest extends TestCase
 {
-    private $modelsPath;
-
     public function testTableExistence()
     {
         $errors = [];

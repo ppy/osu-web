@@ -6,7 +6,7 @@ import { newEmptyNotificationDetails } from 'models/notification-details';
 
 export default class LegacyPmNotification extends Notification {
   details = newEmptyNotificationDetails();
-  isRead = false;
+  declare isRead: false;
   name = 'legacy_pm';
   objectId = -1;
 
@@ -15,6 +15,8 @@ export default class LegacyPmNotification extends Notification {
   }
 
   constructor() {
-    super(-1, 'legacy_pm');
+    super(-1, null);
+
+    this.isRead = false;
   }
 }

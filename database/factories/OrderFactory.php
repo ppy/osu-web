@@ -4,22 +4,21 @@
 // See the LICENCE file in the repository root for full licence text.
 
 $factory->define(App\Models\Store\Order::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'user_id' => function () {
             return factory(App\Models\User::class)->create(['user_sig' => ''])->user_id;
         },
     ];
 });
 
-$factory->defineAs(App\Models\Store\Order::class, 'paid', function (Faker\Generator $faker) use ($factory) {
-    $raw = $factory->raw(App\Models\Store\Order::class);
+$factory->state(App\Models\Store\Order::class, 'paid', function (Faker\Generator $faker) use ($factory) {
     $date = Carbon\Carbon::now();
 
-    return array_merge($raw, [
+    return [
         'paid_at' => $date,
         'status' => 'paid',
         'transaction_id' => "test-{$date->timestamp}",
-    ]);
+    ];
 });
 
 $factory->state(App\Models\Store\Order::class, 'incart', function (Faker\Generator $faker) {

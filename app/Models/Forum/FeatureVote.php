@@ -106,6 +106,7 @@ class FeatureVote extends Model
                 $cost = (string) static::COST;
                 $increment = (string) $star->voteIncrement();
 
+                // phpcs:ignore
                 return
                     $star->user->update([
                         'osu_featurevotes' => DB::raw("osu_featurevotes - ({$cost})"),

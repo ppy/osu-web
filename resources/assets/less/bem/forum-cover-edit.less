@@ -22,7 +22,7 @@
   }
 
   &__cover {
-    .at2x-simple('/images/headers/forum-topic-covers/forum-cover-category-osu.jpg');
+    .at2x-simple('~@images/headers/forum-topic-covers/forum-cover-category-osu.jpg');
     width: 100%;
     border-radius: @border-radius-large;
     height: 0;
@@ -38,7 +38,7 @@
   &__overlay {
     position: absolute;
     border-radius: @border-radius-large;
-    background-color: osu-hsla(@osu-colour-b6, 0.5);
+    background-color: hsla(var(--hsl-b6), 0.5);
     .center-content();
     .full-size();
     transition: all 120ms;
@@ -49,7 +49,7 @@
     }
 
     &[data-state="hover"] {
-      background-color: osu-hsla(@osu-colour-b6, 0.8);
+      background-color: hsla(var(--hsl-b6), 0.8);
     }
   }
 }

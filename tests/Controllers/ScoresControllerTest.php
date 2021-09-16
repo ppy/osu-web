@@ -78,7 +78,7 @@ class ScoresControllerTest extends TestCase
         $this->beforeApplicationDestroyed(function () use ($disks) {
             foreach ($disks as $disk) {
                 $path = storage_path('framework/testing/disks/'.$disk);
-                (new Filesystem)->deleteDirectory($path);
+                (new Filesystem())->deleteDirectory($path);
             }
         });
 

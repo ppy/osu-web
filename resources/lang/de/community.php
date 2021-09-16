@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Mehr Hochladen',
-                'description' => 'Zusätzliche "ausstehende" Beatmapplätze (pro Ranked Beatmap), bis zu einem Maximum von 10.',
+                'description' => 'Zusätzliche "ausstehende" Beatmapplätze (pro ranked Beatmap), bis zu einem Maximum von 10.',
             ],
 
             'early_access' => [

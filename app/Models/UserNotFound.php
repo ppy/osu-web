@@ -47,8 +47,6 @@ namespace App\Models;
  * @property int $user_last_privmsg
  * @property int $user_last_search
  * @property int $user_last_warning
- * @property string $user_lastfm
- * @property string $user_lastfm_session
  * @property int $user_lastmark
  * @property string $user_lastpage
  * @property int $user_lastpost_time
@@ -114,7 +112,7 @@ class UserNotFound extends User
     {
         static $user;
         if (!isset($user)) {
-            $user = new static(['user_id' => -1, 'username' => trans('supporter_tag.user_search.not_found')]);
+            $user = new static(['user_id' => -1, 'username' => osu_trans('supporter_tag.user_search.not_found')]);
         }
 
         return $user;

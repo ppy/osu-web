@@ -63,6 +63,10 @@
       margin: 0 -@padding;
       border: 2px solid hsl(200, 60%, 50%);
     }
+
+    @media @mobile {
+      margin: 0;
+    }
   }
 
   &__inner-block-count {
@@ -76,6 +80,7 @@
     .content-font();
     max-height: calc(50 * var(--vh, 1vh));
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 
     & > div {
       padding: @padding;

@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Восстановить ответ?',
         'edited' => 'Последний раз отредактирован :user :when, отредактирован :count раз.',
         'posted_at' => 'написано :when',
+        'posted_by' => 'опубликовано :username',
 
         'actions' => [
             'destroy' => 'Удалить ответ',
-            'restore' => 'Восстановить ответ',
             'edit' => 'Редактировать ответ',
+            'report' => 'Пожаловаться на запись',
+            'restore' => 'Восстановить ответ',
         ],
 
         'create' => [
@@ -73,9 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Действительно удалить тему?',
+        'confirm_restore' => 'Действительно восстановить тему?',
         'deleted' => 'удалённая тема',
         'go_to_latest' => 'перейти к последнему ответу',
         'has_replied' => 'Вы отвечали на эту тему',
+        'in_forum' => 'в :forum',
         'latest_post' => ':when от :user',
         'latest_reply_by' => 'последний ответ от :user',
         'new_topic' => 'Создать новую тему',
@@ -85,6 +90,11 @@ return [
         'reply_title_prefix' => 'Ответ',
         'started_by' => 'от :user',
         'started_by_verbose' => 'начато :user',
+
+        'actions' => [
+            'destroy' => 'Удалить тему',
+            'restore' => 'Восстановить тему',
+        ],
 
         'create' => [
             'close' => 'Закрыть',
@@ -104,7 +114,7 @@ return [
             ],
 
             'placeholder' => [
-                'body' => 'Содержимое',
+                'body' => 'Оставьте своё мнение',
                 'title' => 'Заголовок темы',
             ],
         ],
@@ -271,7 +281,7 @@ return [
 
             'feature_vote' => [
                 'current' => 'Текущий приоритет: +:count',
-                'do' => 'Продвинуть данный запрос',
+                'do' => 'Продвинуть эту идею',
 
                 'info' => [
                     '_' => 'Это :feature_request. За идею можно проголосовать только с :supporters.',
@@ -281,7 +291,7 @@ return [
 
                 'user' => [
                     'count' => ':count голос|:count голоса|:count голосов',
-                    'current' => 'У вас осталось :votes голосов.',
+                    'current' => 'У вас осталось :votes.',
                     'not_enough' => "У вас больше нет голосов",
                 ],
             ],
@@ -309,8 +319,8 @@ return [
 
         'watch' => [
             'to_not_watching' => 'Не в закладках',
-            'to_watching' => 'Заметка',
-            'to_watching_mail' => 'В закладки с оповещением',
+            'to_watching' => 'В закладки',
+            'to_watching_mail' => 'В закладки с уведомлением',
             'tooltip_mail_disable' => 'Уведомления включены. Нажмите, чтобы отключить',
             'tooltip_mail_enable' => 'Уведомления отключены. Нажмите, чтобы включить',
         ],

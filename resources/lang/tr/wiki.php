@@ -10,8 +10,8 @@ return [
         'missing' => 'İstenilen ":keyword" sayfası bulunamadı.',
         'missing_title' => 'Bulunamadı',
         'missing_translation' => 'İstenilen sayfa seçilen dilde bulunamadı.',
-        'needs_cleanup_or_rewrite' => 'Görüntülenen sayfa osu! wiki\'nin standartlarına uyuşmamaktadır ve silinmeli veya tekrardan yazılmalıdır. Eğer yardım edebilirseniz lütfen makaleyi güncellemeyi düşününüz!',
-        'search' => ':link için var olan sayfaları ara.',
+        'needs_cleanup_or_rewrite' => 'Bu sayfa osu! wiki standartlarına uymamaktadır, bu nedenle düzenlenmeli veya yeniden yazılmalıdır. Eğer yardımcı olabilirseniz, lütfen makaleyi güncellemeyi bir düşünün!',
+        'search' => ':link için mevcut sayfaları ara.',
         'toc' => 'İçerik',
 
         'edit' => [
@@ -20,10 +20,10 @@ return [
         ],
 
         'translation' => [
-            'legal' => 'Bu çeviri yalnızca kolaylık açısından eklenmiştir. Orijinal :default bu metnin tek yasal olarak bağlayıcı versiyonu olacaktır.',
+            'legal' => 'Bu çeviri yalnızca kolaylık açısından eklenmiştir. Orijinal :default bu metnin yasal olarak tek bağlayıcı versiyonu olacaktır.',
             'outdated' => 'Bu sayfa orijinal içeriğin güncel olmayan bir çevirisini barındırıyor. En doğru bilgi için :default sayfasını ziyaret edin (ve eğer yardım edebiliyorsanız çeviriyi güncellemeyi bir düşünün)!',
 
-            'default' => 'İngilizce sürüm',
+            'default' => 'İngilizce versiyonu',
         ],
     ],
 ];

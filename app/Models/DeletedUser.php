@@ -47,8 +47,6 @@ namespace App\Models;
  * @property int $user_last_privmsg
  * @property int $user_last_search
  * @property int $user_last_warning
- * @property string $user_lastfm
- * @property string $user_lastfm_session
  * @property int $user_lastmark
  * @property string $user_lastpage
  * @property int $user_lastpost_time
@@ -95,4 +93,9 @@ class DeletedUser extends User
 {
     public $user_avatar = null;
     public $username = '[deleted user]';
+
+    public function isDeleted()
+    {
+        return true;
+    }
 }

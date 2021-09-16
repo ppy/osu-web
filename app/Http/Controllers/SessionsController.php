@@ -10,7 +10,6 @@ use App\Libraries\User\ForceReactivation;
 use App\Models\User;
 use Auth;
 use NoCaptcha;
-use Request;
 
 class SessionsController extends Controller
 {
@@ -26,12 +25,6 @@ class SessionsController extends Controller
     public function store()
     {
         $request = request();
-
-        if ($request->attributes->get('csrf') === false) {
-            DatadogLoginAttempt::log('invalid_csrf');
-
-            abort(403, 'Reload page and try again');
-        }
 
         $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool', 'g-recaptcha-response:string']);
         $username = presence(trim($params['username'] ?? null));
@@ -65,7 +58,7 @@ class SessionsController extends Controller
                     DatadogLoginAttempt::log('invalid_captcha');
                 }
 
-                return $this->triggerCaptcha(trans('users.login.invalid_captcha'), 422);
+                return $this->triggerCaptcha(osu_trans('users.login.invalid_captcha'), 422);
             }
         }
 
@@ -74,7 +67,7 @@ class SessionsController extends Controller
         $user = User::findForLogin($username);
 
         if ($user === null && strpos($username, '@') !== false && !config('osu.user.allow_email_login')) {
-            $authError = trans('users.login.email_login_disabled');
+            $authError = osu_trans('users.login.email_login_disabled');
         } else {
             $authError = User::attemptLogin($user, $password, $ip);
         }
@@ -110,11 +103,7 @@ class SessionsController extends Controller
             logout();
         }
 
-        if (get_bool(request('redirect_home'))) {
-            return ujs_redirect(route('home'));
-        }
-
-        return captcha_triggered() ? ['captcha_triggered' => true] : [];
+        return [];
     }
 
     private function triggerCaptcha($message, $returnCode = 403)

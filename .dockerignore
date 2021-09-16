@@ -6,14 +6,10 @@ bootstrap/cache/
 bootstrap/compiler.php
 composer.phar
 node_modules/
-public/css
-public/fonts/vendor
-public/js
-public/mix-manifest.json
+public/assets
 public/uploads
 public/uploads-avatar
 public/uploads-replay
-public/vendor
 resources/assets/build/
 resources/assets/js/ziggy.js
 storage/

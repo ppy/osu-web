@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => '所指定的 :attribute 無效。',
     'not_negative' => ':attribute 不能為負數。',
     'required' => '需要 :attribute 。',
     'too_long' => ':attribute 超出最大長度——最多允許 :limit 個字符。',
@@ -24,7 +24,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "該圖譜目前為鎖定討論狀態，無法被推薦",
             'guest' => '登錄後才能推薦',
             'hyped' => '你已經推薦了這張譜面',
             'limit_exceeded' => '你已經用光了推薦次數',
@@ -49,7 +49,7 @@ return [
 
     'comment' => [
         'deleted_parent' => '無法回覆給已刪除評論。',
-        'top_only' => '',
+        'top_only' => '不允許回覆置頂評論。',
 
         'attributes' => [
             'message' => '訊息',
@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '不允許刪除譜面信息帖。',
             'beatmapset_post_no_edit' => '不允許編輯圖譜信息帖。',
+            'first_post_no_delete' => '無法刪除第一則貼文。',
+            'missing_topic' => '貼文缺少主題',
             'only_quote' => '您的回覆僅有引用。',
 
             'attributes' => [
@@ -119,9 +121,10 @@ return [
     ],
 
     'user' => [
-        'contains_username' => '密碼不能包含用戶名。',
+        'contains_username' => '密碼不能包含使用者名稱。',
         'email_already_used' => '郵箱已被使用。',
-        'invalid_country' => '國家或地區未被數據庫收錄。',
+        'email_not_allowed' => '電子郵件地址不允許。',
+        'invalid_country' => '國家未被數據庫收錄。',
         'invalid_discord' => 'Discord 用户名無效。',
         'invalid_email' => "無效的郵箱地址。",
         'invalid_twitter' => 'Twitter帳戶名無效',
@@ -135,7 +138,7 @@ return [
         'username_no_space_userscore_mix' => '請在下劃線和空格間選一個，不要混用！',
         'username_no_spaces' => "用戶名不能以空格開頭或結束。",
         'username_not_allowed' => '不允許使用該用戶名。',
-        'username_too_short' => '用戶名太短。',
+        'username_too_short' => '使用者名稱太短。',
         'username_too_long' => '用戶名太長。',
         'weak' => '弱密碼。',
         'wrong_current_password' => '密碼不正確.',

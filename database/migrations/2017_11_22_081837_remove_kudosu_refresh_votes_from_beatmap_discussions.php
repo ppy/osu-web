@@ -14,7 +14,7 @@ class RemoveKudosuRefreshVotesFromBeatmapDiscussions extends Migration
      */
     public function up()
     {
-        (new AddKudosuRefreshVotesToBeatmapDiscussions)->down();
+        (new AddKudosuRefreshVotesToBeatmapDiscussions())->down();
     }
 
     /**
@@ -24,6 +24,6 @@ class RemoveKudosuRefreshVotesFromBeatmapDiscussions extends Migration
      */
     public function down()
     {
-        (new AddKudosuRefreshVotesToBeatmapDiscussions)->up();
+        (new AddKudosuRefreshVotesToBeatmapDiscussions())->up();
     }
 }

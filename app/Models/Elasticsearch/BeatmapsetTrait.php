@@ -23,19 +23,12 @@ trait BeatmapsetTrait
         return static::withoutGlobalScopes()
             ->active()
             ->with('beatmaps') // note that the with query will run with the default scopes.
-            ->with(['beatmaps.difficulty' => function ($query) {
-                $query->where('mods', 0);
-            }]);
+            ->with('beatmaps.baseDifficultyRatings');
     }
 
     public static function esSchemaFile()
     {
         return config_path('schemas/beatmaps.json');
-    }
-
-    public static function esType()
-    {
-        return 'beatmaps';
     }
 
     public function esShouldIndex()
@@ -77,10 +70,9 @@ trait BeatmapsetTrait
         foreach ($this->beatmaps as $beatmap) {
             $beatmapValues = [];
             foreach ($mappings as $field => $mapping) {
-                $beatmapValues[$field] = $beatmap[$field];
+                $beatmapValues[$field] = $beatmap->$field;
             }
 
-            $beatmapValues['convert'] = false;
             $values[] = $beatmapValues;
 
             if ($beatmap->playmode === Beatmap::MODES['osu']) {
@@ -89,11 +81,13 @@ trait BeatmapsetTrait
                         continue;
                     }
 
-                    $diff = $beatmap->difficulty->where('mode', $modeInt)->where('mods', 0)->first();
-                    $convertValues = $beatmapValues; // is an array, so automatically a copy.
-                    $convertValues['convert'] = true;
-                    $convertValues['difficultyrating'] = $diff !== null ? $diff->diff_unified : $beatmap->difficultyrating;
-                    $convertValues['playmode'] = $modeInt;
+                    $convert = clone $beatmap;
+                    $convert->playmode = $modeInt;
+                    $convert->convert = true;
+                    $convertValues = [];
+                    foreach ($mappings as $field => $mapping) {
+                        $convertValues[$field] = $convert->$field;
+                    }
 
                     $values[] = $convertValues;
                 }

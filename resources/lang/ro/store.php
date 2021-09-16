@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Comandă plasată pe :date',
-
+        'cancel' => 'Anulează comanda',
+        'cancel_confirm' => 'Această comandă va fi anulată și plata nu va fi acceptată pentru ea. Este posibil ca furnizorul de plăți să nu elibereze imediat niciun fond rezervat. Ești sigur?',
+        'cancel_not_allowed' => 'Aceasta comanda nu poate fi anulata in acest moment.',
         'invoice' => 'Vezi factura',
         'no_orders' => 'Nu sunt comenzi pentru vizualizare.',
+        'paid_on' => 'Comandă plasată pe :date',
         'resume' => 'Reia finalizarea comenzii',
+        'shopify_expired' => 'Link-ul de finalizare a comenzii a expirat.',
 
         'item' => [
             'display_name' => [

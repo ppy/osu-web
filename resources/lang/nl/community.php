@@ -6,7 +6,7 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => 'Ik ben overgehaald! :D',
+            'title' => 'Ik ben overtuigd! :D',
             'support' => 'support osu!',
             'gift' => 'of gun het iemand anders',
             'instructions' => 'klik op het hartje om naar de osu!store te gaan',
@@ -24,12 +24,12 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Aanbevolen Artiesten',
-                'description' => 'Met jou steun kunnen we nog meer geweldige artiesten benaderen en meer geweldige muziek voor gebruik in osu! toestaan!',
+                'description' => 'Met jouw steun kunnen we nog meer geweldige artiesten benaderen en meer geweldige muziek voor gebruik in osu! toestaan!',
                 'link_text' => 'Bekijk het huidige rooster &raquo;',
             ],
             'ads' => [
                 'title' => 'Hou osu! zelfvoorzienend',
-                'description' => 'Uw bijdragen helpen het spel onafhankelijk te houden en volledig vrij van advertenties en externe sponsors.',
+                'description' => 'Jouw bijdragen helpen om het spel onafhankelijk en volledig vrij van advertenties en externe sponsors te houden.',
             ],
             'tournaments' => [
                 'title' => 'Officiële toernooien',

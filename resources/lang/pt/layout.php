@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => 'multijogador',
             'show' => 'informação',
         ],
     ],
@@ -62,48 +63,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'artistas destacados',
-            'index' => 'listagem',
-            'packs' => 'pacotes',
         ],
         'community' => [
             '_' => 'comunidade',
-            'chat' => 'chat',
-            'contests' => 'concursos',
             'dev' => 'desenvolvimento',
-            'forum-forums-index' => 'fóruns',
-            'getLive' => 'ao vivo',
-            'tournaments' => 'torneios',
         ],
         'help' => [
             '_' => 'ajuda',
+            'getAbuse' => 'denunciar abuso',
             'getFaq' => 'perguntas frequentes',
             'getRules' => 'regras',
             'getSupport' => 'a sério, preciso mesmo de ajuda!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'início',
-            'changelog-index' => 'lista de mudanças',
-            'getDownload' => 'transferir',
-            'news-index' => 'notícias',
-            'search' => 'pesquisar',
             'team' => 'equipa',
         ],
         'rankings' => [
             '_' => 'classificações',
-            'charts' => 'em destaque',
-            'country' => 'país',
-            'index' => 'desempenho',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multijogador',
-            'score' => 'pontuação',
         ],
         'store' => [
             '_' => 'loja',
-            'cart-show' => 'carrinho',
-            'getListing' => 'listagem',
-            'orders-index' => 'histórico de encomendas',
         ],
     ],
 
@@ -116,10 +97,10 @@ return [
             'download' => 'Descarrega o osu!',
         ],
         'help' => [
-            '_' => 'Ajuda e comunidade',
-            'faq' => 'Perguntas frequentes (em brasileiro)',
+            '_' => 'Ajuda e Comunidade',
+            'faq' => 'Perguntas frequentes',
             'forum' => 'Fóruns da comunidade',
-            'livestreams' => 'Transmissões ao vivo',
+            'livestreams' => 'Transmissões em direto',
             'report' => 'Comunicar um problema',
             'wiki' => 'Wiki',
         ],
@@ -158,6 +139,10 @@ return [
             'error' => 'Parâmetro de pedido inválido',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Taxa limite excedida',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh não! Algo se quebrou! ;_;',
             'description' => "Somos automaticamente notificados de todos os erros.",
@@ -179,7 +164,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'iniciar sessão / registar',
 
         'login' => [
             'forgot' => "Esqueci-me dos meus detalhes",
@@ -203,6 +188,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Definições',
+            'follows' => 'Listas de observação',
             'friends' => 'Amigos',
             'logout' => 'Terminar sessão',
             'profile' => 'O meu perfil',

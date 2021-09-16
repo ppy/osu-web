@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => 'mehrspieler',
             'show' => 'info',
         ],
     ],
@@ -62,48 +63,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'featured artists',
-            'index' => 'auflistung',
-            'packs' => 'pakete',
         ],
         'community' => [
             '_' => 'community',
-            'chat' => 'chat',
-            'contests' => 'wettbewerbe',
             'dev' => 'entwicklung',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'live',
-            'tournaments' => 'turniere',
         ],
         'help' => [
             '_' => 'hilfe',
+            'getAbuse' => 'missbrauch melden',
             'getFaq' => 'faq',
             'getRules' => 'regeln',
             'getSupport' => 'ich brauche wirklich hilfe!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'home',
-            'changelog-index' => 'changelog',
-            'getDownload' => 'download',
-            'news-index' => 'news',
-            'search' => 'suche',
             'team' => 'team',
         ],
         'rankings' => [
             '_' => 'ranglisten',
-            'charts' => 'charts',
-            'country' => 'länder',
-            'index' => 'performance',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'mehrspieler',
-            'score' => 'punkte',
         ],
         'store' => [
             '_' => 'shop',
-            'cart-show' => 'warenkorb',
-            'getListing' => 'produkte',
-            'orders-index' => 'bestellverlauf',
         ],
     ],
 
@@ -158,6 +139,10 @@ return [
             'error' => 'Ungültige Anforderungsparameter',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Ratengrenze überschritten',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh nein! Irgendwas ist schiefgelaufen! ;_;',
             'description' => "Wir werden automatisch über jeden Fehler benachrichtigt.",
@@ -170,8 +155,8 @@ return [
             'error' => 'Wegen Wartung nicht erreichbar!',
             'description' => "Wartungen dauern in der Regel zwischen 5 Sekunden und 10 Minuten. Sollten wir länger nicht erreichbar sein, schau bei :link für mehr Informationen.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -203,6 +188,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Einstellungen',
+            'follows' => 'Beobachtungslisten',
             'friends' => 'Freunde',
             'logout' => 'Ausloggen',
             'profile' => 'Mein Profil',

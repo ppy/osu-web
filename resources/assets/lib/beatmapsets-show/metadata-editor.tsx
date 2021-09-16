@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
 import { route } from 'laroute';
@@ -16,11 +16,12 @@ interface State {
   genreId: number;
   isBusy: boolean;
   languageId: number;
+  nsfw: boolean;
 }
 
 export default class MetadataEditor extends React.PureComponent<Props, State> {
-  private genres = osu.parseJson('json-genres') as GenreJson[];
-  private languages = osu.parseJson('json-languages') as LanguageJson[];
+  private genres = osu.parseJson<GenreJson[]>('json-genres');
+  private languages = osu.parseJson<LanguageJson[]>('json-languages');
 
   constructor(props: Props) {
     super(props);
@@ -29,6 +30,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
       genreId: props.beatmapset.genre.id ?? 0,
       isBusy: false,
       languageId: props.beatmapset.language.id ?? 0,
+      nsfw: props.beatmapset.nsfw ?? false,
     };
   }
 
@@ -42,10 +44,10 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
 
           <div className='form-select form-select--full'>
             <select
-              name='beatmapset[language_id]'
               className='form-select__input'
-              value={this.state.languageId}
+              name='beatmapset[language_id]'
               onChange={this.setLanguageId}
+              value={this.state.languageId}
             >
               {this.languages.map((language) => (
                 language.id === null ? null :
@@ -64,10 +66,10 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
 
           <div className='form-select form-select--full'>
             <select
-              name='beatmapset[genre_id]'
               className='form-select__input'
-              value={this.state.genreId}
+              name='beatmapset[genre_id]'
               onChange={this.setGenreId}
+              value={this.state.genreId}
             >
               {this.genres.map((genre) => (
                 genre.id === null ? null :
@@ -79,14 +81,31 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
           </div>
         </label>
 
+        <div className='simple-form__row'>
+          <div className='simple-form__label'>
+            {osu.trans('beatmapsets.show.info.nsfw')}
+          </div>
+
+          <label className='osu-switch-v2'>
+            <input
+              checked={this.state.nsfw}
+              className='osu-switch-v2__input'
+              name='beatmapset[nsfw]'
+              onChange={this.setNsfw}
+              type='checkbox'
+            />
+            <span className='osu-switch-v2__content' />
+          </label>
+        </div>
+
         <div className='simple-form__row simple-form__row--no-label'>
           <div className='simple-form__buttons'>
             <div className='simple-form__button'>
               <button
-                type='button'
                 className='btn-osu-big btn-osu-big--rounded-thin'
                 disabled={this.state.isBusy}
                 onClick={this.save}
+                type='button'
               >
                 {osu.trans('common.buttons.save')}
               </button>
@@ -94,10 +113,10 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
 
             <div className='simple-form__button'>
               <button
-                type='button'
                 className='btn-osu-big btn-osu-big--rounded-thin'
                 disabled={this.state.isBusy}
                 onClick={this.props.onClose}
+                type='button'
               >
                 {osu.trans('common.buttons.cancel')}
               </button>
@@ -115,19 +134,24 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
       data: { beatmapset: {
         genre_id: this.state.genreId,
         language_id: this.state.languageId,
+        nsfw: this.state.nsfw,
       } },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJson) => $.publish('beatmapset:set', { beatmapset }))
-    .fail(osu.ajaxError)
-    .always(() => this.setState({ isBusy: false }))
-    .done(this.props.onClose);
-  }
+      .fail(osu.ajaxError)
+      .always(() => this.setState({ isBusy: false }))
+      .done(this.props.onClose);
+  };
 
   private setGenreId = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ genreId: parseInt(e.currentTarget.value, 10) });
-  }
+  };
 
   private setLanguageId = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ languageId: parseInt(e.currentTarget.value, 10) });
-  }
+  };
+
+  private setNsfw = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ nsfw: e.currentTarget.checked });
+  };
 }

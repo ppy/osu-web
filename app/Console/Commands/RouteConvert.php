@@ -39,7 +39,7 @@ class RouteConvert extends Command
     {
         $this->readOptions();
 
-        $this->routeScopesHelper = new RouteScopesHelper;
+        $this->routeScopesHelper = new RouteScopesHelper();
 
         $this->read();
         $this->write();

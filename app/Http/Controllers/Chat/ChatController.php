@@ -6,12 +6,12 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Libraries\Chat;
-use App\Models\Chat\Channel;
+use App\Libraries\UserChannelList;
 use App\Models\Chat\Message;
-use App\Models\Chat\UserChannel;
 use App\Models\User;
 use App\Models\UserAccountHistory;
-use Auth;
+use App\Transformers\Chat\ChannelTransformer;
+use App\Transformers\Chat\MessageTransformer;
 
 /**
  * @group Chat
@@ -20,6 +20,7 @@ class ChatController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('require-scopes:chat.write', ['only' => 'newConversation']);
         $this->middleware('auth');
 
         return parent::__construct();
@@ -43,16 +44,18 @@ class ChatController extends Controller
      *   Note that this returns messages for all channels the user has joined.
      * </aside>
      *
-     * @authenticated
-     *
-     * @queryParam since required The `message_id` of the last message to retrieve messages since
-     * @queryParam channel_id If provided, will only return messages for the given channel
-     * @queryParam limit number of messages to return (max of 50)
+     * @queryParam since integer required The `message_id` of the last message to retrieve messages since
+     * @queryParam channel_id integer If provided, will only return messages for the given channel
+     * @queryParam limit integer number of messages to return (max of 50)
      *
      * @response {
      *   "presence": [
      *     {
      *       "channel_id": 5,
+     *       "current_user_attributes": {
+     *         "can_message": true,
+     *         "last_read_id": 9150005005
+     *       },
      *       "name": "#osu",
      *       "description": "The official osu! channel (english only).",
      *       "type": "public",
@@ -61,6 +64,10 @@ class ChatController extends Controller
      *     },
      *     {
      *       "channel_id": 12345,
+     *       "current_user_attributes": {
+     *         "can_message": true,
+     *         "last_read_id": 9150001235
+     *       },
      *       "type": "PM",
      *       "name": "peppy",
      *       "icon": "https://a.ppy.sh/2?1519081077.png",
@@ -132,11 +139,12 @@ class ChatController extends Controller
             return $e['channel_id'];
         }, $presence);
 
-        $messages = Message::forUser(Auth::user())
-            ->with('sender')
+        $messages = Message
+            ::with('sender')
             ->whereIn('channel_id', $channelIds)
             ->since($since)
-            ->limit($limit);
+            ->limit($limit)
+            ->orderBy('message_id', 'DESC');
 
         if (present($params['channel_id'] ?? null)) {
             $messages->where('channel_id', get_int($params['channel_id']));
@@ -169,7 +177,7 @@ class ChatController extends Controller
             'presence' => $presence,
             'messages' => json_collection(
                 $messages,
-                'Chat\Message',
+                new MessageTransformer(),
                 ['sender']
             ),
             'silences' => json_collection($silences, 'Chat\UserSilence'),
@@ -181,7 +189,7 @@ class ChatController extends Controller
      */
     public function presence()
     {
-        return UserChannel::presenceForUser(Auth::user());
+        return (new UserChannelList(auth()->user()))->get();
     }
 
     /**
@@ -203,8 +211,6 @@ class ChatController extends Controller
      *   This endpoint will only allow the creation of PMs initially, group chat support will come later.
      * </aside>
      *
-     * @authenticated
-     *
      * @bodyParam target_id integer required `user_id` of user to start PM with
      * @bodyParam message string required message to send
      * @bodyParam is_action boolean required whether the message is an action
@@ -213,6 +219,10 @@ class ChatController extends Controller
      *   "channel": [
      *     {
      *       "channel_id": 1234,
+     *       "current_user_attributes": {
+     *         "can_message": true,
+     *         "last_read_id": 9150005005
+     *       },
      *       "name": "peppy",
      *       "description": "",
      *       "type": "PM",
@@ -244,29 +254,34 @@ class ChatController extends Controller
      */
     public function newConversation()
     {
-        $params = request()->all();
-        $target = User::lookup(get_int($params['target_id'] ?? null), 'id');
+        $params = get_params(request()->all(), null, [
+            'is_action:bool',
+            'message',
+            'target_id:int',
+        ], ['null_missing' => true]);
+
+        $target = User::lookup($params['target_id'], 'id');
         if ($target === null) {
             abort(422, 'target user not found');
         }
 
+        $sender = auth()->user();
+
         /** @var Message $message */
         $message = Chat::sendPrivateMessage(
-            auth()->user(),
+            $sender,
             $target,
-            presence($params['message'] ?? null),
-            get_bool($params['is_action'] ?? null)
+            $params['message'],
+            $params['is_action']
         );
 
-        $channelJson = json_item($message->channel, 'Chat\Channel', ['first_message_id', 'last_message_id', 'users']);
-        $channelJson['icon'] = $target->user_avatar;
-        $channelJson['name'] = $target->username;
+        $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ChannelTransformer::CONVERSATION_INCLUDES);
 
         return [
             'channel' => $channelJson,
             'message' => json_item(
                 $message,
-                'Chat/Message',
+                new MessageTransformer(),
                 ['sender']
             ),
             'new_channel_id' => $message->channel_id,

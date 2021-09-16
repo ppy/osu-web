@@ -3,6 +3,11 @@
 
 .profile-links {
   .inner-shadow-top();
+  position: relative;
+  display: flex;
+  min-height: @gutter-profile-page-desktop;
+  justify-content: center;
+  flex-direction: column;
   padding: @padding-profile-page @gutter-profile-page;
   font-size: @font-size--normal;
   background-color: @osu-colour-b4;
@@ -10,6 +15,21 @@
   @media @desktop {
     padding-left: @gutter-profile-page-desktop;
     padding-right: @gutter-profile-page-desktop;
+  }
+
+  &__edit {
+    position: absolute;
+    top: 0;
+    right: @gutter-profile-page;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    @media @desktop {
+      right: 0;
+      width: @gutter-profile-page-desktop;
+    }
   }
 
   &__icon {

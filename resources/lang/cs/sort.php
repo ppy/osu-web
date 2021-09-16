@@ -15,8 +15,18 @@ return [
     'top' => 'Nejlepší',
     'username' => 'Uživatelské jméno',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Poslední odpověď',
         'feature_votes' => 'Počet hvězd',
+        'new' => 'Poslední odpověď',
+    ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
     ],
 ];

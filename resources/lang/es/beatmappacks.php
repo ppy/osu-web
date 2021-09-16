@@ -7,7 +7,7 @@ return [
     'index' => [
         'description' => 'Colecciones preempaquetadas de mapas basadas en un tema común.',
         'nav_title' => 'listado',
-        'title' => 'Paquetes de Beatmap',
+        'title' => 'Paquetes de Mapas',
 
         'blurb' => [
             'important' => 'LEE ESTO ANTES DE DESCARGAR',
@@ -28,8 +28,12 @@ return [
     'show' => [
         'download' => 'Descargar',
         'item' => [
-            'cleared' => 'procesado',
-            'not_cleared' => 'no procesado',
+            'cleared' => 'completado',
+            'not_cleared' => 'no completado',
+        ],
+        'no_diff_reduction' => [
+            '_' => ':link no pueden ser usados para completar este paquete.',
+            'link' => 'Los mods de reducción de dificultad',
         ],
     ],
 

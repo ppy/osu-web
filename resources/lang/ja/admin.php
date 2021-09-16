@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => '生成',
-            'regenerating' => '生成中・・・',
-            'remove' => '削除',
-            'removing' => '削除中・・・',
-            'title' => 'ビートマップセットカバー',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+            'title' => '',
         ],
         'show' => [
-            'covers' => '譜面のカバーを管理する',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => '適用',
-                'activate_confirm' => 'modding v2をこの譜面に適用しますか？',
-                'active' => '適用済',
-                'inactive' => '未適用',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => '削除',
+                'delete' => '',
 
-                'forum-name' => 'フォーラム #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'カバー無し',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => '保存',
-                    'update' => '更新',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'フォーラムカバーのリスト',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => '規定のトピックカバー',
-                    'main' => 'フォーラムカバー',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,17 +50,17 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'ログビューワー',
+            'title' => '',
         ],
     ],
 
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'ビートマップセット',
-                'forum' => 'フォーラム',
-                'general' => '全般',
-                'store' => 'ストア',
+                'beatmapsets' => '',
+                'forum' => '',
+                'general' => '',
+                'store' => '',
             ],
         ],
     ],
@@ -68,15 +68,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => '注文の一覧',
+                'title' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'このユーザーは現在制限中です。',
-            'message' => '（アドミンのみにこれが見えます）',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

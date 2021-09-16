@@ -1,19 +1,19 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import OsuUrlHelper from 'osu-url-helper';
 import { Eat } from 'remark-parse';
-import { Node } from 'unist';
+import { Processor } from 'unified';
+import { openBeatmapEditor } from 'utils/url';
 
 // plugin to tokenize timestamps
-export function timestampPlugin() {
+export function timestampPlugin(this: Processor) {
   function locator(value: string, fromIndex: number) {
     const match = value.substr(fromIndex).search(/[0-9]{2}:/);
 
     return match < 0 ? match : match + fromIndex;
   }
 
-  function inlineTokenizer(eat: Eat, value: string, silent?: true): Node | boolean | void {
+  function inlineTokenizer(eat: Eat, value: string, silent?: true) {
     const regex = new RegExp(/^((\d{2,}:[0-5]\d[:.]\d{3})( \((?:\d[,|])*\d\))?)/);
     const result = regex.exec(value);
 
@@ -31,7 +31,7 @@ export function timestampPlugin() {
       children: [
         {type: 'text', value: timestamp},
       ],
-      href: OsuUrlHelper.openBeatmapEditor(timestamp),
+      href: openBeatmapEditor(timestamp),
       type: 'timestamp',
     });
   }

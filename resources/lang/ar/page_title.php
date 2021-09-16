@@ -22,6 +22,7 @@ return [
             '401-verification' => 'التحقق من الحساب',
             '405' => 'مفقود',
             '422' => 'طلب غير صالح',
+            '429' => 'طلبات كثيرة جداً',
             '500' => 'وقعَ خطأ',
             '503' => 'صيانة',
         ],
@@ -75,6 +76,9 @@ return [
         'contests_controller' => [
             '_' => 'المسابقات',
         ],
+        'follows_controller' => [
+            'index' => 'لوحة التحكم',
+        ],
         'friends_controller' => [
             'index' => 'لوحة التحكم',
         ],
@@ -107,13 +111,13 @@ return [
             '_' => 'إعادة تعيين كلمة المرور',
         ],
         'ranking_controller' => [
-            '_' => 'التصنيف',
+            '_' => 'الترتيب',
         ],
         'scores_controller' => [
             '_' => 'الأداء',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'المتجر',
         ],
         'tournaments_controller' => [
             '_' => 'البطولات',
@@ -123,7 +127,7 @@ return [
             'disabled' => 'ملحوظة',
         ],
         'wiki_controller' => [
-            '_' => 'قاعدة المعارف',
+            '_' => 'ويكي',
         ],
     ],
     'multiplayer' => [
@@ -132,11 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'المتجر',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'معلومات المُعَدِل',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'تاريخ المباريات الجماعية ',
         ],
     ],
 ];

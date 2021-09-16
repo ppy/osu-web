@@ -10,7 +10,7 @@ class @ForumTopicPostJump
 
 
   end: =>
-    $('.js-forum-topic-post-jump--container').removeClass('forum-topic-nav__item--focus')
+    $('.js-forum-topic-post-jump--container').removeClass('js-forum-topic-post-jump--container-focus')
     $('.js-forum-topic-post-jump--cover').show()
     $('.js-forum-topic-post-jump--counter').show()
     $('.js-forum-topic-post-jump--input').hide()
@@ -31,7 +31,7 @@ class @ForumTopicPostJump
 
 
   start: =>
-    $('.js-forum-topic-post-jump--container').addClass('forum-topic-nav__item--focus')
+    $('.js-forum-topic-post-jump--container').addClass('js-forum-topic-post-jump--container-focus')
     $('.js-forum-topic-post-jump--cover').hide()
     $('.js-forum-topic-post-jump--counter').hide()
 

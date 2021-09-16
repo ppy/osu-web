@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Zobraziť faktúru',
         'no_orders' => 'Žiadne objednávky na zobrazenie.',
+        'paid_on' => '',
         'resume' => '',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

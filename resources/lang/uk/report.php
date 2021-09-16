@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Поскаржитись',
         'title' => 'Поскаржитись на пост :username?',
@@ -12,6 +17,11 @@ return [
     'comment' => [
         'button' => 'Поскаржитись',
         'title' => 'Поскаржитись на коментар :username?',
+    ],
+
+    'forum_post' => [
+        'button' => 'Скарга',
+        'title' => 'Поскаржитись на пост :username?',
     ],
 
     'scores' => [

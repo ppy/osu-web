@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Ordem colocara :date',
-
+        'cancel' => 'Cancelar Ordem',
+        'cancel_confirm' => 'Este pedido será cancelado e o pagamento dele não será aceito. O provedor de pagamento pode não reembolsar imediatamente. Você tem certeza?',
+        'cancel_not_allowed' => 'O pedido não pode ser cancelado no momento.',
         'invoice' => 'Ver Fatura',
         'no_orders' => 'Sem pedidos para ver.',
+        'paid_on' => 'Ordem colocara :date',
         'resume' => 'Continuar Compra',
+        'shopify_expired' => 'O link de verificação deste pedido expirou.',
 
         'item' => [
             'display_name' => [

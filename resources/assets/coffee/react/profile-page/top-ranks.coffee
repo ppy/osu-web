@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { ExtraHeader } from './extra-header'
+import ExtraHeader from 'profile-page/extra-header'
 import { PlayDetailList } from 'play-detail-list'
 import * as React from 'react'
 import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 el = React.createElement
 
 export class TopRanks extends React.PureComponent
@@ -18,9 +18,8 @@ export class TopRanks extends React.PureComponent
         h3
           className: 'title title--page-extra-small'
           osu.trans('users.show.extra.top_ranks.best.title')
-          if @props.scoresBest?.length == 0
-            span className: 'title__count',
-              osu.formatNumber(0)
+          span className: 'title__count',
+            osu.formatNumber(@props.user.scores_best_count)
 
         @renderScores 'scoresBest', 'best'
 

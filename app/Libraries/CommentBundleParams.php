@@ -6,12 +6,14 @@
 namespace App\Libraries;
 
 use App\Models\Comment;
+use App\Models\User;
 
 class CommentBundleParams
 {
     const DEFAULT_PAGE = 1;
     const DEFAULT_LIMIT = 50;
 
+    public $userId;
     public $commentableId;
     public $commentableType;
     public $parentId;
@@ -22,8 +24,13 @@ class CommentBundleParams
     public $page;
     public $sort;
 
-    public function __construct($params, $user)
+    /**
+     * @param array $params The params from request().
+     * @param User|null $user The user viewing the comments.
+     */
+    public function __construct(array $params, ?User $user)
     {
+        $this->userId = null;
         $this->parentId = null;
         $this->cursor = null;
         $this->limit = static::DEFAULT_LIMIT;
@@ -35,6 +42,10 @@ class CommentBundleParams
 
     public function setAll($params)
     {
+        if (array_key_exists('user_id', $params)) {
+            $this->userId = get_int($params['user_id']);
+        }
+
         if (array_key_exists('parent_id', $params)) {
             $this->parentId = get_int($params['parent_id']);
         }
@@ -50,9 +61,8 @@ class CommentBundleParams
         $this->commentableId = $params['commentable_id'] ?? null;
         $this->commentableType = $params['commentable_type'] ?? null;
 
-        $this->cursorHelper = new DbCursorHelper(Comment::SORTS, Comment::DEFAULT_SORT, $params['sort'] ?? $this->sort);
-        $this->cursorRaw = $params['cursor'] ?? null;
-        $this->cursor = $this->cursorHelper->prepare($this->cursorRaw);
+        $this->cursorHelper = Comment::makeDbCursorHelper($params['sort'] ?? $this->sort);
+        $this->cursor = get_arr($params['cursor'] ?? null);
         $this->sort = $this->cursorHelper->getSortName();
     }
 
@@ -66,8 +76,12 @@ class CommentBundleParams
         $params = [
             'commentable_id' => $this->commentableId,
             'commentable_type' => $this->commentableType,
-            'cursor' => $this->cursor === null ? null : $this->cursorRaw,
+            'cursor' => $this->cursor,
         ];
+
+        if ($this->userId !== null) {
+            $params['user_id'] = $this->userId;
+        }
 
         if ($this->parentId !== null) {
             $params['parent_id'] = $this->parentId;

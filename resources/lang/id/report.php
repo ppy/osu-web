@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Laporkan',
+        'title' => 'Laporkan beatmap milik :username?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Laporkan',
         'title' => 'Laporkan postingan :username?',
@@ -12,6 +17,11 @@ return [
     'comment' => [
         'button' => 'Laporkan',
         'title' => 'Laporkan komentar :username?',
+    ],
+
+    'forum_post' => [
+        'button' => 'Laporkan',
+        'title' => 'Laporkan postingan :username?',
     ],
 
     'scores' => [

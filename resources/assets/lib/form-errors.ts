@@ -1,10 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
 export class FormErrors {
   @observable private errors = new Map<string, string[]>();
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   clear() {
@@ -41,11 +45,11 @@ export class FormErrors {
   handleResponse = (xhr: JQueryXHR) => {
     const errors = xhr.responseJSON.form_error;
     // only handle responses with form_error
-    if (errors == null) { return; }
+    if (errors == null) return;
 
     this.errors.clear();
     for (const key of Object.keys(errors)) {
       this.errors.set(key, errors[key]);
     }
-  }
+  };
 }

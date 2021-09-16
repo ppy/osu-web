@@ -40,7 +40,7 @@ return [
         'too_many' => 'Limite blocchi raggiunto.',
         'button' => [
             'block' => 'Blocca',
-            'unblock' => 'sblocca',
+            'unblock' => 'Sblocca',
         ],
     ],
 
@@ -54,7 +54,7 @@ return [
         'warning' => "Nel caso tu abbia violato una regola, è necessario evidenziare che si tratta di un periodo dalla durata di un mese dove non saranno considerate alcune richieste di scuse. Dopo questo periodo, sarai libero di contattarci se lo ritieni opportuno. La creazione di nuovi account dopo la disattivazione di un altro sarà punita con <strong>l'estensione del periodo di un mese</strong>. È necessario sottolineare che <strong>creando un nuovo account ogni volta, violi ancora di più le regole</strong>. Ti suggeriamo caldamente di non prendere questa strada!",
 
         'if_mistake' => [
-            '_' => 'Se pensi che si tratti di un\'errore, sei libero di contattarci (via :email o cliccando "?" presente nell\'angolo in basso a destra di questa pagina). Siamo pienamente fiduciosi delle nostre azioni, siccome si basano su prove consolidate. Ci riserviamo il diritto di rifiutare la tua richiesta nel caso capissimo la tua intenzione di essere disonesto.',
+            '_' => 'Se pensi che si tratti di un\'errore, sei libero di contattarci (via :email o cliccando su "?" nell\'angolo in basso a destra di questa pagina). Nota che siamo pienamente fiduciosi delle nostre azioni, siccome si basano su prove consolidate. Ci riserviamo il diritto di rifiutare la tua richiesta se riteniamo che tu sia intenzionalmente disonesto.',
             'email' => 'email',
         ],
 
@@ -68,6 +68,10 @@ return [
                 'tos' => 'termini di servizio',
             ],
         ],
+    ],
+
+    'filtering' => [
+        'by_game_mode' => 'Membri per modalità di gioco',
     ],
 
     'force_reactivation' => [
@@ -84,7 +88,7 @@ return [
         'failed' => 'Login non corretto',
         'forgot' => 'Hai dimenticato la tua password?',
         'info' => 'Accedi per continuare',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Troppi tentativi di accesso falliti, completa il captcha e riprova. (Ricarica la pagina se il captcha non è visibile)',
         'locked_ip' => 'il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
         'password' => 'Password',
         'register' => "Non hai un account di osu!? Fanne uno nuovo",
@@ -94,7 +98,7 @@ return [
 
         'beta' => [
             'main' => 'L\'accesso alla beta è attualmente limitato ad utenti privilegiati.',
-            'small' => '(i supporter lo avranno a breve)',
+            'small' => '(gli osu!supporter lo avranno a breve)',
         ],
     ],
 
@@ -124,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Gioco scorretto / Cheating',
+            'multiple_accounts' => 'Uso di account multipli',
             'insults' => 'Insulti a me / altri',
             'spam' => 'Spamming',
             'unwanted_content' => 'Condivisione di contenuti inappropriati',
@@ -133,8 +138,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Il tuo account è stato limitato!',
-        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, <a
-href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
+        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto solitamente entro 24 ore. Se desideri fare appello contro la tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
     ],
     'show' => [
         'age' => ':age anni',
@@ -147,10 +151,14 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
         'lastvisit_online' => 'Attualmente online',
         'missingtext' => 'Potresti aver fatto un errore di battitura! (o l\'utente potrebbe essere stato bannato)',
         'origin_country' => 'da :country',
-        'previous_usernames' => 'precedentemente conosciuto come',
+        'previous_usernames' => 'conosciuto in precedenza come',
         'plays_with' => 'Gioca con :devices',
         'title' => "Profilo di :username",
 
+        'comments_count' => [
+            '_' => 'Ha postato :link',
+            'count' => ':count_delimited commento|:count_delimited commenti',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',
@@ -160,7 +168,7 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
                     'button' => 'Carica immagine',
                     'dropzone' => 'Trascina qui per caricarla',
                     'dropzone_info' => 'Puoi anche trascinare qui l\'immagine per caricarla',
-                    'size_info' => 'L\'immagine di copertina dovrebbe essere 2400x620',
+                    'size_info' => 'L\'immagine di copertina dovrebbe essere 2400x640',
                     'too_large' => 'Il file caricato è troppo grande.',
                     'unsupported_format' => 'Formato non supportato.',
 
@@ -199,11 +207,11 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
                 'loved' => [
                     'title' => 'Beatmap Amate',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmap Classificate & Approvate',
+                'pending' => [
+                    'title' => 'Beatmap In Attesa',
                 ],
-                'unranked' => [
-                    'title' => 'Beatmap in Attesa',
+                'ranked' => [
+                    'title' => 'Beatmap Classificate',
                 ],
             ],
             'discussions' => [
@@ -225,7 +233,7 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
                 ],
                 'most_played' => [
                     'count' => 'volte giocata',
-                    'title' => 'Beatmap più Giocate',
+                    'title' => 'Beatmap Più Giocate',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisione: :percentage',
@@ -293,6 +301,9 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
                 'recent' => 'Più recenti',
                 'title' => 'Medaglie',
             ],
+            'multiplayer' => [
+                'title' => 'Partite Multigiocatore',
+            ],
             'posts' => [
                 'title' => 'Post',
                 'title_longer' => 'Post Recenti',
@@ -312,7 +323,7 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
                     'title' => 'Migliore Performance',
                 ],
                 'first' => [
-                    'title' => 'Rank Primo Posto',
+                    'title' => 'Primi Posti',
                 ],
             ],
             'votes' => [
@@ -348,10 +359,8 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
         'info' => [
             'discord' => '',
             'interests' => 'Interessi',
-            'lastfm' => 'Last.fm',
             'location' => 'Posizione Attuale',
             'occupation' => 'Occupazione',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Sito',
         ],
@@ -379,29 +388,34 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
         ],
         'rank' => [
             'country' => 'Rank del paese per :mode',
-            'country_simple' => 'Classifica del Paese',
-            'global' => 'Rank globale :mode',
-            'global_simple' => 'Classifica globale',
+            'country_simple' => 'Classifica Nazionale',
+            'global' => 'Posto globale per :mode',
+            'global_simple' => 'Classifica Globale',
         ],
         'stats' => [
-            'hit_accuracy' => 'Precisione dei colpi',
+            'hit_accuracy' => 'Precisione dei Colpi',
             'level' => 'Livello :level',
             'level_progress' => 'Avanzamento al livello successivo',
             'maximum_combo' => 'Combo Massima',
             'medals' => 'Medaglie',
-            'play_count' => 'Partite giocate',
+            'play_count' => 'Partite Giocate',
             'play_time' => 'Tempo totale di gioco',
-            'ranked_score' => 'Punteggio Rankato',
+            'ranked_score' => 'Punteggio Classificato',
             'replays_watched_by_others' => 'Replay Guardati da Altri',
             'score_ranks' => 'Rank dei Punteggi',
             'total_hits' => 'Colpi Totali',
             'total_score' => 'Punteggio Totale',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmap Classificate & Approvate',
-            'loved_beatmapset_count' => 'Beatmap Amate',
-            'unranked_beatmapset_count' => 'Beatmap in Attesa',
             'graveyard_beatmapset_count' => 'Beatmap Abbandonate',
+            'loved_beatmapset_count' => 'Beatmap Amate',
+            'pending_beatmapset_count' => 'Beatmap In Attesa',
+            'ranked_beatmapset_count' => 'Beatmap Classificate',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Sei attualmente silenziato.',
+        'message' => 'Alcune funzioni non saranno disponibili.',
     ],
 
     'status' => [
@@ -419,6 +433,6 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
     'view_mode' => [
         'brick' => 'Vista a blocchi',
         'card' => 'Vista a schede',
-        'list' => 'Vista ad elenco',
+        'list' => 'Vista a elenco',
     ],
 ];

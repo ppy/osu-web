@@ -7,7 +7,8 @@ import { createElement as el, PureComponent } from 'react'
 import * as React from 'react'
 import { a, button, div, i, img, small, span } from 'react-dom-factories'
 import { hasMenu } from 'score-helper'
-import { getArtist, getTitle } from 'utils/beatmap-helper'
+import PpValue from 'scores/pp-value'
+import { getArtist, getTitle, shouldShowPp } from 'utils/beatmap-helper'
 
 osu = window.osu
 bn = 'play-detail'
@@ -28,6 +29,9 @@ export class PlayDetail extends PureComponent
     else
       blockClass += " #{bn}--highlightable"
     blockClass += " #{bn}--compact" if @state.compact
+
+    hasPp = score.beatmapset.status in ['ranked', 'approved']
+    validPp = hasPp && score.pp?
 
     div
       className: blockClass
@@ -74,8 +78,8 @@ export class PlayDetail extends PureComponent
               if score.weight?
                 span
                   className: "#{bn}__weighted-pp"
-                  osu.formatNumber(Math.round(score.weight.pp))
-                  'pp'
+                  if score.pp?
+                    "#{osu.formatNumber(Math.round(score.weight.pp))}pp"
             if score.weight?
               div
                 className: "#{bn}__pp-weight"
@@ -87,15 +91,14 @@ export class PlayDetail extends PureComponent
 
         div
           className: "#{bn}__pp"
-          if score.pp > 0
-            span null,
-              osu.formatNumber(Math.round(score.pp))
-              span className: "#{bn}__pp-unit", 'pp'
+          if shouldShowPp(score.beatmap)
+            el React.Fragment, null,
+              el PpValue,
+                score: score
+                suffix: span(className: "#{bn}__pp-unit", 'pp')
           else
             span
-              title:
-                if score.beatmapset.status not in ['ranked', 'approved']
-                  osu.trans('users.show.extra.top_ranks.not_ranked')
+              title: osu.trans('users.show.extra.top_ranks.not_ranked')
               '-'
 
         div

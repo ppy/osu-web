@@ -9,12 +9,18 @@ use App\Models\Comment;
 
 class CommentTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = [
+        'user',
+    ];
+
     protected $defaultIncludes = [
+        'deleted_by_id',
         'message',
         'message_html',
     ];
 
     protected $permissions = [
+        'deleted_by_id' => 'CommentModerate',
         'message' => 'CommentShow',
         'message_html' => 'CommentShow',
     ];
@@ -44,6 +50,11 @@ class CommentTransformer extends TransformerAbstract
         ];
     }
 
+    public function includeDeletedById(Comment $comment)
+    {
+        return $this->primitive($comment->deleted_by_id);
+    }
+
     public function includeMessage(Comment $comment)
     {
         return $this->primitive($comment->message);
@@ -52,5 +63,10 @@ class CommentTransformer extends TransformerAbstract
     public function includeMessageHtml(Comment $comment)
     {
         return $this->primitive(markdown($comment->message, 'comment'));
+    }
+
+    public function includeUser(Comment $comment)
+    {
+        return $this->item($comment->user, new UserCompactTransformer());
     }
 }

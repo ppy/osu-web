@@ -33,7 +33,7 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du hast diesen Benutzer geblockt.',
-        'blocked_count' => '(:count) geblockte Benutzer ',
+        'blocked_count' => 'geblockte benutzer (:count)',
         'hide_profile' => 'Profil verbergen',
         'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
         'show_profile' => 'Profil anzeigen',
@@ -68,6 +68,10 @@ return [
                 'tos' => 'Nutzungsbedinungen',
             ],
         ],
+    ],
+
+    'filtering' => [
+        'by_game_mode' => 'Mitglieder nach Spielmodus',
     ],
 
     'force_reactivation' => [
@@ -124,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
+            'multiple_accounts' => 'Verwendet mehrere Konten',
             'insults' => 'Beleidigt mich / andere',
             'spam' => 'Spamming',
             'unwanted_content' => 'Verlinkt unangemessene Inhalte',
@@ -150,6 +155,10 @@ return [
         'plays_with' => 'Spielt mit :devices',
         'title' => "Profil von :username",
 
+        'comments_count' => [
+            '_' => ':link abgegeben',
+            'count' => ':count_delimited Kommentar|:count_delimited Kommentare',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profilbanner ändern',
@@ -198,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Ausstehende Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -219,7 +228,7 @@ return [
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
-                    'title' => 'Play-Verlauf',
+                    'title' => 'Spielverlauf',
                     'count_label' => 'Spiele',
                 ],
                 'most_played' => [
@@ -292,6 +301,9 @@ return [
                 'recent' => 'Neueste',
                 'title' => 'Medaillen',
             ],
+            'multiplayer' => [
+                'title' => 'Mehrspielerspiele',
+            ],
             'posts' => [
                 'title' => 'Beiträge',
                 'title_longer' => 'Neueste Beiträge',
@@ -345,13 +357,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Interessen',
-            'lastfm' => 'Last.fm',
             'location' => 'Aktueller Standort',
             'occupation' => 'Beschäftigung',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Webseite',
         ],
         'not_found' => [
@@ -396,11 +406,16 @@ return [
             'total_hits' => 'Anzahl Treffer',
             'total_score' => 'Gesamtpunktzahl',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
-            'loved_beatmapset_count' => 'Loved Beatmaps',
-            'unranked_beatmapset_count' => 'Ausstehende Beatmaps',
             'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'pending_beatmapset_count' => 'Ausstehende Beatmaps',
+            'ranked_beatmapset_count' => 'Ranked & Approved Beatmaps',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Du bist derzeit stumm.',
+        'message' => 'Einige Aktionen sind möglicherweise nicht verfügbar.',
     ],
 
     'status' => [

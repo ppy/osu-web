@@ -6,7 +6,8 @@
 namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
-use App\Http\Middleware\StartSession;
+use App\Libraries\AssetsManifest;
+use App\Libraries\ChatFilters;
 use App\Libraries\Groups;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
@@ -22,6 +23,14 @@ use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
+    const SINGLETONS = [
+        'OsuAuthorize' => OsuAuthorize::class,
+        'assets-manifest' => AssetsManifest::class,
+        'chat-filters' => ChatFilters::class,
+        'groups' => Groups::class,
+        'route-section' => RouteSection::class,
+    ];
+
     /**
      * Bootstrap any application services.
      *
@@ -36,6 +45,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Queue::after(function (JobProcessed $event) {
+            app('OsuAuthorize')->resetCache();
+            app('groups')->incrementResetTicker();
+            app('chat-filters')->incrementResetTicker();
+
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.queue.run',
                 1,
@@ -46,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->make('translator')->setSelector(new OsuMessageSelector);
+        $this->app->make('translator')->setSelector(new OsuMessageSelector());
 
         app('url')->forceScheme(substr(config('app.url'), 0, 5) === 'https' ? 'https' : 'http');
     }
@@ -67,9 +80,9 @@ class AppServiceProvider extends ServiceProvider
             'App\Services\Registrar'
         );
 
-        $this->app->singleton('groups', function () {
-            return new Groups;
-        });
+        foreach (static::SINGLETONS as $name => $class) {
+            $this->app->singleton($name, fn () => new $class());
+        }
 
         $this->app->singleton('hash', function ($app) {
             return new OsuHashManager($app);
@@ -79,25 +92,16 @@ class AppServiceProvider extends ServiceProvider
             return $app['hash']->driver();
         });
 
-        $this->app->singleton('OsuAuthorize', function () {
-            return new OsuAuthorize();
-        });
-
-        $this->app->singleton('route-section', function () {
-            return new RouteSection;
-        });
-
         $this->app->singleton('cookie', function ($app) {
             $config = $app->make('config')->get('session');
 
-            return (new OsuCookieJar)->setDefaultPathAndDomain(
-                $config['path'], $config['domain'], $config['secure'], $config['same_site'] ?? null
+            return (new OsuCookieJar())->setDefaultPathAndDomain(
+                $config['path'],
+                $config['domain'],
+                $config['secure'],
+                $config['same_site'] ?? null
             );
         });
-
-        // The middleware breaks without this. Not sure why.
-        // Originally defined in Laravel's SessionServiceProvider.
-        $this->app->singleton(StartSession::class);
 
         // This is needed for testing with Dusk.
         if ($this->app->environment('testing')) {

@@ -5,6 +5,9 @@ import { ScoreboardTableRow } from './scoreboard-table-row'
 import * as React from 'react'
 import { a, div, table, tr, th, thead, tbody } from 'react-dom-factories'
 import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
+import { shouldShowPp } from 'utils/beatmap-helper'
+import { classWithModifiers } from 'utils/css'
+
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
@@ -19,12 +22,13 @@ export class ScoreboardTable extends React.PureComponent
 
   render: =>
     classMods = ['menu-active'] if @state.activeKey?
+    showPp = shouldShowPp(@props.beatmap)
 
     el ContainerContext.Provider,
       value:
         activeKeyDidChange: @activeKeyDidChange
 
-      div className: osu.classWithModifiers(bn, classMods),
+      div className: classWithModifiers(bn, classMods),
         table
           className: "#{bn}__table"
           thead {},
@@ -39,7 +43,8 @@ export class ScoreboardTable extends React.PureComponent
               for stat in @props.hitTypeMapping
                 th key: stat[0], className: "#{bn}__header #{bn}__header--hitstat", stat[0]
               th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
-              th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
+              if showPp
+                th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
               th className: "#{bn}__header #{bn}__header--time", osu.trans('beatmapsets.show.scoreboard.headers.time')
               th className: "#{bn}__header #{bn}__header--mods", osu.trans('beatmapsets.show.scoreboard.headers.mods')
               th className: "#{bn}__header #{bn}__header--popup-menu"
@@ -52,6 +57,7 @@ export class ScoreboardTable extends React.PureComponent
                 el ScoreboardTableRow,
                   activated: @state.activeKey == index
                   beatmap: @props.beatmap
+                  showPp: showPp
                   hitTypeMapping: @props.hitTypeMapping
                   index: index
                   score: score

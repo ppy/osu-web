@@ -3,55 +3,62 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-// input field name mappings for view recycling.
-// pass in $fields to set; set a field to null to remove it.
-// TODO: hopefully this can be temporary ಠ_ಠ.
-$fieldDefaults = [
-    'forumId' => 'forum_id',
-    'topicId' => 'topic_id',
-    'user' => 'username',
-    'includeSubforums' => 'forum_children',
-];
+    // input field name mappings for view recycling.
+    // pass in $fields to set; set a field to null to remove it.
+    // TODO: hopefully this can be temporary ಠ_ಠ.
+    $fieldDefaults = [
+        'forumId' => 'forum_id',
+        'includeSubforums' => 'forum_children',
+        'sort' => 'sort',
+        'topicId' => 'topic_id',
+        'user' => 'username',
+    ];
 
-if (isset($fields)) {
-    $fields = array_merge($fieldDefaults, $fields);
-} else {
-    $fields = $fieldDefaults;
-}
+    $params = request()->all();
+
+    if (isset($fields)) {
+        $fields = array_merge($fieldDefaults, $fields);
+    } else {
+        $fields = $fieldDefaults;
+    }
 @endphp
 
-<div id="search-forum-options" data-turbolinks-permanent class="search-forum-options">
+<div id="search-forum-options" class="search-forum-options">
     @if ($fields['user'] !== null)
         <label class="search-forum-options__input-group">
             <div class="search-forum-options__label">
-                {{ trans('home.search.forum_post.label.username') }}
+                {{ osu_trans('home.search.forum_post.label.username') }}
             </div>
 
             <input
                 name="{{ $fields['user'] }}"
-                value="{{ request($fields['user']) }}"
+                value="{{ $params[$fields['user']] ?? null }}"
                 class="form-text"
             >
         </label>
     @endif
 
+    @if ($fields['sort'] !== null && present($params[$fields['sort']] ?? null))
+        <input type="hidden" name="{{ $fields['sort'] }}" value="{{ $params[$fields['sort']] }}" />
+    @endif
+
     {{-- FIXME: remove querystring check? --}}
-    @if ($fields['topicId'] !== null && present(request($fields['topicId'])))
+    @if ($fields['topicId'] !== null && present($params[$fields['topicId']] ?? null))
         <label class="search-forum-options__input-group">
             <div class="search-forum-options__label">
-                {{ trans('home.search.forum_post.label.topic_id') }}
+                {{ osu_trans('home.search.forum_post.label.topic_id') }}
             </div>
 
             <input
                 name="{{ $fields['topicId'] }}"
-                value="{{ request($fields['topicId']) }}"
+                value="{{ $params[$fields['topicId']] }}"
                 class="form-text"
             >
         </label>
     @elseif ($fields['forumId'] !== null)
         <label class="search-forum-options__input-group">
             <div class="search-forum-options__label">
-                {{ trans('home.search.forum_post.label.forum') }}
+                {{ osu_trans('home.search.forum_post.label.forum') }}
             </div>
 
             <div class="form-select">
@@ -60,14 +67,14 @@ if (isset($fields)) {
                     class="form-select__input"
                 >
                     <option value="">
-                        {{ trans('home.search.forum_post.all') }}
+                        {{ osu_trans('home.search.forum_post.all') }}
                     </option>
 
                     @foreach (App\Models\Forum\Forum::displayList()->get() as $forum)
                         @if (priv_check('ForumView', $forum)->can())
                             <option
                                 value="{{ $forum->getKey() }}"
-                                {{ $forum->getKey() === get_int(request($fields['forumId'])) ? 'selected' : '' }}
+                                {{ $forum->getKey() === get_int($params[$fields['forumId']] ?? null) ? 'selected' : '' }}
                             >
                                 {{ str_repeat('–', $forum->currentDepth()) }}
                                 {{ $forum->forum_name }}
@@ -79,12 +86,12 @@ if (isset($fields)) {
         </label>
 
         <label class="search-forum-options__input-group">
-            @include('objects._switch', [
-                'checked' => request($fields['includeSubforums']),
+            @include('objects._switch', ['locals' => [
+                'checked' => $params[$fields['includeSubforums']] ?? null,
                 'name' => $fields['includeSubforums'],
-            ])
+            ]])
 
-            {{ trans('home.search.forum_post.label.forum_children') }}
+            {{ osu_trans('home.search.forum_post.label.forum_children') }}
         </label>
     @endif
 
@@ -92,7 +99,7 @@ if (isset($fields)) {
         <button class="btn-osu-big btn-osu-big--search-advanced">
             <div class="btn-osu-big__content">
                 <div class="btn-osu-big__left">
-                    {{ trans('home.search.button') }}
+                    {{ osu_trans('home.search.button') }}
                 </div>
 
                 <div class="btn-osu-big__icon">
@@ -104,7 +111,7 @@ if (isset($fields)) {
         <button type="button" class="btn-osu-big btn-osu-big--search-advanced js-search--forum-options-reset">
             <div class="btn-osu-big__content">
                 <div class="btn-osu-big__left">
-                    {{ trans('common.buttons.reset') }}
+                    {{ osu_trans('common.buttons.reset') }}
                 </div>
 
                 <div class="btn-osu-big__icon">

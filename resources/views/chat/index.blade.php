@@ -13,13 +13,9 @@
 @section("script")
     @parent
 
-    <script id="json-sendto" type="application/json">
+    <script id="json-chat-initial" type="application/json">
         {!! json_encode($json) !!}
     </script>
 
-    <script id="json-presence" type="application/json">
-        {!! json_encode($presence) !!}
-    </script>
-
-    @include('layout._extra_js', ['src' => 'js/react/chat.js'])
+    @include('layout._react_js', ['src' => 'js/react/chat.js'])
 @endsection

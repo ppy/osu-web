@@ -5,9 +5,7 @@
 
 namespace App\Libraries;
 
-use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
-use App\Jobs\EsIndexDocument;
 use App\Models\User;
 use Carbon\Carbon;
 use Datadog;
@@ -15,13 +13,15 @@ use Exception;
 
 class UserRegistration
 {
+    private $group;
     private $user;
 
     public function __construct($params)
     {
         $group = $params['group'] ?? 'default';
-        $params['group_id'] = app('groups')->byIdentifier($group)->getKey();
         unset($params['group']);
+        $this->group = app('groups')->byIdentifier($group);
+        $params['group_id'] = $this->group->getKey();
 
         $this->user = new User(array_merge([
             'user_permissions' => '',
@@ -60,16 +60,10 @@ class UserRegistration
                     throw new ValidationException($this->user->validationErrors());
                 }
 
-                $groupAttrs = ['group_id' => $this->user->group_id];
-                if (!$this->user->userGroups()->create($groupAttrs)) {
-                    // mystery failure
-                    throw new ModelNotSavedException('failed saving model');
-                }
+                $this->user->setDefaultGroup($this->group);
 
                 Datadog::increment('osu.new_account_registrations', 1, ['source' => 'osu-web']);
             });
-
-            dispatch(new EsIndexDocument($this->user));
         } catch (Exception $e) {
             if (is_sql_unique_exception($e)) {
                 $this->user->validationErrors()->add('username', '.unknown_duplicate');

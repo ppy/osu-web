@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Signaturerne matcher ikke hinanden',
+        'not_match' => '',
     ],
-    'notification_type' => 'notification_type er ikke gyldig :type',
+    'notification_type' => '',
     'order' => [
-        'invalid' => 'Ordren er ugyldig',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => '`:provider` betalingsmetode er ikke mulig for fysiske produkter.',
+            'virtual_only' => '',
         ],
         'status' => [
-            'not_checkout' => 'Forsøger at acceptere betaling for en ordre i den forkerte tilstand `:state`.',
-            'not_paid' => 'Forsøger at refundere betaling for en ordre i den forkerte tilstand `:state`.',
+            'not_checkout' => '',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` param matcher ikke',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => 'Afventende betaling er ikke echeck. (:actual)',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Beløbet matcher ikke: :actual != :expected',
-            'currency' => 'Beløbet er ikke i USD. (:type)',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => 'Det modtagne transaktions-id er misdannet',
-        'user_id_mismatch' => 'external_id indeholder det forkerte bruger-id',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

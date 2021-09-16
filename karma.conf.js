@@ -50,7 +50,8 @@ function readWebpackConfig() {
   return value;
 }
 
-webpackConfig = readWebpackConfig();
+process.env.SKIP_MANIFEST = true;
+const webpackConfig = readWebpackConfig();
 webpackConfig.plugins.push(new ExitOnErrorWebpackPlugin());
 webpackConfig.mode = 'development';
 webpackConfig.devtool = 'inline-source-map';
@@ -60,9 +61,6 @@ delete webpackConfig.entry; // test runner doesn't use the entry points
 const testIndex = './tests/karma/index.ts';
 
 const files = [
-  './public/js/vendor.js',
-  './public/js/app-deps.js',
-  './public/js/locales/en.js',
   './tests/karma/globals.js', // shims for tests
   testIndex,
 ];
@@ -78,12 +76,12 @@ module.exports = function(config) {
     colors: true,
     concurrency: Infinity,
     exclude: [],
-    files: files,
+    files,
     frameworks: ['jasmine'],
     logLevel: config.LOG_INFO,
     mime: { 'text/x-typescript': ['ts', 'tsx'] },
     port: 9876,
-    preprocessors: preprocessors,
+    preprocessors,
     reporters: ['mocha'],
     singleRun: false, // set to true for the process to exit after completing.
     webpack: webpackConfig,

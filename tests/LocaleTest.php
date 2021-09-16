@@ -5,14 +5,12 @@
 
 namespace Tests;
 
-use App;
-
 class LocaleTest extends TestCase
 {
     public function testAll()
     {
         $fallbackLocale = 'en';
-        trans()->addLines([
+        osu_trans()->addLines([
             'key_1.simple' => 'test',
             'key_1.simple_empty' => 'test 2',
             'key_1.simple_missing' => 'test 3',
@@ -27,16 +25,16 @@ class LocaleTest extends TestCase
             'key_1.empty_missing' => '',
         ], $fallbackLocale);
 
-        App::setLocale($fallbackLocale);
-        $this->assertSame('key_1.missing', trans('key_1.missing'));
-        $this->assertSame('test', trans('key_1.simple'));
-        $this->assertSame('test: stuff', trans('key_1.keyed', ['value' => 'stuff']));
-        $this->assertSame('1 unit', trans_choice('key_1.choice', 1));
-        $this->assertSame('2 units', trans_choice('key_1.choice', 2));
-        $this->assertSame('', trans('key_1.empty'));
+        app()->setLocale($fallbackLocale);
+        $this->assertSame('key_1.missing', osu_trans('key_1.missing'));
+        $this->assertSame('test', osu_trans('key_1.simple'));
+        $this->assertSame('test: stuff', osu_trans('key_1.keyed', ['value' => 'stuff']));
+        $this->assertSame('1 unit', osu_trans_choice('key_1.choice', 1));
+        $this->assertSame('2 units', osu_trans_choice('key_1.choice', 2));
+        $this->assertSame('', osu_trans('key_1.empty'));
 
         $incompleteLocale = 'ja';
-        trans()->addLines([
+        osu_trans()->addLines([
             'key_1.simple' => 'テスト',
             'key_1.simple_empty' => '',
             'key_1.keyed' => 'テスト: :value',
@@ -47,24 +45,47 @@ class LocaleTest extends TestCase
         ], $incompleteLocale);
 
         app('translator')->setFallback($fallbackLocale);
-        App::setLocale($incompleteLocale);
-        $this->assertSame('key_1.missing', trans('key_1.missing'));
-        $this->assertSame('テスト', trans('key_1.simple'));
-        $this->assertSame('test 2', trans('key_1.simple_empty'));
-        $this->assertSame('test 3', trans('key_1.simple_missing'));
+        app()->setLocale($incompleteLocale);
+        $this->assertSame('key_1.missing', osu_trans('key_1.missing'));
+        $this->assertSame('テスト', osu_trans('key_1.simple'));
+        $this->assertSame('test 2', osu_trans('key_1.simple_empty'));
+        $this->assertSame('test 3', osu_trans('key_1.simple_missing'));
 
-        $this->assertSame('テスト: stuff', trans('key_1.keyed', ['value' => 'stuff']));
-        $this->assertSame('test 2: stuff', trans('key_1.keyed_empty', ['value' => 'stuff']));
-        $this->assertSame('test 3: stuff', trans('key_1.keyed_missing', ['value' => 'stuff']));
+        $this->assertSame('テスト: stuff', osu_trans('key_1.keyed', ['value' => 'stuff']));
+        $this->assertSame('test 2: stuff', osu_trans('key_1.keyed_empty', ['value' => 'stuff']));
+        $this->assertSame('test 3: stuff', osu_trans('key_1.keyed_missing', ['value' => 'stuff']));
 
-        $this->assertSame('1個', trans_choice('key_1.choice', 1));
-        $this->assertSame('2個', trans_choice('key_1.choice', 2));
-        $this->assertSame('1 item', trans_choice('key_1.choice_empty', 1));
-        $this->assertSame('2 items', trans_choice('key_1.choice_empty', 2));
-        $this->assertSame('1 entity', trans_choice('key_1.choice_missing', 1));
-        $this->assertSame('2 entities', trans_choice('key_1.choice_missing', 2));
-        $this->assertSame('', trans('key_1.empty'));
-        $this->assertSame('', trans('key_1.empty_empty'));
-        $this->assertSame('', trans('key_1.empty_missing'));
+        $this->assertSame('1個', osu_trans_choice('key_1.choice', 1));
+        $this->assertSame('2個', osu_trans_choice('key_1.choice', 2));
+        $this->assertSame('1 item', osu_trans_choice('key_1.choice_empty', 1));
+        $this->assertSame('2 items', osu_trans_choice('key_1.choice_empty', 2));
+        $this->assertSame('1 entity', osu_trans_choice('key_1.choice_missing', 1));
+        $this->assertSame('2 entities', osu_trans_choice('key_1.choice_missing', 2));
+        $this->assertSame('', osu_trans('key_1.empty'));
+        $this->assertSame('', osu_trans('key_1.empty_empty'));
+        $this->assertSame('', osu_trans('key_1.empty_missing'));
+    }
+
+    /**
+     * @dataProvider availableLocalesProvider
+     */
+    public function testCorrespondingLocaleFile($locale)
+    {
+        $this->assertNotNull(unmix("js/locales/{$locale}.js"));
+    }
+
+    /**
+     * @dataProvider availableLocalesProvider
+     */
+    public function testCorrespondingMomentLocaleFile($locale)
+    {
+        $this->assertNotNull(unmix('js/moment-locales/'.locale_meta($locale)->moment().'.js'));
+    }
+
+    public function availableLocalesProvider()
+    {
+        return array_map(function ($locale) {
+            return [$locale];
+        }, config('app.available_locales'));
     }
 }

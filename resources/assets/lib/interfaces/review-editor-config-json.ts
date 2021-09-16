@@ -2,6 +2,5 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default interface ReviewEditorConfigJson {
-  enabled: boolean;
   max_blocks: number;
 }

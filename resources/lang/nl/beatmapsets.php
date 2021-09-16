@@ -8,6 +8,15 @@ return [
         'disabled' => 'Deze beatmap kan momenteel niet gedownload worden.',
         'parts-removed' => 'Delen van deze beatmap zijn verwijderd op verzoek van de maker of de houder van de rechten van een derde partij.',
         'more-info' => 'Klik hier voor meer informatie.',
+        'rule_violation' => 'Sommige activa die op deze map staan zijn verwijderd nadat ze zijn beschouwd als niet geschikt voor gebruik in osu!.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Niet zo snel, speel meer.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
@@ -16,6 +25,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'geen beatmaps',
+
         'download' => [
             'all' => 'download',
             'video' => 'download met video',
@@ -24,11 +35,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => 'Een hybride beatmapset vereist dat je ten minste één speelmodus selecteert om voor te nomineren.',
+        'incorrect_mode' => 'Je hebt geen toestemming om te nomineren voor modus: :mode',
+        'full_bn_required' => 'Je moet een volledige nominator zijn om deze nominatie uit te voeren.',
+        'too_many' => 'Nominatievereiste is al vervuld.',
+
+        'dialog' => [
+            'confirmation' => 'Weet je zeker dat je deze Beatmap wilt nomineren?',
+            'header' => 'Nomineer Beatmap',
+            'hybrid_warning' => 'opmerking: je mag maar één keer nomineren, dus zorg er alstublieft voor dat je nomineert voor alle spelmodus die je van plan bent te gebruiken',
+            'which_modes' => 'Welke modus benoemen?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Expliciet',
+    ],
+
     'show' => [
         'discussion' => 'Discussie',
 
         'details' => [
+            'by_artist' => 'door :artist',
             'favourite' => 'Markeer deze beatmapset als favoriet',
+            'favourite_login' => 'Log in om deze beatmap favoriet te maken',
             'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
             'mapped_by' => 'gemapped door :mapper',
             'unfavourite' => 'Verwijder markering als favoriet',
@@ -36,7 +67,7 @@ return [
 
             'download' => [
                 '_' => 'downloaden',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'zonder video',
                 'video' => 'met Video',
             ],
@@ -89,10 +120,24 @@ return [
             'genre' => 'Genre',
             'language' => 'Taal',
             'no_scores' => 'Data nog aan het berekenen...',
+            'nsfw' => 'Expliciete inhoud',
             'points-of-failure' => 'Faalpunten',
             'source' => 'Bron',
+            'storyboard' => 'Deze beatmap bevat verhaalborden',
             'success-rate' => 'Slagingspercentage',
             'tags' => 'Labels',
+            'video' => 'Deze beatmap bevat een video',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Deze beatmap bevat expliciet, beledigende of verontrustende inhoud. Wilt je het toch bekijken?',
+            'title' => 'Expliciete inhoud',
+
+            'buttons' => [
+                'disable' => 'Waarschuwing uitschakelen',
+                'listing' => 'Beatmap Lijst',
+                'show' => 'Weergeven',
+            ],
         ],
 
         'scoreboard' => [

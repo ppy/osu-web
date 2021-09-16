@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => '報告',
+        'title' => ':usernameのビートマップを報告しますか？',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => '報告',
         'title' => ':username の投稿を報告しますか？',
@@ -12,6 +17,11 @@ return [
     'comment' => [
         'button' => '報告',
         'title' => ':usernameのコメントを報告しますか？',
+    ],
+
+    'forum_post' => [
+        'button' => '報告',
+        'title' => ':username の投稿を報告しますか？',
     ],
 
     'scores' => [

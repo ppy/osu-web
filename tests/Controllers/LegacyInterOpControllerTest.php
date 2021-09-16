@@ -22,9 +22,8 @@ class LegacyInterOpControllerTest extends TestCase
         $url = route('interop.user-achievement', [$user->getKey(), $achievement->getKey(), 1, 'timestamp' => time()]);
 
         $this
-            ->withHeaders([
-                'X-LIO-Signature' => $this->interOpSignature($url),
-            ])->post($url)
+            ->withInterOpHeader($url)
+            ->post($url)
             ->assertStatus(200);
 
         $this->assertSame($userAchievements + 1, $user->userAchievements()->count());

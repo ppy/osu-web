@@ -47,22 +47,24 @@ return [
         'confirm_restore' => 'Haluatko varmasti palauttaa viestin?',
         'edited' => 'Viimeksi muokannut :user :when, muokattu yhteensä :count kertaa.',
         'posted_at' => 'lähetetty :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Poista viesti',
-            'restore' => 'Palauta viesti',
             'edit' => 'Muokkaa viestiä',
+            'report' => '',
+            'restore' => 'Palauta viesti',
         ],
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Uusi vastaus',
             ],
         ],
 
         'info' => [
             'post_count' => ':count_delimited viesti|:count_delimited viestiä',
-            'topic_starter' => '',
+            'topic_starter' => 'Aiheen Aloittaja',
         ],
     ],
 
@@ -73,9 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Haluatko varmasti poistaa aiheen?',
+        'confirm_restore' => 'Haluatko varmasti palauttaa aiheen?',
         'deleted' => 'poistettu aihe',
         'go_to_latest' => 'näytä viimeisin viesti',
-        'has_replied' => '',
+        'has_replied' => 'Olet vastannut tähän aiheeseen',
+        'in_forum' => '',
         'latest_post' => ':when käyttäjältä :user',
         'latest_reply_by' => 'viimeisimmän vastauksen jätti :user',
         'new_topic' => 'Lähetä uusi aihe',
@@ -85,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'tehnyt :user',
         'started_by_verbose' => 'aloittanut :user',
+
+        'actions' => [
+            'destroy' => 'Poista aihe',
+            'restore' => 'Palauta aihe',
+        ],
 
         'create' => [
             'close' => 'Sulje',
@@ -125,7 +135,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'foorumilla seuratut',
+            'title_compact' => 'seuratut foorumiaiheet',
 
             'box' => [
                 'total' => 'Seurattuja aiheita',

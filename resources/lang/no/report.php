@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Rapportér',
         'title' => 'Rapporter :username sitt innlegg?',
@@ -12,6 +17,11 @@ return [
     'comment' => [
         'button' => 'Rapporter',
         'title' => 'Rapporter :username sin kommentar?',
+    ],
+
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'scores' => [

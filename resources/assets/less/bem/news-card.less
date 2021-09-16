@@ -28,7 +28,7 @@
   }
 
   &__cover-container {
-    .at2x-simple('/images/headers/news-show-default.jpg');
+    .at2x-simple('~@images/headers/news-show-default.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: @border-radius-large;
@@ -53,7 +53,7 @@
     border-radius: 10000px;
     font-size: @font-size--small;
     padding: 5px 20px;
-    background-color: osu-hsla(@osu-colour-b6, 0.5);
+    background-color: hsla(var(--hsl-b6), 0.5);
     align-self: flex-end;
     text-transform: uppercase;
     font-weight: 600;

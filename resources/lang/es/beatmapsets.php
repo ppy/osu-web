@@ -8,14 +8,25 @@ return [
         'disabled' => 'Este mapa no está actualmente disponible para su descarga.',
         'parts-removed' => 'Partes de este mapa han sido eliminadas a petición de su creador o un titular de derechos de autor.',
         'more-info' => 'Haga clic aquí para obtener más información.',
+        'rule_violation' => 'Algunos de los elementos contenidos en este mapa han sido eliminados después de ser considerados no aptos para su uso en osu!.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Reduzca la velocidad, juegue más.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
-        'title' => 'Listado de Mapas',
+        'title' => 'Lista de mapas',
         'guest_title' => 'Mapas',
     ],
 
     'panel' => [
+        'empty' => 'sin mapas',
+
         'download' => [
             'all' => 'descargar',
             'video' => 'descargar con vídeo',
@@ -24,11 +35,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => 'Un set de mapas híbrido requiere que seleccione al menos un modo de juego para nominar.',
+        'incorrect_mode' => 'No tiene permiso para nominar para el modo: :mode',
+        'full_bn_required' => 'Debe ser un nominador completo para realizar esta nominación calificada.',
+        'too_many' => 'Requisito de nominación ya cumplido.',
+
+        'dialog' => [
+            'confirmation' => '¿Seguro que desea nominar este mapa?',
+            'header' => 'Nominar mapa',
+            'hybrid_warning' => 'nota: sólo puede nominar una vez, así que asegúrese de que está nominando para todos los modos de juego que desee',
+            'which_modes' => '¿Nominar para qué modos?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Explícito',
+    ],
+
     'show' => [
         'discussion' => 'Discusión',
 
         'details' => [
+            'by_artist' => 'por :artist',
             'favourite' => 'Marcar como favorito',
+            'favourite_login' => 'Inicie sesión para marcar este mapa como favorito',
             'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier mapa!',
             'mapped_by' => 'mapeado por :mapper',
             'unfavourite' => 'Desmarcar como favorito',
@@ -36,7 +67,7 @@ return [
 
             'download' => [
                 '_' => 'Descargar',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'sin vídeo',
                 'video' => 'con vídeo',
             ],
@@ -78,8 +109,8 @@ return [
             ],
 
             'report' => [
-                '_' => 'Si encuentras un problema con este mapa, por favor repórtalo :link para alertar al equipo.',
-                'button' => 'Reportar un problema',
+                '_' => 'Si encuentra un problema con este mapa, por favor, informe de ello :link para alertar al equipo.',
+                'button' => 'Informar un problema',
                 'link' => 'aquí',
             ],
         ],
@@ -89,10 +120,24 @@ return [
             'genre' => 'Género',
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
+            'nsfw' => 'Contenido explícito',
             'points-of-failure' => 'Puntos de fracaso',
             'source' => 'Fuente',
+            'storyboard' => 'Este mapa contiene storyboard',
             'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
+            'video' => 'Este mapa contiene vídeo',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Este mapa contiene contenido explícito, ofensivo o perturbador. ¿Desea verlo de todos modos?',
+            'title' => 'Contenido explícito',
+
+            'buttons' => [
+                'disable' => 'Desactivar advertencia',
+                'listing' => 'Volver a lista de mapas',
+                'show' => 'Mostrar',
+            ],
         ],
 
         'scoreboard' => [
@@ -110,7 +155,7 @@ return [
                 'miss' => 'Fallos',
                 'mods' => 'Mods',
                 'player' => 'Jugador',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Puesto',
                 'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',

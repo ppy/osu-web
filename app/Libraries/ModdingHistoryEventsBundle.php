@@ -11,16 +11,20 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
+use App\Traits\Memoizes;
+use App\Transformers\UserTransformer;
+use Ds\Set;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ModdingHistoryEventsBundle
 {
+    use Memoizes;
+
     const KUDOSU_PER_PAGE = 5;
 
     protected $isModerator;
     protected $isKudosuModerator;
-    protected $memoized = [];
     protected $searchParams;
 
     private $params;
@@ -41,7 +45,7 @@ class ModdingHistoryEventsBundle
 
     public static function forListing(?User $user, array $searchParams)
     {
-        $obj = new static;
+        $obj = new static();
         $obj->user = $user;
         $obj->searchParams = $searchParams;
         $obj->isModerator = priv_check('BeatmapDiscussionModerate')->can();
@@ -115,56 +119,45 @@ class ModdingHistoryEventsBundle
 
                 $array['votes'] = $this->getVotes();
 
-                $kudosu = $this->user
-                    ->receivedKudosu()
-                    ->with('post', 'post.topic', 'giver')
-                    ->with(['kudosuable' => function (MorphTo $morphTo) {
-                        $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
-                    }])
-                    ->orderBy('exchange_id', 'desc')
-                    ->limit(static::KUDOSU_PER_PAGE + 1)
-                    ->get();
+                if ($this->user !== null) {
+                    $kudosu = $this->user
+                        ->receivedKudosu()
+                        ->with('post', 'post.topic', 'giver')
+                        ->with(['kudosuable' => function (MorphTo $morphTo) {
+                            $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
+                        }])
+                        ->orderBy('exchange_id', 'desc')
+                        ->limit(static::KUDOSU_PER_PAGE + 1)
+                        ->get();
 
-                $array['extras'] = [
-                    'recentlyReceivedKudosu' => json_collection($kudosu, 'KudosuHistory'),
-                ];
-                // only recentlyReceivedKudosu is set, do we even need it?
-                // every other item has a show more link that goes to a listing.
-                $array['perPage'] = [
-                    'recentlyReceivedKudosu' => static::KUDOSU_PER_PAGE,
-                ];
+                    $array['extras'] = [
+                        'recentlyReceivedKudosu' => json_collection($kudosu, 'KudosuHistory'),
+                    ];
+                    // only recentlyReceivedKudosu is set, do we even need it?
+                    // every other item has a show more link that goes to a listing.
+                    $array['perPage'] = [
+                        'recentlyReceivedKudosu' => static::KUDOSU_PER_PAGE,
+                    ];
 
-                $array['user'] = json_item(
-                    $this->user,
-                    'User',
-                    [
-                        "statistics:mode({$this->user->playmode})",
-                        'active_tournament_banner',
-                        'badges',
-                        'follower_count',
-                        'graveyard_beatmapset_count',
-                        'groups',
-                        'loved_beatmapset_count',
-                        'previous_usernames',
-                        'ranked_and_approved_beatmapset_count',
-                        'statistics.rank',
-                        'support_level',
-                        'unranked_beatmapset_count',
-                    ]
-                );
+                    $array['user'] = json_item(
+                        $this->user,
+                        (new UserTransformer())->setMode($this->user->playmode),
+                        [
+                            ...UserTransformer::PROFILE_HEADER_INCLUDES,
+                            'graveyard_beatmapset_count',
+                            'loved_beatmapset_count',
+                            'pending_beatmapset_count',
+                            'ranked_beatmapset_count',
+                            'statistics',
+                            'statistics.country_rank',
+                            'statistics.rank',
+                        ]
+                    );
+                }
             }
 
             return $array;
         });
-    }
-
-    protected function memoize(string $key, callable $callable)
-    {
-        if (!array_key_exists($key, $this->memoized)) {
-            $this->memoized[$key] = $callable();
-        }
-
-        return $this->memoized[$key];
     }
 
     private function getBeatmaps()
@@ -207,11 +200,6 @@ class ModdingHistoryEventsBundle
             }
 
             $discussions = $parents['query']->get();
-
-            // TODO: remove this when reviews are released
-            if (!config('osu.beatmapset.discussion_review_enabled')) {
-                return $discussions;
-            }
 
             $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))->with($includes);
 
@@ -280,29 +268,40 @@ class ModdingHistoryEventsBundle
             $posts = $this->getPosts();
             $votes = $this->getVotes();
 
-            $userIds = [];
+            $userIds = new Set();
             foreach ($discussions as $discussion) {
-                $userIds[] = $discussion->user_id;
-                $userIds[] = $discussion->startingPost->last_editor_id;
+                $userIds->add(
+                    $discussion->user_id,
+                    $discussion->startingPost->last_editor_id
+                );
             }
 
-            $userIds = array_merge(
-                $userIds,
-                $posts->pluck('user_id')->toArray(),
-                $posts->pluck('last_editor_id')->toArray(),
-                $events->pluck('user_id')->toArray(),
-                $votes['given']->pluck('user_id')->toArray(),
-                $votes['received']->pluck('user_id')->toArray()
+            $userIds->add(
+                ...$posts->pluck('user_id'),
+                ...$posts->pluck('last_editor_id'),
+                ...$events->pluck('user_id'),
+                ...$events->pluck('beatmapDiscussion')->pluck('user_id'),
+                ...$votes['given']->pluck('user_id'),
+                ...$votes['received']->pluck('user_id')
             );
 
-            $userIds = array_values(array_filter(array_unique($userIds)));
+            if ($this->user !== null) {
+                // Always add current user to the result array (assuming no need to do too many additional preloads).
+                // This prevents them from potentially get removed by the `default` scope.
+                $userIds->remove($this->user->getKey());
+            }
 
-            $users = User::whereIn('user_id', $userIds)->with('userGroups');
+            $users = User::whereIn('user_id', $userIds->toArray())->with('userGroups');
             if (!$this->isModerator) {
                 $users->default();
             }
 
-            return $users->get();
+            $users = $users->get();
+            if ($this->user !== null) {
+                $users->push($this->user);
+            }
+
+            return $users;
         });
     }
 

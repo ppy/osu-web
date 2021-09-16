@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Votarea pentru acest concurs s-a încheiat',
         'login_required' => 'Te rugăm să te autentifici pentru a vota.',
+        'over' => 'Votarea pentru acest concurs s-a încheiat',
+        'show_voted_only' => 'Afișare voturi',
 
         'best_of' => [
             'none_played' => "Nu pare să fi jucat niciun beatmap care se califică pentru acest concurs!",
@@ -26,14 +27,16 @@ return [
             'remove' => 'Retrage votul',
             'used_up' => 'Ți-ai folosit toate voturile',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'intrare',
         'login_required' => 'Te rugăm să te conectezi pentru a intra în concurs.',
         'silenced_or_restricted' => 'Nu poți participa la concursuri în timp ce ești restricționat sau amuțit.',
         'preparation' => 'Pregătim acest concurs în prezent. Te rugăm să aștepți cu răbdare!',
-        'over' => 'Îți mulțumim pentru intrările tale! Înscrierile s-au închis pentru acest concurs și votarea se va deschide în curând.',
-        'limit_reached' => 'Ai atins limita de intrări în acest concurs',
         'drop_here' => 'Trage intrarea ta aici',
         'download' => 'Descarcă .osz',
         'wrong_type' => [

@@ -4,6 +4,7 @@
 import { runInAction } from 'mobx'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
+import { nextVal } from 'utils/seq'
 
 uiState = core.dataStore.uiState
 
@@ -20,20 +21,19 @@ export class CommentsManager extends React.PureComponent
       # FIXME no initialization from component?
       json = osu.parseJson("json-comments-#{props.commentableType}-#{props.commentableId}", true)
       if json?
-        core.dataStore.updateWithCommentBundleJSON(json)
-        uiState.initializeWithCommentBundleJSON(json)
+        core.dataStore.updateWithCommentBundleJson(json)
+        uiState.initializeWithCommentBundleJson(json)
 
       state = osu.parseJson @jsonStorageId()
       uiState.importCommentsUIState(state) if state?
 
-    @id = "comments-#{osu.uuid()}"
+    @id = "comments-#{nextVal()}"
 
 
   componentDidMount: =>
     $.subscribe "comments:added.#{@id}", @handleCommentsAdded
     $.subscribe "comments:new.#{@id}", @handleCommentsNew
     $.subscribe "comments:sort.#{@id}", @updateSort
-    $.subscribe "comments:toggle-show-deleted.#{@id}", @toggleShowDeleted
     $.subscribe "comments:toggle-follow.#{@id}", @toggleFollow
     $.subscribe "comment:updated.#{@id}", @handleCommentUpdated
     $(document).on "turbolinks:before-cache.#{@id}", @saveState
@@ -48,25 +48,26 @@ export class CommentsManager extends React.PureComponent
       componentProps = _.assign {}, @props.componentProps
       componentProps.commentableId = @props.commentableId
       componentProps.commentableType = @props.commentableType
+      componentProps.user = @props.user
 
       el @props.component, componentProps
 
 
   handleCommentsAdded: (_event, commentBundle) =>
     runInAction () ->
-      core.dataStore.updateWithCommentBundleJSON commentBundle
+      core.dataStore.updateWithCommentBundleJson commentBundle
       uiState.updateFromCommentsAdded commentBundle
 
 
   handleCommentsNew: (_event, commentBundle) =>
     runInAction () ->
-      core.dataStore.updateWithCommentBundleJSON commentBundle
+      core.dataStore.updateWithCommentBundleJson commentBundle
       uiState.updateFromCommentsNew commentBundle
 
 
   handleCommentUpdated: (_event, commentBundle) =>
     runInAction () ->
-      core.dataStore.updateWithCommentBundleJSON commentBundle
+      core.dataStore.updateWithCommentBundleJson commentBundle
       uiState.updateFromCommentUpdated commentBundle
 
 
@@ -77,11 +78,6 @@ export class CommentsManager extends React.PureComponent
   saveState: =>
     if @props.commentableType? && @props.commentableId?
       osu.storeJson @jsonStorageId(), uiState.exportCommentsUIState()
-
-
-  toggleShowDeleted: =>
-    runInAction () ->
-      uiState.comments.isShowDeleted = !uiState.comments.isShowDeleted
 
 
   toggleFollow: =>
@@ -126,14 +122,12 @@ export class CommentsManager extends React.PureComponent
       data: params
       dataType: 'json'
     .done (data) =>
-      $.ajax laroute.route('account.options'),
-        method: 'PUT'
-        data: user_profile_customization: comments_sort: sort
+      core.userPreferences.set('comments_sort', sort)
 
       runInAction () ->
         core.dataStore.commentStore.flushStore()
-        core.dataStore.updateWithCommentBundleJSON data
-        uiState.initializeWithCommentBundleJSON data
+        core.dataStore.updateWithCommentBundleJson data
+        uiState.initializeWithCommentBundleJson data
     .always =>
       runInAction () ->
         uiState.comments.loadingSort = null

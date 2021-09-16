@@ -15,7 +15,7 @@ class UserSearch extends RecordSearch
     {
         parent::__construct(
             User::esIndexName(),
-            $params ?? new UserSearchParams,
+            $params ?? new UserSearchParams(),
             User::class
         );
     }

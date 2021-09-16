@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => 'Panoya gidin',
+        'home' => 'Kontrol paneline git',
         'logout' => 'Çıkış yap',
-        'text' => 'Bu sekme/pencereyi şimdi kapatabilirsiniz',
+        'text' => 'Şimdi bu sekmeyi/pencereyi kapatabilirsiniz',
         'title' => 'osu! istemci doğrulaması tamamlandı',
     ],
 
     'create' => [
-        'confirm' => 'Istemci doğrulamasını bitirmek için alttaki yetkilendir butonuna bas.',
+        'confirm' => 'İstemci doğrulamasını tamamlamak için alttaki "doğrula" butonuna bas.',
         'title' => 'osu! istemci doğrulaması',
     ],
 ];

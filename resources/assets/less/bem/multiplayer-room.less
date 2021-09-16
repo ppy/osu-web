@@ -1,0 +1,117 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.multiplayer-room {
+  --bg: hsla(var(--hsl-b6), 0.75);
+  --border-radius: @border-radius--large;
+  --room-bg: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
+
+  .link-hover({
+    --room-bg: linear-gradient(0.25turn, hsl(var(--hsl-b4)), hsla(var(--hsl-b4), 0.8));
+  });
+
+  display: flex;
+  font-size: @font-size--normal;
+  position: relative;
+  color: hsl(var(--hsl-c1));
+
+  &__chat-button {
+    .reset-input();
+  }
+
+  &__content {
+    pointer-events: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--room-bg);
+    border-radius: var(--border-radius);
+
+    padding: 6px 20px;
+    margin-left: 20px;
+    width: calc(100% - $margin-left);
+  }
+
+  &__cover {
+    .full-size();
+    object-fit: cover;
+    border-radius: var(--border-radius);
+
+    &--default {
+      .at2x('~@images/layout/beatmaps/default-bg.png');
+    }
+  }
+
+  &__cover-container {
+    .full-size();
+
+    display: flex;
+  }
+
+  &__details {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__badge-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__badge {
+    border-radius: 10000px;
+    padding: 0 10px;
+    margin-right: 5px;
+    font-weight: 600;
+
+    background-color: var(--bg);
+    color: hsl(var(--hsl-b6));
+
+    &--active {
+      --bg: @osu-colour-lime-2;
+    }
+
+    &--ended {
+      color: hsl(var(--hsl-c1));
+    }
+
+    &--soon {
+      --bg: @osu-colour-orange-2;
+    }
+
+    &--map-count {
+      color: hsl(var(--hsl-c1));
+    }
+  }
+
+  &__difficulty {
+    display: flex;
+    border-radius: 10000px;
+    background: linear-gradient(0deg, var(--max-difficulty) 50%, var(--min-difficulty) 50%);
+  }
+
+  &__members {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+  }
+
+  &__name {
+    font-size: @font-size--title;
+  }
+
+  &__host {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    white-space: pre;
+  }
+
+  &__participants {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+  }
+}

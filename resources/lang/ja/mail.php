@@ -35,7 +35,7 @@ return [
         'support' => [
             '_' => 'osu!に対する :support に感謝します。',
             'first' => 'サポート',
-            'repeat' => '絶え間ないサポート',
+            'repeat' => '継続的な支援',
         ],
     ],
 
@@ -65,9 +65,9 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => 'このタグを贈った人は匿名のままにすることを選択したため、この通知には記載されていません。',
         'anonymous_gift_maybe_not' => 'しかし、あなたはおそらくそれが誰であるかすでに知っているでしょう;)',
-        'duration' => '彼らのおかげで、次の:duration osu!directおよびその他のosu!supporter特典を利用できます。',
+        'duration' => 'それらのおかげで、次の:duration osu!directやその他のosu!サポーター特典を利用できます。',
         'features' => 'これらの機能の詳細については、こちらをご覧ください:',
-        'gifted' => '誰かがあなたにosu!supporterタグをプレゼントしました！',
+        'gifted' => '誰かがあなたにosu!サポータータグをプレゼントしました！',
         'subject' => 'あなたはosu!サポータータグを贈られました！',
     ],
 
@@ -86,9 +86,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => 'ウォッチ中のアイテムに新しい更新がありましたので、お知らせします。',
+        'settings' => '電子メール通知の設定',
+        'subject' => '新しいosu!の通知',
     ],
 
     'user_password_updated' => [

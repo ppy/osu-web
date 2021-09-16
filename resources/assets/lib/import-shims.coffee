@@ -3,40 +3,41 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
-import Captcha from 'captcha'
-import ClickMenu from 'click-menu'
-import Fade from 'fade'
-import Enchant from 'enchant'
-import ForumPoll from 'forum-poll'
+import Blackout from 'blackout'
+import Gallery from 'gallery'
 import * as laroute from 'laroute'
-import Localtime from 'localtime'
-import MobileToggle from 'mobile-toggle'
-import OsuAudio from 'osu-audio/main'
-import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
-import TextareaAutosize from 'react-autosize-textarea'
-import GalleryContest from 'gallery-contest'
-import WindowVHPatcher from 'window-vh-patcher'
-import TurbolinksReload from 'turbolinks-reload'
-import OsuUrlHelper from 'osu-url-helper'
+import { StoreCheckout } from 'store-checkout'
+import { fileuploadFailCallback } from 'utils/ajax'
+import { classWithModifiers } from 'utils/css'
+import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
+import { fadeIn, fadeOut, fadeToggle } from 'utils/fade'
+import { make2x } from 'utils/html'
+import { pageChange, pageChangeImmediate } from 'utils/page-change'
+import { currentUrl } from 'utils/turbolinks'
+import * as OsuUrlHelper from 'utils/url'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
 
-window.Fade = Fade
+window.Blackout = Blackout
+
+window.Fade =
+  in: fadeIn
+  out: fadeOut
+  toggle: fadeToggle
+
+window.gallery ?= new Gallery
 
 window._exported = {
-  Captcha
-  ClickMenu
-  Enchant
-  ForumPoll
-  GalleryContest
-  Localtime
-  MobileToggle
-  OsuAudio
   OsuUrlHelper
-  TurbolinksReload
-  WindowVHPatcher
+  classWithModifiers
+  currentUrl
+  discussionLinkify
+  fileuploadFailCallback
+  make2x
+  pageChange
+  pageChangeImmediate
 }
 
 # FIXME: remove once everything imports instead of using global
@@ -50,4 +51,3 @@ window._styles =
     heightMobile: 50 # @navbar-height
 
 window.StoreCheckout = StoreCheckout
-window.TextareaAutosize = TextareaAutosize

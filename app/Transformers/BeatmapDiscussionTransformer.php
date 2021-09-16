@@ -45,6 +45,10 @@ class BeatmapDiscussionTransformer extends TransformerAbstract
 
     public function includeStartingPost(BeatmapDiscussion $discussion)
     {
+        if ($discussion->startingPost === null) {
+            return;
+        }
+
         return $this->item(
             $discussion->startingPost,
             new BeatmapDiscussionPostTransformer()

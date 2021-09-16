@@ -4,44 +4,48 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => 'silindi',
-    'deleted_count' => ':count_delimited silinmiş yorum|:count_delimited silinmiş yorum',
-    'edited' => ':timeago tarihinde :user tarafından düzenlendi',
+    'deleted' => 'silinmiş',
+    'deleted_by' => ':user tarafından :timeago silindi',
+    'deleted_by_system' => 'sistem',
+    'deleted_count' => ':count_delimited tane silinmiş yorum|:count_delimited tane silinmiş yorum',
+    'edited' => ':user tarafından düzenlendi: :timeago',
     'pinned' => 'sabitlenmiş',
     'empty' => 'Henüz yorum yok.',
     'load_replies' => 'yanıtları yükle',
-    'replies_count' => ':count_delimited cevap|:count_delimited cevap',
+    'replies_count' => ':count_delimited yanıt|:count_delimited yanıt',
     'title' => 'Yorumlar',
 
     'commentable_name' => [
         'beatmapset' => 'Beatmap',
-        'build' => 'Sürüm notları',
+        'build' => 'Değişiklik kayıtları',
         'news_post' => 'Haberler',
-        '_deleted' => 'Silinen öge',
+        '_deleted' => 'Silinmiş Öge',
     ],
 
     'editor' => [
         'textarea_hint' => [
-            '_' => ':action için Enter\'a basın. yeni satır için Shift+Enter\'ı kullanın.',
-            'edit' => 'kaydet',
-            'new' => 'gönder',
-            'reply' => 'yanıtla',
+            '_' => ':action için Enter\'a basın. Yeni satır için Shift+Enter\'ı kullanın.',
+            'edit' => 'Kaydetmek',
+            'new' => 'Göndermek',
+            'reply' => 'Yanıtlamak',
         ],
     ],
 
     'guest_button' => [
-        'new' => 'Yorum yazmak için oturum açılsın mı',
-        'reply' => 'Cevaplamak için giriş yap',
+        'new' => 'Yorum yapmak için giriş yap',
+        'reply' => 'Yanıtlamak için giriş yap',
     ],
 
     'index' => [
+        'nav_comments' => 'yorumlar',
         'nav_title' => 'katalog',
+        'no_comments' => 'hiçbir yorum bulunamadı...',
     ],
 
     'placeholder' => [
-        'edit' => 'Yorumu düzenle',
+        'edit' => 'Burada yorumu düzenle',
         'new' => 'Buraya yeni yorum yaz',
-        'reply' => 'Buraya yanıt yaz',
+        'reply' => 'Buraya yanıtını yaz',
     ],
 
     'show' => [

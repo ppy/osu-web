@@ -16,7 +16,7 @@ class SeasonalBackgroundsController extends Controller
         $contest = Contest::find(config('osu.seasonal.contest_id'));
 
         if ($contest === null) {
-            return response()->json(new stdClass);
+            return response()->json(new stdClass());
         }
 
         $backgrounds = $contest->userContestEntries()->where('show_in_client', true)->get();

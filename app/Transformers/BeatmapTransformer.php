@@ -12,6 +12,10 @@ class BeatmapTransformer extends BeatmapCompactTransformer
     protected $beatmapsetTransformer = BeatmapsetTransformer::class;
     protected $requiredPermission = 'BeatmapShow';
 
+    protected $defaultIncludes = [
+        'checksum',
+    ];
+
     public function transform(Beatmap $beatmap)
     {
         $result = parent::transform($beatmap);
@@ -19,7 +23,6 @@ class BeatmapTransformer extends BeatmapCompactTransformer
         return array_merge($result, [
             'accuracy' => $beatmap->diff_overall,
             'ar' => $beatmap->diff_approach,
-            'beatmapset_id' => $beatmap->beatmapset_id,
             'bpm' => $beatmap->bpm,
             'convert' => $beatmap->convert,
             'count_circles' => $beatmap->countNormal,
@@ -35,8 +38,6 @@ class BeatmapTransformer extends BeatmapCompactTransformer
             'passcount' => $beatmap->passcount,
             'playcount' => $beatmap->playcount,
             'ranked' => $beatmap->approved,
-            'status' => $beatmap->status(),
-            'total_length' => $beatmap->total_length,
             'url' => route('beatmaps.show', ['beatmap' => $beatmap->beatmap_id]),
         ]);
     }

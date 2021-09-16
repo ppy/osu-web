@@ -1,6 +1,6 @@
 {
   "mappings": {
-    "users": {
+    "_doc": {
       "dynamic": false,
       "properties": {
         "is_old": {
@@ -23,10 +23,10 @@
         "username": {
           "type": "text",
           "fields": {
-            "_slop": {
+            "_prefix": {
               "type": "text",
-              "analyzer": "username_slop",
-              "search_analyzer": "username_lower"
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
             },
             "_whitespace": {
               "type": "text",
@@ -44,28 +44,21 @@
   "settings": {
     "index": {
       "analysis": {
-        "filter": {
-          "username_slop_filter": {
-            "type": "ngram",
-            "min_gram": "2",
-            "max_gram": "8"
-          }
-        },
         "analyzer": {
+          "prefix": {
+            "filter": [
+              "lowercase",
+              "prefix"
+            ],
+            "type": "custom",
+            "tokenizer": "username_whitespace"
+          },
           "whitespace": {
             "filter": [
               "lowercase"
             ],
             "type": "custom",
-            "tokenizer": "whitespace"
-          },
-          "username_slop": {
-            "filter": [
-              "lowercase",
-              "username_slop_filter"
-            ],
-            "type": "custom",
-            "tokenizer": "standard"
+            "tokenizer": "username_whitespace"
           },
           "username_lower": {
             "filter": [
@@ -73,6 +66,22 @@
             ],
             "type": "custom",
             "tokenizer": "standard"
+          }
+        },
+        "filter": {
+          "prefix": {
+            "type": "edge_ngram",
+            "min_gram": "2",
+            "max_gram": "20"
+          }
+        },
+        "tokenizer": {
+          "username_whitespace": {
+            "type": "char_group",
+            "tokenize_on_chars": [
+              "whitespace",
+              "_"
+            ]
           }
         }
       },

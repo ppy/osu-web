@@ -31,7 +31,7 @@ class WikiSitemap
         ];
 
         return cache_remember_mutexed('wiki:sitemap', Page::CACHE_DURATION, $default, function () {
-            return (new static)->generate()->toArray();
+            return (new static())->generate()->toArray();
         });
     }
 
@@ -45,6 +45,7 @@ class WikiSitemap
     {
         $keys = explode('/', $key);
 
+        // phpcs:ignore
         while (count($keys) > 1) {
             $key = array_shift($keys);
 

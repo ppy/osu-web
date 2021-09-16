@@ -8,6 +8,15 @@ return [
         'disabled' => 'This beatmap is currently not available for download.',
         'parts-removed' => 'Portions of this beatmap have been removed at the request of the creator or a third-party rights holder.',
         'more-info' => 'Check here for more information.',
+        'rule_violation' => 'Some assets contained within this map have been removed after being judged as not being suitable for use in osu!.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Slow down, play more.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
     ],
 
     'index' => [
@@ -16,6 +25,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'no beatmaps',
+
         'download' => [
             'all' => 'download',
             'video' => 'download with video',
@@ -24,14 +35,34 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => 'A hybrid beatmap requires you to select at least one playmode to nominate for.',
+        'incorrect_mode' => 'You do not have permission to nominate for mode: :mode',
+        'full_bn_required' => 'You must be a full nominator to perform this qualifying nomination.',
+        'too_many' => 'Nomination requirement already fulfilled.',
+
+        'dialog' => [
+            'confirmation' => 'Are you sure you want to nominate this beatmap?',
+            'header' => 'Nominate Beatmap',
+            'hybrid_warning' => 'note: you may only nominate once, so please ensure that you are nominating for all game modes you intend to',
+            'which_modes' => 'Nominate for which modes?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Explicit',
+    ],
+
     'show' => [
         'discussion' => 'Discussion',
 
         'details' => [
-            'favourite' => 'Favourite this beatmapset',
+            'by_artist' => 'by :artist',
+            'favourite' => 'Favourite this beatmap',
+            'favourite_login' => 'Sign in to favourite this beatmap',
             'logged-out' => 'You need to sign in before downloading any beatmaps!',
             'mapped_by' => 'mapped by :mapper',
-            'unfavourite' => 'Unfavourite this beatmapset',
+            'unfavourite' => 'Unfavourite this beatmap',
             'updated_timeago' => 'last updated :timeago',
 
             'download' => [
@@ -89,10 +120,24 @@ return [
             'genre' => 'Genre',
             'language' => 'Language',
             'no_scores' => 'Data still being calculated...',
+            'nsfw' => 'Explicit content',
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
+            'storyboard' => 'This beatmap contains storyboard',
             'success-rate' => 'Success Rate',
             'tags' => 'Tags',
+            'video' => 'This beatmap contains video',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'This beatmap contains explicit, offensive, or disturbing content. Would you like to view it anyway?',
+            'title' => 'Explicit Content',
+
+            'buttons' => [
+                'disable' => 'Disable warning',
+                'listing' => 'Beatmap listing',
+                'show' => 'Show',
+            ],
         ],
 
         'scoreboard' => [
@@ -101,7 +146,7 @@ return [
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
-            'supporter-only' => 'You need to be an osu!supporter to access the friend and country rankings!',
+            'supporter-only' => 'You need to be an osu!supporter to access the friend, country, or mod-specific rankings!',
             'title' => 'Scoreboard',
 
             'headers' => [
@@ -119,7 +164,7 @@ return [
 
             'no_scores' => [
                 'country' => 'No one from your country has set a score on this map yet!',
-                'friend' => 'None of your friends has set a score on this map yet!',
+                'friend' => 'None of your friends have set a score on this map yet!',
                 'global' => 'No scores yet. Maybe you should try setting some?',
                 'loading' => 'Loading scores...',
                 'unranked' => 'Unranked beatmap.',

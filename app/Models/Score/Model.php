@@ -6,6 +6,7 @@
 namespace App\Models\Score;
 
 use App\Exceptions\ClassNotFoundException;
+use App\Libraries\ModsHelper;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\User;
@@ -22,8 +23,9 @@ abstract class Model extends BaseModel
     protected $primaryKey = 'score_id';
 
     protected $casts = [
-        'perfect' => 'boolean',
-        'replay' => 'boolean',
+        'pass' => 'bool',
+        'perfect' => 'bool',
+        'replay' => 'bool',
     ];
     protected $dates = ['date'];
 
@@ -66,13 +68,13 @@ abstract class Model extends BaseModel
         return $query->where('user_id', $user->user_id);
     }
 
-    public function scopeIncludeFails($query, bool $include = false)
+    public function scopeIncludeFails($query, bool $include)
     {
         if ($include) {
             return $query;
         }
 
-        return $query->where('rank', '<>', 'F');
+        return $query->where('pass', true);
     }
 
     public function scopeVisibleUsers($query)
@@ -80,6 +82,29 @@ abstract class Model extends BaseModel
         return $query->whereHas('user', function ($userQuery) {
             $userQuery->default();
         });
+    }
+
+    public function scopeWithMods($query, $modsArray)
+    {
+        return $query->where(function ($q) use ($modsArray) {
+            $bitset = ModsHelper::toBitset($modsArray);
+            $preferenceMask = ~ModsHelper::PREFERENCE_MODS_BITSET;
+
+            if (in_array('NM', $modsArray, true)) {
+                $q->orWhereRaw('enabled_mods & ? = 0', [$preferenceMask]);
+            }
+
+            if ($bitset > 0) {
+                $q->orWhereRaw('enabled_mods & ? = ?', [$preferenceMask | $bitset, $bitset]);
+            }
+        });
+    }
+
+    public function scopeWithoutMods($query, $modsArray)
+    {
+        $bitset = ModsHelper::toBitset($modsArray);
+
+        return $query->whereRaw('enabled_mods & ? = 0', $bitset);
     }
 
     public function beatmap()
@@ -102,5 +127,10 @@ abstract class Model extends BaseModel
     public function getBestIdAttribute()
     {
         return $this->high_score_id;
+    }
+
+    public function url()
+    {
+        return route('scores.show', ['mode' => static::getMode(), 'score' => $this->getKey()]);
     }
 }

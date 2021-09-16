@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved.',
+        'beatmap_owner_change' => 'Besitzer der Schwierigkeit :beatmap wurde auf :new_user geändert.',
         'discussion_delete' => 'Ein Moderator hat die Diskussion :discussion gelöscht.',
         'discussion_lock' => 'Die Diskussion für diese Beatmap wurde deaktiviert. (:text)',
         'discussion_post_delete' => 'Ein Moderator hat einen Beitrag der Diskussion :discussion gelöscht.',
@@ -25,9 +26,18 @@ return [
         'language_edit' => 'Sprache wurde von :old zu :new geändert.',
         'love' => 'Nominiert von :user',
         'nominate' => 'Von :user nominiert.',
+        'nominate_modes' => 'Nominiert von :user (:modes).',
         'nomination_reset' => 'Neues Problem :discussion hat die Nominierung zurückgesetzt.',
+        'nomination_reset_received' => 'Nominierung von :user wurde von :source_user zurückgesetzt (:text)',
+        'nomination_reset_received_profile' => 'Nominierung wurde von :user zurückgesetzt (:text)',
         'qualify' => 'Diese Beatmap hat die erforderliche Anzahl an Nominierungen erreicht und wurde qualifiziert.',
         'rank' => 'Ranked.',
+        'remove_from_loved' => 'Aus Loved entfernt von :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => 'Explizit-Markierung entfernt',
+            'to_1' => 'Als explizit markiert',
+        ],
     ],
 
     'index' => [
@@ -47,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Approval',
+        'beatmap_owner_change' => 'Schwierigkeitsstufenbesitzeränderung',
         'discussion_delete' => 'Diskussion löschen',
         'discussion_post_delete' => 'Löschen der Diskussionsantwort',
         'discussion_post_restore' => 'Diskussionsantwort wiederherstellen',
@@ -64,7 +75,10 @@ return [
         'love' => 'Love',
         'nominate' => 'Nominierung',
         'nomination_reset' => 'Nominierung zurücksetzten',
+        'nomination_reset_received' => 'Nomination Reset erhalten',
+        'nsfw_toggle' => 'Explizit-Markierung',
         'qualify' => 'Qualifikation',
         'rank' => 'Ranking',
+        'remove_from_loved' => 'Loved-Entfernung',
     ],
 ];

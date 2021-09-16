@@ -53,4 +53,11 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
     {
         return $this->beatmapsetDiscussionPost->beatmapset;
     }
+
+    public function handle()
+    {
+        $this->beatmapsetDiscussionPost->beatmapset->watches()->update(['last_notified' => $this->getTimestamp()]);
+
+        return parent::handle();
+    }
 }

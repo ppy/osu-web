@@ -3,6 +3,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Models\Beatmap;
+use App\Models\Beatmapset;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -14,7 +17,7 @@
 |
 */
 
-$factory->define(App\Models\Beatmap::class, function (Faker\Generator $faker) {
+$factory->define(Beatmap::class, function (Faker\Generator $faker) {
     $name = $faker->sentence(3);
     $length = rand(30, 200);
     $hits = rand(100, 2000);
@@ -23,12 +26,12 @@ $factory->define(App\Models\Beatmap::class, function (Faker\Generator $faker) {
     $hitsSlider = $hits - $hitsSpinner - $hitsNormal;
     $playCount = rand(0, 50000);
 
-    return  [
+    return [
         'filename' => $name,
         'checksum' => str_repeat('0', 32),
         'version' => $faker->domainWord,
         'total_length' => $length,
-        'hit_length' => ($length - rand(0, 20)),
+        'hit_length' => $length - rand(0, 20),
         'countNormal' => $hitsNormal,
         'countSlider' => $hitsSlider,
         'countSpinner' => $hitsSpinner,
@@ -37,16 +40,28 @@ $factory->define(App\Models\Beatmap::class, function (Faker\Generator $faker) {
         'diff_size' => rand(0, 10),
         'diff_overall' => rand(0, 10),
         'diff_approach' => rand(0, 10),
-        'playmode' => array_rand_val(App\Models\Beatmap::MODES),
+        'playmode' => array_rand_val(Beatmap::MODES),
         'approved' => rand(-2, 4),
-        'difficultyrating' => (rand(0, 5000) / 1000),
+        'difficultyrating' => rand(0, 5000) / 1000,
         'playcount' => $playCount,
         'passcount' => round($playCount * 0.7),
     ];
 });
 
-$factory->state(App\Models\Beatmap::class, 'approved', function (Faker\Generator $faker) {
-    return  [
+$factory->state(Beatmap::class, 'approved', function (Faker\Generator $faker) {
+    return [
         'approved' => 3,
+    ];
+});
+
+$factory->state(Beatmap::class, 'wip', function (Faker\Generator $faker) {
+    return [
+        'approved' => Beatmapset::STATES['wip'],
+    ];
+});
+
+$factory->state(Beatmap::class, 'ranked', function (Faker\Generator $faker) {
+    return [
+        'approved' => Beatmapset::STATES['ranked'],
     ];
 });

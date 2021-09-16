@@ -5,8 +5,8 @@
 
 const { spawnSync } = require('child_process');
 const fs = require('fs');
-const glob = require('glob');
 const path = require('path');
+const glob = require('glob');
 
 const buildPath = path.resolve(__dirname, 'resources/assets/build');
 const localesPath = path.resolve(buildPath, 'locales');
@@ -45,7 +45,7 @@ function writeTranslations(languages) {
     delete json[`${lang}.mail`];
     const jsonString = JSON.stringify(json);
     const filename = path.resolve(localesPath, `${lang}.js`);
-    const script = `(function() { 'use strict'; Object.assign(Lang.messages, ${jsonString}); })();`;
+    const script = `(function() { 'use strict'; if (window.LangMessages === undefined) window.LangMessages = { messages: {}}; Object.assign(LangMessages, ${jsonString}); })();`;
 
     fs.writeFileSync(filename, script);
     console.log(`Created: ${filename}`);
@@ -58,12 +58,6 @@ fs.mkdirSync(localesPath, {recursive: true});
 
 generateTranslations();
 writeTranslations(extractLanguages());
-
-// copy lang.js
-fs.copyFileSync(
-  path.resolve(__dirname, 'vendor/mariuzzo/laravel-js-localization/lib/lang.min.js'),
-  path.resolve(buildPath, 'lang.js'),
-);
 
 // cleanup
 fs.unlinkSync(messagesPath);

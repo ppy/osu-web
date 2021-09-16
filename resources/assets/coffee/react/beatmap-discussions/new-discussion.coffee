@@ -2,10 +2,13 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { MessageLengthCounter } from './message-length-counter'
-import { BigButton } from 'big-button'
+import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
+import BigButton from 'big-button'
 import * as React from 'react'
+import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
-import { UserAvatar } from 'user-avatar'
+import UserAvatar from 'user-avatar'
+import { nominationsCount } from 'utils/beatmapset-helper'
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -28,12 +31,12 @@ export class NewDiscussion extends React.PureComponent
 
   componentDidMount: =>
     @setTop()
-    $(window).on 'resize.new-discussion', @setTop
+    $(window).on 'resize', @setTop
     @inputBox.current?.focus() if @props.autoFocus
 
 
   componentWillUnmount: =>
-    $(window).off '.new-discussion'
+    $(window).off 'resize', @setTop
     @postXhr?.abort()
     @throttledPost.cancel()
 
@@ -62,8 +65,9 @@ export class NewDiscussion extends React.PureComponent
 
     canPostNote =
       @props.currentUser.id == @props.beatmapset.user_id ||
+      (@props.currentUser.id == @props.currentBeatmap.user_id && @props.mode in ['general', 'timeline']) ||
       @props.currentUser.is_bng ||
-      @props.currentUser.is_nat
+      BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
 
     buttonCssClasses = 'btn-circle'
     buttonCssClasses += ' btn-circle--activated' if @props.pinned
@@ -264,7 +268,7 @@ export class NewDiscussion extends React.PureComponent
       beatmap_discussion_post:
         message: @state.message
 
-    @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
+    @postXhr = $.ajax laroute.route('beatmapsets.discussions.posts.store'),
       method: 'POST'
       data: data
 
@@ -290,7 +294,8 @@ export class NewDiscussion extends React.PureComponent
     return 'disqualify' if canDisqualify && willDisqualify
 
     canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng
-    willReset = @props.beatmapset.status == 'pending' && @props.beatmapset.nominations.current > 0
+    currentNominations = nominationsCount(@props.beatmapset.nominations, 'current')
+    willReset = @props.beatmapset.status == 'pending' && currentNominations > 0
 
     return 'nomination_reset' if canReset && willReset
 
@@ -318,16 +323,16 @@ export class NewDiscussion extends React.PureComponent
     typeText = if type == 'problem' then @problemType() else type
 
     el BigButton,
-      modifiers: ['beatmap-discussion-new']
-      icon: BeatmapDiscussionHelper.messageType.icon[_.camelCase(type)]
-      isBusy: @state.posting == type
-      text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type
+      disabled: !@validPost() || @state.posting? || !@canPost()
+      icon: discussionTypeIcons[type]
+      isBusy: @state.posting == type
+      modifiers: 'beatmap-discussion-new'
+      text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       props: _.merge
-          disabled: !@validPost() || @state.posting? || !@canPost()
-          'data-type': type
-          onClick: @post
-          extraProps
+        'data-type': type
+        onClick: @post
+        extraProps
 
 
   timestamp: =>

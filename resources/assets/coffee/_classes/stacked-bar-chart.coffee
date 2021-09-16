@@ -96,13 +96,14 @@ class @StackedBarChart
       .enter()
       .append 'rect'
       .attr 'class', (d) => "stacked-bar-chart__bar stacked-bar-chart__bar--#{d.type}"
+      .attr 'width', @options.scales.x 1
+      .attr 'y', @height
 
 
     bars
       .transition()
       .attr 'y', (d) => @height - @options.scales.y(d.value + d.height)
       .attr 'height', (d) => @options.scales.y d.value
-      .attr 'width', @options.scales.x 1
 
     bars
       .exit()

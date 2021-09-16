@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'slettet',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited slettet kommentar|:count_delimited slettede kommentarer',
     'edited' => 'redigert for :timeago av :user',
     'pinned' => 'festet',
@@ -35,7 +37,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => '',
         'nav_title' => 'liste',
+        'no_comments' => '',
     ],
 
     'placeholder' => [

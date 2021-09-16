@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
-import UserJSON from 'interfaces/user-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 export type Section = 'user' | 'user_others' | 'beatmapset' | 'beatmapset_others' | 'others';
 const SECTIONS: Section[] = [
@@ -38,7 +38,7 @@ interface SearchResultBeatmapset extends SearchResultSummary {
 }
 
 interface SearchResultUser extends SearchResultSummary {
-  users: UserJSON[];
+  users: UserJson[];
 }
 
 const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
@@ -46,21 +46,25 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 export default class Worker {
   debouncedSearch = debounce(this.search, 500);
   @observable query = '';
-  @observable searching = false;
   @observable searchResult: SearchResult | null = null;
+  @observable searching = false;
   @observable selected: SelectedItem | null = null;
 
   private xhr: JQueryXHR | null = null;
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action cycleSelectedItem(direction: number) {
     let newSelected: SelectedItem | null;
     if (!this.selected) {
       if (direction > 0) {
-        newSelected = {section: 0, index: 0};
+        newSelected = { index: 0, section: 0 };
       } else {
         const sectionIdx = SECTIONS.length - 1;
         const section: Section = SECTIONS[sectionIdx];
-        newSelected = {section: sectionIdx, index: this.sectionLength(section) - 1};
+        newSelected = { index: this.sectionLength(section) - 1, section: sectionIdx };
       }
     } else {
       newSelected = {...this.selected};
@@ -102,21 +106,24 @@ export default class Worker {
     }
 
     switch (SECTIONS[this.selected.section]) {
-      case 'user':
+      case 'user': {
         const userId = searchResult.user.users[this.selected.index]?.id;
         return userId ? route('users.show', { user: userId }) : undefined;
+      }
       case 'user_others':
         return route('search', { mode: 'user', query: this.query });
-      case 'beatmapset':
+      case 'beatmapset': {
         const id = searchResult.beatmapset.beatmapsets[this.selected.index]?.id;
         return id ? route('beatmapsets.show', { beatmapset: id }) : undefined;
+      }
       case 'beatmapset_others':
         return route('search', { mode: 'beatmapset', query: this.query });
-      case 'others':
+      case 'others': {
         const others = otherModes.filter((mode) => searchResult[mode].total > 0);
         const selectedMode = others[this.selected.index];
 
         return route('search', { mode: selectedMode, query: this.query });
+      }
     }
   }
 
@@ -131,12 +138,12 @@ export default class Worker {
     this.searching = true;
 
     this.xhr = $.get(route('quick-search'), { query })
-    .done(action((searchResult: SearchResult) => {
-      this.searchResult = searchResult;
-      this.selected = null;
-    })).always(action(() => {
-      this.searching = false;
-    }));
+      .done(action((searchResult: SearchResult) => {
+        this.searchResult = searchResult;
+        this.selected = null;
+      })).always(action(() => {
+        this.searching = false;
+      }));
   }
 
   @action selectNone() {
@@ -144,7 +151,7 @@ export default class Worker {
   }
 
   @action setSelected(section: Section, index: number) {
-    this.selected = {section: SECTIONS.indexOf(section), index};
+    this.selected = { index, section: SECTIONS.indexOf(section) };
   }
 
   @action updateQuery(newQuery: string) {

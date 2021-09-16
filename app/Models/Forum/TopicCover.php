@@ -58,7 +58,7 @@ class TopicCover extends Model
 
     public static function upload($filePath, $user, $topic = null)
     {
-        $cover = new static;
+        $cover = new static();
 
         DB::transaction(function () use ($cover, $filePath, $user, $topic) {
             $cover->save(); // get id

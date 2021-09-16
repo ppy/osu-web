@@ -43,15 +43,17 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => '¿Realmente quieres eliminar la publicación?',
-        'confirm_restore' => '¿Realmente quieres restaurar la publicación?',
+        'confirm_destroy' => '¿Realmente desea eliminar la publicación?',
+        'confirm_restore' => '¿Realmente desea restaurar la publicación?',
         'edited' => 'Última edición por :user :when, editado :count_delimited vez en total.|Última edición por :user :when, editado :count_delimited veces en total.',
         'posted_at' => 'publicado :when',
+        'posted_by' => 'publicado por :username',
 
         'actions' => [
             'destroy' => 'Eliminar publicación',
-            'restore' => 'Restaurar publicación',
             'edit' => 'Editar publicación',
+            'report' => 'Denunciar publicación',
+            'restore' => 'Restaurar publicación',
         ],
 
         'create' => [
@@ -73,9 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '¿Realmente desea eliminar el tema?',
+        'confirm_restore' => '¿Realmente desea restaurar el tema?',
         'deleted' => 'tema eliminado',
         'go_to_latest' => 'ver la última publicación',
         'has_replied' => 'Ha respondido a este tema',
+        'in_forum' => 'en :forum',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última respuesta por :user',
         'new_topic' => 'Nuevo tema',
@@ -85,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'por :user',
         'started_by_verbose' => 'iniciado por :user',
+
+        'actions' => [
+            'destroy' => 'Eliminar tema',
+            'restore' => 'Restaurar tema',
+        ],
 
         'create' => [
             'close' => 'Cerrar',
@@ -125,7 +135,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'suscripciones a foros',
+            'title_compact' => 'lista de seguimiento de temas del foro',
 
             'box' => [
                 'total' => 'Temas suscritos',
@@ -280,7 +290,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} cero votos|{1} :count voto|[2,*] :count votos',
+                    'count' => '{0} cero votos|{1} :count_delimited voto|[2,*] :count_delimited votos',
                     'current' => 'Tienes :votes restantes.',
                     'not_enough' => "No tienes más votos restantes",
                 ],

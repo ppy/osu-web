@@ -1,38 +1,37 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { UserCard } from 'user-card';
 
 interface Props {
-  container: HTMLElement;
-  user: UserJSON;
+  user: UserJson | null;
 }
 
 interface State {
-  user?: UserJSON;
+  user?: UserJson | null;
 }
 
 /**
  * This component's job shims UserCard for store-supporter-tag to update UserCard's props.
  */
 export class UserCardStore extends React.PureComponent<Props, State> {
-  readonly state: State = { user: this.props.user };
+  state: Readonly<State> = { user: this.props.user };
 
   componentDidMount() {
-    $.subscribe('store-supporter-tag:update-user.user-card-store', this.setUser);
+    $.subscribe('store-supporter-tag:update-user', this.setUser);
   }
 
   componentWillUnmount() {
-    $.unsubscribe('.user-card-store');
+    $.unsubscribe('store-supporter-tag:update-user', this.setUser);
   }
 
   render() {
     return <UserCard user={this.state.user} />;
   }
 
-  setUser = (event: JQuery.Event, user?: UserJSON) => {
+  setUser = (event: JQuery.Event, user?: UserJson) => {
     this.setState({ user });
-  }
+  };
 }

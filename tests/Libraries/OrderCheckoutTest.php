@@ -91,7 +91,7 @@ class OrderCheckoutTest extends TestCase
         $result = $checkout->validate();
 
         $this->assertSame(
-            [trans('model_validation/store/product.must_separate')],
+            [osu_trans('model_validation/store/product.must_separate')],
             array_get($result, "orderItems.{$orderItem2->getKey()}")
         );
     }
@@ -141,7 +141,7 @@ class OrderCheckoutTest extends TestCase
     {
         $country = Country::inRandomOrder()->first() ?? factory(Country::class)->create();
 
-        $product = factory(Product::class, 'child_banners')->create([
+        $product = factory(Product::class)->states('child_banners')->create([
             'available_until' => $availableUntil,
             'name' => "{$tournament->name} Support Banner ({$country->name})",
         ]);

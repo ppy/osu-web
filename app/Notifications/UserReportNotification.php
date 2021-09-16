@@ -31,7 +31,7 @@ class UserReportNotification extends Notification implements ShouldQueue
 
     public function toSlack(UserReport $notifiable): SlackMessage
     {
-        return (new SlackMessage)
+        return (new SlackMessage())
             ->http(static::HTTP_OPTIONS)
             ->attachment(function ($attachment) use ($notifiable) {
                 $reportable = $notifiable->reportable;

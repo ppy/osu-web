@@ -1,41 +1,34 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapList } from './beatmap-list'
-import { BigButton } from 'big-button'
+import BigButton from 'big-button'
 import { Nominations } from './nominations'
 import { Subscribe } from './subscribe'
 import { UserFilter } from './user-filter'
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
+import BeatmapList from 'beatmap-discussions/beatmap-list'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import HeaderV4 from 'header-v4'
-import { PlaymodeTabs } from 'playmode-tabs'
+import { deletedUser } from 'models/user'
+import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
-import { a, div, h1, h2, p } from 'react-dom-factories'
+import { a, div, h1, h2, p, span } from 'react-dom-factories'
+import StringWithComponent from 'string-with-component'
+import { UserLink } from 'user-link'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { showVisual } from 'utils/beatmapset-helper'
+import Chart from 'beatmap-discussions/chart'
 el = React.createElement
 
 export class Header extends React.PureComponent
-  componentDidMount: =>
-    @updateChart()
-
-
-  componentDidUpdate: =>
-    @updateChart()
-
-
-  componentWillUnmount: =>
-    $(window).off '.beatmapDiscussionsOverview'
-
-
   render: =>
     el React.Fragment, null,
       el HeaderV4,
         theme: 'beatmapsets'
         titleAppend: el PlaymodeTabs,
-          currentMode: @props.currentBeatmap.mode
           beatmaps: @props.beatmaps
           counts: @props.currentDiscussions.countsByPlaymode
+          currentMode: @props.currentBeatmap.mode
 
       div
         className: 'osu-page'
@@ -61,11 +54,10 @@ export class Header extends React.PureComponent
 
         div className: "#{bn}__details",
           el BigButton,
-            modifiers: ['full']
-            text: osu.trans('beatmaps.discussions.beatmap_information')
+            href: laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id)
             icon: 'fas fa-info'
-            props:
-              href: laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id)
+            modifiers: 'full'
+            text: osu.trans('beatmaps.discussions.beatmap_information')
 
       div className: "#{bn}__content #{bn}__content--nomination",
         el Nominations,
@@ -86,7 +78,7 @@ export class Header extends React.PureComponent
       div
         className: "#{bn}__content"
         style:
-          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover)
+          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover) if showVisual(@props.beatmapset)
 
         a
           className: "#{bn}__title-container"
@@ -94,9 +86,16 @@ export class Header extends React.PureComponent
           h1
             className: "#{bn}__title"
             getTitle(@props.beatmapset)
+            if @props.beatmapset.nsfw
+              span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
           h2
             className: "#{bn}__title #{bn}__title--artist"
             getArtist(@props.beatmapset)
+            if @props.beatmapset.track_id?
+              a
+                className: 'beatmapset-badge beatmapset-badge--featured-artist'
+                href: laroute.route 'tracks.show', @props.beatmapset.track_id
+                osu.trans('beatmapsets.featured_artist_badge.label')
 
         div
           className: "#{bn}__filters"
@@ -104,10 +103,11 @@ export class Header extends React.PureComponent
           div
             className: "#{bn}__filter-group"
             el BeatmapList,
-              beatmapset: @props.beatmapset
+              beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
               currentBeatmap: @props.currentBeatmap
-              currentDiscussions: @props.currentDiscussions
-              beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
+              createLink: @createLink
+              getCount: @getCount
+              onSelectBeatmap: @onSelectBeatmap
 
           div
             className: "#{bn}__filter-group #{bn}__filter-group--stats"
@@ -121,9 +121,18 @@ export class Header extends React.PureComponent
               @stats()
 
         div className: 'u-relative',
-          div ref: 'chartArea', className: "#{bn}__chart"
+          el Chart,
+            discussions: @props.currentDiscussions.byFilter[@props.currentFilter].timeline
+            duration: @props.currentBeatmap.total_length * 1000
 
           div className: "#{bn}__beatmap-stats",
+            div className: "#{bn}__guest",
+              if @props.currentBeatmap.user_id != @props.beatmapset.user_id
+                span null,
+                  el StringWithComponent,
+                    mappings:
+                      user: el(UserLink, user: @props.users[@props.currentBeatmap.user_id] ? deletedUser)
+                    pattern: osu.trans('beatmaps.discussions.guest')
             el BeatmapBasicStats, beatmap: @props.currentBeatmap
 
 
@@ -167,14 +176,13 @@ export class Header extends React.PureComponent
 
         div className: "#{bn}__line"
 
+  createLink: (beatmap) =>
+    BeatmapDiscussionHelper.url beatmap: beatmap
 
-  updateChart: =>
-    if !@_chart?
-      area = @refs.chartArea
-      length = @props.currentBeatmap.total_length * 1000
+  getCount: (beatmap) =>
+    if beatmap.deleted_at? then undefined else @props.currentDiscussions.countsByBeatmap[beatmap.id]
 
-      @_chart = new BeatmapDiscussionsChart(area, length)
-
-      $(window).on 'resize.beatmapDiscussionsOverview', @_chart.resize
-
-    @_chart.loadData _.values(@props.currentDiscussions.byFilter[@props.currentFilter].timeline)
+  onSelectBeatmap: (beatmapId) =>
+    $.publish 'beatmapsetDiscussions:update',
+      beatmapId: beatmapId
+      mode: BeatmapDiscussionHelper.DEFAULT_MODE

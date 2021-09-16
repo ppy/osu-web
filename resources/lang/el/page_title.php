@@ -22,6 +22,7 @@ return [
             '401-verification' => '',
             '405' => '',
             '422' => '',
+            '429' => '',
             '500' => '',
             '503' => '',
         ],
@@ -75,6 +76,9 @@ return [
         'contests_controller' => [
             '_' => '',
         ],
+        'follows_controller' => [
+            'index' => '',
+        ],
         'friends_controller' => [
             'index' => '',
         ],
@@ -107,13 +111,13 @@ return [
             '_' => '',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'κατατάξεις',
         ],
         'scores_controller' => [
             '_' => '',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'κατάστημα',
         ],
         'tournaments_controller' => [
             '_' => '',
@@ -123,7 +127,7 @@ return [
             'disabled' => '',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -132,10 +136,13 @@ return [
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'κατάστημα',
     ],
     'users' => [
         'modding_history_controller' => [
+            '_' => '',
+        ],
+        'multiplayer_controller' => [
             '_' => '',
         ],
     ],

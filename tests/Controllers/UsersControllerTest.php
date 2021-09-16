@@ -11,6 +11,20 @@ use Tests\TestCase;
 
 class UsersControllerTest extends TestCase
 {
+    public function testIndexForApi()
+    {
+        $user = factory(User::class)->create();
+        $userB = factory(User::class)->create();
+
+        $this->actAsScopedUser($user, ['*']);
+
+        $this
+            ->get(route('api.users.index', ['ids' => [$user->getKey(), $userB->getKey()]]))
+            ->assertSuccessful()
+            ->assertJsonPath('users.0.id', $user->getKey())
+            ->assertJsonPath('users.1.id', $userB->getKey());
+    }
+
     /**
      * Checks whether an OK status is returned when the
      * profile order update request is valid.
@@ -205,6 +219,6 @@ class UsersControllerTest extends TestCase
 
         $this
             ->get(route('api.users.show', ['user' => $user->username]))
-            ->assertRedirect(route('api.users.show', ['user' => $user->getKey()]));
+            ->assertSuccessful();
     }
 }

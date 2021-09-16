@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Will je deze post echt terugzetten?',
         'edited' => 'Laatst bewerkt door :user op :when. :count keer bewerkt in totaal.',
         'posted_at' => 'gepost op :when',
+        'posted_by' => 'geplaatst door :username',
 
         'actions' => [
             'destroy' => 'Verwijder bericht',
-            'restore' => 'Herstel bericht',
             'edit' => 'Bewerk bericht',
+            'report' => 'Rapporteer bericht',
+            'restore' => 'Herstel bericht',
         ],
 
         'create' => [
@@ -73,9 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Topic echt verwijderen?',
+        'confirm_restore' => 'Topic echt herstellen?',
         'deleted' => 'verwijder topic',
         'go_to_latest' => 'bekijk nieuwste post',
         'has_replied' => 'Je hebt gereageerd op dit onderwerp',
+        'in_forum' => 'in :forum ',
         'latest_post' => ':when door :user',
         'latest_reply_by' => 'laatste bericht door :user',
         'new_topic' => 'Nieuw onderwerp',
@@ -85,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'door :user',
         'started_by_verbose' => 'gestart door :user',
+
+        'actions' => [
+            'destroy' => 'Topic verwijderen',
+            'restore' => 'Herstel topic',
+        ],
 
         'create' => [
             'close' => 'Sluiten',

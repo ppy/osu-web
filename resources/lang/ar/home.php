@@ -76,9 +76,9 @@ return [
         'action' => 'حمل osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'إذا كان لديك مشكلة في بدء اللعبة أو انشاء حساب، :help_forum_link أو :support_button.',
+            'help_forum_link' => 'تحقق من منتدى المساعدة',
+            'support_button' => 'الاتصال بالدعم',
         ],
 
         'os' => [

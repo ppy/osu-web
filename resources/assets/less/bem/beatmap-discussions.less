@@ -16,6 +16,10 @@
 
   &__discussion {
     .own-layer();
+
+    @media @mobile {
+      overflow-x: auto;
+    }
   }
 
   &__discussions {
@@ -25,6 +29,10 @@
 
     &--empty {
       font-size: @font-size--normal;
+    }
+
+    @media @mobile {
+      padding: @_discussions-vertical-padding 0;
     }
   }
 

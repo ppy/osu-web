@@ -9,7 +9,7 @@ return [
     'authorise' => [
         'request' => 'hesabınıza erişmek için izin istiyor.',
         'scopes_title' => 'Bu uygulama şunları yapabilecek:',
-        'title' => 'İzin İsteği',
+        'title' => 'Doğrulama Talebi',
     ],
 
     'authorized_clients' => [
@@ -28,30 +28,30 @@ return [
         'id' => 'İstemci ID',
         'name' => 'Uygulama Adı',
         'redirect' => 'Uygulama Geri Çağırma URL\'si',
-        'reset' => 'İstemci gizli anahtarını sıfırla',
-        'reset_failed' => 'İstemci gizli anahtarı sıfırlanamadı',
+        'reset' => 'İstemci anahtarını sıfırla',
+        'reset_failed' => 'İstemci anahtarı sıfırlanamadı',
         'secret' => 'İstemci Anahtarı',
 
         'secret_visible' => [
-            'false' => 'İstemci gizli anahtarını göster',
-            'true' => 'İstemci gizli anahtarını gizle',
+            'false' => 'İstemci anahtarını göster',
+            'true' => 'İstemci anahtarını gizle',
         ],
     ],
 
     'new_client' => [
         'header' => 'Yeni bir OAuth uygulaması kaydet',
-        'register' => 'Uygulama Kaydet',
+        'register' => 'Uygulama kaydet',
         'terms_of_use' => [
-            '_' => 'API\'yı kullanarak kullanım koşullarını kabul ediyorsunuz: :link.',
+            '_' => 'API\'yi kullanarak :link\'nı kabul ediyorsunuz.',
             'link' => 'Kullanım Koşulları',
         ],
     ],
 
     'own_clients' => [
         'confirm_delete' => 'Bu istemciyi silmek istediğinize emin misiniz?',
-        'confirm_reset' => 'İstemci gizli anahtarını sıfırlamak istediğinizden emin misiniz? Bu mevcut tüm tokenları kaldıracak.',
-        'new' => 'Yeni OAuth uygulaması',
-        'none' => 'İstemci yok',
+        'confirm_reset' => 'İstemci anahtarını sıfırlamak istediğinizden emin misiniz? Bu mevcut tüm tokenları kaldıracak.',
+        'new' => 'Yeni OAuth Uygulaması',
+        'none' => 'İstemci Yok',
 
         'revoked' => [
             'false' => 'Sil',

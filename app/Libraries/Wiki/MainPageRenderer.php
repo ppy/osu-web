@@ -6,64 +6,38 @@
 namespace App\Libraries\Wiki;
 
 use App\Libraries\Markdown\OsuMarkdown;
-use League\CommonMark\Block\Element as Block;
-use League\CommonMark\DocParser;
-use League\CommonMark\Environment;
-use League\CommonMark\HtmlRenderer;
-use League\CommonMark\Inline\Element as Inline;
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
+use League\CommonMark\Extension\CommonMark\Node\Inline\AbstractWebResource;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
+use League\CommonMark\Node\Block\Document;
+use League\CommonMark\Node\Block\Paragraph;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Node\NodeWalkerEvent;
+use League\CommonMark\Parser\MarkdownParser;
+use League\CommonMark\Renderer\HtmlRenderer;
 
 class MainPageRenderer extends Renderer
 {
-    /** @var DocParser */
-    private $parser;
+    private MarkdownParser $parser;
 
-    /** @var HtmlRenderer */
-    private $renderer;
+    private HtmlRenderer $renderer;
 
     public function __construct($page, $body)
     {
         parent::__construct($page, $body);
 
-        $env = Environment::createCommonMarkEnvironment(OsuMarkdown::DEFAULT_CONFIG);
+        $config = array_merge(
+            OsuMarkdown::DEFAULT_COMMONMARK_CONFIG,
+            ['html_input' => 'allow'],
+        );
 
-        $this->parser = new DocParser($env);
+        $env = new Environment($config);
+        $env->addExtension(new CommonMarkCoreExtension());
+
+        $this->parser = new MarkdownParser($env);
         $this->renderer = new HtmlRenderer($env);
-    }
-
-    /**
-     * @param \League\CommonMark\Block\Element\Document $document
-     * @return void
-     */
-    private function addClasses($document)
-    {
-        $walker = $document->walker();
-
-        while ($event = $walker->next()) {
-            $node = $event->getNode();
-
-            if ($event->isEntering() || isset($node->data['attributes']['class'])) {
-                continue;
-            }
-
-            $blockClass = 'wiki-main-page';
-            $class = '';
-
-            switch (get_class($node)) {
-                case Block\Heading::class:
-                    $class = "{$blockClass}__heading";
-                    break;
-                case Block\Paragraph::class:
-                    $class = "{$blockClass}__paragraph";
-                    break;
-                case Inline\Link::class:
-                    $class = "{$blockClass}__link";
-                    break;
-            }
-
-            if (present($class)) {
-                $node->data['attributes']['class'] = $class;
-            }
-        }
     }
 
     /**
@@ -78,7 +52,7 @@ class MainPageRenderer extends Renderer
 
         $page = [
             'header' => $body['header'],
-            'output' => $this->renderer->renderBlock($document),
+            'output' => $this->renderer->renderDocument($document)->getContent(),
         ];
 
         return $page;
@@ -91,5 +65,55 @@ class MainPageRenderer extends Renderer
     {
         // returning nothing since the main page isn't searchable anyway
         return '';
+    }
+
+    /**
+     * @param \League\CommonMark\Block\Element\Document $document
+     * @return void
+     */
+    private function addClasses(Document $document)
+    {
+        $walker = $document->walker();
+
+        while ($event = $walker->next()) {
+            $node = $event->getNode();
+
+            $this->fixLinks($event, $node);
+
+            if ($event->isEntering() || isset($node->data['attributes']['class'])) {
+                continue;
+            }
+
+            $blockClass = 'wiki-main-page';
+            $class = '';
+
+            switch (get_class($node)) {
+                case Heading::class:
+                    $class = "{$blockClass}__heading";
+                    break;
+                case Paragraph::class:
+                    $class = "{$blockClass}__paragraph";
+                    break;
+                case Link::class:
+                    $class = "{$blockClass}__link";
+                    break;
+            }
+
+            if (present($class)) {
+                $node->data->set('attributes/class', $class);
+            }
+        }
+    }
+
+    private function fixLinks(NodeWalkerEvent $event, Node $node)
+    {
+        if (!$event->isEntering() || !($node instanceof AbstractWebResource)) {
+            return;
+        }
+
+        // this assumes links are in form /wiki/Path/To/Page
+        $relativeUrl = preg_replace('#^/wiki/#', './', $node->getUrl());
+
+        $node->setUrl($relativeUrl);
     }
 }

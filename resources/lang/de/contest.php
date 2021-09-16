@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Die Abstimmung für diesen Wettbewerb ist beendet',
         'login_required' => 'Zum Abstimmen bitte einloggen.',
+        'over' => 'Die Abstimmung für diesen Wettbewerb ist beendet',
+        'show_voted_only' => 'Stimmen anzeigen',
 
         'best_of' => [
             'none_played' => "Es scheint, als hättest du keine der Beatmaps gespielt, die dich für den Wettbewerb qualifiziert hätten!",
@@ -26,14 +27,16 @@ return [
             'remove' => 'Vote entfernen',
             'used_up' => 'Du hast alle deine Votes verwendet',
         ],
+
+        'progress' => [
+            '_' => ':used / :max Stimmen vergeben',
+        ],
     ],
     'entry' => [
         '_' => 'entry',
         'login_required' => 'Zum Beitreten bitte einloggen.',
         'silenced_or_restricted' => 'Man kann restricted oder stummgeschaltet nicht an Wettbewerben teilnehmen.',
         'preparation' => 'Wir bereiten diesen Wettbewerb gerade vor. Bitte habe Geduld!',
-        'over' => 'Vielen Dank für eure Einsendungen! Der Einsendezeitraum ist vorbei, die Abstimmungen werden bald beginnen.',
-        'limit_reached' => 'Du hast das Einsendelimit für diesen Wettbewerb erreicht',
         'drop_here' => 'Lege deine Einsendung hier ab',
         'download' => '.osz herunterladen',
         'wrong_type' => [

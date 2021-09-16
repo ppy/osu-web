@@ -15,8 +15,18 @@ return [
     'top' => 'الأحدث',
     'username' => 'اسم المُستخدم',
 
+    'forum_posts' => [
+        'created' => 'توقيت النشر',
+        'relevance' => 'الأهمية',
+    ],
+
     'forum_topics' => [
-        'new' => 'الرد الأخير',
         'feature_votes' => 'تفضيل النجمة',
+        'new' => 'الرد الأخير',
+    ],
+
+    'users' => [
+        'relevance' => 'الصِلة',
+        'username' => 'الإسم',
     ],
 ];

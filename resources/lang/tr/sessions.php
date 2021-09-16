@@ -5,8 +5,8 @@
 
 return [
     'create' => [
-        'download' => 'Oyunu indirmek ve yeni hesap açmak için buraya tıklayın',
-        'label' => 'İlk olarak, hesabına giriş yapalım!',
-        'title' => 'Hesaba giriş yap',
+        'download' => 'Oyunu indirmek ve bir hesap oluşturmak için buraya tıklayın',
+        'label' => 'İlk olarak, hadi hesabına giriş yapalım!',
+        'title' => 'Hesabına Giriş Yap',
     ],
 ];

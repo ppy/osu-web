@@ -21,17 +21,17 @@ return [
         'benefit_more' => '将来还会有更多的支持者的独有功能！',
         'feedback' => "如果您有什么问题，或者有什么意见的话，您可以直接回复这封邮件。我会尽快回应的！",
         'keep_free' => '正是因为您这样的人的存在，osu! 和 osu! 社区才能够在没有讨厌的广告和强制付款的环境中稳定运行。感谢您的支持！',
-        'keep_running' => '您的捐赠能够维持 osu! 持续运转 :minutes ！虽然这看起来不多，但是江海来源于小流，不是么？',
+        'keep_running' => '您的捐赠能够维持 osu! 持续运转 :minutes！虽然看起来不多，但是江海来源于小流，不是么。:)',
         'subject' => '非常感谢， osu! 爱你哦~',
         'translation' => '以下是社区提供的翻译，仅供参考：',
 
         'benefit' => [
             'gift' => '您的受赠者将会享受到 osu!direct 等其他 osu! 支持者所享有的的特权。',
-            'self' => '您可以在 :duration 内享受 osu!direct 等 osu! 支持者所享有的特权！',
+            'self' => '您现在可以享受 osu!direct 和其他支持者奖励直到 :duration。',
         ],
 
         'support' => [
-            '_' => '感谢您向 osu! 付出的:support ！',
+            '_' => '感谢您向 osu! 付出的:support！',
             'first' => '支持',
             'repeat' => '持续支持',
         ],
@@ -61,7 +61,7 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => '赠予您支持者标签的人想要保持匿名，所以在这个通知中并没有提到他（们）。',
+        'anonymous_gift' => '赠予您支持者标签的人想要保持匿名，所以在这封邮件中并没有提到他（们）。',
         'anonymous_gift_maybe_not' => '话虽如此，不过您可能已经猜到是谁啦嘿嘿嘿~',
         'duration' => '感谢赠送者，您可以在接下来的 :duration 内享受到 osu!direct 等 osu! 支持者所享有的特权。',
         'features' => '您可以在此处找到更多关于特权的信息：',
@@ -73,7 +73,7 @@ return [
         'changed_to' => '您 osu! 账户绑定的邮箱地址已被更改为 :email 。',
         'check' => '请确认您修改后的新邮箱收到了此邮件，以防绑定失败导致您以后无法再登录 osu! 账户。',
         'sent' => '为了保证账户安全，我们将此邮件发送给了您的原邮箱和修改后的邮箱地址。',
-        'subject' => 'osu! 帐户邮箱更改确认',
+        'subject' => 'osu! 账户邮箱更改确认',
     ],
 
     'user_force_reactivation' => [
@@ -91,7 +91,7 @@ return [
 
     'user_password_updated' => [
         'confirmation' => '您的 osu! 账户密码已被修改。',
-        'subject' => 'osu! 帐户密码更改确认',
+        'subject' => 'osu! 账户密码更改确认',
     ],
 
     'user_verification' => [
@@ -102,7 +102,7 @@ return [
         'subject' => 'osu! 账户认证',
 
         'action_from' => [
-            '_' => '您的帐号有一个来自 :country 的操作需要验证。',
+            '_' => '您的账号有一个来自 :country 的操作需要验证。',
             'unknown_country' => '未知国家',
         ],
     ],

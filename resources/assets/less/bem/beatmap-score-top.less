@@ -4,6 +4,7 @@
 .beatmap-score-top {
   @_top: beatmap-score-top;
 
+  position: relative;
   display: flex;
   flex-direction: column;
 
@@ -15,6 +16,10 @@
   &__avatar {
     flex: none;
     margin: 0px 10px;
+  }
+
+  &__link-container {
+    .full-size();
   }
 
   &__position {
@@ -32,6 +37,8 @@
   }
 
   &__section {
+    position: relative;
+    pointer-events: none;
     width: 100%;
     padding: 10px;
     display: flex;
@@ -123,6 +130,10 @@
 
   &__user-box {
     flex: none;
+
+    @media @desktop {
+      margin-right: 10px;
+    }
   }
 
   &__username {
@@ -130,7 +141,6 @@
     font-weight: 700;
     margin-bottom: 2px;
     display: block;
-    margin-right: 10px;
     .link-inverted();
   }
 

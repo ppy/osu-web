@@ -76,7 +76,7 @@ return [
         'action' => '下载 osu!',
 
         'help' => [
-            '_' => '如果您在开始游戏或注册帐户时遇到问题，请 :help_forum_link 或 :support_button。',
+            '_' => '如果您在开始游戏或注册账户时遇到问题，请 :help_forum_link 或 :support_button。',
             'help_forum_link' => '查看帮助论坛',
             'support_button' => '联系支持团队',
         ],
@@ -90,7 +90,7 @@ return [
         'macos-fallback' => 'macOS 用户',
         'steps' => [
             'register' => [
-                'title' => '注册帐号',
+                'title' => '注册账号',
                 'description' => '根据游戏提示进行登录或注册',
             ],
             'download' => [
@@ -124,7 +124,7 @@ return [
         'beatmaps' => [
             'new' => '新 Ranked 谱面',
             'popular' => '高人气谱面',
-            'by_user' => '由 :user',
+            'by_user' => '作者：:user',
         ],
         'buttons' => [
             'download' => '下载 osu!',

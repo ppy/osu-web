@@ -46,7 +46,7 @@
 
   &__row {
     .reset-input();
-    background-color: osu-hsla(@osu-colour-b4, 0.8);
+    background-color: hsla(var(--hsl-b4), 0.8);
     margin-top: 1px;
     padding: 7.5px 15px;
     display: flex;
@@ -59,29 +59,19 @@
     }
 
     &--preview {
-      .fas();
       .link-plain();
       .link-white();
       display: flex;
       align-items: center;
       justify-content: center;
       --progress: 0;
-      --icon: @fa-var-play;
       font-size: 18px; // icon size
       padding: 10px;
       cursor: pointer;
       position: relative;
 
-      &::before {
-        content: var(--icon);
-      }
-
       &:hover {
-        background-color: osu-hsla(@osu-colour-b6, 0.75);
-      }
-
-      &[data-audio-state="playing"] {
-        --icon: @fa-var-pause;
+        background-color: hsla(var(--hsl-b6), 0.75);
       }
     }
 

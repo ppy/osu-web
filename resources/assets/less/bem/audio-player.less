@@ -5,7 +5,6 @@
   @_top: audio-player;
 
   @_height: 40px;
-  --play-button: @fa-var-play;
 
   --current-time: '0:00';
   --duration: '0:00';
@@ -19,13 +18,9 @@
   align-items: center;
   padding: 5px 10px;
   font-family: @font-default;
+  text-align: left;
   pointer-events: auto;
   position: relative;
-
-  &[data-audio-state="loading"],
-  &[data-audio-state="playing"] {
-    --play-button: @fa-var-pause;
-  }
 
   &--main {
     margin-left: auto;
@@ -59,23 +54,17 @@
 
   &__button {
     .reset-input();
-    .fas();
     flex: none;
     .center-content();
     color: @osu-colour-c1;
     padding: 5px;
     font-size: 14px; // icon size
 
-    &::before {
-      content: var(--button);
-    }
-
     &:hover {
       color: @osu-colour-l1;
     }
 
     &--prev {
-      --button: @fa-var-step-backward;
       opacity: 0.5;
       pointer-events: none;
 
@@ -86,12 +75,10 @@
     }
 
     &--play {
-      --button: var(--play-button);
       font-size: 16px; // icon size
     }
 
     &--next {
-      --button: @fa-var-step-forward;
       opacity: 0.5;
       pointer-events: none;
 
@@ -206,12 +193,29 @@
     }
 
     &--current {
-      --timestamp: var(--current-time);
+      display: none;
+
+      .@{_top}[data-audio-has-duration="1"] & {
+        display: block;
+        --timestamp: var(--current-time);
+      }
     }
 
     &--total {
-      --timestamp: var(--duration);
       color: @osu-colour-c2;
+      --timestamp: '--:--';
+
+      .@{_top}[data-audio-has-duration="1"] & {
+        --timestamp: var(--duration);
+      }
+    }
+  }
+
+  &__timestamp-separator {
+    display: none;
+
+    .@{_top}[data-audio-has-duration="1"] & {
+      display: block;
     }
   }
 

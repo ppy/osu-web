@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "",
@@ -124,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Faulové hráni / Podvádění',
+            'multiple_accounts' => '',
             'insults' => 'Uráží mě / jiné',
             'spam' => 'Spamování',
             'unwanted_content' => 'Linkovaní nebezpečného obsahu',
@@ -150,6 +155,10 @@ return [
         'plays_with' => 'Hraje s :devices',
         'title' => "profil uživatele :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Změnit záhlaví profilu',
@@ -198,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Oblíbené Beatmapy',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Hodnocené & Schválené Beatmapy',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Čekající Beatmapy',
+                ],
+                'ranked' => [
+                    'title' => 'Hodnocené & Schválené Beatmapy',
                 ],
             ],
             'discussions' => [
@@ -292,6 +301,9 @@ return [
                 'recent' => 'Nejnovější',
                 'title' => 'Medaile',
             ],
+            'multiplayer' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => 'Příspěvky',
                 'title_longer' => 'Poslední příspěvky',
@@ -347,10 +359,8 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Zájmy',
-            'lastfm' => 'Last.fm',
             'location' => 'Současná poloha',
             'occupation' => 'Povolání',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Webové stránky',
         ],
@@ -396,11 +406,16 @@ return [
             'total_hits' => 'Celkově zásahů',
             'total_score' => 'Celkové skóre',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => 'Oblíbené Beatmapy',
-            'unranked_beatmapset_count' => 'Čekající Beatmapy',
             'graveyard_beatmapset_count' => '',
+            'loved_beatmapset_count' => 'Oblíbené Beatmapy',
+            'pending_beatmapset_count' => 'Čekající Beatmapy',
+            'ranked_beatmapset_count' => '',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { AchievementBadge } from './achievement-badge'
-import { ExtraHeader } from './extra-header'
+import AchievementBadge from 'profile-page/achievement-badge'
+import ExtraHeader from 'profile-page/extra-header'
 import * as React from 'react'
 import { div, li, p, ul } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 import TimeWithTooltip from 'time-with-tooltip'
 el = React.createElement
 

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => 'Mengapa Anda tidak mencoba untuk bermain osu! terlebih dahulu?',
     'require_login' => 'Silakan masuk untuk melanjutkan.',
     'require_verification' => 'Silakan verifikasi untuk melanjutkan.',
     'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
@@ -17,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
-            'full_bn_required' => 'Anda harus berstatus sebagai nominator penuh (full nominator) untuk dapat menominasikan beatmap ini menuju status Qualified.',
-            'full_bn_required_hybrid' => 'Anda harus berstatus sebagai nominator penuh (full nominator) untuk dapat menominasikan set beatmap yang mencakup lebih dari satu mode permainan.',
             'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang laman.',
             'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
             'set_metadata' => 'Anda harus terlebih dahulu mengubah pengaturan aliran dan bahasa sebelum beatmap ini dapat dinominasikan.',
@@ -68,7 +67,8 @@ return [
         'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak ada dalam daftar teman pengguna.',
         'moderated' => 'Channel itu sedang dalam pengelolaan.',
         'no_access' => 'Anda tidak memiliki akses ke channel ini.',
-        'restricted' => 'Anda tidak dapat mengirim pesan ketika sedang dibungkam, dibatasi atau diban.',
+        'restricted' => 'Anda tidak dapat mengirim pesan pada saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
+        'silenced' => 'Anda tidak dapat mengirim pesan pada saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
     ],
 
     'comment' => [
@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Anda tidak dapat mengubah pilihan Anda setelah periode pemungutan suara untuk kontes ini telah berakhir.',
+
+        'entry' => [
+            'limit_reached' => 'Anda telah mencapai batas entri untuk kontes ini',
+            'over' => 'Terima kasih telah mengirimkan entri Anda! Meskipun demikian, dengan sangat menyesal kami harus memberi tahu Anda bahwa tahapan penyerahan entri untuk kontes ini telah berakhir. Mohon maaf sebelumnya!',
+        ],
     ],
 
     'forum' => [
@@ -95,7 +100,7 @@ return [
             ],
 
             'edit' => [
-                'deleted' => 'Tidak dapat menyunting kiriman yang telah dihapus.',
+                'deleted' => 'Tidak dapat menyunting postingan yang telah dihapus.',
                 'locked' => 'Topik telah dikunci, sehingga penyuntingan kiriman tidak lagi dapat dilakukan.',
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'not_owner' => 'Hanya pemilik topik yang dapat menyunting kiriman.',
@@ -117,7 +122,7 @@ return [
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk membalas.',
-                    'restricted' => "Anda tidak dapat mengirimkan balasan ketika akun Anda sedang dibatasi.",
+                    'restricted' => "Anda tidak dapat mengirimkan balasan ketika akun Anda sedang di-restrict.",
                     'silenced' => "Anda tidak dapat mengirimkan balasan ketika akun Anda sedang di-silence.",
                 ],
             ],
@@ -136,7 +141,7 @@ return [
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk memberikan suara.',
-                    'restricted' => "Anda tidak dapat memberikan suara ketika akun Anda sedang dibatasi.",
+                    'restricted' => "Anda tidak dapat memberikan suara ketika akun Anda sedang di-restrict.",
                     'silenced' => "Tidak dapat memberikan suara saat di-silence.",
                 ],
             ],
@@ -152,7 +157,7 @@ return [
                 'not_owner' => 'Hanya pemilik topik yang dapat menyunting sampul.',
             ],
             'store' => [
-                'forum_not_allowed' => 'Forum ini tidak dapat dipasang sampul topik.',
+                'forum_not_allowed' => 'Gambar sampul tidak dapat dipasang pada forum ini.',
             ],
         ],
 

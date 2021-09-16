@@ -43,9 +43,9 @@ return [
 
         'state' => [
             'before_registration' => 'Pendaftaran untuk turnamen ini masih belum dibuka.',
-            'ended' => 'Turnamen ini telah berakhir. Silakan periksa laman informasi untuk hasil turnamen.',
+            'ended' => 'Turnamen ini telah berakhir. Mohon periksa laman informasi untuk hasil turnamen selengkapnya.',
             'registration_closed' => 'Pendaftaran untuk turnamen ini telah ditutup. Mohon periksa laman informasi untuk informasi lebih lanjut.',
-            'running' => 'Turnamen ini sedang berlangsung. Mohon periksa laman informasi untuk informasi lebih lanjut.',
+            'running' => 'Turnamen ini sedang berlangsung. Mohon periksa laman informasi untuk keterangan lebih lanjut.',
         ],
     ],
     'tournament_period' => ':start sampai :end',

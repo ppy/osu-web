@@ -18,7 +18,7 @@ class ModelTest extends TestCase
     public function testGetClass($mode, $variant)
     {
         $class = Model::getClass($mode, $variant);
-        $this->assertInstanceOf(Model::class, new $class);
+        $this->assertInstanceOf(Model::class, new $class());
     }
 
     /**

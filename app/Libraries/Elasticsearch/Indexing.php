@@ -34,23 +34,16 @@ class Indexing
      * @param string $alias Name of the alias.
      * @param array $indices Names of the indices to alias.
      */
-    public static function updateAlias(string $alias, array $indices)
+    public static function updateAlias(string $alias, string $index)
     {
         $oldIndices = static::getOldIndices($alias);
-
-        // updateAliases doesn't work if the alias doesn't exist :D
-        if (count($oldIndices) === 0) {
-            return Es::getClient()->indices()->putAlias(['index' => $indices, 'name' => $alias]);
-        }
 
         $actions = [];
         foreach ($oldIndices as $oldIndex) {
             $actions[] = ['remove' => ['index' => $oldIndex, 'alias' => $alias]];
         }
 
-        foreach ($indices as $index) {
-            $actions[] = ['add' => ['index' => $index, 'alias' => $alias]];
-        }
+        $actions[] = ['add' => ['index' => $index, 'alias' => $alias, 'is_write_index' => true]];
 
         return Es::getClient()->indices()->updateAliases([
             'body' => [

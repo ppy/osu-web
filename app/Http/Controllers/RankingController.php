@@ -20,6 +20,7 @@ class RankingController extends Controller
 {
     private $country;
     private $countryStats;
+    private array $defaultViewVars;
     private $params;
     private $friendsOnly;
 
@@ -52,9 +53,11 @@ class RankingController extends Controller
             $this->friendsOnly = auth()->check() && $this->params['filter'] === 'friends';
             $this->setVariantParam();
 
-            view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
-            view()->share('spotlight', null); // so variable capture in selector function doesn't die when spotlight is null.
-            view()->share($this->params); // won't set null values
+            $this->defaultViewVars = array_merge([
+                'hasPager' => !in_array($type, static::SPOTLIGHT_TYPES, true),
+                // so variable capture in selector function doesn't die when spotlight is null.
+                'spotlight' => null,
+            ], $this->params);
 
             if ($mode === null) {
                 return ujs_redirect(route('rankings', ['mode' => default_mode(), 'type' => 'performance']));
@@ -85,7 +88,7 @@ class RankingController extends Controller
                 $this->country = $this->countryStats->country;
             }
 
-            view()->share('country', $this->country);
+            $this->defaultViewVars['country'] = $this->country;
 
             return $next($request);
         });
@@ -102,16 +105,14 @@ class RankingController extends Controller
      *
      * Returns [Rankings](#rankings)
      *
-     * ### Route Parameters
+     * @urlParam mode string required [GameMode](#gamemode). Example: mania
+     * @urlParam type string required [RankingType](#rankingtype). Example: performance
      *
-     * Field  | Status   | Type
-     * -------| ---------| -----------------
-     * mode   | required | [GameMode](#gamemode)
-     * type   | required | [RankingType](#rankingtype)
-     *
-     * @authenticated
-     *
-     * @queryParam spotlight The id of the spotlight if `type` is `charts`
+     * @queryParam country Filter ranking by country code. Only available for `type` of `performance`. Example: JP
+     * @queryParam cursor [Cursor](#cursor). No-example
+     * @queryParam filter Either `all` (default) or `friends`. Example: all
+     * @queryParam spotlight The id of the spotlight if `type` is `charts`. Ranking for latest spotlight will be returned if not specified. No-example
+     * @queryParam variant Filter ranking to specified mode variant. For `mode` of `mania`, it's either `4k` or `7k`. Only available for `type` of `performance`. Example: 4k
      */
     public function index($mode, $type)
     {
@@ -128,7 +129,7 @@ class RankingController extends Controller
                 ->orderBy('performance', 'desc');
         } else {
             $class = UserStatistics\Model::getClass($mode, $this->params['variant']);
-            $table = (new $class)->getTable();
+            $table = (new $class())->getTable();
             $stats = $class
                 ::with(['user', 'user.country'])
                 ->whereHas('user', function ($userQuery) {
@@ -211,7 +212,7 @@ class RankingController extends Controller
 
         $countries = json_collection($this->getCountries($mode), 'Country', ['display']);
 
-        return ext_view("rankings.{$type}", compact('countries', 'scores'));
+        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('countries', 'scores')));
     }
 
     public function spotlight($mode)
@@ -266,7 +267,13 @@ class RankingController extends Controller
 
         return ext_view(
             'rankings.charts',
-            compact('scores', 'scoreCount', 'selectOptions', 'spotlight', 'beatmapsets')
+            array_merge($this->defaultViewVars, compact(
+                'beatmapsets',
+                'scoreCount',
+                'scores',
+                'selectOptions',
+                'spotlight',
+            ))
         );
     }
 

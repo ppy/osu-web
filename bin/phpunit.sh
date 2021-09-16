@@ -2,4 +2,6 @@
 
 cd "$(dirname "$0")/.."
 
-exec vendor/bin/phpunit --prepend=app/framework_helper_overrides.php "$@"
+export APP_URL=http://localhost
+
+exec vendor/bin/phpunit "$@"

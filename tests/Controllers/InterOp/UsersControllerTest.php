@@ -18,9 +18,8 @@ class UsersControllerTest extends TestCase
         $url = route('interop.users.store', ['timestamp' => time()]);
 
         $this
-            ->withHeaders([
-                'X-LIO-Signature' => $this->interOpSignature($url),
-            ])->json('POST', $url, [
+            ->withInterOpHeader($url)
+            ->json('POST', $url, [
                 'user' => [
                     'country_acronym' => $country->getKey(),
                     'password' => 'password',
@@ -44,9 +43,8 @@ class UsersControllerTest extends TestCase
         $previousCount = User::count();
 
         $this
-            ->withHeaders([
-                'X-LIO-Signature' => $this->interOpSignature($url),
-            ])->json('POST', $url, [
+            ->withInterOpHeader($url)
+            ->json('POST', $url, [
                 'source_user_id' => $sourceUser->getKey(),
                 'user' => [
                     'username' => $username,
@@ -77,9 +75,8 @@ class UsersControllerTest extends TestCase
         $url = route('interop.users.store', ['timestamp' => time()]);
 
         $this
-            ->withHeaders([
-                'X-LIO-Signature' => $this->interOpSignature($url),
-            ])->json('POST', $url, [
+            ->withInterOpHeader($url)
+            ->json('POST', $url, [
                 'source_user_id' => $sourceUser->getKey(),
             ])->assertStatus(422);
 

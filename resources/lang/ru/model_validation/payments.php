@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Подписи не совпадают',
+        'not_match' => '',
     ],
-    'notification_type' => 'notification_type не действует :type',
+    'notification_type' => '',
     'order' => [
-        'invalid' => 'Заказ недействителен',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => '`:provider` платеж не действителен для физических предметов.',
+            'virtual_only' => '',
         ],
         'status' => [
-            'not_checkout' => 'Попытка принять оплату за заказ отклонена `:state`.',
-            'not_paid' => 'Попытка возместить платеж за заказ отклонена`:state`.',
+            'not_checkout' => '',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => 'параметр `:param` неверный',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => 'Ожидаемый платеж не является чеком. (:actual)',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Сумма платежа не соответствует: :actual != :expected',
-            'currency' => 'Оплата производится не в USD. (:type)',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => 'Идентификатор транзакции полученного заказа неверен',
-        'user_id_mismatch' => 'external_id содержит неправильный идентификатор пользователя',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

@@ -1,14 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { UserCard, ViewMode } from 'user-card';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   modifiers: string[];
-  users: UserJSON[];
+  users: UserJson[];
   viewMode: ViewMode;
 }
 
@@ -26,7 +27,7 @@ export class UserCards extends React.PureComponent<Props> {
 
     return (
       <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
-        <div className={osu.classWithModifiers('user-cards', classMods)}>
+        <div className={classWithModifiers('user-cards', classMods)}>
           {
             this.props.users.map((user) => {
               const activated = this.state.activeKey === user.id;

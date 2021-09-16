@@ -5,6 +5,7 @@
 
 namespace App\Transformers\Multiplayer;
 
+use App\Models\Multiplayer\Score;
 use App\Models\Multiplayer\UserScoreAggregate;
 use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
@@ -12,6 +13,7 @@ use App\Transformers\UserCompactTransformer;
 class UserScoreAggregateTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
+        'playlist_item_attempts',
         'position',
         'user',
     ];
@@ -29,6 +31,27 @@ class UserScoreAggregateTransformer extends TransformerAbstract
         ];
     }
 
+    public function includePlaylistItemAttempts(UserScoreAggregate $score)
+    {
+        $scoreAggs = Score::where([
+                'room_id' => $score->room_id,
+                'user_id' => $score->user_id,
+            ])->groupBy('playlist_item_id')
+            ->selectRaw('COUNT(*) AS attempts, playlist_item_id')
+            ->get();
+
+        $attempts = [];
+
+        foreach ($scoreAggs as $scoreAgg) {
+            $attempts[] = [
+                'attempts' => $scoreAgg->attempts,
+                'id' => $scoreAgg->playlist_item_id,
+            ];
+        }
+
+        return $this->primitive($attempts);
+    }
+
     public function includePosition(UserScoreAggregate $score)
     {
         return $this->primitive($score->userRank());
@@ -36,6 +59,6 @@ class UserScoreAggregateTransformer extends TransformerAbstract
 
     public function includeUser(UserScoreAggregate $score)
     {
-        return $this->item($score->user, new UserCompactTransformer);
+        return $this->item($score->user, new UserCompactTransformer());
     }
 }

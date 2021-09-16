@@ -9,11 +9,11 @@ return [
         'forum_post' => 'Forum',
         'other' => 'Diğer',
         'user' => 'Oyuncu',
-        'wiki_page' => 'Viki',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => 'Sonuç Bulunamadı',
+        'empty' => 'Sonuç yok',
         'empty_for' => ':modes için bir sonuç yok',
         'more' => ':mode için Daha Fazla Arama Sonuçları',
         'title' => ':mode için Arama Sonuçları',

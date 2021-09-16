@@ -33,9 +33,9 @@ class TopicWatch extends Model
             return 0;
         }
 
-        $watch = new static;
-        $topic = new Topic;
-        $track = new TopicTrack;
+        $watch = new static();
+        $topic = new Topic();
+        $track = new TopicTrack();
 
         return static
             ::join($topic->getTable(), $topic->qualifyColumn('topic_id'), '=', $watch->qualifyColumn('topic_id'))

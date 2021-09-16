@@ -22,9 +22,13 @@ class BeatmapCompactTransformer extends TransformerAbstract
     public function transform(Beatmap $beatmap)
     {
         return [
+            'beatmapset_id' => $beatmap->beatmapset_id,
             'difficulty_rating' => $beatmap->difficultyrating,
             'id' => $beatmap->beatmap_id,
             'mode' => $beatmap->mode,
+            'status' => $beatmap->status(),
+            'total_length' => $beatmap->total_length,
+            'user_id' => $beatmap->user_id,
             'version' => $beatmap->version,
         ];
     }
@@ -35,7 +39,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
         return $beatmapset === null
             ? $this->primitive(null)
-            : $this->item($beatmap->beatmapset, new $this->beatmapsetTransformer);
+            : $this->item($beatmap->beatmapset, new $this->beatmapsetTransformer());
     }
 
     public function includeChecksum(Beatmap $beatmap)
@@ -55,7 +59,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
         foreach (['exit', 'fail'] as $type) {
             if (!isset($result[$type])) {
-                $result[$type] = (new BeatmapFailtimes)->data;
+                $result[$type] = (new BeatmapFailtimes())->data;
             }
         }
 

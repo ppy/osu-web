@@ -6,21 +6,23 @@ import { Portal } from 'portal';
 import * as React from 'react';
 import { Editor, Node, Range } from 'slate';
 import { ReactEditor } from 'slate-react';
-import { isFormatActive, toggleFormat } from './editor-helpers';
+import { nextVal } from 'utils/seq';
+import { EditorToolbarButton } from './editor-toolbar-button';
 import { SlateContext } from './slate-context';
 
 const bn = 'beatmap-discussion-editor-toolbar';
 
 export class EditorToolbar extends React.Component {
   static contextType = SlateContext;
+  declare context: React.ContextType<typeof SlateContext>;
   ref = React.createRef<HTMLDivElement>();
   scrollContainer: HTMLElement | undefined;
+  private readonly eventId = `editor-toolbar-${nextVal()}`;
   private scrollTimer: number | undefined;
   private readonly throttledUpdate = _.throttle(this.updatePosition.bind(this), 100);
-  private readonly uuid: string = osu.uuid();
 
   componentDidMount() {
-    $(window).on(`scroll.${this.uuid}`, this.throttledUpdate);
+    $(window).on(`scroll.${this.eventId}`, this.throttledUpdate);
     this.updatePosition();
   }
 
@@ -30,9 +32,9 @@ export class EditorToolbar extends React.Component {
   }
 
   componentWillUnmount() {
-    $(window).off(`.${this.uuid}`);
+    $(window).off(`.${this.eventId}`);
     if (this.scrollContainer) {
-      $(this.scrollContainer).off(`.${this.uuid}`);
+      $(this.scrollContainer).off(`.${this.eventId}`);
     }
     this.throttledUpdate.cancel();
   }
@@ -53,39 +55,23 @@ export class EditorToolbar extends React.Component {
     return (
       <Portal>
         <div
-          className={bn}
           ref={this.ref}
+          className={bn}
         >
-          {this.renderButton('bold')}
-          {this.renderButton('italic')}
+          <EditorToolbarButton format='bold' />
+          <EditorToolbarButton format='italic' />
           <div className={`${bn}__popup-tail`}/>
         </div>
       </Portal>
     );
   }
 
-  renderButton(format: string) {
-    return (
-      <button
-        className={osu.classWithModifiers(`${bn}__button`, [isFormatActive(this.context, format) ? 'active' : ''])}
-        // we use onMouseDown instead of onClick here so the popup remains visible after clicking
-        // tslint:disable-next-line:jsx-no-lambda
-        onMouseDown={(event) => {
-          event.preventDefault();
-          toggleFormat(this.context, format);
-        }}
-      >
-        <i className={`fas fa-${format}`}/>
-      </button>
-    );
-  }
-
   setScrollContainer(container: HTMLElement) {
     if (this.scrollContainer) {
-      $(this.scrollContainer).off(`.${this.uuid}`);
+      $(this.scrollContainer).off(`.${this.eventId}`);
     }
     this.scrollContainer = container;
-    $(this.scrollContainer).on(`scroll.${this.uuid}`, this.throttledUpdate);
+    $(this.scrollContainer).on(`scroll.${this.eventId}`, this.throttledUpdate);
   }
 
   updatePosition() {
@@ -95,17 +81,17 @@ export class EditorToolbar extends React.Component {
     }
 
     if (this.scrollTimer) {
-      Timeout.clear(this.scrollTimer);
+      window.clearTimeout(this.scrollTimer);
     }
 
     // we use setTimeout here as a workaround for incorrect bounds sometimes being returned for the selection range,
     // seemingly when called too soon after a scroll event
-    this.scrollTimer = Timeout.set(10, () => {
+    this.scrollTimer = window.setTimeout(() => {
       if (!this.visible()) {
         return this.hide();
       }
 
-      for (const p of Editor.positions(this.context, { at: this.context.selection, unit: 'block' })) {
+      for (const p of Editor.positions(this.context, { at: this.context.selection ?? undefined, unit: 'block' })) {
         const block = Node.parent(this.context, p.path);
 
         if (block.type === 'embed') {
@@ -130,7 +116,7 @@ export class EditorToolbar extends React.Component {
         tooltip.style.left = `${selectionBounds.left + ((window.pageXOffset - tooltip.offsetWidth) / 2) + (selectionBounds.width / 2)}px`;
         tooltip.style.top = `${selectionBounds.top - tooltip.clientHeight - 10}px`;
       }
-    });
+    }, 10);
   }
 
   visible(): boolean {

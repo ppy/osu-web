@@ -5,18 +5,52 @@ import { dispatch } from 'app-dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import Notification from 'models/notification';
 import { NotificationContextData } from 'notifications-context';
-import { NotificationIdentity, toJson } from 'notifications/notification-identity';
+import NotificationDeletable from 'notifications/notification-deletable';
+import { NotificationIdentity, resolveIdentityType, toJson, toString } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import { NotificationCursor } from './notification-cursor';
-import { NotificationEventMoreLoaded, NotificationEventRead } from './notification-events';
+import { NotificationEventDelete, NotificationEventMoreLoaded, NotificationEventRead } from './notification-events';
 
 // I don't know what to name this
 export class NotificationResolver {
+  private debouncedDeleteByIds = debounce(this.deleteByIds, 500);
   private debouncedSendQueuedMarkedAsRead = debounce(this.sendQueuedMarkedAsRead, 500);
+  private deleteByIdsQueue = new Map<number, Notification>();
   private queuedMarkedAsRead = new Map<number, Notification>();
+  private queuedMarkedAsReadIdentities = new Map<string, NotificationReadable>();
+
+  constructor() {
+    makeObservable(this);
+  }
+
+  @action
+  delete(deletable: NotificationDeletable) {
+    deletable.isDeleting = true;
+
+    // single notifications are batched, also it's annoying if they get removed
+    // from display while the user is clicking.
+    if (deletable instanceof Notification) {
+      this.deleteByIdsQueue.set(deletable.id, deletable);
+
+      this.debouncedDeleteByIds();
+      return;
+    }
+
+    $.ajax({
+      data: { identities: [toJson(deletable.identity)] },
+      dataType: 'json',
+      method: 'DELETE',
+      url: route('notifications.index'),
+    })
+      .then(action(() => {
+        dispatch(new NotificationEventDelete([deletable.identity], 0));
+      }))
+      .catch(osu.ajaxError)
+      .always(action(() => deletable.isDeleting = false));
+  }
 
   @action
   loadMore(identity: NotificationIdentity, context: NotificationContextData, cursor?: NotificationCursor) {
@@ -40,45 +74,84 @@ export class NotificationResolver {
   queueMarkAsRead(readable: NotificationReadable) {
     readable.isMarkingAsRead = true;
 
-    // single notifications are batched, also it's annoying if they get removed
-    // from display while the user is clicking.
-    if (readable instanceof Notification) {
-      if (readable.canMarkRead) {
-        this.queuedMarkedAsRead.set(readable.id, readable);
-      }
+    const identity = readable.identity;
 
-      this.debouncedSendQueuedMarkedAsRead();
+    if (resolveIdentityType(identity) === 'stack') {
+      // stacks can't be queued because we need the read counts in the broadcasted websocket event to be separate.
+      this.sendMarkAsReadRequest({ identities: [toJson(readable.identity)] })
+        .then(action(() => {
+          dispatch(new NotificationEventRead([identity], 0));
+        }))
+        .always(action(() => readable.isMarkingAsRead = false));
+
       return;
     }
 
-    $.ajax({
-      data: toJson(readable.identity),
-      dataType: 'json',
-      method: 'POST',
-      url: route('notifications.mark-read'),
-    })
-    .then(action(() => {
-      dispatch(new NotificationEventRead([readable.identity], 0));
-    }))
-    .always(action(() => readable.isMarkingAsRead = false));
+    // single notifications are batched, also it's annoying if they get removed
+    // from display while the user is clicking.
+    // types are also batched because of they're now called separately.
+    if (readable instanceof Notification && readable.canMarkRead) {
+      this.queuedMarkedAsRead.set(readable.id, readable);
+    } else {
+      this.queuedMarkedAsReadIdentities.set(toString(identity), readable);
+    }
+
+    this.debouncedSendQueuedMarkedAsRead();
   }
 
-  private sendQueuedMarkedAsRead() {
-    if (this.queuedMarkedAsRead.size === 0) return;
+  private deleteByIds() {
+    if (this.deleteByIdsQueue.size === 0) return;
 
-    const notifications = [...this.queuedMarkedAsRead.values()];
+    const notifications = [...this.deleteByIdsQueue.values()];
     const identities = notifications.map((notification) => notification.identity);
-    this.queuedMarkedAsRead.clear();
+    this.deleteByIdsQueue.clear();
 
     $.ajax({
       data: { notifications: identities.map(toJson) },
       dataType: 'json',
+      method: 'DELETE',
+      url: route('notifications.index'),
+    })
+      .then(action(() => {
+        dispatch(new NotificationEventDelete(identities, 0));
+      }))
+      .always(action(() => notifications.forEach((notification) => notification.isDeleting = false)));
+  }
+
+  private sendMarkAsReadRequest(data: any) {
+    return $.ajax({
+      data,
+      dataType: 'json',
       method: 'POST',
       url: route('notifications.mark-read'),
     })
-    .then(action(() => {
-      dispatch(new NotificationEventRead(identities, 0));
-    }))
-    .always(action(() => notifications.forEach((notification) => notification.isMarkingAsRead = false)));
+      .catch(osu.ajaxError);
+  }
+
+  private sendQueuedMarkedAsRead() {
+    // TODO: combine both sets?
+    if (this.queuedMarkedAsRead.size > 0) {
+      const queuedItems = [...this.queuedMarkedAsRead.values()];
+      const identities = queuedItems.map((notification) => notification.identity);
+      this.queuedMarkedAsRead.clear();
+
+      this.sendMarkAsReadRequest({ notifications: identities.map(toJson) })
+        .then(action(() => {
+          dispatch(new NotificationEventRead(identities, 0));
+        }))
+        .always(action(() => queuedItems.forEach((notification) => notification.isMarkingAsRead = false)));
+    }
+
+    if (this.queuedMarkedAsReadIdentities.size > 0) {
+      const notifications = [...this.queuedMarkedAsReadIdentities.values()];
+      const identities = notifications.map((notification) => notification.identity);
+      this.queuedMarkedAsReadIdentities.clear();
+
+      this.sendMarkAsReadRequest({ identities: identities.map(toJson) })
+        .then(action(() => {
+          dispatch(new NotificationEventRead(identities, 0));
+        }))
+        .always(action(() => notifications.forEach((notification) => notification.isMarkingAsRead = false)));
+    }
   }
 }

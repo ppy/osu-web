@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modowanie',
+            'multiplayer' => 'tryb wieloosobowy',
             'show' => 'informacje',
         ],
     ],
@@ -62,48 +63,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmapy',
-            'artists' => 'wyróżnieni artyści',
-            'index' => 'lista',
-            'packs' => 'paczki',
         ],
         'community' => [
             '_' => 'społeczność',
-            'chat' => 'czat',
-            'contests' => 'konkursy',
             'dev' => 'rozwój',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'na żywo',
-            'tournaments' => 'turnieje',
         ],
         'help' => [
             '_' => 'pomoc',
+            'getAbuse' => 'zgłoś nadużycie',
             'getFaq' => 'faq',
             'getRules' => 'zasady',
             'getSupport' => 'pomoc techniczna',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'strona główna',
-            'changelog-index' => 'zmiany',
-            'getDownload' => 'pobierz',
-            'news-index' => 'aktualności',
-            'search' => 'wyszukiwarka',
             'team' => 'zespół',
         ],
         'rankings' => [
             '_' => 'rankingi',
-            'charts' => 'wyróżnionych',
-            'country' => 'krajowy',
-            'index' => 'globalny',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'wieloosobowy',
-            'score' => 'punktowy',
         ],
         'store' => [
             '_' => 'sklep',
-            'cart-show' => 'koszyk',
-            'getListing' => 'przedmioty',
-            'orders-index' => 'historia zamówień',
         ],
     ],
 
@@ -158,6 +139,10 @@ return [
             'error' => 'Nieprawidłowy parametr żądania',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Przekroczono limit zapytań',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'O nie! Coś się popsuło! ;_;',
             'description' => "Jesteśmy automatycznie powiadamiani o każdym problemie.",
@@ -170,8 +155,8 @@ return [
             'error' => 'Przerwa techniczna!',
             'description' => "Przerwa techniczna zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, sprawdź :link, aby dowiedzieć się więcej.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -179,7 +164,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'zaloguj się / utwórz konto',
 
         'login' => [
             'forgot' => "Nie pamiętam swoich danych logowania",
@@ -203,6 +188,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ustawienia',
+            'follows' => 'Listy obserwowanych',
             'friends' => 'Znajomi',
             'logout' => 'Wyloguj się',
             'profile' => 'Mój profil',

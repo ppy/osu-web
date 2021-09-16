@@ -24,7 +24,7 @@ class RouteScopesTest extends TestCase
     {
         $this->importExpectations();
 
-        $key = "{$route['method']}@{$route['controller']}";
+        $key = RouteScopesHelper::keyForMethods($route['methods']).'@'.$route['controller'];
 
         $this->assertSame(static::$expectations[$key], $route, $key);
     }
@@ -109,7 +109,7 @@ class RouteScopesTest extends TestCase
 
         return array_map(function ($route) {
             return [$route];
-        }, (new RouteScopesHelper)->toArray());
+        }, (new RouteScopesHelper())->toArray());
     }
 
     private function importExpectations()
@@ -120,11 +120,11 @@ class RouteScopesTest extends TestCase
 
         static::$expectations = [];
 
-        $helper = new RouteScopesHelper;
+        $helper = new RouteScopesHelper();
         $helper->fromJson('tests/api_routes.json');
         $routes = $helper->routes;
         foreach ($routes as $route) {
-            $key = "{$route['method']}@{$route['controller']}";
+            $key = RouteScopesHelper::keyForMethods($route['methods']).'@'.$route['controller'];
             static::$expectations[$key] = $route;
         }
     }

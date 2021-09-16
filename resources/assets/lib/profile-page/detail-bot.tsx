@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { FriendButton } from 'friend-button';
-import UserJSONExtended from 'interfaces/user-json-extended';
+import UserExtendedJson from 'interfaces/user-extended-json';
 import * as React from 'react';
 
 interface Props {
-  user: UserJSONExtended;
+  user: UserExtendedJson;
 }
 
 export default function DetailBot({ user }: Props) {
@@ -17,10 +17,10 @@ export default function DetailBot({ user }: Props) {
           <div className='profile-detail-bar__column profile-detail-bar__column--left'>
             <div className='profile-detail-bar__menu-item'>
               <FriendButton
-                alwaysVisible={true}
+                alwaysVisible
                 followers={user.follower_count}
                 modifiers={['profile-page']}
-                showFollowerCounter={true}
+                showFollowerCounter
                 userId={user.id}
               />
             </div>

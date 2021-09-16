@@ -19,14 +19,12 @@ export class AuthorizedClients extends React.Component {
   }
 
   renderClients() {
-    return [...store.clients.values()].map((client) => {
-      return (
-        <div className='oauth-clients__client' key={client.id}>
-          <AuthorizedClient client={client} />
-        </div>
+    return [...store.clients.values()].map((client) => (
+      <div key={client.id} className='oauth-clients__client'>
+        <AuthorizedClient client={client} />
+      </div>
 
-      );
-    });
+    ));
   }
 
   renderEmpty() {

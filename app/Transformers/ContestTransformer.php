@@ -28,11 +28,12 @@ class ContestTransformer extends TransformerAbstract
             'entry_ends_at' => json_time($contest->entry_ends_at),
             'voting_ends_at' => json_time($contest->voting_ends_at),
             'show_votes' => $contest->show_votes,
+            'show_names' => $contest->show_names,
             'link_icon' => $contest->link_icon,
         ];
 
-        if ($contest->type === 'art') {
-            $response['shape'] = $contest->entry_shape;
+        if ($contest->hasThumbnails()) {
+            $response['thumbnail_shape'] = $contest->thumbnail_shape;
         }
 
         if ($contest->isBestOf()) {
@@ -44,6 +45,6 @@ class ContestTransformer extends TransformerAbstract
 
     public function includeEntries(Contest $contest)
     {
-        return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer);
+        return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer());
     }
 }

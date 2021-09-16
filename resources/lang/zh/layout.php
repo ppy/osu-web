@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => '摸图',
+            'multiplayer' => '多人游戏',
             'show' => '信息',
         ],
     ],
@@ -62,48 +63,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => '谱面',
-            'artists' => '精选艺术家',
-            'index' => '列表',
-            'packs' => '曲包',
         ],
         'community' => [
             '_' => '社区',
-            'chat' => '聊天',
-            'contests' => '评选',
             'dev' => '开发',
-            'forum-forums-index' => '论坛',
-            'getLive' => '直播',
-            'tournaments' => '官方比赛',
         ],
         'help' => [
             '_' => '帮助',
+            'getAbuse' => '报告不当行为',
             'getFaq' => '常见问题',
             'getRules' => '规章制度',
             'getSupport' => '帮助中心',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => '主页',
-            'changelog-index' => '更新日志',
-            'getDownload' => '下载',
-            'news-index' => '新闻',
-            'search' => '搜索',
             'team' => '团队',
         ],
         'rankings' => [
             '_' => '排名',
-            'charts' => '月赛',
-            'country' => '国家和地区',
-            'index' => '表现',
             'kudosu' => 'kudosu',
-            'multiplayer' => '多人游戏',
-            'score' => '得分',
         ],
         'store' => [
             '_' => '商店',
-            'cart-show' => '购物车',
-            'getListing' => '列表',
-            'orders-index' => '历史订单',
         ],
     ],
 
@@ -158,6 +139,10 @@ return [
             'error' => '请求参数无效',
             'description' => '',
         ],
+        '429' => [
+            'error' => '超出速率限制',
+            'description' => '',
+        ],
         '500' => [
             'error' => '哎呀，服务器崩溃了！;_;',
             'description' => "服务器一旦出错，我们都会收到通知。请返回到上一个页面。",
@@ -170,8 +155,8 @@ return [
             'error' => '服务器维护中！',
             'description' => "一般情况下，维护工作只需要 5 秒到 10 分钟的时间。如果服务器一直处于维护状态，请查看 :link 以获得更多信息。",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -203,9 +188,10 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '设置',
+            'follows' => '订阅',
             'friends' => '好友',
-            'logout' => '退出',
-            'profile' => '我的资料',
+            'logout' => '登出',
+            'profile' => '资料',
         ],
     ],
 

@@ -30,6 +30,10 @@ Mivel az összes szám .zip és/vagy .osz kiterjesztésű, ezért a következő 
             'cleared' => 'lejátszott',
             'not_cleared' => 'nem játszott',
         ],
+        'no_diff_reduction' => [
+            '_' => ':link nem használhatóak e csomag teljesítéséhez.',
+            'link' => 'Nehézséget csökkentő módok',
+        ],
     ],
 
     'mode' => [

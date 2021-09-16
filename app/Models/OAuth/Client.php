@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Traits\Validatable;
 use DB;
 use Laravel\Passport\Client as PassportClient;
+use Laravel\Passport\RefreshToken;
 
 class Client extends PassportClient
 {
@@ -53,7 +54,7 @@ class Client extends PassportClient
     {
         $this->validationErrors()->reset();
 
-        if (!$this->exists) {
+        if (!$this->exists && $this->user !== null) {
             $max = config('osu.oauth.max_user_clients');
             if ($this->user->oauthClients()->thirdParty()->where('revoked', false)->count() >= $max) {
                 $this->validationErrors()->add('user.oauthClients.count', '.too_many');
@@ -145,7 +146,7 @@ class Client extends PassportClient
     private function revokeTokens($timestamp)
     {
         $this->tokens()->update(['revoked' => true, 'updated_at' => $timestamp]);
-        $this->refreshTokens()->update([(new RefreshToken)->qualifyColumn('revoked') => true]);
+        $this->refreshTokens()->update([(new RefreshToken())->qualifyColumn('revoked') => true]);
         $this->authCodes()->update(['revoked' => true]);
     }
 }

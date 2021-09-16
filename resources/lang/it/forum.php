@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Vuoi veramente ripristinare il post?',
         'edited' => 'Ultima modifica di :user :when, modificato :count_delimited volta in totale.|Ultima modifica di :user :when, modificato :count_delimited volte in totale.',
         'posted_at' => 'postato :when',
+        'posted_by' => 'postato da :username',
 
         'actions' => [
             'destroy' => 'Elimina post',
-            'restore' => 'Ripristina post',
             'edit' => 'Modifica post',
+            'report' => 'Segnala post',
+            'restore' => 'Ripristina post',
         ],
 
         'create' => [
@@ -73,9 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Vuoi veramente eliminare il topic?',
+        'confirm_restore' => 'Vuoi veramente ripristinare il topic?',
         'deleted' => 'discussione eliminata',
-        'go_to_latest' => 'guarda gli ultimi post',
-        'has_replied' => '',
+        'go_to_latest' => 'guarda l\'ultimo post',
+        'has_replied' => 'Hai risposto a questo topic',
+        'in_forum' => 'in :forum',
         'latest_post' => ':when da :user',
         'latest_reply_by' => 'ultima risposta di :user',
         'new_topic' => 'Nuovo topic',
@@ -85,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'di :user',
         'started_by_verbose' => 'postato da :user',
+
+        'actions' => [
+            'destroy' => 'Elimina topic',
+            'restore' => 'Ripristina topic',
+        ],
 
         'create' => [
             'close' => 'Chiudi',
@@ -125,7 +135,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'iscrizioni forum',
+            'title_compact' => 'topic del forum seguiti',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',
@@ -178,7 +188,7 @@ return [
                 'options_info' => 'Posiziona ogni opzione su una nuova linea. Puoi inserire fino a 10 opzioni.',
                 'title' => 'Domanda',
                 'vote_change' => 'Consenti di rivotare.',
-                'vote_change_info' => 'Se consentito, gli utenti possono cambiare il loro voto.',
+                'vote_change_info' => 'Se abilitato, gli utenti possono cambiare il loro voto.',
             ],
         ],
 

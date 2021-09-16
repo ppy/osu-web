@@ -11,6 +11,7 @@ use App\Libraries\CommentBundle;
 use App\Libraries\MorphMap;
 use App\Models\Comment;
 use App\Models\Log;
+use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -37,8 +38,6 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
-     *
-     * @authenticated
      */
     public function destroy($id)
     {
@@ -68,8 +67,6 @@ class CommentsController extends Controller
      *
      * `pinned_comments` is only included when `commentable_type` and `commentable_id` are specified.
      *
-     * @authenticated
-     *
      * @queryParam commentable_type The type of resource to get comments for.
      * @queryParam commentable_id The id of the resource to get comments for.
      * @queryParam cursor Pagination option. See [CommentSort](#commentsort) for detail. The format follows [Cursor](#cursor) except it's not currently included in the response.
@@ -79,6 +76,16 @@ class CommentsController extends Controller
     public function index()
     {
         $params = request()->all();
+
+        $userId = $params['user_id'] ?? null;
+
+        if ($userId !== null) {
+            $user = User::lookup($userId, 'id', true);
+
+            if ($user === null || !priv_check('UserShow', $user)->can()) {
+                abort(404);
+            }
+        }
 
         $id = $params['commentable_id'] ?? null;
         $type = $params['commentable_type'] ?? null;
@@ -142,8 +149,6 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
-     *
-     * @authenticated
      */
     public function show($id)
     {
@@ -168,8 +173,6 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
-     *
-     * @authenticated
      *
      * @queryParam comment.commentable_id Resource ID the comment thread is attached to
      * @queryParam comment.commentable_type Resource type the comment thread is attached to
@@ -213,8 +216,6 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
-     *
-     * @authenticated
      *
      * @queryParam comment.message New text of the comment
      */
@@ -266,8 +267,6 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
-     *
-     * @authenticated
      */
     public function voteDestroy($id)
     {
@@ -294,8 +293,6 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
-     *
-     * @authenticated
      */
     public function voteStore($id)
     {

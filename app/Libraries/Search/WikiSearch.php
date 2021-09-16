@@ -18,12 +18,12 @@ class WikiSearch extends RecordSearch
     {
         parent::__construct(
             Page::esIndexName(),
-            $params ?? new WikiSearchParams,
+            $params ?? new WikiSearchParams(),
             Page::class
         );
 
         $this->highlight(
-            (new Highlight)
+            (new Highlight())
                 // number_of_fragments: 0 forces the entire field to be returned instead of a fragment.
                 ->field('title', ['number_of_fragments' => 0])
                 ->field('page_text', ['no_match_size' => 300])
@@ -101,7 +101,7 @@ class WikiSearch extends RecordSearch
 
         $visibilityQuery = ['exists' => ['field' => 'page']];
 
-        return (new BoolQuery)
+        return (new BoolQuery())
             ->must($visibilityQuery)
             ->must($langQuery)
             ->must($matchQuery);

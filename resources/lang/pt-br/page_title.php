@@ -22,6 +22,7 @@ return [
             '401-verification' => 'verificação de conta',
             '405' => 'não encontrado',
             '422' => 'solicitação inválida',
+            '429' => 'solicitações demais',
             '500' => 'algo quebrou',
             '503' => 'manutenção',
         ],
@@ -75,6 +76,9 @@ return [
         'contests_controller' => [
             '_' => 'concursos',
         ],
+        'follows_controller' => [
+            'index' => 'painel',
+        ],
         'friends_controller' => [
             'index' => 'painel de controle',
         ],
@@ -107,13 +111,13 @@ return [
             '_' => 'redefinição de senha',
         ],
         'ranking_controller' => [
-            '_' => 'ranking',
+            '_' => 'colocações',
         ],
         'scores_controller' => [
             '_' => 'desempenho',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'loja',
         ],
         'tournaments_controller' => [
             '_' => 'torneios',
@@ -123,7 +127,7 @@ return [
             'disabled' => 'aviso',
         ],
         'wiki_controller' => [
-            '_' => 'base de conhecimento',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -132,11 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'loja',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'informação do modder',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'histórico multijogador',
         ],
     ],
 ];

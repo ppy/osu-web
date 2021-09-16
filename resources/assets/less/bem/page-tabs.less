@@ -2,14 +2,19 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .page-tabs {
+  --gutter: 10px;
+  --border-size: 5px;
+  --tab-hover-border-colour: transparent;
+  --tab-active-border-colour: @osu-colour-h1;
+
   display: flex;
   width: 100%;
   justify-content: center;
   margin-bottom: 1px;
   position: relative;
 
-  &::after {
-    content: " ";
+  &::before {
+    content: '';
 
     position: absolute;
     top: 100%;
@@ -21,24 +26,44 @@
     background-image:linear-gradient(to left, transparent 10%, @osu-colour-b1 50%, transparent 90%);
   }
 
+  &--follows {
+    max-width: max-content;
+    align-items: flex-start;
+    margin: 0 calc(-1 * var(--gutter)) 10px;
+    --border-size: 2px;
+    --tab-hover-border-colour: var(--tab-active-border-colour);
+
+    &::before {
+      background-image: none;
+      background-color: hsl(var(--hsl-d2));
+      width: calc(100% - (var(--gutter) * 2));
+      height: var(--border-size);
+      left: var(--gutter);
+      top: calc(100% - var(--border-size));
+    }
+  }
+
   &__tab {
-    margin: 0 10px;
+    margin: 0 var(--gutter);
     padding: 5px 0;
-    border-bottom: 5px solid transparent;
+    border-bottom: var(--border-size) solid transparent;
 
     font-size: 14px;
     color: white;
 
     cursor: pointer;
+    position: relative; // so it's above block's ::before
 
     &:hover, &:active, &:focus {
       color: @osu-colour-l1;
       text-decoration: none;
+      border-bottom-color: var(--tab-hover-border-colour);
     }
 
     &--active {
       font-weight: 700;
-      border-bottom-color: @osu-colour-h1;
+      border-bottom-color: var(--tab-active-border-colour);
+      --tab-hover-border-colour: var(--tab-active-border-colour);
     }
 
     &--disabled {

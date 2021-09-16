@@ -8,6 +8,15 @@ return [
         'disabled' => 'Ez a beatmap jelenleg nem letölthető.',
         'parts-removed' => 'Ez a beatmap eltávolításra került a készítő vagy egy jogbirtokos harmadik fél kérésére.',
         'more-info' => 'Itt találsz több információt.',
+        'rule_violation' => 'Ennek a map-nek néhány elemét eltávolítottuk, mert nem találtuk őket megfelelőnek az osu!-ban történő használathoz.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Lassíts le, játssz többet.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
@@ -16,6 +25,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'nincs beatmap',
+
         'download' => [
             'all' => 'letöltés',
             'video' => 'letöltés videóval',
@@ -24,11 +35,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => 'Egy hibrid beatmap szettet legalább egy játékmódra nominálni kell.',
+        'incorrect_mode' => 'Nincs jogosultságod :mode módban nominálni',
+        'full_bn_required' => 'Teljes jogú nominátornak kell lenned a kvalifikálásra nomináláshoz.',
+        'too_many' => 'A nominálási követelmények már teljesültek.',
+
+        'dialog' => [
+            'confirmation' => 'Biztosan nominálni szeretnéd ezt a Beatmap-et?',
+            'header' => 'Beatmap Nominálása',
+            'hybrid_warning' => 'megjegyzés: csak egyszer nominálhatsz, ezért kérlek győződj meg róla, hogy minden játékmódra nominálsz, amire szeretnél',
+            'which_modes' => 'Mely módokra nominálsz?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Felnőtt',
+    ],
+
     'show' => [
         'discussion' => 'Beszélgetés',
 
         'details' => [
+            'by_artist' => ':artist által',
             'favourite' => 'A beatmap szett kedvencek közé tétele',
+            'favourite_login' => 'Jelentkezz be, hogy kedvencnek jelölt ezt beatmap-et',
             'logged-out' => 'Beatmap letöltéshez be kell jelentkezned!',
             'mapped_by' => 'mappolva :mapper által',
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
@@ -36,7 +67,7 @@ return [
 
             'download' => [
                 '_' => 'Letöltés',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'Videó nélkül',
                 'video' => 'Videóval',
             ],
@@ -89,10 +120,24 @@ return [
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
             'no_scores' => 'Az adatok még számítás alatt...',
+            'nsfw' => 'Felnőtt tartalom',
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
+            'storyboard' => 'Ez a beatmap storyboard-ot tartalmaz',
             'success-rate' => 'Teljesítési arány',
             'tags' => 'Címkék',
+            'video' => 'Ez a beatmap videót tartalmaz',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Ez a beatmap szókimondó, sértő vagy felkavaró tartalmú. Továbbra is meg szeretnéd tekinteni?',
+            'title' => 'Felnőtt tartalom',
+
+            'buttons' => [
+                'disable' => 'Figyelmeztetés kikapcsolása',
+                'listing' => 'Beatmap lista',
+                'show' => 'Mutassa',
+            ],
         ],
 
         'scoreboard' => [

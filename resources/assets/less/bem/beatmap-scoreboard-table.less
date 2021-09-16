@@ -3,43 +3,17 @@
 
 .beatmap-scoreboard-table {
   @_top: beatmap-scoreboard-table;
-  @activated-row: ~'@{_top}__body-row--menu-active';
-  @friend-row: ~'@{_top}__body-row--friend';
-  @passive-row: ~'@{_top}__body-row--highlightable';
-  @self-row: ~'@{_top}__body-row--self';
+  @activated-row: ~"@{_top}__body-row--menu-active";
+  @passive-row: ~"@{_top}__body-row--highlightable";
 
   @handle: 16px;
   @row-height: 1.8em;
 
-  .cell-color(@color, @highlight) {
-    color: @color;
-
-    && {
-      .@{activated-row} & {
-        color: @highlight;
-      }
-
-      .@{passive-row}:hover & {
-        color: @highlight;
-      }
-    }
-  }
-
-  .row-color(@name, @color) {
-    .@{activated-row}.@{name} & {
-      color: #fff;
-      background-color: @color;
-    }
-
-    .@{passive-row}.@{name} & {
-      background-color: @color;
-    }
-
-    .@{passive-row}.@{name}:hover & {
-      color: #fff;
-      background-color: lighten(@color, 20%);
-    }
-  }
+  --default-color: #fff;
+  --perfect-color: hsl(@beatmap-score--hsl-perfect);
+  --row-background-color: @osu-colour-b5;
+  --row-background-color-highlight: @osu-colour-b3;
+  --zero-color: fade(#fff, 40%);
 
   margin-right: -@handle;
   overflow-x: auto;
@@ -99,11 +73,11 @@
     }
 
     &--miss {
-      width: 70px;
+      width: 50px;
     }
 
     &--pp {
-      width: 30px;
+      width: 50px;
     }
 
     &--mods {
@@ -118,7 +92,14 @@
   }
 
   &__body-row {
-    height: @row-height;
+    &:nth-child(odd) {
+      --row-background-color: @osu-colour-b4;
+    }
+
+    &:hover,
+    &--menu-active {
+      --zero-color: #fff;
+    }
 
     // @passive-row
     &--highlightable {
@@ -126,9 +107,27 @@
         pointer-events: none;
       }
     }
+
+    // need to prioritize over :nth-child
+    &&--friend {
+      --row-background-color: fade(@yellow-dark, 20%);
+      --row-background-color-highlight: lighten(fade(@yellow-dark, 20%), 20%);
+    }
+
+    &&--self {
+      --row-background-color: fade(@green-dark, 30%);
+      --row-background-color-highlight: lighten(fade(@green-dark, 30%), 20%);
+    }
   }
 
   &__cell {
+    background-color: var(--row-background-color);
+
+    .@{_top}__body-row:hover &,
+    .@{activated-row} & {
+      background-color: var(--row-background-color-highlight);
+    }
+
     &:first-child {
       // rounded corners for left side
       border-top-left-radius: 5px;
@@ -139,27 +138,37 @@
       // ...and right side
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
-      padding-right: 10px;
+      width: 1%; // don't let the column expand unless required
     }
+  }
+
+  &__cell-content {
+    .link-plain();
+    .link-hover({
+      color: var(--default-color);
+    });
+
+    display: flex;
+    height: @row-height;
+    align-items: center;
+    color: var(--default-color);
 
     &--grade {
-      width: 100%;
-      height: @row-height;
-      .center-content();
+      justify-content: center;
     }
 
     &--mods {
       padding-left: 5px;
-      width: 1%; // don't let the column expand unless required
+      padding-right: 10px;
     }
 
     &--perfect {
-      .cell-color(hsl(@beatmap-score--hsl-perfect), hsl(@beatmap-score--hsl-perfect));
+      --default-color: var(--perfect-color);
     }
 
     &--rank {
       font-weight: 700;
-      text-align: right;
+      justify-content: flex-end;
     }
 
     &--score {
@@ -174,37 +183,18 @@
       white-space: nowrap;
     }
 
+    &--user-link {
+      .link-inverted();
+      .link-hover({
+        text-decoration: underline;
+      });
+
+      position: absolute;
+    }
+
     &--zero {
-      color: fade(#fff, 40%);
+      --default-color: var(--zero-color);
     }
-
-    // when row is selected
-    .@{activated-row} & {
-      color: #fff;
-      background-color: @osu-colour-b3;
-    }
-
-    // when row is not selected
-    .@{passive-row} & {
-      background-color: @osu-colour-b5;
-    }
-
-    .@{passive-row}:nth-child(odd) & {
-      background-color: @osu-colour-b4;
-    }
-
-    // hovering over an unselected row
-    .@{passive-row}:hover & {
-      color: #fff;
-      background-color: @osu-colour-b3;
-    }
-
-    .@{passive-row}:hover:nth-child(odd) & {
-      background-color: @osu-colour-b3;
-    }
-
-    .row-color(@friend-row, fade(@yellow-dark, 20%));
-    .row-color(@self-row, fade(@green-dark, 30%));
   }
 
   &__mods {
@@ -230,14 +220,5 @@
     .@{passive-row}:hover & {
       opacity: 1;
     }
-  }
-
-  &__rank {
-    .link-white();
-    .link-plain();
-  }
-
-  &__user-link {
-    .link-inverted();
   }
 }

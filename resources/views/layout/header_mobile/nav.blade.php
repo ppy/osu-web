@@ -2,7 +2,7 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@foreach (nav_links() as $section => $links)
+@foreach ($navLinks as $section => $links)
     <div class="navbar-mobile-item">
         <a
             data-click-menu-target="nav-mobile-{{ $section }}"
@@ -17,12 +17,12 @@
                 <i class="fas fa-chevron-down"></i>
             </span>
 
-            {{ trans("layout.menu.{$section}._") }}
+            {{ osu_trans("layout.menu.{$section}._") }}
         </a>
 
         <ul class="navbar-mobile-item__submenu js-click-menu" data-click-menu-id="nav-mobile-{{ $section }}">
-            @foreach ($links as $action => $link)
-                @if ($action === '_')
+            @foreach ($links as $transKey => $link)
+                @if ($transKey === '_')
                     @continue
                 @endif
                 <li>
@@ -30,7 +30,7 @@
                         class="navbar-mobile-item__submenu-item js-click-menu--close"
                         href="{{ $link }}"
                     >
-                        {{ trans("layout.menu.$section.$action") }}
+                        {{ osu_trans($transKey) }}
                     </a>
                 </li>
             @endforeach
@@ -51,16 +51,21 @@
             <i class="fas fa-chevron-down"></i>
         </span>
 
-        <span
-            class="navbar-mobile-item__locale-flag"
-            style="background-image: url('{{ flag_path(locale_flag(App::getLocale())) }}')"
-        ></span>
+        <span class="navbar-mobile-item__locale-flag">
+            @include('objects._flag_country', [
+                'countryCode' => $currentLocaleMeta->flag(),
+                'modifiers' => ['small', 'flat'],
+            ])
+        </span>
 
-        {{ locale_name(App::getLocale()) }}
+        {{ $currentLocaleMeta->name() }}
     </button>
 
     <ul class="navbar-mobile-item__submenu js-click-menu" data-click-menu-id="nav-mobile-locale">
         @foreach (config('app.available_locales') as $locale)
+            @php
+                $localeMeta = locale_meta($locale);
+            @endphp
             <li>
                 <a
                     class="navbar-mobile-item__submenu-item js-click-menu--close"
@@ -68,12 +73,14 @@
                     data-remote="1"
                     data-method="POST"
                 >
-                    <span
-                        class="navbar-mobile-item__locale-flag"
-                        style="background-image: url('{{ flag_path(locale_flag($locale)) }}')"
-                    ></span>
+                    <span class="navbar-mobile-item__locale-flag">
+                        @include('objects._flag_country', [
+                            'countryCode' => $localeMeta->flag(),
+                            'modifiers' => ['small', 'flat'],
+                        ])
+                    </span>
 
-                    {{ locale_name($locale) }}
+                    {{ $localeMeta->name() }}
                 </a>
             </li>
         @endforeach

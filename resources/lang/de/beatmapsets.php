@@ -8,6 +8,15 @@ return [
         'disabled' => 'Diese Beatmap steht momentan nicht zum Herunterladen zur Verfügung.',
         'parts-removed' => 'Teile dieser Beatmap wurden auf Anfrage des Erstellers oder eines Rechteinhabers entfernt.',
         'more-info' => 'Siehe hier für mehr Informationen.',
+        'rule_violation' => 'Einige in dieser Beatmap enthaltene Assets wurden entfernt, nachdem sie als nicht für die Verwendung in osu! geeignet eingestuft worden waren.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Nur langsam, spiel mehr.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
@@ -16,6 +25,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'keine beatmaps',
+
         'download' => [
             'all' => 'herunterladen',
             'video' => 'mit Video herunterladen',
@@ -24,11 +35,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => 'Für ein Hybrid-Beatmapset musst du mindestens einen Spielmodus auswählen, für den du nominieren möchtest.',
+        'incorrect_mode' => 'Du hast keine Berechtigung, für diesen Modus zu nominieren: :mode',
+        'full_bn_required' => 'Du musst ein vollwertiger Nominator sein, um diese qualifizierende Nominierung durchzuführen.',
+        'too_many' => 'Nominierungsvoraussetzung bereits erfüllt.',
+
+        'dialog' => [
+            'confirmation' => 'Bist du sicher, dass du diese Beatmap nominieren möchtest?',
+            'header' => 'Beatmap nominieren',
+            'hybrid_warning' => 'hinweis: du kannst nur einmal nominieren, also stelle bitte sicher, dass du für alle spielmodi nominierst, die du beabsichtigst',
+            'which_modes' => 'Für welche Modi nominieren?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Explizit',
+    ],
+
     'show' => [
         'discussion' => 'Diskussion',
 
         'details' => [
+            'by_artist' => 'von :artist',
             'favourite' => 'Dieses Beatmapset zu deinen Favoriten hinzufügen',
+            'favourite_login' => 'Melde dich an, um diese Beatmap zu favorisieren',
             'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
             'mapped_by' => 'erstellt von :mapper',
             'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
@@ -36,7 +67,7 @@ return [
 
             'download' => [
                 '_' => 'Herunterladen',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'ohne Video',
                 'video' => 'mit Video',
             ],
@@ -61,7 +92,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Wenn du es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
+            'action' => 'Wenn es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
 
             'current' => [
                 '_' => 'Die Map ist zurzeit :status.',
@@ -74,11 +105,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Wenn Du ein Problem mit dieser Beatmap findest, bitte disqualifiziere diese :link.',
+                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, disqualifiziere diese bitte :link.',
             ],
 
             'report' => [
-                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, bitte melde es :link, um das Team zu informieren.',
+                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, melde es bitte :link, um das Team zu informieren.',
                 'button' => 'Problem melden',
                 'link' => 'hier',
             ],
@@ -89,10 +120,24 @@ return [
             'genre' => 'Genre',
             'language' => 'Sprache',
             'no_scores' => 'Die Daten werden noch verarbeitet...',
+            'nsfw' => 'Expliziter Inhalt',
             'points-of-failure' => 'Stellen, an denen Spieler gescheitert sind',
             'source' => 'Quelle',
+            'storyboard' => 'Diese Beatmap enthält ein Storyboard',
             'success-rate' => 'Erfolgsrate',
             'tags' => 'Tags',
+            'video' => 'Diese Beatmap enthält ein Video',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Diese Beatmap enthält explizite, anstößige oder verstörende Inhalte. Möchtest du sie trotzdem sehen?',
+            'title' => 'Expliziter Inhalt',
+
+            'buttons' => [
+                'disable' => 'Warnung deaktivieren',
+                'listing' => 'Beatmap-Auflistung',
+                'show' => 'Anzeigen',
+            ],
         ],
 
         'scoreboard' => [
@@ -110,7 +155,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'player' => 'Spieler',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Rang',
                 'score_total' => 'Gesamtpunktzahl',
                 'score' => 'Punktzahl',

@@ -8,8 +8,14 @@ return [
         'description' => 'Toto sú diskusie beatmap, ktoré sleduješ. Všetky nové príspevky a aktualizácie ti budú oznámené.',
         'title_compact' => 'sledovanie moddingu',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => 'Nesledujete diskusiu žiadnej beatmapy.',
+            'last_update' => '',
             'open_issues' => 'Nevyriešené problémy',
             'state' => 'Stav',
             'title' => 'Názov',

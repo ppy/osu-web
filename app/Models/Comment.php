@@ -7,6 +7,7 @@ namespace App\Models;
 
 use App\Libraries\MorphMap;
 use App\Traits\Validatable;
+use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 
 /**
@@ -37,7 +38,7 @@ use Carbon\Carbon;
  */
 class Comment extends Model
 {
-    use Reportable, Validatable;
+    use Reportable, Validatable, WithDbCursorHelper;
 
     const COMMENTABLES = [
         MorphMap::MAP[Beatmapset::class],
@@ -48,8 +49,6 @@ class Comment extends Model
     // FIXME: decide on good number.
     // some people seem to put song lyrics in comment which inflated the size.
     const MESSAGE_LIMIT = 10000;
-
-    const DEFAULT_SORT = 'new';
 
     const SORTS = [
         'new' => [
@@ -66,6 +65,8 @@ class Comment extends Model
             ['column' => 'id', 'order' => 'DESC'],
         ],
     ];
+
+    const DEFAULT_SORT = 'new';
 
     protected $dates = ['deleted_at', 'edited_at'];
 
@@ -156,11 +157,13 @@ class Comment extends Model
             }
         }
 
-        if (!$this->allowEmptyCommentable && (
-            $this->commentable_type === null ||
-            $this->commentable_id === null ||
-            !$this->commentable()->exists()
-        )) {
+        if (
+            !$this->allowEmptyCommentable && (
+                $this->commentable_type === null ||
+                $this->commentable_id === null ||
+                !$this->commentable()->exists()
+            ) && !$this->isDirty('deleted_at')
+        ) {
             $this->validationErrors()->add('commentable', 'required');
         }
 

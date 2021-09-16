@@ -6,14 +6,14 @@
 return [
     'landing' => [
         'download' => 'Ladda ner nu',
-        'online' => '<strong>:players</strong> spelare online i <strong>:games</strong> spel',
+        'online' => '<strong>:players</strong> spelare online i <strong>:games</strong> matcher',
         'peak' => 'Som högst, :count spelare online',
         'players' => '<strong>:count</strong> registrerade spelare',
         'title' => 'välkommen',
         'see_more_news' => 'se fler nyheter',
 
         'slogan' => [
-            'main' => 'gratis-att-spela rytm spel',
+            'main' => 'det bästaste gratis-att-vinna-rytmspelet',
             'sub' => 'rytmen är bara ett klick bort',
         ],
     ],
@@ -22,12 +22,12 @@ return [
         'advanced_link' => 'Avancerad sökning',
         'button' => 'Sök',
         'empty_result' => 'Ingenting hittades!',
-        'keyword_required' => 'Ett sökord krävs',
+        'keyword_required' => 'En sökterm krävs',
         'placeholder' => 'skriv för att söka',
-        'title' => 'Sök',
+        'title' => 'sök',
 
         'beatmapset' => [
-            'login_required' => 'Logga in för att söka beatmaps',
+            'login_required' => 'Logga in för att söka efter beatmaps',
             'more' => ':count fler sökresultat på beatmaps',
             'more_simple' => 'Se fler sökresultat på beatmaps',
             'title' => 'Beatmaps',
@@ -57,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => 'Logga in för att söka användare',
+            'login_required' => 'Logga in för att söka efter användare',
             'more' => ':count fler sökresultat på spelare',
             'more_simple' => 'Se fler sökresultat på spelare',
             'more_hidden' => 'Sökning på spelare är begränsad till :max spelare. Försök att förfina sökningen.',
@@ -76,8 +76,8 @@ return [
         'action' => 'Ladda ner osu!',
 
         'help' => [
-            '_' => 'om du har problem med att starta spelet eller registrera dig för konto, :help_forum_link eller :support_button.',
-            'help_forum_link' => '',
+            '_' => 'om du har problem med att starta spelet eller registrera ett konto, :help_forum_link eller :support_button.',
+            'help_forum_link' => 'se hjälpforumet',
             'support_button' => 'kontakta support',
         ],
 
@@ -86,16 +86,16 @@ return [
             'macos' => 'för macOS',
             'linux' => 'för Linux',
         ],
-        'mirror' => 'spegel',
-        'macos-fallback' => 'macOS användare',
+        'mirror' => 'mirror',
+        'macos-fallback' => 'macOS-användare',
         'steps' => [
             'register' => [
                 'title' => 'skaffa ett konto',
-                'description' => 'följ anvisningarna när du startar spelet för att logga in eller skapa ett nytt konto',
+                'description' => 'följ instruktionerna när du startar spelet för att logga in eller skapa ett nytt konto',
             ],
             'download' => [
-                'title' => 'ladda ner spelet',
-                'description' => 'klicka på knappen ovan för att ladda ner installeraren, sedan kör du den!',
+                'title' => 'installera spelet',
+                'description' => 'klicka på knappen ovan för att ladda ner installationsprogrammet, sedan kör du det!',
             ],
             'beatmaps' => [
                 'title' => 'skaffa beatmaps',
@@ -116,14 +116,14 @@ return [
         ],
         'header' => [
             'stats' => [
-                'friends' => 'Vänner Online',
+                'friends' => 'Vänner online',
                 'games' => 'Spel',
-                'online' => 'Användare Online',
+                'online' => 'Användare online',
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nya Rankade Beatmaps',
-            'popular' => 'Populära Beatmaps',
+            'new' => 'Nya rankade beatmaps',
+            'popular' => 'Populära beatmaps',
             'by_user' => 'av :user',
         ],
         'buttons' => [
@@ -138,9 +138,9 @@ return [
         'subtitle' => 'Det ser ut som att du har kul! :D',
         'body' => [
             'part-1' => 'Visste du att osu! körs utan annonser, och förlitar sig på spelare som stöttar utvecklingen och kostnader för underhåll?',
-            'part-2' => 'Visste du också att när du stöttar osu! så kommer du få en hög med användbara funktioner, som <strong>nedladdning i spelet</strong> vilket automatiskt sätts igång när du är åskådare eller spelar med andra?',
+            'part-2' => 'Visste du också att när du stöttar osu! så får du en hel drös användbara funktioner, som <strong>nedladdning i spelet</strong> vilket automatiskt sätts igång när du är åskådare eller är i flerspelarläge?',
         ],
         'find-out-more' => 'Klicka här för att ta reda på mer!',
-        'download-starting' => "Åh, och oroa dig inte - din nedladdning har redan startas åt dig ;)",
+        'download-starting' => "Åh, och oroa dig inte - din nedladdning har redan startats åt dig ;)",
     ],
 ];

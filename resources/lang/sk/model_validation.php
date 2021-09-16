@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Mazanie metadát beatmapy nie je povolené.',
             'beatmapset_post_no_edit' => 'Editovanie metadát beatmapy nie je povolené.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => '',
 
             'attributes' => [
@@ -121,6 +123,7 @@ return [
     'user' => [
         'contains_username' => 'Heslo nemôže obsahovať užívateľské meno.',
         'email_already_used' => 'E-mailová adresa už bola použitá.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Krajina nie je v databáze.',
         'invalid_discord' => 'Nesprávne užívateľské meno na Discorde.',
         'invalid_email' => "Vyzerá to na neplatnú e-mailovú adresu.",

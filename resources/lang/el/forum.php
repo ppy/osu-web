@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Σίγουρα επαναφορά της δημοσίευσης;',
         'edited' => 'Τελευταία τροποποίηση από τον χρήστη :user :when, τροποποιήθηκε :count φορές συνολικά.',
         'posted_at' => 'δημοσιεύτηκε :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Διαγραφή δημοσίευσης',
-            'restore' => 'Επαναφορά δημοσίευσης',
             'edit' => 'Επεξεργασία δημοσίευσης',
+            'report' => '',
+            'restore' => 'Επαναφορά δημοσίευσης',
         ],
 
         'create' => [
@@ -73,9 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'διαγραμμένο θέμα',
         'go_to_latest' => 'δείτε την πιο πρόσφατη δημοσίευση',
         'has_replied' => '',
+        'in_forum' => '',
         'latest_post' => ':when από τον :user',
         'latest_reply_by' => 'τελευταία απάντηση από τον :user',
         'new_topic' => 'Δημοσιεύστε νέο θέμα',
@@ -85,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'από τον :user',
         'started_by_verbose' => 'ξεκίνησε από :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => '',

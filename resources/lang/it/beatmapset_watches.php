@@ -6,10 +6,16 @@
 return [
     'index' => [
         'description' => 'Queste sono le discussioni di beatmap che stai seguendo. Verrai notificato quando ci sono nuovi post o aggiornamenti.',
-        'title_compact' => 'lista modding',
+        'title_compact' => 'discussioni beatmap seguite',
+
+        'counts' => [
+            'total' => 'Beatmap seguite',
+            'unread' => 'Beatmap con nuove attività',
+        ],
 
         'table' => [
-            'empty' => 'Nessuna discussione di beatmap guardata.',
+            'empty' => 'Non segui nessuna discussione beatmap.',
+            'last_update' => 'Ultimo aggiornamento',
             'open_issues' => 'Problemi aperti',
             'state' => 'Stato',
             'title' => 'Titolo',

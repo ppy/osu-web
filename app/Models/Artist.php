@@ -5,11 +5,12 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use App\Traits\Memoizes;
 
 /**
  * @property \Illuminate\Database\Eloquent\Collection $albums ArtistAlbum
  * @property string|null $bandcamp
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapsets Beatmapset
  * @property string|null $cover_url
  * @property \Carbon\Carbon|null $created_at
  * @property string $description
@@ -32,7 +33,7 @@ use Carbon\Carbon;
  */
 class Artist extends Model
 {
-    private static $memoized = [];
+    use Memoizes;
 
     public function label()
     {
@@ -44,26 +45,24 @@ class Artist extends Model
         return $this->hasMany(ArtistAlbum::class);
     }
 
+    public function beatmapsets()
+    {
+        return $this->hasManyThrough(Beatmapset::class, ArtistTrack::class, null, 'track_id');
+    }
+
     public function tracks()
     {
         return $this->hasMany(ArtistTrack::class);
     }
 
+    /**
+     * This requires querying the model with `->withMax('tracks', 'created_at')`.
+     */
     public function hasNewTracks()
     {
-        if (!array_key_exists('recentlyUpdatedArtists', self::$memoized)) {
-            self::$memoized['recentlyUpdatedArtists'] =
-                cache_remember_mutexed('recentlyUpdatedArtists', 300, [], function () {
-                    return ArtistTrack::where('created_at', '>', Carbon::now()->subMonth(1))
-                        ->select('artist_id')
-                        ->groupBy('artist_id')
-                        ->get()
-                        ->pluck('artist_id')
-                        ->toArray();
-                });
-        }
+        $date = parse_time_to_carbon($this->attributes['tracks_max_created_at']);
 
-        return in_array($this->id, self::$memoized['recentlyUpdatedArtists'], true);
+        return $date !== null && $date->addMonth(1)->isFuture();
     }
 
     public function url()

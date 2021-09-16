@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react'
-import { ValueDisplay } from 'value-display'
+import ValueDisplay from 'value-display'
 import { div } from 'react-dom-factories'
 el = React.createElement
 
@@ -25,7 +25,7 @@ export Rank = ({type, stats, modifiers}) ->
       div
         title: ''
         "data-html-title": variantTooltip.join('')
-        if stats.rank[type]?
-          "##{osu.formatNumber(stats.rank[type])}"
+        if stats["#{type}_rank"]?
+          "##{osu.formatNumber(stats["#{type}_rank"])}"
         else
           '-'

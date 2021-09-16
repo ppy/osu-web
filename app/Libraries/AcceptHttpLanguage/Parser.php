@@ -75,7 +75,8 @@ class Parser
      */
     public function compatibleLanguageFrom(array $availableLanguages)
     {
-        $compatible = array_map(function ($preferred) use ($availableLanguages) { // en-US
+        $compatible = array_map(function ($preferred) use ($availableLanguages) {
+            // en-US
             $preferred = strtolower($preferred);
             $preferredLanguage = explode('-', $preferred, 2)[0];
 
@@ -118,11 +119,13 @@ class Parser
     public function languageRegionCompatibleFrom($availableLanguages)
     {
         $availableLanguages = $this->sanitizeAvailableLocales($availableLanguages);
-        $array = array_map(function ($preferred) use ($availableLanguages) { // en-US
+        $array = array_map(function ($preferred) use ($availableLanguages) {
+            // en-US
             $preferred = strtolower($preferred);
             $preferredLanguage = explode('-', $preferred, 2)[0] ?? null;
 
-            $langGroup = array_values(array_filter($availableLanguages, function ($available) use ($preferredLanguage) { // en
+            $langGroup = array_values(array_filter($availableLanguages, function ($available) use ($preferredLanguage) {
+                // en
                 return $preferredLanguage === explode('-', strtolower($available), 2)[0] ?? null;
             }));
 
@@ -162,7 +165,7 @@ class Parser
         }, $header);
 
         usort($mappings, function ($left, $right) {
-            return $right[1] > $left[1];
+            return $right[1] <=> $left[1];
         });
 
         return array_filter(array_map(function ($mapping) {

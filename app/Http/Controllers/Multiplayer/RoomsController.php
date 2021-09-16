@@ -8,6 +8,7 @@ namespace App\Http\Controllers\Multiplayer;
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Models\Multiplayer\Room;
+use App\Transformers\Multiplayer\RoomTransformer;
 
 class RoomsController extends BaseController
 {
@@ -22,14 +23,21 @@ class RoomsController extends BaseController
         $params = request()->all();
         $params['user'] = auth()->user();
 
-        return Room::search($params,
-            ['host.country', 'playlist.beatmap.beatmapset'],
-            [
-                'host.country',
-                'playlist.beatmap.beatmapset',
-                'playlist.beatmap.checksum',
-            ]
-        );
+        $search = Room::search($params);
+        $rooms = $search['query']
+            ->with(['host.country', 'playlist.beatmap.beatmapset', 'playlist.beatmap.baseMaxCombo'])
+            ->withRecentParticipantIds()
+            ->get();
+
+        Room::preloadRecentParticipants($rooms);
+
+        return json_collection($rooms, new RoomTransformer(), [
+            'host.country',
+            'playlist.beatmap.beatmapset',
+            'playlist.beatmap.checksum',
+            'playlist.beatmap.max_combo',
+            'recent_participants',
+        ]);
     }
 
     public function join($roomId, $userId)
@@ -39,7 +47,17 @@ class RoomsController extends BaseController
             abort(403);
         }
 
-        Room::findOrFail($roomId)->join(auth()->user());
+        $room = Room::findOrFail($roomId);
+
+        if ($room->password !== null) {
+            $password = get_param_value(request('password'), null);
+
+            if ($password === null || !hash_equals(hash('sha256', $room->password), hash('sha256', $password))) {
+                abort(403, osu_trans('multiplayer.room.invalid_password'));
+            }
+        }
+
+        $room->join(auth()->user());
 
         return response([], 204);
     }
@@ -98,12 +116,15 @@ class RoomsController extends BaseController
             return json_item(
                 $room
                     ->load('host.country')
-                    ->load('playlist.beatmap.beatmapset'),
+                    ->load('playlist.beatmap.beatmapset')
+                    ->load('playlist.beatmap.baseMaxCombo'),
                 'Multiplayer\Room',
                 [
+                    'current_user_score.playlist_item_attempts',
                     'host.country',
                     'playlist.beatmap.beatmapset',
                     'playlist.beatmap.checksum',
+                    'playlist.beatmap.max_combo',
                     'recent_participants',
                 ]
             );
@@ -126,17 +147,19 @@ class RoomsController extends BaseController
     public function store()
     {
         try {
-            $room = (new Room)->startGame(auth()->user(), request()->all());
+            $room = (new Room())->startGame(auth()->user(), request()->all());
 
             return json_item(
                 $room
                     ->load('host.country')
-                    ->load('playlist.beatmap.beatmapset'),
+                    ->load('playlist.beatmap.beatmapset')
+                    ->load('playlist.beatmap.baseMaxCombo'),
                 'Multiplayer\Room',
                 [
                     'host.country',
                     'playlist.beatmap.beatmapset',
                     'playlist.beatmap.checksum',
+                    'playlist.beatmap.max_combo',
                     'recent_participants',
                 ]
             );

@@ -1,23 +1,24 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelPartAction, ChatChannelSwitchAction } from 'actions/chat-actions';
-import { dispatch } from 'app-dispatcher';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
+import UserAvatar from 'user-avatar';
+
+interface Props {
+  channelId: number;
+  dataStore?: RootDataStore;
+}
 
 @inject('dataStore')
 @observer
-export default class ConversationListItem extends React.Component<any, {}> {
-  part = (e: React.MouseEvent<HTMLElement>) => {
-    dispatch(new ChatChannelPartAction(this.props.channelId));
-  }
+export default class ConversationListItem extends React.Component<Props> {
+  readonly dataStore: RootDataStore = this.props.dataStore!;
 
   render(): React.ReactNode {
-    const dataStore: RootDataStore = this.props.dataStore;
-    const uiState = dataStore.uiState.chat;
-    const conversation = dataStore.channelStore.get(this.props.channelId);
+    const uiState = this.dataStore.chatState;
+    const conversation = this.dataStore.channelStore.get(this.props.channelId);
     const baseClassName = 'chat-conversation-list-item';
 
     if (!conversation) {
@@ -44,7 +45,9 @@ export default class ConversationListItem extends React.Component<any, {}> {
         </button>
 
         <button className={`${baseClassName}__tile`} onClick={this.switch}>
-          <img className={`${baseClassName}__avatar`} src={conversation.icon} />
+          <div className={`${baseClassName}__avatar`}>
+            <UserAvatar modifiers={['full-circle']} user={{ avatar_url: conversation.icon }} />
+          </div>
           <div className={`${baseClassName}__name`}>{conversation.name}</div>
           <div className={`${baseClassName}__chevron`}>
             <i className='fas fa-chevron-right' />
@@ -54,9 +57,11 @@ export default class ConversationListItem extends React.Component<any, {}> {
     );
   }
 
-  switch = (e: React.MouseEvent<HTMLElement>) => {
-    if (this.props.dataStore.uiState.chat.selected !== this.props.channelId) {
-      dispatch(new ChatChannelSwitchAction(this.props.channelId));
-    }
-  }
+  private part = () => {
+    this.dataStore.channelStore.partChannel(this.props.channelId);
+  };
+
+  private switch = () => {
+    this.dataStore.chatState.selectChannel(this.props.channelId);
+  };
 }

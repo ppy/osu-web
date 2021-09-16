@@ -7,7 +7,7 @@ return [
     'landing' => [
         'download' => 'Şimdi indir',
         'online' => '<strong>:players</strong> oyuncu şu anda <strong>:games</strong> oyunda çevrimiçi',
-        'peak' => 'Zirve, :count çevrimiçi oyuncu',
+        'peak' => 'Zirve, :count çevrimiçi kullanıcı',
         'players' => '<strong>:count</strong> kayıtlı oyuncu',
         'title' => 'hoşgeldiniz',
         'see_more_news' => 'daha fazla haber gör',
@@ -109,7 +109,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'ön panel',
+        'title' => 'kontrol paneli',
         'news' => [
             'title' => 'Gelişmeler',
             'error' => 'Haberler yüklenirken hata oluştu, sayfayı yenilemeyi deneseniz?...',

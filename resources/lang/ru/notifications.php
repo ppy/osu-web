@@ -4,10 +4,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => 'Все уведомления прочтены!',
+    'all_read' => 'Все уведомления прочитаны!',
+    'delete' => 'Очистить :type',
+    'loading' => 'Загрузка непрочитанных уведомлений...',
     'mark_read' => 'Очистить :type',
     'none' => 'Уведомлений нет',
     'see_all' => 'см. все уведомления',
+    'see_channel' => 'перейти в чат',
+    'verifying' => 'Пожалуйста, проверьте сессию для просмотра уведомлений',
 
     'filters' => [
         '_' => 'все',
@@ -22,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Карта',
+
+            'beatmap_owner_change' => [
+                '_' => 'Гостевая сложность',
+                'beatmap_owner_change' => 'Вы назначены владельцем сложности ":beatmap" в карте ":title"',
+                'beatmap_owner_change_compact' => 'Вы назначены владельцем сложности ":beatmap" ',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Обсуждение карты',
@@ -57,6 +67,8 @@ return [
                 'beatmapset_qualify_compact' => 'Карта вошла в рейтинговую очередь',
                 'beatmapset_rank' => '":title" был оценен',
                 'beatmapset_rank_compact' => 'Карта была оценена',
+                'beatmapset_remove_from_loved' => '":title" был удален из Любимых',
+                'beatmapset_remove_from_loved_compact' => 'Карта была удалена из Любимых',
                 'beatmapset_reset_nominations' => 'Проблема опубликованная :username вызвала сброс процесса номинации карты ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Номинация была сброшена',
             ],
@@ -129,6 +141,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Новая карта',
+
+                'user_beatmapset_new' => 'Новая карта ":title" от :username',
+                'user_beatmapset_new_compact' => 'Новая карта ":title"',
+                'user_beatmapset_new_group' => 'Новые карты от :username',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Медали',
 
@@ -136,12 +158,17 @@ return [
                 '_' => 'Новая медаль',
                 'user_achievement_unlock' => 'Разблокировано ":title"!',
                 'user_achievement_unlock_compact' => 'Разблокировано: «:title»!',
+                'user_achievement_unlock_group' => 'Медали открыты!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Вы приглашены в ":title" ',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Обсуждение ":title" было закрыто',
                 'beatmapset_discussion_post_new' => 'Обсуждение ":title" имеет новые ответы',
@@ -158,6 +185,7 @@ return [
                 'beatmapset_nominate' => '":title" был номинирован',
                 'beatmapset_qualify' => '":title" получило достаточно номинаций и вступило в очередь ранка',
                 'beatmapset_rank' => '":title" было ранкнуто',
+                'beatmapset_remove_from_loved' => '":title" был удален из Любимых',
                 'beatmapset_reset_nominations' => 'Номинация ":title" была сброшена',
             ],
 
@@ -194,6 +222,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username открыл новую медаль: ":title"!',
                 'user_achievement_unlock_self' => 'Вы открыли новую медаль: ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username создал новую карту',
             ],
         ],
     ],

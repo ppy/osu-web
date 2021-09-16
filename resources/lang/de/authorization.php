@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => 'Wie wäre es, stattdessen ein bisschen osu! zu spielen?',
     'require_login' => 'Zum Fortfahren bitte einloggen.',
     'require_verification' => 'Bitte verifiziere Dich, um fortzufahren.',
     'restricted' => "Nicht möglich, während man restricted ist.",
@@ -17,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dein Nominierungslimit für heute wurde erreicht, bitte versuche es morgen erneut.',
-            'full_bn_required' => 'Du musst ein vollwertiger Nominator sein um diese Qualifizierung durchzuführen.',
-            'full_bn_required_hybrid' => 'Du musst ein Nominator sein um Beatmap-Sets mit mehr als einem Spielmodus zu nominieren.',
             'incorrect_state' => 'Beim Ausführen dieser Aktion ist ein Fehler aufgetreten. Bitte Seite neu laden.',
             'owner' => "Eigene Beatmaps können nicht nominiert werden.",
             'set_metadata' => 'Vor der Nominierung müssen Genre und Sprache festgelegt werden.',
@@ -69,6 +68,7 @@ return [
         'moderated' => 'Dieser Kanal wird derzeit moderiert.',
         'no_access' => 'Du hast kein Zugriff auf diesen Kanal.',
         'restricted' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet, eingeschränkt oder gebannt bist.',
+        'silenced' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet, eingeschränkt oder gebannt bist.',
     ],
 
     'comment' => [
@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Stimmen können nach dem Abstimmungsende nicht mehr geändert werden.',
+
+        'entry' => [
+            'limit_reached' => 'Du hast das Einsendelimit für diesen Wettbewerb erreicht',
+            'over' => 'Vielen Dank für eure Einsendungen! Der Einsendezeitraum ist vorbei, die Abstimmungen werden bald beginnen.',
+        ],
     ],
 
     'forum' => [

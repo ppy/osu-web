@@ -5,6 +5,7 @@
 
 namespace App\Http;
 
+use Fideloper\Proxy\TrustProxies;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -20,21 +21,20 @@ class Kernel extends HttpKernel
 
     protected $middlewareGroups = [
         'api' => [
-            Middleware\DisableSessionCookiesForAPI::class,
-            Middleware\StartSession::class,
             Middleware\AuthApi::class,
             Middleware\SetLocale::class,
             Middleware\CheckUserBanStatus::class,
         ],
         'web' => [
+            TrustProxies::class,
             Middleware\StripCookies::class,
             Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            Middleware\StartSession::class,
+            \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            Middleware\AutologinFromLegacyCookie::class,
             Middleware\VerifyCsrfToken::class,
             Middleware\SetLocale::class,
-            Middleware\AutologinFromLegacyCookie::class,
             Middleware\UpdateUserLastvisit::class,
             Middleware\VerifyUserAlways::class,
             Middleware\CheckUserBanStatus::class,
@@ -56,7 +56,7 @@ class Kernel extends HttpKernel
         'check-user-restricted' => Middleware\CheckUserRestricted::class,
         'guest' => Middleware\RedirectIfAuthenticated::class,
         'require-scopes' => Middleware\RequireScopes::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'throttle' => Middleware\ThrottleRequests::class,
         'verify-user' => Middleware\VerifyUser::class,
     ];
 }

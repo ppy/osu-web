@@ -39,16 +39,11 @@
 
   &__locale-flag {
     display: inline-block;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 20px;
-    align-self: stretch;
     margin-right: 5px;
   }
 
   &__main {
-    @_colour-base: osu-hsla(@osu-colour-c1, 50%);
+    @_colour-base: hsla(var(--hsl-c1), 50%);
     @_colour-hover: @osu-colour-c1;
 
     .reset-input();

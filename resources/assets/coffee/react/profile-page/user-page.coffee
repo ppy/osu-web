@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { ExtraHeader } from './extra-header'
+import ExtraHeader from 'profile-page/extra-header'
 import { UserPageEditor } from './user-page-editor'
 import * as React from 'react'
 import { a, button, div, span, p } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 el = React.createElement
 
 export class UserPage extends React.Component
@@ -21,7 +21,7 @@ export class UserPage extends React.Component
           button
             type: 'button'
             title: osu.trans('users.show.page.button')
-            className: 'profile-page-toggle'
+            className: 'btn-circle btn-circle--page-toggle'
             onClick: @editStart
             span className: 'fas fa-pencil-alt'
 
@@ -64,9 +64,8 @@ export class UserPage extends React.Component
           className: 'profile-extra-user-page__new-content'
           el StringWithComponent,
             mappings:
-              ':link': a
+              link: a
                 href: laroute.route('store.products.show', product: 'supporter-tag')
-                key: 'link'
                 target: '_blank'
                 osu.trans 'users.show.page.restriction_info.link'
             pattern: osu.trans 'users.show.page.restriction_info._'

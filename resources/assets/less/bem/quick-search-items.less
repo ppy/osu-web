@@ -2,9 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .quick-search-items {
+  --quick-search-items-badge-margin: 20px;
+
   display: flex;
   flex-direction: column;
   margin: 9px -1px -1px;
+
+  @media @narrow {
+    --quick-search-items-badge-margin: 10px;
+  }
 
   &--empty {
     color: @osu-colour-c2;

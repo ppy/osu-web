@@ -8,8 +8,14 @@ return [
         'description' => 'Ezek a beatmap beszélgetések amiket követsz. Értesítve leszel amikor új hozzászólások illetve frissítések vannak.',
         'title_compact' => 'modding követőlista',
 
+        'counts' => [
+            'total' => 'Beatmap-ek nézve',
+            'unread' => 'Beatmap-ek új aktivitással',
+        ],
+
         'table' => [
             'empty' => 'Nem követsz beatmap beszélgetéseket.',
+            'last_update' => 'Utolsó frissítés',
             'open_issues' => 'Nyitott problémák',
             'state' => 'Állapot',
             'title' => 'Cím',

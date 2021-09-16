@@ -15,7 +15,7 @@ export class Tracklist extends React.Component
         key: track.id,
         track: track,
 
-    div className: 'tracklist',
+    div className: 'tracklist js-audio--group',
       table className: 'tracklist__table',
         thead {},
             tr className: 'tracklist__row--header',

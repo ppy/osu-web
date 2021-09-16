@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Bestelling geplaatst :date',
-
+        'cancel' => 'Annuleer bestelling',
+        'cancel_confirm' => 'Deze bestelling wordt geannuleerd en de betaling wordt niet geaccepteerd. Het kan zijn dat je niet direct een refund krijgt & dat dit even duurt. Weet je het zeker?',
+        'cancel_not_allowed' => 'Deze bestelling kan op dit moment niet geannuleerd worden.',
         'invoice' => 'Factuur weergeven',
         'no_orders' => 'Geen bestellingen om te bekijken.',
+        'paid_on' => 'Bestelling geplaatst :date',
         'resume' => 'Hervat afrekenen',
+        'shopify_expired' => 'De checkout link voor deze bestelling is verlopen.',
 
         'item' => [
             'display_name' => [

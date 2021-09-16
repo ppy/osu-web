@@ -36,7 +36,7 @@ class ClientTransformer extends TransformerAbstract
 
     public function includeUser(Client $client)
     {
-        return $this->item($client->user, new UserCompactTransformer);
+        return $this->item($client->user, new UserCompactTransformer());
     }
 
     public function includeRedirect(Client $client)

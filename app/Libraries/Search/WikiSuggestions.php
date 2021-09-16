@@ -21,7 +21,7 @@ class WikiSuggestions extends Search
 
         $this->source(['title', 'path']);
         $this->highlight(
-            (new Highlight)
+            (new Highlight())
                 ->field('title.autocomplete')
                 ->numberOfFragments(0)
         );
@@ -55,7 +55,7 @@ class WikiSuggestions extends Search
                 ],
             ]]);
 
-        return (new BoolQuery)
+        return (new BoolQuery())
             ->must($langQuery)
             ->must([
                 'match' => [

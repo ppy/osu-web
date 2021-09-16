@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Прайграйце наступны трэк аўтаматычна',
     ],
 
     'defaults' => [
@@ -14,96 +14,77 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            'beatmapset' => 'калекцыя бітмапаў',
+            'beatmapset_covers' => 'вокладкі калекцый бітмапаў',
+            'contest' => 'конкурс',
+            'contests' => 'конкурсы',
+            'root' => 'кансоль',
+            'store_orders' => 'адміністратар крамы',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'спіс',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'спіс',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'індэкс',
+            'sitemap' => 'Карта сайта',
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'кошык',
+            'orders' => 'гісторыя замоў',
+            'products' => 'прадукты',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'спіс',
         ],
 
         'users' => [
-            'modding' => '',
-            'show' => '',
+            'modding' => 'модынг',
+            'multiplayer' => 'мультыплэер',
+            'show' => 'інфармацыя',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Зачыніць (Esc)',
+        'fullscreen' => 'Пераключыць поўнаэкранны рэжым',
+        'zoom' => 'Павялічыць / паменшыць',
+        'previous' => 'Папярэдні (стрэлка налева)',
+        'next' => 'Наступны (стрэлка направа)',
     ],
 
     'menu' => [
         'beatmaps' => [
             '_' => 'бітмапы',
-            'artists' => 'featured artists',
-            'index' => 'спіс',
-            'packs' => 'пакеты',
         ],
         'community' => [
             '_' => 'супольнасць',
-            'chat' => 'чат',
-            'contests' => 'конкурсы',
             'dev' => 'распрацоўка',
-            'forum-forums-index' => 'форумы',
-            'getLive' => 'жывыя трансляцыі',
-            'tournaments' => 'турніры',
         ],
         'help' => [
             '_' => 'дапамога',
+            'getAbuse' => 'паведаміць пра парушэнне',
             'getFaq' => 'faq',
             'getRules' => 'правілы',
             'getSupport' => 'ды не ж, мне праўда патрэбна дапамога!',
-            'getWiki' => 'вікі',
         ],
         'home' => [
             '_' => 'галоўная',
-            'changelog-index' => 'спic змен',
-            'getDownload' => 'спампаваць',
-            'news-index' => 'навіны',
-            'search' => 'пошук',
             'team' => 'каманда',
         ],
         'rankings' => [
             '_' => 'рэйтынг',
-            'charts' => 'па графіках',
-            'country' => 'па краінах',
-            'index' => 'прадукцыйнасць',
             'kudosu' => 'кудосу',
-            'multiplayer' => '',
-            'score' => 'па ачках',
         ],
         'store' => [
             '_' => 'крама',
-            'cart-show' => 'кошык',
-            'getListing' => 'спіс',
-            'orders-index' => 'сартаванне гісторыі',
         ],
     ],
 
@@ -121,7 +102,7 @@ return [
             'forum' => 'Супольнасць форумаў',
             'livestreams' => 'Жывыя трансляцыі',
             'report' => 'Паведаміць пра праблему',
-            'wiki' => '',
+            'wiki' => 'Вікі',
         ],
         'legal' => [
             '_' => 'Правы і статус',
@@ -135,7 +116,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Няправільны параметр запыту',
             'description' => '',
         ],
         '404' => [
@@ -155,7 +136,11 @@ return [
             'description' => "Прабачце, але старонкі, якую вы запыталі няма тут!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Няправільны параметр запыту',
+            'description' => '',
+        ],
+        '429' => [
+            'error' => 'Перавышаны ліміт запытаў',
             'description' => '',
         ],
         '500' => [
@@ -179,13 +164,13 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'увайсці / зарэгістравацца',
 
         'login' => [
             'forgot' => "Не помню свае даныя",
             'password' => 'пароль',
             'title' => 'Увайдзіце, каб працягнуць',
-            'username' => '',
+            'username' => 'імя карыстальніка',
 
             'error' => [
                 'email' => "Імя карыстальніка або эл. пошта не існуе",
@@ -194,7 +179,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Спампаваць',
             'info' => 'Спадар, вам патрэбны ўліковы запіс. Чаму вы ўсё яшчэ не маеце яго?',
             'title' => "Не маеце ўліковага запісу?",
         ],
@@ -203,6 +188,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Налады',
+            'follows' => 'Спіс праглядаў',
             'friends' => 'Сябры',
             'logout' => 'Выйсці',
             'profile' => 'Мой профіль',

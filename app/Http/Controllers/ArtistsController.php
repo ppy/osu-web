@@ -14,7 +14,7 @@ class ArtistsController extends Controller
 {
     public function index()
     {
-        $artists = Artist::with('label')->withCount('tracks')->orderBy('name', 'asc');
+        $artists = Artist::with('label')->withMax('tracks', 'created_at')->withCount('tracks')->orderBy('name', 'asc');
         $user = Auth::user();
 
         if ($user === null || !$user->isAdmin()) {
@@ -61,16 +61,25 @@ class ArtistsController extends Controller
 
         if ($artist->user_id) {
             $links[] = [
-                'title' => trans('artist.links.osu'),
+                'title' => osu_trans('artist.links.osu'),
                 'url' => route('users.show', $artist->user_id),
                 'icon' => 'fas fa-user',
                 'class' => 'osu',
             ];
         }
 
+        if ($artist->beatmapsets()->exists()) {
+            $links[] = [
+                'title' => osu_trans('artist.links.beatmaps'),
+                'url' => route('beatmapsets.index', ['q' => "featured_artist={$artist->getKey()}"]),
+                'icon' => 'fas fa-bars',
+                'class' => 'osu',
+            ];
+        }
+
         if ($artist->website) {
             $links[] = [
-                'title' => trans('artist.links.site'),
+                'title' => osu_trans('artist.links.site'),
                 'url' => $artist->website,
                 'icon' => 'fas fa-link',
                 'class' => 'website',
@@ -91,8 +100,8 @@ class ArtistsController extends Controller
         return ext_view('artists.show', [
             'artist' => $artist,
             'links' => $links,
-            'albums' => json_collection($albums, new ArtistAlbumTransformer, ['tracks']),
-            'tracks' => json_collection($tracks, new ArtistTrackTransformer),
+            'albums' => json_collection($albums, new ArtistAlbumTransformer(), ['tracks']),
+            'tracks' => json_collection($tracks, new ArtistTrackTransformer()),
             'images' => $images,
         ]);
     }

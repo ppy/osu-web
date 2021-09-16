@@ -10,6 +10,7 @@ class @CurrentUserObserver
     $.subscribe 'user:update', @setData
     $(document).on 'turbolinks:load', @reinit
     $.subscribe 'osu:page:change', @throttledReinit
+    $.subscribe 'user:followUserMapping:update', @updateFollowUserMapping
 
 
   reinit: =>
@@ -29,7 +30,7 @@ class @CurrentUserObserver
   setCovers: (elements) =>
     elements ?= @covers
 
-    bgImage = osu.urlPresence(currentUser.cover_url) if currentUser.id?
+    bgImage = osu.urlPresence(currentUser.cover.url) if currentUser.id?
     for el in elements
       el.style.backgroundImage = bgImage
 
@@ -45,3 +46,12 @@ class @CurrentUserObserver
 
     Sentry.configureScope (scope) ->
       scope.setUser id: currentUser.id, username: currentUser.username
+
+
+  updateFollowUserMapping: (_e, data) =>
+    if data.following
+      currentUser.follow_user_mapping = currentUser.follow_user_mapping.concat(data.userId)
+    else
+      currentUser.follow_user_mapping = _.without(currentUser.follow_user_mapping, data.userId)
+
+    $.publish 'user:followUserMapping:refresh'

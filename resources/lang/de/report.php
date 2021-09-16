@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Melden',
+        'title' => ':username\'s Beatmap melden?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Melden',
         'title' => ':username\'s Beitrag melden?',
@@ -12,6 +17,11 @@ return [
     'comment' => [
         'button' => 'Melden',
         'title' => 'Den Kommentar von :username melden?',
+    ],
+
+    'forum_post' => [
+        'button' => 'Melden',
+        'title' => ':usernames Beitrag melden?',
     ],
 
     'scores' => [

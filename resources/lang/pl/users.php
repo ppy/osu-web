@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Według trybu gry',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Brak aktywności przez długi czas.",
@@ -84,7 +88,7 @@ return [
         'failed' => 'Nieprawidłowe dane logowania',
         'forgot' => 'Nie pamiętasz hasła?',
         'info' => 'Zaloguj się, aby kontynuować.',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Zbyt wiele nieudanych prób logowania - wykonaj captchę, by spróbować ponownie (odśwież stronę, jeżeli captcha nie jest widoczna).',
         'locked_ip' => 'Twój adres IP został zablokowany. Poczekaj kilka minut.',
         'password' => 'Hasło',
         'register' => "Nie posiadasz konta osu!? Utwórz nowe.",
@@ -110,7 +114,7 @@ return [
     ],
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'report' => [
-        'button_text' => 'zgłoś',
+        'button_text' => 'Zgłoś',
         'comments' => 'Dodatkowe informacje',
         'placeholder' => 'Podaj wszystkie informacje, które mogą okazać się przydatne.',
         'reason' => 'Powód',
@@ -124,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Oszukiwanie',
+            'multiple_accounts' => 'Korzystanie z wielu kont',
             'insults' => 'Obrażanie mnie lub innych',
             'spam' => 'Spamowanie',
             'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
@@ -150,6 +155,10 @@ return [
         'plays_with' => 'Gra za pomocą :devices',
         'title' => "Profil :username",
 
+        'comments_count' => [
+            '_' => ':link',
+            'count' => ':count_delimited komentarz|:count_delimited komentarze|:count_delimited komentarzy',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Zmień tło profilu',
@@ -198,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Rankingowe i zatwierdzone beatmapy',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Oczekujące beatmapy',
+                ],
+                'ranked' => [
+                    'title' => 'Rankingowe beatmapy',
                 ],
             ],
             'discussions' => [
@@ -292,6 +301,9 @@ return [
                 'recent' => 'Ostatnie',
                 'title' => 'Medale',
             ],
+            'multiplayer' => [
+                'title' => 'Gry w trybie wieloosobowym',
+            ],
             'posts' => [
                 'title' => 'Posty',
                 'title_longer' => 'Ostatnie posty',
@@ -302,7 +314,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Pobierz powtórkę',
-                'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
+                'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp',
                 'pp_weight' => 'ważone :percentage',
                 'view_details' => 'Pokaż szczegóły',
                 'title' => 'Wyniki',
@@ -345,13 +357,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Zainteresowania',
-            'lastfm' => 'Last.fm',
             'location' => 'Obecna lokalizacja',
             'occupation' => 'Zajęcia',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Strona internetowa',
         ],
         'not_found' => [
@@ -396,11 +406,16 @@ return [
             'total_hits' => 'Łączna liczba uderzeń',
             'total_score' => 'Łączny wynik',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rankingowe i zatwierdzone beatmapy',
-            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
-            'unranked_beatmapset_count' => 'Oczekujące beatmapy',
             'graveyard_beatmapset_count' => 'Porzucone beatmapy',
+            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
+            'pending_beatmapset_count' => 'Oczekujące beatmapy',
+            'ranked_beatmapset_count' => 'Rankingowe beatmapy',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Twoje konto jest obecnie uciszone.',
+        'message' => 'Niektóre działania mogą być niedostępne.',
     ],
 
     'status' => [

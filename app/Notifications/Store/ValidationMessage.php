@@ -33,7 +33,7 @@ class ValidationMessage extends Message
             $content .= " | Order `{$this->event->getOrder()->getOrderNumber()}`";
         }
 
-        return (new SlackMessage)
+        return (new SlackMessage())
             ->http(static::HTTP_OPTIONS)
             ->to(config('payments.notification_channel'))
             ->warning()

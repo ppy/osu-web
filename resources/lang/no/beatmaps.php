@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'avvis kudosu',
         'edit' => 'rediger',
         'edited' => 'Sist endret av :editor :update_time.',
+        'guest' => '',
         'kudosu_denied' => 'Avvist fra å få kudosu.',
         'message_placeholder_deleted_beatmap' => 'Denne vanskelighetsgraden har blitt slettet så den kan ikke bli diskutert lenger.',
         'message_placeholder_locked' => 'Diskusjon for dette beatmappet har blitt deaktivert.',
@@ -182,17 +183,24 @@ return [
         'disqualify' => 'Diskvalifiser',
         'incorrect_state' => 'Feil under utføringen av denne handlingen, prøv å oppdatere siden.',
         'love' => 'Elsker',
+        'love_choose' => '',
         'love_confirm' => 'Elsk dette beatmappet?',
         'nominate' => 'Nominer',
         'nominate_confirm' => 'Nominer dette beatmappet?',
         'nominated_by' => 'nominert av :users',
         'not_enough_hype' => "Det er ikke nok hype.",
-        'qualified' => 'Beregnes for å bli rangert :date, hvis ingen problemer blir funnet.',
-        'qualified_soon' => 'Beregnet for å bli rangert snart, hvis ingen problemer blir funnet.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nominasjoner :current/:required',
         'reset_message_deleted' => 'slettet',
         'title' => 'Nominasjon Status',
         'unresolved_issues' => 'Det er fortsatt uløste problemer som må løses først.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => 'snart',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Nominasjonsprosessen ble tilbakestilt :time_ago av :user med et nytt problem :discussion (:message).',
@@ -214,14 +222,15 @@ return [
             'not-found' => 'ingen treff',
             'not-found-quote' => '... nei, ingenting ble funnet.',
             'filters' => [
+                'extra' => 'ekstra',
                 'general' => 'Generelt',
-                'mode' => 'Modus',
-                'status' => 'Kategorier',
                 'genre' => 'Sjanger',
                 'language' => 'Språk',
-                'extra' => 'ekstra',
-                'rank' => 'Rangering Oppnådd',
+                'mode' => 'Modus',
+                'nsfw' => 'Eksplisitt innhold',
                 'played' => 'Spilt',
+                'rank' => 'Rangering Oppnådd',
+                'status' => 'Kategorier',
             ],
             'sorting' => [
                 'title' => 'Tittel',
@@ -242,10 +251,13 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Anbefalt vanskelighetsgrad',
         'converts' => 'Inkluder konverterte beatmaps',
+        'featured_artists' => '',
+        'follows' => '',
+        'recommended' => 'Anbefalt vanskelighetsgrad',
     ],
     'mode' => [
+        'all' => 'Alle',
         'any' => 'Alle',
         'osu' => '',
         'taiko' => '',
@@ -300,11 +312,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => '',
@@ -323,6 +335,12 @@ return [
         'other' => 'Andre',
         'unspecified' => 'Uspesifisert',
     ],
+
+    'nsfw' => [
+        'exclude' => 'Skjul',
+        'include' => 'Vis',
+    ],
+
     'played' => [
         'any' => 'Alle',
         'played' => 'Spilt',

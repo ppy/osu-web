@@ -65,6 +65,17 @@ class BeatmapsetDelete implements ShouldQueue
                 throw new Exception('Failed to delete beatmapset.');
             }
 
+            // only update the non-deleted comments.
+            $this->beatmapset->comments()->withoutTrashed()->update([
+                'deleted_by_id' => $this->user->getKey(),
+                // can restore comments >= than this date if really needed when undeleting.
+                'deleted_at' => $this->beatmapset->deleted_at,
+            ]);
+
+            if ($this->beatmapset->topic !== null) {
+                $this->beatmapset->topic->delete();
+            }
+
             $this->beatmapset->removeCovers();
         });
     }

@@ -103,10 +103,13 @@ class ForumsController extends Controller
                 ->get()
                 ->keyBy('topic_id');
 
+        $noindex = !$forum->enable_indexing;
+
         return ext_view('forum.forums.show', compact(
             'cover',
             'forum',
             'lastTopics',
+            'noindex',
             'pinnedTopics',
             'sort',
             'topicReadStatus',

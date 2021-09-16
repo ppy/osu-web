@@ -47,11 +47,13 @@ return [
         'confirm_restore' => '정말 이 글을 복원할까요?',
         'edited' => ':user 님이 마지막으로 :when에 수정하여 총 :count_delimited회 수정되었습니다.',
         'posted_at' => ':when에 게시됨',
+        'posted_by' => ':username 님이 게시함',
 
         'actions' => [
             'destroy' => '삭제',
-            'restore' => '복원',
             'edit' => '수정',
+            'report' => '게시글 신고',
+            'restore' => '복원',
         ],
 
         'create' => [
@@ -73,9 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '정말 이 주제를 삭제할까요?',
+        'confirm_restore' => '정말 이 주제를 복원할까요?',
         'deleted' => '삭제된 주제',
         'go_to_latest' => '최근에 올라온 글 보기',
         'has_replied' => '이 주제에 답글을 달았습니다.',
+        'in_forum' => ':forum 에서',
         'latest_post' => ':when by :user',
         'latest_reply_by' => ':user님이 마지막 답변 작성',
         'new_topic' => '새 주제글 작성',
@@ -85,6 +90,11 @@ return [
         'reply_title_prefix' => '답글',
         'started_by' => 'by :user',
         'started_by_verbose' => ':user 님이 시작함',
+
+        'actions' => [
+            'destroy' => '주제 삭제',
+            'restore' => '주제 복원',
+        ],
 
         'create' => [
             'close' => '닫기',
@@ -240,7 +250,7 @@ return [
             'to_0_confirm' => '주제를 잠금 해제할까요?',
             'to_0_done' => '해당 주제의 잠금이 해제되었습니다,',
             'to_1' => '주제글 잠그기',
-            'to_1_confirm' => '주제를 잠글까요?',
+            'to_1_confirm' => '이 주제를 잠글까요?',
             'to_1_done' => '해당 주제가 잠겼습니다.',
         ],
 
@@ -250,13 +260,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => '주제글 고정 해제',
-            'to_0_confirm' => '주제를 고정 해제할까요?',
+            'to_0_confirm' => '이 주제를 고정 해제할까요?',
             'to_0_done' => '해당 주제의 고정이 해제되었습니다.',
             'to_1' => '주제글 고정',
-            'to_1_confirm' => '주제를 고정할까요?',
+            'to_1_confirm' => '이 주제를 고정할까요?',
             'to_1_done' => '해당 주제가 고정되었습니다.',
             'to_2' => '주제글을 고정하고 알림글로 나타내기',
-            'to_2_confirm' => '주제를 고정하고 공지 사항로 표시할까요?',
+            'to_2_confirm' => '이 주제를 고정하고 공지 사항으로 표시할까요?',
             'to_2_done' => '해당 주제가 고정되고 알림글로 표시됩니다.',
         ],
 

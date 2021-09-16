@@ -36,7 +36,8 @@
     }
 
     &[disabled] {
-      opacity: 0.9;
+      color: @osu-colour-f1;
+      --bg: @osu-colour-b3;
       --bg-hover: var(--bg);
     }
   }
@@ -98,7 +99,7 @@
   }
 
   &__logo {
-    background-image: url('/images/layout/osu-logo-white.svg');
+    background-image: url('~@images/layout/osu-logo-white.svg');
     background-position: contain;
 
     flex: none;
@@ -147,7 +148,7 @@
     }
 
     &--header {
-      .at2x-simple('/images/headers/oauth-login.jpg');
+      .at2x-simple('~@images/headers/oauth-login.jpg');
       .center-content();
       margin-left: 0;
       margin-right: 0;

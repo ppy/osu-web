@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Hledat',
             'deleted' => 'Zahrnout smazané diskuze',
+            'mode' => '',
             'only_unresolved' => 'Ukaž pouze nerozluštěné diskuze',
             'types' => 'Typy zpráv',
             'username' => 'Uživatelské jméno',
@@ -54,7 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'Žádný z příspěvků neřeší mé obavy',
         'notice' => 'Poblíž :timestamp (:existing_timestamps) se už nějaké příspěvky nacházejí. Prosím zkontroluj je před zveřejněním tvého přispěvku.',
-        'unsaved' => '',
+        'unsaved' => ':count v této recenzi',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [
@@ -65,14 +73,15 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used z :max bloků použito',
         'go_to_parent' => 'Zobrazit příspěvek recenze',
         'go_to_child' => 'Zobrazit diskuzi',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
+            'block_too_large' => 'každý blok může obsahovat maximálně :limit znaků',
+            'external_references' => 'recenze obsahuje odkazy na problémy, které nepatří do této recenze',
             'invalid_block_type' => 'neplatný typ bloku',
             'invalid_document' => 'neplatná recenze',
+            'invalid_discussion_type' => '',
             'minimum_issues' => 'recenze musí obsahovat minimálně :count problém|recenze musí obsahovat minimálně :count problémů',
             'missing_text' => 'bloku chybí text',
             'too_many_blocks' => 'recenze mohou obsahovat pouze :count odstavec/problém|recenze mohou obsahovat pouze :count odstavců/problémů',

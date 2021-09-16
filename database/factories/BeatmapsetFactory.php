@@ -20,9 +20,9 @@ use App\Models\Beatmapset;
 $factory->define(Beatmapset::class, function (Faker\Generator $faker) {
     $artist = $faker->name;
     $title = $faker->sentence(rand(0, 5));
-    $isApproved = (rand(0, 2) > 0);
+    $isApproved = (int) (rand(0, 2) > 0);
 
-    return  [
+    return [
         'creator' => $faker->userName,
         'artist' => $artist,
         'title' => $title,
@@ -58,6 +58,13 @@ $factory->state(Beatmapset::class, 'no_discussion', function () {
     return ['discussion_enabled' => false];
 });
 
+$factory->state(Beatmapset::class, 'pending', function () {
+    return [
+        'approved' => Beatmapset::STATES['pending'],
+        'approved_date' => null,
+    ];
+});
+
 $factory->state(Beatmapset::class, 'qualified', function () {
     $approvedAt = now();
 
@@ -69,15 +76,19 @@ $factory->state(Beatmapset::class, 'qualified', function () {
 });
 
 $factory->afterCreatingState(Beatmapset::class, 'with_discussion', function (App\Models\Beatmapset $beatmapset) {
-    if (!$beatmapset->beatmaps()->save(
-        factory(App\Models\Beatmap::class)->make()
-    )) {
+    if (
+        !$beatmapset->beatmaps()->save(
+            factory(App\Models\Beatmap::class)->make()
+        )
+    ) {
         throw new Exception();
     }
 
-    if (!$beatmapset->beatmapDiscussions()->save(
-        factory(BeatmapDiscussion::class, 'general')->make(['user_id' => $beatmapset->user_id])
-    )) {
+    if (
+        !$beatmapset->beatmapDiscussions()->save(
+            factory(BeatmapDiscussion::class)->states('general')->make(['message_type' => 'praise', 'user_id' => $beatmapset->user_id])
+        )
+    ) {
         throw new Exception();
     }
 });

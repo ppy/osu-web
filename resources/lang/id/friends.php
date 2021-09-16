@@ -5,11 +5,11 @@
 
 return [
     'title_compact' => 'teman',
-    'too_many' => 'Batas teman tercapai.',
+    'too_many' => 'Batas jumlah teman tercapai',
 
     'buttons' => [
-        'add' => 'tambah teman',
-        'disabled' => 'teman',
-        'remove' => 'hapus teman',
+        'add' => 'tambahkan ke daftar teman',
+        'disabled' => 'pengikut',
+        'remove' => 'hapus dari daftar teman',
     ],
 ];

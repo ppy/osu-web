@@ -2,35 +2,38 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-watches {
-  color: @osu-colour-c1;
+  margin-top: 10px;
+  font-size: @font-size--title-small;
 
   &__table-container {
     overflow-x: auto;
   }
 
   &__col {
-    &--cover {
-      width: 70px;
-      padding: 0;
-    }
-
-    && { // bootstrap override
+    // bootstrap override
+    && {
       vertical-align: middle;
       border-top: 2px solid @osu-colour-b4;
+    }
+
+    // bootstrap override
+    &&--cover {
+      width: 70px;
+      padding: 0;
     }
   }
 
   &__cover {
     .default-border-radius();
-    width: 70px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background-size: cover;
     background-position: center;
     overflow: hidden;
   }
 
   &__description {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   &__heading {

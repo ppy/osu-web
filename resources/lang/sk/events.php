@@ -18,4 +18,11 @@ return [
     'user_support_first' => '<strong>:user</strong> sa stal osu! podporovateľom - díky za tvoju štedrosť!',
     'user_support_gift' => '<strong>:user</strong> obdržal darček osu! podporovateľ!',
     'username_change' => '<strong>:previousUsername</strong> sa premenoval na <strong><em>:user</strong></em>!',
+
+    'beatmapset_status' => [
+        'approved' => 'schválené',
+        'loved' => 'obľúbené',
+        'qualified' => 'kvalifikované',
+        'ranked' => 'hodnotené',
+    ],
 ];

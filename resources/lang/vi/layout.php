@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Chơi bản nhạc tiếp theo tự động',
     ],
 
     'defaults' => [
@@ -47,63 +47,44 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => '',
             'show' => 'thông tin',
         ],
     ],
 
     'gallery' => [
         'close' => 'Đóng (Esc)',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'fullscreen' => 'Bật/tắt toàn màn hình',
+        'zoom' => 'Thu phóng',
+        'previous' => 'Trước (mũi tên trái)',
+        'next' => 'Tiếp theo (mũi tên phải)',
     ],
 
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'nghệ sĩ tiêu biểu',
-            'index' => 'danh sách',
-            'packs' => 'gói',
         ],
         'community' => [
             '_' => 'cộng đồng',
-            'chat' => 'chat',
-            'contests' => 'cuộc thi',
             'dev' => 'phát triển',
-            'forum-forums-index' => 'diễn đàn',
-            'getLive' => 'live stream',
-            'tournaments' => 'giải đấu',
         ],
         'help' => [
             '_' => 'trợ giúp',
+            'getAbuse' => 'báo cáo lạm dụng',
             'getFaq' => 'faq',
             'getRules' => 'quy tắc',
             'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'trang chủ',
-            'changelog-index' => 'changelog',
-            'getDownload' => 'tải xuống',
-            'news-index' => 'tin tức',
-            'search' => 'tìm kiếm',
             'team' => 'team',
         ],
         'rankings' => [
             '_' => 'xếp hạng',
-            'charts' => 'tiêu điểm',
-            'country' => 'quốc gia',
-            'index' => 'performance',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
-            'score' => 'điểm',
         ],
         'store' => [
             '_' => 'cửa hàng',
-            'cart-show' => 'giỏ hàng',
-            'getListing' => 'danh sách',
-            'orders-index' => 'lịch sử đơn hàng',
         ],
     ],
 
@@ -158,6 +139,10 @@ return [
             'error' => '',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Ồ không! Có gì đó đã bị hỏng! ;_;',
             'description' => "Chúng tôi sẽ được tự động thông báo về mọi lỗi.",
@@ -170,8 +155,8 @@ return [
             'error' => 'Đang bảo trì!',
             'description' => "Thông thường bảo trì sẽ tốn khoảng 5 giây đến 10 phút. Nếu chúng tôi vẫn chưa trở lại sau khoảng thời gian trên, truy cập :link để biết thêm thông tin.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -203,7 +188,8 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Cài Đặt',
-            'friends' => 'Bạn Bè',
+            'follows' => '',
+            'friends' => 'Bạn bè',
             'logout' => 'Đăng Xuất',
             'profile' => 'Trang Cá Nhân',
         ],

@@ -45,7 +45,6 @@ class CreateForumCoversTable extends Migration
      */
     public function down()
     {
-        //
         Schema::drop('forum_forum_covers');
     }
 }

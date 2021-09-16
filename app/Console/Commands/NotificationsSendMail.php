@@ -7,7 +7,6 @@ namespace App\Console\Commands;
 
 use App\Jobs\UserNotificationDigest;
 use App\Models\Count;
-use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
 use Illuminate\Console\Command;
@@ -35,12 +34,12 @@ class NotificationsSendMail extends Command
      */
     public function handle()
     {
-        $lastIdRow = Count::lastMailNotificationIdSent();
+        $lastIdRow = Count::lastMailUserNotificationIdSent();
 
         $fromId = get_int($this->option('from')) ?? $lastIdRow->count;
-        $toId = get_int($this->option('to')) ?? optional(Notification::last())->getKey();
+        $toId = get_int($this->option('to')) ?? optional(UserNotification::last())->getKey();
 
-        $chunkSize = get_int($this->option('chunk-size')) ?? 100;
+        $chunkSize = get_int($this->option('chunk-size')) ?? 1000;
 
         if ($toId === null) {
             $this->warn('No notifications to send!');
@@ -48,14 +47,14 @@ class NotificationsSendMail extends Command
             return;
         }
 
-        $this->line("Sending notifications > {$fromId} <= {$toId}");
+        $this->line("Sending user notifications > {$fromId} <= {$toId}");
 
         // TODO: this query needs more investigation with larger dataset
         // on whether an index over (notification_id, delivery) would actually be useful;
         // currently getting inconsistent results...
         $userIds = UserNotification
-            ::where('notification_id', '>', $fromId)
-            ->where('notification_id', '<=', $toId)
+            ::where('id', '>', $fromId)
+            ->where('id', '<=', $toId)
             ->groupBy('user_id')
             ->pluck('user_id');
 

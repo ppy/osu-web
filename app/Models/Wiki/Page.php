@@ -8,22 +8,27 @@ namespace App\Models\Wiki;
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
+use App\Libraries\Elasticsearch\QueryHelper;
+use App\Libraries\Elasticsearch\Sort;
+use App\Libraries\LocaleMeta;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use App\Libraries\Wiki\MainPageRenderer;
 use App\Libraries\Wiki\MarkdownRenderer;
 use App\Models\Elasticsearch\WikiPageTrait;
+use App\Traits\Memoizes;
 use Carbon\Carbon;
+use Ds\Set;
 use Exception;
 use Log;
 
 class Page implements WikiObject
 {
-    use WikiPageTrait;
+    use Memoizes, WikiPageTrait;
 
     const CACHE_DURATION = 5 * 60 * 60;
-    const VERSION = 2;
+    const VERSION = 9;
 
     const TEMPLATES = [
         'markdown_page' => 'wiki.show',
@@ -48,14 +53,6 @@ class Page implements WikiObject
     public static function cleanupPath($path)
     {
         return strtolower(str_replace(['-', '/', '_'], ' ', $path));
-    }
-
-    public static function searchIndexConfig($params = [])
-    {
-        return array_merge([
-            'index' => static::esIndexName(),
-            'type' => static::esType(),
-        ], $params);
     }
 
     public static function fromEs($hit)
@@ -111,7 +108,7 @@ class Page implements WikiObject
     {
         $searchPath = static::cleanupPath($path);
 
-        $localeQuery = [
+        $currentLocaleQuery =
             ['constant_score' => [
                 'boost' => 1000,
                 'filter' => [
@@ -119,20 +116,22 @@ class Page implements WikiObject
                         'locale' => $locale ?? app()->getLocale(),
                     ],
                 ],
-            ]],
+            ]];
+
+        $fallbackLocaleQuery =
             ['constant_score' => [
                 'filter' => [
                     'match' => [
                         'locale' => config('app.fallback_locale'),
                     ],
                 ],
-            ]],
-        ];
+            ]];
 
         $query = (new BoolQuery())
-            ->must(['match' => ['path_clean' => es_query_and_words($searchPath)]])
+            ->must(QueryHelper::queryString($searchPath, ['path_clean'], 'and'))
             ->must(['exists' => ['field' => 'page']])
-            ->should($localeQuery)
+            ->should($currentLocaleQuery)
+            ->should($fallbackLocaleQuery)
             ->shouldMatch(1);
 
         $search = (new BasicSearch(static::esIndexName(), 'wiki_searchpath'))
@@ -165,20 +164,51 @@ class Page implements WikiObject
         $this->defaultSubtitle = array_pop($defaultTitles);
     }
 
+    public function availableLocales(): Set
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            $locales = new Set();
+
+            if (!$this->isVisible()) {
+                return $locales;
+            }
+
+            $query = (new BoolQuery())
+                ->must(['term' => ['path.keyword' => $this->path]])
+                ->must(['exists' => ['field' => 'page']]);
+            $search = (new BasicSearch(static::esIndexName(), 'wiki_searchlocales'))
+                ->source('locale')
+                ->sort(new Sort('locale.keyword', 'asc'))
+                ->query($query);
+            $response = $search->response();
+
+            foreach ($response->hits() as $hit) {
+                $locale = $hit['_source']['locale'] ?? null;
+                if (LocaleMeta::isValid($locale)) {
+                    $locales[] = $locale;
+                }
+            }
+            $locales->sort();
+
+            return $locales;
+        });
+    }
+
     public function editUrl()
     {
-        return 'https://github.com/'.OsuWiki::user().'/'.OsuWiki::repository().'/tree/master/wiki/'.$this->pagePath();
+        return 'https://github.com/'.OsuWiki::user().'/'.OsuWiki::repository().'/tree/'.OsuWiki::branch().'/wiki/'.$this->pagePath();
     }
 
     public function esDeleteDocument(array $options = [])
     {
         $this->log('delete document');
 
-        return Es::getClient()->delete(static::searchIndexConfig([
+        return Es::getClient()->delete([
+            'client' => ['ignore' => 404],
             'id' => $this->pagePath(),
             'index' => $options['index'] ?? static::esIndexName(),
-            'client' => ['ignore' => 404],
-        ]));
+            'type' => '_doc',
+        ]);
     }
 
     public function esIndexDocument(array $options = [])
@@ -189,11 +219,12 @@ class Page implements WikiObject
             $this->log('index document');
         }
 
-        return Es::getClient()->index(static::searchIndexConfig([
+        return Es::getClient()->index([
+            'body' => $this->source,
             'id' => $this->pagePath(),
             'index' => $options['index'] ?? static::esIndexName(),
-            'body' => $this->source,
-        ]));
+            'type' => '_doc',
+        ]);
     }
 
     public function esFetch()
@@ -400,7 +431,7 @@ class Page implements WikiObject
     public function title($withSubtitle = false)
     {
         if ($this->page === null) {
-            return trans('wiki.show.missing_title');
+            return osu_trans('wiki.show.missing_title');
         }
 
         $title = presence($this->page['header']['title'] ?? null) ?? $this->defaultTitle;

@@ -2,16 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapIcon } from 'beatmap-icon';
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import { UserLink } from 'user-link';
-import { getArtist, getDiffRating, getTitle } from 'utils/beatmap-helper';
+import { getArtist, getDiffColour, getTitle } from 'utils/beatmap-helper';
 
 interface Props {
-  beatmap: BeatmapJsonExtended;
+  beatmap: BeatmapExtendedJson;
   beatmapset: BeatmapsetJson;
 }
 
@@ -33,13 +33,13 @@ const BeatmapInfo = (props: Props) => {
 
       <div className='score-beatmap__detail'>
         <span className='score-beatmap__detail-item'>
-          <BeatmapIcon beatmap={beatmap} showConvertMode={true} showTitle={false} />
+          <BeatmapIcon beatmap={beatmap} showConvertMode showTitle={false} />
         </span>
 
         <span className='score-beatmap__detail-item score-beatmap__detail-item--difficulty'>
           <span
             className='score-beatmap__star'
-            style={osu.diffColour(getDiffRating(beatmap.difficulty_rating))}
+            style={{'--diff': getDiffColour(beatmap.difficulty_rating)} as React.CSSProperties}
           >
             <span className='fas fa-star' />
           </span>
@@ -47,21 +47,17 @@ const BeatmapInfo = (props: Props) => {
         </span>
 
         <span className='score-beatmap__detail-item'>
-          <a href={beatmapUrl} className='score-beatmap__link-plain'>
+          <a className='score-beatmap__link-plain' href={beatmapUrl}>
             {beatmap.version}
           </a>
           {' '}
 
           <span className='score-beatmap__mapper'>
             <StringWithComponent
-              pattern={osu.trans('beatmapsets.show.details.mapped_by')}
               mappings={{
-                ':mapper':
-                  <UserLink
-                    key='user'
-                    user={{ id: beatmapset.user_id, username: beatmapset.creator }}
-                  />,
+                mapper: <UserLink user={{ id: beatmapset.user_id, username: beatmapset.creator }} />,
               }}
+              pattern={osu.trans('beatmapsets.show.details.mapped_by')}
             />
           </span>
         </span>

@@ -5,40 +5,15 @@
   .link-plain();
   .link-white();
 
-  @border-size: 3px;
-
-  .color(@color) {
-    background-color: @color;
-
-    box-shadow: 0 @border-size darken(@color, 10%), 0 (@border-size + @box-shadow-y) @box-shadow-radius @box-shadow-color;
-
-    &:focus {
-      background-position: calc(50% - 10px) 50%;
-      background-color: lighten(@color, 5%);
-    }
-
-    &:hover {
-      background-position: calc(50% - 20px) 50%;
-      background-color: lighten(@color, 10%);
-    }
-
-    &:active {
-      @move: 2px;
-      transform: translate(0, @move);
-      background-position: calc(50% - 20px) 50%;
-      box-shadow: 0 (@border-size - @move) darken(@color, 10%), 0 (@border-size - @move + @box-shadow-y) @box-shadow-radius @box-shadow-color;
-    }
-  }
-
   border-radius: @border-radius-large;
-  background-image: url('/images/backgrounds/button.svg');
+  background-image: url('~@images/backgrounds/button.svg');
   background-size: 175%;
   background-position: center;
 
   font-size: @font-size--title-small;
   font-weight: bold;
 
-  margin-bottom: @border-size;
+  margin-bottom: var(--border-size);
   padding: 10px 20px;
 
   display: flex;
@@ -46,15 +21,43 @@
 
   transition: all 120ms ease-in-out;
   .own-layer();
+  --colour-h: var(--colour-blue-hue);
+  --colour-s: var(--c-saturation-3);
+  --colour-l: var(--c-lightness-3);
+  --bg-l-adjust: 0%;
+  --bg-move: 0px;
+  --border-size: 3px;
+  --move: 0px;
+  --inset-colour: hsl(var(--colour-h), var(--colour-s), calc(var(--colour-l) - 10%));
 
-  .color(@blue-darker);
+  transform: translate(0, var(--move));
+  background-color: hsl(var(--colour-h), var(--colour-s), calc(var(--colour-l) + var(--bg-l-adjust)));
+  background-position: calc(50% + var(--bg-move)) 50%;
 
-  &--green {
-    .color(@green);
+  box-shadow:
+    0 calc(var(--border-size) - var(--move)) var(--inset-colour),
+    0 calc(var(--border-size) + @box-shadow-y - var(--move)) @box-shadow-radius @box-shadow-color;
+
+  &:focus {
+    --bg-move: -10px;
+    --bg-l-adjust: 5%;
   }
 
-  &--pink-darker {
-    .color(@pink-darker);
+  &:hover {
+    --bg-move: -20px;
+    --bg-l-adjust: 10%;
+  }
+
+  &:active {
+    --move: 2px;
+  }
+
+  &--c-green {
+    --colour-h: var(--colour-green-hue);
+  }
+
+  &--c-pink-darker {
+    --colour-h: var(--colour-pink-hue);
   }
 
   &__text {

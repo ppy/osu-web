@@ -3,9 +3,9 @@
 
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
-interface SuggestionJSON {
+interface SuggestionJson {
   highlight: string;
   path: string;
   title: string;
@@ -14,7 +14,7 @@ interface SuggestionJSON {
 export class WikiSearchController {
   @observable selectedIndex = -1;
   @observable shouldShowSuggestions = false;
-  @observable suggestions: SuggestionJSON[] = [];
+  @observable suggestions: SuggestionJson[] = [];
 
   private debouncedFetchSuggestions = debounce(this.fetchSuggestions, 200);
   @observable private query = '';
@@ -24,12 +24,16 @@ export class WikiSearchController {
     return this.shouldShowSuggestions && this.suggestions.length > 0;
   }
 
-  @computed get selectedItem(): SuggestionJSON | undefined {
+  @computed get selectedItem(): SuggestionJson | undefined {
     return this.suggestions[this.selectedIndex];
   }
 
   @computed get displayText() {
     return this.selectedItem == null ? this.query : this.selectedItem.title;
+  }
+
+  constructor() {
+    makeObservable(this);
   }
 
   @action
@@ -55,7 +59,7 @@ export class WikiSearchController {
   @action
   selectIndex(index: number): void {
     if (index < -1) {
-     return this.selectIndex(this.suggestions.length - 1);
+      return this.selectIndex(this.suggestions.length - 1);
     }
 
     if (index >= this.suggestions.length) {
@@ -100,11 +104,11 @@ export class WikiSearchController {
   @action
   private fetchSuggestions() {
     this.xhr = $.getJSON(route('wiki-suggestions'), { query: this.query.trim() })
-    .done(action((response: SuggestionJSON[]) => {
-      if (response != null) {
-        this.suggestions = observable(response);
-        this.shouldShowSuggestions = true;
-      }
-    }));
+      .done(action((response: SuggestionJson[]) => {
+        if (response != null) {
+          this.suggestions = observable(response);
+          this.shouldShowSuggestions = true;
+        }
+      }));
   }
 }

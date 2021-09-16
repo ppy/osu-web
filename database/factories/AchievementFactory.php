@@ -18,7 +18,7 @@ $factory->define(App\Models\Achievement::class, function (Faker\Generator $faker
     $achievementSlugs = ['all-packs-anime-1', 'all-packs-anime-2', 'all-packs-gamer-1', 'all-packs-gamer-2', 'all-packs-rhythm-1', 'all-packs-rhythm-2', 'osu-combo-500', 'osu-combo-750', 'osu-combo-1000', 'osu-combo-2000'];
     $groupings = ['Misc Achievements 1', 'Misc Achievements 2'];
 
-    return  [
+    return [
         'achievement_id' => $faker->unique()->numberBetween(1, 5000),
         'name' => substr($faker->catchPhrase, 0, 40),
         'description' => $faker->realText(30),

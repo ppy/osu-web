@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <div class="forum-post-info">
-    @if ($user->hasProfile())
+    @if ($user->hasProfileVisible())
         @if ($user->user_avatar)
             <div class="forum-post-info__row forum-post-info__row--avatar">
                 <a
@@ -29,9 +29,18 @@
         >{{ $user->username }}</a>
 
         @if ($user->title() !== null)
-            <div class="forum-post-info__row forum-post-info__row--title">
-                {{ $user->title() }}
-            </div>
+            @if ($user->titleUrl() !== null)
+                <a
+                    class="forum-post-info__row forum-post-info__row--title"
+                    href="{{ $user->titleUrl() }}"
+                >
+                    {{ $user->title() }}
+                </a>
+            @else
+                <div class="forum-post-info__row forum-post-info__row--title">
+                    {{ $user->title() }}
+                </div>
+            @endif
         @endif
     @else
         <span class="forum-post-info__row forum-post-info__row--username">
@@ -40,16 +49,25 @@
     @endif
 
     @php
-        $group = $user->visibleGroups()[0] ?? null;
+        $userGroup = $user->userGroupsForBadges()->first();
     @endphp
-    @if (isset($group))
+    @if ($userGroup !== null)
         <div class="forum-post-info__row forum-post-info__row--group-badge">
-            <div
-                class="user-group-badge user-group-badge--t-forum"
-                data-label="{{ $group->short_name }}"
-                title="{{ $group->group_name }}"
-                style="{!! css_group_colour($group) !!}"
-            ></div>
+            @include('objects._user_group_badge', [
+                'modifiers' => ['t-forum'],
+                'userGroup' => $userGroup,
+            ])
+
+            @php
+                $playmodes = $userGroup->playmodes;
+            @endphp
+            @if ($playmodes !== null && count($playmodes) > 0)
+                <div class="forum-post-info__row forum-post-info__row--group-badge-playmodes">
+                    @foreach ($playmodes as $playmode)
+                        <i class="fal fa-extra-mode-{{$playmode}}"></i>
+                    @endforeach
+                </div>
+            @endif
         </div>
     @endif
 
@@ -60,12 +78,11 @@
                 'type' => 'performance',
                 'country' => $user->country->getKey(),
             ])}}">
-                <img
-                    class="flag-country"
-                    src="{{ flag_path($user->country->getKey()) }}"
-                    alt="{{ $user->country->getKey() }}"
-                    title="{{ $user->country->name }}"
-                />
+                @include('objects._flag_country', [
+                    'countryCode' => $user->country->getKey(),
+                    'countryName' => $user->country->name,
+                    'modifiers' => ['medium'],
+                ])
             </a>
         </div>
     @endif
@@ -73,7 +90,7 @@
     @if ($user->getKey() !== null)
         <div class="forum-post-info__row forum-post-info__row--posts">
             <a href="{{ route("users.posts", $user) }}">
-                {{ trans_choice('forum.post.info.post_count', $user->user_posts) }}
+                {{ osu_trans_choice('forum.post.info.post_count', $user->user_posts) }}
             </a>
         </div>
 

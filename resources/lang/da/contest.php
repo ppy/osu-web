@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Afstemning for denne konkurrence er slut',
         'login_required' => 'Log venligst ind for at stemme.',
+        'over' => 'Afstemning for denne konkurrence er slut',
+        'show_voted_only' => 'Vis stemmer',
 
         'best_of' => [
             'none_played' => "Det ser ikke ud som om, at du har spillet nogle beatmaps, som kvalificerer sig til denne konkurrence!",
@@ -26,14 +27,16 @@ return [
             'remove' => 'Fjern stemme',
             'used_up' => 'Du har brugt alle dine stemmer',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'entry',
         'login_required' => 'Log venligst ind for at deltage i denne konkurrence.',
         'silenced_or_restricted' => 'Du kan ikke deltage i konkurrencer, når du er mutet eller begrænset.',
         'preparation' => 'Vi er i gang med at forberede den næste konkurrence. Vær tålmodig!',
-        'over' => 'Tak for jeres bidrag! Indsendelsen for denne konkurrence er slut, og afstemning vil finde sted snarest!.',
-        'limit_reached' => 'Du har nået dit maksimale antal bidrag for denne konkurrence',
         'drop_here' => 'Aflever dit bidrag her',
         'download' => 'Download .osz',
         'wrong_type' => [

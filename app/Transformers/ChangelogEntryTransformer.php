@@ -12,6 +12,8 @@ class ChangelogEntryTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'github_user',
+        'message',
+        'message_html',
     ];
 
     public function transform(ChangelogEntry $entry)
@@ -25,7 +27,6 @@ class ChangelogEntryTransformer extends TransformerAbstract
             'type' => $entry->type,
             'category' => $entry->category,
             'title' => $entry->title,
-            'message_html' => $entry->messageHTML(),
             'major' => $entry->major,
             'created_at' => json_time($entry->created_at),
         ];
@@ -33,6 +34,16 @@ class ChangelogEntryTransformer extends TransformerAbstract
 
     public function includeGithubUser(ChangelogEntry $entry)
     {
-        return $this->item($entry->githubUser ?? new GithubUser, new GithubUserTransformer);
+        return $this->item($entry->githubUser ?? new GithubUser(), new GithubUserTransformer());
+    }
+
+    public function includeMessage(ChangelogEntry $entry)
+    {
+        return $this->primitive($entry->publicMessage());
+    }
+
+    public function includeMessageHtml(ChangelogEntry $entry)
+    {
+        return $this->primitive($entry->publicMessageHtml());
     }
 }

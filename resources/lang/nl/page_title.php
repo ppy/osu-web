@@ -22,6 +22,7 @@ return [
             '401-verification' => 'account verificatie',
             '405' => 'ontbrekend',
             '422' => 'ongeldige aanvraag',
+            '429' => 'te veel aanvragen',
             '500' => 'iets gaat er mis',
             '503' => 'onderhoud',
         ],
@@ -75,6 +76,9 @@ return [
         'contests_controller' => [
             '_' => 'wedstrijden',
         ],
+        'follows_controller' => [
+            'index' => 'dashboard',
+        ],
         'friends_controller' => [
             'index' => 'dashboard',
         ],
@@ -86,7 +90,7 @@ return [
             'index' => 'dashboard',
             'search' => 'zoeken',
             'support_the_game' => 'ondersteun het spel',
-            'testflight' => 'testvlucht',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'informatie',
@@ -95,7 +99,7 @@ return [
             '_' => 'live streams',
         ],
         'matches_controller' => [
-            '_' => 'overeenkomsten',
+            '_' => 'matches',
         ],
         'news_controller' => [
             '_' => 'nieuws',
@@ -107,13 +111,13 @@ return [
             '_' => 'wachtwoord opnieuw instellen',
         ],
         'ranking_controller' => [
-            '_' => 'ranglijst',
+            '_' => 'rankings',
         ],
         'scores_controller' => [
             '_' => 'prestatie',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'winkel',
         ],
         'tournaments_controller' => [
             '_' => 'toernooien',
@@ -123,7 +127,7 @@ return [
             'disabled' => 'waarschuwing',
         ],
         'wiki_controller' => [
-            '_' => 'kennisbank',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -132,11 +136,14 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'winkel',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder info',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'multiplayer geschiedenis',
         ],
     ],
 ];

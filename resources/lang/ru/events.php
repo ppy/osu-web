@@ -18,4 +18,11 @@ return [
     'user_support_first' => '<strong>:user</strong> приобрёл тег osu!саппортера - благодарим за Вашу поддержку!',
     'user_support_gift' => '<strong>:user</strong> получил тег osu!supporter в подарок!',
     'username_change' => '<strong>:previousUsername</strong> сменил свой ник на <strong><em>:user</strong></em>!',
+
+    'beatmapset_status' => [
+        'approved' => 'одобренные',
+        'loved' => 'любимые',
+        'qualified' => 'квалифицированные',
+        'ranked' => 'рейтинговые',
+    ],
 ];

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => ':attribute Specificato invalido.',
+    'invalid' => ':attribute specificato invalido.',
     'not_negative' => ':attribute non può essere negativo.',
     'required' => ':attribute è richiesto.',
     'too_long' => ':attribute ha superato la lunghezza massima - può essere solo fino a :limit caratteri.',
@@ -12,24 +12,24 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Il timestamp è specificato ma manca la beatmap.',
-        'beatmapset_no_hype' => "La beatmap non può essere promossa.",
-        'hype_requires_null_beatmap' => 'La promozione deve essere fatta nella sezione Generale (tutte le difficoltà).',
+        'beatmapset_no_hype' => "La beatmap non può avere hype.",
+        'hype_requires_null_beatmap' => 'Si può mettere hype nella sezione Generale (Tutte le difficoltà).',
         'invalid_beatmap_id' => 'Difficoltà specificata non valida.',
         'invalid_beatmapset_id' => 'Beatmap specificata non valida.',
         'locked' => 'La discussione è chiusa.',
 
         'attributes' => [
             'message_type' => 'Tipo di messaggio',
-            'timestamp' => 'Data',
+            'timestamp' => 'Timestamp',
         ],
 
         'hype' => [
-            'discussion_locked' => "Al momento questa beatmap è bloccata per le discussioni e non può avere Hype",
-            'guest' => 'Devi avere effettuato il login per promuovere.',
-            'hyped' => 'Hai già promosso questa beatmap.',
-            'limit_exceeded' => 'Hai usato tutte le tue promozioni.',
-            'not_hypeable' => 'Questa beatmap non può essere promossa',
-            'owner' => 'Nessuna promozione nella tua beatmap.',
+            'discussion_locked' => "Al momento questa beatmap è bloccata per le discussioni e non può avere hype",
+            'guest' => 'Devi avere effettuato il login per mettere hype.',
+            'hyped' => 'Hai già messo hype a questa beatmap.',
+            'limit_exceeded' => 'Hai usato tutti i tuoi hype.',
+            'not_hypeable' => 'Questa beatmap non può avere hype',
+            'owner' => 'Non puoi mettere hype alla tua beatmap.',
         ],
 
         'timestamp' => [
@@ -40,7 +40,7 @@ return [
 
     'beatmapset_discussion_post' => [
         'discussion_locked' => 'La discussione è chiusa.',
-        'first_post' => 'Non puoi cancellare il post iniziale.',
+        'first_post' => 'Non si può eliminare il post iniziale.',
 
         'attributes' => [
             'message' => 'Il messaggio',
@@ -49,7 +49,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Non è permesso rispondere ad un commento eliminato.',
-        'top_only' => 'Fissare la risposta non è consentito.',
+        'top_only' => 'Non è permesso fissare una risposta.',
 
         'attributes' => [
             'message' => 'Il messaggio',
@@ -62,17 +62,19 @@ return [
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Puoi votare solamente una richiesta di feature.',
+            'not_feature_topic' => 'Puoi votare solo una richiesta di funzionalità.',
             'not_enough_feature_votes' => 'Non hai abbastanza voti.',
         ],
 
         'poll_vote' => [
-            'invalid' => 'Specificata un\'Opzione Invalida.',
+            'invalid' => 'È stata specificata un\'opzione non valida.',
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Cancellare i metadata di una beatmap non è consentito.',
-            'beatmapset_post_no_edit' => 'Modificare i metadata di una beatmap non è consentito.',
+            'beatmapset_post_no_delete' => 'Cancellare i metadata della beatmap di un post non è consentito.',
+            'beatmapset_post_no_edit' => 'Modificare i metadata della beatmap di un post non è consentito.',
+            'first_post_no_delete' => 'Non si può eliminare il post iniziale',
+            'missing_topic' => 'Il post non ha un topic',
             'only_quote' => 'La tua risposta contiene solo una citazione.',
 
             'attributes' => [
@@ -88,11 +90,11 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Non è permesso avere un\'opzione duplicata.',
-            'grace_period_expired' => 'Non è possibile modificare un sondaggio dopo :limit ore',
+            'grace_period_expired' => 'Non è possibile modificare un sondaggio dopo :limit ore.',
             'hiding_results_forever' => 'Non è possibile nascondere i risultati di un sondaggio che non finisce mai.',
             'invalid_max_options' => 'Le opzioni per utente non possono superare il numero di opzioni disponibili.',
             'minimum_one_selection' => 'È richiesto un minimo di un\'opzione per utente.',
-            'minimum_two_options' => 'È necessario almeno due opzioni.',
+            'minimum_two_options' => 'Servono almeno due opzioni.',
             'too_many_options' => 'Raggiunto il massimo numero di opzioni permesse.',
 
             'attributes' => [
@@ -119,12 +121,13 @@ return [
     ],
 
     'user' => [
-        'contains_username' => 'Password potrebbe non contenere il nome utente.',
+        'contains_username' => 'La password non deve contenere il nome utente.',
         'email_already_used' => 'Indirizzo email già in uso.',
+        'email_not_allowed' => 'Indirizzo email non valido.',
         'invalid_country' => 'Paese non presente nel database.',
         'invalid_discord' => 'Nome utente di Discord non valido.',
         'invalid_email' => "Non sembra essere un indirizzo email valido.",
-        'invalid_twitter' => 'Username Twitter non valido.',
+        'invalid_twitter' => 'Nome utente di Twitter non valido.',
         'too_short' => 'La nuova password è troppo corta.',
         'unknown_duplicate' => 'Nome utente o indirizzo email già in uso.',
         'username_available_in' => 'Questo nome utente sarà disponibile per l\'uso tra :duration.',
@@ -140,7 +143,7 @@ return [
         'weak' => 'Password bandita.',
         'wrong_current_password' => 'La password attuale non è corretta.',
         'wrong_email_confirmation' => 'La conferma della email non corrisponde.',
-        'wrong_password_confirmation' => 'La conferma della password non coincide.',
+        'wrong_password_confirmation' => 'La conferma della password non corrisponde.',
         'too_long' => 'Lunghezza massima superata - può essere solo fino a :limit caratteri.',
 
         'attributes' => [
@@ -152,10 +155,10 @@ return [
         'change_username' => [
             'restricted' => 'Non puoi cambiare il tuo nome utente mentre sei limitato.',
             'supporter_required' => [
-                '_' => 'Devi essere :link per cambiare il tuo nome!',
-                'link_text' => 'osu! sostenuto',
+                '_' => 'Devi avere :link per cambiare il tuo nome!',
+                'link_text' => 'sostenuto osu!',
             ],
-            'username_is_same' => 'Questo è già il tuo nome utente, stupido!',
+            'username_is_same' => 'Questo è già il tuo nome utente, sciocco!',
         ],
     ],
 

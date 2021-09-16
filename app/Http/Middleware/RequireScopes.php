@@ -5,6 +5,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\OAuth\Token;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
@@ -39,18 +40,10 @@ class RequireScopes
         return $next($request);
     }
 
-    protected function validateScopes($token, $scopes)
+    protected function validateScopes(?Token $token, $scopes)
     {
         if ($token === null) {
             throw new AuthenticationException();
-        }
-
-        if (empty($token->scopes)) {
-            throw new MissingScopeException([], 'Tokens without scopes are not valid.');
-        }
-
-        if ($token->isClientCredentials() && in_array('*', $token->scopes, true)) {
-            throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
         }
 
         if (!$this->requestHasScopedMiddleware(request())) {
@@ -60,7 +53,7 @@ class RequireScopes
             }
         } else {
             foreach ($scopes as $scope) {
-                if (!$token->can($scope)) {
+                if ($scope !== 'any' && !$token->can($scope)) {
                     throw new MissingScopeException([$scope], 'A required scope is missing.');
                 }
             }

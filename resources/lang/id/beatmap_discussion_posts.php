@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title' => 'Kiriman Diskusi Beatmap',
+        'title' => 'Postingan Diskusi Beatmap',
     ],
 
     'item' => [

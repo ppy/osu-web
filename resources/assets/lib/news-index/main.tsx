@@ -6,59 +6,44 @@ import PostJson from 'interfaces/news-post-json';
 import NewsSidebarMetaJson from 'interfaces/news-sidebar-meta-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import { action, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import NewsHeader from 'news-header';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
+import ShowMoreLink from 'show-more-link';
 import PostItem from './post-item';
 
-interface Props {
-  container: HTMLElement;
-  data: PostsJson;
-  sidebarMeta: NewsSidebarMetaJson;
-}
-
-interface PostsJson {
-  news_posts: PostJson[];
-  search: Search;
-}
-
-interface Search {
-  cursor: SearchCursor;
+interface NewsSearch {
   limit: number;
   year: number;
 }
 
-interface SearchCursor {
-  id?: number;
-  published_at?: string;
+interface NewsIndexJson {
+  cursor: unknown;
+  news_posts: PostJson[];
+  news_sidebar: NewsSidebarMetaJson;
+  search: NewsSearch;
 }
 
-interface State {
-  hasMore: boolean;
-  loading: boolean;
-  posts: PostJson[];
+interface Props {
+  container: HTMLElement;
+  data: NewsIndexJson;
 }
 
-export default class Main extends React.Component<Props, State> {
-  private eventId = `news-index-${osu.uuid()}`;
+@observer
+export default class Main extends React.Component<Props> {
+  @observable private data = osu.jsonClone(this.props.data);
+  @observable private loadingXhr?: JQuery.jqXHR | null = null;
 
   constructor(props: Props) {
     super(props);
 
-    this.restoreState();
-
-    if (this.state == null) {
-      this.state = this.newStateFromData(props.data);
-    }
+    makeObservable(this);
   }
 
-  componentDidMount = () => {
-    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.saveState);
-  }
-
-  componentWillUnmount = () => {
-    $(document).off(`.${this.eventId}`);
+  componentWillUnmount() {
+    this.loadingXhr?.abort();
   }
 
   render() {
@@ -71,21 +56,21 @@ export default class Main extends React.Component<Props, State> {
         <div className='osu-page osu-page--wiki'>
           <div className='wiki-page'>
             <div className='wiki-page__toc'>
-              <NewsSidebar data={this.props.sidebarMeta} />
+              <NewsSidebar data={this.data.news_sidebar} />
             </div>
 
             <div className='wiki-page__content'>
               <div className='news-index'>
-                {this.state.posts.map((post, i) => (
+                {this.data.news_posts.map((post, i) => (
                   <PostItem key={post.id} post={post} />
                 ))}
 
                 <div className='news-index__item news-index__item--more'>
                   <ShowMoreLink
-                    callback={this.showMore}
-                    hasMore={this.state.hasMore}
-                    loading={this.state.loading}
-                    modifiers={['t-dark-purple-dark']}
+                    callback={this.handleShowMore}
+                    hasMore={this.data.cursor != null}
+                    loading={this.loadingXhr != null}
+                    modifiers='t-dark-purple-dark'
                   />
                 </div>
               </div>
@@ -103,7 +88,7 @@ export default class Main extends React.Component<Props, State> {
                 'data-reload-on-success': '1',
                 'data-remote': true,
                 'data-url': route('news.store'),
-                'type': 'button',
+                type: 'button',
               },
               text: osu.trans('news.store.button'),
             },
@@ -113,68 +98,19 @@ export default class Main extends React.Component<Props, State> {
     );
   }
 
-  private newStateFromData = (data: PostsJson) => {
-    const hasMore = data.news_posts.length === data.search.limit;
-    let posts: PostJson[];
-    let loading: boolean;
-
-    if (this.state == null) {
-      posts = [];
-      loading = false;
-    } else {
-      posts = this.state.posts;
-      loading = this.state.loading;
-    }
-
-    posts = posts.concat(data.news_posts);
-
-    if (hasMore) {
-      posts.pop();
-    }
-
-    return {posts, hasMore, loading};
-  }
-
-  private restoreState = () => {
-    const savedState = this.props.container.dataset.lastState;
-    if (savedState != null) {
-      this.state = JSON.parse(savedState) as State;
-      delete this.props.container.dataset.lastState;
-    }
-  }
-
-  private saveState = () => {
-    this.props.container.dataset.lastState = JSON.stringify(this.state);
-  }
-
-  private showMore = () => {
-    if (!this.state.hasMore) {
+  @action
+  private handleShowMore = () => {
+    if (this.data.cursor == null || this.loadingXhr != null) {
       return;
     }
 
-    if (this.state.posts.length === 0) {
-      return;
-    }
-
-    const search: Search = {
-      cursor: {},
-      limit: 21,
-      year: this.props.sidebarMeta.current_year,
-    };
-
-    const lastPost = _.last(this.state.posts);
-    if (lastPost != null) {
-      search.cursor.id = lastPost.id;
-      search.cursor.published_at = lastPost.published_at;
-    }
-
-    this.setState({loading: true});
-
-    $.get(route('news.index'), search)
-    .done((data) => {
-      this.setState(this.newStateFromData(data as PostsJson));
-    }).always(() => {
-      this.setState({loading: false});
-    });
-  }
+    this.loadingXhr = $.get(route('news.index'), { ...this.data.search, cursor: this.data.cursor })
+      .done(action((newData: NewsIndexJson) => {
+        newData.news_posts = this.data.news_posts.concat(newData.news_posts);
+        this.data = newData;
+        this.props.container.dataset.props = JSON.stringify({ data: this.data });
+      })).always(action(() => {
+        this.loadingXhr = null;
+      }));
+  };
 }

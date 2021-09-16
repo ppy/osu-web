@@ -51,7 +51,7 @@ class KudosuHistoryTransformer extends TransformerAbstract
             'model' => $model,
             'created_at' => json_time($kudosuHistory->date),
             'giver' => $giver ?? null,
-            'post' => $post ?? null,
+            'post' => $post,
             'details' => $kudosuHistory->details,
         ];
     }

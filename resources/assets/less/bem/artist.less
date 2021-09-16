@@ -95,7 +95,7 @@
   }
 
   &__portrait {
-    .at2x-simple("/images/layout/artist-noavatar.jpg");
+    .at2x-simple("~@images/layout/artist-noavatar.jpg");
     width: 250px;
     height: 250px;
     .default-box-shadow();
@@ -121,7 +121,7 @@
     }
 
     &--new {
-      box-shadow: 25px -10px 50px osu-hsla(@osu-colour-orange-1, 0.2);
+      box-shadow: 25px -10px 50px hsla(var(--hsl-orange-1), 0.2);
     }
   }
 

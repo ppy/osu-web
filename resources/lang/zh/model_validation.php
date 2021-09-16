@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '不允许删除谱面信息帖。',
             'beatmapset_post_no_edit' => '不允许编辑谱面信息帖。',
+            'first_post_no_delete' => '无法删除第一个帖子',
+            'missing_topic' => '该帖子缺少主题',
             'only_quote' => '你的回复仅包含引用',
 
             'attributes' => [
@@ -121,6 +123,7 @@ return [
     'user' => [
         'contains_username' => '密码不能包含用户名。',
         'email_already_used' => '邮箱已被使用。',
+        'email_not_allowed' => '不允许的邮箱地址。',
         'invalid_country' => '国家未被数据库收录。',
         'invalid_discord' => 'Discord 用户名无效。',
         'invalid_email' => "无效的邮箱地址。",

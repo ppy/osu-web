@@ -22,6 +22,9 @@ class UserRegistrationTest extends TestCase
 
         $this->assertFalse($thrown);
         $this->assertSame($origCount + 1, User::count());
+        $this->assertTrue($reg->user()->userGroups->every(function ($userGroup) {
+            return $userGroup->user_pending === false;
+        }));
     }
 
     public function testRequiresUsername()
@@ -37,8 +40,8 @@ class UserRegistrationTest extends TestCase
         $this->assertArraySubset(
             $reg->user()->validationErrors()->all(),
             [
-                'username' => [trans('model_validation.required', [
-                    'attribute' => trans('model_validation.user.attributes.username'),
+                'username' => [osu_trans('model_validation.required', [
+                    'attribute' => osu_trans('model_validation.user.attributes.username'),
                 ])],
             ]
         );
@@ -58,8 +61,8 @@ class UserRegistrationTest extends TestCase
         $this->assertArraySubset(
             $reg->user()->validationErrors()->all(),
             [
-                'user_email' => [trans('model_validation.required', [
-                    'attribute' => trans('model_validation.user.attributes.user_email'),
+                'user_email' => [osu_trans('model_validation.required', [
+                    'attribute' => osu_trans('model_validation.user.attributes.user_email'),
                 ])],
             ]
         );
@@ -79,8 +82,8 @@ class UserRegistrationTest extends TestCase
         $this->assertArraySubset(
             $reg->user()->validationErrors()->all(),
             [
-                'password' => [trans('model_validation.required', [
-                    'attribute' => trans('model_validation.user.attributes.password'),
+                'password' => [osu_trans('model_validation.required', [
+                    'attribute' => osu_trans('model_validation.user.attributes.password'),
                 ])],
             ]
         );

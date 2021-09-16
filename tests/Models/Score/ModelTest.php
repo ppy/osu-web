@@ -17,7 +17,7 @@ class ModelTest extends TestCase
         $modes = array_keys(Beatmap::MODES);
         foreach ($modes as $mode) {
             $class = Model::getClassByString($mode);
-            $this->assertInstanceOf(Model::class, new $class);
+            $this->assertInstanceOf(Model::class, new $class());
         }
     }
 

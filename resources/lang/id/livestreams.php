@@ -4,10 +4,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'promote' => [
+        'pin' => 'Apakah Anda yakin untuk mempromosikan siaran langsung ini?',
+        'unpin' => "Apakah Anda yakin untuk menghentikan promosi siaran langsung ini?",
+    ],
+
     'top-headers' => [
         'headline' => 'Siaran Langsung',
-        'description' => 'Data diambil dari twitch.tv setiap lima menit berdasarkan daftar direktori. Jangan ragu untuk memulai siaran dan daftarkan dirimu! Untuk informasi lebih lanjut tentang cara penyiapan, mohon kunjungi laman wiki bagian siaran langsung.',
+        'description' => 'Daftar siaran-siaran langsung yang ada di bawah ini senantiasa diperbaharui per lima menitnya mengikuti data yang tersedia pada situs web twitch.tv. Jangan ragu untuk mulai menyiarkan dirimu di mata dunia! Untuk dapat mengetahui informasi lebih lanjut seputar cara menyiarkan osu! secara langsung, harap kunjungi :link.',
 
-        'link' => 'laman wiki bagian siaran langsung',
+        'link' => 'laman wiki berikut',
     ],
 ];

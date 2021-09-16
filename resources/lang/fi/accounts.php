@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'nykyinen sijainti',
                 'user_interests' => 'kiinnostukset',
-                'user_msnm' => '',
                 'user_occ' => 'ammatti',
                 'user_twitter' => '',
                 'user_website' => 'verkkosivu',
@@ -49,21 +48,23 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '',
-        'beatmapset_disqualify' => '',
-        'comment_reply' => '',
+        'beatmapset_discussion_qualified_problem' => 'vastaanota ilmoituksia uudesta ongelmasta seuraavien tilojen hyväksytyissä beatmapeissa',
+        'beatmapset_disqualify' => 'vastaanota ilmoituksia kun beatmappeja hylätään seuraavista tiloista',
+        'comment_reply' => 'vastaanota ilmoituksia vastauksista kommentteihisi',
         'title' => 'Ilmoitukset',
         'topic_auto_subscribe' => 'automaattisesti salli ilmoitukset uusille foorumiaiheille jotka luot',
 
         'options' => [
-            '_' => '',
+            '_' => 'toimitusvaihtoehdot',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'beatmapin modaus',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'yksityisviestit',
+            'comment_new' => 'uudet kommentit',
             'forum_topic_reply' => 'aihevastaus',
-            'mail' => '',
+            'mail' => 'posti',
+            'mapping' => '',
             'push' => 'push',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'käyttäjämitali avattu',
         ],
     ],
 
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'näytä beatmap-metadata alkuperäisellä kielellä',
         'title' => 'Asetukset',
 
         'beatmapset_download' => [
             '_' => 'oletus beatmap-lataus tyyppi',
             'all' => 'videon kanssa jos saatavilla',
-            'no_video' => 'ilman videota',
             'direct' => 'avaa osu!directissä',
+            'no_video' => 'ilman videota',
         ],
-
-        'beatmapset_title_show_original' => 'näytä beatmap-metadata alkuperäisellä kielellä',
     ],
 
     'playstyles' => [

@@ -5,9 +5,11 @@
 
 return [
     'deleted' => 'đã xóa',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited bình luận đã bị xóa',
     'edited' => 'đã chỉnh sửa :timeago bởi :user',
-    'pinned' => '',
+    'pinned' => 'đã ghim',
     'empty' => 'Chưa có bình luận nào.',
     'load_replies' => 'hiển thị những trả lời',
     'replies_count' => '',
@@ -35,7 +37,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'bình luận',
         'nav_title' => 'danh sách',
+        'no_comments' => 'không tìm thấy bình luận nào...',
     ],
 
     'placeholder' => [

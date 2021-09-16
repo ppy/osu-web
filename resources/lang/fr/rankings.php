@@ -18,11 +18,11 @@ return [
     ],
 
     'type' => [
-        'charts' => 'Charts',
-        'country' => 'Pays',
+        'charts' => 'mise en avant',
+        'country' => 'pays',
         'multiplayer' => 'multijoueur',
-        'performance' => 'Performance',
-        'score' => 'Score',
+        'performance' => 'performance',
+        'score' => 'score',
     ],
 
     'spotlight' => [
@@ -36,14 +36,14 @@ return [
         'accuracy' => 'Précision',
         'active_users' => 'Utilisateurs actifs',
         'country' => 'Pays',
-        'play_count' => 'Nombre de Fois Jouées',
+        'play_count' => 'Nombres de parties',
         'performance' => 'Performance',
-        'total_score' => 'Score Total',
+        'total_score' => 'Score total',
         'ranked_score' => 'Score Classé',
         'average_score' => 'Score Moyen',
-        'average_performance' => 'Perf. Moyenne',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'average_performance' => 'Performance moyenne.',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

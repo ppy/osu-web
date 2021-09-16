@@ -9,7 +9,7 @@
 
   z-index: @z-index--user-card-tooltip !important;
 
-  background-color: osu-hsla(@osu-colour-b6, 0.75);
+  background-color: hsla(var(--hsl-b6), 0.75);
   color: white;
   font-size: @font-size--normal;
   max-width: ((@avatar-size + 2*@avatar-margin) * @columns) + 20px;
@@ -20,6 +20,13 @@
 
   @media @mobile {
     max-width: ((@avatar-size + 2*@avatar-margin) * @columns-mobile) + 20px;
+  }
+
+  // for when it's inside another container (for example qtip)
+  &--blank {
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
   }
 
   &__title {

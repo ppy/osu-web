@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Phục hồi',
-            'regenerating' => 'Đang phục hồi...',
-            'remove' => 'Gỡ bỏ',
-            'removing' => 'Đang gỡ bỏ...',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
             'title' => '',
         ],
         'show' => [
-            'covers' => 'Quản lý Các ảnh bìa của Beatmapset',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'kích hoạt',
-                'activate_confirm' => 'kích hoạt modding v2 cho beatmap này?',
-                'active' => 'active',
-                'inactive' => 'inactive',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Xóa',
+                'delete' => '',
 
-                'forum-name' => 'Diễn đàn #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Không có ảnh bìa',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Lưu lại',
-                    'update' => 'Cập nhật',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Danh Sách Các Ảnh Cover của Diễn Đàn',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Ảnh Cover Mặc Định cho Bài Viết',
-                    'main' => 'Ảnh Bìa của Diễn Đàn',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,7 +50,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Lưu Trữ về Người Xem',
+            'title' => '',
         ],
     ],
 
@@ -58,9 +58,9 @@ return [
         'root' => [
             'sections' => [
                 'beatmapsets' => '',
-                'forum' => 'Diễn đàn',
-                'general' => 'Thông tin chung',
-                'store' => 'Cửa hàng',
+                'forum' => '',
+                'general' => '',
+                'store' => '',
             ],
         ],
     ],
@@ -68,15 +68,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Danh Sách Đơn Hàng',
+                'title' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Người dùng đang bị restricted.',
-            'message' => '(chỉ có admin mới có thể thấy)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

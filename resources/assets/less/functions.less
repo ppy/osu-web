@@ -103,16 +103,6 @@
   transition: @property @duration @function;
 }
 
-.default-gutter() {
-  padding-left: @gutter;
-  padding-right: @gutter;
-
-  @media @desktop {
-    padding-left: @gutter-desktop;
-    padding-right: @gutter-desktop;
-  }
-}
-
 .default-gutter-v2(@adjustment: 0) {
   padding-left: (@gutter-v2 + @adjustment);
   padding-right: (@gutter-v2 + @adjustment);
@@ -129,7 +119,7 @@
   &::before {
     .full-size();
     content: '';
-    background-color: osu-hsla(@osu-colour-b1, 80%);
+    background-color: hsla(var(--hsl-b1), 80%);
   }
 }
 
@@ -139,7 +129,7 @@
   &::before {
     .full-size();
     content: '';
-    background-color: osu-hsla(@osu-colour-b5, 60%);
+    background-color: hsla(var(--hsl-b5), 60%);
   }
 }
 
@@ -330,7 +320,7 @@
 }
 
 .btn-bg() {
-  background-image: url("/images/backgrounds/button.svg");
+  background-image: url("~@images/backgrounds/button.svg");
   background-size: 200px;
   background-position: 50% 50%;
 }

@@ -2,16 +2,24 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('master', ['titlePrepend' => trans('accounts.edit.title_compact')])
+@extends('master', ['titlePrepend' => osu_trans('accounts.edit.title_compact')])
 
 @section('content')
+    @if (Auth::user()->isSilenced() && !Auth::user()->isRestricted())
+        @include('objects._notification_banner', [
+            'type' => 'alert',
+            'title' => osu_trans('users.silenced_banner.title'),
+            'message' => osu_trans('users.silenced_banner.message'),
+        ])
+    @endif
+
     @include('home._user_header_default', ['themeOverride' => 'settings'])
 
     <div class="osu-page u-has-anchor">
         <div class="account-edit account-edit--first">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
-                    {{ trans('accounts.edit.profile.title') }}
+                    {{ osu_trans('accounts.edit.profile.title') }}
                 </h2>
             </div>
 
@@ -19,7 +27,7 @@
                 <div class="account-edit__input-group">
                     <div class="account-edit-entry account-edit-entry--read-only">
                         <div class="account-edit-entry__label">
-                            {{ trans('accounts.edit.username') }}
+                            {{ osu_trans('accounts.edit.username') }}
                         </div>
                         <div class="account-edit-entry__input">
                             {{ Auth::user()->username }}
@@ -29,7 +37,7 @@
                             <a class="btn-osu-big btn-osu-big--account-edit" href="{{route('store.products.show', 'username-change')}}">
                                 <div class="btn-osu-big__content">
                                     <div class="btn-osu-big__left">
-                                        {{ trans('common.buttons.change') }}
+                                        {{ osu_trans('common.buttons.change') }}
                                     </div>
 
                                     <div class="btn-osu-big__icon">
@@ -48,7 +56,6 @@
                 <div class="account-edit__input-group">
                     @include('accounts._edit_entry_simple', ['field' => 'user_twitter'])
                     @include('accounts._edit_entry_simple', ['field' => 'user_discord'])
-                    @include('accounts._edit_entry_simple', ['field' => 'user_msnm'])
                     @include('accounts._edit_entry_simple', ['field' => 'user_website'])
                 </div>
             </div>
@@ -60,7 +67,7 @@
         <div class="account-edit">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
-                    {{ trans('accounts.edit.avatar.title') }}
+                    {{ osu_trans('accounts.edit.avatar.title') }}
                 </h2>
             </div>
 
@@ -72,7 +79,7 @@
 
                             <div class="account-edit-entry__drop-overlay">
                                 <span>
-                                {{ trans('common.dropzone.target') }}
+                                {{ osu_trans('common.dropzone.target') }}
                                 </span>
                             </div>
 
@@ -81,10 +88,15 @@
                             </div>
                         </div>
 
-                        <label class="btn-osu-big btn-osu-big--account-edit">
+                        <label
+                            class="btn-osu-big btn-osu-big--account-edit"
+                            @if (Auth::user()->isSilenced())
+                                disabled
+                            @endif
+                        >
                             <div class="btn-osu-big__content">
                                 <div class="btn-osu-big__left">
-                                    {{ trans('common.buttons.upload_image') }}
+                                    {{ osu_trans('common.buttons.upload_image') }}
                                 </div>
 
                                 <div class="btn-osu-big__icon">
@@ -97,14 +109,17 @@
                                 type="file"
                                 name="avatar_file"
                                 data-url="{{ route('account.avatar') }}"
+                                @if (Auth::user()->isSilenced())
+                                    disabled
+                                @endif
                             >
                         </label>
 
                         <div class="account-edit-entry__rules">
-                            {!! trans('accounts.edit.avatar.rules', [
+                            {!! osu_trans('accounts.edit.avatar.rules', [
                                 'link' => link_to(
                                     wiki_url('Rules'),
-                                    trans('accounts.edit.avatar.rules_link')
+                                    osu_trans('accounts.edit.avatar.rules_link')
                                 )
                             ]) !!}
                         </div>
@@ -162,5 +177,5 @@
     {!! json_encode($ownClients) !!}
   </script>
 
-  @include('layout._extra_js', ['src' => 'js/react/account-edit.js'])
+  @include('layout._react_js', ['src' => 'js/react/account-edit.js'])
 @endsection

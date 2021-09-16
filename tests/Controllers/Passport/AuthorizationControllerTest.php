@@ -6,9 +6,10 @@
 namespace Tests\Controllers\Passport;
 
 use App\Http\Controllers\Passport\AuthorizationController;
+use App\Models\OAuth\Client;
 use Mockery;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use Tests\TestCase;
-use Zend\Diactoros\ServerRequest;
 
 class AuthorizationControllerTest extends TestCase
 {
@@ -16,18 +17,11 @@ class AuthorizationControllerTest extends TestCase
 
     public function testAuthorizeNormalizes()
     {
-        $request = new ServerRequest(
-            /* $serverParams */ [],
-            /* $uploadedFiles */ [],
-            /* $uri */ config('app.url').'/oauth/authorize',
-            /* $method */ 'GET',
-            /* $body */ 'php://input',
-            /* $headers */  [],
-            /* $cookies */  [],
-            /* $queryParams */ ['scope' => 'one two three'],
-            /* $parsedBody */ null,
-            /* $protocol*/ '1.1'
-        );
+        $client = factory(Client::class)->create();
+
+        $request = (new Psr17Factory())
+            ->createServerRequest('GET', config('app.url').'/oauth/authorize')
+            ->withQueryParams(['client_id' => $client->getKey(), 'scope' => 'one two three']);
 
         $actual = $this->invokeMethod($this->controller, 'normalizeRequestScopes', [$request])->getQueryParams()['scope'];
 

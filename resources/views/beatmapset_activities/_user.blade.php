@@ -4,40 +4,43 @@
 --}}
 @php
     // this is pretty much a php conversion of beatmap-discussions/user-card.coffee
-    $topClasses = $bn = 'beatmap-discussion-user-card';
-    $group = optional($user)->visibleGroups()[0] ?? null;
+    $bn = 'beatmap-discussion-user-card';
+    $userGroup = $user->userGroupsForBadges()->first();
     $hideStripe = $hideStripe ?? false;
 @endphp
 
-<div class="{{$topClasses}}" style="{!! css_group_colour($group ?? null) !!}">
+<div class="{{$bn}}" style="{!! css_group_colour(optional($userGroup)->group) !!}">
     <div class="{{$bn}}__avatar">
-        <a class="{{$bn}}__user-link" href="{{route('users.show', $user)}}">
-            @if ($user)
-                <div class="avatar avatar--full-rounded" style="background-image: url({{$user->user_avatar}})"></div>
-            @else
-                <div class="avatar avatar--full-rounded avatar--guest"></div>
-            @endif
-        </a>
+        @if (isset($user))
+            <a class="{{$bn}}__user-link" href="{{route('users.show', $user)}}">
+                <span class="avatar avatar--full-rounded" style="background-image: url({{$user->user_avatar}})"></span>
+            </a>
+        @else
+            <span class="{{$bn}}__user-link">
+                <span class="avatar avatar--full-rounded avatar--guest"></span>
+            </span>
+        @endif
     </div>
     <div class="{{$bn}}__user">
         <div class="{{$bn}}__user-row">
-            <a class="{{$bn}}__user-link" href="{{route('users.show', $user)}}">
-                <span class="{{$bn}}__user-text u-ellipsis-overflow">{{$user->username}}</span>
-            </a>
-            @if (!$user->is_bot)
-                <a class="{{$bn}}__user-modding-history-link" href="{{route('users.modding.index', $user)}}" title="{{trans('beatmap_discussion_posts.item.modding_history_link')}}">
-                    <i class='fas fa-align-left'></i>
+            @if (isset($user))
+                <a class="{{$bn}}__user-link" href="{{route('users.show', $user)}}">
+                    <span class="{{$bn}}__user-text u-ellipsis-overflow">{{$user->username}}</span>
                 </a>
+                @if (!$user->isBot())
+                    <a class="{{$bn}}__user-modding-history-link" href="{{route('users.modding.index', $user)}}" title="{{osu_trans('beatmap_discussion_posts.item.modding_history_link')}}">
+                        <i class='fas fa-align-left'></i>
+                    </a>
+                @endif
+            @else
+                <span class="{{$bn}}__user-link">
+                    <span class="{{$bn}}__user-text u-ellipsis-overflow">{{ osu_trans('users.deleted') }}</span>
+                </span>
             @endif
         </div>
         <div class="{{$bn}}__user-badge">
-            @if (isset($group))
-                <div
-                    class="user-group-badge"
-                    title="{{ $group->group_name }}"
-                    data-label="{{ $group->short_name }}"
-                    style="{!! css_group_colour($group) !!}"
-                ></div>
+            @if ($userGroup !== null)
+                @include('objects._user_group_badge', compact('userGroup'))
             @endif
         </div>
     </div>

@@ -5,9 +5,13 @@
 
 return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
-    'mark_read' => 'Lösche :type',
+    'delete' => ':type löschen',
+    'loading' => 'Ungelesene Benachrichtigungen werden geladen...',
+    'mark_read' => ':type als gelesen markieren',
     'none' => 'Keine Benachrichtigungen',
     'see_all' => 'alle benachrichtigungen ansehen',
+    'see_channel' => 'zum chat gehen',
+    'verifying' => 'Bitte verifiziere deine Sitzung, um Benachrichtigungen anzuzeigen',
 
     'filters' => [
         '_' => 'alle',
@@ -22,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
+
+            'beatmap_owner_change' => [
+                '_' => 'Gastschwierigkeitsstufe',
+                'beatmap_owner_change' => 'Du bist jetzt Besitzer der Schwierigkeit ":beatmap" für Beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Du bist jetzt Besitzer der Schwierigkeit ":beatmap"',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Beatmap-Diskussion',
@@ -49,14 +59,16 @@ return [
                 '_' => 'Beatmap-Status geändert',
                 'beatmapset_disqualify' => '":title" wurde disqualifiziert',
                 'beatmapset_disqualify_compact' => 'Beatmap wurde disqualifiziert',
-                'beatmapset_love' => '":title" hat loved-Status erlangt',
-                'beatmapset_love_compact' => 'Beatmap hat loved-Status erlangt',
+                'beatmapset_love' => '":title" hat Loved-Status erlangt',
+                'beatmapset_love_compact' => 'Beatmap hat Loved-Status erlangt',
                 'beatmapset_nominate' => '":title" wurde nominiert',
                 'beatmapset_nominate_compact' => 'Beatmap wurde nominiert',
                 'beatmapset_qualify' => '":title" hat genug Nominierungen erhalten und wurde in die Ranglisten-Warteschlange aufgenommen',
                 'beatmapset_qualify_compact' => 'Beatmap wurde in die Ranglisten-Warteschlange aufgenommen',
                 'beatmapset_rank' => '":title" wurde ranked',
                 'beatmapset_rank_compact' => 'Beatmap wurde ranked',
+                'beatmapset_remove_from_loved' => '":title" hat Loved-Status verloren',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap hat Loved-Status verloren',
                 'beatmapset_reset_nominations' => 'Nominierung von ":title" wurde zurückgesetzt',
                 'beatmapset_reset_nominations_compact' => 'Nominierung wurde zurückgesetzt',
             ],
@@ -129,6 +141,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Neue Beatmap',
+
+                'user_beatmapset_new' => 'Neue Beatmap ":title" von :username',
+                'user_beatmapset_new_compact' => 'Neue Beatmap ":title"',
+                'user_beatmapset_new_group' => 'Neue Beatmaps von :username',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medaillen',
 
@@ -136,12 +158,17 @@ return [
                 '_' => 'Neue Medaille',
                 'user_achievement_unlock' => '":title" freigeschaltet!',
                 'user_achievement_unlock_compact' => '":title" freigeschaltet!',
+                'user_achievement_unlock_group' => 'Medaillen freigeschaltet!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Du bist jetzt Gast der Beatmap ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Die Diskussion über ":title" wurde gesperrt',
                 'beatmapset_discussion_post_new' => 'Die Diskussion über ":title" hat neue Updates',
@@ -154,10 +181,11 @@ return [
 
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '":title" wurde disqualifiziert',
-                'beatmapset_love' => '":title" hat loved-Status erlangt',
+                'beatmapset_love' => '":title" hat Loved-Status erlangt',
                 'beatmapset_nominate' => '":title" wurde nominiert',
                 'beatmapset_qualify' => '":title" hat genug Nominierungen erhalten und wurde in die Ranglisten-Warteschlange aufgenommen',
                 'beatmapset_rank' => '":title" wurde ranked',
+                'beatmapset_remove_from_loved' => '":title" hat Loved-Status verloren',
                 'beatmapset_reset_nominations' => 'Nominierung von ":title" wurde zurückgesetzt',
             ],
 
@@ -194,6 +222,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username hat eine neue Medaille freigeschaltet, ":title"!',
                 'user_achievement_unlock_self' => 'Du hast eine neue Medaille freigeschaltet, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username hat neue Beatmaps erstellt',
             ],
         ],
     ],

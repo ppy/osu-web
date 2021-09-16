@@ -12,11 +12,21 @@ return [
     'new' => 'Recente',
     'old' => 'Vecchio',
     'rank' => 'Rank',
-    'top' => 'In alto',
+    'top' => 'Migliore',
     'username' => 'Nome utente',
 
+    'forum_posts' => [
+        'created' => 'Data del post',
+        'relevance' => 'Pertinenza',
+    ],
+
     'forum_topics' => [
-        'new' => 'Ultima risposta',
         'feature_votes' => 'Stelle di priorità',
+        'new' => 'Ultima risposta',
+    ],
+
+    'users' => [
+        'relevance' => 'Pertinenza',
+        'username' => 'Nome',
     ],
 ];

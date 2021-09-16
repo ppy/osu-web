@@ -10,7 +10,7 @@ return [
             'regenerating' => '',
             'remove' => '',
             'removing' => '',
-            'title' => 'اغطية الأغاني',
+            'title' => '',
         ],
         'show' => [
             'covers' => '',
@@ -57,7 +57,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'حزم الأغاني',
+                'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
                 'store' => '',

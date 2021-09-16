@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BigButton } from 'big-button';
+import BigButton from 'big-button';
 import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
@@ -16,10 +16,10 @@ interface Props {
 @observer
 export class OwnClient extends React.Component<Props> {
   deleteClicked = (event: React.MouseEvent<HTMLElement>) => {
-    if (!confirm(osu.trans('oauth.own_clients.confirm_delete'))) { return; }
+    if (!confirm(osu.trans('oauth.own_clients.confirm_delete'))) return;
 
     this.props.client.delete().catch(osu.ajaxError);
-  }
+  };
 
   render() {
     const client = this.props.client;
@@ -32,20 +32,20 @@ export class OwnClient extends React.Component<Props> {
         </button>
         <div className='oauth-client__actions'>
           <BigButton
+            disabled={client.isRevoking || client.revoked}
             icon='fas fa-pencil-alt'
             modifiers={['account-edit', 'settings-oauth']}
             props={{
-              disabled: client.isRevoking || client.revoked,
               onClick: this.showClientDetails,
             }}
             text={osu.trans('common.buttons.edit')}
           />
           <BigButton
+            disabled={client.isRevoking || client.revoked}
             icon={client.revoked ? 'fas fa-ban' : 'fas fa-trash'}
             isBusy={client.isRevoking}
             modifiers={['account-edit', 'danger', 'settings-oauth']}
             props={{
-              disabled: client.isRevoking || client.revoked,
               onClick: this.deleteClicked,
             }}
             text={osu.trans(`oauth.own_clients.revoked.${client.revoked}`)}
@@ -57,5 +57,5 @@ export class OwnClient extends React.Component<Props> {
 
   showClientDetails = () => {
     uiState.account.client = this.props.client;
-  }
+  };
 }

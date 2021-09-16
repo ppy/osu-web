@@ -18,4 +18,11 @@ return [
     'user_support_first' => '<strong>:user</strong> on ryhtynyt Tukijaksi - kiitos anteliaisuudestasi!',
     'user_support_gift' => '<strong>:user</strong> on saanut Tukijalahjoituksen!',
     'username_change' => '<strong>:previousUsername</strong> tunnetaan nyt käyttäjänimellä <strong><em>:user</strong></em>!',
+
+    'beatmapset_status' => [
+        'approved' => 'vahvistettu',
+        'loved' => 'rakastettu',
+        'qualified' => 'hyväksytty',
+        'ranked' => 'hyväksytty',
+    ],
 ];

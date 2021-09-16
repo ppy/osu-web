@@ -5,9 +5,13 @@
 
 return [
     'all_read' => 'Todas as notificações foram lidas!',
+    'delete' => 'Eliminar :type',
+    'loading' => 'A carregar notificações não lidas...',
     'mark_read' => 'Limpar :type',
     'none' => 'Sem notificações',
     'see_all' => 'ver todas as notificações',
+    'see_channel' => 'ir para a conversa',
+    'verifying' => 'Por favor verifica a sessão para ver as notificações',
 
     'filters' => [
         '_' => 'todas',
@@ -22,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
+
+            'beatmap_owner_change' => [
+                '_' => 'Dificuldade de convidado',
+                'beatmap_owner_change' => 'És agora o dono da dificuldade ":beatmap" para o mapa ":title"',
+                'beatmap_owner_change_compact' => 'És agora o dono da dificuldade ":beatmap"',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Discussão do beatmap',
@@ -57,6 +67,8 @@ return [
                 'beatmapset_qualify_compact' => 'O beatmap entrou na fila para se classificar',
                 'beatmapset_rank' => 'O beatmap ":title" foi classificado',
                 'beatmapset_rank_compact' => 'O beatmap foi classificado',
+                'beatmapset_remove_from_loved' => 'O ":title" foi removido de Adorado',
+                'beatmapset_remove_from_loved_compact' => 'O beatmap foi removido de Adorado',
                 'beatmapset_reset_nominations' => 'A nomeação do ":title" foi reiniciada',
                 'beatmapset_reset_nominations_compact' => 'A nomeação foi reiniciada',
             ],
@@ -129,6 +141,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Novo beatmap',
+
+                'user_beatmapset_new' => 'Novo beatmap ":title" por :username',
+                'user_beatmapset_new_compact' => 'Novo beatmap ":title"',
+                'user_beatmapset_new_group' => 'Novos beatmaps por :username',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medalhas',
 
@@ -136,12 +158,17 @@ return [
                 '_' => 'Nova medalha',
                 'user_achievement_unlock' => 'Desbloqueaste ":title"!',
                 'user_achievement_unlock_compact' => 'Desbloqueaste ":title"!',
+                'user_achievement_unlock_group' => 'Medalhas desbloqueadas!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'És agora convidado do mapa ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'A conversa sobre ":title" foi bloqueada',
                 'beatmapset_discussion_post_new' => 'A conversa sobre ":title" tem novas atualizações ',
@@ -156,9 +183,10 @@ return [
                 'beatmapset_disqualify' => '":title" foi desqualificado',
                 'beatmapset_love' => '":title" foi promovido a adorado',
                 'beatmapset_nominate' => '":title" foi nomeado',
-                'beatmapset_qualify' => '',
+                'beatmapset_qualify' => 'A ":title" ganhou nomeações suficientes e entrou para a fila de classificação',
                 'beatmapset_rank' => '":title" foi classificado',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_remove_from_loved' => 'O ":title" foi removido de Adorado',
+                'beatmapset_reset_nominations' => 'A nomeação de ":title" foi reiniciada',
             ],
 
             'comment' => [
@@ -194,6 +222,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username desbloqueou uma nova medalha, ":title"!',
                 'user_achievement_unlock_self' => 'Desbloqueaste uma nova medalha: ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username criou novos beatmaps',
             ],
         ],
     ],

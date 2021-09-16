@@ -6,8 +6,8 @@
 namespace Tests\Controllers\Chat\Channels;
 
 use App\Models\Chat;
-use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
+use App\Models\ChatFilter;
 use App\Models\User;
 use App\Models\UserRelation;
 use Faker;
@@ -159,6 +159,24 @@ class MessagesControllerTest extends TestCase
     //endregion
 
     //region POST /chat/channels/[channel_id]/messages - Send Message to Channel
+    public function testChannelSendFiltered()
+    {
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
+            'channel' => $this->publicChannel->getKey(),
+            'user' => $this->user->getKey(),
+        ]));
+
+        $filter = factory(ChatFilter::class)->create();
+
+        $this->json(
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->getKey()]),
+            ['message' => $filter->match],
+        )
+            ->assertJsonFragment(['content' => $filter->replacement]);
+    }
+
     public function testChannelSendWhenGuest() // fail
     {
         $this->json(
@@ -172,10 +190,10 @@ class MessagesControllerTest extends TestCase
     {
         $this->actAsScopedUser($this->user, ['*']);
         $this->json(
-                'POST',
-                route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
-                ['message' => self::$faker->sentence()]
-            )
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
+            ['message' => self::$faker->sentence()]
+        )
             ->assertStatus(403);
     }
 
@@ -192,10 +210,10 @@ class MessagesControllerTest extends TestCase
         $this->actAsScopedUser($this->user, ['*']);
 
         $this->json(
-                'POST',
-                route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
-                ['message' => $message]
-            )
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
+            ['message' => $message]
+        )
             ->assertStatus(200)
             ->assertJsonFragment(['content' => $message]);
     }
@@ -206,10 +224,10 @@ class MessagesControllerTest extends TestCase
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json(
-                'POST',
-                route('api.chat.channels.messages.store', ['channel' => $moderatedChannel->channel_id]),
-                ['message' => self::$faker->sentence()]
-            )
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $moderatedChannel->channel_id]),
+            ['message' => self::$faker->sentence()]
+        )
             ->assertStatus(403);
     }
 
@@ -231,10 +249,10 @@ class MessagesControllerTest extends TestCase
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json(
-                'POST',
-                route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
-                ['message' => self::$faker->sentence()]
-            )
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
+            ['message' => self::$faker->sentence()]
+        )
             ->assertStatus(403);
     }
 
@@ -256,10 +274,10 @@ class MessagesControllerTest extends TestCase
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json(
-                'POST',
-                route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
-                ['message' => self::$faker->sentence()]
-            )
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
+            ['message' => self::$faker->sentence()]
+        )
             ->assertStatus(403);
     }
 
@@ -278,10 +296,10 @@ class MessagesControllerTest extends TestCase
 
         $this->actAsScopedUser($this->restrictedUser, ['*']);
         $this->json(
-                'POST',
-                route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
-                ['message' => self::$faker->sentence()]
-            )
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
+            ['message' => self::$faker->sentence()]
+        )
             ->assertStatus(403);
     }
 
@@ -295,10 +313,10 @@ class MessagesControllerTest extends TestCase
 
         $this->actAsScopedUser($this->restrictedUser, ['*']);
         $this->json(
-                'POST',
-                route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
-                ['message' => self::$faker->sentence()]
-            )
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
+            ['message' => self::$faker->sentence()]
+        )
             ->assertStatus(403);
     }
 
@@ -317,10 +335,10 @@ class MessagesControllerTest extends TestCase
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json(
-                'POST',
-                route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
-                ['message' => self::$faker->sentence()]
-            )
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
+            ['message' => self::$faker->sentence()]
+        )
             ->assertStatus(404);
     }
 
@@ -337,10 +355,10 @@ class MessagesControllerTest extends TestCase
         $this->actAsScopedUser($this->user, ['*']);
 
         $this->json(
-                'POST',
-                route('api.chat.channels.messages.store', ['channel' => $this->tourneyChannel->channel_id]),
-                ['message' => $message]
-            )
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $this->tourneyChannel->channel_id]),
+            ['message' => $message]
+        )
             ->assertStatus(403);
     }
 
@@ -359,10 +377,10 @@ class MessagesControllerTest extends TestCase
 
         $this->actAsScopedUser($this->silencedUser, ['*']);
         $this->json(
-                'POST',
-                route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
-                ['message' => self::$faker->sentence()]
-            )
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
+            ['message' => self::$faker->sentence()]
+        )
             ->assertStatus(403);
     }
 
@@ -376,10 +394,10 @@ class MessagesControllerTest extends TestCase
 
         $this->actAsScopedUser($this->silencedUser, ['*']);
         $this->json(
-                'POST',
-                route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
-                ['message' => self::$faker->sentence()]
-            )
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
+            ['message' => self::$faker->sentence()]
+        )
             ->assertStatus(403);
     }
 

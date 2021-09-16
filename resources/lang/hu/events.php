@@ -18,4 +18,11 @@ return [
     'user_support_first' => '<strong>:user</strong> osu! támogató lett - köszönjük a nagylelkűségedet!',
     'user_support_gift' => '<strong>:user</strong> osu! támogatót kapott ajándékba!',
     'username_change' => '<strong>:previousUsername</strong> megváltoztatta a felhasználónevét és mostmár <strong><em>:user</strong></em>!',
+
+    'beatmapset_status' => [
+        'approved' => 'jóváhagyott',
+        'loved' => 'szerettve',
+        'qualified' => 'kvalifikált',
+        'ranked' => 'rangsorolt',
+    ],
 ];

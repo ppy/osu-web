@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmapin metatietoviestiä ei voida poistaa.',
             'beatmapset_post_no_edit' => 'Beatmapin metatietoviestiä ei voida muokata.',
+            'first_post_no_delete' => 'Aloitusviestiä ei voi poistaa',
+            'missing_topic' => 'Viestissä puuttuu aihe',
             'only_quote' => 'Sinun vastauksesi sisältää ainoastaan lainauksen.',
 
             'attributes' => [
@@ -82,21 +84,21 @@ return [
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Aiheen otsikko',
             ],
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Identtiset valinnat eivät ole sallittuja.',
             'grace_period_expired' => 'Äänestystä ei voi muokata :limit tunnin jälkeen',
-            'hiding_results_forever' => '',
+            'hiding_results_forever' => 'Ei voi piilottaa tuloksia kyselystä, joka ei koskaan pääty.',
             'invalid_max_options' => 'Valinnat käyttäjää kohti eivät voi ylittää kaikkien valintojen määrää.',
             'minimum_one_selection' => 'Vähintään yksi valinta käyttäjää kohti on vaadittu.',
             'minimum_two_options' => 'Tarvitsee ainakin kaksi valintaa.',
             'too_many_options' => 'Sallittujen valintojen määrä ylittyi.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Kyselyn otsikko',
             ],
         ],
 
@@ -109,11 +111,11 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => 'Syötä kelvollinen URL-osoite.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Sovelluksen Nimi',
+                'redirect' => 'Sovelluksen Vastakutsun URL',
             ],
         ],
     ],
@@ -121,10 +123,11 @@ return [
     'user' => [
         'contains_username' => 'Salasana ei saa sisältää käyttäjätunnusta.',
         'email_already_used' => 'Tämä sähköpostiosoite on jo käytössä.',
+        'email_not_allowed' => 'Sähköpostiosoite ei ole sallittu.',
         'invalid_country' => 'Maata ei ole tietokannassa.',
         'invalid_discord' => 'Virheellinen Discord käyttäjänimi.',
         'invalid_email' => "Ei näytä kelvolliselta sähköpostiosoitteelta.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Twitter-käyttäjätunnus ei kelpaa.',
         'too_short' => 'Uusi salasana on liian lyhyt.',
         'unknown_duplicate' => 'Käyttäjätunnus tai sähköpostiosoite on jo käytössä.',
         'username_available_in' => 'Tämän käyttäjänimen aukeamiseen on aikaa :duration.',
@@ -150,7 +153,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'Et voi vaihtaa käyttäjänimeäsi kun tilisi on rajoitettu.',
             'supporter_required' => [
                 '_' => 'Sinun pitää olla :link, jotta voit muuttaa nimeäsi!',
                 'link_text' => 'tukenut osua!',
@@ -160,15 +163,15 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason ei kelpaa tälle ilmoitustyypille.',
         'self' => "Et voi ilmiantaa itseäsi!",
     ],
 
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Määrä',
+                'cost' => 'Hinta',
             ],
         ],
     ],

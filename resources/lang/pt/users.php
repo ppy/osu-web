@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Membros por modo de jogo',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "A tua conta não foi usada há muito tempo.",
@@ -84,7 +88,7 @@ return [
         'failed' => 'Início de sessão incorreto',
         'forgot' => 'Esqueceste-te da palavra-passe?',
         'info' => 'Por favor inicia sessão para continuar',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Demasiadas tentativas falhadas de início de sessão, termina o captcha e tenta novamente. (Atualiza a página se o captcha não estiver visível)',
         'locked_ip' => 'o teu endereço de IP foi bloqueado. Por favor espera uns minutos.',
         'password' => 'Palavra-passe',
         'register' => "Não tens uma conta osu? Cria uma nova",
@@ -124,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Jogada suja / Fazer batota',
+            'multiple_accounts' => 'Utilização de contas múltiplas',
             'insults' => 'Insulto a mim ou a outros',
             'spam' => 'Spam',
             'unwanted_content' => 'Enviar ligações com conteúdo impróprio',
@@ -150,6 +155,10 @@ return [
         'plays_with' => 'Joga com :devices',
         'title' => "Perfil de :username",
 
+        'comments_count' => [
+            '_' => 'Publicou :link',
+            'count' => ':count_delimited comentário|:count_delimited comentários',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar a capa do perfil',
@@ -198,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Beatmaps adorados',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps classificados e aprovados',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmaps pendentes',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmaps classificados e aprovados',
                 ],
             ],
             'discussions' => [
@@ -292,6 +301,9 @@ return [
                 'recent' => 'As mais recentes',
                 'title' => 'Medalhas',
             ],
+            'multiplayer' => [
+                'title' => 'Jogos multijogador',
+            ],
             'posts' => [
                 'title' => 'Publicações',
                 'title_longer' => 'Publicações recentes',
@@ -347,10 +359,8 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Interesses',
-            'lastfm' => 'Last.fm',
             'location' => 'Localização atual',
             'occupation' => 'Ocupação',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Sítio web',
         ],
@@ -396,11 +406,16 @@ return [
             'total_hits' => 'Acertos totais',
             'total_score' => 'Pontuação total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmaps classificados e aprovados',
-            'loved_beatmapset_count' => 'Beatmaps adorados',
-            'unranked_beatmapset_count' => 'Beatmaps pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no cemitério',
+            'loved_beatmapset_count' => 'Beatmaps adorados',
+            'pending_beatmapset_count' => 'Beatmaps pendentes',
+            'ranked_beatmapset_count' => 'Beatmaps classificados e aprovados',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Estás silenciado de momento.',
+        'message' => 'Algumas ações podem não estar disponíveis.',
     ],
 
     'status' => [

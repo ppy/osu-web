@@ -10,6 +10,7 @@ use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Mail\UserNotificationDigest as UserNotificationDigestMail;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserNotification;
 use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -48,7 +49,7 @@ class UserNotificationDigest implements ShouldQueue
         }
 
         // TODO: catch and log errors?
-        Mail::to($this->user)->sendNow(new UserNotificationDigestMail($notifications, $this->user));
+        Mail::to($this->user)->send(new UserNotificationDigestMail($notifications, $this->user));
     }
 
     private function filterNotifications(Collection $notifications)
@@ -87,15 +88,15 @@ class UserNotificationDigest implements ShouldQueue
 
     private function getNotifications()
     {
-        return Notification
-            ::whereHas('userNotifications', function ($q) {
-                $q->where('user_id', $this->user->getKey())
-                    ->where('is_read', false)
-                    ->hasMailDelivery();
-            })
+        $notificationIdsQuery = UserNotification
+            ::where('user_id', $this->user->getKey())
+            ->where('is_read', false)
+            ->hasMailDelivery()
             ->where('id', '>', $this->fromId)
             ->where('id', '<=', $this->toId)
-            ->get();
+            ->select('notification_id');
+
+        return Notification::whereIn('id', $notificationIdsQuery)->get();
     }
 
     private function shouldSend(Notification $notification): bool

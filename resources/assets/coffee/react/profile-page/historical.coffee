@@ -2,11 +2,13 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapPlaycount } from './beatmap-playcount'
-import { ExtraHeader } from './extra-header'
+import ExtraHeader from 'profile-page/extra-header'
+import core from 'osu-core-singleton'
 import { PlayDetailList } from 'play-detail-list'
 import * as React from 'react'
 import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 
@@ -14,7 +16,7 @@ export class Historical extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @id = "users-show-historical-#{osu.uuid()}"
+    @id = "users-show-historical-#{nextVal()}"
     @monthlyPlaycountsChartArea = React.createRef()
     @replaysWatchedCountsChartArea = React.createRef()
 
@@ -34,6 +36,7 @@ export class Historical extends React.PureComponent
 
   componentWillUnmount: =>
     $(window).off ".#{@id}"
+    $(document).off ".#{@id}"
 
 
   render: =>
@@ -55,8 +58,7 @@ export class Historical extends React.PureComponent
       h3
         className: 'title title--page-extra-small'
         osu.trans('users.show.extra.historical.most_played.title')
-        if @props.beatmapPlaycounts?.length == 0
-          span className: 'title__count', osu.formatNumber(0)
+        span className: 'title__count', osu.formatNumber(@props.user.beatmap_playcounts_count)
 
       if (@props.beatmapPlaycounts?.length ? 0) != 0
         el React.Fragment, null,
@@ -80,8 +82,7 @@ export class Historical extends React.PureComponent
       h3
         className: 'title title--page-extra-small'
         osu.trans('users.show.extra.historical.recent_plays.title')
-        if @props.scoresRecent?.length == 0
-          span className: 'title__count', osu.formatNumber(0)
+        span className: 'title__count', osu.formatNumber(@props.user.scores_recent_count)
 
       if (@props.scoresRecent?.length ? 0) != 0
         el React.Fragment, null,
@@ -153,8 +154,9 @@ export class Historical extends React.PureComponent
 
       @charts[attribute] = new LineChart(area, options)
 
-    @updateTicks @charts[attribute], data
-    @charts[attribute].loadData data
+    core.reactTurbolinks.runAfterPageLoad @id, =>
+      @updateTicks @charts[attribute], data
+      @charts[attribute].loadData data
 
 
   hasMonthlyPlaycounts: =>
@@ -178,7 +180,7 @@ export class Historical extends React.PureComponent
 
 
   updateTicks: (chart, data) =>
-    if osu.isDesktop()
+    if core.windowSize.isDesktop
       chart.options.ticks.x = null
 
       data ?= chart.data

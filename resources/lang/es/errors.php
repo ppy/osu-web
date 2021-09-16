@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => 'URL no válida o método de solicitud incorrecto.',
+    'no_restricted_access' => 'No puede realizar esta acción mientras su cuenta esté en un estado restringido.',
+    'supporter_only' => 'Debes ser un osu!supporter para usar esta característica.',
+    'unknown' => 'Se produjo un error desconocido.',
+
     'codes' => [
         'http-401' => 'Por favor, inicia sesión para continuar.',
         'http-403' => 'Acceso denegado.',
@@ -12,7 +17,7 @@ return [
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Ha ocurrido un error. Intenta refrescando la página.',
+            'generic' => 'Ocurrió un error. Intente actualizar la página.',
         ],
     ],
     'beatmaps' => [
@@ -20,15 +25,10 @@ return [
         'standard_converts_only' => 'No hay puntuaciones disponibles para el modo solicitado en esta dificultad del mapa.',
     ],
     'checkout' => [
-        'generic' => 'Ha ocurrido un error mientras preparábamos tu compra.',
+        'generic' => 'Se produjo un error mientras se preparaba su compra.',
     ],
     'search' => [
         'default' => 'No se obtuvo ningún resultado, inténtalo de nuevo más tarde.',
         'operation_timeout_exception' => 'La búsqueda está más ocupada de lo habitual, inténtalo de nuevo más tarde.',
     ],
-
-    'logged_out' => 'Tu sesión ha expirado. Por favor, inicia sesión y vuelve a intentarlo.',
-    'supporter_only' => 'Debes ser un osu!supporter para usar esta característica.',
-    'no_restricted_access' => 'No puede realizar esta acción mientras su cuenta esté en un estado restringido.',
-    'unknown' => 'Se produjo un error desconocido.',
 ];

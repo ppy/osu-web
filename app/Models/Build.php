@@ -15,6 +15,7 @@ use Carbon\Carbon;
  * @property int $build_id
  * @property \Illuminate\Database\Eloquent\Collection $changelogEntries ChangelogEntry
  * @property \Illuminate\Database\Eloquent\Collection $changelogs Changelog
+ * @property string $commentable_identifier
  * @property Comment $comments
  * @property \Carbon\Carbon $date
  * @property mixed|null $hash
@@ -79,7 +80,7 @@ class Build extends Model implements Commentable
 
         $lastChange = Carbon::parse($data['head_commit']['timestamp']);
 
-        $changelogEntry = new ChangelogEntry;
+        $changelogEntry = new ChangelogEntry();
 
         $newChangelogEntryIds = $stream
             ->changelogEntries()

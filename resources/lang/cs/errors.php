@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'Tuto akci nemůžeš provést, když je tvůj účet v omezeném režimu.',
+    'supporter_only' => 'Pro použití této funkce musíš mít osu! supporter tag.',
+    'unknown' => 'Vyskytla se neznámá chyba.',
+
     'codes' => [
         'http-401' => 'Pro pokračování se prosím přihlaš.',
         'http-403' => 'Přístup odepřen.',
@@ -26,9 +31,4 @@ return [
         'default' => '',
         'operation_timeout_exception' => '',
     ],
-
-    'logged_out' => 'Byl jsi odhlášen. Přihlas se prosím a zkus to znovu.',
-    'supporter_only' => 'Pro použití této funkce musíš mít osu! supporter tag.',
-    'no_restricted_access' => 'Tuto akci nemůžeš provést, když je tvůj účet v omezeném režimu.',
-    'unknown' => 'Vyskytla se neznámá chyba.',
 ];

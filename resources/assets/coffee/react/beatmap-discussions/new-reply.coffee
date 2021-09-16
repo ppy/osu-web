@@ -2,10 +2,13 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { MessageLengthCounter } from './message-length-counter'
-import { BigButton } from 'big-button'
+import BigButton from 'big-button'
+import core from 'osu-core-singleton'
 import * as React from 'react'
+import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, form, input, label, span, i } from 'react-dom-factories'
-import { UserAvatar } from 'user-avatar'
+import UserAvatar from 'user-avatar'
+import { createClickCallback } from 'utils/html'
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -98,24 +101,24 @@ export class NewReply extends React.PureComponent
     div
       className: "#{bn} #{bn}--reply #{bn}--new-reply #{bn}--new-reply-placeholder"
       el BigButton,
-        text: text
+        disabled: disabled
         icon: icon
-        modifiers: ['beatmap-discussion-reply-open']
+        modifiers: 'beatmap-discussion-reply-open'
         props:
-          disabled: disabled
           onClick: @editStart
+        text: text
 
 
   renderReplyButton: (action) =>
     div className: "#{bn}__action",
       el BigButton,
-        text: osu.trans("common.buttons.#{action}")
+        disabled: !@validPost() || @state.posting?
         icon: ACTION_ICONS[action]
         isBusy: @state.posting == action
+        text: osu.trans("common.buttons.#{action}")
         props:
-          disabled: !@validPost() || @state.posting?
-          onClick: @throttledPost
           'data-action': action
+          onClick: @throttledPost
 
 
   canReopen: =>
@@ -127,9 +130,7 @@ export class NewReply extends React.PureComponent
 
 
   editStart: =>
-    if !@props.currentUser.id?
-      userLogin.show()
-      return
+    return if core.userLogin.showIfGuest(@editStart)
 
     @setState editing: true, =>
       @box.current?.focus()
@@ -162,7 +163,7 @@ export class NewReply extends React.PureComponent
                when 'reply_reopen' then false
                else null
 
-    @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
+    @postXhr = $.ajax laroute.route('beatmapsets.discussions.posts.store'),
       method: 'POST'
       data:
         beatmap_discussion_id: @props.discussion.id

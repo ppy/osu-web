@@ -57,8 +57,11 @@ class UserVerification
 
         // Workaround race condition causing $this->issue() to be called in parallel.
         // Mainly observed when logging in as privileged user.
-        if ($this->request->ajax() && $this->request->is('home/notifications')) {
-            return response(['error' => 'verification'], $statusCode);
+        if ($this->request->ajax()) {
+            $routeData = app('route-section')->getOriginal();
+            if ($routeData['controller'] === 'notifications_controller' && $routeData['action'] === 'index') {
+                return response(['error' => 'verification'], $statusCode);
+            }
         }
 
         $email = $this->user->user_email;
@@ -125,7 +128,7 @@ class UserVerification
 
         $this->issue();
 
-        return response(['message' => trans('user_verification.errors.reissued')], 200);
+        return response(['message' => osu_trans('user_verification.errors.reissued')], 200);
     }
 
     public function verify()

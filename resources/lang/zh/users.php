@@ -50,8 +50,8 @@ return [
     ],
 
     'disabled' => [
-        'title' => '哎呀！看起来您的帐户已被禁用。',
-        'warning' => "如果您违反了规则，我们原则上在一个月的期限以内不会考虑解禁您的帐户。在此之后，您如果需要，可以随时联系我们。请注意，在一个帐户被封后创建新帐户会<strong>使您的封禁期限被延长</strong>。您更需要注意<strong>您每创建一个新帐户都会更严重地违反规则</strong>。我们强烈建议您不要误入歧途。",
+        'title' => '哎呀！看起来您的账户已被禁用。',
+        'warning' => "如果您违反了规则，原则上在一个月的期限以内我们不会考虑解禁您的账户。在此之后，您如果需要，可以随时联系我们。请注意，在一个账户被封后创建新账户会<strong>使您的封禁期限被延长</strong>。您更需要注意<strong>您每创建一个新账户都会更严重地违反规则</strong>。我们强烈建议您不要误入歧途。",
 
         'if_mistake' => [
             '_' => '如果你觉得我们误封了你的账号，你可以通过电子邮件（:email）或者点击本页面右下方的问号来联系我们。一般来说，我们犯错的几率是很低的。我们只以可靠的数据为参考进行这一类的操作。如果你执意违反规则，我们保留拒绝你的请求的权利。',
@@ -59,7 +59,7 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => '我们认为你的帐户已被盗用。在确认身份期间，该帐户会被暂时停用。',
+            'compromised' => '我们认为你的账户已被盗用。在确认身份期间，账户被暂时停用。',
             'opening' => '您的账户可能由于这几种原因被禁用：',
 
             'tos' => [
@@ -68,6 +68,10 @@ return [
                 'tos' => '服务条款',
             ],
         ],
+    ],
+
+    'filtering' => [
+        'by_game_mode' => '成员按游戏模式筛选',
     ],
 
     'force_reactivation' => [
@@ -123,7 +127,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => '违规 / 作弊',
+            'cheating' => '作弊',
+            'multiple_accounts' => '使用多个账号',
             'insults' => '侮辱 我/其他人',
             'spam' => '刷屏/垃圾广告',
             'unwanted_content' => '发布包含不当内容的链接',
@@ -144,12 +149,16 @@ return [
         'joined_at' => '注册时间：:date',
         'lastvisit' => '上次登录：:date',
         'lastvisit_online' => '当前在线',
-        'missingtext' => '未找到用户！（或者该用户已经被 ban）',
+        'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
         'origin_country' => '来自 :country',
         'previous_usernames' => '曾用名',
         'plays_with' => '惯用 :devices',
         'title' => ":username 的个人资料",
 
+        'comments_count' => [
+            '_' => '发表了 :link',
+            'count' => ':count_delimited 条评论',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '更换个人资料头图',
@@ -198,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Loved 的谱面',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved 的谱面',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Pending 的谱面',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked 的谱面',
                 ],
             ],
             'discussions' => [
@@ -292,6 +301,9 @@ return [
                 'recent' => '最近取得',
                 'title' => '成就',
             ],
+            'multiplayer' => [
+                'title' => '多人游戏',
+            ],
             'posts' => [
                 'title' => '回复',
                 'title_longer' => '最近回复',
@@ -322,8 +334,8 @@ return [
                 'vote_count' => ':count_delimited 票',
             ],
             'account_standing' => [
-                'title' => '帐号状态',
-                'bad_standing' => "<strong>:username</strong> 的帐号存在不良记录 :(",
+                'title' => '账号状态',
+                'bad_standing' => "<strong>:username</strong> 的账号存在不良记录 :(",
                 'remaining_silence' => '<strong>:username</strong> 的禁言将在 :duration 解除',
 
                 'recent_infringements' => [
@@ -345,18 +357,16 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => '兴趣爱好',
-            'lastfm' => 'Last.fm',
             'location' => '所在地',
             'occupation' => '职业',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => '网站',
         ],
         'not_found' => [
             'reason_1' => '他可能换了用户名。',
-            'reason_2' => '该帐号由于安全或滥用问题暂时不可用。',
+            'reason_2' => '该账号由于安全或滥用问题暂时不可用。',
             'reason_3' => '你可能输错用户名了！',
             'reason_header' => '可能是由于以下原因：',
             'title' => '找不到指定的用户',
@@ -396,11 +406,16 @@ return [
             'total_hits' => '总命中次数',
             'total_score' => '总分',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved 的谱面',
-            'loved_beatmapset_count' => 'Loved 的谱面',
-            'unranked_beatmapset_count' => 'Pending 的谱面',
             'graveyard_beatmapset_count' => '坟场里的谱面',
+            'loved_beatmapset_count' => 'Loved 的谱面',
+            'pending_beatmapset_count' => 'Pending 的谱面',
+            'ranked_beatmapset_count' => 'Ranked 的谱面',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '你已被禁言。',
+        'message' => '部分操作将不可用。',
     ],
 
     'status' => [

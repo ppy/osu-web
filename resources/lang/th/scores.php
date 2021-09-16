@@ -8,7 +8,7 @@ return [
         'title' => ':username บน :title [:version]',
 
         'beatmap' => [
-            'by' => 'จัดทำโดย :artist',
+            'by' => 'โดย :artist',
         ],
 
         'player' => [
@@ -20,5 +20,10 @@ return [
                 'global' => 'อันดับโลก',
             ],
         ],
+    ],
+
+    'status' => [
+        'non_best' => 'เฉพาะคะแนนที่ดีที่สุดของผู้เล่น จะให้ pp',
+        'processing' => 'คะแนนนี้กำลังถูกคำนวนอยู่ และจะถูกแสดงในไม่ช้า',
     ],
 ];

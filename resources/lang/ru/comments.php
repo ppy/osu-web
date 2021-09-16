@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'удалено',
+    'deleted_by' => 'удалено :user :timeago',
+    'deleted_by_system' => 'системой',
     'deleted_count' => ':count_delimited комментарий удален|:count_delimited комментариев удалено',
     'edited' => ':user отредактировал :timeago',
     'pinned' => 'закреплён',
@@ -35,7 +37,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'комментарии',
         'nav_title' => 'список',
+        'no_comments' => 'комментарии не найдены...',
     ],
 
     'placeholder' => [

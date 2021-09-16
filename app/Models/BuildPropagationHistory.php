@@ -29,9 +29,9 @@ class BuildPropagationHistory extends Model
 
     public function scopeChangelog($query, $streamId, $days)
     {
-        $buildsTable = (new Build)->getTable();
-        $propagationTable = (new self)->getTable();
-        $streamsTable = config('database.connections.mysql-updates.database').'.'.(new UpdateStream)->getTable();
+        $buildsTable = (new Build())->getTable();
+        $propagationTable = (new self())->getTable();
+        $streamsTable = config('database.connections.mysql-updates.database').'.'.(new UpdateStream())->getTable();
 
         $query->join($buildsTable, "{$buildsTable}.build_id", '=', "{$propagationTable}.build_id")
             ->select('created_at')

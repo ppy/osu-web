@@ -62,7 +62,7 @@ class BeatmapMirror extends Model
             $regionalMirror = self::forRegion($region)->randomUsable()->first();
         }
 
-        return isset($regionalMirror) ? $regionalMirror : self::getRandom();
+        return $regionalMirror ?? self::getRandom();
     }
 
     public function generateURL(Beatmapset $beatmapset, $skipVideo = false)

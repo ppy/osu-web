@@ -29,20 +29,20 @@
     <div class="forum-item__latest-post">
         @if (($lastTopic = $lastTopics[$forum->getKey()] ?? null) !== null)
             <span class="forum-item__latest-post-label">
-                {{ trans('forum.forums.latest_post') }}
+                {{ osu_trans('forum.forums.latest_post') }}
             </span>
             <a
                 class="u-ellipsis-overflow"
                 href="{{ post_url($lastTopic->topic_id, "unread", false) }}"
             >
                 @if ($lastTopic->topic_replies > 0)
-                    {{ trans('forum.topic.reply_title_prefix') }}:
+                    {{ osu_trans('forum.topic.reply_title_prefix') }}:
                 @endif
                 {{ $lastTopic->topic_title }}
             </a>
 
             <div>
-                {!! trans("forum.topic.latest_post", [
+                {!! osu_trans("forum.topic.latest_post", [
                     "when" => timeago($lastTopic->topic_last_post_time),
                     "user" => link_to_user(
                         $lastTopic->topic_last_poster_id,

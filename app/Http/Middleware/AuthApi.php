@@ -5,17 +5,13 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Laravel\Passport\ClientRepository;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\ResourceServer;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
-use Zend\Diactoros\ResponseFactory;
-use Zend\Diactoros\ServerRequestFactory;
-use Zend\Diactoros\StreamFactory;
-use Zend\Diactoros\UploadedFileFactory;
 
 class AuthApi
 {
@@ -42,7 +38,7 @@ class AuthApi
             $request->attributes->set(static::REQUEST_OAUTH_TOKEN_KEY, $token);
         } else {
             if (!RequireScopes::noTokenRequired($request)) {
-                throw new AuthenticationException;
+                throw new AuthenticationException();
             }
         }
 
@@ -51,17 +47,19 @@ class AuthApi
 
     private function validateRequest($request)
     {
+        $psr17Factory = new Psr17Factory();
+
         $psr = (new PsrHttpFactory(
-            new ServerRequestFactory,
-            new StreamFactory,
-            new UploadedFileFactory,
-            new ResponseFactory
+            $psr17Factory,
+            $psr17Factory,
+            $psr17Factory,
+            $psr17Factory,
         ))->createRequest($request);
 
         try {
             return $this->server->validateAuthenticatedRequest($psr);
         } catch (OAuthServerException $e) {
-            throw new AuthenticationException;
+            throw new AuthenticationException();
         }
     }
 
@@ -76,14 +74,21 @@ class AuthApi
             throw new AuthenticationException('invalid client');
         }
 
-        $token = $client->tokens()->where('revoked', false)->where('expires_at', '>', now())->find($psrTokenId);
+        $token = $client->tokens()->validAt(now())->find($psrTokenId);
         if ($token === null) {
             throw new AuthenticationException('invalid token');
         }
 
-        $user = $psrUserId !== null ? User::find($psrUserId) : null;
-        if (optional($user)->getKey() !== $token->user_id) {
-            throw new AuthenticationException;
+        $token->validate();
+
+        $user = $token->getResourceOwner();
+
+        if ($token->isClientCredentials() && $psrUserId !== null) {
+            throw new AuthenticationException();
+        }
+
+        if (!$token->isClientCredentials() && $user->getKey() !== $psrUserId) {
+            throw new AuthenticationException();
         }
 
         if ($user !== null) {

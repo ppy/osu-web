@@ -65,7 +65,7 @@ class UpdateMultiplayerMods extends Migration
 
         foreach ($mods as $mod) {
             if (is_array($mod->settings) && count($mod->settings) === 0) {
-                $mod->settings = new stdClass;
+                $mod->settings = new stdClass();
             }
         }
 

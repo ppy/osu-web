@@ -13,7 +13,7 @@ class TopicCoverTransformer extends TransformerAbstract
     public function transform(TopicCover $cover = null)
     {
         if ($cover === null) {
-            $cover = new TopicCover;
+            $cover = new TopicCover();
         }
 
         if ($cover->getFileProperties() === null) {
