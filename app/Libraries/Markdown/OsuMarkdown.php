@@ -371,7 +371,7 @@ class OsuMarkdown
             'container_class' => "{$blockClass}__footnote-container",
             'footnote_class' => "{$blockClass}__list-item {$blockClass}__list-item--footnote",
             'footnote_id_prefix' => 'osu-fn-',
-            'ref_class' => "{$blockClass}__link {$blockClass}__link--footnote-ref",
+            'ref_class' => "{$blockClass}__link {$blockClass}__link--footnote-ref js-reference-link",
             'ref_id_prefix' => 'osu-fnref-',
         ];
     }

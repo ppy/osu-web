@@ -20,6 +20,7 @@ import UserLogin from 'core/user/user-login';
 import UserLoginObserver from 'core/user/user-login-observer';
 import UserPreferences from 'core/user/user-preferences';
 import UserVerification from 'core/user/user-verification';
+import ReferenceLinkTooltip from 'core/wiki/reference-link-tooltip';
 import WindowFocusObserver from 'core/window-focus-observer';
 import WindowSize from 'core/window-size';
 import CurrentUser from 'interfaces/current-user';
@@ -52,6 +53,7 @@ export default class OsuCore {
   readonly osuAudio: OsuAudio;
   readonly osuLayzr = new OsuLayzr();
   readonly reactTurbolinks: ReactTurbolinks;
+  readonly referenceLinkTooltip = new ReferenceLinkTooltip();
   socketWorker: SocketWorker;
   readonly timeago = new Timeago();
   readonly turbolinksReload = new TurbolinksReload();
