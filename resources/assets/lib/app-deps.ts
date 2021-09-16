@@ -18,6 +18,7 @@ import 'jquery-ui/ui/keycode.js';
 import 'blueimp-file-upload/js/jquery.fileupload.js';
 
 import Lang from 'lang.js';
+import { configure as mobxConfigure } from 'mobx';
 import * as moment from 'moment';
 import Turbolinks from 'turbolinks';
 
@@ -38,3 +39,7 @@ window.LangMessages ??= {};
 window.Lang = new Lang({ messages: window.LangMessages });
 window.moment = moment;
 window.Turbolinks = Turbolinks;
+
+mobxConfigure({
+  computedRequiresReaction: true,
+});

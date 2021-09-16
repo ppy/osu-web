@@ -26,19 +26,6 @@ declare module 'block-button' {
   class BlockButton extends React.PureComponent<Props> {}
 }
 
-declare module 'big-button' {
-  interface Props {
-    extraClasses?: string[];
-    icon: string;
-    isBusy?: boolean;
-    modifiers?: string[];
-    props: any;
-    text: string;
-  }
-
-  class BigButton extends React.PureComponent<Props> {}
-}
-
 declare module 'friend-button' {
   class FriendButton extends React.PureComponent<any> {}
 }
