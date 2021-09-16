@@ -31,8 +31,8 @@ class DocumentProcessor
 
     private ?string $relativeUrlRoot;
     private ?string $wikiLocale;
-    private string $wikiPathToRoot;
-    private string $wikiAbsoluteRootPath;
+    private ?string $wikiPathToRoot = null;
+    private ?string $wikiAbsoluteRootPath = null;
 
     public function __construct(EnvironmentBuilderInterface $environment)
     {
@@ -47,6 +47,7 @@ class DocumentProcessor
         // The config value should come from route() call which means it's percent encoded
         // but it'll be reused as parameter for another route() call so decode it here.
         $this->relativeUrlRoot = urldecode($this->config->get('osu_extension/relative_url_root'));
+        $fixWikiUrl = $this->config->get('osu_extension/fix_wiki_url');
         $generateToc = $this->config->get('osu_extension/generate_toc');
         $recordFirstImage = $this->config->get('osu_extension/record_first_image');
         $titleFromDocument = $this->config->get('osu_extension/title_from_document');
@@ -64,7 +65,10 @@ class DocumentProcessor
 
             $this->updateLocaleLink();
             $this->fixRelativeUrl();
-            $this->fixWikiUrl();
+
+            if ($fixWikiUrl) {
+                $this->fixWikiUrl();
+            }
 
             if ($recordFirstImage) {
                 $this->recordFirstImage();

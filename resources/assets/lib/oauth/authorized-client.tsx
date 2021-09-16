@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BigButton } from 'big-button';
+import BigButton from 'big-button';
 import { observer } from 'mobx-react';
 import { Client } from 'models/oauth/client';
 import * as React from 'react';
@@ -37,11 +37,11 @@ export class AuthorizedClient extends React.Component<Props> {
         </div>
         <div>
           <BigButton
+            disabled={client.isRevoking || client.revoked}
             icon={client.revoked ? 'fas fa-ban' : 'fas fa-trash'}
             isBusy={client.isRevoking}
             modifiers={['account-edit', 'danger', 'settings-oauth']}
             props={{
-              disabled: client.isRevoking || client.revoked,
               onClick: this.revokeClicked,
             }}
             text={osu.trans(`oauth.authorized_clients.revoked.${client.revoked}`)}

@@ -41,6 +41,7 @@ class OsuMarkdown
 
     const DEFAULT_OSU_EXTENSION_CONFIG = [
         'block_name' => 'osu-md',
+        'fix_wiki_url' => false,
         'generate_toc' => false,
         'record_first_image' => false,
         'relative_url_root' => null,
@@ -82,6 +83,7 @@ class OsuMarkdown
                 'html_input' => 'allow',
             ],
             'osu_extension' => [
+                'fix_wiki_url' => true,
                 'generate_toc' => true,
                 'record_first_image' => true,
             ],
@@ -109,6 +111,7 @@ class OsuMarkdown
         ],
         'wiki' => [
             'osu_extension' => [
+                'fix_wiki_url' => true,
                 'generate_toc' => true,
                 'style_block_allowed_classes' => ['infobox'],
                 'title_from_document' => true,
