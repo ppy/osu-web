@@ -3,7 +3,7 @@
 
 import { route } from 'laroute';
 import { each, isEmpty, last, throttle } from 'lodash';
-import { computed, observe } from 'mobx';
+import { action, computed, makeObservable, observe } from 'mobx';
 import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
@@ -108,6 +108,8 @@ export default class ConversationView extends React.Component<Props> {
 
     this.dataStore = props.dataStore!;
 
+    makeObservable(this);
+
     disposeOnUnmount(
       this,
       observe(this.dataStore.chatState.selectedBoxed, (change) => {
@@ -123,6 +125,7 @@ export default class ConversationView extends React.Component<Props> {
     $(window).on('scroll', throttle(this.onScroll, 1000));
   }
 
+  @action
   componentDidUpdate(prevProps?: Props, prevState?: Readonly<Record<string, never>>, snapshot?: Snapshot) {
     const chatView = this.chatViewRef.current;
     if (!chatView) {

@@ -5,8 +5,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-
 /**
  * @property ArtistAlbum $album
  * @property int|null $album_id
@@ -29,8 +27,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class ArtistTrack extends Model
 {
-    use HasFactory;
-
     public function artist()
     {
         return $this->belongsTo(Artist::class);

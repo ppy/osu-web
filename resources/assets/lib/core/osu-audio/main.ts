@@ -16,18 +16,18 @@ const createMainPlayer = () => {
       type="button"
       class="audio-player__button audio-player__button--prev js-audio--nav"
       data-audio-nav="prev"
-    ></button>
+    ><span class="fas fa-fw fa-step-backward"></span></button>
 
     <button
       type="button"
       class="audio-player__button audio-player__button--play js-audio--main-play"
-    ></button>
+    ><span class="fa-fw play-button"></span></button>
 
     <button
       type="button"
       class="audio-player__button audio-player__button--next js-audio--nav"
       data-audio-nav="next"
-    ></button>
+    ><span class="fas fa-fw fa-step-forward"></span></button>
 
     <div class="audio-player__bar audio-player__bar--progress js-audio--seek">
       <div class="audio-player__bar-current"></div>
