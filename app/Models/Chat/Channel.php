@@ -303,8 +303,18 @@ class Channel extends Model
         });
     }
 
-    public function receiveMessage(User $sender, string $content, bool $isAction = false)
+    public function receiveMessage(User $sender, ?string $content, bool $isAction = false)
     {
+        $content = str_replace(["\r", "\n"], ' ', trim($content));
+
+        if (!present($content)) {
+            throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
+        }
+
+        if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
+            throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
+        }
+
         if ($this->isPM()) {
             $limit = config('osu.chat.rate_limits.private.limit');
             $window = config('osu.chat.rate_limits.private.window');
@@ -332,27 +342,19 @@ class Channel extends Model
             throw new API\ExcessiveChatMessagesException(osu_trans('api.error.chat.limit_exceeded'));
         }
 
-        $content = str_replace(["\r", "\n"], ' ', trim($content));
-
-        if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
-            throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
-        }
-
-        if (!present($content)) {
-            throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
-        }
-
         $chatFilters = app('chat-filters')->all();
 
         foreach ($chatFilters as $filter) {
             $content = str_replace($filter->match, $filter->replacement, $content);
         }
 
-        $message = new Message();
-        $message->user_id = $sender->user_id;
-        $message->content = $content;
-        $message->is_action = $isAction;
-        $message->timestamp = $now;
+        $message = new Message([
+            'content' => $content,
+            'is_action' => $isAction,
+            'timestamp' => $now,
+        ]);
+
+        $message->sender()->associate($sender);
         $message->channel()->associate($this);
         $message->save();
 

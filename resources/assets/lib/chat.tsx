@@ -1,14 +1,28 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatInitialJson } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
+import ChannelJson from 'interfaces/chat/channel-json';
+import UserJson from 'interfaces/user-json';
+import { action } from 'mobx';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { currentUrlParams } from 'utils/turbolinks';
 
-core.reactTurbolinks.register('chat', () => {
+interface ChatInitialJson {
+  last_message_id: number | null;
+  presence: ChannelJson[];
+  send_to?: SendToJson;
+}
+
+interface SendToJson {
+  can_message: boolean;
+  channel_id: number | null;
+  target: UserJson;
+}
+
+core.reactTurbolinks.register('chat', action(() => {
   const dataStore = core.dataStore;
   const initial = osu.parseJson<ChatInitialJson | null>('json-chat-initial', true);
 
@@ -55,4 +69,4 @@ core.reactTurbolinks.register('chat', () => {
   }
 
   return <MainView dataStore={core.dataStore} worker={core.chatWorker} />;
-});
+}));

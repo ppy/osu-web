@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BigButton } from 'big-button'
+import BigButton from 'big-button'
 import * as React from 'react'
 import { a, button, div, h1, h2, p } from 'react-dom-factories'
 el = React.createElement
@@ -19,12 +19,13 @@ export class Subscribe extends React.PureComponent
 
   render: =>
     el BigButton,
-      text: osu.trans "common.buttons.watch.to_#{+!@isWatching()}"
+      disabled: @state.loading
       icon: if @isWatching() then 'fas fa-eye-slash' else 'fas fa-eye'
-      modifiers: ['full']
+      isBusy: @state.loading
+      modifiers: 'full'
       props:
         onClick: @toggleWatch
-        disabled: @state.loading
+      text: osu.trans "common.buttons.watch.to_#{+!@isWatching()}"
 
 
   isWatching: =>
