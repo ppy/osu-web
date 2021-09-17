@@ -250,7 +250,7 @@ class DocumentProcessor
         $width = isset($imageSize[0]) ? "{$imageSize[0]}" : '';
         $height = isset($imageSize[1]) ? "{$imageSize[1]}" : '';
 
-        $this->node->data->append('attributes/class', 'js-gallery');
+        $this->node->data->append('attributes/class', "{$imageClass}--gallery js-gallery");
         $this->node->data->set('attributes/data-width', $width);
         $this->node->data->set('attributes/data-height', $height);
         $this->node->data->set('attributes/data-gallery-id', $this->relativeUrlRoot);
