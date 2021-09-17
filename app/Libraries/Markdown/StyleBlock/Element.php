@@ -5,52 +5,21 @@
 
 namespace App\Libraries\Markdown\StyleBlock;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Cursor;
+use League\CommonMark\Node\Block\AbstractBlock;
 
 class Element extends AbstractBlock
 {
-    /**
-     * @var string
-     */
-    protected $class;
+    private string $className;
 
-    private string $fenceChar;
-
-    public function __construct(string $class, string $fenceChar)
+    public function __construct(string $className)
     {
-        $this->class = $class;
-        $this->fenceChar = $fenceChar;
+        parent::__construct();
+
+        $this->className = $className;
     }
 
-    public function getClass(): string
+    public function getClassName(): string
     {
-        return $this->class;
-    }
-
-    public function canContain(AbstractBlock $block): bool
-    {
-        return true;
-    }
-
-    public function isCode(): bool
-    {
-        return false;
-    }
-
-    public function matchesNextLine(Cursor $cursor): bool
-    {
-        $currentLine = $cursor->getRemainder();
-
-        if (
-            ($currentLine === '}}}' && $this->fenceChar === '{') ||
-            ($currentLine === ':::' && $this->fenceChar === ':')
-        ) {
-            $cursor->advanceToEnd();
-
-            return false;
-        }
-
-        return true;
+        return $this->className;
     }
 }

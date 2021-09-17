@@ -5,19 +5,19 @@
 
 namespace App\Libraries\Markdown\Indexing\Renderers;
 
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Renderer\InlineRendererInterface;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
 
-class NewlineRenderer implements InlineRendererInterface
+class NewlineRenderer implements NodeRendererInterface
 {
     /**
-     * @param AbstractInline $inline
-     * @param ElementRendererInterface $htmlRenderer
+     * @param Node $node
+     * @param ChildNodeRendererInterface $childRenderer
      *
      * @return string
      */
-    public function render(AbstractInline $inline, ElementRendererInterface $renderer)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): string
     {
         return ' ';
     }
