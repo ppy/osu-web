@@ -64,7 +64,7 @@ return [
 
     'chat' => [
         'blocked' => '无法向你已拉黑的用户发消息，或者你已经被对方拉黑了。',
-        'friends_only' => '用户阻止了来自非好友的消息。',
+        'friends_only' => '用户拒收了来自陌生人的消息。',
         'moderated' => '该频道现在正在被管制中。',
         'no_access' => '你没有权限访问该频道。',
         'restricted' => '账户被禁言、受限或封禁期间不能发消息。',
@@ -93,7 +93,7 @@ return [
 
         'post' => [
             'delete' => [
-                'only_last_post' => '只有最后的回复可以被删除。',
+                'only_last_post' => '只能删除最后一条回复。',
                 'locked' => '无法删除已锁定主题的回复。',
                 'no_forum_access' => '没有权限进入该板块。',
                 'not_owner' => '只有作者能删除此回复。',
@@ -109,7 +109,7 @@ return [
 
             'store' => [
                 'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在 Help 或 中文 版块发帖求助。',
-                'too_many_help_posts' => "如果你想发更多的帖子，再多玩几把吧！如果你仍然在游戏时遇到问题请邮件联系 support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "如果你想发更多的帖子，再多玩几局吧！如果你在游戏时仍遇到问题，请发送邮件至 support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 

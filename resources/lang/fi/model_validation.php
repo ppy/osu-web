@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason ei kelpaa tälle ilmoitustyypille.',
         'self' => "Et voi ilmiantaa itseäsi!",
     ],

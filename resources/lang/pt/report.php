@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Denunciar',
+        'title' => 'Denunciar o beatmap de :username?',
     ],
 
     'beatmapset_discussion_post' => [

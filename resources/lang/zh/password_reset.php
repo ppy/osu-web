@@ -30,7 +30,7 @@ return [
     'started' => [
         'password' => '新密码',
         'password_confirmation' => '确认新密码',
-        'title' => '为 <strong>:username</strong> 重置密码',
+        'title' => '重置 <strong>:username</strong> 的密码',
         'verification_key' => '验证码',
     ],
 

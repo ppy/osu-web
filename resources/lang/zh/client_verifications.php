@@ -8,7 +8,7 @@ return [
         'home' => '前往看板',
         'logout' => '退出登录',
         'text' => '你现在可以关闭本标签/窗口了',
-        'title' => 'osu! 客户端验证完成',
+        'title' => '已完成 osu! 客户端验证',
     ],
 
     'create' => [
