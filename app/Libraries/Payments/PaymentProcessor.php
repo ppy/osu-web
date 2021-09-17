@@ -221,7 +221,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
         DB::connection('mysql-store')->transaction(function () {
             try {
-                $order = $this->getOrder();
+                $order = $this->getOrder()->lockSelf();
                 $payment = $order->payments->where('cancelled', false)->first();
 
                 if ($payment === null) {
