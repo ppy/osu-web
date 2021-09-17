@@ -252,7 +252,7 @@ return [
     ],
     'general' => [
         'converts' => '包括轉換圖譜',
-        'featured_artists' => '',
+        'featured_artists' => '精選藝術家',
         'follows' => '訂閱的作圖者',
         'recommended' => '推薦難度',
     ],

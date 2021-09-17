@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason 은(는) 이 신고 형식에 맞지 않습니다.',
         'self' => "자기 자신은 신고할 수 없습니다!",
     ],

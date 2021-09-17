@@ -16,7 +16,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => '공식 아티스트',
     ],
 
     'index' => [

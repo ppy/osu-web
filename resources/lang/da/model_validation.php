@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason er ikke gyldt for denne type anmeldelse.',
         'self' => "Du kan ikke rapportere dig selv!",
     ],
