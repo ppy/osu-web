@@ -132,12 +132,14 @@ class Handler extends ExceptionHandler
 
         app('route-section')->setError($statusCode);
 
-        if (config('app.debug') || static::isOAuthServerException($e)) {
+        $isJsonRequest = is_json_request();
+
+        if (config('app.debug') || ($isJsonRequest && static::isOAuthServerException($e))) {
             $response = parent::render($request, $e);
         } else {
             $message = static::exceptionMessage($e);
 
-            if (is_json_request() || $request->ajax()) {
+            if ($isJsonRequest || $request->ajax()) {
                 $response = response(['error' => $message]);
             } else {
                 $response = ext_view('layout.error', [
