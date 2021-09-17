@@ -27,6 +27,7 @@ class DocumentProcessor
     private ?NodeWalkerEvent $event;
     private $node;
 
+    private int $figureIndex;
     private array $tocSlugs;
 
     private ?string $relativeUrlRoot;
@@ -51,10 +52,12 @@ class DocumentProcessor
         $generateToc = $this->config->get('osu_extension/generate_toc');
         $recordFirstImage = $this->config->get('osu_extension/record_first_image');
         $titleFromDocument = $this->config->get('osu_extension/title_from_document');
+        $withGallery = $this->config->get('osu_extension/with_gallery');
         $this->wikiLocale = $this->config->get('osu_extension/wiki_locale');
 
         $this->setWikiPaths();
 
+        $this->figureIndex = 0;
         $this->firstImage = null;
         $this->title = null;
         $this->toc = [];
@@ -85,6 +88,10 @@ class DocumentProcessor
             $this->parseFigure();
 
             $this->proxyImage();
+
+            if ($withGallery) {
+                $this->setImageGallery();
+            }
         }
     }
 
@@ -219,6 +226,38 @@ class DocumentProcessor
         }
 
         $this->firstImage = proxy_media($this->node->getUrl());
+    }
+
+    private function setImageGallery()
+    {
+        if (!$this->node instanceof Inline\Image || !$this->event->isEntering()) {
+            return;
+        }
+
+        $imageClass = $this->node->data['attributes']['class'];
+        $blockClass = $this->config->get('osu_extension/block_name');
+
+        if ($imageClass !== "{$blockClass}__figure-image") {
+            return;
+        }
+
+        $imageUrl = $this->node->getUrl();
+        if (starts_with($imageUrl, route('wiki.show', [], false))) {
+            $imageUrl = config('app.url').$imageUrl;
+        }
+
+        $imageSize = fast_imagesize($imageUrl);
+        $width = isset($imageSize[0]) ? "{$imageSize[0]}" : '';
+        $height = isset($imageSize[1]) ? "{$imageSize[1]}" : '';
+
+        $this->node->data->append('attributes/class', 'js-gallery');
+        $this->node->data->set('attributes/data-width', $width);
+        $this->node->data->set('attributes/data-height', $height);
+        $this->node->data->set('attributes/data-gallery-id', $this->relativeUrlRoot);
+        $this->node->data->set('attributes/data-index', "{$this->figureIndex}");
+        $this->node->data->set('attributes/data-src', $imageUrl);
+
+        $this->figureIndex++;
     }
 
     private function setTitle()
