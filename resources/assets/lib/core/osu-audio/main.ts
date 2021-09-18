@@ -61,7 +61,9 @@ const createPagePlayer = () => {
     <button
     type="button"
     class="audio-player__button audio-player__button--play js-audio--play"
-    ></button>
+    >
+      <span class="fa-fw play-button">
+    </button>
 
     <div class="audio-player__bar audio-player__bar--progress js-audio--seek">
       <div class="audio-player__bar-current"></div>
