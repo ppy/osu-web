@@ -157,20 +157,16 @@ class ChatController extends Controller
         }
 
         if ($includeMessages) {
-            $channelIds = array_pluck($presence, 'channel_id');
+            $channelIds = (array) ($params['channel_id'] ?? array_pluck($presence, 'channel_id'));
 
             $messages = Message
                 ::with('sender')
                 ->whereIn('channel_id', $channelIds)
                 ->since($since)
                 ->limit($limit)
-                ->orderBy('message_id', 'DESC');
-
-            if ($params['channel_id'] !== null) {
-                $messages->where('channel_id', $params['channel_id']);
-            }
-
-            $messages = $messages->get()->reverse();
+                ->orderBy('message_id', 'DESC')
+                ->get()
+                ->reverse();
 
             $response['messages'] = json_collection($messages, new MessageTransformer(), ['sender']);
         }
