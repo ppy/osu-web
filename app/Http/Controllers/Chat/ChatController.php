@@ -176,8 +176,8 @@ class ChatController extends Controller
         }
 
         if ($includePresence) {
-            // to match old behaviour
-            $response['presence'] = $includeMessages && ($messages ?? collect())->isEmpty()
+            // to match old behaviour (204 when no messages and no silences); doesn't apply if messages not requested.
+            $response['presence'] = $includeMessages && $messages->isEmpty()
                 ? []
                 : $presence;
         }
