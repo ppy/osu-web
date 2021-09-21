@@ -135,7 +135,7 @@ class OrderCheckout
             // paid -> if payment provider hits the callback first.
             // any other state should be considered invalid.
             if ($order->isProcessing()) {
-                $order->status = 'checkout';
+                $order->status = Order::STATUS_PAYMENT_APPROVED;
                 $order->saveorExplode();
             } elseif (!$order->isPaidOrDelivered()) {
                 // TODO: use validation errors instead?

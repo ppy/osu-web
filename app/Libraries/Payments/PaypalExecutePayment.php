@@ -34,7 +34,7 @@ class PaypalExecutePayment
                 );
             }
 
-            $order->status = 'checkout';
+            $order->status = Order::STATUS_PAYMENT_APPROVED;
             $order->saveOrExplode();
 
             $client = PaypalApiContext::client();

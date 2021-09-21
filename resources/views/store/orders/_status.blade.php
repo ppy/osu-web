@@ -5,7 +5,7 @@
 <div class="store-page">
     <h3 class="store-text store-text--title">Order Status</h3>
 
-    @if ($order->status === 'delivered')
+    @if ($order->isDelivered())
         <p><em class="store-text store-text--emphasis">Your order has been delivered! We hope you are enjoying it!</em></p>
         <p>
             If you have any issues with your purchase, please contact the <a href='mailto:osustore@ppy.sh'>osu!store support</a>.
@@ -20,12 +20,12 @@
                 'link' => Html::link(route('store.checkout.show', $order), osu_trans('store.invoice.status.processing.line_2.link_text')),
             ]) !!}
         </p>
-    @elseif ($order->status === 'cancelled')
+    @elseif ($order->isCancelled())
         <p><em class="store-text store-text--emphasis">Your order has been cancelled</em></p>
         <p>
             If you didn't request a cancellation please contact <a href='mailto:osustore@ppy.sh'>osu!store support</a> quoting your order number (#{{$order->order_id}}).
         </p>
-    @elseif (($order->status === 'shipped' && ($order->last_tracking_state || count($order->trackingCodes()) === 0)) || $order->status === 'delivered')
+    @elseif (($order->isShipped() && ($order->last_tracking_state || count($order->trackingCodes()) === 0)) || $order->isDelivered())
         <p><em class="store-text store-text--emphasis">Your order has been shipped!</em></p>
         @if(count($order->trackingCodes()))
             <p>

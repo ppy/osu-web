@@ -69,7 +69,7 @@ class OrderItem extends Model
 
     public function delete()
     {
-        if ($this->order->status !== 'incart') {
+        if ($this->order->isCart()) {
             throw new Exception("Delete not allowed on Order ({$this->order->getKey()}).");
         }
 

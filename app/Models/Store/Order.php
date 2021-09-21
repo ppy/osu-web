@@ -61,7 +61,22 @@ class Order extends Model
     const PROVIDER_SHOPIFY = 'shopify';
     const PROVIDER_XSOLLA = 'xsolla';
 
-    const STATUS_HAS_INVOICE = ['processing', 'checkout', 'paid', 'shipped', 'cancelled', 'delivered'];
+    const STATUS_CANCELLED = 'cancelled';
+    const STATUS_CHECKOUT_STARTED = 'processing';
+    const STATUS_DELIVERED = 'delivered';
+    const STATUS_INCART = 'incart';
+    const STATUS_PAID = 'paid';
+    const STATUS_PAYMENT_APPROVED = 'checkout';
+    const STATUS_SHIPPED = 'shipped';
+
+    const STATUS_HAS_INVOICE = [
+        self::STATUS_CHECKOUT_STARTED,
+        self::STATUS_PAYMENT_APPROVED,
+        self::STATUS_PAID,
+        self::STATUS_SHIPPED,
+        self::STATUS_CANCELLED,
+        self::STATUS_DELIVERED,
+    ];
 
     protected $primaryKey = 'order_id';
 
@@ -108,12 +123,12 @@ class Order extends Model
 
     public function scopeInCart($query)
     {
-        return $query->where('status', 'incart');
+        return $query->where('status', static::STATUS_INCART);
     }
 
     public function scopeProcessing($query)
     {
-        return $query->where('status', 'processing');
+        return $query->where('status', static::STATUS_CHECKOUT_STARTED);
     }
 
     public function scopeStale($query)
@@ -204,16 +219,16 @@ class Order extends Model
     public function getPaymentStatusText()
     {
         switch ($this->status) {
-            case 'cancelled':
+            case static::STATUS_CANCELLED:
                 return 'Cancelled';
-            case 'checkout':
-            case 'processing':
+            case static::STATUS_CHECKOUT_STARTED:
+            case static::STATUS_PAYMENT_APPROVED:
                 return 'Awaiting Payment';
-            case 'incart':
+            case static::STATUS_INCART:
                 return '';
-            case 'paid':
-            case 'shipped':
-            case 'delivered':
+            case static::STATUS_PAID:
+            case static::STATUS_SHIPPED:
+            case static::STATUS_DELIVERED:
                 return 'Paid';
             default:
                 return 'Unknown';
@@ -338,12 +353,12 @@ class Order extends Model
 
     public function canCheckout()
     {
-        return in_array($this->status, ['incart', 'processing'], true);
+        return in_array($this->status, [static::STATUS_INCART, static::STATUS_CHECKOUT_STARTED], true);
     }
 
     public function canUserCancel()
     {
-        return $this->status === 'processing';
+        return $this->status === static::STATUS_CHECKOUT_STARTED;
     }
 
     public function hasInvoice()
@@ -358,13 +373,28 @@ class Order extends Model
 
     public function isAwaitingPayment()
     {
-        return in_array($this->status, ['processing', 'checkout'], true);
+        return in_array($this->status, [static::STATUS_CHECKOUT_STARTED, static::STATUS_PAYMENT_APPROVED], true);
+    }
+
+    public function isCancelled()
+    {
+        return $this->status === static::STATUS_CANCELLED;
+    }
+
+    public function isCart()
+    {
+        return $this->status === static::STATUS_INCART;
+    }
+
+    public function isDelivered()
+    {
+        return $this->status === static::STATUS_DELIVERED;
     }
 
     public function isModifiable()
     {
         // new cart is status = null
-        return in_array($this->status, ['incart', null], true);
+        return in_array($this->status, [static::STATUS_INCART, null], true);
     }
 
     public function isProcessing()
@@ -372,14 +402,24 @@ class Order extends Model
         return $this->status === 'processing';
     }
 
+    public function isPaid()
+    {
+        return $this->status === 'paid';
+    }
+
     public function isPaidOrDelivered()
     {
-        return in_array($this->status, ['paid', 'delivered'], true);
+        return in_array($this->status, [static::STATUS_PAID, static::STATUS_DELIVERED], true);
     }
 
     public function isPendingEcheck()
     {
         return $this->tracking_code === static::PENDING_ECHECK;
+    }
+
+    public function isShipped()
+    {
+        return $this->status === static::STATUS_SHIPPED;
     }
 
     public function isShopify(): bool
@@ -429,7 +469,7 @@ class Order extends Model
      */
     public function cancel(?User $user = null)
     {
-        if ($this->status === 'cancelled') {
+        if ($this->status === Order::STATUS_CANCELLED) {
             return;
         }
 
@@ -439,7 +479,7 @@ class Order extends Model
             throw new InvariantException(osu_trans('store.order.cancel_not_allowed'));
         }
 
-        $this->status = 'cancelled';
+        $this->status = Order::STATUS_CANCELLED;
         $this->saveOrExplode();
     }
 
@@ -462,7 +502,7 @@ class Order extends Model
             $this->paid_at = Carbon::now();
         }
 
-        $this->status = $this->requiresShipping() ? 'paid' : 'delivered';
+        $this->status = $this->requiresShipping() ? static::STATUS_PAID : static::STATUS_DELIVERED;
         $this->saveOrExplode();
     }
 
