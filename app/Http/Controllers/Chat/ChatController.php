@@ -13,6 +13,7 @@ use App\Models\UserAccountHistory;
 use App\Transformers\Chat\ChannelTransformer;
 use App\Transformers\Chat\MessageTransformer;
 use App\Transformers\Chat\UserSilenceTransformer;
+use Ds\Set;
 
 /**
  * @group Chat
@@ -124,30 +125,31 @@ class ChatController extends Controller
      */
     public function updates()
     {
+        static $availableIncludes;
+        $availableIncludes ??= new Set(['messages', 'presence', 'silences']);
+
         $request = request()->all();
         $params = get_params($request, null, [
             'channel_id:int',
             'history_since:int',
+            'includes:array',
             'limit:int',
             'since:int',
-        ], ['null_missing' => true]);
-
-        $includes = get_params($request, 'includes', [
-            'messages:bool',
-            'presence:bool',
-            'silences:bool',
         ], ['null_missing' => true]);
 
         if ($params['since'] === null) {
             abort(422);
         }
 
+        $includes = $params['includes'] !== null
+            ? $availableIncludes->intersect(new Set($params['includes']))
+            : $availableIncludes;
+
+        $includeMessages = $includes->contains('messages');
+        $includePresence = $includes->contains('presence');
+
         $since = $params['since'];
         $limit = clamp($params['limit'] ?? 50, 1, 50);
-
-        $includeMessages = $includes['messages'] ?? true;
-        $includePresence = $includes['presence'] ?? true;
-        $includeSilences = $includes['silences'] ?? true;
 
         $response = [];
 
@@ -181,7 +183,7 @@ class ChatController extends Controller
                 : $presence;
         }
 
-        if ($includeSilences) {
+        if ($includes->contains('silences')) {
             $silenceQuery = UserAccountHistory::bans()->limit(100);
             $lastHistoryId = $params['history_since'];
 
