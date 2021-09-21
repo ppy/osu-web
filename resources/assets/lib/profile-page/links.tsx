@@ -2,12 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ClickToCopy from 'click-to-copy';
-import UserJsonExtended from 'interfaces/user-json-extended';
+import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import { compact } from 'lodash';
 import * as moment from 'moment';
 import * as React from 'react';
-import { Props as StringWithComponentProps, StringWithComponent } from 'string-with-component';
+import StringWithComponent, { Props as StringWithComponentProps } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers } from 'utils/css';
 
@@ -31,49 +31,49 @@ interface LinkProps {
 }
 
 interface Props {
-  user: UserJsonExtended;
+  user: UserExtendedJson;
 }
 
-const linkMapping: Record<LinkKey, (user: UserJsonExtended) => LinkProps> = {
-  discord: (user: UserJsonExtended) => ({
+const linkMapping: Record<LinkKey, (user: UserExtendedJson) => LinkProps> = {
+  discord: (user: UserExtendedJson) => ({
     icon: 'fab fa-discord',
     text: <ClickToCopy showIcon value={user.discord ?? ''} />,
   }),
-  interests: (user: UserJsonExtended) => ({
+  interests: (user: UserExtendedJson) => ({
     icon: 'far fa-heart',
     text: user.interests,
   }),
-  location: (user: UserJsonExtended) => ({
+  location: (user: UserExtendedJson) => ({
     icon: 'fas fa-map-marker-alt',
     text: user.location,
   }),
-  occupation: (user: UserJsonExtended) => ({
+  occupation: (user: UserExtendedJson) => ({
     icon: 'fas fa-suitcase',
     text: user.occupation,
   }),
-  twitter: (user: UserJsonExtended) => ({
+  twitter: (user: UserExtendedJson) => ({
     icon: 'fab fa-twitter',
     text: `@${user.twitter}`,
     url: `https://twitter.com/${user.twitter}`,
   }),
-  website: (user: UserJsonExtended) => ({
+  website: (user: UserExtendedJson) => ({
     icon: 'fas fa-link',
     text: (user.website ?? '').replace(/^https?:\/\//, ''),
     url: user.website,
   }),
 };
 
-const textMapping: Record<TextKey, (user: UserJsonExtended) => StringWithComponentProps> = {
-  comments_count: (user: UserJsonExtended) => {
+const textMapping: Record<TextKey, (user: UserExtendedJson) => StringWithComponentProps> = {
+  comments_count: (user: UserExtendedJson) => {
     const count = osu.transChoice('users.show.comments_count.count', user.comments_count ?? 0);
     const url = route('comments.index', { user_id: user.id });
 
     return {
-      mappings: { ':link': <a key='link' className={classWithModifiers('profile-links__value', ['link'])} href={url}>{count}</a> },
+      mappings: { link: <a className={classWithModifiers('profile-links__value', 'link')} href={url}>{count}</a> },
       pattern: osu.trans('users.show.comments_count._'),
     };
   },
-  join_date: (user: UserJsonExtended) => {
+  join_date: (user: UserExtendedJson) => {
     const joinDate = moment(user.join_date);
     const joinDateTitle = joinDate.toISOString();
     let className = 'js-tooltip-time';
@@ -90,12 +90,8 @@ const textMapping: Record<TextKey, (user: UserJsonExtended) => StringWithCompone
     }
 
     const mappings = {
-      ':date': (
-        <span
-          key='date'
-          className={className}
-          title={joinDateTitle}
-        >
+      date: (
+        <span className={className} title={joinDateTitle}>
           {text}
         </span>
       ),
@@ -103,7 +99,7 @@ const textMapping: Record<TextKey, (user: UserJsonExtended) => StringWithCompone
 
     return { mappings, pattern };
   },
-  last_visit: (user: UserJsonExtended) => {
+  last_visit: (user: UserExtendedJson) => {
     if (user.is_online) {
       return {
         mappings: {},
@@ -112,24 +108,28 @@ const textMapping: Record<TextKey, (user: UserJsonExtended) => StringWithCompone
     }
 
     return {
-      mappings: { ':date': <span key='date' className='profile-links__value'><TimeWithTooltip dateTime={user.last_visit ?? ''} relative /></span> },
+      mappings: { date: (
+        <span className='profile-links__value'>
+          <TimeWithTooltip dateTime={user.last_visit ?? ''} relative />
+        </span>
+      ) },
       pattern: osu.trans('users.show.lastvisit'),
     };
   },
-  playstyle: (user: UserJsonExtended) => {
+  playstyle: (user: UserExtendedJson) => {
     const playsWith = user.playstyle.map((s) => osu.trans(`common.device.${s}`)).join(', ');
 
     return {
-      mappings: { ':devices': <span key='devices' className='profile-links__value'>{playsWith}</span> },
+      mappings: { devices: <span className='profile-links__value'>{playsWith}</span> },
       pattern: osu.trans('users.show.plays_with'),
     };
   },
-  post_count: (user: UserJsonExtended) => {
+  post_count: (user: UserExtendedJson) => {
     const count = osu.transChoice('users.show.post_count.count', user.post_count);
     const url = route('users.posts', { user: user.id });
 
     return {
-      mappings: { ':link': <a key='link' className={classWithModifiers('profile-links__value', ['link'])} href={url}>{count}</a> },
+      mappings: { link: <a className={classWithModifiers('profile-links__value', 'link')} href={url}>{count}</a> },
       pattern: osu.trans('users.show.post_count._'),
     };
   },

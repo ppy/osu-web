@@ -68,6 +68,15 @@ class ArtistsController extends Controller
             ];
         }
 
+        if ($artist->beatmapsets()->exists()) {
+            $links[] = [
+                'title' => osu_trans('artist.links.beatmaps'),
+                'url' => route('beatmapsets.index', ['q' => "featured_artist={$artist->getKey()}"]),
+                'icon' => 'fas fa-bars',
+                'class' => 'osu',
+            ];
+        }
+
         if ($artist->website) {
             $links[] = [
                 'title' => osu_trans('artist.links.site'),

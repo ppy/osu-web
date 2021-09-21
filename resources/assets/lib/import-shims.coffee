@@ -4,18 +4,18 @@
 # Import shim so that globally declared scripts can work without changes.
 
 import Blackout from 'blackout'
-import { fadeIn, fadeOut, fadeToggle } from 'utils/fade'
 import Gallery from 'gallery'
 import * as laroute from 'laroute'
-import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
-import OsuUrlHelper from 'osu-url-helper'
+import { StoreCheckout } from 'store-checkout'
 import { fileuploadFailCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
+import { fadeIn, fadeOut, fadeToggle } from 'utils/fade'
 import { make2x } from 'utils/html'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
 import { currentUrl } from 'utils/turbolinks'
+import * as OsuUrlHelper from 'utils/url'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise

@@ -41,6 +41,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['prefix' => 'beatmaps'], function () {
         // featured artists
         Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
+        Route::resource('artists/tracks', 'ArtistTracksController', ['only' => 'show']);
+
         Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
         Route::get('packs/{pack}/raw', 'BeatmapPacksController@raw')->name('packs.raw');
 
@@ -528,7 +530,11 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
 
     Route::group(['namespace' => 'InterOp'], function () {
         Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy']]);
-        Route::post('beatmapsets/{beatmapset}/broadcast-new', 'BeatmapsetsController@broadcastNew');
+
+        Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets/{beatmapset}'], function () {
+            Route::post('broadcast-new', 'BeatmapsetsController@broadcastNew');
+            Route::post('disqualify', 'BeatmapsetsController@disqualify')->name('disqualify');
+        });
 
         Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
             Route::apiResource('bulk', 'Indexing\BulkController', ['only' => ['store']]);

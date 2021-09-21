@@ -142,10 +142,10 @@ return [
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'thông tin về modder',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'lịch sử chế độ nhiều người chơi',
         ],
     ],
 ];

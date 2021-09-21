@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'title' => ':username на :title [:version]',
+        'title' => ':username в :title [:version]',
 
         'beatmap' => [
             'by' => 'по :artist',
@@ -23,7 +23,7 @@ return [
     ],
 
     'status' => [
-        'non_best' => '',
-        'processing' => '',
+        'non_best' => 'Само най-добрите лични постижения дават pp',
+        'processing' => 'Резултатът все още се пресмята и ще бъде показан скоро',
     ],
 ];

@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'osu! profil',
         'site' => 'Officiel Hjemmeside',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Sange',
         'count' => ':count_delimited sang|:count_delimited sange',
-        'exclusive' => 'osu! eksklusiv',
+        'original' => '',
     ],
 
     'tracklist' => [

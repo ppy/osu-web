@@ -212,7 +212,7 @@ return [
                     'title' => 'บีทแมพที่กำลังทำ',
                 ],
                 'ranked' => [
-                    'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
+                    'title' => 'บีทแมพที่จัดอันดับแล้ว',
                 ],
             ],
             'discussions' => [
@@ -410,7 +410,7 @@ return [
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
             'loved_beatmapset_count' => 'บีทแมพที่ Loved',
             'pending_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
-            'ranked_beatmapset_count' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
+            'ranked_beatmapset_count' => 'บีทแมพที่จัดอันดับแล้ว',
         ],
     ],
 

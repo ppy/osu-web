@@ -92,6 +92,8 @@ use Illuminate\Database\QueryException;
  * @property int $thread_id
  * @property string $title
  * @property string $title_unicode
+ * @property ArtistTrack $track
+ * @property int|null $track_id
  * @property User $user
  * @property \Illuminate\Database\Eloquent\Collection $userRatings BeatmapsetUserRating
  * @property int $user_id
@@ -101,7 +103,7 @@ use Illuminate\Database\QueryException;
  */
 class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 {
-    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, Memoizes, SoftDeletes, Validatable;
+    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, Memoizes, Reportable, SoftDeletes, Validatable;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -1163,7 +1165,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 'discussions.posts',
                 'discussions.votes',
                 'events',
-                'events.nomination_modes',
                 'nominations',
                 'related_users',
                 'related_users.groups',
@@ -1189,6 +1190,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function topic()
     {
         return $this->belongsTo(Forum\Topic::class, 'thread_id');
+    }
+
+    public function track()
+    {
+        return $this->belongsTo(ArtistTrack::class);
     }
 
     public function userRatings()
@@ -1393,6 +1399,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function url()
     {
         return route('beatmapsets.show', $this);
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'UnwantedContent',
+            'user_id' => $this->user_id,
+        ];
     }
 
     protected static function boot()

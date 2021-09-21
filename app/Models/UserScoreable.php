@@ -92,10 +92,12 @@ trait UserScoreable
         $results = $clazz::whereIn('score_id', $ids)->orderByField('score_id', $ids)->with($with)->get();
 
         // fill in positions for weighting
+        // also preload the user relation
         $position = $offset;
         foreach ($results as $result) {
             $result->position = $position;
             $result->weight = pow(0.95, $position);
+            $result->setRelation('user', $this);
             $position++;
         }
 

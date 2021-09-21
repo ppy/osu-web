@@ -18,10 +18,11 @@ return [
     ],
 
     'index' => [
-        'description' => 'Artistas destacados são artistas com os quais estamos a trabalhar em colaboração com o objetivo de trazer musicas novas e originais para o osu!. Estes artistas e uma seleção de faixas de si foram escolhidas pela equipa do osu! como sendo fantásticas e adequadas para mapeamento. Alguns destes artistas destacados também criaram faixas novas exclusivas para usar no osu!.<br><br>Todas as faixas nesta secção são fornecidas como ficheiros pré-temporizados .osz e foram oficialmente licenciados para uso no osu! e conteúdo relacionado com o osu!.',
+        'description' => 'Os artistas destacados são artistas com os quais estamos a trabalhar em colaboração com o objetivo de trazer músicas novas e originais para o osu!. Estes artistas e uma seleção de faixas de si foram escolhidas pela equipa do osu! como sendo fantásticas e adequadas para mapeamento. Alguns destes artistas destacados também criaram faixas novas exclusivas para usar no osu!.<br><br>Todas as faixas nesta secção são fornecidas como ficheiros pré-temporizados .osz e foram oficialmente licenciados para uso no osu! e conteúdo relacionado com o osu!.',
     ],
 
     'links' => [
+        'beatmaps' => 'Beatmaps osu!',
         'osu' => 'perfil osu!',
         'site' => 'Sítio web oficial',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Canções',
         'count' => ':count canção|:count canções',
-        'exclusive' => 'exclusivo osu!',
+        'original' => 'Original do osu!',
     ],
 
     'tracklist' => [

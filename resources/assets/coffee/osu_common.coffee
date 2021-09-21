@@ -69,7 +69,10 @@
 
   # make a clone of json-like object (object with simple values)
   jsonClone: (object) ->
-    JSON.parse JSON.stringify(object ? null)
+    if object?
+      JSON.parse JSON.stringify(object)
+    else
+      object
 
 
   isInputElement: (el) ->
@@ -150,15 +153,7 @@
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
 
-    url =
-      if !_.isEmpty window.reloadUrl
-        window.reloadUrl
-      else
-        _exported.currentUrl().href
-
-    window.reloadUrl = null
-
-    osu.navigate url, keepScroll, action: 'replace'
+    osu.navigate _exported.currentUrl().href, keepScroll, action: 'replace'
 
 
   urlPresence: (url) ->

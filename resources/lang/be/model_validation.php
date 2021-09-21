@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason не падыходзіць для дадзенага тыпу дакладу.',
         'self' => "Вы не можаце паскардзіцца на самога сябе!",
     ],

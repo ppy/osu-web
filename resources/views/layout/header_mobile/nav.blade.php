@@ -21,8 +21,8 @@
         </a>
 
         <ul class="navbar-mobile-item__submenu js-click-menu" data-click-menu-id="nav-mobile-{{ $section }}">
-            @foreach ($links as $action => $link)
-                @if ($action === '_')
+            @foreach ($links as $transKey => $link)
+                @if ($transKey === '_')
                     @continue
                 @endif
                 <li>
@@ -30,7 +30,7 @@
                         class="navbar-mobile-item__submenu-item js-click-menu--close"
                         href="{{ $link }}"
                     >
-                        {{ osu_trans("layout.menu.$section.$action") }}
+                        {{ osu_trans($transKey) }}
                     </a>
                 </li>
             @endforeach

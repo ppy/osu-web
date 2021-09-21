@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'osu! προφίλ',
         'site' => 'Επίσημη Ιστοσελίδα',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Τραγούδια',
         'count' => ':count τραγούδι|:count τραγούδια',
-        'exclusive' => 'αποκλειστικό του osu!',
+        'original' => '',
     ],
 
     'tracklist' => [

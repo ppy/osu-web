@@ -183,7 +183,7 @@ return [
         'disqualify' => 'Squalifica',
         'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
         'love' => 'Ama',
-        'love_choose' => '',
+        'love_choose' => 'Scegli la difficoltà da rendere amata',
         'love_confirm' => 'Ama questa beatmap?',
         'nominate' => 'Nomina',
         'nominate_confirm' => 'Nominare questa beatmap?',
@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Includi beatmap convertite',
+        'featured_artists' => 'Artisti in primo piano',
         'follows' => 'Mapper iscritti',
         'recommended' => 'Difficoltà consigliata',
     ],

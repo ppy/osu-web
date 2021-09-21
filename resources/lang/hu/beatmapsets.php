@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Lassíts le, játssz többet.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Kiemelt előadó',
+    ],
+
     'index' => [
         'title' => 'Beatmap lista',
         'guest_title' => 'Beatmap-ek',

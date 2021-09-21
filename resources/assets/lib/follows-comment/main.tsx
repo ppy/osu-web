@@ -9,7 +9,7 @@ import FollowCommentJson from 'interfaces/follow-comment-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 
 interface Props {
@@ -72,8 +72,8 @@ export default class Main extends React.PureComponent<Props> {
             <a href={route('comments.show', { comment: follow.latest_comment.id })}>
               <StringWithComponent
                 mappings={{
-                  ':time': <TimeWithTooltip key='time' dateTime={follow.latest_comment.created_at} relative />,
-                  ':username': follow.latest_comment.user?.username ?? '???',
+                  time: <TimeWithTooltip dateTime={follow.latest_comment.created_at} relative />,
+                  username: follow.latest_comment.user?.username ?? '???',
                 }}
                 pattern={osu.trans('follows.comment.table.latest_comment_value')}
               />

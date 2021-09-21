@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 /* eslint-disable max-classes-per-file */
-/* tslint:disable:max-classes-per-file */
 
 // importable coffeescript modules
 declare module 'back-to-top' {
@@ -25,19 +24,6 @@ declare module 'block-button' {
   }
 
   class BlockButton extends React.PureComponent<Props> {}
-}
-
-declare module 'big-button' {
-  interface Props {
-    extraClasses?: string[];
-    icon: string;
-    isBusy?: boolean;
-    modifiers?: string[];
-    props: any;
-    text: string;
-  }
-
-  class BigButton extends React.PureComponent<Props> {}
 }
 
 declare module 'friend-button' {

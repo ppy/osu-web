@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang telah Anda miliki terlebih dahulu.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
+    ],
+
     'index' => [
         'title' => 'Daftar Beatmap',
         'guest_title' => 'Beatmap',

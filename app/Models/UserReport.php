@@ -34,10 +34,12 @@ class UserReport extends Model
 {
     use RoutesNotifications, Validatable;
 
+    const BEATMAPSET_TYPE_REASONS = ['UnwantedContent', 'Other'];
     const POST_TYPE_REASONS = ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'];
     const SCORE_TYPE_REASONS = ['Cheating', 'MultipleAccounts', 'Other'];
 
     const ALLOWED_REASONS = [
+        MorphMap::MAP[Beatmapset::class] => self::BEATMAPSET_TYPE_REASONS,
         MorphMap::MAP[BeatmapDiscussionPost::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Best\Fruits::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Best\Mania::class] => self::SCORE_TYPE_REASONS,
@@ -110,6 +112,13 @@ class UserReport extends Model
                     ['reason' => $this->reason]
                 );
             }
+        }
+
+        if ($this->reportable instanceof Beatmapset && $this->reportable->isScoreable()) {
+            $this->validationErrors()->add(
+                'reason',
+                '.no_ranked_beatmapset'
+            );
         }
 
         return $this->validationErrors()->isEmpty();
