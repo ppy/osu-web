@@ -104,7 +104,7 @@ return [
                 'unlink' => '取消連結',
                 'unsaved' => '尚未儲存',
                 'timestamp' => [
-                    'all-diff' => '',
+                    'all-diff' => '發佈於「所有難度」的無法進行時間戳記',
                     'diff' => '如果這個 :type 開頭是時間戳，時間戳會在「時間軸」下顯示。',
                 ],
             ],
@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => '操作發生錯誤，請重新載入頁面。',
         'love' => '喜歡',
+        'love_choose' => '選擇 Loved 圖譜的難度',
         'love_confirm' => '喜歡這張圖譜嗎？',
         'nominate' => '提名',
         'nominate_confirm' => '確定要提名這張圖譜？',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => '包括轉換圖譜',
+        'featured_artists' => '精選藝術家',
         'follows' => '訂閱的作圖者',
         'recommended' => '推薦難度',
     ],

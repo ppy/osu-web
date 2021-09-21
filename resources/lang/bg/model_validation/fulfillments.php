@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Дарението е по-малко, отколкото се изисква за osu!supporter статус (:actual > :expected)',
+        'insufficient_paid' => 'Дарението е по-малко от препоръчителното за osu!supporter статус (:actual > :expected)',
     ],
 ];

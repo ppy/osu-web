@@ -22,7 +22,7 @@
                 type="button"
                 class="btn-osu-big btn-osu-big--rounded-thin"
                 data-remote="true"
-                data-url="{{ wiki_url($page->path, $requestedLocale) }}"
+                data-url="{{ route('wiki.show', ['path' => $page->path, 'locale' => $requestedLocale]) }}"
                 data-method="PUT"
                 title="{{ osu_trans('wiki.show.edit.refresh') }}"
             >

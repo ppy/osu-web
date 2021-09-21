@@ -2,27 +2,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsPopup from 'beatmapset-panel/beatmaps-popup';
-import { BeatmapsetJson, BeatmapsetStatus } from 'beatmapsets/beatmapset-json';
 import { CircularProgress } from 'circular-progress';
 import Img2x from 'img2x';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import BeatmapsetJson, { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { sum, values } from 'lodash';
-import { computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
-import OsuUrlHelper from 'osu-url-helper';
 import * as React from 'react';
 import { Transition } from 'react-transition-group';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
 import { getArtist, getDiffColour, getTitle, group as groupBeatmaps } from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumberSuffixed } from 'utils/html';
+import { beatmapsetDownloadDirect } from 'utils/url';
 
 export const beatmapsetCardSizes = ['normal', 'extra'] as const;
 export type BeatmapsetCardSize = typeof beatmapsetCardSizes[number];
@@ -67,6 +67,12 @@ const BeatmapDots = observer(({ compact, beatmaps, mode }: { beatmaps: BeatmapJs
   </div>
 ));
 
+const FeaturedArtistBadge = () => (
+  <span className='beatmapset-badge beatmapset-badge--featured-artist beatmapset-badge--panel'>
+    {osu.trans('beatmapsets.featured_artist_badge.label')}
+  </span>
+);
+
 const MapperLink = observer(({ beatmapset }: { beatmapset: BeatmapsetJson }) => (
   <UserLink
     className='beatmapset-panel__mapper-link u-hover'
@@ -75,7 +81,7 @@ const MapperLink = observer(({ beatmapset }: { beatmapset: BeatmapsetJson }) => 
 ));
 
 const NsfwBadge = () => (
-  <span className='nsfw-badge nsfw-badge--panel'>
+  <span className='beatmapset-badge beatmapset-badge--nsfw beatmapset-badge--panel'>
     {osu.trans('beatmapsets.nsfw_badge.label')}
   </span>
 );
@@ -147,7 +153,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     let titleVariant: string;
 
     if (type === 'direct') {
-      url = OsuUrlHelper.beatmapsetDownloadDirect(this.props.beatmapset.id);
+      url = beatmapsetDownloadDirect(this.props.beatmapset.id);
       titleVariant = 'direct';
     } else {
       const params: Record<string, string|number> = {
@@ -230,6 +236,12 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id});
   }
 
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   componentWillUnmount() {
     $(document).off('click', this.onDocumentClick);
     Object.values(this.timeouts).forEach((timeout) => {
@@ -277,9 +289,9 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
     if (!this.beatmapsPopupHover) return;
 
-    this.timeouts.beatmapsPopup = window.setTimeout(() => {
+    this.timeouts.beatmapsPopup = window.setTimeout(action(() => {
       this.beatmapsPopupHover = false;
-    }, 500);
+    }), 500);
   };
 
   private beatmapsPopupDelayedShow = () => {
@@ -287,17 +299,19 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
     if (this.beatmapsPopupHover) return;
 
-    this.timeouts.beatmapsPopup = window.setTimeout(() => {
+    this.timeouts.beatmapsPopup = window.setTimeout(action(() => {
       this.beatmapsPopupHover = true;
-    }, 100);
+    }), 100);
   };
 
+  @action
   private beatmapsPopupHide = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
     this.beatmapsPopupHover = false;
   };
 
+  @action
   private beatmapsPopupKeep = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
@@ -312,6 +326,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     this.beatmapsPopupDelayedHide();
   };
 
+  @action
   private onDocumentClick = (e: JQuery.ClickEvent) => {
     // only for shrinking
     if (!this.mobileExpanded) return;
@@ -332,6 +347,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     this.beatmapsPopupDelayedHide();
   };
 
+  @action
   private onMobileExpandToggleClick = () => {
     this.mobileExpanded = !this.mobileExpanded;
     if (this.mobileExpanded) {
@@ -405,6 +421,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
             {osu.trans('beatmapsets.show.details.by_artist', { artist: getArtist(this.props.beatmapset) })}
           </a>
+          {(this.props.beatmapset.track_id != null) && <FeaturedArtistBadge />}
         </div>
 
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--source'>
@@ -416,7 +433,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--mapper'>
           <div className='u-ellipsis-overflow'>
             <StringWithComponent
-              mappings={{ ':mapper': <MapperLink key='mapper' beatmapset={this.props.beatmapset} /> }}
+              mappings={{ mapper: <MapperLink beatmapset={this.props.beatmapset} /> }}
               pattern={osu.trans('beatmapsets.show.details.mapped_by')}
             />
           </div>
@@ -548,7 +565,11 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private renderPlayArea() {
     return (
       <div className='beatmapset-panel__play-container'>
-        {this.showVisual && <button className='beatmapset-panel__play js-audio--play' type='button' />}
+        {this.showVisual && (
+          <button className='beatmapset-panel__play js-audio--play' type='button'>
+            <span className='play-button' />
+          </button>
+        )}
         <div className='beatmapset-panel__play-progress'>
           <CircularProgress
             current={0}

@@ -509,7 +509,7 @@ class ChatControllerTest extends TestCase
     public function createPmWithClientCredentialsBotGroupDataProvider()
     {
         return [
-            [['bot', 'chat.write'], 200],
+            [['chat.write', 'delegate'], 200],
             [['public'], 403],
         ];
     }

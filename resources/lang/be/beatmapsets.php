@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Запавольвайце, гуляйце больш.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Ліцэнзаваный мастак',
+    ],
+
     'index' => [
         'title' => 'Спіс бітмап',
         'guest_title' => 'Бітмапы',

@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Fade from 'fade';
+import { fadeToggle } from 'utils/fade';
 
 const Blackout = {
   hide: () => Blackout.toggle(false),
@@ -13,7 +13,7 @@ const Blackout = {
 
     if (el instanceof HTMLElement) {
       el.style.opacity = !state || opacity == null ? '' : String(opacity);
-      Fade.toggle(el, state);
+      fadeToggle(el, state);
     }
   },
 };

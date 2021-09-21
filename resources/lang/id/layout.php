@@ -63,18 +63,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmap',
-            'artists' => 'featured artist',
-            'index' => 'daftar',
-            'packs' => 'paket',
         ],
         'community' => [
             '_' => 'komunitas',
-            'chat' => 'chat',
-            'contests' => 'kontes',
             'dev' => 'pengembangan',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'siaran langsung',
-            'tournaments' => 'turnamen',
         ],
         'help' => [
             '_' => 'bantuan',
@@ -82,30 +74,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'peraturan',
             'getSupport' => 'beneran, saya butuh bantuan!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'beranda',
-            'changelog-index' => 'riwayat perubahan',
-            'getDownload' => 'unduh',
-            'news-index' => 'berita',
-            'search' => 'cari',
             'team' => 'tim',
         ],
         'rankings' => [
             '_' => 'peringkat',
-            'charts' => 'spotlights',
-            'country' => 'negara',
-            'index' => 'performa',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multiplayer',
-            'score' => 'skor',
         ],
         'store' => [
             '_' => 'toko',
-            'cart-show' => 'keranjang',
-            'getListing' => 'daftar',
-            'orders-index' => 'riwayat transaksi',
         ],
     ],
 

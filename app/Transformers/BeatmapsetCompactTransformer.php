@@ -61,6 +61,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'status' => $beatmapset->status(),
             'title' => $beatmapset->title,
             'title_unicode' => $beatmapset->title_unicode,
+            'track_id' => $beatmapset->track_id,
             'user_id' => $beatmapset->user_id,
             'video' => $beatmapset->video,
         ];
@@ -176,7 +177,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
                 $result['disqualification'] = json_item($disqualificationEvent, 'BeatmapsetEvent');
             }
             if ($currentUser !== null) {
-                $result['nominated'] = $beatmapset->nominationsSinceReset()->where('user_id', $currentUser->user_id)->exists();
+                $result['nominated'] = $beatmapset->beatmapsetNominations()->current()->where('user_id', $currentUser->getKey())->exists();
             }
         } elseif ($beatmapset->isQualified()) {
             $queueStatus = $beatmapset->rankingQueueStatus();

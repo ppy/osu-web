@@ -31,16 +31,16 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => '啊哦，你的购物车中存在问题！',
-        'cart_problems_edit' => '点击此处以编辑。',
-        'declined' => '支付被取消。',
+        'cart_problems' => '啊哦，您的购物车中存在问题！',
+        'cart_problems_edit' => '点击此处编辑。',
+        'declined' => '取消支付。',
         'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单**可能会有 1-2 周的延迟**。',
-        'old_cart' => '你的购物车已经过期，请重试。',
+        'old_cart' => '您的购物车已经过期，请重试。',
         'pay' => '使用 Paypal 支付',
         'title_compact' => '结账',
 
         'has_pending' => [
-            '_' => '你有未完成的支付，点击 :link 查看。',
+            '_' => '您有未完成的支付，点击 :link 查看。',
             'link_text' => '这里',
         ],
 
@@ -53,15 +53,15 @@ return [
     'discount' => '节省 :percent%',
 
     'invoice' => [
-        'echeck_delay' => '由于你的支付是通过 eCheck 进行的，请再等待至多 10 天以使你的支付通过 PayPal 完成！',
+        'echeck_delay' => '由于您的支付是通过 eCheck 进行的，请再等待至多 10 天以使你的支付通过 PayPal 完成！',
         'title_compact' => '账单',
 
         'status' => [
             'processing' => [
                 'title' => '您的付款信息尚未确认！',
-                'line_1' => '如果你已经支付，请等待我们收到支付信息，稍后再来看看吧。',
+                'line_1' => '如果您已经支付，请等待我们收到支付信息，稍后再来看看吧。',
                 'line_2' => [
-                    '_' => '如果你在结账中遇到问题，:link',
+                    '_' => '如果您在结账中遇到问题，请 :link',
                     'link_text' => '点击此处以恢复',
                 ],
             ],
@@ -70,13 +70,13 @@ return [
 
     'order' => [
         'cancel' => '取消订单',
-        'cancel_confirm' => '此订单将被取消，不能再支付。支付提供商可能不会立刻退款。您确定吗？',
+        'cancel_confirm' => '您确定取消订单吗？（此订单不能再支付，支付提供商可能不会立刻退款。）',
         'cancel_not_allowed' => '目前无法取消订单。',
         'invoice' => '查看发票',
         'no_orders' => '没有可显示的订单。',
         'paid_on' => '订单支付于 :date',
-        'resume' => '恢复结帐',
-        'shopify_expired' => '此订单的结帐链接已过期。',
+        'resume' => '恢复结账',
+        'shopify_expired' => '此订单的结账链接已过期。',
 
         'item' => [
             'display_name' => [
@@ -86,13 +86,13 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => '你不能修改此订单，因为它已经被取消了。',
-            'checkout' => '你不能修改正在处理的订单。', // checkout and processing should have the same message.
+            'cancelled' => '您不能修改已取消的订单。',
+            'checkout' => '您不能修改正在处理的订单。', // checkout and processing should have the same message.
             'default' => '订单不可修改',
-            'delivered' => '你不能修改此订单，因为它已经送达了。',
+            'delivered' => '您不能修改已送达订单。',
             'paid' => '你不能修改此订单，因为它已经完成付款了。',
-            'processing' => '你不能修改正在处理的订单。',
-            'shipped' => '你不能修改此订单，因为已经发货了。',
+            'processing' => '您不能修改正在处理的订单。',
+            'shipped' => '您不能修改已发货订单。',
         ],
 
         'status' => [
@@ -125,7 +125,7 @@ return [
     'supporter_tag' => [
         'gift' => '要赠与的玩家',
         'require_login' => [
-            '_' => '你需要 :link 以获得 osu!Supporter 标签！',
+            '_' => '你需要 :link 以获得 osu! 支持者标签！',
             'link_text' => '登录',
         ],
     ],

@@ -23,7 +23,7 @@
             <div class="landing-nav__section">
                 @foreach ($navLinks as $section => $links)
                     <a
-                        href="{{ $links['_'] ?? array_values($links)[0] }}"
+                        href="{{ array_first($links) }}"
                         class="landing-nav__link {{ ($section == "home") ? "landing-nav__link--bold" : "" }}"
                     >
                         {{ osu_trans("layout.menu.$section._") }}

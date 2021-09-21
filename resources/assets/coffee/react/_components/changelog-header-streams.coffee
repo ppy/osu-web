@@ -4,6 +4,7 @@
 import * as React from 'react'
 import { a, div, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { changelogBuild } from 'utils/url'
 
 el = React.createElement
 
@@ -25,7 +26,7 @@ export class ChangelogHeaderStreams extends React.PureComponent
     mainClass += " t-changelog-stream--#{streamNameClass}"
 
     a
-      href: _exported.OsuUrlHelper.changelogBuild stream.latest_build
+      href: changelogBuild stream.latest_build
       key: stream.id
       className: mainClass
       div className: 'update-streams-v2__bar u-changelog-stream--bg'

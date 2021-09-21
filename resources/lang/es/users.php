@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Juega sucio o hace trampa',
-            'multiple_accounts' => 'Utiliza multiples cuentas',
+            'multiple_accounts' => 'Utiliza múltiples cuentas',
             'insults' => 'Insulta a mí o a otros',
             'spam' => 'Envía mensajes spam',
             'unwanted_content' => 'Enlaza contenido inapropiado',
@@ -157,7 +157,7 @@ return [
 
         'comments_count' => [
             '_' => 'Publicó :link',
-            'count' => ':count_delimited comentario|:count_delimited comentarios',
+            'count' => 'un comentario|:count_delimited comentarios',
         ],
         'edit' => [
             'cover' => [

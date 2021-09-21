@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => '欲速則不達。',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '精選藝術家',
+    ],
+
     'index' => [
         'title' => '圖譜列表',
         'guest_title' => '圖譜',

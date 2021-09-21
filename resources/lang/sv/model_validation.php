@@ -4,23 +4,23 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => 'Ogiltigt :attribute specificerat.',
+    'invalid' => 'Ogiltig :attribute specificerat.',
     'not_negative' => ':attribute kan inte vara negativt.',
     'required' => ':attribute behövs.',
     'too_long' => ':attribute överskred maximal längd - kan endast vara upp till :limit tecken.',
-    'wrong_confirmation' => 'Bekräftelse matchar inte.',
+    'wrong_confirmation' => 'Bekräftelsen matchar inte.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Tidsstämpel är angiven men beatmap saknas.',
+        'beatmap_missing' => 'Tidsstämpel är angiven men beatmapsvårighetsgrad saknas.',
         'beatmapset_no_hype' => "Denna beatmap kan inte hypas.",
-        'hype_requires_null_beatmap' => 'Hype måste göras i den allmänna (Alla svårighetsgrader) sektionen.',
+        'hype_requires_null_beatmap' => 'Hype måste göras i den allmänna (alla svårighetsgrader) sektionen.',
         'invalid_beatmap_id' => 'Ogiltig svårighetgrad angiven.',
         'invalid_beatmapset_id' => 'Ogiltig beatmap angiven.',
-        'locked' => 'Diskussion är låst.',
+        'locked' => 'Diskussionen är låst.',
 
         'attributes' => [
-            'message_type' => 'Typ av meddelande',
-            'timestamp' => 'Tidpunkt',
+            'message_type' => 'Meddelandetyp',
+            'timestamp' => 'Tidsstämpel',
         ],
 
         'hype' => [
@@ -34,7 +34,7 @@ return [
 
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Angivna tidsstämpeln är bortom längden på beatmapen.',
-            'negative' => "Tidsstämpel kan inte vara negativ.",
+            'negative' => "Tidsstämpeln kan inte vara negativ.",
         ],
     ],
 
@@ -57,12 +57,12 @@ return [
     ],
 
     'follow' => [
-        'invalid' => 'Ogiltigt :attribute specificerat.',
+        'invalid' => 'Ogiltig :attribute specificerat.',
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Kan endast rösta på funktion begäran.',
+            'not_feature_topic' => 'Kan bara rösta på en funktionsförfrågan.',
             'not_enough_feature_votes' => 'Inte tillräckligt med röster.',
         ],
 
@@ -71,14 +71,14 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Radera beatmap metadata inlägg är inte tillåtet.',
-            'beatmapset_post_no_edit' => 'Redigera beatmap metadata inlägg är inte tillåtet.',
+            'beatmapset_post_no_delete' => 'Radering av beatmap-metadatainlägg är inte tillåtet.',
+            'beatmapset_post_no_edit' => 'Att redigera beatmap-metadatainlägg är inte tillåtet.',
             'first_post_no_delete' => 'Kan inte ta bort ursprungsinlägget',
             'missing_topic' => 'Inlägget saknar ämne',
-            'only_quote' => 'Ditt svar innehåller bara en citat.',
+            'only_quote' => 'Ditt svar innehåller bara ett citat.',
 
             'attributes' => [
-                'post_text' => 'Skicka kropp',
+                'post_text' => 'Brödtext',
             ],
         ],
 
@@ -90,27 +90,27 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplicerade val är ej tillåtet.',
-            'grace_period_expired' => 'Kan inte redigera en enkät efter mer än :limit timmar.',
-            'hiding_results_forever' => 'Kan inte dölja resultaten på en enkät som aldrig slutar.',
+            'grace_period_expired' => 'Kan inte redigera en omröstning efter mer än :limit timmar.',
+            'hiding_results_forever' => 'Kan inte dölja resultaten på en omröstning som aldrig slutar.',
             'invalid_max_options' => 'Val per användare får inte överskrida antalet tillgängliga val.',
             'minimum_one_selection' => 'Minst ett val per användare krävs.',
             'minimum_two_options' => 'Behöver åtminstone två val.',
             'too_many_options' => 'Överskred max antal tillåtna val.',
 
             'attributes' => [
-                'title' => 'Enkät titel',
+                'title' => 'Omröstningstitel',
             ],
         ],
 
         'topic_vote' => [
             'required' => 'Välj ett alternativ att rösta på.',
-            'too_many' => 'Valde mer val än tillåtet.',
+            'too_many' => 'Valde mer val än vad som är tillåtet.',
         ],
     ],
 
     'oauth' => [
         'client' => [
-            'too_many' => 'Överskred maximalt antal tillåtna OAuth program.',
+            'too_many' => 'Överskred maximalt antal tillåtna OAuth-program.',
             'url' => 'Var vänlig och skriv in en giltig URL.',
 
             'attributes' => [
@@ -153,16 +153,17 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => 'Du kan inte ändra ditt användarnamn när det är begränsat.',
+            'restricted' => 'Du kan inte ändra ditt användarnamn medan du är begränsad.',
             'supporter_required' => [
-                '_' => 'Du måste :link för att byta ditt användarnamn!',
-                'link_text' => 'stödja osu!',
+                '_' => 'Du måste ha :link för att byta ditt användarnamn!',
+                'link_text' => 'stöttade osu!',
             ],
             'username_is_same' => 'Detta är redan ditt användarnamn, dumbom!',
         ],
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason är inte giltigt för denna anmälningstyp.',
         'self' => "Du kan inte anmäla dig själv!",
     ],

@@ -147,7 +147,7 @@ use Request;
  * @property string $user_post_sortby_dir
  * @property string $user_post_sortby_type
  * @property int $user_posts
- * @property int $user_rank
+ * @property int|null $user_rank
  * @property \Carbon\Carbon $user_regdate
  * @property mixed $user_sig
  * @property string $user_sig_bbcode_bitfield
@@ -755,6 +755,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->attributes['osu_subscriptionexpiry'] = optional($value)->startOfDay();
     }
 
+    public function getUserRankAttribute($value)
+    {
+        return $value === 0 ? null : $value;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Permission Checker Functions
@@ -1064,7 +1069,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function beatmapsetNominations()
     {
-        return $this->hasMany(BeatmapsetEvent::class)->where('type', BeatmapsetEvent::NOMINATE);
+        return $this->hasMany(BeatmapsetNomination::class);
     }
 
     public function beatmapsetNominationsToday()

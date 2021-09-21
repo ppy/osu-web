@@ -7,6 +7,7 @@ namespace Tests;
 
 use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
+use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetNomination;
@@ -57,6 +58,46 @@ class BeatmapsetEventNominationResetTest extends TestCase
         $this->assertEqualsCanonicalizing(array_pluck($this->nominators, 'user_id'), BeatmapsetEvent::nominationResetReceiveds()->pluck('user_id')->all());
     }
     #endregion
+
+    // FIXME: disqualification tests could probably do with some reorganization.
+    public function testInterOpDisqualify()
+    {
+        $this->createBeatmapsetWithNominators('qualified');
+        $banchoBotUser = factory(User::class)->create([
+            'user_id' => config('osu.legacy.bancho_bot_user_id'),
+        ]);
+
+        $disqualifyCount = BeatmapsetEvent::disqualifications()->count();
+        $nominationResetReceivedCount = BeatmapsetEvent::nominationResetReceiveds()->count();
+
+        $url = route('interop.beatmapsets.disqualify', [
+            'beatmapset' => $this->beatmapset->getKey(),
+            'timestamp' => time(),
+        ]);
+
+        $response = $this
+            ->withInterOpHeader($url)
+            ->post($url, ['message' => 'hello'])
+            ->assertStatus(200);
+
+        Queue::assertPushed(BeatmapsetDisqualify::class);
+        Queue::assertNotPushed(BeatmapsetResetNominations::class);
+
+        $this->beatmapset->refresh();
+
+        $discussionId = json_decode($response->getContent(), true)['beatmapset_discussion_id'] ?? null;
+
+        $this->assertNotEmpty($discussionId);
+
+        $discussion = BeatmapDiscussion::find($discussionId);
+        $this->assertTrue($banchoBotUser->is($discussion->user));
+        $this->assertSame('hello', $discussion->startingPost->message);
+
+        $this->assertSame($this->beatmapset->status(), 'pending');
+        $this->assertSame($disqualifyCount + 1, BeatmapsetEvent::disqualifications()->count());
+        $this->assertSame($nominationResetReceivedCount + count($this->nominators), BeatmapsetEvent::nominationResetReceiveds()->count());
+        $this->assertEqualsCanonicalizing(array_pluck($this->nominators, 'user_id'), BeatmapsetEvent::nominationResetReceiveds()->pluck('user_id')->all());
+    }
 
     protected function setUp(): void
     {

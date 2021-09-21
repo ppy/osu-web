@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-const path = require('path');
 const { spawnSync } = require('child_process');
+const path = require('path');
 const Watchpack = require('watchpack');
 const spawnOptions = { stdio: 'inherit' };
 

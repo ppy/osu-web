@@ -3,11 +3,12 @@
 
 import { dispatch } from 'app-dispatcher';
 import { route } from 'laroute';
-import { forEach, random } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { forEach } from 'lodash';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
 import core from 'osu-core-singleton';
 import SocketMessageEvent, { isSocketEventData, SocketEventData } from 'socket-message-event';
+import RetryDelay from 'utils/retry-delay';
 
 const isNotificationEventLogoutJson = (arg: SocketEventData): arg is NotificationEventLogoutJson => arg.event === 'logout';
 
@@ -25,6 +26,7 @@ export default class SocketWorker {
   userId: number | null = null;
   @observable private active = false;
   private endpoint?: string;
+  private retryDelay = new RetryDelay();
   private timeout: Partial<Record<string, number>> = {};
   private ws: WebSocket | null | undefined;
   private xhr: Partial<Record<string, JQueryXHR>> = {};
@@ -33,6 +35,10 @@ export default class SocketWorker {
   @computed
   get isConnected() {
     return this.connectionStatus === 'connected';
+  }
+
+  constructor() {
+    makeObservable(this);
   }
 
   boot() {
@@ -73,10 +79,11 @@ export default class SocketWorker {
 
     const token = tokenEl.getAttribute('content');
     this.ws = new WebSocket(`${this.endpoint}?csrf=${token}`);
-    this.ws.addEventListener('open', () => {
+    this.ws.addEventListener('open', action(() => {
+      this.retryDelay.reset();
       this.connectionStatus = 'connected';
       this.hasConnectedOnce = true;
-    });
+    }));
     this.ws.addEventListener('close', this.reconnectWebSocket);
     this.ws.addEventListener('message', this.handleNewEvent);
   }
@@ -135,7 +142,7 @@ export default class SocketWorker {
     this.timeout.connectWebSocket = window.setTimeout(action(() => {
       this.ws = null;
       this.connectWebSocket();
-    }), random(5000, 20000));
+    }), this.retryDelay.get());
   };
 
   private startWebSocket = () => {
@@ -152,12 +159,21 @@ export default class SocketWorker {
     this.xhrLoadingState.startWebSocket = true;
 
     this.xhr.startWebSocket = $.get(route('notifications.endpoint'))
-      .done(action((data: NotificationFeedMetaJson) => {
+      .always(action(() => {
         this.xhrLoadingState.startWebSocket = false;
+      }))
+      .done(action((data: NotificationFeedMetaJson) => {
+        this.retryDelay.reset();
         this.endpoint = data.url;
         this.connectWebSocket();
-      })).fail(action(() => {
-        this.timeout.startWebSocket = window.setTimeout(this.startWebSocket, 10000);
+      })).fail(action((xhr: JQuery.jqXHR) => {
+        // Check if the user is logged out.
+        // TODO: Add message to the popup.
+        if (xhr.status === 401) {
+          this.destroy();
+          return;
+        }
+        this.timeout.startWebSocket = window.setTimeout(this.startWebSocket, this.retryDelay.get());
       }));
   };
 }

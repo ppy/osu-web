@@ -221,6 +221,9 @@
             }
           }
         },
+        "track_id": {
+          "type": "long"
+        },
         "user_id": {
           "type": "long"
         },

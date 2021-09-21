@@ -2,11 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ProfileBannerJson from './profile-banner';
+import UserAccountHistoryJson from './user-account-history-json';
 import UserBadgeJson from './user-badge-json';
 import UserGroupJson from './user-group-json';
 import UserStatisticsJson from './user-statistics-json';
 
 export default interface UserJson {
+  account_history?: UserAccountHistoryJson[];
   active_tournament_banner?: ProfileBannerJson | null;
   avatar_url: string;
   badges?: UserBadgeJson[];

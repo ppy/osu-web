@@ -45,6 +45,14 @@ Turbolinks.Controller::advanceHistory = (url) ->
   @pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
 
 
+# @lastRenderedLocation must be updated so the most recent url will be used for @cache
+Turbolinks.Controller::replaceHistory = (url) ->
+  return if url == _exported.currentUrl().href
+
+  history.replaceState history.state, '', url
+  @lastRenderedLocation = Turbolinks.Location.wrap(url)
+
+
 # Ignore anchor check on loading snapshot to prevent repeating requesting page
 # when the target doesn't exist.
 Turbolinks.Snapshot::hasAnchor = -> true

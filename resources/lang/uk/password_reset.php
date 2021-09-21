@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Зв\'яжіться з службою підтримки для відновлення облікового запису.',
+        'expired' => '',
+        'invalid' => '',
         'is_privileged' => 'Зв\'яжіться з peppy lulz.',
         'missing_key' => 'Це поле є обов\'язковим.',
         'too_many_tries' => 'Занадто багато невдалих спроб.',

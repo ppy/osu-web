@@ -222,6 +222,12 @@ class Mod
             'inverse_muting' => 'bool',
             'affects_hit_sounds' => 'bool',
         ],
+        self::SUDDENDEATH => [
+            'restart' => 'bool',
+        ],
+        self::PERFECT => [
+            'restart' => 'bool',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
@@ -310,6 +316,7 @@ class Mod
                     self::SCORABLE_COMMON,
                     [
                         self::CATCH_FLOATINGFRUIT,
+                        self::MIRROR,
                     ]
                 ),
 

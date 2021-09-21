@@ -56,7 +56,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Passport::tokensCan([
-            'bot' => osu_trans('api.scopes.bot'),
+            'delegate' => osu_trans('api.scopes.delegate'),
             'forum.write' => osu_trans('api.scopes.forum.write'),
             'chat.write' => osu_trans('api.scopes.chat.write'),
             'friends.read' => osu_trans('api.scopes.friends.read'),

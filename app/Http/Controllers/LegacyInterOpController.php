@@ -26,6 +26,7 @@ use App\Models\OAuth;
 use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserStatistics;
+use App\Transformers\Chat\MessageTransformer;
 use Datadog;
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -378,7 +379,7 @@ class LegacyInterOpController extends Controller
             get_bool($params['is_action'] ?? null)
         );
 
-        return json_item($message, 'Chat\Message', ['sender']);
+        return json_item($message, new MessageTransformer(), ['sender']);
     }
 
     public function userSessionsDestroy($userId)
