@@ -40,7 +40,7 @@ class AddOffsetEditToBeatmapsetEvents extends Migration
             'remove_from_loved',
             'nsfw_toggle',
             'beatmap_owner_change',
-            'nomination_reset_received'
+            'nomination_reset_received',
             'offset_edit'
         )");
     }
@@ -77,7 +77,7 @@ class AddOffsetEditToBeatmapsetEvents extends Migration
             'language_edit',
             'remove_from_loved',
             'nsfw_toggle',
-            'beatmap_owner_change'
+            'beatmap_owner_change',
             'nomination_reset_received'
         )");
     }
