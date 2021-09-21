@@ -179,5 +179,5 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
     if (/^-?\d*$/.test(value)) {
       this.setState({ offset: value });
     }
-  }
+  };
 }
