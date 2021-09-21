@@ -211,7 +211,9 @@ export default class Event extends React.PureComponent<Props> {
     }
 
     const key = `beatmapset_events.event.${eventType}`;
-    let message = osu.trans(key, params);
+    let message = eventType === 'offset_edit'
+      ? osu.trans(key, {new: osu.formatNumber(params.new), old: osu.formatNumber(params.old)})
+      : osu.trans(key, params);
 
     // append owner of the event if not already included in main message
     // naive check; we don't use anything other than :user
