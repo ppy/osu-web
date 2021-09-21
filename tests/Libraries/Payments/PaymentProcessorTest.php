@@ -14,16 +14,14 @@ use Tests\TestCase;
 class PaymentProcessorTest extends TestCase
 {
     private Order $order;
+    private TestPaymentProcessor $subject;
 
     public function testCancelWithoutPayment()
     {
         $this->expectsEvents('store.payments.error.test');
         $this->doesntExpectEvents('store.payments.cancelled.test');
 
-        $params = $this->getTestParams();
-
-        $subject = new TestPaymentProcessor($params, $this->validSignature());
-        $subject->run();
+        $this->subject->run();
 
         $this->order->refresh();
 
@@ -35,8 +33,6 @@ class PaymentProcessorTest extends TestCase
         $this->doesntExpectEvents('store.payments.error.test');
         $this->expectsEvents('store.payments.cancelled.test');
 
-        $params = $this->getTestParams();
-
         $payment = $this->order->payments()->create([
             'country_code' => 'CC',
             'paid_at' => now(),
@@ -46,8 +42,7 @@ class PaymentProcessorTest extends TestCase
 
         $this->order->paid($payment);
 
-        $subject = new TestPaymentProcessor($params, $this->validSignature());
-        $subject->run();
+        $this->subject->run();
 
         $this->order->refresh();
 
@@ -61,8 +56,6 @@ class PaymentProcessorTest extends TestCase
         $this->expectsEvents('store.payments.error.test');
         $this->doesntExpectEvents('store.payments.cancelled.test');
 
-        $params = $this->getTestParams();
-
         $payment = $this->order->payments()->create([
             'cancelled' => true,
             'country_code' => 'CC',
@@ -73,8 +66,7 @@ class PaymentProcessorTest extends TestCase
 
         $this->order->paid($payment);
 
-        $subject = new TestPaymentProcessor($params, $this->validSignature());
-        $subject->run();
+        $this->subject->run();
 
         $this->order->refresh();
 
@@ -92,19 +84,14 @@ class PaymentProcessorTest extends TestCase
             'transaction_id' => 'test-123',
         ]);
         factory(OrderItem::class)->states('supporter_tag')->create(['order_id' => $this->order->getKey()]);
-    }
 
-    private function getTestParams(array $overrides = [])
-    {
-        $base = [
+        $this->subject = new TestPaymentProcessor([
             'countryCode' => 'CC',
             'notificationType' => NotificationType::REFUND,
             'orderNumber' => "test-{$this->order->user_id}-{$this->order->getKey()}",
             'paymentTransactionId' => '123',
             'paymentDate' => json_time(now()),
-        ];
-
-        return array_merge($base, $overrides);
+        ], $this->validSignature());
     }
 
     private function validSignature()
