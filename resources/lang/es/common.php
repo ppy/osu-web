@@ -104,7 +104,7 @@ return [
         'keyboard' => 'teclado',
         'mouse' => 'ratón',
         'tablet' => 'tableta',
-        'touch' => 'Pantalla Táctil',
+        'touch' => 'pantalla táctil',
     ],
 
     'dropzone' => [

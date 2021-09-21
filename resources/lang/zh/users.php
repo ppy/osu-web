@@ -63,7 +63,7 @@ return [
             'opening' => '您的账户可能由于这几种原因被禁用：',
 
             'tos' => [
-                '_' => '您已经违反了一条或多条 :community_rules 或是 :tos',
+                '_' => '您已经违反了一条或多条 :community_rules 或是 :tos。',
                 'community_rules' => '社区规则',
                 'tos' => '服务条款',
             ],
@@ -84,21 +84,21 @@ return [
         '_' => '登录',
         'button' => '登录',
         'button_posting' => '登录中...',
-        'email_login_disabled' => '当前不可以使用电子邮件登陆。请使用您的用户名。',
+        'email_login_disabled' => '当前不可以使用电子邮件登录。请使用您的用户名。',
         'failed' => '登录失败',
         'forgot' => '忘记密码？',
         'info' => '请登录以继续',
         'invalid_captcha' => '验证码无效，请刷新页面后重试。',
-        'locked_ip' => 'IP 已被锁定，请稍等几分钟',
+        'locked_ip' => 'IP 已被锁定，请稍等几分钟。',
         'password' => '密码',
         'register' => "没有 osu! 账户？现在就注册一个！",
-        'remember' => '记住此电脑',
+        'remember' => '在这台电脑上记住我',
         'title' => '登录以继续',
         'username' => '用户名',
 
         'beta' => [
             'main' => 'Beta 仅限于特定用户访问',
-            'small' => '（在不久后将对 osu!支持者 开放）',
+            'small' => '（在不久后将对 osu! 支持者开放）',
         ],
     ],
 
@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => '作弊',
-            'multiple_accounts' => '使用多个账号',
+            'multiple_accounts' => '使用多账号（开小号）',
             'insults' => '侮辱 我/其他人',
             'spam' => '刷屏/垃圾广告',
             'unwanted_content' => '发布包含不当内容的链接',
@@ -145,14 +145,14 @@ return [
         'change_avatar' => '更换头像！',
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
-        'is_supporter' => 'osu!supporter',
+        'is_supporter' => 'osu! 支持者',
         'joined_at' => '注册时间：:date',
         'lastvisit' => '上次登录：:date',
         'lastvisit_online' => '当前在线',
         'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
         'origin_country' => '来自 :country',
         'previous_usernames' => '曾用名',
-        'plays_with' => '惯用 :devices',
+        'plays_with' => '用 :devices 游玩',
         'title' => ":username 的个人资料",
 
         'comments_count' => [
@@ -164,11 +164,11 @@ return [
                 'button' => '更换个人资料头图',
                 'defaults_info' => '在将来会有更多头图可用',
                 'upload' => [
-                    'broken_file' => '上传失败.请检查上传的图片然后重试.',
+                    'broken_file' => '上传失败。请检查上传的图片然后重试。',
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'size_info' => '图片大小最好是 2400x620 像素',
+                    'size_info' => '图片尺寸最好是 2400x620 像素',
                     'too_large' => '上传的图片过大。',
                     'unsupported_format' => '不支持的格式。',
 
@@ -195,7 +195,7 @@ return [
                 'title' => '成就',
             ],
             'beatmaps' => [
-                'by_artist' => 'by :artist',
+                'by_artist' => '由 :artist',
                 'title' => '谱面',
 
                 'favourite' => [
@@ -208,10 +208,10 @@ return [
                     'title' => 'Loved 的谱面',
                 ],
                 'pending' => [
-                    'title' => 'Pending 的谱面',
+                    'title' => 'Pending 谱面',
                 ],
                 'ranked' => [
-                    'title' => 'Ranked 的谱面',
+                    'title' => 'Ranked 谱面',
                 ],
             ],
             'discussions' => [
@@ -233,7 +233,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => '游玩次数',
-                    'title' => '玩得最多的谱面',
+                    'title' => '最多游玩的谱面',
                 ],
                 'recent_plays' => [
                     'accuracy' => '准确率：:percentage',
@@ -255,7 +255,7 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '因讨论帖 :post 的 kudosu 移除操作的撤销而获得 :amount',
+                            'give' => '因移除讨论帖 :post 内送出的 kudosu 而获得 :amount kudosu',
                         ],
 
                         'deny_kudosu' => [
@@ -327,8 +327,8 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '给予投票（最近三个月）',
-                'received' => '所得投票（最近三个月）',
+                'given' => '最近三个月的给予投票',
+                'received' => '最近三个月所得投票',
                 'title' => '投票',
                 'title_longer' => '最近投票',
                 'vote_count' => ':count_delimited 票',
@@ -345,7 +345,7 @@ return [
                     'length' => '时长',
                     'length_permanent' => '永久',
                     'description' => '原因',
-                    'actor' => '裁决者： :username',
+                    'actor' => '执行人： :username',
 
                     'actions' => [
                         'restriction' => '封禁',
@@ -379,7 +379,7 @@ return [
 
             'restriction_info' => [
                 '_' => '你需要成为 :link 才能使用此功能。',
-                'link' => 'osu!支持者',
+                'link' => 'osu! 支持者',
             ],
         ],
         'post_count' => [

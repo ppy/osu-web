@@ -17,7 +17,7 @@ return [
         'deleted' => '被 :editor 于 :delete_time 删除。',
         'deny_kudosu' => '收回 kudosu',
         'edit' => '编辑',
-        'edited' => '最后由 :editor 编辑于 :update_time 。',
+        'edited' => '最后由 :editor 于 :update_time 编辑。',
         'guest' => ':user制作的客串难度',
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder_deleted_beatmap' => '该难度已被删除，无法继续讨论',
@@ -209,7 +209,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '你确定吗？提出新的问题会重置提名。',
-            'disqualify' => '你确定吗？这将使该谱面不再Qualified并重置提名。',
+            'disqualify' => '你确定吗？这将 DQ 该谱面并重置提名。',
         ],
     ],
 
@@ -218,7 +218,7 @@ return [
             'prompt' => '输入关键字...',
             'login_required' => '登录以搜索。',
             'options' => '更多搜索选项',
-            'supporter_filter' => '按 :filters 筛选需要成为支持者',
+            'supporter_filter' => '需要成为支持者才能按 :filters 筛选',
             'not-found' => '没有结果',
             'not-found-quote' => '呃，什么也没有...',
             'filters' => [
@@ -245,14 +245,14 @@ return [
                 'nominations' => '提名状态',
             ],
             'supporter_filter_quote' => [
-                '_' => '按 :filters 筛选需要成为 :link',
+                '_' => '需要成为 :link 才能按 :filters 筛选',
                 'link_text' => '支持者',
             ],
         ],
     ],
     'general' => [
         'converts' => '包括转谱',
-        'featured_artists' => '',
+        'featured_artists' => '精选艺术家',
         'follows' => '已关注谱师',
         'recommended' => '推荐难度',
     ],
@@ -348,13 +348,13 @@ return [
     ],
     'extra' => [
         'video' => '有视频',
-        'storyboard' => '有 Storyboard',
+        'storyboard' => '有故事板',
     ],
     'rank' => [
         'any' => '任意',
-        'XH' => '白银 SS',
+        'XH' => '银 SS',
         'X' => '',
-        'SH' => '白银 S',
+        'SH' => '银 S',
         'S' => '',
         'A' => '',
         'B' => '',

@@ -96,7 +96,7 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'Arkadaş listende olmayan kişilerden gelen mesajları engelle',
+        'friends_only' => 'arkadaş listende olmayan kişilerden gelen mesajları engelle',
         'hide_online' => 'çevrimiçi durumunu gizle',
         'title' => 'Gizlilik',
     ],
@@ -104,7 +104,7 @@ return [
     'security' => [
         'current_session' => 'şu anki',
         'end_session' => 'Oturumu Sonlandır',
-        'end_session_confirmation' => 'Bu, oturumunuzu o cihazda hemen sonlandırır. Emin misiniz?',
+        'end_session_confirmation' => 'Bu, o cihazdaki oturumunuzu hemen sonlandırır. Emin misiniz?',
         'last_active' => 'Son etkinlik:',
         'title' => 'Güvenlik',
         'web_sessions' => 'web oturumları',

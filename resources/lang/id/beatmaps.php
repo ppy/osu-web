@@ -252,7 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Sertakan map-map convert',
-        'featured_artists' => '',
+        'featured_artists' => 'Featured artist',
         'follows' => 'Tampilkan hanya mapper-mapper yang dipantau',
         'recommended' => 'Rentang kesulitan yang disarankan',
     ],
