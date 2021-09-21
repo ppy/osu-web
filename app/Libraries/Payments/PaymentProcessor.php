@@ -241,16 +241,20 @@ abstract class PaymentProcessor implements \ArrayAccess
                     );
                 }
 
-                $payment?->cancel();
-                $order->cancel();
+                if ($payment !== null) {
+                    $payment->cancel();
+                    $eventName = "store.payments.cancelled.{$payment->provider}";
+                }
 
-                $eventName = "store.payments.cancelled.{$payment->provider}";
+                $order->cancel();
             } catch (Exception $exception) {
                 $this->dispatchErrorEvent($exception, $order);
                 throw $exception;
             }
 
-            event($eventName, new PaymentEvent($order));
+            if (isset($eventName)) {
+                event($eventName, new PaymentEvent($order));
+            }
         });
     }
 
