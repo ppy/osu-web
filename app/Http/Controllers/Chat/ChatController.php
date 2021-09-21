@@ -157,7 +157,10 @@ class ChatController extends Controller
         }
 
         if ($includeMessages) {
-            $channelIds = (array) ($params['channel_id'] ?? array_pluck($presence, 'channel_id'));
+            $channelIds = array_pluck($presence, 'channel_id');
+            if ($params['channel_id'] !== null) {
+                $channelIds = array_values(array_intersect($channelIds, [$params['channel_id']]));
+            }
 
             $messages = Message
                 ::with('sender')
