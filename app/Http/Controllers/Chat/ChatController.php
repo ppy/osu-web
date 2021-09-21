@@ -202,9 +202,9 @@ class ChatController extends Controller
             $response['silences'] = json_collection($silences, new UserSilenceTransformer());
         }
 
-        $isEmpty = array_reduce($response, fn ($acc, $val) => $acc + count($val), 0) === 0;
+        $hasAny = array_first($response, fn ($val) => count($val) > 0) !== null;
 
-        return $isEmpty ? response([], 204) : $response;
+        return $hasAny ? $response : response()->noContent();
     }
 
     /**
