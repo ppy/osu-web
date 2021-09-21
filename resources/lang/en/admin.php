@@ -65,14 +65,6 @@ return [
         ],
     ],
 
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Order Listing',
-            ],
-        ],
-    ],
-
     'users' => [
         'restricted_banner' => [
             'title' => 'This user is currently restricted.',
