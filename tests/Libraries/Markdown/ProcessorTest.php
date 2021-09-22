@@ -49,10 +49,11 @@ class ProcessorTest extends TestCase
         $textFilePath = "{$path}/{$name}.{$extension}";
 
         return [
-            (new OsuMarkdown('default', [
-                'parse_attribute_id' => true,
-                'style_block_allowed_classes' => ['class-name'],
-            ]))->load(file_get_contents($mdFilePath)),
+            (new OsuMarkdown(
+                'default',
+                osuExtensionConfig: ['style_block_allowed_classes' => ['class-name']],
+                osuMarkdownConfig: ['parse_attribute_id' => true],
+            ))->load(file_get_contents($mdFilePath)),
             file_get_contents($textFilePath),
         ];
     }
