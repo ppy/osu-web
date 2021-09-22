@@ -128,8 +128,7 @@ class ChatController extends Controller
         static $availableIncludes;
         $availableIncludes ??= new Set(['messages', 'presence', 'silences']);
 
-        $request = request()->all();
-        $params = get_params($request, null, [
+        $params = get_params(request()->all(), null, [
             'channel_id:int',
             'history_since:int',
             'includes:array',
