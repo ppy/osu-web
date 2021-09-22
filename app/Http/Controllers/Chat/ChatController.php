@@ -39,16 +39,19 @@ class ChatController extends Controller
      *
      * Field            | Type
      * ---------------- | -----------------
-     * presence         | array of [ChatChannel](#chatchannel)
-     * messages         | array of [ChatMessage](#chatmessage)
+     * messages         | [ChatMessage](#chatmessage)[]?
+     * presence         | [ChatChannel](#chatchannel)[]?
+     * silences         | [UserSilence](#usersilence)[]?
      *
      * <aside class="notice">
-     *   Note that this returns messages for all channels the user has joined.
+     *   Note that this returns messages for all channels the user has joined unless specified.
      * </aside>
      *
-     * @queryParam since integer required The `message_id` of the last message to retrieve messages since
-     * @queryParam channel_id integer If provided, will only return messages for the given channel
-     * @queryParam limit integer number of messages to return (max of 50)
+     * @queryParam channel_id integer If provided, will only return messages for the given channel the user is in.
+     * @queryParam history_since integer [UserSilence](#usersilence) after the specified id to return.
+     * @queryParam includes string[] List of `presence`, `messages`, `silences` fields to include in the response. Returns all if not specified.
+     * @queryParam limit integer Maximum number of messages to return (max of 50).
+     * @queryParam since integer required Messages after the specified `message_id` to return.
      *
      * @response {
      *   "presence": [
@@ -120,6 +123,12 @@ class ChatController extends Controller
      *         "is_supporter": true
      *       }
      *     }
+     *   ],
+     *   "silences": [
+     *      {
+     *        "id": 1,
+     *        "user_id": 2
+     *      }
      *   ]
      * }
      */
