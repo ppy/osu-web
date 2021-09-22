@@ -26,6 +26,11 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
     }
 
+    public function getParentTransactionId()
+    {
+        return $this['parent_txn_id'];
+    }
+
     public function getPaymentProvider()
     {
         return Order::PROVIDER_PAYPAL;
@@ -132,14 +137,20 @@ class PaypalPaymentProcessor extends PaymentProcessor
         $this->validatePendingStatus();
 
         // just check if IPN transaction id is as expected with the Paypal v2 API.
-        if ($this->getPaymentTransactionId() !== $order->getProviderReference()) {
+        $capturedId = $this->getOrder()->getProviderReference();
+        $transactionIdMatches = $this->getNotificationType() === NotificationType::REFUND
+            ? $this->getParentTransactionId() === $capturedId
+            : $this->getPaymentTransactionId() === $capturedId;
+
+        if (!$transactionIdMatches) {
             app('sentry')->getClient()->captureMessage(
                 'IPN transactionId does not match captured payment id',
                 null,
                 (new Scope())
                     ->setExtra('order_id', $order->getKey())
                     ->setExtra('txn_id', $this->getPaymentTransactionId())
-                    ->setExtra('captured_id', $order->getProviderReference())
+                    ->setExtra('parent_txn_id', $this->getParentTransactionId())
+                    ->setExtra('captured_id', $capturedId)
             );
         }
 
