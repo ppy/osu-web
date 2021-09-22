@@ -126,6 +126,7 @@ export default class SearchForm extends React.Component<Props> {
                 data-param='bpm'
                 data-range='gte'
                 onChange={this.handleChangeRangeNatural}
+                type='number'
                 value={this.params.bpm?.gte ?? ''}
               />
             </label>
@@ -139,6 +140,7 @@ export default class SearchForm extends React.Component<Props> {
                 data-param='bpm'
                 data-range='lte'
                 onChange={this.handleChangeRangeNatural}
+                type='number'
                 value={this.params.bpm?.lte ?? ''}
               />
             </label>
