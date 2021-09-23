@@ -22,20 +22,20 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu! 谱面',
         'osu' => 'osu! 个人资料',
         'site' => '官方网站',
     ],
 
     'songs' => [
         '_' => '单曲',
-        'count' => ':count 首音乐',
-        'original' => '',
+        'count' => ':count_delimited 首音乐',
+        'original' => 'osu! 原创',
     ],
 
     'tracklist' => [
         'title' => '标题',
-        'length' => '时长',
+        'length' => '长度',
         'bpm' => 'BPM',
         'genre' => '流派',
     ],

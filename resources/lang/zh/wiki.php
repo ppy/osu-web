@@ -9,7 +9,7 @@ return [
         'incomplete_or_outdated' => '此页面的内容不完整或已过时。如果你能帮忙，请一起更新这篇文章！',
         'missing' => '请求的页面 :keyword 未找到。',
         'missing_title' => '未找到',
-        'missing_translation' => '请求的页面没有当前语言的版本',
+        'missing_translation' => '请求的页面没有当前语言的版本。',
         'needs_cleanup_or_rewrite' => '此页面不符合 osu! wiki 的标准，需要清理或重写。 欢迎你帮助更新这篇文章 ！',
         'search' => '在 wiki 中搜索 :link 。',
         'toc' => '目录',

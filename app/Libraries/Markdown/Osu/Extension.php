@@ -5,26 +5,42 @@
 
 namespace App\Libraries\Markdown\Osu;
 
-use League\CommonMark\Block\Element\ListItem;
-use League\CommonMark\ConfigurableEnvironmentInterface;
+use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
-use League\CommonMark\Extension\ExtensionInterface;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
+use League\CommonMark\Extension\ConfigurableExtensionInterface;
 use League\CommonMark\Extension\Table\Table;
+use League\Config\ConfigurationBuilderInterface;
+use Nette\Schema\Expect;
 
-class Extension implements ExtensionInterface
+class Extension implements ConfigurableExtensionInterface
 {
     /**
      * @var DocumentProcessor|null
      */
     public $processor;
 
-    public function register(ConfigurableEnvironmentInterface $environment): void
+    public function configureSchema(ConfigurationBuilderInterface $builder): void
+    {
+        $builder->addSchema('osu_extension', Expect::structure([
+            'block_name' => Expect::string(),
+            'fix_wiki_url' => Expect::bool(),
+            'generate_toc' => Expect::bool(),
+            'record_first_image' => Expect::bool(),
+            'relative_url_root' => Expect::string()->nullable(),
+            'style_block_allowed_classes' => Expect::array()->nullable(),
+            'title_from_document' => Expect::bool(),
+            'wiki_locale' => Expect::string()->nullable(),
+        ]));
+    }
+
+    public function register(EnvironmentBuilderInterface $environment): void
     {
         $this->processor = new DocumentProcessor($environment);
 
         $environment
-            ->addBlockRenderer(ListItem::class, new Renderers\ListItemRenderer(), 10)
-            ->addBlockRenderer(Table::class, new Renderers\TableRenderer(), 10)
+            ->addRenderer(ListItem::class, new Renderers\ListItemRenderer(), 10)
+            ->addRenderer(Table::class, new Renderers\TableRenderer(), 10)
             ->addEventListener(DocumentParsedEvent::class, $this->processor);
     }
 }

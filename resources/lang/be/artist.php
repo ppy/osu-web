@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'бітмапы osu!',
         'osu' => 'osu! профіль',
         'site' => 'Афіцыйны вэб-сайт',
     ],
@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Песні',
         'count' => ':count_delimited песня|:count_delimited песні|:count_delimited песень',
-        'original' => '',
+        'original' => 'osu! арыгінал',
     ],
 
     'tracklist' => [

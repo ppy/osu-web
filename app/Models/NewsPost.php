@@ -295,9 +295,10 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         $rawPage = $file->content();
 
-        $this->page = (new OsuMarkdown('news', [
-            'relative_url_root' => route('news.show', $this->slug),
-        ]))->load($rawPage)->toArray();
+        $this->page = (new OsuMarkdown(
+            'news',
+            osuExtensionConfig: ['relative_url_root' => route('news.show', $this->slug)]
+        ))->load($rawPage)->toArray();
 
         $this->version = static::pageVersion();
         $this->published_at = $this->pagePublishedAt();

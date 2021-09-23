@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason не подходит для данного типа отчета.',
         'self' => "Вы не можете пожаловаться на себя!",
     ],

@@ -252,7 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Includi beatmap convertite',
-        'featured_artists' => '',
+        'featured_artists' => 'Artisti in primo piano',
         'follows' => 'Mapper iscritti',
         'recommended' => 'Difficoltà consigliata',
     ],
