@@ -284,6 +284,12 @@
     display: flex;
     flex: none;
 
+    .@{top}--list &--card {
+      @media @narrow {
+        display: none;
+      }
+    }
+
     .@{top}--list & {
       align-items: center;
     }
