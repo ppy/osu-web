@@ -10,9 +10,11 @@
   @background-overlay-fade--online: hsla(var(--hsl-b5), 0.6);
   @background-overlay-fade--offline: hsla(var(--hsl-b5), 0.7);
   @card-border-radius: 10px;
-  @card-item-spacing: 10px;
-  @flag-gutter: 6px;
   @fade-duration: 220ms;
+
+  --card-item-spacing: 10px;
+  --icon-gutter: 6px;
+  --status-icon-margin: 10px;
 
   display: inline-block;
   font-family: var(--font-default);
@@ -26,6 +28,12 @@
   overflow: hidden;
 
   &--list {
+    @media @narrow {
+      --card-item-spacing: 6px;
+      --icon-gutter: 4px;
+      --status-icon-margin: 0;
+    }
+
     height: @avatar-size--list;
     border-radius: @avatar-border-radius;
   }
@@ -179,7 +187,7 @@
   }
 
   &__content {
-    padding: @card-item-spacing;
+    padding: var(--card-item-spacing);
 
     &--details {
       display: grid;
@@ -202,10 +210,10 @@
   &__details {
     display: grid;
     grid-template-rows: @user-card-icon-size 1fr;
-    margin-left: @card-item-spacing;
+    margin-left: var(--card-item-spacing);
 
     .@{top}--list & {
-      grid-gap: @card-item-spacing;
+      grid-gap: var(--card-item-spacing);
       grid-template-rows: unset;
       grid-template-columns: auto repeat(2, min-content);
     }
@@ -230,7 +238,7 @@
     }
 
     & + & {
-      margin-left: @flag-gutter;
+      margin-left: var(--icon-gutter);
     }
 
     .user-cards--menu-active & {
@@ -320,7 +328,7 @@
     .@{top}--list & {
       order: 1;
       width: unset;
-      margin: 0 10px;
+      margin: 0 var(--status-icon-margin);
     }
   }
 
@@ -337,7 +345,7 @@
   &__status-messages {
     display: flex;
     flex-direction: column;
-    margin-left: @card-item-spacing;
+    margin-left: var(--card-item-spacing);
 
     font-size: 14px;
     min-width: 0;
