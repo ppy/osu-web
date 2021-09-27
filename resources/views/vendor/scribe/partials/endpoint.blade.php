@@ -23,8 +23,7 @@
 
 <p>
     @if($helper->getAuth($methods, $uri))
-        @component('scribe::components.badges.base', ['colour' => 'darkred', 'text' => 'requires user'])
-        @endcomponent
+        <a href='#resource-owner' class='badge badge-scope badge-user'>requires user</a>
     @endif
 
     @foreach($helper->getScopeTags($methods, $uri) as $scope)
