@@ -19,12 +19,14 @@
 @endphp
 ## {{ $route['metadata']['title'] ?: $displayUri }}
 
-@component('scribe::components.badges.auth', ['authenticated' => $route['metadata']['authenticated']])
-@endcomponent
-
 {!! $topDescription !!}
 
 <p>
+    @if($helper->getAuth($methods, $uri))
+        @component('scribe::components.badges.base', ['colour' => 'darkred', 'text' => 'requires user'])
+        @endcomponent
+    @endif
+
     @foreach($helper->getScopeTags($methods, $uri) as $scope)
         {{ ApidocRouteHelper::scopeBadge($scope) }}
     @endforeach
