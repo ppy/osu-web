@@ -895,7 +895,7 @@ class OsuAuthorize
             $this->ensureHasPlayed($user);
         }
 
-        if ($user->isModerator()) {
+        if ($user->isModerator() || $user->isBot()) {
             return 'ok';
         }
 

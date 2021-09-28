@@ -35,6 +35,10 @@ class Artist extends Model
 {
     use Memoizes;
 
+    protected $casts = [
+        'visible' => 'boolean',
+    ];
+
     public function label()
     {
         return $this->belongsTo(Label::class);

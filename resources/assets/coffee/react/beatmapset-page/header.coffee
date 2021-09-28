@@ -5,7 +5,7 @@ import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
 import BeatmapsetMenu from 'beatmapsets-show/beatmapset-menu'
-import { BigButton } from 'big-button'
+import BigButton from 'big-button'
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -164,30 +164,26 @@ export class Header extends React.Component
 
             if currentUser.id?
               el BigButton,
+                icon: favouriteButton.icon
+                modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
                 props:
                   onClick: @toggleFavourite
                   title: osu.trans "beatmapsets.show.details.#{favouriteButton.action}"
-                modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
-                icon: favouriteButton.icon
 
             @renderDownloadButtons()
 
             if @props.beatmapset.discussion_enabled
               el BigButton,
-                modifiers: ['beatmapset-header']
-                text:
-                  top: osu.trans 'beatmapsets.show.discussion'
+                href: laroute.route('beatmapsets.discussion', beatmapset: @props.beatmapset.id)
                 icon: 'far fa-comments'
-                props:
-                  href: laroute.route 'beatmapsets.discussion', beatmapset: @props.beatmapset.id
+                modifiers: 'beatmapset-header'
+                text: osu.trans 'beatmapsets.show.discussion'
             else if @props.beatmapset.legacy_thread_url
               el BigButton,
-                modifiers: ['beatmapset-header']
-                text:
-                  top: osu.trans 'beatmapsets.show.discussion'
+                href: @props.beatmapset.legacy_thread_url
                 icon: 'far fa-comments'
-                props:
-                  href: @props.beatmapset.legacy_thread_url
+                modifiers: 'beatmapset-header'
+                text: osu.trans('beatmapsets.show.discussion')
 
             @renderLoginButton()
 
@@ -266,11 +262,11 @@ export class Header extends React.Component
     if !currentUser.id?
       el BigButton,
         extraClasses: ['js-user-link']
-        modifiers: ['beatmapset-header']
+        icon: 'fas fa-lock'
+        modifiers: 'beatmapset-header'
         text:
           top: osu.trans 'beatmapsets.show.details.login_required.top'
           bottom: osu.trans 'beatmapsets.show.details.login_required.bottom'
-        icon: 'fas fa-lock'
 
 
   renderStatusBar: =>
@@ -286,15 +282,15 @@ export class Header extends React.Component
   downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
     el BigButton,
       key: key
-      modifiers: ['beatmapset-header']
+      extraClasses: if !osuDirect then ['js-beatmapset-download-link']
+      href: href
+      icon: icon
+      modifiers: 'beatmapset-header'
+      props:
+        'data-turbolinks': 'false'
       text:
         top: osu.trans "beatmapsets.show.details.download.#{topTextKey}"
         bottom: if bottomTextKey? then osu.trans "beatmapsets.show.details.download.#{bottomTextKey}"
-      icon: icon
-      extraClasses: if !osuDirect then ['js-beatmapset-download-link']
-      props:
-        href: href
-        'data-turbolinks': 'false'
 
 
   toggleFavourite: (e) ->

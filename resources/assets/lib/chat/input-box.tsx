@@ -5,7 +5,7 @@ import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatcher } from 'app-dispatcher';
-import { BigButton } from 'big-button';
+import BigButton from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import { trim } from 'lodash';
 import { computed, observe } from 'mobx';
@@ -118,10 +118,10 @@ export default class InputBox extends React.Component<Props> implements Dispatch
         />
 
         <BigButton
+          disabled={this.sendDisabled}
           icon={buttonIcon}
-          modifiers={['chat-send']}
+          modifiers='chat-send'
           props={{
-            disabled: this.sendDisabled,
             onClick: this.buttonClicked,
           }}
           text={buttonText}

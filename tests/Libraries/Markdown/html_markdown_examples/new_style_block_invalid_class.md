@@ -1,5 +1,0 @@
-::: Invalid Class
-
-paragraph
-
-:::

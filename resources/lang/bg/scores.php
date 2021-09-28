@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'title' => ':username на :title [:version]',
+        'title' => ':username в :title [:version]',
 
         'beatmap' => [
             'by' => 'по :artist',
