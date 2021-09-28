@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu! 圖譜',
         'osu' => 'osu! 個人簡介',
         'site' => '官方網站',
     ],
@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => '樂曲',
         'count' => ':count_delimited 首音樂|:count_delimited 首音樂',
-        'original' => '',
+        'original' => 'osu! 原創',
     ],
 
     'tracklist' => [

@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason non è valido per questo tipo di segnalazione.',
         'self' => "Non puoi segnalare te stesso!",
     ],

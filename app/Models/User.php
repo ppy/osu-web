@@ -1325,7 +1325,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function maxBlocks()
     {
-        return ceil($this->maxFriends() / 10);
+        return (int)ceil($this->maxFriends() / 5);
     }
 
     public function maxFriends()
