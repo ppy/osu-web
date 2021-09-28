@@ -252,7 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Включить конвертированные карты',
-        'featured_artists' => '',
+        'featured_artists' => 'Избранные исполнители',
         'follows' => 'Авторизованные мапперы',
         'recommended' => 'Рекомендованная сложность',
     ],

@@ -164,6 +164,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason er ikke gyldig for denne rapporttypen.',
         'self' => "Du kan ikke rapportere deg selv!",
     ],

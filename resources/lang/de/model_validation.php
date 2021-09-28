@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason ist für diesen Meldungstyp nicht gültig.',
         'self' => "Du kannst dich nicht selbst melden!",
     ],

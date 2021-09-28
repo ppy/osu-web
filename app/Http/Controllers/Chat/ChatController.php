@@ -12,6 +12,8 @@ use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Transformers\Chat\ChannelTransformer;
 use App\Transformers\Chat\MessageTransformer;
+use App\Transformers\Chat\UserSilenceTransformer;
+use Ds\Set;
 
 /**
  * @group Chat
@@ -37,16 +39,19 @@ class ChatController extends Controller
      *
      * Field            | Type
      * ---------------- | -----------------
-     * presence         | array of [ChatChannel](#chatchannel)
-     * messages         | array of [ChatMessage](#chatmessage)
+     * messages         | [ChatMessage](#chatmessage)[]?
+     * presence         | [ChatChannel](#chatchannel)[]?
+     * silences         | [UserSilence](#usersilence)[]?
      *
      * <aside class="notice">
-     *   Note that this returns messages for all channels the user has joined.
+     *   Note that this returns messages for all channels the user has joined unless specified.
      * </aside>
      *
-     * @queryParam since integer required The `message_id` of the last message to retrieve messages since
-     * @queryParam channel_id integer If provided, will only return messages for the given channel
-     * @queryParam limit integer number of messages to return (max of 50)
+     * @queryParam channel_id integer If provided, will only return messages for the given channel the user is in.
+     * @queryParam history_since integer [UserSilence](#usersilence) after the specified id to return.
+     * @queryParam includes string[] List of `presence`, `messages`, `silences` fields to include in the response. Returns all if not specified.
+     * @queryParam limit integer Maximum number of messages to return (max of 50).
+     * @queryParam since integer required Messages after the specified `message_id` to return.
      *
      * @response {
      *   "presence": [
@@ -118,70 +123,98 @@ class ChatController extends Controller
      *         "is_supporter": true
      *       }
      *     }
+     *   ],
+     *   "silences": [
+     *      {
+     *        "id": 1,
+     *        "user_id": 2
+     *      }
      *   ]
      * }
      */
     public function updates()
     {
-        $params = request()->all();
+        static $availableIncludes;
+        $availableIncludes ??= new Set(['messages', 'presence', 'silences']);
 
-        if (!present($params['since'] ?? null)) {
+        $params = get_params(request()->all(), null, [
+            'channel_id:int',
+            'history_since:int',
+            'includes:array',
+            'limit:int',
+            'since:int',
+        ], ['null_missing' => true]);
+
+        if ($params['since'] === null) {
             abort(422);
         }
 
-        $presence = $this->presence();
+        $includes = $params['includes'] !== null
+            ? $availableIncludes->intersect(new Set($params['includes']))
+            : $availableIncludes;
+
+        $includeMessages = $includes->contains('messages');
+        $includePresence = $includes->contains('presence');
 
         $since = $params['since'];
-        $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+        $limit = clamp($params['limit'] ?? 50, 1, 50);
 
-        // this is used to filter out messages from restricted users/etc
-        $channelIds = array_map(function ($e) {
-            return $e['channel_id'];
-        }, $presence);
+        $response = [];
 
-        $messages = Message
-            ::with('sender')
-            ->whereIn('channel_id', $channelIds)
-            ->since($since)
-            ->limit($limit)
-            ->orderBy('message_id', 'DESC');
-
-        if (present($params['channel_id'] ?? null)) {
-            $messages->where('channel_id', get_int($params['channel_id']));
+        // messages need presence
+        if ($includeMessages || $includePresence) {
+            $presence = $this->presence();
         }
 
-        $messages = $messages->get()->reverse();
-
-        $silenceQuery = UserAccountHistory::bans()->limit(100);
-        $lastHistoryId = get_int($params['history_since'] ?? null);
-
-        if ($lastHistoryId === null) {
-            $previousMessage = Message::where('message_id', '<=', $since)->last();
-
-            if ($previousMessage === null) {
-                $silenceQuery->none();
-            } else {
-                $silenceQuery->where('timestamp', '>', $previousMessage->timestamp);
+        if ($includeMessages) {
+            $channelIds = array_pluck($presence, 'channel_id');
+            if ($params['channel_id'] !== null) {
+                $channelIds = array_values(array_intersect($channelIds, [$params['channel_id']]));
             }
-        } else {
-            $silenceQuery->where('ban_id', '>', $lastHistoryId)->reorderBy('ban_id', 'DESC');
+
+            $messages = Message
+                ::with('sender')
+                ->whereIn('channel_id', $channelIds)
+                ->since($since)
+                ->limit($limit)
+                ->orderBy('message_id', 'DESC')
+                ->get()
+                ->reverse();
+
+            $response['messages'] = json_collection($messages, new MessageTransformer(), ['sender']);
         }
 
-        $silences = $silenceQuery->get();
-
-        if ($messages->isEmpty() && $silences->isEmpty()) {
-            return response([], 204);
+        if ($includePresence) {
+            // to match old behaviour (204 when no messages and no silences); doesn't apply if messages not requested.
+            $response['presence'] = $includeMessages && $messages->isEmpty()
+                ? []
+                : $presence;
         }
 
-        return [
-            'presence' => $presence,
-            'messages' => json_collection(
-                $messages,
-                new MessageTransformer(),
-                ['sender']
-            ),
-            'silences' => json_collection($silences, 'Chat\UserSilence'),
-        ];
+        if ($includes->contains('silences')) {
+            $silenceQuery = UserAccountHistory::bans()->limit(100);
+            $lastHistoryId = $params['history_since'];
+
+            if ($lastHistoryId === null) {
+                $previousMessage = Message::where('message_id', '<=', $since)->last();
+
+                if ($previousMessage === null) {
+                    $silenceQuery->none();
+                } else {
+                    $silenceQuery->where('timestamp', '>', $previousMessage->timestamp);
+                }
+            } else {
+                $silenceQuery->where('ban_id', '>', $lastHistoryId)->reorderBy('ban_id', 'DESC');
+            }
+
+            $silences = $silenceQuery->get();
+
+            $response['silences'] = json_collection($silences, new UserSilenceTransformer());
+        }
+
+        $hasAny = array_first($response, fn ($val) => count($val) > 0) !== null;
+
+        return $hasAny ? $response : response()->noContent();
     }
 
     /**

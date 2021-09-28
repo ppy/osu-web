@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use App\Libraries\Elasticsearch\Indexable;
+
 /**
  * @property ArtistAlbum $album
  * @property int|null $album_id
@@ -25,8 +27,10 @@ namespace App\Models;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class ArtistTrack extends Model
+class ArtistTrack extends Model implements Indexable
 {
+    use Elasticsearch\ArtistTrackTrait;
+
     protected $casts = [
         'exclusive' => 'boolean',
     ];
