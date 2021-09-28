@@ -29,6 +29,16 @@ trait EsIndexableModel
         return $newIndex;
     }
 
+    public static function esIndexName()
+    {
+        return config('osu.elasticsearch.prefix').(new static())->getTable();
+    }
+
+    public static function esSchemaFile()
+    {
+        return config_path('schemas/'.(new static())->getTable().'.json');
+    }
+
     public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [], callable $progress = null)
     {
         $dummy = new static();
