@@ -57,9 +57,10 @@ class ScoresControllerTest extends TestCase
         $user = factory(User::class)->create();
         $beatmap = factory(Beatmap::class)->states('ranked')->create();
         // TODO: create factory
-        $score = Score::create([
+        $score = Score::createFromJsonOrExplode([
             'accuracy' => 1,
             'beatmap_id' => $beatmap->getKey(),
+            'ended_at' => now(),
             'max_combo' => 10,
             'mods' => [],
             'passed' => true,
