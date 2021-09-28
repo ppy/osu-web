@@ -252,7 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Konvertált beatmap-ek tartalmazása',
-        'featured_artists' => '',
+        'featured_artists' => 'Kiemelt előadók',
         'follows' => 'Követett készítők',
         'recommended' => 'Ajánlott nehézség',
     ],

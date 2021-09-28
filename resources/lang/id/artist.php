@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'daftar beatmap',
         'osu' => 'profil osu!',
         'site' => 'Situs web Resmi',
     ],
@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Lagu',
         'count' => ':count lagu',
-        'original' => '',
+        'original' => 'osu! original',
     ],
 
     'tracklist' => [
