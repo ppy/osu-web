@@ -43,7 +43,7 @@ export function getUpdates(since: number, lastHistoryId?: number | null) {
     route('chat.updates'),
     {
       history_since: lastHistoryId,
-      includes: { messages: 0, presence: 1, silences: 1 },
+      includes: ['presence', 'silences'],
       since,
     },
   ) as JQuery.jqXHR<ChatUpdatesJson | null>;
