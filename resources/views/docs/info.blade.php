@@ -261,6 +261,8 @@ For [Authorization Code Grant](#authorization-code-grant) tokens, the Resource O
 
 [Client Credentials Grant](#client-credentials-grant) tokens do not have a Resource Owner (i.e. is a guest user), unless they have been granted the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope. The Resource Owner of tokens with the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope is the owner of the OAuth Application that was granted the token.
 
+Routes marked with <span class='badge badge-scope badge-user'>requires user</span> require the use of tokens that have a Resource Owner.
+
 
 ## Client Credentials Delegation
 

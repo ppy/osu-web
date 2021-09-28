@@ -237,9 +237,6 @@
     "index": {
       "analysis": {
         "analyzer": {
-          "lowercase": {
-            "tokenizer": "lowercase"
-          },
           "prefix": {
             "filter": [
               "lowercase"

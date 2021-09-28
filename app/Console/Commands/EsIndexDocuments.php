@@ -7,6 +7,7 @@ namespace App\Console\Commands;
 
 use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Elasticsearch\Indexing;
+use App\Models\ArtistTrack;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use App\Models\User;
@@ -15,6 +16,7 @@ use Illuminate\Console\Command;
 class EsIndexDocuments extends Command
 {
     const ALLOWED_TYPES = [
+        'artist_tracks' => [ArtistTrack::class],
         'beatmapsets' => [Beatmapset::class],
         'posts' => [Post::class],
         'users' => [User::class],
