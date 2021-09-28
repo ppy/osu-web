@@ -138,11 +138,11 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
         // just check if IPN transaction id is as expected with the Paypal v2 API.
         $capturedId = $this->getOrder()->getProviderReference();
-        $transactionIdMatches = $this->getNotificationType() === NotificationType::REFUND
-            ? $this->getParentTransactionId() === $capturedId
-            : $this->getPaymentTransactionId() === $capturedId;
+        $transactionId = $this->getNotificationType() === NotificationType::REFUND
+            ? $this->getParentTransactionId()
+            : $this->getPaymentTransactionId();
 
-        if (!$transactionIdMatches) {
+        if ($capturedId !== $transactionId) {
             app('sentry')->getClient()->captureMessage(
                 'IPN transactionId does not match captured payment id',
                 null,
