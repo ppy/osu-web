@@ -148,7 +148,11 @@ class Channel extends Model
 
         $targetUser = $this->pmTargetFor($user);
 
-        return !($targetUser === null || $user->hasBlocked($targetUser) && !($targetUser->isModerator() || $targetUser->isAdmin()));
+        return !(
+            $targetUser === null
+            || $user->hasBlocked($targetUser)
+            && !($targetUser->isBot() || $targetUser->isModerator() || $targetUser->isAdmin())
+        );
     }
 
     /**
