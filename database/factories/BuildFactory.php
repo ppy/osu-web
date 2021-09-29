@@ -12,6 +12,7 @@ $factory->define(App\Models\Build::class, function (Faker\Generator $faker) {
     $streamCount = count($streams);
 
     return [
+        'hash' => fn () => md5($faker->word(), true),
         'version' => function () use ($date) {
             return Carbon::instance($date)->format('Ymd');
         },

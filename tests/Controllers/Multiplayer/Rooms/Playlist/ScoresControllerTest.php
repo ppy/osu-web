@@ -31,8 +31,7 @@ class ScoresControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
         $playlistItem = factory(PlaylistItem::class)->create();
-        $hash = md5('testversion');
-        factory(Build::class)->create(['hash' => hex2bin($hash), 'allow_ranking' => true]);
+        $build = factory(Build::class)->create(['allow_ranking' => true]);
         $initialScoresCount = Score::count();
 
         $this->actAsScopedUser($user, ['*']);
@@ -41,7 +40,7 @@ class ScoresControllerTest extends TestCase
             'room' => $playlistItem->room_id,
             'playlist' => $playlistItem->getKey(),
         ]), [
-            'version_hash' => $hash,
+            'version_hash' => bin2hex($build->hash),
         ])->assertSuccessful();
 
         $this->assertSame($initialScoresCount + 1, Score::count());
@@ -59,7 +58,7 @@ class ScoresControllerTest extends TestCase
             'room' => $playlistItem->room_id,
             'playlist' => $playlistItem->getKey(),
         ]), [
-            'version_hash' => md5('testversion'),
+            'version_hash' => md5('invalid'),
         ])->assertStatus(422);
 
         $this->assertSame($initialScoresCount, Score::count());
@@ -85,8 +84,7 @@ class ScoresControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
         $playlistItem = factory(PlaylistItem::class)->create();
-        $hash = md5('testversion');
-        factory(Build::class)->create(['hash' => hex2bin($hash), 'allow_ranking' => false]);
+        $build = factory(Build::class)->create(['allow_ranking' => false]);
         $initialScoresCount = Score::count();
 
         $this->actAsScopedUser($user, ['*']);
@@ -95,7 +93,7 @@ class ScoresControllerTest extends TestCase
             'room' => $playlistItem->room_id,
             'playlist' => $playlistItem->getKey(),
         ]), [
-            'version_hash' => $hash,
+            'version_hash' => bin2hex($build->hash),
         ])->assertStatus(422);
 
         $this->assertSame($initialScoresCount, Score::count());
