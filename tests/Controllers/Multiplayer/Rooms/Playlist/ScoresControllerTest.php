@@ -27,75 +27,40 @@ class ScoresControllerTest extends TestCase
         ]))->assertSuccessful();
     }
 
-    public function testStore()
+    /**
+     * @dataProvider storeDataProvider
+     */
+    public function testStore($allowRanking, $hashParam, $status)
     {
         $user = factory(User::class)->create();
         $playlistItem = factory(PlaylistItem::class)->create();
-        $build = factory(Build::class)->create(['allow_ranking' => true]);
+        $build = factory(Build::class)->create(['allow_ranking' => $allowRanking]);
         $initialScoresCount = Score::count();
 
         $this->actAsScopedUser($user, ['*']);
 
+        $params = [];
+        if ($hashParam !== null) {
+            $params['version_hash'] = $hashParam ? bin2hex($build->hash) : md5('invalid_');
+        }
+
         $this->json('POST', route('api.rooms.playlist.scores.store', [
             'room' => $playlistItem->room_id,
             'playlist' => $playlistItem->getKey(),
-        ]), [
-            'version_hash' => bin2hex($build->hash),
-        ])->assertSuccessful();
+        ]), $params)->assertStatus($status);
 
-        $this->assertSame($initialScoresCount + 1, Score::count());
+        $countDiff = ((string) $status)[0] === '2' ? 1 : 0;
+
+        $this->assertSame($initialScoresCount + $countDiff, Score::count());
     }
 
-    public function testStoreInvalidHash()
+    public function storeDataProvider()
     {
-        $user = factory(User::class)->create();
-        $playlistItem = factory(PlaylistItem::class)->create();
-        $initialScoresCount = Score::count();
-
-        $this->actAsScopedUser($user, ['*']);
-
-        $this->json('POST', route('api.rooms.playlist.scores.store', [
-            'room' => $playlistItem->room_id,
-            'playlist' => $playlistItem->getKey(),
-        ]), [
-            'version_hash' => md5('invalid'),
-        ])->assertStatus(422);
-
-        $this->assertSame($initialScoresCount, Score::count());
-    }
-
-    public function testStoreMissingHash()
-    {
-        $user = factory(User::class)->create();
-        $playlistItem = factory(PlaylistItem::class)->create();
-        $initialScoresCount = Score::count();
-
-        $this->actAsScopedUser($user, ['*']);
-
-        $this->json('POST', route('api.rooms.playlist.scores.store', [
-            'room' => $playlistItem->room_id,
-            'playlist' => $playlistItem->getKey(),
-        ]))->assertStatus(422);
-
-        $this->assertSame($initialScoresCount, Score::count());
-    }
-
-    public function testStoreNoRankingBuild()
-    {
-        $user = factory(User::class)->create();
-        $playlistItem = factory(PlaylistItem::class)->create();
-        $build = factory(Build::class)->create(['allow_ranking' => false]);
-        $initialScoresCount = Score::count();
-
-        $this->actAsScopedUser($user, ['*']);
-
-        $this->json('POST', route('api.rooms.playlist.scores.store', [
-            'room' => $playlistItem->room_id,
-            'playlist' => $playlistItem->getKey(),
-        ]), [
-            'version_hash' => bin2hex($build->hash),
-        ])->assertStatus(422);
-
-        $this->assertSame($initialScoresCount, Score::count());
+        return [
+            'ok' => [true, true, 200],
+            'invalid hash' => [true, false, 422],
+            'missing hash' => [true, null, 422],
+            'no ranking build' => [false, true, 422],
+        ];
     }
 }
