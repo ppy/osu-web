@@ -16,7 +16,7 @@ class Chat
     public static function ack(User $user)
     {
         $channelIds = $user->channels()->public()->pluck((new Channel())->qualifyColumn('channel_id'));
-        $timestamp = now()->timestamp;
+        $timestamp = time();
         $transaction = Redis::transaction();
 
         foreach ($channelIds as $channelId) {
