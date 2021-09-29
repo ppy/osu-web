@@ -36,6 +36,7 @@ class Channel extends Model
 {
     use Memoizes;
 
+    const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
     const PRELOADED_USERS_KEY = 'preloadedUsers';
 
     protected $primaryKey = 'channel_id';
@@ -117,6 +118,13 @@ class Channel extends Model
         sort($userIds);
 
         return '#pm_'.implode('-', $userIds);
+    }
+
+    public function activeUserIds()
+    {
+        return $this->isPublic()
+            ? Redis::zrangebyscore("chat:channel:{$this->getKey()}", now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
+            : $this->userIds();
     }
 
     /**

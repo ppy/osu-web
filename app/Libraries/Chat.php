@@ -13,8 +13,6 @@ use LaravelRedis as Redis;
 
 class Chat
 {
-    const CHAT_ACTIVITY_TIMEOUT = 60;
-
     public static function ack(User $user)
     {
         $channelIds = $user->channels()->public()->pluck((new Channel())->qualifyColumn('channel_id'));
@@ -26,11 +24,6 @@ class Chat
         }
 
         $transaction->exec();
-    }
-
-    public static function filterActive(array $userIds)
-    {
-        return array_values(array_filter(Redis::mget(array_map(fn ($userId) => "chat:ack:{$userId}", $userIds))));
     }
 
     // Do the restricted user lookup before calling this.

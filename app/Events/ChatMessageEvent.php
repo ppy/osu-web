@@ -30,11 +30,9 @@ class ChatMessageEvent implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        $userIds = Chat::filterActive($this->message->channel->userIds());
-
         return array_map(function ($userId) {
             return new Channel("private:user:{$userId}");
-        }, $userIds);
+        }, $this->message->channel->activeUserIds());
     }
 
     public function broadcastWith()
