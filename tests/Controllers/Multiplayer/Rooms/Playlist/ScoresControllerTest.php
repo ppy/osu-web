@@ -34,7 +34,7 @@ class ScoresControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
         $playlistItem = factory(PlaylistItem::class)->create();
-        $build = factory(Build::class)->create(['allow_ranking' => $allowRanking]);
+        $build = Build::factory()->create(['allow_ranking' => $allowRanking]);
         $initialScoresCount = Score::count();
 
         $this->actAsScopedUser($user, ['*']);

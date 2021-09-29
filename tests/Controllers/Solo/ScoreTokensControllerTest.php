@@ -18,7 +18,7 @@ class ScoreTokensControllerTest extends TestCase
         $user = factory(User::class)->create();
         $beatmap = factory(Beatmap::class)->states('ranked')->create();
         $hash = md5('testversion');
-        factory(Build::class)->create(['hash' => hex2bin($hash), 'allow_ranking' => true]);
+        Build::factory()->create(['hash' => hex2bin($hash), 'allow_ranking' => true]);
         $initialScoreTokenCount = ScoreToken::count();
 
         $this->actAsScopedUser($user, ['*']);
@@ -38,7 +38,7 @@ class ScoreTokensControllerTest extends TestCase
         $user = factory(User::class)->create();
         $beatmap = factory(Beatmap::class)->states('wip')->create();
         $hash = md5('testversion');
-        factory(Build::class)->create(['hash' => hex2bin($hash), 'allow_ranking' => true]);
+        Build::factory()->create(['hash' => hex2bin($hash), 'allow_ranking' => true]);
         $initialScoreTokenCount = ScoreToken::count();
 
         $this->actAsScopedUser($user, ['*']);
@@ -58,7 +58,7 @@ class ScoreTokensControllerTest extends TestCase
         $user = factory(User::class)->create();
         $beatmap = factory(Beatmap::class)->states('ranked')->create();
         $hash = md5('testversion');
-        factory(Build::class)->create(['hash' => hex2bin($hash), 'allow_ranking' => true]);
+        Build::factory()->create(['hash' => hex2bin($hash), 'allow_ranking' => true]);
         $initialScoreTokenCount = ScoreToken::count();
 
         $this->actAsScopedUser($user, ['*']);
@@ -77,7 +77,7 @@ class ScoreTokensControllerTest extends TestCase
         $user = factory(User::class)->create();
         $beatmap = factory(Beatmap::class)->states('ranked')->create();
         $initialScoreTokenCount = ScoreToken::count();
-        factory(Build::class)->create(['hash' => hex2bin(md5('validversion')), 'allow_ranking' => true]);
+        Build::factory()->create(['hash' => hex2bin(md5('validversion')), 'allow_ranking' => true]);
 
         $this->actAsScopedUser($user, ['*']);
 
