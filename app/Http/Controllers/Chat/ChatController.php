@@ -274,6 +274,7 @@ class ChatController extends Controller
 
         $includeMessages = $includes->contains('messages');
         $includePresence = $includes->contains('presence');
+        $includeSilences = $includes->contains('silences');
 
         $since = $params['since'];
         $limit = clamp($params['limit'] ?? 50, 1, 50);
@@ -303,14 +304,7 @@ class ChatController extends Controller
             $response['messages'] = json_collection($messages, new MessageTransformer(), ['sender']);
         }
 
-        if ($includePresence) {
-            // to match old behaviour (204 when no messages and no silences); doesn't apply if messages not requested.
-            $response['presence'] = $includeMessages && $messages->isEmpty()
-                ? []
-                : $presence;
-        }
-
-        if ($includes->contains('silences')) {
+        if ($includeSilences) {
             $silenceQuery = UserAccountHistory::bans()->limit(100);
             $lastHistoryId = $params['history_since'];
 
@@ -329,6 +323,13 @@ class ChatController extends Controller
             $silences = $silenceQuery->get();
 
             $response['silences'] = json_collection($silences, new UserSilenceTransformer());
+        }
+
+        if ($includePresence) {
+            // to match old behaviour (204 when no messages and no silences); doesn't apply if messages not requested.
+            $response['presence'] = $includeMessages && $messages->isEmpty() && $includeSilences && $silences->isEmpty()
+                ? []
+                : $presence;
         }
 
         $hasAny = array_first($response, fn ($val) => count($val) > 0) !== null;
