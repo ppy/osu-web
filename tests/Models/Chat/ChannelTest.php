@@ -124,6 +124,8 @@ class ChannelTest extends TestCase
         $otherUser = factory(User::class)->create(['pm_friends_only' => true]);
         $channel = $this->createChannel([$user, $otherUser], 'pm');
 
+        app('OsuAuthorize')->resetCache();
+
         $this->assertSame($canMessage, $channel->canMessage($user));
     }
 
