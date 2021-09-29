@@ -20,7 +20,9 @@ class Chat
         $transaction = Redis::transaction();
 
         foreach ($channelIds as $channelId) {
-            $transaction->zadd(Channel::getAckKey($channelId), $timestamp, $user->getKey());
+            $key = Channel::getAckKey($channelId);
+            $transaction->zadd($key, $timestamp, $user->getKey());
+            $transaction->expire($key, Channel::CHAT_ACTIVITY_TIMEOUT * 10);
         }
 
         $transaction->exec();
