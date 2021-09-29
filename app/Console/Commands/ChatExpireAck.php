@@ -21,7 +21,7 @@ class ChatExpireAck extends Command
         $this->line("Removing users inactive before {$max}");
         $progress = $this->output->createProgressBar();
 
-        Channel::public()->chunkById(100, function ($chunk) use ($max, $progress) {
+        Channel::public()->select('channel_id')->chunkById(100, function ($chunk) use ($max, $progress) {
             foreach ($chunk as $channel) {
                 Redis::zremrangebyscore(Channel::getAckKey($channel->getKey()), 0, $max);
                 $progress->advance();
