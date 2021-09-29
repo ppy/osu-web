@@ -54,6 +54,28 @@ class ScoresControllerTest extends TestCase
         $this->assertSame($initialScoresCount + $countDiff, Score::count());
     }
 
+    /**
+     * @dataProvider updateDataProvider
+     */
+    public function testUpdate($bodyParams, $status)
+    {
+        $user = factory(User::class)->create();
+        $playlistItem = factory(PlaylistItem::class)->create();
+        $room = $playlistItem->room;
+        $build = Build::factory()->create(['allow_ranking' => true]);
+        $score = $room->startPlay($user, $playlistItem);
+
+        $this->actAsScopedUser($user, ['*']);
+
+        $url = route('api.rooms.playlist.scores.update', [
+            'room' => $room,
+            'playlist' => $playlistItem,
+            'score' => $score,
+        ]);
+
+        $this->json('PUT', $url, $bodyParams)->assertStatus($status);
+    }
+
     public function storeDataProvider()
     {
         return [
@@ -61,6 +83,23 @@ class ScoresControllerTest extends TestCase
             'invalid hash' => [true, false, 422],
             'missing hash' => [true, null, 422],
             'no ranking build' => [false, true, 422],
+        ];
+    }
+
+    public function updateDataProvider()
+    {
+        static $validBodyParams = [
+            'accuracy' => 1,
+            'max_combo' => 10,
+            'passed' => true,
+            'rank' => 'A',
+            'statistics' => ['Good' => 1],
+            'total_score' => 10,
+        ];
+
+        return [
+            'ok' => [$validBodyParams, 200],
+            'empty params' => [[], 422],
         ];
     }
 }
