@@ -13,81 +13,46 @@ use Tests\TestCase;
 
 class ScoreTokensControllerTest extends TestCase
 {
-    public function testStore()
+    /**
+     * @dataProvider storeDataProvider
+     */
+    public function testStore($beatmapState, $passRulesetId, $hashParam, $status)
     {
         $user = factory(User::class)->create();
-        $beatmap = factory(Beatmap::class)->states('ranked')->create();
-        $hash = md5('testversion');
-        Build::factory()->create(['hash' => hex2bin($hash), 'allow_ranking' => true]);
+        $beatmap = factory(Beatmap::class)->states($beatmapState)->create();
+        $build = Build::factory()->create(['allow_ranking' => true]);
         $initialScoreTokenCount = ScoreToken::count();
 
         $this->actAsScopedUser($user, ['*']);
 
-        $this->json('POST', route('api.beatmaps.solo.score-tokens.store', [
-            'beatmap' => $beatmap->getKey(),
-            'ruleset_id' => $beatmap->playmode,
-        ]), [
-            'version_hash' => $hash,
-        ])->assertSuccessful();
+        $routeParams = ['beatmap' => $beatmap->getKey()];
+        if ($passRulesetId) {
+            $routeParams['ruleset_id'] = $beatmap->playmode;
+        }
 
-        $this->assertSame($initialScoreTokenCount + 1, ScoreToken::count());
+        $bodyParams = [];
+        if ($hashParam !== null) {
+            $bodyParams['version_hash'] = $hashParam ? bin2hex($build->hash) : md5('invalid_');
+        }
+
+        $this->json(
+            'POST',
+            route('api.beatmaps.solo.score-tokens.store', $routeParams),
+            $bodyParams
+        )->assertStatus($status);
+
+        $countDiff = ((string) $status)[0] === '2' ? 1 : 0;
+
+        $this->assertSame($initialScoreTokenCount + $countDiff, ScoreToken::count());
     }
 
-    public function testStorePending()
+    public function storeDataProvider()
     {
-        $user = factory(User::class)->create();
-        $beatmap = factory(Beatmap::class)->states('wip')->create();
-        $hash = md5('testversion');
-        Build::factory()->create(['hash' => hex2bin($hash), 'allow_ranking' => true]);
-        $initialScoreTokenCount = ScoreToken::count();
-
-        $this->actAsScopedUser($user, ['*']);
-
-        $this->json('POST', route('api.beatmaps.solo.score-tokens.store', [
-            'beatmap' => $beatmap->getKey(),
-            'ruleset_id' => $beatmap->playmode,
-        ]), [
-            'version_hash' => $hash,
-        ])->assertStatus(404);
-
-        $this->assertSame($initialScoreTokenCount, ScoreToken::count());
-    }
-
-    public function testStoreMissingRulesetId()
-    {
-        $user = factory(User::class)->create();
-        $beatmap = factory(Beatmap::class)->states('ranked')->create();
-        $hash = md5('testversion');
-        Build::factory()->create(['hash' => hex2bin($hash), 'allow_ranking' => true]);
-        $initialScoreTokenCount = ScoreToken::count();
-
-        $this->actAsScopedUser($user, ['*']);
-
-        $this->json('POST', route('api.beatmaps.solo.score-tokens.store', [
-            'beatmap' => $beatmap->getKey(),
-        ]), [
-            'version_hash' => $hash,
-        ])->assertStatus(422);
-
-        $this->assertSame($initialScoreTokenCount, ScoreToken::count());
-    }
-
-    public function testStoreInvalidHash()
-    {
-        $user = factory(User::class)->create();
-        $beatmap = factory(Beatmap::class)->states('ranked')->create();
-        $initialScoreTokenCount = ScoreToken::count();
-        Build::factory()->create(['hash' => hex2bin(md5('validversion')), 'allow_ranking' => true]);
-
-        $this->actAsScopedUser($user, ['*']);
-
-        $this->json('POST', route('api.beatmaps.solo.score-tokens.store', [
-            'beatmap' => $beatmap->getKey(),
-            'ruleset_id' => $beatmap->playmode,
-        ]), [
-            'version_hash' => md5('invalidversion'),
-        ])->assertStatus(422);
-
-        $this->assertSame($initialScoreTokenCount, ScoreToken::count());
+        return [
+            'ok' => ['ranked', true, true, 200],
+            'pending beatmap' => ['wip', true, true, 404],
+            'missing ruleset id' => ['ranked', false, true, 422],
+            'invalid hash' => ['ranked', true, false, 422],
+        ];
     }
 }
