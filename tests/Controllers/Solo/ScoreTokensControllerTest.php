@@ -14,7 +14,7 @@ use Tests\TestCase;
 class ScoreTokensControllerTest extends TestCase
 {
     /**
-     * @dataProvider storeDataProvider
+     * @dataProvider dataProviderForTestStore
      */
     public function testStore($beatmapState, $passRulesetId, $hashParam, $status)
     {
@@ -46,7 +46,7 @@ class ScoreTokensControllerTest extends TestCase
         $this->assertSame($initialScoreTokenCount + $countDiff, ScoreToken::count());
     }
 
-    public function storeDataProvider()
+    public function dataProviderForTestStore()
     {
         return [
             'ok' => ['ranked', true, true, 200],

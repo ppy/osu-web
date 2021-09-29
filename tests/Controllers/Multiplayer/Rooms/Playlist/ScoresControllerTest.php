@@ -28,7 +28,7 @@ class ScoresControllerTest extends TestCase
     }
 
     /**
-     * @dataProvider storeDataProvider
+     * @dataProvider dataProviderForTestStore
      */
     public function testStore($allowRanking, $hashParam, $status)
     {
@@ -55,7 +55,7 @@ class ScoresControllerTest extends TestCase
     }
 
     /**
-     * @dataProvider updateDataProvider
+     * @dataProvider dataProviderForTestUpdate
      */
     public function testUpdate($bodyParams, $status)
     {
@@ -76,7 +76,7 @@ class ScoresControllerTest extends TestCase
         $this->json('PUT', $url, $bodyParams)->assertStatus($status);
     }
 
-    public function storeDataProvider()
+    public function dataProviderForTestStore()
     {
         return [
             'ok' => [true, true, 200],
@@ -86,7 +86,7 @@ class ScoresControllerTest extends TestCase
         ];
     }
 
-    public function updateDataProvider()
+    public function dataProviderForTestUpdate()
     {
         static $validBodyParams = [
             'accuracy' => 1,
