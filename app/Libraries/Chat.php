@@ -17,7 +17,15 @@ class Chat
 
     public static function ack(User $user)
     {
-        Redis::setex("chat:ack:{$user->getKey()}", static::CHAT_ACTIVITY_TIMEOUT, $user->getKey());
+        $channelIds = $user->channels()->public()->pluck((new Channel())->qualifyColumn('channel_id'));
+        $timestamp = now()->timestamp;
+        $transaction = Redis::transaction();
+
+        foreach ($channelIds as $channelId) {
+            $transaction->zadd("chat:channel:{$channelId}", $timestamp, $user->getKey());
+        }
+
+        $transaction->exec();
     }
 
     public static function filterActive(array $userIds)
