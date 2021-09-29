@@ -5,7 +5,6 @@
 
 namespace App\Events;
 
-use App\Libraries\Chat;
 use App\Models\Chat\Message;
 use App\Transformers\Chat\MessageTransformer;
 use App\Transformers\UserCompactTransformer;
