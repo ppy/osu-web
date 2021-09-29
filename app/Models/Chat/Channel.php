@@ -106,6 +106,11 @@ class Channel extends Model
         return $channel;
     }
 
+    public static function getAckKey(int $channelId)
+    {
+        return "chat:channel:{$channelId}";
+    }
+
     /**
      * @param User $user1
      * @param User $user2
@@ -123,7 +128,7 @@ class Channel extends Model
     public function activeUserIds()
     {
         return $this->isPublic()
-            ? Redis::zrangebyscore("chat:channel:{$this->getKey()}", now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
+            ? Redis::zrangebyscore(static::getAckKey($this->getKey()), now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
             : $this->userIds();
     }
 

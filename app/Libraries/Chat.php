@@ -20,7 +20,7 @@ class Chat
         $transaction = Redis::transaction();
 
         foreach ($channelIds as $channelId) {
-            $transaction->zadd("chat:channel:{$channelId}", $timestamp, $user->getKey());
+            $transaction->zadd(Channel::getAckKey($channelId), $timestamp, $user->getKey());
         }
 
         $transaction->exec();

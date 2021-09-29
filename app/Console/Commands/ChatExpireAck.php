@@ -23,7 +23,7 @@ class ChatExpireAck extends Command
 
         Channel::public()->chunkById(100, function ($chunk) use ($max, $progress) {
             foreach ($chunk as $channel) {
-                Redis::zremrangebyscore("chat:channel:{$channel->getKey()}", 0, $max);
+                Redis::zremrangebyscore(Channel::getAckKey($channel->getKey()), 0, $max);
                 $progress->advance();
             }
         });
