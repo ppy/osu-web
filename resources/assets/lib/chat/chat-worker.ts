@@ -33,7 +33,7 @@ export default class ChatWorker implements DispatchListener {
     if (!(event instanceof SocketMessageEvent)) return;
 
     const dispatchAction = newDispatchActionFromJson(event.message);
-    console.debug(dispatchAction);
+
     if (dispatchAction != null) {
       dispatch(dispatchAction);
     }

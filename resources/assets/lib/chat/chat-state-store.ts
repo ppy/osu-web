@@ -173,7 +173,6 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   private async updateChannelList() {
-    console.log('updating channels');
     const json = await getUpdates(this.channelStore.lastReceivedMessageId, this.lastHistoryId);
     if (!json) return; // FIXME: fix response
 
