@@ -5,10 +5,10 @@ import { SearchResponse } from 'beatmaps/beatmapset-search';
 import { Main } from 'beatmaps/main';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { parseJson } from 'utils/json';
+import { parseJson, parseJsonNullable } from 'utils/json';
 
 core.reactTurbolinks.register('beatmaps', (container: HTMLElement) => {
-  const beatmapsets = parseJson<SearchResponse>('json-beatmaps', true);
+  const beatmapsets = parseJsonNullable<SearchResponse>('json-beatmaps', true);
   if (beatmapsets != null) {
     core.beatmapsetSearchController.initialize(beatmapsets);
   }

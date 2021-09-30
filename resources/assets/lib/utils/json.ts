@@ -9,7 +9,16 @@ export function jsonClone<T = string|number|Record<string, unknown>>(obj: T) {
   return JSON.parse(JSON.stringify(obj)) as T;
 }
 
-export function parseJson<T = any>(id: string, remove = false) {
+export function parseJson<T>(id: string): T {
+  const json = parseJsonNullable<T>(id);
+  if (json == null) {
+    throw new Error(`missing script element ${id}`);
+  }
+
+  return json;
+}
+
+export function parseJsonNullable<T>(id: string, remove = false): T | undefined {
   const element = window.newBody?.querySelector(`#${id}`);
   if (!(element instanceof HTMLScriptElement)) return undefined;
   const json = JSON.parse(element.text) as T;
