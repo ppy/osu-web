@@ -5,6 +5,7 @@ import HeaderLink from 'interfaces/header-link';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { classWithModifiers } from 'utils/css';
+import { parseJson } from 'utils/json';
 
 interface Props {
   backgroundImage?: string | null;
@@ -180,7 +181,7 @@ export default class HeaderV4 extends React.Component<Props> {
   }
 
   private title() {
-    const routeSection: RouteSection | null = osu.parseJson('json-route-section');
+    const routeSection: RouteSection | null = parseJson('json-route-section');
 
     if (routeSection != null) {
       const keys = [
