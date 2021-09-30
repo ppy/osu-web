@@ -13,7 +13,7 @@ import { classWithModifiers } from 'utils/css'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade'
 import { make2x } from 'utils/html'
-import { jsonClone, parseJson, storeJson } from 'utils/json'
+import { jsonClone, parseJson, parseJsonNullable, storeJson } from 'utils/json'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
 import { currentUrl } from 'utils/turbolinks'
 import * as OsuUrlHelper from 'utils/url'
@@ -55,4 +55,5 @@ window.StoreCheckout = StoreCheckout
 
 window.osu.jsonClone = jsonClone
 window.osu.parseJson = parseJson
+window.osu.parseJsonNullable = parseJsonNullable
 window.osu.storeJson = storeJson

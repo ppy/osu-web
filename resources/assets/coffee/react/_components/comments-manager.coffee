@@ -19,12 +19,12 @@ export class CommentsManager extends React.PureComponent
 
     if props.commentableType? && props.commentableId?
       # FIXME no initialization from component?
-      json = osu.parseJson("json-comments-#{props.commentableType}-#{props.commentableId}", true)
+      json = osu.parseJsonNullable("json-comments-#{props.commentableType}-#{props.commentableId}", true)
       if json?
         core.dataStore.updateWithCommentBundleJson(json)
         uiState.initializeWithCommentBundleJson(json)
 
-      state = osu.parseJson @jsonStorageId()
+      state = osu.parseJsonNullable(@jsonStorageId())
       uiState.importCommentsUIState(state) if state?
 
     @id = "comments-#{nextVal()}"

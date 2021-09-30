@@ -1,10 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-function isScriptElement(ele: HTMLElement | null): ele is HTMLScriptElement {
-  return ele?.localName === 'script';
-}
-
 export function jsonClone<T = string|number|Record<string, unknown>>(obj: T) {
   return JSON.parse(JSON.stringify(obj)) as T;
 }
@@ -32,20 +28,19 @@ export function parseJsonNullable<T>(id: string, remove = false): T | undefined 
 
 export function storeJson(id: string, object: Record<string, unknown>) {
   const json = JSON.stringify(object);
-  let element = document.getElementById(id);
+  const maybeElement = document.getElementById(id);
 
-  // TODO: typingggggg???
-  if (element == null) {
+  let element: HTMLScriptElement;
+  if (maybeElement == null) {
     element = document.createElement('script');
     element.id = id;
+    element.type = 'application/json';
     document.body.appendChild(element);
+  } else if (maybeElement instanceof HTMLScriptElement) {
+    element = maybeElement;
+  } else {
+    throw new Error(`existing ${id} is not a script element.`);
   }
 
-  if (!isScriptElement(element)) {
-    throw new Error();
-  }
-
-  element.id = id;
-  element.type = 'application/json';
   element.text = json;
 }
