@@ -17,6 +17,7 @@ import ReactTurbolinks from 'core/react-turbolinks';
 import StickyHeader from 'core/sticky-header';
 import Timeago from 'core/timeago';
 import TurbolinksReload from 'core/turbolinks-reload';
+import ScorePins from 'core/user/score-pins';
 import UserLogin from 'core/user/user-login';
 import UserLoginObserver from 'core/user/user-login-observer';
 import UserPreferences from 'core/user/user-preferences';
@@ -49,6 +50,7 @@ export default class OsuCore {
   readonly osuLayzr = new OsuLayzr();
   readonly reactTurbolinks: ReactTurbolinks;
   readonly referenceLinkTooltip = new ReferenceLinkTooltip();
+  readonly scorePins = new ScorePins(this);
   socketWorker: SocketWorker;
   readonly stickyHeader = new StickyHeader();
   readonly timeago = new Timeago();

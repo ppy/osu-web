@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Transformers;
 
 use App\Models\Beatmap;
@@ -12,14 +14,26 @@ use App\Models\Score\Model as ScoreModel;
 
 class ScoreTransformer extends TransformerAbstract
 {
+    const USER_PROFILE_INCLUDES = ['beatmap', 'beatmapset', 'user'];
+    const USER_PROFILE_INCLUDES_PRELOAD = [
+        'beatmap',
+        'beatmap.beatmapset',
+        'user',
+    ];
+
     protected $availableIncludes = [
         'beatmap',
         'beatmapset',
+        'current_user_attributes',
         'rank_country',
         'rank_global',
         'weight',
         'user',
         'match',
+    ];
+
+    protected $defaultIncludes = [
+        'current_user_attributes',
     ];
 
     public function transform($score)
@@ -67,6 +81,11 @@ class ScoreTransformer extends TransformerAbstract
         }
 
         return $ret;
+    }
+
+    public function includeCurrentUserAttributes(ScoreModel $score)
+    {
+        return $this->item($score, new Score\CurrentUserAttributesTransformer());
     }
 
     public function includeMatch($score)

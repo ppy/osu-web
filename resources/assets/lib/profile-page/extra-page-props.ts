@@ -13,7 +13,7 @@ export const beatmapsetSections = [
 ] as const;
 export type BeatmapsetSection = typeof beatmapsetSections[number];
 
-export const topScoreSections = ['scoresBest', 'scoresFirsts'] as const;
+export const topScoreSections = ['scoresBest', 'scoresFirsts', 'scoresPinned'] as const;
 export type TopScoreSection = typeof topScoreSections[number];
 
 const historicalSections = ['beatmapPlaycounts', 'scoresRecent'] as const;
@@ -40,6 +40,7 @@ type ProfilePageIncludes =
   | 'replays_watched_counts'
   | 'scores_best_count'
   | 'scores_first_count'
+  | 'scores_pinned_count'
   | 'scores_recent_count'
   | 'statistics'
   | 'support_level'

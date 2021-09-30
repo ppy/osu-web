@@ -9,13 +9,19 @@ import ShowMoreLink from 'show-more-link';
 import ExtraPageProps, { TopScoreSection } from './extra-page-props';
 
 interface SectionMap {
-  count: 'scores_best_count' | 'scores_first_count';
+  count: 'scores_best_count' | 'scores_first_count' | 'scores_pinned_count';
   key: TopScoreSection;
   translationKey: string;
   type: string;
 }
 
 const sectionMaps: SectionMap[] = [
+  {
+    count: 'scores_pinned_count',
+    key: 'scoresPinned',
+    translationKey: 'pinned',
+    type: 'pinned',
+  },
   {
     count: 'scores_best_count',
     key: 'scoresBest',
