@@ -71,8 +71,15 @@ class ApidocRouteHelper
                 $route['scopes'] = [];
             }
 
+            $route['auth'] = in_array('auth', $route['middlewares'], true);
+
             $this->routeScopes[static::keyFor($route['methods'], $route['uri'])] = $route;
         }
+    }
+
+    public function getAuth(array $methods, string $uri)
+    {
+        return $this->routeScopes[static::keyFor($methods, $uri)]['auth'];
     }
 
     public function getScopeTags(array $methods, string $uri)

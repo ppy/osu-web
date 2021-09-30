@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use App\Libraries\Elasticsearch\Indexable;
+
 /**
  * @property ArtistAlbum $album
  * @property int|null $album_id
@@ -14,7 +16,7 @@ namespace App\Models;
  * @property string|null $cover_url
  * @property \Carbon\Carbon|null $created_at
  * @property int|null $display_order
- * @property int $exclusive
+ * @property bool $exclusive
  * @property string $genre
  * @property int $id
  * @property int $length
@@ -25,8 +27,14 @@ namespace App\Models;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class ArtistTrack extends Model
+class ArtistTrack extends Model implements Indexable
 {
+    use Elasticsearch\ArtistTrackTrait;
+
+    protected $casts = [
+        'exclusive' => 'boolean',
+    ];
+
     public function artist()
     {
         return $this->belongsTo(Artist::class);

@@ -19,6 +19,9 @@
     .badge.badge-scope-oauth {
         background: #3a87ad;
     }
+    .badge.badge-user {
+        background: #ad2a66;
+    }
     .content table tr:nth-child(2n+1) > td {
         background: rgba(0, 0, 0, 0.02);
     }
