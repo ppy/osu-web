@@ -31,7 +31,7 @@ import { UserCards } from 'user-cards'
 import { WikiSearch } from 'wiki-search'
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
-import { parseJson } from 'utils/json'
+import { parseJson, parseJsonNullable } from 'utils/json'
 
 # Globally init countdown timers
 core.reactTurbolinks.register 'countdownTimer', (container) ->
@@ -99,7 +99,7 @@ core.reactTurbolinks.register 'quick-search-button', ->
 
 core.reactTurbolinks.register 'ranking-filter', (container) ->
   createElement RankingFilter,
-    countries: parseJson 'json-countries'
+    countries: parseJsonNullable 'json-countries'
     gameMode: container.dataset.gameMode
     type: container.dataset.type
     variants: try JSON.parse(container.dataset.variants)
