@@ -9,12 +9,13 @@ use App\Libraries\Payments\NotificationType;
 use App\Libraries\Payments\PaymentSignature;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
+use Tests\Libraries\Payments\TestPaymentProcessor as PaymentProcessor;
 use Tests\TestCase;
 
 class PaymentProcessorTest extends TestCase
 {
     private Order $order;
-    private TestPaymentProcessor $subject;
+    private PaymentProcessor $subject;
 
     public function testCancelWithoutPayment()
     {
@@ -85,7 +86,7 @@ class PaymentProcessorTest extends TestCase
         ]);
         factory(OrderItem::class)->states('supporter_tag')->create(['order_id' => $this->order->getKey()]);
 
-        $this->subject = new TestPaymentProcessor([
+        $this->subject = new PaymentProcessor([
             'countryCode' => 'CC',
             'notificationType' => NotificationType::REFUND,
             'orderNumber' => "test-{$this->order->user_id}-{$this->order->getKey()}",
