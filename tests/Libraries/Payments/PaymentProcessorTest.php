@@ -25,7 +25,7 @@ class PaymentProcessorTest extends TestCase
 
         $this->order->refresh();
 
-        $this->assertSame('cancelled', $this->order->status);
+        $this->assertTrue($this->order->isCancelled());
     }
 
     public function testCancelWithPayment()
@@ -46,7 +46,7 @@ class PaymentProcessorTest extends TestCase
 
         $this->order->refresh();
 
-        $this->assertSame('cancelled', $this->order->status);
+        $this->assertTrue($this->order->isCancelled());
         $this->assertTrue($this->order->payments()->where('cancelled', true)->exists());
     }
 
@@ -70,7 +70,7 @@ class PaymentProcessorTest extends TestCase
 
         $this->order->refresh();
 
-        $this->assertSame('cancelled', $this->order->status);
+        $this->assertTrue($this->order->isCancelled());
         $this->assertTrue($this->order->payments()->where('cancelled', true)->exists());
     }
 

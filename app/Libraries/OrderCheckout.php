@@ -117,7 +117,7 @@ class OrderCheckout
                 );
             }
 
-            $order->status = 'processing';
+            $order->status = Order::STATUS_CHECKOUT_STARTED;
             $order->transaction_id = $this->newOrderTransactionId();
             $order->reserveItems();
 

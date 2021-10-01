@@ -69,6 +69,8 @@ class Order extends Model
     const STATUS_PAYMENT_APPROVED = 'checkout';
     const STATUS_SHIPPED = 'shipped';
 
+    const STATUS_CAN_CHECKOUT = [self::STATUS_INCART, self::STATUS_CHECKOUT_STARTED];
+
     const STATUS_HAS_INVOICE = [
         self::STATUS_CHECKOUT_STARTED,
         self::STATUS_PAYMENT_APPROVED,
@@ -119,6 +121,11 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeCanCheckout($query)
+    {
+        return $query->whereIn('status', [static::STATUS_INCART, static::STATUS_CHECKOUT_STARTED]);
     }
 
     public function scopeInCart($query)
@@ -353,7 +360,7 @@ class Order extends Model
 
     public function canCheckout()
     {
-        return in_array($this->status, [static::STATUS_INCART, static::STATUS_CHECKOUT_STARTED], true);
+        return in_array($this->status, static::STATUS_CAN_CHECKOUT, true);
     }
 
     public function canUserCancel()
@@ -399,12 +406,12 @@ class Order extends Model
 
     public function isProcessing()
     {
-        return $this->status === 'processing';
+        return $this->status === static::STATUS_CHECKOUT_STARTED;
     }
 
     public function isPaid()
     {
-        return $this->status === 'paid';
+        return $this->status === static::STATUS_PAID;
     }
 
     public function isPaidOrDelivered()
