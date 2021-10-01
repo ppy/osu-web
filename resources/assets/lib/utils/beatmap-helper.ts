@@ -8,7 +8,7 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
-import { parseJson } from 'utils/json';
+import { parseJsonNullable } from 'utils/json';
 
 export const modes: GameMode[] = ['osu', 'taiko', 'fruits', 'mania'];
 
@@ -159,7 +159,7 @@ let userRecommendedDifficultyCache: Partial<Record<GameMode, number>> | null = n
 
 function userRecommendedDifficulty(mode: GameMode) {
   if (userRecommendedDifficultyCache == null) {
-    userRecommendedDifficultyCache = parseJson('json-recommended-star-difficulty-all') ?? {};
+    userRecommendedDifficultyCache = parseJsonNullable('json-recommended-star-difficulty-all') ?? {};
     $(document).one('turbolinks:before-cache', () => {
       userRecommendedDifficultyCache = null;
     });
