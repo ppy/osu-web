@@ -46,7 +46,7 @@ class @FancyChart
       .attr 'data-visibility', 'hidden'
       .attr 'r', 2
 
-    data = osu.parseJson area.dataset.src
+    data = osu.parseJsonNullable area.dataset.src
     @loadData data
 
 
