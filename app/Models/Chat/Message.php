@@ -26,7 +26,6 @@ class Message extends Model
     protected $dates = [
         'timestamp',
     ];
-    protected $guarded = [];
 
     public function channel()
     {
