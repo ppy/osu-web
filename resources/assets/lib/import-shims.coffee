@@ -56,4 +56,3 @@ window.StoreCheckout = StoreCheckout
 window.osu.jsonClone = jsonClone
 window.osu.parseJson = parseJson
 window.osu.parseJsonNullable = parseJsonNullable
-window.osu.storeJson = storeJson
