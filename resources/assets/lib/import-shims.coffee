@@ -39,6 +39,8 @@ window._exported = {
   make2x
   pageChange
   pageChangeImmediate
+  parseJson
+  parseJsonNullable
 }
 
 # FIXME: remove once everything imports instead of using global
@@ -52,6 +54,3 @@ window._styles =
     heightMobile: 50 # @navbar-height
 
 window.StoreCheckout = StoreCheckout
-
-window.osu.parseJson = parseJson
-window.osu.parseJsonNullable = parseJsonNullable
