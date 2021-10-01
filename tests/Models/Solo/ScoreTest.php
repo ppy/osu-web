@@ -82,6 +82,7 @@ class ScoreTest extends TestCase
         $this->assertEquals($legacy->count300, 10);
         $this->assertEquals($legacy->count100, 20);
         $this->assertEquals($legacy->count50, 30);
+        $this->assertEquals($legacy->countmiss, 40);
     }
 
     public function testModsPropertyType()
