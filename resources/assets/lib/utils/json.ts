@@ -1,8 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-export function jsonClone<T = string|number|Record<string, unknown>>(obj: T) {
-  return JSON.parse(JSON.stringify(obj)) as T;
+// TODO: stop supporting null/undefined?
+export function jsonClone<T>(obj: T) {
+  return obj != null ? JSON.parse(JSON.stringify(obj)) as T : obj;
 }
 
 export function parseJson<T>(id: string): T {
