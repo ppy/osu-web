@@ -86,10 +86,24 @@ class ModdingHistoryEventsBundle
     {
         return $this->memoize(__FUNCTION__, function () {
             $array = [
+                'beatmaps' => json_collection(
+                    $this->getBeatmaps(),
+                    'Beatmap'
+                ),
+                'discussions' => json_collection(
+                    $this->getDiscussions(),
+                    'BeatmapDiscussion',
+                    ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
+                ),
                 'events' => json_collection(
                     $this->getEvents(),
                     'BeatmapsetEvent',
                     ['discussion.starting_post', 'beatmapset.user']
+                ),
+                'posts' => json_collection(
+                    $this->getPosts(),
+                    'BeatmapDiscussionPost',
+                    ['beatmap_discussion.beatmapset']
                 ),
                 'reviewsConfig' => BeatmapsetDiscussionReview::config(),
                 'users' => json_collection(
@@ -97,26 +111,12 @@ class ModdingHistoryEventsBundle
                     'UserCompact',
                     ['groups']
                 ),
+                'votes' => $this->getVotes(),
             ];
 
-            $array['beatmaps'] = json_collection(
-                $this->getBeatmaps(),
-                'Beatmap'
-            );
 
-            $array['discussions'] = json_collection(
-                $this->getDiscussions(),
-                'BeatmapDiscussion',
-                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
-            );
 
-            $array['posts'] = json_collection(
-                $this->getPosts(),
-                'BeatmapDiscussionPost',
-                ['beatmap_discussion.beatmapset']
-            );
 
-            $array['votes'] = $this->getVotes();
 
             if ($this->withExtras) {
                 if ($this->user !== null) {
