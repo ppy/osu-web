@@ -62,6 +62,28 @@ class ScoreTest extends TestCase
         $this->assertEquals($legacy->rank, 'D');
     }
 
+    public function testLegacyScoreHitCounts()
+    {
+        $legacy = Score::createFromJsonOrExplode([
+            'accuracy' => 1,
+            'beatmap_id' => 1,
+            'ended_at' => Carbon::now(),
+            'max_combo' => 100,
+            'mods' => [],
+            'passed' => true,
+            'rank' => 'S',
+            'ruleset_id' => 0,
+            'statistics' => ['Great' => 10, 'Ok' => 20, 'Meh' => 30, 'Miss' => 40],
+            'total_score' => 1000,
+            'user_id' => 1,
+        ])->createLegacyEntryOrExplode();
+
+        $this->assertFalse($legacy->perfect);
+        $this->assertEquals($legacy->count300, 10);
+        $this->assertEquals($legacy->count100, 20);
+        $this->assertEquals($legacy->count50, 30);
+    }
+
     public function testModsPropertyType()
     {
         $score = new Score(['data' => (object) ['mods' => [new stdClass()]]]);
