@@ -114,10 +114,6 @@ class ModdingHistoryEventsBundle
                 'votes' => $this->getVotes(),
             ];
 
-
-
-
-
             if ($this->withExtras) {
                 if ($this->user !== null) {
                     $kudosu = $this->user
