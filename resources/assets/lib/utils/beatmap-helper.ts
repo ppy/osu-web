@@ -159,7 +159,7 @@ let userRecommendedDifficultyCache: Partial<Record<GameMode, number>> | null = n
 
 function userRecommendedDifficulty(mode: GameMode) {
   if (userRecommendedDifficultyCache == null) {
-    userRecommendedDifficultyCache = parseJson<Record<GameMode, number> | null>('json-recommended-star-difficulty-all') ?? {};
+    userRecommendedDifficultyCache = parseJson('json-recommended-star-difficulty-all') ?? {};
     $(document).one('turbolinks:before-cache', () => {
       userRecommendedDifficultyCache = null;
     });
