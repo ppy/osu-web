@@ -14,9 +14,7 @@ $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
         'commentable_type' => function () {
             return 'build'; // TODO: add support for more types
         },
-        'commentable_id' => function () {
-            return factory(App\Models\Build::class)->create()->build_id;
-        },
+        'commentable_id' => fn () => App\Models\Build::factory()->create()->getKey(),
         'created_at' => now(),
         'updated_at' => now(),
     ];

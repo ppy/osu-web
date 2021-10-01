@@ -20,6 +20,8 @@ abstract class Model extends BaseModel
 {
     use Scoreable;
 
+    public $timestamps = false;
+
     protected $primaryKey = 'score_id';
 
     protected $casts = [
@@ -28,10 +30,6 @@ abstract class Model extends BaseModel
         'replay' => 'bool',
     ];
     protected $dates = ['date'];
-
-    protected $guarded = [];
-
-    public $timestamps = false;
 
     public static function getClass($modeInt)
     {
