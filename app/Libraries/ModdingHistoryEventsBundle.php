@@ -99,26 +99,26 @@ class ModdingHistoryEventsBundle
                 ),
             ];
 
+            $array['beatmaps'] = json_collection(
+                $this->getBeatmaps(),
+                'Beatmap'
+            );
+
+            $array['discussions'] = json_collection(
+                $this->getDiscussions(),
+                'BeatmapDiscussion',
+                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
+            );
+
+            $array['posts'] = json_collection(
+                $this->getPosts(),
+                'BeatmapDiscussionPost',
+                ['beatmap_discussion.beatmapset']
+            );
+
+            $array['votes'] = $this->getVotes();
+
             if ($this->withExtras) {
-                $array['beatmaps'] = json_collection(
-                    $this->getBeatmaps(),
-                    'Beatmap'
-                );
-
-                $array['discussions'] = json_collection(
-                    $this->getDiscussions(),
-                    'BeatmapDiscussion',
-                    ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
-                );
-
-                $array['posts'] = json_collection(
-                    $this->getPosts(),
-                    'BeatmapDiscussionPost',
-                    ['beatmap_discussion.beatmapset']
-                );
-
-                $array['votes'] = $this->getVotes();
-
                 if ($this->user !== null) {
                     $kudosu = $this->user
                         ->receivedKudosu()
