@@ -41,6 +41,7 @@ export class CommentsManager extends React.PureComponent
 
   componentWillUnmount: =>
     $.unsubscribe ".#{@id}"
+    $(document).off ".#{@id}"
 
 
   render: =>
