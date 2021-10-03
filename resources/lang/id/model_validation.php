@@ -163,7 +163,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
+        'no_ranked_beatmapset' => 'Anda tidak dapat melaporkan beatmap yang berstatus Ranked',
         'reason_not_valid' => 'alasan :reason tidak sah untuk jenis laporan ini.',
         'self' => "Anda tidak dapat melaporkan diri Anda sendiri!",
     ],

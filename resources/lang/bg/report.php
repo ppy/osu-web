@@ -5,32 +5,32 @@
 
 return [
     'beatmapset' => [
-        'button' => 'Докладвай',
+        'button' => 'Докладване',
         'title' => 'Докладвате бийтмапа на :username?',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => 'Докладвай',
+        'button' => 'Докладване',
         'title' => 'Докладвате публикацията на :username?',
     ],
 
     'comment' => [
-        'button' => 'Докладвай',
+        'button' => 'Докладване',
         'title' => 'Докладвате коментара на :username?',
     ],
 
     'forum_post' => [
-        'button' => 'Докладвай',
+        'button' => 'Докладване',
         'title' => 'Докладвате публикацията на :username?',
     ],
 
     'scores' => [
-        'button' => 'Докладвай резултат',
+        'button' => 'Докладване на Резултат',
         'title' => 'Докладвате резултата на :username?',
     ],
 
     'user' => [
-        'button' => 'Докладвай',
+        'button' => 'Докладване',
         'title' => 'Докладване на :username?',
     ],
 ];

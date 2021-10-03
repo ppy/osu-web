@@ -156,7 +156,7 @@ return [
         'title' => "profil :username",
 
         'comments_count' => [
-            '_' => 'Telah mengirimkan :link',
+            '_' => 'Telah menulis :link',
             'count' => ':count_delimited komentar|:count_delimited komentar',
         ],
         'edit' => [

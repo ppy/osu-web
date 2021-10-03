@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'Požadovaná stránka nebyla nalezena pro zvolený jazyk.',
         'needs_cleanup_or_rewrite' => 'Tato stránka nesplňuje standardy osu! wiki a potřebuje být vylepšena nebo přepsáno. Pokud chcete, můžete pomoci s aktualizací článku!',
         'search' => 'Prohledat existující stránky pro :link.',
+        'stub' => '',
         'toc' => 'Obsah',
 
         'edit' => [

@@ -18,8 +18,8 @@ return [
             'beatmapset_covers' => 'bìa beatmapset',
             'contest' => 'cuộc thi',
             'contests' => 'các cuộc thi',
-            'root' => '',
-            'store_orders' => '',
+            'root' => 'bảng điều khiển',
+            'store_orders' => 'cửa hàng quản trị viên',
         ],
 
         'artists' => [
@@ -32,7 +32,7 @@ return [
 
         'help' => [
             'index' => 'mục lục',
-            'sitemap' => '',
+            'sitemap' => 'Sơ đồ trang web',
         ],
 
         'store' => [
@@ -47,7 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => '',
+            'multiplayer' => 'nhiều người',
             'show' => 'thông tin',
         ],
     ],
@@ -116,7 +116,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Tham số yêu cầu không hợp lệ',
             'description' => '',
         ],
         '404' => [
@@ -136,11 +136,11 @@ return [
             'description' => "Xin lỗi, nhưng trang bạn yêu cầu không có ở đây!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Tham số yêu cầu không hợp lệ',
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Vượt quá giới hạn truy cập',
             'description' => '',
         ],
         '500' => [
@@ -164,7 +164,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'đăng nhập / đăng kí',
 
         'login' => [
             'forgot' => "Quên mật khẩu",
@@ -188,7 +188,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Cài Đặt',
-            'follows' => '',
+            'follows' => 'Danh sách theo dõi',
             'friends' => 'Bạn bè',
             'logout' => 'Đăng Xuất',
             'profile' => 'Trang Cá Nhân',

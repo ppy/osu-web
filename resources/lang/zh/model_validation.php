@@ -163,7 +163,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
+        'no_ranked_beatmapset' => '无法报告 Ranked 谱面',
         'reason_not_valid' => ':reason 不符合此报告类型。',
         'self' => "你不能举报你自己！",
     ],

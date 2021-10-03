@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'Prašomas puslapis nebuvo rastas dabartinėje pasirinktoje kalboje.',
         'needs_cleanup_or_rewrite' => '',
         'search' => 'Ieškoti egzistuojančius puslapius dėl :link.',
+        'stub' => '',
         'toc' => 'Turinys',
 
         'edit' => [
