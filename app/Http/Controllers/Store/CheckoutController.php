@@ -105,7 +105,7 @@ class CheckoutController extends Controller
     {
         return Auth::user()
             ->orders()
-            ->canCheckout()
+            ->whereCanCheckout()
             ->with('items.product')
             ->find($id);
     }

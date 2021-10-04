@@ -36,7 +36,7 @@ class XsollaController extends Controller
         $projectId = config('payments.xsolla.project_id');
         $user = Auth::user();
         $order = Order::whereOrderNumber(request('orderNumber'))
-            ->canCheckout()
+            ->whereCanCheckout()
             ->first();
 
         if ($order === null) {

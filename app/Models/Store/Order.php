@@ -123,7 +123,7 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeCanCheckout($query)
+    public function scopeWhereCanCheckout($query)
     {
         return $query->whereIn('status', [static::STATUS_INCART, static::STATUS_CHECKOUT_STARTED]);
     }
