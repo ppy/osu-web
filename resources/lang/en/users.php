@@ -89,7 +89,7 @@ return [
         'forgot' => 'Forgotten your password?',
         'info' => 'Please sign in to continue',
         'invalid_captcha' => 'Too many failed login attempts, please complete the captcha and try again. (Refresh page if captcha is not visible)',
-        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
+        'locked_ip' => 'Your IP address is locked. Please wait a few minutes.',
         'password' => 'Password',
         'register' => "Don't have an osu! account? Make a new one",
         'remember' => 'Remember this computer',
