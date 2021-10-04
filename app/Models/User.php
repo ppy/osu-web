@@ -1875,17 +1875,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $query->first();
     }
 
-    public static function findForPassport($username)
+    public static function findAndValidateForPassport($username, $password)
     {
-        return static::findForLogin($username);
-    }
-
-    public function validateForPassportPasswordGrant($password)
-    {
-        $authError = static::attemptLogin($this, $password);
+        $user = static::findForLogin($username);
+        $authError = static::attemptLogin($user, $password);
 
         if ($authError === null) {
-            return true;
+            return $user;
         }
 
         throw OAuthServerException::invalidGrant($authError);
