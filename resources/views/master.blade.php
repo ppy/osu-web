@@ -111,6 +111,12 @@
                 data-sync-height-target="permanent-fixed-footer"
             >
                 @yield('permanent-fixed-footer')
+
+                @if (config('osu.is_development_deploy'))
+                    <div class="not-official-footer">
+                        <strong>This is a development instance of the <a href="https://osu.ppy.sh" class="not-official-footer__link">osu! website</a>. Please do not login with your osu! credentials.</strong>
+                    </div>
+                @endif
             </div>
         </div>
 
