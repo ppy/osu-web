@@ -16,14 +16,9 @@ class OrderItemTest extends TestCase
     /**
      * @dataProvider deleteDataProvider
      */
-    public function testDelete(string $status, $expectedException)
+    public function testDelete(string $status, ?string $expectedException)
     {
-        $product = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5]);
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
-            'quantity' => 2,
-            'reserved' => false,
-        ]);
+        [$product, $orderItem] = $this->createProductAndOrderItem(5, false);
 
         $orderItem->order->update(['status' => $status]);
 
@@ -38,12 +33,7 @@ class OrderItemTest extends TestCase
 
     public function testReserveUnreservedProduct()
     {
-        $product = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5]);
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
-            'quantity' => 2,
-            'reserved' => false,
-        ]);
+        [$product, $orderItem] = $this->createProductAndOrderItem(5, false);
 
         $orderItem->reserveProduct();
 
@@ -56,12 +46,7 @@ class OrderItemTest extends TestCase
 
     public function testReserveReservedProduct()
     {
-        $product = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5]);
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
-            'quantity' => 2,
-            'reserved' => true,
-        ]);
+        [$product, $orderItem] = $this->createProductAndOrderItem(5, true);
 
         $orderItem->reserveProduct();
 
@@ -74,12 +59,7 @@ class OrderItemTest extends TestCase
 
     public function testReleaseUnreservedProduct()
     {
-        $product = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5]);
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
-            'quantity' => 2,
-            'reserved' => false,
-        ]);
+        [$product, $orderItem] = $this->createProductAndOrderItem(5, false);
 
         $orderItem->releaseProduct();
 
@@ -92,12 +72,7 @@ class OrderItemTest extends TestCase
 
     public function testReleaseReservedProduct()
     {
-        $product = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5]);
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
-            'quantity' => 2,
-            'reserved' => true,
-        ]);
+        [$product, $orderItem] = $this->createProductAndOrderItem(5, true);
 
         $orderItem->releaseProduct();
 
@@ -110,12 +85,7 @@ class OrderItemTest extends TestCase
 
     public function testReserveInsufficientStock()
     {
-        $product = factory(Product::class)->create(['stock' => 1, 'max_quantity' => 5]);
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
-            'quantity' => 2,
-            'reserved' => false,
-        ]);
+        [, $orderItem] = $this->createProductAndOrderItem(1, false);
 
         $this->expectException(InsufficientStockException::class);
         $orderItem->reserveProduct();
@@ -123,12 +93,7 @@ class OrderItemTest extends TestCase
 
     public function testReleaseWhenStockIsZero()
     {
-        $product = factory(Product::class)->create(['stock' => 0, 'max_quantity' => 5]);
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
-            'quantity' => 2,
-            'reserved' => true,
-        ]);
+        [$product, $orderItem] = $this->createProductAndOrderItem(0, true);
 
         $orderItem->releaseProduct();
 
@@ -146,5 +111,17 @@ class OrderItemTest extends TestCase
             ['incart', null],
             ['processing', InvariantException::class],
         ];
+    }
+
+    private function createProductAndOrderItem(int $stock, bool $reserved)
+    {
+        $product = factory(Product::class)->create(['stock' => $stock, 'max_quantity' => 5]);
+        $orderItem = factory(OrderItem::class)->create([
+            'product_id' => $product->getKey(),
+            'quantity' => 2,
+            'reserved' => $reserved,
+        ]);
+
+        return [$product, $orderItem];
     }
 }
