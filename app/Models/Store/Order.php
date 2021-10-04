@@ -358,73 +358,73 @@ class Order extends Model
         });
     }
 
-    public function canCheckout()
+    public function canCheckout(): bool
     {
         return in_array($this->status, static::STATUS_CAN_CHECKOUT, true);
     }
 
-    public function canUserCancel()
+    public function canUserCancel(): bool
     {
         return $this->status === static::STATUS_CHECKOUT_STARTED;
     }
 
-    public function hasInvoice()
+    public function hasInvoice(): bool
     {
         return in_array($this->status, static::STATUS_HAS_INVOICE, true);
     }
 
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return !$this->items()->exists();
     }
 
-    public function isAwaitingPayment()
+    public function isAwaitingPayment(): bool
     {
         return in_array($this->status, [static::STATUS_CHECKOUT_STARTED, static::STATUS_PAYMENT_APPROVED], true);
     }
 
-    public function isCancelled()
+    public function isCancelled(): bool
     {
         return $this->status === static::STATUS_CANCELLED;
     }
 
-    public function isCart()
+    public function isCart(): bool
     {
         return $this->status === static::STATUS_INCART;
     }
 
-    public function isDelivered()
+    public function isDelivered(): bool
     {
         return $this->status === static::STATUS_DELIVERED;
     }
 
-    public function isModifiable()
+    public function isModifiable(): bool
     {
         // new cart is status = null
         return in_array($this->status, [static::STATUS_INCART, null], true);
     }
 
-    public function isProcessing()
+    public function isProcessing(): bool
     {
         return $this->status === static::STATUS_CHECKOUT_STARTED;
     }
 
-    public function isPaid()
+    public function isPaid(): bool
     {
         return $this->status === static::STATUS_PAID;
     }
 
-    public function isPaidOrDelivered()
+    public function isPaidOrDelivered(): bool
     {
         return in_array($this->status, [static::STATUS_PAID, static::STATUS_DELIVERED], true);
     }
 
-    public function isPendingEcheck()
+    public function isPendingEcheck(): bool
     {
         return $this->tracking_code === static::PENDING_ECHECK;
     }
 
-    public function isShipped()
+    public function isShipped(): bool
     {
         return $this->status === static::STATUS_SHIPPED;
     }
