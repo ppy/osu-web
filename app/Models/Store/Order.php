@@ -62,22 +62,22 @@ class Order extends Model
     const PROVIDER_XSOLLA = 'xsolla';
 
     const STATUS_CANCELLED = 'cancelled';
-    const STATUS_CHECKOUT_STARTED = 'processing';
     const STATUS_DELIVERED = 'delivered';
     const STATUS_INCART = 'incart';
     const STATUS_PAID = 'paid';
     const STATUS_PAYMENT_APPROVED = 'checkout';
+    const STATUS_PAYMENT_REQUESTED = 'processing';
     const STATUS_SHIPPED = 'shipped';
 
-    const STATUS_CAN_CHECKOUT = [self::STATUS_INCART, self::STATUS_CHECKOUT_STARTED];
+    const STATUS_CAN_CHECKOUT = [self::STATUS_INCART, self::STATUS_PAYMENT_REQUESTED];
 
     const STATUS_HAS_INVOICE = [
-        self::STATUS_CHECKOUT_STARTED,
-        self::STATUS_PAYMENT_APPROVED,
-        self::STATUS_PAID,
-        self::STATUS_SHIPPED,
         self::STATUS_CANCELLED,
         self::STATUS_DELIVERED,
+        self::STATUS_PAID,
+        self::STATUS_PAYMENT_APPROVED,
+        self::STATUS_PAYMENT_REQUESTED,
+        self::STATUS_SHIPPED,
     ];
 
     protected $primaryKey = 'order_id';
@@ -100,7 +100,7 @@ class Order extends Model
             return null;
         }
 
-        return static::where('user_id', $user->getKey())->processing();
+        return static::where('user_id', $user->getKey())->paymentRequested();
     }
 
     public function items()
@@ -125,7 +125,7 @@ class Order extends Model
 
     public function scopeWhereCanCheckout($query)
     {
-        return $query->whereIn('status', [static::STATUS_INCART, static::STATUS_CHECKOUT_STARTED]);
+        return $query->whereIn('status', [static::STATUS_INCART, static::STATUS_PAYMENT_REQUESTED]);
     }
 
     public function scopeInCart($query)
@@ -133,9 +133,9 @@ class Order extends Model
         return $query->where('status', static::STATUS_INCART);
     }
 
-    public function scopeProcessing($query)
+    public function scopePaymentRequested($query)
     {
-        return $query->where('status', static::STATUS_CHECKOUT_STARTED);
+        return $query->where('status', static::STATUS_PAYMENT_REQUESTED);
     }
 
     public function scopeStale($query)
@@ -146,11 +146,6 @@ class Order extends Model
     public function scopeWhereHasInvoice($query)
     {
         return $query->whereIn('status', static::STATUS_HAS_INVOICE);
-    }
-
-    public function scopeWithPayments($query)
-    {
-        return $query->with('payments');
     }
 
     public function scopeWhereOrderNumber($query, $orderNumber)
@@ -179,6 +174,11 @@ class Order extends Model
                 ->where('provider', $provider)
                 ->where('transaction_id', $transactionId)
                 ->where('cancelled', false));
+    }
+
+    public function scopeWithPayments($query)
+    {
+        return $query->with('payments');
     }
 
     public function trackingCodes()
@@ -228,7 +228,7 @@ class Order extends Model
         switch ($this->status) {
             case static::STATUS_CANCELLED:
                 return 'Cancelled';
-            case static::STATUS_CHECKOUT_STARTED:
+            case static::STATUS_PAYMENT_REQUESTED:
             case static::STATUS_PAYMENT_APPROVED:
                 return 'Awaiting Payment';
             case static::STATUS_INCART:
@@ -365,17 +365,12 @@ class Order extends Model
 
     public function canUserCancel(): bool
     {
-        return $this->status === static::STATUS_CHECKOUT_STARTED;
+        return $this->status === static::STATUS_PAYMENT_REQUESTED;
     }
 
     public function hasInvoice(): bool
     {
         return in_array($this->status, static::STATUS_HAS_INVOICE, true);
-    }
-
-    public function isAwaitingPayment(): bool
-    {
-        return in_array($this->status, [static::STATUS_CHECKOUT_STARTED, static::STATUS_PAYMENT_APPROVED], true);
     }
 
     public function isCancelled(): bool
@@ -404,9 +399,14 @@ class Order extends Model
         return in_array($this->status, [static::STATUS_INCART, null], true);
     }
 
-    public function isProcessing(): bool
+    public function isPendingPaymentCapture(): bool
     {
-        return $this->status === static::STATUS_CHECKOUT_STARTED;
+        return in_array($this->status, [static::STATUS_PAYMENT_REQUESTED, static::STATUS_PAYMENT_APPROVED], true);
+    }
+
+    public function isPaymentRequested(): bool
+    {
+        return $this->status === static::STATUS_PAYMENT_REQUESTED;
     }
 
     public function isPaid(): bool

@@ -10,7 +10,7 @@
         <p>
             If you have any issues with your purchase, please contact the <a href='mailto:osustore@ppy.sh'>osu!store support</a>.
         </p>
-    @elseif ($order->isProcessing())
+    @elseif ($order->isPaymentRequested())
         <p><em class="store-text store-text--emphasis">{{ osu_trans('store.invoice.status.processing.title') }}</em></p>
         <p>
             {{ osu_trans('store.invoice.status.processing.line_1') }}

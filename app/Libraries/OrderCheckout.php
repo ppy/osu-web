@@ -117,7 +117,7 @@ class OrderCheckout
                 );
             }
 
-            $order->status = Order::STATUS_CHECKOUT_STARTED;
+            $order->status = Order::STATUS_PAYMENT_REQUESTED;
             $order->transaction_id = $this->newOrderTransactionId();
             $order->reserveItems();
 
@@ -134,7 +134,7 @@ class OrderCheckout
             // processing -> if user hits the callback first.
             // paid -> if payment provider hits the callback first.
             // any other state should be considered invalid.
-            if ($order->isProcessing()) {
+            if ($order->isPaymentRequested()) {
                 $order->status = Order::STATUS_PAYMENT_APPROVED;
                 $order->saveorExplode();
             } elseif (!$order->isPaidOrDelivered()) {
@@ -152,7 +152,7 @@ class OrderCheckout
     {
         return DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
-            if ($order->isProcessing() === false) {
+            if ($order->isPaymentRequested() === false) {
                 throw new InvalidOrderStateException(
                     "`Order {$order->order_id}` failed checkout but is not processing"
                 );
