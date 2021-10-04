@@ -373,11 +373,6 @@ class Order extends Model
         return in_array($this->status, static::STATUS_HAS_INVOICE, true);
     }
 
-    public function isEmpty(): bool
-    {
-        return !$this->items()->exists();
-    }
-
     public function isAwaitingPayment(): bool
     {
         return in_array($this->status, [static::STATUS_CHECKOUT_STARTED, static::STATUS_PAYMENT_APPROVED], true);
@@ -396,6 +391,11 @@ class Order extends Model
     public function isDelivered(): bool
     {
         return $this->status === static::STATUS_DELIVERED;
+    }
+
+    public function isEmpty(): bool
+    {
+        return !$this->items()->exists();
     }
 
     public function isModifiable(): bool
