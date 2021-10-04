@@ -32,6 +32,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Request;
 
 /**
@@ -1881,7 +1882,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function validateForPassportPasswordGrant($password)
     {
-        return static::attemptLogin($this, $password) === null;
+        $authError = static::attemptLogin($this, $password);
+
+        if ($authError === null) {
+            return true;
+        }
+
+        throw OAuthServerException::invalidGrant($authError);
     }
 
     public function playCount()
