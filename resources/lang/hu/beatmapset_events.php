@@ -24,7 +24,7 @@ return [
         'kudosu_lost' => 'A :discussion megbeszélés :user által szavazatokat vesztett, így a megszerzett kudosu vissza lett vonva.',
         'kudosu_recalculate' => 'A :discussion megbeszélés kudosu értékei újra lettek kalkulálva.',
         'language_edit' => 'Nyelv megváltoztatva erről :old erre :new.',
-        'love' => 'Kedvelte :user',
+        'love' => 'Szeretett :user által.',
         'nominate' => 'Nominálva :user által.',
         'nominate_modes' => 'Nominálva :user (:modes) által.',
         'nomination_reset' => 'Új probléma :discussion (:text) miatt a nominálás alaphelyzetbe állt.',

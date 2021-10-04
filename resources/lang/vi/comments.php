@@ -6,13 +6,13 @@
 return [
     'deleted' => 'đã xóa',
     'deleted_by' => '',
-    'deleted_by_system' => '',
+    'deleted_by_system' => 'hệ thống',
     'deleted_count' => ':count_delimited bình luận đã bị xóa',
     'edited' => 'đã chỉnh sửa :timeago bởi :user',
     'pinned' => 'đã ghim',
     'empty' => 'Chưa có bình luận nào.',
     'load_replies' => 'hiển thị những trả lời',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited đáp lại|:count_delimited trả lời',
     'title' => 'Bình luận',
 
     'commentable_name' => [
