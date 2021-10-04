@@ -230,7 +230,7 @@ class Order extends Model
                 return 'Cancelled';
             case static::STATUS_PAYMENT_REQUESTED:
             case static::STATUS_PAYMENT_APPROVED:
-                return 'Awaiting Payment';
+                return 'Confirmation Pending';
             case static::STATUS_INCART:
                 return '';
             case static::STATUS_PAID:
