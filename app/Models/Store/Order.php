@@ -476,7 +476,7 @@ class Order extends Model
      */
     public function cancel(?User $user = null)
     {
-        if ($this->status === Order::STATUS_CANCELLED) {
+        if ($this->isCancelled()) {
             return;
         }
 

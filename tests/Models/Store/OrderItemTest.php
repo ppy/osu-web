@@ -6,12 +6,36 @@
 namespace Tests\Models\Store;
 
 use App\Exceptions\InsufficientStockException;
+use App\Exceptions\InvariantException;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
 use Tests\TestCase;
 
 class OrderItemTest extends TestCase
 {
+    /**
+     * @dataProvider deleteDataProvider
+     */
+    public function testDelete(string $status, $expectedException)
+    {
+        $product = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5]);
+        $orderItem = factory(OrderItem::class)->create([
+            'product_id' => $product->product_id,
+            'quantity' => 2,
+            'reserved' => false,
+        ]);
+
+        $orderItem->order->update(['status' => $status]);
+
+        if ($expectedException === null) {
+            $this->expectNotToPerformAssertions();
+        } else {
+            $this->expectException($expectedException);
+        }
+
+        $orderItem->delete();
+    }
+
     public function testReserveUnreservedProduct()
     {
         $product = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5]);
@@ -113,5 +137,14 @@ class OrderItemTest extends TestCase
 
         $this->assertFalse($orderItem->reserved);
         $this->assertSame($product->stock, 0);
+    }
+
+    public function deleteDataProvider()
+    {
+        return [
+            ['checkout', InvariantException::class],
+            ['incart', null],
+            ['processing', InvariantException::class],
+        ];
     }
 }
