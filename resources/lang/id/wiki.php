@@ -12,7 +12,7 @@ return [
         'missing_translation' => 'Laman yang diminta tidak dapat ditemukan untuk bahasa yang dipilih saat ini.',
         'needs_cleanup_or_rewrite' => 'Laman ini tidak memenuhi standar osu! wiki dan perlu dibersihkan atau ditulis ulang. Apabila Anda berkenan, harap bantu kami untuk memperbarui artikel ini!',
         'search' => 'Cari laman yang ada untuk :link.',
-        'stub' => '',
+        'stub' => 'Artikel ini merupakan artikel rintisan (stub) yang sedang menunggu untuk dapat dikembangkan lebih lanjut. Informasi yang tertera pada artikel ini belum sepenuhnya lengkap.',
         'toc' => 'Konten',
 
         'edit' => [

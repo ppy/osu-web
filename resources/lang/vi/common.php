@@ -75,7 +75,7 @@ return [
         'minutes' => ':count phút',
         'months' => ':count tháng',
         'notifications' => ':count_delimited thông báo|:count_delimited thông báo',
-        'plus_others' => '+ :count_delimited khác!+ :count_delimited khác!',
+        'plus_others' => '+ :count_delimited khác!',
         'post' => ':count_delimited bài viết',
         'second_short_unit' => 'giây',
         'star_priority' => ':count_delimited ưu tiên sao|:count_delimited

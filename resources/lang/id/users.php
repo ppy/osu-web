@@ -216,12 +216,12 @@ return [
             ],
             'discussions' => [
                 'title' => 'Diskusi',
-                'title_longer' => 'Diskusi Terbaru',
+                'title_longer' => 'Topik-Topik Diskusi Terkini',
                 'show_more' => 'lihat lebih banyak diskusi',
             ],
             'events' => [
                 'title' => 'Aktivitas',
-                'title_longer' => 'Aktivitas Terakhir',
+                'title_longer' => 'Aktivitas-Aktivitas Terkini',
                 'show_more' => 'lihat lebih banyak aktivitas',
             ],
             'historical' => [
@@ -306,7 +306,7 @@ return [
             ],
             'posts' => [
                 'title' => 'Posting',
-                'title_longer' => 'Postingan Terbaru',
+                'title_longer' => 'Postingan-Postingan Terkini',
                 'show_more' => 'lihat lebih banyak post',
             ],
             'recent_activity' => [
@@ -330,7 +330,7 @@ return [
                 'given' => 'Suara Diberikan (3 bulan terakhir)',
                 'received' => 'Suara Diterima (3 bulan terakhir)',
                 'title' => 'Hak Suara',
-                'title_longer' => 'Pilihan Terbaru',
+                'title_longer' => 'Riwayat Pemberian Suara Terkini',
                 'vote_count' => ':count_delimited suara|:count_delimited suara',
             ],
             'account_standing' => [
@@ -383,7 +383,7 @@ return [
             ],
         ],
         'post_count' => [
-            '_' => 'Berkontribusi sebanyak :link',
+            '_' => 'Telah berkontribusi terhadap :link',
             'count' => ':count_delimited postingan forum|:count_delimited postingan forum',
         ],
         'rank' => [

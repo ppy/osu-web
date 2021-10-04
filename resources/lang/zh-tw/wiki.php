@@ -12,7 +12,7 @@ return [
         'missing_translation' => '請求的頁面沒有當前語言的版本。',
         'needs_cleanup_or_rewrite' => '該頁面並沒有達到 osu! wiki 的標準並需要整理或者修正。如果您可以幫助修正，請考慮更新這篇文章！',
         'search' => '在 wiki 中搜索 :link 。',
-        'stub' => '',
+        'stub' => '這篇文章尚未完成，等待有人擴充。',
         'toc' => '目錄',
 
         'edit' => [
