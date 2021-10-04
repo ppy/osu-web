@@ -8,7 +8,7 @@ return [
 
     'room' => [
         'hosted_by' => 'Máy chủ bởi :user',
-        'invalid_password' => '',
+        'invalid_password' => 'Mật khẩu phòng không đúng',
         'map_count' => ':count_delimited bản_đồ|:count_delimited bản đồ',
         'player_count' => ':count_delimited người_chơi|:count_delimited người chơi',
         'time_left' => ':time thời gian còn lại',

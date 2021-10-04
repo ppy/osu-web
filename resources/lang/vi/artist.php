@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu! beatmaps',
         'osu' => 'trang cá nhân osu!',
         'site' => 'Website chính thức',
     ],
@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Bài hát',
         'count' => ':count bài hát',
-        'original' => '',
+        'original' => 'osu! nguyên bản',
     ],
 
     'tracklist' => [

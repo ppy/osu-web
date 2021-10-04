@@ -33,8 +33,8 @@ return [
                 '_' => 'Beatmap státusz',
                 'all' => 'Mind',
                 'disqualified' => 'Diszkvalifikálva',
-                'never_qualified' => 'Minősítetlen',
-                'qualified' => 'Minősített',
+                'never_qualified' => 'Sohasem kvalifikált',
+                'qualified' => 'Kvalifikált',
                 'ranked' => 'Rangsorolt',
             ],
 

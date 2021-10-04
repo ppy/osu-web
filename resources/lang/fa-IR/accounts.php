@@ -35,7 +35,7 @@ return [
                 'user_discord' => '',
                 'user_from' => 'موقعیت فعلی',
                 'user_interests' => 'علاقمندی ها',
-                'user_occ' => '',
+                'user_occ' => 'شغل',
                 'user_twitter' => '',
                 'user_website' => 'وب سایت',
             ],
@@ -48,40 +48,40 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '',
-        'beatmapset_disqualify' => '',
-        'comment_reply' => '',
+        'beatmapset_discussion_qualified_problem' => 'دریافت اعلانات مشکلات جدید در بیتمپ های واجد شرایط در نوع های زیر',
+        'beatmapset_disqualify' => 'دریافت اعلانات برای وقتی که بیتمپ های نوع زیر، رد صلاحیت میشوند',
+        'comment_reply' => 'دریافت اعلانات برای پاسخ ها به کامنت شما',
         'title' => 'علامت',
-        'topic_auto_subscribe' => '',
+        'topic_auto_subscribe' => 'فعالسازی خودکار اعلانات برای موضوعات جدید انجمن که شما میسازید',
 
         'options' => [
-            '_' => '',
+            '_' => 'تنظیمات ارسال',
             'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_message' => '',
+            'beatmapset:modding' => 'مادینگ بیتمپ',
+            'channel_message' => 'پیام های خصوصی چت',
             'comment_new' => 'نظرات جدید',
-            'forum_topic_reply' => '',
-            'mail' => '',
-            'mapping' => '',
+            'forum_topic_reply' => 'پاسخ موضوع',
+            'mail' => 'ایمیل',
+            'mapping' => 'مپر بیتمپ',
             'push' => '',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'مدال کاربر باز شد',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
-        'own_clients' => '',
+        'authorized_clients' => 'کلاینت های تایید هویت شده',
+        'own_clients' => 'کلاینت های شما',
         'title' => '',
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
-        'beatmapset_title_show_original' => '',
-        'title' => '',
+        'beatmapset_show_nsfw' => 'مخفی کردن هشدار ها برای محتوای نامناسب در بیتمپ ها',
+        'beatmapset_title_show_original' => 'نمایش متادیتای بیتمپ ها در زبان اصلی',
+        'title' => 'گزینه ها',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
+            '_' => 'نوع پیشفرض دانلود بیتمپ ها',
+            'all' => 'همراه با ویدیو اگر موجود باشد',
             'direct' => 'با osu!direct باز کن',
             'no_video' => 'بدون فیلم',
         ],
@@ -96,8 +96,8 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => '',
-        'hide_online' => '',
+        'friends_only' => 'مسدود کردن پیام های خصوصی از کسانی که در لیست دوستان شما نیستند',
+        'hide_online' => 'مخفی کردن وضعیت آنلاین شما',
         'title' => 'حریم خصوصی',
     ],
 
