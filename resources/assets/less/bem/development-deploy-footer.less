@@ -4,15 +4,15 @@
 .development-deploy-footer {
   width: 100%;
   padding: 10px;
-  background: @red;
+  background: hsl(var(--hsl-red-3));
   text-align: center;
+  font-weight: bold;
 
   @media @mobile {
     font-size: @font-size--title-small;
   }
 
   &__link {
-    .link-white();
-    text-decoration: underline;
+    color: hsl(var(--hsl-c2));
   }
 }

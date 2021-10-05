@@ -114,7 +114,7 @@
 
                 @if (config('osu.is_development_deploy'))
                     <div class="development-deploy-footer">
-                        <strong>This is a development instance of the <a href="https://osu.ppy.sh" class="development-deploy-footer__link">osu! website</a>. Please do not login with your osu! credentials.</strong>
+                        This is a development instance of the <a href="https://osu.ppy.sh" class="development-deploy-footer__link">osu! website</a>. Please do not login with your osu! credentials.
                     </div>
                 @endif
             </div>
