@@ -11,7 +11,7 @@
     <div class="beatmap-discussion beatmap-discussion--single beatmapset-activities__post-grow">
         <div class="beatmap-discussion-timestamp__icons-container">
             <div class="beatmap-discussion-timestamp__icons">
-                <a class="beatmap-discussion-timestamp__link-plain" href="{{ route('beatmapsets.discussion', $beatmapset) }}#/{{ $post->beatmap_discussion_id }}">
+                <a class="link link--no-underline" href="{{ route('beatmapsets.discussion', $beatmapset) }}#/{{ $post->beatmap_discussion_id }}">
                     <img class='beatmapset-cover'
                         src="{{$beatmapset->coverURL('list')}}"
                         srcSet="{{$beatmapset->coverURL('list')}} 1x, {{$beatmapset->coverURL('list@2x')}} 2x">
