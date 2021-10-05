@@ -94,14 +94,6 @@ class OrderCheckout
         return config('payments.centili.widget_url').'?'.http_build_query($params);
     }
 
-    /**
-     * @return bool
-     */
-    public function isShippingDelayed()
-    {
-        return Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
-    }
-
     public function beginCheckout()
     {
         // something that shouldn't happen just happened.
