@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Titres',
         'count' => ':count titre|:count titres',
-        'original' => '',
+        'original' => 'osu! original',
     ],
 
     'tracklist' => [

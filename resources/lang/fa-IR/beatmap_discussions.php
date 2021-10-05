@@ -26,30 +26,30 @@ return [
             'deleted' => '',
             'mode' => '',
             'only_unresolved' => '',
-            'types' => '',
-            'username' => '',
+            'types' => 'نوع پیام',
+            'username' => 'نام کاربری',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'وضعیت بیتمپ',
+                'all' => 'همه',
+                'disqualified' => 'رد صلاحیت',
+                'never_qualified' => 'هیچوقت واجد شرایط نشده',
+                'qualified' => 'واجد شرايط',
+                'ranked' => 'رنک شده',
             ],
 
             'user' => [
-                'label' => '',
-                'overview' => '',
+                'label' => 'کاربر',
+                'overview' => 'مرور فعالیت ها',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => '',
-        'deleted_at' => '',
-        'message_type' => '',
-        'permalink' => '',
+        'created_at' => 'تاریخ مطلب',
+        'deleted_at' => 'تاریخ حذف',
+        'message_type' => 'نوع',
+        'permalink' => 'پیوند ثابت',
     ],
 
     'nearby_posts' => [

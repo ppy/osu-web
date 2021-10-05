@@ -61,14 +61,14 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap beszélgetések',
-            'index' => 'beatmapes listák',
+            'index' => 'beatmap lista',
             'show' => 'beatmap információk',
         ],
         'changelog_controller' => [
             '_' => 'változási napló',
         ],
         'chat_controller' => [
-            '_' => 'chat',
+            '_' => 'csevegés',
         ],
         'comments_controller' => [
             '_' => 'hozzászolások',
