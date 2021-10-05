@@ -16,7 +16,7 @@ class OrderItemsController extends Controller
     {
         $item = OrderItem::where('order_id', $orderId)->findOrFail($orderItemId);
 
-        if ($item->order->status !== 'paid') {
+        if (!$item->order->isPaid()) {
             return error_popup("order status {$item->order->status} is invalid.");
         }
 

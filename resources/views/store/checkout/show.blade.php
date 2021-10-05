@@ -23,7 +23,7 @@
                 </ul>
             @endif
 
-            @if ($order->isProcessing())
+            @if ($order->isPaymentRequested())
                 <ul class="store-page__alert store-page__alert--with-margin-bottom">
                     <li>
                         {{ osu_trans('store.checkout.pending_checkout.line_1') }}<br>
