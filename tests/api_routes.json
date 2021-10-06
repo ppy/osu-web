@@ -529,6 +529,19 @@
         ]
     },
     {
+        "uri": "api/v2/legal/{locale?}/{path?}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\LegalController@show",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/matches",
         "methods": [
             "GET",

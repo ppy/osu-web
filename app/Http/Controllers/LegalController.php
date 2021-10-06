@@ -41,6 +41,10 @@ class LegalController extends Controller
         $page = Wiki\Page::lookupForController("Legal/{$path}", $locale);
         $legal = true;
 
+        if (is_json_request()) {
+            return json_item($page, 'WikiPage');
+        }
+
         return ext_view('wiki.show', compact('legal', 'locale', 'page'));
     }
 

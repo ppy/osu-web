@@ -490,6 +490,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         //  POST /api/v2/notifications/mark-read
         Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
 
+        Route::get('legal/{locale?}/{path?}', 'LegalController@show')->name('legal');
+
         //  GET /api/v2/rankings/:mode/:type
         Route::get('rankings/{mode}/{type}', 'RankingController@index');
         Route::resource('spotlights', 'SpotlightsController', ['only' => ['index']]);
