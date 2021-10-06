@@ -57,7 +57,7 @@ return [
         'options' => [
             '_' => '推送设置',
             'beatmap_owner_change' => '客串难度',
-            'beatmapset:modding' => '完善谱面',
+            'beatmapset:modding' => '谱面修改',
             'channel_message' => '私信',
             'comment_new' => '新评论',
             'forum_topic_reply' => '主题回复',
@@ -98,7 +98,7 @@ return [
     'privacy' => [
         'friends_only' => '屏蔽来自陌生人的私信',
         'hide_online' => '隐藏在线状态',
-        'title' => '隐私政策',
+        'title' => '隐私',
     ],
 
     'security' => [

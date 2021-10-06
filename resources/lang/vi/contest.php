@@ -10,13 +10,13 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'danh sách',
     ],
 
     'voting' => [
         'login_required' => 'Hãy đăng nhập để bình chọn.',
         'over' => 'Bình chọn đã kết thúc cho cuộc thi này',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Xem lượt bình chọn',
 
         'best_of' => [
             'none_played' => "Dường như bạn chưa chơi bất kì beatmap nào đủ điều kiện cho cuộc thi này!",
@@ -29,7 +29,7 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max người dùng bình chọn',
         ],
     ],
     'entry' => [
@@ -56,7 +56,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Đã kết thúc :date',
-        'ended_no_date' => '',
+        'ended_no_date' => 'Đã dừng',
 
         'starts' => [
             '_' => 'Bắt đầu :date',

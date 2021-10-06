@@ -108,7 +108,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
         // order should be in the correct state
         if ($this->isPaymentOrPending()) {
-            if ($order->isAwaitingPayment() === false) {
+            if ($order->isPendingPaymentCapture() === false) {
                 $this->validationErrors()->add(
                     'order.status',
                     '.order.status.not_checkout',

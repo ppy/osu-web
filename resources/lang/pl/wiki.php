@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'Poszukiwana strona nie została odnaleziona dla obecnie ustawionego języka.',
         'needs_cleanup_or_rewrite' => 'Ta strona nie spełnia standardów wiki osu! i wymaga poprawek. Jeżeli chcesz pomóc, zaktualizuj artykuł!',
         'search' => 'Przeszukaj istniejące strony używając frazy :link.',
+        'stub' => '',
         'toc' => 'Spis treści',
 
         'edit' => [

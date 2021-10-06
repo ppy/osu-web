@@ -163,7 +163,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
+        'no_ranked_beatmapset' => 'Dereceli beatmapler bildirilemez',
         'reason_not_valid' => ':reason sebebi bu rapor türü için geçerli değil.',
         'self' => "Kendinizi raporlayamazsınız!",
     ],

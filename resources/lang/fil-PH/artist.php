@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu! beatmaps',
         'osu' => 'osu! profile',
         'site' => 'Opisyal na Website',
     ],
@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Mga kanta',
         'count' => ':count_delimited na kanta|:count_delimited mga kanta',
-        'original' => '',
+        'original' => 'osu! original',
     ],
 
     'tracklist' => [

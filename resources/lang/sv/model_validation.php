@@ -163,7 +163,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
+        'no_ranked_beatmapset' => 'Rankade beatmaps kan inte rapporteras',
         'reason_not_valid' => ':reason är inte giltigt för denna anmälningstyp.',
         'self' => "Du kan inte anmäla dig själv!",
     ],
