@@ -19,7 +19,8 @@ class LegalController extends Controller
         }
 
         if (substr(request()->getPathInfo(), -1) === '/') {
-            return ujs_redirect(route('legal', ['path' => rtrim($path, '/'), 'locale' => $locale]));
+            $path = rtrim($path, '/');
+            return ujs_redirect(wiki_url("Legal/{$path}", $locale));
         }
 
         switch ($path) {

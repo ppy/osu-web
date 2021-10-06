@@ -881,19 +881,19 @@ function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
         'locale' => $locale ?? App::getLocale(),
     ];
 
-    if ($api ?? is_api_request()) {
-        $route = 'api.wiki.show';
-    } else {
-        if ($path === 'Sitemap') {
-            return route('wiki.sitemap', $params['locale'], $fullUrl);
-        }
+    if ($path === 'Sitemap') {
+        return route('wiki.sitemap', $params['locale'], $fullUrl);
+    }
 
-        if (starts_with("{$path}/", 'Legal/')) {
-            $path = ltrim(substr($path, strlen('Legal')), '/');
-            $route = 'legal';
-        } else {
-            $route = 'wiki.show';
-        }
+    if (starts_with("{$path}/", 'Legal/')) {
+        $path = ltrim(substr($path, strlen('Legal')), '/');
+        $route = 'legal';
+    } else {
+        $route = 'wiki.show';
+    }
+
+    if ($api ?? is_api_request()) {
+        $route = 'api.'.$route;
     }
 
     return rtrim(str_replace($params['path'], $path, route($route, $params, $fullUrl)), '/');
