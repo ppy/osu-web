@@ -244,7 +244,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     {
         $gmtUser = factory(User::class)->states('gmt')->create();
         $beatmapset = factory(Beatmapset::class)->states('qualified')->create();
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make());
         $watchingUser = factory(User::class)->create();
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
 
@@ -280,7 +280,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make());
 
         $playmode = $beatmapset->playmodesStr()[0];
         $natUser = $this->createUserWithGroupPlaymodes('nat', [$playmode]);
@@ -328,7 +328,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     {
         $gmtUser = factory(User::class)->states('gmt')->create();
         $beatmapset = factory(Beatmapset::class)->states($state)->create();
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make(['playmode' => 0]));
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make(['playmode' => 0]));
 
         $notificationOption = $gmtUser->notificationOptions()->firstOrCreate([
             'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
@@ -565,7 +565,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     {
         $gmtUser = factory(User::class)->states('gmt')->create();
         $beatmapset = factory(Beatmapset::class)->states('qualified')->create();
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make());
         $review = $this->setUpPraiseOnlyReview($beatmapset, $gmtUser);
 
         // ensure qualified beatmap is qualified
@@ -601,7 +601,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make());
 
         $playmode = $beatmapset->playmodesStr()[0];
         $natUser = $this->createUserWithGroupPlaymodes('nat', [$playmode]);
@@ -647,7 +647,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     {
         $gmtUser = factory(User::class)->states('gmt')->create();
         $beatmapset = factory(Beatmapset::class)->states($state)->create();
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make(['playmode' => 0]));
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make(['playmode' => 0]));
 
         $notificationOption = $gmtUser->notificationOptions()->firstOrCreate([
             'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
@@ -737,7 +737,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make());
     }
 
     protected function setUpReview($beatmapset = null): BeatmapDiscussion

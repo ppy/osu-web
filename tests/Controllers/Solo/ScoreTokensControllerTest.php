@@ -19,7 +19,7 @@ class ScoreTokensControllerTest extends TestCase
     public function testStore($beatmapState, $passRulesetId, $hashParam, $status)
     {
         $user = factory(User::class)->create();
-        $beatmap = factory(Beatmap::class)->states($beatmapState)->create();
+        $beatmap = Beatmap::factory()->$beatmapState()->create();
         $build = Build::factory()->create(['allow_ranking' => true]);
         $initialScoreTokenCount = ScoreToken::count();
 
