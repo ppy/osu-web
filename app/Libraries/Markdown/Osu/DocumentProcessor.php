@@ -28,6 +28,7 @@ class DocumentProcessor
     private $node;
 
     private int $figureIndex;
+    private int $galleryId;
     private array $tocSlugs;
 
     private ?string $relativeUrlRoot;
@@ -59,6 +60,7 @@ class DocumentProcessor
 
         $this->figureIndex = 0;
         $this->firstImage = null;
+        $this->galleryId = rand();
         $this->title = null;
         $this->toc = [];
         $this->tocSlugs = [];
@@ -253,7 +255,7 @@ class DocumentProcessor
         $this->node->data->append('attributes/class', "{$imageClass}--gallery js-gallery");
         $this->node->data->set('attributes/data-width', $width);
         $this->node->data->set('attributes/data-height', $height);
-        $this->node->data->set('attributes/data-gallery-id', $this->relativeUrlRoot);
+        $this->node->data->set('attributes/data-gallery-id', "{$this->galleryId}");
         $this->node->data->set('attributes/data-index', "{$this->figureIndex}");
         $this->node->data->set('attributes/data-src', $imageUrl);
 
