@@ -87,13 +87,9 @@ class DocumentProcessor
                 $this->loadToc();
             }
 
-            $this->parseFigure();
-
             $this->proxyImage();
 
-            if ($withGallery) {
-                $this->setImageGallery();
-            }
+            $this->parseFigure($withGallery);
         }
     }
 
@@ -146,9 +142,9 @@ class DocumentProcessor
         $this->node->data->set('attributes/id', $slug);
     }
 
-    private function parseFigure()
+    private function parseFigure($withGallery = false)
     {
-        if (!$this->node instanceof Paragraph || !$this->event->isEntering()) {
+        if (!$this->node instanceof Paragraph || $this->event->isEntering()) {
             return;
         }
 
@@ -168,6 +164,27 @@ class DocumentProcessor
             $textContainer->data->set('attributes/class', "{$blockClass}__figure-caption");
             $textContainer->appendChild($text);
             $this->node->appendChild($textContainer);
+        }
+
+        if ($withGallery) {
+            $imageUrl = $image->getUrl();
+
+            if (starts_with($imageUrl, route('wiki.show', [], false))) {
+                $imageUrl = config('app.url').$imageUrl;
+            }
+
+            $imageSize = fast_imagesize($imageUrl);
+            $width = isset($imageSize[0]) ? "{$imageSize[0]}" : '';
+            $height = isset($imageSize[1]) ? "{$imageSize[1]}" : '';
+
+            $image->data->append('attributes/class', "{$blockClass}__figure-image--gallery js-gallery");
+            $image->data->set('attributes/data-width', $width);
+            $image->data->set('attributes/data-height', $height);
+            $image->data->set('attributes/data-gallery-id', "{$this->galleryId}");
+            $image->data->set('attributes/data-index', "{$this->figureIndex}");
+            $image->data->set('attributes/data-src', $imageUrl);
+
+            $this->figureIndex++;
         }
     }
 
@@ -228,38 +245,6 @@ class DocumentProcessor
         }
 
         $this->firstImage = proxy_media($this->node->getUrl());
-    }
-
-    private function setImageGallery()
-    {
-        if (!$this->node instanceof Inline\Image || !$this->event->isEntering()) {
-            return;
-        }
-
-        $imageClass = $this->node->data['attributes']['class'];
-        $blockClass = $this->config->get('osu_extension/block_name');
-
-        if ($imageClass !== "{$blockClass}__figure-image") {
-            return;
-        }
-
-        $imageUrl = $this->node->getUrl();
-        if (starts_with($imageUrl, route('wiki.show', [], false))) {
-            $imageUrl = config('app.url').$imageUrl;
-        }
-
-        $imageSize = fast_imagesize($imageUrl);
-        $width = isset($imageSize[0]) ? "{$imageSize[0]}" : '';
-        $height = isset($imageSize[1]) ? "{$imageSize[1]}" : '';
-
-        $this->node->data->append('attributes/class', "{$imageClass}--gallery js-gallery");
-        $this->node->data->set('attributes/data-width', $width);
-        $this->node->data->set('attributes/data-height', $height);
-        $this->node->data->set('attributes/data-gallery-id', "{$this->galleryId}");
-        $this->node->data->set('attributes/data-index', "{$this->figureIndex}");
-        $this->node->data->set('attributes/data-src', $imageUrl);
-
-        $this->figureIndex++;
     }
 
     private function setTitle()
