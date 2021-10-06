@@ -174,14 +174,18 @@ class DocumentProcessor
             }
 
             $imageSize = fast_imagesize($imageUrl);
-            $width = isset($imageSize[0]) ? "{$imageSize[0]}" : '';
-            $height = isset($imageSize[1]) ? "{$imageSize[1]}" : '';
+            if (!isset($imageSize)) {
+                return;
+            }
+
+            $width = (string) $imageSize[0] ?? '';
+            $height = (string) $imageSize[1] ?? '';
 
             $image->data->append('attributes/class', "{$blockClass}__figure-image--gallery js-gallery");
             $image->data->set('attributes/data-width', $width);
             $image->data->set('attributes/data-height', $height);
-            $image->data->set('attributes/data-gallery-id', "{$this->galleryId}");
-            $image->data->set('attributes/data-index', "{$this->figureIndex}");
+            $image->data->set('attributes/data-gallery-id', (string) $this->galleryId);
+            $image->data->set('attributes/data-index', (string) $this->figureIndex);
             $image->data->set('attributes/data-src', $imageUrl);
 
             $this->figureIndex++;
