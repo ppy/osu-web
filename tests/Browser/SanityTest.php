@@ -83,7 +83,7 @@ class SanityTest extends DuskTestCase
             'language_id' => self::$scaffolding['language']->language_id,
             'user_id' => self::$scaffolding['user']->getKey(),
         ]);
-        self::$scaffolding['beatmap'] = factory(\App\Models\Beatmap::class)->create([
+        self::$scaffolding['beatmap'] = \App\Models\Beatmap::factory()->create([
             'beatmapset_id' => self::$scaffolding['beatmapset']->getKey(),
         ]);
         self::$scaffolding['beatmap_discussion'] = factory(\App\Models\BeatmapDiscussion::class)->create([

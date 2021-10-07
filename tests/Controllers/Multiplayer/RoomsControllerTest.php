@@ -151,7 +151,7 @@ class RoomsControllerTest extends TestCase
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
         $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset->getKey()]);
 
         $roomsCountInitial = Room::count();
         $playlistItemsCountInitial = PlaylistItem::count();
@@ -302,7 +302,7 @@ class RoomsControllerTest extends TestCase
     private function createBasicStoreParams()
     {
         $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset->getKey()]);
 
         return [
             'name' => 'test room '.rand(),
