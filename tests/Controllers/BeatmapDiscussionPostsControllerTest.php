@@ -916,10 +916,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make([
             'user_id' => $this->mapper->getKey(),
         ]));
-        $this->beatmapDiscussion = factory(BeatmapDiscussion::class)->states('timeline')->create([
-            'beatmapset_id' => $this->beatmapset->getKey(),
-            'beatmap_id' => $this->beatmap->getKey(),
-            'user_id' => $this->user->getKey(),
+        $this->beatmapDiscussion = BeatmapDiscussion::factory()->timeline()->create([
+            'beatmapset_id' => $this->beatmapset,
+            'beatmap_id' => $this->beatmap,
+            'user_id' => $this->user,
         ]);
         $post = factory(BeatmapDiscussionPost::class)->states('timeline')->make([
             'user_id' => $this->user->getKey(),
