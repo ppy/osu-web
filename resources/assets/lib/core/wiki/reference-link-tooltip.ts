@@ -13,7 +13,9 @@ export default class ReferenceLinkTooltip {
       },
       hide: {
         delay: 200,
-        effect: $(content).fadeTo(110, 0),
+        effect() {
+          $(this).fadeTo(110, 0);
+        },
         fixed: true,
       },
       position: {
@@ -23,7 +25,9 @@ export default class ReferenceLinkTooltip {
       },
       show: {
         delay: 200,
-        effect: $(content).fadeTo(110, 1),
+        effect() {
+          $(this).fadeTo(110, 1);
+        },
         ready: true,
       },
       style: {
