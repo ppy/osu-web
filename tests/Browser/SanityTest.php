@@ -167,7 +167,7 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['changelog'] = factory(\App\Models\Changelog::class)->create([
             'stream_id' => self::$scaffolding['stream']->stream_id,
         ]);
-        self::$scaffolding['build'] = factory(\App\Models\Build::class)->create([
+        self::$scaffolding['build'] = \App\Models\Build::factory()->create([
             'stream_id' => self::$scaffolding['stream']->stream_id,
         ]);
 

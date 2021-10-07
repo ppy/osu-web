@@ -21,8 +21,6 @@ use DB;
  */
 class UserChannel extends Model
 {
-    protected $guarded = [];
-
     protected $primaryKeys = ['user_id', 'channel_id'];
 
     public function user()

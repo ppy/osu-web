@@ -53,10 +53,12 @@
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
     <rule ref="SlevomatCodingStandard.Exceptions.DeadCatch"/>
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
-      <exclude-pattern>database/</exclude-pattern>
+      <exclude-pattern>database/migrations/</exclude-pattern>
       <properties>
         <property name="rootNamespaces" type="array">
           <element key="app" value="App"/>
+          <element key="database/factories" value="Database\Factories"/>
+          <element key="database/seeders" value="Database\Seeders"/>
           <element key="tests" value="Tests"/>
         </property>
       </properties>

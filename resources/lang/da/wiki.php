@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'Den anmodede side kunne ikke blive fundet på det valgte sprog.',
         'needs_cleanup_or_rewrite' => 'Denne side lever ikke op til standarderne for osu! wiki og har brug for oprydning og omskrivning. Hvis du har mulighed for at hjælpe til, overvej venligst at opdatere artiklen!',
         'search' => 'Søg eksisterende sider for :link.',
+        'stub' => '',
         'toc' => 'Indhold',
 
         'edit' => [

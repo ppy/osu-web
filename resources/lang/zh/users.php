@@ -195,7 +195,7 @@ return [
                 'title' => '成就',
             ],
             'beatmaps' => [
-                'by_artist' => '由 :artist',
+                'by_artist' => 'by :artist',
                 'title' => '谱面',
 
                 'favourite' => [

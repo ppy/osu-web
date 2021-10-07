@@ -70,6 +70,11 @@ class OsuMarkdown
                 'block_modifiers' => ['comment'],
             ],
         ],
+        'contest' => [
+            'commonmark' => [
+                'html_input' => 'allow',
+            ],
+        ],
         'default' => [],
         'group' => [
             'osu_markdown' => [

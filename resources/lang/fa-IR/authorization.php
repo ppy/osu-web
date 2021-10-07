@@ -4,26 +4,26 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
-    'require_login' => '',
-    'require_verification' => '',
-    'restricted' => "",
-    'silenced' => "",
-    'unauthorized' => '',
+    'play_more' => 'چطوره که یکم osu! بازی کنید؟',
+    'require_login' => 'لطفا برای ادامه وارد شوید.',
+    'require_verification' => 'لطفا برای ادامه تایید هویت کنید.',
+    'restricted' => "نمیتوانید آن را موقعی که محدود شده اید انجام دهید.",
+    'silenced' => "نمیتوانید آن را موقعی که ساکت شده اید انجام دهید.",
+    'unauthorized' => 'دسترسی امکان‌پذیر نیست.',
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => '',
-            'has_reply' => '',
+            'is_hype' => 'نمیتوانید hype را بازانجام دهید.',
+            'has_reply' => 'نمیتوانید گفت و گویی که پاسخ دارد را حذف کنید',
         ],
         'nominate' => [
             'exhausted' => '',
-            'incorrect_state' => '',
-            'owner' => "",
-            'set_metadata' => '',
+            'incorrect_state' => 'در انجام آن کار خطایی صورت گرفت، بارگزاری مجدد صفحه را امتحان کنید.',
+            'owner' => "نمیتوانید بیتمپ خودتان را nominate کنید.",
+            'set_metadata' => 'شما باید ژانر و زبان را قبل nominate کردن مشخص کنید.',
         ],
         'resolve' => [
-            'not_owner' => '',
+            'not_owner' => 'فقط شروع کننده بحث و صاحب بیتمپ میتوانند یک گفت و گو را حل کنند.',
         ],
 
         'store' => [
