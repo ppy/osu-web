@@ -3,7 +3,6 @@
 
 import GroupJson from 'interfaces/group-json';
 import * as React from 'react';
-import { jsonClone } from 'utils/json';
 
 describe('osu_common', () => {
   describe('locale file loaded in test runner', () => {
@@ -40,32 +39,6 @@ describe('osu_common', () => {
       expect(osu.groupColour()).toEqual({
         '--group-colour': 'initial',
       } as React.CSSProperties);
-    });
-  });
-
-  describe('jsonClone', () => {
-    it('clone object with different reference', () => {
-      const obj = { test: '1234' };
-      const result = jsonClone(obj);
-
-      expect(result).toEqual(obj);
-      expect(result).not.toBe(obj);
-    });
-
-    it('clone nested object with different reference', () => {
-      const obj = { test: { inner: '1234' } };
-      const result = jsonClone(obj);
-
-      expect(result.test).toEqual(obj.test);
-      expect(result.test).not.toBe(obj.test);
-    });
-
-    it('clone null', () => {
-      expect(jsonClone(null)).toBe(null);
-    });
-
-    it('clone undefined', () => {
-      expect(jsonClone(undefined)).toBe(undefined);
     });
   });
 
