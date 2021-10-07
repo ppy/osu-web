@@ -10,7 +10,7 @@ use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\CommonMark\Node\Block as ExtensionBlock;
 use League\CommonMark\Extension\CommonMark\Node\Inline as ExtensionInline;
 use League\CommonMark\Extension\ExtensionInterface;
-use League\CommonMark\Extension\Footnote\Node as FootnoteExtension;
+use League\CommonMark\Extension\Footnote;
 use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Node\Block;
 use League\CommonMark\Node\Inline;
@@ -43,10 +43,10 @@ class Extension implements ExtensionInterface
             ExtensionInline\Image::class => new Renderers\NoopRenderer(),
             ExtensionInline\Link::class => new Renderers\InlineRenderer(),
             ExtensionInline\Strong::class => new Renderers\InlineRenderer(),
-            FootnoteExtension\Footnote::class => new Renderers\NoopRenderer(),
-            FootnoteExtension\FootnoteBackref::class => new Renderers\NoopRenderer(),
-            FootnoteExtension\FootnoteContainer::class => new Renderers\NoopRenderer(),
-            FootnoteExtension\FootnoteRef::class => new Renderers\NoopRenderer(),
+            Footnote\Node\Footnote::class => new Renderers\NoopRenderer(),
+            Footnote\Node\FootnoteBackref::class => new Renderers\NoopRenderer(),
+            Footnote\Node\FootnoteContainer::class => new Renderers\NoopRenderer(),
+            Footnote\Node\FootnoteRef::class => new Renderers\NoopRenderer(),
             Inline\Newline::class => new Renderers\NewlineRenderer(),
             Inline\Text::class => new Renderers\InlineRenderer(),
             StyleBlock::class => new Renderers\BlockRenderer(),
