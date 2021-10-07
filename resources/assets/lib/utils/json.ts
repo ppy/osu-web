@@ -1,7 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-// TODO: stop supporting null/undefined?
+/**
+ * Performs a deep clone of a json object.
+ * TODO: stop supporting null/undefined?
+ *
+ * @param obj object to clone.
+ */
 export function jsonClone<T>(obj: T) {
   return obj != null ? JSON.parse(JSON.stringify(obj)) as T : obj;
 }
