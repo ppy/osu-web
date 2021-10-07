@@ -143,7 +143,7 @@ export class RecentActivity extends React.PureComponent
         div
           className: 'profile-extra-entries__text'
           el StringWithComponent,
-            mappings: mappings
+            mappings: mappings ? {}
             # remove strip tags once translations are updated
             pattern: osu.trans("events.#{snakeCase(event.type)}").replace(/<[^>]*>/g, '')
 
