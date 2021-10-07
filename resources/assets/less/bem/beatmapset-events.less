@@ -2,21 +2,21 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-events {
-  @title-margin-top: 20px;
-
-  margin-top: -@title-margin-top;
   display: flex;
   flex-direction: column;
 
   &__empty {
     font-size: @font-size--normal;
     display: flex;
-    margin-top: @title-margin-top;
   }
 
   &__title {
     font-size: @font-size--title-small-2;
     color: @osu-colour-l1;
-    margin: @title-margin-top 0 5px;
+    margin: 20px 0 5px;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 }
