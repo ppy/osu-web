@@ -17,7 +17,7 @@ class RoomTest extends TestCase
 {
     public function testStartGameWithBeatmap()
     {
-        $beatmap = factory(Beatmap::class)->create();
+        $beatmap = Beatmap::factory()->create();
         $user = factory(User::class)->create();
 
         $params = [
@@ -37,7 +37,7 @@ class RoomTest extends TestCase
 
     public function testStartGameWithDeletedBeatmap()
     {
-        $beatmap = factory(Beatmap::class)->create(['deleted_at' => now()]);
+        $beatmap = Beatmap::factory()->create(['deleted_at' => now()]);
         $user = factory(User::class)->create();
 
         $params = [

@@ -78,7 +78,7 @@ $factory->state(Beatmapset::class, 'qualified', function () {
 $factory->afterCreatingState(Beatmapset::class, 'with_discussion', function (App\Models\Beatmapset $beatmapset) {
     if (
         !$beatmapset->beatmaps()->save(
-            factory(App\Models\Beatmap::class)->make()
+            App\Models\Beatmap::factory()->make()
         )
     ) {
         throw new Exception();

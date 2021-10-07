@@ -11,7 +11,7 @@ foreach (Beatmap::MODES as $modeStr => $modeInt) {
     $class = ScoreBest::class.'\\'.studly_case($modeStr);
 
     $factory->define($class, function (Faker\Generator $faker) use ($modeInt) {
-        $beatmap = factory(Beatmap::class)->create([
+        $beatmap = Beatmap::factory()->create([
             'playmode' => $modeInt, // force playmode to match score type
         ]);
         $maxCombo = rand(1, $beatmap->countNormal);

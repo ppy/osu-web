@@ -35,7 +35,7 @@ class BeatmapsetsControllerTest extends TestCase
         $beatmapset = factory(Beatmapset::class)->create([
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset->getKey()]);
         $nominator = $this->createUserWithGroupPlaymodes('bng', [$beatmap->mode]);
 
         $this->actingAsVerified($nominator)
@@ -50,7 +50,7 @@ class BeatmapsetsControllerTest extends TestCase
         $beatmapset = factory(Beatmapset::class)->create([
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset->getKey()]);
         $nominator = $this->createUserWithGroupPlaymodes('bng', [$beatmap->mode]);
 
         $beatmapset->update(['user_id' => $nominator->getKey()]);
@@ -67,7 +67,7 @@ class BeatmapsetsControllerTest extends TestCase
         $beatmapset = factory(Beatmapset::class)->create([
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset->getKey()]);
         $nominator = $this->createUserWithGroupPlaymodes('bng', [$beatmap->mode]);
 
         $beatmap->update(['user_id' => $nominator->getKey()]);
