@@ -80,7 +80,7 @@ export class RecentActivity extends React.PureComponent
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
             __html: osu.trans 'events.beatmapset_delete',
-              beatmapset: link(event.beatmapset.url, event.beatmapset.title)
+              beatmapset: event.beatmapset.title
 
       when 'beatmapsetRevive'
         text = div
