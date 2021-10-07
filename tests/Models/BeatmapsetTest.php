@@ -177,7 +177,7 @@ class BeatmapsetTest extends TestCase
 
     public function testGlobalScopeActive()
     {
-        $beatmapset = factory(Beatmapset::class)->states('inactive')->create();
+        $beatmapset = Beatmapset::factory()->inactive()->create();
         $id = $beatmapset->getKey();
 
         $this->assertNull(Beatmapset::find($id)); // global scope
@@ -187,7 +187,7 @@ class BeatmapsetTest extends TestCase
 
     public function testGlobalScopeSoftDelete()
     {
-        $beatmapset = factory(Beatmapset::class)->states(['inactive', 'deleted'])->create();
+        $beatmapset = Beatmapset::factory()->inactive()->deleted()->create();
         $id = $beatmapset->getKey();
 
         $this->assertNull(Beatmapset::withTrashed()->find($id));
@@ -424,7 +424,7 @@ class BeatmapsetTest extends TestCase
             $params['user_id'] = $user->getKey();
         }
 
-        $beatmapset = factory(Beatmapset::class)->create(array_merge($defaultParams, $params));
+        $beatmapset = Beatmapset::factory()->create(array_merge($defaultParams, $params));
         $beatmapset->beatmaps()->save(Beatmap::factory()->make());
         factory(BeatmapMirror::class)->states('default')->create();
 
@@ -447,7 +447,7 @@ class BeatmapsetTest extends TestCase
             $params['user_id'] = $user->getKey();
         }
 
-        $beatmapset = factory(Beatmapset::class)->create(array_merge($defaultParams, $params));
+        $beatmapset = Beatmapset::factory()->create(array_merge($defaultParams, $params));
 
         foreach ($playmodes as $playmode) {
             $beatmapset->beatmaps()->save(Beatmap::factory()->make(['playmode' => Beatmap::modeInt($playmode)]));

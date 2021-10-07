@@ -27,9 +27,9 @@ class BeatmapDiscussionTest extends TestCase
     public function testMapperPost()
     {
         $mapper = factory(User::class)->create();
-        $beatmapset = factory(Beatmapset::class)->create([
+        $beatmapset = Beatmapset::factory()->create([
             'discussion_enabled' => true,
-            'user_id' => $mapper->getKey(),
+            'user_id' => $mapper,
         ]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
 
@@ -60,9 +60,9 @@ class BeatmapDiscussionTest extends TestCase
     public function testModderPost()
     {
         $mapper = factory(User::class)->create();
-        $beatmapset = factory(Beatmapset::class)->create([
+        $beatmapset = Beatmapset::factory()->create([
             'discussion_enabled' => true,
-            'user_id' => $mapper->getKey(),
+            'user_id' => $mapper,
         ]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
         $modder = factory(User::class)->create();
@@ -98,10 +98,10 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testIsValid()
     {
-        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
+        $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
 
-        $otherBeatmapset = factory(Beatmapset::class)->create();
+        $otherBeatmapset = Beatmapset::factory()->create();
         $otherBeatmap = $otherBeatmapset->beatmaps()->save(Beatmap::factory()->make());
 
         $validTimestamp = ($beatmap->total_length + 10) * 1000;
@@ -152,7 +152,7 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testSoftDeleteOrExplode()
     {
-        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
+        $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
         $user = factory(User::class)->create();
         $discussion = BeatmapDiscussion::create([

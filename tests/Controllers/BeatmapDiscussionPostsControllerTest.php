@@ -82,8 +82,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
     public function testPostStoreNewDiscussionInactiveBeatmapset()
     {
-        $this->beatmapset = factory(Beatmapset::class)->states('inactive')->create([
-            'user_id' => $this->mapper->getKey(),
+        $this->beatmapset = Beatmapset::factory()->inactive()->create([
+            'user_id' => $this->mapper,
         ]);
 
         $this
@@ -910,8 +910,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->user = factory(User::class)->create();
         $this->user->statisticsOsu()->create(['playcount' => $this->minPlays]);
 
-        $this->beatmapset = factory(Beatmapset::class)->create([
-            'user_id' => $this->mapper->getKey(),
+        $this->beatmapset = Beatmapset::factory()->create([
+            'user_id' => $this->mapper,
         ]);
         $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make([
             'user_id' => $this->mapper->getKey(),
@@ -926,7 +926,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         ]);
         $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
 
-        $this->otherBeatmapset = factory(Beatmapset::class)->states('no_discussion')->create();
+        $this->otherBeatmapset = Beatmapset::factory()->noDiscussion()->create();
         $this->otherBeatmapset->beatmaps()->save(Beatmap::factory()->make());
     }
 
