@@ -3,11 +3,20 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-$factory->define(App\Models\Language::class, function (Faker\Generator $faker) {
-    return [
-        'name' => function () use ($faker) {
+namespace Database\Factories;
+
+use App\Models\Language;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class LanguageFactory extends Factory
+{
+    protected $model = Language::class;
+
+    public function definition(): array
+    {
+        return [
             // 'name' is varchar(50) and some generated strings are longer than that
-            return substr($faker->country(), 0, 50);
-        },
-    ];
-});
+            'name' => fn () => substr($this->faker->country(), 0, 50),
+        ];
+    }
+}

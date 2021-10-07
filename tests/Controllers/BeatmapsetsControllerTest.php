@@ -89,8 +89,8 @@ class BeatmapsetsControllerTest extends TestCase
             'approved' => Beatmapset::STATES[$state],
             'user_id' => $owner->getKey(),
         ]);
-        $newGenre = factory(Genre::class)->create();
-        $newLanguage = factory(Language::class)->create();
+        $newGenre = Genre::factory()->create();
+        $newLanguage = Language::factory()->create();
 
         $moderator = $this->createUserWithGroup('nat');
 
@@ -121,8 +121,8 @@ class BeatmapsetsControllerTest extends TestCase
             'approved' => Beatmapset::STATES[$state],
             'user_id' => $owner->getKey(),
         ]);
-        $newGenre = factory(Genre::class)->create();
-        $newLanguage = factory(Language::class)->create();
+        $newGenre = Genre::factory()->create();
+        $newLanguage = Language::factory()->create();
 
         $resultGenreId = $beatmapset->genre_id;
         $resultLanguageId = $beatmapset->language_id;
@@ -155,8 +155,8 @@ class BeatmapsetsControllerTest extends TestCase
             'approved' => Beatmapset::STATES[$state],
             'user_id' => $owner->getKey(),
         ]);
-        $newGenre = factory(Genre::class)->create();
-        $newLanguage = factory(Language::class)->create();
+        $newGenre = Genre::factory()->create();
+        $newLanguage = Language::factory()->create();
 
         $resultGenreId = $ok ? $newGenre->getKey() : $beatmapset->genre_id;
         $resultLanguageId = $ok ? $newLanguage->getKey() : $beatmapset->language_id;

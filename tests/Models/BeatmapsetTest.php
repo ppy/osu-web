@@ -469,9 +469,9 @@ class BeatmapsetTest extends TestCase
     {
         parent::setUp();
 
-        factory(Genre::class)->create(['genre_id' => Genre::UNSPECIFIED]);
-        factory(Language::class)->create(['language_id' => Language::UNSPECIFIED]);
-        $this->fakeGenre = factory(Genre::class)->create();
-        $this->fakeLanguage = factory(Language::class)->create();
+        Genre::factory()->create(['genre_id' => Genre::UNSPECIFIED]);
+        Language::factory()->create(['language_id' => Language::UNSPECIFIED]);
+        $this->fakeGenre = Genre::factory()->create();
+        $this->fakeLanguage = Language::factory()->create();
     }
 }

@@ -75,8 +75,8 @@ class SanityTest extends DuskTestCase
 
         // factories for /beatmapsets/*
         self::$scaffolding['beatmap_mirror'] = factory(\App\Models\BeatmapMirror::class)->create();
-        self::$scaffolding['genre'] = factory(\App\Models\Genre::class)->create();
-        self::$scaffolding['language'] = factory(\App\Models\Language::class)->create();
+        self::$scaffolding['genre'] = \App\Models\Genre::factory()->create();
+        self::$scaffolding['language'] = \App\Models\Language::factory()->create();
         self::$scaffolding['beatmapset'] = factory(\App\Models\Beatmapset::class)->create([
             'discussion_enabled' => true,
             'genre_id' => self::$scaffolding['genre']->genre_id,
