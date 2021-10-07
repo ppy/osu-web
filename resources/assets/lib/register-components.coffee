@@ -53,7 +53,6 @@ core.reactTurbolinks.register 'beatmap-discussion-events', (container) ->
   props = {
     events: parseJson('json-events')
     mode: 'list'
-    posts: parseJson('json-posts')
   }
 
   # TODO: move to store?
