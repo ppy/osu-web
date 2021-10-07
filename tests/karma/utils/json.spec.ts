@@ -4,8 +4,8 @@
 import { jsonClone } from 'utils/json';
 
 describe('utils/json', () => {
-  describe('jsonClone', () => {
-    it('clone object with different reference', () => {
+  describe('.jsonClone', () => {
+    it('results in a new object', () => {
       const obj = { test: '1234' };
       const result = jsonClone(obj);
 
@@ -13,7 +13,7 @@ describe('utils/json', () => {
       expect(result).not.toBe(obj);
     });
 
-    it('clone nested object with different reference', () => {
+    it('does not make a shallow copy', () => {
       const obj = { test: { inner: '1234' } };
       const result = jsonClone(obj);
 
@@ -21,11 +21,11 @@ describe('utils/json', () => {
       expect(result.test).not.toBe(obj.test);
     });
 
-    it('clone null', () => {
+    it('null should remain null', () => {
       expect(jsonClone(null)).toBe(null);
     });
 
-    it('clone undefined', () => {
+    it('undefined should remain undefined', () => {
       expect(jsonClone(undefined)).toBe(undefined);
     });
   });
