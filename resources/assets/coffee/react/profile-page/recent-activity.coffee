@@ -5,7 +5,7 @@ import { snakeCase } from 'lodash'
 import AchievementBadge from 'profile-page/achievement-badge'
 import ExtraHeader from 'profile-page/extra-header'
 import * as React from 'react'
-import { a, div, li, p, ul } from 'react-dom-factories'
+import { a, div, em, li, p, strong, ul } from 'react-dom-factories'
 import ShowMoreLink from 'show-more-link'
 import StringWithComponent from 'string-with-component'
 import TimeWithTooltip from 'time-with-tooltip'
@@ -57,8 +57,9 @@ export class RecentActivity extends React.PureComponent
               achievement_id: event.achievement.id
 
         mappings =
-          user: link(event.user.url, event.user.username)
-          achievement: event.achievement.name
+          user:
+            strong null, em null, link(event.user.url, event.user.username)
+          achievement: strong null, event.achievement.name
 
       when 'beatmapPlaycount'
         mappings =
@@ -69,7 +70,7 @@ export class RecentActivity extends React.PureComponent
         mappings =
           approval: osu.trans "events.beatmapset_status.#{event.approval}"
           beatmapset: link(event.beatmapset.url, event.beatmapset.title)
-          user: link(event.user.url, event.user.username)
+          user: strong null, link(event.user.url, event.user.username)
 
       when 'beatmapsetDelete'
         mappings =
@@ -78,17 +79,17 @@ export class RecentActivity extends React.PureComponent
       when 'beatmapsetRevive'
         mappings =
           beatmapset: link(event.beatmapset.url, event.beatmapset.title)
-          user: link(event.user.url, event.user.username)
+          user: strong null, link(event.user.url, event.user.username)
 
       when 'beatmapsetUpdate'
         mappings =
-          user: link(event.user.url, event.user.username)
-          beatmapset: link(event.beatmapset.url, event.beatmapset.title)
+          user: strong null, em null, link(event.user.url, event.user.username)
+          beatmapset: em null, link(event.beatmapset.url, event.beatmapset.title)
 
       when 'beatmapsetUpload'
         mappings =
           beatmapset: link(event.beatmapset.url, event.beatmapset.title)
-          user: link(event.user.url, event.user.username)
+          user: strong null, em null, link(event.user.url, event.user.username)
 
       when 'medal'
         # shouldn't exist because the type is overridden to achievement.
@@ -101,34 +102,34 @@ export class RecentActivity extends React.PureComponent
             className: "score-rank score-rank--#{event.scoreRank}"
 
         mappings =
-          user: link(event.user.url, event.user.username)
+          user: strong null, em null, link(event.user.url, event.user.username)
           rank: event.rank
-          beatmap: link(event.beatmap.url, event.beatmap.title)
+          beatmap: em null, link(event.beatmap.url, event.beatmap.title)
           mode: osu.trans "beatmaps.mode.#{event.mode}"
 
       when 'rankLost'
         mappings =
-          user: link(event.user.url, event.user.username)
+          user: strong null, em null, link(event.user.url, event.user.username)
           rank: event.rank
-          beatmap: link(event.beatmap.url, event.beatmap.title)
+          beatmap: em null, link(event.beatmap.url, event.beatmap.title)
           mode: osu.trans "beatmaps.mode.#{event.mode}"
 
       when 'userSupportAgain'
         mappings =
-          user: link(event.user.url, event.user.username)
+          user: strong null, link(event.user.url, event.user.username)
 
       when 'userSupportFirst'
         mappings =
-          user: link(event.user.url, event.user.username)
+          user: strong null, link(event.user.url, event.user.username)
 
       when 'userSupportGift'
         mappings =
-          user: link(event.user.url, event.user.username)
+          user: strong null, link(event.user.url, event.user.username)
 
       when 'usernameChange'
         mappings =
-          user: link(event.user.url, event.user.username)
-          previousUsername: event.user.previousUsername
+          user: strong null, em null, link(event.user.url, event.user.username)
+          previousUsername: strong null, event.user.previousUsername
 
       else
         # unkown event
@@ -147,7 +148,8 @@ export class RecentActivity extends React.PureComponent
           className: 'profile-extra-entries__text'
           el StringWithComponent,
             mappings: mappings
-            pattern: osu.trans("events.#{snakeCase(event.type)}")
+            # remove strip tags once translations are updated
+            pattern: osu.trans("events.#{snakeCase(event.type)}").replace(/<[^>]*>/g, '')
 
       div
         className: 'profile-extra-entries__time'
