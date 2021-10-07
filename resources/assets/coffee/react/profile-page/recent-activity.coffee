@@ -1,17 +1,22 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { snakeCase } from 'lodash'
 import AchievementBadge from 'profile-page/achievement-badge'
 import ExtraHeader from 'profile-page/extra-header'
 import * as React from 'react'
-import { div, li, p, ul } from 'react-dom-factories'
+import { a, div, li, p, ul } from 'react-dom-factories'
 import ShowMoreLink from 'show-more-link'
+import StringWithComponent from 'string-with-component'
 import TimeWithTooltip from 'time-with-tooltip'
 el = React.createElement
 
 export class RecentActivity extends React.PureComponent
   link = (url, title) ->
-    osu.link url, title, classNames: ['profile-extra-entries__link']
+    a
+      className: 'profile-extra-entries__link'
+      href: url
+      title
 
 
   render: =>
@@ -51,59 +56,39 @@ export class RecentActivity extends React.PureComponent
               achieved_at: event.created_at
               achievement_id: event.achievement.id
 
-        text = div
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.achievement',
-              user: link(event.user.url, event.user.username)
-              achievement: event.achievement.name
+        mappings =
+          user: link(event.user.url, event.user.username)
+          achievement: event.achievement.name
 
       when 'beatmapPlaycount'
-        text = div
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.beatmap_playcount',
-              beatmap: link(event.beatmap.url, event.beatmap.title)
-              count: event.count
+        mappings =
+          beatmap: link(event.beatmap.url, event.beatmap.title)
+          count: event.count
 
       when 'beatmapsetApprove'
-        text = div
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.beatmapset_approve',
-              approval: osu.trans "events.beatmapset_status.#{event.approval}"
-              beatmapset: link(event.beatmapset.url, event.beatmapset.title)
-              user: link(event.user.url, event.user.username)
+        mappings =
+          approval: osu.trans "events.beatmapset_status.#{event.approval}"
+          beatmapset: link(event.beatmapset.url, event.beatmapset.title)
+          user: link(event.user.url, event.user.username)
 
       when 'beatmapsetDelete'
-        text = div
-          className: 'profile-extra-entries__text'
-          osu.trans 'events.beatmapset_delete',
-            beatmapset: event.beatmapset.title
+        mappings =
+          beatmapset: event.beatmapset.title
 
       when 'beatmapsetRevive'
-        text = div
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.beatmapset_revive',
-              beatmapset: link(event.beatmapset.url, event.beatmapset.title)
-              user: link(event.user.url, event.user.username)
+        mappings =
+          beatmapset: link(event.beatmapset.url, event.beatmapset.title)
+          user: link(event.user.url, event.user.username)
 
       when 'beatmapsetUpdate'
-        text = div
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.beatmapset_update',
-              user: link(event.user.url, event.user.username)
-              beatmapset: link(event.beatmapset.url, event.beatmapset.title)
+        mappings =
+          user: link(event.user.url, event.user.username)
+          beatmapset: link(event.beatmapset.url, event.beatmapset.title)
 
       when 'beatmapsetUpload'
-        text = div
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.beatmapset_upload',
-              beatmapset: link(event.beatmapset.url, event.beatmapset.title)
-              user: link(event.user.url, event.user.username)
+        mappings =
+          beatmapset: link(event.beatmapset.url, event.beatmapset.title)
+          user: link(event.user.url, event.user.username)
 
       when 'medal'
         # shouldn't exist because the type is overridden to achievement.
@@ -115,53 +100,35 @@ export class RecentActivity extends React.PureComponent
           div
             className: "score-rank score-rank--#{event.scoreRank}"
 
-        text = div
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.rank',
-              user: link(event.user.url, event.user.username)
-              rank: event.rank
-              beatmap: link(event.beatmap.url, event.beatmap.title)
-              mode: osu.trans "beatmaps.mode.#{event.mode}"
+        mappings =
+          user: link(event.user.url, event.user.username)
+          rank: event.rank
+          beatmap: link(event.beatmap.url, event.beatmap.title)
+          mode: osu.trans "beatmaps.mode.#{event.mode}"
 
       when 'rankLost'
-        text = div
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.rank_lost',
-              user: link(event.user.url, event.user.username)
-              rank: event.rank
-              beatmap: link(event.beatmap.url, event.beatmap.title)
-              mode: osu.trans "beatmaps.mode.#{event.mode}"
+        mappings =
+          user: link(event.user.url, event.user.username)
+          rank: event.rank
+          beatmap: link(event.beatmap.url, event.beatmap.title)
+          mode: osu.trans "beatmaps.mode.#{event.mode}"
 
       when 'userSupportAgain'
-        text = div
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.user_support_again',
-              user: link(event.user.url, event.user.username)
+        mappings =
+          user: link(event.user.url, event.user.username)
 
       when 'userSupportFirst'
-        text = div
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.user_support_first',
-              user: link(event.user.url, event.user.username)
+        mappings =
+          user: link(event.user.url, event.user.username)
 
       when 'userSupportGift'
-        text = div
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.user_support_gift',
-              user: link(event.user.url, event.user.username)
+        mappings =
+          user: link(event.user.url, event.user.username)
 
       when 'usernameChange'
-        text = div
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.username_change',
-              user: link(event.user.url, event.user.username)
-              previousUsername: event.user.previousUsername
+        mappings =
+          user: link(event.user.url, event.user.username)
+          previousUsername: event.user.previousUsername
 
       else
         # unkown event
@@ -176,7 +143,12 @@ export class RecentActivity extends React.PureComponent
       div
         className: 'profile-extra-entries__detail'
         badge
-        text
+        div
+          className: 'profile-extra-entries__text'
+          el StringWithComponent,
+            mappings: mappings
+            pattern: osu.trans("events.#{snakeCase(event.type)}")
+
       div
         className: 'profile-extra-entries__time'
         el TimeWithTooltip,
