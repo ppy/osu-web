@@ -48,13 +48,12 @@ export class RecentActivity extends React.PureComponent
 
     switch event.type
       when 'achievement'
-        badge = div className: 'profile-extra-entries__icon',
-          el AchievementBadge,
-            modifiers: ['recent-activity']
-            achievement: event.achievement
-            userAchievement:
-              achieved_at: event.created_at
-              achievement_id: event.achievement.id
+        badge = el AchievementBadge,
+          modifiers: ['recent-activity']
+          achievement: event.achievement
+          userAchievement:
+            achieved_at: event.created_at
+            achievement_id: event.achievement.id
 
         mappings =
           user:
@@ -97,9 +96,7 @@ export class RecentActivity extends React.PureComponent
 
       when 'rank'
         badge = div
-          className: "profile-extra-entries__icon"
-          div
-            className: "score-rank score-rank--#{event.scoreRank}"
+          className: "score-rank score-rank--#{event.scoreRank}"
 
         mappings =
           user: strong null, em null, link(event.user.url, event.user.username)
@@ -135,15 +132,14 @@ export class RecentActivity extends React.PureComponent
         # unkown event
         return
 
-    # default, empty badge
-    badge ?= div className: 'profile-extra-entries__icon'
-
     li
       className: 'profile-extra-entries__item'
       key: event.id
       div
         className: 'profile-extra-entries__detail'
-        badge
+        div
+          className: 'profile-extra-entries__icon'
+          badge ? null
         div
           className: 'profile-extra-entries__text'
           el StringWithComponent,
