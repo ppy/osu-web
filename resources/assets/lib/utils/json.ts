@@ -6,15 +6,28 @@ export function jsonClone<T>(obj: T) {
   return obj != null ? JSON.parse(JSON.stringify(obj)) as T : obj;
 }
 
+/**
+ * Parses the contents of a HTMLScriptElement into json.
+ * Simliar to parseJsonNullable but does not allow null values.
+ *
+ * @param id id of the HTMLScriptElement.
+ */
 export function parseJson<T>(id: string): T {
   const json = parseJsonNullable<T>(id);
   if (json == null) {
-    throw new Error(`missing script element ${id}`);
+    throw new Error(`script element ${id} is missing or contains nullish value.`);
   }
 
   return json;
 }
 
+/**
+ * Parses the contents of a HTMLScriptElement into json.
+ * The result is undefined if the element does not exist.
+ *
+ * @param id id of the HTMLScriptElement.
+ * @param remove true to remove the element after parsing; false, otherwise.
+ */
 export function parseJsonNullable<T>(id: string, remove = false): T | undefined {
   const element = window.newBody?.querySelector(`#${id}`);
   if (!(element instanceof HTMLScriptElement)) return undefined;
@@ -27,6 +40,12 @@ export function parseJsonNullable<T>(id: string, remove = false): T | undefined 
   return json;
 }
 
+/**
+ * Used to store simple React or mobx state objects into a HTMLScriptElement.
+ *
+ * @param id id of the element to store to. Contents of an existing HTMLScriptElement will be overriden.
+ * @param object state to store.
+ */
 export function storeJson(id: string, object: Record<string, unknown>) {
   const json = JSON.stringify(object);
   const maybeElement = document.getElementById(id);
