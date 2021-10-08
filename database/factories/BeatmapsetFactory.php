@@ -86,7 +86,7 @@ $factory->afterCreatingState(Beatmapset::class, 'with_discussion', function (App
 
     if (
         !$beatmapset->beatmapDiscussions()->save(
-            factory(BeatmapDiscussion::class)->states('general')->make(['message_type' => 'praise', 'user_id' => $beatmapset->user_id])
+            BeatmapDiscussion::factory()->general()->make(['message_type' => 'praise', 'user_id' => $beatmapset->user_id])
         )
     ) {
         throw new Exception();
