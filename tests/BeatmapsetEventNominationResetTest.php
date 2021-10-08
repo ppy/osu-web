@@ -114,9 +114,9 @@ class BeatmapsetEventNominationResetTest extends TestCase
     {
         $owner = factory(User::class)->create();
 
-        $this->beatmapset = factory(Beatmapset::class)->states($state, 'with_discussion')->create([
+        $this->beatmapset = Beatmapset::factory()->$state()->withDiscussion()->create([
             'creator' => $owner->username,
-            'user_id' => $owner->getKey(),
+            'user_id' => $owner,
         ]);
 
         $modes = $this->beatmapset->beatmaps->map->mode->all();

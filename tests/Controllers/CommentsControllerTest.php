@@ -151,7 +151,7 @@ class CommentsControllerTest extends TestCase
         $this->minPlays = config('osu.user.min_plays_for_posting');
         $this->user->statisticsOsu()->create(['playcount' => $this->minPlays]);
 
-        $this->beatmapset = factory(Beatmapset::class)->create();
+        $this->beatmapset = Beatmapset::factory()->create();
 
         $this->params = ['comment' => [
             'commentable_type' => 'beatmapset',

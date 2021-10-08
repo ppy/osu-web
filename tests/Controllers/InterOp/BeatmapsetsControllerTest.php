@@ -15,9 +15,9 @@ class BeatmapsetsControllerTest extends TestCase
     public function testDestroy()
     {
         $owner = factory(User::class)->create();
-        $beatmapset = factory(Beatmapset::class)->create([
+        $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES['pending'],
-            'user_id' => $owner->getKey(),
+            'user_id' => $owner,
         ]);
 
         $banchoBotUser = factory(User::class)->create([
