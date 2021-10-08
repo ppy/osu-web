@@ -28,7 +28,7 @@ class DocumentProcessor
     private $node;
 
     private int $figureIndex;
-    private int $galleryId;
+    private ?int $galleryId;
     private array $tocSlugs;
 
     private ?string $relativeUrlRoot;
@@ -60,7 +60,7 @@ class DocumentProcessor
 
         $this->figureIndex = 0;
         $this->firstImage = null;
-        $this->galleryId = rand();
+        $this->galleryId = null;
         $this->title = null;
         $this->toc = [];
         $this->tocSlugs = [];
@@ -167,6 +167,7 @@ class DocumentProcessor
         }
 
         if ($withGallery) {
+            $this->galleryId ??= rand();
             $imageUrl = $image->getUrl();
 
             if (starts_with($imageUrl, route('wiki.show', [], false))) {
@@ -178,12 +179,9 @@ class DocumentProcessor
                 return;
             }
 
-            $width = (string) $imageSize[0] ?? '';
-            $height = (string) $imageSize[1] ?? '';
-
             $image->data->append('attributes/class', "{$blockClass}__figure-image--gallery js-gallery");
-            $image->data->set('attributes/data-width', $width);
-            $image->data->set('attributes/data-height', $height);
+            $image->data->set('attributes/data-width', (string) $imageSize[0]);
+            $image->data->set('attributes/data-height', (string) $imageSize[1]);
             $image->data->set('attributes/data-gallery-id', (string) $this->galleryId);
             $image->data->set('attributes/data-index', (string) $this->figureIndex);
             $image->data->set('attributes/data-src', $imageUrl);
