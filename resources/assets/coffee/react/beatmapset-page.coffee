@@ -3,9 +3,10 @@
 
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
+import { parseJson } from 'utils/json'
 import { Main } from './beatmapset-page/main'
 
 core.reactTurbolinks.register 'beatmapset-page', (container) ->
   createElement Main,
-    beatmapset: osu.parseJson('json-beatmapset')
+    beatmapset: parseJson('json-beatmapset')
     container: container

@@ -89,6 +89,9 @@ class RankingController extends Controller
             }
 
             $this->defaultViewVars['country'] = $this->country;
+            if ($type === 'performance') {
+                $this->defaultViewVars['countries'] = json_collection($this->getCountries($mode), 'Country', ['display']);
+            }
 
             return $next($request);
         });
@@ -210,9 +213,7 @@ class RankingController extends Controller
             ])]
         );
 
-        $countries = json_collection($this->getCountries($mode), 'Country', ['display']);
-
-        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('countries', 'scores')));
+        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores')));
     }
 
     public function spotlight($mode)

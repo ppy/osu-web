@@ -64,7 +64,7 @@ class @LandingUserStats
 
 
   loadData: =>
-    @data = osu.parseJson('json-stats')
+    @data = _exported.parseJson('json-stats')
 
     return if _.isEmpty(@data)
 
