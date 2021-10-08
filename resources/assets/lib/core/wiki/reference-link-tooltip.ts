@@ -48,10 +48,21 @@ export default class ReferenceLinkTooltip {
 
     if (!(footnoteContent instanceof HTMLParagraphElement)) return;
 
-    footnoteContent.querySelectorAll('[role="doc-backlink"]').forEach((link) => link.remove());
-
     const tooltipContent = document.createElement('div');
     tooltipContent.innerHTML = footnoteContent.innerHTML;
+
+    tooltipContent.childNodes.forEach((node) => {
+      if (node instanceof HTMLElement) {
+        if (node.getAttribute('role') === 'doc-backlink') {
+          node.remove();
+        }
+
+        if (node.hasAttribute('class')) {
+          node.removeAttribute('class');
+        }
+      }
+    });
+
 
     this.createTooltip(el, tooltipContent);
   };
