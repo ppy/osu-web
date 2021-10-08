@@ -110,7 +110,7 @@ class DocumentProcessor
         }
     }
 
-    private function getText(Node $node): string
+    private function getText(Node $node, bool $trim = true): string
     {
         $text = '';
 
@@ -120,11 +120,15 @@ class DocumentProcessor
             } elseif ($child instanceof StringContainerInterface) {
                 $text .= $child->getLiteral();
             } else {
-                $text .= $this->getText($child);
+                $text .= $this->getText($child, false);
             }
         }
 
-        return trim($text);
+        if ($trim) {
+            $text = trim($text);
+        }
+
+        return $text;
     }
 
     private function loadToc()
