@@ -32,6 +32,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Request;
 
 /**
@@ -1325,7 +1326,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function maxBlocks()
     {
-        return ceil($this->maxFriends() / 10);
+        return (int)ceil($this->maxFriends() / 5);
     }
 
     public function maxFriends()
@@ -1874,14 +1875,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $query->first();
     }
 
-    public static function findForPassport($username)
+    public static function findAndValidateForPassport($username, $password)
     {
-        return static::findForLogin($username);
-    }
+        $user = static::findForLogin($username);
+        $authError = static::attemptLogin($user, $password);
 
-    public function validateForPassportPasswordGrant($password)
-    {
-        return static::attemptLogin($this, $password) === null;
+        if ($authError === null) {
+            return $user;
+        }
+
+        throw OAuthServerException::invalidGrant($authError);
     }
 
     public function playCount()

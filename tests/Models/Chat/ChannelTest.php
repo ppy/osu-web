@@ -3,7 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace Tests\Models;
+namespace Tests\Models\Chat;
 
 use App\Models\Chat\Channel;
 use App\Models\User;
@@ -66,7 +66,7 @@ class ChannelTest extends TestCase
     }
 
     /**
-     * @dataProvider channelCanMessageModeratedChannelDataProvider
+     * @dataProvider channelCanMessageWhenBlockedDataProvider
      */
     public function testChannelCanMessagePmChannelWhenBlocked(array|string $group, bool $canMessage)
     {
@@ -86,7 +86,7 @@ class ChannelTest extends TestCase
     }
 
     /**
-     * @dataProvider channelCanMessageModeratedChannelDataProvider
+     * @dataProvider channelCanMessageWhenBlockedDataProvider
      */
     public function testChannelCanMessagePmChannelWhenBlocking(array|string $group, bool $canMessage)
     {
@@ -102,6 +102,18 @@ class ChannelTest extends TestCase
 
         // this assertion to make sure the correct block direction is being tested.
         $this->assertTrue($otherUser->hasBlocked($user));
+        $this->assertSame($canMessage, $channel->canMessage($user));
+    }
+
+    /**
+     * @dataProvider channelCanMessageWhenBlockedDataProvider
+     */
+    public function testChannelCanMessagePmChannelWhenFriendsOnly(array|string $group, bool $canMessage)
+    {
+        $user = factory(User::class)->states($group)->create();
+        $otherUser = factory(User::class)->create(['pm_friends_only' => true]);
+        $channel = $this->createChannel([$user, $otherUser], 'pm');
+
         $this->assertSame($canMessage, $channel->canMessage($user));
     }
 
@@ -140,6 +152,19 @@ class ChannelTest extends TestCase
             [[], false],
             ['admin', true],
             ['bng', false],
+            ['bot', false],
+            ['gmt', true],
+            ['nat', true],
+        ];
+    }
+
+    public function channelCanMessageWhenBlockedDataProvider()
+    {
+        return [
+            [[], false],
+            ['admin', true],
+            ['bng', false],
+            ['bot', true],
             ['gmt', true],
             ['nat', true],
         ];
@@ -151,6 +176,7 @@ class ChannelTest extends TestCase
             [[], false],
             ['admin', true],
             ['bng', false],
+            ['bot', true],
             ['gmt', true],
             ['nat', true],
         ];

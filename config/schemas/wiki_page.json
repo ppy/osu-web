@@ -93,9 +93,6 @@
     "index": {
       "analysis": {
         "analyzer": {
-          "lowercase": {
-            "tokenizer": "lowercase"
-          },
           "autocomplete": {
             "filter": [
               "lowercase"

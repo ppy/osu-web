@@ -57,7 +57,7 @@ class ReportCommentTest extends TestCase
 
     private function createComment($user)
     {
-        $commentable = factory(Build::class)->create();
+        $commentable = Build::factory()->create();
 
         return $commentable->comments()->create([
             'message' => 'Test',

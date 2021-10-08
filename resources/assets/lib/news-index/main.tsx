@@ -12,6 +12,7 @@ import NewsHeader from 'news-header';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
+import { jsonClone } from 'utils/json';
 import PostItem from './post-item';
 
 interface NewsSearch {
@@ -33,7 +34,7 @@ interface Props {
 
 @observer
 export default class Main extends React.Component<Props> {
-  @observable private data = osu.jsonClone(this.props.data);
+  @observable private data = jsonClone(this.props.data);
   @observable private loadingXhr?: JQuery.jqXHR | null = null;
 
   constructor(props: Props) {

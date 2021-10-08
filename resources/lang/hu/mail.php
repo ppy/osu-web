@@ -5,8 +5,8 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Értesíts, ha a legutóbbi látogatásom óta, frissítés történt ezen a mapon: ":title".',
-        'subject' => 'Új frissítés a ":title" beatmap-hez',
+        'new' => 'Értesíts, ha a legutóbbi látogatásom óta frissítés történt ":title" beatmapon.',
+        'subject' => 'Új frissítés a ":title" beatmaphez',
         'unwatch' => 'Ha már nem szeretnéd nézni ezt a beatmapet, akkor kattints a "Figyelés abbahagyása" linkre az oldalon, vagy a modding nézési lista oldalra:',
         'visit' => 'Látogasd meg a beszélgetői oldalt itt:',
     ],

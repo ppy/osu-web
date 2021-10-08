@@ -29,7 +29,7 @@ class OsuMarkdown
 {
     use Memoizes;
 
-    const VERSION = 13;
+    const VERSION = 14;
 
     const DEFAULT_COMMONMARK_CONFIG = [
         'allow_unsafe_links' => false,
@@ -69,6 +69,11 @@ class OsuMarkdown
         'comment' => [
             'osu_markdown' => [
                 'block_modifiers' => ['comment'],
+            ],
+        ],
+        'contest' => [
+            'commonmark' => [
+                'html_input' => 'allow',
             ],
         ],
         'default' => [],

@@ -42,32 +42,6 @@ describe('osu_common', () => {
     });
   });
 
-  describe('jsonClone', () => {
-    it('clone object with different reference', () => {
-      const obj = { test: '1234' };
-      const result = osu.jsonClone(obj);
-
-      expect(result).toEqual(obj);
-      expect(result).not.toBe(obj);
-    });
-
-    it('clone nested object with different reference', () => {
-      const obj = { test: { inner: '1234' } };
-      const result = osu.jsonClone(obj);
-
-      expect(result.test).toEqual(obj.test);
-      expect(result.test).not.toBe(obj.test);
-    });
-
-    it('clone null', () => {
-      expect(osu.jsonClone(null)).toBe(null);
-    });
-
-    it('clone undefined', () => {
-      expect(osu.jsonClone(undefined)).toBe(undefined);
-    });
-  });
-
   describe('linkify', () => {
     const textWithLink = 'Please visit https://link.com';
 

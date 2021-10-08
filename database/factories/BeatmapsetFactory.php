@@ -36,10 +36,10 @@ $factory->define(Beatmapset::class, function (Faker\Generator $faker) {
         'play_count' => rand(0, 50000),
         'favourite_count' => rand(0, 500),
         'genre_id' => function () {
-            return factory(App\Models\Genre::class)->create()->genre_id;
+            return App\Models\Genre::factory()->create()->genre_id;
         },
         'language_id' => function () {
-            return factory(App\Models\Language::class)->create()->language_id;
+            return App\Models\Language::factory()->create()->language_id;
         },
         'submit_date' => $faker->dateTime(),
         'thread_id' => 0,
@@ -78,7 +78,7 @@ $factory->state(Beatmapset::class, 'qualified', function () {
 $factory->afterCreatingState(Beatmapset::class, 'with_discussion', function (App\Models\Beatmapset $beatmapset) {
     if (
         !$beatmapset->beatmaps()->save(
-            factory(App\Models\Beatmap::class)->make()
+            App\Models\Beatmap::factory()->make()
         )
     ) {
         throw new Exception();
@@ -86,7 +86,7 @@ $factory->afterCreatingState(Beatmapset::class, 'with_discussion', function (App
 
     if (
         !$beatmapset->beatmapDiscussions()->save(
-            factory(BeatmapDiscussion::class)->states('general')->make(['message_type' => 'praise', 'user_id' => $beatmapset->user_id])
+            BeatmapDiscussion::factory()->general()->make(['message_type' => 'praise', 'user_id' => $beatmapset->user_id])
         )
     ) {
         throw new Exception();
