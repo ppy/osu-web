@@ -28,6 +28,8 @@ class DocumentProcessor
     private ?NodeWalkerEvent $event;
     private $node;
 
+    private int $figureIndex;
+    private ?string $galleryId;
     private array $tocSlugs;
 
     private ?string $relativeUrlRoot;
@@ -52,11 +54,14 @@ class DocumentProcessor
         $generateToc = $this->config->get('osu_extension/generate_toc');
         $recordFirstImage = $this->config->get('osu_extension/record_first_image');
         $titleFromDocument = $this->config->get('osu_extension/title_from_document');
+        $withGallery = $this->config->get('osu_extension/with_gallery');
         $this->wikiLocale = $this->config->get('osu_extension/wiki_locale');
 
         $this->setWikiPaths();
 
+        $this->figureIndex = 0;
         $this->firstImage = null;
+        $this->galleryId = null;
         $this->title = null;
         $this->toc = [];
         $this->tocSlugs = [];
@@ -83,9 +88,9 @@ class DocumentProcessor
                 $this->loadToc();
             }
 
-            $this->parseFigure();
-
             $this->proxyImage();
+
+            $this->parseFigure($withGallery);
         }
     }
 
@@ -159,9 +164,9 @@ class DocumentProcessor
         $this->node->data->set('attributes/id', $slug);
     }
 
-    private function parseFigure()
+    private function parseFigure($withGallery = false)
     {
-        if (!$this->node instanceof Paragraph || !$this->event->isEntering()) {
+        if (!$this->node instanceof Paragraph || $this->event->isEntering()) {
             return;
         }
 
@@ -181,6 +186,29 @@ class DocumentProcessor
             $textContainer->data->set('attributes/class', "{$blockClass}__figure-caption");
             $textContainer->appendChild($text);
             $this->node->appendChild($textContainer);
+        }
+
+        if ($withGallery) {
+            $this->galleryId ??= (string) rand();
+            $imageUrl = $image->getUrl();
+
+            if (starts_with($imageUrl, route('wiki.show', [], false))) {
+                $imageUrl = config('app.url').$imageUrl;
+            }
+
+            $imageSize = fast_imagesize($imageUrl);
+            if (!isset($imageSize)) {
+                return;
+            }
+
+            $image->data->append('attributes/class', "{$blockClass}__figure-image--gallery js-gallery");
+            $image->data->set('attributes/data-width', (string) $imageSize[0]);
+            $image->data->set('attributes/data-height', (string) $imageSize[1]);
+            $image->data->set('attributes/data-gallery-id', $this->galleryId);
+            $image->data->set('attributes/data-index', (string) $this->figureIndex);
+            $image->data->set('attributes/data-src', $imageUrl);
+
+            $this->figureIndex++;
         }
     }
 
