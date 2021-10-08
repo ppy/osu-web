@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'Pagina solicitată nu a putut fi găsită pentru limba selectată momentan.',
         'needs_cleanup_or_rewrite' => 'Această pagine nu întâlnește standardele osu! wiki și nevoile trebuie să curățată sau rescrisă. Dacă ești capabil să ajuți, vă rugăm considerați să actualizați articolul!',
         'search' => 'Căută pagini existente pentru :link.',
+        'stub' => '',
         'toc' => 'Conținut',
 
         'edit' => [

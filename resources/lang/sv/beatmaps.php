@@ -252,7 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Inkludera konverterade beatmaps',
-        'featured_artists' => '',
+        'featured_artists' => 'Utvalda artister',
         'follows' => 'Prenumererade mappare',
         'recommended' => 'Rekommenderad svårighetsgrad',
     ],

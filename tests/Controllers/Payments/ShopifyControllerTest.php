@@ -33,7 +33,7 @@ class ShopifyControllerTest extends TestCase
         $order->refresh();
         $response->assertStatus(204);
 
-        $this->assertTrue($order->status === 'cancelled');
+        $this->assertTrue($order->isCancelled());
         $this->assertTrue(Payment::where('order_id', $order->getKey())->where('cancelled', true)->exists());
     }
 
@@ -62,7 +62,7 @@ class ShopifyControllerTest extends TestCase
 
         $order->refresh();
         $response->assertStatus(204);
-        $this->assertTrue($order->status === 'shipped');
+        $this->assertTrue($order->isShipped());
         $this->assertNotNull($order->shipped_at);
     }
 

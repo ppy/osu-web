@@ -75,20 +75,20 @@ class SanityTest extends DuskTestCase
 
         // factories for /beatmapsets/*
         self::$scaffolding['beatmap_mirror'] = factory(\App\Models\BeatmapMirror::class)->create();
-        self::$scaffolding['genre'] = factory(\App\Models\Genre::class)->create();
-        self::$scaffolding['language'] = factory(\App\Models\Language::class)->create();
+        self::$scaffolding['genre'] = \App\Models\Genre::factory()->create();
+        self::$scaffolding['language'] = \App\Models\Language::factory()->create();
         self::$scaffolding['beatmapset'] = factory(\App\Models\Beatmapset::class)->create([
             'discussion_enabled' => true,
             'genre_id' => self::$scaffolding['genre']->genre_id,
             'language_id' => self::$scaffolding['language']->language_id,
             'user_id' => self::$scaffolding['user']->getKey(),
         ]);
-        self::$scaffolding['beatmap'] = factory(\App\Models\Beatmap::class)->create([
+        self::$scaffolding['beatmap'] = \App\Models\Beatmap::factory()->create([
             'beatmapset_id' => self::$scaffolding['beatmapset']->getKey(),
         ]);
-        self::$scaffolding['beatmap_discussion'] = factory(\App\Models\BeatmapDiscussion::class)->create([
-            'beatmapset_id' => self::$scaffolding['beatmapset']->getKey(),
-            'beatmap_id' => self::$scaffolding['beatmap']->getKey(),
+        self::$scaffolding['beatmap_discussion'] = \App\Models\BeatmapDiscussion::factory()->create([
+            'beatmapset_id' => self::$scaffolding['beatmapset'],
+            'beatmap_id' => self::$scaffolding['beatmap'],
         ]);
         self::$scaffolding['pack'] = factory(\App\Models\BeatmapPack::class)->create();
 
@@ -167,7 +167,7 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['changelog'] = factory(\App\Models\Changelog::class)->create([
             'stream_id' => self::$scaffolding['stream']->stream_id,
         ]);
-        self::$scaffolding['build'] = factory(\App\Models\Build::class)->create([
+        self::$scaffolding['build'] = \App\Models\Build::factory()->create([
             'stream_id' => self::$scaffolding['stream']->stream_id,
         ]);
 
