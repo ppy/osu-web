@@ -425,7 +425,7 @@ class BeatmapsetTest extends TestCase
         }
 
         $beatmapset = factory(Beatmapset::class)->create(array_merge($defaultParams, $params));
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make());
         factory(BeatmapMirror::class)->states('default')->create();
 
         return $beatmapset;
@@ -450,7 +450,7 @@ class BeatmapsetTest extends TestCase
         $beatmapset = factory(Beatmapset::class)->create(array_merge($defaultParams, $params));
 
         foreach ($playmodes as $playmode) {
-            $beatmapset->beatmaps()->save(factory(Beatmap::class)->make(['playmode' => Beatmap::modeInt($playmode)]));
+            $beatmapset->beatmaps()->save(Beatmap::factory()->make(['playmode' => Beatmap::modeInt($playmode)]));
         }
         factory(BeatmapMirror::class)->states('default')->create();
 
