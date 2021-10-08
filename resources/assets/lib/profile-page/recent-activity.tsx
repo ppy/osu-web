@@ -10,11 +10,28 @@ import ShowMoreLink from 'show-more-link';
 import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 
+const eventTypes = [
+  'achievement',
+  'beatmapPlaycount',
+  'beatmapsetApprove',
+  'beatmapsetDelete',
+  'beatmapsetRevive',
+  'beatmapsetUpdate',
+  'beatmapsetUpload',
+  'rank',
+  'rankLost',
+  'usernameChange',
+  'userSupportAgain',
+  'userSupportFirst',
+  'userSupportGift'
+] as const;
+type EventType = (typeof eventTypes)[number];
+
 interface Event {
   created_at: string;
   id: number;
   parse_error?: boolean;
-  type: string;
+  type: EventType;
 }
 
 interface Props {
