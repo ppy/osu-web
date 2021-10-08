@@ -77,14 +77,14 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['beatmap_mirror'] = factory(\App\Models\BeatmapMirror::class)->create();
         self::$scaffolding['genre'] = \App\Models\Genre::factory()->create();
         self::$scaffolding['language'] = \App\Models\Language::factory()->create();
-        self::$scaffolding['beatmapset'] = factory(\App\Models\Beatmapset::class)->create([
+        self::$scaffolding['beatmapset'] = \App\Models\Beatmapset::factory()->create([
             'discussion_enabled' => true,
-            'genre_id' => self::$scaffolding['genre']->genre_id,
-            'language_id' => self::$scaffolding['language']->language_id,
-            'user_id' => self::$scaffolding['user']->getKey(),
+            'genre_id' => self::$scaffolding['genre'],
+            'language_id' => self::$scaffolding['language'],
+            'user_id' => self::$scaffolding['user'],
         ]);
         self::$scaffolding['beatmap'] = \App\Models\Beatmap::factory()->create([
-            'beatmapset_id' => self::$scaffolding['beatmapset']->getKey(),
+            'beatmapset_id' => self::$scaffolding['beatmapset'],
         ]);
         self::$scaffolding['beatmap_discussion'] = \App\Models\BeatmapDiscussion::factory()->create([
             'beatmapset_id' => self::$scaffolding['beatmapset'],

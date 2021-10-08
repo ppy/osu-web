@@ -243,7 +243,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentDocumentValidWithIssuesShouldDisqualify()
     {
         $gmtUser = factory(User::class)->states('gmt')->create();
-        $beatmapset = factory(Beatmapset::class)->states('qualified')->create();
+        $beatmapset = Beatmapset::factory()->qualified()->create();
         $beatmapset->beatmaps()->save(Beatmap::factory()->make());
         $watchingUser = factory(User::class)->create();
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
@@ -276,7 +276,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     // valid document containing issue embeds should reset nominations (for GMT)
     public function testCreateDocumentDocumentValidWithIssuesShouldResetNominations()
     {
-        $beatmapset = factory(Beatmapset::class)->create([
+        $beatmapset = Beatmapset::factory()->create([
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
@@ -327,7 +327,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentDocumentValidWithNewIssuesShouldNotify($state, $shouldNotify)
     {
         $gmtUser = factory(User::class)->states('gmt')->create();
-        $beatmapset = factory(Beatmapset::class)->states($state)->create();
+        $beatmapset = Beatmapset::factory()->$state()->create();
         $beatmapset->beatmaps()->save(Beatmap::factory()->make(['playmode' => 0]));
 
         $notificationOption = $gmtUser->notificationOptions()->firstOrCreate([
@@ -564,7 +564,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testUpdateDocumentWithNewIssueShouldDisqualify()
     {
         $gmtUser = factory(User::class)->states('gmt')->create();
-        $beatmapset = factory(Beatmapset::class)->states('qualified')->create();
+        $beatmapset = Beatmapset::factory()->qualified()->create();
         $beatmapset->beatmaps()->save(Beatmap::factory()->make());
         $review = $this->setUpPraiseOnlyReview($beatmapset, $gmtUser);
 
@@ -597,7 +597,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
     public function testUpdateDocumentWithNewIssueShouldResetNominations()
     {
-        $beatmapset = factory(Beatmapset::class)->create([
+        $beatmapset = Beatmapset::factory()->create([
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
@@ -646,7 +646,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testUpdateDocumentWithNewIssueShouldNotifyIfQualified($state, $shouldNotify)
     {
         $gmtUser = factory(User::class)->states('gmt')->create();
-        $beatmapset = factory(Beatmapset::class)->states($state)->create();
+        $beatmapset = Beatmapset::factory()->$state()->create();
         $beatmapset->beatmaps()->save(Beatmap::factory()->make(['playmode' => 0]));
 
         $notificationOption = $gmtUser->notificationOptions()->firstOrCreate([
@@ -733,7 +733,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         config()->set('osu.beatmapset.discussion_review_max_blocks', 4);
 
         $this->user = factory(User::class)->create();
-        $this->beatmapset = factory(Beatmapset::class)->create([
+        $this->beatmapset = Beatmapset::factory()->create([
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
