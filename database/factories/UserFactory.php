@@ -76,18 +76,18 @@ $factory->state(User::class, 'restricted', function (Faker\Generator $faker) {
 
 $factory->afterCreatingState(User::class, 'with_note', function ($user, $faker) {
     $user->accountHistories()->save(
-        factory(UserAccountHistory::class)->states('note')->make()
+        UserAccountHistory::factory()->note()->make()
     );
 });
 
 $factory->afterCreatingState(User::class, 'restricted', function ($user, $faker) {
     $user->accountHistories()->save(
-        factory(UserAccountHistory::class)->states('restriction')->make()
+        UserAccountHistory::factory()->restriction()->make()
     );
 });
 
 $factory->afterCreatingState(User::class, 'silenced', function ($user, $faker) {
     $user->accountHistories()->save(
-        factory(UserAccountHistory::class)->states('silence')->make()
+        UserAccountHistory::factory()->silence()->make()
     );
 });
