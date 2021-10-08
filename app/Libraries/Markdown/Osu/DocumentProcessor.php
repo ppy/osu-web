@@ -124,7 +124,7 @@ class DocumentProcessor
             }
         }
 
-        return $text;
+        return trim($text);
     }
 
     private function loadToc()
