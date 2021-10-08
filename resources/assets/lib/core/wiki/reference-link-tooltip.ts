@@ -44,11 +44,14 @@ export default class ReferenceLinkTooltip {
 
     if (targetId == null) return;
 
-    const tooltipContent = document.querySelector(targetId)?.firstElementChild?.cloneNode(true);
+    const footnoteContent = document.querySelector(targetId)?.firstElementChild?.cloneNode(true);
 
-    if (!(tooltipContent instanceof HTMLParagraphElement)) return;
+    if (!(footnoteContent instanceof HTMLParagraphElement)) return;
 
-    tooltipContent.querySelectorAll('[role="doc-backlink"]').forEach((link) => link.remove());
+    footnoteContent.querySelectorAll('[role="doc-backlink"]').forEach((link) => link.remove());
+
+    const tooltipContent = document.createElement('div');
+    tooltipContent.innerHTML = footnoteContent.innerHTML;
 
     this.createTooltip(el, tooltipContent);
   };
