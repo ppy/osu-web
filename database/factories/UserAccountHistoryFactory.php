@@ -13,7 +13,7 @@ class UserAccountHistoryFactory extends Factory
 {
     protected $model = UserAccountHistory::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'reason' => fn () => $this->faker->bs(),
