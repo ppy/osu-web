@@ -25,7 +25,7 @@ class ReportScoreTest extends TestCase
 
     public function testReasonIsIgnored()
     {
-        $score = Best\Osu::create(['user_id' => factory(User::class)->create()->getKey()]);
+        $score = Best\Osu::create(['user_id' => User::factory()->create()->getKey()]);
 
         $this->expectException(ValidationException::class);
 
@@ -36,7 +36,7 @@ class ReportScoreTest extends TestCase
 
     public function testReportableInstance()
     {
-        $score = Best\Mania::create(['user_id' => factory(User::class)->create()->getKey()]);
+        $score = Best\Mania::create(['user_id' => User::factory()->create()->getKey()]);
 
         $query = UserReport::where('reportable_type', 'score_best_mania')->where('reportable_id', $score->getKey());
         $reportedCount = $query->count();
@@ -53,6 +53,6 @@ class ReportScoreTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->reporter = factory(User::class)->create();
+        $this->reporter = User::factory()->create();
     }
 }

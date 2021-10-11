@@ -22,7 +22,7 @@ class ReportUserTest extends TestCase
 
     public function testReasonIsNotValid()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->expectException(QueryException::class);
         $user->reportBy($this->reporter, [
@@ -32,7 +32,7 @@ class ReportUserTest extends TestCase
 
     public function testReportableInstance()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $reportedCount = $user->reportedIn()->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 
@@ -46,6 +46,6 @@ class ReportUserTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->reporter = factory(User::class)->create();
+        $this->reporter = User::factory()->create();
     }
 }

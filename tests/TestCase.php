@@ -223,33 +223,6 @@ class TestCase extends BaseTestCase
         return $token;
     }
 
-    /**
-     * @param array|string $groupIdentifier
-     */
-    protected function createUserWithGroup($groupIdentifier, array $attributes = []): User
-    {
-        return factory(User::class)->states($groupIdentifier)->create($attributes);
-    }
-
-    protected function createUserWithGroupPlaymodes(string $groupIdentifier, array $playmodes = [], array $attributes = []): User
-    {
-        $user = $this->createUserWithGroup($groupIdentifier, $attributes);
-        $group = app('groups')->byIdentifier($groupIdentifier);
-
-        if (!$group->has_playmodes) {
-            $group->update(['has_playmodes' => true]);
-
-            // TODO: This shouldn't have to be called here, since it's already
-            // called by `Group::afterCommit`, but `Group::afterCommit` isn't
-            // running in tests when creating/saving `Group`s.
-            app('groups')->resetCache();
-        }
-
-        $user->findUserGroup($group, true)->update(['playmodes' => $playmodes]);
-
-        return $user;
-    }
-
     protected function fileList($path, $suffix)
     {
         return array_map(function ($file) use ($path, $suffix) {

@@ -18,7 +18,7 @@ foreach (Beatmap::MODES as $modeStr => $modeInt) {
 
         return [
             'user_id' => function () {
-                return factory(User::class)->create()->user_id;
+                return User::factory()->create()->user_id;
             },
             'beatmap_id' => $beatmap->beatmap_id,
             'score' => rand(50000, 100000000),

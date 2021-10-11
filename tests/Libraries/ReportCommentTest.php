@@ -25,7 +25,7 @@ class ReportCommentTest extends TestCase
 
     public function testReasonIsIgnored()
     {
-        $comment = $this->createComment(factory(User::class)->create());
+        $comment = $this->createComment(User::factory()->create());
 
         $this->expectException(ValidationException::class);
 
@@ -36,7 +36,7 @@ class ReportCommentTest extends TestCase
 
     public function testReportableInstance()
     {
-        $comment = $this->createComment(factory(User::class)->create());
+        $comment = $this->createComment(User::factory()->create());
 
         $query = UserReport::where('reportable_type', 'comment')->where('reportable_id', $comment->getKey());
         $reportedCount = $query->count();
@@ -52,7 +52,7 @@ class ReportCommentTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->reporter = factory(User::class)->create();
+        $this->reporter = User::factory()->create();
     }
 
     private function createComment($user)

@@ -16,7 +16,7 @@ class ScoresControllerTest extends TestCase
 {
     public function testStore()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $beatmap = Beatmap::factory()->ranked()->create();
         $scoreToken = ScoreToken::create([
             'beatmap_id' => $beatmap->getKey(),
@@ -54,7 +54,7 @@ class ScoresControllerTest extends TestCase
 
     public function testStoreCompleted()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $beatmap = Beatmap::factory()->ranked()->create();
         // TODO: create factory
         $score = Score::createFromJsonOrExplode([
@@ -103,7 +103,7 @@ class ScoresControllerTest extends TestCase
 
     public function testStoreMissingData()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $beatmap = Beatmap::factory()->ranked()->create();
         $scoreToken = ScoreToken::create([
             'beatmap_id' => $beatmap->getKey(),
@@ -131,8 +131,8 @@ class ScoresControllerTest extends TestCase
 
     public function testStoreWrongUser()
     {
-        $user = factory(User::class)->create();
-        $otherUser = factory(User::class)->create();
+        $user = User::factory()->create();
+        $otherUser = User::factory()->create();
         $beatmap = Beatmap::factory()->ranked()->create();
         $scoreToken = ScoreToken::create([
             'beatmap_id' => $beatmap->getKey(),

@@ -50,7 +50,7 @@ class BeatmapPackTest extends TestCase
         $pack->items()->create(['beatmapset_id' => $beatmapset->getKey()]);
         $scoreBest = factory(ScoreBest\Taiko::class)->create();
         $scoreBest->beatmap->update(['beatmapset_id' => $beatmapset->getKey()]);
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $pack->refresh();
 
