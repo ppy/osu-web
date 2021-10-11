@@ -14,7 +14,7 @@ class UsersControllerTest extends TestCase
     public function testStore()
     {
         $previousCount = User::count();
-        $country = factory(Country::class)->create();
+        $country = Country::factory()->create();
         $url = route('interop.users.store', ['timestamp' => time()]);
 
         $this
@@ -35,7 +35,7 @@ class UsersControllerTest extends TestCase
 
     public function testStoreUserCopy()
     {
-        $country = factory(Country::class)->create();
+        $country = Country::factory()->create();
         $sourceUser = factory(User::class)->create(['country_acronym' => $country->getKey(), 'user_ip' => '127.0.0.1']);
         $url = route('interop.users.store', ['timestamp' => time()]);
         $username = 'userbot';
@@ -68,7 +68,7 @@ class UsersControllerTest extends TestCase
 
     public function testStoreUserCopyMissingUsername()
     {
-        $country = factory(Country::class)->create();
+        $country = Country::factory()->create();
         $sourceUser = factory(User::class)->create(['country_acronym' => $country->getKey(), 'user_ip' => '127.0.0.1']);
 
         $previousCount = User::count();
