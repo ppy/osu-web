@@ -4,7 +4,7 @@
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
-import { computed, override } from 'mobx';
+import { override } from 'mobx';
 import {
   NotificationEventMoreLoaded,
   NotificationEventNew,
