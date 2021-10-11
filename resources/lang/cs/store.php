@@ -69,7 +69,7 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
+        'cancel' => 'Zrušit objednávku',
         'cancel_confirm' => '',
         'cancel_not_allowed' => '',
         'invoice' => 'Zobrazit fakturu',

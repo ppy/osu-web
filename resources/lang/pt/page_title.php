@@ -135,6 +135,11 @@ return [
             '_' => 'classificação',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'loja',
     ],

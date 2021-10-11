@@ -135,6 +135,11 @@ return [
             '_' => 'reitingai',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => '',
     ],

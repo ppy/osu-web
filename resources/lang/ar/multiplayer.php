@@ -8,7 +8,7 @@ return [
 
     'room' => [
         'hosted_by' => 'مستضافة بواسطة :user',
-        'invalid_password' => '',
+        'invalid_password' => 'كلمة مرور الغرفة غير صحيحة',
         'map_count' => ':count_delimited الخريطة|:count_delimited خرائط',
         'player_count' => ':count_delimited لاعب|:count_delimited لاعبين',
         'time_left' => 'تبقى:time',
