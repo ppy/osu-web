@@ -19,7 +19,7 @@ class BeatmapPackTest extends TestCase
         $beatmapset = Beatmapset::factory()->create();
         $pack = factory(BeatmapPack::class)->create(['playmode' => null]);
         $pack->items()->create(['beatmapset_id' => $beatmapset->getKey()]);
-        $scoreBest = factory(ScoreBest\Taiko::class)->create();
+        $scoreBest = ScoreBest\Taiko::factory()->create();
         $scoreBest->beatmap->update(['beatmapset_id' => $beatmapset->getKey()]);
         $user = User::find($scoreBest->user_id);
 
@@ -48,7 +48,7 @@ class BeatmapPackTest extends TestCase
         $beatmapset = Beatmapset::factory()->create();
         $pack = factory(BeatmapPack::class)->create(['playmode' => null]);
         $pack->items()->create(['beatmapset_id' => $beatmapset->getKey()]);
-        $scoreBest = factory(ScoreBest\Taiko::class)->create();
+        $scoreBest = ScoreBest\Taiko::factory()->create();
         $scoreBest->beatmap->update(['beatmapset_id' => $beatmapset->getKey()]);
         $user = User::factory()->create();
 
@@ -76,7 +76,7 @@ class BeatmapPackTest extends TestCase
         $beatmapset = Beatmapset::factory()->create();
         $pack = factory(BeatmapPack::class)->create(['playmode' => null]);
         $pack->items()->create(['beatmapset_id' => $beatmapset->getKey()]);
-        $scoreBest = factory(ScoreBest\Taiko::class)->create();
+        $scoreBest = ScoreBest\Taiko::factory()->create();
         $scoreBest->beatmap->update([
             'beatmapset_id' => $beatmapset->getKey(),
             'playmode' => Beatmap::MODES['osu'],

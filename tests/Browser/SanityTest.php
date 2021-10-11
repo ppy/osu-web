@@ -190,7 +190,7 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['news'] = new ScaffoldDummy('2014-06-21-meet-yuzu');
 
         // score factory
-        self::$scaffolding['score'] = factory(\App\Models\Score\Best\Osu::class)->states('with_replay')->create();
+        self::$scaffolding['score'] = \App\Models\Score\Best\Osu::factory()->withReplay()->create();
 
         self::$scaffolding['room'] = factory(Room::class)->create(['category' => 'spotlight']);
 
