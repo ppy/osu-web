@@ -136,6 +136,11 @@ return [
             '_' => 'การจัดอันดับ',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'ร้านค้า',
     ],

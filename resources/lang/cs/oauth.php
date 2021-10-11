@@ -19,14 +19,14 @@ return [
         'none' => '',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Zrušit přístup',
+            'true' => 'Přístup byl zrušen',
         ],
     ],
 
     'client' => [
         'id' => 'ID klienta',
-        'name' => '',
+        'name' => 'Název aplikace',
         'redirect' => '',
         'reset' => '',
         'reset_failed' => '',

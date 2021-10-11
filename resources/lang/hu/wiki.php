@@ -12,7 +12,7 @@ return [
         'missing_translation' => 'A kért oldal nem található a jelenleg kiválasztott nyelven.',
         'needs_cleanup_or_rewrite' => 'Ez az oldal elavult fordítást tartalmaz az eredeti osu! wikiről! Ha képes vagy rá, fontold meg a fordítás frissítését!',
         'search' => 'Létező oldalak keresése :link után.',
-        'stub' => '',
+        'stub' => 'Ez a cikk befejezetlen, és várjuk, hogy valaki kibővítse.',
         'toc' => 'Tartalom',
 
         'edit' => [

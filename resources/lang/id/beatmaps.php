@@ -138,7 +138,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Beatmap ini telah di-approve pada :date!',
-            'graveyard' => "Beatmap ini belum diperbarui sejak :date dan kemungkinan besar telah diabaikan oleh pembuatnya...",
+            'graveyard' => "Beatmap ini belum diperbarui sejak :date dan sepertinya telah diabaikan oleh pembuatnya...",
             'loved' => 'Beatmap ini telah ditambahkan pada kategori \'Loved\' pada :date!',
             'ranked' => 'Beatmap ini telah di-rank pada :date!',
             'wip' => 'Catatan: Beatmap ini ditandai dengan status dalam pengerjaan (work-in-progress) oleh pembuat beatmap.',

@@ -135,6 +135,11 @@ return [
             '_' => 'ranglijst',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'winkel',
     ],
