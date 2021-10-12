@@ -100,7 +100,6 @@ export default class RecentActivity extends React.PureComponent<Props> {
       mappings = {
         beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
         mode: osu.trans(`beatmaps.mode.${event.mode}`),
-        rank: event.rank,
         user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
 
       };
