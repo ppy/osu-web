@@ -3,9 +3,8 @@
 
 import { route } from 'laroute';
 import { snakeCase } from 'lodash';
-import AchievementBadge from 'profile-page/achievement-badge';
 import ExtraHeader from 'profile-page/extra-header';
-import { Event, isTypeOf } from 'profile-page/recent-activity-events';
+import { Event, parseEvent } from 'profile-page/recent-activity-events';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import StringWithComponent from 'string-with-component';
@@ -16,98 +15,6 @@ interface Props {
   pagination: unknown;
   recentActivity: Event[];
   withEdit: boolean;
-}
-
-function link(url: string, title: string) {
-  return <a className='profile-extra-entries__link' href={url}>{title}</a>;
-}
-
-function parseEvent(event: Event) {
-  let badge: React.ReactNode = null;
-  let mappings: Record<string, React.ReactNode> = {};
-
-  if (isTypeOf(event, 'achievement')) {
-    badge = (
-      <AchievementBadge
-        achievement={event.achievement}
-        modifiers={['recent-activity']}
-        userAchievement={{
-          achieved_at: event.created_at,
-          achievement_id: event.achievement.id,
-        }}
-      />
-    );
-
-    mappings = {
-      achievement: <strong>{event.achievement.name}</strong>,
-      user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-    };
-  } else if (isTypeOf(event, 'beatmapPlaycount')) {
-    mappings = {
-      beatmap: link(event.beatmap.url, event.beatmap.title),
-      count: event.count,
-    };
-  } else if (isTypeOf(event, 'beatmapsetApprove')) {
-    mappings = {
-      approval: osu.trans(`events.beatmapset_status.${event.approval}`),
-      beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-      user: <strong>{link(event.user.url, event.user.username)}</strong>,
-    };
-  } else if (isTypeOf(event, 'beatmapsetDelete')) {
-    mappings = {
-      beatmapset: event.beatmapset.title,
-    };
-  } else if (isTypeOf(event, 'beatmapsetRevive')) {
-    mappings = {
-      beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-      user: <strong>{link(event.user.url, event.user.username)}</strong>,
-    };
-  } else if (isTypeOf(event, 'beatmapsetUpdate')) {
-    mappings = {
-      beatmapset: <em>{link(event.beatmapset.url, event.beatmapset.title)}</em>,
-      user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-    };
-  } else if (isTypeOf(event, 'beatmapsetUpload')) {
-    mappings = {
-      beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-      user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-    };
-  } else if (isTypeOf(event, 'rank')) {
-    badge = <div className={`score-rank score-rank--${event.scoreRank}`} />;
-
-    mappings = {
-      beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
-      mode: osu.trans(`beatmaps.mode.${event.mode}`),
-      rank: event.rank,
-      user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-    };
-  } else if (isTypeOf(event, 'rankLost')) {
-    mappings = {
-      beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
-      mode: osu.trans(`beatmaps.mode.${event.mode}`),
-      user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-
-    };
-  } else if (isTypeOf(event, 'userSupportAgain')) {
-    mappings = {
-      user: <strong>{link(event.user.url, event.user.username)}</strong>,
-    };
-  } else if (isTypeOf(event, 'userSupportFirst')) {
-    mappings = {
-      user: <strong>{link(event.user.url, event.user.username)}</strong>,
-    };
-  } else if (isTypeOf(event, 'userSupportGift')) {
-    mappings = {
-      user: <strong>{link(event.user.url, event.user.username)}</strong>,
-    };
-  } else if (isTypeOf(event, 'usernameChange')) {
-    mappings = {
-      previousUsername: <strong>{event.user.previousUsername}</strong>,
-      user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-    };
-  }
-
-  return { badge, mappings };
 }
 
 export default class RecentActivity extends React.PureComponent<Props> {
@@ -150,7 +57,7 @@ export default class RecentActivity extends React.PureComponent<Props> {
   private renderEntry = (event: Event) => {
     if (event.parse_error) return null;
 
-    const { badge, mappings } = parseEvent(event);
+    const { badge, mappings } = parseEvent(event, { badge: 'recent-activity', link: 'profile-extra-entries__link' });
 
     return (
       <li key={event.id} className='profile-extra-entries__item'>
