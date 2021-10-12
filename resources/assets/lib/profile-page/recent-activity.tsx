@@ -18,11 +18,6 @@ interface Props {
   withEdit: boolean;
 }
 
-interface RenderEntryValues {
-  badge: React.ReactNode;
-  mappings: React.ReactNode;
-}
-
 function link(url: string, title: string) {
   return <a className='profile-extra-entries__link' href={url}>{title}</a>;
 }
@@ -37,7 +32,7 @@ export default class RecentActivity extends React.PureComponent<Props> {
     );
   }
 
-  private parseEvent(event: Event): RenderEntryValues {
+  private parseEvent(event: Event) {
     let badge: React.ReactNode = null;
     let mappings: Record<string, React.ReactNode> = {};
 
@@ -88,7 +83,7 @@ export default class RecentActivity extends React.PureComponent<Props> {
         user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
       };
     } else if (isTypeOf(event, 'rank')) {
-      badge = <div className={`score-rank score-rank--${event.scoreRank}`} />
+      badge = <div className={`score-rank score-rank--${event.scoreRank}`} />;
 
       mappings = {
         beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
@@ -161,11 +156,11 @@ export default class RecentActivity extends React.PureComponent<Props> {
       <li key={event.id} className='profile-extra-entries__item'>
         <div className='profile-extra-entries__detail'>
           <div className='profile-extra-entries__icon'>
-            {badge ?? null}
+            {badge}
           </div>
           <div className='profile-extra-entries__text'>
             <StringWithComponent
-              mappings={mappings ?? {}}
+              mappings={mappings}
               pattern={osu.trans(`events.${snakeCase(event.type)}`).replace(/<[^>]*>/g, '')}
             />
           </div>
