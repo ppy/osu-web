@@ -10,6 +10,7 @@ import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
+import { stripTags } from 'utils/html';
 
 interface Props {
   name: string;
@@ -74,7 +75,8 @@ export default class RecentActivity extends React.PureComponent<Props> {
           <div className='profile-extra-entries__text'>
             <StringWithComponent
               mappings={mappings}
-              pattern={osu.trans(`events.${snakeCase(event.type)}`).replace(/<[^>]*>/g, '')}
+              // TODO: remove stripTags once translations are updated
+              pattern={stripTags(osu.trans(`events.${snakeCase(event.type)}`))}
             />
           </div>
         </div>

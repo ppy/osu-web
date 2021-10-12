@@ -9,16 +9,12 @@ import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
 import { classWithModifiers } from 'utils/css';
+import { stripTags } from 'utils/html';
 import ExtraPageProps from './extra-page-props';
 
 const bn = 'profile-extra-recent-infringements';
 const columns = ['date', 'action', 'length', 'description'] as const;
 type Column = typeof columns[number];
-
-// TODO: remove once translations are updated
-function stripTags(str: string) {
-  return str.replace(/<[^>]*>/g, '');
-}
 
 interface ColumnProps {
   history: UserAccountHistoryJson;
@@ -90,6 +86,7 @@ export default class AccountStanding extends React.PureComponent<ExtraPageProps>
           <div className='page-extra__alert page-extra__alert--warning'>
             <StringWithComponent
               mappings={{ username: <strong>{this.props.user.username}</strong> }}
+              // TODO: remove stripTags once translations are updated
               pattern={stripTags(osu.trans('users.show.extra.account_standing.bad_standing'))}
             />
           </div>
@@ -102,6 +99,7 @@ export default class AccountStanding extends React.PureComponent<ExtraPageProps>
                 duration: <TimeWithTooltip dateTime={endTime} relative />,
                 username: <strong>{this.props.user.username}</strong>,
               }}
+              // TODO: remove stripTags once translations are updated
               pattern={stripTags(osu.trans('users.show.extra.account_standing.remaining_silence'))}
             />
           </div>
