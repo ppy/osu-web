@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import TracklistTrack from 'tracklist-track';
+import { jsonClone } from 'utils/json';
 import SearchForm, { ArtistTrackSearch } from './search-form';
 import Sort from './sort';
 
@@ -38,7 +39,7 @@ const headerLinks = [
 
 @observer
 export default class Main extends React.Component<Props> {
-  @observable private data = osu.jsonClone(this.props.data);
+  @observable private data = jsonClone(this.props.data);
   @observable private loadingXhr?: JQuery.jqXHR | null = null;
 
   constructor(props: Props) {

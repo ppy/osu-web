@@ -8,6 +8,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { jsonClone } from 'utils/json';
 
 type Nullable<T> = T | null | undefined;
 
@@ -50,7 +51,7 @@ interface Props {
 
 @observer
 export default class SearchForm extends React.Component<Props> {
-  @observable private params = osu.jsonClone(this.props.initialParams);
+  @observable private params = jsonClone(this.props.initialParams);
 
   @computed
   private get emptySearch() {
