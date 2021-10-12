@@ -30,7 +30,7 @@ class OsuMarkdown
 {
     use Memoizes;
 
-    const VERSION = 13;
+    const VERSION = 14;
 
     const DEFAULT_COMMONMARK_CONFIG = [
         'allow_unsafe_links' => false,
@@ -48,6 +48,7 @@ class OsuMarkdown
         'style_block_allowed_classes' => null,
         'title_from_document' => false,
         'wiki_locale' => null,
+        'with_gallery' => false,
     ];
 
     // this config is only used in this class
@@ -70,6 +71,11 @@ class OsuMarkdown
         'comment' => [
             'osu_markdown' => [
                 'block_modifiers' => ['comment'],
+            ],
+        ],
+        'contest' => [
+            'commonmark' => [
+                'html_input' => 'allow',
             ],
         ],
         'default' => [],
@@ -115,6 +121,7 @@ class OsuMarkdown
                 'generate_toc' => true,
                 'style_block_allowed_classes' => ['infobox'],
                 'title_from_document' => true,
+                'with_gallery' => true,
             ],
             'osu_markdown' => [
                 'block_modifiers' => ['wiki'],

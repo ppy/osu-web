@@ -27,11 +27,11 @@ class BeatmapDiscussionTest extends TestCase
     public function testMapperPost()
     {
         $mapper = factory(User::class)->create();
-        $beatmapset = factory(Beatmapset::class)->create([
+        $beatmapset = Beatmapset::factory()->create([
             'discussion_enabled' => true,
-            'user_id' => $mapper->getKey(),
+            'user_id' => $mapper,
         ]);
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
 
         $discussion = $this->newDiscussion($beatmapset);
         $discussion->fill([
@@ -60,11 +60,11 @@ class BeatmapDiscussionTest extends TestCase
     public function testModderPost()
     {
         $mapper = factory(User::class)->create();
-        $beatmapset = factory(Beatmapset::class)->create([
+        $beatmapset = Beatmapset::factory()->create([
             'discussion_enabled' => true,
-            'user_id' => $mapper->getKey(),
+            'user_id' => $mapper,
         ]);
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
         $modder = factory(User::class)->create();
 
         $discussion = $this->newDiscussion($beatmapset);
@@ -98,11 +98,11 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testIsValid()
     {
-        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
 
-        $otherBeatmapset = factory(Beatmapset::class)->create();
-        $otherBeatmap = $otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $otherBeatmapset = Beatmapset::factory()->create();
+        $otherBeatmap = $otherBeatmapset->beatmaps()->save(Beatmap::factory()->make());
 
         $validTimestamp = ($beatmap->total_length + 10) * 1000;
         $invalidTimestamp = $validTimestamp + 1;
@@ -152,8 +152,8 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testSoftDeleteOrExplode()
     {
-        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
         $user = factory(User::class)->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),

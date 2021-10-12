@@ -139,7 +139,7 @@ return [
         'status-messages' => [
             'approved' => 'Beatmap jóváhagyásának ideje: :date!',
             'graveyard' => "A beatmap :date óta nem kapott frissítést, valószínűleg el lett hanyagolva a készítő által...",
-            'loved' => 'Ez a beatmap :date-kor lett loved!',
+            'loved' => 'Ez a beatmap :date-kor hozzá lett adva a szeretettek közé!',
             'ranked' => 'Ez a beatmap :date-kor lett rangsorolt!',
             'wip' => 'Megjegyzés: Ez a beatmap még készítés alatt áll.',
         ],
@@ -183,7 +183,7 @@ return [
         'disqualify' => 'Diszkvalifikálás',
         'incorrect_state' => 'Hiba a művelet végrehajtása közben, próbáld meg újratölteni az oldalt.',
         'love' => 'Love',
-        'love_choose' => 'Nehézség választása a kedvelteknek',
+        'love_choose' => 'Nehézség választása a szeretettnek',
         'love_confirm' => 'Love-olod ezt a beatmap-et?',
         'nominate' => 'Nominálás',
         'nominate_confirm' => 'Nominálod ezt a beatmapot?',
@@ -197,7 +197,7 @@ return [
         'unresolved_issues' => 'Még mindig vannak megoldatlan problémák amelyeket először kezelni kell.',
 
         'rank_estimate' => [
-            '_' => 'Ez a pálya ranglistázott lesz :date napján, ha további problémák nem merülnek fel. Jelenleg a :position. helyen áll a :queue.',
+            '_' => 'Ez a pálya rangsorolt lesz :date napján, ha további problémák nem merülnek fel. Jelenleg a :position. helyen áll a :queue.',
             'queue' => 'ranglistázási sorban',
             'soon' => 'a közeljövő egy',
         ],
@@ -270,7 +270,7 @@ return [
         'favourites' => 'Kedvencek',
         'graveyard' => 'Temető',
         'leaderboard' => 'Ranglistás',
-        'loved' => 'Loved',
+        'loved' => 'Szeretett',
         'mine' => 'Saját mapjaim',
         'pending' => 'Függőben lévő & WIP',
         'qualified' => 'Kvalifikált',

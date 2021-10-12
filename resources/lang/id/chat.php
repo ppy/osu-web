@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => 'berbicara pada :channel',
+    'talking_in' => 'Anda sedang mengobrol di kanal :channel',
     'talking_with' => 'berbicara dengan :name',
     'title_compact' => 'percakapan',
 

@@ -208,7 +208,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     }
 
     return (
-      <div className='user-card__icons'>
+      <div className='user-card__icons user-card__icons--card'>
         <a
           className='user-card__icon user-card__icon--flag'
           href={route('rankings', { country: this.user.country_code, mode: 'osu', type: 'performance' })}
@@ -226,9 +226,11 @@ export class UserCard extends React.PureComponent<Props, State> {
             <div className='user-card__icon'>
               <FriendButton modifiers={['user-card']} userId={this.user.id} />
             </div>
-            <div className='user-card__icon'>
-              <FollowUserMappingButton modifiers={['user-card']} userId={this.user.id} />
-            </div>
+            {!this.user.is_bot && (
+              <div className='user-card__icon'>
+                <FollowUserMappingButton modifiers={['user-card']} userId={this.user.id} />
+              </div>
+            )}
           </>
         )}
       </div>
@@ -252,9 +254,11 @@ export class UserCard extends React.PureComponent<Props, State> {
           <FriendButton modifiers={['user-list']} userId={this.user.id} />
         </div>
 
-        <div className='user-card__icon'>
-          <FollowUserMappingButton modifiers={['user-list']} userId={this.user.id} />
-        </div>
+        {!this.user.is_bot && (
+          <div className='user-card__icon'>
+            <FollowUserMappingButton modifiers={['user-list']} userId={this.user.id} />
+          </div>
+        )}
       </div>
     );
   }

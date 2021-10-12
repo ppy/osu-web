@@ -134,6 +134,7 @@ class ChatTest extends TestCase
         return [
             ['admin', true],
             ['bng', false],
+            ['bot', true],
             ['gmt', true],
             ['nat', true],
             [[], false],
