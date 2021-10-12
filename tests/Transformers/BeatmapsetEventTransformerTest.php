@@ -88,8 +88,8 @@ class BeatmapsetEventTransformerTest extends TestCase
         parent::setUp();
 
         $mapper = factory(User::class)->create();
-        $this->beatmapset = factory(Beatmapset::class)->states('with_discussion')->create([
-            'user_id' => $mapper->getKey(),
+        $this->beatmapset = Beatmapset::factory()->withDiscussion()->create([
+            'user_id' => $mapper,
         ]);
     }
 }

@@ -91,7 +91,7 @@ return [
         'new' => [
             'pin' => 'Fissa',
             'timestamp' => 'Timestamp',
-            'timestamp_missing' => 'fai ctrl-c nell\'editor ed incolla nel tuo messaggio per aggiungere un timestamp!',
+            'timestamp_missing' => 'fai ctrl-c nell\'editor e incolla nel tuo messaggio per aggiungere un timestamp!',
             'title' => 'Nuova Discussione',
             'unpin' => 'Non fissare',
         ],

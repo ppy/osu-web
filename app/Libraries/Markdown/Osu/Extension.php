@@ -31,6 +31,7 @@ class Extension implements ConfigurableExtensionInterface
             'style_block_allowed_classes' => Expect::array()->nullable(),
             'title_from_document' => Expect::bool(),
             'wiki_locale' => Expect::string()->nullable(),
+            'with_gallery' => Expect::bool(),
         ]));
     }
 

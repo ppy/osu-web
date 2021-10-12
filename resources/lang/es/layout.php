@@ -54,7 +54,7 @@ return [
 
     'gallery' => [
         'close' => 'Cerrar (Esc)',
-        'fullscreen' => 'Activar/Desactivar pantalla completa',
+        'fullscreen' => 'Activar o desactivar pantalla completa',
         'zoom' => 'Zoom Acercar/Alejar',
         'previous' => 'Anterior (flecha izquierda)',
         'next' => 'Siguiente (flecha derecha)',

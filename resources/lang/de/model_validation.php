@@ -163,7 +163,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
+        'no_ranked_beatmapset' => 'Beatmaps mit dem Ranked-Status können nicht gemeldet werden',
         'reason_not_valid' => ':reason ist für diesen Meldungstyp nicht gültig.',
         'self' => "Du kannst dich nicht selbst melden!",
     ],

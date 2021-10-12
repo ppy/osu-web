@@ -51,7 +51,7 @@ return [
     ],
 
     'store_payment_completed' => [
-        'prepare_shipping' => 'Kami telah menerima pembayaranmu dan sedang mempersiapkan pesananmu untuk dikirim. Mungkin perlu beberapa hari bagi kami untuk mengirimkannya, tergantung pada jumlah pesanan. Kamu dapat mengikuti perkembangan pesanan Anda di sini, termasuk rincian nomor pelacakan yang ada:',
+        'prepare_shipping' => 'Kami telah menerima pembayaranmu, dan saat ini kami tengah mempersiapkan pesananmu untuk dikirim. Apabila kami sedang menerima banyak pesanan, kami mungkin perlu waktu beberapa hari untuk dapat memproses pesananmu. Kamu dapat mengikuti perkembangan pesananmu di sini, termasuk rincian-rincian pelacakan yang terkait:',
         'processing' => 'Kami telah menerima pembayaranmu dan saat ini sedang diproses. Kamu dapat mengikuti perkembangan pesananmu di sini:',
         'questions' => "Jika kamu memiliki pertanyaan, jangan ragu untuk membalas email ini.",
         'shipping' => 'Pengiriman',

@@ -39,7 +39,7 @@ return [
             'verify_link' => 'потвърждение на акаунт',
         ],
         'artists_controller' => [
-            '_' => 'Представени Артисти',
+            '_' => 'представени автори',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'бийтмап дискусии',
@@ -86,9 +86,9 @@ return [
             'show' => 'групи',
         ],
         'home_controller' => [
-            'get_download' => 'изтегли',
+            'get_download' => 'изтегляне',
             'index' => 'главно табло',
-            'search' => 'търси',
+            'search' => 'търсене',
             'support_the_game' => 'подкрепи играта',
             'testflight' => 'testflight',
         ],
@@ -96,7 +96,7 @@ return [
             '_' => 'информация',
         ],
         'livestreams_controller' => [
-            '_' => 'Игри На Живо',
+            '_' => 'игри на живо',
         ],
         'matches_controller' => [
             '_' => 'състезания',
@@ -135,12 +135,17 @@ return [
             '_' => 'класиране',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'магазин',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'редактор инфо',
+            '_' => 'инфо за редакции',
         ],
         'multiplayer_controller' => [
             '_' => 'мултиплейър история',

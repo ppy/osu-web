@@ -5,7 +5,7 @@
 @extends('contests.base')
 
 @section('contest-content')
-    <div class="contest__description">{!! markdown($contestMeta->description_voting) !!}</div>
+    <div class="contest__description">{!! markdown($contestMeta->description_voting, 'contest') !!}</div>
     @include('contests._countdown', ['deadline' => $contestMeta->currentPhaseEndDate()])
     @if ($contestMeta->voting_ends_at !== null && $contestMeta->voting_ends_at->isPast())
         <div class='contest__voting-notice'>{{osu_trans('contest.voting.over')}}</div>

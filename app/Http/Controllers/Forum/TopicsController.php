@@ -286,7 +286,7 @@ class TopicsController extends Controller
      *     { "id": 1, "...": "..." },
      *     { "id": 2, "...": "..." }
      *   ],
-     *   "cursor": { "post_id": 1 },
+     *   "cursor": { "id": 1 },
      *   "sort": "id_asc"
      * }
      */

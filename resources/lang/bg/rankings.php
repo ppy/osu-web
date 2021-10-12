@@ -18,11 +18,11 @@ return [
     ],
 
     'type' => [
-        'charts' => 'Под Прожекторите',
-        'country' => 'Държава',
-        'multiplayer' => 'Мултиплейър',
-        'performance' => 'Представяне',
-        'score' => 'Резултат',
+        'charts' => 'под прожекторите',
+        'country' => 'държава',
+        'multiplayer' => 'мултиплейър',
+        'performance' => 'представяне',
+        'score' => 'резултат',
     ],
 
     'spotlight' => [

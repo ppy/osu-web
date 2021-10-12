@@ -14,7 +14,7 @@ export class Events extends React.Component
         if @props.events.length == 0
           div className: 'modding-profile-list__empty', osu.trans('users.show.extra.none')
         else
-          div className: 'beatmapset-events beatmapset-events--profile',
+          el React.Fragment, null,
             el DiscussionEvents,
               events: @props.events
               mode: 'profile'

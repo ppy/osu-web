@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => '上传更多谱面',
-                'description' => '普通玩家的 Pending 谱面位数量上限为 :base，支持玩家为 :supporter_base，并且每拥有一张 Ranked 谱面，能提升 :bonus 张上限（支持玩家能提升 :supporter_bonus 张），普通玩家最多提升到 :bonus_max 张，支持玩家最多提升到 :supporter_bonus_max 张。',
+                'description' => '同一时间你能上传的 Pending/WIP 谱面位数量由一个基础值和额外奖励组成。<br/><br/>普通玩家的 Pending/WIP 谱面位数量上限为 :base 张，支持玩家为 :supporter_base 张，并且每拥有 1 张 Ranked 谱面，能提升 :bonus 张上限，普通玩家额外最多提升 :bonus_max 张，支持玩家额外最多提升 :supporter_bonus_max 张。',
             ],
             'friend_filtering' => [
                 'title' => '好友排行榜',

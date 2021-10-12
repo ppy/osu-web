@@ -88,7 +88,7 @@
                     <div class="grid-cell grid-cell--2of3">
                         {!! Form::open(['route' => ['admin.store.orders.update', $o->order_id], 'method' => 'put', 'data-remote' => true]) !!}
                             <div class="form-group">
-                            @if ($o->status === 'paid' || $o->status === 'shipped')
+                            @if ($o->isPaid() || $o->isShipped())
                                 {!! Form::label('order[status]', 'Status') !!}
                                 {!! Form::select('order[status]', ['paid' => 'Paid', 'shipped' => 'Shipped'], $o->status, ['class' => 'js-auto-submit form-control']) !!}
                             @else
