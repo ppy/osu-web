@@ -15,7 +15,7 @@ interface Props {
 
 @observer
 export class OwnClient extends React.Component<Props> {
-  deleteClicked = (event: React.MouseEvent<HTMLElement>) => {
+  deleteClicked = () => {
     if (!confirm(osu.trans('oauth.own_clients.confirm_delete'))) return;
 
     this.props.client.delete().catch(osu.ajaxError);
