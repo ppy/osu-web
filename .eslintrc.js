@@ -16,7 +16,6 @@ module.exports = {
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'plugin:react-hooks/recommended',
         'plugin:react/recommended',
-        'plugin:typescript-sort-keys/recommended',
       ],
       files: ['resources/assets/lib/**/*.{ts,tsx}', 'tests/karma/**/*.ts'],
       parser: '@typescript-eslint/parser',
@@ -136,6 +135,8 @@ module.exports = {
         'react/no-unsafe': 'off',
         'react/self-closing-comp': 'error',
         semi: 'off',
+        'typescript-sort-keys/interface': ['error', 'asc', { caseSensitive: false }],
+        'typescript-sort-keys/string-enum': ['error', 'asc', { caseSensitive: false }],
       },
       settings: {
         react: {
