@@ -137,6 +137,11 @@ return [
 ',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'cửa hàng',
     ],

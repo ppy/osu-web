@@ -137,7 +137,7 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Akun Anda telah dibatasi!',
+        'title' => 'Akun Anda telah di-restrict!',
         'message' => 'Selama akun Anda di-restrict, Anda tidak dapat berinteraksi dengan para pengguna lain dan skor-skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang terbukti tidak melakukan pelanggaran apapun terhadap aturan-aturan yang berlaku. Jika Anda ingin mengajukan banding atas status akun Anda, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
     ],
     'show' => [
