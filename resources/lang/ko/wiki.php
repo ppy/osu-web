@@ -12,6 +12,7 @@ return [
         'missing_translation' => '현재 사용하시는 언어로 된 요청하신 페이지를 찾을 수 없습니다.',
         'needs_cleanup_or_rewrite' => '이 페이지는 osu! 위키 표준을 따르지 않으며 정리해서 다시 쓸 필요가 있습니다. 도울 여건이 되신다면, 글 업데이트를 고려해 주세요!',
         'search' => ':link에 해당하는 페이지',
+        'stub' => '',
         'toc' => '내용',
 
         'edit' => [

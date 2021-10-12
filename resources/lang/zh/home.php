@@ -60,7 +60,7 @@ return [
             'login_required' => '登录以搜索玩家',
             'more' => '搜索到 :count 个玩家',
             'more_simple' => '查看更多搜索结果',
-            'more_hidden' => '玩家搜索超出 :max 个限制，请修改搜索内容。',
+            'more_hidden' => '玩家搜索结果超出 :max 个限制，请修改搜索内容。',
             'title' => '玩家',
         ],
 
@@ -91,10 +91,10 @@ return [
         'steps' => [
             'register' => [
                 'title' => '注册账号',
-                'description' => '根据游戏提示进行登录或注册',
+                'description' => '根据游戏提示登录或注册',
             ],
             'download' => [
-                'title' => '下载游戏',
+                'title' => '安装游戏',
                 'description' => '点击上面的按钮下载安装器，然后运行它！',
             ],
             'beatmaps' => [
@@ -123,7 +123,7 @@ return [
         ],
         'beatmaps' => [
             'new' => '新 Ranked 谱面',
-            'popular' => '高人气谱面',
+            'popular' => '热门谱面',
             'by_user' => '作者：:user',
         ],
         'buttons' => [
@@ -138,7 +138,7 @@ return [
         'subtitle' => '看起来你玩得很开心！',
         'body' => [
             'part-1' => '你知道吗？ osu! 是一款没有广告，完全依赖玩家支持以维持开发及运营的游戏。',
-            'part-2' => '如果你选择给 osu! 捐赠，就可以解锁额外的功能，例如<strong>游戏内自动下载</strong>。',
+            'part-2' => '如果你支持 osu!，就可以解锁额外的功能，例如<strong>游戏内自动下载</strong>。',
         ],
         'find-out-more' => '点击这里以了解更多',
         'download-starting' => "对了，别担心 - 下载已经开始了 ;)",

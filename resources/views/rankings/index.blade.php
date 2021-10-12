@@ -117,7 +117,7 @@
         </div>
     @endif
 
-    <div class="osu-page osu-page--generic">
+    <div class="osu-page osu-page--generic" id="scores">
         @if ($hasPager)
             @include('objects._pagination_v2', [
                 'object' => $scores
@@ -127,7 +127,6 @@
         @endif
 
         <div class="ranking-page">
-            <div class="ranking-page__jump-target" id="scores"></div>
             @yield('scores')
         </div>
 

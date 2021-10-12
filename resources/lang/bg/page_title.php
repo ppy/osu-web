@@ -36,10 +36,10 @@ return [
     'main' => [
         'account_controller' => [
             'edit' => 'главно табло',
-            'verify_link' => 'потвърждение на акаунта',
+            'verify_link' => 'потвърждение на акаунт',
         ],
         'artists_controller' => [
-            '_' => 'препоръчани изпълнители',
+            '_' => 'представени автори',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'бийтмап дискусии',
@@ -65,7 +65,7 @@ return [
             'show' => 'бийтмап инфо',
         ],
         'changelog_controller' => [
-            '_' => 'списък на промените',
+            '_' => 'списък с промени',
         ],
         'chat_controller' => [
             '_' => 'чат',
@@ -86,7 +86,7 @@ return [
             'show' => 'групи',
         ],
         'home_controller' => [
-            'get_download' => 'изтегли',
+            'get_download' => 'изтегляне',
             'index' => 'главно табло',
             'search' => 'търсене',
             'support_the_game' => 'подкрепи играта',
@@ -96,10 +96,10 @@ return [
             '_' => 'информация',
         ],
         'livestreams_controller' => [
-            '_' => 'живи потоци',
+            '_' => 'игри на живо',
         ],
         'matches_controller' => [
-            '_' => 'мачове',
+            '_' => 'състезания',
         ],
         'news_controller' => [
             '_' => 'новини',
@@ -108,13 +108,13 @@ return [
             '_' => 'история на известията',
         ],
         'password_reset_controller' => [
-            '_' => 'въстановяване на парола',
+            '_' => 'възстановяване на парола',
         ],
         'ranking_controller' => [
             '_' => 'класации',
         ],
         'scores_controller' => [
-            '_' => 'изпълнение',
+            '_' => 'представяне',
         ],
         'store_controller' => [
             '_' => 'магазин',
@@ -123,7 +123,7 @@ return [
             '_' => 'турнири',
         ],
         'users_controller' => [
-            '_' => 'инфо на играча',
+            '_' => 'инфо за играч',
             'disabled' => 'известие',
         ],
         'wiki_controller' => [
@@ -135,15 +135,20 @@ return [
             '_' => 'класиране',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'магазин',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'modder инфо',
+            '_' => 'инфо за редакции',
         ],
         'multiplayer_controller' => [
-            '_' => 'мултиплеър история',
+            '_' => 'мултиплейър история',
         ],
     ],
 ];

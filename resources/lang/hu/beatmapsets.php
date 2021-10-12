@@ -16,7 +16,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Kiemelt előadó',
     ],
 
     'index' => [
@@ -58,9 +58,9 @@ return [
 
         'details' => [
             'by_artist' => ':artist által',
-            'favourite' => 'A beatmap szett kedvencek közé tétele',
+            'favourite' => 'A beatmap kedvencek közé tétele',
             'favourite_login' => 'Jelentkezz be, hogy kedvencnek jelölt ezt beatmap-et',
-            'logged-out' => 'Beatmap letöltéshez be kell jelentkezned!',
+            'logged-out' => 'Beatmapek letöltéshez be kell jelentkezned!',
             'mapped_by' => 'mappolva :mapper által',
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
             'updated_timeago' => 'utóljára frissítve: :timeago',
@@ -80,7 +80,7 @@ return [
 
         'details_date' => [
             'approved' => 'jóváhagyva: :timeago',
-            'loved' => 'kedvelve: :timeago',
+            'loved' => 'szerette: :timeago',
             'qualified' => 'kvalifikálva: :timeago',
             'ranked' => 'rangsorolva: :timeago',
             'submitted' => 'beküldve: :timeago',
@@ -92,7 +92,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Hype-old a map-et ha élvezted rajta a játékot, hogy segíthesd a <strong>Rangsorolt</strong> állapot felé jutásban.',
+            'action' => 'Hype-old a beatmapet ha élvezted rajta a játékot, hogy segíthesd a <strong>Rangsorolt</strong> állapot felé jutásban.',
 
             'current' => [
                 '_' => 'Ez a map :status jelenleg.',
@@ -195,7 +195,7 @@ return [
         'status' => [
             'ranked' => 'Rangsorolt',
             'approved' => 'Jóváhagyott',
-            'loved' => 'Kedvelve',
+            'loved' => 'Szeretett',
             'qualified' => 'Kvalifikálva',
             'wip' => 'Készítés alatt',
             'pending' => 'Függőben',

@@ -4,8 +4,9 @@
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import Tracklist from 'tracklist'
+import { parseJson } from 'utils/json'
 
 core.reactTurbolinks.register 'artistTracklist', (container) ->
   createElement Tracklist,
-    artist: osu.parseJson(container.dataset.artistSrc)
-    tracks: osu.parseJson(container.dataset.src)
+    artist: parseJson(container.dataset.artistSrc)
+    tracks: parseJson(container.dataset.src)

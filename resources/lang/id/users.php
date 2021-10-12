@@ -137,7 +137,7 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Akun Anda telah dibatasi!',
+        'title' => 'Akun Anda telah di-restrict!',
         'message' => 'Selama akun Anda di-restrict, Anda tidak dapat berinteraksi dengan para pengguna lain dan skor-skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang terbukti tidak melakukan pelanggaran apapun terhadap aturan-aturan yang berlaku. Jika Anda ingin mengajukan banding atas status akun Anda, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
     ],
     'show' => [
@@ -156,7 +156,7 @@ return [
         'title' => "profil :username",
 
         'comments_count' => [
-            '_' => 'Telah mengirimkan :link',
+            '_' => 'Telah menulis :link',
             'count' => ':count_delimited komentar|:count_delimited komentar',
         ],
         'edit' => [
@@ -216,12 +216,12 @@ return [
             ],
             'discussions' => [
                 'title' => 'Diskusi',
-                'title_longer' => 'Diskusi Terbaru',
+                'title_longer' => 'Topik-Topik Diskusi Terkini',
                 'show_more' => 'lihat lebih banyak diskusi',
             ],
             'events' => [
                 'title' => 'Aktivitas',
-                'title_longer' => 'Aktivitas Terakhir',
+                'title_longer' => 'Aktivitas-Aktivitas Terkini',
                 'show_more' => 'lihat lebih banyak aktivitas',
             ],
             'historical' => [
@@ -306,7 +306,7 @@ return [
             ],
             'posts' => [
                 'title' => 'Posting',
-                'title_longer' => 'Postingan Terbaru',
+                'title_longer' => 'Postingan-Postingan Terkini',
                 'show_more' => 'lihat lebih banyak post',
             ],
             'recent_activity' => [
@@ -330,7 +330,7 @@ return [
                 'given' => 'Suara Diberikan (3 bulan terakhir)',
                 'received' => 'Suara Diterima (3 bulan terakhir)',
                 'title' => 'Hak Suara',
-                'title_longer' => 'Pilihan Terbaru',
+                'title_longer' => 'Riwayat Pemberian Suara Terkini',
                 'vote_count' => ':count_delimited suara|:count_delimited suara',
             ],
             'account_standing' => [
@@ -383,7 +383,7 @@ return [
             ],
         ],
         'post_count' => [
-            '_' => 'Berkontribusi sebanyak :link',
+            '_' => 'Telah berkontribusi terhadap :link',
             'count' => ':count_delimited postingan forum|:count_delimited postingan forum',
         ],
         'rank' => [

@@ -22,7 +22,7 @@ return [
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
         'message_placeholder_locked' => 'Laman diskusi pada beatmap ini telah ditutup.',
-        'message_placeholder_silenced' => "Anda tidak dapat berpartisipasi pada laman diskusi beatmap ketika akun Anda sedang di-silence.",
+        'message_placeholder_silenced' => "Anda tidak dapat membuka topik diskusi baru ketika akun Anda sedang di-silence.",
         'message_type_select' => 'Pilih Jenis Komentar',
         'reply_notice' => 'Tekan enter untuk membalas.',
         'reply_placeholder' => 'Ketik balasan Anda di sini',
@@ -55,15 +55,15 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Topik-topik diskusi ini berlaku untuk keseluruhan mapset secara umum. Untuk membuka topik diskusi baru, mulai pesan Anda dengan keterangan waktu (cth: 00:12:345).',
+            'in_general' => 'Topik-topik diskusi ini berlaku untuk keseluruhan mapset secara umum. Untuk membuka topik diskusi baru, coba memulai pesan dengan keterangan waktu (contoh: 00:12:345).',
             'in_timeline' => 'Topik-topik diskusi ini berlaku untuk masing-masing tingkat kesulitan secara spesifik. Untuk memulai topik diskusi baru, salin keterangan waktu dari editor disertai dengan komentar Anda (satu topik per keterangan waktu).',
         ],
 
         'message_placeholder' => [
-            'general' => 'Ketik di sini untuk membuka topik bahasan baru pada kolom diskusi Umum (:version)',
-            'generalAll' => 'Ketik di sini untuk membuka topik bahasan baru pada kolom diskusi Umum (Seluruh tingkat kesulitan)',
-            'review' => 'Ketik di sini untuk memulai kajian baru',
-            'timeline' => 'Ketik di sini untuk membuka topik bahasan baru pada kolom diskusi Linimasa (:version)',
+            'general' => 'Ketik di sini untuk membuka topik diskusi baru pada Umum (:version)',
+            'generalAll' => 'Ketik di sini untuk membuka topik diskusi baru pada Umum (Semua tingkat kesulitan)',
+            'review' => 'Ketik di sini untuk membuka kajian baru',
+            'timeline' => 'Ketik di sini untuk membuka topik diskusi baru pada Linimasa (:version)',
         ],
 
         'message_type' => [
@@ -92,7 +92,7 @@ return [
             'pin' => 'Sematkan',
             'timestamp' => 'Keterangan Waktu',
             'timestamp_missing' => 'salin (ctrl+c) objek-objek yang Anda kehendaki di editor dan tempelkan (ctrl+v) pada boks di atas untuk membubuhkan keterangan waktu!',
-            'title' => 'Diskusi Baru',
+            'title' => 'Topik Diskusi Baru',
             'unpin' => 'Lepas sematan',
         ],
 
@@ -104,8 +104,8 @@ return [
                 'unlink' => 'Hapus Tautan',
                 'unsaved' => 'Belum Tersimpan',
                 'timestamp' => [
-                    'all-diff' => 'Anda tidak dapat membubuhkan keterangan waktu pada topik bahasan yang tertuju pada "Umum (Semua tingkat kesulitan)".',
-                    'diff' => 'Apabila terdapat keterangan waktu pada :type ini, topik bahasan yang bersangkutan akan muncul pada Linimasa.',
+                    'all-diff' => 'Anda tidak dapat membubuhkan keterangan waktu pada topik diskusi yang tertuju pada "Umum (Seluruh tingkat kesulitan)".',
+                    'diff' => 'Apabila terdapat keterangan waktu pada :type ini, topik diskusi yang bersangkutan akan muncul pada Linimasa.',
                 ],
             ],
             'insert-block' => [
@@ -138,7 +138,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Beatmap ini telah di-approve pada :date!',
-            'graveyard' => "Beatmap ini belum diperbarui sejak :date dan kemungkinan besar telah diabaikan oleh pembuatnya...",
+            'graveyard' => "Beatmap ini belum diperbarui sejak :date dan sepertinya telah diabaikan oleh pembuatnya...",
             'loved' => 'Beatmap ini telah ditambahkan pada kategori \'Loved\' pada :date!',
             'ranked' => 'Beatmap ini telah di-rank pada :date!',
             'wip' => 'Catatan: Beatmap ini ditandai dengan status dalam pengerjaan (work-in-progress) oleh pembuat beatmap.',
@@ -181,7 +181,7 @@ return [
         'disqualified_at' => 'Didiskualifikasi pada :time_ago (:reason).',
         'disqualified_no_reason' => 'tidak ada alasan yang diberikan',
         'disqualify' => 'Diskualifikasi',
-        'incorrect_state' => 'Ditemukan kesalahan saat melakukan tindakan ini, silakan muat ulang laman.',
+        'incorrect_state' => 'Terdapat kesalahan saat melakukan tindakan ini. Harap muat ulang laman.',
         'love' => 'Love',
         'love_choose' => 'Pilih tingkat kesulitan untuk diangkat ke kategori Loved',
         'love_confirm' => 'Love beatmap ini?',
@@ -252,7 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Sertakan map-map convert',
-        'featured_artists' => '',
+        'featured_artists' => 'Featured artist',
         'follows' => 'Tampilkan hanya mapper-mapper yang dipantau',
         'recommended' => 'Rentang kesulitan yang disarankan',
     ],
@@ -322,7 +322,7 @@ return [
         'any' => 'Semua',
         'english' => 'Inggris',
         'chinese' => 'Mandarin',
-        'french' => 'Prancis',
+        'french' => 'Perancis',
         'german' => 'Jerman',
         'italian' => 'Italia',
         'japanese' => 'Jepang',

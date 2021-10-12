@@ -47,7 +47,7 @@ class OrdersController extends Controller
             ->get();
 
         foreach ($order as $o) {
-            $o->status = 'shipped';
+            $o->status = Order::STATUS_SHIPPED;
             $o->save();
         }
 
@@ -58,7 +58,7 @@ class OrdersController extends Controller
     {
         $order = Order::findOrFail($id);
 
-        if ($order->status !== 'paid') {
+        if (!$order->isPaid()) {
             return error_popup("order status {$order->status} is invalid.");
         }
 

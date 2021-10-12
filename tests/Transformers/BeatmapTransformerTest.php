@@ -59,7 +59,7 @@ class BeatmapTransformerTest extends TestCase
     {
         parent::setUp();
 
-        $beatmapset = factory(Beatmapset::class)->states('deleted', 'with_discussion')->create();
+        $beatmapset = Beatmapset::factory()->deleted()->withDiscussion()->create();
         $this->deletedBeatmap = $beatmapset->beatmaps()->first();
         $this->deletedBeatmap->delete();
     }

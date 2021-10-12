@@ -224,26 +224,4 @@ class BeatmapsetQueryParser
             return presence(trim($value, '"'));
         }
     }
-
-    private static function parseLength($input)
-    {
-        static $scales = [
-            'ms' => 0.001,
-            's' => 1,
-            'm' => 60,
-            'h' => 3600,
-        ];
-
-        $value = get_float($input);
-
-        if ($value !== null) {
-            $scale = $scales[substr($input, -2)] ?? $scales[substr($input, -1)] ?? 1;
-            $value *= $scale;
-        }
-
-        return [
-            'value' => $value,
-            'scale' => $scale ?? null,
-        ];
-    }
 }

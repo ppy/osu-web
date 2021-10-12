@@ -29,7 +29,7 @@ class CommentTest extends TestCase
         }
 
         $commenter = factory(User::class)->create();
-        $commentable = factory(Build::class)->create();
+        $commentable = Build::factory()->create();
         $parentComment = $commentable->comments()->create([
             'message' => 'Test',
             'user_id' => $user->getKey(),
@@ -53,7 +53,7 @@ class CommentTest extends TestCase
     public function testReplyingToDeletedComment()
     {
         $user = factory(User::class)->create();
-        $commentable = factory(Build::class)->create();
+        $commentable = Build::factory()->create();
         $parentComment = $commentable->comments()->create([
             'message' => 'Test',
             'user_id' => $user->getKey(),

@@ -101,22 +101,13 @@ export default class TracklistTrack extends React.PureComponent<Props> {
             <span className='fa-fw play-button' />
           </button>
 
-          {this.props.track.osz == null ? (
-            <span
-              className='artist-track__button artist-track__link--button'
-              title={osu.trans('artist.beatmaps.download-na')}
-            >
-              <span className='fas fa-fw fa-download' />
-            </span>
-          ) : (
-            <a
-              className='artist-track__button'
-              href={this.props.track.osz}
-              title={osu.trans('artist.beatmaps.download')}
-            >
-              <span className='fas fa-fw fa-download' />
-            </a>
-          )}
+          <a
+            className='artist-track__button'
+            href={this.props.track.osz}
+            title={osu.trans('artist.beatmaps.download')}
+          >
+            <span className='fas fa-fw fa-download' />
+          </a>
         </div>
       </div>
     );

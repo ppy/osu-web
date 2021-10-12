@@ -16,7 +16,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Featured artist',
     ],
 
     'index' => [
@@ -164,7 +164,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Tidak seorang pun dari negara Anda yang memiliki skor di map ini!',
-                'friend' => 'Tidak seorang pun dari daftar teman Anda yang memiliki skor di map ini!',
+                'friend' => 'Anda tidak memiliki teman yang telah menorehkan skor di map ini!',
                 'global' => 'Belum ada skor yang tercatat pada beatmap ini. Mungkin Anda tertarik untuk mencetak skor Anda sendiri?',
                 'loading' => 'Memuat skor...',
                 'unranked' => 'Beatmap ini tidak berstatus Ranked.',

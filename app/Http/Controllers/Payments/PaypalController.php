@@ -46,7 +46,7 @@ class PaypalController extends Controller
 
         $order = auth()->user()
             ->orders()
-            ->processing()
+            ->paymentRequested()
             ->findOrFail($params['order_id']);
 
         if (present($params['paymentId'])) {
@@ -72,7 +72,7 @@ class PaypalController extends Controller
     {
         $orderId = get_int(request('order_id'));
 
-        $order = auth()->user()->orders()->processing()->findOrFail($orderId);
+        $order = auth()->user()->orders()->paymentRequested()->findOrFail($orderId);
 
         return (new PaypalCreatePayment($order))->run();
     }
@@ -82,7 +82,7 @@ class PaypalController extends Controller
     {
         $orderId = get_int(request('order_id'));
 
-        $order = auth()->user()->orders()->processing()->find($orderId);
+        $order = auth()->user()->orders()->paymentRequested()->find($orderId);
 
         if ($order === null) {
             return ujs_redirect(route('store.cart.show'));

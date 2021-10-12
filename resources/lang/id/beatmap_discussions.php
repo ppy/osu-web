@@ -53,8 +53,8 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Tidak ada postingan yang membahas masalah saya',
-        'notice' => 'Terdapat postingan pada :timestamp (:existing_timestamps). Silakan periksa sebelum memposting.',
+        'confirm' => 'Saya tidak menemukan adanya postingan yang membahas isu yang hendak saya angkat',
+        'notice' => 'Kami mendeteksi keterdapatan postingan-postingan lain di sekitar :timestamp (:existing_timestamps). Harap periksa kembali apakah isu yang hendak Anda angkat telah dibahas oleh pengguna lain sebelumnya.',
         'unsaved' => ':count pada kajian ini',
     ],
 
