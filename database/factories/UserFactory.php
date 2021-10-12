@@ -20,7 +20,7 @@ $factory->define(User::class, function (Faker\Generator $faker) {
     }
 
     // Get or create a random country
-    $countryAcronym = array_rand_val(Country::pluck('acronym')) ?? factory(Country::class)->create()->acronym;
+    $countryAcronym = array_rand_val(Country::pluck('acronym')) ?? Country::factory()->create()->acronym;
 
     // cache password hash to speed up tests (by not repeatedly calculating the same hash over and over)
     static $password = null;

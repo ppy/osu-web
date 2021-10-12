@@ -28,7 +28,7 @@ class SessionsControllerTest extends TestCase
     public function testLoginInactiveUser()
     {
         $password = 'password1';
-        $countryAcronym = (Country::first() ?? factory(Country::class)->create())->getKey();
+        $countryAcronym = (Country::first() ?? Country::factory()->create())->getKey();
         $user = factory(User::class)->create(['password' => $password, 'country_acronym' => $countryAcronym]);
         $user->update(['user_lastvisit' => now()->subDays(config('osu.user.inactive_days_verification') + 1)]);
 
