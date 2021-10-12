@@ -54,7 +54,6 @@ export default class RecentActivity extends React.PureComponent<Props> {
             hasMore={this.props.pagination.recentActivity.hasMore}
             loading={this.props.pagination.recentActivity.loading}
             modifiers={['profile-page', 't-greyseafoam-dark']}
-
           />
         </div>
       </div>
