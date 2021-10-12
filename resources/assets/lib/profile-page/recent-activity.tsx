@@ -5,40 +5,22 @@ import { route } from 'laroute';
 import { snakeCase } from 'lodash';
 import AchievementBadge from 'profile-page/achievement-badge';
 import ExtraHeader from 'profile-page/extra-header';
+import { Event, isTypeOf } from 'profile-page/recent-activity-events';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 
-const eventTypes = [
-  'achievement',
-  'beatmapPlaycount',
-  'beatmapsetApprove',
-  'beatmapsetDelete',
-  'beatmapsetRevive',
-  'beatmapsetUpdate',
-  'beatmapsetUpload',
-  'rank',
-  'rankLost',
-  'usernameChange',
-  'userSupportAgain',
-  'userSupportFirst',
-  'userSupportGift'
-] as const;
-type EventType = (typeof eventTypes)[number];
-
-interface Event {
-  created_at: string;
-  id: number;
-  parse_error?: boolean;
-  type: EventType;
-}
-
 interface Props {
   name: string;
   pagination: unknown;
-  recentActivity: Event[]
+  recentActivity: Event[];
   withEdit: boolean;
+}
+
+interface RenderEntryValues {
+  badge: React.ReactNode;
+  mappings: React.ReactNode;
 }
 
 function link(url: string, title: string) {
@@ -55,116 +37,90 @@ export default class RecentActivity extends React.PureComponent<Props> {
     );
   }
 
-  private parseEvent(event: Event) {
-    let badge: JSX.Element | null = null;
+  private parseEvent(event: Event): RenderEntryValues {
+    let badge: React.ReactNode = null;
     let mappings: Record<string, React.ReactNode> = {};
 
-    switch (event.type) {
-      case 'achievement':
-        badge = (
-          <AchievementBadge
-            achievement={event.achievement}
-            modifiers={['recent-activity']}
-            userAchievement={{
-              achieved_at: event.created_at
-              achievement_id: event.achievement.id
-            }}
-          />
-        );
+    if (isTypeOf(event, 'achievement')) {
+      badge = (
+        <AchievementBadge
+          achievement={event.achievement}
+          modifiers={['recent-activity']}
+          userAchievement={{
+            achieved_at: event.created_at,
+            achievement_id: event.achievement.id,
+          }}
+        />
+      );
 
-        mappings = {
-          achievement: <strong>event.achievement.name</strong>,
-          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-        };
-        break;
+      mappings = {
+        achievement: <strong>{event.achievement.name}</strong>,
+        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      };
+    } else if (isTypeOf(event, 'beatmapPlaycount')) {
+      mappings = {
+        beatmap: link(event.beatmap.url, event.beatmap.title),
+        count: event.count,
+      };
+    } else if (isTypeOf(event, 'beatmapsetApprove')) {
+      mappings = {
+        approval: osu.trans(`events.beatmapset_status.${event.approval}`),
+        beatmapset: link(event.beatmapset.url, event.beatmapset.title),
+        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      };
+    } else if (isTypeOf(event, 'beatmapsetDelete')) {
+      mappings = {
+        beatmapset: event.beatmapset.title,
+      };
+    } else if (isTypeOf(event, 'beatmapsetRevive')) {
+      mappings = {
+        beatmapset: link(event.beatmapset.url, event.beatmapset.title),
+        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      };
+    } else if (isTypeOf(event, 'beatmapsetUpdate')) {
+      mappings = {
+        beatmapset: <em>{link(event.beatmapset.url, event.beatmapset.title)}</em>,
+        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      };
+    } else if (isTypeOf(event, 'beatmapsetUpload')) {
+      mappings = {
+        beatmapset: link(event.beatmapset.url, event.beatmapset.title),
+        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      };
+    } else if (isTypeOf(event, 'rank')) {
+      badge = <div className={`score-rank score-rank--${event.scoreRank}`} />
 
-      case 'beatmapPlaycount':
-        mappings = {
-          beatmap: link(event.beatmap.url, event.beatmap.title),
-          count: event.count,
-        };
-        break;
+      mappings = {
+        beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
+        mode: osu.trans(`beatmaps.mode.${event.mode}`),
+        rank: event.rank,
+        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      };
+    } else if (isTypeOf(event, 'rankLost')) {
+      mappings = {
+        beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
+        mode: osu.trans(`beatmaps.mode.${event.mode}`),
+        rank: event.rank,
+        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
 
-      case 'beatmapsetApprove':
-        mappings = {
-          approval: osu.trans(`events.beatmapset_status.${event.approval}`),
-          beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-          user: <strong>{link(event.user.url, event.user.username)}</strong>,
-        };
-        break;
-
-      case 'beatmapsetDelete':
-        mappings = {
-          beatmapset: event.beatmapset.title,
-        };
-        break;
-
-      case 'beatmapsetRevive':
-        mappings = {
-          beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-          user: <strong>{link(event.user.url, event.user.username)}</strong>,
-        };
-        break;
-
-      case 'beatmapsetUpdate':
-        mappings = {
-          beatmapset: <em>{ink(event.beatmapset.url, event.beatmapset.title)}</em>,
-          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-        };
-        break;
-
-      case 'beatmapsetUpload':
-        mappings = {
-          beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-        };
-        break;
-
-      case 'rank':
-        badge = <div className={`score-rank score-rank--${event.scoreRank}`} />
-
-        mappings = {
-          beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
-          mode: osu.trans(`beatmaps.mode.${event.mode}`),
-          rank: event.rank,
-          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-        };
-        break;
-
-      case 'rankLost':
-        mappings = {
-          beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
-          mode: osu.trans(`beatmaps.mode.${event.mode}`),
-          rank: event.rank,
-          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-
-        };
-        break;
-
-      case 'userSupportAgain':
-        mappings = {
-          user: <strong>{link(event.user.url, event.user.username)}</strong>,
-        };
-        break;
-
-      case 'userSupportFirst':
-        mappings = {
-          user: <strong>{link(event.user.url, event.user.username)}</strong>,
-        };
-        break;
-
-      case 'userSupportGift':
-        mappings = {
-          user: <strong>{link(event.user.url, event.user.username)}</strong>,
-        };
-        break;
-
-      case 'usernameChange':
-        mappings = {
-          previousUsername: <strong>{event.user.previousUsername}</strong>,
-          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-        };
-        break;
+      };
+    } else if (isTypeOf(event, 'userSupportAgain')) {
+      mappings = {
+        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      };
+    } else if (isTypeOf(event, 'userSupportFirst')) {
+      mappings = {
+        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      };
+    } else if (isTypeOf(event, 'userSupportGift')) {
+      mappings = {
+        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      };
+    } else if (isTypeOf(event, 'usernameChange')) {
+      mappings = {
+        previousUsername: <strong>{event.user.previousUsername}</strong>,
+        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      };
     }
 
     return { badge, mappings };
@@ -220,5 +176,5 @@ export default class RecentActivity extends React.PureComponent<Props> {
         </div>
       </li>
     );
-  }
+  };
 }
