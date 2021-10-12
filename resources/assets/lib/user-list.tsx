@@ -3,7 +3,6 @@
 
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
-import * as _ from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';

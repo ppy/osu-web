@@ -5,7 +5,6 @@ import AdminMenu from 'admin-menu';
 import PostJson from 'interfaces/news-post-json';
 import NewsSidebarMetaJson from 'interfaces/news-sidebar-meta-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import NewsHeader from 'news-header';
@@ -62,7 +61,7 @@ export default class Main extends React.Component<Props> {
 
             <div className='wiki-page__content'>
               <div className='news-index'>
-                {this.data.news_posts.map((post, i) => (
+                {this.data.news_posts.map((post) => (
                   <PostItem key={post.id} post={post} />
                 ))}
 
