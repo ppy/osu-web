@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { snakeCase } from 'lodash';
 import ExtraHeader from 'profile-page/extra-header';
@@ -12,8 +13,14 @@ import TimeWithTooltip from 'time-with-tooltip';
 
 interface Props {
   name: string;
-  pagination: unknown;
+  pagination: {
+    recentActivity: {
+      hasMore: boolean;
+      loading: boolean;
+    };
+  };
   recentActivity: Event[];
+  user: UserJson;
   withEdit: boolean;
 }
 
