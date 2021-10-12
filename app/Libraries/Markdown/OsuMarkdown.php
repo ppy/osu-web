@@ -17,6 +17,7 @@ use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\DefaultAttributes\DefaultAttributesExtension;
+use League\CommonMark\Extension\Footnote\FootnoteExtension;
 use League\CommonMark\Extension\Table\Table;
 use League\CommonMark\Extension\Table\TableCell;
 use League\CommonMark\Extension\Table\TableExtension;
@@ -53,6 +54,7 @@ class OsuMarkdown
     // this config is only used in this class
     const DEFAULT_OSU_MARKDOWN_CONFIG = [
         'block_modifiers' => [],
+        'enable_footnote' => false,
         'parse_attribute_id' => false,
         'parse_yaml_header' => true,
     ];
@@ -123,6 +125,7 @@ class OsuMarkdown
             ],
             'osu_markdown' => [
                 'block_modifiers' => ['wiki'],
+                'enable_footnote' => true,
                 'parse_attribute_id' => true,
             ],
         ],
@@ -257,6 +260,10 @@ class OsuMarkdown
                 'default_attributes' => $this->createDefaultAttributesConfig(),
             ];
 
+            if ($this->osuMarkdownConfig['enable_footnote']) {
+                $extraConfig['footnote'] = $this->createFootnoteConfig();
+            }
+
             $environment = $this->createEnvironment($extraConfig);
             $environment->addExtension(new DefaultAttributesExtension());
 
@@ -300,6 +307,10 @@ class OsuMarkdown
 
         if ($this->osuExtensionConfig['style_block_allowed_classes'] !== null) {
             $environment->addExtension(new StyleBlock\Extension());
+        }
+
+        if ($this->osuMarkdownConfig['enable_footnote']) {
+            $environment->addExtension(new FootnoteExtension());
         }
 
         return $environment;
@@ -356,6 +367,22 @@ class OsuMarkdown
                     ]
                 ),
             ],
+        ];
+    }
+
+    private function createFootnoteConfig()
+    {
+        $blockClass = $this->osuExtensionConfig['block_name'];
+
+        return [
+            'backref_class' => "{$blockClass}__link",
+            'backref_symbol' => '↑',
+            'container_add_hr' => false,
+            'container_class' => "{$blockClass}__footnote-container",
+            'footnote_class' => "{$blockClass}__list-item {$blockClass}__list-item--footnote",
+            'footnote_id_prefix' => 'fn-',
+            'ref_class' => "{$blockClass}__link {$blockClass}__link--footnote-ref js-reference-link",
+            'ref_id_prefix' => 'fnref-',
         ];
     }
 }
