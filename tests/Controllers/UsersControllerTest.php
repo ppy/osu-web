@@ -112,7 +112,7 @@ class UsersControllerTest extends TestCase
 
     public function testStoreWithCountry()
     {
-        $country = Country::inRandomOrder()->first() ?? factory(Country::class)->create();
+        $country = Country::inRandomOrder()->first() ?? Country::factory()->create();
 
         $previousCount = User::count();
 

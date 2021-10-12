@@ -67,7 +67,7 @@ class SanityTest extends DuskTestCase
         }
 
         (new static())->createApplication();
-        self::$scaffolding['country'] = Country::first() ?? factory(\App\Models\Country::class)->create();
+        self::$scaffolding['country'] = Country::first() ?? \App\Models\Country::factory()->create();
         // user to login as and to use for requests
         self::$scaffolding['user'] = factory(\App\Models\User::class)->create([
             'country_acronym' => self::$scaffolding['country']->acronym,
