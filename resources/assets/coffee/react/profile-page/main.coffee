@@ -1,19 +1,19 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import AccountStanding from 'profile-page/account-standing'
 import { ExtraTab } from './extra-tab'
-import Beatmapsets from 'profile-page/beatmapsets'
 import { Header } from './header'
 import { Historical } from './historical'
-import Kudosu from 'profile-page/kudosu'
 import { Medals } from './medals'
-import RecentActivity from 'profile-page/recent-activity'
 import { TopRanks } from './top-ranks'
 import { UserPage } from './user-page'
 import { BlockButton } from 'block-button'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
+import AccountStanding from 'profile-page/account-standing'
+import Beatmapsets from 'profile-page/beatmapsets'
+import Kudosu from 'profile-page/kudosu'
+import RecentActivity from 'profile-page/recent-activity'
 import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
