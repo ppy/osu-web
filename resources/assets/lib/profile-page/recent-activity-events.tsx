@@ -151,7 +151,7 @@ function linkFn(className: string) {
 
 export function parseEvent(event: Event, classes: { badge: Modifiers; link: string }) {
   let badge: React.ReactNode = null;
-  let mappings: Record<string, React.ReactNode> = {};
+  let mappings: Record<string, React.ReactNode>;
   const link = linkFn(classes.link);
 
   switch (event.type) {
