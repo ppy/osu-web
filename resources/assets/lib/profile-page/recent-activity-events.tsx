@@ -63,49 +63,49 @@ interface EventUser {
   username: string;
 }
 
-export interface AchievementEvent extends EventBase {
+interface AchievementEvent extends EventBase {
   achievement: AchievementJson;
   type: 'achievement';
   user: EventUser;
 }
 
-export interface BeatmapPlaycountEvent extends EventBase {
+interface BeatmapPlaycountEvent extends EventBase {
   beatmap: EventBeatmap;
   count: number;
   type: 'beatmapPlaycount';
 }
 
-export interface BeatmapsetApproveEvent extends EventBase {
+interface BeatmapsetApproveEvent extends EventBase {
   approval: string;
   beatmapset: EventBeatmapset;
   type: 'beatmapsetApprove';
   user: EventUser;
 }
 
-export interface BeatmapsetDeleteEvent extends EventBase {
+interface BeatmapsetDeleteEvent extends EventBase {
   beatmapset: EventBeatmapset;
   type: 'beatmapsetDelete';
 }
 
-export interface BeatmapsetReviveEvent extends EventBase {
+interface BeatmapsetReviveEvent extends EventBase {
   beatmapset: EventBeatmapset;
   type: 'beatmapsetRevive';
   user: EventUser;
 }
 
-export interface BeatmapsetUpdateEvent extends EventBase {
+interface BeatmapsetUpdateEvent extends EventBase {
   beatmapset: EventBeatmapset;
   type: 'beatmapsetUpdate';
   user: EventUser;
 }
 
-export interface BeatmapsetUploadEvent extends EventBase {
+interface BeatmapsetUploadEvent extends EventBase {
   beatmapset: EventBeatmapset;
   type: 'beatmapsetUpload';
   user: EventUser;
 }
 
-export interface RankEvent extends EventBase {
+interface RankEvent extends EventBase {
   beatmap: EventBeatmap;
   mode: GameMode;
   rank: number;
@@ -114,31 +114,31 @@ export interface RankEvent extends EventBase {
   user: EventUser;
 }
 
-export interface RankLostEvent extends EventBase {
+interface RankLostEvent extends EventBase {
   beatmap: EventBeatmap;
   mode: GameMode;
   type: 'rankLost';
   user: EventUser;
 }
 
-export interface UsernameChangeEvent extends EventBase {
+interface UsernameChangeEvent extends EventBase {
   type: 'usernameChange';
   user: EventUser & {
     previousUsername: string;
   };
 }
 
-export interface UserSupportAgainEvent extends EventBase {
+interface UserSupportAgainEvent extends EventBase {
   type: 'userSupportAgain';
   user: EventUser;
 }
 
-export interface UserSupportFirstEvent extends EventBase {
+interface UserSupportFirstEvent extends EventBase {
   type: 'userSupportFirst';
   user: EventUser;
 }
 
-export interface UserSupportGiftEvent extends EventBase {
+interface UserSupportGiftEvent extends EventBase {
   type: 'userSupportGift';
   user: EventUser;
 }
