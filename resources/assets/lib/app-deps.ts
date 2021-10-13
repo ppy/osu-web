@@ -25,11 +25,11 @@ import Turbolinks from 'turbolinks';
 declare global {
   interface Window {
     $: any;
+    jQuery: any;
     Lang: Lang;
     LangMessages: unknown;
-    Turbolinks: Turbolinks;
-    jQuery: any;
     moment: any;
+    Turbolinks: Turbolinks;
   }
 }
 
