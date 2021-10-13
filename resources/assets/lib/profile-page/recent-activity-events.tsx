@@ -258,6 +258,11 @@ export function parseEvent(event: Event, classes: { badge: Modifiers; link: stri
         user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
       };
       break;
+
+    default: {
+      const never: never = event;
+      return never;
+    }
   }
 
   return { badge, mappings };
