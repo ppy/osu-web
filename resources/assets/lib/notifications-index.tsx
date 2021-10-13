@@ -8,7 +8,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { parseJson } from 'utils/json';
 
-core.reactTurbolinks.register('notifications-index', (container: HTMLElement) => {
+core.reactTurbolinks.register('notifications-index', () => {
   dispatch(new NotificationEventMoreLoaded(parseJson('json-notifications'), { isWidget: false }));
 
   return <Main />;
