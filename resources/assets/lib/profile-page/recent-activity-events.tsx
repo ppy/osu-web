@@ -143,19 +143,15 @@ export interface UserSupportGiftEvent extends EventBase {
   user: EventUser;
 }
 
-function linkFn(className: string) {
-  return function link(url: string, title: string) {
-    return <a className={className} href={url}>{title}</a>;
-  };
+function link(url: string, title: string) {
+  return <a href={url}>{title}</a>;
 }
 
-export function parseEvent(event: Event, classes: { badge: Modifiers; link: string }) {
+export function parseEvent(event: Event, classes: { badge: Modifiers }) {
   let badge: React.ReactNode = null;
   let mappings: Record<string, React.ReactNode>;
 
   if (event.parse_error) return { badge, mappings: null };
-
-  const link = linkFn(classes.link);
 
   switch (event.type) {
     case 'achievement':
