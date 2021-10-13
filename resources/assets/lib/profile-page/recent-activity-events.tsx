@@ -147,7 +147,7 @@ function link(url: string, title: string) {
   return <a href={url}>{title}</a>;
 }
 
-export function parseEvent(event: Event, classes: { badge: Modifiers }): { badge?: React.ReactNode; mappings?: Record<string, React.ReactNode> } {
+export function parseEvent(event: Event, modifiers: Modifiers): { badge?: React.ReactNode; mappings?: Record<string, React.ReactNode> } {
   if (event.parse_error) return { badge: undefined, mappings: undefined };
 
   switch (event.type) {
@@ -156,7 +156,7 @@ export function parseEvent(event: Event, classes: { badge: Modifiers }): { badge
         badge: (
           <AchievementBadge
             achievement={event.achievement}
-            modifiers={classes.badge}
+            modifiers={modifiers}
             userAchievement={{
               achieved_at: event.created_at,
               achievement_id: event.achievement.id,
