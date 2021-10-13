@@ -22,7 +22,7 @@ class ClientTest extends TestCase
 
     public function testScopesFromTokensAreAggregated()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->client->tokens()->create([
             'id' => '1',
             'revoked' => false,
@@ -44,7 +44,7 @@ class ClientTest extends TestCase
 
     public function testScopesFromDifferentClientsAreNotAggregated()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->client->tokens()->create([
             'id' => '1',
             'revoked' => false,
@@ -67,7 +67,7 @@ class ClientTest extends TestCase
 
     public function testScopesFromRevokedTokensAreNotAggregated()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->client->tokens()->create([
             'id' => '1',
             'revoked' => false,
@@ -89,7 +89,7 @@ class ClientTest extends TestCase
 
     public function testClientWithOnlyRevokedTokensDoesNotShow()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->client->tokens()->create([
             'id' => '1',
             'revoked' => true,
@@ -103,7 +103,7 @@ class ClientTest extends TestCase
 
     public function testRevokingClientRemovesItFromTheList()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->client->tokens()->create([
             'id' => '1',
             'revoked' => false,
@@ -118,8 +118,8 @@ class ClientTest extends TestCase
 
     public function testDoesNotAggregateScopesFromOtherUsers()
     {
-        $user1 = factory(User::class)->create();
-        $user2 = factory(User::class)->create();
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
         $this->client->tokens()->create([
             'id' => '1',
             'revoked' => false,
@@ -141,8 +141,8 @@ class ClientTest extends TestCase
 
     public function testDoesNotRevokeOtherUserTokens()
     {
-        $user1 = factory(User::class)->create();
-        $user2 = factory(User::class)->create();
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
         $this->client->tokens()->create([
             'id' => '1',
             'revoked' => false,
@@ -203,7 +203,7 @@ class ClientTest extends TestCase
 
     public function testResetSecretInvalidatesExistingTokens()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $token = $this->client->tokens()->create([
             'id' => '1',
             'revoked' => false,
@@ -238,7 +238,7 @@ class ClientTest extends TestCase
 
     public function testResetSecretPreventsAccessWithExistingToken()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $token = $this->client->tokens()->create([
             'id' => '1',
             'revoked' => false,
@@ -268,7 +268,7 @@ class ClientTest extends TestCase
     {
         parent::setUp();
 
-        $this->owner = factory(User::class)->create();
+        $this->owner = User::factory()->create();
         $this->client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
     }
 }

@@ -407,13 +407,13 @@ class MessagesControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         $minPlays = config('osu.user.min_plays_for_posting');
         $this->user->statisticsOsu()->create(['playcount' => $minPlays]);
 
-        $this->anotherUser = factory(User::class)->create();
-        $this->restrictedUser = factory(User::class)->states('restricted')->create();
-        $this->silencedUser = factory(User::class)->states('silenced')->create();
+        $this->anotherUser = User::factory()->create();
+        $this->restrictedUser = User::factory()->restricted()->create();
+        $this->silencedUser = User::factory()->silenced()->create();
         $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
         $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
         $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();

@@ -36,7 +36,7 @@ class UsersControllerTest extends TestCase
     public function testStoreUserCopy()
     {
         $country = Country::factory()->create();
-        $sourceUser = factory(User::class)->create(['country_acronym' => $country->getKey(), 'user_ip' => '127.0.0.1']);
+        $sourceUser = User::factory()->create(['country_acronym' => $country->getKey(), 'user_ip' => '127.0.0.1']);
         $url = route('interop.users.store', ['timestamp' => time()]);
         $username = 'userbot';
         $group = 'bot';
@@ -69,7 +69,7 @@ class UsersControllerTest extends TestCase
     public function testStoreUserCopyMissingUsername()
     {
         $country = Country::factory()->create();
-        $sourceUser = factory(User::class)->create(['country_acronym' => $country->getKey(), 'user_ip' => '127.0.0.1']);
+        $sourceUser = User::factory()->create(['country_acronym' => $country->getKey(), 'user_ip' => '127.0.0.1']);
 
         $previousCount = User::count();
         $url = route('interop.users.store', ['timestamp' => time()]);

@@ -73,7 +73,7 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
 
     protected function createUserCapableOfDiscussing(): User
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
 
         return $user;

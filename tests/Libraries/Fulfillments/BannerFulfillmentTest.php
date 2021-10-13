@@ -95,7 +95,7 @@ class BannerFulfillmentTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create([
+        $this->user = User::factory()->create([
             'osu_featurevotes' => 0,
             'osu_subscriptionexpiry' => Carbon::now(),
         ]);
