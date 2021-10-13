@@ -26,28 +26,27 @@ export const eventTypes = [
 
 export type EventType = (typeof eventTypes)[number];
 
-export interface Event {
+interface EventBase {
   created_at: string;
   id: number;
   parse_error?: boolean;
   type: EventType;
 }
 
-export interface EventTypeMap extends Record<EventType, Event> {
-  achievement: AchievementEvent;
-  beatmapPlaycount: BeatmapPlaycountEvent;
-  beatmapsetApprove: BeatmapsetApproveEvent;
-  beatmapsetDelete: BeatmapsetDeleteEvent;
-  beatmapsetRevive: BeatmapsetReviveEvent;
-  beatmapsetUpdate: BeatmapsetUpdateEvent;
-  beatmapsetUpload: BeatmapsetUploadEvent;
-  rank: RankEvent;
-  rankLost: RankLostEvent;
-  userSupportAgain: UserSupportAgainEvent;
-  userSupportFirst: UserSupportFirstEvent;
-  userSupportGift: UserSupportGiftEvent;
-  usernameChange: UsernameChangeEvent;
-}
+export type Event =
+  AchievementEvent
+  | BeatmapPlaycountEvent
+  | BeatmapsetApproveEvent
+  | BeatmapsetDeleteEvent
+  | BeatmapsetReviveEvent
+  | BeatmapsetUpdateEvent
+  | BeatmapsetUploadEvent
+  | RankEvent
+  | RankLostEvent
+  | UserSupportAgainEvent
+  | UserSupportFirstEvent
+  | UserSupportGiftEvent
+  | UsernameChangeEvent;
 
 interface EventBeatmap {
   title: string;
@@ -64,49 +63,49 @@ interface EventUser {
   username: string;
 }
 
-export interface AchievementEvent extends Event {
+export interface AchievementEvent extends EventBase {
   achievement: AchievementJson;
   type: 'achievement';
   user: EventUser;
 }
 
-export interface BeatmapPlaycountEvent extends Event {
+export interface BeatmapPlaycountEvent extends EventBase {
   beatmap: EventBeatmap;
   count: number;
   type: 'beatmapPlaycount';
 }
 
-export interface BeatmapsetApproveEvent extends Event {
+export interface BeatmapsetApproveEvent extends EventBase {
   approval: string;
   beatmapset: EventBeatmapset;
   type: 'beatmapsetApprove';
   user: EventUser;
 }
 
-export interface BeatmapsetDeleteEvent extends Event {
+export interface BeatmapsetDeleteEvent extends EventBase {
   beatmapset: EventBeatmapset;
   type: 'beatmapsetDelete';
 }
 
-export interface BeatmapsetReviveEvent extends Event {
+export interface BeatmapsetReviveEvent extends EventBase {
   beatmapset: EventBeatmapset;
   type: 'beatmapsetRevive';
   user: EventUser;
 }
 
-export interface BeatmapsetUpdateEvent extends Event {
+export interface BeatmapsetUpdateEvent extends EventBase {
   beatmapset: EventBeatmapset;
   type: 'beatmapsetUpdate';
   user: EventUser;
 }
 
-export interface BeatmapsetUploadEvent extends Event {
+export interface BeatmapsetUploadEvent extends EventBase {
   beatmapset: EventBeatmapset;
   type: 'beatmapsetUpload';
   user: EventUser;
 }
 
-export interface RankEvent extends Event {
+export interface RankEvent extends EventBase {
   beatmap: EventBeatmap;
   mode: GameMode;
   rank: number;
@@ -115,37 +114,33 @@ export interface RankEvent extends Event {
   user: EventUser;
 }
 
-export interface RankLostEvent extends Event {
+export interface RankLostEvent extends EventBase {
   beatmap: EventBeatmap;
   mode: GameMode;
   type: 'rankLost';
   user: EventUser;
 }
 
-export interface UsernameChangeEvent extends Event {
+export interface UsernameChangeEvent extends EventBase {
   type: 'usernameChange';
   user: EventUser & {
     previousUsername: string;
   };
 }
 
-export interface UserSupportAgainEvent extends Event {
+export interface UserSupportAgainEvent extends EventBase {
   type: 'userSupportAgain';
   user: EventUser;
 }
 
-export interface UserSupportFirstEvent extends Event {
+export interface UserSupportFirstEvent extends EventBase {
   type: 'userSupportFirst';
   user: EventUser;
 }
 
-export interface UserSupportGiftEvent extends Event {
+export interface UserSupportGiftEvent extends EventBase {
   type: 'userSupportGift';
   user: EventUser;
-}
-
-export function isTypeOf<T extends keyof EventTypeMap>(value: Event, typeString: T): value is EventTypeMap[T] {
-  return value.type === typeString;
 }
 
 function linkFn(className: string) {
@@ -159,85 +154,110 @@ export function parseEvent(event: Event, classes: { badge: Modifiers; link: stri
   let mappings: Record<string, React.ReactNode> = {};
   const link = linkFn(classes.link);
 
-  if (isTypeOf(event, 'achievement')) {
-    badge = (
-      <AchievementBadge
-        achievement={event.achievement}
-        modifiers={classes.badge}
-        userAchievement={{
-          achieved_at: event.created_at,
-          achievement_id: event.achievement.id,
-        }}
-      />
-    );
+  switch (event.type) {
+    case 'achievement':
+      badge = (
+        <AchievementBadge
+          achievement={event.achievement}
+          modifiers={classes.badge}
+          userAchievement={{
+            achieved_at: event.created_at,
+            achievement_id: event.achievement.id,
+          }}
+        />
+      );
 
-    mappings = {
-      achievement: <strong>{event.achievement.name}</strong>,
-      user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-    };
-  } else if (isTypeOf(event, 'beatmapPlaycount')) {
-    mappings = {
-      beatmap: link(event.beatmap.url, event.beatmap.title),
-      count: event.count,
-    };
-  } else if (isTypeOf(event, 'beatmapsetApprove')) {
-    mappings = {
-      approval: osu.trans(`events.beatmapset_status.${event.approval}`),
-      beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-      user: <strong>{link(event.user.url, event.user.username)}</strong>,
-    };
-  } else if (isTypeOf(event, 'beatmapsetDelete')) {
-    mappings = {
-      beatmapset: event.beatmapset.title,
-    };
-  } else if (isTypeOf(event, 'beatmapsetRevive')) {
-    mappings = {
-      beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-      user: <strong>{link(event.user.url, event.user.username)}</strong>,
-    };
-  } else if (isTypeOf(event, 'beatmapsetUpdate')) {
-    mappings = {
-      beatmapset: <em>{link(event.beatmapset.url, event.beatmapset.title)}</em>,
-      user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-    };
-  } else if (isTypeOf(event, 'beatmapsetUpload')) {
-    mappings = {
-      beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-      user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-    };
-  } else if (isTypeOf(event, 'rank')) {
-    badge = <div className={`score-rank score-rank--${event.scoreRank}`} />;
+      mappings = {
+        achievement: <strong>{event.achievement.name}</strong>,
+        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      };
+      break;
 
-    mappings = {
-      beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
-      mode: osu.trans(`beatmaps.mode.${event.mode}`),
-      rank: event.rank,
-      user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-    };
-  } else if (isTypeOf(event, 'rankLost')) {
-    mappings = {
-      beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
-      mode: osu.trans(`beatmaps.mode.${event.mode}`),
-      user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+    case 'beatmapPlaycount':
+      mappings = {
+        beatmap: link(event.beatmap.url, event.beatmap.title),
+        count: event.count,
+      };
+      break;
 
-    };
-  } else if (isTypeOf(event, 'userSupportAgain')) {
-    mappings = {
-      user: <strong>{link(event.user.url, event.user.username)}</strong>,
-    };
-  } else if (isTypeOf(event, 'userSupportFirst')) {
-    mappings = {
-      user: <strong>{link(event.user.url, event.user.username)}</strong>,
-    };
-  } else if (isTypeOf(event, 'userSupportGift')) {
-    mappings = {
-      user: <strong>{link(event.user.url, event.user.username)}</strong>,
-    };
-  } else if (isTypeOf(event, 'usernameChange')) {
-    mappings = {
-      previousUsername: <strong>{event.user.previousUsername}</strong>,
-      user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
-    };
+    case 'beatmapsetApprove':
+      mappings = {
+        approval: osu.trans(`events.beatmapset_status.${event.approval}`),
+        beatmapset: link(event.beatmapset.url, event.beatmapset.title),
+        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      };
+      break;
+
+    case 'beatmapsetDelete':
+      mappings = {
+        beatmapset: event.beatmapset.title,
+      };
+      break;
+
+    case 'beatmapsetRevive':
+      mappings = {
+        beatmapset: link(event.beatmapset.url, event.beatmapset.title),
+        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      };
+      break;
+
+    case 'beatmapsetUpdate':
+      mappings = {
+        beatmapset: <em>{link(event.beatmapset.url, event.beatmapset.title)}</em>,
+        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      };
+      break;
+
+    case 'beatmapsetUpload':
+      mappings = {
+        beatmapset: link(event.beatmapset.url, event.beatmapset.title),
+        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      };
+      break;
+
+    case 'rank':
+      badge = <div className={`score-rank score-rank--${event.scoreRank}`} />;
+
+      mappings = {
+        beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
+        mode: osu.trans(`beatmaps.mode.${event.mode}`),
+        rank: event.rank,
+        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      };
+      break;
+
+    case 'rankLost':
+      mappings = {
+        beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
+        mode: osu.trans(`beatmaps.mode.${event.mode}`),
+        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      };
+      break;
+
+    case 'userSupportAgain':
+      mappings = {
+        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      };
+      break;
+
+    case 'userSupportFirst':
+      mappings = {
+        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      };
+      break;
+
+    case 'userSupportGift':
+      mappings = {
+        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      };
+      break;
+
+    case 'usernameChange':
+      mappings = {
+        previousUsername: <strong>{event.user.previousUsername}</strong>,
+        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      };
+      break;
   }
 
   return { badge, mappings };
