@@ -6,7 +6,7 @@
 $factory->define(App\Models\OAuth\Client::class, function (Faker\Generator $faker) {
     return [
         'user_id' => function () {
-            return factory(App\Models\User::class)->create(['user_sig' => ''])->getKey();
+            return App\Models\User::factory()->create(['user_sig' => ''])->getKey();
         },
         'name' => function () use ($faker) {
             return $faker->realText(20);

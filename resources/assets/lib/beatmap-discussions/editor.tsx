@@ -132,7 +132,7 @@ export default class Editor extends React.Component<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
+  componentDidUpdate(prevProps: Readonly<Props>): void {
     if (this.props.document !== prevProps.document) {
       const newValue = this.valueFromProps();
 

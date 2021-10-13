@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
         $this->common_countries = ['US', 'JP', 'CN', 'DE', 'TW', 'RU', 'KR', 'PL', 'CA', 'FR', 'BR', 'GB', 'AU'];
 
         // Create 10 users and their stats
-        factory(User::class, 10)->create([
+        User::factory()->count(10)->create([
             'osu_subscriber' => 1,
         ])->each(function ($u) {
 

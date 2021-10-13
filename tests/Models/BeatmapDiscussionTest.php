@@ -26,7 +26,7 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testMapperPost()
     {
-        $mapper = factory(User::class)->create();
+        $mapper = User::factory()->create();
         $beatmapset = Beatmapset::factory()->create([
             'discussion_enabled' => true,
             'user_id' => $mapper,
@@ -59,13 +59,13 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testModderPost()
     {
-        $mapper = factory(User::class)->create();
+        $mapper = User::factory()->create();
         $beatmapset = Beatmapset::factory()->create([
             'discussion_enabled' => true,
             'user_id' => $mapper,
         ]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        $modder = factory(User::class)->create();
+        $modder = User::factory()->create();
 
         $discussion = $this->newDiscussion($beatmapset);
         $discussion->fill([
@@ -154,7 +154,7 @@ class BeatmapDiscussionTest extends TestCase
     {
         $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'beatmap_id' => $beatmap->getKey(),
