@@ -147,116 +147,124 @@ function link(url: string, title: string) {
   return <a href={url}>{title}</a>;
 }
 
-export function parseEvent(event: Event, classes: { badge: Modifiers }) {
-  let badge: React.ReactNode = null;
-  let mappings: Record<string, React.ReactNode>;
-
-  if (event.parse_error) return { badge, mappings: null };
+export function parseEvent(event: Event, classes: { badge: Modifiers }): { badge?: React.ReactNode; mappings?: Record<string, React.ReactNode> } {
+  if (event.parse_error) return { badge: undefined, mappings: undefined };
 
   switch (event.type) {
     case 'achievement':
-      badge = (
-        <AchievementBadge
-          achievement={event.achievement}
-          modifiers={classes.badge}
-          userAchievement={{
-            achieved_at: event.created_at,
-            achievement_id: event.achievement.id,
-          }}
-        />
-      );
-
-      mappings = {
-        achievement: <strong>{event.achievement.name}</strong>,
-        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      return {
+        badge: (
+          <AchievementBadge
+            achievement={event.achievement}
+            modifiers={classes.badge}
+            userAchievement={{
+              achieved_at: event.created_at,
+              achievement_id: event.achievement.id,
+            }}
+          />
+        ),
+        mappings: {
+          achievement: <strong>{event.achievement.name}</strong>,
+          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+        },
       };
-      break;
 
     case 'beatmapPlaycount':
-      mappings = {
-        beatmap: link(event.beatmap.url, event.beatmap.title),
-        count: event.count,
+      return {
+        mappings: {
+          beatmap: link(event.beatmap.url, event.beatmap.title),
+          count: event.count,
+        },
       };
-      break;
 
     case 'beatmapsetApprove':
-      mappings = {
-        approval: osu.trans(`events.beatmapset_status.${event.approval}`),
-        beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      return {
+        mappings: {
+          approval: osu.trans(`events.beatmapset_status.${event.approval}`),
+          beatmapset: link(event.beatmapset.url, event.beatmapset.title),
+          user: <strong>{link(event.user.url, event.user.username)}</strong>,
+        },
       };
-      break;
 
     case 'beatmapsetDelete':
-      mappings = {
-        beatmapset: event.beatmapset.title,
+      return {
+        mappings: {
+          beatmapset: event.beatmapset.title,
+        },
       };
-      break;
 
     case 'beatmapsetRevive':
-      mappings = {
-        beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      return {
+        mappings: {
+          beatmapset: link(event.beatmapset.url, event.beatmapset.title),
+          user: <strong>{link(event.user.url, event.user.username)}</strong>,
+        },
       };
-      break;
 
     case 'beatmapsetUpdate':
-      mappings = {
-        beatmapset: <em>{link(event.beatmapset.url, event.beatmapset.title)}</em>,
-        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      return {
+        mappings: {
+          beatmapset: <em>{link(event.beatmapset.url, event.beatmapset.title)}</em>,
+          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+        },
       };
-      break;
 
     case 'beatmapsetUpload':
-      mappings = {
-        beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      return {
+        mappings: {
+          beatmapset: link(event.beatmapset.url, event.beatmapset.title),
+          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+        },
       };
-      break;
 
     case 'rank':
-      badge = <div className={`score-rank score-rank--${event.scoreRank}`} />;
-
-      mappings = {
-        beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
-        mode: osu.trans(`beatmaps.mode.${event.mode}`),
-        rank: event.rank,
-        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      return {
+        badge: <div className={`score-rank score-rank--${event.scoreRank}`} />,
+        mappings: {
+          beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
+          mode: osu.trans(`beatmaps.mode.${event.mode}`),
+          rank: event.rank,
+          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+        },
       };
-      break;
 
     case 'rankLost':
-      mappings = {
-        beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
-        mode: osu.trans(`beatmaps.mode.${event.mode}`),
-        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      return {
+        mappings: {
+          beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
+          mode: osu.trans(`beatmaps.mode.${event.mode}`),
+          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+        },
       };
-      break;
 
     case 'userSupportAgain':
-      mappings = {
-        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      return {
+        mappings: {
+          user: <strong>{link(event.user.url, event.user.username)}</strong>,
+        },
       };
-      break;
 
     case 'userSupportFirst':
-      mappings = {
-        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      return {
+        mappings: {
+          user: <strong>{link(event.user.url, event.user.username)}</strong>,
+        },
       };
-      break;
 
     case 'userSupportGift':
-      mappings = {
-        user: <strong>{link(event.user.url, event.user.username)}</strong>,
+      return {
+        mappings: {
+          user: <strong>{link(event.user.url, event.user.username)}</strong>,
+        },
       };
-      break;
 
     case 'usernameChange':
-      mappings = {
-        previousUsername: <strong>{event.user.previousUsername}</strong>,
-        user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+      return {
+        mappings: {
+          previousUsername: <strong>{event.user.previousUsername}</strong>,
+          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+        },
       };
-      break;
 
     default: {
       const never: never = event;
@@ -264,6 +272,4 @@ export function parseEvent(event: Event, classes: { badge: Modifiers }) {
       return never;
     }
   }
-
-  return { badge, mappings };
 }
