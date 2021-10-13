@@ -83,7 +83,7 @@ class ScoresControllerTest extends TestCase
         });
 
         $this->user = User::factory()->create();
-        $this->score = factory(Osu::class)->states('with_replay')->create();
+        $this->score = Osu::factory()->withReplay()->create();
     }
 
     private function params()
