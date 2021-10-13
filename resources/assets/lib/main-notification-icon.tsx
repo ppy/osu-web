@@ -21,7 +21,16 @@ export default class MainNotificationIcon extends React.Component<Props> {
     return types.reduce((acc, current) => acc + core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: current }).total, 0);
   }
 
+  private get unreadLegacyPmCount() {
+    return core.currentUser?.unread_pm_count ?? 0;
+  }
+
   render() {
-    return <NotificationIcon count={this.unreadCount} iconClassName='fas fa-inbox' ready={core.notificationsWorker.hasData} type={this.props.type} />;
+    return (<NotificationIcon
+      count={this.unreadCount + this.unreadLegacyPmCount}
+      iconClassName='fas fa-inbox'
+      ready={core.notificationsWorker.hasData}
+      type={this.props.type}
+    />);
   }
 }

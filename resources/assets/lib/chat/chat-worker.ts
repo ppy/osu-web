@@ -63,7 +63,7 @@ export default class ChatWorker implements DispatchListener {
           this.channelStore.updateWithJson(updateJson);
         });
       })
-      .catch((err) => {
+      .catch(() => {
         // silently ignore errors and continue polling
         this.updateXHR = false;
         if (this.pollingEnabled) {
