@@ -132,7 +132,7 @@ export default class NotificationStackStore implements DispatchListener {
   }
 
   @action
-  handleNotificationEventRead(event: NotificationEventRead) {
+  handleNotificationEventRead(_event: NotificationEventRead) {
     // Base stack store (this class) shows read notifications so nothing
     // needs to be handled here as the per-Notification-model read marking
     // is done by NotificationStore.

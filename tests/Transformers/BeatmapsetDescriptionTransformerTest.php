@@ -91,8 +91,8 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
         parent::setUp();
 
         $this->mapper = factory(User::class)->create();
-        $this->beatmapset = factory(Beatmapset::class)->create([
-            'user_id' => $this->mapper->getKey(),
+        $this->beatmapset = Beatmapset::factory()->create([
+            'user_id' => $this->mapper,
         ]);
     }
 }

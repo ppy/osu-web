@@ -9,7 +9,7 @@ return [
     'loading' => 'Memuat notifikasi-notifikasi yang belum dibaca...',
     'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
-    'see_all' => 'lihat semua notifikasi',
+    'see_all' => 'Lihat riwayat notifikasi',
     'see_channel' => 'tuju obrolan',
     'verifying' => 'Harap verifikasi sesi Anda untuk dapat melihat notifikasi',
 
@@ -76,10 +76,10 @@ return [
             'comment' => [
                 '_' => 'Komentar baru',
 
-                'comment_new' => ':username berkomentar ":content" di topik ":title"',
+                'comment_new' => ':username berkomentar ":content" pada ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
-                'comment_reply' => ':username berkomentar ":content" pada topik ":title"',
-                'comment_reply_compact' => ':username berkomentar ":content"',
+                'comment_reply' => ':username membalas komentar yang Anda tulis pada ":title" dengan ":content"',
+                'comment_reply_compact' => ':username membalas komentar Anda dengan ":content"',
             ],
         ],
 
@@ -102,10 +102,10 @@ return [
             'comment' => [
                 '_' => 'Komentar baru',
 
-                'comment_new' => ':username berkomentar ":content" pada topik ":title"',
+                'comment_new' => ':username berkomentar ":content" pada ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
-                'comment_reply' => ':username berkomentar ":content" pada topik ":title"',
-                'comment_reply_compact' => ':username berkomentar ":content"',
+                'comment_reply' => ':username membalas komentar yang Anda tulis pada ":title" dengan ":content"',
+                'comment_reply_compact' => ':username membalas komentar Anda dengan ":content"',
             ],
         ],
 
@@ -115,10 +115,10 @@ return [
             'comment' => [
                 '_' => 'Komentar baru',
 
-                'comment_new' => ':username berkomentar ":content" pada topik ":title"',
+                'comment_new' => ':username berkomentar ":content" pada ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
-                'comment_reply' => ':username berkomentar ":content" pada topik ":title"',
-                'comment_reply_compact' => ':username berkomentar ":content"',
+                'comment_reply' => ':username membalas komentar yang Anda tulis pada ":title" dengan ":content"',
+                'comment_reply_compact' => ':username membalas komentar Anda dengan ":content"',
             ],
         ],
 
@@ -127,8 +127,8 @@ return [
 
             'forum_topic_reply' => [
                 '_' => 'Balasan baru pada thread forum',
-                'forum_topic_reply' => ':username memberikan balasan pada thread forum ":title".',
-                'forum_topic_reply_compact' => ':username membalas',
+                'forum_topic_reply' => ':username membalas postingan Anda pada utas forum ":title"',
+                'forum_topic_reply_compact' => ':username membalas postingan Anda',
             ],
         ],
 

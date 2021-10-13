@@ -3,18 +3,19 @@
 
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
+import { parseJson } from 'utils/json'
 import { Main } from './profile-page/main'
 
 core.reactTurbolinks.register 'profile-page', (container) ->
-  user = osu.parseJson('json-user')
+  user = parseJson('json-user')
 
   createElement Main,
     user: user
     userPage: user.page
     userAchievements: user.user_achievements
-    currentMode: osu.parseJson('json-currentMode')
+    currentMode: parseJson('json-currentMode')
     withEdit: user.id == window.currentUser.id
-    achievements: _.keyBy osu.parseJson('json-achievements'), 'id'
-    perPage: osu.parseJson('json-perPage')
-    extras: osu.parseJson('json-extras')
+    achievements: _.keyBy parseJson('json-achievements'), 'id'
+    perPage: parseJson('json-perPage')
+    extras: parseJson('json-extras')
     container: container

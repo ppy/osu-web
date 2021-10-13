@@ -20,7 +20,7 @@ $factory->define(User::class, function (Faker\Generator $faker) {
     }
 
     // Get or create a random country
-    $countryAcronym = array_rand_val(Country::pluck('acronym')) ?? factory(Country::class)->create()->acronym;
+    $countryAcronym = array_rand_val(Country::pluck('acronym')) ?? Country::factory()->create()->acronym;
 
     // cache password hash to speed up tests (by not repeatedly calculating the same hash over and over)
     static $password = null;
@@ -76,18 +76,18 @@ $factory->state(User::class, 'restricted', function (Faker\Generator $faker) {
 
 $factory->afterCreatingState(User::class, 'with_note', function ($user, $faker) {
     $user->accountHistories()->save(
-        factory(UserAccountHistory::class)->states('note')->make()
+        UserAccountHistory::factory()->note()->make()
     );
 });
 
 $factory->afterCreatingState(User::class, 'restricted', function ($user, $faker) {
     $user->accountHistories()->save(
-        factory(UserAccountHistory::class)->states('restriction')->make()
+        UserAccountHistory::factory()->restriction()->make()
     );
 });
 
 $factory->afterCreatingState(User::class, 'silenced', function ($user, $faker) {
     $user->accountHistories()->save(
-        factory(UserAccountHistory::class)->states('silence')->make()
+        UserAccountHistory::factory()->silence()->make()
     );
 });
