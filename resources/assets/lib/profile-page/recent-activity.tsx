@@ -62,9 +62,8 @@ export default class RecentActivity extends React.PureComponent<Props> {
   }
 
   private renderEntry = (event: Event) => {
-    if (event.parse_error) return null;
-
     const { badge, mappings } = parseEvent(event, { badge: 'recent-activity', link: 'profile-extra-entries__link' });
+    if (mappings == null) return null;
 
     return (
       <li key={event.id} className='profile-extra-entries__item'>

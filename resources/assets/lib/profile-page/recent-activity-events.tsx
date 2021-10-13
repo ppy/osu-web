@@ -152,6 +152,9 @@ function linkFn(className: string) {
 export function parseEvent(event: Event, classes: { badge: Modifiers; link: string }) {
   let badge: React.ReactNode = null;
   let mappings: Record<string, React.ReactNode>;
+
+  if (event.parse_error) return { badge, mappings: null };
+
   const link = linkFn(classes.link);
 
   switch (event.type) {
@@ -261,6 +264,7 @@ export function parseEvent(event: Event, classes: { badge: Modifiers; link: stri
 
     default: {
       const never: never = event;
+      // This assumes unknown events fail parsing in the response and there aren't missing cases.
       return never;
     }
   }
