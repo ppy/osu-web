@@ -143,10 +143,6 @@ interface UserSupportGiftEvent extends EventBase {
   user: EventUser;
 }
 
-function link(url: string, title: string) {
-  return <a href={url}>{title}</a>;
-}
-
 export function parseEvent(event: Event, modifiers: Modifiers): { badge?: React.ReactNode; mappings?: Record<string, React.ReactNode> } {
   if (event.parse_error) return {};
 
@@ -165,14 +161,14 @@ export function parseEvent(event: Event, modifiers: Modifiers): { badge?: React.
         ),
         mappings: {
           achievement: <strong>{event.achievement.name}</strong>,
-          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+          user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,
         },
       };
 
     case 'beatmapPlaycount':
       return {
         mappings: {
-          beatmap: link(event.beatmap.url, event.beatmap.title),
+          beatmap: <a href={event.beatmap.url}>{event.beatmap.title}</a>,
           count: event.count,
         },
       };
@@ -181,8 +177,8 @@ export function parseEvent(event: Event, modifiers: Modifiers): { badge?: React.
       return {
         mappings: {
           approval: osu.trans(`events.beatmapset_status.${event.approval}`),
-          beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-          user: <strong>{link(event.user.url, event.user.username)}</strong>,
+          beatmapset: <a href={event.beatmapset.url}>{event.beatmapset.title}</a>,
+          user: <strong><a href={event.user.url}>{event.user.username}</a></strong>,
         },
       };
 
@@ -196,24 +192,24 @@ export function parseEvent(event: Event, modifiers: Modifiers): { badge?: React.
     case 'beatmapsetRevive':
       return {
         mappings: {
-          beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-          user: <strong>{link(event.user.url, event.user.username)}</strong>,
+          beatmapset: <a href={event.beatmapset.url}>{event.beatmapset.title}</a>,
+          user: <strong><a href={event.user.url}>{event.user.username}</a></strong>,
         },
       };
 
     case 'beatmapsetUpdate':
       return {
         mappings: {
-          beatmapset: <em>{link(event.beatmapset.url, event.beatmapset.title)}</em>,
-          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+          beatmapset: <em><a href={event.beatmapset.url}>{event.beatmapset.title}</a></em>,
+          user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,
         },
       };
 
     case 'beatmapsetUpload':
       return {
         mappings: {
-          beatmapset: link(event.beatmapset.url, event.beatmapset.title),
-          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+          beatmapset: <a href={event.beatmapset.url}>{event.beatmapset.title}</a>,
+          user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,
         },
       };
 
@@ -221,40 +217,40 @@ export function parseEvent(event: Event, modifiers: Modifiers): { badge?: React.
       return {
         badge: <div className={`score-rank score-rank--${event.scoreRank}`} />,
         mappings: {
-          beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
+          beatmap: <em><a href={event.beatmap.url}>{event.beatmap.title}</a></em>,
           mode: osu.trans(`beatmaps.mode.${event.mode}`),
           rank: event.rank,
-          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+          user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,
         },
       };
 
     case 'rankLost':
       return {
         mappings: {
-          beatmap: <em>{link(event.beatmap.url, event.beatmap.title)}</em>,
+          beatmap: <em><a href={event.beatmap.url}>{event.beatmap.title}</a></em>,
           mode: osu.trans(`beatmaps.mode.${event.mode}`),
-          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+          user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,
         },
       };
 
     case 'userSupportAgain':
       return {
         mappings: {
-          user: <strong>{link(event.user.url, event.user.username)}</strong>,
+          user: <strong><a href={event.user.url}>{event.user.username}</a></strong>,
         },
       };
 
     case 'userSupportFirst':
       return {
         mappings: {
-          user: <strong>{link(event.user.url, event.user.username)}</strong>,
+          user: <strong><a href={event.user.url}>{event.user.username}</a></strong>,
         },
       };
 
     case 'userSupportGift':
       return {
         mappings: {
-          user: <strong>{link(event.user.url, event.user.username)}</strong>,
+          user: <strong><a href={event.user.url}>{event.user.username}</a></strong>,
         },
       };
 
@@ -262,7 +258,7 @@ export function parseEvent(event: Event, modifiers: Modifiers): { badge?: React.
       return {
         mappings: {
           previousUsername: <strong>{event.user.previousUsername}</strong>,
-          user: <strong><em>{link(event.user.url, event.user.username)}</em></strong>,
+          user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,
         },
       };
 
