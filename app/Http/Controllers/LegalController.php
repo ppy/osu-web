@@ -19,8 +19,7 @@ class LegalController extends Controller
         }
 
         if (substr(request()->getPathInfo(), -1) === '/') {
-            $path = rtrim($path, '/');
-            return ujs_redirect(wiki_url("Legal/{$path}", $locale));
+            return ujs_redirect(route('legal', ['path' => rtrim($path, '/'), 'locale' => $locale]));
         }
 
         switch ($path) {
@@ -41,10 +40,6 @@ class LegalController extends Controller
 
         $page = Wiki\Page::lookupForController("Legal/{$path}", $locale);
         $legal = true;
-
-        if (is_json_request()) {
-            return json_item($page, 'WikiPage');
-        }
 
         return ext_view('wiki.show', compact('legal', 'locale', 'page'));
     }
