@@ -148,7 +148,7 @@ function link(url: string, title: string) {
 }
 
 export function parseEvent(event: Event, modifiers: Modifiers): { badge?: React.ReactNode; mappings?: Record<string, React.ReactNode> } {
-  if (event.parse_error) return { badge: undefined, mappings: undefined };
+  if (event.parse_error) return {};
 
   switch (event.type) {
     case 'achievement':
