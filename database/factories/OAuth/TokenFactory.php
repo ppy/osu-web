@@ -11,7 +11,7 @@ $factory->define(Token::class, function (Faker\Generator $faker) {
     return [
         'id' => str_random(40),
         'user_id' => function () {
-            return factory(User::class)->create()->getKey();
+            return User::factory()->create()->getKey();
         },
         'client_id' => function () {
             return factory(Client::class)->create()->getKey();

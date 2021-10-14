@@ -19,7 +19,7 @@ class RoomsControllerTest extends TestCase
     public function testIndex()
     {
         $room = factory(Room::class)->create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actAsScopedUser($user, ['*']);
 
@@ -150,8 +150,8 @@ class RoomsControllerTest extends TestCase
     public function testStoreRealtimeFailWithTwoPlaylistItems()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $beatmapset = Beatmapset::factory()->create();
+        $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset]);
 
         $roomsCountInitial = Room::count();
         $playlistItemsCountInitial = PlaylistItem::count();
@@ -301,8 +301,8 @@ class RoomsControllerTest extends TestCase
      */
     private function createBasicStoreParams()
     {
-        $beatmapset = factory(Beatmapset::class)->create();
-        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $beatmapset = Beatmapset::factory()->create();
+        $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset]);
 
         return [
             'name' => 'test room '.rand(),

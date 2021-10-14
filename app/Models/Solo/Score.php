@@ -113,10 +113,10 @@ class Score extends Model
             'Perfect',
             'SmallTickMiss',
         ];
-        $statistics = $this->statistics;
+        $statistics = $this->data->statistics;
 
         foreach ($statAttrs as $attr) {
-            $statistics[$attr] = get_int($statistics[$attr] ?? 0) ?? 0;
+            $statistics->$attr = get_int($statistics->$attr ?? 0) ?? 0;
         }
 
         $scoreClass = LegacyScore\Model::getClass($this->ruleset_id);
@@ -124,11 +124,11 @@ class Score extends Model
         $score = new $scoreClass([
             'beatmap_id' => $this->beatmap_id,
             'beatmapset_id' => optional($this->beatmap)->beatmapset_id ?? 0,
-            'countmiss' => $statistics['Miss'],
+            'countmiss' => $statistics->Miss,
             'enabled_mods' => ModsHelper::toBitset(array_column($this->data->mods, 'acronym')),
             'maxcombo' => $this->data->max_combo,
             'pass' => $this->data->passed,
-            'perfect' => $this->data->passed && $statistics['Miss'] + $statistics['LargeTickMiss'] === 0,
+            'perfect' => $this->data->passed && $statistics->Miss + $statistics->LargeTickMiss === 0,
             'rank' => $this->data->rank,
             'score' => $this->data->total_score,
             'scorechecksum' => "\0",
@@ -137,25 +137,25 @@ class Score extends Model
 
         switch (Beatmap::modeStr($this->ruleset_id)) {
             case 'osu':
-                $score['count300'] = $statistics['Great'];
-                $score['count100'] = $statistics['Ok'];
-                $score['count50'] = $statistics['Meh'];
+                $score['count300'] = $statistics->Great;
+                $score['count100'] = $statistics->Ok;
+                $score['count50'] = $statistics->Meh;
                 break;
             case 'taiko':
-                $score['count300'] = $statistics['Great'];
-                $score['count100'] = $statistics['Ok'];
+                $score['count300'] = $statistics->Great;
+                $score['count100'] = $statistics->Ok;
                 break;
             case 'fruits':
-                $score['count300'] = $statistics['Great'];
-                $score['count100'] = $statistics['LargeTickHit'];
-                $score['countkatu'] = $statistics['SmallTickMiss'];
+                $score['count300'] = $statistics->Great;
+                $score['count100'] = $statistics->LargeTickHit;
+                $score['countkatu'] = $statistics->SmallTickMiss;
                 break;
             case 'mania':
-                $score['countgeki'] = $statistics['Perfect'];
-                $score['count300'] = $statistics['Great'];
-                $score['countkatu'] = $statistics['Good'];
-                $score['count100'] = $statistics['Ok'];
-                $score['count50'] = $statistics['Meh'];
+                $score['countgeki'] = $statistics->Perfect;
+                $score['count300'] = $statistics->Great;
+                $score['countkatu'] = $statistics->Good;
+                $score['count100'] = $statistics->Ok;
+                $score['count50'] = $statistics->Meh;
                 break;
         }
 

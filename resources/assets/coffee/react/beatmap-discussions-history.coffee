@@ -3,10 +3,11 @@
 
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
+import { parseJson } from 'utils/json'
 import { Main } from './beatmap-discussions-history/main'
 
 core.reactTurbolinks.register 'beatmap-discussions-history', (container) ->
-  bundle = osu.parseJson 'json-index'
+  bundle = parseJson 'json-index'
 
   # TODO: rename props to match
   createElement Main,

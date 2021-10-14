@@ -36,7 +36,7 @@ class BBCodeForDBTest extends TestCase
 
     public function testProfile()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $emptyBbcode = new BBCodeForDB();
         $name = $emptyBbcode->extraEscapes($user->username);
 
@@ -50,7 +50,7 @@ class BBCodeForDBTest extends TestCase
 
     public function testProfileMismatchId()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $emptyBbcode = new BBCodeForDB();
         $name = $emptyBbcode->extraEscapes($user->username);
 

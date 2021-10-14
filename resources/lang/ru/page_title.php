@@ -39,7 +39,7 @@ return [
             'verify_link' => 'верификация аккаунта',
         ],
         'artists_controller' => [
-            '_' => 'избранные исполнители',
+            '_' => 'featured artists',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'публикации в обсуждений карты',
@@ -78,10 +78,10 @@ return [
             '_' => 'конкурсы',
         ],
         'follows_controller' => [
-            'index' => 'главная страница',
+            'index' => 'инфопанель',
         ],
         'friends_controller' => [
-            'index' => 'главная страница',
+            'index' => 'инфопанель',
         ],
         'groups_controller' => [
             'show' => 'группы',
@@ -134,6 +134,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'рейтинг',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
         ],
     ],
     'store' => [

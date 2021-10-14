@@ -16,7 +16,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Nghệ sĩ nổi bật',
     ],
 
     'index' => [

@@ -25,17 +25,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::group(['as' => 'forum.', 'prefix' => 'forum', 'namespace' => 'Forum'], function () {
             Route::resource('forum-covers', 'ForumCoversController', ['only' => ['index', 'store', 'update']]);
         });
-
-        Route::group(['as' => 'store.', 'prefix' => 'store', 'namespace' => 'Store'], function () {
-            Route::resource('addresses', 'AddressesController', ['only' => ['update']]);
-
-            Route::post('orders/ship', 'OrdersController@ship')->name('orders.ship');
-            Route::resource('orders', 'OrdersController', ['only' => ['index', 'show', 'update']]);
-
-            Route::resource('orders.items', 'OrderItemsController', ['only' => ['update']]);
-
-            route_redirect('/', 'admin.store.orders.index');
-        });
     });
 
     Route::group(['prefix' => 'beatmaps'], function () {

@@ -135,6 +135,11 @@ return [
             '_' => 'clasament',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'magazin',
     ],

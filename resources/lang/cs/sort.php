@@ -6,8 +6,8 @@
 return [
     '_' => 'Seřadit podle',
 
-    'all' => '',
-    'friends' => '',
+    'all' => 'Vše',
+    'friends' => 'Přátelé',
     'last_visit' => 'Nedávno aktivní',
     'new' => 'Nedávné',
     'old' => 'Nejstarší',
