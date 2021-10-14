@@ -5,7 +5,9 @@
 
 namespace App\Models\Solo;
 
+use App\Models\Beatmap;
 use App\Models\Model;
+use App\Models\User;
 
 /**
  * @property int $beatmap_id
@@ -21,8 +23,18 @@ class ScoreToken extends Model
 {
     protected $table = 'solo_score_tokens';
 
+    public function beatmap()
+    {
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
+    }
+
     public function score()
     {
         return $this->belongsTo(Score::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
