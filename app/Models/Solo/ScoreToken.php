@@ -6,6 +6,7 @@
 namespace App\Models\Solo;
 
 use App\Models\Beatmap;
+use App\Models\Build;
 use App\Models\Model;
 use App\Models\User;
 
@@ -26,6 +27,11 @@ class ScoreToken extends Model
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
+    }
+
+    public function build()
+    {
+        return $this->belongsTo(Build::class, 'build_id');
     }
 
     public function score()
