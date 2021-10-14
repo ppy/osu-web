@@ -41,10 +41,8 @@ export default class RecentActivity extends React.PureComponent<Props> {
 
   private renderEntries() {
     return (
-      <div>
-        <ul className='profile-extra-entries'>
-          {this.props.recentActivity.map(this.renderEntry)}
-        </ul>
+      <ul className='profile-extra-entries'>
+        {this.props.recentActivity.map(this.renderEntry)}
         <div className='profile-extra-entries__item'>
           <ShowMoreLink
             data={{
@@ -57,7 +55,7 @@ export default class RecentActivity extends React.PureComponent<Props> {
             modifiers={['profile-page', 't-greyseafoam-dark']}
           />
         </div>
-      </div>
+      </ul>
     );
   }
 
