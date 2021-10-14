@@ -269,7 +269,7 @@ export function parseEvent(event: Event, modifiers: Modifiers): { badge?: React.
     default: {
       const never: never = event;
       // This assumes unknown events fail parsing in the response and there aren't missing cases.
-      return never;
+      throw never;
     }
   }
 }
