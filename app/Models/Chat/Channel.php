@@ -373,9 +373,8 @@ class Channel extends Model
             'timestamp' => $now,
         ]);
 
-        $message->uuid = $uuid; // relay any message uuid back.
-        $message->sender()->associate($sender);
-        $message->channel()->associate($this);
+        $message->sender()->associate($sender)->channel()->associate($this)
+            ->uuid = $uuid; // relay any message uuid back.
         $message->save();
 
         $this->update(['last_message_id' => $message->getKey()]);
