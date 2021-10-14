@@ -12,15 +12,19 @@
     $topDescription = $descriptions[0];
     $bottomDescription = $descriptions[1] ?? '';
 
-    // cuts of api/v2 prefix
-    $displayUri = substr($uri, 6);
+    $isApiUri = substr($uri, 0, 6) === 'api/v2';
+    // either remove api/v2 prefix or add full url
+    $displayUri = $isApiUri ? substr($uri, 6) : config('app.url').$uri;
 
     $helper = ApidocRouteHelper::instance();
 @endphp
+@if ($showEndpointTitle ?? true)
 ## {{ $route['metadata']['title'] ?: $displayUri }}
+@endif
 
 {!! $topDescription !!}
 
+@if ($isApiUri)
 <p>
     @if($helper->getAuth($methods, $uri))
         <a href='#resource-owner' class='badge badge-scope badge-user'>requires user</a>
@@ -30,13 +34,16 @@
         {{ ApidocRouteHelper::scopeBadge($scope) }}
     @endforeach
 </p>
+@endif
 
+@if (count($settings['languages']) > 0)
 > Example request:
 
 @foreach($settings['languages'] as $language)
 @include("scribe::partials.example-requests.$language")
 
 @endforeach
+@endif
 
 @if(in_array('GET',$route['methods']) || (isset($route['showresponse']) && $route['showresponse']))
 @foreach($route['responses'] as $response)
@@ -67,6 +74,7 @@
     <pre><code id="execution-error-message-{{ $endpointId }}"></code></pre>
 </div>
 <form id="form-{{ $endpointId }}" data-method="{{ $route['methods'][0] }}" data-path="{{ $route['uri'] }}" data-authed="{{ $route['metadata']['authenticated'] ? 1 : 0 }}" data-hasfiles="{{ count($route['fileParameters']) }}" data-headers='@json($route['headers'])' onsubmit="event.preventDefault(); executeTryOut('{{ $endpointId }}', this);">
+@if ($showRequestTitle ?? true)
 <h3>
     Request&nbsp;&nbsp;&nbsp;
     @if($settings['interactive'])
@@ -75,6 +83,7 @@
     <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-{{ $endpointId }}" hidden>Send Request 💥</button>
     @endif
 </h3>
+@endif
 @foreach($route['methods'] as $method)
 <p>
 @component('scribe::components.badges.http-method', ['method' => $method])@endcomponent <b><code>{{ $displayUri }}</code></b>
