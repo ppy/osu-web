@@ -13,6 +13,8 @@ use App\Models\User;
 /**
  * @property \App\Models\Beatmap $beatmap
  * @property int $beatmap_id
+ * @property \App\Models\Build|null $build
+ * @property int|null $build_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
  * @property int $ruleset_id
