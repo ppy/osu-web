@@ -6,12 +6,15 @@
 namespace App\Models\Solo;
 
 use App\Models\Beatmap;
+use App\Models\Build;
 use App\Models\Model;
 use App\Models\User;
 
 /**
  * @property \App\Models\Beatmap $beatmap
  * @property int $beatmap_id
+ * @property \App\Models\Build|null $build
+ * @property int|null $build_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
  * @property int $ruleset_id
@@ -28,6 +31,11 @@ class ScoreToken extends Model
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
+    }
+
+    public function build()
+    {
+        return $this->belongsTo(Build::class, 'build_id');
     }
 
     public function score()

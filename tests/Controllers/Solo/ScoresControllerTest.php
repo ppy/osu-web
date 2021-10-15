@@ -32,12 +32,14 @@ class ScoresControllerTest extends TestCase
             ]),
             [
                 'accuracy' => 1,
-                'max_combo' => 10, 'passed' => true,
+                'max_combo' => 10,
+                'passed' => true,
                 'rank' => 'A',
                 'statistics' => ['Good' => 1],
                 'total_score' => 10,
             ]
-        )->assertSuccessful();
+        )->assertSuccessful()
+        ->assertJsonFragment(['build_id' => $scoreToken->build_id]);
 
         $this->assertSame($initialLegacyScoreCount + 1, $legacyScoreClass::count());
         $this->assertSame($initialScoreCount + 1, Score::count());
