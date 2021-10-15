@@ -65,6 +65,7 @@ class Score extends Model
         static $attributes = [
             'accuracy' => null,
             'beatmap_id' => null,
+            'build_id' => null,
             'ended_at' => null,
             'max_combo' => null,
             'mods' => null,

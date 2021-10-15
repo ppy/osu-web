@@ -61,7 +61,7 @@ return [
 
         'message_placeholder' => [
             'general' => 'Ketik di sini untuk membuka topik diskusi baru pada Umum (:version)',
-            'generalAll' => 'Ketik di sini untuk membuka topik diskusi baru pada Umum (Semua tingkat kesulitan)',
+            'generalAll' => 'Ketik di sini untuk membuka topik diskusi baru pada Umum (Seluruh tingkat kesulitan)',
             'review' => 'Ketik di sini untuk membuka kajian baru',
             'timeline' => 'Ketik di sini untuk membuka topik diskusi baru pada Linimasa (:version)',
         ],
@@ -141,7 +141,7 @@ return [
             'graveyard' => "Beatmap ini belum diperbarui sejak :date dan sepertinya telah diabaikan oleh pembuatnya...",
             'loved' => 'Beatmap ini telah ditambahkan pada kategori \'Loved\' pada :date!',
             'ranked' => 'Beatmap ini telah di-rank pada :date!',
-            'wip' => 'Catatan: Beatmap ini ditandai dengan status dalam pengerjaan (work-in-progress) oleh pembuat beatmap.',
+            'wip' => 'Catatan: Beatmap ini ditandai dengan status dalam pengerjaan (work-in-progress) oleh pembuatnya.',
         ],
 
         'votes' => [

@@ -10,7 +10,7 @@ $factory->define(Message::class, function (Faker\Generator $faker) {
     return [
         'content' => $faker->bs,
         'user_id' => function () {
-            return factory(User::class)->create()->user_id;
+            return User::factory()->create()->user_id;
         },
         'channel_id' => function () {
             return factory(Channel::class)->create()->channel_id;

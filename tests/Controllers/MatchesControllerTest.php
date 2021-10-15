@@ -92,7 +92,7 @@ class MatchesControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
 
         $this->publicMatch = factory(LegacyMatch::class)->create();
         factory(Event::class)->states('create')->create([

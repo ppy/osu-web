@@ -137,7 +137,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autoryzuj aplikację',
         ],
     ],
     'store' => [

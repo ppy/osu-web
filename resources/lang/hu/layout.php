@@ -19,7 +19,6 @@ return [
             'contest' => 'verseny',
             'contests' => 'versenyek',
             'root' => 'konzol',
-            'store_orders' => 'admin bolt',
         ],
 
         'artists' => [

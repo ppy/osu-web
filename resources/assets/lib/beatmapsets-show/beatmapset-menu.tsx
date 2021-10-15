@@ -13,7 +13,7 @@ interface Props {
 export default function BeatmapsetMenu(props: Props) {
   return (
     <PopupMenuPersistent>
-      {(dismiss: () => void) => (
+      {() => (
         <ReportReportable
           className='simple-menu__item'
           icon

@@ -15,7 +15,7 @@ class OAuthClientCredentialsRequestTest extends TestCase
      */
     public function testBotRequestingScope($scope, $status)
     {
-        $owner = factory(User::class)->states('bot')->create();
+        $owner = User::factory()->withGroup('bot')->create();
         $client = factory(Client::class)->create([
             'redirect' => 'https://localhost',
             'user_id' => $owner->getKey(),
@@ -37,7 +37,7 @@ class OAuthClientCredentialsRequestTest extends TestCase
      */
     public function testNonBotRequestingScope($scope, $status)
     {
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
         $client = factory(Client::class)->create([
             'redirect' => 'https://localhost',
             'user_id' => $owner->getKey(),
