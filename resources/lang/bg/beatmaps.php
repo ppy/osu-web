@@ -258,14 +258,14 @@ return [
     ],
     'mode' => [
         'all' => 'Всички',
-        'any' => 'Всички',
+        'any' => 'Всяка',
         'osu' => '',
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
     ],
     'status' => [
-        'any' => 'Всички',
+        'any' => 'Всяка',
         'approved' => 'Одобрен',
         'favourites' => 'Любими',
         'graveyard' => 'Гробище',

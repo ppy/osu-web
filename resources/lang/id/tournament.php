@@ -17,8 +17,8 @@ return [
         ],
 
         'state' => [
-            'current' => 'Turnamen yang sedang berlangsung',
-            'previous' => 'Turnamen Sebelumnya',
+            'current' => 'Turnamen yang Sedang Berlangsung',
+            'previous' => 'Turnamen-Turnamen Terdahulu',
         ],
     ],
 

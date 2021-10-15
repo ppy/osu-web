@@ -19,7 +19,6 @@ return [
             'contest' => 'การแข่งขัน',
             'contests' => 'การแข่งขัน',
             'root' => 'แผงควบคุม',
-            'store_orders' => 'ผู้ดูแลระบบร้านค้า',
         ],
 
         'artists' => [

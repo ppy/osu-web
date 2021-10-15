@@ -137,7 +137,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => '授權應用程式',
         ],
     ],
     'store' => [

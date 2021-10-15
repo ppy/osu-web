@@ -19,7 +19,6 @@ return [
             'contest' => 'תחרות',
             'contests' => 'תחרויות',
             'root' => 'קונסולה',
-            'store_orders' => 'חנות מנהל',
         ],
 
         'artists' => [
