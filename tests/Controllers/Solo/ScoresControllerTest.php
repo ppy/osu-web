@@ -32,7 +32,8 @@ class ScoresControllerTest extends TestCase
             ]),
             [
                 'accuracy' => 1,
-                'max_combo' => 10, 'passed' => true,
+                'max_combo' => 10,
+                'passed' => true,
                 'rank' => 'A',
                 'statistics' => ['Good' => 1],
                 'total_score' => 10,
