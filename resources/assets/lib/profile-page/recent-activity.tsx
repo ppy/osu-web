@@ -43,7 +43,7 @@ export default class RecentActivity extends React.PureComponent<Props> {
     return (
       <ul className='profile-extra-entries'>
         {this.props.recentActivity.map(this.renderEntry)}
-        <div className='profile-extra-entries__item'>
+        <li className='profile-extra-entries__item'>
           <ShowMoreLink
             data={{
               name: 'recentActivity',
@@ -54,7 +54,7 @@ export default class RecentActivity extends React.PureComponent<Props> {
             loading={this.props.pagination.recentActivity.loading}
             modifiers={['profile-page']}
           />
-        </div>
+        </li>
       </ul>
     );
   }
