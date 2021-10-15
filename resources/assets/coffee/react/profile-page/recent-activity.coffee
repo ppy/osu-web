@@ -27,7 +27,7 @@ export class RecentActivity extends React.PureComponent
           div
             className: 'profile-extra-entries__item'
             el ShowMoreLink,
-              modifiers: ['profile-page', 't-greyseafoam-dark']
+              modifiers: 'profile-page'
               event: 'profile:showMore'
               hasMore: @props.pagination.recentActivity.hasMore
               loading: @props.pagination.recentActivity.loading

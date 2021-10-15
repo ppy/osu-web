@@ -69,7 +69,7 @@ export class Historical extends React.PureComponent
               currentMode: @props.currentMode
           el ShowMoreLink,
             key: 'show-more-row'
-            modifiers: ['profile-page', 't-greyseafoam-dark']
+            modifiers: 'profile-page'
             event: 'profile:showMore'
             hasMore: @props.pagination.beatmapPlaycounts.hasMore
             loading: @props.pagination.beatmapPlaycounts.loading
@@ -90,7 +90,7 @@ export class Historical extends React.PureComponent
 
           el ShowMoreLink,
             key: 'show-more-row'
-            modifiers: ['profile-page', 't-greyseafoam-dark']
+            modifiers: 'profile-page'
             event: 'profile:showMore'
             hasMore: @props.pagination.scoresRecent.hasMore
             loading: @props.pagination.scoresRecent.loading
