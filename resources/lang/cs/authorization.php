@@ -68,7 +68,7 @@ return [
         'moderated' => 'Tento kanál je právě moderován.',
         'no_access' => 'Nemáte přístup k tomu kanálu.',
         'restricted' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
-        'silenced' => '',
+        'silenced' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
     ],
 
     'comment' => [

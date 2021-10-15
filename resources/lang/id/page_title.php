@@ -135,6 +135,11 @@ return [
             '_' => 'peringkat',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'toko',
     ],

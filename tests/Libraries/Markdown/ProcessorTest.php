@@ -33,6 +33,16 @@ class ProcessorTest extends TestCase
         $this->assertSame($expectedOutput, $osuMarkdown->toIndexable());
     }
 
+    public function testTocImage()
+    {
+        $parser = new OsuMarkdown('default', osuExtensionConfig: ['generate_toc' => true]);
+
+        $parsed = $parser->load('## ![alt text](/image.jpg) some header')->toArray();
+
+        $this->assertTrue(isset($parsed['toc']['some-header']));
+        $this->assertSame('some header', $parsed['toc']['some-header']['title']);
+    }
+
     public function htmlExamples()
     {
         return $this->fileList(__DIR__.'/html_markdown_examples', '.md');
@@ -52,7 +62,10 @@ class ProcessorTest extends TestCase
             (new OsuMarkdown(
                 'default',
                 osuExtensionConfig: ['style_block_allowed_classes' => ['class-name']],
-                osuMarkdownConfig: ['parse_attribute_id' => true],
+                osuMarkdownConfig: [
+                    'enable_footnote' => true,
+                    'parse_attribute_id' => true,
+                ],
             ))->load(file_get_contents($mdFilePath)),
             file_get_contents($textFilePath),
         ];

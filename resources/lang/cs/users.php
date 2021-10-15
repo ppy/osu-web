@@ -34,19 +34,19 @@ return [
     'blocks' => [
         'banner_text' => 'Uživatel byl zablokován.',
         'blocked_count' => 'blokovaných uživatelů (:count)',
-        'hide_profile' => 'skrýt profil',
+        'hide_profile' => 'Skrýt profil',
         'not_blocked' => 'Tento uživatel není blokován.',
-        'show_profile' => 'zobrazit profil',
+        'show_profile' => 'Zobrazit profil',
         'too_many' => 'Byl dosažen limit blockovaných uživatelů.',
         'button' => [
-            'block' => 'blokovat',
-            'unblock' => 'odblokovat',
+            'block' => 'Blokovat',
+            'unblock' => 'Odblokovat',
         ],
     ],
 
     'card' => [
         'loading' => 'Načítání...',
-        'send_message' => 'odeslat zprávu',
+        'send_message' => 'Odeslat zprávu',
     ],
 
     'disabled' => [
@@ -88,7 +88,7 @@ return [
         'failed' => 'Nesprávné přihlášení',
         'forgot' => 'Zapoměl jsi heslo?',
         'info' => 'Prosím přihlaste se pro pokračování',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Příliš mnoho neúspěšných pokusů o přihlášení, vyplňte prosím captcha a zkuste to znovu. (Obnovte stránku pokud captcha není vidět)',
         'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
         'password' => 'Heslo',
         'register' => "Nemáš osu! účet? Vytvoř si ho",
@@ -114,7 +114,7 @@ return [
     ],
     'logout_confirm' => 'Opravdu se chceš odhlásit? :(',
     'report' => [
-        'button_text' => 'nahlásit',
+        'button_text' => 'Nahlásit',
         'comments' => 'Přídavné komentáře',
         'placeholder' => 'Prosím uveďte jakékoliv informace které si myslíte že by mohly být užitečně.',
         'reason' => 'Důvod',
@@ -414,8 +414,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Momentálně jste umlčeni.',
+        'message' => 'Některé akce mohou být nedostupné.',
     ],
 
     'status' => [

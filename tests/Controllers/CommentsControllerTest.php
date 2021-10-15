@@ -22,7 +22,7 @@ class CommentsControllerTest extends TestCase
     public function testStore()
     {
         $this->prepareForStore();
-        $otherUser = factory(User::class)->create();
+        $otherUser = User::factory()->create();
 
         $follow = Follow::create([
             'notifiable' => $this->beatmapset,
@@ -147,11 +147,11 @@ class CommentsControllerTest extends TestCase
     {
         config()->set('osu.user.post_action_verification', false);
 
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         $this->minPlays = config('osu.user.min_plays_for_posting');
         $this->user->statisticsOsu()->create(['playcount' => $this->minPlays]);
 
-        $this->beatmapset = factory(Beatmapset::class)->create();
+        $this->beatmapset = Beatmapset::factory()->create();
 
         $this->params = ['comment' => [
             'commentable_type' => 'beatmapset',

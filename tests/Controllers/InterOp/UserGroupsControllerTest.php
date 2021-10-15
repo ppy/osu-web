@@ -14,7 +14,7 @@ class UserGroupsControllerTest extends TestCase
 {
     public function testUserGroupAdd()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $group = app('groups')->byIdentifier('gmt');
         $userAddEventCount = $this->getUserAddEventCount($user, $group);
         $url = route('interop.user-groups.store', [
@@ -36,7 +36,7 @@ class UserGroupsControllerTest extends TestCase
 
     public function testUserGroupAddWhenAlreadyMember()
     {
-        $user = $this->createUserWithGroup('gmt');
+        $user = User::factory()->withGroup('gmt')->create();
         $group = app('groups')->byIdentifier('gmt');
         $userAddEventCount = $this->getUserAddEventCount($user, $group);
         $url = route('interop.user-groups.store', [
@@ -55,7 +55,7 @@ class UserGroupsControllerTest extends TestCase
 
     public function testUserGroupRemove()
     {
-        $user = $this->createUserWithGroup('gmt');
+        $user = User::factory()->withGroup('gmt')->create();
         $group = app('groups')->byIdentifier('gmt');
         $userRemoveEventCount = $this->getUserRemoveEventCount($user, $group);
         $url = route('interop.user-groups.destroy', [
@@ -77,7 +77,7 @@ class UserGroupsControllerTest extends TestCase
 
     public function testUserGroupRemoveWhenNotMember()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $group = app('groups')->byIdentifier('gmt');
         $userRemoveEventCount = $this->getUserRemoveEventCount($user, $group);
         $url = route('interop.user-groups.destroy', [
@@ -96,7 +96,7 @@ class UserGroupsControllerTest extends TestCase
 
     public function testUserGroupSetDefault()
     {
-        $user = $this->createUserWithGroup('gmt', ['group_id' => app('groups')->byIdentifier('default')->getKey()]);
+        $user = User::factory()->withGroup('gmt')->create(['group_id' => app('groups')->byIdentifier('default')]);
         $group = app('groups')->byIdentifier('gmt');
         $userAddEventCount = $this->getUserAddEventCount($user, $group);
         $userSetDefaultEventCount = $this->getUserSetDefaultEventCount($user, $group);
@@ -120,7 +120,7 @@ class UserGroupsControllerTest extends TestCase
 
     public function testUserGroupSetDefaultWhenNotMember()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $group = app('groups')->byIdentifier('gmt');
         $userAddEventCount = $this->getUserAddEventCount($user, $group);
         $userSetDefaultEventCount = $this->getUserSetDefaultEventCount($user, $group);

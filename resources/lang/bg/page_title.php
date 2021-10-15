@@ -135,6 +135,11 @@ return [
             '_' => 'класиране',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'магазин',
     ],

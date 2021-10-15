@@ -13,6 +13,7 @@ import { classWithModifiers } from 'utils/css'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade'
 import { make2x } from 'utils/html'
+import { jsonClone, parseJson, parseJsonNullable, storeJson } from 'utils/json'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
 import { currentUrl } from 'utils/turbolinks'
 import * as OsuUrlHelper from 'utils/url'
@@ -38,6 +39,8 @@ window._exported = {
   make2x
   pageChange
   pageChangeImmediate
+  parseJson
+  parseJsonNullable
 }
 
 # FIXME: remove once everything imports instead of using global

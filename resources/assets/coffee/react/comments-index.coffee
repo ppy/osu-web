@@ -4,10 +4,11 @@
 import { CommentsManager } from 'comments-manager'
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
+import { parseJson } from 'utils/json'
 import { Main } from './comments-index/main'
 
 core.reactTurbolinks.register 'comments-index', ->
-  commentBundle = osu.parseJson('json-index')
+  commentBundle = parseJson('json-index')
   core.dataStore.updateWithCommentBundleJson(commentBundle)
   core.dataStore.uiState.initializeWithCommentBundleJson(commentBundle)
 

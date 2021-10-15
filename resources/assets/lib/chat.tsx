@@ -8,6 +8,7 @@ import { action } from 'mobx';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { parseJsonNullable } from 'utils/json';
 import { currentUrlParams } from 'utils/turbolinks';
 
 interface ChatInitialJson {
@@ -24,7 +25,7 @@ interface SendToJson {
 
 core.reactTurbolinks.register('chat', action(() => {
   const dataStore = core.dataStore;
-  const initial = osu.parseJson<ChatInitialJson | null>('json-chat-initial', true);
+  const initial = parseJsonNullable<ChatInitialJson>('json-chat-initial', true);
 
   if (initial != null) {
     if (Array.isArray(initial.presence)) {

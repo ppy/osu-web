@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu! beatmapy',
         'osu' => 'Profil osu!',
         'site' => 'Oficiální stránky',
     ],

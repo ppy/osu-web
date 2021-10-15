@@ -135,6 +135,11 @@ return [
             '_' => 'דירוג',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'חנות osu!',
     ],

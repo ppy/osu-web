@@ -107,10 +107,7 @@
                 </div>
             </form>
 
-            <div class='beatmapset-events' id="events">
-                <div class='beatmapset-events__title'></div>
-                <div class='js-react--beatmap-discussion-events'></div>
-            </div>
+            <div class="js-react--beatmap-discussion-events" id="events"></div>
             @include('objects._pagination_v2', ['object' => $paginator->fragment('events')])
         </div>
     </div>
