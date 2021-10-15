@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'מחסן',
-    ],
-
     'cart' => [
         'checkout' => 'תשלום',
         'info' => ':count_delimited פריטים בעגלה ($:subtotal)|:count_delimited פריטים בעגלה ($:subtotal)',

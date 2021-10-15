@@ -19,7 +19,6 @@ return [
             'contest' => 'competitie',
             'contests' => 'competities',
             'root' => 'console',
-            'store_orders' => 'winkel beheerder',
         ],
 
         'artists' => [
@@ -167,7 +166,7 @@ return [
         'button' => 'inloggen / registreren',
 
         'login' => [
-            'forgot' => "Ik ben mij gegevens vergeten",
+            'forgot' => "Ik ben mijn inloggegevens vergeten",
             'password' => 'wachtwoord',
             'title' => 'Log In Om Verder Te Gaan',
             'username' => 'gebruikersnaam',
