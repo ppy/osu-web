@@ -19,7 +19,6 @@ return [
             'contest' => 'concurs',
             'contests' => 'concursuri',
             'root' => 'consolă',
-            'store_orders' => 'magazin admin',
         ],
 
         'artists' => [
