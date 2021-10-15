@@ -42,12 +42,20 @@ export default class BigButton extends React.PureComponent<Props> {
   }
 
   render() {
-    let blockClass = classWithModifiers('btn-osu-big', this.props.modifiers);
+    let blockClass = classWithModifiers('btn-osu-big', this.props.modifiers, { disabled: this.props.disabled });
     if (this.props.extraClasses != null) {
       blockClass += ` ${this.props.extraClasses.join(' ')}`;
     }
 
-    if (osu.present(this.props.href) && !this.props.disabled) {
+    if (osu.present(this.props.href)) {
+      if (this.props.disabled) {
+        return (
+          <span className={blockClass} {...this.props.props}>
+            {this.renderChildren()}
+          </span>
+        );
+      }
+
       return (
         <a
           className={blockClass}
