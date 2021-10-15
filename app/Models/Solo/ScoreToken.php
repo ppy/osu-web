@@ -11,6 +11,7 @@ use App\Models\Model;
 use App\Models\User;
 
 /**
+ * @property \App\Models\Beatmap $beatmap
  * @property int $beatmap_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
@@ -18,6 +19,7 @@ use App\Models\User;
  * @property \App\Models\Solo\Score $score
  * @property int $score_id
  * @property \Carbon\Carbon|null $updated_at
+ * @property \App\Models\User $user
  * @property int $user_id
  */
 class ScoreToken extends Model
