@@ -263,9 +263,17 @@ export function parseEvent(event: Event, modifiers: Modifiers): { badge?: React.
       };
 
     default: {
-      const never: never = event;
-      // This assumes unknown events fail parsing in the response and there aren't missing cases.
-      throw never;
+      switchNever(event);
+      return {};
     }
   }
+}
+
+/**
+ * Function for exhaustive check in switch statements by trying to assign the predicate to never.
+ *
+ * @param _never
+ */
+function switchNever(_never: never) {
+  // just exist.
 }
