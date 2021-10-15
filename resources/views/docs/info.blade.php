@@ -94,8 +94,9 @@ Restricted users can grant authorization like anyone else. If your client should
 
 @php
     $description = 'To obtain an access token, you must first get an authorization code that is created when a user grants permissions to your application. To request permission from the user, they should be redirected to:';
+    $uri = route('oauth.authorizations.authorize', null, false);
     $route = [
-        'boundUri' => '',
+        'boundUri' => $uri,
         'cleanBodyParameters' => [],
         'fileParameters' => [],
         'headers' => [],
@@ -103,7 +104,7 @@ Restricted users can grant authorization like anyone else. If your client should
         'methods' => ['GET'],
         'nestedBodyParameters' => [],
         'responses' => [],
-        'uri' => route('oauth.authorizations.authorize', null, false),
+        'uri' => $uri,
         'urlParameters' => [],
         'queryParameters' => [
             'client_id' => [
@@ -176,8 +177,9 @@ Restricted users can grant authorization like anyone else. If your client should
         access_token  | string | The access token.
         refresh_token | string | The refresh token.
         EOT;
+    $uri = route('oauth.passport.token', null, false);
     $route = [
-        'boundUri' => '',
+        'boundUri' => $uri,
         'cleanQueryParameters' => [],
         'fileParameters' => [],
         'headers' => [],
@@ -228,7 +230,7 @@ Restricted users can grant authorization like anyone else. If your client should
             ],
         ],
         'showresponse' => true,
-        'uri' => route('oauth.passport.token', null, false),
+        'uri' => $uri,
         'urlParameters' => [],
     ];
     $route['cleanBodyParameters'] = Generator::cleanParams($route['nestedBodyParameters']);
@@ -264,8 +266,9 @@ Restricted users can grant authorization like anyone else. If your client should
         expires_in    | number | The number of seconds the token will be valid for.
         access_token  | string | The access token.
         EOT;
+    $uri = route('oauth.passport.token', null, false);
     $route = [
-        'boundUri' => '',
+        'boundUri' => $uri,
         'cleanQueryParameters' => [],
         'fileParameters' => [],
         'headers' => [],
@@ -313,7 +316,7 @@ Restricted users can grant authorization like anyone else. If your client should
             ],
         ],
         'showresponse' => true,
-        'uri' => route('oauth.passport.token', null, false),
+        'uri' => $uri,
         'urlParameters' => [],
     ];
     $route['cleanBodyParameters'] = Generator::cleanParams($route['nestedBodyParameters']);
