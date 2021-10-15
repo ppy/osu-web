@@ -47,15 +47,7 @@ export default class BigButton extends React.PureComponent<Props> {
       blockClass += ` ${this.props.extraClasses.join(' ')}`;
     }
 
-    if (osu.present(this.props.href)) {
-      if (this.props.disabled) {
-        return (
-          <span className={blockClass} {...this.props.props}>
-            {this.renderChildren()}
-          </span>
-        );
-      }
-
+    if (osu.present(this.props.href) && !this.props.disabled) {
       return (
         <a
           className={blockClass}
