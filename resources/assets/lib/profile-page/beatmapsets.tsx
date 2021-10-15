@@ -70,7 +70,7 @@ export default class Beatmapsets extends React.PureComponent<Props> {
                 event='profile:showMore'
                 hasMore={pagination.hasMore}
                 loading={pagination.loading}
-                modifiers={['profile-page']}
+                modifiers={['profile-page', 't-greyseafoam-dark']}
               />
             </div>
           </div>
