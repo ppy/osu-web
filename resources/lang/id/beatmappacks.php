@@ -5,17 +5,17 @@
 
 return [
     'index' => [
-        'description' => 'Paket beatmap yang telah disusun atas satu tema tertentu.',
+        'description' => 'Paket-paket beatmap yang tersusun atas satu tema tertentu.',
         'nav_title' => 'daftar',
         'title' => 'Paket Beatmap',
 
         'blurb' => [
             'important' => 'BACA INI SEBELUM MENGUNDUH',
             'instruction' => [
-                '_' => "Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak file .rar yang tersedia ke dalam folder Songs pada direktori osu! Anda.
-                    Seluruh beatmap yang terkandung di dalam paket yang Anda unduh telah disediakan dalam bentuk .zip dan/atau .osz, di mana osu! akan kemudian memproses berkas-berkas yang terkait dengan sendirinya ketika Anda masuk ke dalam mode Play.
-                    :scary ekstrak .zip/.osz yang ada secara manual,
-                    karena ada kemungkinan berkas-berkas beatmap yang bersangkutan nantinya tidak akan dapat dimuat oleh osu! dan dimainkan sebagaimana semestinya.",
+                '_' => "Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak berkas .rar yang Anda peroleh ke dalam folder Songs pada direktori osu! Anda.
+                    Di dalam paket tersebut, Anda akan menemui berkas-berkas beatmap yang tersaji dalam format .zip dan/atau .osz. osu! akan kemudian memproses beatmap-beatmap yang ada dengan sendirinya ketika Anda masuk ke dalam mode Play.
+                    :scary ekstrak .zip/.osz yang ada lebih lanjut,
+                    karena ada kemungkinan beatmap-beatmap yang bersangkutan nantinya akan rusak dan tidak dapat dimuat oleh osu! sebagaimana semestinya.",
                 'scary' => 'JANGAN',
             ],
             'note' => [

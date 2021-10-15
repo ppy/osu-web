@@ -10,7 +10,7 @@ return [
     'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'Lihat riwayat notifikasi',
-    'see_channel' => 'tuju obrolan',
+    'see_channel' => 'Buka jendela chat',
     'verifying' => 'Harap verifikasi sesi Anda untuk dapat melihat notifikasi',
 
     'filters' => [
@@ -29,7 +29,7 @@ return [
 
             'beatmap_owner_change' => [
                 '_' => 'Guest difficulty',
-                'beatmap_owner_change' => 'Anda telah terdaftar sebagai pembuat tingkat kesulitan ":beatmap" pada beatmap ":title"',
+                'beatmap_owner_change' => 'Anda telah terdaftar sebagai pemilik tingkat kesulitan ":beatmap" pada beatmap ":title"',
                 'beatmap_owner_change_compact' => 'Anda telah terdaftar sebagai pemilik dari tingkat kesulitan ":beatmap"',
             ],
 

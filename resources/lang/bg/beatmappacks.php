@@ -26,7 +26,7 @@ return [
     ],
 
     'show' => [
-        'download' => 'Изтегли',
+        'download' => 'Изтегляне',
         'item' => [
             'cleared' => 'преминат',
             'not_cleared' => 'не преминат',

@@ -195,7 +195,7 @@ return [
                 'title' => 'Постижения',
             ],
             'beatmaps' => [
-                'by_artist' => 'по :artist',
+                'by_artist' => '- :artist',
                 'title' => 'Бийтмапове',
 
                 'favourite' => [

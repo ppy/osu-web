@@ -87,7 +87,7 @@ return [
         'email_login_disabled' => 'Anda tidak lagi dapat masuk dengan menggunakan alamat email. Silakan masuk dengan menggunakan nama pengguna.',
         'failed' => 'Gagal masuk',
         'forgot' => 'Lupa kata sandi?',
-        'info' => 'Silahkan sign in untuk melanjutkan',
+        'info' => 'Silakan sign in untuk melanjutkan',
         'invalid_captcha' => 'Anda telah berulang kali gagal memasukkan kredensial pengguna yang valid. Harap selesaikan captcha berikut dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
         'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
         'password' => 'Kata Sandi',
@@ -114,9 +114,9 @@ return [
     ],
     'logout_confirm' => 'Apa Anda yakin ingin keluar? :(',
     'report' => [
-        'button_text' => 'laporkan',
+        'button_text' => 'Laporkan',
         'comments' => 'Komentar Tambahan',
-        'placeholder' => 'Mohon berikan informasi apapun yang Anda yakini dapat bermanfaat.',
+        'placeholder' => 'Mohon berikan informasi apa pun yang Anda yakini dapat bermanfaat.',
         'reason' => 'Alasan',
         'thanks' => 'Terima kasih atas laporan Anda!',
         'title' => 'Laporkan :username?',
@@ -149,7 +149,7 @@ return [
         'joined_at' => 'Bergabung :date',
         'lastvisit' => 'Terakhir terlihat :date',
         'lastvisit_online' => 'Saat ini online',
-        'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna yang hendak Anda tuju telah di-ban sebelumnya)',
+        'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna ini telah di-ban)',
         'origin_country' => 'Dari :country',
         'previous_usernames' => 'dulu dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
@@ -259,7 +259,7 @@ return [
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Menolak :amount di post modding :post',
+                            'reset' => 'Kehilangan :amount kudosu karena suara yang diperoleh pada topik diskusi :post telah dianulir',
                         ],
 
                         'delete' => [
@@ -365,8 +365,8 @@ return [
             'website' => 'Website',
         ],
         'not_found' => [
-            'reason_1' => 'Pengguna yang hendak Anda tuju telah mengubah nama penggunanya.',
-            'reason_2' => 'Pengguna yang hendak Anda tuju telah dinonaktifkan untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
+            'reason_1' => 'Pengguna ini telah mengubah nama penggunanya.',
+            'reason_2' => 'Pengguna ini telah dinonaktifkan untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
             'reason_3' => 'Atau mungkin Anda salah ketik!',
             'reason_header' => 'Ada beberapa kemungkinan mengapa hal ini bisa terjadi:',
             'title' => 'Pengguna tidak ditemukan! ;_;',

@@ -19,7 +19,6 @@ return [
             'contest' => '竞赛',
             'contests' => '竞赛',
             'root' => '控制中心',
-            'store_orders' => '商店管理',
         ],
 
         'artists' => [

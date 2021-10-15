@@ -19,7 +19,6 @@ return [
             'contest' => 'soutěž',
             'contests' => 'soutěže',
             'root' => 'konzole',
-            'store_orders' => '',
         ],
 
         'artists' => [
