@@ -9,7 +9,6 @@ use App\Libraries\ClientCheck;
 use App\Models\Build;
 use App\Models\User;
 use Tests\TestCase;
-use Throwable;
 
 class ClientCheckTest extends TestCase
 {
@@ -38,42 +37,24 @@ class ClientCheckTest extends TestCase
         $user = User::factory()->withGroup('default')->create();
         $build = Build::factory()->create(['allow_ranking' => false]);
 
-        try {
-            $foundBuild = ClientCheck::findBuild($user, ['version_hash' => bin2hex($build->hash)]);
-        } catch (Throwable $ex) {
-            $this->assertSame($ex->getMessage(), 'invalid client hash');
-            $exceptionCaught = true;
-        }
-
-        $this->assertTrue(isset($exceptionCaught));
+        $this->expectExceptionMessage('invalid client hash');
+        ClientCheck::findBuild($user, ['version_hash' => bin2hex($build->hash)]);
     }
 
     public function testFindBuildMissingParam()
     {
         $user = User::factory()->withGroup('default')->create();
 
-        try {
-            $foundBuild = ClientCheck::findBuild($user, []);
-        } catch (Throwable $ex) {
-            $this->assertSame($ex->getMessage(), 'missing client version');
-            $exceptionCaught = true;
-        }
-
-        $this->assertTrue(isset($exceptionCaught));
+        $this->expectExceptionMessage('missing client version');
+        ClientCheck::findBuild($user, []);
     }
 
     public function testFindBuildNonexistent()
     {
         $user = User::factory()->withGroup('default')->create();
 
-        try {
-            $foundBuild = ClientCheck::findBuild($user, ['version_hash' => 'stuff']);
-        } catch (Throwable $ex) {
-            $this->assertSame($ex->getMessage(), 'invalid client hash');
-            $exceptionCaught = true;
-        }
-
-        $this->assertTrue(isset($exceptionCaught));
+        $this->expectExceptionMessage('invalid client hash');
+        ClientCheck::findBuild($user, ['version_hash' => 'stuff']);
     }
 
     public function testFindBuildNonexistentAsAdmin()
