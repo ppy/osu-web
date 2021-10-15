@@ -52,7 +52,7 @@ export default class RecentActivity extends React.PureComponent<Props> {
             event='profile:showMore'
             hasMore={this.props.pagination.recentActivity.hasMore}
             loading={this.props.pagination.recentActivity.loading}
-            modifiers={['profile-page', 't-greyseafoam-dark']}
+            modifiers={['profile-page']}
           />
         </div>
       </ul>
