@@ -19,7 +19,6 @@ return [
             'contest' => 'yarışma',
             'contests' => 'yarışmalar',
             'root' => 'konsol',
-            'store_orders' => 'mağaza yöneticisi',
         ],
 
         'artists' => [

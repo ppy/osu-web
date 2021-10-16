@@ -9,24 +9,33 @@ use App\Models\Build;
 
 class ClientCheck
 {
-    public static function assert($user, $params)
+    public static function findBuild($user, $params): ?Build
     {
-        if (!config('osu.client.check_version') || $user->findUserGroup(app('groups')->byIdentifier('admin'), true) !== null) {
-            return;
-        }
+        $assertValid = config('osu.client.check_version') && $user->findUserGroup(app('groups')->byIdentifier('admin'), true) === null;
 
         $clientHash = presence(get_string($params['version_hash'] ?? null));
-        abort_if($clientHash === null, 422, 'missing client version');
+        if ($clientHash === null) {
+            if ($assertValid) {
+                abort(422, 'missing client version');
+            } else {
+                return null;
+            }
+        }
 
         // temporary measure to allow android builds to submit without access to the underlying dll to hash
         if (strlen($clientHash) !== 32) {
             $clientHash = md5($clientHash);
         }
 
-        $buildExists = Build::where([
+        $build = Build::firstWhere([
             'hash' => hex2bin($clientHash),
             'allow_ranking' => true,
-        ])->exists();
-        abort_if(!$buildExists, 422, 'invalid client hash');
+        ]);
+
+        if ($build === null && $assertValid) {
+            abort(422, 'invalid client hash');
+        }
+
+        return $build;
     }
 }

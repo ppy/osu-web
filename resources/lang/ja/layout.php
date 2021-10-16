@@ -19,7 +19,6 @@ return [
             'contest' => 'コンテスト',
             'contests' => 'コンテスト',
             'root' => 'コンソール',
-            'store_orders' => 'ストア管理者',
         ],
 
         'artists' => [

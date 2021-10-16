@@ -19,7 +19,6 @@ return [
             'contest' => 'kontes',
             'contests' => 'kontes',
             'root' => 'konsol',
-            'store_orders' => 'pengelola toko',
         ],
 
         'artists' => [

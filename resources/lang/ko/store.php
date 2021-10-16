@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => '웨어하우스',
-    ],
-
     'cart' => [
         'checkout' => '결제',
         'info' => '장바구니에 담긴 :count_delimited개의 항목 ($:subtotal)',
