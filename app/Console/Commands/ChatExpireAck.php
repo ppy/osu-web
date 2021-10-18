@@ -17,7 +17,7 @@ class ChatExpireAck extends Command
 
     public function handle()
     {
-        $max = now()->subSeconds(Channel::CHAT_ACTIVITY_TIMEOUT)->timestamp;
+        $max = time() - Channel::CHAT_ACTIVITY_TIMEOUT;
         $this->line("Removing users inactive before {$max}");
         $progress = $this->output->createProgressBar();
 
