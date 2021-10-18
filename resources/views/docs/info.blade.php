@@ -105,7 +105,7 @@ Restricted users can grant authorization like anyone else. If your client should
         'boundUri' => $uri,
         'cleanBodyParameters' => [],
         'fileParameters' => [],
-        'headers' => $defaultHeaders,
+        'headers' => [],
         'metadata' => ['authenticated' => false, 'description' => $description],
         'methods' => ['GET'],
         'nestedBodyParameters' => [],
