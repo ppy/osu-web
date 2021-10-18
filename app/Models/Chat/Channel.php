@@ -6,10 +6,10 @@
 namespace App\Models\Chat;
 
 use App\Events\ChatChannelEvent;
-use App\Events\ChatMessageEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\ChannelMessage;
+use App\Libraries\Chat\MessageTask;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
@@ -385,7 +385,7 @@ class Channel extends Model
             $userChannel->markAsRead($message->message_id);
         }
 
-        event(new ChatMessageEvent($message));
+        MessageTask::dispatch($message);
 
         if ($this->isPM()) {
             $this->unhide();
