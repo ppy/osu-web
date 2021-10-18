@@ -5,6 +5,5 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { ChatSilenceJson } from 'interfaces/chat/chat-updates-json';
 
 export class ChatUpdateSilences implements DispatcherAction {
-  constructor(public json: ChatSilenceJson[]) {
-  }
+  constructor(public json: ChatSilenceJson[]) {}
 }
