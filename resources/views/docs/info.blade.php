@@ -7,6 +7,11 @@
     use Knuckles\Scribe\Extracting\Generator;
 
     $wikiUrl = wiki_url('Bot_account', null, false);
+
+    $defaultHeaders = [
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
+    ];
 @endphp
 
 # Introduction
@@ -96,10 +101,11 @@ Restricted users can grant authorization like anyone else. If your client should
     $description = 'To obtain an access token, you must first get an authorization code that is created when a user grants permissions to your application. To request permission from the user, they should be redirected to:';
     $uri = route('oauth.authorizations.authorize', null, false);
     $route = [
+        'bodyParameters' => [],
         'boundUri' => $uri,
         'cleanBodyParameters' => [],
         'fileParameters' => [],
-        'headers' => [],
+        'headers' => $defaultHeaders,
         'metadata' => ['authenticated' => false, 'description' => $description],
         'methods' => ['GET'],
         'nestedBodyParameters' => [],
@@ -179,13 +185,7 @@ Restricted users can grant authorization like anyone else. If your client should
         EOT;
     $uri = route('oauth.passport.token', null, false);
     $route = [
-        'boundUri' => $uri,
-        'cleanQueryParameters' => [],
-        'fileParameters' => [],
-        'headers' => [],
-        'metadata' => ['authenticated' => false, 'description' => $description],
-        'methods' => ['POST'],
-        'nestedBodyParameters' => [
+        'bodyParameters' => [
             'client_id' => [
                 'description' => 'The client ID of your application.',
                 'name' => 'client_id',
@@ -217,6 +217,12 @@ Restricted users can grant authorization like anyone else. If your client should
                 'value' => 'http://localhost:4000',
             ],
         ],
+        'boundUri' => $uri,
+        'cleanQueryParameters' => [],
+        'fileParameters' => [],
+        'headers' => $defaultHeaders,
+        'metadata' => ['authenticated' => false, 'description' => $description],
+        'methods' => ['POST'],
         'queryParameters' => [],
         'responses' => [
             [
@@ -233,7 +239,8 @@ Restricted users can grant authorization like anyone else. If your client should
         'uri' => $uri,
         'urlParameters' => [],
     ];
-    $route['cleanBodyParameters'] = Generator::cleanParams($route['nestedBodyParameters']);
+    $route['cleanBodyParameters'] = Generator::cleanParams($route['bodyParameters']);
+    $route['nestedBodyParameters'] = Generator::nestArrayAndObjectFields($route['bodyParameters']);
 @endphp
 @include('scribe::partials.endpoint', [
     'endpointId' => 'oauth-passport-token',
@@ -268,13 +275,7 @@ Restricted users can grant authorization like anyone else. If your client should
         EOT;
     $uri = route('oauth.passport.token', null, false);
     $route = [
-        'boundUri' => $uri,
-        'cleanQueryParameters' => [],
-        'fileParameters' => [],
-        'headers' => [],
-        'metadata' => ['authenticated' => false, 'description' => $description],
-        'methods' => ['POST'],
-        'nestedBodyParameters' => [
+        'bodyParameters' => [
             'client_id' => [
                 'description' => 'The Client ID you received when you [registered]('.route('account.edit').'#new-oauth-application).',
                 'name' => 'client_id',
@@ -304,6 +305,12 @@ Restricted users can grant authorization like anyone else. If your client should
                 'value' => 'public',
             ],
         ],
+        'boundUri' => $uri,
+        'cleanQueryParameters' => [],
+        'fileParameters' => [],
+        'headers' => $defaultHeaders,
+        'metadata' => ['authenticated' => false, 'description' => $description],
+        'methods' => ['POST'],
         'queryParameters' => [],
         'responses' => [
             [
@@ -319,7 +326,8 @@ Restricted users can grant authorization like anyone else. If your client should
         'uri' => $uri,
         'urlParameters' => [],
     ];
-    $route['cleanBodyParameters'] = Generator::cleanParams($route['nestedBodyParameters']);
+    $route['cleanBodyParameters'] = Generator::cleanParams($route['bodyParameters']);
+    $route['nestedBodyParameters'] = Generator::nestArrayAndObjectFields($route['bodyParameters']);
 @endphp
 @include('scribe::partials.endpoint', [
     'endpointId' => 'oauth-passport-token-client',
