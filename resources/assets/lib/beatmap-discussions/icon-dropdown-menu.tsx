@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as _ from 'lodash';
-import { PopupMenuPersistent } from 'popup-menu-persistent';
+import { PopupMenu } from 'popup-menu';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { SlateContext } from './slate-context';
@@ -26,13 +26,13 @@ export default class IconDropdownMenu extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <PopupMenuPersistent customRender={this.renderButton}>
+      <PopupMenu customRender={this.renderButton}>
         {() => (
           <div className='simple-menu simple-menu--popup-menu-compact'>
             {this.props.menuOptions.map((item) => this.renderMenuItem(item))}
           </div>
         )}
-      </PopupMenuPersistent>
+      </PopupMenu>
     );
   }
 
