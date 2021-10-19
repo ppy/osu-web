@@ -278,7 +278,7 @@ export default class Channel {
 
   @action
   private resortMessages() {
-    this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
+    this.messages = _(this.messages).sortBy('timestamp').value();
   }
 
   @action
