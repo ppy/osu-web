@@ -5,18 +5,18 @@
   @_top: simple-menu;
   @_item-padding-vertical: 5px;
   @_item-padding-horizontal: 25px;
-  @_padding-vertical: 20px;
+  @_padding-vertical: 10px;
   @_gutter: 5px;
-  @_border-radius: 20px;
 
   --item-colour: inherit;
   --item-hover-bg: hsl(var(--hsl-b5));
   --item-hover-colour: var(--item-colour);
   --stripe-bg: hsl(var(--hsl-h1));
+  --border-radius: @border-radius-large;
 
   .own-layer();
   .default-box-shadow();
-  border-radius: @_border-radius;
+  border-radius: var(--border-radius);
   background-color: @osu-colour-b6;
   padding: @_padding-vertical @_gutter;
   display: flex;
@@ -24,17 +24,9 @@
   min-width: 150px;
   flex: none;
   font-size: @font-size--title-small;
-  overflow: hidden;
   z-index: @z-index--simple-menu;
   position: relative;
   color: hsl(var(--hsl-c1));
-
-  &--beatmapset-watch {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    margin-top: 5px;
-  }
 
   &--forum-list {
     position: absolute;
@@ -69,16 +61,10 @@
     }
   }
 
-  &--login-box {
-    position: absolute;
-    border-radius: @border-radius-large;
-  }
-
   &--nav2 {
     .own-layer();
     will-change: transform, opacity;
     transition: none;
-    border-radius: @border-radius-large;
     position: relative;
   }
 
@@ -90,16 +76,6 @@
     --item-hover-bg: hsl(var(--hsl-b6));
     background-color: transparent;
     box-shadow: none;
-  }
-
-  &--popup-menu {
-    border-radius: 10px;
-    padding: 10px @_gutter;
-  }
-
-  &--popup-menu-compact {
-    border-radius: 10px;
-    padding: @_gutter;
   }
 
   &--profile-page-bar {
@@ -126,7 +102,6 @@
     --stripe-bg: hsl(var(--hsl-b6));
     background-color: hsl(var(--hsl-h2));
     color: hsl(var(--hsl-c1));
-    border-radius: @border-radius-large;
     padding: 10px;
   }
 
@@ -175,6 +150,8 @@
     align-items: center;
     color: #fff;
     position: relative;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    overflow: hidden; // crop background-image
 
     &::before {
       .full-size();

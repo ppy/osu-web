@@ -17,7 +17,7 @@ declare module 'back-to-top' {
 
 declare module 'block-button' {
   interface Props {
-    modifiers?: string[];
+    modifiers?: import('utils/css').Modifiers;
     onClick?: () => void;
     userId: number;
     wrapperClass?: string;

@@ -17,7 +17,7 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
     const { score } = this.props;
 
     const children = (dismiss: () => void) => (
-      <>
+      <div className='simple-menu'>
         {hasShow(score) && (
           <a
             className='simple-menu__item'
@@ -47,7 +47,7 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
             user={score.user}
           />
         )}
-      </>
+      </div>
     );
 
     return (

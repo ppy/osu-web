@@ -269,7 +269,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     }
 
     const items = (dismiss: () => void) => (
-      <>
+      <div className='simple-menu'>
         {
           this.canMessage ? (
             <a
@@ -283,7 +283,8 @@ export class UserCard extends React.PureComponent<Props, State> {
           ) : null
         }
 
-        <BlockButton modifiers={['inline']} onClick={dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
+        <BlockButton modifiers='inline' onClick={dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
+
         <ReportReportable
           className='simple-menu__item'
           icon
@@ -292,7 +293,7 @@ export class UserCard extends React.PureComponent<Props, State> {
           reportableType='user'
           user={this.user}
         />
-      </>
+      </div>
     );
 
     return (

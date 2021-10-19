@@ -28,8 +28,8 @@ export default class IconDropdownMenu extends React.Component<Props> {
     return (
       <PopupMenuPersistent customRender={this.renderButton}>
         {() => (
-          <div className='simple-menu simple-menu--popup-menu-compact'>
-            {this.props.menuOptions.map((item) => this.renderMenuItem(item))}
+          <div className='simple-menu'>
+            {this.props.menuOptions.map(this.renderMenuItem)}
           </div>
         )}
       </PopupMenuPersistent>
@@ -59,31 +59,21 @@ export default class IconDropdownMenu extends React.Component<Props> {
     );
   };
 
-  renderMenuItem = (menuItem: MenuItem) => {
-    const baseClass = 'simple-menu__item';
-    const mods = [];
-    const iconClass = 'simple-menu__item-icon';
-
-    if (menuItem.id === this.props.selected) {
-      mods.push('active');
-    }
-
-    return (
-      <button
-        key={menuItem.id}
-        className={classWithModifiers(baseClass, mods)}
-        data-id={menuItem.id}
-        onClick={this.select}
-      >
-        <div className={classWithModifiers(iconClass, ['icon-dropdown-menu'])}>
-          {menuItem.icon}
-        </div>
-        <div className='simple-menu__label'>
-          {menuItem.label}
-        </div>
-      </button>
-    );
-  };
+  renderMenuItem = (menuItem: MenuItem) => (
+    <button
+      key={menuItem.id}
+      className={classWithModifiers('simple-menu__item', { active: menuItem.id === this.props.selected })}
+      data-id={menuItem.id}
+      onClick={this.select}
+    >
+      <div className={classWithModifiers('simple-menu__item-icon', 'icon-dropdown-menu')}>
+        {menuItem.icon}
+      </div>
+      <div className='simple-menu__label'>
+        {menuItem.label}
+      </div>
+    </button>
+  );
 
   select = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();

@@ -14,13 +14,15 @@ export default function BeatmapsetMenu(props: Props) {
   return (
     <PopupMenuPersistent>
       {() => (
-        <ReportReportable
-          className='simple-menu__item'
-          icon
-          reportableId={props.beatmapset.id.toString()}
-          reportableType='beatmapset'
-          user={{username: props.beatmapset.creator}}
-        />
+        <div className='simple-menu'>
+          <ReportReportable
+            className='simple-menu__item'
+            icon
+            reportableId={props.beatmapset.id.toString()}
+            reportableType='beatmapset'
+            user={{username: props.beatmapset.creator}}
+          />
+        </div>
       )}
     </PopupMenuPersistent>
   );
