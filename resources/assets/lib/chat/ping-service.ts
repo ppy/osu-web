@@ -42,6 +42,13 @@ export default class PingService {
       dispatch(new ChatUpdateSilences(json.silences));
 
       this.timerId = window.setTimeout(this.ping, this.pollingTime);
+    }).fail((xhr) => {
+      // logged out, stop pinging.
+      if (xhr.status === 401) {
+        return;
+      }
+
+      this.timerId = window.setTimeout(this.ping, this.pollingTime);
     });
   };
 }
