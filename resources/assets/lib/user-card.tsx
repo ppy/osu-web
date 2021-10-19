@@ -270,18 +270,16 @@ export class UserCard extends React.PureComponent<Props, State> {
 
     const items = (dismiss: () => void) => (
       <div className='simple-menu'>
-        {
-          this.canMessage ? (
-            <a
-              className='simple-menu__item js-login-required--click'
-              href={route('messages.users.show', { user: this.user.id })}
-              onClick={dismiss}
-            >
-              <span className='fas fa-envelope' />
-              {` ${osu.trans('users.card.send_message')}`}
-            </a>
-          ) : null
-        }
+        {this.canMessage && (
+          <a
+            className='simple-menu__item js-login-required--click'
+            href={route('messages.users.show', { user: this.user.id })}
+            onClick={dismiss}
+          >
+            <span className='fas fa-envelope' />
+            {` ${osu.trans('users.card.send_message')}`}
+          </a>
+        )}
 
         <BlockButton modifiers='inline' onClick={dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
 
