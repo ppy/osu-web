@@ -6,9 +6,9 @@ import { PlayDetailMenu } from 'play-detail-menu'
 import { createElement as el, PureComponent } from 'react'
 import * as React from 'react'
 import { a, button, div, i, img, small, span } from 'react-dom-factories'
-import { hasMenu } from 'score-helper'
 import PpValue from 'scores/pp-value'
 import { getArtist, getTitle, shouldShowPp } from 'utils/beatmap-helper'
+import { hasMenu } from 'utils/score-helper'
 
 osu = window.osu
 bn = 'play-detail'
