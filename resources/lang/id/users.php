@@ -87,7 +87,7 @@ return [
         'email_login_disabled' => 'Anda tidak lagi dapat masuk dengan menggunakan alamat email. Silakan masuk dengan menggunakan nama pengguna.',
         'failed' => 'Gagal masuk',
         'forgot' => 'Lupa kata sandi?',
-        'info' => 'Silahkan sign in untuk melanjutkan',
+        'info' => 'Silakan sign in untuk melanjutkan',
         'invalid_captcha' => 'Anda telah berulang kali gagal memasukkan kredensial pengguna yang valid. Harap selesaikan captcha berikut dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
         'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
         'password' => 'Kata Sandi',
@@ -114,9 +114,9 @@ return [
     ],
     'logout_confirm' => 'Apa Anda yakin ingin keluar? :(',
     'report' => [
-        'button_text' => 'laporkan',
+        'button_text' => 'Laporkan',
         'comments' => 'Komentar Tambahan',
-        'placeholder' => 'Mohon berikan informasi apapun yang Anda yakini dapat bermanfaat.',
+        'placeholder' => 'Mohon berikan informasi apa pun yang Anda yakini dapat bermanfaat.',
         'reason' => 'Alasan',
         'thanks' => 'Terima kasih atas laporan Anda!',
         'title' => 'Laporkan :username?',
@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Melakukan kecurangan',
+            'multiple_accounts' => 'Menggunakan lebih dari satu akun',
             'insults' => 'Menghina saya / orang lain',
             'spam' => 'Spam',
             'unwanted_content' => 'Menautkan konten yang tidak pantas',
@@ -136,7 +137,7 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Akun Anda telah dibatasi!',
+        'title' => 'Akun Anda telah di-restrict!',
         'message' => 'Selama akun Anda di-restrict, Anda tidak dapat berinteraksi dengan para pengguna lain dan skor-skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang terbukti tidak melakukan pelanggaran apapun terhadap aturan-aturan yang berlaku. Jika Anda ingin mengajukan banding atas status akun Anda, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
     ],
     'show' => [
@@ -148,14 +149,14 @@ return [
         'joined_at' => 'Bergabung :date',
         'lastvisit' => 'Terakhir terlihat :date',
         'lastvisit_online' => 'Saat ini online',
-        'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna yang hendak Anda tuju telah di-ban sebelumnya)',
+        'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna ini telah di-ban)',
         'origin_country' => 'Dari :country',
         'previous_usernames' => 'dulu dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
         'title' => "profil :username",
 
         'comments_count' => [
-            '_' => 'Telah mengirimkan :link',
+            '_' => 'Telah menulis :link',
             'count' => ':count_delimited komentar|:count_delimited komentar',
         ],
         'edit' => [
@@ -215,12 +216,12 @@ return [
             ],
             'discussions' => [
                 'title' => 'Diskusi',
-                'title_longer' => 'Diskusi Terbaru',
+                'title_longer' => 'Topik-Topik Diskusi Terkini',
                 'show_more' => 'lihat lebih banyak diskusi',
             ],
             'events' => [
                 'title' => 'Aktivitas',
-                'title_longer' => 'Aktivitas Terakhir',
+                'title_longer' => 'Aktivitas-Aktivitas Terkini',
                 'show_more' => 'lihat lebih banyak aktivitas',
             ],
             'historical' => [
@@ -258,7 +259,7 @@ return [
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Menolak :amount di post modding :post',
+                            'reset' => 'Kehilangan :amount kudosu karena suara yang diperoleh pada topik diskusi :post telah dianulir',
                         ],
 
                         'delete' => [
@@ -300,9 +301,12 @@ return [
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
             ],
+            'multiplayer' => [
+                'title' => 'Pertandingan-Pertandingan Multiplayer',
+            ],
             'posts' => [
                 'title' => 'Posting',
-                'title_longer' => 'Postingan Terbaru',
+                'title_longer' => 'Postingan-Postingan Terkini',
                 'show_more' => 'lihat lebih banyak post',
             ],
             'recent_activity' => [
@@ -326,7 +330,7 @@ return [
                 'given' => 'Suara Diberikan (3 bulan terakhir)',
                 'received' => 'Suara Diterima (3 bulan terakhir)',
                 'title' => 'Hak Suara',
-                'title_longer' => 'Pilihan Terbaru',
+                'title_longer' => 'Riwayat Pemberian Suara Terkini',
                 'vote_count' => ':count_delimited suara|:count_delimited suara',
             ],
             'account_standing' => [
@@ -361,8 +365,8 @@ return [
             'website' => 'Website',
         ],
         'not_found' => [
-            'reason_1' => 'Pengguna yang hendak Anda tuju telah mengubah nama penggunanya.',
-            'reason_2' => 'Pengguna yang hendak Anda tuju telah dinonaktifkan untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
+            'reason_1' => 'Pengguna ini telah mengubah nama penggunanya.',
+            'reason_2' => 'Pengguna ini telah dinonaktifkan untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
             'reason_3' => 'Atau mungkin Anda salah ketik!',
             'reason_header' => 'Ada beberapa kemungkinan mengapa hal ini bisa terjadi:',
             'title' => 'Pengguna tidak ditemukan! ;_;',
@@ -379,7 +383,7 @@ return [
             ],
         ],
         'post_count' => [
-            '_' => 'Berkontribusi sebanyak :link',
+            '_' => 'Telah berkontribusi terhadap :link',
             'count' => ':count_delimited postingan forum|:count_delimited postingan forum',
         ],
         'rank' => [

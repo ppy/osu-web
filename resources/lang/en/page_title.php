@@ -111,13 +111,13 @@ return [
             '_' => 'password reset',
         ],
         'ranking_controller' => [
-            '_' => 'ranking',
+            '_' => 'rankings',
         ],
         'scores_controller' => [
             '_' => 'performance',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'store',
         ],
         'tournaments_controller' => [
             '_' => 'tournaments',
@@ -127,20 +127,28 @@ return [
             'disabled' => 'notice',
         ],
         'wiki_controller' => [
-            '_' => 'knowledge base',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'ranking',
+            '_' => 'rankings',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'authorize app',
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'store',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder info',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'multiplayer history',
         ],
     ],
 ];

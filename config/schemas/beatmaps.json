@@ -221,6 +221,9 @@
             }
           }
         },
+        "track_id": {
+          "type": "long"
+        },
         "user_id": {
           "type": "long"
         },
@@ -234,9 +237,6 @@
     "index": {
       "analysis": {
         "analyzer": {
-          "lowercase": {
-            "tokenizer": "lowercase"
-          },
           "prefix": {
             "filter": [
               "lowercase"

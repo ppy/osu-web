@@ -3,10 +3,11 @@
 
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
+import { parseJson } from 'utils/json'
 import { Main } from './changelog-index/main'
 
-core.reactTurbolinks.register 'changelog-index', true, (el) ->
+core.reactTurbolinks.register 'changelog-index', (container) ->
   createElement Main,
-    container: el
-    updateStreams: osu.parseJson('json-update-streams')
-    data: osu.parseJson('json-index')
+    container: container
+    updateStreams: parseJson('json-update-streams')
+    data: parseJson('json-index')

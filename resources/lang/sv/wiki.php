@@ -10,8 +10,9 @@ return [
         'missing' => 'Begärd sida kunde ej hittas.',
         'missing_title' => 'Hittades inte',
         'missing_translation' => 'Den begärda sidan kunde inte hittas för nuvarande valt språk.',
-        'needs_cleanup_or_rewrite' => 'Denna sidan lever inte upp till standarden för osu! wikin och behöver städas upp eller omskrivas. Om du har möjlighet att hjälpa till, vänligen överväg att uppdatera artikeln!',
+        'needs_cleanup_or_rewrite' => 'Denna sidan lever inte upp till standarden för osu!-wikin och behöver städas upp eller skrivas om. Om du har möjlighet att hjälpa till, vänligen överväg att uppdatera artikeln!',
         'search' => 'Sök befintliga sidor för: länk.',
+        'stub' => 'Den här artikeln är ofullständig och väntar på att någon ska utöka den.',
         'toc' => 'Innehåll',
 
         'edit' => [

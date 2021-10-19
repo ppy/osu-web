@@ -66,12 +66,12 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Automatikus Letöltések',
-                'description' => 'Automatikus letöltés többjátékos módban, mások nézése közben, vagy linkre kattintva a chat-ben!',
+                'description' => 'Automatikus letöltés többjátékos módban, mások nézése közben, vagy linkre kattintva a csevegőben!',
             ],
 
             'upload_more' => [
                 'title' => 'Tölts fel többet',
-                'description' => 'Még több függőben lévő beatmap hely (rangsorolt beatmap-onként) maximum 10-ig.',
+                'description' => 'Még több függőben lévő beatmap hely (rangsorolt beatmaponként) maximum 10-ig.',
             ],
 
             'early_access' => [
@@ -129,8 +129,8 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Több Beatmap Feltöltése',
-                'description' => 'Hogy mennyi unranked mappod lehet, egy alap értéktől és egy adott bónusztól függ, minden egyes rankedelt maptól, ami jelenleg van neked (egy bizonyos korlátig).<br/><br/> Általában ez az alap érték :base és ez a plusz :bonus rangsorolt mapponként (egészen :bonus_max-ig).
-Ha van támogatói címed ez megnővekszik :supporter_base-re egészen :supporter_bonus-ig rangsorolt mapponként (egészen :supporter_bonus_max-ig). ',
+                'description' => 'Hogy mennyi függő beatmapod lehet, az függ egy alap értéktől és egy bónusztól amit minden egyes rangsorolt beatmaptól kapsz, ami jelenleg van neked (egy bizonyos korlátig).<br/><br/> Általában ez az alap érték :base, és ez a plusz :bonus amit rangsorolt beatmapponként kapsz (egészen :bonus_max-ig).
+Ha támogató vagy, ez megnövekszik :supporter_base (alap) + :supporter_bonus (bónusz) rangsorolt beatmapponként (egészen :supporter_bonus_max-ig). ',
             ],
             'friend_filtering' => [
                 'title' => 'Baráti ranglétrák',

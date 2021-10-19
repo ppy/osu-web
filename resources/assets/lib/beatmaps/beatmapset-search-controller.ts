@@ -6,7 +6,8 @@ import ResultSet from 'beatmaps/result-set';
 import { BeatmapsetSearchFilters, BeatmapsetSearchParams } from 'beatmapset-search-filters';
 import { route } from 'laroute';
 import { debounce, intersection, map } from 'lodash';
-import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe, runInAction } from 'mobx';
+import { action, computed, IObjectDidChange, Lambda, makeObservable, observable, observe, runInAction } from 'mobx';
+import { currentUrl } from 'utils/turbolinks';
 
 export interface SearchStatus {
   error?: any;
@@ -32,12 +33,13 @@ export class BeatmapsetSearchController {
     state: 'completed',
   };
 
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   private readonly debouncedFilterChangedSearch = debounce(this.filterChangedSearch, 500);
   private filtersObserver!: Lambda;
   private initialErrorMessage?: string;
 
-  constructor(private beatmapsetSearch: BeatmapsetSearch) {}
+  constructor(private beatmapsetSearch: BeatmapsetSearch) {
+    makeObservable(this);
+  }
 
   @computed
   get currentBeatmapsetIds() {
@@ -144,11 +146,10 @@ export class BeatmapsetSearchController {
     this.filters.update(newFilters);
   }
 
-  private filterChangedHandler = (change: IObjectDidChange) => {
-    const valueChange = change as IValueDidChange<BeatmapsetSearchFilters>; // actual object is a union of types.
-    if (valueChange.oldValue === valueChange.newValue) return;
+  private filterChangedHandler = (change: IObjectDidChange<BeatmapsetSearchFilters>) => {
+    if (change.type === 'update' && change.oldValue === change.newValue) return;
     // FIXME: sort = null changes ignored because search triggered too early during filter update.
-    if (change.name === 'sort' && valueChange.newValue == null) return;
+    if (change.type !== 'remove' && change.name === 'sort' && change.newValue == null) return;
 
     this.searchStatus.state = 'input';
     this.debouncedFilterChangedSearch();
@@ -167,12 +168,13 @@ export class BeatmapsetSearchController {
 
   @action
   private restoreStateFromUrl() {
-    const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(location.href);
+    const url = currentUrl().href;
+    const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(url);
 
     if (this.filtersObserver != null) {
       this.filtersObserver();
     }
-    this.filters = new BeatmapsetSearchFilters(location.href);
+    this.filters = new BeatmapsetSearchFilters(url);
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 
     this.isExpanded = intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0;

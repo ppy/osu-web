@@ -15,7 +15,7 @@ const options = {
 
 const client = Shopify.buildClient(options);
 
-export async function fetchAllProducts(): Promise<any[]> {
+export function fetchAllProducts(): Promise<any[]> {
   return client.product.fetchAll();
 }
 
@@ -36,7 +36,7 @@ export async function fetchAllVariants(): Promise<any[]> {
   return variants;
 }
 
-export async function fetchAllVariantIds(): Promise<{ }> {
+export async function fetchAllVariantIds() {
   const variants = await fetchAllVariants();
 
   return variants.map((x: any) => ({

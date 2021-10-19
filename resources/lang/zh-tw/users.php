@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => '成員按遊戲模式篩選',
     ],
 
     'force_reactivation' => [
@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => '違規 / 作弊',
+            'multiple_accounts' => '使用多個帳號',
             'insults' => '侮辱我 / 其他人',
             'spam' => '垃圾訊息',
             'unwanted_content' => '鏈接不適當的內容',
@@ -299,6 +300,9 @@ return [
                 'empty' => "該使用者尚未獲得成就。;_;",
                 'recent' => '最新',
                 'title' => '成就',
+            ],
+            'multiplayer' => [
+                'title' => '多人遊戲',
             ],
             'posts' => [
                 'title' => '貼文',

@@ -3,11 +3,12 @@
 
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
+import { parseJson } from 'utils/json'
 import { ArtEntryList } from './contest-voting/art-entry-list'
 import { EntryList } from './contest-voting/entry-list'
 
-propsFunction = (target) ->
-  data = osu.parseJson target.dataset.src
+propsFunction = (container) ->
+  data = parseJson container.dataset.src
 
   return {
     contest: data.contest
@@ -17,8 +18,8 @@ propsFunction = (target) ->
       showLink: data.contest['type'] == 'external' || (data.contest['type'] == 'beatmap' && _.some(data.contest.entries, 'preview'))
   }
 
-core.reactTurbolinks.register 'contestArtList', false, (target) ->
-  createElement(ArtEntryList, propsFunction(target))
+core.reactTurbolinks.register 'contestArtList', (container) ->
+  createElement(ArtEntryList, propsFunction(container))
 
-core.reactTurbolinks.register 'contestList', false, ->
-  createElement(EntryList, propsFunction(target))
+core.reactTurbolinks.register 'contestList', (container) ->
+  createElement(EntryList, propsFunction(container))

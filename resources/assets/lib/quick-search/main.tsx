@@ -5,7 +5,8 @@ import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { Spinner } from 'spinner';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
+import { classWithModifiers } from 'utils/css';
 import Beatmapset from './beatmapset';
 import User from './user';
 import { ResultMode, Section } from './worker';
@@ -34,7 +35,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   };
 
   render() {
-    let blockClass = osu.classWithModifiers('quick-search', this.props.modifiers);
+    let blockClass = classWithModifiers('quick-search', this.props.modifiers);
     blockClass += ' u-fancy-scrollbar';
 
     return (
@@ -102,7 +103,14 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     }
   };
 
-  private onMouseLeave = (event: React.MouseEvent<HTMLInputElement>) => {
+  private onMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
+    const section = event.currentTarget.dataset.section as Section;
+    const index = parseInt(event.currentTarget.dataset.index ?? '0', 10);
+
+    this.selectBox(section, index);
+  };
+
+  private onMouseLeave = () => {
     this.props.worker.selectNone();
   };
 
@@ -113,26 +121,26 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items'>
-        {this.props.worker.searchResult.beatmapset.beatmapsets.map((beatmapset, idx) => {
-          const selectBeatmapset = () => this.selectBox('beatmapset', idx);
-          return (
-            <div
-              key={beatmapset.id}
-              className='quick-search-items__item'
-              onMouseEnter={selectBeatmapset}
-              onMouseLeave={this.onMouseLeave}
-            >
-              <Beatmapset
-                beatmapset={beatmapset}
-                modifiers={this.boxIsActive('beatmapset', idx) ? ['active'] : []}
-              />
-            </div>
-          );
-        })}
+        {this.props.worker.searchResult.beatmapset.beatmapsets.map((beatmapset, idx) => (
+          <div
+            key={beatmapset.id}
+            className='quick-search-items__item'
+            data-index={idx}
+            data-section='beatmapset'
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          >
+            <Beatmapset
+              beatmapset={beatmapset}
+              modifiers={this.boxIsActive('beatmapset', idx) ? ['active'] : []}
+            />
+          </div>
+        ))}
 
         <div
           className='quick-search-items__item'
-          onMouseEnter={this.selectBeatmapsetOthers}
+          data-section='beatmapset_others'
+          onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
         >
           {this.renderResultLink('beatmapset', this.boxIsActive('beatmapset_others', 0))}
@@ -150,20 +158,18 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items'>
-        {modes.map((mode, idx) => {
-          const selectOthers = () => this.selectBox('others', idx);
-
-          return (
-            <div
-              key={mode}
-              className='quick-search-items__item'
-              onMouseEnter={selectOthers}
-              onMouseLeave={this.onMouseLeave}
-            >
-              {this.renderResultLink(mode, this.boxIsActive('others', idx))}
-            </div>
-          );
-        })}
+        {modes.map((mode, idx) => (
+          <div
+            key={mode}
+            className='quick-search-items__item'
+            data-index={idx}
+            data-section='others'
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          >
+            {this.renderResultLink(mode, this.boxIsActive('others', idx))}
+          </div>
+        ))}
       </div>
     );
   }
@@ -190,10 +196,12 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     if (this.count('forum_post') === 0 && this.count('wiki_page') === 0) {
       return (
         <span className='quick-search-items quick-search-items--empty'>
-          {osu.trans('quick_search.result.empty_for', { modes: osu.transArray([
-            osu.trans('quick_search.mode.forum_post'),
-            osu.trans('quick_search.mode.wiki_page'),
-          ]) })}
+          {osu.trans('quick_search.result.empty_for', {
+            modes: osu.transArray([
+              osu.trans('quick_search.mode.forum_post'),
+              osu.trans('quick_search.mode.wiki_page'),
+            ]),
+          })}
         </span>
       );
     }
@@ -238,7 +246,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <a
-        className={osu.classWithModifiers('search-result-more', active ? ['active'] : [])}
+        className={classWithModifiers('search-result-more', active ? ['active'] : [])}
         href={route('search', { mode, query: this.props.worker.query })}
       >
         <div className='search-result-more__content'>
@@ -258,7 +266,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return (
       <h2 className='title'>
         <StringWithComponent
-          mappings={{ ':mode': <strong key='mode'>{osu.trans(`quick_search.mode.${mode}`)}</strong> }}
+          mappings={{ mode: <strong>{osu.trans(`quick_search.mode.${mode}`)}</strong> }}
           pattern={osu.trans('quick_search.result.title')}
         />
       </h2>
@@ -280,45 +288,39 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items'>
-        {this.props.worker.searchResult.user.users.map((user, idx) => {
-          const selectUser = () => this.selectBox('user', idx);
-          return (
-            <div
-              key={user.id}
-              className='quick-search-items__item'
-              onMouseEnter={selectUser}
-              onMouseLeave={this.onMouseLeave}
-            >
-              <User
-                modifiers={this.boxIsActive('user', idx) ? ['active'] : []}
-                user={user}
-              />
-            </div>
-          );
-        })}
+        {this.props.worker.searchResult.user.users.map((user, idx) => (
+          <div
+            key={user.id}
+            className='quick-search-items__item'
+            data-index={idx}
+            data-section='user'
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          >
+            <User
+              modifiers={this.boxIsActive('user', idx) ? ['active'] : []}
+              user={user}
+            />
+          </div>
+        ))}
 
-        {this.count('user') > this.props.worker.searchResult.user.users.length
-          ? (
-            <div
-              className='quick-search-items__item'
-              onMouseEnter={this.selectUserOthers}
-              onMouseLeave={this.onMouseLeave}
-            >
-              {this.renderResultLink('user', this.boxIsActive('user_others', 0))}
-            </div>
-          ) : null
-        }
+        {this.count('user') > this.props.worker.searchResult.user.users.length && (
+          <div
+            className='quick-search-items__item'
+            data-section='user_others'
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          >
+            {this.renderResultLink('user', this.boxIsActive('user_others', 0))}
+          </div>
+        )}
       </div>
     );
   }
 
-  private selectBeatmapsetOthers = () => this.selectBox('beatmapset_others');
-
   private selectBox(section: Section, index = 0) {
     this.props.worker.setSelected(section, index);
   }
-
-  private selectUserOthers = () => this.selectBox('user_others');
 
   private updateQuery = (event: React.SyntheticEvent<HTMLInputElement>) => {
     this.props.worker.updateQuery(event.currentTarget.value);

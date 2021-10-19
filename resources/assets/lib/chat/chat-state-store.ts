@@ -4,11 +4,10 @@
 import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
-import { UserLogoutAction } from 'actions/user-login-actions';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatchListener } from 'app-dispatcher';
 import { clamp } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable, observe } from 'mobx';
 import ChannelStore from 'stores/channel-store';
 
 @dispatchListener
@@ -34,18 +33,14 @@ export default class ChatStateStore {
   }
 
   constructor(protected channelStore: ChannelStore) {
-    channelStore.channels.observe((changes) => {
+    observe(channelStore.channels, (changes) => {
       // refocus channels if any gets removed
       if (changes.type === 'delete') {
         this.refocusSelectedChannel();
       }
     });
-  }
 
-  @action
-  flushStore() {
-    this.selected = 0;
-    this.autoScroll = false;
+    makeObservable(this);
   }
 
   handleDispatchAction(event: DispatcherAction) {
@@ -53,8 +48,6 @@ export default class ChatStateStore {
       this.autoScroll = true;
     } else if (event instanceof ChatNewConversationAdded) {
       this.handleChatNewConversationAdded(event);
-    } else if (event instanceof UserLogoutAction) {
-      this.flushStore();
     } else if (event instanceof WindowFocusAction) {
       this.handleWindowFocusAction();
     }

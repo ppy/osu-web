@@ -1,5 +1,5 @@
-{{{ Invalid Class
+::: Invalid Class
 
 paragraph
 
-}}}
+:::

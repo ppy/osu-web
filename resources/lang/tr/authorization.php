@@ -18,7 +18,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Bugünkü aday gösterme sınırınıza ulaştınız, lütfen yarın tekrar deneyin.',
-            'incorrect_state' => 'Bu işlemi gerçekleştirirken hata oluştu, sayfayı yenilemeyi deneyin.',
+            'incorrect_state' => 'Bu eylemi gerçekleştirirken bir hata oluştu, sayfayı yenilemeyi deneyin.',
             'owner' => "Kendi beatmapinizi aday gösteremezsiniz.",
             'set_metadata' => 'Aday göstermeden önce türü ve dili ayarlamalısınız.',
         ],
@@ -52,7 +52,7 @@ return [
         ],
 
         'store' => [
-            'beatmapset_locked' => 'Bu beatmap tartışma için kilitlenmiş.',
+            'beatmapset_locked' => 'Bu beatmap tartışmaya kapalı.',
         ],
     ],
 
@@ -65,7 +65,7 @@ return [
     'chat' => [
         'blocked' => 'Sizi engelleyen ya da sizin engellediğiniz bir kullanıcıya mesaj gönderemezsiniz.',
         'friends_only' => 'Kullanıcı arkadaş listesinde bulunmayan kişilerden gelen mesajları engelliyor.',
-        'moderated' => 'Bu kanal şu anda modere ediliyor.',
+        'moderated' => 'O kanal şu anda modere ediliyor.',
         'no_access' => 'Bu kanala erişiminiz yok.',
         'restricted' => 'Susturulmuş, kısıtlanmış ya da banlanmış iken mesaj gönderemezsiniz.',
         'silenced' => 'Susturulmuşken, kısıtlıyken veya banlıyken mesaj gönderemezsiniz.',

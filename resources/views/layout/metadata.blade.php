@@ -112,7 +112,7 @@
 <script src="{{ unmix('js/app.js') }}" data-turbolinks-track="reload"></script>
 
 <script
-    src="{{ unmix('js/moment-locales/'.current_locale_meta()->moment().'.js') }}"
+    src="{{ unmix("js/moment-locales/{$currentLocaleMeta->moment()}.js") }}"
     data-turbolinks-track="reload"
 ></script>
 
@@ -122,4 +122,10 @@
 
 @if (isset($canonicalUrl))
     <link rel="canonical" href="{{ $canonicalUrl }}">
+@endif
+
+@if (isset($translatedPages))
+    @foreach ($translatedPages as $l => $url)
+        <link rel="alternate" hreflang="{{ $l }}" href="{{ $url }}" />
+    @endforeach
 @endif

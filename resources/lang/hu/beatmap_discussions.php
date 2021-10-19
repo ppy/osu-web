@@ -33,8 +33,8 @@ return [
                 '_' => 'Beatmap státusz',
                 'all' => 'Mind',
                 'disqualified' => 'Diszkvalifikálva',
-                'never_qualified' => 'Minősítetlen',
-                'qualified' => 'Minősített',
+                'never_qualified' => 'Sohasem kvalifikált',
+                'qualified' => 'Kvalifikált',
                 'ranked' => 'Rangsorolt',
             ],
 
@@ -81,6 +81,7 @@ return [
             'external_references' => 'az áttekintés olyan kérdésekre hivatkozik, amelyek nem tartoznak ehhez a felülvizsgálathoz',
             'invalid_block_type' => 'érvénytelen blokk típus',
             'invalid_document' => 'érévnytelen értékelés',
+            'invalid_discussion_type' => 'hibás megbeszélés típus',
             'minimum_issues' => 'az áttekintésnek tartalmaznia kell legalább :count problémát|Az áttekintésnek tartalmaznia kell legalább :count problémákat',
             'missing_text' => 'hiányzó szöveg',
             'too_many_blocks' => 'a beszámolók csak :count bekezdés/problémát tartalmazhatnak|a beszámolók legfeljebb :count bekezdést/problémát tartalmazhatnak',

@@ -22,14 +22,15 @@ return [
     ],
 
     'links' => [
-        'osu' => 'Profilo di osu!',
+        'beatmaps' => 'Beatmap osu!',
+        'osu' => 'Profilo osu!',
         'site' => 'Sito Ufficiale',
     ],
 
     'songs' => [
         '_' => 'Brani',
         'count' => ':count_delimited brano|:count_delimited brani',
-        'exclusive' => 'Esclusiva di osu!',
+        'original' => 'osu! original',
     ],
 
     'tracklist' => [

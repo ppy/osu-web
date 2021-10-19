@@ -35,12 +35,12 @@
                         <label
                             class="account-edit-entry__checkbox account-edit-entry__checkbox--inline"
                         >
-                            @include('objects._switch', [
+                            @include('objects._switch', ['locals' => [
                                 'checked' => $customization->beatmapset_download === $name,
                                 'name' => 'user_profile_customization[beatmapset_download]',
                                 'type' => 'radio',
                                 'value' => $name,
-                            ])
+                            ]])
 
                             <span class="account-edit-entry__checkbox-label">
                                 {{ osu_trans("accounts.options.beatmapset_download.{$name}") }}
@@ -67,11 +67,11 @@
                 data-url="{{ route('account.options') }}"
             >
                 <label class="account-edit-entry__checkbox">
-                    @include('objects._switch', [
+                    @include('objects._switch', ['locals' => [
                         'additionalClass'=> 'js-account-edit__input',
                         'checked' => $customization->beatmapset_title_show_original,
                         'name' => 'user_profile_customization[beatmapset_title_show_original]',
-                    ])
+                    ]])
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ osu_trans('accounts.options.beatmapset_title_show_original') }}
@@ -87,11 +87,11 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label js-account-edit js-user-preferences-update" data-url="{{ route('account.options') }}" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
                 <label class="account-edit-entry__checkbox">
-                    @include('objects._switch', [
+                    @include('objects._switch', ['locals' => [
                         'additionalClass'=> 'js-account-edit__input',
                         'checked' => $customization->beatmapset_show_nsfw,
                         'name' => 'user_profile_customization[beatmapset_show_nsfw]',
-                    ])
+                    ]])
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ osu_trans('accounts.options.beatmapset_show_nsfw') }}

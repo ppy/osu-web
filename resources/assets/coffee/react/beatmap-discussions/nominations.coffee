@@ -1,15 +1,17 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BigButton } from 'big-button'
+import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
+import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-modal'
+import { Nominator } from 'beatmap-discussions/nominator'
+import BigButton from 'big-button'
 import { Modal } from 'modal'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
-import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
-import { Nominator } from 'beatmap-discussions/nominator'
+import StringWithComponent from 'string-with-component'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { pageChange } from 'utils/page-change'
+import { wikiUrl } from 'utils/url'
 
 el = React.createElement
 
@@ -21,7 +23,9 @@ export class Nominations extends React.PureComponent
     super props
 
     @xhr = {}
-    @state = changeOwnerModal: false
+    @state =
+      changeOwnerModal: false
+      loveBeatmapModal: false
 
 
   componentDidMount: =>
@@ -40,6 +44,7 @@ export class Nominations extends React.PureComponent
   render: =>
     div className: bn,
       @renderChangeOwnerModal()
+      @renderLoveBeatmapModal()
       div className: "#{bn}__items #{bn}__items--messages",
         div className: "#{bn}__item", @statusMessage()
         div className: "#{bn}__item", @hypeBar()
@@ -163,23 +168,6 @@ export class Nominations extends React.PureComponent
     params = method: 'POST'
 
     @xhr.discussionLock = $.ajax(url, params)
-      .done (response) =>
-        $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
-      .always LoadingOverlay.hide
-
-
-  love: =>
-    return unless confirm(osu.trans('beatmaps.nominations.love_confirm'))
-
-    LoadingOverlay.show()
-
-    @xhr.love?.abort()
-
-    url = laroute.route('beatmapsets.love', beatmapset: @props.beatmapset.id)
-    params = method: 'PUT'
-
-    @xhr.love = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
@@ -315,11 +303,10 @@ export class Nominations extends React.PureComponent
 
         el StringWithComponent,
           mappings:
-            ':date': date
-            ':position': @props.beatmapset.nominations.ranking_queue_position
-            ':queue': a
-              href: laroute.route('wiki.show', path: 'Beatmap_ranking_procedure/Ranking_queue', locale: currentLocale)
-              key: 'queue'
+            date: date
+            position: @props.beatmapset.nominations.ranking_queue_position
+            queue: a
+              href: wikiUrl('Beatmap_ranking_procedure/Ranking_queue')
               target: '_blank'
               osu.trans 'beatmaps.nominations.rank_estimate.queue'
           pattern: osu.trans 'beatmaps.nominations.rank_estimate._'
@@ -424,10 +411,10 @@ export class Nominations extends React.PureComponent
     return null unless @props.currentUser.id? && !@userIsOwner() && !@props.beatmapset.can_be_hyped && !@props.beatmapset.discussion_locked
 
     el BigButton,
-      text: osu.trans 'beatmaps.feedback.button'
       icon: 'fas fa-bullhorn'
       props:
         onClick: @focusNewDiscussionWithModeSwitch
+      text: osu.trans 'beatmaps.feedback.button'
 
 
   hypeButton: =>
@@ -436,12 +423,12 @@ export class Nominations extends React.PureComponent
     userAlreadyHyped = _.find(@props.currentDiscussions.byFilter.hype.generalAll, user_id: @props.currentUser.id)?
 
     el BigButton,
-      text: if userAlreadyHyped then osu.trans('beatmaps.hype.button_done') else osu.trans('beatmaps.hype.button')
+      disabled: !@props.beatmapset.current_user_attributes.can_hype
       icon: 'fas fa-bullhorn'
       props:
-        disabled: !@props.beatmapset.current_user_attributes.can_hype
-        title: @props.beatmapset.current_user_attributes?.can_hype_reason
         onClick: @focusHypeInput
+        title: @props.beatmapset.current_user_attributes?.can_hype_reason
+      text: if userAlreadyHyped then osu.trans('beatmaps.hype.button_done') else osu.trans('beatmaps.hype.button')
 
 
   disqualifyButton: =>
@@ -450,11 +437,11 @@ export class Nominations extends React.PureComponent
     return null unless mapIsQualified && @userCanDisqualify()
 
     el BigButton,
-      text: osu.trans 'beatmaps.nominations.disqualify'
       icon: 'fas fa-thumbs-down'
-      modifiers: ['warning']
+      modifiers: 'warning'
       props:
         onClick: @focusNewDiscussionWithModeSwitch
+      text: osu.trans 'beatmaps.nominations.disqualify'
 
 
   discussionLockButton: =>
@@ -472,57 +459,61 @@ export class Nominations extends React.PureComponent
       onClick = @discussionLock
 
     el BigButton,
-      text: osu.trans "beatmaps.discussions.lock.button.#{action}"
       icon: icon
-      modifiers: ['warning']
+      modifiers: 'warning'
       props: { onClick }
+      text: osu.trans "beatmaps.discussions.lock.button.#{action}"
 
 
   loveButton: =>
     return null unless @props.beatmapset.current_user_attributes?.can_love
 
     el BigButton,
-      text: osu.trans 'beatmaps.nominations.love'
       icon: 'fas fa-heart'
-      modifiers: ['pink']
+      modifiers: 'pink'
       props:
-        onClick: @love
+        onClick: @handleLoveBeatmapModal
+      text: osu.trans 'beatmaps.nominations.love'
 
 
   removeFromLovedButton: =>
     return null unless @props.beatmapset.current_user_attributes?.can_remove_from_loved
 
     el BigButton,
-      text: osu.trans 'beatmaps.nominations.remove_from_loved'
       icon: 'fas fa-heart-broken'
-      modifiers: ['danger']
+      modifiers: 'danger'
       props:
         onClick: @removeFromLoved
+      text: osu.trans 'beatmaps.nominations.remove_from_loved'
 
 
   deleteButton: =>
     return null unless @props.beatmapset.current_user_attributes?.can_delete
 
     el BigButton,
-      text: osu.trans 'beatmaps.nominations.delete'
       icon: 'fas fa-trash'
-      modifiers: ['danger']
+      modifiers: 'danger'
       props:
         onClick: @delete
+      text: osu.trans 'beatmaps.nominations.delete'
 
 
   changeOwnerButton: =>
     return null unless @props.beatmapset.current_user_attributes?.can_beatmap_update_owner
 
     el BigButton,
-      text: osu.trans 'beatmap_discussions.owner_editor.button'
       icon: 'fas fa-pen'
       props:
         onClick: @handleChangeOwnerClick
+      text: osu.trans 'beatmap_discussions.owner_editor.button'
 
 
   handleChangeOwnerClick: =>
     @setState changeOwnerModal: !@state.changeOwnerModal
+
+
+  handleLoveBeatmapModal: =>
+    @setState loveBeatmapModal: !@state.loveBeatmapModal
 
 
   renderChangeOwnerModal: =>
@@ -533,3 +524,11 @@ export class Nominations extends React.PureComponent
         beatmapset: @props.beatmapset,
         users: @props.users
         onClose: @handleChangeOwnerClick
+
+  renderLoveBeatmapModal: =>
+    return if !@state.loveBeatmapModal
+
+    el Modal, visible: true, onClose: @handleLoveBeatmapModal,
+      el LoveBeatmapModal,
+        beatmapset: @props.beatmapset
+        onClose: @handleLoveBeatmapModal

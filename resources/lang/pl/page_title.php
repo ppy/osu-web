@@ -111,13 +111,13 @@ return [
             '_' => 'resetowanie hasła',
         ],
         'ranking_controller' => [
-            '_' => 'ranking',
+            '_' => 'rankingi',
         ],
         'scores_controller' => [
             '_' => 'wynik',
         ],
         'store_controller' => [
-            '_' => 'sklep osu!',
+            '_' => 'sklep',
         ],
         'tournaments_controller' => [
             '_' => 'turnieje',
@@ -127,20 +127,28 @@ return [
             'disabled' => 'powiadomienie',
         ],
         'wiki_controller' => [
-            '_' => 'baza wiedzy',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'ranking',
+            '_' => 'rankingi',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autoryzuj aplikację',
         ],
     ],
     'store' => [
-        '_' => 'sklep osu!',
+        '_' => 'sklep',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'informacje o modowaniu',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'historia gier w trybie wieloosobowym',
         ],
     ],
 ];

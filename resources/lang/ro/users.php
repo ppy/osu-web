@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
+            'multiple_accounts' => '',
             'insults' => 'M-a insultat pe mine / pe alții',
             'spam' => 'Spam',
             'unwanted_content' => 'Partajarea unui conținut nepotrivit',
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Recente',
                 'title' => 'Medalii',
             ],
+            'multiplayer' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => 'Postări',
                 'title_longer' => 'Postări recente',
@@ -411,7 +415,7 @@ return [
 
     'silenced_banner' => [
         'title' => '',
-        'message' => '',
+        'message' => 'Unele acțiuni pot fi indisponibile.',
     ],
 
     'status' => [

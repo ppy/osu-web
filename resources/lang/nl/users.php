@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Valsspelen',
+            'multiple_accounts' => 'Meerdere accounts gebruiken',
             'insults' => 'Beledigen van mij / anderen',
             'spam' => 'Spammen',
             'unwanted_content' => 'Linken van ongepaste inhoud',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Deze gebruiker heeft er nog geen ;_;",
                 'recent' => 'Recent',
                 'title' => 'Medailles',
+            ],
+            'multiplayer' => [
+                'title' => 'Multiplayer Spellen',
             ],
             'posts' => [
                 'title' => 'Berichten',

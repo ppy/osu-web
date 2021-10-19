@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! beatmapek',
         'osu' => 'osu! profil',
         'site' => 'Hivatalos Weboldal',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Zenék',
         'count' => ':count szám|:count szám',
-        'exclusive' => 'osu! exkluzív',
+        'original' => 'osu! eredeti',
     ],
 
     'tracklist' => [

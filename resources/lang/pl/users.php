@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Oszukiwanie',
+            'multiple_accounts' => 'Korzystanie z wielu kont',
             'insults' => 'Obrażanie mnie lub innych',
             'spam' => 'Spamowanie',
             'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Ostatnie',
                 'title' => 'Medale',
             ],
+            'multiplayer' => [
+                'title' => 'Gry w trybie wieloosobowym',
+            ],
             'posts' => [
                 'title' => 'Posty',
                 'title_longer' => 'Ostatnie posty',
@@ -331,8 +335,8 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Stan konta',
-                'bad_standing' => "Konto użytkownika <strong>:username</strong> nie jest w dobrym stanie :(",
-                'remaining_silence' => 'Użytkownik <strong>:username</strong> będzie mógł pisać na czacie :duration.',
+                'bad_standing' => "Konto użytkownika :username nie jest w dobrym stanie :(",
+                'remaining_silence' => 'Użytkownik :username będzie mógł pisać na czacie :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Ostatnie przewinienia',

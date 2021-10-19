@@ -51,10 +51,9 @@
                 @if (count($albums) > 0)
                     <div class="artist__albums">
                         @foreach ($albums as $album)
-                            <div class="artist-album js-audio--group">
-                                <a class="fragment-target" name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
+                            <div class="artist-album" id="album-{{$album['id']}}">
                                 <div class="artist-album__header">
-                                    <div class="artist-album__header-overlay{{$album['is_new'] ? ' artist-album__header-overlay--new' : ''}}" style="background-image: url({{$album['cover_url']}});"></div>
+                                    <div class="artist-album__header-overlay{{$album['is_new'] ? ' artist-album__header-overlay--new' : ''}}" style="background-image: url('{{ $album['cover_url'] }}');"></div>
                                     <img class="artist-album__cover" src="{{$album['cover_url']}}">
                                     <span class="artist-album__title">{{$album['title']}}</span>
                                     @if ($album['is_new'])
@@ -76,7 +75,7 @@
                 @if (count($tracks) > 0)
                     <div class="artist-album">
                         <div class="artist-album__header">
-                            <div class="artist-album__header-overlay" style="background-image: url({{$images['header_url']}});"></div>
+                            <div class="artist-album__header-overlay" style="background-image: url('{{ $images['header_url'] }}');"></div>
                             <span class="artist-album__title">{{osu_trans('artist.songs._')}}</span>
                         </div>
                         <div class="js-react--artistTracklist" data-src="singles-json-{{$artist->id}}"></div>
@@ -107,7 +106,7 @@
                         @foreach ($albums as $album)
                             <a class="artist-sidebar-album{{$album['is_new'] ? ' artist-sidebar-album--new' : ''}}" href="#album-{{$album['id']}}" data-turbolinks="false">
                                 <div class="artist-sidebar-album__cover-wrapper">
-                                    <div class="artist-sidebar-album__glow" style="background-image: url({{$album['cover_url']}});"></div>
+                                    <div class="artist-sidebar-album__glow" style="background-image: url('{{ $album['cover_url'] }}');"></div>
                                     <img class="artist-sidebar-album__cover" src="{{$album['cover_url']}}">
                                     @if ($album['is_new'])
                                         <span class="artist__badge-wrapper">
@@ -128,5 +127,5 @@
 @section("script")
   @parent
 
-  @include('layout._extra_js', ['src' => 'js/react/artist-page.js'])
+  @include('layout._react_js', ['src' => 'js/react/artist-page.js'])
 @stop

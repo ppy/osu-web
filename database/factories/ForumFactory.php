@@ -81,7 +81,7 @@ $factory->afterCreatingState(Topic::class, 'poll', function (Topic $topic, Faker
 $factory->define(App\Models\Forum\Post::class, function (Faker\Generator $faker) {
     return [
         'poster_id' => function (array &$self) {
-            $factoryUser = factory(User::class)->create();
+            $factoryUser = User::factory()->create();
             $self['post_username'] = $factoryUser->username;
 
             return $factoryUser->getKey();

@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Denunciar',
+        'title' => '¿Denunciar el mapa de :username?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Denunciar',
         'title' => '¿Denunciar la publicación de :username?',
@@ -26,6 +31,6 @@ return [
 
     'user' => [
         'button' => 'Denunciar',
-        'title' => '¿Denunciar :username?',
+        'title' => '¿Denunciar a :username?',
     ],
 ];

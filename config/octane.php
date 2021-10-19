@@ -48,7 +48,7 @@ return [
     |
     */
 
-    'https' => env('OCTANE_HTTPS', true),
+    'https' => env('OCTANE_HTTPS', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -172,15 +172,17 @@ return [
     |
     */
 
+    // Watching single file is kind of broken hence the wildcard suffix for such entries.
+    // Reference: https://github.com/paulmillr/chokidar/issues/1005
     'watch' => [
-        '.env',
+        '.env*',
         'app',
         'bootstrap',
-        'composer.lock',
+        'composer.lock*',
         'config',
         'database',
         'public/**/*.php',
-        'public/assets/manifest.json',
+        'public/assets/manifest.json*',
         'resources/**/*.php',
         'routes',
     ],
@@ -209,6 +211,6 @@ return [
     |
     */
 
-    'max_execution_time' => 10,
+    'max_execution_time' => 180,
 
 ];

@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'โปรไฟล์ osu!',
         'site' => 'เว็บไซต์อย่างเป็นทางการ',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'เพลง',
         'count' => ':count_delimited เพลง|:count_delimited เพลง',
-        'exclusive' => 'เฉพาะ osu!',
+        'original' => '',
     ],
 
     'tracklist' => [

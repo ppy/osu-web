@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Slow down, play more.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
+    ],
+
     'index' => [
         'title' => 'Beatmaps Listing',
         'guest_title' => 'Beatmaps',
@@ -160,7 +164,7 @@ return [
 
             'no_scores' => [
                 'country' => 'No one from your country has set a score on this map yet!',
-                'friend' => 'None of your friends has set a score on this map yet!',
+                'friend' => 'None of your friends have set a score on this map yet!',
                 'global' => 'No scores yet. Maybe you should try setting some?',
                 'loading' => 'Loading scores...',
                 'unranked' => 'Unranked beatmap.',

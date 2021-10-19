@@ -18,6 +18,7 @@ import Links from 'profile-page/links'
 import ProfileTournamentBanner from 'profile-tournament-banner'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
 import { Spinner } from 'spinner'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 
@@ -25,6 +26,7 @@ export class Header extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "users-show-header-#{nextVal()}"
     @state =
       editing: false
       coverUrl: props.user.cover.url
@@ -36,12 +38,12 @@ export class Header extends React.Component
 
 
   componentDidMount: =>
-    $.subscribe 'user:cover:reset.profilePageHeaderMain', @coverReset
-    $.subscribe 'user:cover:set.profilePageHeaderMain', @debouncedCoverSet
-    $.subscribe 'user:cover:upload:state.profilePageHeaderMain', @coverUploadState
+    $.subscribe "user:cover:reset.#{@eventId}", @coverReset
+    $.subscribe "user:cover:set.#{@eventId}", @debouncedCoverSet
+    $.subscribe "user:cover:upload:state.#{@eventId}", @coverUploadState
 
-    $.subscribe 'key:esc.profilePageHeaderMain', @closeEdit
-    $(document).on 'click.profilePageHeaderMain', @closeEdit
+    $.subscribe "key:esc.#{@eventId}", @closeEdit
+    $(document).on "click.#{@eventId}", @closeEdit
 
 
   componentWillReceiveProps: (newProps) =>
@@ -49,8 +51,8 @@ export class Header extends React.Component
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.profilePageHeaderMain'
-    $(document).off '.profilePageHeaderMain'
+    $.unsubscribe ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
     @closeEdit()
     @debouncedCoverSet.cancel()
@@ -111,7 +113,7 @@ export class Header extends React.Component
         ref: @coverSelector
         className: 'profile-header__cover-editor'
         button
-          className: 'profile-page-toggle'
+          className: 'btn-circle btn-circle--page-toggle'
           title: osu.trans('users.show.edit.cover.button')
           onClick: @toggleEdit
           span className: 'fas fa-pencil-alt'

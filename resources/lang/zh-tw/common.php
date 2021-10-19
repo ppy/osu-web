@@ -15,7 +15,7 @@ return [
     ],
 
     'badges' => [
-        'new' => '全新功能！',
+        'new' => '全新',
     ],
 
     'buttons' => [
@@ -53,6 +53,7 @@ return [
         'show_less' => '收起',
         'show_more' => '顯示更多',
         'show_more_options' => '顯示更多選項',
+        'submit' => '送出',
         'unpin' => '取消置頂',
         'update' => '更新',
         'upload_image' => '上傳圖片',
@@ -133,10 +134,10 @@ return [
         'dd' => '%d 天',
         'h' => '%d 小時',
         'hh' => '%d 小時',
-        'M' => '%d 月',
         'm' => '%d 分鐘',
-        'MM' => '%d 月',
         'mm' => '%d 分鐘',
+        'month' => '%d 月',
+        'months' => '%d 月',
         'past' => '',
         's' => '%d 秒',
         'y' => '%d 年',

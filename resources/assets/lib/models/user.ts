@@ -3,7 +3,7 @@
 
 import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
 export default class User {
   @observable avatarUrl = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
@@ -24,16 +24,17 @@ export default class User {
 
   constructor(id: number) {
     this.id = id;
+
+    makeObservable(this);
   }
 
   static fromJson(json: UserJson): User {
-    const user = Object.create(User.prototype);
+    const user = new User(json.id);
     return Object.assign(user, {
       avatarUrl: json.avatar_url,
       countryCode: json.country_code,
       defaultGroup: json.default_group,
       groups: json.groups,
-      id: json.id,
       isActive: json.is_active,
       isBot: json.is_bot,
       isOnline: json.is_online,

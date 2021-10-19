@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Ralentissez, jouez plus.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Artiste plébiscité',
+    ],
+
     'index' => [
         'title' => 'Liste des beatmaps',
         'guest_title' => 'Beatmaps',
@@ -119,7 +123,7 @@ return [
             'nsfw' => 'Contenu explicite',
             'points-of-failure' => 'Répartition des échecs',
             'source' => 'Source',
-            'storyboard' => 'Ce beatmap contient un storyboard',
+            'storyboard' => 'Cette beatmap contient un storyboard',
             'success-rate' => 'Taux de réussite',
             'tags' => 'Tags',
             'video' => 'Cette beatmap contient une vidéo',
@@ -191,7 +195,7 @@ return [
         'status' => [
             'ranked' => 'Classée',
             'approved' => 'Approuvée',
-            'loved' => 'Aimée',
+            'loved' => 'Loved',
             'qualified' => 'Qualifiée',
             'wip' => 'WIP',
             'pending' => 'En attente',

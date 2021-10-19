@@ -2,12 +2,13 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapPlaycount } from './beatmap-playcount'
-import { ExtraHeader } from './extra-header'
+import ExtraHeader from 'profile-page/extra-header'
 import core from 'osu-core-singleton'
 import { PlayDetailList } from 'play-detail-list'
 import * as React from 'react'
 import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
 import ShowMoreLink from 'show-more-link'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 
@@ -15,7 +16,7 @@ export class Historical extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @id = "users-show-historical-#{osu.uuid()}"
+    @id = "users-show-historical-#{nextVal()}"
     @monthlyPlaycountsChartArea = React.createRef()
     @replaysWatchedCountsChartArea = React.createRef()
 
@@ -35,6 +36,7 @@ export class Historical extends React.PureComponent
 
   componentWillUnmount: =>
     $(window).off ".#{@id}"
+    $(document).off ".#{@id}"
 
 
   render: =>
@@ -67,7 +69,7 @@ export class Historical extends React.PureComponent
               currentMode: @props.currentMode
           el ShowMoreLink,
             key: 'show-more-row'
-            modifiers: ['profile-page', 't-greyseafoam-dark']
+            modifiers: 'profile-page'
             event: 'profile:showMore'
             hasMore: @props.pagination.beatmapPlaycounts.hasMore
             loading: @props.pagination.beatmapPlaycounts.loading
@@ -88,7 +90,7 @@ export class Historical extends React.PureComponent
 
           el ShowMoreLink,
             key: 'show-more-row'
-            modifiers: ['profile-page', 't-greyseafoam-dark']
+            modifiers: 'profile-page'
             event: 'profile:showMore'
             hasMore: @props.pagination.scoresRecent.hasMore
             loading: @props.pagination.scoresRecent.loading
@@ -152,8 +154,9 @@ export class Historical extends React.PureComponent
 
       @charts[attribute] = new LineChart(area, options)
 
-    @updateTicks @charts[attribute], data
-    @charts[attribute].loadData data
+    core.reactTurbolinks.runAfterPageLoad @id, =>
+      @updateTicks @charts[attribute], data
+      @charts[attribute].loadData data
 
 
   hasMonthlyPlaycounts: =>

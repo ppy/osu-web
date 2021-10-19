@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! 비트맵',
         'osu' => 'osu! 프로필',
         'site' => '공식 웹사이트',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => '곡',
         'count' => ':count 곡',
-        'exclusive' => 'osu! 고유 곡',
+        'original' => 'osu! 오리지널',
     ],
 
     'tracklist' => [

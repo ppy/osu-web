@@ -117,7 +117,7 @@ return [
             '_' => 'gjennomføring',
         ],
         'store_controller' => [
-            '_' => 'osu!butikken',
+            '_' => 'butikk',
         ],
         'tournaments_controller' => [
             '_' => 'turneringer',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'varsel',
         ],
         'wiki_controller' => [
-            '_' => 'kunnskapsbase',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -135,12 +135,20 @@ return [
             '_' => 'rangering',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!butikken',
+        '_' => 'butikk',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder info',
+        ],
+        'multiplayer_controller' => [
+            '_' => '',
         ],
     ],
 ];

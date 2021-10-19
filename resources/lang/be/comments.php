@@ -5,8 +5,8 @@
 
 return [
     'deleted' => 'выдалена',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
+    'deleted_by' => ':user выдаліў :timeago',
+    'deleted_by_system' => 'сістэма',
     'deleted_count' => ':count_delimited каментарый выдалены|:count_delimited каментарыяў выдалена',
     'edited' => ':user адрэагаваў :timeago',
     'pinned' => 'прычэплена',

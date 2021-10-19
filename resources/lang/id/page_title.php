@@ -117,7 +117,7 @@ return [
             '_' => 'performa',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'toko',
         ],
         'tournaments_controller' => [
             '_' => 'turnamen',
@@ -127,7 +127,7 @@ return [
             'disabled' => 'pemberitahuan',
         ],
         'wiki_controller' => [
-            '_' => 'basis pengetahuan',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -135,12 +135,20 @@ return [
             '_' => 'peringkat',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'otorisir aplikasi',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'toko',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'info modder',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'riwayat pertandingan multiplayer',
         ],
     ],
 ];

@@ -36,9 +36,11 @@
 
     $currentHue = $currentHue ?? section_to_hue_map($currentSection);
 
+    $navLinks ??= nav_links();
+    $currentLocaleMeta ??= current_locale_meta();
 @endphp
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#" lang="{{ current_locale_meta()->html() }}">
+<html prefix="og: http://ogp.me/ns#" lang="{{ $currentLocaleMeta->html() }}">
     <head>
         @include("layout.metadata")
         <title>{!! $title !!}</title>
@@ -109,6 +111,12 @@
                 data-sync-height-target="permanent-fixed-footer"
             >
                 @yield('permanent-fixed-footer')
+
+                @if (config('osu.is_development_deploy'))
+                    <div class="development-deploy-footer">
+                        This is a development instance of the <a href="https://osu.ppy.sh" class="development-deploy-footer__link">osu! website</a>. Please do not login with your osu! credentials.
+                    </div>
+                @endif
             </div>
         </div>
 

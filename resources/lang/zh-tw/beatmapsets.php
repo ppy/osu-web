@@ -8,11 +8,15 @@ return [
         'disabled' => '該圖譜現在無法下載。',
         'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
         'more-info' => '點擊這裡查看更多資訊。',
-        'rule_violation' => '',
+        'rule_violation' => '已移除此圖譜中部份被評斷為不合適於 osu! 的內容。',
     ],
 
     'download' => [
         'limit_exceeded' => '欲速則不達。',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '精選藝術家',
     ],
 
     'index' => [
@@ -32,9 +36,9 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
+        'hybrid_requires_modes' => '包含多個遊戲模式的圖譜至少需要選擇一種遊戲模式進行提名。',
         'incorrect_mode' => '您沒有權限為 :mode 模式提名',
-        'full_bn_required' => '',
+        'full_bn_required' => '您必須是正式的提名者才能執行此合格提名。',
         'too_many' => '提名需求已達成。',
 
         'dialog' => [
@@ -115,7 +119,7 @@ return [
             'description' => '詳情',
             'genre' => '曲風',
             'language' => '語言',
-            'no_scores' => '資料還在計算中。。。',
+            'no_scores' => '資料還在計算中...',
             'nsfw' => '成人內容',
             'points-of-failure' => '失敗位置',
             'source' => '來源',

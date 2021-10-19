@@ -2,22 +2,32 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
   country?: Country;
-  modifiers?: string[];
+  modifiers?: Modifiers;
 }
 
-export default function FlagCountry({country, modifiers}: Props) {
+const flagUrl = (code: string) => {
+  const baseFileName = code
+    .split('')
+    .map((c) => (c.charCodeAt(0) + 127397).toString(16))
+    .join('-');
+
+  return `/assets/images/flags/${baseFileName}.svg`;
+};
+
+export default function FlagCountry({ country, modifiers }: Props) {
   if (country == null || country.code == null) {
     return null;
   }
 
   return (
     <div
-      className={osu.classWithModifiers('flag-country', modifiers)}
+      className={classWithModifiers('flag-country', modifiers)}
       style={{
-        backgroundImage: `url('/images/flags/${country.code}.png')`,
+        backgroundImage: `url('${flagUrl(country.code)}')`,
       }}
       title={country.name}
     />

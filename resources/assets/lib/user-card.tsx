@@ -24,7 +24,7 @@ interface Props {
   activated: boolean;
   mode: ViewMode;
   modifiers: string[];
-  user?: UserJson;
+  user?: UserJson | null;
 }
 
 interface State {
@@ -117,7 +117,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     this.url = this.isUserVisible ? route('users.show', { user: this.user.id }) : undefined;
 
     return (
-      <div className={osu.classWithModifiers('user-card', modifiers)}>
+      <div className={classWithModifiers('user-card', modifiers)}>
         {this.renderBackground()}
 
         <div className='user-card__card'>
@@ -165,7 +165,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     let background: React.ReactNode;
     let backgroundLink: React.ReactNode;
 
-    const overlayCssClass = osu.classWithModifiers(
+    const overlayCssClass = classWithModifiers(
       'user-card__background-overlay',
       this.isOnline ? ['online'] : [],
     );
@@ -208,7 +208,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     }
 
     return (
-      <div className='user-card__icons'>
+      <div className='user-card__icons user-card__icons--card'>
         <a
           className='user-card__icon user-card__icon--flag'
           href={route('rankings', { country: this.user.country_code, mode: 'osu', type: 'performance' })}
@@ -220,15 +220,17 @@ export class UserCard extends React.PureComponent<Props, State> {
           <>
             {this.user.is_supporter && (
               <a className='user-card__icon' href={route('support-the-game')}>
-                <SupporterIcon modifiers={['user-card']}/>
+                <SupporterIcon modifiers={['user-card']} />
               </a>
             )}
             <div className='user-card__icon'>
               <FriendButton modifiers={['user-card']} userId={this.user.id} />
             </div>
-            <div className='user-card__icon'>
-              <FollowUserMappingButton modifiers={['user-card']} userId={this.user.id} />
-            </div>
+            {!this.user.is_bot && (
+              <div className='user-card__icon'>
+                <FollowUserMappingButton modifiers={['user-card']} userId={this.user.id} />
+              </div>
+            )}
           </>
         )}
       </div>
@@ -252,9 +254,11 @@ export class UserCard extends React.PureComponent<Props, State> {
           <FriendButton modifiers={['user-list']} userId={this.user.id} />
         </div>
 
-        <div className='user-card__icon'>
-          <FollowUserMappingButton modifiers={['user-list']} userId={this.user.id} />
-        </div>
+        {!this.user.is_bot && (
+          <div className='user-card__icon'>
+            <FollowUserMappingButton modifiers={['user-list']} userId={this.user.id} />
+          </div>
+        )}
       </div>
     );
   }

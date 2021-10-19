@@ -3,9 +3,10 @@
 
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
+import { parseJson } from 'utils/json'
 import { Main } from './beatmap-discussions/main'
 
-core.reactTurbolinks.register 'beatmap-discussions', true, (target) ->
+core.reactTurbolinks.register 'beatmap-discussions', (container) ->
   createElement Main,
-    initial: osu.parseJson 'json-beatmapset-discussion'
-    container: target
+    initial: parseJson 'json-beatmapset-discussion'
+    container: container

@@ -4,11 +4,12 @@
 import Main from 'news-show/main';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { parseJson } from 'utils/json';
 
-core.reactTurbolinks.register('news-show', true, (container: HTMLElement) => (
+core.reactTurbolinks.register('news-show', (container: HTMLElement) => (
   <Main
     container={container}
-    post={osu.parseJson('json-show')}
-    sidebarMeta={osu.parseJson('json-sidebar')}
+    post={parseJson('json-show')}
+    sidebarMeta={parseJson('json-sidebar')}
   />
 ));

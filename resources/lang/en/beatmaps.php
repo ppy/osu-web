@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'Error performing that action, try refreshing the page.',
         'love' => 'Love',
+        'love_choose' => 'Choose difficulty for loved',
         'love_confirm' => 'Love this beatmap?',
         'nominate' => 'Nominate',
         'nominate_confirm' => 'Nominate this beatmap?',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Include converted beatmaps',
+        'featured_artists' => 'Featured artists',
         'follows' => 'Subscribed mappers',
         'recommended' => 'Recommended difficulty',
     ],

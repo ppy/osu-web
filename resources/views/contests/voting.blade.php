@@ -5,7 +5,7 @@
 @extends('contests.base')
 
 @section('contest-content')
-    <div class="contest__description">{!! markdown($contestMeta->description_voting) !!}</div>
+    <div class="contest__description">{!! markdown($contestMeta->description_voting, 'contest') !!}</div>
     @include('contests._countdown', ['deadline' => $contestMeta->currentPhaseEndDate()])
     @if ($contestMeta->voting_ends_at !== null && $contestMeta->voting_ends_at->isPast())
         <div class='contest__voting-notice'>{{osu_trans('contest.voting.over')}}</div>
@@ -32,5 +32,5 @@
 @section('script')
   @parent
 
-  @include('layout._extra_js', ['src' => 'js/react/contest-voting.js'])
+  @include('layout._react_js', ['src' => 'js/react/contest-voting.js'])
 @stop

@@ -86,10 +86,10 @@
         </label>
 
         <label class="search-forum-options__input-group">
-            @include('objects._switch', [
+            @include('objects._switch', ['locals' => [
                 'checked' => $params[$fields['includeSubforums']] ?? null,
                 'name' => $fields['includeSubforums'],
-            ])
+            ]])
 
             {{ osu_trans('home.search.forum_post.label.forum_children') }}
         </label>

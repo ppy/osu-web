@@ -19,7 +19,7 @@ return [
         'show_voted_only' => 'Szavazottak mutatása',
 
         'best_of' => [
-            'none_played' => "Úgy tűnik, hogy egyetlen beatmap-et sem játszottál ami megfelelne ennek a versenynek!",
+            'none_played' => "Úgy tünik, hogy egyetlen beatmapet sem játszottál ami megfelelne ennek a versenynek!",
         ],
 
         'button' => [
@@ -29,7 +29,7 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max szavazás használva',
         ],
     ],
     'entry' => [

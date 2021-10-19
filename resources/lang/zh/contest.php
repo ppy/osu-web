@@ -29,16 +29,16 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max 票已用',
         ],
     ],
     'entry' => [
         '_' => '列表',
         'login_required' => '请登录后再参加评选。',
-        'silenced_or_restricted' => '账户受限时无法参加评选。',
+        'silenced_or_restricted' => '账户受限或禁言时无法参加评选。',
         'preparation' => '我们正在准备这场评选，请耐心等待！',
         'drop_here' => '将您的参赛文件拖到此处',
-        'download' => '下载 .osz',
+        'download' => '下载 .osz 文件',
         'wrong_type' => [
             'art' => '只接受 .jpg 和 .png 格式的文件.',
             'beatmap' => '只接受 .osu 格式的文件.',
@@ -51,8 +51,8 @@ return [
     ],
     'vote' => [
         'list' => '票数',
-        'count' => ':count 票',
-        'points' => ':count 分',
+        'count' => ':count_delimited 票',
+        'points' => ':count_delimited 分',
     ],
     'dates' => [
         'ended' => '结束于 :date',
@@ -60,7 +60,8 @@ return [
 
         'starts' => [
             '_' => '开始于 :date',
-            'soon' => '不久之后',
+            'soon' => '敬请期待™
+',
         ],
     ],
     'states' => [

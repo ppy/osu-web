@@ -4,7 +4,8 @@
 import { Main } from 'groups-show/main';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { parseJson } from 'utils/json';
 
-core.reactTurbolinks.register('groups-show', true, () => (
-  <Main group={osu.parseJson('json-group')} users={osu.parseJson('json-users')} />
+core.reactTurbolinks.register('groups-show', () => (
+  <Main group={parseJson('json-group')} users={parseJson('json-users')} />
 ));

@@ -7,7 +7,7 @@ return [
     'deleted' => '[törölt felhasználó]',
 
     'beatmapset_activities' => [
-        'title' => ":user Modolási Történelme",
+        'title' => ":user modolási történelme",
         'title_compact' => 'Modolás',
 
         'discussions' => [
@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Tisztességtelen játék / Csalás',
+            'multiple_accounts' => 'Több fiók használata',
             'insults' => 'Engem / másokat sérteget',
             'spam' => 'Spam',
             'unwanted_content' => 'Nem megfelelő tartalom linkelése',
@@ -195,22 +196,22 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => ':artist által',
-                'title' => 'Beatmap-ek',
+                'title' => 'Beatmapek',
 
                 'favourite' => [
-                    'title' => 'Kedvenc Beatmapek',
+                    'title' => 'Kedvenc beatmapek',
                 ],
                 'graveyard' => [
-                    'title' => 'Eltemetett Beatmap-ek',
+                    'title' => 'Eltemetett beatmapek',
                 ],
                 'loved' => [
-                    'title' => 'Szeretett Beatmap-ek',
+                    'title' => 'Szeretett beatmapek',
                 ],
                 'pending' => [
-                    'title' => 'Pending Beatmap-ek',
+                    'title' => 'Függő beatmapek',
                 ],
                 'ranked' => [
-                    'title' => 'Ranked & Approved Beatmap-ek',
+                    'title' => 'Rangsorolt beatmapek',
                 ],
             ],
             'discussions' => [
@@ -232,7 +233,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'alkalommal lejátszva',
-                    'title' => 'Legtöbbet Játszott Beatmap-ek',
+                    'title' => 'Legtöbbet játszott beatmapek',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'pontosság: :percentage',
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Legújabb',
                 'title' => 'Medálok',
             ],
+            'multiplayer' => [
+                'title' => 'Többjátékos mód',
+            ],
             'posts' => [
                 'title' => 'Bejegyzések',
                 'title_longer' => 'Legutóbbi bejegyzések',
@@ -310,7 +314,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay letöltése',
-                'not_ranked' => 'Kizárólag rangsorolt beatmap adhat pp-t.',
+                'not_ranked' => 'pp csak rangsorolt beatmapktől száramzik',
                 'pp_weight' => 'súlyozott :percentage',
                 'view_details' => 'Részletek mutatása',
                 'title' => 'Rangok',
@@ -403,9 +407,9 @@ return [
             'total_score' => 'Összpontszám',
             // modding stats
             'graveyard_beatmapset_count' => 'Eltemetett beatmapek',
-            'loved_beatmapset_count' => 'Kedvelt beatmapek',
-            'pending_beatmapset_count' => 'Függőben lévő beatmapek',
-            'ranked_beatmapset_count' => 'Rankedelt & jóváhagyott beatmapek',
+            'loved_beatmapset_count' => 'Szeretett beatmapek',
+            'pending_beatmapset_count' => 'Függő beatmapek',
+            'ranked_beatmapset_count' => 'Rangsorolt beatmapek',
         ],
     ],
 

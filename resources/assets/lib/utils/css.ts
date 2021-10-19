@@ -3,26 +3,40 @@
 
 import { forEach } from 'lodash';
 
-export type Modifiers = (string | null | undefined)[] | Partial<Record<string, boolean | null | undefined>>;
+export type Modifiers = (string | null | undefined)[] | Partial<Record<string, boolean | null | undefined>> | string | null | undefined;
 
-export function classWithModifiers(className: string, modifiers?: Modifiers, modifiersOnly = false) {
-  let ret = modifiersOnly ? '' : className;
-
-  if (modifiers != null) {
+const eachModifier = (modifiersArray: Modifiers[], callback: (modifier: string) => void) => {
+  modifiersArray.forEach((modifiers) => {
     if (Array.isArray(modifiers)) {
       modifiers.forEach((modifier) => {
         if (modifier != null) {
-          ret += ` ${className}--${modifier}`;
+          callback(modifier);
         }
       });
+    } else if (typeof modifiers === 'string') {
+      callback(modifiers);
     } else {
       forEach(modifiers, (isActive, modifier) => {
         if (isActive) {
-          ret += ` ${className}--${modifier}`;
+          callback(modifier);
         }
       });
     }
-  }
+  });
+};
+
+export function classWithModifiers(className: string, ...modifiersArray: Modifiers[]) {
+  let ret = className;
+
+  eachModifier(modifiersArray, (m) => ret += ` ${className}--${m}`);
+
+  return ret;
+}
+
+export function mergeModifiers(...modifiersArray: Modifiers[]) {
+  const ret: string[] = [];
+
+  eachModifier(modifiersArray, (m) => ret.push(m));
 
   return ret;
 }

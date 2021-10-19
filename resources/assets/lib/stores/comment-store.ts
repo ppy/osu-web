@@ -1,17 +1,19 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DispatcherAction from 'actions/dispatcher-action';
-import { UserLogoutAction } from 'actions/user-login-actions';
 import { CommentJson } from 'interfaces/comment-json';
 import { Dictionary } from 'lodash';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { Comment } from 'models/comment';
 
 export default class CommentStore {
   @observable comments = observable.map<number, Comment>();
   @observable userVotes = new Set<number>();
   private groupedByParentId: Dictionary<Comment[]> = {};
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   addUserVote(comment: Comment) {
@@ -34,12 +36,6 @@ export default class CommentStore {
   getRepliesByParentId(parentId: number | null) {
     // indexers get converted to string and null becomes "null".
     return this.groupedByParentId[String(parentId)];
-  }
-
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof UserLogoutAction) {
-      this.flushStore();
-    }
   }
 
   @action

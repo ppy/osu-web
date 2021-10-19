@@ -4,7 +4,8 @@
 import Main from 'follows-mapping/main';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { parseJson } from 'utils/json';
 
-core.reactTurbolinks.register('follows-mapping', true, () => (
-  <Main follows={osu.parseJson('json-follows-mapping')} />
+core.reactTurbolinks.register('follows-mapping', () => (
+  <Main follows={parseJson('json-follows-mapping')} />
 ));

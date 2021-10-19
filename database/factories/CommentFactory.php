@@ -6,7 +6,7 @@
 $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
     return [
         'user_id' => function () {
-            return factory(App\Models\User::class)->create()->user_id;
+            return App\Models\User::factory()->create()->user_id;
         },
         'message' => function () use ($faker) {
             return $faker->paragraph();
@@ -14,9 +14,7 @@ $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
         'commentable_type' => function () {
             return 'build'; // TODO: add support for more types
         },
-        'commentable_id' => function () {
-            return factory(App\Models\Build::class)->create()->build_id;
-        },
+        'commentable_id' => fn () => App\Models\Build::factory()->create()->getKey(),
         'created_at' => now(),
         'updated_at' => now(),
     ];

@@ -8,25 +8,35 @@ namespace Tests\Models\OAuth;
 use App\Events\UserSessionEvent;
 use App\Exceptions\InvalidScopeException;
 use App\Models\OAuth\Client;
+use App\Models\OAuth\Token;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
+use Laravel\Passport\Passport;
 use Laravel\Passport\RefreshToken;
 use Tests\TestCase;
 
 class TokenTest extends TestCase
 {
-    /**
-     * @dataProvider botScopeRequiresBotGroupDataProvider
-     */
-    public function testBotScopeRequiresBotGroup($group, $expectedException)
+    public function testAuthCodeChatWriteAllowsSelf()
     {
-        $user = factory(User::class);
-        if ($group !== null) {
-            $user->states($group);
-        }
-        $user = $user->create();
-
+        $user = User::factory()->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+
+        $token = $this->createToken($user, ['chat.write'], $client);
+        $this->actAsUserWithToken($token);
+
+        $this->assertTrue($user->is($token->getResourceOwner()));
+        $this->assertTrue($user->is(auth()->user()));
+    }
+
+    /**
+     * @dataProvider authCodeChatWriteRequiresBotGroupDataProvider
+     */
+    public function testAuthCodeChatWriteRequiresBotGroup(?string $group, ?string $expectedException)
+    {
+        $user = User::factory()->withGroup($group)->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $tokenUser = User::factory()->create();
 
         if ($expectedException !== null) {
             $this->expectException($expectedException);
@@ -34,14 +44,23 @@ class TokenTest extends TestCase
             $this->expectNotToPerformAssertions();
         }
 
-        $this->createToken(null, ['bot'], $client);
+        $this->createToken($tokenUser, ['chat.write'], $client);
+    }
+
+    public function testClientCredentialsRequiredForDelegation()
+    {
+        $user = User::factory()->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+
+        $this->expectException(InvalidScopeException::class);
+        $this->createToken($user, ['delegate'], $client);
     }
 
     public function testClientCredentialResourceOwnerBot()
     {
-        $user = factory(User::class)->states('bot')->create();
+        $user = User::factory()->withGroup('bot')->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-        $token = $this->createToken(null, ['bot'], $client);
+        $token = $this->createToken(null, ['delegate'], $client);
 
         $this->actAsUserWithToken($token);
 
@@ -52,7 +71,7 @@ class TokenTest extends TestCase
 
     public function testClientCredentialResourceOwnerPublic()
     {
-        $user = factory(User::class)->states('bot')->create();
+        $user = User::factory()->withGroup('bot')->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
         $token = $this->createToken(null, ['public'], $client);
 
@@ -64,13 +83,60 @@ class TokenTest extends TestCase
     }
 
     /**
+     * @dataProvider delegationNotAllowedScopesDataProvider
+     */
+    public function testDelegationNotAllowedScopes(array $scopes)
+    {
+        $user = User::factory()->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+
+        $this->expectException(InvalidScopeException::class);
+        $this->createToken(null, $scopes, $client);
+    }
+
+    /**
+     * @dataProvider delegationRequiredScopesDataProvider
+     */
+    public function testDelegationRequiredScopes(array $scopes, ?string $expectedException)
+    {
+        $user = User::factory()->withGroup('bot')->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+
+        if ($expectedException !== null) {
+            $this->expectException($expectedException);
+        } else {
+            $this->expectNotToPerformAssertions();
+        }
+
+        $this->createToken(null, $scopes, $client);
+    }
+
+    /**
+     * @dataProvider delegationRequiresChatBotDataProvider
+     */
+    public function testDelegationRequiresChatBot(?string $group, ?string $expectedException)
+    {
+        $user = User::factory()->withGroup($group)->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $tokenUser = User::factory()->create();
+
+        if ($expectedException !== null) {
+            $this->expectException($expectedException);
+        } else {
+            $this->expectNotToPerformAssertions();
+        }
+
+        $this->createToken(null, ['delegate'], $client);
+    }
+
+    /**
      * @dataProvider scopesDataProvider
      *
      * @return void
      */
     public function testScopes($scopes, $expectedException)
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
 
         if ($expectedException !== null) {
@@ -82,6 +148,14 @@ class TokenTest extends TestCase
         $this->createToken($user, $scopes, $client);
     }
 
+    public function testScopesAreSorted()
+    {
+        $token = new Token();
+        $token->scopes = ['i', 'am', 'a', 'scope'];
+
+        $this->assertSame(['a', 'am', 'i', 'scope'], $token->scopes);
+    }
+
     /**
      * @dataProvider scopesClientCredentialsDataProvider
      *
@@ -89,7 +163,7 @@ class TokenTest extends TestCase
      */
     public function testScopesClientCredentials($scopes, $expectedException)
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
 
         if ($expectedException !== null) {
@@ -118,6 +192,47 @@ class TokenTest extends TestCase
         Event::assertDispatched(UserSessionEvent::class);
     }
 
+    public function authCodeChatWriteRequiresBotGroupDataProvider()
+    {
+        return [
+            [null, InvalidScopeException::class],
+            ['admin', InvalidScopeException::class],
+            ['bng', InvalidScopeException::class],
+            ['bot', null],
+            ['gmt', InvalidScopeException::class],
+            ['nat', InvalidScopeException::class],
+        ];
+    }
+
+    public function delegationNotAllowedScopesDataProvider()
+    {
+        return Passport::scopes()
+            ->pluck('id')
+            ->filter(fn ($id) => !in_array($id, ['chat.write', 'delegate'], true))
+            ->map(fn ($id) => [['delegate', $id]])
+            ->values();
+    }
+
+    public function delegationRequiredScopesDataProvider()
+    {
+        return [
+            'chat.write requires delegation' => [['chat.write'], InvalidScopeException::class],
+            'chat.write delegation' => [['chat.write', 'delegate'], null],
+        ];
+    }
+
+    public function delegationRequiresChatBotDataProvider()
+    {
+        return [
+            [null, InvalidScopeException::class],
+            ['admin', InvalidScopeException::class],
+            ['bng', InvalidScopeException::class],
+            ['bot', null],
+            ['gmt', InvalidScopeException::class],
+            ['nat', InvalidScopeException::class],
+        ];
+    }
+
     public function scopesDataProvider()
     {
         return [
@@ -133,18 +248,6 @@ class TokenTest extends TestCase
             'null is not a valid scope' => [null, InvalidScopeException::class],
             'empty scope should fail' => [[], InvalidScopeException::class],
             'all scope is not allowed' => [['*'], InvalidScopeException::class],
-        ];
-    }
-
-    public function botScopeRequiresBotGroupDataProvider()
-    {
-        return [
-            [null, InvalidScopeException::class],
-            ['admin', InvalidScopeException::class],
-            ['bng', InvalidScopeException::class],
-            ['bot', null],
-            ['gmt', InvalidScopeException::class],
-            ['nat', InvalidScopeException::class],
         ];
     }
 }

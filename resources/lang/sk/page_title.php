@@ -111,13 +111,13 @@ return [
             '_' => '',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'rebríčky',
         ],
         'scores_controller' => [
             '_' => '',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'obchod',
         ],
         'tournaments_controller' => [
             '_' => '',
@@ -127,7 +127,7 @@ return [
             'disabled' => '',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -135,11 +135,19 @@ return [
             '_' => '',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
-        '_' => '',
+        '_' => 'obchod',
     ],
     'users' => [
         'modding_history_controller' => [
+            '_' => '',
+        ],
+        'multiplayer_controller' => [
             '_' => '',
         ],
     ],

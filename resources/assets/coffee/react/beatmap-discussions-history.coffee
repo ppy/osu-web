@@ -3,10 +3,11 @@
 
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
+import { parseJson } from 'utils/json'
 import { Main } from './beatmap-discussions-history/main'
 
-core.reactTurbolinks.register 'beatmap-discussions-history', true, (target) ->
-  bundle = osu.parseJson 'json-index'
+core.reactTurbolinks.register 'beatmap-discussions-history', (container) ->
+  bundle = parseJson 'json-index'
 
   # TODO: rename props to match
   createElement Main,
@@ -15,4 +16,4 @@ core.reactTurbolinks.register 'beatmap-discussions-history', true, (target) ->
     relatedBeatmaps: bundle.beatmaps
     relatedDiscussions: bundle.included_discussions
     reviewsConfig: bundle.reviews_config
-    container: target
+    container: container

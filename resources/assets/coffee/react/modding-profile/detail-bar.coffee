@@ -7,6 +7,8 @@ import { FriendButton } from 'friend-button'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
+import { jsonClone } from 'utils/json'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 
@@ -17,8 +19,8 @@ export class DetailBar extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "profile-page-#{osu.uuid()}"
-    @state = currentUser: osu.jsonClone(currentUser)
+    @eventId = "profile-page-#{nextVal()}"
+    @state = currentUser: jsonClone(currentUser)
 
 
   componentDidMount: =>
@@ -88,7 +90,7 @@ export class DetailBar extends React.PureComponent
 
     div className: "#{bn}__entry",
       button
-        className: 'profile-page-toggle js-click-menu'
+        className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail js-click-menu'
         title: osu.trans('common.buttons.show_more_options')
         'data-click-menu-target': "profile-page-bar-#{@id}"
         span className: 'fas fa-ellipsis-v'
@@ -102,4 +104,4 @@ export class DetailBar extends React.PureComponent
   updateCurrentUser: (_e, user) =>
     return unless @state.currentUser.id == user.id
 
-    @setState currentUser: osu.jsonClone(user)
+    @setState currentUser: jsonClone(user)

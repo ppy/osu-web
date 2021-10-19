@@ -183,6 +183,7 @@ return [
         'disqualify' => 'رفض التأهيل',
         'incorrect_state' => 'خطأ في تنفيذ هذا الإجراء، حاول تحديث الصفحة.',
         'love' => 'حُب',
+        'love_choose' => '',
         'love_confirm' => 'حُب هذه الخريطة؟',
         'nominate' => 'ترشيح',
         'nominate_confirm' => 'ترشيح هذه الخريطة؟',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'ادخال الخرائط المتحولة',
+        'featured_artists' => '',
         'follows' => 'ألمنشئين المشتركين',
         'recommended' => 'الصعوبة الموصاة',
     ],

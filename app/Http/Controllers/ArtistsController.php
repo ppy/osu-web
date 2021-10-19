@@ -14,7 +14,7 @@ class ArtistsController extends Controller
 {
     public function index()
     {
-        $artists = Artist::with('label')->withCount('tracks')->orderBy('name', 'asc');
+        $artists = Artist::with('label')->withMax('tracks', 'created_at')->withCount('tracks')->orderBy('name', 'asc');
         $user = Auth::user();
 
         if ($user === null || !$user->isAdmin()) {
@@ -64,6 +64,15 @@ class ArtistsController extends Controller
                 'title' => osu_trans('artist.links.osu'),
                 'url' => route('users.show', $artist->user_id),
                 'icon' => 'fas fa-user',
+                'class' => 'osu',
+            ];
+        }
+
+        if ($artist->beatmapsets()->exists()) {
+            $links[] = [
+                'title' => osu_trans('artist.links.beatmaps'),
+                'url' => route('beatmapsets.index', ['q' => "featured_artist={$artist->getKey()}"]),
+                'icon' => 'fas fa-bars',
                 'class' => 'osu',
             ];
         }

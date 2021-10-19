@@ -514,20 +514,16 @@ class UsersController extends Controller
         }
 
         $userIncludes = [
+            ...UserTransformer::PROFILE_HEADER_INCLUDES,
             'account_history',
-            'active_tournament_banner',
-            'badges',
             'beatmap_playcounts_count',
             'favourite_beatmapset_count',
-            'follower_count',
             'graveyard_beatmapset_count',
-            'groups',
             'loved_beatmapset_count',
             'mapping_follower_count',
             'monthly_playcounts',
             'page',
             'pending_beatmapset_count',
-            'previous_usernames',
             'rankHistory',
             'rank_history',
             'ranked_beatmapset_count',
@@ -539,7 +535,6 @@ class UsersController extends Controller
             'statistics.country_rank',
             'statistics.rank',
             'statistics.variants',
-            'support_level',
             'user_achievements',
 
             // TODO: deprecated
@@ -552,11 +547,9 @@ class UsersController extends Controller
             $userIncludes[] = 'account_history.supporting_url';
         }
 
-        $transformer = new UserTransformer();
-        $transformer->mode = $currentMode;
         $userArray = json_item(
             $user,
-            $transformer,
+            (new UserTransformer())->setMode($currentMode),
             $userIncludes
         );
 
@@ -657,7 +650,7 @@ class UsersController extends Controller
 
     private function sanitizedLimitParam()
     {
-        return clamp(get_int(request('limit')) ?? 5, 1, 51);
+        return clamp(get_int(request('limit')) ?? 5, 1, 100);
     }
 
     private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
@@ -727,7 +720,7 @@ class UsersController extends Controller
                 case 'scoresBest':
                     $transformer = 'Score';
                     $includes = ['beatmap', 'beatmapset', 'weight', 'user'];
-                    $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset', 'user']);
+                    $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
                     break;
                 case 'scoresFirsts':
                     $transformer = 'Score';

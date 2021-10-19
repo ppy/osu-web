@@ -117,7 +117,7 @@ return [
             '_' => 'ค่าศักยภาพ',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'ร้านค้า',
         ],
         'tournaments_controller' => [
             '_' => '
@@ -128,7 +128,7 @@ return [
             'disabled' => 'การแจ้งเตือน',
         ],
         'wiki_controller' => [
-            '_' => 'ฐานความรู้',
+            '_' => 'วิกิ',
         ],
     ],
     'multiplayer' => [
@@ -136,12 +136,20 @@ return [
             '_' => 'การจัดอันดับ',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'ร้านค้า',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'ข้อมูลผู้ให้คำวิจารณ์',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'ประวัติโหมดการเล่นหลายคน',
         ],
     ],
 ];

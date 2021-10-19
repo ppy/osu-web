@@ -5,7 +5,7 @@ import { Events } from './events'
 import { ExtraTab } from '../profile-page/extra-tab'
 import { Discussions } from './discussions'
 import { Header } from './header'
-import { Kudosu } from '../profile-page/kudosu'
+import Kudosu from 'profile-page/kudosu'
 import { Votes } from './votes'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
@@ -13,25 +13,25 @@ import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-con
 import { BlockButton } from 'block-button'
 import { deletedUser } from 'models/user'
 import { NotificationBanner } from 'notification-banner'
+import core from 'osu-core-singleton'
 import { Posts } from "./posts"
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
 import { pageChange } from 'utils/page-change'
+import { nextVal } from 'utils/seq'
+import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
 
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
 pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollspy-offset")
 
-currentLocation = ->
-  "#{document.location.pathname}#{document.location.search}"
-
-
 export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "users-modding-history-index-#{nextVal()}"
     @cache = {}
     @tabs = React.createRef()
     @pages = React.createRef()
@@ -39,7 +39,7 @@ export class Main extends React.PureComponent
     @restoredState = @state?
 
     if !@restoredState
-      page = location.hash.slice(1)
+      page = currentUrl().hash.slice(1)
       @initialPage = page if page?
 
       @state =
@@ -67,24 +67,27 @@ export class Main extends React.PureComponent
 
 
   componentDidMount: =>
-    $.subscribe 'user:update.profilePage', @userUpdate
-    $.subscribe 'profile:showMore.moddingProfilePage', @showMore
-    $.subscribe 'profile:page:jump.moddingProfilePage', @pageJump
-    $.subscribe 'beatmapsetDiscussions:update.moddingProfilePage', @discussionUpdate
-    $(document).on 'ajax:success.moddingProfilePage', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
-    $(window).on 'scroll.moddingProfilePage', @pageScan
+    $.subscribe "user:update.#{@eventId}", @userUpdate
+    $.subscribe "profile:showMore.#{@eventId}", @showMore
+    $.subscribe "profile:page:jump.#{@eventId}", @pageJump
+    $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @discussionUpdate
+    $(document).on "ajax:success.#{@eventId}", '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
+    $(window).on "scroll.#{@eventId}", @pageScan
 
     pageChange()
 
-    @modeScrollUrl = currentLocation()
+    @modeScrollUrl = currentUrlRelative()
 
     if !@restoredState
-      Timeout.set 0, => @pageJump null, @initialPage
+      core.reactTurbolinks.runAfterPageLoad @eventId, =>
+        # The scroll is a bit off on Firefox if not using timeout.
+        Timeout.set 0, => @pageJump(null, @initialPage)
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.moddingProfilePage'
-    $(window).off '.moddingProfilePage'
+    $.unsubscribe ".#{@eventId}"
+    $(window).off ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
@@ -298,7 +301,7 @@ export class Main extends React.PureComponent
 
 
   pageScan: =>
-    return if @modeScrollUrl != currentLocation()
+    return if @modeScrollUrl != currentUrlRelative()
 
     return if @scrolling
     return if pages.length == 0

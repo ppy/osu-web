@@ -15,7 +15,7 @@
 
     @include('home._user_header_default', ['themeOverride' => 'settings'])
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         <div class="account-edit account-edit--first">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
@@ -62,8 +62,7 @@
         </div>
     </div>
 
-    <div class="osu-page u-has-anchor">
-        <div id="avatar" class="fragment-target">{{-- anchor won't offset properly if included in the flex container below --}}</div>
+    <div class="osu-page" id="avatar">
         <div class="account-edit">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
@@ -129,41 +128,39 @@
         </div>
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_signature')
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_playstyles')
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_privacy')
     </div>
 
-    <div class="osu-page u-has-anchor">
-        <div id="notifications" class="fragment-target"></div>
+    <div class="osu-page" id="notifications">
         @include('accounts._edit_notifications')
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_options')
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_password')
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_email')
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_sessions')
     </div>
 
-    <div class="osu-page u-has-anchor">
-        <div id="oauth" class="fragment-target"></div>
+    <div class="osu-page" id="oauth">
         @include('accounts._edit_oauth')
     </div>
 @endsection
@@ -177,5 +174,5 @@
     {!! json_encode($ownClients) !!}
   </script>
 
-  @include('layout._extra_js', ['src' => 'js/react/account-edit.js'])
+  @include('layout._react_js', ['src' => 'js/react/account-edit.js'])
 @endsection

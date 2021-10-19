@@ -14,21 +14,8 @@
     (body.scrollHeight - body.scrollTop) - body.clientHeight
 
 
-  classWithModifiers: (className, modifiers) ->
-    ret = className
-
-    if modifiers?
-      ret += " #{className}--#{modifier}" for modifier in modifiers when modifier?
-
-    ret
-
-
   currentUserIsFriendsWith: (user_id) ->
     _.find currentUser.friends, target_id: user_id
-
-
-  diffColour: (difficultyRating) ->
-    '--diff': "var(--diff-#{difficultyRating ? 'default'})"
 
 
   groupColour: (group) ->
@@ -36,10 +23,11 @@
 
 
   setHash: (newHash) ->
-    newUrl = location.href.replace /#.*/, ''
+    currentUrl = _exported.currentUrl().href
+    newUrl = currentUrl.replace /#.*/, ''
     newUrl += newHash
 
-    return if newUrl == location.href
+    return if newUrl == currentUrl
 
     history.replaceState history.state, null, newUrl
 
@@ -54,34 +42,6 @@
   emitAjaxError: (element = document.body) =>
     (xhr, status, error) =>
       $(element).trigger 'ajax:error', [xhr, status, error]
-
-
-  parseJson: (id, remove = false) ->
-    element = document.getElementById(id)
-    return unless element?
-
-    json = JSON.parse element.text
-    element.remove() if remove
-
-    json
-
-
-  storeJson: (id, object) ->
-    json = JSON.stringify object
-    element = document.getElementById(id)
-
-    if !element?
-      element = document.createElement 'script'
-      element.id = id
-      element.type = 'application/json'
-      document.body.appendChild element
-
-    element.text = json
-
-
-  # make a clone of json-like object (object with simple values)
-  jsonClone: (object) ->
-    JSON.parse JSON.stringify(object ? null)
 
 
   isInputElement: (el) ->
@@ -162,15 +122,7 @@
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
 
-    url =
-      if !_.isEmpty window.reloadUrl
-        window.reloadUrl
-      else
-        location.href
-
-    window.reloadUrl = null
-
-    osu.navigate url, keepScroll, action: 'replace'
+    osu.navigate _exported.currentUrl().href, keepScroll, action: 'replace'
 
 
   urlPresence: (url) ->
@@ -289,7 +241,8 @@
 
 
   updateQueryString: (url, params) ->
-    urlObj = new URL(url ? window.location.href, document.location.origin)
+    docUrl = _exported.currentUrl()
+    urlObj = new URL(url ? docUrl.href, docUrl.origin)
     for own key, value of params
       if value?
         urlObj.searchParams.set(key, value)

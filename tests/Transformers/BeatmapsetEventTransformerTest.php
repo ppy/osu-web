@@ -18,13 +18,13 @@ class BeatmapsetEventTransformerTest extends TestCase
     /**
      * @dataProvider dataProvider
      */
-    public function testWithOAuth($groupIdentifier, $eventType, $visibleWithOAuth)
+    public function testWithOAuth(?string $groupIdentifier, string $eventType, bool $visibleWithOAuth)
     {
         $event = $this->beatmapset->events()->create([
             'type' => $eventType,
         ]);
 
-        $viewer = $this->createUserWithGroup($groupIdentifier);
+        $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
 
         $json = json_item($event, 'BeatmapsetEvent');
@@ -39,13 +39,13 @@ class BeatmapsetEventTransformerTest extends TestCase
     /**
      * @dataProvider dataProvider
      */
-    public function testWithoutOAuth($groupIdentifier, $eventType, $visibleWithOAuth, $visibleWithoutOAuth)
+    public function testWithoutOAuth(?string $groupIdentifier, string $eventType, bool $visibleWithOAuth, bool $visibleWithoutOAuth)
     {
         $event = $this->beatmapset->events()->create([
             'type' => $eventType,
         ]);
 
-        $viewer = $this->createUserWithGroup($groupIdentifier);
+        $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsUser($viewer);
 
         $json = json_item($event, 'BeatmapsetEvent');
@@ -77,9 +77,9 @@ class BeatmapsetEventTransformerTest extends TestCase
             ['nat', BeatmapsetEvent::KUDOSU_ALLOW, false, true],
             ['nat', BeatmapsetEvent::DISCUSSION_DELETE, false, true],
 
-            [[], BeatmapsetEvent::NOMINATE, true, true],
-            [[], BeatmapsetEvent::KUDOSU_ALLOW, false, false],
-            [[], BeatmapsetEvent::DISCUSSION_DELETE, false, false],
+            [null, BeatmapsetEvent::NOMINATE, true, true],
+            [null, BeatmapsetEvent::KUDOSU_ALLOW, false, false],
+            [null, BeatmapsetEvent::DISCUSSION_DELETE, false, false],
         ];
     }
 
@@ -87,9 +87,9 @@ class BeatmapsetEventTransformerTest extends TestCase
     {
         parent::setUp();
 
-        $mapper = factory(User::class)->create();
-        $this->beatmapset = factory(Beatmapset::class)->states('with_discussion')->create([
-            'user_id' => $mapper->getKey(),
+        $mapper = User::factory()->create();
+        $this->beatmapset = Beatmapset::factory()->withDiscussion()->create([
+            'user_id' => $mapper,
         ]);
     }
 }

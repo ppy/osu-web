@@ -13,7 +13,7 @@ return [
         'title' => '顯示',
 
         'variant' => [
-            'title' => '',
+            'title' => '篩選',
         ],
     ],
 
