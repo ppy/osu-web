@@ -19,12 +19,12 @@ interface Props {
   score: ScoreJson;
 }
 
-interface State {
+type State = Readonly<{
   compact: boolean;
-}
+}>;
 
 export default class PlayDetail extends React.PureComponent<Props, State> {
-  readonly state = {
+  state = {
     compact: true,
   };
 
