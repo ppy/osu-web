@@ -7,7 +7,7 @@ namespace App\Libraries\Chat;
 
 use App\Events\ChatMessageEvent;
 use App\Models\Chat\Message;
-use Laravel\Octane\Swoole\SwooleTaskDispatcher;
+use Laravel\Octane\Facades\Octane;
 
 /**
  * Wrapper to avoid SerializableClosure when dispatching ChatMessageEvent to task workers
@@ -20,8 +20,7 @@ class MessageTask
 
     public static function dispatch(Message $message)
     {
-        // explicitly avoid SwooleHttpTaskDispatcher
-        (new SwooleTaskDispatcher())->dispatch([new static($message)]);
+        Octane::tasks()->dispatch([new static($message)]);
     }
 
     public function __invoke()

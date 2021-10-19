@@ -18,6 +18,8 @@ use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Octane\Contracts\DispatchesTasks;
+use Laravel\Octane\Swoole\SwooleTaskDispatcher;
 use Queue;
 use Validator;
 
@@ -102,6 +104,12 @@ class AppServiceProvider extends ServiceProvider
                 $config['same_site'] ?? null
             );
         });
+
+        // explicitly avoid SwooleHttpTaskDispatcher
+        $this->app->bind(
+            DispatchesTasks::class,
+            fn () => new SwooleTaskDispatcher()
+        );
 
         // This is needed for testing with Dusk.
         if ($this->app->environment('testing')) {
