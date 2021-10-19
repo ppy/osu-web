@@ -4,7 +4,7 @@
 import { getMessages } from 'chat/chat-api';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
-import { minBy } from 'lodash';
+import { minBy, sortBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import Message from 'models/chat/message';
 import User from 'models/user';
@@ -73,7 +73,7 @@ export default class Channel {
 
   @computed
   get messages() {
-    return [...this.messagesMap.values()].sort((a: Message, b: Message) => a.date - b.date); // TODO: id tie breaker;
+    return sortBy([...this.messagesMap.values()], ['timestamp', 'channelId']);
   }
 
   @computed
