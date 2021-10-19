@@ -19,6 +19,10 @@ export default class Message {
   @observable timestamp: string = moment().toISOString();
   @observable uuid = this.messageId;
 
+  get date() {
+    return Date.parse(this.timestamp);
+  }
+
   @computed
   get parsedContent(): string {
     return osu.linkify(escape(this.content), true);

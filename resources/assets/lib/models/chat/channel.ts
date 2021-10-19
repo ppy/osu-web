@@ -4,7 +4,6 @@
 import { getMessages } from 'chat/chat-api';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
-import * as _ from 'lodash';
 import { minBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import Message from 'models/chat/message';
@@ -23,13 +22,13 @@ export default class Channel {
   @observable lastReadId?: number;
   @observable loadingEarlierMessages = false;
   @observable loadingMessages = false;
-  @observable messages: Message[] = observable([]);
   @observable name = '';
   needsRefresh = true;
   @observable newPmChannel = false;
   @observable type: ChannelType = 'NEW';
   @observable users: number[] = [];
 
+  @observable private messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
 
   @computed
@@ -70,6 +69,11 @@ export default class Channel {
   @computed
   get isDisplayable() {
     return this.name.length > 0 && this.icon != null;
+  }
+
+  @computed
+  get messages() {
+    return [...this.messagesMap.values()].sort((a: Message, b: Message) => a.date - b.date); // TODO: id tie breaker;
   }
 
   @computed
@@ -116,19 +120,16 @@ export default class Channel {
    */
   @action
   addMessage(json: MessageJson) {
-    // find any pending message being sent.
     if (json.uuid != null && json.sender_id === core.currentUser?.id) {
-      // TODO: limit the extent of back searching (because current tab might not be the sender)
-      for (let i = this.messages.length; i > 0; i--) {
-        const message = this.messages[i - 1];
-        if (message.uuid === json.uuid) {
-          message.persist(json);
-          return;
-        }
+      const existing = this.messagesMap.get(json.uuid);
+      if (existing != null) {
+        existing.persist(json);
+        return;
       }
     }
 
-    this.messages.push(Message.fromJson(json));
+    const message = Message.fromJson(json);
+    this.messagesMap.set(message.uuid, message);
   }
 
   /**
@@ -136,13 +137,12 @@ export default class Channel {
    */
   @action
   addMessages(messages: Message[]) {
-    this.messages.push(...messages);
-    this.resortMessages();
+    messages.forEach((message) => this.messagesMap.set(message.uuid, message));
   }
 
   @action
   addSendingMessage(message: Message) {
-    this.messages.push(message);
+    this.messagesMap.set(message.uuid, message);
     this.markAsRead();
   }
 
@@ -155,8 +155,6 @@ export default class Channel {
       message.errored = true;
       // delay and retry?
     }
-
-    this.resortMessages();
   }
 
   @action
@@ -206,7 +204,11 @@ export default class Channel {
 
   @action
   removeMessagesFromUserIds(userIds: Set<number>) {
-    this.messages = this.messages.filter((message) => !userIds.has(message.senderId));
+    for (const [uuid, message] of this.messagesMap) {
+      if (userIds.has(message.senderId)) {
+        this.messagesMap.delete(uuid);
+      }
+    }
   }
 
   @action
@@ -257,7 +259,7 @@ export default class Channel {
         const minMessageId = minBy(messages, 'messageId')?.messageId ?? -1;
         if (minMessageId > this.lastMessageId) {
           // TODO: force scroll to the end.
-          this.messages.length = 0;
+          this.messagesMap.clear();
         }
 
         this.addMessages(messages);
@@ -274,11 +276,6 @@ export default class Channel {
     } catch {
       runInAction(() => this.loadingMessages = false);
     }
-  }
-
-  @action
-  private resortMessages() {
-    this.messages = _(this.messages).sortBy('timestamp').value();
   }
 
   @action
