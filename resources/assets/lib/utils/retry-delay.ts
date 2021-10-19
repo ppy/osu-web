@@ -3,21 +3,22 @@
 
 import { random } from 'lodash';
 
-const initialDelay = 7500;
-const maxDelay = 1800000; // 30 minutes
-
 export default class RetryDelay {
-  private current = initialDelay;
+  private current: number;
+
+  constructor(private initialDelay = 7500, private maxDelay = 1800000 /* 30 minutes */) {
+    this.current = initialDelay;
+  }
 
   get() {
     const ret = this.current + random(5000, 20000);
 
-    this.current = Math.min(this.current * 2, maxDelay);
+    this.current = Math.min(this.current * 2, this.maxDelay);
 
     return ret;
   }
 
   reset() {
-    this.current = initialDelay;
+    this.current = this.initialDelay;
   }
 }
