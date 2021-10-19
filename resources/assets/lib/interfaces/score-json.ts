@@ -13,7 +13,7 @@ export default interface ScoreJson {
   beatmapset?: BeatmapsetJson;
   best_id: number | null;
   created_at: string;
-  id: string;
+  id: number;
   max_combo: number;
   mode?: GameMode;
   mode_int?: number;
