@@ -42,6 +42,11 @@ export default class Channel {
   }
 
   @computed
+  get isDisplayable() {
+    return this.name.length > 0 && this.icon != null;
+  }
+
+  @computed
   get isUnread(): boolean {
     if (this.lastReadId != null) {
       return this.lastMessageId > this.lastReadId;
@@ -64,11 +69,6 @@ export default class Channel {
     }
 
     return this.serverLastMessageId ?? -1;
-  }
-
-  @computed
-  get isDisplayable() {
-    return this.name.length > 0 && this.icon != null;
   }
 
   @computed
