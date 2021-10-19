@@ -101,7 +101,7 @@ export default class Kudosu extends React.Component<Props> {
             event='profile:showMore'
             hasMore={this.props.pagination.recentlyReceivedKudosu.hasMore}
             loading={this.props.pagination.recentlyReceivedKudosu.loading}
-            modifiers={['profile-page', 't-greyseafoam-dark']}
+            modifiers='profile-page'
           />
         </li>
       </ul>

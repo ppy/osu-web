@@ -4,10 +4,11 @@
 import UserGroupJson from 'interfaces/user-group-json';
 import * as React from 'react';
 import UserGroupBadge from 'user-group-badge';
+import { Modifiers } from 'utils/css';
 
 interface Props {
   groups?: UserGroupJson[];
-  modifiers?: string[];
+  modifiers?: Modifiers;
   short?: boolean;
   wrapper: string; // FIXME: temporary?
 }
