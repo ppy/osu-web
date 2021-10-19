@@ -1,39 +1,43 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import PlayDetail from 'play-detail'
-import { createElement as el, PureComponent } from 'react'
-import * as React from 'react'
-import { div } from 'react-dom-factories'
-import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
-import { classWithModifiers } from 'utils/css'
+import ScoreJson from 'interfaces/score-json';
+import PlayDetail from 'play-detail';
+import * as React from 'react';
+import { ContainerContext, KeyContext } from 'stateful-activation-context';
+import { classWithModifiers } from 'utils/css';
 
-osu = window.osu
+interface Props {
+  scores: ScoreJson[];
+}
 
-export class PlayDetailList extends PureComponent
-  constructor: (props) ->
-    super props
+interface State {
+  activeKey: number | null;
+}
 
-    @activeKeyDidChange = activeKeyDidChange.bind(@)
+export default class PlayDetailList extends React.PureComponent<Props, State> {
+  state = {
+    activeKey: null,
+  };
 
-    @state = {}
+  render() {
+    const uniqueScores = new Map<number, ScoreJson>();
+    this.props.scores.forEach((score) => uniqueScores.set(score.id, score));
 
+    return (
+      <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
+        <div className={classWithModifiers('play-detail-list', { 'menu-active': this.state.activeKey != null })}>
+          {[...uniqueScores].map(([key, score]) => (
+            <KeyContext.Provider key={key} value={key}>
+              <PlayDetail activated={this.state.activeKey === key} score={score} />
+            </KeyContext.Provider>
+          ))}
+        </div>
+      </ContainerContext.Provider>
+    );
+  }
 
-  render: =>
-    classMods = ['menu-active'] if @state.activeKey?
-
-    el ContainerContext.Provider,
-      value:
-        activeKeyDidChange: @activeKeyDidChange
-
-      div
-        className: classWithModifiers('play-detail-list', classMods)
-
-        @props.scores.map (score, key) =>
-          activated = @state.activeKey == key
-
-          el KeyContext.Provider,
-            key: key
-            value: key
-            el PlayDetail,
-              { activated, score }
+  private activeKeyDidChange = (key: number | null) => {
+    this.setState({ activeKey: key });
+  };
+}
