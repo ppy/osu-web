@@ -6,7 +6,7 @@ import { route } from 'laroute';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
-import { canBeReported } from 'score-helper';
+import { canBeReported } from 'utils/score-helper';
 
 interface Props {
   score: ScoreJson;
