@@ -35,4 +35,8 @@ export default interface ScoreJson {
   };
   user: UserJson;
   user_id: number;
+  weight?: {
+    percentage: number;
+    pp: number;
+  };
 }
