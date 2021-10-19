@@ -19,8 +19,10 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Octane\Contracts\DispatchesTasks;
+use Laravel\Octane\SequentialTaskDispatcher;
 use Laravel\Octane\Swoole\SwooleTaskDispatcher;
 use Queue;
+use Swoole\Http\Server;
 use Validator;
 
 class AppServiceProvider extends ServiceProvider
@@ -105,10 +107,10 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-        // explicitly avoid SwooleHttpTaskDispatcher
+        // pre-bind to avoid SwooleHttpTaskDispatcher and fallback when not running in a swoole context.
         $this->app->bind(
             DispatchesTasks::class,
-            fn () => new SwooleTaskDispatcher()
+            fn ($app) => $app->bound(Server::class) ? new SwooleTaskDispatcher() : new SequentialTaskDispatcher()
         );
 
         // This is needed for testing with Dusk.
