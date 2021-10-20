@@ -195,7 +195,7 @@ class MessagesController extends BaseController
         return json_item(
             $message,
             new MessageTransformer(),
-            ['sender']
+            ['sender', 'uuid']
         );
     }
 }

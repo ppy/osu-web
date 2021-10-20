@@ -120,16 +120,19 @@ export default class Channel {
    */
   @action
   addMessage(json: MessageJson) {
+    const message = Message.fromJson(json);
+
     if (json.uuid != null && json.sender_id === core.currentUser?.id) {
       const existing = this.messagesMap.get(json.uuid);
       if (existing != null) {
+        this.messagesMap.delete(json.uuid);
         existing.persist(json);
+        this.messagesMap.set(message.messageId, message);
         return;
       }
     }
 
-    const message = Message.fromJson(json);
-    this.messagesMap.set(message.uuid, message);
+    this.messagesMap.set(message.messageId, message);
   }
 
   /**
@@ -137,19 +140,24 @@ export default class Channel {
    */
   @action
   addMessages(messages: Message[]) {
-    messages.forEach((message) => this.messagesMap.set(message.uuid, message));
+    messages.forEach((message) => this.messagesMap.set(message.messageId, message));
   }
 
   @action
   addSendingMessage(message: Message) {
-    this.messagesMap.set(message.uuid, message);
+    this.messagesMap.set(message.messageId, message);
     this.markAsRead();
   }
 
   @action
   afterSendMesssage(message: Message, json: MessageJson | null) {
     if (json != null) {
+      if (json.uuid != null) {
+        this.messagesMap.delete(json.uuid);
+      }
+
       message.persist(json);
+      this.messagesMap.set(message.messageId, message);
       this.setLastReadId(json.message_id);
     } else {
       message.errored = true;
@@ -204,9 +212,9 @@ export default class Channel {
 
   @action
   removeMessagesFromUserIds(userIds: Set<number>) {
-    for (const [uuid, message] of this.messagesMap) {
+    for (const [, message] of this.messagesMap) {
       if (userIds.has(message.senderId)) {
-        this.messagesMap.delete(uuid);
+        this.messagesMap.delete(message.messageId);
       }
     }
   }
