@@ -67,13 +67,17 @@ export default class TracklistTrack extends React.PureComponent<Props> {
           )}
         </div>
 
-        <div className='artist-track__col artist-track__col--genre'>
-          <div className='u-ellipsis-overflow'>{this.props.track.genre}</div>
-          <div>{this.props.track.bpm}bpm</div>
-        </div>
+        <div className='artist-track__col artist-track__col--details'>
+          <div className='u-ellipsis-overflow artist-track__detail artist-track__detail--genre'>
+            {this.props.track.genre}
+          </div>
+          <div className='artist-track__detail artist-track__detail--bpm'>
+            {osu.formatNumber(this.props.track.bpm)}bpm
+          </div>
 
-        <div className='artist-track__col artist-track__col--length'>
-          {this.props.track.length}
+          <div className='artist-track__detail artist-track__detail--length'>
+            {this.props.track.length}
+          </div>
         </div>
 
         <div className='artist-track__col artist-track__col--buttons'>
