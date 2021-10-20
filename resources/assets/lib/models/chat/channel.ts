@@ -120,18 +120,14 @@ export default class Channel {
    */
   @action
   addMessage(json: MessageJson) {
-    const message = Message.fromJson(json);
-
     if (json.uuid != null && json.sender_id === core.currentUser?.id) {
       const existing = this.messagesMap.get(json.uuid);
       if (existing != null) {
-        this.messagesMap.delete(json.uuid);
-        existing.persist(json);
-        this.messagesMap.set(message.messageId, message);
-        return;
+        return this.persistMessage(existing, json);
       }
     }
 
+    const message = Message.fromJson(json);
     this.messagesMap.set(message.messageId, message);
   }
 
@@ -152,12 +148,7 @@ export default class Channel {
   @action
   afterSendMesssage(message: Message, json: MessageJson | null) {
     if (json != null) {
-      if (json.uuid != null) {
-        this.messagesMap.delete(json.uuid);
-      }
-
-      message.persist(json);
-      this.messagesMap.set(message.messageId, message);
+      this.persistMessage(message, json);
       this.setLastReadId(json.message_id);
     } else {
       message.errored = true;
@@ -246,6 +237,16 @@ export default class Channel {
     if (json.current_user_attributes != null) {
       this.canMessage = json.current_user_attributes.can_message;
     }
+  }
+
+  @action
+  private persistMessage(message: Message, json: MessageJson) {
+    if (json.uuid != null) {
+      this.messagesMap.delete(json.uuid);
+    }
+
+    message.persist(json);
+    this.messagesMap.set(message.messageId, message);
   }
 
   @action
