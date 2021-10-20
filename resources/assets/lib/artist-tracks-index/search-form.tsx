@@ -68,7 +68,8 @@ export default class SearchForm extends React.Component<Props> {
 
   @computed
   private get newSearch() {
-    return isEqual(this.params, this.props.initialParams);
+    // exclude genre from comparison for search button
+    return isEqual({ ...this.params, genre: this.props.initialParams.genre }, this.props.initialParams);
   }
 
   constructor(props: Props) {
@@ -247,7 +248,9 @@ export default class SearchForm extends React.Component<Props> {
 
   @action
   private readonly handleGenreLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
     this.params.genre = osu.presence(e.currentTarget.dataset.value);
+    osu.navigate(e.currentTarget.href, true);
   };
 
   @action
@@ -258,7 +261,7 @@ export default class SearchForm extends React.Component<Props> {
 
   private readonly handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    Turbolinks.visit(this.makeLink());
+    osu.navigate(this.makeLink(), true);
   };
 
   private makeLink(params: ArtistTrackSearch = this.params) {

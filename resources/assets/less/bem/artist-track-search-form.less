@@ -42,18 +42,35 @@
   }
 
   &__genre-link {
+    .link-plain();
     font-size: @font-size--normal;
+    font-weight: bold;
+    background: hsl(var(--hsl-b3));
+    color: hsl(var(--hsl-c1));
+    padding: 2px 15px 3px; // slightly more on the bottom to compensate font vertical alignment
+    border-radius: 10000px;
+    transition: none;
+    text-align: center;
+    white-space: nowrap;
+
+    &:focus, &:active {
+      color: hsl(var(--hsl-c1));
+    }
+
+    &:hover {
+      background: hsl(var(--hsl-l1));
+      color: hsl(var(--hsl-b6));
+    }
 
     &--active {
-      color: hsl(var(--hsl-c1));
-      font-weight: 500;
+      background: hsl(var(--hsl-b1));
     }
   }
 
   &__genres {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px 20px;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
   }
 
   &__input {
