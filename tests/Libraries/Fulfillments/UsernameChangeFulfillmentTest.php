@@ -12,7 +12,6 @@ use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
-use Carbon\Carbon;
 use Tests\TestCase;
 
 class UsernameChangeFulfillmentTest extends TestCase
@@ -103,7 +102,7 @@ class UsernameChangeFulfillmentTest extends TestCase
 
     public function testRunWhenUsernameIsTaken()
     {
-        factory(User::class)->create([
+        User::factory()->create([
             'username' => 'new_username',
             'user_lastvisit' => time(),
         ]);
@@ -123,7 +122,7 @@ class UsernameChangeFulfillmentTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create(['osu_subscriptionexpiry' => Carbon::now()]);
+        $this->user = User::factory()->create(['osu_subscriptionexpiry' => now()]);
         $this->order = factory(Order::class)->states('paid')->create(['user_id' => $this->user->user_id]);
     }
 }

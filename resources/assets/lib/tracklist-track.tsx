@@ -33,14 +33,22 @@ export default class TracklistTrack extends React.PureComponent<Props> {
   }
 
   render() {
+    let blockClass = classWithModifiers('artist-track', { original: this.props.track.exclusive }, this.props.modifiers);
+    blockClass += ' js-audio--player';
+
     return (
-      <div className={classWithModifiers('artist-track', { original: this.props.track.exclusive }, this.props.modifiers)}>
+      <div className={blockClass} data-audio-url={this.props.track.preview}>
         <div
           className='artist-track__col artist-track__col--preview'
           style={{
             backgroundImage: osu.urlPresence(this.props.track.cover_url),
           }}
-        />
+        >
+          <button className='artist-track__button artist-track__button--play js-audio--play'>
+            <span className='fa-fw play-button' />
+          </button>
+        </div>
+
 
         <div className='artist-track__col artist-track__col--names'>
           <div className='artist-track__title u-ellipsis-overflow'>
@@ -84,23 +92,20 @@ export default class TracklistTrack extends React.PureComponent<Props> {
           )}
         </div>
 
-        <div className='artist-track__col artist-track__col--genre'>
-          <div className='u-ellipsis-overflow'>{this.props.track.genre}</div>
-          <div>{this.props.track.bpm}bpm</div>
-        </div>
+        <div className='artist-track__col artist-track__col--details'>
+          <div className='u-ellipsis-overflow artist-track__detail artist-track__detail--genre'>
+            {this.props.track.genre}
+          </div>
+          <div className='artist-track__detail artist-track__detail--bpm'>
+            {osu.formatNumber(this.props.track.bpm)}bpm
+          </div>
 
-        <div className='artist-track__col artist-track__col--length'>
-          {this.props.track.length}
+          <div className='artist-track__detail artist-track__detail--length'>
+            {this.props.track.length}
+          </div>
         </div>
 
         <div className='artist-track__col artist-track__col--buttons'>
-          <button
-            className='artist-track__button js-audio--play js-audio--player'
-            data-audio-url={this.props.track.preview}
-          >
-            <span className='fa-fw play-button' />
-          </button>
-
           <a
             className='artist-track__button'
             href={this.props.track.osz}

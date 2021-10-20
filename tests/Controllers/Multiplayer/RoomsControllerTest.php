@@ -19,7 +19,7 @@ class RoomsControllerTest extends TestCase
     public function testIndex()
     {
         $room = factory(Room::class)->create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actAsScopedUser($user, ['*']);
 

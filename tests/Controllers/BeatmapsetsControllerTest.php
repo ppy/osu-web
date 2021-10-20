@@ -36,7 +36,7 @@ class BeatmapsetsControllerTest extends TestCase
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset->getKey()]);
-        $nominator = $this->createUserWithGroupPlaymodes('bng', [$beatmap->mode]);
+        $nominator = User::factory()->withGroup('bng', [$beatmap->mode])->create();
 
         $this->actingAsVerified($nominator)
             ->put(route('beatmapsets.nominate', ['beatmapset' => $beatmapset->getKey(), 'playmodes' => [$beatmap->mode]]))
@@ -51,7 +51,7 @@ class BeatmapsetsControllerTest extends TestCase
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset->getKey()]);
-        $nominator = $this->createUserWithGroupPlaymodes('bng', [$beatmap->mode]);
+        $nominator = User::factory()->withGroup('bng', [$beatmap->mode])->create();
 
         $beatmapset->update(['user_id' => $nominator->getKey()]);
 
@@ -68,7 +68,7 @@ class BeatmapsetsControllerTest extends TestCase
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset->getKey()]);
-        $nominator = $this->createUserWithGroupPlaymodes('bng', [$beatmap->mode]);
+        $nominator = User::factory()->withGroup('bng', [$beatmap->mode])->create();
 
         $beatmap->update(['user_id' => $nominator->getKey()]);
 
@@ -84,7 +84,7 @@ class BeatmapsetsControllerTest extends TestCase
      */
     public function testBeatmapsetUpdateMetadataAsModerator($state)
     {
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
         $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES[$state],
             'user_id' => $owner,
@@ -92,7 +92,7 @@ class BeatmapsetsControllerTest extends TestCase
         $newGenre = Genre::factory()->create();
         $newLanguage = Language::factory()->create();
 
-        $moderator = $this->createUserWithGroup('nat');
+        $moderator = User::factory()->withGroup('nat')->create();
 
         $resultGenreId = $newGenre->getKey();
         $resultLanguageId = $newLanguage->getKey();
@@ -116,7 +116,7 @@ class BeatmapsetsControllerTest extends TestCase
      */
     public function testBeatmapsetUpdateMetadataAsOtherUser($state)
     {
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
         $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES[$state],
             'user_id' => $owner,
@@ -127,7 +127,7 @@ class BeatmapsetsControllerTest extends TestCase
         $resultGenreId = $beatmapset->genre_id;
         $resultLanguageId = $beatmapset->language_id;
 
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAsVerified($user)
             ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
@@ -150,7 +150,7 @@ class BeatmapsetsControllerTest extends TestCase
     {
         $ok = in_array($state, ['graveyard', 'wip', 'pending'], true);
 
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
         $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES[$state],
             'user_id' => $owner,

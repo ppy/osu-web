@@ -19,7 +19,6 @@ return [
             'contest' => 'paligsahan',
             'contests' => 'mga paligsahan',
             'root' => 'console',
-            'store_orders' => 'tagapamahala ng store',
         ],
 
         'artists' => [

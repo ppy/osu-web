@@ -16,7 +16,7 @@ class ScoresControllerTest extends TestCase
     public function testShow()
     {
         $score = factory(Score::class)->create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actAsScopedUser($user, ['*']);
 
@@ -32,7 +32,7 @@ class ScoresControllerTest extends TestCase
      */
     public function testStore($allowRanking, $hashParam, $status)
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $playlistItem = factory(PlaylistItem::class)->create();
         $build = Build::factory()->create(['allow_ranking' => $allowRanking]);
         $initialScoresCount = Score::count();
@@ -59,7 +59,7 @@ class ScoresControllerTest extends TestCase
      */
     public function testUpdate($bodyParams, $status)
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $playlistItem = factory(PlaylistItem::class)->create();
         $room = $playlistItem->room;
         $build = Build::factory()->create(['allow_ranking' => true]);

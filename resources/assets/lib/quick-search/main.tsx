@@ -110,7 +110,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     this.selectBox(section, index);
   };
 
-  private onMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
+  private onMouseLeave = () => {
     this.props.worker.selectNone();
   };
 

@@ -4,10 +4,17 @@
 .btn-osu-big {
   @top: btn-osu-big;
 
-  --colour: hsl(var(--hsl-c1));
+  --active-bg: var(--hover-bg);
+  --active-colour: var(--hover-colour);
   --bg: hsl(var(--hsl-h2));
-  --hover-colour: hsl(var(--hsl-c1));
+  --colour: hsl(var(--hsl-c1));
+  --disabled-bg: hsl(var(--hsl-b3));
+  --disabled-colour: hsl(var(--hsl-f1));
+  --disabled-opacity: 1;
+  --focus-bg: var(--hover-bg);
+  --focus-colour: var(--hover-colour);
   --hover-bg: hsl(var(--hsl-h1));
+  --hover-colour: hsl(var(--hsl-c1));
   .reset-input();
   .link-plain();
   .default-border-radius();
@@ -15,7 +22,7 @@
 
   display: inline-block;
 
-  background-color: var(--bg);
+  background: var(--bg);
   transition: background-color 120ms;
 
   padding: 5px;
@@ -27,20 +34,30 @@
   text-transform: none;
   white-space: nowrap;
 
-  &:focus,
-  &:hover,
-  &:active {
+  &:focus {
+    color: var(--focus-colour);
+    background: var(--focus-bg);
+  }
+
+  &:hover {
     color: var(--hover-colour);
-    background-color: var(--hover-bg);
+    background: var(--hover-bg);
+  }
+
+  &:active {
+    color: var(--active-colour);
+    background: var(--active-bg);
   }
 
   &[disabled], &--disabled {
-    background-color: @osu-colour-b3;
-    color: @osu-colour-f1;
+    cursor: default;
+    background: var(--disabled-bg);
+    color: var(--disabled-colour);
+    opacity: var(--disabled-opacity);
 
     .link-hover({
-      background-color: @osu-colour-b3;
-      color: @osu-colour-f1;
+      background: var(--disabled-bg);
+      color: var(--disabled-colour);
     });
   }
 
@@ -73,15 +90,8 @@
     min-width: 80px;
     border-radius: 10000px;
     padding: 5px;
-  }
-
-  &--comment-editor[disabled] {
-    background-color: @osu-colour-b5;
-    color: @osu-colour-f1;
-
-    &::before {
-      display: none;
-    }
+    --disabled-bg: hsl(var(--hsl-b5));
+    --disabled-colour: hsl(var(--hsl-f1));
   }
 
   &--chat-send {
@@ -89,11 +99,9 @@
     border-radius: 10000px;
     padding: 10px;
 
-    background-color: @osu-colour-h2;
+    --bg: hsl(var(--hsl-h2));
+    --hover-bg: hsl(var(--hsl-h1));
 
-    &:hover {
-      background-color: @osu-colour-l3;
-    }
     @media @desktop {
       min-width: 130px;
       padding: 10px 20px;
@@ -116,24 +124,14 @@
     padding: 5px 10px;
     margin: 0 10px;
     transition: none;
-    --colour: hsl(var(--hsl-f1));
     --bg: transparent;
+    --colour: hsl(var(--hsl-f1));
     --hover-bg: hsl(var(--hsl-b3));
   }
 
   &--danger {
-    background-color: @osu-colour-red-3;
-
-    &:focus,
-    &:hover,
-    &:active {
-      background-color: @osu-colour-red-2;
-    };
-
-    &[disabled] {
-      background-color: @osu-colour-b3;
-      color: @osu-colour-f1;
-    }
+    --bg: hsl(var(--hsl-red-3));
+    --hover-bg: hsl(var(--hsl-red-2));
   }
 
   &--download-landing {
@@ -148,7 +146,6 @@
     .default-border-radius();
     .center-content();
     background-image: url("~@images/backgrounds/button.svg");
-    background-color: @blue-darker;
     background-size: 150%;
     background-position: 50% 50%;
     transition: background-position 120ms;
@@ -159,13 +156,12 @@
     margin-bottom: 20px;
 
     flex-direction: column;
+    --bg: hsl(var(--hsl-blue-3));
+    --hover-bg: hsl(var(--hsl-blue-3));
 
-    &:focus,
-    &:hover,
-    &:active {
-      background-color: @blue-darker;
+    .link-hover({
       background-position: calc(50% - 20px) 50%;
-    }
+    });
   }
 
   &--fileupload {
@@ -183,7 +179,6 @@
   &--forum-button {
     padding: 8px 15px;
 
-    background-color: @osu-colour-blue-3;
     border-radius: 10000px;
     .default-text-shadow();
     font-weight: normal;
@@ -191,41 +186,24 @@
     // the existing doesn't magically break.
     vertical-align: middle;
 
-    &:focus,
-    &:hover {
-      background-color: @osu-colour-blue-2;
-      color: @osu-colour-c1;
-    }
-
-    &:active {
-      background-color: @osu-colour-blue-3;
-      color: @osu-colour-c1;
-    }
-
-    &[disabled] {
-      background-color: @osu-colour-b3;
-      color: @osu-colour-f1;
-    }
+    --active-bg: hsl(var(--hsl-blue-3));
+    --bg: hsl(var(--hsl-blue-3));
+    --hover-bg: hsl(var(--hsl-blue-2));
   }
 
   &--forum-cover {
     .default-text-shadow();
-    background-color: @osu-colour-orange-3;
-    color: @osu-colour-c1;
     padding: 8px 15px;
     border-radius: 100000px;
     font-weight: normal;
     position: relative;
 
-    .link-hover({
-      background-color: @osu-colour-orange-2;
-    });
-
-    &[disabled] {
-      background-color: @osu-colour-orange-3;
-      color: @osu-colour-c1;
-      opacity: 0.5;
-    }
+    --bg: hsl(var(--hsl-orange-3));
+    --colour: hsl(var(--hsl-c1));
+    --disabled-bg: hsl(var(--hsl-orange-3));
+    --disabled-colour: hsl(var(--hsl-c1));
+    --disabled-opacity: 0.5;
+    --hover-bg: hsl(var(--hsl-orange-2));
   }
 
   &--forum-cover-edit {
@@ -236,19 +214,14 @@
   &--forum-primary {
     border-radius: 10000px;
     padding: 8px 20px;
-    background-color: @osu-colour-lime-3;
     font-weight: normal;
     .default-text-shadow();
 
-    .link-hover({
-      background-color: @osu-colour-lime-2;
-    });
-
-    &[disabled] {
-      background-color: @osu-colour-lime-3;
-      color: @osu-colour-c1;
-      opacity: 0.5;
-    }
+    --bg: hsl(var(--hsl-lime-3));
+    --disabled-bg: hsl(var(--hsl-lime-3));
+    --disabled-colour: hsl(var(--hsl-c1));
+    --disabled-opacity: 0.5;
+    --hover-bg: hsl(var(--hsl-lime-2));
   }
 
   &--forum-reply {
@@ -256,34 +229,22 @@
     border-radius: 10000px;
     padding: 0 10px;
     height: @btn-circle-diameter;
-    background-color: @osu-colour-l4;
-
-    &:focus {
-      background-color: @osu-colour-l4;
-    }
-
-    &:hover,
-    &:active {
-      background-color: @osu-colour-l3;
-    }
+    --bg: hsl(var(--hsl-l4));
+    --focus-bg: hsl(var(--hsl-l4));
+    --hover-bg: hsl(var(--hsl-l3));
   }
 
   &--forum-secondary {
     border-radius: 10000px;
     padding: 8px 20px;
-    background-color: @osu-colour-blue-3;
     font-weight: normal;
     .default-text-shadow();
 
-    .link-hover({
-      background-color: @osu-colour-blue-2;
-    });
-
-    &[disabled] {
-      background-color: @osu-colour-blue-3;
-      color: @osu-colour-c1;
-      opacity: 0.5;
-    }
+    --bg: hsl(var(--hsl-blue-3));
+    --disabled-bg: hsl(var(--hsl-blue-3));
+    --disabled-colour: hsl(var(--hsl-c1));
+    --disabled-opacity: 0.5;
+    --hover-bg: hsl(var(--hsl-blue-2));
   }
 
   &--full {
@@ -303,18 +264,8 @@
   }
 
   &--pink {
-    background-color: @osu-colour-pink-3;
-
-    &:focus,
-    &:hover,
-    &:active {
-      background-color: @osu-colour-pink-2;
-    };
-
-    &[disabled] {
-      background-color: @osu-colour-b3;
-      color: @osu-colour-f1;
-    }
+    --bg: hsl(var(--hsl-pink-3));
+    --hover-bg: hsl(var(--hsl-pink-2));
   }
 
   &--quick-search-close {
@@ -378,14 +329,12 @@
   }
 
   &--store-cart-delete {
-    background: none;
     padding: 5px 10px;
     line-height: normal;
     font-size: @font-size--title-small-3;
-
-    .link-hover({
-      background: none;
-    });
+    --bg: none;
+    --disabled-bg: none;
+    --hover-bg: none;
   }
 
   &--tournament-info {
@@ -401,15 +350,6 @@
     margin-top: 10px;
   }
 
-  &--user-homepage {
-    display: block;
-    width: 100%;
-    background-image: url('~@images/backgrounds/button.svg');
-    background-size: 175%;
-    background-color: @blue;
-    margin-bottom: 5px;
-  }
-
   &--user-page-edit {
     border-radius: 10000px;
     width: 140px;
@@ -417,18 +357,8 @@
   }
 
   &--warning {
-    background-color: @osu-colour-orange-3;
-
-    &:focus,
-    &:hover,
-    &:active {
-      background-color: @osu-colour-orange-2;
-    };
-
-    &[disabled] {
-      background-color: @osu-colour-b3;
-      color: @osu-colour-f1;
-    }
+    --bg: hsl(var(--hsl-orange-3));
+    --hover-bg: hsl(var(--hsl-orange-2));
   }
 
   &--wrap-text {
@@ -436,19 +366,14 @@
   }
 
   &--activated, &.js-activated {
-    background-color: @osu-colour-h2;
-    color: white;
-
-    &:focus,
-    &:hover,
-    &:active {
-      color: white;
-    }
+    --bg: hsl(var(--hsl-h2));
+    --colour: hsl(var(--hsl-c1));
+    --hover-colour: hsl(var(--hsl-c1));
   }
 
   &.js-click-menu--active {
-    --colour: var(--hover-colour);
     --bg: var(--hover-bg);
+    --colour: var(--hover-colour);
   }
 
   &__content {
@@ -476,10 +401,6 @@
     .@{top}--nav-popup & {
       width: auto;
       margin: 0 -5px;
-    }
-
-    .@{top}--user-homepage & {
-      flex-direction: column;
     }
   }
 
@@ -539,10 +460,6 @@
     justify-content: center;
     text-align: left;
 
-    .@{top}--user-homepage & {
-      align-items: center;
-    }
-
     .@{top}--beatmap-discussion-reply-open & {
       margin-right: 20px;
     }
@@ -559,10 +476,6 @@
   }
 
   &__text-top {
-    .@{top}--user-homepage & {
-      margin-bottom: 5px;
-    }
-
     .@{top}--download-page & {
       .default-text-shadow();
       font-size: @font-size--large;

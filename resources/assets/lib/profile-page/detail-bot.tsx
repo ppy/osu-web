@@ -19,7 +19,7 @@ export default function DetailBot({ user }: Props) {
               <FriendButton
                 alwaysVisible
                 followers={user.follower_count}
-                modifiers={['profile-page']}
+                modifiers='profile-page'
                 showFollowerCounter
                 userId={user.id}
               />

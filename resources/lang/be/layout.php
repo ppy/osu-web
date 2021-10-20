@@ -19,7 +19,6 @@ return [
             'contest' => 'конкурс',
             'contests' => 'конкурсы',
             'root' => 'кансоль',
-            'store_orders' => 'адміністратар крамы',
         ],
 
         'artists' => [

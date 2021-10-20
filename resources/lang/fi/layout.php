@@ -19,7 +19,6 @@ return [
             'contest' => 'kilpailu',
             'contests' => 'kilpailuja',
             'root' => 'konsoli',
-            'store_orders' => 'kaupan ylläpitäjä',
         ],
 
         'artists' => [
