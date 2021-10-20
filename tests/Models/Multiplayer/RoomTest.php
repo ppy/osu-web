@@ -18,7 +18,7 @@ class RoomTest extends TestCase
     public function testStartGameWithBeatmap()
     {
         $beatmap = Beatmap::factory()->create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $params = [
             'duration' => 60,
@@ -38,7 +38,7 @@ class RoomTest extends TestCase
     public function testStartGameWithDeletedBeatmap()
     {
         $beatmap = Beatmap::factory()->create(['deleted_at' => now()]);
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $params = [
             'duration' => 60,
@@ -57,7 +57,7 @@ class RoomTest extends TestCase
 
     public function testRoomHasEnded()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $room = factory(Room::class)->states('ended')->create();
         $playlistItem = factory(PlaylistItem::class)->create([
             'room_id' => $room->getKey(),
@@ -69,7 +69,7 @@ class RoomTest extends TestCase
 
     public function testMaxAttemptsReached()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $room = factory(Room::class)->create(['max_attempts' => 2]);
         $playlistItem1 = factory(PlaylistItem::class)->create([
             'room_id' => $room->getKey(),
@@ -90,7 +90,7 @@ class RoomTest extends TestCase
 
     public function testMaxAttemptsForItemReached()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $room = factory(Room::class)->create();
         $playlistItem1 = factory(PlaylistItem::class)->create([
             'room_id' => $room->getKey(),

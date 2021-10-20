@@ -21,7 +21,7 @@ class BeatmapDiscussionPostTest extends TestCase
     {
         $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'user_id' => $user->getKey(),
@@ -40,7 +40,7 @@ class BeatmapDiscussionPostTest extends TestCase
     {
         $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'beatmap_id' => $beatmap->getKey(),
@@ -60,7 +60,7 @@ class BeatmapDiscussionPostTest extends TestCase
     {
         $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'beatmap_id' => $beatmap->getKey(),
@@ -85,7 +85,7 @@ class BeatmapDiscussionPostTest extends TestCase
     {
         $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'beatmap_id' => $beatmap->getKey(),
@@ -108,7 +108,7 @@ class BeatmapDiscussionPostTest extends TestCase
     {
         $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'beatmap_id' => $beatmap->getKey(),
@@ -152,7 +152,7 @@ class BeatmapDiscussionPostTest extends TestCase
     {
         $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'beatmap_id' => $beatmap->getKey(),

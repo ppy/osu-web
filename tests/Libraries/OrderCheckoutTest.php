@@ -139,7 +139,7 @@ class OrderCheckoutTest extends TestCase
 
     private function createTournamentProduct(Tournament $tournament, Carbon $availableUntil = null)
     {
-        $country = Country::inRandomOrder()->first() ?? factory(Country::class)->create();
+        $country = Country::inRandomOrder()->first() ?? Country::factory()->create();
 
         $product = factory(Product::class)->states('child_banners')->create([
             'available_until' => $availableUntil,

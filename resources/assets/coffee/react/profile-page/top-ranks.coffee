@@ -46,7 +46,7 @@ export class TopRanks extends React.PureComponent
 
         div className: 'profile-extra-entries__item',
           el ShowMoreLink,
-            modifiers: ['profile-page', 't-greyseafoam-dark']
+            modifiers: 'profile-page'
             event: 'profile:showMore'
             hasMore: pagination.hasMore
             loading: pagination.loading

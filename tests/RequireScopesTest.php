@@ -173,7 +173,7 @@ class RequireScopesTest extends TestCase
         parent::setUp();
 
         // nearly all the tests in the class need a user, so might as well set it up here.
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
     }
 
     protected function setUser(?User $user, ?array $scopes = null, $client = null)

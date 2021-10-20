@@ -69,7 +69,7 @@ class WikiController extends Controller
         }
 
         // legal pages should be displayed with their own style etc
-        if (starts_with("{$path}/", 'Legal/')) {
+        if (starts_with("{$path}/", 'Legal/') && !is_api_request()) {
             return ujs_redirect(wiki_url($path, $locale));
         }
 
