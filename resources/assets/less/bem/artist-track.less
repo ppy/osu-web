@@ -2,10 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .artist-track {
+  --bg-hover: hsl(var(--hsl-b3));
+  --cover-play-opacity: 0;
+  --cover-size: 40px;
   .default-box-shadow();
   .default-border-radius();
-  --bg-hover: hsl(var(--hsl-b3));
-  --cover-size: 40px;
   background-color: hsl(var(--hsl-b4));
   font-size: @font-size--normal;
 
@@ -22,6 +23,12 @@
 
   &:hover {
     background-color: var(--bg-hover);
+    --cover-play-opacity: 1;
+  }
+
+  &[data-audio-state="loading"],
+  &[data-audio-state="playing"] {
+    --cover-play-opacity: 1;
   }
 
   &--original {
@@ -32,8 +39,20 @@
     .reset-input();
     .link-white();
     .link-plain();
-    margin: 0 10px;
+    margin: 0;
     font-size: 18px; // icon size
+
+    &--play {
+      .full-size();
+      background: hsla(var(--hsl-b6), 0.8);
+      opacity: var(--cover-play-opacity);
+      border-radius: inherit;
+      font-size: 14px; // icon size
+
+      .link-hover({
+        color: hsl(var(--hsl-orange-1));
+      });
+    }
   }
 
   &__col {
@@ -85,6 +104,7 @@
       background-size: cover;
       background-position: center;
       margin: 0;
+      position: relative;
     }
   }
 
