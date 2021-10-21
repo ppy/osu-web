@@ -16,9 +16,9 @@ class BeatmapsetsControllerTest extends TestCase
 {
     public function testBroadcastNew()
     {
-        $user = factory(User::class)->create();
-        $beatmapset = factory(Beatmapset::class)->create(['user_id' => $user->getKey()]);
-        $follower = factory(User::class)->create();
+        $user = User::factory()->create();
+        $beatmapset = Beatmapset::factory()->create(['user_id' => $user]);
+        $follower = User::factory()->create();
         $follower->follows()->create([
             'subtype' => 'mapping',
             'notifiable_type' => MorphMap::getType($user),
@@ -40,9 +40,9 @@ class BeatmapsetsControllerTest extends TestCase
 
     public function testBroadcastRevive()
     {
-        $user = factory(User::class)->create();
-        $beatmapset = factory(Beatmapset::class)->create(['user_id' => $user->getKey()]);
-        $follower = factory(User::class)->create();
+        $user = User::factory()->create();
+        $beatmapset = Beatmapset::factory()->create(['user_id' => $user]);
+        $follower = User::factory()->create();
         $follower->follows()->create([
             'subtype' => 'mapping',
             'notifiable_type' => MorphMap::getType($user),
