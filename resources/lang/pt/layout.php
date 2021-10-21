@@ -19,7 +19,6 @@ return [
             'contest' => 'concurso',
             'contests' => 'concursos',
             'root' => 'consola',
-            'store_orders' => 'administrador da loja',
         ],
 
         'artists' => [
@@ -180,7 +179,7 @@ return [
 
         'register' => [
             'download' => 'Descarregar',
-            'info' => 'Transfere o osu! para criar a tua própria conta!',
+            'info' => 'Transfere o osu! para criares a tua própria conta!',
             'title' => "Não tens uma conta?",
         ],
     ],

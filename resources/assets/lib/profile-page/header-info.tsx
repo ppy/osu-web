@@ -46,7 +46,7 @@ export default class HeaderInfo extends React.PureComponent<Props> {
                   }
                 </span>
               )}
-              <UserGroupBadges groups={this.props.user.groups} modifiers={['profile-page']} wrapper='profile-info__icon' />
+              <UserGroupBadges groups={this.props.user.groups} modifiers='profile-page' wrapper='profile-info__icon' />
             </div>
             <div className='profile-info__icons profile-info__icons--flag'>
               {this.props.user.country?.code != null && (

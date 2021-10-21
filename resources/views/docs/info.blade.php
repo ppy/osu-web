@@ -4,8 +4,14 @@
 --}}
 @php
     use App\Libraries\ApidocRouteHelper;
+    use Knuckles\Scribe\Extracting\Generator;
 
     $wikiUrl = wiki_url('Bot_account', null, false);
+
+    $defaultHeaders = [
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
+    ];
 @endphp
 
 # Introduction
@@ -32,7 +38,7 @@ Current rate limit is set at an insanely high 1200 requests per minute, with bur
 
 ## Base URL
 
-The base URL is: `{{ trim(config('app.url'), '/') }}/api/[version]/`
+The base URL is: `{{ config('app.url') }}/api/[version]/`
 
 ## API Versions
 
@@ -91,137 +97,248 @@ Restricted users can grant authorization like anyone else. If your client should
 
 ### Request authorization from a user
 
-To obtain an access token, you must first get an authorization code that is created when a user grants permissions to your application. To request permission from the user, they should be redirected to:
-
-@include('docs._route', ['method' => 'GET', 'url' => route('oauth.authorizations.authorize')])
-
-Parameters
-
-Name          | Type   | Description
---------------|--------|-------------------------------------------------------
-client_id     | number | The Client ID you received when you [registered]({{ route('account.edit').'#new-oauth-application' }})
-redirect_uri  | string | The URL in your application where users will be sent after authorization. This must match the registered Application Callback URL exactly.
-response_type | string | This should always be `code` when requesting authorization.
-scope         | string | A space-delimited string of [scopes](#scopes).
-state         | string | Data that will be returned when a temporary code is issued. It can be used to provide a token for protecting against cross-site request forgery attacks.
-
+@php
+    $description = 'To obtain an access token, you must first get an authorization code that is created when a user grants permissions to your application. To request permission from the user, they should be redirected to:';
+    $uri = route('oauth.authorizations.authorize', null, false);
+    $route = [
+        'bodyParameters' => [],
+        'boundUri' => $uri,
+        'cleanBodyParameters' => [],
+        'fileParameters' => [],
+        'headers' => [],
+        'metadata' => ['authenticated' => false, 'description' => $description],
+        'methods' => ['GET'],
+        'nestedBodyParameters' => [],
+        'responses' => [],
+        'uri' => $uri,
+        'urlParameters' => [],
+        'queryParameters' => [
+            'client_id' => [
+                'description' => 'The Client ID you received when you [registered]('.route('account.edit').'#new-oauth-application).',
+                'name' => 'client_id',
+                'type' => 'number',
+                'value' => 1,
+            ],
+            'redirect_uri' => [
+                'description' => 'The URL in your application where users will be sent after authorization. This must match the registered Application Callback URL exactly.',
+                'name' => 'redirect_uri',
+                'value' => 'http://localhost:4000',
+            ],
+            'response_type' => [
+                'description' => 'This should always be `code` when requesting authorization.',
+                'name' => 'response_type',
+                'value' => 'code',
+            ],
+            'scope' => [
+                'description' => 'A space-delimited string of [scopes](#scopes).',
+                'name' => 'scope',
+                'required' => false,
+                'value' => 'public identify',
+            ],
+            'state' => [
+                'description' => 'Data that will be returned when a temporary code is issued. It can be used to provide a token for protecting against cross-site request forgery attacks.',
+                'name' => 'state',
+                'required' => false,
+                'value' => 'randomval',
+            ],
+        ],
+    ];
+    $route['cleanQueryParameters'] = Generator::cleanParams($route['queryParameters']);
+@endphp
+@include('scribe::partials.endpoint', [
+    'endpointId' => 'oauth-authorizations-authorize',
+    'route' => $route,
+    'settings' => [
+        'interactive' => false,
+        // request should be done on browser
+        'languages' => [],
+    ],
+    'showEndpointTitle' => false,
+    'showRequestTitle' => false,
+])
 
 ### User is redirected back to your site
 
-If the user accepts your request, they will be redirected back to your site with a temporary single-use `code` contained in the URL parameter.
-If a `state` value was provided in the previous request, it will be returned here.
+@php
+    $description = <<<EOT
+        If the user accepts your request, they will be redirected back to your site with a temporary single-use `code` contained in the URL parameter.
+        If a `state` value was provided in the previous request, it will be returned here.
 
-<aside class="notice">
-If you are using `state` as protection against CSRF attacks, your OAuth client is responsible for validating this value.
-</aside>
+        <aside class="notice">
+            If you are using `state` as protection against CSRF attacks, your OAuth client is responsible for validating this value.
+        </aside>
 
-Exchange this `code` for an access token:
+        Exchange this `code` for an access token:
 
-```javascript
-fetch("{!! route('oauth.passport.token') !!}", {
-    method: 'post',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        "grant_type": "authorization_code",
-        "client_id": 1,
-        "client_secret": "secret",
-        "redirect_uri": "https://notarealaddress.local/oauth/osu",
-        "code": "code"
-    })
-})
-.then(response => {
-    return response.json();
-});
-```
+        ---
 
-@include('docs._route', ['method' => 'POST', 'url' => route('oauth.passport.token')])
+        ### Response Format
 
-Parameters
+        Successful requests will be issued an access token:
 
-Name          | Type   | Description
---------------|--------|-------------------------------
-client_id     | number | The client ID of your application.
-client_secret | string | The client secret of your application.
-code          | string | The code you received.
-grant_type    | string | This must always be `authorization_code`
-redirect_uri  | string | The URL in your application where users will be sent after authorization.
-
-
-```json
-{
-    "token_type": "Bearer",
-    "expires_in": 86400,
-    "access_token": "verylongstring",
-    "refresh_token": "anotherlongstring",
-}
-```
-
-Successful requests will be issued an access token:
-
-Name          | Type   | Description
---------------|--------|-----------------------------
-token_type    | string | The type of token, this should always be `Bearer`.
-expires_in    | number | The number of seconds the token will be valid for.
-access_token  | string | The access token.
-refresh_token | string | The refresh token.
-
+        Name          | Type   | Description
+        --------------|--------|-----------------------------
+        token_type    | string | The type of token, this should always be `Bearer`.
+        expires_in    | number | The number of seconds the token will be valid for.
+        access_token  | string | The access token.
+        refresh_token | string | The refresh token.
+        EOT;
+    $uri = route('oauth.passport.token', null, false);
+    $route = [
+        'bodyParameters' => [
+            'client_id' => [
+                'description' => 'The client ID of your application.',
+                'name' => 'client_id',
+                'required' => true,
+                'value' => 1,
+            ],
+            'client_secret' => [
+                'description' => 'The client secret of your application.',
+                'name' => 'client_secret',
+                'required' => true,
+                'value' => 'clientsecret',
+            ],
+            'code' => [
+                'description' => 'The code you received.',
+                'name' => 'code',
+                'required' => true,
+                'value' => 'receivedcode',
+            ],
+            'grant_type' => [
+                'description' => 'This must always be `authorization_code`',
+                'name' => 'grant_type',
+                'required' => true,
+                'value' => 'authorization_code',
+            ],
+            'redirect_uri' => [
+                'description' => 'The URL in your application where users will be sent after authorization.',
+                'name' => 'redirect_uri',
+                'required' => true,
+                'value' => 'http://localhost:4000',
+            ],
+        ],
+        'boundUri' => $uri,
+        'cleanQueryParameters' => [],
+        'fileParameters' => [],
+        'headers' => $defaultHeaders,
+        'metadata' => ['authenticated' => false, 'description' => $description],
+        'methods' => ['POST'],
+        'queryParameters' => [],
+        'responses' => [
+            [
+                'content' => [
+                    'access_token' => 'verylongstring',
+                    'expires_in' => 86400,
+                    'refresh_token' => 'anotherlongstring',
+                    'token_type' => 'Bearer',
+                ],
+                'status' => 200,
+            ],
+        ],
+        'showresponse' => true,
+        'uri' => $uri,
+        'urlParameters' => [],
+    ];
+    $route['cleanBodyParameters'] = Generator::cleanParams($route['bodyParameters']);
+    $route['nestedBodyParameters'] = Generator::nestArrayAndObjectFields($route['bodyParameters']);
+@endphp
+@include('scribe::partials.endpoint', [
+    'endpointId' => 'oauth-passport-token',
+    'route' => $route,
+    'settings' => [
+        'interactive' => false,
+        'languages' => config('scribe.example_languages'),
+    ],
+    'showEndpointTitle' => false,
+    'showRequestTitle' => false,
+])
 
 ## Client Credentials Grant
 
-The client credential flow provides a way for developers to get access tokens that do not have associated user permissions; as such, these tokens are considered as guest users.
+@php
+    $description = <<<EOT
+        The client credential flow provides a way for developers to get access tokens that do not have associated user permissions; as such, these tokens are considered as guest users.
 
-Example for requesting Client Credentials token:
+        Example for requesting Client Credentials token:
 
-```javascript
-fetch("{!! route('oauth.passport.token') !!}", {
-    method: 'post',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        "grant_type": "client_credentials",
-        "client_id": 1,
-        "client_secret": "secret",
-        "scope": "public"
-    })
-})
-.then(response => {
-    return response.json();
-});
-```
+        ---
 
-@include('docs._route', ['method' => 'POST', 'url' => route('oauth.passport.token')])
+        ### Response Format
 
-Parameters
+        Successful requests will be issued an access token:
 
-Name          | Type   | Description
---------------|--------|-------------------------------
-client_id     | number | The Client ID you received when you [registered]({{ route('account.edit').'#new-oauth-application' }})
-client_secret | string | The client secret of your application.
-grant_type    | string | This must always be `client_credentials`
-scope         | string | Must be `public`; other scopes have no meaningful effect.
-
-
-```json
-{
-    "token_type": "Bearer",
-    "expires_in": 86400,
-    "access_token": "verylongstring",
-}
-```
-
-Successful requests will be issued an access token:
-
-Name          | Type   | Description
---------------|--------|-----------------------------
-token_type    | string | The type of token, this should always be `Bearer`.
-expires_in    | number | The number of seconds the token will be valid for.
-access_token  | string | The access token.
-
+        Name          | Type   | Description
+        --------------|--------|-----------------------------
+        token_type    | string | The type of token, this should always be `Bearer`.
+        expires_in    | number | The number of seconds the token will be valid for.
+        access_token  | string | The access token.
+        EOT;
+    $uri = route('oauth.passport.token', null, false);
+    $route = [
+        'bodyParameters' => [
+            'client_id' => [
+                'description' => 'The Client ID you received when you [registered]('.route('account.edit').'#new-oauth-application).',
+                'name' => 'client_id',
+                'required' => true,
+                'type' => 'number',
+                'value' => 1,
+            ],
+            'client_secret' => [
+                'description' => 'The client secret of your application.',
+                'name' => 'client_secret',
+                'required' => true,
+                'type' => 'string',
+                'value' => 'clientsecret',
+            ],
+            'grant_type' => [
+                'description' => 'This must always be `client_credentials`.',
+                'name' => 'grant_type',
+                'required' => true,
+                'type' => 'string',
+                'value' => 'client_credentials',
+            ],
+            'scope' => [
+                'description' => 'Must be `public`; other scopes have no meaningful effect.',
+                'name' => 'scope',
+                'required' => true,
+                'type' => 'string',
+                'value' => 'public',
+            ],
+        ],
+        'boundUri' => $uri,
+        'cleanQueryParameters' => [],
+        'fileParameters' => [],
+        'headers' => $defaultHeaders,
+        'metadata' => ['authenticated' => false, 'description' => $description],
+        'methods' => ['POST'],
+        'queryParameters' => [],
+        'responses' => [
+            [
+                'content' => [
+                    'access_token' => 'verylongstring',
+                    'expires_in' => 86400,
+                    'token_type' => 'Bearer',
+                ],
+                'status' => 200,
+            ],
+        ],
+        'showresponse' => true,
+        'uri' => $uri,
+        'urlParameters' => [],
+    ];
+    $route['cleanBodyParameters'] = Generator::cleanParams($route['bodyParameters']);
+    $route['nestedBodyParameters'] = Generator::nestArrayAndObjectFields($route['bodyParameters']);
+@endphp
+@include('scribe::partials.endpoint', [
+    'endpointId' => 'oauth-passport-token-client',
+    'route' => $route,
+    'settings' => [
+        'interactive' => false,
+        'languages' => config('scribe.example_languages'),
+    ],
+    'showEndpointTitle' => false,
+    'showRequestTitle' => false,
+])
 
 ## Using the access token to access the API
 
@@ -233,13 +350,13 @@ The token should be included in the header of requests to the API.
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "{{ trim(config('app.url'), '/') }}/api/[version]/[endpoint]"
+curl "{{ config('app.url') }}/api/[version]/[endpoint]"
   -H "Authorization: Bearer @{{token}}"
 ```
 
 ```javascript
 // This javascript example uses fetch()
-fetch("{{ trim(config('app.url'), '/') }}/api/[version]/[endpoint]", {
+fetch("{{ config('app.url') }}/api/[version]/[endpoint]", {
     headers: {
       Authorization: 'Bearer @{{token}}'
     }
@@ -260,6 +377,8 @@ The `Resource Owner` is the user that a token acts on behalf of.
 For [Authorization Code Grant](#authorization-code-grant) tokens, the Resource Owner is the user authorizing the token.
 
 [Client Credentials Grant](#client-credentials-grant) tokens do not have a Resource Owner (i.e. is a guest user), unless they have been granted the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope. The Resource Owner of tokens with the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope is the owner of the OAuth Application that was granted the token.
+
+Routes marked with <span class='badge badge-scope badge-user'>requires user</span> require the use of tokens that have a Resource Owner.
 
 
 ## Client Credentials Delegation

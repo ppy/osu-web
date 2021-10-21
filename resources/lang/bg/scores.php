@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'title' => ':username на :title [:version]',
+        'title' => ':username в :title [:version]',
 
         'beatmap' => [
             'by' => 'по :artist',
@@ -16,7 +16,7 @@ return [
             'submitted_on' => 'Публикуван на',
 
             'rank' => [
-                'country' => 'Класиране в страната',
+                'country' => 'Държавно класиране',
                 'global' => 'Глобално класиране',
             ],
         ],

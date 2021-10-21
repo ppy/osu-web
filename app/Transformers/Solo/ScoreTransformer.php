@@ -12,20 +12,8 @@ class ScoreTransformer extends TransformerAbstract
 {
     public function transform(Score $score)
     {
-        return [
-            'accuracy' => $score->accuracy,
-            'beatmap_id' => $score->beatmap_id,
-            'ended_at' => json_time($score->ended_at),
+        return array_merge((array) $score->data, [
             'id' => $score->getKey(),
-            'max_combo' => $score->max_combo,
-            'mods' => $score->mods,
-            'passed' => $score->passed,
-            'rank' => $score->rank,
-            'ruleset_id' => $score->ruleset_id,
-            'started_at' => json_time($score->started_at),
-            'statistics' => $score->statistics,
-            'total_score' => $score->total_score,
-            'user_id' => $score->user_id,
-        ];
+        ]);
     }
 }

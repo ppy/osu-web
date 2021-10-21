@@ -56,23 +56,6 @@
   }
 }
 
-.fragment-target-fn(@offset: 0) {
-  position: static; // relative will still block pointer-events
-
-  &[id]::before {
-    content: '';
-    display: block;
-    height: @nav2-height--pinned + @offset;
-    margin: -(@nav2-height--pinned + @offset) 0 0;
-    pointer-events: none;
-
-    @media @mobile {
-      height: @navbar-height + @offset;
-      margin: -(@navbar-height + @offset) 0 0;
-    }
-  }
-}
-
 .page-width(@extra-margin: 0px) {
   width: calc(100% - (@extra-margin * 2));
   max-width: (@container-sm - @extra-margin * 2);

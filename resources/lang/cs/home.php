@@ -24,7 +24,7 @@ return [
         'empty_result' => 'Nebylo nic nenalezeno!',
         'keyword_required' => '',
         'placeholder' => 'zadejte hledaný výraz',
-        'title' => 'Hledat',
+        'title' => 'hledat',
 
         'beatmapset' => [
             'login_required' => 'Přihlašte se k hledání beatmap',

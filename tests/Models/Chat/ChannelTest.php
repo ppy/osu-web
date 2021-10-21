@@ -3,7 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace Tests\Models;
+namespace Tests\Models\Chat;
 
 use App\Models\Chat\Channel;
 use App\Models\User;
@@ -17,7 +17,7 @@ class ChannelTest extends TestCase
 {
     public function testPublicChannelDoesNotShowUsers()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $channel = $this->createChannel([$user], 'public');
 
         $this->assertSame(1, $channel->users()->count());
@@ -27,10 +27,10 @@ class ChannelTest extends TestCase
     /**
      * @dataProvider channelWithBlockedUserVisibilityDataProvider
      */
-    public function testChannelWithBlockedUserVisibility(array|string $otherUserGroup, bool $expectVisible)
+    public function testChannelWithBlockedUserVisibility(?string $otherUserGroup, bool $expectVisible)
     {
-        $user = factory(User::class)->create();
-        $otherUser = $this->createUserWithGroup($otherUserGroup);
+        $user = User::factory()->create();
+        $otherUser = User::factory()->withGroup($otherUserGroup)->create();
         $channel = $this->createChannel([$user, $otherUser], 'pm');
 
         UserRelation::create([
@@ -45,10 +45,10 @@ class ChannelTest extends TestCase
     /**
      * @dataProvider channelCanMessageModeratedChannelDataProvider
      */
-    public function testChannelCanMessageModeratedPmChannel(array|string $group, bool $canMessage)
+    public function testChannelCanMessageModeratedPmChannel(?string $group, bool $canMessage)
     {
-        $user = factory(User::class)->states($group)->create();
-        $otherUser = factory(User::class)->create();
+        $user = User::factory()->withGroup($group)->create();
+        $otherUser = User::factory()->create();
         $channel = $this->createChannel([$user, $otherUser], 'moderated', 'pm');
 
         $this->assertSame($canMessage, $channel->canMessage($user));
@@ -57,21 +57,21 @@ class ChannelTest extends TestCase
     /**
      * @dataProvider channelCanMessageModeratedChannelDataProvider
      */
-    public function testChannelCanMessageModeratedPublicChannel(array|string $group, bool $canMessage)
+    public function testChannelCanMessageModeratedPublicChannel(?string $group, bool $canMessage)
     {
-        $user = factory(User::class)->states($group)->create();
+        $user = User::factory()->withGroup($group)->create();
         $channel = $this->createChannel([$user], 'moderated', 'public');
 
         $this->assertSame($canMessage, $channel->canMessage($user));
     }
 
     /**
-     * @dataProvider channelCanMessageModeratedChannelDataProvider
+     * @dataProvider channelCanMessageWhenBlockedDataProvider
      */
-    public function testChannelCanMessagePmChannelWhenBlocked(array|string $group, bool $canMessage)
+    public function testChannelCanMessagePmChannelWhenBlocked(?string $group, bool $canMessage)
     {
-        $user = factory(User::class)->states($group)->create();
-        $otherUser = factory(User::class)->create();
+        $user = User::factory()->withGroup($group)->create();
+        $otherUser = User::factory()->create();
         $channel = $this->createChannel([$user, $otherUser], 'pm');
 
         UserRelation::create([
@@ -86,12 +86,12 @@ class ChannelTest extends TestCase
     }
 
     /**
-     * @dataProvider channelCanMessageModeratedChannelDataProvider
+     * @dataProvider channelCanMessageWhenBlockedDataProvider
      */
-    public function testChannelCanMessagePmChannelWhenBlocking(array|string $group, bool $canMessage)
+    public function testChannelCanMessagePmChannelWhenBlocking(?string $group, bool $canMessage)
     {
-        $user = factory(User::class)->states($group)->create();
-        $otherUser = factory(User::class)->create();
+        $user = User::factory()->withGroup($group)->create();
+        $otherUser = User::factory()->create();
         $channel = $this->createChannel([$user, $otherUser], 'pm');
 
         UserRelation::create([
@@ -105,6 +105,18 @@ class ChannelTest extends TestCase
         $this->assertSame($canMessage, $channel->canMessage($user));
     }
 
+    /**
+     * @dataProvider channelCanMessageWhenBlockedDataProvider
+     */
+    public function testChannelCanMessagePmChannelWhenFriendsOnly(?string $group, bool $canMessage)
+    {
+        $user = User::factory()->withGroup($group)->create();
+        $otherUser = User::factory()->create(['pm_friends_only' => true]);
+        $channel = $this->createChannel([$user, $otherUser], 'pm');
+
+        $this->assertSame($canMessage, $channel->canMessage($user));
+    }
+
     public function testPmChannelIcon()
     {
         Storage::fake('local-avatar');
@@ -112,8 +124,8 @@ class ChannelTest extends TestCase
             (new Filesystem())->deleteDirectory(storage_path('framework/testing/disks/local-avatar'));
         });
 
-        $user = factory(User::class)->create();
-        $otherUser = factory(User::class)->create();
+        $user = User::factory()->create();
+        $otherUser = User::factory()->create();
 
         $testFile = new SplFileInfo(public_path('images/layout/avatar-guest.png'));
         $user->setAvatar($testFile);
@@ -126,8 +138,8 @@ class ChannelTest extends TestCase
 
     public function testPmChannelName()
     {
-        $user = factory(User::class)->create();
-        $otherUser = factory(User::class)->create();
+        $user = User::factory()->create();
+        $otherUser = User::factory()->create();
 
         $channel = $this->createChannel([$user, $otherUser], 'pm');
         $this->assertSame($otherUser->username, $channel->displayNameFor($user));
@@ -137,9 +149,22 @@ class ChannelTest extends TestCase
     public function channelCanMessageModeratedChannelDataProvider()
     {
         return [
-            [[], false],
+            [null, false],
             ['admin', true],
             ['bng', false],
+            ['bot', false],
+            ['gmt', true],
+            ['nat', true],
+        ];
+    }
+
+    public function channelCanMessageWhenBlockedDataProvider()
+    {
+        return [
+            [null, false],
+            ['admin', true],
+            ['bng', false],
+            ['bot', true],
             ['gmt', true],
             ['nat', true],
         ];
@@ -148,9 +173,10 @@ class ChannelTest extends TestCase
     public function channelWithBlockedUserVisibilityDataProvider()
     {
         return [
-            [[], false],
+            [null, false],
             ['admin', true],
             ['bng', false],
+            ['bot', true],
             ['gmt', true],
             ['nat', true],
         ];

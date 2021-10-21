@@ -41,17 +41,16 @@ class ScoresController extends BaseController
 
                 $params = array_merge($params, [
                     'beatmap_id' => $scoreToken->beatmap_id,
-                    'ended_at' => now(),
+                    'build_id' => $scoreToken->build_id,
+                    'ended_at' => json_time(now()),
                     'mods' => Mod::parseInputArray($params['mods'] ?? [], $scoreToken->ruleset_id),
                     'ruleset_id' => $scoreToken->ruleset_id,
                     'started_at' => $scoreToken->created_at,
                     'user_id' => $scoreToken->user_id,
                 ]);
 
-                $score = new Score();
-
-                $score->complete($params);
-                $score->createLegacyEntry();
+                $score = Score::createFromJsonOrExplode($params);
+                $score->createLegacyEntryOrExplode();
                 $scoreToken->fill(['score_id' => $score->getKey()])->saveOrExplode();
             } else {
                 // assume score exists and is valid

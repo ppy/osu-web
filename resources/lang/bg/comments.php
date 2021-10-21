@@ -5,7 +5,7 @@
 
 return [
     'deleted' => 'изтрито',
-    'deleted_by' => 'изтрит :timeago от :user',
+    'deleted_by' => 'изтрито :timeago от :user',
     'deleted_by_system' => 'система',
     'deleted_count' => ':count_delimited изтрит коментар|:count_delimited изтрити коментара',
     'edited' => 'редактирано :timeago от :user',
@@ -17,7 +17,7 @@ return [
 
     'commentable_name' => [
         'beatmapset' => 'Бийтмап',
-        'build' => 'Списък на промените',
+        'build' => 'Списък с промени',
         'news_post' => 'Новини',
         '_deleted' => 'Изтрит елемент',
     ],
@@ -26,14 +26,14 @@ return [
         'textarea_hint' => [
             '_' => 'Натисни Enter за :action. Използвай Shift + Enter за нов ред.',
             'edit' => 'запази',
-            'new' => 'публикуване',
+            'new' => 'публикувай',
             'reply' => 'отговор',
         ],
     ],
 
     'guest_button' => [
-        'new' => 'Влез за да коментираш',
-        'reply' => 'Влез за да отговориш',
+        'new' => 'Влез, за да коментирате',
+        'reply' => 'Влез, за да отговорите',
     ],
 
     'index' => [
@@ -43,7 +43,7 @@ return [
     ],
 
     'placeholder' => [
-        'edit' => 'Редактиране на коментар тук',
+        'edit' => 'Промяна на този коментар',
         'new' => 'Въведете вашия коментар тук',
         'reply' => 'Въведете вашия отговор тук',
     ],

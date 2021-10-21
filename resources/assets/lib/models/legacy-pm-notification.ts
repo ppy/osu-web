@@ -3,6 +3,7 @@
 
 import Notification from 'models/notification';
 import { newEmptyNotificationDetails } from 'models/notification-details';
+import core from 'osu-core-singleton';
 
 export default class LegacyPmNotification extends Notification {
   details = newEmptyNotificationDetails();
@@ -11,7 +12,7 @@ export default class LegacyPmNotification extends Notification {
   objectId = -1;
 
   get count() {
-    return currentUser.unread_pm_count ?? 0;
+    return core.currentUser?.unread_pm_count ?? 0;
   }
 
   constructor() {

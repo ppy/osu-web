@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => 'Los mapas clasificados no pueden ser denunciados',
         'reason_not_valid' => ':reason no válido para este tipo de denuncia.',
         'self' => "¡No puede denunciarse a sí mismo!",
     ],

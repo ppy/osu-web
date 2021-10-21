@@ -20,7 +20,7 @@ class ChatTest extends TestCase
      */
     public function testSendMessage(bool $verified, $expectedException)
     {
-        $sender = factory(User::class)->create();
+        $sender = User::factory()->create();
         $channel = factory(Channel::class)->states('public')->create();
         $channel->addUser($sender);
 
@@ -39,9 +39,9 @@ class ChatTest extends TestCase
 
     public function testSendPM()
     {
-        $sender = factory(User::class)->create();
+        $sender = User::factory()->create();
         $sender->markSessionVerified();
-        $target = factory(User::class)->create(['pm_friends_only' => false]);
+        $target = User::factory()->create(['pm_friends_only' => false]);
 
         $initialChannelsCount = Channel::count();
         $initialMessagesCount = Message::count();
@@ -58,11 +58,11 @@ class ChatTest extends TestCase
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testSendPMFriendsOnly($groupIdentifier, $successful)
+    public function testSendPMFriendsOnly(?string $groupIdentifier, $successful)
     {
-        $sender = $this->createUserWithGroup($groupIdentifier);
+        $sender = User::factory()->withGroup($groupIdentifier)->create();
         $sender->markSessionVerified();
-        $target = factory(User::class)->create(['pm_friends_only' => true]);
+        $target = User::factory()->create(['pm_friends_only' => true]);
 
         $initialChannelsCount = Channel::count();
         $initialMessagesCount = Message::count();
@@ -89,9 +89,9 @@ class ChatTest extends TestCase
 
     public function testSendPMTooLongNotCreatingNewChannel()
     {
-        $sender = factory(User::class)->create();
+        $sender = User::factory()->create();
         $sender->markSessionVerified();
-        $target = factory(User::class)->create(['pm_friends_only' => false]);
+        $target = User::factory()->create(['pm_friends_only' => false]);
 
         $initialChannelsCount = Channel::count();
         $initialMessagesCount = Message::count();
@@ -114,9 +114,9 @@ class ChatTest extends TestCase
 
     public function testSendPMSecondTime()
     {
-        $sender = factory(User::class)->create();
+        $sender = User::factory()->create();
         $sender->markSessionVerified();
-        $target = factory(User::class)->create(['pm_friends_only' => false]);
+        $target = User::factory()->create(['pm_friends_only' => false]);
 
         Chat::sendPrivateMessage($sender, $target, 'test message', false);
 
@@ -134,9 +134,10 @@ class ChatTest extends TestCase
         return [
             ['admin', true],
             ['bng', false],
+            ['bot', true],
             ['gmt', true],
             ['nat', true],
-            [[], false],
+            [null, false],
         ];
     }
 

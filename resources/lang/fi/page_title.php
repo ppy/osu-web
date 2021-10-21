@@ -135,6 +135,11 @@ return [
             '_' => 'sijoitukset',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'valtuuta sovellus',
+        ],
+    ],
     'store' => [
         '_' => 'kauppa',
     ],

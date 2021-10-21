@@ -32,7 +32,7 @@ $factory->state(App\Models\Forum\Forum::class, 'child', function (Faker\Generato
 $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker) {
     return [
         'topic_poster' => function (array &$self) {
-            $factoryUser = factory(User::class)->create();
+            $factoryUser = User::factory()->create();
             $self['topic_first_poster_name'] = $factoryUser->username;
 
             return $factoryUser->getKey();
@@ -47,7 +47,7 @@ $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker
 $factory->define(App\Models\Forum\Post::class, function (Faker\Generator $faker) {
     return [
         'poster_id' => function (array &$self) {
-            $factoryUser = factory(User::class)->create();
+            $factoryUser = User::factory()->create();
             $self['post_username'] = $factoryUser->username;
 
             return $factoryUser->getKey();

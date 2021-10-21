@@ -15,11 +15,10 @@ return [
     'header' => [
         'admin' => [
             'beatmapset' => 'beatmapset',
-            'beatmapset_covers' => 'beatmapset események',
+            'beatmapset_covers' => 'beatmapset coverek',
             'contest' => 'verseny',
             'contests' => 'versenyek',
             'root' => 'konzol',
-            'store_orders' => 'admin bolt',
         ],
 
         'artists' => [
@@ -93,7 +92,7 @@ return [
             '_' => 'Általános',
             'home' => 'Főoldal',
             'changelog-index' => 'Változtatások',
-            'beatmaps' => 'Beatmap Lista',
+            'beatmaps' => 'Beatmap lista',
             'download' => 'osu! letöltése',
         ],
         'help' => [

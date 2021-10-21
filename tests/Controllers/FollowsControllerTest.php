@@ -14,8 +14,8 @@ class FollowsControllerTest extends TestCase
 {
     public function testDestroy()
     {
-        $user = factory(User::class)->create();
-        $mapper = factory(User::class)->create();
+        $user = User::factory()->create();
+        $mapper = User::factory()->create();
 
         Follow::create([
             'notifiable_id' => $mapper->getKey(),
@@ -41,8 +41,8 @@ class FollowsControllerTest extends TestCase
 
     public function testDestroyNonexistent()
     {
-        $user = factory(User::class)->create();
-        $mapper = factory(User::class)->create();
+        $user = User::factory()->create();
+        $mapper = User::factory()->create();
 
         $initialCount = Follow::count();
 
@@ -61,8 +61,8 @@ class FollowsControllerTest extends TestCase
 
     public function testStore()
     {
-        $user = factory(User::class)->create();
-        $mapper = factory(User::class)->create();
+        $user = User::factory()->create();
+        $mapper = User::factory()->create();
 
         $initialCount = Follow::count();
 
@@ -81,8 +81,8 @@ class FollowsControllerTest extends TestCase
 
     public function testStoreDuplicate()
     {
-        $user = factory(User::class)->create();
-        $mapper = factory(User::class)->create();
+        $user = User::factory()->create();
+        $mapper = User::factory()->create();
 
         Follow::create([
             'notifiable_id' => $mapper->getKey(),

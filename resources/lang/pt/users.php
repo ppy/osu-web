@@ -112,7 +112,7 @@ return [
         'username' => 'Convidado',
         'error' => 'Precisas de ter sessão iniciada para fazer isto.',
     ],
-    'logout_confirm' => 'Tens a certeza que queres terminar a sessão? :(',
+    'logout_confirm' => 'Tens a certeza de que queres terminar a sessão? :(',
     'report' => [
         'button_text' => 'denunciar',
         'comments' => 'Comentários adicionais',

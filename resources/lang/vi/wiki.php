@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'Không thể tìm trang đã yêu cầu cho ngôn ngữ bạn đã chọn.',
         'needs_cleanup_or_rewrite' => 'Trang này không đáp ứng được tiêu chuẩn của osu! wiki và cần được chỉnh sửa hoặc viết lại. Nếu bạn có thể giúp, vui lòng cân nhắc cập nhật văn bản này!',
         'search' => 'Tìm kiếm trang có sẵn cho :link.',
+        'stub' => '',
         'toc' => 'Nội dung',
 
         'edit' => [

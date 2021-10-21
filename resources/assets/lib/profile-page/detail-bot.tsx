@@ -15,11 +15,11 @@ export default function DetailBot({ user }: Props) {
       <div className='profile-detail__bar'>
         <div className='profile-detail-bar'>
           <div className='profile-detail-bar__column profile-detail-bar__column--left'>
-            <div className='profile-detail-bar__menu-item'>
+            <div className='profile-detail-bar__entry'>
               <FriendButton
                 alwaysVisible
                 followers={user.follower_count}
-                modifiers={['profile-page']}
+                modifiers='profile-page'
                 showFollowerCounter
                 userId={user.id}
               />
