@@ -1562,17 +1562,15 @@ class OsuAuthorize
     }
 
     /**
-     * @throws AuthorizationException
+     * @throws AuthorizationCheckException
      */
     public function checkForumTopicPollOptionShowResult(?User $user, PollOption $pollOption): string
     {
-        $this->doCheckUser($user, 'ForumTopicPollShowResults', $pollOption->topic)->ensureCan();
-
-        return 'ok';
+        return $this->checkForumTopicPollShowResults($user, $pollOption->topic);
     }
 
     /**
-     * @throws AuthorizationException
+     * @throws AuthorizationCheckException
      */
     public function checkForumTopicPollShowResults(?User $user, Topic $topic): string
     {
@@ -1581,7 +1579,11 @@ class OsuAuthorize
         }
 
         $this->ensureLoggedIn($user);
-        $this->doCheckUser($user, 'IsNotOAuth')->ensureCan();
+
+        $isNotOAuthPermission = $this->doCheckUser($user, 'IsNotOAuth');
+        if (!$isNotOAuthPermission->can()) {
+            return $isNotOAuthPermission->rawMessage();
+        }
 
         if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
             return 'ok';
