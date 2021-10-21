@@ -83,8 +83,8 @@ export default class SortBar extends React.Component<Props> {
   private readonly handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const sort = e.currentTarget.dataset.value as ArtistTrackSort;
-    osu.navigate(e.currentTarget.href, true);
     this.params.sort = sort;
+    osu.navigate(e.currentTarget.href, true);
   };
 
   private isFieldVisible(field: ArtistTrackSortField) {
