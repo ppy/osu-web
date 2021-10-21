@@ -2,11 +2,19 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
-import { computed, makeObservable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { artistTrackSearchRelevanceParams, artistTrackSortFields, artistTrackSortOrders, ArtistTrackSortField, ArtistTrackSortOrder, ArtistTrackSearch } from './search-form';
+import {
+  ArtistTrackSearch,
+  artistTrackSearchRelevanceParams,
+  ArtistTrackSort,
+  ArtistTrackSortField,
+  artistTrackSortFields,
+  ArtistTrackSortOrder,
+  artistTrackSortOrders,
+} from './search-form';
 
 interface Props {
   params: ArtistTrackSearch;
@@ -24,12 +32,14 @@ const defaultOrder: Partial<Record<ArtistTrackSortField, ArtistTrackSortOrder>> 
 
 @observer
 export default class SortBar extends React.Component<Props> {
+  @observable params = this.props.params;
+
   @computed
   get currentField() {
-    const ret = artistTrackSortFields.find((f) => `${f}_${this.currentOrder}` === this.props.params.sort);
+    const ret = artistTrackSortFields.find((f) => `${f}_${this.currentOrder}` === this.params.sort);
 
     if (ret == null) {
-      throw new Error('parsed sort parameter is not supported');
+      throw new Error(`sort parameter is not supported (${this.params.sort})`);
     }
 
     return ret;
@@ -38,11 +48,11 @@ export default class SortBar extends React.Component<Props> {
   @computed
   get currentOrder() {
     const ret = artistTrackSortOrders.find((o) => (
-      artistTrackSortFields.find((f) => `${f}_${o}` === this.props.params.sort) != null
+      artistTrackSortFields.find((f) => `${f}_${o}` === this.params.sort) != null
     ));
 
     if (ret == null) {
-      throw new Error('parsed sort parameter is not supported');
+      throw new Error(`sort parameter is not supported (${this.params.sort})`);
     }
 
     return ret;
@@ -72,12 +82,14 @@ export default class SortBar extends React.Component<Props> {
 
   private readonly handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
+    const sort = e.currentTarget.dataset.value as ArtistTrackSort;
     osu.navigate(e.currentTarget.href, true);
+    this.params.sort = sort;
   };
 
   private isFieldVisible(field: ArtistTrackSortField) {
     if (field === 'relevance') {
-      return artistTrackSearchRelevanceParams.some((p) => osu.present(this.props.params[p]));
+      return artistTrackSearchRelevanceParams.some((p) => osu.present(this.params[p]));
     }
 
     return true;
@@ -99,13 +111,15 @@ export default class SortBar extends React.Component<Props> {
     if (!this.isFieldVisible(field)) return;
 
     const order = this.orderForField(field);
-    const url = `${route('artists.tracks.index')}?${$.param({ ...this.props.params, is_default_sort: false, sort: `${field}_${order}` })}`;
-    const orderForIcon = this.currentField === field ? order : this.currentOrder;
+    const sort = `${field}_${order}`;
+    const url = `${route('artists.tracks.index')}?${$.param({ ...this.params, is_default_sort: false, sort })}`;
+    const orderForIcon = this.currentField === field ? this.currentOrder : order;
 
     return (
       <a
         key={field}
         className={classWithModifiers('sort__item', 'button', { active: this.currentField === field })}
+        data-value={sort}
         href={url}
         onClick={this.handleLinkClick}
       >

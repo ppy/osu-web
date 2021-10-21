@@ -31,7 +31,7 @@ export type ArtistTrackSortField = typeof artistTrackSortFields[number];
 export const artistTrackSortOrders = ['asc', 'desc'] as const;
 export type ArtistTrackSortOrder = typeof artistTrackSortOrders[number];
 
-type ArtistTrackSort = `${ArtistTrackSortField}_${ArtistTrackSortOrder}`;
+export type ArtistTrackSort = `${ArtistTrackSortField}_${ArtistTrackSortOrder}`;
 
 export const artistTrackSearchRelevanceParams = ['album', 'artist', 'query'] as const;
 type ArtistTrackSearchRelevanceParam = typeof artistTrackSearchRelevanceParams[number];
