@@ -15,7 +15,7 @@ class PollOptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'poll_option_text' => $this->faker->sentence,
+            'poll_option_text' => fn () => $this->faker->sentence(),
         ];
     }
 }
