@@ -63,6 +63,7 @@ export default class Main extends React.Component<Props> {
           <SearchForm
             availableGenres={this.props.availableGenres}
             initialParams={this.props.data.search}
+            isNavigating={this.isNavigating}
             onNewSearch={this.onNewSearch}
           />
         </div>

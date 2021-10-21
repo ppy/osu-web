@@ -48,6 +48,7 @@ export type ArtistTrackSearch = {
 interface Props {
   availableGenres: string[];
   initialParams: ArtistTrackSearch;
+  isNavigating: boolean;
   onNewSearch: (url: string) => void;
 }
 
@@ -70,13 +71,12 @@ export default class SearchForm extends React.Component<Props> {
 
   @computed
   private get isEmptySearch() {
-    return isEqual(this.props.initialParams, this.emptySearch);
+    return isEqual(this.params, this.emptySearch);
   }
 
   @computed
   private get newSearch() {
-    // exclude genre from comparison for search button
-    return !isEqual({ ...this.params, genre: null }, { ...this.props.initialParams, genre: null });
+    return !isEqual(this.params, this.props.initialParams);
   }
 
   constructor(props: Props) {
@@ -194,7 +194,7 @@ export default class SearchForm extends React.Component<Props> {
         </div>
         <div className='artist-track-search-form__content artist-track-search-form__content--buttons'>
           <BigButton
-            disabled={this.isEmptySearch}
+            disabled={this.isEmptySearch || this.props.isNavigating}
             href={this.makeLink(this.emptySearch)}
             modifiers={['artist-tracks-search', 'rounded-thin']}
             props={{ onClick: this.handleReset }}
@@ -202,7 +202,7 @@ export default class SearchForm extends React.Component<Props> {
           />
 
           <BigButton
-            disabled={!this.newSearch}
+            disabled={!this.newSearch || this.props.isNavigating}
             href={this.url}
             modifiers={['artist-tracks-search', 'rounded-thin-wide']}
             props={{ onClick: this.handleSubmit }}
@@ -265,14 +265,16 @@ export default class SearchForm extends React.Component<Props> {
 
   @action
   private readonly handleReset = (e: React.MouseEvent<HTMLElement>) => {
-    if (!(e.currentTarget instanceof HTMLAnchorElement)) return;
+    const target = e.currentTarget;
+
+    if (!(target instanceof HTMLAnchorElement)) return;
 
     e.preventDefault();
     this.params = this.emptySearch;
 
-    // only navigate if current search isn't an empty search
-    if (!this.isEmptySearch) {
-      this.props.onNewSearch(this.makeLink(this.emptySearch));
+    // only navigate if current search isn't already an empty search
+    if (this.newSearch) {
+      this.props.onNewSearch(target.href);
     }
   };
 
