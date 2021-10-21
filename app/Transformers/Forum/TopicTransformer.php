@@ -39,10 +39,8 @@ class TopicTransformer extends TransformerAbstract
 
     public function includePoll(Topic $topic): ResourceInterface
     {
-        if (!$topic->poll()->exists()) {
-            return $this->null();
-        }
-
-        return $this->item($topic, new PollTransformer());
+        return $topic->poll()->exists()
+            ? $this->item($topic, new PollTransformer())
+            : $this->null();
     }
 }
