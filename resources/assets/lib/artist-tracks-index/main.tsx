@@ -68,7 +68,7 @@ export default class Main extends React.Component<Props> {
           />
         </div>
 
-        <div className='osu-page osu-page--generic'>
+        <div className='osu-page osu-page--generic-compact-gutter'>
           {this.data.artist_tracks.length === 0 ? (
             <div>
               {osu.trans('artist.tracks.index.form.empty')}

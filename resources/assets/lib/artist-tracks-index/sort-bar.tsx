@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { route } from 'laroute';
 import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -9,21 +8,21 @@ import { classWithModifiers } from 'utils/css';
 import {
   ArtistTrackSearch,
   artistTrackSearchRelevanceParams,
-  ArtistTrackSort,
   ArtistTrackSortField,
   artistTrackSortFields,
   ArtistTrackSortOrder,
   artistTrackSortOrders,
 } from './search-form';
+import makeLink from './make-link';
 
 interface Props {
   onNewSearch: (url: string) => void;
   params: ArtistTrackSearch;
 }
 
-const orderIcon: Record<ArtistTrackSortOrder, string> = {
-  asc: 'fas fa-caret-up',
-  desc: 'fas fa-caret-down',
+const orderIcon: Record<ArtistTrackSortOrder, Record<'desktop' | 'mobile', string>> = {
+  asc: { desktop: 'fas fa-caret-up', mobile: 'fas fa-sort-amount-up' },
+  desc: { desktop: 'fas fa-caret-down', mobile: 'fas fa-sort-amount-down' },
 };
 
 const defaultOrder: Partial<Record<ArtistTrackSortField, ArtistTrackSortOrder>> = {
@@ -59,6 +58,10 @@ export default class SortBar extends React.Component<Props> {
     return ret;
   }
 
+  get flippedOrder() {
+    return this.currentOrder === 'asc' ? 'desc' : 'asc';
+  }
+
   constructor(props: Props) {
     super(props);
 
@@ -67,25 +70,57 @@ export default class SortBar extends React.Component<Props> {
 
   render() {
     return (
-      <>
-        <div className='sort sort--artist-tracks'>
-          <div className='sort__items'>
-            <div className='sort__item sort__item--title'>
-              {osu.trans('sort._')}
-            </div>
+      <div className='artist-track-search-sort'>
+        <div className='artist-track-search-sort__desktop'>
+          <div className='sort sort--artist-tracks'>
+            <div className='sort__items'>
+              <div className='sort__item sort__item--title'>
+                {osu.trans('sort._')}
+              </div>
 
-            {artistTrackSortFields.map((field) => this.renderLink(field))}
+              {artistTrackSortFields.map(this.renderLink)}
+            </div>
           </div>
         </div>
-      </>
+
+        <div className='artist-track-search-sort__mobile'>
+          <div className='sort-mobile'>
+            <div className='sort-mobile__item sort-mobile__item--title'>
+              {osu.trans('sort._')}
+            </div>
+            <div className='sort-mobile__item'>
+              <div className='form-select'>
+                <select className='form-select__input' onChange={this.handleSortFieldChange} value={this.currentField}>
+                  {artistTrackSortFields.map(this.renderOption)}
+                </select>
+              </div>
+            </div>
+            <div className='sort-mobile__item'>
+              {this.renderOrderButton()}
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 
   private readonly handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const sort = e.currentTarget.dataset.value as ArtistTrackSort;
-    this.params.sort = sort;
+    const field = e.currentTarget.dataset.field as ArtistTrackSortField;
+    const order = e.currentTarget.dataset.order as ArtistTrackSortOrder;
+    this.params.sort = `${field}_${order}`;
     this.props.onNewSearch(e.currentTarget.href);
+  };
+
+  private readonly handleSortFieldChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const field = e.currentTarget.value as ArtistTrackSortField;
+
+    const newSort: typeof this.params.sort = `${field}_${this.currentOrder}`;
+
+    if (newSort !== this.params.sort) {
+      this.params.sort = newSort;
+      this.props.onNewSearch(this.makeLink(field, this.currentOrder));
+    }
   };
 
   private isFieldVisible(field: ArtistTrackSortField) {
@@ -96,9 +131,17 @@ export default class SortBar extends React.Component<Props> {
     return true;
   }
 
+  private makeLink(field: ArtistTrackSortField, order: ArtistTrackSortOrder) {
+    return makeLink({
+      ...this.params,
+      is_default_sort: false,
+      sort: `${field}_${order}`,
+    });
+  }
+
   private orderForField(field: ArtistTrackSortField) {
     const ret = this.currentField === field
-      ? artistTrackSortOrders.find((o) => o !== this.currentOrder)
+      ? this.flippedOrder
       : defaultOrder[field] ?? artistTrackSortOrders[0];
 
     if (ret == null) {
@@ -108,26 +151,50 @@ export default class SortBar extends React.Component<Props> {
     return ret;
   }
 
+  private readonly renderOption = (field: ArtistTrackSortField) => {
+    if (!this.isFieldVisible(field)) return;
+
+    return (
+      <option value={field} key={field}>
+        {osu.trans(`sort.artist_tracks.${field}`)}
+      </option>
+    );
+  };
+
+  private renderOrderButton() {
+    return (
+      <a
+        className='sort-mobile__order'
+        data-field={this.currentField}
+        data-order={this.flippedOrder}
+        href={this.makeLink(this.currentField, this.flippedOrder)}
+        onClick={this.handleLinkClick}
+      >
+        <span className={orderIcon[this.currentOrder].mobile} />
+      </a>
+    );
+  }
+
   private readonly renderLink = (field: ArtistTrackSortField) => {
     if (!this.isFieldVisible(field)) return;
 
     const order = this.orderForField(field);
-    const sort = `${field}_${order}`;
-    const url = `${route('artists.tracks.index')}?${$.param({ ...this.params, is_default_sort: false, sort })}`;
+    const url = this.makeLink(field, order);
     const orderForIcon = this.currentField === field ? this.currentOrder : order;
 
     return (
       <a
         key={field}
         className={classWithModifiers('sort__item', 'button', { active: this.currentField === field })}
-        data-value={sort}
+        data-field={field}
+        data-order={order}
         href={url}
         onClick={this.handleLinkClick}
       >
         {osu.trans(`sort.artist_tracks.${field}`)}
 
         <span className='sort__item-arrow'>
-          <span className={orderIcon[orderForIcon]} />
+          <span className={orderIcon[orderForIcon].desktop} />
         </span>
       </a>
     );

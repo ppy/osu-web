@@ -2,13 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'big-button';
-import { route } from 'laroute';
 import { isEqual } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { jsonClone } from 'utils/json';
+import makeLink from './make-link';
 
 type Nullable<T> = T | null | undefined;
 
@@ -292,7 +292,7 @@ export default class SearchForm extends React.Component<Props> {
   };
 
   private makeLink(params: ArtistTrackSearch = this.params) {
-    return `${route('artists.tracks.index')}?${$.param(params)}`;
+    return makeLink(params);
   }
 
   private renderGenreLink(name: string, value: Nullable<string>) {
