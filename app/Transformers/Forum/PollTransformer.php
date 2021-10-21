@@ -40,7 +40,7 @@ class PollTransformer extends TransformerAbstract
     public function includeOptions(Topic $topic): ResourceInterface
     {
         foreach ($topic->pollOptions as $pollOption) {
-            $pollOption->setRelation('post', $topic->realFirstPost);
+            $pollOption->setRelation('post', $topic->firstPost);
             $pollOption->setRelation('topic', $topic);
         }
 
