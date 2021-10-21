@@ -188,7 +188,7 @@ export default class SearchForm extends React.Component<Props> {
         <div className='artist-track-search-form__content artist-track-search-form__content--buttons'>
           <BigButton
             disabled={this.isEmptySearch}
-            modifiers='rounded-thin'
+            modifiers={['artist-tracks-search', 'rounded-thin']}
             props={{ onClick: this.handleReset }}
             text={osu.trans('common.buttons.reset')}
           />
@@ -196,7 +196,7 @@ export default class SearchForm extends React.Component<Props> {
           <BigButton
             disabled={this.newSearch}
             isSubmit
-            modifiers='rounded-thin-wide'
+            modifiers={['artist-tracks-search', 'rounded-thin-wide']}
             text={osu.trans('common.buttons.search')}
           />
         </div>
