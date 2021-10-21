@@ -70,7 +70,7 @@ export default class SearchForm extends React.Component<Props> {
 
   @computed
   private get isEmptySearch() {
-    return isEqual(this.params, this.emptySearch);
+    return isEqual(this.props.initialParams, this.emptySearch);
   }
 
   @computed
@@ -194,6 +194,7 @@ export default class SearchForm extends React.Component<Props> {
         <div className='artist-track-search-form__content artist-track-search-form__content--buttons'>
           <BigButton
             disabled={this.isEmptySearch}
+            href={this.makeLink(this.emptySearch)}
             modifiers={['artist-tracks-search', 'rounded-thin']}
             props={{ onClick: this.handleReset }}
             text={osu.trans('common.buttons.reset')}
@@ -203,6 +204,7 @@ export default class SearchForm extends React.Component<Props> {
             disabled={!this.newSearch}
             href={this.url}
             modifiers={['artist-tracks-search', 'rounded-thin-wide']}
+            props={{ onClick: this.handleSubmit }}
             text={osu.trans('common.buttons.search')}
           />
         </div>
@@ -261,11 +263,15 @@ export default class SearchForm extends React.Component<Props> {
   };
 
   @action
-  private readonly handleReset = () => {
-    if (osu.present(this.params.genre)) {
+  private readonly handleReset = (e: React.MouseEvent<HTMLElement>) => {
+    if (!(e.currentTarget instanceof HTMLAnchorElement)) return;
+
+    e.preventDefault();
+    this.params = this.emptySearch;
+
+    // only navigate if current search isn't an empty search
+    if (!this.isEmptySearch) {
       this.props.onNewSearch(this.makeLink(this.emptySearch));
-    } else {
-      this.params = this.emptySearch;
     }
   };
 
