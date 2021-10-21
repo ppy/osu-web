@@ -31,6 +31,7 @@ return [
         '_' => 'Songs',
         'count' => ':count_delimited song|:count_delimited songs',
         'original' => 'osu! original',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
