@@ -5,6 +5,7 @@ import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import makeLink from './make-link';
 import {
   ArtistTrackSearch,
   artistTrackSearchRelevanceParams,
@@ -13,7 +14,6 @@ import {
   ArtistTrackSortOrder,
   artistTrackSortOrders,
 } from './search-form';
-import makeLink from './make-link';
 
 interface Props {
   onNewSearch: (url: string) => void;
@@ -151,30 +151,6 @@ export default class SortBar extends React.Component<Props> {
     return ret;
   }
 
-  private readonly renderOption = (field: ArtistTrackSortField) => {
-    if (!this.isFieldVisible(field)) return;
-
-    return (
-      <option value={field} key={field}>
-        {osu.trans(`sort.artist_tracks.${field}`)}
-      </option>
-    );
-  };
-
-  private renderOrderButton() {
-    return (
-      <a
-        className='sort-mobile__order'
-        data-field={this.currentField}
-        data-order={this.flippedOrder}
-        href={this.makeLink(this.currentField, this.flippedOrder)}
-        onClick={this.handleLinkClick}
-      >
-        <span className={orderIcon[this.currentOrder].mobile} />
-      </a>
-    );
-  }
-
   private readonly renderLink = (field: ArtistTrackSortField) => {
     if (!this.isFieldVisible(field)) return;
 
@@ -199,4 +175,28 @@ export default class SortBar extends React.Component<Props> {
       </a>
     );
   };
+
+  private readonly renderOption = (field: ArtistTrackSortField) => {
+    if (!this.isFieldVisible(field)) return;
+
+    return (
+      <option key={field} value={field}>
+        {osu.trans(`sort.artist_tracks.${field}`)}
+      </option>
+    );
+  };
+
+  private renderOrderButton() {
+    return (
+      <a
+        className='sort-mobile__order'
+        data-field={this.currentField}
+        data-order={this.flippedOrder}
+        href={this.makeLink(this.currentField, this.flippedOrder)}
+        onClick={this.handleLinkClick}
+      >
+        <span className={orderIcon[this.currentOrder].mobile} />
+      </a>
+    );
+  }
 }
