@@ -200,7 +200,7 @@ export default class SearchForm extends React.Component<Props> {
           <BigButton
             disabled={this.isEmptySearch || this.props.isNavigating}
             href={this.makeLink(this.emptySearch)}
-            modifiers={['artist-tracks-search', 'rounded-thin']}
+            modifiers={['artist-track-search', 'rounded-thin']}
             props={{ onClick: this.handleReset }}
             text={osu.trans('common.buttons.reset')}
           />
@@ -208,7 +208,7 @@ export default class SearchForm extends React.Component<Props> {
           <BigButton
             disabled={!this.newSearch || this.props.isNavigating}
             href={this.url}
-            modifiers={['artist-tracks-search', 'rounded-thin-wide']}
+            modifiers={['artist-track-search', 'rounded-thin-wide']}
             props={{ onClick: this.handleSubmit }}
             text={osu.trans('common.buttons.search')}
           />
