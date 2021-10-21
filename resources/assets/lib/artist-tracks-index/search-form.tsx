@@ -256,7 +256,7 @@ export default class SearchForm extends React.Component<Props> {
   };
 
   @action
-  private readonly handleReset = (e: React.FormEvent) => {
+  private readonly handleReset = () => {
     this.params = this.emptySearch;
   };
 
