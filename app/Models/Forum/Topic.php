@@ -826,18 +826,6 @@ class Topic extends Model implements AfterCommit
         return strpos($this->topic_title, "[{$tag}]") !== false;
     }
 
-    /**
-     * Get the aggregate vote count of this topic's poll, or `0` if there is no poll.
-     */
-    public function totalVoteCount(): int
-    {
-        if ($this->poll()->exists()) {
-            return $this->pollOptions->sum('poll_option_total');
-        }
-
-        return 0;
-    }
-
     public function toMetaDescription()
     {
         return "{$this->forum->toMetaDescription()} » {$this->topic_title}";

@@ -49,6 +49,6 @@ class PollTransformer extends TransformerAbstract
 
     public function includeTotalVoteCount(Topic $topic): ResourceInterface
     {
-        return $this->primitive($topic->totalVoteCount());
+        return $this->primitive($topic->poll()->totalVoteCount());
     }
 }
