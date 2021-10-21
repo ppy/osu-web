@@ -56,6 +56,11 @@ export default class SearchForm extends React.Component<Props> {
   @observable private params = jsonClone(this.props.initialParams);
 
   @computed
+  private get url() {
+    return this.makeLink();
+  }
+
+  @computed
   private get emptySearch() {
     return {
       is_default_sort: this.params.is_default_sort,
@@ -71,7 +76,7 @@ export default class SearchForm extends React.Component<Props> {
   @computed
   private get newSearch() {
     // exclude genre from comparison for search button
-    return isEqual({ ...this.params, genre: this.props.initialParams.genre }, this.props.initialParams);
+    return !isEqual({ ...this.params, genre: null }, { ...this.props.initialParams, genre: null });
   }
 
   constructor(props: Props) {
@@ -195,8 +200,8 @@ export default class SearchForm extends React.Component<Props> {
           />
 
           <BigButton
-            disabled={this.newSearch}
-            isSubmit
+            disabled={!this.newSearch}
+            href={this.url}
             modifiers={['artist-tracks-search', 'rounded-thin-wide']}
             text={osu.trans('common.buttons.search')}
           />
@@ -262,7 +267,7 @@ export default class SearchForm extends React.Component<Props> {
 
   private readonly handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    this.props.onNewSearch(this.makeLink());
+    this.props.onNewSearch(this.url);
   };
 
   private makeLink(params: ArtistTrackSearch = this.params) {
