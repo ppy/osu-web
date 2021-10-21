@@ -2,10 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { artistTrackSortFields, artistTrackSortOrders, ArtistTrackSortField, ArtistTrackSortOrder, ArtistTrackSearch } from './search-form';
+import { artistTrackSearchRelevanceParams, artistTrackSortFields, artistTrackSortOrders, ArtistTrackSortField, ArtistTrackSortOrder, ArtistTrackSearch } from './search-form';
 
 interface Props {
   params: ArtistTrackSearch;
@@ -23,35 +24,91 @@ const defaultOrder: Partial<Record<ArtistTrackSortField, ArtistTrackSortOrder>> 
 
 @observer
 export default class SortBar extends React.Component<Props> {
+  @computed
+  get currentField() {
+    const ret = artistTrackSortFields.find((f) => `${f}_${this.currentOrder}` === this.props.params.sort);
+
+    if (ret == null) {
+      throw new Error('parsed sort parameter is not supported');
+    }
+
+    return ret;
+  }
+
+  @computed
+  get currentOrder() {
+    const ret = artistTrackSortOrders.find((o) => (
+      artistTrackSortFields.find((f) => `${f}_${o}` === this.props.params.sort) != null
+    ));
+
+    if (ret == null) {
+      throw new Error('parsed sort parameter is not supported');
+    }
+
+    return ret;
+  }
+
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   render() {
     return (
-      <div className='sort sort--artist-tracks'>
-        <div className='sort__items'>
-          {artistTrackSortFields.map((field) => this.renderLink(field))}
+      <>
+        <div className='sort sort--artist-tracks'>
+          <div className='sort__items'>
+            {artistTrackSortFields.map((field) => this.renderLink(field))}
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
-  private readonly renderLink = (field: ArtistTrackSortField) => {
-    const currentOrder = artistTrackSortOrders.find((o) => `${field}_${o}` === this.props.params.sort);
-    let order = currentOrder === null
-      ? null
-      : artistTrackSortOrders.find((o) => o !== currentOrder);
-    order = order ?? defaultOrder[field] ?? artistTrackSortOrders[0];
+  private readonly handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    osu.navigate(e.currentTarget.href, true);
+  };
 
+  private isFieldVisible(field: ArtistTrackSortField) {
+    if (field === 'relevance') {
+      return artistTrackSearchRelevanceParams.some((p) => osu.present(this.props.params[p]));
+    }
+
+    return true;
+  }
+
+  private orderForField(field: ArtistTrackSortField) {
+    const ret = this.currentField === field
+      ? artistTrackSortOrders.find((o) => o !== this.currentOrder)
+      : defaultOrder[field] ?? artistTrackSortOrders[0];
+
+    if (ret == null) {
+      throw new Error('no alternative sort order');
+    }
+
+    return ret;
+  }
+
+  private readonly renderLink = (field: ArtistTrackSortField) => {
+    if (!this.isFieldVisible(field)) return;
+
+    const order = this.orderForField(field);
     const url = `${route('artists.tracks.index')}?${$.param({ ...this.props.params, is_default_sort: false, sort: `${field}_${order}` })}`;
+    const orderForIcon = this.currentField === field ? order : this.currentOrder;
 
     return (
       <a
         key={field}
-        className={classWithModifiers('sort__item', 'button', { active: currentOrder != null })}
+        className={classWithModifiers('sort__item', 'button', { active: this.currentField === field })}
         href={url}
+        onClick={this.handleLinkClick}
       >
         {field}
 
         <span className='sort__item-arrow'>
-          <span className={orderIcon[currentOrder ?? order]} />
+          <span className={orderIcon[orderForIcon]} />
         </span>
       </a>
     );

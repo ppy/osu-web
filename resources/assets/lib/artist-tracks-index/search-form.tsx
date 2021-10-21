@@ -33,16 +33,17 @@ export type ArtistTrackSortOrder = typeof artistTrackSortOrders[number];
 
 type ArtistTrackSort = `${ArtistTrackSortField}_${ArtistTrackSortOrder}`;
 
-const artistTrackSearchStringParams = ['album', 'artist', 'genre', 'query'] as const;
-type ArtistTrackSearchStringParam = typeof artistTrackSearchStringParams[number];
+export const artistTrackSearchRelevanceParams = ['album', 'artist', 'query'] as const;
+type ArtistTrackSearchRelevanceParam = typeof artistTrackSearchRelevanceParams[number];
 
 const artistTrackSearchNumberRangeParams = ['bpm', 'length'] as const;
 type ArtistTrackSearchNumberRangeParam = typeof artistTrackSearchNumberRangeParams[number];
 
 export type ArtistTrackSearch = {
+  genre?: Nullable<string>;
   is_default_sort: boolean;
   sort: ArtistTrackSort;
-} & Partial<Record<ArtistTrackSearchStringParam, Nullable<string>>> & Partial<Record<ArtistTrackSearchNumberRangeParam, Nullable<EsRange<number | string>>>>;
+} & Partial<Record<ArtistTrackSearchRelevanceParam, Nullable<string>>> & Partial<Record<ArtistTrackSearchNumberRangeParam, Nullable<EsRange<number | string>>>>;
 
 interface Props {
   availableGenres: string[];
@@ -236,7 +237,7 @@ export default class SearchForm extends React.Component<Props> {
 
   @action
   private readonly handleChangeString = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const param = e.target.name as ArtistTrackSearchStringParam;
+    const param = e.target.name as ArtistTrackSearchRelevanceParam;
     const value = e.target.value;
 
     if (osu.present(value)) {
