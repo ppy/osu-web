@@ -45,6 +45,8 @@ export type ArtistTrackSearch = {
   sort: ArtistTrackSort;
 } & Partial<Record<ArtistTrackSearchRelevanceParam, Nullable<string>>> & Partial<Record<ArtistTrackSearchNumberRangeParam, Nullable<EsRange<number | string>>>>;
 
+const lengthRegexp = '^\\d+(\\.\\d*)?(ms|s|m|h)?$';
+
 interface Props {
   availableGenres: string[];
   initialParams: ArtistTrackSearch;
@@ -164,6 +166,7 @@ export default class SearchForm extends React.Component<Props> {
                 data-param='length'
                 data-range='gte'
                 onChange={this.handleChangeRangeNatural}
+                pattern={lengthRegexp}
                 value={this.params.length?.gte ?? ''}
               />
             </label>
@@ -177,6 +180,7 @@ export default class SearchForm extends React.Component<Props> {
                 data-param='length'
                 data-range='lte'
                 onChange={this.handleChangeRangeNatural}
+                pattern={lengthRegexp}
                 value={this.params.length?.lte ?? ''}
               />
             </label>
@@ -229,6 +233,10 @@ export default class SearchForm extends React.Component<Props> {
     }
 
     const value = input.value;
+
+    if (input.pattern != null && (RegExp(input.pattern).exec(value)) == null) {
+      return;
+    }
 
     const rangeData = this.params[param] ?? {};
     if (osu.present(value)) {
