@@ -17,6 +17,7 @@ import {
 } from './search-form';
 
 interface Props {
+  onNewSearch: (url: string) => void;
   params: ArtistTrackSearch;
 }
 
@@ -84,7 +85,7 @@ export default class SortBar extends React.Component<Props> {
     e.preventDefault();
     const sort = e.currentTarget.dataset.value as ArtistTrackSort;
     this.params.sort = sort;
-    osu.navigate(e.currentTarget.href, true);
+    this.props.onNewSearch(e.currentTarget.href);
   };
 
   private isFieldVisible(field: ArtistTrackSortField) {

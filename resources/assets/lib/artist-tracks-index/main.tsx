@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import TracklistTrack from 'tracklist-track';
+import { classWithModifiers } from 'utils/css';
 import { jsonClone } from 'utils/json';
 import SearchForm, { ArtistTrackSearch } from './search-form';
 import Sort from './sort-bar';
@@ -40,6 +41,7 @@ const headerLinks = [
 @observer
 export default class Main extends React.Component<Props> {
   @observable private data = jsonClone(this.props.data);
+  @observable private isNavigating = false;
   @observable private loadingXhr?: JQuery.jqXHR | null = null;
 
   constructor(props: Props) {
@@ -61,6 +63,7 @@ export default class Main extends React.Component<Props> {
           <SearchForm
             availableGenres={this.props.availableGenres}
             initialParams={this.props.data.search}
+            onNewSearch={this.onNewSearch}
           />
         </div>
 
@@ -71,9 +74,12 @@ export default class Main extends React.Component<Props> {
             </div>
           ) : (
             <>
-              <Sort params={this.props.data.search} />
+              <Sort
+                onNewSearch={this.onNewSearch}
+                params={this.props.data.search}
+              />
 
-              <div className='grid-items grid-items--2'>
+              <div className={classWithModifiers('grid-items', '2', { 'fade-out': this.isNavigating })}>
                 {this.data.artist_tracks.map((t) => (
                   <TracklistTrack key={t.id} modifiers='large' showAlbum track={t} />
                 ))}
@@ -103,5 +109,10 @@ export default class Main extends React.Component<Props> {
       .always(action(() => {
         this.loadingXhr = null;
       }));
+  };
+
+  private readonly onNewSearch = (url: string) => {
+    osu.navigate(url, true);
+    this.isNavigating = true;
   };
 }

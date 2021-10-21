@@ -48,6 +48,7 @@ export type ArtistTrackSearch = {
 interface Props {
   availableGenres: string[];
   initialParams: ArtistTrackSearch;
+  onNewSearch: (url: string) => void;
 }
 
 @observer
@@ -251,7 +252,7 @@ export default class SearchForm extends React.Component<Props> {
   private readonly handleGenreLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     this.params.genre = osu.presence(e.currentTarget.dataset.value);
-    osu.navigate(e.currentTarget.href, true);
+    this.props.onNewSearch(e.currentTarget.href);
   };
 
   @action
@@ -261,7 +262,7 @@ export default class SearchForm extends React.Component<Props> {
 
   private readonly handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    osu.navigate(this.makeLink(), true);
+    this.props.onNewSearch(this.makeLink());
   };
 
   private makeLink(params: ArtistTrackSearch = this.params) {
