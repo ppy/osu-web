@@ -262,7 +262,11 @@ export default class SearchForm extends React.Component<Props> {
 
   @action
   private readonly handleReset = () => {
-    this.params = this.emptySearch;
+    if (osu.present(this.params.genre)) {
+      this.props.onNewSearch(this.makeLink(this.emptySearch));
+    } else {
+      this.params = this.emptySearch;
+    }
   };
 
   private readonly handleSubmit = (e: React.FormEvent) => {
