@@ -21,8 +21,7 @@ class BeatmapsetsControllerTest extends TestCase
         $follower = User::factory()->create();
         $follower->follows()->create([
             'subtype' => 'mapping',
-            'notifiable_type' => MorphMap::getType($user),
-            'notifiable_id' => $user->getKey(),
+            'notifiable' => $user,
         ]);
         $notificationCount = Notification::count();
         $followerNotificationCount = $follower->userNotifications()->count();
@@ -45,8 +44,7 @@ class BeatmapsetsControllerTest extends TestCase
         $follower = User::factory()->create();
         $follower->follows()->create([
             'subtype' => 'mapping',
-            'notifiable_type' => MorphMap::getType($user),
-            'notifiable_id' => $user->getKey(),
+            'notifiable' => $user,
         ]);
         $notificationCount = Notification::count();
         $followerNotificationCount = $follower->userNotifications()->count();
