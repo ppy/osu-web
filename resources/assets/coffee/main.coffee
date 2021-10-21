@@ -38,7 +38,6 @@ $(document).on 'turbolinks:load', ->
 @accountEditAvatar ?= new AccountEditAvatar
 @accountEditBlocklist ?= new AccountEditBlocklist
 @bbcodePreview ?= new BbcodePreview
-@beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
 @fancyGraph ?= new FancyGraph
