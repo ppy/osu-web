@@ -65,9 +65,8 @@ class BeatmapsetsControllerTest extends TestCase
             'user_id' => User::factory(),
         ]);
 
-        $banchoBotUser = User::factory()->create([
-            'user_id' => config('osu.legacy.bancho_bot_user_id'),
-        ]);
+        $banchoBotUser = User::factory()->create();
+        config()->set('osu.legacy.bancho_bot_user_id', $banchoBotUser->getKey());
 
         $url = route('interop.beatmapsets.destroy', [
             'beatmapset' => $beatmapset->getKey(),
