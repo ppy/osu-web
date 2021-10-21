@@ -59,9 +59,10 @@ export default class SortBar extends React.Component<Props> {
       <>
         <div className='sort sort--artist-tracks'>
           <div className='sort__items'>
-            {osu.trans('sort._')}
-          </div>
-          <div className='sort__items'>
+            <div className='sort__item sort__item--title'>
+              {osu.trans('sort._')}
+            </div>
+
             {artistTrackSortFields.map((field) => this.renderLink(field))}
           </div>
         </div>
@@ -108,7 +109,7 @@ export default class SortBar extends React.Component<Props> {
         href={url}
         onClick={this.handleLinkClick}
       >
-        {field}
+        {osu.trans(`sort.artist_tracks.${field}`)}
 
         <span className='sort__item-arrow'>
           <span className={orderIcon[orderForIcon]} />
