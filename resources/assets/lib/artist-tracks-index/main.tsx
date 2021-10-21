@@ -11,7 +11,7 @@ import ShowMoreLink from 'show-more-link';
 import TracklistTrack from 'tracklist-track';
 import { jsonClone } from 'utils/json';
 import SearchForm, { ArtistTrackSearch } from './search-form';
-import Sort from './sort';
+import Sort from './sort-bar';
 
 export interface ArtistTracksIndex {
   artist_tracks: ArtistTrackWithArtistJson[];
