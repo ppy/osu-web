@@ -16,12 +16,11 @@ class BeatmapsetsControllerTest extends TestCase
 {
     public function testBroadcastNew()
     {
-        $user = User::factory()->create();
-        $beatmapset = Beatmapset::factory()->create(['user_id' => $user]);
+        $beatmapset = Beatmapset::factory()->create(['user_id' => User::factory()]);
         $follower = User::factory()->create();
         $follower->follows()->create([
             'subtype' => 'mapping',
-            'notifiable' => $user,
+            'notifiable' => $beatmapset->user,
         ]);
         $notificationCount = Notification::count();
         $followerNotificationCount = $follower->userNotifications()->count();
@@ -39,12 +38,11 @@ class BeatmapsetsControllerTest extends TestCase
 
     public function testBroadcastRevive()
     {
-        $user = User::factory()->create();
-        $beatmapset = Beatmapset::factory()->create(['user_id' => $user]);
+        $beatmapset = Beatmapset::factory()->create(['user_id' => User::factory()]);
         $follower = User::factory()->create();
         $follower->follows()->create([
             'subtype' => 'mapping',
-            'notifiable' => $user,
+            'notifiable' => $beatmapset->user,
         ]);
         $notificationCount = Notification::count();
         $followerNotificationCount = $follower->userNotifications()->count();
@@ -62,10 +60,9 @@ class BeatmapsetsControllerTest extends TestCase
 
     public function testDestroy()
     {
-        $owner = User::factory()->create();
         $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES['pending'],
-            'user_id' => $owner,
+            'user_id' => User::factory(),
         ]);
 
         $banchoBotUser = User::factory()->create([
