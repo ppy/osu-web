@@ -6,6 +6,7 @@
 namespace Tests\Transformers;
 
 use App\Models\Forum\Topic;
+use App\Models\User;
 use Carbon\Carbon;
 use Tests\TestCase;
 
@@ -18,10 +19,10 @@ class PollOptionTransformerTest extends TestCase
         bool $isOAuth,
         bool $pollEnded,
         bool $isTopicOwner,
-        string|array $groupIdentifier,
+        ?string $groupIdentifier,
         bool $voteCountVisible,
     ): void {
-        $actor = $this->createUserWithGroup($groupIdentifier);
+        $actor = User::factory()->withGroup($groupIdentifier)->create();
         $topicAttributes = [
             'poll_hide_results' => true,
             'poll_length' => 86400, // 1 day
@@ -66,28 +67,28 @@ class PollOptionTransformerTest extends TestCase
         return [
             [true,  true,  true,  'admin', true],
             [true,  true,  true,  'gmt',   true],
-            [true,  true,  true,  [],      true],
+            [true,  true,  true,  null,    true],
             [true,  true,  false, 'admin', true],
             [true,  true,  false, 'gmt',   true],
-            [true,  true,  false, [],      true],
+            [true,  true,  false, null,    true],
             [true,  false, true,  'admin', false],
             [true,  false, true,  'gmt',   false],
-            [true,  false, true,  [],      false],
+            [true,  false, true,  null,    false],
             [true,  false, false, 'admin', false],
             [true,  false, false, 'gmt',   false],
-            [true,  false, false, [],      false],
+            [true,  false, false, null,    false],
             [false, true,  true,  'admin', true],
             [false, true,  true,  'gmt',   true],
-            [false, true,  true,  [],      true],
+            [false, true,  true,  null,    true],
             [false, true,  false, 'admin', true],
             [false, true,  false, 'gmt',   true],
-            [false, true,  false, [],      true],
+            [false, true,  false, null,    true],
             [false, false, true,  'admin', true],
             [false, false, true,  'gmt',   true],
-            [false, false, true,  [],      true],
+            [false, false, true,  null,    true],
             [false, false, false, 'admin', true],
             [false, false, false, 'gmt',   true],
-            [false, false, false, [],      false],
+            [false, false, false, null,    false],
         ];
     }
 }
