@@ -59,6 +59,9 @@ export default class SortBar extends React.Component<Props> {
       <>
         <div className='sort sort--artist-tracks'>
           <div className='sort__items'>
+            {osu.trans('sort._')}
+          </div>
+          <div className='sort__items'>
             {artistTrackSortFields.map((field) => this.renderLink(field))}
           </div>
         </div>
