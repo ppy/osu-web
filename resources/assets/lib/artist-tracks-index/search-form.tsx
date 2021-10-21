@@ -50,7 +50,6 @@ const lengthRegexp = '^\\d+(\\.\\d*)?(ms|s|m|h)?$';
 interface Props {
   availableGenres: string[];
   initialParams: ArtistTrackSearch;
-  isNavigating: boolean;
   onNewSearch: (url: string) => void;
 }
 
@@ -198,7 +197,7 @@ export default class SearchForm extends React.Component<Props> {
         </div>
         <div className='artist-track-search-form__content artist-track-search-form__content--buttons'>
           <BigButton
-            disabled={this.isEmptySearch || this.props.isNavigating}
+            disabled={this.isEmptySearch}
             href={this.makeLink(this.emptySearch)}
             modifiers={['artist-track-search', 'rounded-thin']}
             props={{ onClick: this.handleReset }}
@@ -206,7 +205,7 @@ export default class SearchForm extends React.Component<Props> {
           />
 
           <BigButton
-            disabled={!this.newSearch || this.props.isNavigating}
+            disabled={!this.newSearch}
             href={this.url}
             modifiers={['artist-track-search', 'rounded-thin-wide']}
             props={{ onClick: this.handleSubmit }}
