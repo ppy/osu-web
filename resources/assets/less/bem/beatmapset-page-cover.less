@@ -55,14 +55,13 @@
     object-fit: cover;
 
     &--default {
-      .at2x('~@images/layout/beatmaps/default-bg.png');
+      .at2x("~@images/layout/beatmaps/default-bg.png");
       background-position: center;
       background-size: cover;
     }
   }
 
   &__preview {
-    .fas();
     .link-plain();
     .link-white();
     .reset-input();
@@ -71,7 +70,6 @@
     position: relative;
 
     --progress: 0;
-    --preview-icon: @fa-var-play;
     background-color: hsla(var(--hsl-b4), 0.8);
     font-size: inherit; // icon size
     cursor: pointer;
@@ -79,16 +77,8 @@
     width: 100px;
     height: 100%;
 
-    &::before {
-      content: var(--preview-icon);
-    }
-
     &:hover {
       background-color: hsla(var(--hsl-b6), 0.75);
-    }
-
-    &[data-audio-state="playing"] {
-      --preview-icon: @fa-var-pause;
     }
   }
 

@@ -61,7 +61,9 @@ export default class Cover extends React.Component<Props> {
               className='beatmapset-page-cover__preview js-audio--play js-audio--player'
               data-audio-url={this.props.beatmapset.preview_url}
               type='button'
-            />
+            >
+              <span className='play-button' />
+            </button>
           </div>
 
           <div className='beatmapset-page-cover__toggle'>
