@@ -2,19 +2,19 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapList from 'beatmap-discussions/beatmap-list';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import { UserLink } from 'user-link';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 import BeatmapPicker from './beatmap-picker';
 
 interface Props {
-  beatmaps: BeatmapJsonExtended[];
+  beatmaps: BeatmapExtendedJson[];
   beatmapset: BeatmapsetExtendedJson;
-  currentBeatmap: BeatmapJsonExtended;
+  currentBeatmap: BeatmapExtendedJson;
 }
 
 export default class Header extends React.PureComponent<Props> {

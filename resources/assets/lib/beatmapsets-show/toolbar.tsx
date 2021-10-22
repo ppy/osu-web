@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BigButton } from 'big-button';
+import BigButton from 'big-button';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
@@ -34,10 +34,10 @@ const DownloadButton = ({
 }: DownloadButtonProps) => (
   <BigButton
     extraClasses={!osuDirect ? ['js-beatmapset-download-link'] : undefined}
+    href={href}
     modifiers={['beatmapset-toolbar']}
     props={{
       'data-turbolinks': false,
-      href,
     }}
     text={{
       bottom: bottomTextKey && osu.trans(`beatmapsets.show.details.download.${bottomTextKey}`),
@@ -85,10 +85,8 @@ export default class Toolbar extends React.PureComponent<Props> {
     if (this.props.beatmapset.discussion_enabled) {
       return (
         <BigButton
+          href={route('beatmapsets.discussion', { beatmapset: this.props.beatmapset.id })}
           modifiers={['beatmapset-toolbar']}
-          props={{
-            href: route('beatmapsets.discussion', { beatmapset: this.props.beatmapset.id }),
-          }}
           text={osu.trans('beatmapsets.show.discussion')}
         />
       );
@@ -97,10 +95,8 @@ export default class Toolbar extends React.PureComponent<Props> {
     if (this.props.beatmapset.legacy_thread_url !== null) {
       return (
         <BigButton
+          href={this.props.beatmapset.legacy_thread_url}
           modifiers={['beatmapset-toolbar']}
-          props={{
-            href: this.props.beatmapset.legacy_thread_url,
-          }}
           text={osu.trans('beatmapsets.show.discussion')}
         />
       );

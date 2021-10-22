@@ -12,7 +12,7 @@ interface Props {
   icon?: string;
   isBusy: boolean;
   modifiers?: Modifiers;
-  props: React.HTMLAttributes<HTMLElement> & Partial<Record<`data-${string}`, string | number>>;
+  props: React.HTMLAttributes<HTMLElement> & Partial<Record<`data-${string}`, string | number | boolean>>;
   text?: {
     bottom?: string;
     top: React.ReactNode;

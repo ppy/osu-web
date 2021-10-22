@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {

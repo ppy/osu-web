@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DifficultyBadge from 'difficulty-badge';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { padStart } from 'lodash';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import { UserLink } from 'user-link';
 import CountBadge from './count-badge';
 import Extra from './extra';
@@ -15,8 +15,8 @@ import Stats from './stats';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
-  currentBeatmap: BeatmapJsonExtended;
-  hoveredBeatmap: BeatmapJsonExtended | null;
+  currentBeatmap: BeatmapExtendedJson;
+  hoveredBeatmap: BeatmapExtendedJson | null;
 }
 
 // value is in second

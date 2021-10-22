@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Img2x from 'img2x';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -11,7 +11,7 @@ import { classWithModifiers } from 'utils/css';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
-  currentBeatmap: BeatmapJsonExtended;
+  currentBeatmap: BeatmapExtendedJson;
 }
 
 @observer
