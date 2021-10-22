@@ -37,7 +37,7 @@ class ClientsControllerTest extends TestCase
 
     public function testCannotDeleteOtherUserClient()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this
             ->actingAsVerified($user)
@@ -135,7 +135,7 @@ class ClientsControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->owner = factory(User::class)->create();
+        $this->owner = User::factory()->create();
         $this->client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
     }
 }

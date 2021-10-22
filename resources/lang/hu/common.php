@@ -53,7 +53,7 @@ return [
         'show_less' => 'kevesebb mutatása',
         'show_more' => 'több megjelenítése',
         'show_more_options' => 'további opciók mutatása',
-        'submit' => '',
+        'submit' => 'Beküldés',
         'unpin' => 'rögzítés feloldása',
         'update' => 'Frissítés',
         'upload_image' => 'kép feltöltése',

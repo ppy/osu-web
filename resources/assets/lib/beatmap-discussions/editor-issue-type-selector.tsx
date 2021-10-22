@@ -3,7 +3,7 @@
 
 import { DiscussionType, discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapReviewDiscussionType } from 'interfaces/beatmap-discussion-review';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
 import { Element, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
@@ -13,7 +13,7 @@ import { SlateContext } from './slate-context';
 const selectableTypes: DiscussionType[] = ['praise', 'problem', 'suggestion'];
 
 interface Props {
-  beatmaps: BeatmapJsonExtended[];
+  beatmaps: BeatmapExtendedJson[];
   disabled: boolean;
   element: Element;
 }

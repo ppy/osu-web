@@ -135,6 +135,11 @@ return [
             '_' => 'sıralama',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'uygulamaya izin ver',
+        ],
+    ],
     'store' => [
         '_' => 'mağaza',
     ],

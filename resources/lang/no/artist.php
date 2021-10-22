@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'osu! profil',
         'site' => 'Offisielt nettsted',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Sanger',
         'count' => ':count sang|:count sanger',
-        'exclusive' => 'osu! eksklusiv',
+        'original' => '',
     ],
 
     'tracklist' => [

@@ -92,6 +92,8 @@ use Illuminate\Database\QueryException;
  * @property int $thread_id
  * @property string $title
  * @property string $title_unicode
+ * @property ArtistTrack $track
+ * @property int|null $track_id
  * @property User $user
  * @property \Illuminate\Database\Eloquent\Collection $userRatings BeatmapsetUserRating
  * @property int $user_id
@@ -1163,7 +1165,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 'discussions.posts',
                 'discussions.votes',
                 'events',
-                'events.nomination_modes',
                 'nominations',
                 'related_users',
                 'related_users.groups',
@@ -1189,6 +1190,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function topic()
     {
         return $this->belongsTo(Forum\Topic::class, 'thread_id');
+    }
+
+    public function track()
+    {
+        return $this->belongsTo(ArtistTrack::class);
     }
 
     public function userRatings()

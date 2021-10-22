@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Hidasta vähän, pelaa enemmän.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmapit',
         'guest_title' => 'Beatmapit',

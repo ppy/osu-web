@@ -57,7 +57,7 @@ class @ChangelogChart
 
 
   loadData: ->
-    @config = osu.parseJson 'json-chart-config'
+    @config = _exported.parseJson 'json-chart-config'
 
     {data, hasData} = @normalizeData @config.build_history
 

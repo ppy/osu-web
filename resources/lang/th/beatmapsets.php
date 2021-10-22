@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'ช้าลงหน่อย เล่นมากขึ้น',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'รายการ Beatmap',
         'guest_title' => 'บีทแมพ',

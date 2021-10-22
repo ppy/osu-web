@@ -19,7 +19,6 @@ return [
             'contest' => '比賽',
             'contests' => '競賽',
             'root' => '控制中心',
-            'store_orders' => '商店管理',
         ],
 
         'artists' => [
@@ -63,18 +62,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => '圖譜',
-            'artists' => '精選藝術家',
-            'index' => '圖譜列表',
-            'packs' => '圖譜壓縮檔',
         ],
         'community' => [
             '_' => '社群',
-            'chat' => '聊天',
-            'contests' => '評選',
             'dev' => '開發',
-            'forum-forums-index' => '論壇',
-            'getLive' => '直播',
-            'tournaments' => '官方比賽',
         ],
         'help' => [
             '_' => '幫助',
@@ -82,30 +73,17 @@ return [
             'getFaq' => '常見問題',
             'getRules' => '規則',
             'getSupport' => '支援服務',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => '首頁',
-            'changelog-index' => '更新日誌',
-            'getDownload' => '下載',
-            'news-index' => '新聞',
-            'search' => '搜尋',
             'team' => '團隊',
         ],
         'rankings' => [
             '_' => '排行榜',
-            'charts' => '月賽',
-            'country' => '國家',
-            'index' => '成績',
             'kudosu' => 'kudosu',
-            'multiplayer' => '多人遊戲',
-            'score' => '總分',
         ],
         'store' => [
             '_' => '商店',
-            'cart-show' => '購物車',
-            'getListing' => '商品列表',
-            'orders-index' => '訂單記錄',
         ],
     ],
 

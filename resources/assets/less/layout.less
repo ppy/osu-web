@@ -61,6 +61,14 @@ html, body {
   height: 100%;
 }
 
+html {
+  scroll-padding-top: @nav2-height--pinned;
+
+  @media @mobile {
+    scroll-padding-top: @navbar-height;
+  }
+}
+
 body {
   .default-font();
   // no overlap between rightmost side and scrollbar

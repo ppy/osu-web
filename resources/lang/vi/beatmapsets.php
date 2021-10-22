@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Chậm lại, chơi nhiều hơn.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Nghệ sĩ nổi bật',
+    ],
+
     'index' => [
         'title' => 'Danh Sách Beatmap',
         'guest_title' => 'Beatmaps',

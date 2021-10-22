@@ -62,7 +62,7 @@ return [
             'comment_new' => 'bình luận mới',
             'forum_topic_reply' => 'trả lời chủ đề',
             'mail' => 'thư',
-            'mapping' => '',
+            'mapping' => 'trang beatmap',
             'push' => 'push',
             'user_achievement_unlock' => 'mở khoá huy chương',
         ],

@@ -39,12 +39,12 @@ interface Comment {
 }
 
 interface BeatmapDiscussionHelperClass {
-  TIMESTAMP_REGEX: RegExp;
   format(text: string, options?: any): string;
   formatTimestamp(value: number | null): string | undefined;
   nearbyDiscussions(discussions: BeatmapsetDiscussionJson[], timestamp: number): BeatmapsetDiscussionJson[];
   parseTimestamp(value?: string): number | null;
   previewMessage(value: string): string;
+  TIMESTAMP_REGEX: RegExp;
   url(options: any, useCurrent?: boolean): string;
   urlParse(urlString: string, discussions?: BeatmapsetDiscussionJson[] | null, options?: any): {
     beatmapId?: number;
@@ -74,11 +74,9 @@ interface OsuCommon {
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
-  jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: OsuLinkOptions) => string;
   linkify: (text: string, newWindow?: boolean) => string;
   navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
-  parseJson<T = any>(id: string, remove?: boolean): T;
   popup: (message: string, type: string) => void;
   popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;

@@ -18,7 +18,7 @@ class UserScoreAggregateTest extends TestCase
 
     public function testStartingPlayIncreasesAttempts()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $playlistItem = $this->playlistItem();
 
         $this->room->startPlay($user, $playlistItem);
@@ -30,7 +30,7 @@ class UserScoreAggregateTest extends TestCase
 
     public function testInCompleteScoresAreNotCounted()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $playlistItem = $this->playlistItem();
         $agg = UserScoreAggregate::new($user, $this->room);
 
@@ -50,7 +50,7 @@ class UserScoreAggregateTest extends TestCase
 
     public function testFailedScoresAreAttemptsOnly()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $playlistItem = $this->playlistItem();
         $agg = UserScoreAggregate::new($user, $this->room);
 
@@ -82,7 +82,7 @@ class UserScoreAggregateTest extends TestCase
 
     public function testPassedScoresIncrementsCompletedCount()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $playlistItem = $this->playlistItem();
         $agg = UserScoreAggregate::new($user, $this->room);
 
@@ -104,7 +104,7 @@ class UserScoreAggregateTest extends TestCase
 
     public function testPassedScoresAreAveraged()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $playlistItem = $this->playlistItem();
         $playlistItem2 = $this->playlistItem();
 

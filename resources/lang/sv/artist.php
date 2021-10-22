@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! beatmaps',
         'osu' => 'osu! profil',
         'site' => 'Officiell hemsida',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Låtar',
         'count' => ':count låt|:count låtar',
-        'exclusive' => 'osu!-exklusivt',
+        'original' => 'osu! original',
     ],
 
     'tracklist' => [

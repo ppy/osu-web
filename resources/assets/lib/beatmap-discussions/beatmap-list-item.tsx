@@ -2,15 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DifficultyBadge from 'difficulty-badge';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import { UserLink } from 'user-link';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  beatmap: BeatmapJsonExtended;
+  beatmap: BeatmapExtendedJson;
   count?: number;
   large: boolean;
   mapper: UserJson;

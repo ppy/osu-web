@@ -15,13 +15,17 @@ return [
         'limit_exceeded' => '',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Seznam Beatmap',
         'guest_title' => 'Beatmapy',
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'žádné beatmapy',
 
         'download' => [
             'all' => 'stáhnout',
@@ -39,7 +43,7 @@ return [
 
         'dialog' => [
             'confirmation' => '',
-            'header' => '',
+            'header' => 'Nominovat beatmapu',
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
@@ -53,7 +57,7 @@ return [
         'discussion' => 'Diskuze',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => 'od :artist',
             'favourite' => 'Přidat do mých oblíbených',
             'favourite_login' => '',
             'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',

@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BigButton } from 'big-button'
+import BigButton from 'big-button'
 import { Nominations } from './nominations'
 import { Subscribe } from './subscribe'
 import { UserFilter } from './user-filter'
@@ -13,7 +13,7 @@ import { deletedUser } from 'models/user'
 import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { a, div, h1, h2, p, span } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 import { UserLink } from 'user-link'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { showVisual } from 'utils/beatmapset-helper'
@@ -58,11 +58,10 @@ export class Header extends React.PureComponent
 
         div className: "#{bn}__details",
           el BigButton,
-            modifiers: ['full']
-            text: osu.trans('beatmaps.discussions.beatmap_information')
+            href: laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id)
             icon: 'fas fa-info'
-            props:
-              href: laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id)
+            modifiers: 'full'
+            text: osu.trans('beatmaps.discussions.beatmap_information')
 
       div className: "#{bn}__content #{bn}__content--nomination",
         el Nominations,
@@ -92,10 +91,15 @@ export class Header extends React.PureComponent
             className: "#{bn}__title"
             getTitle(@props.beatmapset)
             if @props.beatmapset.nsfw
-              span className: 'nsfw-badge', osu.trans('beatmapsets.nsfw_badge.label')
+              span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
           h2
             className: "#{bn}__title #{bn}__title--artist"
             getArtist(@props.beatmapset)
+            if @props.beatmapset.track_id?
+              a
+                className: 'beatmapset-badge beatmapset-badge--featured-artist'
+                href: laroute.route 'tracks.show', @props.beatmapset.track_id
+                osu.trans('beatmapsets.featured_artist_badge.label')
 
         div
           className: "#{bn}__filters"
@@ -131,7 +135,7 @@ export class Header extends React.PureComponent
                 span null,
                   el StringWithComponent,
                     mappings:
-                      ':user': el(UserLink, key: 'user', user: @props.users[@props.currentBeatmap.user_id] ? deletedUser)
+                      user: el(UserLink, user: @props.users[@props.currentBeatmap.user_id] ? deletedUser)
                     pattern: osu.trans('beatmaps.discussions.guest')
             el BeatmapBasicStats, beatmap: @props.currentBeatmap
 

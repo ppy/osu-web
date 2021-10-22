@@ -23,28 +23,15 @@ declare module 'block-button' {
     wrapperClass?: string;
   }
 
-  class BlockButton extends React.PureComponent<Props> {}
-}
-
-declare module 'big-button' {
-  interface Props {
-    extraClasses?: string[];
-    icon?: string;
-    isBusy?: boolean;
-    modifiers?: string[];
-    props?: any;
-    text: string | { bottom?: string; top?: string };
-  }
-
-  class BigButton extends React.PureComponent<Props> {}
+  class BlockButton extends React.PureComponent<Props> { }
 }
 
 declare module 'friend-button' {
-  class FriendButton extends React.PureComponent<any> {}
+  class FriendButton extends React.PureComponent<any> { }
 }
 
 declare module 'comments' {
-  class Comments extends React.PureComponent<any> {}
+  class Comments extends React.PureComponent<any> { }
 }
 
 declare module 'comments-manager' {
@@ -55,7 +42,7 @@ declare module 'comments-manager' {
     componentProps: any;
   }
 
-  class CommentsManager extends React.PureComponent<Props> {}
+  class CommentsManager extends React.PureComponent<Props> { }
 }
 
 declare module 'modal' {
@@ -63,7 +50,7 @@ declare module 'modal' {
     onClose?: () => void;
     visible: boolean;
   }
-  class Modal extends React.PureComponent<Props> {}
+  class Modal extends React.PureComponent<Props> { }
 }
 
 declare module 'notification-banner' {
@@ -73,7 +60,7 @@ declare module 'notification-banner' {
     type: string;
   }
 
-  class NotificationBanner extends React.PureComponent<Props> {}
+  class NotificationBanner extends React.PureComponent<Props> { }
 }
 
 declare module 'popup-menu' {
@@ -86,7 +73,7 @@ declare module 'popup-menu' {
     onShow?: () => void;
   }
 
-  class PopupMenu extends React.PureComponent<Props, any> {}
+  class PopupMenu extends React.PureComponent<Props, any> { }
 }
 
 declare module 'react/beatmaps/search-content' {
@@ -97,7 +84,7 @@ declare module 'react/beatmaps/search-content' {
     backToTopAnchor: React.RefObject<HTMLElement>;
   }
 
-  class SearchContent extends React.PureComponent<Props> {}
+  class SearchContent extends React.PureComponent<Props> { }
 }
 
 declare module 'report-form' {
@@ -105,13 +92,13 @@ declare module 'report-form' {
     completed: boolean;
     disabled: boolean;
     onClose: () => void;
-    onSubmit: ({comments}: {comments: string}) => void;
+    onSubmit: ({ comments }: { comments: string }) => void;
     title: string;
     visible: boolean;
     visibleOptions?: string[];
   }
 
-  class ReportForm extends React.PureComponent<ReportFormProps, any> {}
+  class ReportForm extends React.PureComponent<ReportFormProps, any> { }
 }
 
 declare module 'select-options' {
@@ -135,5 +122,5 @@ declare module 'select-options' {
     selected: Option<T>;
   }
 
-  class SelectOptions<T = string> extends React.PureComponent<Props<T>> {}
+  class SelectOptions<T = string> extends React.PureComponent<Props<T>> { }
 }

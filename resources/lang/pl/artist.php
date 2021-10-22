@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'Powiązane beatmapy',
         'osu' => 'Konto osu!',
         'site' => 'Oficjalna strona internetowa',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Utwory',
         'count' => ':count utwór|:count utwory|:count utworów',
-        'exclusive' => 'wyłączny dla osu!',
+        'original' => 'ekskluzywny dla osu!',
     ],
 
     'tracklist' => [

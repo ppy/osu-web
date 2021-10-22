@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Blackout from 'blackout';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
@@ -11,10 +11,10 @@ import { nextVal } from 'utils/seq';
 import BeatmapListItem from './beatmap-list-item';
 
 interface Props {
-  beatmaps: BeatmapJsonExtended[];
+  beatmaps: BeatmapExtendedJson[];
   beatmapset: BeatmapsetExtendedJson;
-  currentBeatmap: BeatmapJsonExtended;
-  getCount?: (beatmap: BeatmapJsonExtended) => number | undefined;
+  currentBeatmap: BeatmapExtendedJson;
+  getCount?: (beatmap: BeatmapExtendedJson) => number | undefined;
   large: boolean;
   modifiers?: Modifiers;
   onSelectBeatmap: (beatmapId: number) => void;
@@ -80,7 +80,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
     );
   }
 
-  private beatmapListItem = (beatmap: BeatmapJsonExtended) => (
+  private beatmapListItem = (beatmap: BeatmapExtendedJson) => (
     <div
       key={beatmap.id}
       className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.currentBeatmap.id })}

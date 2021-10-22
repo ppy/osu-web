@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! beatmapy',
         'osu' => 'Profil osu!',
         'site' => 'Oficiální stránky',
     ],
@@ -29,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Skladby',
         'count' => ':count_delimited skladba|:count_delimited skladeb',
-        'exclusive' => 'osu! exkluzivní',
+        'original' => '',
     ],
 
     'tracklist' => [

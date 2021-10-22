@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use LaravelRedis as Redis;
 
@@ -33,6 +34,8 @@ class Channel extends Model
 {
     use Memoizes;
 
+    const PRELOADED_USERS_KEY = 'preloadedUsers';
+
     protected $primaryKey = 'channel_id';
 
     protected $casts = [
@@ -43,8 +46,8 @@ class Channel extends Model
         'creation_time',
     ];
 
-    /** @var \Illuminate\Support\Collection */
-    private $pmUsers;
+    private ?Collection $pmUsers;
+    private array $preloadedUserChannels = [];
 
     const TYPES = [
         'public' => 'PUBLIC',
@@ -114,22 +117,55 @@ class Channel extends Model
         return '#pm_'.implode('-', $userIds);
     }
 
-    public function displayIconFor(?User $user)
+    /**
+     * This check is for whether the user can enter into the input box for the channel,
+     * not if a message is actually allowed to be sent.
+     */
+    public function canMessage(User $user): bool
     {
-        if (!$this->isPM() || $user === null) {
-            return;
-        }
-
-        return $this->pmTargetFor($user)->user_avatar;
+        return priv_check_user($user, 'ChatChannelCanMessage', $this)->can();
     }
 
-    public function displayNameFor(?User $user)
+    public function displayIconFor(?User $user): ?string
     {
-        if (!$this->isPM() || $user === null) {
+        return $this->pmTargetFor($user)?->user_avatar;
+    }
+
+    public function displayNameFor(?User $user): ?string
+    {
+        if (!$this->isPM()) {
             return $this->name;
         }
 
-        return $this->pmTargetFor($user)->username;
+        return $this->pmTargetFor($user)?->username;
+    }
+
+    public function isVisibleFor(User $user): bool
+    {
+        if (!$this->isPM()) {
+            return true;
+        }
+
+        $targetUser = $this->pmTargetFor($user);
+
+        return !(
+            $targetUser === null
+            || $user->hasBlocked($targetUser)
+            && !($targetUser->isBot() || $targetUser->isModerator() || $targetUser->isAdmin())
+        );
+    }
+
+    /**
+     * Preset the UserChannel with Channel::setUserChannel when handling multiple channels.
+     * UserChannelList will automatically do this.
+     */
+    public function lastReadIdFor(?User $user): ?int
+    {
+        if ($user === null) {
+            return null;
+        }
+
+        return $this->userChannelFor($user)?->last_read_id;
     }
 
     public function messages()
@@ -170,6 +206,12 @@ class Channel extends Model
     public function users()
     {
         return $this->memoize(__FUNCTION__, function () {
+            // use lookup table if it exists
+            $usersMap = request()->attributes->get(static::PRELOADED_USERS_KEY);
+            if ($usersMap !== null) {
+                return collect(array_map(fn ($id) => $usersMap->get($id, null), $this->userIds()));
+            }
+
             // This isn't a has-many-through because the relationship is cross-database.
             return User::whereIn('user_id', $this->userIds())->get();
         });
@@ -250,10 +292,10 @@ class Channel extends Model
         return $this->belongsTo(LegacyMatch::class, 'match_id');
     }
 
-    public function pmTargetFor(User $user)
+    public function pmTargetFor(?User $user): ?User
     {
-        if (!$this->isPM()) {
-            return;
+        if (!$this->isPM() || $user === null) {
+            return null;
         }
 
         $userId = $user->getKey();
@@ -265,8 +307,18 @@ class Channel extends Model
         });
     }
 
-    public function receiveMessage(User $sender, string $content, bool $isAction = false)
+    public function receiveMessage(User $sender, ?string $content, bool $isAction = false)
     {
+        $content = str_replace(["\r", "\n"], ' ', trim($content));
+
+        if (!present($content)) {
+            throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
+        }
+
+        if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
+            throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
+        }
+
         if ($this->isPM()) {
             $limit = config('osu.chat.rate_limits.private.limit');
             $window = config('osu.chat.rate_limits.private.window');
@@ -294,27 +346,19 @@ class Channel extends Model
             throw new API\ExcessiveChatMessagesException(osu_trans('api.error.chat.limit_exceeded'));
         }
 
-        $content = str_replace(["\r", "\n"], ' ', trim($content));
-
-        if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
-            throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
-        }
-
-        if (!present($content)) {
-            throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
-        }
-
         $chatFilters = app('chat-filters')->all();
 
         foreach ($chatFilters as $filter) {
             $content = str_replace($filter->match, $filter->replacement, $content);
         }
 
-        $message = new Message();
-        $message->user_id = $sender->user_id;
-        $message->content = $content;
-        $message->is_action = $isAction;
-        $message->timestamp = $now;
+        $message = new Message([
+            'content' => $content,
+            'is_action' => $isAction,
+            'timestamp' => $now,
+        ]);
+
+        $message->sender()->associate($sender);
         $message->channel()->associate($this);
         $message->save();
 
@@ -387,6 +431,15 @@ class Channel extends Model
         ])->exists();
     }
 
+    public function setUserChannel(UserChannel $userChannel)
+    {
+        if ($userChannel->channel_id !== $this->getKey()) {
+            throw new InvariantException('userChannel does not belong to the channel.');
+        }
+
+        $this->preloadedUserChannels[$userChannel->user_id] = $userChannel;
+    }
+
     private function unhide()
     {
         if (!$this->isPM()) {
@@ -406,14 +459,12 @@ class Channel extends Model
         $userId = $user->getKey();
 
         return $this->memoize(__FUNCTION__.':'.$userId, function () use ($user, $userId) {
-            $userChannel = UserChannel::where([
+            $userChannel = $this->preloadedUserChannels[$userId] ?? UserChannel::where([
                 'channel_id' => $this->channel_id,
                 'user_id' => $userId,
             ])->first();
 
-            if ($userChannel !== null) {
-                $userChannel->setRelation('user', $user);
-            }
+            $userChannel?->setRelation('user', $user);
 
             return $userChannel;
         });

@@ -135,6 +135,11 @@ return [
             '_' => '순위',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '앱 인증',
+        ],
+    ],
     'store' => [
         '_' => '상점',
     ],

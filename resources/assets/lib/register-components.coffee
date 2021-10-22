@@ -1,7 +1,6 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import ReactTurbolinks from 'react-turbolinks'
 import Events from 'beatmap-discussions/events'
 import BeatmapsetPanel from 'beatmapset-panel'
 import { BlockButton } from 'block-button'
@@ -32,6 +31,7 @@ import { UserCards } from 'user-cards'
 import { WikiSearch } from 'wiki-search'
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
+import { parseJson, parseJsonNullable } from 'utils/json'
 
 # Globally init countdown timers
 core.reactTurbolinks.register 'countdownTimer', (container) ->
@@ -51,13 +51,12 @@ core.reactTurbolinks.register 'blockButton', (container) ->
 
 core.reactTurbolinks.register 'beatmap-discussion-events', (container) ->
   props = {
-    events: osu.parseJson('json-events')
+    events: parseJson('json-events')
     mode: 'list'
-    posts: osu.parseJson('json-posts')
   }
 
   # TODO: move to store?
-  users = osu.parseJson('json-users')
+  users = parseJson('json-users')
   props.users = _.keyBy(users, 'id')
   props.users[null] = props.users[undefined] = deletedUser.toJson()
 
@@ -70,10 +69,10 @@ core.reactTurbolinks.register 'beatmapset-panel', (container) ->
 core.reactTurbolinks.register 'forum-post-report', -> createElement(ForumPostReport)
 
 core.reactTurbolinks.register 'spotlight-select-options', ->
-  createElement SpotlightSelectOptions, osu.parseJson('json-spotlight-select-options')
+  createElement SpotlightSelectOptions, parseJson('json-spotlight-select-options')
 
 core.reactTurbolinks.register 'multiplayer-select-options', ->
-  createElement MultiplayerSelectOptions, osu.parseJson('json-multiplayer-select-options')
+  createElement MultiplayerSelectOptions, parseJson('json-multiplayer-select-options')
 
 core.reactTurbolinks.register 'comments', (container) ->
   props = JSON.parse(container.dataset.props)
@@ -99,7 +98,7 @@ core.reactTurbolinks.register 'quick-search-button', ->
 
 core.reactTurbolinks.register 'ranking-filter', (container) ->
   createElement RankingFilter,
-    countries: osu.parseJson 'json-countries'
+    countries: parseJsonNullable 'json-countries'
     gameMode: container.dataset.gameMode
     type: container.dataset.type
     variants: try JSON.parse(container.dataset.variants)
@@ -126,4 +125,4 @@ core.reactTurbolinks.register 'user-cards', (container) ->
 core.reactTurbolinks.register 'wiki-search', -> createElement(WikiSearch)
 
 core.reactTurbolinks.register 'landing-news', ->
-  createElement LandingNews, posts: osu.parseJson('json-posts')
+  createElement LandingNews, posts: parseJson('json-posts')

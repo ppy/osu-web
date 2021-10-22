@@ -135,6 +135,11 @@ return [
             '_' => 'rangliste',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'App authorisieren',
+        ],
+    ],
     'store' => [
         '_' => 'shop',
     ],

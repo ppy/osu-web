@@ -81,7 +81,7 @@ return [
             'index' => 'главная страница',
         ],
         'friends_controller' => [
-            'index' => 'главная страница',
+            'index' => 'инфопанель',
         ],
         'groups_controller' => [
             'show' => 'группы',
@@ -134,6 +134,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'рейтинг',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'авторизация приложения',
         ],
     ],
     'store' => [

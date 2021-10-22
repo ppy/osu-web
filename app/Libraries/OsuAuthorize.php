@@ -831,11 +831,11 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param User $target
+     * @param Channel $channel
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkChatStart(?User $user, User $target): string
+    public function checkChatChannelCanMessage(?User $user, Channel $channel): string
     {
         $prefix = 'chat.';
 
@@ -847,6 +847,55 @@ class OsuAuthorize
         }
 
         if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        if ($channel->moderated) {
+            return $prefix.'moderated';
+        }
+
+        if ($channel->isPM()) {
+            $target = $channel->pmTargetFor($user);
+            if ($target === null) {
+                return $prefix.'no_channel';
+            }
+
+            $chatPmStartPermission = $this->doCheckUser($user, 'ChatPmStart', $target);
+            if (!$chatPmStartPermission->can()) {
+                return $chatPmStartPermission->rawMessage();
+            }
+        } else if (!$channel->exists) {
+            return $prefix.'no_channel';
+        }
+
+        // TODO: add actual permission checks for bancho multiplayer games?
+        if ($channel->isBanchoMultiplayerChat()) {
+            return $prefix.'no_access';
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * TODO: always use a channel for this check?
+     *
+     * @param User|null $user
+     * @param User $target
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkChatPmStart(?User $user, User $target): string
+    {
+        $prefix = 'chat.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user, $prefix);
+
+        if (!config('osu.user.min_plays_allow_verified_bypass')) {
+            $this->ensureHasPlayed($user);
+        }
+
+        if ($user->isModerator() || $user->isBot()) {
             return 'ok';
         }
 
@@ -880,20 +929,9 @@ class OsuAuthorize
             return $prefix.'no_access';
         }
 
-        if ($channel->moderated) {
-            return $prefix.'moderated';
-        }
-
-        if ($channel->isPM()) {
-            $chatStartPermission = $this->doCheckUser($user, 'ChatStart', $channel->pmTargetFor($user));
-            if (!$chatStartPermission->can()) {
-                return $chatStartPermission->rawMessage();
-            }
-        }
-
-        // TODO: add actual permission checks for bancho multiplayer games?
-        if ($channel->isBanchoMultiplayerChat()) {
-            return $prefix.'no_access';
+        $canMessagePermission = $this->doCheckUser($user, 'ChatChannelCanMessage', $channel);
+        if (!$canMessagePermission->can()) {
+            return $canMessagePermission->rawMessage();
         }
 
         return 'ok';

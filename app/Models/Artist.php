@@ -10,6 +10,7 @@ use App\Traits\Memoizes;
 /**
  * @property \Illuminate\Database\Eloquent\Collection $albums ArtistAlbum
  * @property string|null $bandcamp
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapsets Beatmapset
  * @property string|null $cover_url
  * @property \Carbon\Carbon|null $created_at
  * @property string $description
@@ -34,6 +35,10 @@ class Artist extends Model
 {
     use Memoizes;
 
+    protected $casts = [
+        'visible' => 'boolean',
+    ];
+
     public function label()
     {
         return $this->belongsTo(Label::class);
@@ -42,6 +47,11 @@ class Artist extends Model
     public function albums()
     {
         return $this->hasMany(ArtistAlbum::class);
+    }
+
+    public function beatmapsets()
+    {
+        return $this->hasManyThrough(Beatmapset::class, ArtistTrack::class, null, 'track_id');
     }
 
     public function tracks()

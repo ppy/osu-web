@@ -133,7 +133,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => '',
-                'description' => 'Kilpaile kavereitasi kanssa ja katso, miten sijoittaudut heitä vastaan!',
+                'description' => 'Kilpaile kaveriasi kanssa ja katso, miten sijoittaudut heitä vastaan!',
             ],
 
         ],

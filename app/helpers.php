@@ -172,23 +172,33 @@ function captcha_triggered()
     return $triggered;
 }
 
-function class_with_modifiers(string $className, ?array $modifiers = null)
+function class_modifiers_each(array $modifiersArray, callable $callback)
+{
+    foreach ($modifiersArray as $modifiers) {
+        if (is_array($modifiers)) {
+            // either "$modifier => boolean" or "$i => $modifier|null"
+            foreach ($modifiers as $k => $v) {
+                if (is_bool($v)) {
+                    if ($v) {
+                        $callback($k);
+                    }
+                } elseif ($v !== null) {
+                    $callback($v);
+                }
+            }
+        } elseif (is_string($modifiers)) {
+            $callback($modifiers);
+        }
+    }
+}
+
+function class_with_modifiers(string $className, ...$modifiersArray)
 {
     $class = $className;
 
-    if ($modifiers !== null) {
-        if (isset($modifiers[0])) {
-            foreach ($modifiers as $modifier) {
-                $class .= " {$className}--{$modifier}";
-            }
-        } else {
-            foreach ($modifiers as $modifier => $enabled) {
-                if ($enabled === true) {
-                    $class .= " {$className}--{$modifier}";
-                }
-            }
-        }
-    }
+    class_modifiers_each($modifiersArray, function ($m) use (&$class, $className) {
+        $class .= " {$className}--{$m}";
+    });
 
     return $class;
 }
@@ -416,7 +426,7 @@ function markdown_plain($input)
         ]);
     }
 
-    return $converter->convertToHtml($input);
+    return $converter->convertToHtml($input)->getContent();
 }
 
 function max_offset($page, $limit)
@@ -864,7 +874,7 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 
 function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
-    $path = $path === null ? 'Main_Page' : str_replace('%2F', '/', rawurlencode($path));
+    $path = $path === null ? 'Main_Page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));
 
     $params = [
         'path' => 'WIKI_PATH',
@@ -1251,6 +1261,47 @@ function get_int($string)
     }
 }
 
+function get_length($string): ?array
+{
+    static $scales = [
+        'ms' => 0.001,
+        's' => 1,
+        'm' => 60,
+        'h' => 3600,
+    ];
+
+    $string = get_string($string);
+
+    if ($string === null) {
+        return null;
+    }
+
+    $scaleKey = substr($string, -2);
+
+    if (!isset($scales[$scaleKey])) {
+        $scaleKey = substr($scaleKey, -1);
+    }
+
+    if (!isset($scales[$scaleKey])) {
+        $scaleKey = 's';
+        $string .= $scaleKey;
+    }
+
+    $value = get_float(substr($string, 0, -strlen($scaleKey)));
+
+    if ($value === null) {
+        return null;
+    }
+
+    $scale = $scales[$scaleKey] ?? 1;
+    $value *= $scale;
+
+    return [
+        'scale' => $scale,
+        'value' => $value,
+    ];
+}
+
 function get_file($input)
 {
     if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
@@ -1342,6 +1393,8 @@ function get_param_value($input, $type)
             return get_file($input);
         case 'float':
             return get_float($input);
+        case 'length':
+            return get_length($input);
         case 'string':
             return get_string($input);
         case 'string_split':

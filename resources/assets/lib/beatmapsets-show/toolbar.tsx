@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BigButton } from 'big-button';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
@@ -13,7 +13,7 @@ import BeatmapsetMenu from './beatmapset-menu';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
-  currentBeatmap: BeatmapJsonExtended;
+  currentBeatmap: BeatmapExtendedJson;
   favcount: number;
   hasFavourited: boolean;
 }

@@ -11,7 +11,7 @@
     <div class="beatmap-discussion beatmap-discussion--single beatmapset-activities__post-grow">
         <div class="beatmap-discussion-timestamp__icons-container">
             <div class="beatmap-discussion-timestamp__icons">
-                <a href="{{ route('beatmapsets.discussion', $beatmapset) }}#/{{ $post->beatmap_discussion_id }}">
+                <a class="link link--no-underline" href="{{ route('beatmapsets.discussion', $beatmapset) }}#/{{ $post->beatmap_discussion_id }}">
                     <img class='beatmapset-cover'
                         src="{{$beatmapset->coverURL('list')}}"
                         srcSet="{{$beatmapset->coverURL('list')}} 1x, {{$beatmapset->coverURL('list@2x')}} 2x">
@@ -28,7 +28,29 @@
                         @include('beatmapset_activities._user', ['user' => $post->user])
 
                         <div class="beatmap-discussion-post__message-container">
-                            <div class="beatmap-discussion-post__message">{{$post->message}}</div>
+                            <div class="beatmap-discussion-post__message">
+                                @if ($post->system)
+                                    @php
+                                        $message = $post->message;
+                                        $messageValue = $message['value'];
+                                        $isResolving = $message['type'] === 'resolved';
+                                    @endphp
+                                    @if ($isResolving)
+                                        @php
+                                            $messageValue = $message['value'] ? 'true' : 'false';
+                                        @endphp
+                                        @if ($message['value'])
+                                            <i class="fas fa-check-circle"></i>
+                                        @else
+                                            <i class="fas fa-times-circle"></i>
+                                        @endif
+                                    @endif
+
+                                    {{ osu_trans("beatmap_discussions.system.{$message['type']}.{$messageValue}", ['user' => $post->user->username]) }}
+                                @else
+                                    {{ $post->message }}
+                                @endif
+                            </div>
                             <div class="beatmap-discussion-post__info-container">
                                 <span class="beatmap-discussion-post__info">{!! timeago($post->created_at) !!}</span>
                                 @if ($post->deleted_at !== null)

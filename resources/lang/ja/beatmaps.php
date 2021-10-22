@@ -183,7 +183,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'エラーが発生しました。ページの再読み込みを試してください。',
         'love' => 'Lovedに追加',
-        'love_choose' => '',
+        'love_choose' => 'lovedの難易度を選択',
         'love_confirm' => 'Lovedに追加しますか？',
         'nominate' => 'ノミネート',
         'nominate_confirm' => 'このビートマップをノミネートしますか？',
@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'コンバートビートマップを含める',
+        'featured_artists' => '注目アーティスト',
         'follows' => 'サブスクライブ中のマッパー',
         'recommended' => '推奨難易度',
     ],

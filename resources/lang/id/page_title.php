@@ -135,6 +135,11 @@ return [
             '_' => 'peringkat',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'otorisir aplikasi',
+        ],
+    ],
     'store' => [
         '_' => 'toko',
     ],

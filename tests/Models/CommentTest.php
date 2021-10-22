@@ -20,7 +20,7 @@ class CommentTest extends TestCase
      */
     public function testCommentReplyNotification($option, $shouldBeSent)
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         if ($option !== null) {
             $user->notificationOptions()->create([
                 'name' => Notification::COMMENT_NEW,
@@ -28,8 +28,8 @@ class CommentTest extends TestCase
             ]);
         }
 
-        $commenter = factory(User::class)->create();
-        $commentable = factory(Build::class)->create();
+        $commenter = User::factory()->create();
+        $commentable = Build::factory()->create();
         $parentComment = $commentable->comments()->create([
             'message' => 'Test',
             'user_id' => $user->getKey(),
@@ -52,8 +52,8 @@ class CommentTest extends TestCase
 
     public function testReplyingToDeletedComment()
     {
-        $user = factory(User::class)->create();
-        $commentable = factory(Build::class)->create();
+        $user = User::factory()->create();
+        $commentable = Build::factory()->create();
         $parentComment = $commentable->comments()->create([
             'message' => 'Test',
             'user_id' => $user->getKey(),

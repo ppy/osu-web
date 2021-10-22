@@ -68,7 +68,7 @@ return [
         'moderated' => 'Kênh hiện đang được kiểm duyệt.',
         'no_access' => 'Bạn không có quyền truy cập vào kênh này.',
         'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
-        'silenced' => '',
+        'silenced' => 'Bạn không thể gửi tin nhắn khi bị tắt tiếng, bị hạn chế hoặc bị cấm.',
     ],
 
     'comment' => [

@@ -28,13 +28,13 @@ class PaypalExecutePayment
         $this->order->getConnection()->transaction(function () {
             // prevent concurrent updates
             $order = $this->order->lockSelf();
-            if ($order->isProcessing() === false) {
+            if ($order->isPaymentRequested() === false) {
                 throw new InvalidOrderStateException(
                     "`Order {$order->order_id}` in wrong state: `{$order->status}`"
                 );
             }
 
-            $order->status = 'checkout';
+            $order->status = Order::STATUS_PAYMENT_APPROVED;
             $order->saveOrExplode();
 
             $client = PaypalApiContext::client();

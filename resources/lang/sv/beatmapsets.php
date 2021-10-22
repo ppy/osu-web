@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Sakta ner, spela mer.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Utvald artist',
+    ],
+
     'index' => [
         'title' => 'Beatmaps Listning',
         'guest_title' => 'Beatmaps',

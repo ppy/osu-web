@@ -5,7 +5,7 @@
 @extends('contests.base')
 
 @section('contest-content')
-    <div class="contest__description">{!! markdown($contestMeta->description_enter) !!}</div>
+    <div class="contest__description">{!! markdown($contestMeta->description_enter, 'contest') !!}</div>
     @include('contests._countdown', ['deadline' => $contestMeta->currentPhaseEndDate()])
     @if (!Auth::check())
       <div class='contest__voting-notice contest__voting-notice--padding'>{{osu_trans('contest.entry.login_required')}}</div>

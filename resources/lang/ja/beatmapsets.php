@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'スピードを落として、もっと遊ぼう。',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '注目アーティスト',
+    ],
+
     'index' => [
         'title' => 'ビートマップリスト',
         'guest_title' => 'ビートマップ',

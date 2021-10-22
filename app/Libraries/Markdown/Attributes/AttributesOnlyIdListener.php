@@ -17,21 +17,15 @@ class AttributesOnlyIdListener
         while ($event = $walker->next()) {
             $node = $event->getNode();
 
-            if (!($node instanceof AttributesInline) && ($event->isEntering() || !($node instanceof Attributes))) {
-                continue;
-            }
+            if ($node instanceof AttributesInline || (!$event->isEntering() && ($node instanceof Attributes))) {
+                $attributes = $node->getAttributes();
 
-            $attributes = $node->getAttributes();
+                $newAttributes = [];
+                if (isset($attributes['id'])) {
+                    $newAttributes['id'] = $attributes['id'];
+                }
 
-            $newAttributes = [];
-            if (isset($attributes['id'])) {
-                $newAttributes['id'] = $attributes['id'];
-            }
-
-            if ($node instanceof AttributesInline) {
-                $node->attributes = $newAttributes;
-            } else if ($node instanceof Attributes) {
-                $node->replaceWith(new $node($newAttributes));
+                $node->setAttributes($newAttributes);
             }
         }
     }

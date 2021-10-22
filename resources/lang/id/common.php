@@ -5,7 +5,7 @@
 
 return [
     'confirmation' => 'Apakah Anda yakin?',
-    'confirmation_unsaved' => 'Perubahan yang tidak disimpan akan hilang. Apa Anda yakin?',
+    'confirmation_unsaved' => 'Perubahan-perubahan yang tidak disimpan akan hilang. Apakah Anda yakin?',
     'saved' => 'Tersimpan',
 
     'array_and' => [
@@ -41,7 +41,7 @@ return [
         'read_more' => 'baca selengkapnya',
         'reply' => 'Balas',
         'reply_reopen' => 'Balas dan Buka Kembali',
-        'reply_resolve' => 'Balas dan Tandai Selesai',
+        'reply_resolve' => 'Balas dan Tutup',
         'reset' => 'Atur Ulang',
         'restore' => 'Pulihkan',
         'save' => 'Simpan',
@@ -53,7 +53,7 @@ return [
         'show_less' => 'tampilkan lebih sedikit',
         'show_more' => 'tampilkan lebih banyak',
         'show_more_options' => 'tampilkan pilihan lainnya',
-        'submit' => '',
+        'submit' => 'Kirim',
         'unpin' => 'lepas sematan',
         'update' => 'Perbarui',
         'upload_image' => 'unggah gambar',
@@ -68,7 +68,7 @@ return [
         'badges' => ':count_delimited lencana|:count_delimited lencana',
         'days' => ':count_delimited hari|:count_delimited hari',
         'hour_short_unit' => 'jam|jam',
-        'hours' => ':count_delimited jam',
+        'hours' => ':count_delimited jam|:count_delimited jam',
         'item' => ':count_delimited unit|:count_delimited unit',
         'minute_short_unit' => 'menit|menit',
         'minutes' => ':count_delimited menit|:count_delimited menit',

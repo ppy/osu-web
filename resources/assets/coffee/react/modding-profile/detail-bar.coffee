@@ -7,6 +7,7 @@ import { FriendButton } from 'friend-button'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
+import { jsonClone } from 'utils/json'
 import { nextVal } from 'utils/seq'
 el = React.createElement
 
@@ -19,7 +20,7 @@ export class DetailBar extends React.PureComponent
     super props
 
     @eventId = "profile-page-#{nextVal()}"
-    @state = currentUser: osu.jsonClone(currentUser)
+    @state = currentUser: jsonClone(currentUser)
 
 
   componentDidMount: =>
@@ -103,4 +104,4 @@ export class DetailBar extends React.PureComponent
   updateCurrentUser: (_e, user) =>
     return unless @state.currentUser.id == user.id
 
-    @setState currentUser: osu.jsonClone(user)
+    @setState currentUser: jsonClone(user)

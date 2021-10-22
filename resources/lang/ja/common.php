@@ -53,7 +53,7 @@ return [
         'show_less' => '表示を縮小する',
         'show_more' => '展開する',
         'show_more_options' => '詳細オプションを表示する',
-        'submit' => '',
+        'submit' => '送信',
         'unpin' => 'ピン解除',
         'update' => 'アップデート',
         'upload_image' => '画像をアップロード',

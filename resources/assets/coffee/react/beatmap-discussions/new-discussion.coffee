@@ -3,7 +3,7 @@
 
 import { MessageLengthCounter } from './message-length-counter'
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
-import { BigButton } from 'big-button'
+import BigButton from 'big-button'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
@@ -323,16 +323,16 @@ export class NewDiscussion extends React.PureComponent
     typeText = if type == 'problem' then @problemType() else type
 
     el BigButton,
-      modifiers: ['beatmap-discussion-new']
+      key: type
+      disabled: !@validPost() || @state.posting? || !@canPost()
       icon: discussionTypeIcons[type]
       isBusy: @state.posting == type
+      modifiers: 'beatmap-discussion-new'
       text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
-      key: type
       props: _.merge
-          disabled: !@validPost() || @state.posting? || !@canPost()
-          'data-type': type
-          onClick: @post
-          extraProps
+        'data-type': type
+        onClick: @post
+        extraProps
 
 
   timestamp: =>

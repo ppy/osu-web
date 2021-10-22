@@ -1,11 +1,11 @@
-  {{{ Class Name
+  ::: Class Name
 
 paragraph
 
-}}}
+:::
 
-{{{ Class Name
+::: Class Name
 
-  }}}
+  :::
 
 still inside class-name

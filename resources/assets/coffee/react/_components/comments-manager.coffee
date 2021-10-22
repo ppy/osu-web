@@ -4,6 +4,7 @@
 import { runInAction } from 'mobx'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
+import { parseJsonNullable, storeJson } from 'utils/json'
 import { nextVal } from 'utils/seq'
 
 uiState = core.dataStore.uiState
@@ -19,12 +20,12 @@ export class CommentsManager extends React.PureComponent
 
     if props.commentableType? && props.commentableId?
       # FIXME no initialization from component?
-      json = osu.parseJson("json-comments-#{props.commentableType}-#{props.commentableId}", true)
+      json = parseJsonNullable("json-comments-#{props.commentableType}-#{props.commentableId}", true)
       if json?
         core.dataStore.updateWithCommentBundleJson(json)
         uiState.initializeWithCommentBundleJson(json)
 
-      state = osu.parseJson @jsonStorageId()
+      state = parseJsonNullable(@jsonStorageId())
       uiState.importCommentsUIState(state) if state?
 
     @id = "comments-#{nextVal()}"
@@ -41,6 +42,7 @@ export class CommentsManager extends React.PureComponent
 
   componentWillUnmount: =>
     $.unsubscribe ".#{@id}"
+    $(document).off ".#{@id}"
 
 
   render: =>
@@ -77,7 +79,7 @@ export class CommentsManager extends React.PureComponent
 
   saveState: =>
     if @props.commentableType? && @props.commentableId?
-      osu.storeJson @jsonStorageId(), uiState.exportCommentsUIState()
+      storeJson @jsonStorageId(), uiState.exportCommentsUIState()
 
 
   toggleFollow: =>

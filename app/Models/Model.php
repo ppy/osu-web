@@ -11,11 +11,12 @@ use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
 use App\Traits\MacroableModel;
 use Exception;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
 {
-    use MacroableModel;
+    use HasFactory, MacroableModel;
 
     protected $connection = 'mysql';
     protected $guarded = [];

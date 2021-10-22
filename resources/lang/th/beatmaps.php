@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'รวมแมพคอนเวิรต์ด้วย',
+        'featured_artists' => '',
         'follows' => 'ติดตามผู้ทำแมพ',
         'recommended' => 'ระดับความยากที่แนะนำ',
     ],

@@ -22,14 +22,15 @@ return [
     ],
 
     'links' => [
-        'osu' => 'профиль osu!',
+        'beatmaps' => 'Карты osu!',
+        'osu' => 'Профиль в osu!',
         'site' => 'Официальный сайт',
     ],
 
     'songs' => [
         '_' => 'Песни',
         'count' => ':count песня|:count песни|:count песен',
-        'exclusive' => 'эксклюзив osu!',
+        'original' => 'исключительно для osu!',
     ],
 
     'tracklist' => [

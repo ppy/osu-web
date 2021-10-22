@@ -2,11 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJson from 'interfaces/user-json';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import User from 'models/user';
 
 export default class UserStore {
   @observable users = observable.map<number, User>();
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   flushStore() {

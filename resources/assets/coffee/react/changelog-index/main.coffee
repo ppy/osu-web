@@ -7,6 +7,7 @@ import HeaderV4 from 'header-v4'
 import * as React from 'react'
 import { button, div, h1, p, span } from 'react-dom-factories'
 import ShowMoreLink from 'show-more-link'
+import { jsonClone } from 'utils/json'
 el = React.createElement
 
 groupChangelogBuilds = (builds) ->
@@ -72,7 +73,7 @@ export class Main extends React.PureComponent
   showMore: =>
     return if !@state.hasMore
 
-    search = osu.jsonClone @props.data.search
+    search = jsonClone @props.data.search
     search.max_id = _.last(@state.builds).id - 1
     @setState loading: true
 

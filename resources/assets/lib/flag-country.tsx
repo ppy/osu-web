@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
   country?: Country;
-  modifiers?: string[];
+  modifiers?: Modifiers;
 }
 
 const flagUrl = (code: string) => {
