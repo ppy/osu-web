@@ -11,9 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Setup node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
+          cache: yarn
           node-version: '12'
 
       - name: Set php version
@@ -21,9 +25,6 @@ jobs:
         with:
           tools: composer:v2
           php-version: '8.0'
-
-      - name: Checkout
-        uses: actions/checkout@v2
 
       - name: Get composer cache directory
         id: composercache
@@ -36,19 +37,6 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache yarn
-        uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
       - name: Install Composer dependencies
         run: >-
           composer config -g github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
@@ -58,6 +46,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - run: yarn lint --quiet
+
       - run: ./bin/update_licence.sh -nf
 
       - name: Run PHPCS
