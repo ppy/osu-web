@@ -8,7 +8,6 @@ namespace Database\Seeders\ModelSeeders;
 use App\Models\RankHistory;
 use App\Models\User;
 use App\Models\UserAccountHistory;
-use App\Models\UserGroup;
 use App\Models\UserStatistics;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
