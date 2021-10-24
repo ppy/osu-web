@@ -124,9 +124,6 @@ class UserSeeder extends Seeder
 
             // note
             $u->accountHistories()->save(UserAccountHistory::factory()->note()->make());
-
-            // USER GROUP
-            $u->userGroups()->save(new UserGroup(['group_id' => app('groups')->byIdentifier('default')->group_id]));
         }); // end each user
     }
 }
