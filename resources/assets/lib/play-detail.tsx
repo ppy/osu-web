@@ -24,7 +24,7 @@ interface State {
 }
 
 export default class PlayDetail extends React.PureComponent<Props, State> {
-  readonly state = {
+  state: Readonly<State> = {
     compact: true,
   };
 
