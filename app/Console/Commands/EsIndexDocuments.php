@@ -50,7 +50,7 @@ class EsIndexDocuments extends Command
     public function handle()
     {
         $this->readOptions();
-        $this->suffix = !$this->inplace ? '_'.time() : '';
+        $this->suffix = !$this->inplace ? '_'.now()->format('YmdHis') : '';
 
         $oldIndices = [];
         foreach ($this->groups as $name) {
