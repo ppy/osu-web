@@ -102,9 +102,10 @@ export default class Main extends React.Component<Props> {
   private readonly handleShowMore = () => {
     this.loadingXhr = $.getJSON(route('artists.tracks.index'), { ...this.data.search, cursor: this.data.cursor })
       .done(action((newData: ArtistTracksIndex) => {
+        const { container, ...prevProps } = this.props;
         newData.artist_tracks = this.data.artist_tracks.concat(newData.artist_tracks);
         this.data = newData;
-        this.props.container.dataset.props = JSON.stringify({ data: this.data });
+        this.props.container.dataset.props = JSON.stringify({ ...prevProps, data: this.data });
       })).fail(osu.ajaxError)
       .always(action(() => {
         this.loadingXhr = null;
