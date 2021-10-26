@@ -38,6 +38,9 @@ return [
             'edit' => '',
             'verify_link' => '',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => '',
         ],

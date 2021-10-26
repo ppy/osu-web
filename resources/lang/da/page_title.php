@@ -38,6 +38,9 @@ return [
             'edit' => 'instrumentbræt',
             'verify_link' => 'kontobekræftelse',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'udvalgte kunstnere',
         ],

@@ -137,7 +137,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => '',
+                'legacy_pm' => ':count_delimited nepřečtená zpráva|:count_delimited nepřečtené zprávy|:count_delimited nepřečtených zpráv',
             ],
         ],
 

@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Zaplatit',
-        'info' => ':count_delimited položka v košíku ($:subtotal)|:count_delimited položkek v košíku ($:subtotal)',
+        'info' => ':count_delimited položka v košíku ($:subtotal)|:count_delimited položky v košíku ($:subtotal)|:count_delimited položek v košíku ($:subtotal)',
         'more_goodies' => 'Chci se ještě podívat na nějaké dobroty než dokončím objednávku',
         'shipping_fees' => 'poplatky za dopravu',
         'title' => 'Nákupní košík',
@@ -66,11 +66,11 @@ return [
 
     'order' => [
         'cancel' => 'Zrušit objednávku',
-        'cancel_confirm' => '',
+        'cancel_confirm' => 'Tato objednávka bude zrušena a platba za ni nebude přijata. Poskytovatel platby nemusí okamžitě uvolnit rezervované finanční prostředky. Jste si jisti?',
         'cancel_not_allowed' => '',
         'invoice' => 'Zobrazit fakturu',
         'no_orders' => 'Nejsou zde žádné objednávky k zobrazení.',
-        'paid_on' => 'Objednávka vystavena dne :date',
+        'paid_on' => 'Objednávka zadána :date',
         'resume' => 'Obnovit objednávku',
         'shopify_expired' => '',
 

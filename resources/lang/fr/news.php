@@ -33,7 +33,7 @@ return [
     ],
 
     'sidebar' => [
-        'archive' => 'Archives des actualités',
+        'archive' => 'Archives des news',
     ],
 
     'store' => [

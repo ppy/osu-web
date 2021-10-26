@@ -15,6 +15,17 @@ return [
     'top' => 'Популярністю',
     'username' => 'Ім\'я користувача',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => 'Час розміщення',
         'relevance' => 'Актуальність',

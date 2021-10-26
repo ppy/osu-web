@@ -179,7 +179,7 @@ return [
 
         'register' => [
             'download' => 'Download',
-            'info' => 'Je hebt een account nodig, meneer. Waarom heeft u er niet al eentje?',
+            'info' => 'Download osu! om je account aan te maken!',
             'title' => "Heb je geen account?",
         ],
     ],

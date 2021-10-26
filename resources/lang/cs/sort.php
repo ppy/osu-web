@@ -15,6 +15,17 @@ return [
     'top' => 'Nejlepší',
     'username' => 'Uživatelské jméno',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => '',
         'relevance' => '',

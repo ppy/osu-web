@@ -10,11 +10,11 @@ return [
         'peak' => 'Vrchol, :count online uživatelů',
         'players' => '<strong>:count</strong> registrovaných hráčů',
         'title' => 'vítejte',
-        'see_more_news' => 'zlédnout více novinek',
+        'see_more_news' => 'zobrazit další novinky',
 
         'slogan' => [
-            'main' => 'nejlepší free-to-win rytmická hra',
-            'sub' => 'rytmus je jen o klkání',
+            'main' => 'nejlepšejší free-to-win rytmická hra',
+            'sub' => 'rytmus je na dosah jen jednoho kliknutí',
         ],
     ],
 
@@ -27,7 +27,7 @@ return [
         'title' => 'hledat',
 
         'beatmapset' => [
-            'login_required' => 'Přihlašte se k hledání beatmap',
+            'login_required' => 'Pro hledání beatmap se přihlaste',
             'more' => ':count dalších výsledků vyhledávání map',
             'more_simple' => 'Zobrazit další výsledky vyhledávání map',
             'title' => 'Beatmapy',
@@ -36,8 +36,8 @@ return [
         'forum_post' => [
             'all' => 'Všechna fóra',
             'link' => 'Prohledat fórum',
-            'login_required' => 'Přihlašte se k hledání na fóru',
-            'more_simple' => 'Zobrazit další výsledky prohledávání fór',
+            'login_required' => 'Pro hledání na fóru se přihlaste',
+            'more_simple' => 'Zobrazit další výsledky z prohledávání fór',
             'title' => 'Fórum',
 
             'label' => [
@@ -57,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => 'Přihlašte se k hledání uživatelů',
+            'login_required' => 'Pro hledání uživatelů se přihlaste',
             'more' => ':count dalších výsledků vyhledávání hráčů',
             'more_simple' => 'Zobrazit další výsledky vyhledávání hráčů',
             'more_hidden' => 'Vyhledávání hráčů je omezeno na :max hráčů. Zkus upravit tvé vyhledávání.',
@@ -66,7 +66,7 @@ return [
 
         'wiki_page' => [
             'link' => 'Prohledat wiki',
-            'more_simple' => 'Zobrazit další výsledky prohledávání wiki',
+            'more_simple' => 'Zobrazit další výsledky z prohledávání wiki',
             'title' => 'Wiki',
         ],
     ],
@@ -76,9 +76,9 @@ return [
         'action' => 'Stáhnout osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'pokud máš problém se spuštěním hry nebo registrací účtu, tak :help_forum_link nebo :support_button.',
+            'help_forum_link' => 'se podívej na fórum s nápovědou',
+            'support_button' => 'kontaktuj podporu',
         ],
 
         'os' => [
@@ -123,7 +123,7 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Nově hodnocené beatmapy',
-            'popular' => 'Populární Beatmapy',
+            'popular' => 'Populární beatmapy',
             'by_user' => 'od :user',
         ],
         'buttons' => [

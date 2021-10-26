@@ -15,6 +15,17 @@ return [
     'top' => 'Paras',
     'username' => 'Käyttäjänimi',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => 'Viestin aika',
         'relevance' => 'Osuvuus',

@@ -38,6 +38,9 @@ return [
             'edit' => 'tablou de bord',
             'verify_link' => 'verificare cont',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'featured artists',
         ],
