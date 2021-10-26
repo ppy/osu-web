@@ -85,8 +85,6 @@ class EsIndexDocuments extends Command
 
     private function indexGroup($name)
     {
-        $indices = [];
-        $newIndices = [];
         $types = collect(static::ALLOWED_TYPES[$name]);
 
         $allSame = $types->every(function ($type) use ($types) {
