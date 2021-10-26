@@ -2,22 +2,38 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ArtistJson from 'interfaces/artist-json';
-import ArtistTrackJson from 'interfaces/artist-track-json';
+import ArtistTrackJson, { ArtistTrackWithArtistJson } from 'interfaces/artist-track-json';
+import { route } from 'laroute';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
-interface Props {
+type TrackJson = {
   artist: ArtistJson;
   track: ArtistTrackJson;
-}
+} | {
+  track: ArtistTrackWithArtistJson;
+};
+
+type Props = {
+  modifiers?: Modifiers;
+  showAlbum: boolean;
+} & TrackJson;
 
 export default class TracklistTrack extends React.PureComponent<Props> {
+  static readonly defaultProps = {
+    showAlbum: false,
+  };
+
   private get artist() {
-    return this.props.track.artist ?? this.props.artist;
+    if ('artist' in this.props) {
+      return this.props.track.artist ?? this.props.artist;
+    }
+
+    return this.props.track.artist;
   }
 
   render() {
-    let blockClass = classWithModifiers('artist-track', { original: this.props.track.exclusive });
+    let blockClass = classWithModifiers('artist-track', { original: this.props.track.exclusive }, this.props.modifiers);
     blockClass += ' js-audio--player';
 
     return (
@@ -47,8 +63,17 @@ export default class TracklistTrack extends React.PureComponent<Props> {
             )}
           </div>
           <div className='artist-track__info'>
-            {this.artist.name}
+            <a href={route('artists.show', { artist: this.artist.id })}>
+              {this.artist.name}
+            </a>
           </div>
+          {this.props.showAlbum && this.props.track.album != null && (
+            <div className='artist-track__info'>
+              <a href={`${route('artists.show', { artist: this.artist.id })}#album-${this.props.track.album_id}`}>
+                {this.props.track.album.title}
+              </a>
+            </div>
+          )}
         </div>
 
         <div className='artist-track__col artist-track__col--badges'>

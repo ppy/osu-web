@@ -131,6 +131,7 @@ const coffeeReactComponents = [
 
 const tsReactComponents = [
   'account-edit',
+  'artist-tracks-index',
   'beatmaps',
   'chat',
   'follows-comment',

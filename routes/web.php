@@ -29,6 +29,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'beatmaps'], function () {
         // featured artists
+        Route::group(['as' => 'artists.', 'prefix' => 'artists'], function () {
+            Route::resource('tracks', 'ArtistTracksController', ['only' => ['index']]);
+        });
         Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
         Route::resource('artists/tracks', 'ArtistTracksController', ['only' => 'show']);
 
