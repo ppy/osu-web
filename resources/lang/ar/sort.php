@@ -15,6 +15,17 @@ return [
     'top' => 'الأحدث',
     'username' => 'اسم المُستخدم',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => 'توقيت النشر',
         'relevance' => 'الأهمية',

@@ -222,7 +222,7 @@ return [
             'not-found' => 'geen resultaten',
             'not-found-quote' => '... nope, niets gevonden.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Algemeen',
                 'genre' => 'Genre',
                 'language' => 'Taal',

@@ -15,6 +15,17 @@ return [
     'top' => '상위',
     'username' => '사용자 이름',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => '게시 시각',
         'relevance' => '연관성',

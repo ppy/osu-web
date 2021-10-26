@@ -252,7 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Zahrň překonvertované beatmapy',
-        'featured_artists' => '',
+        'featured_artists' => 'Featured artists',
         'follows' => 'Odebíraní autoři map',
         'recommended' => 'Doporučená obtížnost',
     ],

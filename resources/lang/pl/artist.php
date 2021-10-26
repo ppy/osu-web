@@ -31,6 +31,7 @@ return [
         '_' => 'Utwory',
         'count' => ':count utwór|:count utwory|:count utworów',
         'original' => 'ekskluzywny dla osu!',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => 'długość',
         'bpm' => 'bpm',
         'genre' => 'gatunek',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

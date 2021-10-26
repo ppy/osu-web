@@ -38,6 +38,9 @@ return [
             'edit' => 'dashboard',
             'verify_link' => 'account verificatie',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'aanbevolen artiesten',
         ],

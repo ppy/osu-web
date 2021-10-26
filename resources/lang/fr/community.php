@@ -6,7 +6,7 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => 'Je suis convaincu! :D',
+            'title' => 'Je suis convaincu ! :D',
             'support' => 'soutenez osu!',
             'gift' => 'ou offrez osu!supporter à un autre joueur',
             'instructions' => 'cliquez sur le cœur pour vous rendre dans l\'osu!store',
@@ -20,20 +20,20 @@ return [
             ],
             'infra' => [
                 'title' => 'Infrastructure du serveur',
-                'description' => 'Les contributions vont vers les serveurs pour l\'exécution du site, des services multijoueurs, des classements en ligne, etc.',
+                'description' => 'Les contributions vont vers les serveurs pour faire fonctionner le site, les services multijoueurs, les classements en ligne, etc.',
             ],
             'featured-artists' => [
-                'title' => 'Artistes mis en avant',
-                'description' => 'Avec votre soutien, nous pouvons approcher encore plus d\'artistes géniaux et obtenir les licences de plus de musique pour leur utilisation dans osu!',
-                'link_text' => 'Voir la liste courante &raquo;',
+                'title' => 'Featured artists',
+                'description' => 'Avec votre soutien, nous pouvons réunir encore plus d\'artistes géniaux et obtenir les droits de plus de musiques afin de les utiliser sur osu!',
+                'link_text' => 'Voir la liste actuelle &raquo;',
             ],
             'ads' => [
                 'title' => 'Garder osu! auto-soutenant',
-                'description' => 'Vos contributions aident à garder le jeu indépendant et totalement exempt des annonces et des sponsors extérieurs.',
+                'description' => 'Vos contributions aident à garder le jeu indépendant et totalement exempt d\'annonces et de sponsors extérieurs.',
             ],
             'tournaments' => [
                 'title' => 'Tournois officiels',
-                'description' => 'Aidez à financer le fonctionnement (et les prix pour) des tournois officiels de la Coupe du Monde.',
+                'description' => 'Aidez à financer le fonctionnement (et les prix) des tournois officiels de l\'osu! World Cup.',
                 'link_text' => 'Explorer les tournois &raquo;',
             ],
             'bounty-program' => [
@@ -56,12 +56,12 @@ return [
 
             'country_ranking' => [
                 'title' => 'Classement national',
-                'description' => 'Conquérez votre pays avant de conquérir le monde.',
+                'description' => 'Partez à la conquête de votre pays avant de conquérir le monde.',
             ],
 
             'mod_filtering' => [
                 'title' => 'Filtrer par Mods',
-                'description' => 'Associez seulement les personnes qui jouent sur HDHR ? Pas de problème !',
+                'description' => 'Vous ne souhaitez voir que les scores réalisés avec les mods HDHR ? Pas de problème !',
             ],
 
             'auto_downloads' => [
@@ -138,8 +138,8 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Merci beaucoup de votre support ! Vous avez contribué pour un total de :dollars avec :tags achats de tags !',
-            'gifted' => ":giftedTags de vos achats de tags ont été offerts en cadeau (pour un total de :giftedDollars offerts), quelle générosité !",
+            'contribution' => 'Merci beaucoup pour votre soutien ! Vous avez contribué avec un total de :dollars avec :tags achats de tags !',
+            'gifted' => "Vous avez offert :giftedTags tags (pour un total de :giftedDollars offerts), quelle générosité !",
             'not_yet' => "Vous n'avez pas de tag supporter :(",
             'valid_until' => 'Votre badge osu!supporter actuel est valable jusqu\'au :date!',
             'was_valid_until' => 'Votre badge osu!supporter était valable jusqu\'au :date.',

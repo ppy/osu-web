@@ -6,7 +6,7 @@
 return [
     'show' => [
         'fallback_translation' => 'La page demandée n\'est pas encore traduite dans votre langue (:language). Affichage de la version anglaise.',
-        'incomplete_or_outdated' => 'Le contenu de cette page est incomplet ou obsolète. Si vous êtes en mesure d\'aider, veuillez envisager de mettre à jour l\'article !',
+        'incomplete_or_outdated' => 'Le contenu de cette page est incomplet ou obsolète. Si vous souhaitez aider, veuillez mettre à jour l\'article !',
         'missing' => 'La page demandée ":keyword" n\'a pas été trouvée.',
         'missing_title' => 'Non trouvé',
         'missing_translation' => 'La page demandée n\'a pas pu être trouvée pour la langue sélectionnée actuellement.',
