@@ -12,18 +12,18 @@ class ArtistTrackTransformer extends TransformerAbstract
     public function transform(ArtistTrack $track)
     {
         return [
-            'id' => $track->id,
             'album_id' => $track->album_id,
+            'bpm' => $track->bpm,
+            'cover_url' => $track->cover_url,
+            'exclusive' => $track->exclusive,
+            'genre' => $track->genre,
+            'id' => $track->id,
+            'is_new' => $track->isNew(),
+            'length' => format_duration_for_display($track->length),
+            'osz' => $track->osz,
+            'preview' => $track->preview,
             'title' => $track->title,
             'version' => $track->version,
-            'length' => format_duration_for_display($track->length),
-            'exclusive' => $track->exclusive,
-            'is_new' => $track->isNew(),
-            'bpm' => $track->bpm,
-            'genre' => $track->genre,
-            'preview' => $track->preview,
-            'cover_url' => $track->cover_url,
-            'osz' => $track->osz,
         ];
     }
 }
