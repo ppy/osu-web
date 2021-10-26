@@ -99,7 +99,7 @@ class EsIndexDocuments extends Command
 
         $first = $types->first();
         $alias = $first::esIndexName();
-        $indexName = $this->inplace ? $first::esIndexName() : $first::esTimestampedIndexName();
+        $indexName = $this->inplace ? $alias : $first::esTimestampedIndexName();
         $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
 
         foreach ($types as $type) {
