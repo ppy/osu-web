@@ -166,9 +166,6 @@ return [
         'ends_at' => env('SEASONAL_ENDS_AT'),
     ],
 
-    'support' => [
-        'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
-    ],
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
