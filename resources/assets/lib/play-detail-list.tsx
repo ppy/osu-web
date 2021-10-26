@@ -16,7 +16,7 @@ interface State {
 }
 
 export default class PlayDetailList extends React.PureComponent<Props, State> {
-  state = {
+  state: Readonly<State> = {
     activeKey: null,
   };
 
