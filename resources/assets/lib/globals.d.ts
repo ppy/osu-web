@@ -81,7 +81,6 @@ interface OsuCommon {
   present: (str?: string | null) => boolean;
   promisify: (xhr: JQuery.jqXHR) => Promise<any>;
   reloadPage: () => void;
-  timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
   transArray: (array: any[], key?: string) => string;
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
