@@ -31,6 +31,7 @@ return [
         '_' => '楽曲一覧',
         'count' => ':count_delimited 曲',
         'original' => '',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => '長さ',
         'bpm' => 'bpm',
         'genre' => 'ジャンル',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

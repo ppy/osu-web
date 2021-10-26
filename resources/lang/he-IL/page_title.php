@@ -38,6 +38,9 @@ return [
             'edit' => 'לוח בקרה',
             'verify_link' => 'אימות חשבון',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'אמנים מומלצים',
         ],

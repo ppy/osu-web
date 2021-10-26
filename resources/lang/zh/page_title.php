@@ -38,6 +38,9 @@ return [
             'edit' => '主页',
             'verify_link' => '账户验证',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => '精选艺术家',
         ],

@@ -27,7 +27,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Date de fin',
-        'map_count' => 'Nombre de map',
+        'map_count' => 'Nombre de beatmaps',
         'participants' => 'Participants',
         'start_date' => 'Date de début',
     ],

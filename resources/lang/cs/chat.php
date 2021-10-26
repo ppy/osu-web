@@ -17,9 +17,9 @@ return [
             'friends_only' => 'Příjemce může přijímat zprávy pouze od lidí na jeho seznamu přátel',
             'not_enough_plays' => '',
             'not_verified' => '',
-            'restricted' => 'Váš účet je teď zablokován',
+            'restricted' => 'Váš účet je teď omezen',
             'silenced' => '',
-            'target_restricted' => 'Účet příjemce je právě zablokován',
+            'target_restricted' => 'Účet příjemce je právě omezen',
         ],
     ],
     'input' => [

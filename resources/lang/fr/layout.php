@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => 'Jouer automatiquement le titre suivant',
+        'autoplay' => 'Jouer automatiquement la musique suivante',
     ],
 
     'defaults' => [
@@ -37,7 +37,7 @@ return [
         'store' => [
             'cart' => 'panier',
             'orders' => 'historique des commandes',
-            'products' => 'produits',
+            'products' => 'articles',
         ],
 
         'tournaments' => [

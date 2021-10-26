@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Rechercher',
             'deleted' => 'Inclure les discussions supprimées',
-            'mode' => 'Mode Beatmap',
+            'mode' => 'Mode de jeu',
             'only_unresolved' => 'Afficher uniquement les discussions non résolues',
             'types' => 'Types de message',
             'username' => 'Nom d’utilisateur',
@@ -83,7 +83,7 @@ return [
             'invalid_document' => 'review invalide',
             'invalid_discussion_type' => 'type de discussion invalide',
             'minimum_issues' => 'le review doit contenir un minimum de :count problème|le review doit contenir un minimum de :count problèmes',
-            'missing_text' => 'le bloc manque du texte',
+            'missing_text' => 'le bloc n\'a pas de texte',
             'too_many_blocks' => 'les avis ne doivent contenir que :count paragraphes/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',
         ],
     ],

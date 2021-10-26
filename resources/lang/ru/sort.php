@@ -15,6 +15,17 @@ return [
     'top' => 'Популярным',
     'username' => 'Имени пользователя',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => 'Время публикации',
         'relevance' => 'Релевантность',

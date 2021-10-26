@@ -38,8 +38,11 @@ return [
             'edit' => 'nástěnka',
             'verify_link' => 'ověření účtu',
         ],
-        'artists_controller' => [
+        'artist_tracks_controller' => [
             '_' => '',
+        ],
+        'artists_controller' => [
+            '_' => 'featured artists',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => '',
@@ -137,7 +140,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autorizovat aplikaci',
         ],
     ],
     'store' => [

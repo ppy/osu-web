@@ -38,6 +38,9 @@ return [
             'edit' => 'strona główna',
             'verify_link' => 'weryfikacja konta',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'wyróżnieni artyści',
         ],

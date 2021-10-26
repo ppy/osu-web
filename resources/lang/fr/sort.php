@@ -11,9 +11,20 @@ return [
     'last_visit' => 'Récemment actif',
     'new' => 'Récent',
     'old' => 'Ancien',
-    'rank' => 'Rang',
+    'rank' => 'Classement',
     'top' => 'Meilleurs',
     'username' => 'Nom d’utilisateur',
+
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
 
     'forum_posts' => [
         'created' => 'Heure de publication',
