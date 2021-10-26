@@ -231,14 +231,14 @@ export default class SearchForm extends React.Component<Props> {
       throw new Error('missing input field dataset');
     }
 
-    const value = input.value;
+    const value = osu.presence(input.value);
 
-    if (input.pattern != null && (RegExp(input.pattern).exec(value)) == null) {
+    if (value != null && input.pattern != null && (RegExp(input.pattern).exec(value)) == null) {
       return;
     }
 
     const rangeData = this.params[param] ?? {};
-    if (osu.present(value)) {
+    if (value != null) {
       rangeData[range] = value;
     } else {
       delete rangeData[range];
