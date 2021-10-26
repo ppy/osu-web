@@ -19,7 +19,6 @@ return [
             'contest' => 'konkursas',
             'contests' => 'konkursai',
             'root' => 'konsolė',
-            'store_orders' => '',
         ],
 
         'artists' => [

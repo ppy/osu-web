@@ -11,18 +11,15 @@ use Tests\TestCase;
 
 class BeatmapsetDescriptionTransformerTest extends TestCase
 {
-    /** @var Beatmapset */
-    protected $beatmapset;
-
-    /** @var User */
-    protected $mapper;
+    protected Beatmapset $beatmapset;
+    protected User $mapper;
 
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testWithOAuth($groupIdentifier)
+    public function testWithOAuth(?string $groupIdentifier)
     {
-        $viewer = $this->createUserWithGroup($groupIdentifier);
+        $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
 
         $json = json_item($this->beatmapset, 'BeatmapsetDescription');
@@ -33,9 +30,9 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testWithoutOAuth($groupIdentifier, $visible)
+    public function testWithoutOAuth(?string $groupIdentifier, bool $visible)
     {
-        $viewer = $this->createUserWithGroup($groupIdentifier);
+        $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsUser($viewer);
 
         $json = json_item($this->beatmapset, 'BeatmapsetDescription');
@@ -67,7 +64,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
 
     public function testUserIsNotMapper()
     {
-        $this->actAsUser(factory(User::class)->create());
+        $this->actAsUser(User::factory()->create());
 
         $json = json_item($this->beatmapset, 'BeatmapsetDescription');
 
@@ -82,7 +79,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
             ['bng', false],
             ['gmt', true],
             ['nat', true],
-            [[], false],
+            [null, false],
         ];
     }
 
@@ -90,9 +87,9 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
     {
         parent::setUp();
 
-        $this->mapper = factory(User::class)->create();
-        $this->beatmapset = factory(Beatmapset::class)->create([
-            'user_id' => $this->mapper->getKey(),
+        $this->mapper = User::factory()->create();
+        $this->beatmapset = Beatmapset::factory()->create([
+            'user_id' => $this->mapper,
         ]);
     }
 }

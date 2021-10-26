@@ -135,6 +135,11 @@ return [
             '_' => 'classement',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autoriser l\'application',
+        ],
+    ],
     'store' => [
         '_' => 'osu!store',
     ],

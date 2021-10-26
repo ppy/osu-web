@@ -23,7 +23,7 @@
                 </ul>
             @endif
 
-            @if ($order->isProcessing())
+            @if ($order->isPaymentRequested())
                 <ul class="store-page__alert store-page__alert--with-margin-bottom">
                     <li>
                         {{ osu_trans('store.checkout.pending_checkout.line_1') }}<br>
@@ -69,10 +69,6 @@
         @if(!$order->requiresShipping() || $order->shipping)
             <div class="store-page store-page--footer">
                 <h1 class="store-text store-text--title">Select Payment Method</h1>
-
-                @if ($checkout->isShippingDelayed() && $order->requiresShipping())
-                    @include('store._shipping_delay_warning')
-                @endif
 
                 @if ($order->address !== null && $order->address->country_code === 'DE')
                     @include('store._shipping_germany_warning')

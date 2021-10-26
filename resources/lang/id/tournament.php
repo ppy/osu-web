@@ -17,14 +17,14 @@ return [
         ],
 
         'state' => [
-            'current' => 'Turnamen yang sedang berlangsung',
-            'previous' => 'Turnamen Sebelumnya',
+            'current' => 'Turnamen yang Sedang Berlangsung',
+            'previous' => 'Turnamen-Turnamen Terdahulu',
         ],
     ],
 
     'show' => [
         'banner' => 'Dukung Tim Anda',
-        'entered' => 'Anda telah berhasil mendaftarkan diri Anda pada turnamen ini. <br><br>Mohon diperhatikan bahwa hal ini bukan berarti Anda telah secara otomatis telah diikutsertakan ke dalam salah satu tim yang bertanding. <br><br>Instruksi lebih lanjut akan dikirimkan melalui email saat turnamen akan dimulai, jadi mohon pastikan alamat email akun osu! Anda valid!',
+        'entered' => 'Anda telah mendaftarkan diri Anda pada turnamen ini.<br><br>Harap dicatat bahwa hal ini <b>tidak</b> berarti bahwa Anda telah secara otomatis terdaftar sebagai peserta pada turnamen yang bersangkutan. <br><br>Kami akan mengirimkan Anda instruksi lebih lanjut melalui email beberapa saat sebelum turnamen resmi dimulai, jadi pastikan alamat email yang terhubung dengan akun osu! Anda aktif dan valid!',
         'info_page' => 'Laman Informasi',
         'login_to_register' => 'Harap :login untuk melihat rincian pendaftaran!',
         'not_yet_entered' => 'Anda tidak terdaftar pada turnamen ini.',

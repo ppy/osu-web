@@ -8,13 +8,13 @@ return [
 
     'room' => [
         'hosted_by' => '',
-        'invalid_password' => '',
+        'invalid_password' => 'Nesprávné heslo místnosti',
         'map_count' => '',
         'player_count' => '',
-        'time_left' => '',
+        'time_left' => ':time zbývá',
 
         'status' => [
-            'active' => '',
+            'active' => 'aktivní',
             'ended' => '',
             'soon' => '',
         ],

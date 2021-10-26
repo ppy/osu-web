@@ -77,7 +77,7 @@ return [
 
         'help' => [
             '_' => 'nếu bạn gặp vấn đề khi bắt đầu game hoặc tạo tài khoản, :help_forum_link hoặc :support_button.',
-            'help_forum_link' => '',
+            'help_forum_link' => 'kiểm tra diễn đàng trợ giúp',
             'support_button' => 'liên hệ hỗ trợ',
         ],
 

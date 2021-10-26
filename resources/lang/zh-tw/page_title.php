@@ -135,6 +135,11 @@ return [
             '_' => '排名',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '授權應用程式',
+        ],
+    ],
     'store' => [
         '_' => '商店',
     ],

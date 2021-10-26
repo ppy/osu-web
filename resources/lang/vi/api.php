@@ -21,7 +21,7 @@ return [
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Tạo và chỉnh sửa các chủ đề, bài đăng trên diễn đàn thay mặt bạn.',
         ],
 
         'friends' => [

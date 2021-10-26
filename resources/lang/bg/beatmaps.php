@@ -13,10 +13,10 @@ return [
     'discussions' => [
         'allow_kudosu' => 'разреши kudosu',
         'beatmap_information' => 'Страница на бийтмап',
-        'delete' => 'изтрий',
+        'delete' => 'изтриване',
         'deleted' => 'Изтрито от :editor :delete_time.',
         'deny_kudosu' => 'забрани kudosu',
-        'edit' => 'редактирай',
+        'edit' => 'редактиране',
         'edited' => 'Последно редактирано от :editor :update_time.',
         'guest' => 'Трудност, предложена от :user',
         'kudosu_denied' => 'Забранено получаване на kudosu.',
@@ -99,7 +99,7 @@ return [
         'review' => [
             'new' => 'Ново ревю',
             'embed' => [
-                'delete' => 'Изтрий',
+                'delete' => 'Изтриване',
                 'missing' => '[ИЗТРИТА ДИСКУСИЯ]',
                 'unlink' => 'Прекрати връзка',
                 'unsaved' => 'Незапазено',
@@ -174,7 +174,7 @@ return [
     ],
 
     'nominations' => [
-        'delete' => 'Изтрий',
+        'delete' => 'Изтриване',
         'delete_own_confirm' => 'Сигурни ли сте? Бийтмапът ще бъде изтрит и ще бъдете пренасочени обратно към вашия профил.',
         'delete_other_confirm' => 'Сигурни ли сте? Бийтмапът ще бъде изтрит и ще бъдете пренасочени обратно към профила на потребителя.',
         'disqualification_prompt' => 'Причина за дисквалифициране?',
@@ -258,14 +258,14 @@ return [
     ],
     'mode' => [
         'all' => 'Всички',
-        'any' => 'Всички',
+        'any' => 'Всяка',
         'osu' => '',
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
     ],
     'status' => [
-        'any' => 'Всички',
+        'any' => 'Всяка',
         'approved' => 'Одобрен',
         'favourites' => 'Любими',
         'graveyard' => 'Гробище',

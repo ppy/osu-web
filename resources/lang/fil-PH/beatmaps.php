@@ -252,7 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Kasamang converted beatmaps',
-        'featured_artists' => '',
+        'featured_artists' => 'Featured artists',
         'follows' => 'Mga naka-subscribe na mappers',
         'recommended' => 'Nirerekomenda na difficulty',
     ],

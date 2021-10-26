@@ -53,7 +53,7 @@
                             data-provider-reference="{{ $order->getProviderReference() }}"
                             data-status="{{ $order->status }}"
                         >
-                            {{ $order->status === 'processing' ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
+                            {{ $order->isPaymentRequested() ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
                         </button>
                     @elseif ($order->hasInvoice())
                         <button

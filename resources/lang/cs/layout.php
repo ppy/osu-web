@@ -19,7 +19,6 @@ return [
             'contest' => 'soutěž',
             'contests' => 'soutěže',
             'root' => 'konzole',
-            'store_orders' => '',
         ],
 
         'artists' => [
@@ -27,7 +26,7 @@ return [
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'výpis',
         ],
 
         'help' => [
@@ -70,7 +69,7 @@ return [
         ],
         'help' => [
             '_' => 'nápověda',
-            'getAbuse' => '',
+            'getAbuse' => 'nahlásit zneužití',
             'getFaq' => 'časté dotazy',
             'getRules' => 'pravidla',
             'getSupport' => 'ne, vážně, potřebuji pomoc!',

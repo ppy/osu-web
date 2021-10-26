@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'Pyydettyä sivua ei löytynyt valitulle kielelle.',
         'needs_cleanup_or_rewrite' => 'Tämä sivu ei vastaa laadultaan osu! wikin vaatimuksia ja on selkeytettävä tai uudelleenkirjoitettava. Jos sinulla on mahdollisuus auttaa, harkitse artikkelin päivittämistä!',
         'search' => 'Etsi olemassa olevilta sivuilta :link.',
+        'stub' => '',
         'toc' => 'Sisältö',
 
         'edit' => [
