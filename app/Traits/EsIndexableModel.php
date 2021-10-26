@@ -86,7 +86,6 @@ trait EsIndexableModel
     {
         $document = array_merge([
             'index' => static::esIndexName(),
-            'type' => '_doc',
             'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'client' => ['ignore' => 404],
@@ -103,7 +102,6 @@ trait EsIndexableModel
 
         $document = array_merge([
             'index' => static::esIndexName(),
-            'type' => '_doc',
             'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'body' => $this->toEsJson(),
