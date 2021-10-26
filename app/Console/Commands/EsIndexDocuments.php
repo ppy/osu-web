@@ -39,7 +39,6 @@ class EsIndexDocuments extends Command
     protected $cleanup;
     protected $inplace;
     protected $groups;
-    protected $suffix;
     protected $yes;
 
     /**
@@ -50,7 +49,6 @@ class EsIndexDocuments extends Command
     public function handle()
     {
         $this->readOptions();
-        $this->suffix = !$this->inplace ? '_'.now()->format('YmdHis') : '';
 
         $oldIndices = [];
         foreach ($this->groups as $name) {
@@ -103,7 +101,7 @@ class EsIndexDocuments extends Command
 
         $first = $types->first();
         $alias = $first::esIndexName();
-        $indexName = "{$first::esIndexName()}{$this->suffix}";
+        $indexName = $this->inplace ? $first::esIndexName() : $first::esTimestampedIndexName();
         $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
 
         foreach ($types as $type) {
