@@ -129,7 +129,7 @@ return [
 
             'store' => [
                 'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
-                'no_permission' => 'Žádná oprávnění k vytvoření nového tématu.',
+                'no_permission' => 'Nemáte oprávnění na vytvoření nového tématu.',
                 'forum_closed' => 'Fórum je uzavřeno a další příspěvky se už nesmí přidávat.',
             ],
 

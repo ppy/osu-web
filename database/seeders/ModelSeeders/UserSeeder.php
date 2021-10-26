@@ -8,7 +8,6 @@ namespace Database\Seeders\ModelSeeders;
 use App\Models\RankHistory;
 use App\Models\User;
 use App\Models\UserAccountHistory;
-use App\Models\UserGroup;
 use App\Models\UserStatistics;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
@@ -124,9 +123,6 @@ class UserSeeder extends Seeder
 
             // note
             $u->accountHistories()->save(UserAccountHistory::factory()->note()->make());
-
-            // USER GROUP
-            $u->userGroups()->save(new UserGroup(['group_id' => app('groups')->byIdentifier('default')->group_id]));
         }); // end each user
     }
 }

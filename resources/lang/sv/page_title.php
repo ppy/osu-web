@@ -38,6 +38,9 @@ return [
             'edit' => 'kontrollpanel',
             'verify_link' => 'kontobekräftelse',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'utvalda artister',
         ],

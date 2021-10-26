@@ -4,7 +4,7 @@
 import { BeatmapPlaycount } from './beatmap-playcount'
 import ExtraHeader from 'profile-page/extra-header'
 import core from 'osu-core-singleton'
-import { PlayDetailList } from 'play-detail-list'
+import PlayDetailList from 'play-detail-list'
 import * as React from 'react'
 import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
 import ShowMoreLink from 'show-more-link'

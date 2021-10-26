@@ -85,7 +85,7 @@ return [
         'latest_reply_by' => 'последно отговори :user',
         'new_topic' => 'Създай нова тема',
         'new_topic_login' => 'Моля, влез в профила си, за публикуване',
-        'post_reply' => 'Публикувай',
+        'post_reply' => 'Публикуване',
         'reply_box_placeholder' => 'Пишете тук да отговорите',
         'reply_title_prefix' => 'Отговор',
         'started_by' => 'от :user',
@@ -102,7 +102,7 @@ return [
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Запиши',
-            'submit' => 'Публикувай',
+            'submit' => 'Публикуване',
 
             'necropost' => [
                 'default' => 'Тази тема е неактивна от известно време. Пишете тук само ако имате конкретна причина.',
@@ -161,7 +161,7 @@ return [
 
         'actions' => [
             'login_reply' => 'Моля, влез в профила си, за да отговорите',
-            'reply' => 'Отговори',
+            'reply' => 'Отговор',
             'reply_with_quote' => 'Цитирай в отговора',
             'search' => 'Търсене',
         ],
@@ -198,7 +198,7 @@ return [
 
         'index' => [
             'feature_votes' => 'приоритет по звезди',
-            'replies' => 'отговори',
+            'replies' => 'отговор',
             'views' => 'прегледи',
         ],
 

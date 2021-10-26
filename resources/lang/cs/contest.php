@@ -5,7 +5,7 @@
 
 return [
     'header' => [
-        'small' => 'Soutěž i jinak, než jen klikáním kruhů.',
+        'small' => 'Soutěž i jinak, než jen klikáním na kruhy.',
         'large' => 'Komunitní soutěže',
     ],
 
@@ -14,12 +14,12 @@ return [
     ],
 
     'voting' => [
-        'login_required' => 'Pro hlasování se prosím přihlaš.',
+        'login_required' => 'Pro hlasování se prosím přihlas.',
         'over' => 'Hlasování pro tuto soutěž bylo ukončeno',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Zobrazit odhlasované',
 
         'best_of' => [
-            'none_played' => "Vypadá to, že nemáš zahranou žádnou mapu, která je kvalifikovaná na tuto soutěž!",
+            'none_played' => "Vypadá to, že nemáš odehrané žádné beatmapy, které jsou kvalifikované na tuto soutěž!",
         ],
 
         'button' => [
@@ -34,13 +34,13 @@ return [
     ],
     'entry' => [
         '_' => 'vstup',
-        'login_required' => 'Přihlaš se prosím pro vstup do soutěže.',
-        'silenced_or_restricted' => 'Nemůžeš se zůčastnit soutěže, když je tvůj účet v omezeném režimu nebo ztlumený.',
+        'login_required' => 'Pro vstup do soutěže se prosím přihlas.',
+        'silenced_or_restricted' => 'Nemůžeš se účastnit soutěží, zatímco je tvůj účet omezený nebo ztlumený.',
         'preparation' => 'Tuto soutěž právě připravujeme. Prosím čekej trpělivě!',
         'drop_here' => 'Tvůj vstup přetáhni sem',
         'download' => 'Stáhnout .osz',
         'wrong_type' => [
-            'art' => 'Pouze .jpg a ,png soubory jsou přijímány pro tuto soutěž.',
+            'art' => 'Pouze .jpg a .png soubory jsou přijímány pro tuto soutěž.',
             'beatmap' => 'Pouze .osu soubory jsou přijímány pro tuto soutěž.',
             'music' => 'Pouze .mp3 soubory jsou přijímány pro tuto soutěž.',
         ],
@@ -51,21 +51,21 @@ return [
     ],
     'vote' => [
         'list' => 'hlasy',
-        'count' => ':count hlas|:count hlasů',
-        'points' => ':count bod|:count bodů',
+        'count' => ':count_delimited hlas|:count_delimited hlasy|:count_delimited hlasů',
+        'points' => ':count_delimited bod|:count_delimited body|:count_delimited bodů',
     ],
     'dates' => [
         'ended' => 'Ukončeno :date',
-        'ended_no_date' => '',
+        'ended_no_date' => 'Ukončeno',
 
         'starts' => [
             '_' => 'Začíná :date',
-            'soon' => 'soon™',
+            'soon' => 'brzy™',
         ],
     ],
     'states' => [
-        'entry' => 'Vstup Otevřen',
-        'voting' => 'Hlasování Začalo',
-        'results' => 'Výsledky Vyhlášeny',
+        'entry' => 'Vstup otevřen',
+        'voting' => 'Hlasování začalo',
+        'results' => 'Výsledky vyhlášeny',
     ],
 ];

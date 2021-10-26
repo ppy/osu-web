@@ -11,7 +11,7 @@ return [
     ],
 
     'builds' => [
-        'users_online' => ':count_delimited uživatelé online|:count_delimited uživatelé online',
+        'users_online' => ':count_delimited uživatel online|:count_delimited uživatelé online|:count_delimited uživatelů online',
     ],
 
     'entry' => [
