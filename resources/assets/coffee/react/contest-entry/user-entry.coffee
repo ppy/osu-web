@@ -3,6 +3,7 @@
 
 import * as React from 'react'
 import { button, div, i } from 'react-dom-factories'
+import TimeWithTooltip from 'time-with-tooltip'
 el = React.createElement
 
 export class UserEntry extends React.Component
@@ -33,6 +34,11 @@ export class UserEntry extends React.Component
       div className: 'contest-userentry__fileicon',
         i className: 'far fa-file'
 
-      div className: 'contest-userentry__filename u-ellipsis-overflow', @props.entry.filename
-      div className: 'contest-userentry__entry-date', dangerouslySetInnerHTML: {__html: osu.timeago(@props.entry.created_at)}
-      div className: 'contest-userentry__filesize', osu.formatBytes(@props.entry.filesize)
+      div className: 'contest-userentry__filename u-ellipsis-overflow',
+        @props.entry.filename
+
+      div className: 'contest-userentry__entry-date',
+        el TimeWithTooltip, dateTime: @props.entry.created_at, relative: true
+
+      div className: 'contest-userentry__filesize',
+        osu.formatBytes(@props.entry.filesize)
