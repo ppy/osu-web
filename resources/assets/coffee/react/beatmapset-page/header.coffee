@@ -282,7 +282,6 @@ export class Header extends React.Component
   downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
     el BigButton,
       key: key
-      extraClasses: if !osuDirect then ['js-beatmapset-download-link']
       href: href
       icon: icon
       modifiers: 'beatmapset-header'

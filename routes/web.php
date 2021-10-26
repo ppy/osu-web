@@ -214,7 +214,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('password-reset', 'PasswordResetController@create');
         Route::put('password-reset', 'PasswordResetController@update');
 
-        Route::get('support-osu-popup', 'HomeController@osuSupportPopup')->name('support-osu-popup');
         Route::get('download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
 
         Route::resource('blocks', 'BlocksController', ['only' => ['store', 'destroy']]);
