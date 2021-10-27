@@ -1576,6 +1576,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         });
     }
 
+    public function authHash(): string
+    {
+        return hash('sha256', $this->user_email).':'.hash('sha256', $this->user_password);
+    }
+
     public function title(): ?string
     {
         return optional($this->rank)->rank_title;
