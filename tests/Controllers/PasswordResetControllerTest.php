@@ -18,7 +18,7 @@ class PasswordResetControllerTest extends TestCase
 {
     private static function randomPassword(): string
     {
-        return md5((string) rand());
+        return str_random(10);
     }
 
     public function testCreate()
