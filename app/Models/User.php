@@ -1585,7 +1585,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function resetSessions(): void
     {
         SessionStore::destroy($this->getKey());
-        $this->tokens->each->revokeRecursive();
+        $this->tokens()->with('refreshToken')->get()->each->revokeRecursive();
     }
 
     public function title(): ?string
