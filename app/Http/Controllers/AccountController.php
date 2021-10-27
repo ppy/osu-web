@@ -245,13 +245,9 @@ class AccountController extends Controller
                 Mail::to($user)->send(new UserPasswordUpdated($user));
             }
 
-            // this should always be true but checking just in case
-            $isVerified = UserVerification::fromCurrentRequest()->isDone();
             $user->resetSessions();
             $this->login($user);
-            if ($isVerified) {
-                UserVerification::fromCurrentRequest()->markVerified();
-            }
+            UserVerification::fromCurrentRequest()->markVerified();
 
             return response([], 204);
         } else {
