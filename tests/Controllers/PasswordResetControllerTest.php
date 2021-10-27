@@ -114,7 +114,7 @@ class PasswordResetControllerTest extends TestCase
                 'password' => $tryNewPassword,
                 'password_confirmation' => $tryNewPassword,
             ],
-        ])->assertJson(fn (AssertableJson $json) => $json->has('message'));
+        ])->assertJson(fn (AssertableJson $json) => $json->where('message', osu_trans('password_reset.error.expired')));
 
         $this->assertTrue($user->fresh()->checkPassword($password));
     }
@@ -140,7 +140,7 @@ class PasswordResetControllerTest extends TestCase
                 'password' => $tryNewPassword,
                 'password_confirmation' => $tryNewPassword,
             ],
-        ])->assertJson(fn (AssertableJson $json) => $json->has('message'));
+        ])->assertJson(fn (AssertableJson $json) => $json->where('message', osu_trans('password_reset.error.expired')));
 
         $this->assertTrue($user->fresh()->checkPassword($newPassword));
     }
