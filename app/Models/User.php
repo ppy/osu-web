@@ -11,6 +11,7 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\Elasticsearch\Indexable;
+use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\UsernameValidation;
@@ -1579,6 +1580,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function authHash(): string
     {
         return hash('sha256', $this->user_email).':'.hash('sha256', $this->user_password);
+    }
+
+    public function resetSessions(): void
+    {
+        SessionStore::destroy($this->getKey());
+        $this->tokens()->with('refreshToken')->get()->each->revokeRecursive();
     }
 
     public function title(): ?string
