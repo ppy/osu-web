@@ -101,6 +101,7 @@ class PasswordResetController extends Controller
 
         if ($user->update($params)) {
             $this->clear();
+            $user->resetSessions();
             $this->login($user);
 
             UserAccountHistory::logUserResetPassword($user);
