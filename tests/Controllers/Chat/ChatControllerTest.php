@@ -47,7 +47,7 @@ class ChatControllerTest extends TestCase
      */
     public function testCreatePmWithClientCredentials($scopes, $expectedStatus)
     {
-        $client = factory(Client::class)->create(['user_id' => $this->user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $this->user]);
         $this->actAsScopedUser(null, $scopes, $client);
         $this->json(
             'POST',
@@ -64,7 +64,7 @@ class ChatControllerTest extends TestCase
      */
     public function testCreatePmWithClientCredentialsBotGroup($scopes, $expectedStatus)
     {
-        $client = factory(Client::class)->create(['user_id' => $this->user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $this->user]);
         $this->user->update(['group_id' => app('groups')->byIdentifier('bot')->getKey()]);
         $this->actAsScopedUser(null, $scopes, $client);
         $this->json(
