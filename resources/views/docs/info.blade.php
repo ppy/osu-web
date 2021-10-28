@@ -436,6 +436,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2021-10-28
+- `beatmap` in [Get Beatmap scores](#get-beatmap-scores) `scores` array item is removed (it's never been documented in the first place).
+
 ### 2021-09-01
 - `last_read_id` in [ChatChannel](#chatchannel) is deprecated, use `current_user_attributes.last_read_id` instead.
 
