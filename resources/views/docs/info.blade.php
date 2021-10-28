@@ -18,10 +18,6 @@
 
 Welcome to the documentation for osu!api v2. You can use this API to get information on various circles and those who click them.
 
-<aside class="warning">
-WARNING: The API is under heavy development and has not stabilised yet. If you choose to use it at this stage, you do so at your own risk. Endpoints may appear, disappear, be renamed and completely change behaviour without warning.
-</aside>
-
 Note that while we endeavour to keep this documentation up to date, consider it a work-in-progress and note that it will likely contain errors.
 
 If you notice any errors in the documentation or encounter problems using the API, please check for (or create if necessary) [issues on GitHub](https://github.com/ppy/osu-web/issues). Alternatively, you can ask in `#osu-web` [on the development discord](https://discord.gg/ppy).
