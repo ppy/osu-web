@@ -38,6 +38,9 @@ return [
             'edit' => 'dashbord',
             'verify_link' => 'kontobekreftelse',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'utvalgte artister',
         ],

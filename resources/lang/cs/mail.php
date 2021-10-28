@@ -53,7 +53,7 @@ return [
     'store_payment_completed' => [
         'prepare_shipping' => '',
         'processing' => '',
-        'questions' => "",
+        'questions' => "Pokud máte jakékoliv dotazy, neváhejte odpovědět na tento e-mail.",
         'shipping' => 'Doručení',
         'subject' => 'Obdrželi jsme tvou osu!store objednávku!',
         'thank_you' => 'Děkujeme za vaši osu!store objednávku!',
@@ -86,7 +86,7 @@ return [
     'user_notification_digest' => [
         'new' => '',
         'settings' => '',
-        'subject' => '',
+        'subject' => 'Nová osu! oznámení',
     ],
 
     'user_password_updated' => [
@@ -97,12 +97,12 @@ return [
     'user_verification' => [
         'code' => 'Tvůj ověřovací kód je:',
         'code_hint' => 'Můžeš zadat kód s mezerami nebo bez nich.',
-        'link' => '',
+        'link' => 'Případně můžete také navštívit tento odkaz níže pro dokončení ověření:',
         'report' => '',
         'subject' => 'ověření osu! účtu',
 
         'action_from' => [
-            '_' => '',
+            '_' => 'Akce provedená na vašem účtu z :country vyžaduje ověření.',
             'unknown_country' => 'neznámá země',
         ],
     ],

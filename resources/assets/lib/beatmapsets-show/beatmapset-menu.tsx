@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import { PopupMenuPersistent } from 'popup-menu-persistent';
+import { PopupMenu } from 'popup-menu';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
 
@@ -12,7 +12,7 @@ interface Props {
 
 export default function BeatmapsetMenu(props: Props) {
   return (
-    <PopupMenuPersistent>
+    <PopupMenu>
       {() => (
         <div className='simple-menu'>
           <ReportReportable
@@ -24,6 +24,6 @@ export default function BeatmapsetMenu(props: Props) {
           />
         </div>
       )}
-    </PopupMenuPersistent>
+    </PopupMenu>
   );
 }

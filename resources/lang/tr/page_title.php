@@ -38,6 +38,9 @@ return [
             'edit' => 'kontrol paneli',
             'verify_link' => 'hesap doğrulama',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'featured artist\'ler',
         ],

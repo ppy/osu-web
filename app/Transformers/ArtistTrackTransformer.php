@@ -9,10 +9,16 @@ use App\Models\ArtistTrack;
 
 class ArtistTrackTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = [
+        'album',
+        'artist',
+    ];
+
     public function transform(ArtistTrack $track)
     {
         return [
             'album_id' => $track->album_id,
+            'artist_id' => $track->artist_id,
             'bpm' => $track->bpm,
             'cover_url' => $track->cover_url,
             'exclusive' => $track->exclusive,
@@ -23,7 +29,22 @@ class ArtistTrackTransformer extends TransformerAbstract
             'osz' => $track->osz,
             'preview' => $track->preview,
             'title' => $track->title,
+            'updated_at' => json_time($track->updated_at),
             'version' => $track->version,
         ];
+    }
+
+    public function includeAlbum(ArtistTrack $track)
+    {
+        $album = $track->album;
+
+        return $album === null
+            ? null
+            : $this->item($track->album, new ArtistAlbumTransformer());
+    }
+
+    public function includeArtist(ArtistTrack $track)
+    {
+        return $this->item($track->artist, new ArtistTransformer());
     }
 }

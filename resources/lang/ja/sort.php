@@ -15,6 +15,17 @@ return [
     'top' => 'トップ',
     'username' => 'ユーザー名',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => '投稿時間',
         'relevance' => '関連',

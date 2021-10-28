@@ -40,4 +40,23 @@ return [
         'bpm' => 'bpm',
         'genre' => 'genre',
     ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'tracks search',
+
+            'form' => [
+                'advanced' => 'Advanced Search',
+                'album' => 'Album',
+                'artist' => 'Artist',
+                'bpm_gte' => 'BPM Minimum',
+                'bpm_lte' => 'BPM Maximum',
+                'empty' => 'No tracks matching search criteria were found.',
+                'genre' => 'Genre',
+                'genre_all' => 'All',
+                'length_gte' => 'Length Minimum',
+                'length_lte' => 'Length Maximum',
+            ],
+        ],
+    ],
 ];

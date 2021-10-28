@@ -20,7 +20,7 @@ return [
 
         'destroy' => [
             '_' => 'Retirer la bannière',
-            'confirm' => 'Êtes-vous sûr de supprimer la bannière ?',
+            'confirm' => 'Êtes-vous sûr de vouloir supprimer la bannière ?',
         ],
     ],
 
@@ -98,7 +98,7 @@ return [
 
         'create' => [
             'close' => 'Fermer',
-            'preview' => 'Prévisualisation',
+            'preview' => 'Preview',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Écrire',
@@ -151,7 +151,7 @@ return [
         'topic_buttons' => [
             'remove' => [
                 'confirmation' => 'Se désabonner du sujet ?',
-                'title' => 'Désabonner',
+                'title' => 'Se désabonner',
             ],
         ],
     ],
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => 'priorité d\'étoiles',
+            'feature_votes' => 'star priority',
             'replies' => 'réponses',
             'views' => 'vues',
         ],
@@ -281,7 +281,7 @@ return [
 
             'feature_vote' => [
                 'current' => 'Priorité actuelle : +:count',
-                'do' => 'Promouvoir cette requête',
+                'do' => 'Promouvoir cette demande',
 
                 'info' => [
                     '_' => 'Il s\'agit d\'une :feature_request. Les demandes de fonctionnalité peuvent être votées par des :supporters.',
@@ -292,7 +292,7 @@ return [
                 'user' => [
                     'count' => '{0} pas de votes|{1} :count_delimited vote|[2,*] :count_delimited votes',
                     'current' => 'Il vous reste :votes.',
-                    'not_enough' => "Vous n'avez plus de votes disponibles",
+                    'not_enough' => "Il ne vous reste plus de votes",
                 ],
             ],
 

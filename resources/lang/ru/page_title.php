@@ -38,6 +38,9 @@ return [
             'edit' => 'инфопанель',
             'verify_link' => 'верификация аккаунта',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'избранные исполнители',
         ],

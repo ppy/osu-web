@@ -232,6 +232,9 @@ class Mod
         self::OSU_NO_SCOPE => [
             'hidden_combo_count' => 'int',
         ],
+        self::HIDDEN => [
+            'only_fade_approach_circles' => 'bool',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)

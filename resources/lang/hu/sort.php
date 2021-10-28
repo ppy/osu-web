@@ -15,6 +15,17 @@ return [
     'top' => 'Felső',
     'username' => 'Felhasználónév',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => 'Közzétéve',
         'relevance' => 'Relevancia',

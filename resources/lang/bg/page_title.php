@@ -38,6 +38,9 @@ return [
             'edit' => 'главно табло',
             'verify_link' => 'потвърждаване на профил',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'представени автори',
         ],
