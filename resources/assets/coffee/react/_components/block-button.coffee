@@ -75,7 +75,7 @@ export class BlockButton extends React.PureComponent
   render: =>
     return null unless @isVisible()
 
-    blockClass = classWithModifiers(bn, ['block'].concat(@props.modifiers))
+    blockClass = classWithModifiers(bn, @props.modifiers, 'block')
     if @props.wrapperClass?
       wrapperClass = @props.wrapperClass
       contentClass = blockClass
