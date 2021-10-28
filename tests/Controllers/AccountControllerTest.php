@@ -7,10 +7,13 @@ declare(strict_types=1);
 
 namespace Tests\Controllers;
 
+use App\Mail\UserEmailUpdated;
+use App\Mail\UserPasswordUpdated;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
 use App\Models\WeakPassword;
 use Hash;
+use Mail;
 use Tests\TestCase;
 
 class AccountControllerTest extends TestCase
@@ -65,6 +68,8 @@ class AccountControllerTest extends TestCase
     {
         $newEmail = 'new-'.$this->user->user_email;
 
+        Mail::fake();
+
         $this->actingAsVerified($this->user())
             ->json('PUT', route('account.email'), [
                 'user' => [
@@ -77,7 +82,7 @@ class AccountControllerTest extends TestCase
 
         $this->assertSame($newEmail, $this->user->fresh()->user_email);
 
-        // FIXME: add test to check there's mail sent
+        Mail::assertQueued(UserEmailUpdated::class, 2);
     }
 
     public function testUpdateEmailInvalidPassword()
@@ -99,6 +104,8 @@ class AccountControllerTest extends TestCase
     {
         $newPassword = 'newpassword';
 
+        Mail::fake();
+
         $this->actingAsVerified($this->user())
             ->json('PUT', route('account.password'), [
                 'user' => [
@@ -110,6 +117,8 @@ class AccountControllerTest extends TestCase
             ->assertSuccessful();
 
         $this->assertTrue(Hash::check($newPassword, $this->user->fresh()->user_password));
+
+        Mail::assertQueued(UserPasswordUpdated::class);
     }
 
     public function testUpdatePasswordInvalidCurrentPassword()
