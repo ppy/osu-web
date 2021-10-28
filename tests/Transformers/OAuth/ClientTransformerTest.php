@@ -62,7 +62,7 @@ class ClientTransformerTest extends TestCase
     {
         parent::setUp();
 
-        $this->owner = User::factory()->create();
-        $this->client = factory(Client::class)->make(['user_id' => $this->owner->getKey()]);
+        $this->client = Client::factory()->make();
+        $this->owner = $this->client->user;
     }
 }
