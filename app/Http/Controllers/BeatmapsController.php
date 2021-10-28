@@ -57,7 +57,7 @@ class BeatmapsController extends Controller
      *
      * ### Response Format
      *
-     * Returns [BeatmapScores](#beatmapscores)
+     * Returns [BeatmapScores](#beatmapscores). `Score` object inside includes `user` and the included `user` includes `country` and `cover`.
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
