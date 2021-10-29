@@ -15,12 +15,12 @@ class AccountTest extends DuskTestCase
 {
     public function testUpdatePassword(): void
     {
-        $userFactory = User::factory();
+        $this->browse(function (Browser $browserMain, Browser $browserOther) {
+            $userFactory = User::factory();
 
-        $password = $userFactory::DEFAULT_PASSWORD;
-        $user = $userFactory->create();
+            $password = $userFactory::DEFAULT_PASSWORD;
+            $user = $userFactory->create();
 
-        $this->browse(function (Browser $browserMain, Browser $browserOther) use ($password, $user) {
             $doAll = function ($callback) use ($browserMain, $browserOther) {
                 $callback($browserMain);
                 $callback($browserOther);
