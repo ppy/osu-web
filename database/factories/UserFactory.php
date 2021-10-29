@@ -14,11 +14,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
-    private static function defaultPassword()
+    const DEFAULT_PASSWORD = 'password';
+
+    private static function defaultPasswordHash()
     {
         static $password;
 
-        return $password ??= password_hash(md5('password'), PASSWORD_BCRYPT);
+        return $password ??= password_hash(md5(static::DEFAULT_PASSWORD), PASSWORD_BCRYPT);
     }
 
     protected $model = User::class;
@@ -37,7 +39,7 @@ class UserFactory extends Factory
 
         return [
             'username' => fn () => substr(str_replace('.', ' ', $this->faker->userName()), 0, 15),
-            'user_password' => static::defaultPassword(),
+            'user_password' => static::defaultPasswordHash(),
             'user_email' => fn () => $this->faker->safeEmail(),
             'group_id' => fn () => app('groups')->byIdentifier('default'),
             'user_lastvisit' => time(),
