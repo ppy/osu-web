@@ -21,10 +21,8 @@ class AccountTest extends DuskTestCase
             $password = $userFactory::DEFAULT_PASSWORD;
             $user = $userFactory->create();
 
-            $doAll = function ($callback) use ($browserMain, $browserOther) {
-                $callback($browserMain);
-                $callback($browserOther);
-            };
+            $browsers = [$browserMain, $browserOther];
+            $doAll = fn ($callback) => array_map($callback, $browsers);
 
             $doAll(fn ($browser) => (
                 $browser->visit('/')
