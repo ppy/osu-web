@@ -13,7 +13,7 @@ use Tests\DuskTestCase;
 
 class AccountTest extends DuskTestCase
 {
-    public function testLogin(): void
+    public function testUpdatePassword(): void
     {
         $userFactory = User::factory();
 
