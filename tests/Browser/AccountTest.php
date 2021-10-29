@@ -17,7 +17,7 @@ class AccountTest extends DuskTestCase
     {
         $userFactory = User::factory();
 
-        $password = 'password';
+        $password = $userFactory::DEFAULT_PASSWORD;
         $user = $userFactory->create();
 
         $this->browse(function (Browser $browserMain, Browser $browserOther) use ($password, $user) {
