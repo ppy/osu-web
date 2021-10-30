@@ -21,10 +21,9 @@ class AccountTest extends DuskTestCase
             $password = $userFactory::DEFAULT_PASSWORD;
             $user = $userFactory->create();
 
-            $browsers = [$browserMain, $browserOther];
-            $doAll = fn ($callback) => array_map($callback, $browsers);
+            $browsers = collect([$browserMain, $browserOther]);
 
-            $doAll(fn ($browser) => (
+            $browsers->each(fn ($browser) => (
                 $browser->visit('/')
                     ->clickLink('Sign in')
                     ->type('username', $user->user_email)
@@ -32,7 +31,7 @@ class AccountTest extends DuskTestCase
                     ->press('Sign in')
             ));
 
-            $doAll(fn ($browser) => $browser->waitFor('.user-home'));
+            $browsers->each(fn ($browser) => $browser->waitFor('.user-home'));
 
             $newPassword = str_random(20);
 
