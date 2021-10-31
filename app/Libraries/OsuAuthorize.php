@@ -1140,8 +1140,26 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkCommentPin(?User $user): string
+    /**
+     * @throws AuthorizationCheckException
+     */
+    public function checkCommentPin(?User $user, Comment $comment): string
     {
+        if (!$comment->commentable instanceof Beatmapset) {
+            return 'unauthorized';
+        }
+
+        if ($this->doCheckUser($user, 'CommentModerate')->can()) {
+            return 'ok';
+        }
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($comment->commentable->user_id === $user->getKey()) {
+            return 'ok';
+        }
+
         return 'unauthorized';
     }
 
