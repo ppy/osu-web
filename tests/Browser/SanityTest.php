@@ -172,9 +172,10 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['group'] = factory(\App\Models\Group::class)->create();
 
         // factory for comments
-        self::$scaffolding['comment'] = factory(\App\Models\Comment::class)->create([
-            'user_id' => self::$scaffolding['user']->user_id,
+        self::$scaffolding['comment'] = \App\Models\Comment::factory()->create([
             'commentable_id' => self::$scaffolding['build'],
+            'commentable_type' => 'build',
+            'user_id' => self::$scaffolding['user']->user_id,
         ]);
 
         // factory for matches
