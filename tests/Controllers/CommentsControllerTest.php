@@ -19,6 +19,39 @@ class CommentsControllerTest extends TestCase
     private $beatmapset;
     private $params;
 
+    /**
+     * @dataProvider pinPermissionsDataProvider
+     */
+    public function testPin(?string $groupIdentifier, bool $beatmapset, bool $beatmapsetOwner, bool $expectAllowed): void
+    {
+        $comment = Comment::factory()->create(['commentable_type' => $beatmapset ? 'beatmapset' : 'build']);
+        $user = User::factory()->withGroup($groupIdentifier)->create();
+
+        if ($beatmapsetOwner) {
+            $comment->commentable->update(['user_id' => $user->getKey()]);
+        }
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('comments.pin', $comment->getKey()))
+            ->assertStatus($expectAllowed ? 200 : 403);
+
+        $this->assertSame($comment->fresh()->pinned, $expectAllowed);
+    }
+
+    public function testPinReply(): void
+    {
+        $comment = Comment::factory()->reply()->create();
+        $user = User::factory()->withGroup('admin')->create();
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('comments.pin', $comment->getKey()))
+            ->assertStatus(422);
+
+        $this->assertFalse($comment->fresh()->pinned);
+    }
+
     public function testStore()
     {
         $this->prepareForStore();
@@ -140,6 +173,28 @@ class CommentsControllerTest extends TestCase
             ['POST', 'comments.store'],
             ['PUT', 'comments.update'],
             ['DELETE', 'comments.destroy'],
+        ];
+    }
+
+    /**
+     * Data in order:
+     * - User's group identifier
+     * - Whether the commentable is a beatmapset
+     * - Whether the user is the beatmapset's creator
+     * - Whether pinning should be allowed
+     */
+    public function pinPermissionsDataProvider(): array
+    {
+        return [
+            ['admin', true,  true,  true],
+            ['admin', true,  false, true],
+            ['admin', false, false, true],
+            ['gmt',   true,  true,  true],
+            ['gmt',   true,  false, true],
+            ['gmt',   false, false, false],
+            [null,    true,  true,  true],
+            [null,    true,  false, false],
+            [null,    false, false, false],
         ];
     }
 
