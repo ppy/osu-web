@@ -3,6 +3,7 @@
 
 import { CommentJson } from 'interfaces/comment-json';
 import { computed, makeObservable } from 'mobx';
+import core from 'osu-core-singleton';
 
 export type CommentSort = 'new' | 'old' | 'top';
 
@@ -69,7 +70,20 @@ export class Comment {
 
   @computed
   get canPin() {
-    return currentUser.is_admin && (this.parentId == null || this.pinned);
+    if (this.parentId != null && !this.pinned) {
+      return false;
+    }
+
+    if (currentUser.is_admin) {
+      return true;
+    }
+
+    const meta = core.dataStore.commentableMetaStore.get(this.commentableType, this.commentableId);
+    const beatmapsetOwnerId = meta != null && 'type' in meta && meta.type === 'beatmapset'
+      ? meta.owner_id
+      : undefined;
+
+    return beatmapsetOwnerId != null && (this.canModerate || beatmapsetOwnerId === currentUser.id);
   }
 
   @computed
