@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => 'Сортирай по',
+    '_' => 'Подреждане по',
 
     'all' => 'Всички',
     'friends' => 'Приятели',
@@ -14,6 +14,17 @@ return [
     'rank' => 'Ранг',
     'top' => 'Водещи',
     'username' => 'Потребителско име',
+
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
 
     'forum_posts' => [
         'created' => 'Дата',

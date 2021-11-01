@@ -15,6 +15,17 @@ return [
     'top' => 'עליון',
     'username' => 'שם משתמש',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => 'זמן פירסום',
         'relevance' => 'רלוונטיות',

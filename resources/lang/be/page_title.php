@@ -38,6 +38,9 @@ return [
             'edit' => 'панэль кіравання',
             'verify_link' => 'пацверджанне ўліковага запісу',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'ліцэнзаваныя мастакі',
         ],
@@ -114,7 +117,7 @@ return [
             '_' => 'рэйтынг',
         ],
         'scores_controller' => [
-            '_' => 'прадукцыйнасць',
+            '_' => 'па прадукцыйнасці',
         ],
         'store_controller' => [
             '_' => 'крама',
@@ -138,7 +141,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'аўтарызацыя праграмы',
         ],
     ],
     'store' => [

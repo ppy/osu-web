@@ -82,9 +82,7 @@ class TestCase extends BaseTestCase
      */
     protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null, $driver = null)
     {
-        if ($client === null) {
-            $client = factory(Client::class)->create();
-        }
+        $client ??= Client::factory()->create();
 
         // create valid token
         $token = $this->createToken($user, $scopes, $client);
@@ -208,9 +206,7 @@ class TestCase extends BaseTestCase
      */
     protected function createToken(?User $user, ?array $scopes = null, ?Client $client = null)
     {
-        if ($client === null) {
-            $client = factory(Client::class)->create();
-        }
+        $client ??= Client::factory()->create();
 
         $token = $client->tokens()->create([
             'expires_at' => now()->addDays(1),

@@ -38,8 +38,11 @@ return [
             'edit' => 'tableau de bord',
             'verify_link' => 'vérification du compte',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
-            '_' => 'artistes associés',
+            '_' => 'featured artists',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'posts de discussion sur la beatmap',
@@ -48,13 +51,13 @@ return [
             '_' => 'discussions sur la beatmap',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'collections de beatmaps',
+            '_' => 'beatmap packs',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => 'votes de discussion de la beatmap',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'historique de la beatmap',
+            '_' => 'historique des beatmaps',
         ],
         'beatmapset_watches_controller' => [
             'index' => 'tableau de bord',
@@ -62,7 +65,7 @@ return [
         'beatmapsets_controller' => [
             'discussion' => 'discussion de la beatmap',
             'index' => 'liste des beatmaps',
-            'show' => 'informations de la beatmap',
+            'show' => 'informations sur la beatmap',
         ],
         'changelog_controller' => [
             '_' => 'changelog',
@@ -137,7 +140,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autoriser l\'application',
         ],
     ],
     'store' => [

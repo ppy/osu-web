@@ -6,7 +6,7 @@ import { route } from 'laroute';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
-import { canBeReported } from 'score-helper';
+import { canBeReported } from 'utils/score-helper';
 
 interface Props {
   score: ScoreJson;
@@ -29,13 +29,15 @@ export default function Buttons(props: Props) {
         <div className='score-buttons__menu'>
           <PopupMenuPersistent>
             {() => (
-              <ReportReportable
-                baseKey='scores'
-                className='simple-menu__item'
-                reportableId={props.score.best_id?.toString() ?? ''}
-                reportableType={`score_best_${props.score.mode}`}
-                user={props.score.user}
-              />
+              <div className='simple-menu'>
+                <ReportReportable
+                  baseKey='scores'
+                  className='simple-menu__item'
+                  reportableId={props.score.best_id?.toString() ?? ''}
+                  reportableType={`score_best_${props.score.mode}`}
+                  user={props.score.user}
+                />
+              </div>
             )}
           </PopupMenuPersistent>
         </div>

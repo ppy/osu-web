@@ -52,7 +52,7 @@ class ClientTest extends TestCase
             'user_id' => $user->getKey(),
         ]);
 
-        $otherClient = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
+        $otherClient = Client::factory()->create(['user_id' => $this->owner]);
         $otherClient->tokens()->create([
             'id' => '2',
             'revoked' => false,
@@ -168,7 +168,7 @@ class ClientTest extends TestCase
     {
         config()->set('osu.oauth.max_user_clients', 1);
 
-        $client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
+        $client = Client::factory()->create(['user_id' => $this->owner]);
         $this->assertFalse($client->exists);
         $this->assertArrayHasKey('user.oauthClients.count', $client->validationErrors()->all());
     }
@@ -178,14 +178,14 @@ class ClientTest extends TestCase
         config()->set('osu.oauth.max_user_clients', 1);
         $this->client->update(['revoked' => true]);
 
-        $client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
+        $client = Client::factory()->create(['user_id' => $this->owner]);
         $this->assertTrue($client->exists);
         $this->assertEmpty($client->validationErrors()->all());
     }
 
     public function testRevokingClientSkipsValidation()
     {
-        $client = factory(Client::class)->make(['user_id' => $this->owner->getKey()]);
+        $client = Client::factory()->make(['user_id' => $this->owner]);
         $client->save(['skipValidations' => true]);
         $this->assertTrue($client->exists);
         $client->revoke();
@@ -269,6 +269,6 @@ class ClientTest extends TestCase
         parent::setUp();
 
         $this->owner = User::factory()->create();
-        $this->client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
+        $this->client = Client::factory()->create(['user_id' => $this->owner]);
     }
 }

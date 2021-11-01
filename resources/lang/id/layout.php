@@ -19,7 +19,6 @@ return [
             'contest' => 'kontes',
             'contests' => 'kontes',
             'root' => 'konsol',
-            'store_orders' => 'pengelola toko',
         ],
 
         'artists' => [
@@ -120,7 +119,7 @@ return [
             'description' => '',
         ],
         '404' => [
-            'error' => 'Laman Hilang',
+            'error' => 'Laman Tidak Ditemukan',
             'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
         ],
         '403' => [
@@ -132,7 +131,7 @@ return [
             'description' => 'Anda dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin coba untuk masuk terlebih dahulu.',
         ],
         '405' => [
-            'error' => 'Laman Hilang',
+            'error' => 'Laman Tidak Ditemukan',
             'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
         ],
         '422' => [

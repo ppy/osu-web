@@ -38,6 +38,9 @@ return [
             'edit' => 'irányítópult',
             'verify_link' => 'Fiók hitelesítése',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'kiemelt előadók',
         ],
@@ -137,7 +140,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'alkalmazás engedélyezése',
         ],
     ],
     'store' => [

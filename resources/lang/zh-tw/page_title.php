@@ -38,6 +38,9 @@ return [
             'edit' => '主頁',
             'verify_link' => '帳戶驗證',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => '精選藝術家',
         ],
@@ -137,7 +140,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => '授權應用程式',
         ],
     ],
     'store' => [

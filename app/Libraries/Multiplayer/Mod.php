@@ -43,6 +43,7 @@ class Mod
     const OSU_CLASSIC = 'CL';
     const OSU_BARRELROLL = 'BR';
     const OSU_APPROACH_DIFFERENT = 'AD';
+    const OSU_NO_SCOPE = 'NS';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -228,6 +229,12 @@ class Mod
         self::PERFECT => [
             'restart' => 'bool',
         ],
+        self::OSU_NO_SCOPE => [
+            'hidden_combo_count' => 'int',
+        ],
+        self::HIDDEN => [
+            'only_fade_approach_circles' => 'bool',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
@@ -301,6 +308,7 @@ class Mod
                         self::RANDOM,
                         self::OSU_APPROACH_DIFFERENT,
                         self::MIRROR,
+                        self::OSU_NO_SCOPE,
                     ]
                 ),
 

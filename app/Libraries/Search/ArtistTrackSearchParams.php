@@ -57,7 +57,11 @@ class ArtistTrackSearchParams extends SearchParams
             $this->sortField = $array[0];
             $this->sortOrder = $array[1] ?? '';
 
-            if (!array_key_exists($this->sortField, static::SORT_FIELD_MAP) || !$validOrders->contains($this->sortOrder)) {
+            if (
+                !array_key_exists($this->sortField, static::SORT_FIELD_MAP)
+                || !$validOrders->contains($this->sortOrder)
+                || !$this->isSortFieldAvailable($this->sortField)
+            ) {
                 $this->isDefaultSort = true;
             }
         }
@@ -72,9 +76,16 @@ class ArtistTrackSearchParams extends SearchParams
 
     private function getDefaultSortField(): string
     {
-        return $this->queryString === null
-            ? 'update'
-            : 'relevance';
+        return $this->isSortFieldAvailable('relevance') ? 'relevance' : 'update';
+    }
+
+    private function isSortFieldAvailable(string $sortField): bool
+    {
+        if ($sortField === 'relevance') {
+            return present($this->queryString) || present($this->artist) || present($this->album);
+        }
+
+        return true;
     }
 
     private function setSorts(): void

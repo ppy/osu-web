@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Склад',
-    ],
-
     'cart' => [
         'checkout' => 'Разплащане',
         'info' => ':count_delimited артикул в количката ($:subtotal)|:count_delimited артикула в количката ($:subtotal)',

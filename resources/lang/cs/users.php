@@ -115,30 +115,30 @@ return [
     'logout_confirm' => 'Opravdu se chceš odhlásit? :(',
     'report' => [
         'button_text' => 'Nahlásit',
-        'comments' => 'Přídavné komentáře',
-        'placeholder' => 'Prosím uveďte jakékoliv informace které si myslíte že by mohly být užitečně.',
+        'comments' => 'Dodatečné poznámky',
+        'placeholder' => 'Uveďte prosím jakékoliv informace, které si myslíte, že by mohly být užitečné.',
         'reason' => 'Důvod',
-        'thanks' => 'Děkují za vaše nahlášení!',
+        'thanks' => 'Děkujeme za vaše nahlášení!',
         'title' => 'Nahlásit :username?',
 
         'actions' => [
-            'send' => 'Poslat Nahlášení',
+            'send' => 'Odeslat nahlášení',
             'cancel' => 'Zrušit',
         ],
 
         'options' => [
-            'cheating' => 'Faulové hráni / Podvádění',
-            'multiple_accounts' => '',
-            'insults' => 'Uráží mě / jiné',
+            'cheating' => 'Podvádění',
+            'multiple_accounts' => 'Používání více účtů',
+            'insults' => 'Uráží mě / ostatní',
             'spam' => 'Spamování',
-            'unwanted_content' => 'Linkovaní nebezpečného obsahu',
+            'unwanted_content' => 'Linkovaní nevhodného obsahu',
             'nonsense' => 'Nesmysl',
-            'other' => 'Ostatní (napište dolů)',
+            'other' => 'Jiný (napište níže)',
         ],
     ],
     'restricted_banner' => [
         'title' => 'Tvůj účet byl omezen!',
-        'message' => 'Zatímco jsi v omezeném režimu, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu který by se měl sám vyřešit do nejpozději 24 hodin. Pokud si přeješ odvolat tvé omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktujte podporu</a>.',
+        'message' => 'Zatímco jsi omezený, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu, který by se měl sám vyřešit nejpozději do 24 hodin. Pokud si přeješ odvolat své omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktuj podporu</a>.',
     ],
     'show' => [
         'age' => ':age let',
@@ -156,8 +156,8 @@ return [
         'title' => "profil uživatele :username",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Postnul :link',
+            'count' => ':count_delimited komentář|:count_delimited komentáře|:count_delimited komentářů',
         ],
         'edit' => [
             'cover' => [
@@ -221,8 +221,8 @@ return [
             ],
             'events' => [
                 'title' => 'Události',
-                'title_longer' => 'Poslední údálosti',
-                'show_more' => 'zobrazit více eventů',
+                'title_longer' => 'Poslední události',
+                'show_more' => 'zobrazit více událostí',
             ],
             'historical' => [
                 'title' => 'Historické',
@@ -289,8 +289,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => 'tuto stránku',
+                    '_' => 'Založeno na tom, jak moc uživatel přispěl k moderaci beatmap. Další informace najdete na :link.',
+                    'link' => 'této stránce',
                 ],
             ],
             'me' => [
@@ -331,7 +331,7 @@ return [
                 'received' => '',
                 'title' => 'Hlasy',
                 'title_longer' => 'Poslední hlasy',
-                'vote_count' => '',
+                'vote_count' => ':count_delimited hlas|:count_delimited hlasy|:count_delimited hlasů',
             ],
             'account_standing' => [
                 'title' => 'Stav účtu',
@@ -384,7 +384,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Přispěl :link',
-            'count' => ':count příspěvkem na fóru|:count příspěvky na fóru',
+            'count' => ':count_delimited příspěvkem na fóru|:count_delimited příspěvky na fóru',
         ],
         'rank' => [
             'country' => 'Státní pozice pro :mode',

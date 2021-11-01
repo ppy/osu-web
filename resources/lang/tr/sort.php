@@ -15,6 +15,17 @@ return [
     'top' => 'En çok oy',
     'username' => 'Kullanıcı adı',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => 'Gönderi tarihi',
         'relevance' => 'Alaka',

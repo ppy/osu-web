@@ -11,6 +11,7 @@ interface Props {
   href?: string;
   icon?: string;
   isBusy: boolean;
+  isSubmit: boolean;
   modifiers?: Modifiers;
   props: React.HTMLAttributes<HTMLElement> & Partial<Record<`data-${string}`, string | number>>;
   text?: {
@@ -24,6 +25,7 @@ export default class BigButton extends React.PureComponent<Props> {
     disabled: false,
     extraClasses: [],
     isBusy: false,
+    isSubmit: false,
     props: {},
   };
 
@@ -42,7 +44,7 @@ export default class BigButton extends React.PureComponent<Props> {
   }
 
   render() {
-    let blockClass = classWithModifiers('btn-osu-big', this.props.modifiers);
+    let blockClass = classWithModifiers('btn-osu-big', this.props.modifiers, { disabled: this.props.disabled });
     if (this.props.extraClasses != null) {
       blockClass += ` ${this.props.extraClasses.join(' ')}`;
     }
@@ -71,7 +73,7 @@ export default class BigButton extends React.PureComponent<Props> {
       <button
         className={blockClass}
         disabled={this.props.disabled}
-        type='button'
+        type={this.props.isSubmit ? 'submit' : 'button'}
         {...this.props.props}
       >
         {this.renderChildren()}

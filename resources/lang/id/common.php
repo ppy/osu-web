@@ -5,7 +5,7 @@
 
 return [
     'confirmation' => 'Apakah Anda yakin?',
-    'confirmation_unsaved' => 'Perubahan yang tidak disimpan akan hilang. Apa Anda yakin?',
+    'confirmation_unsaved' => 'Perubahan-perubahan yang tidak disimpan akan hilang. Apakah Anda yakin?',
     'saved' => 'Tersimpan',
 
     'array_and' => [
@@ -68,7 +68,7 @@ return [
         'badges' => ':count_delimited lencana|:count_delimited lencana',
         'days' => ':count_delimited hari|:count_delimited hari',
         'hour_short_unit' => 'jam|jam',
-        'hours' => ':count_delimited jam',
+        'hours' => ':count_delimited jam|:count_delimited jam',
         'item' => ':count_delimited unit|:count_delimited unit',
         'minute_short_unit' => 'menit|menit',
         'minutes' => ':count_delimited menit|:count_delimited menit',

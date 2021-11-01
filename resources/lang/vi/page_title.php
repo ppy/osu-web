@@ -38,6 +38,9 @@ return [
             'edit' => 'tổng quan',
             'verify_link' => 'xác thực tài khoản',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'nghệ sĩ tiêu biểu',
         ],

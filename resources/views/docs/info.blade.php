@@ -7,15 +7,16 @@
     use Knuckles\Scribe\Extracting\Generator;
 
     $wikiUrl = wiki_url('Bot_account', null, false);
+
+    $defaultHeaders = [
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
+    ];
 @endphp
 
 # Introduction
 
 Welcome to the documentation for osu!api v2. You can use this API to get information on various circles and those who click them.
-
-<aside class="warning">
-WARNING: The API is under heavy development and has not stabilised yet. If you choose to use it at this stage, you do so at your own risk. Endpoints may appear, disappear, be renamed and completely change behaviour without warning.
-</aside>
 
 Note that while we endeavour to keep this documentation up to date, consider it a work-in-progress and note that it will likely contain errors.
 
@@ -96,6 +97,7 @@ Restricted users can grant authorization like anyone else. If your client should
     $description = 'To obtain an access token, you must first get an authorization code that is created when a user grants permissions to your application. To request permission from the user, they should be redirected to:';
     $uri = route('oauth.authorizations.authorize', null, false);
     $route = [
+        'bodyParameters' => [],
         'boundUri' => $uri,
         'cleanBodyParameters' => [],
         'fileParameters' => [],
@@ -179,13 +181,7 @@ Restricted users can grant authorization like anyone else. If your client should
         EOT;
     $uri = route('oauth.passport.token', null, false);
     $route = [
-        'boundUri' => $uri,
-        'cleanQueryParameters' => [],
-        'fileParameters' => [],
-        'headers' => [],
-        'metadata' => ['authenticated' => false, 'description' => $description],
-        'methods' => ['POST'],
-        'nestedBodyParameters' => [
+        'bodyParameters' => [
             'client_id' => [
                 'description' => 'The client ID of your application.',
                 'name' => 'client_id',
@@ -217,6 +213,12 @@ Restricted users can grant authorization like anyone else. If your client should
                 'value' => 'http://localhost:4000',
             ],
         ],
+        'boundUri' => $uri,
+        'cleanQueryParameters' => [],
+        'fileParameters' => [],
+        'headers' => $defaultHeaders,
+        'metadata' => ['authenticated' => false, 'description' => $description],
+        'methods' => ['POST'],
         'queryParameters' => [],
         'responses' => [
             [
@@ -233,7 +235,8 @@ Restricted users can grant authorization like anyone else. If your client should
         'uri' => $uri,
         'urlParameters' => [],
     ];
-    $route['cleanBodyParameters'] = Generator::cleanParams($route['nestedBodyParameters']);
+    $route['cleanBodyParameters'] = Generator::cleanParams($route['bodyParameters']);
+    $route['nestedBodyParameters'] = Generator::nestArrayAndObjectFields($route['bodyParameters']);
 @endphp
 @include('scribe::partials.endpoint', [
     'endpointId' => 'oauth-passport-token',
@@ -268,13 +271,7 @@ Restricted users can grant authorization like anyone else. If your client should
         EOT;
     $uri = route('oauth.passport.token', null, false);
     $route = [
-        'boundUri' => $uri,
-        'cleanQueryParameters' => [],
-        'fileParameters' => [],
-        'headers' => [],
-        'metadata' => ['authenticated' => false, 'description' => $description],
-        'methods' => ['POST'],
-        'nestedBodyParameters' => [
+        'bodyParameters' => [
             'client_id' => [
                 'description' => 'The Client ID you received when you [registered]('.route('account.edit').'#new-oauth-application).',
                 'name' => 'client_id',
@@ -304,6 +301,12 @@ Restricted users can grant authorization like anyone else. If your client should
                 'value' => 'public',
             ],
         ],
+        'boundUri' => $uri,
+        'cleanQueryParameters' => [],
+        'fileParameters' => [],
+        'headers' => $defaultHeaders,
+        'metadata' => ['authenticated' => false, 'description' => $description],
+        'methods' => ['POST'],
         'queryParameters' => [],
         'responses' => [
             [
@@ -319,7 +322,8 @@ Restricted users can grant authorization like anyone else. If your client should
         'uri' => $uri,
         'urlParameters' => [],
     ];
-    $route['cleanBodyParameters'] = Generator::cleanParams($route['nestedBodyParameters']);
+    $route['cleanBodyParameters'] = Generator::cleanParams($route['bodyParameters']);
+    $route['nestedBodyParameters'] = Generator::nestArrayAndObjectFields($route['bodyParameters']);
 @endphp
 @include('scribe::partials.endpoint', [
     'endpointId' => 'oauth-passport-token-client',
@@ -431,6 +435,9 @@ For a full list of changes, see the
 [Changelog on the site]({{ route('changelog.show', ['changelog' => 'web']) }}).
 
 ## Breaking Changes
+
+### 2021-10-28
+- `beatmap` in [Get Beatmap scores](#get-beatmap-scores) `scores` array item is removed (it's never been documented in the first place).
 
 ### 2021-09-01
 - `last_read_id` in [ChatChannel](#chatchannel) is deprecated, use `current_user_attributes.last_read_id` instead.

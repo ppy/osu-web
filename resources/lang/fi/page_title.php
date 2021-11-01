@@ -38,6 +38,9 @@ return [
             'edit' => 'yleiskatsaus',
             'verify_link' => 'tilin vahvistaminen',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => '',
         ],
@@ -137,7 +140,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'valtuuta sovellus',
         ],
     ],
     'store' => [

@@ -12,7 +12,9 @@ import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
 import { Spinner } from 'spinner';
+import StringWithComponent from 'string-with-component';
 import { SupporterIcon } from 'supporter-icon';
+import TimeWithTooltip from 'time-with-tooltip';
 import UserCardBrick from 'user-card-brick';
 import UserGroupBadges from 'user-group-badges';
 import { classWithModifiers } from 'utils/css';
@@ -269,21 +271,20 @@ export class UserCard extends React.PureComponent<Props, State> {
     }
 
     const items = (dismiss: () => void) => (
-      <>
-        {
-          this.canMessage ? (
-            <a
-              className='simple-menu__item js-login-required--click'
-              href={route('messages.users.show', { user: this.user.id })}
-              onClick={dismiss}
-            >
-              <span className='fas fa-envelope' />
-              {` ${osu.trans('users.card.send_message')}`}
-            </a>
-          ) : null
-        }
+      <div className='simple-menu'>
+        {this.canMessage && (
+          <a
+            className='simple-menu__item js-login-required--click'
+            href={route('messages.users.show', { user: this.user.id })}
+            onClick={dismiss}
+          >
+            <span className='fas fa-envelope' />
+            {` ${osu.trans('users.card.send_message')}`}
+          </a>
+        )}
 
-        <BlockButton modifiers={['inline']} onClick={dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
+        <BlockButton modifiers='inline' onClick={dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
+
         <ReportReportable
           className='simple-menu__item'
           icon
@@ -292,7 +293,7 @@ export class UserCard extends React.PureComponent<Props, State> {
           reportableType='user'
           user={this.user}
         />
-      </>
+      </div>
     );
 
     return (
@@ -307,7 +308,6 @@ export class UserCard extends React.PureComponent<Props, State> {
       return null;
     }
 
-    const lastSeen = (!this.isOnline && this.user.last_visit != null) ? osu.trans('users.show.lastvisit', { date: osu.timeago(this.user.last_visit) }) : '';
     const status = this.isOnline ? osu.trans('users.status.online') : osu.trans('users.status.offline');
 
     return (
@@ -315,10 +315,16 @@ export class UserCard extends React.PureComponent<Props, State> {
         <div className='user-card__status'>
           {this.renderStatusIcon()}
           <div className='user-card__status-messages'>
-            <span
-              className='user-card__status-message user-card__status-message--sub u-ellipsis-overflow'
-              dangerouslySetInnerHTML={{ __html: lastSeen }}
-            />
+            <span className='user-card__status-message user-card__status-message--sub u-ellipsis-overflow'>
+              {!this.isOnline && this.user.last_visit != null && (
+                <StringWithComponent
+                  mappings={{
+                    date: <TimeWithTooltip dateTime={this.user.last_visit} relative />,
+                  }}
+                  pattern={osu.trans('users.show.lastvisit')}
+                />
+              )}
+            </span>
             <span className='user-card__status-message u-ellipsis-overflow'>
               {status}
             </span>

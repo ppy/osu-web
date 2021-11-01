@@ -6,7 +6,7 @@ import { route } from 'laroute';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
-import { canBeReported, hasReplay, hasShow } from 'score-helper';
+import { canBeReported, hasReplay, hasShow } from 'utils/score-helper';
 
 interface Props {
   score: ScoreJson;
@@ -17,7 +17,7 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
     const { score } = this.props;
 
     const children = (dismiss: () => void) => (
-      <>
+      <div className='simple-menu'>
         {hasShow(score) && (
           <a
             className='simple-menu__item'
@@ -47,7 +47,7 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
             user={score.user}
           />
         )}
-      </>
+      </div>
     );
 
     return (

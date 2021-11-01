@@ -11,7 +11,7 @@ return [
     'edited' => 'редактирано :timeago от :user',
     'pinned' => 'закачено',
     'empty' => 'Все още няма коментари.',
-    'load_replies' => 'зареди отговори',
+    'load_replies' => 'зареждане на отговори',
     'replies_count' => ':count_delimited отговор|:count_delimited отговора',
     'title' => 'Коментари',
 
@@ -26,8 +26,8 @@ return [
         'textarea_hint' => [
             '_' => 'Натисни Enter за :action. Използвай Shift + Enter за нов ред.',
             'edit' => 'запази',
-            'new' => 'публикувай',
-            'reply' => 'отговори',
+            'new' => 'публикуване',
+            'reply' => 'отговор',
         ],
     ],
 

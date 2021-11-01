@@ -38,6 +38,9 @@ return [
             'edit' => 'dashboard',
             'verify_link' => 'verifica account',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'artisti in primo piano',
         ],
@@ -137,7 +140,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autorizza app',
         ],
     ],
     'store' => [

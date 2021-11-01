@@ -9,11 +9,15 @@ use App\Events\UserSessionEvent;
 use App\Exceptions\InvalidScopeException;
 use App\Models\User;
 use Ds\Set;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token as PassportToken;
 
 class Token extends PassportToken
 {
+    // PassportToken doesn't have factory
+    use HasFactory;
+
     public $timestamps = true;
 
     /**

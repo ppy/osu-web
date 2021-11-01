@@ -38,8 +38,11 @@ return [
             'edit' => 'инфопанель',
             'verify_link' => 'верификация аккаунта',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'избранные исполнители',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'публикации в обсуждений карты',
@@ -78,7 +81,7 @@ return [
             '_' => 'конкурсы',
         ],
         'follows_controller' => [
-            'index' => 'инфопанель',
+            'index' => 'главная страница',
         ],
         'friends_controller' => [
             'index' => 'инфопанель',
@@ -138,7 +141,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'авторизация приложения',
         ],
     ],
     'store' => [

@@ -4,7 +4,7 @@
 import { BeatmapPlaycount } from './beatmap-playcount'
 import ExtraHeader from 'profile-page/extra-header'
 import core from 'osu-core-singleton'
-import { PlayDetailList } from 'play-detail-list'
+import PlayDetailList from 'play-detail-list'
 import * as React from 'react'
 import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
 import ShowMoreLink from 'show-more-link'
@@ -69,7 +69,7 @@ export class Historical extends React.PureComponent
               currentMode: @props.currentMode
           el ShowMoreLink,
             key: 'show-more-row'
-            modifiers: ['profile-page', 't-greyseafoam-dark']
+            modifiers: 'profile-page'
             event: 'profile:showMore'
             hasMore: @props.pagination.beatmapPlaycounts.hasMore
             loading: @props.pagination.beatmapPlaycounts.loading
@@ -90,7 +90,7 @@ export class Historical extends React.PureComponent
 
           el ShowMoreLink,
             key: 'show-more-row'
-            modifiers: ['profile-page', 't-greyseafoam-dark']
+            modifiers: 'profile-page'
             event: 'profile:showMore'
             hasMore: @props.pagination.scoresRecent.hasMore
             loading: @props.pagination.scoresRecent.loading

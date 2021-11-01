@@ -38,6 +38,9 @@ return [
             'edit' => 'panel',
             'verify_link' => 'verificación de la cuenta',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'artistas destacados',
         ],
@@ -137,7 +140,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autorizar aplicación',
         ],
     ],
     'store' => [

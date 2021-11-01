@@ -19,7 +19,6 @@ return [
             'contest' => 'cuộc thi',
             'contests' => 'các cuộc thi',
             'root' => 'bảng điều khiển',
-            'store_orders' => 'cửa hàng quản trị viên',
         ],
 
         'artists' => [
