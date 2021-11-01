@@ -24,7 +24,7 @@
 
     <div class="osu-page osu-page--generic osu-page--full">
         @if ($logs->count() > 0)
-            <table class="forum-topic-logs-table">
+            <table>
                 <thead>
                     <tr>
                         <th class="forum-topic-logs-table__header">{{ osu_trans('forum.topic.logs.columns.date') }}</th>
