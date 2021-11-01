@@ -45,7 +45,7 @@
                                 <a
                                     class="js-usercard"
                                     data-user-id="{{$log->user->getKey()}}"
-                                    href="{{ route("users.show", $log->user) }}"
+                                    href="{{ route('users.show', $log->user) }}"
                                 >
                                     {{ $log->user->username }}
                                 </a>
