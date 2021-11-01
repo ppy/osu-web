@@ -6,7 +6,7 @@
 <a
     href="{{ route('forum.topics.logs.index', $topic->getKey()) }}"
     class="btn-circle btn-circle--topic-nav btn-circle--yellow"
-    title="{{ osu_trans('forum.topic.logs._') }}"
+    title="{{ osu_trans('forum.topic.logs.button') }}"
 >
     <span class="btn-circle__content">
         <i class="fas fa-list"></i>

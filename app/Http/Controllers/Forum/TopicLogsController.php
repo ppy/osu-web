@@ -21,6 +21,6 @@ class TopicLogsController extends Controller
             ->orderByDesc('log_time')
             ->paginate(30);
 
-        return ext_view('forum.topics.logs.show', compact('logs', 'topic'));
+        return ext_view('forum.topics.logs.index', compact('logs', 'topic'));
     }
 }

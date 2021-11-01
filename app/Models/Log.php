@@ -14,7 +14,7 @@ namespace App\Models;
  * @property string $log_operation
  * @property int $log_time
  * @property int $log_type
- * @property Forum\Post $post
+ * @property Forum\Post|null $post
  * @property int|null $post_id
  * @property User $reportee
  * @property int $reportee_id

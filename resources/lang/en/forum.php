@@ -128,12 +128,12 @@ return [
         ],
 
         'logs' => [
-            '_' => 'Browse topic logs',
+            '_' => 'Topic logs',
+            'button' => 'Browse topic logs',
 
             'columns' => [
                 'action' => 'Action',
                 'date' => 'Date',
-                'ip' => 'IP Address',
                 'user' => 'User',
             ],
 

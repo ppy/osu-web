@@ -15,7 +15,7 @@
                 'url' => route('forum.topics.show', $topic->getKey()),
             ],
             [
-                'title' => trans('forum.topic.logs._'),
+                'title' => osu_trans('forum.topic.logs._'),
             ]
         ],
         'forum' => $topic->forum,
@@ -27,9 +27,9 @@
             <table class="forum-topic-logs-table">
                 <thead>
                     <tr>
-                        <th class="forum-topic-logs-table__header">{{ trans('forum.topic.logs.columns.date') }}</th>
-                        <th class="forum-topic-logs-table__header">{{ trans('forum.topic.logs.columns.user') }}</th>
-                        <th class="forum-topic-logs-table__header">{{ trans('forum.topic.logs.columns.action') }}</th>
+                        <th class="forum-topic-logs-table__header">{{ osu_trans('forum.topic.logs.columns.date') }}</th>
+                        <th class="forum-topic-logs-table__header">{{ osu_trans('forum.topic.logs.columns.user') }}</th>
+                        <th class="forum-topic-logs-table__header">{{ osu_trans('forum.topic.logs.columns.action') }}</th>
                     </tr>
                 </thead>
 
@@ -51,7 +51,7 @@
                                 </a>
                             </td>
                             <td class="forum-topic-logs-table__col forum-topic-logs-table__col--action">
-                                {{ trans("forum.topic.logs.operations.{$log->translationKey()}") }}
+                                {{ osu_trans("forum.topic.logs.operations.{$log->translationKey()}") }}
 
                                 @if ($dataForDisplay !== null)
                                     <div class="forum-topic-logs-table__log-data">
@@ -70,7 +70,7 @@
                 </tbody>
             </table>
         @else
-            {{ trans('forum.topic.logs.no_results') }}
+            {{ osu_trans('forum.topic.logs.no_results') }}
         @endif
 
         @include('objects._pagination_v2', ['object' => $logs])

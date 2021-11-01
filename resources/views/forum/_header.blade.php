@@ -35,12 +35,7 @@
         ];
 
         if (isset($additionalLinks)) {
-            foreach ($additionalLinks as $link) {
-                $links[] = [
-                    'title' => $link['title'],
-                    'url' => $link['url'] ?? null,
-                ];
-            }
+            $links = array_merge($links, $additionalLinks);
         }
     }
 @endphp
