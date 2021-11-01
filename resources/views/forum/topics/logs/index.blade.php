@@ -25,11 +25,11 @@
     <div class="osu-page osu-page--generic osu-page--full">
         @if ($logs->count() > 0)
             <table class="forum-topic-logs-table">
-                <thead class="forum-topic-logs-table__header">
+                <thead>
                     <tr>
-                        <th>{{ trans('forum.topic.logs.columns.date') }}</th>
-                        <th>{{ trans('forum.topic.logs.columns.user') }}</th>
-                        <th>{{ trans('forum.topic.logs.columns.action') }}</th>
+                        <th class="forum-topic-logs-table__header">{{ trans('forum.topic.logs.columns.date') }}</th>
+                        <th class="forum-topic-logs-table__header">{{ trans('forum.topic.logs.columns.user') }}</th>
+                        <th class="forum-topic-logs-table__header">{{ trans('forum.topic.logs.columns.action') }}</th>
                     </tr>
                 </thead>
 
@@ -40,8 +40,8 @@
                         @endphp
 
                         <tr class="forum-topic-logs-table__row">
-                            <td class="forum-topic-logs-table__date">{!! timeago($log->log_time) !!}</td>
-                            <td >
+                            <td class="forum-topic-logs-table__col forum-topic-logs-table__col--date">{!! timeago($log->log_time) !!}</td>
+                            <td class="forum-topic-logs-table__col">
                                 <a
                                     class="js-usercard"
                                     data-user-id="{{$log->user->getKey()}}"
@@ -50,7 +50,7 @@
                                     {{ $log->user->username }}
                                 </a>
                             </td>
-                            <td>
+                            <td class="forum-topic-logs-table__col forum-topic-logs-table__col--action">
                                 {{ trans("forum.topic.logs.operations.{$log->translationKey()}") }}
 
                                 @if ($dataForDisplay !== null)

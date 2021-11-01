@@ -4,33 +4,46 @@
 .forum-topic-logs-table {
     width: 100%;
 
+    &__action {
+        width: 100%;
+    }
+
     &__body {
         font-size: @font-size--title-small;
     }
 
+    &__col {
+        white-space: nowrap;
+        padding-right: 40px;
+
+        &--action {
+            width: 100%;
+        }
+
+        &--date {
+            color: hsl(var(--hsl-f1));
+        }
+    }
+
     &__date {
-        color: @osu-colour-f1;
+        color: hsl(var(--hsl-f1));
     }
 
     &__header {
         font-size: @font-size--small;
-        font-weight: 900;
         text-transform: uppercase;
-
-        th {
-            padding-bottom: 5px;
-            border-bottom: 2px solid #fff;
-        }
+        padding-bottom: 5px;
+        border-bottom: 2px solid hsl(var(--hsl-c1));
     }
 
     &__log-data {
         font-size: @font-size--small-2;
-        color: @osu-colour-f1;
+        color: hsl(var(--hsl-f1));
     }
 
     &__row {
         height: 50px;
         padding-bottom: 2px;
-        border-top: 2px solid @osu-colour-b4;
+        border-top: 2px solid hsl(var(--hsl-b4));
     }
 }
