@@ -4,6 +4,9 @@
 import 'url-polyfill';
 import 'app-deps';
 
+import 'osu_common.coffee';
+import 'jquery-pubsub.coffee';
+
 import '_classes/account-edit-avatar.coffee'
 import '_classes/account-edit-blocklist.coffee'
 import '_classes/account-edit.coffee'
@@ -57,9 +60,6 @@ import '_classes/tooltip-beatmap.coffee'
 import '_classes/tooltip-default.coffee'
 import '_classes/turbolinks-ujs.coffee'
 import '_classes/twitch-player.coffee'
-
-import 'jquery-pubsub.coffee';
-import 'osu_common.coffee';
 
 import 'spoilerbox.coffee';
 import 'store.coffee';
