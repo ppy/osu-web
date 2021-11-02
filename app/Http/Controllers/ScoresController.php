@@ -42,19 +42,25 @@ class ScoresController extends Controller
 
         try {
             $filename = "replay-{$mode}_{$score->beatmap_id}_{$score->getKey()}.osr";
-            $content = $replayFile->get();
-
-            return response()->streamDownload(function () use ($replayFile, $content) {
-                echo $replayFile->headerChunk();
-                echo pack('i', strlen($content));
-                echo $content;
-                echo $replayFile->endChunk();
-            }, $filename, ['Content-Type' => 'application/x-osu-replay']);
+            $body = $replayFile->get();
         } catch (FileNotFoundException $e) {
             // missing from storage.
             log_error($e);
             abort(404);
         }
+
+        $file = [
+            $replayFile->headerChunk(),
+            pack('i', strlen($body)),
+            $body,
+            $replayFile->endChunk(),
+        ];
+
+        return response()->streamDownload(function () use ($file) {
+            foreach ($file as $f) {
+                echo $f;
+            }
+        }, $filename, ['Content-Type' => 'application/x-osu-replay']);
     }
 
     public function show($mode, $id)
