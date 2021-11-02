@@ -78,12 +78,12 @@ return [
         'confirm_destroy' => 'Apakah Anda yakin untuk menghapus topik ini?',
         'confirm_restore' => 'Apakah Anda yakin untuk mengembalikan topik ini?',
         'deleted' => 'topik yang dihapus',
-        'go_to_latest' => 'lihat posting terbaru',
+        'go_to_latest' => 'lihat postingan terbaru',
         'has_replied' => 'Anda telah mengirimkan balasan pada topik ini',
         'in_forum' => 'pada forum :forum',
         'latest_post' => ':when oleh :user',
         'latest_reply_by' => 'balasan terbaru oleh :user',
-        'new_topic' => 'Post topik baru',
+        'new_topic' => 'Topik baru',
         'new_topic_login' => 'Silakan masuk untuk membuat topik baru',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Ketik di sini untuk membalas',
@@ -109,7 +109,7 @@ return [
 
                 'new_topic' => [
                     '_' => "Topik ini sudah tidak aktif untuk beberapa waktu. Jika Anda tidak memiliki alasan khusus untuk memposting di sini, silakan :create saja.",
-                    'create' => 'post topik baru',
+                    'create' => 'buat topik baru',
                 ],
             ],
 
@@ -121,10 +121,10 @@ return [
 
         'jump' => [
             'enter' => 'klik untuk memasukkan nomor tertentu',
-            'first' => 'pergi ke post pertama',
-            'last' => 'pergi ke post terakhir',
-            'next' => 'lewati 10 post berikutnya',
-            'previous' => 'tuju 10 post terdahulu',
+            'first' => 'tuju postingan pertama',
+            'last' => 'tuju postingan terakhir',
+            'next' => 'lewati 10 postingan berikutnya',
+            'previous' => 'tuju 10 postingan sebelumnya',
         ],
 
         'post_edit' => [
@@ -162,7 +162,7 @@ return [
         'actions' => [
             'login_reply' => 'Masuk untuk Membalas',
             'reply' => 'Balas',
-            'reply_with_quote' => 'Kutip posting untuk balasan',
+            'reply_with_quote' => 'Kutip isi pesan sebagai bahan balasan',
             'search' => 'Cari',
         ],
 

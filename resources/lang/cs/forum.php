@@ -45,14 +45,14 @@ return [
     'post' => [
         'confirm_destroy' => 'Opravdu chcete příspěvek odstranit?',
         'confirm_restore' => 'Opravdu chcete příspěvek obnovit?',
-        'edited' => 'Naposledy upravil :user :when, celkový počet úprav :count.',
+        'edited' => 'Naposledy upravil :user :when, upraveno celkem :count_delimited krát.',
         'posted_at' => 'publikováno :when',
         'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Odstranit příspěvek',
             'edit' => 'Upravit příspěvek',
-            'report' => '',
+            'report' => 'Nahlásit příspěvek',
             'restore' => 'Obnovit příspěvek',
         ],
 

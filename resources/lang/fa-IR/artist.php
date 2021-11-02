@@ -31,6 +31,7 @@ return [
         '_' => 'آهنگ ها',
         'count' => ':count_delimited آهنگ|:count_delimited آهنگ ها',
         'original' => 'osu! عادی',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => 'طول',
         'bpm' => 'بیت در دقیقه',
         'genre' => 'ژانر',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

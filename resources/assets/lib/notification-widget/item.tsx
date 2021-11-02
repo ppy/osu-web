@@ -7,6 +7,7 @@ import { NotificationContext } from 'notifications-context';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
+import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
@@ -167,12 +168,9 @@ export default class Item extends React.Component<Props> {
     }
 
     return (
-      <div
-        className='notification-popup-item__row notification-popup-item__row--time'
-        dangerouslySetInnerHTML={{
-          __html: osu.timeago(this.props.item.createdAtJson),
-        }}
-      />
+      <div className='notification-popup-item__row notification-popup-item__row--time'>
+        <TimeWithTooltip dateTime={this.props.item.createdAtJson} relative />
+      </div>
     );
   }
 

@@ -11,7 +11,6 @@ use App\Jobs\Notifications\ForumTopicReply;
 use App\Jobs\Notifications\UserAchievementUnlock;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Libraries\Chat;
-use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\UserBestScoresCheck;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -22,7 +21,6 @@ use App\Models\Event;
 use App\Models\Forum;
 use App\Models\NewsPost;
 use App\Models\Notification;
-use App\Models\OAuth;
 use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserStatistics;
@@ -384,13 +382,7 @@ class LegacyInterOpController extends Controller
 
     public function userSessionsDestroy($userId)
     {
-        SessionStore::destroy($userId);
-        OAuth\Token
-            ::where('user_id', $userId)
-            ->with('refreshToken')
-            ->get()
-            ->each
-            ->revokeRecursive();
+        User::find($userId)?->resetSessions();
 
         return ['success' => true];
     }

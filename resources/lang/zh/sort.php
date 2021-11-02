@@ -15,6 +15,17 @@ return [
     'top' => '热门',
     'username' => '用户名',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => '发表时间',
         'relevance' => '相关性',

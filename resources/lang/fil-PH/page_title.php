@@ -38,6 +38,9 @@ return [
             'edit' => 'dashboard',
             'verify_link' => 'beripikasyon ng account',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'featured artists',
         ],
@@ -137,7 +140,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'panhitulutan ang app',
         ],
     ],
     'store' => [

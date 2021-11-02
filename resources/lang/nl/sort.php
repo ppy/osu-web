@@ -15,6 +15,17 @@ return [
     'top' => 'Terug naar boven',
     'username' => 'Gebruikersnaam',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => 'Post tijd',
         'relevance' => 'Relevantie',

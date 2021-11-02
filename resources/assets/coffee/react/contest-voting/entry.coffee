@@ -43,11 +43,15 @@ export class Entry extends React.Component
       if @props.options.showLink && @props.entry.preview
         if @props.contest.best_of
           a href: laroute.route('beatmapsets.show', beatmapset: @props.entry.preview), className: 'contest-voting-list__icon contest-voting-list__icon--best-of', style: { background: "url(https://b.ppy.sh/thumb/#{@props.entry.preview}.jpg)" },
-            span className: 'tracklist__link tracklist__link--shadowed',
+            span className: 'contest-voting-list__link contest-voting-list__link--shadowed',
               i className: "fal fa-fw fa-lg fa-#{@props.contest.link_icon}"
         else
           div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
-            a className: 'tracklist__link', href: @props.entry.preview, rel: 'nofollow noreferrer', target: '_blank',
+            a
+              className: 'contest-voting-list__link'
+              href: @props.entry.preview
+              rel: 'nofollow noreferrer'
+              target: '_blank'
               i className: "fas fa-fw fa-lg #{link_icon}"
       if @props.contest.show_votes
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',

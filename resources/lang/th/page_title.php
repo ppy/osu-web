@@ -38,6 +38,9 @@ return [
             'edit' => 'หน้าหลัก',
             'verify_link' => 'การยืนยันบัญชี',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'ศิลปินที่โดดเด่น',
         ],
