@@ -49,18 +49,14 @@ class ScoresController extends Controller
             abort(404);
         }
 
-        $file = [
+        $file = implode([
             $replayFile->headerChunk(),
             pack('i', strlen($body)),
             $body,
             $replayFile->endChunk(),
-        ];
+        ]);
 
-        return response()->streamDownload(function () use ($file) {
-            foreach ($file as $f) {
-                echo $f;
-            }
-        }, $filename, ['Content-Type' => 'application/x-osu-replay']);
+        return response()->streamDownload(fn () => echo $file, $filename, ['Content-Type' => 'application/x-osu-replay']);
     }
 
     public function show($mode, $id)
