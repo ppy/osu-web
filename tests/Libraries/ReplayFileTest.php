@@ -54,10 +54,18 @@ class ReplayFileTest extends TestCase
 
     private function knownScore($hasReplayRecord = true, ?int $version = 20180822)
     {
+        $beatmapId = 1103293;
+        $beatmap = Beatmap::find($beatmapId) ?? Beatmap::factory()->create(['beatmap_id' => $beatmapId]);
+        $beatmap->fill(['checksum' => '9256b75a0df345bbb279e35480729f14'])->saveOrExplode();
+
+        $userId = 6258604;
+        $user = User::find($userId) ?? User::factory()->create(['user_id' => $userId]);
+        $user->fill(['username' => 'I.R.Real'])->saveOrExplode(['skipValidations' => true]);
+
         $score = Best\Osu::make([
             'score_id' => 2493013207,
-            'beatmap_id' => 1103293,
-            'user_id' => 6258604,
+            'beatmap_id' => $beatmapId,
+            'user_id' => $userId,
             'score' => 2068825,
             'maxcombo' => 326,
             'rank' => 'SH',
@@ -74,14 +82,6 @@ class ReplayFileTest extends TestCase
             'replay' => true,
             'hidden' => 0,
             'country_acronym' => 'DE',
-            'user' => User::make([
-                'user_id' => 6258604,
-                'username' => 'I.R.Real',
-            ]),
-            'beatmap' => Beatmap::make([
-                'beatmap_id' => 1103293,
-                'checksum' => '9256b75a0df345bbb279e35480729f14',
-            ]),
         ]);
 
         if ($hasReplayRecord) {
