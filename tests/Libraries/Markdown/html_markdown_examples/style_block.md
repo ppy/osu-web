@@ -1,10 +1,17 @@
-{{{   Class Name
+::: Class Name
 
-## Other blocks
+## Heading block
 
-}}}
+:::
 
-{{{class name
+:::class name
 
+Paragraph block
 
-}}}
+:::
+
+:::class-name
+
+[link](/link) **bold** *italic*
+
+:::

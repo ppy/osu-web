@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => 'Jouer automatiquement le titre suivant',
+        'autoplay' => 'Jouer automatiquement la musique suivante',
     ],
 
     'defaults' => [
@@ -19,7 +19,6 @@ return [
             'contest' => 'concours',
             'contests' => 'concours',
             'root' => 'console',
-            'store_orders' => 'administration de la boutique',
         ],
 
         'artists' => [
@@ -38,7 +37,7 @@ return [
         'store' => [
             'cart' => 'panier',
             'orders' => 'historique des commandes',
-            'products' => 'produits',
+            'products' => 'articles',
         ],
 
         'tournaments' => [
@@ -63,18 +62,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'artistes en vedette',
-            'index' => 'liste',
-            'packs' => 'collections',
         ],
         'community' => [
             '_' => 'communauté',
-            'chat' => 'tchat',
-            'contests' => 'concours',
             'dev' => 'développement',
-            'forum-forums-index' => 'forums',
-            'getLive' => 'direct',
-            'tournaments' => 'tournois',
         ],
         'help' => [
             '_' => 'aide',
@@ -82,30 +73,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'règles',
             'getSupport' => 'non, vraiment, j\'ai besoin d\'aide !',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'accueil',
-            'changelog-index' => 'changelog',
-            'getDownload' => 'télécharger',
-            'news-index' => 'actualités',
-            'search' => 'rechercher',
             'team' => 'équipe',
         ],
         'rankings' => [
             '_' => 'classements',
-            'charts' => 'mise en avant',
-            'country' => 'pays',
-            'index' => 'performance',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multijoueur',
-            'score' => 'score',
         ],
         'store' => [
             '_' => 'magasin',
-            'cart-show' => 'panier',
-            'getListing' => 'liste',
-            'orders-index' => 'historique des commandes',
         ],
     ],
 

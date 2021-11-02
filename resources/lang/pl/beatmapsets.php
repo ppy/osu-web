@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Zwolnij, pograj więcej!',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Wyróżniony artysta',
+    ],
+
     'index' => [
         'title' => 'Lista beatmap',
         'guest_title' => 'Beatmapy',

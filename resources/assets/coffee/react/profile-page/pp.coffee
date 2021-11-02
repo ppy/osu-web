@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react'
-import { ValueDisplay } from 'value-display'
+import ValueDisplay from 'value-display'
 import { div } from 'react-dom-factories'
 el = React.createElement
 

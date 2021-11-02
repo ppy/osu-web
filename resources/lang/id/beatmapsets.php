@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang telah Anda miliki terlebih dahulu.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
+    ],
+
     'index' => [
         'title' => 'Daftar Beatmap',
         'guest_title' => 'Beatmap',
@@ -160,7 +164,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Tidak seorang pun dari negara Anda yang memiliki skor di map ini!',
-                'friend' => 'Tidak seorang pun dari daftar teman Anda yang memiliki skor di map ini!',
+                'friend' => 'Anda tidak memiliki teman yang telah menorehkan skor di map ini!',
                 'global' => 'Belum ada skor yang tercatat pada beatmap ini. Mungkin Anda tertarik untuk mencetak skor Anda sendiri?',
                 'loading' => 'Memuat skor...',
                 'unranked' => 'Beatmap ini tidak berstatus Ranked.',

@@ -26,9 +26,9 @@ class BeatmapsController extends Controller
     public function show($id)
     {
         $beatmap = Beatmap::findOrFail($id);
-        $set = $beatmap->beatmapset;
+        $beatmapset = $beatmap->beatmapset;
 
-        if ($set === null) {
+        if ($beatmapset === null) {
             abort(404);
         }
 
@@ -45,7 +45,7 @@ class BeatmapsController extends Controller
 
         $mode ??= $beatmap->mode;
 
-        return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $set->beatmapset_id]).'#'.$mode.'/'.$id);
+        return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $beatmapset->getKey()]).'#'.$mode.'/'.$beatmap->getKey());
     }
 
     /**
@@ -57,7 +57,7 @@ class BeatmapsController extends Controller
      *
      * ### Response Format
      *
-     * Returns [BeatmapScores](#beatmapscores)
+     * Returns [BeatmapScores](#beatmapscores). `Score` object inside includes `user` and the included `user` includes `country` and `cover`.
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
@@ -97,15 +97,17 @@ class BeatmapsController extends Controller
                 $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
             }
 
+            static $scoreIncludes = ['user', 'user.country', 'user.cover'];
+
             $results = [
-                'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
+                'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', $scoreIncludes),
             ];
 
             if (isset($userScore)) {
                 // TODO: this should be moved to user_score
                 $results['userScore'] = [
                     'position' => $userScore->userRank(compact('type', 'mods')),
-                    'score' => json_item($userScore, 'Score', ['user', 'user.country', 'user.cover']),
+                    'score' => json_item($userScore, 'Score', $scoreIncludes),
                 ];
             }
 

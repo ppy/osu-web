@@ -38,6 +38,9 @@ return [
             'edit' => 'yleiskatsaus',
             'verify_link' => 'tilin vahvistaminen',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => '',
         ],
@@ -133,6 +136,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'sijoitukset',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'valtuuta sovellus',
         ],
     ],
     'store' => [

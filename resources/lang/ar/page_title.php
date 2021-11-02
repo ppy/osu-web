@@ -38,6 +38,9 @@ return [
             'edit' => 'لوحة التحكم',
             'verify_link' => 'التحقق من الحساب',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'الفنانين المميزين',
         ],
@@ -133,6 +136,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'التصنيف',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
         ],
     ],
     'store' => [

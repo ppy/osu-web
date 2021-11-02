@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Room $room
  * @property int $room_id
  * @property \Carbon\Carbon $started_at
- * @property array|null $statistics
+ * @property \stdClass|null $statistics
  * @property int|null $total_score
  * @property \Carbon\Carbon|null $updated_at
  * @property User $user
@@ -45,7 +45,7 @@ class Score extends Model
     protected $casts = [
         'passed' => 'boolean',
         'mods' => 'object',
-        'statistics' => 'array',
+        'statistics' => 'object',
     ];
 
     public static function start(array $params)
@@ -72,6 +72,11 @@ class Score extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getDataAttribute()
+    {
+        return $this;
     }
 
     public function scopeCompleted($query)

@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Yavaş ol, daha çok oyna.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
+    ],
+
     'index' => [
         'title' => 'Beatmap Kataloğu',
         'guest_title' => 'Beatmapler',

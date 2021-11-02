@@ -38,6 +38,9 @@ return [
             'edit' => 'инфопанель',
             'verify_link' => 'верификация аккаунта',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'избранные исполнители',
         ],
@@ -81,7 +84,7 @@ return [
             'index' => 'главная страница',
         ],
         'friends_controller' => [
-            'index' => 'главная страница',
+            'index' => 'инфопанель',
         ],
         'groups_controller' => [
             'show' => 'группы',
@@ -134,6 +137,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'рейтинг',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'авторизация приложения',
         ],
     ],
     'store' => [

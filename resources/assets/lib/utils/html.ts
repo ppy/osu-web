@@ -47,3 +47,7 @@ export function make2x(url?: string) {
 
   return url.replace(/(\.[^.]+)$/, '@2x$1');
 }
+
+export function stripTags(str: string) {
+  return str.replace(/<[^>]*>/g, '');
+}

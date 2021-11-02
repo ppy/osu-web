@@ -720,7 +720,7 @@ class UsersController extends Controller
                 case 'scoresBest':
                     $transformer = 'Score';
                     $includes = ['beatmap', 'beatmapset', 'weight', 'user'];
-                    $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset', 'user']);
+                    $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
                     break;
                 case 'scoresFirsts':
                     $transformer = 'Score';

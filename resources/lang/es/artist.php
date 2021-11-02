@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'Mapas de osu!',
         'osu' => 'Perfil de osu!',
         'site' => 'Sitio web oficial',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Canciones',
         'count' => ':count canción|:count canciones',
-        'exclusive' => 'exclusiva para osu!',
+        'original' => 'Original de osu!',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'duración',
         'bpm' => 'bpm',
         'genre' => 'género',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

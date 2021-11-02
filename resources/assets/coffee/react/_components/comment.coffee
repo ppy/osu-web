@@ -12,7 +12,7 @@ import { a, button, div, span, textarea } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
 import ShowMoreLink from 'show-more-link'
 import { Spinner } from 'spinner'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 import TimeWithTooltip from 'time-with-tooltip'
 import UserAvatar from 'user-avatar'
 import { UserLink } from 'user-link'
@@ -168,7 +168,7 @@ export class Comment extends React.PureComponent
 
               div
                 className: 'comment__row-item comment__row-item--info'
-                dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.createdAt)
+                el TimeWithTooltip, dateTime: @props.comment.createdAt, relative: true
 
               @renderPermalink()
               @renderReplyButton()
@@ -226,18 +226,17 @@ export class Comment extends React.PureComponent
     if @props.comment.isDeleted && @props.comment.canModerate
       div className: 'comment__row-item comment__row-item--info',
         el StringWithComponent,
-          pattern: osu.trans('comments.deleted_by')
           mappings:
-            ':timeago':
+            timeago:
               el TimeWithTooltip,
-                key: 'timeago'
                 dateTime: @props.comment.deletedAt
                 relative: true
-            ':user':
+            user:
               if @props.comment.deletedById?
-                el UserLink, key: 'user', user: (userStore.get(@props.comment.deletedById) ? deletedUser)
+                el UserLink, user: (userStore.get(@props.comment.deletedById) ? deletedUser)
               else
                 osu.trans('comments.deleted_by_system')
+          pattern: osu.trans('comments.deleted_by')
 
 
   renderPin: =>
@@ -265,14 +264,11 @@ export class Comment extends React.PureComponent
       editor = userStore.get(@props.comment.editedById)
       div
         className: 'comment__row-item comment__row-item--info'
-        dangerouslySetInnerHTML:
-          __html: osu.trans 'comments.edited',
-            timeago: osu.timeago(@props.comment.editedAt)
-            user:
-              if editor.id?
-                osu.link(laroute.route('users.show', user: editor.id), editor.username)
-              else
-                _.escape editor.username
+        el StringWithComponent,
+          mappings:
+            timeago: el(TimeWithTooltip, dateTime: @props.comment.editedAt, relative: true)
+            user: el UserLink, user: editor
+          pattern: osu.trans('comments.edited')
 
 
   renderOwnerBadge: (meta) =>

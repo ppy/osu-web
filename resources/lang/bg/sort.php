@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => 'Сортирай по',
+    '_' => 'Подреждане по',
 
     'all' => 'Всички',
     'friends' => 'Приятели',
@@ -15,9 +15,20 @@ return [
     'top' => 'Водещи',
     'username' => 'Потребителско име',
 
-    'forum_posts' => [
-        'created' => '',
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
         'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
+    'forum_posts' => [
+        'created' => 'Дата',
+        'relevance' => 'Уместност',
     ],
 
     'forum_topics' => [
@@ -26,7 +37,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Уместност',
+        'username' => 'Име',
     ],
 ];

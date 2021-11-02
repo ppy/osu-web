@@ -2,14 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderLink from 'interfaces/header-link';
-import UserJsonExtended from 'interfaces/user-json-extended';
+import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 
 type LinkMode = 'modding' | 'multiplayer' | 'show';
 
 const nonBotModes: LinkMode[] = ['modding', 'multiplayer'];
 
-export default function headerLinks(user: UserJsonExtended, active: LinkMode) {
+export default function headerLinks(user: UserExtendedJson, active: LinkMode) {
   const links: HeaderLink[] = [{
     active: active === 'show',
     title: osu.trans('layout.header.users.show'),

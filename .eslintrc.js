@@ -14,14 +14,15 @@ module.exports = {
       extends: [
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'plugin:react/recommended',
         'plugin:react-hooks/recommended',
+        'plugin:react/recommended',
       ],
       files: ['resources/assets/lib/**/*.{ts,tsx}', 'tests/karma/**/*.ts'],
       parser: '@typescript-eslint/parser',
       plugins: [
-        'eslint-plugin-react',
         '@typescript-eslint',
+        'eslint-plugin-react',
+        'typescript-sort-keys',
       ],
       rules: {
         '@typescript-eslint/array-type': [
@@ -98,6 +99,7 @@ module.exports = {
         '@typescript-eslint/no-unsafe-member-access': 'warn',
         '@typescript-eslint/no-unsafe-return': 'warn',
         '@typescript-eslint/no-unused-expressions': 'error',
+        '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', ignoreRestSiblings: true }],
         '@typescript-eslint/no-use-before-define': 'off',
         '@typescript-eslint/prefer-for-of': 'error',
         '@typescript-eslint/prefer-function-type': 'error',
@@ -134,6 +136,8 @@ module.exports = {
         'react/no-unsafe': 'off',
         'react/self-closing-comp': 'error',
         semi: 'off',
+        'typescript-sort-keys/interface': ['error', 'asc', { caseSensitive: false }],
+        'typescript-sort-keys/string-enum': ['error', 'asc', { caseSensitive: false }],
       },
       settings: {
         react: {

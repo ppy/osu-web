@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Anmäl',
+        'title' => 'Vill du anmäla :usernames beatmap?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Anmäl',
         'title' => 'Anmäl :username s inlägg?',

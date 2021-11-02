@@ -8,11 +8,15 @@ return [
         'disabled' => 'Cette beatmap n\'est actuellement pas disponible au téléchargement.',
         'parts-removed' => 'Des parties de cette beatmap ont été supprimées suite à la requête du créateur ou d\'un titulaire de droits tiers.',
         'more-info' => 'Pour plus d\'informations, cliquez ici.',
-        'rule_violation' => 'Certains éléments contenus dans cette map ont été supprimés après avoir été jugés inappropriés pour être utilisés dans osu!.',
+        'rule_violation' => 'Certains éléments contenus dans cette beatmap ont été supprimés après avoir été jugés inappropriés pour osu!.',
     ],
 
     'download' => [
         'limit_exceeded' => 'Ralentissez, jouez plus.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
     ],
 
     'index' => [
@@ -34,7 +38,7 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Un beatmapset hybride nécessite de sélectionner au moins un mode de jeu à nominer.',
         'incorrect_mode' => 'Vous n\'avez pas la permission de nominer pour le mode :mode',
-        'full_bn_required' => 'Vous devez être un Beatmap Nominator avec toutes les autorisations pour effectuer cette qualification.',
+        'full_bn_required' => 'Vous devez être un Beatmap Nominator confirmé pour effectuer cette qualification.',
         'too_many' => 'L\'exigence de nomination est déjà remplie.',
 
         'dialog' => [
@@ -101,11 +105,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Si vous avez un problème avec cette beatmap, veuillez la disqualifier :link.',
+                '_' => 'Si vous trouvez un problème sur cette beatmap, veuillez la disqualifier :link.',
             ],
 
             'report' => [
-                '_' => 'Si vous trouvez un problème avec cette beatmap, merci de le signaler :link pour alerter l\'équipe.',
+                '_' => 'Si vous trouvez un problème sur cette beatmap, merci de le signaler :link pour alerter l\'équipe.',
                 'button' => 'Signaler un problème',
                 'link' => 'ici',
             ],
@@ -126,7 +130,7 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Cette beatmap contient du contenu explicite, offensant ou perturbant. Voulez-vous le voir quand même ?',
+            'details' => 'Cette beatmap contient du contenu explicite, offensant ou perturbant. Voulez-vous la voir quand même ?',
             'title' => 'Contenu explicite',
 
             'buttons' => [
@@ -137,7 +141,7 @@ return [
         ],
 
         'scoreboard' => [
-            'achieved' => 'atteint :when',
+            'achieved' => 'réalisé :when',
             'country' => 'Classement national',
             'friend' => 'Classement des amis',
             'global' => 'Classement global',
@@ -148,7 +152,7 @@ return [
             'headers' => [
                 'accuracy' => 'Précision',
                 'combo' => 'Combo max',
-                'miss' => 'Raté',
+                'miss' => 'Manqué',
                 'mods' => 'Mods',
                 'player' => 'Joueur',
                 'pp' => '',
@@ -167,7 +171,7 @@ return [
             ],
             'score' => [
                 'first' => 'En Tête',
-                'own' => 'Votre meilleur',
+                'own' => 'Votre meilleur score',
             ],
         ],
 

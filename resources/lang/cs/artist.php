@@ -22,14 +22,16 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! beatmapy',
         'osu' => 'Profil osu!',
         'site' => 'Oficiální stránky',
     ],
 
     'songs' => [
         '_' => 'Skladby',
-        'count' => ':count_delimited skladba|:count_delimited skladeb',
-        'exclusive' => 'osu! exkluzivní',
+        'count' => ':count_delimited skladba|:count_delimited skladby|:count_delimited skladeb',
+        'original' => '',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'délka',
         'bpm' => 'bpm',
         'genre' => 'žánr',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

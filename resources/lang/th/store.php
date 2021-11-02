@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'คลังสินค้า',
-    ],
-
     'cart' => [
         'checkout' => 'ชำระเงิน',
         'info' => ':count_delimited รายการในตะกร้า ($:subtotal)|:count_delimited รายการในตะกร้า ($:subtotal)',

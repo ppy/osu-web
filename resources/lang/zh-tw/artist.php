@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! 圖譜',
         'osu' => 'osu! 個人簡介',
         'site' => '官方網站',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => '樂曲',
         'count' => ':count_delimited 首音樂|:count_delimited 首音樂',
-        'exclusive' => 'osu! 獨享',
+        'original' => 'osu! 原創',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => '長度',
         'bpm' => 'bpm',
         'genre' => '類型',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

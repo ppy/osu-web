@@ -4,12 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Склад',
-    ],
-
     'cart' => [
-        'checkout' => 'Проверка',
+        'checkout' => 'Оплатить',
         'info' => ':count_delimited товар в корзине ($:subtotal)|:count_delimited товара в корзине ($:subtotal)|:count_delimited товаров в корзине ($:subtotal)',
         'more_goodies' => 'Я хочу посмотреть другие товары перед завершением заказа',
         'shipping_fees' => 'стоимость доставки',
@@ -100,7 +96,7 @@ return [
             'checkout' => 'Подготовка',
             'delivered' => 'Доставлено',
             'paid' => 'Оплачено',
-            'processing' => 'Ожидание подтверждения',
+            'processing' => 'Ожидает подтверждения',
             'shipped' => 'В пути',
         ],
     ],

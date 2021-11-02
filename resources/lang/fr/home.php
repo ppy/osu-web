@@ -36,7 +36,7 @@ return [
         'forum_post' => [
             'all' => 'Tous les forums',
             'link' => 'Rechercher sur le forum',
-            'login_required' => 'Connectez-vous pour rechercher dans le forum',
+            'login_required' => 'Connectez-vous pour rechercher sur le forum',
             'more_simple' => 'Voir plus de résultats de la recherche du forum',
             'title' => 'Forum',
 
@@ -86,7 +86,7 @@ return [
             'macos' => 'pour macOS',
             'linux' => 'pour Linux',
         ],
-        'mirror' => 'mirroir',
+        'mirror' => 'miroir',
         'macos-fallback' => 'utilisateurs macOS',
         'steps' => [
             'register' => [
@@ -95,12 +95,12 @@ return [
             ],
             'download' => [
                 'title' => 'installer le jeu',
-                'description' => 'cliquez sur le bouton au-dessus pour télécharger l\'installateur, lancez-le ensuite !',
+                'description' => 'cliquez sur le bouton ci-dessus pour télécharger l\'installateur, lancez-le ensuite !',
             ],
             'beatmaps' => [
                 'title' => 'obtenir des beatmaps',
                 'description' => [
-                    '_' => ':browse dans la vaste librairie des beatmaps créées par la communauté et commencez à jouer !',
+                    '_' => ':browse la vaste librairie des beatmaps créées par la communauté et commencez à jouer !',
                     'browse' => 'parcourir',
                 ],
             ],
@@ -128,7 +128,7 @@ return [
         ],
         'buttons' => [
             'download' => 'Télécharger osu!',
-            'support' => 'Supporter osu!',
+            'support' => 'Soutenir osu!',
             'store' => 'osu!store',
         ],
     ],
@@ -137,8 +137,8 @@ return [
         'title' => 'Wow !',
         'subtitle' => 'Vous semblez passer un bon moment ! :D',
         'body' => [
-            'part-1' => 'Saviez-vous que osu! fonctionne sans publicité et compte sur les joueurs pour supporter son développement et ses coûts ?',
-            'part-2' => 'Saviez-vous aussi que supporter osu! permet d\'obtenir une poignée de fonctions utiles, comme le <strong>téléchargement de beatmaps en jeu</strong> qui est automatique en mode spectateur et dans les parties multijoueur ?',
+            'part-1' => 'Saviez-vous que osu! fonctionne sans publicité et compte sur les joueurs pour soutenir son développement et ses coûts ?',
+            'part-2' => 'Saviez-vous aussi que soutenir osu! permet d\'obtenir une poignée de fonctions utiles, comme le <strong>téléchargement de beatmaps en jeu</strong> qui est automatique en mode spectateur et dans les parties multijoueur ?',
         ],
         'find-out-more' => 'Cliquez ici pour en savoir plus !',
         'download-starting' => "Oh, et ne vous inquiétez pas - votre téléchargement a déjà commencé pour vous ;)",

@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! beatmapek',
         'osu' => 'osu! profil',
         'site' => 'Hivatalos Weboldal',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Zenék',
         'count' => ':count szám|:count szám',
-        'exclusive' => 'osu! exkluzív',
+        'original' => 'osu! eredeti',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'hossz',
         'bpm' => 'bpm',
         'genre' => 'műfaj',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

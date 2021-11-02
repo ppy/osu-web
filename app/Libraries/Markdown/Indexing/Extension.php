@@ -6,58 +6,57 @@
 namespace App\Libraries\Markdown\Indexing;
 
 use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
-use League\CommonMark\Block\Element as Block;
-use League\CommonMark\ConfigurableEnvironmentInterface;
+use League\CommonMark\Environment\EnvironmentBuilderInterface;
+use League\CommonMark\Extension\CommonMark\Node\Block as ExtensionBlock;
+use League\CommonMark\Extension\CommonMark\Node\Inline as ExtensionInline;
 use League\CommonMark\Extension\ExtensionInterface;
+use League\CommonMark\Extension\Footnote;
+use League\CommonMark\Extension\Strikethrough\Strikethrough;
 use League\CommonMark\Extension\Table as TableExtension;
-use League\CommonMark\Inline\Element as Inline;
+use League\CommonMark\Node\Block;
+use League\CommonMark\Node\Inline;
 
 class Extension implements ExtensionInterface
 {
-    public function register(ConfigurableEnvironmentInterface $environment)
+    public function register(EnvironmentBuilderInterface $environment): void
     {
-        foreach ($this->blockRenderers() as $class => $renderer) {
-            $environment->addBlockRenderer($class, $renderer, 10);
-        }
-
-        foreach ($this->inlineRenderers() as $class => $renderer) {
-            $environment->addInlineRenderer($class, $renderer, 10);
+        foreach ($this->renderers() as $class => $renderer) {
+            $environment->addRenderer($class, $renderer, 10);
         }
     }
 
-    private function blockRenderers()
+    private function renderers()
     {
         return [
-            Block\BlockQuote::class => new Renderers\BlockRenderer(),
             Block\Document::class => new Renderers\BlockRenderer(),
-            Block\FencedCode::class => new Renderers\NoopRenderer(),
-            Block\Heading::class => new Renderers\NoopRenderer(),
-            Block\HtmlBlock::class => new Renderers\NoopRenderer(),
-            Block\IndentedCode::class => new Renderers\BlockRenderer(),
-            Block\ListBlock::class => new Renderers\ListBlockRenderer(),
-            Block\ListItem::class => new Renderers\ListItemRenderer(),
             Block\Paragraph::class => new Renderers\BlockRenderer(),
-            Block\ThematicBreak::class => new Renderers\BlockRenderer(),
+            ExtensionBlock\BlockQuote::class => new Renderers\BlockRenderer(),
+            ExtensionBlock\FencedCode::class => new Renderers\NoopRenderer(),
+            ExtensionBlock\Heading::class => new Renderers\NoopRenderer(),
+            ExtensionBlock\HtmlBlock::class => new Renderers\NoopRenderer(),
+            ExtensionBlock\IndentedCode::class => new Renderers\BlockRenderer(),
+            ExtensionBlock\ListBlock::class => new Renderers\ListBlockRenderer(),
+            ExtensionBlock\ListItem::class => new Renderers\ListItemRenderer(),
+            ExtensionBlock\ThematicBreak::class => new Renderers\BlockRenderer(),
+            ExtensionInline\Code::class => new Renderers\InlineRenderer(),
+            ExtensionInline\Emphasis::class => new Renderers\InlineRenderer(),
+            ExtensionInline\HtmlInline::class => new Renderers\NoopRenderer(),
+            ExtensionInline\Image::class => new Renderers\NoopRenderer(),
+            ExtensionInline\Link::class => new Renderers\InlineRenderer(),
+            ExtensionInline\Strong::class => new Renderers\InlineRenderer(),
+            Footnote\Node\Footnote::class => new Renderers\NoopRenderer(),
+            Footnote\Node\FootnoteBackref::class => new Renderers\NoopRenderer(),
+            Footnote\Node\FootnoteContainer::class => new Renderers\NoopRenderer(),
+            Footnote\Node\FootnoteRef::class => new Renderers\NoopRenderer(),
+            Inline\Newline::class => new Renderers\NewlineRenderer(),
+            Inline\Text::class => new Renderers\InlineRenderer(),
+            Strikethrough::class => new Renderers\InlineRenderer(),
             StyleBlock::class => new Renderers\BlockRenderer(),
             TableExtension\Table::class => new Renderers\TableRenderer(),
             TableExtension\TableCaption::class => new Renderers\NoopRenderer(),
             TableExtension\TableSection::class => new Renderers\TableRenderer(),
             TableExtension\TableRow::class => new Renderers\TableRenderer(),
             TableExtension\TableCell::class => new Renderers\TableRenderer(),
-        ];
-    }
-
-    private function inlineRenderers()
-    {
-        return [
-            Inline\Code::class => new Renderers\InlineRenderer(),
-            Inline\Emphasis::class => new Renderers\InlineRenderer(),
-            Inline\HtmlInline::class => new Renderers\NoopRenderer(),
-            Inline\Image::class => new Renderers\NoopRenderer(),
-            Inline\Link::class => new Renderers\InlineRenderer(),
-            Inline\Newline::class => new Renderers\NewlineRenderer(),
-            Inline\Strong::class => new Renderers\InlineRenderer(),
-            Inline\Text::class => new Renderers\InlineRenderer(),
         ];
     }
 }

@@ -19,7 +19,6 @@ return [
             'contest' => 'konkurs',
             'contests' => 'konkursy',
             'root' => 'konsola',
-            'store_orders' => 'administrator sklepu',
         ],
 
         'artists' => [
@@ -63,18 +62,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmapy',
-            'artists' => 'wyróżnieni artyści',
-            'index' => 'lista beatmap',
-            'packs' => 'paczki beatmap',
         ],
         'community' => [
             '_' => 'społeczność',
-            'chat' => 'czat',
-            'contests' => 'konkursy',
             'dev' => 'rozwój',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'na żywo',
-            'tournaments' => 'turnieje',
         ],
         'help' => [
             '_' => 'pomoc',
@@ -82,30 +73,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'zasady',
             'getSupport' => 'pomoc techniczna',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'strona główna',
-            'changelog-index' => 'zmiany',
-            'getDownload' => 'pobierz',
-            'news-index' => 'aktualności',
-            'search' => 'wyszukiwarka',
             'team' => 'zespół',
         ],
         'rankings' => [
             '_' => 'rankingi',
-            'charts' => 'wyróżnionych',
-            'country' => 'krajowy',
-            'index' => 'globalny',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'wieloosobowy',
-            'score' => 'punktowy',
         ],
         'store' => [
             '_' => 'sklep',
-            'cart-show' => 'koszyk',
-            'getListing' => 'produkty',
-            'orders-index' => 'historia zamówień',
         ],
     ],
 

@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! beatmaps',
         'osu' => 'osu!-Profil',
         'site' => 'Offizielle Webseite',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Lieder',
         'count' => ':count_delimited Lied|:count_delimited Lieder',
-        'exclusive' => 'osu!-exklusiv',
+        'original' => 'osu! original',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'Länge',
         'bpm' => 'BPM',
         'genre' => 'Genre',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'ملف شخصي في osu!',
         'site' => 'موقع رسمي',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'الأغاني',
         'count' => ':count_delimited أغنية|:count_delimited أغاني',
-        'exclusive' => 'حصرياً على osu!',
+        'original' => '',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'الطول',
         'bpm' => 'نبضة في الدقيقة',
         'genre' => 'النوع',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

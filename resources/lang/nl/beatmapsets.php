@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Niet zo snel, speel meer.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Aanbevolen artiest',
+    ],
+
     'index' => [
         'title' => 'Beatmap Lijst',
         'guest_title' => 'Beatmaps',

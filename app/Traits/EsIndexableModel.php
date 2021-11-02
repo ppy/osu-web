@@ -16,7 +16,7 @@ trait EsIndexableModel
 
     public static function esIndexIntoNew($batchSize = 1000, $name = null, callable $progress = null)
     {
-        $newIndex = $name ?? static::esIndexName().'_'.time();
+        $newIndex = $name ?? static::esTimestampedIndexName();
         Log::info("Creating new index {$newIndex}");
         static::esCreateIndex($newIndex);
 
@@ -27,6 +27,16 @@ trait EsIndexableModel
         static::esReindexAll($batchSize, 0, $options, $progress);
 
         return $newIndex;
+    }
+
+    public static function esIndexName()
+    {
+        return config('osu.elasticsearch.prefix').(new static())->getTable();
+    }
+
+    public static function esSchemaFile()
+    {
+        return config_path('schemas/'.(new static())->getTable().'.json');
     }
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [], callable $progress = null)
@@ -76,7 +86,6 @@ trait EsIndexableModel
     {
         $document = array_merge([
             'index' => static::esIndexName(),
-            'type' => '_doc',
             'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'client' => ['ignore' => 404],
@@ -93,7 +102,6 @@ trait EsIndexableModel
 
         $document = array_merge([
             'index' => static::esIndexName(),
-            'type' => '_doc',
             'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'body' => $this->toEsJson(),

@@ -19,7 +19,6 @@ return [
             'contest' => 'tävling',
             'contests' => 'tävlingar',
             'root' => 'konsol',
-            'store_orders' => 'butiksadmin',
         ],
 
         'artists' => [
@@ -63,18 +62,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'utvalda artister',
-            'index' => 'listning',
-            'packs' => 'beatmapsamlingar',
         ],
         'community' => [
             '_' => 'gemenskap',
-            'chat' => 'chatt',
-            'contests' => 'tävlingar',
             'dev' => 'utveckling',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'livestream',
-            'tournaments' => 'turneringar',
         ],
         'help' => [
             '_' => 'hjälp',
@@ -82,31 +73,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nej, på riktigt, jag behöver hjälp!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'hem',
-            'changelog-index' => 'ändringslogg',
-            'getDownload' => 'ladda ner',
-            'news-index' => 'nyheter',
-            'search' => 'sök',
             'team' => 'lag',
         ],
         'rankings' => [
             '_' => 'rankning',
-            'charts' => 'i rampljuset',
-            'country' => 'land',
-            'index' => 'prestanda',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'flerspelarläge',
-            'score' => 'poäng',
         ],
         'store' => [
             '_' => 'butik',
-            'cart-show' => 'varukorg
-',
-            'getListing' => 'listning',
-            'orders-index' => 'orderhistorik',
         ],
     ],
 

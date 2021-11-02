@@ -11,7 +11,7 @@ return [
         'avatar' => [
             'title' => '头像',
             'rules' => '请确保你的头像符合 :link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、亵渎或暗示的内容。',
-            'rules_link' => '社群规则',
+            'rules_link' => '社区规则',
         ],
 
         'email' => [
@@ -57,7 +57,7 @@ return [
         'options' => [
             '_' => '推送设置',
             'beatmap_owner_change' => '客串难度',
-            'beatmapset:modding' => '谱面摸图',
+            'beatmapset:modding' => '谱面修改',
             'channel_message' => '私信',
             'comment_new' => '新评论',
             'forum_topic_reply' => '主题回复',
@@ -98,16 +98,16 @@ return [
     'privacy' => [
         'friends_only' => '屏蔽来自陌生人的私信',
         'hide_online' => '隐藏在线状态',
-        'title' => '隐私政策',
+        'title' => '隐私',
     ],
 
     'security' => [
         'current_session' => '当前',
         'end_session' => '终止会话',
         'end_session_confirmation' => '这将立刻结束该设备上的会话，你确定吗？',
-        'last_active' => '上次使用：',
+        'last_active' => '上次登录：',
         'title' => '安全',
-        'web_sessions' => '浏览器会话',
+        'web_sessions' => '网页会话',
     ],
 
     'update_email' => [
@@ -119,7 +119,7 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '现在可以关闭本窗口了',
+        'text' => '现在可以关闭此窗口',
         'title' => '验证已经完成',
     ],
 

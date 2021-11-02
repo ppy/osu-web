@@ -17,7 +17,7 @@ class AuthorizationControllerTest extends TestCase
 
     public function testAuthorizeNormalizes()
     {
-        $client = factory(Client::class)->create();
+        $client = Client::factory()->create();
 
         $request = (new Psr17Factory())
             ->createServerRequest('GET', config('app.url').'/oauth/authorize')

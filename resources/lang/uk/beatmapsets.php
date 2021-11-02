@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Повільніше, грайте більше.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Бібліотека мап',
         'guest_title' => 'Бітмапи',
@@ -53,7 +57,7 @@ return [
         'discussion' => 'Обговорення',
 
         'details' => [
-            'by_artist' => 'за :виконавцем',
+            'by_artist' => 'за :artist',
             'favourite' => 'Додати в обране',
             'favourite_login' => 'Увійдіть, щоб додати цю карту',
             'logged-out' => 'Ви повинні увійти для завантаження карти!',

@@ -183,7 +183,7 @@ return [
         'disqualify' => 'Diskalifiye et',
         'incorrect_state' => 'Bu eylemi gerçekleştirirken bir hata oluştu, sayfayı yenilemeyi deneyin.',
         'love' => 'Sevilenlere ekle',
-        'love_choose' => '',
+        'love_choose' => 'Sevilen\'lere eklenecek zorluğu seçin',
         'love_confirm' => 'Bu beatmapi seviyor musun?',
         'nominate' => 'Aday Göster',
         'nominate_confirm' => 'Beatmap aday gösterilsin mi?',
@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Dönüştürülmüş beatmapleri dahil et',
+        'featured_artists' => 'Featured artist\'ler',
         'follows' => 'Abone olunan mapperlar',
         'recommended' => 'Önerilen zorluk seviyesi',
     ],

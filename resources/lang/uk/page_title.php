@@ -38,6 +38,9 @@ return [
             'edit' => 'головна',
             'verify_link' => 'підтвердження аккаунта',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'вибрані виконавці',
         ],
@@ -133,6 +136,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'рейтинг',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
         ],
     ],
     'store' => [

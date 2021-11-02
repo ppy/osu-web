@@ -38,6 +38,9 @@ return [
             'edit' => 'dashbord',
             'verify_link' => 'kontobekreftelse',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'utvalgte artister',
         ],
@@ -133,6 +136,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'rangering',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
         ],
     ],
     'store' => [

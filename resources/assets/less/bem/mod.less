@@ -8,10 +8,6 @@
   background-position: center;
   background-repeat: no-repeat;
 
-  &--V2 {
-    display: none;
-  }
-
   .all(@name, @filename) {
     &--@{name} {
       .at2x-simple("~@images/badges/mods/mod_@{filename}.png");
@@ -41,4 +37,5 @@
   .all(SD, 'sudden-death');
   .all(SO, 'spun-out');
   .all(TD, 'touchdevice');
+  .all(V2, 'v2');
 }

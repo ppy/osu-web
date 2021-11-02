@@ -13,8 +13,8 @@ class UsersControllerTest extends TestCase
 {
     public function testIndexForApi()
     {
-        $user = factory(User::class)->create();
-        $userB = factory(User::class)->create();
+        $user = User::factory()->create();
+        $userB = User::factory()->create();
 
         $this->actAsScopedUser($user, ['*']);
 
@@ -112,7 +112,7 @@ class UsersControllerTest extends TestCase
 
     public function testStoreWithCountry()
     {
-        $country = Country::inRandomOrder()->first() ?? factory(Country::class)->create();
+        $country = Country::inRandomOrder()->first() ?? Country::factory()->create();
 
         $previousCount = User::count();
 
@@ -142,7 +142,7 @@ class UsersControllerTest extends TestCase
      */
     public function testStoreLoggedIn()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $previousCount = User::count();
 
@@ -167,7 +167,7 @@ class UsersControllerTest extends TestCase
         $newUsername = 'carrot';
 
         /** @var User $user */
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'osu_subscriptionexpiry' => now()->addDay(),
             'username' => $oldUsername,
             'username_clean' => $oldUsername,
@@ -185,14 +185,14 @@ class UsersControllerTest extends TestCase
         $newUsername = 'carrot';
 
         /** @var User $user1 */
-        $user1 = factory(User::class)->create([
+        $user1 = User::factory()->create([
             'osu_subscriptionexpiry' => now()->addDay(),
             'username' => $oldUsername,
             'username_clean' => $oldUsername,
         ]);
         $user1->changeUsername($newUsername, 'paid');
 
-        $user2 = factory(User::class)->create([
+        $user2 = User::factory()->create([
             'username' => $oldUsername,
             'username_clean' => $oldUsername,
         ]);
@@ -204,7 +204,7 @@ class UsersControllerTest extends TestCase
 
     public function testUsernameRedirectToId()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this
             ->get(route('users.show', ['user' => $user->username]))
@@ -213,7 +213,7 @@ class UsersControllerTest extends TestCase
 
     public function testUsernameRedirectToIdForApi()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actAsScopedUser($user, ['public']);
 

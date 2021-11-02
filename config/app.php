@@ -51,7 +51,7 @@ return [
     */
 
     // Please check other uses of APP_URL when updating this.
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => rtrim(env('APP_URL', 'http://localhost'), '/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -202,7 +202,6 @@ return [
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
-        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 

@@ -15,7 +15,7 @@ class UserNotificationTest extends TestCase
 {
     public function testBatchDestroyByIds()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $notificationA = factory(Notification::class)->create();
         $notificationB = factory(Notification::class)->create();
@@ -45,7 +45,7 @@ class UserNotificationTest extends TestCase
 
     public function testBatchDestroyByNotificationIdentyByStack()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $notificationA = factory(Notification::class)->create([
             'name' => Notification::BEATMAPSET_DISCUSSION_LOCK,
@@ -98,7 +98,7 @@ class UserNotificationTest extends TestCase
 
     public function testBatchDestroyByNotificationIdentityByObjectType()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $notificationA = factory(Notification::class)->create([
             'name' => Notification::BEATMAPSET_DISCUSSION_LOCK,

@@ -19,7 +19,6 @@ return [
             'contest' => 'kontes',
             'contests' => 'kontes',
             'root' => 'konsol',
-            'store_orders' => 'pengelola toko',
         ],
 
         'artists' => [
@@ -63,18 +62,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmap',
-            'artists' => 'featured artist',
-            'index' => 'daftar',
-            'packs' => 'paket',
         ],
         'community' => [
             '_' => 'komunitas',
-            'chat' => 'chat',
-            'contests' => 'kontes',
             'dev' => 'pengembangan',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'siaran langsung',
-            'tournaments' => 'turnamen',
         ],
         'help' => [
             '_' => 'bantuan',
@@ -82,30 +73,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'peraturan',
             'getSupport' => 'beneran, saya butuh bantuan!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'beranda',
-            'changelog-index' => 'riwayat perubahan',
-            'getDownload' => 'unduh',
-            'news-index' => 'berita',
-            'search' => 'cari',
             'team' => 'tim',
         ],
         'rankings' => [
             '_' => 'peringkat',
-            'charts' => 'spotlights',
-            'country' => 'negara',
-            'index' => 'performa',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multiplayer',
-            'score' => 'skor',
         ],
         'store' => [
             '_' => 'toko',
-            'cart-show' => 'keranjang',
-            'getListing' => 'daftar',
-            'orders-index' => 'riwayat transaksi',
         ],
     ],
 
@@ -141,7 +119,7 @@ return [
             'description' => '',
         ],
         '404' => [
-            'error' => 'Laman Hilang',
+            'error' => 'Laman Tidak Ditemukan',
             'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
         ],
         '403' => [
@@ -153,7 +131,7 @@ return [
             'description' => 'Anda dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin coba untuk masuk terlebih dahulu.',
         ],
         '405' => [
-            'error' => 'Halaman Hilang',
+            'error' => 'Laman Tidak Ditemukan',
             'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
         ],
         '422' => [

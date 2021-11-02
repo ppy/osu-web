@@ -23,7 +23,7 @@ return [
             '405' => '访问方法错误',
             '422' => '请求无效',
             '429' => '请求过多',
-            '500' => '服务器出现了一些问题...',
+            '500' => '服务器出现了一些问题……',
             '503' => '服务器维护中',
         ],
     ],
@@ -37,6 +37,9 @@ return [
         'account_controller' => [
             'edit' => '主页',
             'verify_link' => '账户验证',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => '精选艺术家',
@@ -133,6 +136,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => '排名',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '授权应用',
         ],
     ],
     'store' => [

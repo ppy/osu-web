@@ -183,7 +183,7 @@ return [
         'disqualify' => 'Diskvalificera',
         'incorrect_state' => 'Ett fel uppstod, pröva att uppdatera sidan.',
         'love' => 'Kärlek',
-        'love_choose' => '',
+        'love_choose' => 'Välj svårighetsgrad för älskad',
         'love_confirm' => 'Älskar du denna beatmap?',
         'nominate' => 'Nominera',
         'nominate_confirm' => 'Nominera denna beatmap?',
@@ -252,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Inkludera konverterade beatmaps',
+        'featured_artists' => 'Utvalda artister',
         'follows' => 'Prenumererade mappare',
         'recommended' => 'Rekommenderad svårighetsgrad',
     ],

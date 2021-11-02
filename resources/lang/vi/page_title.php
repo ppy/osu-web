@@ -38,6 +38,9 @@ return [
             'edit' => 'tổng quan',
             'verify_link' => 'xác thực tài khoản',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'nghệ sĩ tiêu biểu',
         ],
@@ -137,15 +140,20 @@ return [
 ',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'cửa hàng',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'thông tin về modder',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'lịch sử chế độ nhiều người chơi',
         ],
     ],
 ];

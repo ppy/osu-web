@@ -61,8 +61,8 @@ class UserNotificationDigestTest extends TestCase
         Event::fake();
         Mail::fake();
 
-        $this->user = factory(User::class)->create();
-        $this->sender = factory(User::class)->create();
+        $this->user = User::factory()->create();
+        $this->sender = User::factory()->create();
     }
 
     private function broadcastAndSendMail($notification)

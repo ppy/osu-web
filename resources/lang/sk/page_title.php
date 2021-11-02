@@ -38,6 +38,9 @@ return [
             'edit' => '',
             'verify_link' => '',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => '',
         ],
@@ -132,6 +135,11 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
+            '_' => '',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
             '_' => '',
         ],
     ],

@@ -15,8 +15,12 @@ return [
         'limit_exceeded' => 'Reduzca la velocidad, juegue más.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Artista destacado',
+    ],
+
     'index' => [
-        'title' => 'Listado de Mapas',
+        'title' => 'Lista de mapas',
         'guest_title' => 'Mapas',
     ],
 
@@ -126,12 +130,12 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Este mapa del tiempo contiene contenido explícito, ofensivo o perturbador. ¿Desea verlo de todos modos?',
+            'details' => 'Este mapa contiene contenido explícito, ofensivo o perturbador. ¿Desea verlo de todos modos?',
             'title' => 'Contenido explícito',
 
             'buttons' => [
                 'disable' => 'Desactivar advertencia',
-                'listing' => 'Listado de mapas',
+                'listing' => 'Volver a lista de mapas',
                 'show' => 'Mostrar',
             ],
         ],

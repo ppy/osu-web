@@ -38,6 +38,9 @@ return [
             'edit' => '대시보드',
             'verify_link' => '계정 인증',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => '공식 아티스트',
         ],
@@ -133,6 +136,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => '순위',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '앱 인증',
         ],
     ],
     'store' => [

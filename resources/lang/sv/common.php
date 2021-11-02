@@ -53,7 +53,7 @@ return [
         'show_less' => 'visa mindre',
         'show_more' => 'visa mer',
         'show_more_options' => 'visa fler alternativ',
-        'submit' => '',
+        'submit' => 'Skicka',
         'unpin' => 'ofäst ',
         'update' => 'Uppdatera',
         'upload_image' => 'ladda upp bild',

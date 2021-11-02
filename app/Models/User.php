@@ -11,6 +11,7 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\Elasticsearch\Indexable;
+use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\UsernameValidation;
@@ -32,6 +33,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Request;
 
 /**
@@ -147,7 +149,7 @@ use Request;
  * @property string $user_post_sortby_dir
  * @property string $user_post_sortby_type
  * @property int $user_posts
- * @property int $user_rank
+ * @property int|null $user_rank
  * @property \Carbon\Carbon $user_regdate
  * @property mixed $user_sig
  * @property string $user_sig_bbcode_bitfield
@@ -755,6 +757,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->attributes['osu_subscriptionexpiry'] = optional($value)->startOfDay();
     }
 
+    public function getUserRankAttribute($value)
+    {
+        return $value === 0 ? null : $value;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Permission Checker Functions
@@ -1320,7 +1327,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function maxBlocks()
     {
-        return ceil($this->maxFriends() / 10);
+        return (int)ceil($this->maxFriends() / 5);
     }
 
     public function maxFriends()
@@ -1568,6 +1575,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             return $earliestWeeklyHype === null ? null : $earliestWeeklyHype->created_at->addWeek();
         });
+    }
+
+    public function authHash(): string
+    {
+        return hash('sha256', $this->user_email).':'.hash('sha256', $this->user_password);
+    }
+
+    public function resetSessions(): void
+    {
+        SessionStore::destroy($this->getKey());
+        $this->tokens()->with('refreshToken')->get()->each->revokeRecursive();
     }
 
     public function title(): ?string
@@ -1869,14 +1887,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $query->first();
     }
 
-    public static function findForPassport($username)
+    public static function findAndValidateForPassport($username, $password)
     {
-        return static::findForLogin($username);
-    }
+        $user = static::findForLogin($username);
+        $authError = static::attemptLogin($user, $password);
 
-    public function validateForPassportPasswordGrant($password)
-    {
-        return static::attemptLogin($this, $password) === null;
+        if ($authError === null) {
+            return $user;
+        }
+
+        throw OAuthServerException::invalidGrant($authError);
     }
 
     public function playCount()

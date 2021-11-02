@@ -68,7 +68,7 @@ return [
         'moderated' => 'Tento kanál je právě moderován.',
         'no_access' => 'Nemáte přístup k tomu kanálu.',
         'restricted' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
-        'silenced' => '',
+        'silenced' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
     ],
 
     'comment' => [
@@ -129,7 +129,7 @@ return [
 
             'store' => [
                 'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
-                'no_permission' => 'Žádná oprávnění k vytvoření nového tématu.',
+                'no_permission' => 'Nemáte oprávnění na vytvoření nového tématu.',
                 'forum_closed' => 'Fórum je uzavřeno a další příspěvky se už nesmí přidávat.',
             ],
 

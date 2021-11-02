@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Vá devagar, jogue mais.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Lista de Beatmaps',
         'guest_title' => 'Beatmaps',

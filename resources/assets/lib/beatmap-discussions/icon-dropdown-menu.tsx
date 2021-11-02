@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as _ from 'lodash';
-import { PopupMenuPersistent } from 'popup-menu-persistent';
+import { PopupMenu } from 'popup-menu';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { SlateContext } from './slate-context';
@@ -26,13 +26,13 @@ export default class IconDropdownMenu extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <PopupMenuPersistent customRender={this.renderButton}>
+      <PopupMenu customRender={this.renderButton}>
         {() => (
-          <div className='simple-menu simple-menu--popup-menu-compact'>
-            {this.props.menuOptions.map((item) => this.renderMenuItem(item))}
+          <div className='simple-menu'>
+            {this.props.menuOptions.map(this.renderMenuItem)}
           </div>
         )}
-      </PopupMenuPersistent>
+      </PopupMenu>
     );
   }
 
@@ -59,31 +59,21 @@ export default class IconDropdownMenu extends React.Component<Props> {
     );
   };
 
-  renderMenuItem = (menuItem: MenuItem) => {
-    const baseClass = 'simple-menu__item';
-    const mods = [];
-    const iconClass = 'simple-menu__item-icon';
-
-    if (menuItem.id === this.props.selected) {
-      mods.push('active');
-    }
-
-    return (
-      <button
-        key={menuItem.id}
-        className={classWithModifiers(baseClass, mods)}
-        data-id={menuItem.id}
-        onClick={this.select}
-      >
-        <div className={classWithModifiers(iconClass, ['icon-dropdown-menu'])}>
-          {menuItem.icon}
-        </div>
-        <div className='simple-menu__label'>
-          {menuItem.label}
-        </div>
-      </button>
-    );
-  };
+  renderMenuItem = (menuItem: MenuItem) => (
+    <button
+      key={menuItem.id}
+      className={classWithModifiers('simple-menu__item', { active: menuItem.id === this.props.selected })}
+      data-id={menuItem.id}
+      onClick={this.select}
+    >
+      <div className={classWithModifiers('simple-menu__item-icon', 'icon-dropdown-menu')}>
+        {menuItem.icon}
+      </div>
+      <div className='simple-menu__label'>
+        {menuItem.label}
+      </div>
+    </button>
+  );
 
   select = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();

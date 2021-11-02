@@ -3,10 +3,12 @@
 
 import { MessageLengthCounter } from './message-length-counter'
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
-import { BigButton } from 'big-button'
+import BigButton from 'big-button'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
+import StringWithComponent from 'string-with-component'
+import TimeWithTooltip from 'time-with-tooltip'
 import UserAvatar from 'user-avatar'
 import { nominationsCount } from 'utils/beatmapset-helper'
 el = React.createElement
@@ -137,19 +139,25 @@ export class NewDiscussion extends React.PureComponent
                   osu.trans 'beatmaps.discussions.new.timestamp_missing'
               else if @props.beatmapset.can_be_hyped # mode == 'generalAll'
                 if @props.currentUser.id?
-                  message =
+                  el React.Fragment, null,
                     if @props.beatmapset.current_user_attributes.can_hype
                       osu.trans 'beatmaps.hype.explanation'
                     else
                       @props.beatmapset.current_user_attributes.can_hype_reason
 
-                  if @props.beatmapset.current_user_attributes.can_hype || @props.beatmapset.current_user_attributes.remaining_hype <= 0
-                    message += " #{osu.trans 'beatmaps.hype.remaining', remaining: @props.beatmapset.current_user_attributes.remaining_hype}"
-                    if @props.beatmapset.current_user_attributes.new_hype_time?
-                      message += " #{osu.trans 'beatmaps.hype.new_time', new_time: osu.timeago(@props.beatmapset.current_user_attributes.new_hype_time)}"
-
-                  span dangerouslySetInnerHTML:
-                    __html: message
+                    if @props.beatmapset.current_user_attributes.can_hype || @props.beatmapset.current_user_attributes.remaining_hype <= 0
+                      el React.Fragment, null,
+                        el StringWithComponent,
+                          mappings:
+                            remaining: @props.beatmapset.current_user_attributes.remaining_hype
+                          pattern: " #{osu.trans 'beatmaps.hype.remaining'}"
+                        if @props.beatmapset.current_user_attributes.new_hype_time?
+                          el StringWithComponent,
+                            mappings:
+                              new_time: el TimeWithTooltip,
+                                dateTime: @props.beatmapset.current_user_attributes.new_hype_time
+                                relative: true
+                            pattern: " #{osu.trans 'beatmaps.hype.new_time'}"
                 else
                   osu.trans 'beatmaps.hype.explanation_guest'
           div
@@ -323,16 +331,16 @@ export class NewDiscussion extends React.PureComponent
     typeText = if type == 'problem' then @problemType() else type
 
     el BigButton,
-      modifiers: ['beatmap-discussion-new']
+      key: type
+      disabled: !@validPost() || @state.posting? || !@canPost()
       icon: discussionTypeIcons[type]
       isBusy: @state.posting == type
+      modifiers: 'beatmap-discussion-new'
       text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
-      key: type
       props: _.merge
-          disabled: !@validPost() || @state.posting? || !@canPost()
-          'data-type': type
-          onClick: @post
-          extraProps
+        'data-type': type
+        onClick: @post
+        extraProps
 
 
   timestamp: =>

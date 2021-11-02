@@ -22,14 +22,16 @@ return [
     ],
 
     'links' => [
-        'osu' => 'профиль osu!',
+        'beatmaps' => 'Карты osu!',
+        'osu' => 'Профиль в osu!',
         'site' => 'Официальный сайт',
     ],
 
     'songs' => [
         '_' => 'Песни',
         'count' => ':count песня|:count песни|:count песен',
-        'exclusive' => 'эксклюзив osu!',
+        'original' => 'исключительно для osu!',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'длина',
         'bpm' => 'bpm',
         'genre' => 'жанр',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

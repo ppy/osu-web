@@ -38,6 +38,9 @@ return [
             'edit' => '主頁',
             'verify_link' => '帳戶驗證',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => '精選藝術家',
         ],
@@ -133,6 +136,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => '排名',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '授權應用程式',
         ],
     ],
     'store' => [

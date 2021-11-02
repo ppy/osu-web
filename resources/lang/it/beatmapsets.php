@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Rallenta, gioca di più.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Artista in primo piano',
+    ],
+
     'index' => [
         'title' => 'Lista Beatmap',
         'guest_title' => 'Beatmap',
@@ -147,7 +151,7 @@ return [
 
             'headers' => [
                 'accuracy' => 'Precisione',
-                'combo' => 'Max Combo',
+                'combo' => 'Combo Massima',
                 'miss' => 'Miss',
                 'mods' => 'Mod',
                 'player' => 'Giocatore',

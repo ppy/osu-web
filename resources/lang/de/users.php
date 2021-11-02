@@ -228,7 +228,7 @@ return [
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
-                    'title' => 'Play-Verlauf',
+                    'title' => 'Spielverlauf',
                     'count_label' => 'Spiele',
                 ],
                 'most_played' => [
@@ -378,7 +378,7 @@ return [
             'placeholder' => 'Seiteninhalt hier eingeben',
 
             'restriction_info' => [
-                '_' => 'Sie müssen ein :link sein, um diese Funktion freizuschalten.',
+                '_' => 'Du musst ein :link sein, um diese Funktion freizuschalten.',
                 'link' => 'osu!supporter',
             ],
         ],

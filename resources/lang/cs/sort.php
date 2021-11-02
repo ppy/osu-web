@@ -6,14 +6,25 @@
 return [
     '_' => 'Seřadit podle',
 
-    'all' => '',
-    'friends' => '',
+    'all' => 'Vše',
+    'friends' => 'Přátelé',
     'last_visit' => 'Nedávno aktivní',
     'new' => 'Nedávné',
     'old' => 'Nejstarší',
     'rank' => 'Umístění',
     'top' => 'Nejlepší',
     'username' => 'Uživatelské jméno',
+
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
 
     'forum_posts' => [
         'created' => '',

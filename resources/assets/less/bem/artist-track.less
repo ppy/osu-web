@@ -1,0 +1,147 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.artist-track {
+  --bg-hover: hsl(var(--hsl-b3));
+  --cover-play-opacity: 0;
+  --cover-size: 35px;
+  .default-box-shadow();
+  .default-border-radius();
+  background-color: hsl(var(--hsl-b4));
+  font-size: @font-size--normal;
+
+  width: 100%;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto auto;
+  gap: 5px;
+  align-items: center;
+
+  @media @desktop {
+    --cover-size: 40px;
+    gap: 0;
+  }
+
+  &:hover {
+    background-color: var(--bg-hover);
+    --cover-play-opacity: 1;
+  }
+
+  &[data-audio-state="loading"],
+  &[data-audio-state="playing"] {
+    --cover-play-opacity: 1;
+  }
+
+  &--large {
+    @media @desktop {
+      --cover-size: 60px;
+    }
+  }
+
+  &--original {
+    background-image: linear-gradient(to right, hsla(var(--hsl-pink-1), 0.2), hsla(var(--hsl-pink-1), 0) 50%);
+  }
+
+  &__button {
+    .reset-input();
+    .link-white();
+    .link-plain();
+    margin: 0;
+    font-size: 18px; // icon size
+
+    .link-hover({
+      color: hsl(var(--hsl-orange-1));
+    });
+
+    &--play {
+      .full-size();
+      background: hsla(var(--hsl-b6), 0.8);
+      opacity: var(--cover-play-opacity);
+      border-radius: inherit;
+      font-size: 14px; // icon size
+    }
+  }
+
+  &__col {
+    @media @desktop {
+      margin: 0 10px;
+    }
+
+    &--badges {
+      display: flex;
+      gap: 2px;
+      flex-direction: column;
+      align-items: flex-end;
+
+      @media @desktop {
+        margin: 0;
+      }
+    }
+
+    &--buttons {
+      @media @desktop {
+        margin: 0 5px;
+      }
+    }
+
+    &--details {
+      display: grid;
+      grid-template: "length" auto "genre" auto "bpm" auto;
+      align-items: center;
+      width: 60px;
+
+      @media @desktop {
+        // first column should be just enough for two digits minute
+        grid-template: "genre genre" auto "length bpm" auto / 35px 1fr;
+        width: 100px;
+      }
+    }
+
+    &--names {
+      min-width: 0;
+
+      @media @desktop {
+        margin-left: 20px;
+      }
+    }
+
+    &--preview {
+      .default-border-radius();
+      width: var(--cover-size);
+      height: var(--cover-size);
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      position: relative;
+    }
+  }
+
+  &__detail {
+    color: hsl(var(--hsl-c2));
+    &--bpm {
+      grid-area: bpm;
+    }
+
+    &--genre {
+      grid-area: genre;
+    }
+
+    &--length {
+      grid-area: length;
+      color: hsl(var(--hsl-c1));
+    }
+  }
+
+  &__info {
+    color: hsl(var(--hsl-c2));
+  }
+
+  &__title {
+    font-size: @font-size--title-small-3;
+  }
+
+  &__version {
+    color: hsl(var(--hsl-c2));
+    font-size: @font-size--normal;
+  }
+}

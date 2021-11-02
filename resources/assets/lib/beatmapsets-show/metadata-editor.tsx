@@ -1,11 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
 import { route } from 'laroute';
 import * as React from 'react';
+import { parseJson } from 'utils/json';
 
 interface Props {
   beatmapset: BeatmapsetJson;
@@ -20,8 +21,8 @@ interface State {
 }
 
 export default class MetadataEditor extends React.PureComponent<Props, State> {
-  private genres = osu.parseJson<GenreJson[]>('json-genres');
-  private languages = osu.parseJson<LanguageJson[]>('json-languages');
+  private genres = parseJson<GenreJson[]>('json-genres');
+  private languages = parseJson<LanguageJson[]>('json-languages');
 
   constructor(props: Props) {
     super(props);

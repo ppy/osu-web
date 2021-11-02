@@ -55,7 +55,7 @@ return [
     'nearby_posts' => [
         'confirm' => '在這個時間點上沒有相關的討論記錄。',
         'notice' => '在 :timestamp 附近（:existing_timestamps）有討論記錄，發表前請檢查。',
-        'unsaved' => '',
+        'unsaved' => '在此結算的:count',
     ],
 
     'owner_editor' => [

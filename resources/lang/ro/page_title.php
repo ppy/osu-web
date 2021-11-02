@@ -22,7 +22,7 @@ return [
             '401-verification' => 'verificare cont',
             '405' => 'lipsește',
             '422' => 'cerere invalidă',
-            '429' => '',
+            '429' => 'prea multe cereri',
             '500' => 'ceva s-a stricat',
             '503' => 'mentenanță',
         ],
@@ -37,6 +37,9 @@ return [
         'account_controller' => [
             'edit' => 'tablou de bord',
             'verify_link' => 'verificare cont',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => 'featured artists',
@@ -133,6 +136,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'clasament',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
         ],
     ],
     'store' => [

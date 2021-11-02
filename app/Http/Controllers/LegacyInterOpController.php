@@ -11,7 +11,6 @@ use App\Jobs\Notifications\ForumTopicReply;
 use App\Jobs\Notifications\UserAchievementUnlock;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Libraries\Chat;
-use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\UserBestScoresCheck;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -22,10 +21,10 @@ use App\Models\Event;
 use App\Models\Forum;
 use App\Models\NewsPost;
 use App\Models\Notification;
-use App\Models\OAuth;
 use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserStatistics;
+use App\Transformers\Chat\MessageTransformer;
 use Datadog;
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -378,18 +377,12 @@ class LegacyInterOpController extends Controller
             get_bool($params['is_action'] ?? null)
         );
 
-        return json_item($message, 'Chat\Message', ['sender']);
+        return json_item($message, new MessageTransformer(), ['sender']);
     }
 
     public function userSessionsDestroy($userId)
     {
-        SessionStore::destroy($userId);
-        OAuth\Token
-            ::where('user_id', $userId)
-            ->with('refreshToken')
-            ->get()
-            ->each
-            ->revokeRecursive();
+        User::find($userId)?->resetSessions();
 
         return ['success' => true];
     }

@@ -21,13 +21,13 @@ return [
     'buttons' => [
         'admin' => '管理员',
         'authorise' => '授权',
-        'authorising' => '授权中...',
+        'authorising' => '授权中……',
         'back_to_previous' => '返回上一位置',
         'back_to_top' => '回到顶部',
         'cancel' => '取消',
         'change' => '更改',
         'clear' => '清空',
-        'click_to_copy' => '点击以复制到剪贴板',
+        'click_to_copy' => '点击复制到剪贴板',
         'click_to_copy_copied' => '已经复制到剪贴板！',
         'close' => '关闭',
         'collapse' => '折叠',
@@ -45,15 +45,15 @@ return [
         'reset' => '重置',
         'restore' => '恢复',
         'save' => '保存',
-        'saving' => '保存中...',
+        'saving' => '保存中……',
         'search' => '搜索',
         'see_more' => '查看更多',
         'show' => '显示',
         'show_deleted' => '显示已删除的评论',
         'show_less' => '收起',
-        'show_more' => '显示更多',
+        'show_more' => '展开',
         'show_more_options' => '显示更多选项',
-        'submit' => '',
+        'submit' => '提交',
         'unpin' => '取消置顶',
         'update' => '更新',
         'upload_image' => '上传图片',
@@ -65,14 +65,14 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count 枚徽章',
-        'days' => ':count 天',
+        'badges' => ':count_delimited 枚徽章',
+        'days' => ':count_delimited 天',
         'hour_short_unit' => '小时',
-        'hours' => ':count 小时',
-        'item' => ':count 个',
+        'hours' => ':count_delimited 小时',
+        'item' => ':count_delimited 个',
         'minute_short_unit' => '分钟',
-        'minutes' => ':count 分钟',
-        'months' => ':count 个月',
+        'minutes' => ':count_delimited 分钟',
+        'months' => ':count_delimited 个月',
         'notifications' => ':count_delimited 个通知',
         'plus_others' => '还有 :count_delimited 人！',
         'post' => ':count_delimited 篇帖子',
@@ -112,7 +112,7 @@ return [
     ],
 
     'input' => [
-        'search' => '搜索...',
+        'search' => '搜索……',
     ],
 
     'pagination' => [
@@ -146,7 +146,7 @@ return [
 
     'time' => [
         'days_ago' => ':count 天前',
-        'hours_ago' => ':count 小时前',
+        'hours_ago' => ':count_delimited 小时前',
         'now' => '现在',
         'remaining' => '剩余时间',
     ],

@@ -6,35 +6,40 @@
 namespace App\Libraries\Markdown\Osu;
 
 use App\Libraries\LocaleMeta;
-use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
 use App\Libraries\OsuWiki;
-use League\CommonMark\Block\Element as Block;
-use League\CommonMark\EnvironmentInterface;
+use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
-use League\CommonMark\Extension\Table as TableExtension;
-use League\CommonMark\Inline\Element as Inline;
+use League\CommonMark\Extension\CommonMark\Node\Block;
+use League\CommonMark\Extension\CommonMark\Node\Inline;
+use League\CommonMark\Node\Block\Paragraph;
+use League\CommonMark\Node\Inline\Text;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Node\NodeWalkerEvent;
+use League\CommonMark\Node\StringContainerInterface;
+use League\Config\ConfigurationInterface;
 
 class DocumentProcessor
 {
-    public $firstImage;
-    public $title;
-    public $toc;
+    public ?string $firstImage;
+    public ?string $title;
+    public ?array $toc;
 
-    private $environment;
-    private $event;
+    private ConfigurationInterface $config;
+    private ?NodeWalkerEvent $event;
     private $node;
 
-    private $listLevel;
-    private $tocSlugs;
+    private int $figureIndex;
+    private ?string $galleryId;
+    private array $tocSlugs;
 
-    private $relativeUrlRoot;
-    private $wikiLocale;
-    private $wikiPathToRoot;
-    private $wikiAbsoluteRootPath;
+    private ?string $relativeUrlRoot;
+    private ?string $wikiLocale;
+    private ?string $wikiPathToRoot = null;
+    private ?string $wikiAbsoluteRootPath = null;
 
-    public function __construct(EnvironmentInterface $environment)
+    public function __construct(EnvironmentBuilderInterface $environment)
     {
-        $this->environment = $environment;
+        $this->config = $environment->getConfiguration();
     }
 
     public function __invoke(DocumentParsedEvent $event): void
@@ -44,32 +49,36 @@ class DocumentProcessor
 
         // The config value should come from route() call which means it's percent encoded
         // but it'll be reused as parameter for another route() call so decode it here.
-        $this->relativeUrlRoot = urldecode($this->environment->getConfig('relative_url_root'));
-        $generateToc = $this->environment->getConfig('generate_toc');
-        $recordFirstImage = $this->environment->getConfig('record_first_image');
-        $titleFromDocument = $this->environment->getConfig('title_from_document');
-        $this->wikiLocale = $this->environment->getConfig('wiki_locale');
+        $this->relativeUrlRoot = urldecode($this->config->get('osu_extension/relative_url_root'));
+        $fixWikiUrl = $this->config->get('osu_extension/fix_wiki_url');
+        $generateToc = $this->config->get('osu_extension/generate_toc');
+        $recordFirstImage = $this->config->get('osu_extension/record_first_image');
+        $titleFromDocument = $this->config->get('osu_extension/title_from_document');
+        $withGallery = $this->config->get('osu_extension/with_gallery');
+        $this->wikiLocale = $this->config->get('osu_extension/wiki_locale');
 
         $this->setWikiPaths();
 
+        $this->figureIndex = 0;
         $this->firstImage = null;
+        $this->galleryId = null;
         $this->title = null;
         $this->toc = [];
         $this->tocSlugs = [];
-        $this->listLevel = 0;
 
         while (($this->event = $walker->next()) !== null) {
             $this->node = $this->event->getNode();
 
             $this->updateLocaleLink();
             $this->fixRelativeUrl();
-            $this->fixWikiUrl();
+
+            if ($fixWikiUrl) {
+                $this->fixWikiUrl();
+            }
 
             if ($recordFirstImage) {
                 $this->recordFirstImage();
             }
-
-            $this->trackListLevel();
 
             if ($titleFromDocument) {
                 $this->setTitle();
@@ -79,85 +88,9 @@ class DocumentProcessor
                 $this->loadToc();
             }
 
-            $this->parseFigure();
-
             $this->proxyImage();
 
-            $this->addListStartAsVariable();
-
-            // last to prevent possible conflict
-            $this->addClass();
-        }
-    }
-
-    private function addClass()
-    {
-        if ($this->event->isEntering() || isset($this->node->data['attributes']['class'])) {
-            return;
-        }
-
-        $blockClass = $this->environment->getConfig('block_name');
-
-        switch (get_class($this->node)) {
-            case Block\ListBlock::class:
-                $class = "{$blockClass}__list";
-                if ($this->node->getListData()->type === Block\ListBlock::TYPE_ORDERED) {
-                    $class .= " {$blockClass}__list--ordered";
-                }
-                break;
-            case Block\ListItem::class:
-                $class = "{$blockClass}__list-item";
-
-                if ($this->listLevel > 1) {
-                    $class .= " {$blockClass}__list-item--deep";
-                }
-                break;
-            case Block\Heading::class:
-                $class = "{$blockClass}__header {$blockClass}__header--".$this->node->getLevel();
-                break;
-            case Block\Paragraph::class:
-                $class = "{$blockClass}__paragraph";
-                break;
-            case Inline\Image::class:
-                $class = "{$blockClass}__image";
-                break;
-            case Inline\Link::class:
-                $class = "{$blockClass}__link";
-                break;
-            case StyleBlock::class:
-                $class = "{$blockClass}__{$this->node->getClass()}";
-                break;
-            case TableExtension\Table::class:
-                $class = "{$blockClass}__table";
-                break;
-            case TableExtension\TableCell::class:
-                $class = "{$blockClass}__table-data";
-
-                if ($this->node->align !== null) {
-                    $class .= " {$blockClass}__table-data--{$this->node->align}";
-                }
-
-                if ($this->node->type === 'th') {
-                    $class .= " {$blockClass}__table-data--header";
-                }
-                break;
-        }
-
-        if (isset($class)) {
-            $this->node->data['attributes']['class'] = $class;
-        }
-    }
-
-    private function addListStartAsVariable()
-    {
-        if (!$this->node instanceof Block\ListBlock || !$this->event->isEntering()) {
-            return;
-        }
-
-        if ($this->node->getListData()->type === Block\ListBlock::TYPE_ORDERED) {
-            $start = ($this->node->getListData()->start ?? 1) - 1;
-
-            $this->node->data['attributes']['style'] = "--list-start: {$start}";
+            $this->parseFigure($withGallery);
         }
     }
 
@@ -182,26 +115,25 @@ class DocumentProcessor
         }
     }
 
-    /**
-     * @param \League\CommonMark\Node\Node $node
-     * @return string
-     */
-    private function getText($node)
+    private function getText(Node $node, bool $trim = true): string
     {
         $text = '';
 
         foreach ($node->children() as $child) {
             if ($child instanceof Inline\Image) {
-                // avoid using image title as text
                 continue;
-            } elseif (method_exists($child, 'getContent')) {
-                $text .= $child->getContent();
-            } elseif (method_exists($child, 'children')) {
-                $text .= $this->getText($child);
+            } elseif ($child instanceof StringContainerInterface) {
+                $text .= $child->getLiteral();
+            } else {
+                $text .= $this->getText($child, false);
             }
         }
 
-        return presence($text);
+        if ($trim) {
+            $text = trim($text);
+        }
+
+        return $text;
     }
 
     private function loadToc()
@@ -214,7 +146,7 @@ class DocumentProcessor
             return;
         }
 
-        $title = $this->getText($this->node);
+        $title = presence($this->getText($this->node));
         $slug = $this->node->data['attributes']['id'] ?? presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
@@ -229,12 +161,12 @@ class DocumentProcessor
             $this->toc[$slug] = compact('title', 'level');
         }
 
-        $this->node->data['attributes']['id'] = $slug;
+        $this->node->data->set('attributes/id', $slug);
     }
 
-    private function parseFigure()
+    private function parseFigure($withGallery = false)
     {
-        if (!$this->node instanceof Block\Paragraph || !$this->event->isEntering()) {
+        if (!$this->node instanceof Paragraph || $this->event->isEntering()) {
             return;
         }
 
@@ -242,18 +174,41 @@ class DocumentProcessor
             return;
         }
 
-        $blockClass = $this->environment->getConfig('block_name');
+        $blockClass = $this->config->get('osu_extension/block_name');
 
         $image = $this->node->children()[0];
-        $this->node->data['attributes']['class'] = "{$blockClass}__figure-container";
-        $image->data['attributes']['class'] = "{$blockClass}__figure-image";
+        $this->node->data->set('attributes/class', "{$blockClass}__figure-container");
+        $image->data->set('attributes/class', "{$blockClass}__figure-image");
 
-        if (present($image->data['title'] ?? null)) {
-            $text = new Inline\Text($image->data['title']);
+        if (present($image->getTitle() ?? null)) {
+            $text = new Text($image->getTitle());
             $textContainer = new Inline\Emphasis();
-            $textContainer->data['attributes']['class'] = "{$blockClass}__figure-caption";
+            $textContainer->data->set('attributes/class', "{$blockClass}__figure-caption");
             $textContainer->appendChild($text);
             $this->node->appendChild($textContainer);
+        }
+
+        if ($withGallery) {
+            $this->galleryId ??= (string) rand();
+            $imageUrl = $image->getUrl();
+
+            if (starts_with($imageUrl, route('wiki.show', [], false))) {
+                $imageUrl = config('app.url').$imageUrl;
+            }
+
+            $imageSize = fast_imagesize($imageUrl);
+            if (!isset($imageSize)) {
+                return;
+            }
+
+            $image->data->append('attributes/class', "{$blockClass}__figure-image--gallery js-gallery");
+            $image->data->set('attributes/data-width', (string) $imageSize[0]);
+            $image->data->set('attributes/data-height', (string) $imageSize[1]);
+            $image->data->set('attributes/data-gallery-id', $this->galleryId);
+            $image->data->set('attributes/data-index', (string) $this->figureIndex);
+            $image->data->set('attributes/data-src', $imageUrl);
+
+            $this->figureIndex++;
         }
     }
 
@@ -323,20 +278,7 @@ class DocumentProcessor
             return;
         }
 
-        $this->title = presence($this->node->getStringContent());
-    }
-
-    private function trackListLevel()
-    {
-        if (!$this->node instanceof Block\ListBlock) {
-            return;
-        }
-
-        if ($this->event->isEntering()) {
-            $this->listLevel += 1;
-        } else {
-            $this->listLevel -= 1;
-        }
+        $this->title = presence($this->getText($this->node));
     }
 
     private function updateLocaleLink()

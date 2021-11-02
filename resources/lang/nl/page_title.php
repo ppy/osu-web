@@ -38,6 +38,9 @@ return [
             'edit' => 'dashboard',
             'verify_link' => 'account verificatie',
         ],
+        'artist_tracks_controller' => [
+            '_' => '',
+        ],
         'artists_controller' => [
             '_' => 'aanbevolen artiesten',
         ],
@@ -133,6 +136,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'ranglijst',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'app machtigen',
         ],
     ],
     'store' => [

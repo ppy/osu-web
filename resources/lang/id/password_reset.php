@@ -13,7 +13,7 @@ return [
 
     'error' => [
         'contact_support' => 'Harap hubungi layanan dukungan untuk dapat memulihkan akun.',
-        'expired' => 'Jangka waktu kode konfirmasi telah berakhir.',
+        'expired' => 'Masa berlaku kode verifikasi telah berakhir.',
         'invalid' => 'Terdapat kesalahan dalam proses pengecekan kode verifikasi.',
         'is_privileged' => 'Harap hubungi admin yang memiliki akses perizinan tingkat tinggi untuk dapat memulihkan akun.',
         'missing_key' => 'Wajib.',
