@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @ForumCover
+class window.ForumCover
   constructor: ->
     @header = document.getElementsByClassName('js-forum-cover--header')
     @uploadButton = document.getElementsByClassName('js-forum-cover--upload-button')
