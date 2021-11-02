@@ -54,7 +54,9 @@ class ScoresController extends Controller
             .$body
             .$replayFile->endChunk();
 
-        return response()->streamDownload(fn () => echo $file, $filename, ['Content-Type' => 'application/x-osu-replay']);
+        return response()->streamDownload(function () use ($file) {
+            echo $file;
+        }, $filename, ['Content-Type' => 'application/x-osu-replay']);
     }
 
     public function show($mode, $id)
