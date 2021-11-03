@@ -29,13 +29,15 @@ export default function Buttons(props: Props) {
         <div className='score-buttons__menu'>
           <PopupMenuPersistent>
             {() => (
-              <ReportReportable
-                baseKey='scores'
-                className='simple-menu__item'
-                reportableId={props.score.best_id?.toString() ?? ''}
-                reportableType={`score_best_${props.score.mode}`}
-                user={props.score.user}
-              />
+              <div className='simple-menu'>
+                <ReportReportable
+                  baseKey='scores'
+                  className='simple-menu__item'
+                  reportableId={props.score.best_id?.toString() ?? ''}
+                  reportableType={`score_best_${props.score.mode}`}
+                  user={props.score.user}
+                />
+              </div>
             )}
           </PopupMenuPersistent>
         </div>

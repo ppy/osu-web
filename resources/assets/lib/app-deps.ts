@@ -9,12 +9,8 @@ import 'timeago/jquery.timeago.js';
 import 'qtip2/dist/jquery.qtip.js';
 import 'jquery.scrollto/jquery.scrollTo.js';
 import 'jquery-ui/ui/data.js';
-import 'jquery-ui/ui/scroll-parent.js';
-import 'jquery-ui/ui/widget.js';
-import 'jquery-ui/ui/widgets/mouse.js';
 import 'jquery-ui/ui/widgets/slider.js';
 import 'jquery-ui/ui/widgets/sortable.js';
-import 'jquery-ui/ui/keycode.js';
 import 'blueimp-file-upload/js/jquery.fileupload.js';
 
 import Lang from 'lang.js';
