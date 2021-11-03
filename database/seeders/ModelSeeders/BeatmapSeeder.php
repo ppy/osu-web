@@ -41,11 +41,12 @@ class BeatmapSeeder extends Seeder
 
             return;
         }
-        $api = '&k='.$api_key;
+        $api = '&k=' . $api_key;
+        $this->command->info($api);
 
         // get beatmaps
         try {
-            $json = json_decode(file_get_contents($base_url.'get_beatmaps?since=2016-01-01%2000:00:00'.$api));
+            $json = json_decode(file_get_contents($base_url . 'get_beatmaps?since=2016-01-01%2000:00:00' . $api));
         } catch (Exception $ex) {
             if ($this->command) {
                 $this->command->error('Unable to fetch Beatmap data');
@@ -94,7 +95,7 @@ class BeatmapSeeder extends Seeder
             foreach ($uniqueMapIds as $mapId) {
                 $beatmap = $this->beatmaps[$mapId];
                 $setPlaycount += $beatmap->playcount;
-                $names[] = $beatmap->version.'@'.$beatmap->playmode;
+                $names[] = $beatmap->version . '@' . $beatmap->playmode;
             }
 
             $beatmapset = $this->beatmapsets[$setId];
@@ -118,7 +119,7 @@ class BeatmapSeeder extends Seeder
         return Beatmap::create([
             'beatmap_id' => $json->beatmap_id,
             'beatmapset_id' => $json->beatmapset_id,
-            'filename' => $json->beatmapset_id.' '.$json->artist.' - '.$json->title.'.osz',
+            'filename' => $json->beatmapset_id . ' ' . $json->artist . ' - ' . $json->title . '.osz',
             'checksum' => $json->file_md5,
             'version' => $json->version,
             'total_length' => $json->total_length,
