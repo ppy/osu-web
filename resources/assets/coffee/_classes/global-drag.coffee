@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 
-class @GlobalDrag
+class window.GlobalDrag
   constructor: ->
     $(document).on 'dragenter', @dragenter
     $(document).on 'dragover', @dragend

@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @AccountEditBlocklist
+class window.AccountEditBlocklist
   element: 'block-list__content'
   jsClass: '.js-account-edit-blocklist'
 

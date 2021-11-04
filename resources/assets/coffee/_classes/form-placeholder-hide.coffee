@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @FormPlaceholderHide
+class window.FormPlaceholderHide
   constructor: ->
     $(document).on 'focus', '.js-form-placeholder-hide', @onFocus
     $(document).on 'blur', '.js-form-placeholder-hide', @onBlur

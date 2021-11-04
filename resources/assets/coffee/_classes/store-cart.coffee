@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 # Cart-specific script should go here.
-class @StoreCart
+class window.StoreCart
   @setEnabled: (flag) ->
     $('.js-store-add-to-cart').prop 'disabled', !flag
     $('#product-form').data 'disabled', !flag

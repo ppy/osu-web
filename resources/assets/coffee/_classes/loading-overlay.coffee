@@ -20,6 +20,6 @@ hide = ->
   overlay[0].classList.remove 'loading-overlay--visible'
 
 
-@LoadingOverlay =
+window.LoadingOverlay =
   show: show
   hide: hide

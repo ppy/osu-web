@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 
-class @ForumTopicTitle
+class window.ForumTopicTitle
   constructor: ->
     @input = document.getElementsByClassName('js-forum-topic-title--input')
     @saveButton = document.getElementsByClassName('js-forum-topic-title--save')
