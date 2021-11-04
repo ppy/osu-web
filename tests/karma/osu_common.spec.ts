@@ -42,26 +42,6 @@ describe('osu_common', () => {
     });
   });
 
-  describe('linkify', () => {
-    const textWithLink = 'Please visit https://link.com';
-
-    it('replaces the link with an anchor element', () => {
-      expect(osu.linkify(textWithLink)).toBe(
-        'Please visit <a href="https://link.com" rel="nofollow noreferrer">link.com</a>',
-      );
-    });
-
-    it('replaces the link with an anchor element with target blank', () => {
-      expect(osu.linkify(textWithLink, true)).toBe(
-        'Please visit <a href="https://link.com" rel="nofollow noreferrer" target="_blank">link.com</a>',
-      );
-    });
-
-    it('does not change the string', () => {
-      expect(osu.linkify('plain text')).toBe('plain text');
-    });
-  });
-
   describe('formatBytes', () => {
     it('cenvert to same value in bytes', () => {
       expect(osu.formatBytes(100)).toBe('100 B');
