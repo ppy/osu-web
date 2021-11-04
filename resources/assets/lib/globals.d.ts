@@ -73,7 +73,6 @@ interface OsuCommon {
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   link: (url: string, text: string, options?: OsuLinkOptions) => string;
-  linkify: (text: string, newWindow?: boolean) => string;
   navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
   popup: (message: string, type: string) => void;
   popupShowing: () => boolean;

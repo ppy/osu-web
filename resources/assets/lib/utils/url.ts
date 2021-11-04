@@ -57,6 +57,10 @@ export function openBeatmapEditor(timestampWithRange: string): string {
   return `osu://edit/${timestampWithRange}`;
 }
 
+export function linkify(text: string, newWindow = false) {
+  return text.replace(osu.urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="_blank"' : ''}>$2</a>`);
+}
+
 export function updateQueryString(url: string | null, params: Record<string, string | null | undefined>) {
   const docUrl = currentUrl();
   const urlObj = new URL(url ?? docUrl.href, docUrl.origin);
