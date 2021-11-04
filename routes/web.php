@@ -525,12 +525,14 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 
     Route::group(['namespace' => 'InterOp'], function () {
-        Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy']]);
-
-        Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets/{beatmapset}'], function () {
-            Route::post('broadcast-new', 'BeatmapsetsController@broadcastNew');
-            Route::post('disqualify', 'BeatmapsetsController@disqualify')->name('disqualify');
+        Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
+            Route::group(['prefix' => '{beatmapset}'], function () {
+                Route::post('broadcast-new', 'BeatmapsetsController@broadcastNew')->name('broadcast-new');
+                Route::post('broadcast-revive', 'BeatmapsetsController@broadcastRevive')->name('broadcast-revive');
+                Route::post('disqualify', 'BeatmapsetsController@disqualify')->name('disqualify');
+            });
         });
+        Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy']]);
 
         Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
             Route::apiResource('bulk', 'Indexing\BulkController', ['only' => ['store']]);
