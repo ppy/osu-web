@@ -16,6 +16,7 @@ class BeatmapFactory extends Factory
     public function definition(): array
     {
         return [
+            'beatmapset_id' => fn () => Beatmapset::factory(),
             'filename' => fn () => $this->faker->sentence(3),
             'checksum' => str_repeat('0', 32),
             'version' => fn () => $this->faker->domainWord(),

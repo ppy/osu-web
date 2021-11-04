@@ -5,6 +5,6 @@
 
 namespace App\Jobs\Notifications;
 
-class UserBeatmapsetNew extends UserBeatmapsetNewBase
+class UserBeatmapsetRevive extends UserBeatmapsetNewBase
 {
 }

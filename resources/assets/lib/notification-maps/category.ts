@@ -44,4 +44,5 @@ export const nameToCategory: CategoryMap = {
   legacy_pm: 'legacy_pm',
   user_achievement_unlock: 'user_achievement_unlock',
   user_beatmapset_new: 'user_beatmapset_new',
+  user_beatmapset_revive: 'user_beatmapset_new',
 };
