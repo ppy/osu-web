@@ -85,7 +85,6 @@ interface OsuCommon {
   transArray: (array: any[], key?: string) => string;
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
   transExists: (key: string, locale?: string) => boolean;
-  updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
   urlPresence: (url?: string | null) => string;
   urlRegex: RegExp;
   uuid: () => string;

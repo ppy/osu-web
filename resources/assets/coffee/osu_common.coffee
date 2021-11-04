@@ -232,18 +232,6 @@ window.osu =
     Turbolinks.uuid() # no point rolling our own
 
 
-  updateQueryString: (url, params) ->
-    docUrl = _exported.currentUrl()
-    urlObj = new URL(url ? docUrl.href, docUrl.origin)
-    for own key, value of params
-      if value?
-        urlObj.searchParams.set(key, value)
-      else
-        urlObj.searchParams.delete(key)
-
-    return urlObj.href
-
-
   xhrErrorMessage: (xhr) ->
     validationMessage = xhr?.responseJSON?.validation_error
 

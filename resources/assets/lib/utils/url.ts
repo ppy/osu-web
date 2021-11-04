@@ -4,6 +4,7 @@
 import { route } from 'laroute';
 import { startsWith } from 'lodash';
 import { TurbolinksLocation } from 'turbolinks';
+import { currentUrl } from 'utils/turbolinks';
 
 const internalUrls = [
   'admin',
@@ -54,6 +55,21 @@ export function isInternal(location: TurbolinksLocation): boolean {
 // external link
 export function openBeatmapEditor(timestampWithRange: string): string {
   return `osu://edit/${timestampWithRange}`;
+}
+
+export function updateQueryString(url: string | null, params: Record<string, string | null | undefined>) {
+  const docUrl = currentUrl();
+  const urlObj = new URL(url ?? docUrl.href, docUrl.origin);
+
+  for (const [key, value] of Object.entries(params)) {
+    if (value != null) {
+      urlObj.searchParams.set(key, value);
+    } else {
+      urlObj.searchParams.delete(key);
+    }
+  }
+
+  return urlObj.href;
 }
 
 export function wikiUrl(path: string, locale?: string | null | undefined) {
