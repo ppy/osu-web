@@ -68,22 +68,6 @@ window.osu =
     el.style.fontSize = prevSize
 
 
-  link: (url, text, options = {}) ->
-    if options.unescape
-      url = _.unescape(url)
-      text = _.unescape(text)
-
-    el = document.createElement('a')
-    el.setAttribute 'href', url
-    el.setAttribute 'data-remote', true if options.isRemote
-    el.className = options.classNames.join(' ') if options.classNames
-    el.textContent = text
-    if options.props
-      _.each options.props, (val, prop) ->
-        el.setAttribute prop, val if val?
-    el.outerHTML
-
-
   formatBytes: (bytes, decimals=2) ->
     suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
     k = 1000

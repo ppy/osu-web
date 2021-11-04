@@ -72,7 +72,7 @@ interface OsuCommon {
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
-  link: (url: string, text: string, options?: OsuLinkOptions) => string;
+  link: (url: string, text: string, options?: import('utils/url').OsuLinkOptions) => string;
   navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
   popup: (message: string, type: string) => void;
   popupShowing: () => boolean;
@@ -88,13 +88,6 @@ interface OsuCommon {
   urlRegex: RegExp;
   uuid: () => string;
   xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
-}
-
-interface OsuLinkOptions {
-  classNames?: string[];
-  isRemote?: boolean;
-  props?: Partial<Record<string, any>>;
-  unescape?: boolean;
 }
 
 interface ChangelogBuild {

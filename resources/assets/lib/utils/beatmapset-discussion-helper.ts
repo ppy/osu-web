@@ -8,6 +8,7 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { AnchorHTMLAttributes } from 'react';
 import { currentUrl } from 'utils/turbolinks';
+import { link } from 'utils/url';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
@@ -42,7 +43,7 @@ export function discussionLinkify(text: string) {
     props.children = null;
     props.className = undefined;
 
-    return osu.link(url, displayUrl, { classNames, props, unescape: true });
+    return link(url, displayUrl, { classNames, props, unescape: true });
   });
 }
 

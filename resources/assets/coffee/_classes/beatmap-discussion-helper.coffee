@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { openBeatmapEditor, link } from 'utils/url'
+
 class window.BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
   @DEFAULT_MODE: 'timeline'
@@ -70,7 +72,7 @@ class window.BeatmapDiscussionHelper
   @linkTimestamp: (text, classNames = []) =>
     text
       .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_match, text, m, s, ms, range) =>
-        osu.link(_exported.OsuUrlHelper.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
+        link(openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
 
 
   @nearbyDiscussions: (discussions, timestamp) =>

@@ -11,6 +11,7 @@ import StringWithComponent from 'string-with-component'
 import TimeWithTooltip from 'time-with-tooltip'
 import UserAvatar from 'user-avatar'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { link } from 'utils/url'
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -174,7 +175,7 @@ export class NewDiscussion extends React.PureComponent
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @timestamp()
           timestamps =
             for discussion in @nearbyDiscussions()
-              osu.link BeatmapDiscussionHelper.url(discussion: discussion),
+              link BeatmapDiscussionHelper.url(discussion: discussion),
                 BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
                 classNames: ['js-beatmap-discussion--jump']
           timestampsString = osu.transArray(timestamps)

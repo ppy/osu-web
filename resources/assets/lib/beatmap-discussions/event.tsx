@@ -10,6 +10,7 @@ import { deletedUser } from 'models/user';
 import * as React from 'react';
 import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers } from 'utils/css';
+import { link } from 'utils/url';
 
 const isBeatmapOwnerChangeEventJson = (event: BeatmapsetEventJson): event is BeatmapOwnerChangeEventJson =>
   event.type === 'beatmap_owner_change';
@@ -150,11 +151,11 @@ export default class Event extends React.PureComponent<Props> {
         const discussionUser = this.props.users[this.discussion.user_id];
 
         if (discussionUser != null) {
-          discussionUserLink = osu.link(route('users.show', { user: discussionUser.id }), discussionUser.username);
+          discussionUserLink = link(route('users.show', { user: discussionUser.id }), discussionUser.username);
         }
       }
 
-      discussionLink = osu.link(url, `#${this.discussionId}`, { classNames: ['js-beatmap-discussion--jump'] });
+      discussionLink = link(url, `#${this.discussionId}`, { classNames: ['js-beatmap-discussion--jump'] });
     } else {
       text = BeatmapDiscussionHelper.format(this.props.event.comment, { newlines: false });
     }
@@ -169,7 +170,7 @@ export default class Event extends React.PureComponent<Props> {
       if (userData == null) {
         user = escape(deletedUser.username);
       } else {
-        user = osu.link(route('users.show', { user: userData.id }), userData.username);
+        user = link(route('users.show', { user: userData.id }), userData.username);
       }
     }
 
@@ -196,17 +197,17 @@ export default class Event extends React.PureComponent<Props> {
 
     if (isBeatmapOwnerChangeEventJson(this.props.event)) {
       const data = this.props.event.comment;
-      params.new_user = osu.link(route('users.show', { user: data.new_user_id }), data.new_user_username);
-      params.beatmap = osu.link(route('beatmaps.show', { beatmap: data.beatmap_id }), data.beatmap_version);
+      params.new_user = link(route('users.show', { user: data.new_user_id }), data.new_user_username);
+      params.beatmap = link(route('beatmaps.show', { beatmap: data.beatmap_id }), data.beatmap_version);
     }
 
     if (isNominationResetReceivedEventJson(this.props.event)) {
       const data = this.props.event.comment;
       if (this.props.mode === 'profile') {
         eventType += '_profile';
-        params.user = osu.link(route('users.show', { user: data.source_user_id }), data.source_user_username);
+        params.user = link(route('users.show', { user: data.source_user_id }), data.source_user_username);
       } else {
-        params.source_user = osu.link(route('users.show', { user: data.source_user_id }), data.source_user_username);
+        params.source_user = link(route('users.show', { user: data.source_user_id }), data.source_user_username);
       }
     }
 

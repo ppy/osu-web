@@ -31,6 +31,13 @@ const internalUrls = [
 
 const internalUrlRegExp = RegExp(`^/(?:${internalUrls})(?:$|/|#)`);
 
+export interface OsuLinkOptions {
+  classNames?: string[];
+  isRemote?: boolean;
+  props?: Partial<Record<string, any>>;
+  unescape?: boolean;
+}
+
 export function beatmapDownloadDirect(id: string | number): string {
   return `osu://b/${id}`;
 }
@@ -55,6 +62,33 @@ export function isInternal(location: TurbolinksLocation): boolean {
 // external link
 export function openBeatmapEditor(timestampWithRange: string): string {
   return `osu://edit/${timestampWithRange}`;
+}
+
+export function link(url: string, text: string, options?: OsuLinkOptions): string {
+  if (options?.unescape) {
+    url = unescape(url);
+    text = unescape(text);
+  }
+
+  const el = document.createElement('a');
+  el.setAttribute('href', url);
+  if (options?.isRemote) {
+    el.setAttribute('data-remote', '1');
+  }
+
+  if (options?.classNames) {
+    el.className = options?.classNames.join(' ');
+  }
+
+  el.textContent = text;
+
+  if (options?.props) {
+    for (const [prop, val] of Object.entries(options.props)) {
+      if (val != null) el.setAttribute(prop, val);
+    }
+  }
+
+  return el.outerHTML;
 }
 
 export function linkify(text: string, newWindow = false) {
