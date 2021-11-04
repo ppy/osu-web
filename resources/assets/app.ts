@@ -69,7 +69,6 @@ import 'ujs-common.coffee';
 import 'bootstrap-modal.coffee';
 import 'shared.coffee';
 import 'turbolinks-overrides.coffee';
-import 'lang-overrides';
 
 import 'import-shims';  // shim imports to window
 import 'osu-core-singleton';
