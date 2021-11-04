@@ -5,7 +5,7 @@
 # How to use:
 # 1. render content into 'js-sticky-header-content' and 'js-sticky-header-breadcrumbs'
 # 2. Add 'js-sticky-header' class to a marker element that should cause the sticky to show.
-class @StickyHeader
+class window.StickyHeader
   constructor: ->
     @debouncedOnScroll = _.debounce @onScroll, 20
     @header = document.getElementsByClassName('js-pinned-header')
