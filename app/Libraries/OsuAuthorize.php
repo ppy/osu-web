@@ -1586,7 +1586,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($topic->posts()->withTrashed()->first()->poster_id === $user->getKey()) {
+        if ($topic->topic_poster === $user->getKey()) {
             return 'ok';
         }
 
