@@ -33,11 +33,9 @@ export default class Header extends React.Component<Props> {
 
             {!this.props.user.is_bot && (
               <div className='profile-detail'>
-                <div className='profile-detail__bar'>
-                  <div className='profile-detail-bar'>
-                    <div className='profile-detail-bar__column profile-detail-bar__column--left'>
-                      <DetailBarButtons user={this.props.user} />
-                    </div>
+                <div className='profile-detail-bar'>
+                  <div className='profile-detail-bar__column profile-detail-bar__column--left'>
+                    <DetailBarButtons user={this.props.user} />
                   </div>
                 </div>
               </div>
