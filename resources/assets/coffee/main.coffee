@@ -55,7 +55,6 @@ window.landingGraph ?= new LandingGraph
 window.menu ?= new Menu
 window.navButton ?= new NavButton
 window.postPreview ?= new PostPreview
-window.scale ?= new Scale
 window.search ?= new Search
 window.stickyFooter ?= new StickyFooter
 window.tooltipBeatmap ?= new TooltipBeatmap
