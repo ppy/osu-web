@@ -1,29 +1,33 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import ValueDisplay from 'value-display'
-import { div } from 'react-dom-factories'
-el = React.createElement
+import UserStatisticsJson from 'interfaces/user-statistics-json';
+import * as React from 'react';
+import ValueDisplay from 'value-display';
 
-formatNumber = (value) -> osu.formatNumber(Math.round(value))
+function formatNumber(value: number) {
+  return osu.formatNumber(Math.round(value));
+}
 
-export Pp = ({stats}) ->
-  variantTooltip = []
+export default function Pp({ stats }: { stats: UserStatisticsJson }) {
+  const variantTooltip: string[] = [];
 
-  for variant in stats.variants ? []
-    continue unless variant.pp?
+  for (const variant of stats.variants ?? []) {
+    const name = osu.trans(`beatmaps.variant.${variant.mode}.${variant.variant}`);
+    const value = formatNumber(variant.pp);
 
-    name = osu.trans("beatmaps.variant.#{variant.mode}.#{variant.variant}")
-    value = formatNumber(variant.pp)
+    variantTooltip.push(`<div>${name}: ${value}</div>`);
+  }
 
-    variantTooltip.push("<div>#{name}: #{value}</div>")
-
-  el ValueDisplay,
-    modifiers: ['pp']
-    label: 'pp'
-    value:
-      div
-        title: ''
-        "data-html-title": variantTooltip.join('')
-        formatNumber(stats.pp)
+  return (
+    <ValueDisplay
+      label='pp'
+      modifiers='pp'
+      value={(
+        <div data-html-title={variantTooltip.join('')} title=''>
+          {formatNumber(stats.pp)}
+        </div>
+      )}
+    />
+  );
+}

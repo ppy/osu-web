@@ -3,13 +3,13 @@
 
 import { DetailBar } from './detail-bar'
 import { PlayTime } from './play-time'
-import { Pp } from './pp'
 import { Rank } from './rank'
 import { RankChart } from './rank-chart'
 import { RankCount } from './rank-count'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import MedalsCount from 'profile-page/medals-count'
+import Pp from 'profile-page/pp'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
