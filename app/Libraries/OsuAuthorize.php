@@ -1561,12 +1561,9 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
-    /**
-     * @throws AuthorizationCheckException
-     */
     public function checkForumTopicPollOptionShowResult(?User $user, PollOption $pollOption): string
     {
-        return $this->checkForumTopicPollShowResults($user, $pollOption->topic);
+        return $this->doCheckUser($user, 'ForumTopicPollShowResults', $pollOption->topic)->rawMessage() ?? 'ok';
     }
 
     /**
