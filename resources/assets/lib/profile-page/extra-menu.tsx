@@ -23,16 +23,18 @@ export default function ExtraMenu(props: Props) {
       title={osu.trans('common.buttons.show_more_options')}
     >
       <PopupMenu>
-        {() => (
+        {(dismiss) => (
           <div className='simple-menu'>
             <BlockButton
               modifiers='inline'
+              onClick={dismiss}
               userId={props.user.id}
               wrapperClass='simple-menu__item'
             />
             <ReportReportable
               className='simple-menu__item'
               icon
+              onFormClose={dismiss}
               reportableId={props.user.id.toString()}
               reportableType='user'
               user={props.user}
