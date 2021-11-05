@@ -22,10 +22,11 @@ export function showImmediateLoadingOverlay() {
 export const showLoadingOverlay = debounce(showImmediateLoadingOverlay, 5000, { maxWait: 5000 });
 
 export function hideLoadingOverlay() {
+  showLoadingOverlay.cancel();
+
   const el = getOverlayElement();
 
   if (el == null) return;
 
-  showLoadingOverlay.cancel();
   el.classList.remove('loading-overlay--visible');
 }
