@@ -3,6 +3,7 @@
 
 import BbcodeEditor from 'bbcode-editor'
 import * as React from 'react'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 el = React.createElement
 
 export class UserPageEditor extends React.PureComponent
@@ -30,7 +31,7 @@ export class UserPageEditor extends React.PureComponent
   save: ({event, value}) =>
     return @cancel() if value == @props.userPage.raw
 
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     $.ajax laroute.route('users.page', user: @props.user.id),
       method: 'PUT'
@@ -44,4 +45,4 @@ export class UserPageEditor extends React.PureComponent
         raw: value
         initialRaw: value
     .fail osu.emitAjaxError(event.target)
-    .always LoadingOverlay.hide
+    .always hideLoadingOverlay

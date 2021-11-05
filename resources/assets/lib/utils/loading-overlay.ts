@@ -1,25 +1,31 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-overlay = document.getElementsByClassName 'js-loading-overlay'
+import { debounce } from 'lodash';
 
+function getOverlayElement() {
+  const el = document.querySelector('.js-loading-overlay');
 
-show = ->
-  return if overlay.length == 0
+  if (el instanceof HTMLElement) {
+    return el;
+  }
+}
 
-  overlay[0].classList.add 'loading-overlay--visible'
+export function showImmediateLoadingOverlay() {
+  const el = getOverlayElement();
 
+  if (el == null) return;
 
-show = _.debounce show, 5000, maxWait: 5000
+  el.classList.add('loading-overlay--visible');
+}
 
+export const showLoadingOverlay = debounce(showImmediateLoadingOverlay, 5000, { maxWait: 5000 });
 
-hide = ->
-  return if overlay.length == 0
+export function hideLoadingOverlay() {
+  const el = getOverlayElement();
 
-  show.cancel()
-  overlay[0].classList.remove 'loading-overlay--visible'
+  if (el == null) return;
 
-
-window.LoadingOverlay =
-  show: show
-  hide: hide
+  showLoadingOverlay.cancel();
+  el.classList.remove('loading-overlay--visible');
+}
