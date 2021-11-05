@@ -3,12 +3,17 @@
 
 import { BlockButton } from 'block-button';
 import UserJson from 'interfaces/user-json';
+import core from 'osu-core-singleton';
 import { PopupMenu } from 'popup-menu';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
 
 interface Props {
   user: UserJson;
+}
+
+export function showExtraMenu(user: UserJson) {
+  return core.currentUser != null && core.currentUser.id !== user.id;
 }
 
 export default function ExtraMenu(props: Props) {

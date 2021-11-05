@@ -3,7 +3,7 @@
 
 import { Rank } from '../profile-page/rank'
 import { FriendButton } from 'friend-button'
-import ExtraMenu from 'profile-page/extra-menu'
+import ExtraMenu, { showExtraMenu } from 'profile-page/extra-menu'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import { jsonClone } from 'utils/json'
@@ -66,7 +66,7 @@ export class DetailBar extends React.PureComponent
             @props.stats.level.current
 
   renderExtraMenu: =>
-    return null unless @state.currentUser.id? && @state.currentUser.id != @props.user.id
+    return null unless showExtraMenu(@props.user)
 
     div className: "#{bn}__entry",
       el ExtraMenu,

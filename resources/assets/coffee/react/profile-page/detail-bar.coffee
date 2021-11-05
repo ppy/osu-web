@@ -6,7 +6,7 @@ import FollowUserMappingButton from 'follow-user-mapping-button'
 import { FriendButton } from 'friend-button'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
-import ExtraMenu from 'profile-page/extra-menu'
+import ExtraMenu, { showExtraMenu } from 'profile-page/extra-menu'
 import * as React from 'react'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
 import { nextVal } from 'utils/seq'
@@ -86,7 +86,7 @@ export class DetailBar extends React.Component
               @props.stats.level.current
 
   renderExtraMenu: =>
-    return null unless core.currentUser? && core.currentUser.id != @props.user.id
+    return null unless showExtraMenu(@props.user)
 
     div className: "#{bn}__entry",
       el ExtraMenu,
