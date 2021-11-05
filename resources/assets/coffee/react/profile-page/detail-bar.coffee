@@ -2,26 +2,19 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { Rank } from './rank'
-import { BlockButton } from 'block-button'
 import FollowUserMappingButton from 'follow-user-mapping-button'
 import { FriendButton } from 'friend-button'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
+import ExtraMenu, { showExtraMenu } from 'profile-page/extra-menu'
 import * as React from 'react'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
-import { ReportReportable } from 'report-reportable'
 import { nextVal } from 'utils/seq'
 
 el = React.createElement
 bn = 'profile-detail-bar'
 
 export class DetailBar extends React.Component
-  constructor: (props) ->
-    super props
-
-    @eventId = "profile-page-#{nextVal()}"
-
-
   render: =>
     el Observer, null, =>
       isBlocked = core.currentUser? && _.find(core.currentUser.blocks, target_id: @props.user.id)?
@@ -93,38 +86,11 @@ export class DetailBar extends React.Component
               @props.stats.level.current
 
   renderExtraMenu: =>
-    items = []
-
-    if core.currentUser? && core.currentUser.id != @props.user.id
-      blockButton = el BlockButton,
-        key: 'block'
-        userId: @props.user.id
-        wrapperClass: 'simple-menu__item'
-        modifiers: ['inline']
-      items.push blockButton
-
-      reportButton = el ReportReportable,
-        className: 'simple-menu__item'
-        icon: true
-        key: 'report'
-        reportableId: @props.user.id
-        reportableType: 'user'
-        user: @props.user
-      items.push reportButton
-
-    return null if items.length == 0
+    return null unless showExtraMenu(@props.user)
 
     div className: "#{bn}__entry",
-      button
-        className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail js-click-menu'
-        title: osu.trans('common.buttons.show_more_options')
-        'data-click-menu-target': "profile-page-bar-#{@eventId}"
-        span className: 'fas fa-ellipsis-v'
-      div
-        className: 'simple-menu simple-menu--profile-page-bar js-click-menu'
-        'data-click-menu-id': "profile-page-bar-#{@eventId}"
-        'data-visibility': 'hidden'
-        items
+      el ExtraMenu,
+        user: @props.user
 
 
   toggleExtend: =>
