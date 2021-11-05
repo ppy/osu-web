@@ -7,7 +7,7 @@ import { classWithModifiers, Modifiers } from 'utils/css';
 
 type ChangeType = 'cancel' | 'save';
 
-interface OnChangeProps {
+export interface OnChangeProps {
   event?: React.SyntheticEvent;
   hasChanged: boolean;
   type: ChangeType;
@@ -23,6 +23,10 @@ interface Props {
 }
 
 export default class BbcodeEditor extends React.Component<Props> {
+  static readonly defaultProps = {
+    disabled: false,
+  };
+
   private readonly bodyRef = React.createRef<HTMLTextAreaElement>();
   private readonly sizeSelectRef = React.createRef<HTMLSelectElement>();
 
