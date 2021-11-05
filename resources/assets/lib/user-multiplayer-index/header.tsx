@@ -4,6 +4,7 @@
 import HeaderV4 from 'header-v4';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import Badges from 'profile-page/badges';
+import DetailBarButtons from 'profile-page/detail-bar-buttons';
 import HeaderInfo from 'profile-page/header-info';
 import headerLinks from 'profile-page/header-links';
 import Links from 'profile-page/links';
@@ -29,6 +30,18 @@ export default class Header extends React.Component<Props> {
             <div className='profile-header__top'>
               <HeaderInfo coverUrl={this.props.user.cover.url} currentMode={this.props.user.playmode} user={this.props.user} />
             </div>
+
+            {!this.props.user.is_bot && (
+              <div className='profile-detail'>
+                <div className='profile-detail__bar'>
+                  <div className='profile-detail-bar'>
+                    <div className='profile-detail-bar__column profile-detail-bar__column--left'>
+                      <DetailBarButtons user={this.props.user} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
             <Badges badges={this.props.user.badges} />
             <Links user={this.props.user} />
           </div>
