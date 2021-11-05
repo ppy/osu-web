@@ -3,7 +3,7 @@
 
 import FollowUserMappingButton from 'follow-user-mapping-button';
 import { FriendButton } from 'friend-button';
-import UserJson from 'interfaces/user-json';
+import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import { find } from 'lodash';
 import { observer } from 'mobx-react';
@@ -12,7 +12,7 @@ import ExtraMenu, { showExtraMenu } from 'profile-page/extra-menu';
 import * as React from 'react';
 
 interface Props {
-  user: UserJson;
+  user: UserExtendedJson;
 }
 
 @observer
