@@ -48,7 +48,6 @@ export class Main extends React.PureComponent
           initialRaw: props.userPage.raw
           raw: props.userPage.raw
           editing: false
-          selection: [0, 0]
         profileOrder: props.user.profile_order[..]
         recentActivity: @props.extras.recentActivity
         scoresBest: @props.extras.scoresBest

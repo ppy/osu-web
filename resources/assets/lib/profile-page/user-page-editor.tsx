@@ -8,9 +8,16 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
 
+interface UserPageData {
+  editing: boolean;
+  html: string;
+  initialRaw: string;
+  raw: string;
+}
+
 interface Props {
   user: UserJson;
-  userPage: Required<UserJson>['page'];
+  userPage: UserPageData;
 }
 
 export default class UserPageEditor extends React.PureComponent<Props> {
