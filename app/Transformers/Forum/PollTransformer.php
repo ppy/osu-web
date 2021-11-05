@@ -13,12 +13,10 @@ class PollTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'options',
-        'total_vote_count',
     ];
 
     protected $defaultIncludes = [
         'options',
-        'total_vote_count',
     ];
 
     public function transform(Topic $topic): array
@@ -34,6 +32,7 @@ class PollTransformer extends TransformerAbstract
                 'bbcode' => $topic->pollTitleRaw(),
                 'html' => $topic->pollTitleHTML(),
             ],
+            'total_vote_count' => $topic->poll()->totalVoteCount(),
         ];
     }
 
@@ -45,10 +44,5 @@ class PollTransformer extends TransformerAbstract
         }
 
         return $this->collection($topic->pollOptions, new PollOptionTransformer());
-    }
-
-    public function includeTotalVoteCount(Topic $topic): ResourceInterface
-    {
-        return $this->primitive($topic->poll()->totalVoteCount());
     }
 }
