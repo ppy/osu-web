@@ -21,13 +21,11 @@ export default function ExtraMenu(props: Props) {
         {() => (
           <div className='simple-menu'>
             <BlockButton
-              key='block'
               modifiers='inline'
               userId={props.user.id}
               wrapperClass='simple-menu__item'
             />
             <ReportReportable
-              key='report'
               className='simple-menu__item'
               icon
               reportableId={props.user.id.toString()}
