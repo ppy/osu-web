@@ -93,26 +93,7 @@ export class DetailBar extends React.Component
               @props.stats.level.current
 
   renderExtraMenu: =>
-    items = []
-
-    if core.currentUser? && core.currentUser.id != @props.user.id
-      blockButton = el BlockButton,
-        key: 'block'
-        userId: @props.user.id
-        wrapperClass: 'simple-menu__item'
-        modifiers: ['inline']
-      items.push blockButton
-
-      reportButton = el ReportReportable,
-        className: 'simple-menu__item'
-        icon: true
-        key: 'report'
-        reportableId: @props.user.id
-        reportableType: 'user'
-        user: @props.user
-      items.push reportButton
-
-    return null if items.length == 0
+    return null unless core.currentUser? && core.currentUser.id != @props.user.id
 
     div className: "#{bn}__entry",
       button
@@ -124,7 +105,19 @@ export class DetailBar extends React.Component
         className: 'simple-menu simple-menu--profile-page-bar js-click-menu'
         'data-click-menu-id': "profile-page-bar-#{@eventId}"
         'data-visibility': 'hidden'
-        items
+        el BlockButton,
+          key: 'block'
+          userId: @props.user.id
+          wrapperClass: 'simple-menu__item'
+          modifiers: ['inline']
+
+        el ReportReportable,
+          className: 'simple-menu__item'
+          icon: true
+          key: 'report'
+          reportableId: @props.user.id
+          reportableType: 'user'
+          user: @props.user
 
 
   toggleExtend: =>
