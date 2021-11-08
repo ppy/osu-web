@@ -1,13 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import ExtraHeader from 'profile-page/extra-header';
 import UserPageEditor from 'profile-page/user-page-editor';
 import * as React from 'react';
 import StringWithComponent from 'string-with-component';
+import ExtraPageProps from './extra-page-props';
 
 export interface UserPageData {
   editing: boolean;
@@ -16,11 +16,8 @@ export interface UserPageData {
   raw: string;
 }
 
-interface Props {
-  name: string;
-  user: UserExtendedJson;
+interface Props extends ExtraPageProps {
   userPage: UserPageData;
-  withEdit: boolean;
 }
 
 export default class UserPage extends React.Component<Props> {
