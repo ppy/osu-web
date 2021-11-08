@@ -1,58 +1,96 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import PlayDetailList from 'play-detail-list'
-import ExtraHeader from 'profile-page/extra-header'
-import * as React from 'react'
-import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
-import ShowMoreLink from 'show-more-link'
-el = React.createElement
+import GameMode from 'interfaces/game-mode';
+import ScoreJson from 'interfaces/score-json';
+import { route } from 'laroute';
+import PlayDetailList from 'play-detail-list';
+import ExtraHeader from 'profile-page/extra-header';
+import * as React from 'react';
+import ShowMoreLink from 'show-more-link';
+import ExtraPageProps, { ProfilePagePaginationData, TopScoreSection } from './extra-page-props';
 
-export class TopRanks extends React.PureComponent
-  render: =>
-    div
-      className: 'page-extra'
-      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
+interface SectionMap {
+  count: 'scores_best_count' | 'scores_first_count';
+  key: TopScoreSection;
+  type: string;
+}
 
-      div null,
-        h3
-          className: 'title title--page-extra-small'
-          osu.trans('users.show.extra.top_ranks.best.title')
-          span className: 'title__count',
-            osu.formatNumber(@props.user.scores_best_count)
+const sectionMaps: SectionMap[] = [
+  {
+    count: 'scores_best_count',
+    key: 'scoresBest',
+    type: 'best',
+  },
+  {
+    count: 'scores_first_count',
+    key: 'scoresFirsts',
+    type: 'firsts',
+  },
+];
 
-        @renderScores 'scoresBest', 'best'
+type ScoreData = ScoreJson[] | { error: string };
 
-      div null,
-        h3
-          className: 'title title--page-extra-small'
-          osu.trans('users.show.extra.top_ranks.first.title')
-          span className: 'title__count',
-            osu.formatNumber(@props.user.scores_first_count)
+type Props = {
+  currentMode: GameMode;
+  pagination: ProfilePagePaginationData;
+} & {
+  [key in TopScoreSection]?: ScoreData;
+} & ExtraPageProps;
 
-        @renderScores 'scoresFirsts', 'firsts'
+export default class TopRanks extends React.PureComponent<Props> {
+  render() {
+    return (
+      <div className='page-extra'>
+        <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
 
+        {sectionMaps.map((section) => (
+          <div key={section.key}>
+            <h3 className='title title--page-extra-small'>
+              {osu.trans('users.show.extra.top_ranks.best.title')}
+              <span className='title__count'>
+                {osu.formatNumber(this.props.user[section.count])}
+              </span>
+            </h3>
 
-  renderScores: (key, type) =>
-    pagination = @props.pagination[key]
-    scores = @props[key]
+            {this.renderScores(section)}
+          </div>
+        ))}
+      </div>
+    );
+  }
 
-    if scores?.error
-      p null, scores.error
+  private renderScores(section: SectionMap) {
+    const pagination = this.props.pagination[section.key];
+    const scores = this.props[section.key];
 
-    else if scores?.length
-      div className: 'profile-extra-entries',
-        el PlayDetailList, scores: scores
+    if (scores == null) return null;
 
-        div className: 'profile-extra-entries__item',
-          el ShowMoreLink,
-            modifiers: 'profile-page'
-            event: 'profile:showMore'
-            hasMore: pagination.hasMore
-            loading: pagination.loading
-            data:
-              name: key
-              url: laroute.route 'users.scores',
-                user: @props.user.id
-                type: type
-                mode: @props.currentMode
+    if (Array.isArray(scores)) {
+      return (
+        <div className='profile-extra-entries'>
+          <PlayDetailList scores={scores} />
+
+          <div className='profile-extra-entries__item'>
+            <ShowMoreLink
+              data={{
+                name: section.key,
+                url: route('users.scores', {
+                  mode: this.props.currentMode,
+                  type: section.type,
+                  user: this.props.user.id,
+                }),
+              }}
+              event='profile:showMore'
+              hasMore={pagination.hasMore}
+              loading={pagination.loading}
+              modifiers='profile-page'
+            />
+          </div>
+        </div>
+      );
+    }
+
+    return <p>{scores.error}</p>;
+  }
+}
