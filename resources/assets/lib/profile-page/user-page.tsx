@@ -1,78 +1,126 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import ExtraHeader from 'profile-page/extra-header'
-import UserPageEditor from 'profile-page/user-page-editor'
-import * as React from 'react'
-import { a, button, div, span, p } from 'react-dom-factories'
-import StringWithComponent from 'string-with-component'
-el = React.createElement
+import UserExtendedJson from 'interfaces/user-extended-json';
+import { route } from 'laroute';
+import core from 'osu-core-singleton';
+import ExtraHeader from 'profile-page/extra-header';
+import UserPageEditor from 'profile-page/user-page-editor';
+import * as React from 'react';
+import StringWithComponent from 'string-with-component';
 
-export class UserPage extends React.Component
-  render: =>
-    isBlank = @props.userPage.initialRaw.trim() == ''
-    canEdit = @props.withEdit || window.currentUser.is_moderator || window.currentUser.is_admin
+export interface UserPageData {
+  editing: boolean;
+  html: string;
+  initialRaw: string;
+  raw: string;
+}
 
-    div className: 'page-extra page-extra--userpage',
-      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
+interface Props {
+  name: string;
+  user: UserExtendedJson;
+  userPage: UserPageData;
+  withEdit: boolean;
+}
 
-      if !@props.userPage.editing && canEdit && !isBlank
-        div className: 'page-extra__actions',
-          button
-            type: 'button'
-            title: osu.trans('users.show.page.button')
-            className: 'btn-circle btn-circle--page-toggle'
-            onClick: @editStart
-            span className: 'fas fa-pencil-alt'
+export default class UserPage extends React.Component<Props> {
+  private get canEdit() {
+    return this.props.withEdit || (core.currentUser != null && (core.currentUser.is_moderator || core.currentUser.is_admin));
+  }
 
-      if @props.userPage.editing
-        el UserPageEditor, userPage: @props.userPage, user: @props.user
-      else
-        div className: 'page-extra__content-overflow-wrapper-outer u-fancy-scrollbar',
-          if @props.withEdit && isBlank
-            @pageNew()
-          else
-            div className: 'page-extra__content-overflow-wrapper-inner',
-              @pageShow()
+  render() {
+    const isBlank = !osu.present(this.props.userPage.initialRaw);
+    const canEdit = this.canEdit;
 
+    return (
+      <div className='page-extra page-extra--userpage'>
+        <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
 
-  editStart: ->
-    $.publish 'user:page:update', editing: true
+        {!this.props.userPage.editing && canEdit && !isBlank && (
+          <div className='page-extra__actions'>
+            <button
+              className='btn-circle btn-circle--page-toggle'
+              onClick={this.editStart}
+              title={osu.trans('users.show.page.button')}
+              type='button'
+            >
+              <span className='fas fa-pencil-alt' />
+            </button>
+          </div>
+        )}
 
+        {this.props.userPage.editing ? (
+          <UserPageEditor user={this.props.user} userPage={this.props.userPage} />
+        ) : (
+          <div className='page-extra__content-overflow-wrapper-outer u-fancy-scrollbar'>
+            {this.props.withEdit && isBlank ? (
+              this.renderPageNew()
+            ) : (
+              <div className='page-extra__content-overflow-wrapper-inner'>
+                {this.renderPageShow()}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
 
-  pageNew: =>
-    div className: 'profile-extra-user-page profile-extra-user-page--new',
-      p
-        className: 'profile-extra-user-page__new-content'
-        button
-          type: 'button'
-          className: 'btn-osu-big btn-osu-big--user-page-edit'
-          onClick: @editStart
-          disabled: !@props.user.has_supported
-          osu.trans 'users.show.page.edit_big'
+  private readonly editStart = () => {
+    $.publish('user:page:update', { editing: true });
+  };
 
-      p className: 'profile-extra-user-page__new-content profile-extra-user-page__new-content--icon',
-        span className: 'fas fa-edit'
+  private renderPageNew() {
+    return (
+      <div className='profile-extra-user-page profile-extra-user-page--new'>
+        <p className='profile-extra-user-page__new-content'>
+          <button
+            className='btn-osu-big btn-osu-big--user-page-edit'
+            disabled={!this.props.user.has_supported}
+            onClick={this.editStart}
+            type='button'
+          >
+            {osu.trans('users.show.page.edit_big')}
+          </button>
+        </p>
 
-      p
-        className: 'profile-extra-user-page__new-content'
-        dangerouslySetInnerHTML:
-          __html: osu.trans 'users.show.page.description'
+        <p className='profile-extra-user-page__new-content profile-extra-user-page__new-content--icon'>
+          <span className='fas fa-edit' />
+        </p>
 
-      if !@props.user.has_supported
-        p
-          className: 'profile-extra-user-page__new-content'
-          el StringWithComponent,
-            mappings:
-              link: a
-                href: laroute.route('store.products.show', product: 'supporter-tag')
-                target: '_blank'
-                osu.trans 'users.show.page.restriction_info.link'
-            pattern: osu.trans 'users.show.page.restriction_info._'
+        <p
+          className='profile-extra-user-page__new-content'
+          dangerouslySetInnerHTML={{ __html: osu.trans('users.show.page.description') }}
+        />
 
+        {!this.props.user.has_supported && (
+          <p className='profile-extra-user-page__new-content'>
+            <StringWithComponent
+              mappings={{
+                link: (
+                  <a
+                    href={route('store.products.show', { product: 'supporter-tag' })}
+                    rel="noreferrer"
+                    target='_blank'
+                  >
+                    {osu.trans('users.show.page.restriction_info.link')}
+                  </a>
+                ),
+              }}
+              pattern={osu.trans('users.show.page.restriction_info._')}
+            />
+          </p>
+        )}
+      </div>
+    );
+  }
 
-  pageShow: =>
-    div
-      className: 'js-audio--group'
-      dangerouslySetInnerHTML:
-        __html: @props.userPage.html
+  private renderPageShow() {
+    return (
+      <div
+        className='js-audio--group'
+        dangerouslySetInnerHTML={{ __html: this.props.userPage.html }}
+      />
+    );
+  }
+}

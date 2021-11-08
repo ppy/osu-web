@@ -7,13 +7,7 @@ import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
-
-interface UserPageData {
-  editing: boolean;
-  html: string;
-  initialRaw: string;
-  raw: string;
-}
+import { UserPageData } from './user-page';
 
 interface Props {
   user: UserJson;
