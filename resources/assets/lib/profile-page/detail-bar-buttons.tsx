@@ -17,8 +17,6 @@ interface Props {
 @observer
 export default class DetailBarButtons extends React.Component<Props> {
   render() {
-    const isBlocked = core.currentUser?.blocks.find((user) => user.target_id === this.props.user.id) != null;
-
     return (
       <>
         <div className='profile-detail-bar__entry'>
@@ -30,7 +28,17 @@ export default class DetailBarButtons extends React.Component<Props> {
             userId={this.props.user.id}
           />
         </div>
+        {this.renderNonBotButtons()}
+      </>
+    );
+  }
 
+  private renderNonBotButtons() {
+    if (this.props.user.is_bot) return null;
+
+    const isBlocked = core.currentUser?.blocks.find((user) => user.target_id === this.props.user.id) != null;
+    return (
+      <>
         <div className='profile-detail-bar__entry'>
           <FollowUserMappingButton
             alwaysVisible
