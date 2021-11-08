@@ -15,7 +15,7 @@ bn = 'profile-detail-bar'
 export class DetailBar extends React.PureComponent
   render: =>
     div className: bn,
-      div className: "#{bn}__column #{bn}__column--left",
+      div className: "#{bn}__column",
         el DetailBarButtons, user: @props.user
 
       div className: "#{bn}__column #{bn}__column--right",

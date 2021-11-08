@@ -30,7 +30,7 @@ export class DetailBar extends React.Component
             else
               span className: 'fas fa-chevron-down'
 
-        div className: "#{bn}__column #{bn}__column--left",
+        div className: "#{bn}__column",
           el DetailBarButtons, user: @props.user
 
         div className: "#{bn}__column #{bn}__column--right",
