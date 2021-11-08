@@ -5,7 +5,6 @@ import FollowUserMappingButton from 'follow-user-mapping-button';
 import { FriendButton } from 'friend-button';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
-import { find } from 'lodash';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import ExtraMenu, { showExtraMenu } from 'profile-page/extra-menu';
@@ -18,7 +17,7 @@ interface Props {
 @observer
 export default class DetailBarButtons extends React.Component<Props> {
   render() {
-    const isBlocked = core.currentUser != null && find(core.currentUser.blocks, { target_id: this.props.user.id }) != null;
+    const isBlocked = core.currentUser?.blocks.find((user) => user.target_id === this.props.user.id) != null;
 
     return (
       <>
