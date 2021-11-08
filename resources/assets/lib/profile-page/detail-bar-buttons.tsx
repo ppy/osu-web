@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import ExtraMenu, { showExtraMenu } from 'profile-page/extra-menu';
 import * as React from 'react';
+import { isBlocked } from 'utils/user-helper';
 
 interface Props {
   user: UserExtendedJson;
@@ -36,7 +37,6 @@ export default class DetailBarButtons extends React.Component<Props> {
   private renderNonBotButtons() {
     if (this.props.user.is_bot) return null;
 
-    const isBlocked = core.currentUser?.blocks.find((user) => user.target_id === this.props.user.id) != null;
     return (
       <>
         <div className='profile-detail-bar__entry'>
@@ -50,7 +50,7 @@ export default class DetailBarButtons extends React.Component<Props> {
         </div>
 
         {/* show button even if not logged in */}
-        {(core.currentUser == null || (core.currentUser.id !== this.props.user.id && !isBlocked)) && (
+        {(core.currentUser == null || (core.currentUser.id !== this.props.user.id && !isBlocked(this.props.user))) && (
           <div className='profile-detail-bar__entry'>
             <a
               className='user-action-button user-action-button--profile-page'
