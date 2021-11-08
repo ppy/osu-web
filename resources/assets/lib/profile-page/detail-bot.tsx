@@ -12,18 +12,16 @@ interface Props {
 export default function DetailBot({ user }: Props) {
   return (
     <div className='profile-detail'>
-      <div className='profile-detail__bar'>
-        <div className='profile-detail-bar'>
-          <div className='profile-detail-bar__column profile-detail-bar__column--left'>
-            <div className='profile-detail-bar__entry'>
-              <FriendButton
-                alwaysVisible
-                followers={user.follower_count}
-                modifiers='profile-page'
-                showFollowerCounter
-                userId={user.id}
-              />
-            </div>
+      <div className='profile-detail-bar'>
+        <div className='profile-detail-bar__column'>
+          <div className='profile-detail-bar__entry'>
+            <FriendButton
+              alwaysVisible
+              followers={user.follower_count}
+              modifiers='profile-page'
+              showFollowerCounter
+              userId={user.id}
+            />
           </div>
         </div>
       </div>

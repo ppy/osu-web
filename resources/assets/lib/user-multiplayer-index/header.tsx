@@ -31,15 +31,13 @@ export default class Header extends React.Component<Props> {
               <HeaderInfo coverUrl={this.props.user.cover.url} currentMode={this.props.user.playmode} user={this.props.user} />
             </div>
 
-            {!this.props.user.is_bot && (
-              <div className='profile-detail'>
-                <div className='profile-detail-bar'>
-                  <div className='profile-detail-bar__column profile-detail-bar__column--left'>
-                    <DetailBarButtons user={this.props.user} />
-                  </div>
+            <div className='profile-detail'>
+              <div className='profile-detail-bar'>
+                <div className='profile-detail-bar__column'>
+                  <DetailBarButtons user={this.props.user} />
                 </div>
               </div>
-            )}
+            </div>
             <Badges badges={this.props.user.badges} />
             <Links user={this.props.user} />
           </div>
