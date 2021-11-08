@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Beatmap;
@@ -42,17 +44,36 @@ class BeatmapFactory extends Factory
         ];
     }
 
-    public function qualified()
+    public function deleted(): static
+    {
+        return $this->state(['deleted_at' => now()]);
+    }
+
+    public function deletedBeatmapset(): static
+    {
+        return $this->state([
+            'beatmapset_id' => Beatmapset::factory()->deleted(),
+        ]);
+    }
+
+    public function inactive(): static
+    {
+        return $this->state([
+            'beatmapset_id' => Beatmapset::factory()->state(['active' => false]),
+        ]);
+    }
+
+    public function qualified(): static
     {
         return $this->state(['approved' => Beatmapset::STATES['qualified']]);
     }
 
-    public function ranked()
+    public function ranked(): static
     {
         return $this->state(['approved' => Beatmapset::STATES['ranked']]);
     }
 
-    public function wip()
+    public function wip(): static
     {
         return $this->state(['approved' => Beatmapset::STATES['wip']]);
     }

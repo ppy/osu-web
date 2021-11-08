@@ -6,7 +6,6 @@ window.polyfills ?= new Polyfills
 Turbolinks.start()
 Turbolinks.setProgressBarDelay(0)
 
-Lang.setLocale(window.currentLocale)
 moment.relativeTimeThreshold('ss', 44)
 moment.relativeTimeThreshold('s', 120)
 moment.relativeTimeThreshold('m', 120)
