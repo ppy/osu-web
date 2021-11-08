@@ -520,7 +520,6 @@ class UsersController extends Controller
             'favourite_beatmapset_count',
             'graveyard_beatmapset_count',
             'loved_beatmapset_count',
-            'mapping_follower_count',
             'monthly_playcounts',
             'page',
             'pending_beatmapset_count',
