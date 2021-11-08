@@ -2,11 +2,10 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { Rank } from '../profile-page/rank'
-import { BlockButton } from 'block-button'
 import { FriendButton } from 'friend-button'
+import ExtraMenu, { showExtraMenu } from 'profile-page/extra-menu'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
-import { ReportReportable } from 'report-reportable'
 import { jsonClone } from 'utils/json'
 import { nextVal } from 'utils/seq'
 el = React.createElement
@@ -67,38 +66,11 @@ export class DetailBar extends React.PureComponent
             @props.stats.level.current
 
   renderExtraMenu: =>
-    items = []
-
-    if @state.currentUser.id? && @state.currentUser.id != @props.user.id
-      blockButton = el BlockButton,
-        key: 'block'
-        userId: @props.user.id
-        wrapperClass: 'simple-menu__item'
-        modifiers: ['inline']
-      items.push blockButton
-
-      reportButton = el ReportReportable,
-        className: 'simple-menu__item'
-        icon: true
-        key: 'report'
-        reportableId: @props.user.id
-        reportableType: 'user'
-        user: @props.user
-      items.push reportButton
-
-    return null if items.length == 0
+    return null unless showExtraMenu(@props.user)
 
     div className: "#{bn}__entry",
-      button
-        className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail js-click-menu'
-        title: osu.trans('common.buttons.show_more_options')
-        'data-click-menu-target': "profile-page-bar-#{@id}"
-        span className: 'fas fa-ellipsis-v'
-      div
-        className: 'simple-menu simple-menu--profile-page-bar js-click-menu'
-        'data-click-menu-id': "profile-page-bar-#{@id}"
-        'data-visibility': 'hidden'
-        items
+      el ExtraMenu,
+        user: @props.user
 
 
   updateCurrentUser: (_e, user) =>

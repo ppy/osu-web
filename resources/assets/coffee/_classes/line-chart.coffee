@@ -3,7 +3,7 @@
 
 bn = 'line-chart'
 
-class @LineChart
+class window.LineChart
   constructor: (area, @options = {}) ->
     @margins =
       top: 20

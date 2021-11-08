@@ -28,6 +28,10 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (User $user) {
+            if (!$user->exists) {
+                throw new \Exception($user->validationErrors()->toSentence());
+            }
+
             $user->addToGroup(app('groups')->byId($user->group_id));
         });
     }

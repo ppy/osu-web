@@ -233,30 +233,14 @@ if (process.env.SENTRY_RELEASE === '1') {
 // #region Loader rules
 const rules = [
   {
-    enforce: 'pre',
-    exclude: /(node_modules)/,
-    loader: 'import-glob-loader',
-    test: /\.(js|ts|coffee)$/,
-  },
-  {
     exclude: /node_modules/,
     loader: 'ts-loader',
     test: /\.tsx?$/,
   },
   {
-    // loader for preexisting global coffeescript
-    exclude: [
-      resolvePath('resources/assets/coffee/react'),
-    ],
-    include: [
-      resolvePath('resources/assets/coffee'),
-    ],
-    test: /\.coffee$/,
-    use: ['imports-loader?jQuery=jquery,$=jquery,this=>window', 'coffee-loader'],
-  },
-  {
     // loader for import-based coffeescript
     include: [
+      resolvePath('resources/assets/coffee'),
       resolvePath('resources/assets/coffee/react'),
       resolvePath('resources/assets/lib'),
     ],
