@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { MedalsCount } from './medals-count'
 import { PlayTime } from './play-time'
 import { Pp } from './pp'
 import { Rank } from './rank'
 import { RankChart } from './rank-chart'
+import MedalsCount from 'profile-page/medals-count'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
