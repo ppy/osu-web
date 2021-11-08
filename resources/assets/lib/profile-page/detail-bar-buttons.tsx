@@ -43,7 +43,7 @@ export default class DetailBarButtons extends React.Component<Props> {
         </div>
 
         {/* show button even if not logged in */}
-        {core.currentUser == null || (core.currentUser.id !== this.props.user.id && !isBlocked) && (
+        {(core.currentUser == null || (core.currentUser.id !== this.props.user.id && !isBlocked)) && (
           <div className='profile-detail-bar__entry'>
             <a
               className='user-action-button user-action-button--profile-page'
