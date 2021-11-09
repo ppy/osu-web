@@ -6,7 +6,6 @@ import mapperGroup from 'beatmap-discussions/mapper-group';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
-import { AnchorHTMLAttributes } from 'react';
 import { currentUrl } from 'utils/turbolinks';
 import { linkHtml } from 'utils/url';
 
@@ -15,6 +14,14 @@ interface BadgeGroupParams {
   currentBeatmap: BeatmapJson;
   discussion: BeatmapsetDiscussionJson;
   user?: UserJson;
+}
+
+interface PropsFromHrefValue {
+  [key: string]: string | undefined;
+  children: string;
+  className?: string;
+  rel: 'nofollow noreferrer';
+  target?: '_blank';
 }
 
 export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: BadgeGroupParams) {
@@ -39,7 +46,6 @@ export function discussionLinkify(text: string) {
     const { children, ...props } = propsFromHref(url);
     // React types it as ReactNode but it can be a string.
     const displayUrl = typeof children === 'string' ? children : url;
-
     return linkHtml(url, displayUrl, { props, unescape: true });
   });
 }
@@ -47,7 +53,7 @@ export function discussionLinkify(text: string) {
 export function propsFromHref(href: string) {
   const current = BeatmapDiscussionHelper.urlParse(currentUrl().href);
 
-  const props: Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'children' | 'className' | 'rel' | 'target'> = {
+  const props: PropsFromHrefValue = {
     children: href,
     rel: 'nofollow noreferrer',
     target: '_blank',
