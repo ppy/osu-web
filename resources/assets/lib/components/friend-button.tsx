@@ -26,13 +26,13 @@ interface Props {
 export default class FriendButton extends React.Component<Props> {
   static readonly defaultProps = {
     alwaysVisible: false,
-    showFollowerCounter: false,
   };
 
   @observable private followersWithoutSelf: number;
   @observable private loading = false;
   private xhr?: JQuery.jqXHR<UserRelationJson[]>;
 
+  @computed
   private get followers() {
     return this.followersWithoutSelf + (this.friend == null ? 0 : 1);
   }
