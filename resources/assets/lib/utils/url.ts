@@ -31,7 +31,7 @@ const internalUrls = [
 
 const internalUrlRegExp = RegExp(`^/(?:${internalUrls})(?:$|/|#)`);
 
-export interface OsuLinkOptions {
+interface OsuLinkOptions {
   classNames?: string[];
   isRemote?: boolean;
   props?: Partial<Record<string, any>>;
