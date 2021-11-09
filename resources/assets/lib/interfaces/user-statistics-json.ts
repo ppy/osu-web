@@ -13,6 +13,13 @@ interface Variant {
 
 export default interface UserStatisticsJson {
   global_rank?: number;
+  hit_accuracy: number;
+  maximum_combo: number;
+  play_count: number;
   pp: number;
+  ranked_score: number;
+  replays_watched_by_others: number;
+  total_hits: number;
+  total_score: number;
   variants?: Variant[];
 }
