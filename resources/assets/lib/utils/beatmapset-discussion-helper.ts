@@ -35,13 +35,11 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
 
 export function discussionLinkify(text: string) {
   // text should be pre-escaped.
-  return text.replace(osu.urlRegex, (match, url) => {
-    const props = propsFromHref(url);
-    // React types it as ReactNode but is can be a string.
-    const displayUrl = typeof props.children === 'string' ? props.children : url;
-    const classNames = props.className?.split(' ');
-    props.children = null;
-    props.className = undefined;
+  return text.replace(osu.urlRegex, (match, url: string) => {
+    const { children, className, ...props } = propsFromHref(url);
+    // React types it as ReactNode but it can be a string.
+    const displayUrl = typeof children === 'string' ? children : url;
+    const classNames = className?.split(' ');
 
     return link(url, displayUrl, { classNames, props, unescape: true });
   });
@@ -50,7 +48,7 @@ export function discussionLinkify(text: string) {
 export function propsFromHref(href: string) {
   const current = BeatmapDiscussionHelper.urlParse(currentUrl().href);
 
-  const props: AnchorHTMLAttributes<HTMLAnchorElement> = {
+  const props: Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'children' | 'className' | 'rel' | 'target'> = {
     children: href,
     rel: 'nofollow noreferrer',
     target: '_blank',
