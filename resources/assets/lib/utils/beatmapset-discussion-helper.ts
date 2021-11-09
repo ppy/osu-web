@@ -7,7 +7,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { currentUrl } from 'utils/turbolinks';
-import { linkHtml } from 'utils/url';
+import { linkHtml, urlRegex } from 'utils/url';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
@@ -42,7 +42,7 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
 
 export function discussionLinkify(text: string) {
   // text should be pre-escaped.
-  return text.replace(osu.urlRegex, (match, url: string) => {
+  return text.replace(urlRegex, (match, url: string) => {
     const { children, ...props } = propsFromHref(url);
     // React types it as ReactNode but it can be a string.
     const displayUrl = typeof children === 'string' ? children : url;
