@@ -2,7 +2,6 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { Rank } from '../profile-page/rank'
-import FriendButton from 'components/friend-button'
 import DetailBarButtons from 'profile-page/detail-bar-buttons'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
