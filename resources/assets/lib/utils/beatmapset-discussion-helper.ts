@@ -36,12 +36,11 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
 export function discussionLinkify(text: string) {
   // text should be pre-escaped.
   return text.replace(osu.urlRegex, (match, url: string) => {
-    const { children, className, ...props } = propsFromHref(url);
+    const { children, ...props } = propsFromHref(url);
     // React types it as ReactNode but it can be a string.
     const displayUrl = typeof children === 'string' ? children : url;
-    const classNames = className?.split(' ');
 
-    return link(url, displayUrl, { classNames, props, unescape: true });
+    return link(url, displayUrl, { props, unescape: true });
   });
 }
 
