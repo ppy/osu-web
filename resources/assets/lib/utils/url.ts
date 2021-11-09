@@ -64,7 +64,7 @@ export function openBeatmapEditor(timestampWithRange: string): string {
   return `osu://edit/${timestampWithRange}`;
 }
 
-export function link(url: string, text: string, options?: OsuLinkOptions): string {
+export function linkHtml(url: string, text: string, options?: OsuLinkOptions): string {
   if (options?.unescape) {
     url = unescape(url);
     text = unescape(text);

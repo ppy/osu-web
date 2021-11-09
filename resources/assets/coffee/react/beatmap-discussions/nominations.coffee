@@ -13,7 +13,7 @@ import TimeWithTooltip from 'time-with-tooltip'
 import { UserLink } from 'user-link'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { pageChange } from 'utils/page-change'
-import { link, wikiUrl } from 'utils/url'
+import { linkHtml, wikiUrl } from 'utils/url'
 
 el = React.createElement
 
@@ -397,7 +397,7 @@ export class Nominations extends React.PureComponent
     div dangerouslySetInnerHTML:
       __html: osu.trans 'beatmaps.nominations.nominated_by',
         users: osu.transArray nominators.map (user) ->
-            link laroute.route('users.show', user: user.id), user.username,
+            linkHtml laroute.route('users.show', user: user.id), user.username,
               classNames: ['js-usercard']
               props:
                 'data-user-id': user.id

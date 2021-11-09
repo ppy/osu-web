@@ -8,7 +8,7 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { AnchorHTMLAttributes } from 'react';
 import { currentUrl } from 'utils/turbolinks';
-import { link } from 'utils/url';
+import { linkHtml } from 'utils/url';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
@@ -40,7 +40,7 @@ export function discussionLinkify(text: string) {
     // React types it as ReactNode but it can be a string.
     const displayUrl = typeof children === 'string' ? children : url;
 
-    return link(url, displayUrl, { props, unescape: true });
+    return linkHtml(url, displayUrl, { props, unescape: true });
   });
 }
 

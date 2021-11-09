@@ -4,7 +4,7 @@
 import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
 import TimeWithTooltip from 'time-with-tooltip'
-import { link } from 'utils/url'
+import { linkHtml } from 'utils/url'
 
 el = React.createElement
 
@@ -23,7 +23,7 @@ export class Event extends React.Component
     event_type = @props.event.detail.type
 
     if user? && event_type != 'match-disbanded'
-      userLink = link laroute.route('users.show', user: user.id),
+      userLink = linkHtml laroute.route('users.show', user: user.id),
         user.username
         classNames: ['mp-history-event__username']
 

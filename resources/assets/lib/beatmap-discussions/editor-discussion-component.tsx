@@ -10,7 +10,7 @@ import { Element as SlateElement, Path, Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
 import { classWithModifiers } from 'utils/css';
-import { link } from 'utils/url';
+import { linkHtml } from 'utils/url';
 import { DraftsContext } from './drafts-context';
 import EditorBeatmapSelector from './editor-beatmap-selector';
 import EditorIssueTypeSelector from './editor-issue-type-selector';
@@ -211,7 +211,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
           // don't linkify timestamps when in edit mode
           return this.props.editMode
             ? timestamp
-            : link(BeatmapDiscussionHelper.url({ discussion }),
+            : linkHtml(BeatmapDiscussionHelper.url({ discussion }),
               timestamp,
               { classNames: ['js-beatmap-discussion--jump'] },
             );
