@@ -18,7 +18,6 @@ interface Props {
   container?: HTMLElement;
   followers?: number;
   modifiers?: Modifiers;
-  showFollowerCounter: boolean;
   userId: number;
 }
 
@@ -43,6 +42,11 @@ export default class FriendButton extends React.Component<Props> {
   }
 
   @computed
+  private get isFriendLimit() {
+    return core.currentUser == null || core.currentUser.friends.length >= core.currentUser.max_friends;
+  }
+
+  @computed
   private get isVisible() {
     // - not a guest
     // - not viewing own card
@@ -51,6 +55,27 @@ export default class FriendButton extends React.Component<Props> {
       Number.isFinite(this.props.userId) &&
       this.props.userId !== core.currentUser.id &&
       !core.currentUser.blocks.some((b) => b.target_id === this.props.userId);
+  }
+
+  private get showFollowerCounter() {
+    return this.props.followers != null;
+  }
+
+  @computed
+  private get title() {
+    if (!this.isVisible) {
+      return osu.trans('friends.buttons.disabled');
+    }
+
+    if (this.friend != null) {
+      return osu.trans('friends.buttons.remove');
+    }
+
+    if (this.isFriendLimit) {
+      return osu.trans('friends.too_many');
+    }
+
+    return osu.trans('friends.buttons.add');
   }
 
   constructor(props: Props) {
@@ -69,55 +94,23 @@ export default class FriendButton extends React.Component<Props> {
   }
 
   render() {
-    if (!this.props.alwaysVisible) {
-      if (this.isVisible) {
-        this.props.container?.classList.remove('hidden');
-      } else {
-        this.props.container?.classList.add('hidden');
-
-        return null;
-      }
+    if (!this.props.alwaysVisible && !this.isVisible) {
+      return null;
     }
 
-    let blockClass = classWithModifiers(bn, this.props.modifiers);
-
-    const isFriendLimit = core.currentUser == null || core.currentUser.friends.length >= core.currentUser.max_friends;
-    const title = (() => {
-      if (!this.isVisible) {
-        return osu.trans('friends.buttons.disabled');
-      }
-
-      if (this.friend != null) {
-        return osu.trans('friends.buttons.remove');
-      }
-
-      if (isFriendLimit) {
-        return osu.trans('friends.too_many');
-      }
-
-      return osu.trans('friends.buttons.add');
-    })();
-
-    const disabled = !this.isVisible || this.loading || isFriendLimit && this.friend == null;
-
+    let extraModifier: string | undefined;
     if (this.friend != null && !this.loading) {
-      if (this.friend.mutual) {
-        blockClass += ` ${bn}--mutual`;
-      } else {
-        blockClass += ` ${bn}--friend`;
-      }
+      extraModifier = this.friend.mutual ? 'mutual' : 'friend';
     }
+
+    const blockClass = classWithModifiers(bn, this.props.modifiers, extraModifier);
+    const disabled = !this.isVisible || this.loading || this.isFriendLimit && this.friend == null;
 
     return (
-      <div title={title}>
-        <button
-          className={blockClass}
-          disabled={disabled}
-          onClick={this.clicked}
-          type='button'
-        >
+      <div title={this.title}>
+        <button className={blockClass} disabled={disabled} onClick={this.clicked} type='button'>
           <span className={`${bn}__icon-container`}>
-            {this.renderIcon(isFriendLimit)}
+            {this.renderIcon()}
           </span>
           {this.renderCounter()}
         </button>
@@ -144,12 +137,12 @@ export default class FriendButton extends React.Component<Props> {
   };
 
   private renderCounter() {
-    if (!this.props.showFollowerCounter || this.props.followers == null) return;
+    if (!this.showFollowerCounter) return;
 
     return <span className={`${bn}__counter`}>{osu.formatNumber(this.followers)}</span>;
   }
 
-  private renderIcon(isFriendLimit: boolean) {
+  private renderIcon() {
     if (this.loading) {
       return <Spinner />;
     }
@@ -177,7 +170,7 @@ export default class FriendButton extends React.Component<Props> {
       );
     }
 
-    return <span className={isFriendLimit ? 'fas fa-user' : 'fas fa-user-plus'} />;
+    return <span className={this.isFriendLimit ? 'fas fa-user' : 'fas fa-user-plus'} />;
   }
 
   @action

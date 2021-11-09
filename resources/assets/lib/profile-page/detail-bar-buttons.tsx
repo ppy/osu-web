@@ -25,7 +25,6 @@ export default class DetailBarButtons extends React.Component<Props> {
             alwaysVisible
             followers={this.props.user.follower_count}
             modifiers='profile-page'
-            showFollowerCounter
             userId={this.props.user.id}
           />
         </div>
