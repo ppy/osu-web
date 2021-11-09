@@ -98,10 +98,9 @@ export default class FriendButton extends React.Component<Props> {
       return null;
     }
 
-    let extraModifier: string | undefined;
-    if (this.friend != null && !this.loading) {
-      extraModifier = this.friend.mutual ? 'mutual' : 'friend';
-    }
+    const extraModifier = this.friend == null || this.loading
+      ? null
+      : (this.friend.mutual ? 'mutual' : 'friend');
 
     const blockClass = classWithModifiers(bn, this.props.modifiers, extraModifier);
     const disabled = !this.isVisible || this.loading || this.isFriendLimit && this.friend == null;
