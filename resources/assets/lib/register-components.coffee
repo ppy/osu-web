@@ -9,7 +9,6 @@ import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import { CountdownTimer } from 'countdown-timer'
 import ForumPostReport from 'forum-post-report'
-import FriendButton from 'components/friend-button'
 import { LandingNews } from 'landing-news'
 import { keyBy } from 'lodash'
 import { observable } from 'mobx'
@@ -36,12 +35,6 @@ import { parseJson, parseJsonNullable } from 'utils/json'
 # Globally init countdown timers
 core.reactTurbolinks.register 'countdownTimer', (container) ->
   createElement CountdownTimer, deadline: container.dataset.deadline
-
-# Globally init friend buttons
-core.reactTurbolinks.register 'friendButton', (container) ->
-  createElement FriendButton,
-    container: container
-    userId: parseInt(container.dataset.target)
 
 # Globally init block buttons
 core.reactTurbolinks.register 'blockButton', (container) ->
