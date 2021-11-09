@@ -78,6 +78,10 @@ export class Comment {
       return true;
     }
 
+    if (!this.pinned && core.dataStore.uiState.comments.pinnedCommentIds.length > 0) {
+      return false;
+    }
+
     const meta = core.dataStore.commentableMetaStore.get(this.commentableType, this.commentableId);
     const beatmapsetOwnerId = meta != null && 'type' in meta && meta.type === 'beatmapset'
       ? meta.owner_id

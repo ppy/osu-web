@@ -1149,6 +1149,10 @@ class OsuAuthorize
             return 'unauthorized';
         }
 
+        if (!$comment->pinned && $comment->commentable->comments()->pinned()->exists()) {
+            return 'unauthorized';
+        }
+
         if ($this->doCheckUser($user, 'CommentModerate')->can()) {
             return 'ok';
         }

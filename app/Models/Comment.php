@@ -9,6 +9,7 @@ use App\Libraries\MorphMap;
 use App\Traits\Validatable;
 use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property mixed $commentable
@@ -81,6 +82,11 @@ class Comment extends Model
     public static function isValidType($type)
     {
         return in_array($type, static::COMMENTABLES, true);
+    }
+
+    public function scopePinned(Builder $query): Builder
+    {
+        return $query->where('pinned', true);
     }
 
     public function scopeWithoutTrashed($query)
