@@ -3,54 +3,20 @@
 
 import { Rank } from '../profile-page/rank'
 import { FriendButton } from 'friend-button'
-import ExtraMenu, { showExtraMenu } from 'profile-page/extra-menu'
+import DetailBarButtons from 'profile-page/detail-bar-buttons'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import { jsonClone } from 'utils/json'
 import { nextVal } from 'utils/seq'
-el = React.createElement
 
+el = React.createElement
+bn = 'profile-detail-bar'
 
 export class DetailBar extends React.PureComponent
-  bn = 'profile-detail-bar'
-
-
-  constructor: (props) ->
-    super props
-
-    @eventId = "profile-page-#{nextVal()}"
-    @state = currentUser: jsonClone(currentUser)
-
-
-  componentDidMount: =>
-    $.subscribe "user:update.#{@eventId}", @updateCurrentUser
-
-
-  componentWillUnmount: =>
-    $.unsubscribe ".#{@eventId}"
-
-
   render: =>
-    isBlocked = _.find(@state.currentUser.blocks, target_id: @props.user.id)?
-
     div className: bn,
-      div className: "#{bn}__column #{bn}__column--left",
-        div className: "#{bn}__entry",
-          el FriendButton,
-            userId: @props.user.id
-            showFollowerCounter: true
-            followers: @props.user.follower_count
-            modifiers: ['profile-page']
-            alwaysVisible: true
-        if @state.currentUser.id != @props.user.id && !isBlocked
-          div className: "#{bn}__entry",
-            a
-              className: 'user-action-button user-action-button--profile-page'
-              href: laroute.route 'messages.users.show', user: @props.user.id
-              title: osu.trans('users.card.send_message')
-              i className: 'fas fa-envelope'
-
-        @renderExtraMenu()
+      div className: "#{bn}__column",
+        el DetailBarButtons, user: @props.user
 
       div className: "#{bn}__column #{bn}__column--right",
         div className: "#{bn}__entry",
@@ -64,16 +30,3 @@ export class DetailBar extends React.PureComponent
             className: "#{bn}__level"
             title: osu.trans('users.show.stats.level', level: @props.stats.level.current)
             @props.stats.level.current
-
-  renderExtraMenu: =>
-    return null unless showExtraMenu(@props.user)
-
-    div className: "#{bn}__entry",
-      el ExtraMenu,
-        user: @props.user
-
-
-  updateCurrentUser: (_e, user) =>
-    return unless @state.currentUser.id == user.id
-
-    @setState currentUser: jsonClone(user)
