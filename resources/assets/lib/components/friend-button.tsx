@@ -19,7 +19,6 @@ interface Props {
   followers?: number;
   modifiers?: Modifiers;
   showFollowerCounter: boolean;
-  showIf?: 'friend' | 'mutual';
   userId: number;
 }
 
@@ -70,9 +69,6 @@ export default class FriendButton extends React.Component<Props> {
   }
 
   render() {
-    if (this.props.showIf === 'friend' && this.friend == null) return null;
-    if (this.props.showIf === 'mutual' && this.friend?.mutual !== true) return null;
-
     if (!this.props.alwaysVisible) {
       if (this.isVisible) {
         this.props.container?.classList.remove('hidden');
