@@ -64,6 +64,14 @@ export function openBeatmapEditor(timestampWithRange: string): string {
   return `osu://edit/${timestampWithRange}`;
 }
 
+/**
+ * Creates a html link string.
+ *
+ * @param url href for the link
+ * @param text text for the link
+ * @param options props.className will override classNames if set.
+ * @returns html string of the link
+ */
 export function linkHtml(url: string, text: string, options?: OsuLinkOptions): string {
   if (options?.unescape) {
     url = unescape(url);
@@ -71,20 +79,27 @@ export function linkHtml(url: string, text: string, options?: OsuLinkOptions): s
   }
 
   const el = document.createElement('a');
-  el.setAttribute('href', url);
-  if (options?.isRemote) {
-    el.setAttribute('data-remote', '1');
-  }
-
-  if (options?.classNames) {
-    el.className = options?.classNames.join(' ');
-  }
-
   el.textContent = text;
+  el.setAttribute('href', url);
 
-  if (options?.props) {
-    for (const [prop, val] of Object.entries(options.props)) {
-      if (val != null) el.setAttribute(prop, val);
+  if (options != null) {
+    if (options.isRemote) {
+      el.setAttribute('data-remote', '1');
+    }
+
+    if (options.classNames != null) {
+      el.className = options.classNames.join(' ');
+    }
+
+    if (options.props != null) {
+      const { className, ...props } = options.props;
+      if (className != null) {
+        el.className = className;
+      }
+
+      for (const [prop, val] of Object.entries(props)) {
+        if (val != null) el.setAttribute(prop, val);
+      }
     }
   }
 
