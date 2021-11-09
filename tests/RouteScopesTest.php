@@ -54,7 +54,7 @@ class RouteScopesTest extends TestCase
             'stream_id' => $stream->getKey(),
         ]);
 
-        factory(Comment::class)->create([
+        Comment::factory()->create([
             'commentable_id' => $build->getKey(),
             'commentable_type' => 'build',
             'id' => 1,
