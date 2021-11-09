@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import ExtraHeader from 'profile-page/extra-header'
-import { UserPageEditor } from './user-page-editor'
+import UserPageEditor from 'profile-page/user-page-editor'
 import * as React from 'react'
 import { a, button, div, span, p } from 'react-dom-factories'
 import StringWithComponent from 'string-with-component'
