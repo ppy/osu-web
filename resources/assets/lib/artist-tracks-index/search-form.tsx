@@ -89,7 +89,7 @@ export default class SearchForm extends React.Component<Props> {
   render() {
     return (
       <form className='artist-track-search-form' onSubmit={this.handleSubmit}>
-        <input className='hidden' type='submit' />
+        <input className='u-invisible' type='submit' />
         <div className='artist-track-search-form__content'>
           <input
             className='artist-track-search-form__big-input'

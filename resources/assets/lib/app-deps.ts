@@ -13,6 +13,7 @@ import 'jquery-ui/ui/widgets/slider.js';
 import 'jquery-ui/ui/widgets/sortable.js';
 import 'blueimp-file-upload/js/jquery.fileupload.js';
 
+import { patchPluralHandler } from 'lang-overrides';
 import Lang from 'lang.js';
 import { configure as mobxConfigure } from 'mobx';
 import * as moment from 'moment';
@@ -21,6 +22,8 @@ import Turbolinks from 'turbolinks';
 declare global {
   interface Window {
     $: any;
+    currentLocale: string;
+    fallbackLocale: string;
     jQuery: any;
     Lang: Lang;
     LangMessages: unknown;
@@ -32,7 +35,11 @@ declare global {
 window.$ = $;
 window.jQuery = $;
 window.LangMessages ??= {};
-window.Lang = new Lang({ messages: window.LangMessages });
+window.Lang = patchPluralHandler(new Lang({
+  fallback: window.fallbackLocale,
+  locale: window.currentLocale,
+  messages: window.LangMessages,
+}));
 window.moment = moment;
 window.Turbolinks = Turbolinks;
 

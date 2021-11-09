@@ -18,21 +18,17 @@ class CommentFactory extends Factory
     {
         return [
             'commentable_type' => fn () => $this->faker->randomElement(Comment::COMMENTABLES),
-            'created_at' => fn () => $this->faker->dateTime(),
             'message' => fn () => $this->faker->paragraph(),
             'user_id' => User::factory(),
 
             // depends on commentable_type
             'commentable_id' => fn (array $attr) => MorphMap::getClass($attr['commentable_type'])::factory(),
-
-            // depends on created_at
-            'updated_at' => fn (array $attr) => $attr['created_at'],
         ];
     }
 
     public function deleted(): static
     {
-        return $this->state(['deleted_at' => fn ($attr) => $attr['created_at']]);
+        return $this->state(['deleted_at' => now()]);
     }
 
     public function reply(): static

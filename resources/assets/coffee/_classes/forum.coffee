@@ -7,7 +7,7 @@ replaceUrl = (url) ->
 # browsers have limit on replaceState calls
 debouncedReplaceUrl = _.debounce replaceUrl, 250
 
-class @Forum
+class window.Forum
   boot: =>
     @refreshCounterPaused = true
     @refreshLoadMoreLinks()

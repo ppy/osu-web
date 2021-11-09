@@ -15,11 +15,7 @@ class NewsPostFactory extends Factory
     public function definition(): array
     {
         return [
-            'created_at' => fn () => $this->faker->dateTime(),
             'slug' => fn () => $this->faker->date().'-'.$this->faker->slug(),
-
-            // depends on created_at
-            'updated_at' => fn (array $attr) => $attr['created_at'],
         ];
     }
 }

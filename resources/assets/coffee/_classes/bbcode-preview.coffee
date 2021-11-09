@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @BbcodePreview
+class window.BbcodePreview
   constructor: ->
     $(document).on 'click', '.js-bbcode-preview--show', @fetchPreview
     $(document).on 'click', '.js-bbcode-preview--hide', @hidePreview

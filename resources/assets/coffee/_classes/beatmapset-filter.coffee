@@ -13,7 +13,7 @@ parseInt10 = (string) ->
   if _.isFinite(int) then int else null
 
 
-class @BeatmapsetFilter
+class window.BeatmapsetFilter
   @castFromString:
     genre: parseInt10
     language: parseInt10

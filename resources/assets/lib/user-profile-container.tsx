@@ -3,10 +3,12 @@
 
 import { BlockButton } from 'block-button';
 import UserJson from 'interfaces/user-json';
-import { find } from 'lodash';
+import { computed } from 'mobx';
+import { observer } from 'mobx-react';
 import { NotificationBanner } from 'notification-banner';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { isBlocked } from 'utils/user-helper';
 
 interface Props {
   user: UserJson;
@@ -16,22 +18,27 @@ interface State {
   forceShow: boolean;
 }
 
-export default class UserProfileContainer extends React.PureComponent<Props, State> {
+@observer
+export default class UserProfileContainer extends React.Component<Props, State> {
+  // TODO: move to context?
   state = { forceShow: false };
 
-  render() {
-    const isBlocked = find(currentUser.blocks, { target_id: this.props.user.id });
+  @computed
+  get isBlocked() {
+    return isBlocked(this.props.user);
+  }
 
+  render() {
     let cssClass: string | undefined;
     const modifiers = ['full'];
-    if (isBlocked && !this.state.forceShow) {
+    if (this.isBlocked && !this.state.forceShow) {
       cssClass = 'osu-layout__no-scroll';
       modifiers.push('masked');
     }
 
     return (
       <div className={cssClass}>
-        {isBlocked && this.renderBanner()}
+        {this.isBlocked && this.renderBanner()}
         <div className={classWithModifiers('osu-layout', modifiers)}>
           {this.props.children}
         </div>

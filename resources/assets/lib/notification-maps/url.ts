@@ -21,7 +21,7 @@ export function urlGroup(item: Notification) {
     }
   } else if (item.name === 'user_achievement_unlock') {
     return userAchievementUrl(item);
-  } else if (item.name === 'user_beatmapset_new') {
+  } else if (item.category === 'user_beatmapset_new') {
     return `${route('users.show', { user: item.objectId })}#beatmaps`;
   }
 
@@ -70,6 +70,8 @@ export function urlSingular(item: Notification) {
     case 'user_achievement_unlock':
       return userAchievementUrl(item);
     case 'user_beatmapset_new':
+      return route('beatmapsets.show', { beatmapset: item.details.beatmapsetId });
+    case 'user_beatmapset_revive':
       return route('beatmapsets.show', { beatmapset: item.details.beatmapsetId });
   }
 }
