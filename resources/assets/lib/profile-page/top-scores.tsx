@@ -38,7 +38,7 @@ type Props = {
   [key in TopScoreSection]?: ScoreData;
 } & ExtraPageProps;
 
-export default class TopRanks extends React.PureComponent<Props> {
+export default class TopScores extends React.PureComponent<Props> {
   render() {
     return (
       <div className='page-extra'>
