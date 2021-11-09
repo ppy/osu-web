@@ -36,6 +36,7 @@ class UserCompactTransformer extends TransformerAbstract
         'comments_count',
         'follower_count',
         'groups',
+        'mapping_follower_count',
         'previous_usernames',
         'support_level',
     ];
