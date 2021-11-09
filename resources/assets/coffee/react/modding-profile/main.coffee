@@ -2,9 +2,9 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { Events } from './events'
-import { ExtraTab } from '../profile-page/extra-tab'
 import { Discussions } from './discussions'
 import { Header } from './header'
+import { Posts } from './posts'
 import Kudosu from 'profile-page/kudosu'
 import { Votes } from './votes'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
@@ -14,7 +14,7 @@ import { BlockButton } from 'block-button'
 import { deletedUser } from 'models/user'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
-import { Posts } from "./posts"
+import ExtraTab from 'profile-page/extra-tab'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'

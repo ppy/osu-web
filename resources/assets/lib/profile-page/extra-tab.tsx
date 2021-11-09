@@ -1,21 +1,31 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import { span } from 'react-dom-factories'
-el = React.createElement
+import { ProfileExtraPage } from 'interfaces/user-extended-json';
+import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
-export class ExtraTab extends React.PureComponent
-  render: =>
-    className = 'page-mode-link page-mode-link--profile-page'
+interface Props {
+  currentPage: ProfileExtraPage;
+  page: ProfileExtraPage;
+}
 
-    if @props.page == @props.currentPage
-      className += ' page-mode-link--is-active'
+export default class ExtraTab extends React.PureComponent<Props> {
+  render() {
+    const blockClass = classWithModifiers(
+      'page-mode-link',
+      'profile-page',
+      { 'is-active': this.props.page === this.props.currentPage },
+    );
+    const title = osu.trans(`users.show.extra.${this.props.page}.title`);
 
-    span
-      className: className
-      span
-        className: 'fake-bold'
-        'data-content': osu.trans("users.show.extra.#{@props.page}.title")
-        osu.trans("users.show.extra.#{@props.page}.title")
-      span className: 'page-mode-link__stripe'
+    return (
+      <span className={blockClass}>
+        <span className='fake-bold' data-content={title}>
+          {title}
+        </span>
+        <span className='page-mode-link__stripe' />
+      </span>
+    );
+  }
+}
