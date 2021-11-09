@@ -253,7 +253,7 @@ export class UserCard extends React.PureComponent<Props, State> {
         )}
 
         <div className='user-card__icon'>
-          <FriendButton modifiers={['user-list']} userId={this.user.id} />
+          <FriendButton modifiers='user-list' userId={this.user.id} />
         </div>
 
         {!this.user.is_bot && (
