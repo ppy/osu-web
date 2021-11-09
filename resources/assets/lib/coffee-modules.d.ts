@@ -26,18 +26,6 @@ declare module 'block-button' {
   class BlockButton extends React.PureComponent<Props> {}
 }
 
-declare module 'friend-button' {
-  interface Props {
-    alwaysVisible?: boolean;
-    followers?: number;
-    modifiers?: import('utils/css').Modifiers;
-    showFollowerCounter?: boolean;
-    userId: number;
-  }
-
-  class FriendButton extends React.PureComponent<Props> {}
-}
-
 declare module 'comments' {
   class Comments extends React.PureComponent<any> {}
 }

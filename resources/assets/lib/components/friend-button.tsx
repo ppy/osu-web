@@ -1,171 +1,216 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import { button, div, i, span } from 'react-dom-factories'
-import { Spinner } from 'spinner'
-import { classWithModifiers } from 'utils/css'
-import { nextVal } from 'utils/seq'
+import UserRelationJson from 'interfaces/user-relation-json';
+import { route } from 'laroute';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import { Spinner } from 'spinner';
+import { onErrorWithCallback } from 'utils/ajax';
+import { Modifiers, classWithModifiers } from 'utils/css';
+import { nextVal } from 'utils/seq';
 
-el = React.createElement
+const bn = 'user-action-button';
 
-bn = 'user-action-button'
+interface Props {
+  alwaysVisible: boolean;
+  container?: HTMLElement;
+  followers?: number;
+  modifiers?: Modifiers;
+  showFollowerCounter: boolean;
+  showIf?: 'friend' | 'mutual';
+  userId: number;
+}
 
-export class FriendButton extends React.PureComponent
-  @defaultProps =
-    showFollowerCounter: false
-    alwaysVisible: false
+interface State {
+  followersWithoutSelf: number;
+  friend: UserRelationJson | undefined;
+  loading: boolean;
+}
 
+export default class FriendButton extends React.PureComponent<Props, State> {
+  static readonly defaultProps = {
+    alwaysVisible: false,
+    showFollowerCounter: false,
+  };
 
-  constructor: (props) ->
-    super props
+  private readonly eventId: string;
+  private xhr?: JQuery.jqXHR<UserRelationJson[]>;
 
-    @button = React.createRef()
-    @eventId = "friendButton-#{@props.userId}-#{nextVal()}"
+  private get followers() {
+    return this.state.followersWithoutSelf + (this.state.friend == null ? 0 : 1);
+  }
 
-    friend = _.find(currentUser.friends, target_id: props.userId)
-    followersWithoutSelf = @props.followers ? 0
-    followersWithoutSelf -= 1 if friend?
+  constructor(props: Props) {
+    super(props);
 
-    @state = {friend, followersWithoutSelf}
+    this.eventId = `friendButton-${this.props.userId}-${nextVal()}`;
 
+    const friend = core.currentUser?.friends.find((f) => f.target_id === props.userId);
+    let followersWithoutSelf = this.props.followers ?? 0;
+    if (friend != null) {
+      followersWithoutSelf -= 1;
+    }
 
-  requestDone: =>
-    @setState loading: false
+    this.state = {
+      followersWithoutSelf,
+      friend,
+      loading: false,
+    };
+  }
 
+  componentDidMount() {
+    $.subscribe(`friendButton:refresh.${this.eventId}`, this.refresh);
+  }
 
-  updateFriends: (data) =>
-    @setState friend: _.find(data, target_id: @props.userId), ->
-      currentUser.friends = data
-      $.publish 'user:update', currentUser
-      $.publish "friendButton:refresh"
+  componentWillUnmount() {
+    $.unsubscribe(`.${this.eventId}`);
+    this.xhr?.abort();
+  }
 
+  render() {
+    if (this.props.showIf === 'friend' && this.state.friend == null) return null;
+    if (this.props.showIf === 'mutual' && this.state.friend?.mutual !== true) return null;
 
-  clicked: (e) =>
-    @setState loading: true
+    const isVisible = this.isVisible();
 
-    if @state.friend?
-      #un-friending
-      @xhr = $.ajax
-        type: "DELETE"
-        url: laroute.route 'friends.destroy', friend: @props.userId
-    else
-      #friending
-      @xhr = $.ajax
-        type: "POST"
-        url: laroute.route 'friends.store', target: @props.userId
+    if (!this.props.alwaysVisible) {
+      if (isVisible) {
+        this.props.container?.classList.remove('hidden');
+      } else {
+        this.props.container?.classList.add('hidden');
 
-    @xhr
-    .done @updateFriends
-    .fail osu.emitAjaxError(@button.current)
-    .always @requestDone
+        return null;
+      }
+    }
 
+    let blockClass = classWithModifiers(bn, this.props.modifiers);
 
-  refresh: (e) =>
-    @setState
-      friend: _.find(currentUser.friends, target_id: @props.userId), =>
-      @forceUpdate()
+    const isFriendLimit = core.currentUser == null || core.currentUser.friends.length >= core.currentUser.max_friends;
+    const title = (() => {
+      if (!isVisible) {
+        return osu.trans('friends.buttons.disabled');
+      }
 
+      if (this.state.friend != null) {
+        return osu.trans('friends.buttons.remove');
+      }
 
-  componentDidMount: =>
-    $.subscribe "friendButton:refresh.#{@eventId}", @refresh
+      if (isFriendLimit) {
+        return osu.trans('friends.too_many');
+      }
 
+      return osu.trans('friends.buttons.add');
+    })();
 
-  componentWillUnmount: =>
-    $.unsubscribe ".#{@eventId}"
-    @xhr?.abort()
+    const disabled = !isVisible || this.state.loading || isFriendLimit && this.state.friend == null;
 
+    if (this.state.friend != null && !this.state.loading) {
+      if (this.state.friend.mutual) {
+        blockClass += ` ${bn}--mutual`;
+      } else {
+        blockClass += ` ${bn}--friend`;
+      }
+    }
 
-  render: =>
-    return null if @props.showIf == 'friend' && !@state.friend?
-    return null if @props.showIf == 'mutual' && !@state.friend?.mutual
+    return (
+      <div title={title}>
+        <button
+          className={blockClass}
+          disabled={disabled}
+          onClick={this.clicked}
+          type='button'
+        >
+          <span className={`${bn}__icon-container`}>
+            {this.renderIcon(isFriendLimit, isVisible)}
+          </span>
+          {this.renderCounter()}
+        </button>
+      </div>
+    );
+  }
 
-    isVisible = @isVisible()
+  private readonly clicked = () => {
+    this.setState({ loading: true });
 
-    if !@props.alwaysVisible
-      if isVisible
-        @props.container?.classList.remove 'hidden'
-      else
-        @props.container?.classList.add 'hidden'
+    if (this.state.friend == null) {
+      // friending
+      this.xhr = $.ajax(route('friends.store', { target: this.props.userId }), { type: 'POST' });
+    } else {
+      // un-friending
+      this.xhr = $.ajax(route('friends.destroy', { friend: this.props.userId }), { type: 'DELETE' });
+    }
 
-        return null
+    this.xhr
+      .done(this.updateFriends)
+      .fail(onErrorWithCallback(this.clicked))
+      .always(this.requestDone);
+  };
 
-    blockClass = classWithModifiers(bn, @props.modifiers)
+  private isVisible() {
+    // - not a guest
+    // - not viewing own card
+    // - not blocked
+    return core.currentUser != null &&
+      Number.isFinite(this.props.userId) &&
+      this.props.userId !== core.currentUser.id &&
+      !core.currentUser.blocks.some((b) => b.target_id === this.props.userId);
+  }
 
-    isFriendLimit = (currentUser.friends?.length ? 0) >= currentUser.max_friends
-    title = switch
-      when !isVisible
-        osu.trans('friends.buttons.disabled')
-      when @state.friend?
-        osu.trans('friends.buttons.remove')
-      when isFriendLimit
-        osu.trans('friends.too_many')
-      else
-        osu.trans('friends.buttons.add')
+  private readonly refresh = () => {
+    this.setState(
+      { friend: core.currentUser?.friends.find((f) => f.target_id === this.props.userId) },
+      this.forceUpdate,
+    );
+  };
 
-    disabled = !isVisible || @state.loading || isFriendLimit && !@state.friend?
+  private renderCounter() {
+    if (!this.props.showFollowerCounter || this.props.followers == null) return;
 
-    if @state.friend? && !@state.loading
-      if @state.friend.mutual
-        blockClass += " #{bn}--mutual"
-      else
-        blockClass += " #{bn}--friend"
+    return <span className={`${bn}__counter`}>{osu.formatNumber(this.followers)}</span>;
+  }
 
-    div
-      title: title
-      button
-        type: 'button'
-        className: blockClass
-        onClick: @clicked
-        ref: @button
-        disabled: disabled
-        @renderIcon({isFriendLimit, isVisible})
-        @renderCounter()
+  private renderIcon(isFriendLimit: boolean, isVisible: boolean) {
+    if (this.state.loading) {
+      return <Spinner />;
+    }
 
+    if (!isVisible) {
+      return <span className='fas fa-user' />;
+    }
 
-  renderCounter: =>
-    return unless @props.showFollowerCounter && @props.followers?
+    if (this.state.friend != null) {
+      return (
+        <>
+          <span className={`${bn}__icon ${bn}__icon--hover-visible`}>
+            <span className='fas fa-user-times' />
+          </span>
+          {this.state.friend.mutual ? (
+            <span className={`${bn}__icon ${bn}__icon--hover-hidden`}>
+              <span className='fas fa-user-friends' />
+            </span>
+          ) : (
+            <span className={`${bn}__icon ${bn}__icon--hover-hidden`}>
+              <span className='fas fa-user' />
+            </span>
+          )}
+        </>
+      );
+    }
 
-    span className: "#{bn}__counter", osu.formatNumber(@followers())
+    return <span className={isFriendLimit ? 'fas fa-user' : 'fas fa-user-plus'} />;
+  }
 
+  private readonly requestDone = () => {
+    this.setState({ loading: false });
+  };
 
-  renderIcon: ({isFriendLimit, isVisible}) =>
-    span className: "#{bn}__icon-container",
-      switch
-        when @state.loading
-          el Spinner
-        when !isVisible
-          i className: 'fas fa-user'
-        when @state.friend?
-          [
-            span
-              key: 'hover'
-              className: "#{bn}__icon #{bn}__icon--hover-visible"
-              i className: 'fas fa-user-times'
-            if @state.friend.mutual
-              span
-                key: 'normal-mutual'
-                className: "#{bn}__icon #{bn}__icon--hover-hidden"
-                i className: 'fas fa-user-friends'
-            else
-              span
-                key: 'normal'
-                className: "#{bn}__icon #{bn}__icon--hover-hidden"
-                i className: 'fas fa-user'
-          ]
-        else
-          i className: if isFriendLimit then 'fas fa-user' else 'fas fa-user-plus'
-
-
-  followers: =>
-    @state.followersWithoutSelf + (if @state.friend? then 1 else 0)
-
-
-  isVisible: =>
-    # - not a guest
-    # - not viewing own card
-    # - not blocked
-    currentUser.id? &&
-      _.isFinite(@props.userId) &&
-      @props.userId != currentUser.id &&
-      !_.find(currentUser.blocks, target_id: @props.userId)
+  private readonly updateFriends = (data: UserRelationJson[]) => {
+    this.setState({ friend: data.find((f) => f.target_id === this.props.userId) }, () => {
+      if (core.currentUser == null) return;
+      core.currentUser.friends = data;
+      $.publish('user:update', core.currentUser);
+      $.publish('friendButton:refresh');
+    });
+  };
+}

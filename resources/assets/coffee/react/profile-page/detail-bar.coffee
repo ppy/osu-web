@@ -3,7 +3,7 @@
 
 import { Rank } from './rank'
 import FollowUserMappingButton from 'follow-user-mapping-button'
-import { FriendButton } from 'friend-button'
+import FriendButton from 'components/friend-button'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import DetailBarButtons from 'profile-page/detail-bar-buttons'
