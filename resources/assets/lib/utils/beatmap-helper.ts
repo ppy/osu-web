@@ -90,8 +90,8 @@ export function getDiffRating(rating: number) {
   return 'expert-plus';
 }
 
-export function getDiffColour(rating?: number | null) {
-  if (rating == null || rating < 0.1) return '#AAAAAA';
+export function getDiffColour(rating: number) {
+  if (rating < 0.1) return '#AAAAAA';
   if (rating >= 9) return '#000000';
   return difficultyColourSpectrum(rating);
 }
