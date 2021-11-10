@@ -17,7 +17,7 @@ class CommentTransformerTest extends TestCase
     public function testWithOAuth(?string $groupIdentifier)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
-        $comment = factory(Comment::class)->states('deleted')->create();
+        $comment = Comment::factory()->deleted()->create();
         $this->actAsScopedUser($viewer);
 
         $json = json_item($comment, 'Comment');
@@ -32,7 +32,7 @@ class CommentTransformerTest extends TestCase
     public function testWithoutOAuth(?string $groupIdentifier, bool $visible)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
-        $comment = factory(Comment::class)->states('deleted')->create();
+        $comment = Comment::factory()->deleted()->create();
         $this->actAsUser($viewer);
 
         $json = json_item($comment, 'Comment');

@@ -7,7 +7,7 @@ import * as React from 'react';
 describe('osu_common', () => {
   describe('locale file loaded in test runner', () => {
     it('should be loaded', () => {
-      expect(Lang.has('common.confirmation')).toBe(true);
+      expect(window.Lang.has('common.confirmation')).toBe(true);
     });
   });
 

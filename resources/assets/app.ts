@@ -46,7 +46,6 @@ import '_classes/nav-button.coffee';
 import '_classes/nav2.coffee';
 import '_classes/polyfills.coffee';
 import '_classes/post-preview.coffee';
-import '_classes/scale.coffee';
 import '_classes/search.coffee';
 import '_classes/stacked-bar-chart.coffee';
 import '_classes/sticky-footer.coffee';
@@ -69,7 +68,6 @@ import 'ujs-common.coffee';
 import 'bootstrap-modal.coffee';
 import 'shared.coffee';
 import 'turbolinks-overrides.coffee';
-import 'lang-overrides';
 
 import 'import-shims';  // shim imports to window
 import 'osu-core-singleton';

@@ -19,10 +19,9 @@ export class Detail extends React.Component
   render: =>
     el Observer, null, =>
       div className: bn,
-        div className: "#{bn}__bar",
-          el DetailBar,
-            stats: @props.stats
-            user: @props.user
+        el DetailBar,
+          stats: @props.stats
+          user: @props.user
         div
           className: if core.userPreferences.get('ranking_expanded') then '' else 'hidden'
           div className: "#{bn}__row #{bn}__row--top",

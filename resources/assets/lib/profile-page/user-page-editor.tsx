@@ -7,10 +7,11 @@ import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
+import { UserPageData } from './user-page';
 
 interface Props {
   user: UserJson;
-  userPage: Required<UserJson>['page'];
+  userPage: UserPageData;
 }
 
 export default class UserPageEditor extends React.PureComponent<Props> {

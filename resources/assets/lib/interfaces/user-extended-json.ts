@@ -25,6 +25,7 @@ export default interface UserExtendedJson extends UserJson {
     total: number;
   };
   location: string | null;
+  mapping_follower_count: number;
   occupation: string | null;
   playmode: GameMode | null;
   playstyle: string[];
