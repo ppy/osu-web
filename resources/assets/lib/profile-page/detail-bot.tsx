@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserExtendedJson from 'interfaces/user-extended-json';
-import DetailBarButtons from 'profile-page/detail-bar-buttons';
+import DetailBarColumns from 'profile-page/detail-bar-columns';
 import * as React from 'react';
 
 interface Props {
@@ -13,9 +13,7 @@ export default function DetailBot({ user }: Props) {
   return (
     <div className='profile-detail'>
       <div className='profile-detail-bar'>
-        <div className='profile-detail-bar__column'>
-          <DetailBarButtons user={user} />
-        </div>
+        <DetailBarColumns user={user} />
       </div>
     </div>
   );

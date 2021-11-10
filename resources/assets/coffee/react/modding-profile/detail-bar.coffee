@@ -14,18 +14,15 @@ bn = 'profile-detail-bar'
 export class DetailBar extends React.PureComponent
   render: =>
     div className: bn,
-      div className: "#{bn}__column",
-        el DetailBarButtons, user: @props.user
-
-      div className: "#{bn}__column #{bn}__column--right",
+      el DetailBarColumns, user: @props.user,
         div className: "#{bn}__entry",
-          el Rank, type: 'global', stats: @props.stats
+            el Rank, type: 'global', stats: @props.stats
 
-        div className: "#{bn}__entry",
-          el Rank, type: 'country', stats: @props.stats
+          div className: "#{bn}__entry",
+            el Rank, type: 'country', stats: @props.stats
 
-        div className: "#{bn}__entry #{bn}__entry--level",
-          div
-            className: "#{bn}__level"
-            title: osu.trans('users.show.stats.level', level: @props.stats.level.current)
-            @props.stats.level.current
+          div className: "#{bn}__entry #{bn}__entry--level",
+            div
+              className: "#{bn}__level"
+              title: osu.trans('users.show.stats.level', level: @props.stats.level.current)
+              @props.stats.level.current
