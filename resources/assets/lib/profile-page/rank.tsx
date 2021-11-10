@@ -23,7 +23,7 @@ export default function Rank({ modifiers, stats, type }: Props) {
     const name = osu.trans(`beatmaps.variant.${variant.mode}.${variant.variant}`);
     const value = `#${osu.formatNumber(variantRank)}`;
 
-    variantTooltip.push(`<div>${name} ${value}</div>`);
+    variantTooltip.push(`<div>${name}: ${value}</div>`);
   }
 
   const rank = stats[key];
