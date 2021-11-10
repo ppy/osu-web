@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserStatisticsJson, { rankPropertyName, RankTypes } from 'interfaces/user-statistics-json';
+import UserStatisticsJson, { RankTypes } from 'interfaces/user-statistics-json';
 import * as React from 'react';
 import { Modifiers } from 'utils/css';
 import ValueDisplay from 'value-display';
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function Rank({ modifiers, stats, type }: Props) {
-  const key = rankPropertyName(type);
+  const key = `${type}_rank` as const;
 
   const variantTooltip: string[] = [];
   for (const variant of stats.variants ?? []) {

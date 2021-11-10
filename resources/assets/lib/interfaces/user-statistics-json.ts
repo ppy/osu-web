@@ -4,12 +4,6 @@
 import GameMode from 'interfaces/game-mode';
 
 export type RankTypes = 'country' | 'global';
-type RankProperyNames = `${RankTypes}_rank`;
-
-// typescript infers `${type}_rank` as string when used directly without the function.
-export function rankPropertyName(type: RankTypes): RankProperyNames {
-  return `${type}_rank`;
-}
 
 interface Variant {
   country_rank?: number;
