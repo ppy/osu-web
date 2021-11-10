@@ -12,5 +12,4 @@ export class Detail extends React.PureComponent
     div className: bn,
       el DetailBar,
         stats: @props.stats
-        extended: false
         user: @props.user
