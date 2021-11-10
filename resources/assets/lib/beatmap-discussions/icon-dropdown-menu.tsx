@@ -26,7 +26,7 @@ export default class IconDropdownMenu extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <PopupMenu customRender={this.renderButton}>
+      <PopupMenu customRender={this.renderButton} direction='right'>
         {() => (
           <div className='simple-menu simple-menu--popup-menu-compact'>
             {this.props.menuOptions.map(this.renderMenuItem)}
