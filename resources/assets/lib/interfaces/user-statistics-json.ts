@@ -3,16 +3,23 @@
 
 import GameMode from './game-mode';
 
+export type RankType = 'country' | 'global';
+
 interface Variant {
-  country_rank: number;
-  global_rank: number;
+  country_rank?: number;
+  global_rank?: number;
   mode: GameMode;
   pp: number;
-  variant: string;
+  variant: '4k' | '7k';
 }
 
 export default interface UserStatisticsJson {
+  country_rank?: number;
   global_rank?: number;
+  level: {
+    current: number;
+    progress: number;
+  };
   pp: number;
   variants?: Variant[];
 }
