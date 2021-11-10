@@ -1,9 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import * as d3 from 'd3'
+
 bn = 'line-chart'
 
-class window.LineChart
+export default class LineChart
   constructor: (area, @options = {}) ->
     @margins =
       top: 20

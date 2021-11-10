@@ -8,6 +8,7 @@ import { last } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { nextVal } from 'utils/seq';
+import LineChart from 'd3/line-chart';
 
 interface Props {
   rankHistory: RankHistoryJson | null;
