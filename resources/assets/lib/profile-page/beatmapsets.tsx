@@ -8,8 +8,7 @@ import { observable } from 'mobx';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import ExtraHeader from './extra-header';
-import { BeatmapsetSection } from './extra-page-props';
-import ExtraPageProps, { ProfilePagePaginationData } from './extra-page-props';
+import ExtraPageProps, { BeatmapsetSection, ProfilePagePaginationData } from './extra-page-props';
 
 const sectionKeys: [BeatmapsetSection, string][] = [
   ['favouriteBeatmapsets', 'favourite'],
