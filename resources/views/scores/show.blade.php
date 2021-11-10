@@ -11,7 +11,7 @@
     ]);
 @endphp
 @extends('master', [
-    'titlePrepend' => $title,
+    'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($title))),
 ])
 
 @section('content')

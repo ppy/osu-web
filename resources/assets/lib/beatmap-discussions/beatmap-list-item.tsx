@@ -37,7 +37,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
         </div>
 
         <div className='beatmap-list-item__col beatmap-list-item__col--main'>
-          <div className='u-ellipsis-overflow'>
+          <div className='u-ellipsis-pre-overflow'>
             {version}
           </div>
         </div>

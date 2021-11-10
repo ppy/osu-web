@@ -31,7 +31,7 @@ export class BeatmapPlaycount extends React.PureComponent
         div
           className: "#{bn}__info"
           div
-            className: "#{bn}__info-row u-ellipsis-overflow"
+            className: "#{bn}__info-row u-ellipsis-pre-overflow"
             a
               className: "#{bn}__title"
               href: beatmapUrl

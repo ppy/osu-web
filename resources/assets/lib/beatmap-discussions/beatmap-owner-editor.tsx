@@ -70,7 +70,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
         </div>
 
         <div className='beatmap-owner-editor__col beatmap-owner-editor__col--version'>
-          <span className='u-ellipsis-overflow'>
+          <span className='u-ellipsis-pre-overflow'>
             {this.props.beatmap.version}
           </span>
         </div>

@@ -69,7 +69,7 @@ export default class IconDropdownMenu extends React.Component<Props> {
       <div className={classWithModifiers('simple-menu__item-icon', 'icon-dropdown-menu')}>
         {menuItem.icon}
       </div>
-      <div className='simple-menu__label'>
+      <div className={classWithModifiers('simple-menu__label', 'icon-dropdown-menu')}>
         {menuItem.label}
       </div>
     </button>

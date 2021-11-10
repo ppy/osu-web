@@ -44,7 +44,7 @@ const ItemRow = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
       <span className={`fal fa-extra-mode-${beatmap.mode}`} />
     </span>
     <DifficultyBadge rating={beatmap.difficulty_rating} />
-    <span className='beatmaps-popup-item__col beatmaps-popup-item__col--name u-ellipsis-overflow'>
+    <span className='beatmaps-popup-item__col beatmaps-popup-item__col--name u-ellipsis-pre-overflow'>
       {beatmap.version}
     </span>
   </a>

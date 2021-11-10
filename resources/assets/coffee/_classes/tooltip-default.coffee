@@ -44,6 +44,8 @@ class window.TooltipDefault
       classes += ' tooltip-default--fixed'
     if el.dataset.tooltipModifiers?
       classes += " tooltip-default--#{el.dataset.tooltipModifiers}"
+    if el.classList.contains 'u-ellipsis-pre-overflow'
+      classes += ' tooltip-default--pre'
 
     options =
       overwrite: false
