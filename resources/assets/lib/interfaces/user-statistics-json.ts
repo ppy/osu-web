@@ -3,7 +3,7 @@
 
 import GameMode from 'interfaces/game-mode';
 
-export type RankTypes = 'country' | 'global';
+export type RankType = 'country' | 'global';
 
 interface Variant {
   country_rank?: number;
