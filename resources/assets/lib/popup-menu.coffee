@@ -126,7 +126,7 @@ export class PopupMenu extends PureComponent
     @portal ?= document.createElement('div')
 
     if @props.customRender
-      @props.customRender createPortal(@props.children(@dismiss), @portal), @button, @toggle
+      @props.customRender createPortal(@renderMenu(), @portal), @button, @toggle
     else
       div
         className: 'popup-menu'
