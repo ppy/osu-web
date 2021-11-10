@@ -15,6 +15,7 @@ export class PopupMenu extends PureComponent
   @defaultProps =
     children: (_dismiss) ->
       # empty function
+    direction: 'left'
 
 
   constructor: (props) ->
@@ -49,7 +50,7 @@ export class PopupMenu extends PureComponent
     left = scrollX + buttonRect.right
     # shift the menu right if it clips out of the window;
     # menuRect.x doesn't update until after layout is finished so the known position of buttonRect is used instead.
-    if buttonRect.x - menuRect.width < 0
+    if @props.direction == 'right' || buttonRect.x - menuRect.width < 0
       left += menuRect.width - buttonRect.width
 
     @portal.style.display = 'block'

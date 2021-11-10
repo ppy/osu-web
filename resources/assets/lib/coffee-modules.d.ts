@@ -77,6 +77,7 @@ declare module 'popup-menu' {
   interface Props {
     children: Children;
     customRender?: (children: JSX.Element[], ref: React.RefObject<HTMLElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => JSX.Element;
+    direction?: 'left' | 'right';
     onHide?: () => void;
     onShow?: () => void;
   }
