@@ -10,21 +10,21 @@ function formatNumber(value: number) {
 }
 
 export default function Pp({ stats }: { stats: UserStatisticsJson }) {
-  const variantTooltip: string[] = [];
+  let variantTooltip = '';
 
-  for (const variant of stats.variants ?? []) {
+  (stats.variants ?? []).forEach((variant) => {
     const name = osu.trans(`beatmaps.variant.${variant.mode}.${variant.variant}`);
     const value = formatNumber(variant.pp);
 
-    variantTooltip.push(`<div>${name}: ${value}</div>`);
-  }
+    variantTooltip += `<div>${name}: ${value}</div>`;
+  });
 
   return (
     <ValueDisplay
       label='pp'
       modifiers='pp'
       value={(
-        <div data-html-title={variantTooltip.join('')} title=''>
+        <div data-html-title={variantTooltip} title=''>
           {formatNumber(stats.pp)}
         </div>
       )}
