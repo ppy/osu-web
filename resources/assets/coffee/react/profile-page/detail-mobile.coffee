@@ -3,9 +3,9 @@
 
 import { PlayTime } from './play-time'
 import { Pp } from './pp'
-import { Rank } from './rank'
 import { RankChart } from './rank-chart'
 import MedalsCount from 'profile-page/medals-count'
+import Rank from 'profile-page/rank'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
