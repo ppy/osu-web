@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Rank } from './rank'
 import FollowUserMappingButton from 'follow-user-mapping-button'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import DetailBarButtons from 'profile-page/detail-bar-buttons'
+import Rank from 'profile-page/rank'
 import * as React from 'react'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
 import { nextVal } from 'utils/seq'
