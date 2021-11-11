@@ -13,39 +13,19 @@
   position: relative;
 
   &__bg {
-    .full-size();
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  /*
-   * bg-container -> bg-inner-container -> bg-content
-   *
-   * bg-container:
-   * - fills up the whole area
-   * - clips out extras
-   *
-   * bg-inner-container:
-   * - overflow to ensure "cover" sizing effect
-   * - defined minimum size to avoid black bars
-   *   because it's not a real "cover" sizing
-   *
-   * bg:
-   * - the content
-   */
   &__bg-container {
     .full-size();
-    .center-content();
-    overflow: hidden;
 
     &::after {
       .full-size();
-      content: ' ';
-      background-color: fade(#000, 50%);
+      content: '';
+      background-color: hsla(var(--hsl-b6), 0.5);
     }
-  }
-
-  &__bg-inner-container {
-    flex: none;
-    position: relative;
   }
 
   &__graph {

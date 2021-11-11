@@ -27,7 +27,15 @@ declare module 'block-button' {
 }
 
 declare module 'friend-button' {
-  class FriendButton extends React.PureComponent<any> {}
+  interface Props {
+    alwaysVisible?: boolean;
+    followers?: number;
+    modifiers?: import('utils/css').Modifiers;
+    showFollowerCounter?: boolean;
+    userId: number;
+  }
+
+  class FriendButton extends React.PureComponent<Props> {}
 }
 
 declare module 'comments' {
@@ -69,6 +77,7 @@ declare module 'popup-menu' {
   interface Props {
     children: Children;
     customRender?: (children: JSX.Element[], ref: React.RefObject<HTMLElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => JSX.Element;
+    direction?: 'left' | 'right';
     onHide?: () => void;
     onShow?: () => void;
   }

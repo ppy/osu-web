@@ -12,6 +12,7 @@ import StringWithComponent from 'string-with-component'
 import TimeWithTooltip from 'time-with-tooltip'
 import { UserLink } from 'user-link'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
 import { wikiUrl } from 'utils/url'
 
@@ -125,7 +126,7 @@ export class Nominations extends React.PureComponent
 
     return unless confirm(message)
 
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @xhr.delete?.abort()
 
@@ -137,7 +138,7 @@ export class Nominations extends React.PureComponent
       .done ->
         Turbolinks.visit laroute.route('users.show', { user })
       .fail osu.ajaxError
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   discussionLock: =>
@@ -156,13 +157,13 @@ export class Nominations extends React.PureComponent
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   discussionUnlock: =>
     return unless confirm(osu.trans('beatmaps.discussions.lock.prompt.unlock'))
 
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @xhr.discussionLock?.abort()
 
@@ -173,7 +174,7 @@ export class Nominations extends React.PureComponent
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   removeFromLoved: =>
@@ -181,7 +182,7 @@ export class Nominations extends React.PureComponent
 
     return unless reason?
 
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @xhr.removeFromLoved?.abort()
 
@@ -194,7 +195,7 @@ export class Nominations extends React.PureComponent
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   focusHypeInput: =>

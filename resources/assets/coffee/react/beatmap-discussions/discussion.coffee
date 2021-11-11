@@ -12,6 +12,7 @@ import { button, div, i, span, a } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
 import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 
 el = React.createElement
 
@@ -226,7 +227,7 @@ export class Discussion extends React.PureComponent
 
 
   doVote: (e) =>
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @voteXhr?.abort()
 
@@ -241,7 +242,7 @@ export class Discussion extends React.PureComponent
 
     .fail osu.ajaxError
 
-    .always LoadingOverlay.hide
+    .always hideLoadingOverlay
 
 
   emitSetHighlight: (e) =>
