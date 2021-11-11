@@ -16,7 +16,7 @@ class Count extends Model
 
     public $timestamps = false;
 
-    public static function currentRankStart(string $mode)
+    public static function currentRankStart(string $mode): int
     {
         return static::find("pp_rank_column_{$mode}")->count ?? 0;
     }
