@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { hideLoadingOverlay } from 'utils/loading-overlay'
+
 class window.ForumTopicWatchAjax
   constructor: ->
     $(document).on 'ajax:before', '.js-forum-topic-watch-ajax', @shouldContinue
@@ -33,7 +35,7 @@ class window.ForumTopicWatchAjax
     @unknownState = true
     @abortAll()
     @xhr.push xhr
-    LoadingOverlay.hide()
+    hideLoadingOverlay()
 
     target = e.currentTarget
 
