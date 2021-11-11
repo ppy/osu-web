@@ -3,7 +3,7 @@
 
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
-import { parseJson } from 'utils/json'
+import { parseJson, parseJsonNullable } from 'utils/json'
 import { Main } from './profile-page/main'
 
 core.reactTurbolinks.register 'profile-page', (container) ->
@@ -19,3 +19,4 @@ core.reactTurbolinks.register 'profile-page', (container) ->
     perPage: parseJson('json-perPage')
     extras: parseJson('json-extras')
     container: container
+    scoresNotice: parseJsonNullable('json-scores-notice')
