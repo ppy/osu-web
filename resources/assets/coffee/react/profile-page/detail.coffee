@@ -2,13 +2,13 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { DetailBar } from './detail-bar'
-import { PlayTime } from './play-time'
 import { Pp } from './pp'
 import { RankChart } from './rank-chart'
 import { RankCount } from './rank-count'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import MedalsCount from 'profile-page/medals-count'
+import PlayTime from 'profile-page/play-time'
 import Rank from 'profile-page/rank'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
