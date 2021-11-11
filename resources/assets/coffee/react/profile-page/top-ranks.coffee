@@ -14,6 +14,16 @@ export class TopRanks extends React.PureComponent
       className: 'page-extra'
       el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
+      if @props.scoresNotice?
+        div
+          className: 'wiki-notice'
+          span className: 'fas fa-exclamation-circle'
+          ' '
+          div
+            className: 'wiki-notice__markdown-inline-content'
+            dangerouslySetInnerHTML:
+              __html: @props.scoresNotice
+
       div null,
         h3
           className: 'title title--page-extra-small'

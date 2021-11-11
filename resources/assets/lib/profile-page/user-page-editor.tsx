@@ -7,13 +7,8 @@ import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
-
-interface UserPageData {
-  editing: boolean;
-  html: string;
-  initialRaw: string;
-  raw: string;
-}
+import { showLoadingOverlay, hideLoadingOverlay } from 'utils/loading-overlay';
+import { UserPageData } from './user-page';
 
 interface Props {
   user: UserJson;
@@ -52,7 +47,7 @@ export default class UserPageEditor extends React.PureComponent<Props> {
       return this.cancel();
     }
 
-    LoadingOverlay.show();
+    showLoadingOverlay();
 
     $.ajax(route('users.page', { user: this.props.user.id }), {
       data: {
@@ -68,6 +63,6 @@ export default class UserPageEditor extends React.PureComponent<Props> {
         raw: value,
       });
     }).fail(onErrorWithClick(event?.target))
-      .always(LoadingOverlay.hide);
+      .always(hideLoadingOverlay);
   };
 }

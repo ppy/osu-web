@@ -5,6 +5,7 @@
 
 import { StorePaypal } from 'store-paypal'
 import { StoreXsolla } from 'store-xsolla'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 
 export class StoreCheckout
   @CHECKOUT_SELECTOR: '.js-store-checkout-button'
@@ -26,8 +27,8 @@ export class StoreCheckout
       { orderId, provider } = event.target.dataset
       # sanity
       return unless provider?
-      LoadingOverlay.show()
-      LoadingOverlay.show.flush()
+      showLoadingOverlay()
+      showLoadingOverlay.flush()
 
       init[provider]?.then ->
         window.osu.promisify $.post(laroute.route('store.checkout.store'), { provider, orderId })
@@ -54,12 +55,12 @@ export class StoreCheckout
         new Promise (resolve) ->
           # FIXME: flickering when transitioning to widget
           XPayStationWidget.open()
-          LoadingOverlay.hide()
+          hideLoadingOverlay()
           resolve()
 
 
   @handleError: (error) ->
-    LoadingOverlay.hide()
+    hideLoadingOverlay()
     # errors from they jquery deferred will propagate here.
     if error.getResponseHeader # check if 4xx ujs_redirect
       type = error.getResponseHeader('Content-Type')

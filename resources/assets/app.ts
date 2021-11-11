@@ -40,7 +40,6 @@ import '_classes/input-handler.coffee';
 import '_classes/landing-graph.coffee';
 import '_classes/landing-user-stats.coffee';
 import '_classes/line-chart.coffee';
-import '_classes/loading-overlay.coffee';
 import '_classes/menu.coffee';
 import '_classes/nav-button.coffee';
 import '_classes/nav2.coffee';
