@@ -10,8 +10,7 @@ bn = 'profile-detail'
 export class Detail extends React.PureComponent
   render: =>
     div className: bn,
-      div className: "#{bn}__bar",
-        el DetailBar,
-          stats: @props.stats
-          extended: false
-          user: @props.user
+      el DetailBar,
+        stats: @props.stats
+        extended: false
+        user: @props.user

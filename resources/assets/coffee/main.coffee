@@ -8,7 +8,6 @@ window.polyfills ?= new Polyfills
 Turbolinks.start()
 Turbolinks.setProgressBarDelay(0)
 
-Lang.setLocale(window.currentLocale)
 moment.relativeTimeThreshold('ss', 44)
 moment.relativeTimeThreshold('s', 120)
 moment.relativeTimeThreshold('m', 120)
@@ -57,7 +56,6 @@ window.landingGraph ?= new LandingGraph
 window.menu ?= new Menu
 window.navButton ?= new NavButton
 window.postPreview ?= new PostPreview
-window.scale ?= new Scale
 window.search ?= new Search
 window.stickyFooter ?= new StickyFooter
 window.tooltipBeatmap ?= new TooltipBeatmap

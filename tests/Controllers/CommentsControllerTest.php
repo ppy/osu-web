@@ -115,7 +115,7 @@ class CommentsControllerTest extends TestCase
 
     public function testApiUnauthenticatedUserCanViewComment()
     {
-        $comment = factory(Comment::class)->create();
+        $comment = Comment::factory()->create();
 
         $this
             ->json('GET', route('api.comments.show', ['comment' => $comment->getKey()]))

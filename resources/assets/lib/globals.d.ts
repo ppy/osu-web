@@ -143,12 +143,6 @@ interface BeatmapsetDiscussionPostJson {
   message: string;
 }
 
-interface LangClass {
-  _getPluralForm: (count: number, locale: string) => number;
-  _origGetPluralForm: (count: number, locale: string) => number;
-  has(key: string): boolean;
-}
-
 interface TooltipDefault {
   remove: (el: HTMLElement) => void;
 }
