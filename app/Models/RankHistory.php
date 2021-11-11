@@ -7,7 +7,7 @@ namespace App\Models;
 
 /**
  * @property mixed $data
- * @property int $mode
+ * @property string $mode
  * @property int $r0
  * @property int $r1
  * @property int $r10
@@ -111,7 +111,7 @@ class RankHistory extends Model
     {
         $data = [];
 
-        $startOffset = Count::currentRankStart();
+        $startOffset = Count::currentRankStart($this->mode);
         $end = $startOffset + 90;
 
         for ($i = $startOffset; $i < $end; $i++) {
