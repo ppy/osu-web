@@ -17,11 +17,11 @@ export default interface UserStatisticsJson {
   country_rank?: number;
   global_rank?: number;
   hit_accuracy: number;
-  maximum_combo: number;
   level: {
     current: number;
     progress: number;
   };
+  maximum_combo: number;
   play_count: number;
   play_time: number;
   pp: number;
