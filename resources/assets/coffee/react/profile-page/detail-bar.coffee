@@ -2,7 +2,6 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import FollowUserMappingButton from 'follow-user-mapping-button'
-import { FriendButton } from 'friend-button'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import DetailBarButtons from 'profile-page/detail-bar-buttons'
