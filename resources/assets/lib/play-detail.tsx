@@ -24,10 +24,6 @@ interface State {
 }
 
 export default class PlayDetail extends React.PureComponent<Props, State> {
-  state: Readonly<State> = {
-    compact: true,
-  };
-
   render() {
     const score = this.props.score;
     const { beatmap, beatmapset } = score;
@@ -39,7 +35,6 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
     const blockClass = classWithModifiers(
       bn,
       this.props.activated ? 'active' : 'highlightable',
-      { compact: this.state.compact },
     );
 
     return (
@@ -69,10 +64,6 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
               </span>
             </div>
           </div>
-
-          <button className={`${bn}__compact-toggle`} onClick={this.toggleCompact}>
-            <span className={`fas ${this.state.compact ? 'fa-chevron-down' : 'fa-chevron-up'}`} />
-          </button>
         </div>
 
         <div className={`${bn}__group ${bn}__group--bottom`}>
@@ -126,8 +117,4 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
       </div>
     );
   }
-
-  private readonly toggleCompact = () => {
-    this.setState({ compact: !this.state.compact });
-  };
 }
