@@ -20,6 +20,7 @@ export default interface UserStatisticsJson {
     current: number;
     progress: number;
   };
+  play_time: number;
   pp: number;
   variants?: Variant[];
 }
