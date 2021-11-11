@@ -15,9 +15,7 @@ export class DetailBar extends React.PureComponent
   render: =>
     div className: bn,
       el DetailBarColumns, user: @props.user,
-        div className: "#{bn}__entry",
-            el Rank, type: 'global', stats: @props.stats
-
+        if !@props.user.is_bot
           div className: "#{bn}__entry",
             el Rank, type: 'country', stats: @props.stats
 

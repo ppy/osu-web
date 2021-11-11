@@ -1,13 +1,12 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Detail } from './detail'
 import { Stats } from './stats'
 import * as React from 'react'
 import HeaderV4 from 'header-v4'
 import Img2x from 'img2x'
 import Badges from 'profile-page/badges'
-import DetailBot from 'profile-page/detail-bot'
+import Detail from 'profile-page/detail'
 import HeaderInfo from 'profile-page/header-info'
 import headerLinks from 'profile-page/header-links'
 import Links from 'profile-page/links'
@@ -34,13 +33,9 @@ export class Header extends React.Component
             if !@props.user.is_bot
               el Stats, user: @props.user
 
-          if @props.user.is_bot
-            el DetailBot, user: @props.user
-          else
-            el Detail,
-              stats: @props.stats
-              userAchievements: @props.userAchievements
-              user: @props.user
+          el Detail,
+            stats: @props.stats
+            user: @props.user
 
           el Badges, badges: @props.user.badges
 
