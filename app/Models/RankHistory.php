@@ -7,7 +7,7 @@ namespace App\Models;
 
 /**
  * @property mixed $data
- * @property int $mode
+ * @property string $mode
  * @property int $r0
  * @property int $r1
  * @property int $r10
