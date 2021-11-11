@@ -6,7 +6,6 @@ import { Header } from './header'
 import { Historical } from './historical'
 import { Medals } from './medals'
 import { TopRanks } from './top-ranks'
-import { UserPage } from './user-page'
 import { BlockButton } from 'block-button'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
@@ -14,10 +13,12 @@ import AccountStanding from 'profile-page/account-standing'
 import Beatmapsets from 'profile-page/beatmapsets'
 import Kudosu from 'profile-page/kudosu'
 import RecentActivity from 'profile-page/recent-activity'
+import UserPage from 'profile-page/user-page'
 import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
 import * as BeatmapHelper from 'utils/beatmap-helper'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
@@ -49,7 +50,6 @@ export class Main extends React.PureComponent
           initialRaw: props.userPage.raw
           raw: props.userPage.raw
           editing: false
-          selection: [0, 0]
         profileOrder: props.user.profile_order[..]
         recentActivity: @props.extras.recentActivity
         scoresBest: @props.extras.scoresBest
@@ -217,6 +217,7 @@ export class Main extends React.PureComponent
           scoresFirsts: @state.scoresFirsts
           currentMode: @props.currentMode
           pagination: @state.showMorePagination
+          scoresNotice: @props.scoresNotice
         component: TopRanks
 
       when 'beatmaps'
@@ -376,7 +377,7 @@ export class Main extends React.PureComponent
 
     newOrder = $elems.sortable('toArray', attribute: 'data-page-id')
 
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     $elems.sortable('cancel')
 
@@ -396,7 +397,7 @@ export class Main extends React.PureComponent
 
         @setState profileOrder: @state.user.profile_order
 
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   userUpdate: (_e, user) =>

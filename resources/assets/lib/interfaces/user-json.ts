@@ -26,6 +26,10 @@ export default interface UserJson {
   is_online: boolean;
   is_supporter: boolean;
   last_visit: string | null;
+  page?: {
+    html: string;
+    raw: string;
+  };
   pm_friends_only: boolean;
   previous_usernames?: string[];
   profile_colour: string | null;

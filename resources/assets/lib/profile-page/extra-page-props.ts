@@ -12,9 +12,10 @@ interface Pagination {
   loading: boolean;
 }
 
+export type ProfilePagePaginationData = Record<BeatmapsetSection | 'recentlyReceivedKudosu', Pagination>;
+
 export default interface ExtraPageProps {
   name: string;
-  pagination: Record<BeatmapsetSection | 'recentlyReceivedKudosu', Pagination>;
   user: ProfilePageUserJson;
   withEdit: boolean;
 }
