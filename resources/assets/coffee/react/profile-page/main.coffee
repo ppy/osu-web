@@ -215,6 +215,7 @@ export class Main extends React.PureComponent
           scoresFirsts: @state.scoresFirsts
           currentMode: @props.currentMode
           pagination: @state.showMorePagination
+          scoresNotice: @props.scoresNotice
         component: TopRanks
 
       when 'beatmaps'

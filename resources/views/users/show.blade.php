@@ -26,5 +26,11 @@
         </script>
     @endforeach
 
+    @if (($scoresNotice = config('osu.user.profile_scores_notice')) !== null)
+        <script id="json-scores-notice" type="application/json">
+            {!! json_encode($scoresNotice) !!}
+        </script>
+    @endif
+
     @include('layout._react_js', ['src' => 'js/react/profile-page.js'])
 @endsection
