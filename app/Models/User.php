@@ -173,7 +173,7 @@ use Request;
  */
 class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable
 {
-    use Elasticsearch\UserTrait, Store\UserTrait;
+    use Elasticsearch\UserTrait, Traits\UserStore;
     use Authenticatable, HasApiTokens, Memoizes, Traits\Reportable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
