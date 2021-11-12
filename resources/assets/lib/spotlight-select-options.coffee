@@ -5,6 +5,7 @@ import { createElement as el, PureComponent } from 'react'
 import * as React from 'react'
 import { a } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
+import { updateQueryString } from 'utils/url'
 
 export class SpotlightSelectOptions extends PureComponent
   handleChange: (option) =>
@@ -12,7 +13,7 @@ export class SpotlightSelectOptions extends PureComponent
 
 
   href: (key) ->
-    window.osu.updateQueryString(null, spotlight: key)
+    updateQueryString(null, spotlight: key)
 
 
   render: =>
