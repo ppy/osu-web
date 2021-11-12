@@ -18,7 +18,6 @@ use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
 use App\Traits\Memoizes;
-use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
@@ -174,7 +173,7 @@ use Request;
 class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable
 {
     use Traits\Es\UserSearch, Traits\UserStore;
-    use Authenticatable, HasApiTokens, Memoizes, Traits\Reportable, UserAvatar, Traits\UserScoreable, Validatable;
+    use Authenticatable, HasApiTokens, Memoizes, Traits\Reportable, Traits\UserAvatar, Traits\UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
