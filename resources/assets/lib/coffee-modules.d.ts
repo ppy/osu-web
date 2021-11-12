@@ -15,17 +15,6 @@ declare module 'back-to-top' {
   }
 }
 
-declare module 'block-button' {
-  interface Props {
-    modifiers?: import('utils/css').Modifiers;
-    onClick?: () => void;
-    userId: number;
-    wrapperClass?: string;
-  }
-
-  class BlockButton extends React.PureComponent<Props> {}
-}
-
 declare module 'comments' {
   class Comments extends React.PureComponent<any> {}
 }
