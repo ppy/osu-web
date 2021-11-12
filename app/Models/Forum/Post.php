@@ -15,7 +15,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\DeletedUser;
 use App\Models\Elasticsearch;
-use App\Models\Reportable;
+use App\Models\Traits;
 use App\Models\User;
 use App\Traits\Validatable;
 use App\Traits\WithDbCursorHelper;
@@ -61,7 +61,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Post extends Model implements AfterCommit, Indexable
 {
-    use Elasticsearch\PostTrait, Reportable, Validatable, WithDbCursorHelper;
+    use Elasticsearch\PostTrait, Traits\Reportable, Validatable, WithDbCursorHelper;
     use SoftDeletes {
         restore as private origRestore;
     }

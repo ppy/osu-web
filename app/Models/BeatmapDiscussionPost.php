@@ -27,7 +27,7 @@ use Ds\Set;
  */
 class BeatmapDiscussionPost extends Model
 {
-    use Validatable, Reportable;
+    use Validatable, Traits\Reportable;
 
     const MESSAGE_LIMIT_TIMELINE = 750;
 
