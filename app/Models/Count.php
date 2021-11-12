@@ -16,9 +16,9 @@ class Count extends Model
 
     public $timestamps = false;
 
-    public static function currentRankStart()
+    public static function currentRankStart(string $mode): int
     {
-        return static::find('pp_rank_column')->count ?? 0;
+        return static::find("pp_rank_column_{$mode}")->count ?? 0;
     }
 
     public static function totalUsers()
