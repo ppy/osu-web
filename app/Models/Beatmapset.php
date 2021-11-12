@@ -102,7 +102,7 @@ use Illuminate\Database\QueryException;
  */
 class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 {
-    use Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Memoizes, Traits\Reportable, SoftDeletes, Validatable;
+    use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';

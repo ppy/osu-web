@@ -28,7 +28,7 @@ use Exception;
  */
 class NewsPost extends Model implements Commentable, Wiki\WikiObject
 {
-    use Traits\CommentableDefaults, Memoizes, Traits\WithDbCursorHelper;
+    use Memoizes, Traits\CommentableDefaults, Traits\WithDbCursorHelper;
 
     // in minutes
     const CACHE_DURATION = 86400;

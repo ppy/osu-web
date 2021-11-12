@@ -38,7 +38,7 @@ use Carbon\Carbon;
  */
 class Comment extends Model
 {
-    use Traits\Reportable, Validatable, Traits\WithDbCursorHelper;
+    use Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 
     const COMMENTABLES = [
         MorphMap::MAP[Beatmapset::class],

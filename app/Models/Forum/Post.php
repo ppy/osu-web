@@ -59,7 +59,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Post extends Model implements AfterCommit, Indexable
 {
-    use Traits\Es\ForumPostSearch, Traits\Reportable, Validatable, Traits\WithDbCursorHelper;
+    use Traits\Es\ForumPostSearch, Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
     use SoftDeletes {
         restore as private origRestore;
     }
