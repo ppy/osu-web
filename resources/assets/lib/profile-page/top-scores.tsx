@@ -34,6 +34,7 @@ type ScoreData = ScoreJson[] | { error: string };
 type Props = {
   currentMode: GameMode;
   pagination: ProfilePagePaginationData;
+  scoresNotice?: string;
 } & {
   [key in TopScoreSection]?: ScoreData;
 } & ExtraPageProps;
@@ -43,6 +44,17 @@ export default class TopScores extends React.PureComponent<Props> {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
+
+        {this.props.scoresNotice != null && (
+          <div className='wiki-notice'>
+            <span className='fas fa-exclamation-circle' />
+            {' '}
+            <div
+              className='wiki-notice__markdown-inline-content'
+              dangerouslySetInnerHTML={{ __html: this.props.scoresNotice }}
+            />
+          </div>
+        )}
 
         {sectionMaps.map((section) => (
           <div key={section.key}>
