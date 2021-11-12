@@ -9,14 +9,13 @@ use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
-use App\Traits\MacroableModel;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
 {
-    use HasFactory, MacroableModel;
+    use HasFactory, Traits\Macroable;
 
     protected $connection = 'mysql';
     protected $guarded = [];
