@@ -18,12 +18,19 @@ import { RankCount } from 'react/profile-page/rank-count';
 
 export type DetailType = 'modding' | 'multiplayer' | 'user';
 
-interface Props {
+type Props = {
   stats: UserStatisticsJson;
-  type: DetailType;
+  type: 'modding';
+  user: UserExtendedJson;
+} | {
+  type: 'multiplayer';
+  user: UserExtendedJson;
+}| {
+  stats: UserStatisticsJson;
+  type: 'user';
   user: UserExtendedJson;
   userAchievements: UserAchievementJson[];
-}
+};
 
 @observer
 export default class Detail extends React.Component<Props> {
@@ -107,7 +114,7 @@ export default class Detail extends React.Component<Props> {
           <span className={className} />
         </button>
       </div>
-    )
+    );
   }
 
   private renderExtras() {
