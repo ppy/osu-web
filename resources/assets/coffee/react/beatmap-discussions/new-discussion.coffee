@@ -12,6 +12,7 @@ import TimeWithTooltip from 'time-with-tooltip'
 import UserAvatar from 'user-avatar'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+import { linkHtml } from 'utils/url'
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -175,7 +176,7 @@ export class NewDiscussion extends React.PureComponent
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @timestamp()
           timestamps =
             for discussion in @nearbyDiscussions()
-              osu.link BeatmapDiscussionHelper.url(discussion: discussion),
+              linkHtml BeatmapDiscussionHelper.url(discussion: discussion),
                 BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
                 classNames: ['js-beatmap-discussion--jump']
           timestampsString = osu.transArray(timestamps)

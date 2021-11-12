@@ -21,6 +21,7 @@ import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
+import { updateQueryString } from 'utils/url'
 
 el = React.createElement
 
@@ -267,7 +268,7 @@ export class Main extends React.PureComponent
     paginationState[name].loading = true
 
     @setState showMorePagination: paginationState, ->
-      $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
+      $.get updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
         state = _.cloneDeep(@state[name]).concat(data)
         hasMore = data.length > perPage
 
