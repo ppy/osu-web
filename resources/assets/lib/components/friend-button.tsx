@@ -178,6 +178,5 @@ export default class FriendButton extends React.Component<Props> {
 
     core.currentUser.friends = data;
     $.publish('user:update', core.currentUser);
-    $.publish('friendButton:refresh');
   };
 }
