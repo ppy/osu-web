@@ -16,11 +16,18 @@ interface Variant {
 export default interface UserStatisticsJson {
   country_rank?: number;
   global_rank?: number;
+  hit_accuracy: number;
   level: {
     current: number;
     progress: number;
   };
+  maximum_combo: number;
+  play_count: number;
   play_time: number;
   pp: number;
+  ranked_score: number;
+  replays_watched_by_others: number;
+  total_hits: number;
+  total_score: number;
   variants?: Variant[];
 }

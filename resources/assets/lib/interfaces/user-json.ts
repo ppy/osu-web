@@ -26,13 +26,21 @@ export default interface UserJson {
   is_online: boolean;
   is_supporter: boolean;
   last_visit: string | null;
+  loved_beatmapset_count?: number;
+  mapping_follower_count?: number;
   page?: {
     html: string;
     raw: string;
   };
+  pending_beatmapset_count?: number;
   pm_friends_only: boolean;
   previous_usernames?: string[];
   profile_colour: string | null;
+  ranked_beatmapset_count?: number;
+  replays_watched_counts?: number;
+  scores_best_count?: number;
+  scores_first_count?: number;
+  scores_recent_count?: number;
   statistics?: UserStatisticsJson;
   support_level?: number;
   username: string;
