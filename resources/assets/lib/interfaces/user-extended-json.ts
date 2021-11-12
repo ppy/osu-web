@@ -4,6 +4,15 @@
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 
+export type ProfileExtraPage =
+  'beatmaps'
+  | 'historical'
+  | 'kudosu'
+  | 'me'
+  | 'medals'
+  | 'recent_activity'
+  | 'top_ranks';
+
 export default interface UserExtendedJson extends UserJson {
   country: Country;
   cover: Cover;
@@ -31,7 +40,7 @@ export default interface UserExtendedJson extends UserJson {
   playmode: GameMode | null;
   playstyle: string[];
   post_count: number;
-  profile_order: string[];
+  profile_order: ProfileExtraPage[];
   title: string | null;
   title_url: string | null;
   twitter: string | null;
