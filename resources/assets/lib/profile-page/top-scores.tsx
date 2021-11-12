@@ -13,6 +13,7 @@ import ExtraPageProps, { ProfilePagePaginationData, TopScoreSection } from './ex
 interface SectionMap {
   count: 'scores_best_count' | 'scores_first_count';
   key: TopScoreSection;
+  translationKey: string;
   type: string;
 }
 
@@ -20,11 +21,13 @@ const sectionMaps: SectionMap[] = [
   {
     count: 'scores_best_count',
     key: 'scoresBest',
+    translationKey: 'best',
     type: 'best',
   },
   {
     count: 'scores_first_count',
     key: 'scoresFirsts',
+    translationKey: 'first',
     type: 'firsts',
   },
 ];
@@ -34,6 +37,7 @@ type ScoreData = ScoreJson[] | { error: string };
 type Props = {
   currentMode: GameMode;
   pagination: ProfilePagePaginationData;
+  scoresNotice?: string;
 } & {
   [key in TopScoreSection]?: ScoreData;
 } & ExtraPageProps;
@@ -44,10 +48,21 @@ export default class TopScores extends React.PureComponent<Props> {
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
 
+        {this.props.scoresNotice != null && (
+          <div className='wiki-notice'>
+            <span className='fas fa-exclamation-circle' />
+            {' '}
+            <div
+              className='wiki-notice__markdown-inline-content'
+              dangerouslySetInnerHTML={{ __html: this.props.scoresNotice }}
+            />
+          </div>
+        )}
+
         {sectionMaps.map((section) => (
           <div key={section.key}>
             <h3 className='title title--page-extra-small'>
-              {osu.trans('users.show.extra.top_ranks.best.title')}
+              {osu.trans(`users.show.extra.top_ranks.${section.translationKey}.title`)}
               <span className='title__count'>
                 {osu.formatNumber(this.props.user[section.count])}
               </span>

@@ -15,21 +15,6 @@ declare module 'back-to-top' {
   }
 }
 
-declare module 'block-button' {
-  interface Props {
-    modifiers?: import('utils/css').Modifiers;
-    onClick?: () => void;
-    userId: number;
-    wrapperClass?: string;
-  }
-
-  class BlockButton extends React.PureComponent<Props> {}
-}
-
-declare module 'friend-button' {
-  class FriendButton extends React.PureComponent<any> {}
-}
-
 declare module 'comments' {
   class Comments extends React.PureComponent<any> {}
 }
@@ -69,6 +54,7 @@ declare module 'popup-menu' {
   interface Props {
     children: Children;
     customRender?: (children: JSX.Element[], ref: React.RefObject<HTMLElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => JSX.Element;
+    direction?: 'left' | 'right';
     onHide?: () => void;
     onShow?: () => void;
   }

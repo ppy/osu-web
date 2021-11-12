@@ -9,6 +9,7 @@ import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, form, input, label, span, i } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
 import { createClickCallback } from 'utils/html'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -150,7 +151,7 @@ export class NewReply extends React.PureComponent
 
   post: (event) =>
     return if !@validPost()
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @postXhr?.abort()
 
@@ -187,7 +188,7 @@ export class NewReply extends React.PureComponent
     .fail osu.ajaxError
 
     .always =>
-      LoadingOverlay.hide()
+      hideLoadingOverlay()
       @setState posting: null
 
 

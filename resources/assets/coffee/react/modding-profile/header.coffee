@@ -7,6 +7,7 @@ import * as React from 'react'
 import HeaderV4 from 'header-v4'
 import Img2x from 'img2x'
 import Badges from 'profile-page/badges'
+import DetailBot from 'profile-page/detail-bot'
 import HeaderInfo from 'profile-page/header-info'
 import headerLinks from 'profile-page/header-links'
 import Links from 'profile-page/links'
@@ -33,7 +34,9 @@ export class Header extends React.Component
             if !@props.user.is_bot
               el Stats, user: @props.user
 
-          if !@props.user.is_bot
+          if @props.user.is_bot
+            el DetailBot, user: @props.user
+          else
             el Detail,
               stats: @props.stats
               userAchievements: @props.userAchievements

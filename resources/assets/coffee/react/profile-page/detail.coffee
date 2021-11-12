@@ -2,14 +2,14 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { DetailBar } from './detail-bar'
-import { PlayTime } from './play-time'
-import { Pp } from './pp'
-import { Rank } from './rank'
 import { RankChart } from './rank-chart'
 import { RankCount } from './rank-count'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import MedalsCount from 'profile-page/medals-count'
+import PlayTime from 'profile-page/play-time'
+import Pp from 'profile-page/pp'
+import Rank from 'profile-page/rank'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
@@ -19,10 +19,9 @@ export class Detail extends React.Component
   render: =>
     el Observer, null, =>
       div className: bn,
-        div className: "#{bn}__bar",
-          el DetailBar,
-            stats: @props.stats
-            user: @props.user
+        el DetailBar,
+          stats: @props.stats
+          user: @props.user
         div
           className: if core.userPreferences.get('ranking_expanded') then '' else 'hidden'
           div className: "#{bn}__row #{bn}__row--top",
