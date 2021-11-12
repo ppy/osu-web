@@ -84,6 +84,14 @@ declare module 'react/beatmaps/search-content' {
   class SearchContent extends React.PureComponent<Props> {}
 }
 
+declare module 'react/profile-page/rank-chart' {
+  class RankChart extends React.Component {}
+}
+
+declare module 'react/profile-page/rank-count' {
+  class RankCount extends React.Component {}
+}
+
 declare module 'report-form' {
   interface ReportFormProps {
     completed: boolean;

@@ -2,7 +2,6 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { CoverSelector } from './cover-selector'
-import { Detail } from './detail'
 import { DetailMobile } from './detail-mobile'
 import { GameModeSwitcher } from './game-mode-switcher'
 import { RankCount } from './rank-count'
@@ -11,7 +10,7 @@ import * as React from 'react'
 import HeaderV4 from 'header-v4'
 import Img2x from 'img2x'
 import Badges from 'profile-page/badges'
-import DetailBot from 'profile-page/detail-bot'
+import Detail from 'profile-page/detail'
 import HeaderInfo from 'profile-page/header-info'
 import headerLinks from 'profile-page/header-links'
 import Links from 'profile-page/links'
@@ -92,13 +91,11 @@ export class Header extends React.Component
                 div className: 'profile-header__rank-count-mobile',
                   el RankCount, stats: @props.stats
 
-          if @props.user.is_bot
-            el DetailBot, user: @props.user
-          else
-            el Detail,
-              stats: @props.stats
-              userAchievements: @props.userAchievements
-              user: @props.user
+          el Detail,
+            stats: @props.stats
+            type: 'user'
+            user: @props.user
+            userAchievements: @props.userAchievements
 
           el Badges, badges: @props.user.badges
 

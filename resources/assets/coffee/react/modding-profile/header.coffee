@@ -35,6 +35,7 @@ export class Header extends React.Component
 
           el Detail,
             stats: @props.stats
+            type: 'modding'
             user: @props.user
 
           el Badges, badges: @props.user.badges
