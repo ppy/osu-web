@@ -5,13 +5,13 @@ import { ExtraTab } from './extra-tab'
 import { Header } from './header'
 import { Historical } from './historical'
 import { Medals } from './medals'
-import { TopRanks } from './top-ranks'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
 import AccountStanding from 'profile-page/account-standing'
 import Beatmapsets from 'profile-page/beatmapsets'
 import Kudosu from 'profile-page/kudosu'
 import RecentActivity from 'profile-page/recent-activity'
+import TopScores from 'profile-page/top-scores'
 import UserPage from 'profile-page/user-page'
 import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
@@ -208,6 +208,7 @@ export class Main extends React.PureComponent
           pagination: @state.showMorePagination
         component: Kudosu
 
+      # TODO: rename to top_scores (also in model's UserProfileCustomization and translations)
       when 'top_ranks'
         props:
           user: @state.user
@@ -216,7 +217,7 @@ export class Main extends React.PureComponent
           currentMode: @props.currentMode
           pagination: @state.showMorePagination
           scoresNotice: @props.scoresNotice
-        component: TopRanks
+        component: TopScores
 
       when 'beatmaps'
         props:
