@@ -12,7 +12,6 @@ use App\Models\ReplayViewCount;
 use App\Models\Score\Model as BaseModel;
 use App\Models\Traits;
 use App\Models\User;
-use App\Traits\WithDbCursorHelper;
 use Datadog;
 use DB;
 use Exception;
@@ -23,7 +22,7 @@ use GuzzleHttp\Client;
  */
 abstract class Model extends BaseModel
 {
-    use Traits\Reportable, WithDbCursorHelper;
+    use Traits\Reportable, Traits\WithDbCursorHelper;
 
     public $position = null;
     public $weight = null;

@@ -7,7 +7,6 @@ namespace App\Models;
 
 use App\Libraries\MorphMap;
 use App\Traits\Validatable;
-use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 
 /**
@@ -39,7 +38,7 @@ use Carbon\Carbon;
  */
 class Comment extends Model
 {
-    use Traits\Reportable, Validatable, WithDbCursorHelper;
+    use Traits\Reportable, Validatable, Traits\WithDbCursorHelper;
 
     const COMMENTABLES = [
         MorphMap::MAP[Beatmapset::class],

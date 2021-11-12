@@ -17,7 +17,6 @@ use App\Models\DeletedUser;
 use App\Models\Traits;
 use App\Models\User;
 use App\Traits\Validatable;
-use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -60,7 +59,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Post extends Model implements AfterCommit, Indexable
 {
-    use Traits\Es\ForumPostSearch, Traits\Reportable, Validatable, WithDbCursorHelper;
+    use Traits\Es\ForumPostSearch, Traits\Reportable, Validatable, Traits\WithDbCursorHelper;
     use SoftDeletes {
         restore as private origRestore;
     }
