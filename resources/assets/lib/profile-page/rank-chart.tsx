@@ -47,6 +47,28 @@ export default class RankChart extends React.Component<Props> {
   private rankChart?: LineChart;
   private readonly rankChartArea = React.createRef<HTMLDivElement>();
 
+  get data() {
+    if (!this.props.stats.is_ranked) return [];
+
+    const raw = this.props.rankHistory?.data ?? [];
+    const data = raw.map((rank, i) => ({ x: i - raw.length + 1, y: -rank })).filter((point) => point.y < 0);
+    if (data.length > 0) {
+      if (data.length === 1) {
+        data.unshift({ x: data[0].x - 1, y: data[0].y });
+      }
+
+      const lastData = last(data);
+
+      if (lastData?.x === 0) {
+        lastData.y = -this.props.stats.global_rank;
+      } else {
+        data.push({ x: 0, y: -this.props.stats.global_rank });
+      }
+    }
+
+    return data;
+  }
+
   componentDidMount() {
     if (this.rankChartArea.current == null) return;
 
@@ -70,26 +92,6 @@ export default class RankChart extends React.Component<Props> {
   private loadRankChart = () => {
     if (this.rankChart == null) return;
 
-    let data: { x: number; y: number }[] = [];
-
-    if (this.props.stats.is_ranked) {
-      const raw = this.props.rankHistory?.data ?? [];
-      data = raw.map((rank, i) => ({ x: i - raw.length + 1, y: -rank })).filter((point) => point.y < 0);
-      if (data.length > 0) {
-        if (data.length === 1) {
-          data.unshift({ x: data[0].x - 1, y: data[0].y });
-        }
-
-        const lastData = last(data);
-
-        if (lastData?.x === 0) {
-          lastData.y = -this.props.stats.global_rank;
-        } else {
-          data.push({ x: 0, y: -this.props.stats.global_rank });
-        }
-      }
-    }
-
-    this.rankChart.loadData(data);
+    this.rankChart.loadData(this.data);
   };
 }
