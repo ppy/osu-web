@@ -362,7 +362,7 @@ class Room extends Model
 
         $playlistItems = [];
         foreach ($params['playlist'] as $item) {
-            $playlistItems[] = PlaylistItem::fromJsonParams($item);
+            $playlistItems[] = PlaylistItem::fromJsonParams($owner, $item);
         }
 
         $playlistItemsCount = count($playlistItems);
