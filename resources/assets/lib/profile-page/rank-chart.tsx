@@ -14,6 +14,26 @@ interface Props {
   stats: UserStatisticsJson;
 }
 
+const options = {
+  axisLabels: false,
+  circleLine: true,
+  infoBoxFormats: {
+    x: formatX,
+    y: formatY,
+  },
+  margins: {
+    bottom: 15,
+    left: 15, // referenced in css .profile-detail__col--bottom-left
+    right: 15,
+    top: 15,
+  },
+  modifiers: 'profile-page',
+  scales: {
+    x: d3.scaleLinear(),
+    y: d3.scaleLog(),
+  },
+};
+
 function formatX(d: number) {
   return d === 0 ? osu.trans('common.time.now') : osu.transChoice('common.time.days_ago', -d);
 }
@@ -22,18 +42,21 @@ function formatY(d: number) {
   return `<strong>${osu.trans('users.show.rank.global_simple')}</strong> #${osu.formatNumber(-d)}`;
 }
 
-
 export default class RankChart extends React.Component<Props> {
   private readonly id = `rank-chart-${nextVal()}`;
   private rankChart?: LineChart;
   private readonly rankChartArea = React.createRef<HTMLDivElement>();
 
   componentDidMount() {
-    this.rankChartUpdate();
-  }
+    if (this.rankChartArea.current == null) return;
 
-  componentDidUpdate() {
-    this.rankChartUpdate();
+    if (this.rankChart == null) {
+      this.rankChart = new LineChart(this.rankChartArea.current, options);
+
+      $(window).on(`resize.${this.id}`, this.rankChart.resize);
+    }
+
+    core.reactTurbolinks.runAfterPageLoad(this.id, this.loadRankChart);
   }
 
   componentWillUnmount() {
@@ -69,36 +92,4 @@ export default class RankChart extends React.Component<Props> {
 
     this.rankChart.loadData(data);
   };
-
-  private rankChartUpdate() {
-    if (this.rankChartArea.current == null) return;
-
-    if (this.rankChart == null) {
-      const options = {
-        axisLabels: false,
-        circleLine: true,
-        infoBoxFormats: {
-          x: formatX,
-          y: formatY,
-        },
-        margins: {
-          bottom: 15,
-          left: 15, // referenced in css .profile-detail__col--bottom-left
-          right: 15,
-          top: 15,
-        },
-        modifiers: 'profile-page',
-        scales: {
-          x: d3.scaleLinear(),
-          y: d3.scaleLog(),
-        },
-      };
-
-      this.rankChart = new LineChart(this.rankChartArea.current, options);
-
-      $(window).on(`resize.${this.id}`, this.rankChart.resize);
-    }
-
-    core.reactTurbolinks.runAfterPageLoad(this.id, this.loadRankChart);
-  }
 }
