@@ -3,6 +3,9 @@
 
 import GameMode from './game-mode';
 
+export const grades = ['ssh', 'ss', 'sh', 's', 'a'] as const;
+export type Grade = (typeof grades)[number];
+
 export type RankType = 'country' | 'global';
 
 interface Variant {
@@ -16,13 +19,7 @@ interface Variant {
 export default interface UserStatisticsJson {
   country_rank?: number;
   global_rank?: number;
-  grade_counts: {
-    a: number;
-    s: number;
-    sh: number;
-    ss: number;
-    ssh: number;
-  };
+  grade_counts: Record<Grade, number>;
   hit_accuracy: number;
   level: {
     current: number;
