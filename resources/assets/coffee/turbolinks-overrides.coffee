@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { isHTML, isInternal } from 'utils/url'
+
 # Anchor navigation with turbolinks. Works around [1].
 # [1] https://github.com/turbolinks/turbolinks/issues/75
 $(document).on 'click', 'a[href^="#"]', (e) ->
@@ -58,4 +60,4 @@ Turbolinks.Controller::replaceHistory = (url) ->
 Turbolinks.Snapshot::hasAnchor = -> true
 
 Turbolinks.Controller::locationIsVisitable = (location) ->
-  location.isPrefixedBy(@view.getRootLocation()) && _exported.OsuUrlHelper.isInternal(location) && _exported.OsuUrlHelper.isHTML(location)
+  location.isPrefixedBy(@view.getRootLocation()) && isInternal(location) && isHTML(location)
