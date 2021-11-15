@@ -25,7 +25,7 @@ type Props = {
 } | {
   type: 'multiplayer';
   user: UserExtendedJson;
-}| {
+} | {
   stats: UserStatisticsJson;
   type: 'user';
   user: UserExtendedJson;
@@ -45,7 +45,8 @@ export default class Detail extends React.Component<Props> {
         <div className='profile-detail-bar'>
           {this.renderExpander()}
           <DetailBarColumns user={this.props.user}>
-            {this.renderExtras()}
+            {this.renderUser()}
+            {this.renderModding()}
           </DetailBarColumns>
         </div>
         {this.renderExpandedDetails()}
@@ -117,20 +118,9 @@ export default class Detail extends React.Component<Props> {
     );
   }
 
-  private renderExtras() {
-    if (this.props.user.is_bot) return null;
-
-    switch (this.props.type) {
-      case 'modding':
-        return this.renderModding();
-      case 'user':
-        return this.renderUser();
-    }
-
-    return null;
-  }
-
   private renderModding() {
+    if (this.props.user.is_bot || this.props.type !== 'modding') return null;
+
     return (
       <>
         <div className='profile-detail-bar__entry'>
@@ -152,6 +142,8 @@ export default class Detail extends React.Component<Props> {
   }
 
   private renderUser() {
+    if (this.props.user.is_bot || this.props.type !== 'user') return null;
+
     return (
       <>
         {this.isExpanded ? (
