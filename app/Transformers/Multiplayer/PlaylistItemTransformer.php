@@ -25,6 +25,7 @@ class PlaylistItemTransformer extends TransformerAbstract
             'allowed_mods' => $item->allowed_mods,
             'required_mods' => $item->required_mods,
             'expired' => $item->expired,
+            'user_id' => $item->user_id,
         ];
     }
 
