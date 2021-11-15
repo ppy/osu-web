@@ -17,6 +17,7 @@ export default interface UserStatisticsJson {
   country_rank?: number;
   global_rank?: number;
   hit_accuracy: number;
+  is_ranked: boolean;
   level: {
     current: number;
     progress: number;
