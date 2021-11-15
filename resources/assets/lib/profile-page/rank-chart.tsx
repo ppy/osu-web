@@ -38,8 +38,6 @@ export default class RankChart extends React.Component<Props> {
 
   componentWillUnmount() {
     $(window).off(`.${this.id}`);
-    $(document).off(`.${this.id}`);
-    $.unsubscribe(`.${this.id}`);
   }
 
   render() {
