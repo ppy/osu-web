@@ -10,7 +10,7 @@ import * as React from 'react';
 import { nextVal } from 'utils/seq';
 
 interface Props {
-  rankHistory: RankHistoryJson;
+  rankHistory: RankHistoryJson | null;
   stats: UserStatisticsJson;
 }
 
@@ -50,7 +50,7 @@ export default class RankChart extends React.Component<Props> {
     let data: { x: number; y: number }[] = [];
 
     if (this.props.stats.is_ranked) {
-      const raw = this.props.rankHistory.data;
+      const raw = this.props.rankHistory?.data ?? [];
       data = raw.map((rank, i) => ({ x: i - raw.length + 1, y: -rank })).filter((point) => point.y < 0);
       if (data.length > 0) {
         if (data.length === 1) {
