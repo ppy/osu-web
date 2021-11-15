@@ -16,6 +16,13 @@ interface Variant {
 export default interface UserStatisticsJson {
   country_rank?: number;
   global_rank?: number;
+  grade_counts: {
+    a: number;
+    s: number;
+    sh: number;
+    ss: number;
+    ssh: number;
+  };
   hit_accuracy: number;
   level: {
     current: number;
