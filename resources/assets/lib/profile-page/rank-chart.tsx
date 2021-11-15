@@ -25,7 +25,7 @@ function formatY(d: number) {
 
 export default class RankChart extends React.Component<Props> {
   private readonly id = `rank-chart-${nextVal()}`;
-  private rankChart: any;
+  private rankChart?: LineChart;
   private readonly rankChartArea = React.createRef<HTMLDivElement>();
 
   componentDidMount() {
@@ -45,6 +45,8 @@ export default class RankChart extends React.Component<Props> {
   }
 
   private loadRankChart = () => {
+    if (this.rankChart == null) return;
+
     let data: { x: number; y: number }[] = [];
 
     if (this.props.stats.is_ranked) {
@@ -69,6 +71,8 @@ export default class RankChart extends React.Component<Props> {
   };
 
   private rankChartUpdate() {
+    if (this.rankChartArea.current == null) return;
+
     if (this.rankChart == null) {
       const options = {
         axisLabels: false,
