@@ -4,7 +4,7 @@
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import { route } from 'laroute';
 import ExtraHeader from 'profile-page/extra-header';
-import ExtraPageProps from 'profile-page/extra-page-props';
+import ExtraPageProps, { ProfilePagePaginationData } from 'profile-page/extra-page-props';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import StringWithComponent from 'string-with-component';
@@ -45,6 +45,7 @@ function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
 }
 
 interface Props extends ExtraPageProps {
+  pagination: ProfilePagePaginationData;
   recentlyReceivedKudosu?: KudosuHistoryJson[];
 }
 

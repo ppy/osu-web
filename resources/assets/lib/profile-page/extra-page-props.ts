@@ -5,16 +5,31 @@ import UserExtendedJson from 'interfaces/user-extended-json';
 
 export type BeatmapsetSection = 'favouriteBeatmapsets' | 'rankedBeatmapsets' | 'lovedBeatmapsets' | 'pendingBeatmapsets' | 'graveyardBeatmapsets';
 
-type ProfilePageUserJson = UserExtendedJson & Required<Pick<UserExtendedJson, 'account_history'>>;
+export const topScoreSections = ['scoresBest', 'scoresFirsts'] as const;
+export type TopScoreSection = typeof topScoreSections[number];
+
+type ProfilePageIncludes =
+  'account_history'
+  | 'loved_beatmapset_count'
+  | 'mapping_follower_count'
+  | 'pending_beatmapset_count'
+  | 'ranked_beatmapset_count'
+  | 'replays_watched_counts'
+  | 'scores_best_count'
+  | 'scores_first_count'
+  | 'scores_recent_count';
+
+type ProfilePageUserJson = UserExtendedJson & Required<Pick<UserExtendedJson, ProfilePageIncludes>>;
 
 interface Pagination {
   hasMore: boolean;
   loading: boolean;
 }
 
+export type ProfilePagePaginationData = Record<BeatmapsetSection | TopScoreSection | 'recentlyReceivedKudosu', Pagination>;
+
 export default interface ExtraPageProps {
   name: string;
-  pagination: Record<BeatmapsetSection | 'recentlyReceivedKudosu', Pagination>;
   user: ProfilePageUserJson;
   withEdit: boolean;
 }

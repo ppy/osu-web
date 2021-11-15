@@ -11,6 +11,8 @@ import StringWithComponent from 'string-with-component'
 import TimeWithTooltip from 'time-with-tooltip'
 import UserAvatar from 'user-avatar'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+import { linkHtml } from 'utils/url'
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -174,7 +176,7 @@ export class NewDiscussion extends React.PureComponent
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @timestamp()
           timestamps =
             for discussion in @nearbyDiscussions()
-              osu.link BeatmapDiscussionHelper.url(discussion: discussion),
+              linkHtml BeatmapDiscussionHelper.url(discussion: discussion),
                 BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
                 classNames: ['js-beatmap-discussion--jump']
           timestampsString = osu.transArray(timestamps)
@@ -264,7 +266,7 @@ export class NewDiscussion extends React.PureComponent
       return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))
 
     @postXhr?.abort()
-    LoadingOverlay.show()
+    showLoadingOverlay()
     @setState posting: type
 
     data =
@@ -291,7 +293,7 @@ export class NewDiscussion extends React.PureComponent
     .fail osu.ajaxError
 
     .always =>
-      LoadingOverlay.hide()
+      hideLoadingOverlay()
       @setState posting: null
 
 

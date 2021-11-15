@@ -1,13 +1,15 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { hideLoadingOverlay } from 'utils/loading-overlay'
+
 replaceUrl = (url) ->
   Turbolinks.controller.replaceHistory url
 
 # browsers have limit on replaceState calls
 debouncedReplaceUrl = _.debounce replaceUrl, 250
 
-class @Forum
+class window.Forum
   boot: =>
     @refreshCounterPaused = true
     @refreshLoadMoreLinks()
@@ -336,7 +338,7 @@ class @Forum
 
   jumpToSubmit: (e) =>
     e.preventDefault()
-    LoadingOverlay.hide()
+    hideLoadingOverlay()
 
     if @jumpTo $(e.target).find('[name="n"]').val()
       $.publish 'forum:topic:jumpTo'

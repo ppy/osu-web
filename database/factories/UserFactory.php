@@ -28,6 +28,10 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (User $user) {
+            if (!$user->exists) {
+                throw new \Exception($user->validationErrors()->toSentence());
+            }
+
             $user->addToGroup(app('groups')->byId($user->group_id));
         });
     }
@@ -38,9 +42,9 @@ class UserFactory extends Factory
         $countryAcronym = fn () => Country::inRandomOrder()->first() ?? Country::factory()->create();
 
         return [
-            'username' => fn () => substr(str_replace('.', ' ', $this->faker->userName()), 0, 15),
+            'username' => fn () => substr(str_replace('.', ' ', $this->faker->unique()->userName()), 0, 15),
             'user_password' => static::defaultPasswordHash(),
-            'user_email' => fn () => $this->faker->safeEmail(),
+            'user_email' => fn () => $this->faker->unique()->safeEmail(),
             'group_id' => fn () => app('groups')->byIdentifier('default'),
             'user_lastvisit' => time(),
             'user_posts' => rand(1, 500),

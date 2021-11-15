@@ -7,6 +7,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import User from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
+import { linkify } from 'utils/url';
 
 export default class Message {
   @observable channelId = -1;
@@ -21,7 +22,7 @@ export default class Message {
 
   @computed
   get parsedContent(): string {
-    return osu.linkify(escape(this.content), true);
+    return linkify(escape(this.content), true);
   }
 
   @computed

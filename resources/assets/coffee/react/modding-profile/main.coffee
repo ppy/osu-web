@@ -2,25 +2,25 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { Events } from './events'
-import { ExtraTab } from '../profile-page/extra-tab'
 import { Discussions } from './discussions'
 import { Header } from './header'
+import { Posts } from './posts'
 import Kudosu from 'profile-page/kudosu'
 import { Votes } from './votes'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
-import { BlockButton } from 'block-button'
 import { deletedUser } from 'models/user'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
-import { Posts } from "./posts"
+import ExtraTab from 'profile-page/extra-tab'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
+import { updateQueryString } from 'utils/url'
 
 el = React.createElement
 
@@ -251,7 +251,7 @@ export class Main extends React.PureComponent
     paginationState[name].loading = true
 
     @setState showMorePagination: paginationState, ->
-      $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
+      $.get updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
         state = _.cloneDeep(@state[name]).concat(data)
         hasMore = data.length > perPage
 

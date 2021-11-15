@@ -172,9 +172,10 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['group'] = factory(\App\Models\Group::class)->create();
 
         // factory for comments
-        self::$scaffolding['comment'] = factory(\App\Models\Comment::class)->create([
-            'user_id' => self::$scaffolding['user']->user_id,
+        self::$scaffolding['comment'] = \App\Models\Comment::factory()->create([
             'commentable_id' => self::$scaffolding['build'],
+            'commentable_type' => 'build',
+            'user_id' => self::$scaffolding['user'],
         ]);
 
         // factory for matches
@@ -424,7 +425,7 @@ class SanityTest extends DuskTestCase
 
     private function checkAdminPermission(Browser $browser, LaravelRoute $route)
     {
-        $adminRestricted = [];
+        $adminRestricted = ['forum.topics.logs.index'];
 
         if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted, true)) {
             // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)
