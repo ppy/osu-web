@@ -1,26 +1,37 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
+import UserStatisticsJson from 'interfaces/user-statistics-json';
 import * as React from 'react'
-import { div } from 'react-dom-factories'
-el = React.createElement
-ranks =
-  XH: 'ssh'
-  X: 'ss'
-  SH: 'sh'
-  S: 's'
-  A: 'a'
+import { classWithModifiers } from 'utils/css';
 
-export class RankCount extends React.PureComponent
-  render: =>
-    div className: 'profile-rank-count',
-      @renderRankCountEntry(name, grade) for name, grade of ranks
+interface Props {
+  stats: UserStatisticsJson;
+}
+
+/* eslint-disable sort-keys */
+const ranks = {
+  XH: 'ssh',
+  X: 'ss',
+  SH: 'sh',
+  S: 's',
+  A: 'a',
+};
+/* eslint-enable sort-keys */
 
 
-  renderRankCountEntry: (name, grade) =>
-    div
-      key: name
-      className: 'profile-rank-count__item'
-      div
-        className: "score-rank score-rank--#{name} score-rank--profile-page"
-      osu.formatNumber(@props.stats.grade_counts[grade])
+export default function RankCount({ stats }: Props) {
+  return (
+    <div className='profile-rank-count'>
+      {Object.entries(ranks).map(([name, grade]) => (
+        <div
+          key={name}
+          className='profile-rank-count__item'
+        >
+          <div className={classWithModifiers('score-rank', name, 'profile-page')} />
+          {osu.formatNumber(stats.grade_counts[grade])}
+        </div>
+      ))}
+    </div>
+  );
+}
