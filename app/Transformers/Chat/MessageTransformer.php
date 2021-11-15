@@ -14,12 +14,11 @@ class MessageTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'sender',
-        'uuid',
     ];
 
     public function transform($message)
     {
-        return [
+        $response = [
             'message_id' => $message->message_id,
             'sender_id' => $message->user_id,
             'channel_id' => $message->channel_id,
@@ -27,6 +26,12 @@ class MessageTransformer extends TransformerAbstract
             'content' => $message->content,
             'is_action' => $message->is_action,
         ];
+
+        if ($message->uuid !== null) {
+            $response['uuid'] = $message->uuid;
+        }
+
+        return $response;
     }
 
     public function includeSender(Message $message)

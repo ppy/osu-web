@@ -37,7 +37,7 @@ class ChatMessageEvent implements ShouldBroadcastNow
     public function broadcastWith()
     {
         return [
-            'messages' => json_collection([$this->message], new MessageTransformer(), ['uuid']),
+            'messages' => json_collection([$this->message], new MessageTransformer()),
             'users' => json_collection([$this->message->sender], new UserCompactTransformer()),
         ];
     }
