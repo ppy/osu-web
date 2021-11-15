@@ -74,7 +74,6 @@ export default class RankChart extends React.Component<Props> {
     if (this.rankChart == null) {
       const options = {
         axisLabels: false,
-
         circleLine: true,
         infoBoxFormats: {
           x: formatX,
