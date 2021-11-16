@@ -16,14 +16,14 @@ return [
     'username' => 'Ім\'я користувача',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Альбом ',
+        'artist' => 'Виконавець',
+        'bpm' => 'БПМ',
+        'genre' => 'Жанр',
+        'length' => 'Тривалість',
+        'relevance' => 'Актуальність',
+        'title' => 'Назва',
+        'update' => 'Оновлення',
     ],
 
     'forum_posts' => [

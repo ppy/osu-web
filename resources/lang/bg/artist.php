@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'page_description' => 'Представени Автори в osu!',
-    'title' => 'Представени Автори',
+    'page_description' => 'Представени автори в osu!',
+    'title' => 'Представени автори',
 
     'admin' => [
         'hidden' => 'АВТОРЪТ В МОМЕНТА Е СКРИТ',
@@ -13,7 +13,7 @@ return [
 
     'beatmaps' => [
         '_' => 'Бийтмапове',
-        'download' => 'Изтегли Бийтмап Шаблон',
+        'download' => 'Изтегляне на бийтмап шаблон',
         'download-na' => 'Все още няма бийтмап шаблон',
     ],
 
@@ -29,9 +29,9 @@ return [
 
     'songs' => [
         '_' => 'Песни',
-        'count' => ':count песен|:count песни',
+        'count' => ':count_delimited песен|:count_delimited песни',
         'original' => 'osu! оригинал',
-        'original_badge' => '',
+        'original_badge' => 'ОРИГИНАЛ',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'търсене на песен',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Разширено търсене',
+                'album' => 'Албум',
+                'artist' => 'Автор',
+                'bpm_gte' => 'Минимален BPM',
+                'bpm_lte' => 'Максимален BPM',
+                'empty' => 'Не са намерени резултати по критерия за търсене.',
+                'genre' => 'Жанр',
+                'genre_all' => 'Всеки',
+                'length_gte' => 'Минимална продължителност',
+                'length_lte' => 'Максимална продължителност',
             ],
         ],
     ],

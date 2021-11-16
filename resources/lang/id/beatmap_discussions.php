@@ -25,7 +25,7 @@ return [
             '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
             'mode' => 'Mode beatmap',
-            'only_unresolved' => 'Hanya tampilkan diskusi yang belum selesai',
+            'only_unresolved' => 'Hanya tampilkan topik diskusi yang belum terjawab',
             'types' => 'Tipe pesan',
             'username' => 'Nama Pengguna',
 

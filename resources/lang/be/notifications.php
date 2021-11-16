@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'Новая бітмапа ":title" ад :username',
                 'user_beatmapset_new_compact' => 'Новая бітмапа ":title"',
                 'user_beatmapset_new_group' => 'Новая бітмапа ад :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

@@ -44,7 +44,7 @@ return [
         'dialog' => [
             'confirmation' => 'Êtes-vous sûr de vouloir nominer cette beatmap ?',
             'header' => 'Nominer la beatmap',
-            'hybrid_warning' => 'remarque : vous ne pouvez nominer qu\'une seule fois, assurez-vous que vous êtes en nomination pour tous les modes de jeu que vous avez l\'intention de proposer',
+            'hybrid_warning' => 'remarque : vous ne pouvez nominer qu\'une seule fois, assurez-vous que vous nominez pour tous les modes de jeu que vous souhaitez',
             'which_modes' => 'Nominer pour quels modes ?',
         ],
     ],
@@ -83,7 +83,7 @@ return [
             'loved' => 'a été loved le :timeago',
             'qualified' => 'qualifiée le :timeago',
             'ranked' => 'classée le :timeago',
-            'submitted' => 'envoyée le :timeago',
+            'submitted' => 'publiée le :timeago',
             'updated' => 'dernière mise à jour le :timeago',
         ],
 
@@ -182,14 +182,14 @@ return [
             'accuracy' => 'Précision',
             'ar' => 'Taux d\'approche',
             'stars' => 'Difficulté en étoiles',
-            'total_length' => 'Longueur (Longueur de drain : :hit_length)',
+            'total_length' => 'Durée (drain time : :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Nombre de Cercles',
             'count_sliders' => 'Nombre de Sliders',
             'user-rating' => 'Évaluation des joueurs',
             'rating-spread' => 'Écart de notation',
             'nominations' => 'Nominations',
-            'playcount' => 'Nombre de jeux',
+            'playcount' => 'Nombre de parties',
         ],
 
         'status' => [

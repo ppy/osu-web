@@ -106,7 +106,7 @@ return [
 
         'stock' => [
             'out' => 'Cet article est en rupture de stock pour le moment. Revenez plus tard !',
-            'out_with_alternative' => 'Malheureusement cet article est en rupture de stock. Sélectionnez-en un autre à l\'aide du menu déroulant ou revenez plus tard !',
+            'out_with_alternative' => 'Malheureusement, cet article est en rupture de stock. Sélectionnez-en un autre à l\'aide du menu déroulant ou revenez plus tard !',
         ],
 
         'add_to_cart' => 'Ajouter au panier',

@@ -28,7 +28,7 @@ return [
                 'link_text' => 'Voir la liste actuelle &raquo;',
             ],
             'ads' => [
-                'title' => 'Garder osu! auto-soutenant',
+                'title' => 'Garder osu! auto-suffisant',
                 'description' => 'Vos contributions aident à garder le jeu indépendant et totalement exempt d\'annonces et de sponsors extérieurs.',
             ],
             'tournaments' => [
@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Classement des amis',
-                'description' => "Comparez vos résultats à ceux de vos amis dans le classement d'une beatmap, à la fois dans le jeu et sur le site Web.",
+                'description' => "Comparez vos scores à ceux de vos amis dans le classement d'une beatmap, à la fois dans le jeu et sur le site Web.",
             ],
 
             'country_ranking' => [
@@ -66,12 +66,12 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Téléchargements automatiques',
-                'description' => 'Les beatmaps se téléchargent automatiquement dans les jeux multijoueurs, lorsque vous observez les autres ou lorsque vous cliquez sur les liens pertinents dans le tchat !',
+                'description' => 'Les beatmaps se téléchargent automatiquement dans les parties multijoueurs, lorsque vous observez les autres ou lorsque vous cliquez sur les liens de beatmaps dans le tchat !',
             ],
 
             'upload_more' => [
                 'title' => 'Plus de slots d\'upload',
-                'description' => 'Emplacements supplémentaires pour les beatmaps en attente (par beatmaps classée), jusqu\'à un maximum de 10.',
+                'description' => 'Emplacements supplémentaires pour les beatmaps en attente (par beatmap classée), jusqu\'à un maximum de 10.',
             ],
 
             'early_access' => [
@@ -81,12 +81,12 @@ return [
 
             'customisation' => [
                 'title' => 'Personnalisation',
-                'description' => "Démarquez-vous en téléchargeant une image de couverture personnalisée ou en créant une section \"moi !\" entièrement personnalisable dans votre profil d'utilisateur.",
+                'description' => "Démarquez-vous en mettant en ligne une image de couverture personnalisée ou en créant une section \"moi !\" entièrement personnalisable sur votre profil d'utilisateur.",
             ],
 
             'beatmap_filters' => [
                 'title' => 'Filtres de beatmaps',
-                'description' => 'Filtrez les recherches des beatmaps par cartes jouées et non jouées, ou par rang atteint.',
+                'description' => 'Filtrez les recherches de beatmaps par beatmaps jouées et non jouées, ou par rang obtenu.',
             ],
 
             'yellow_fellow' => [
@@ -96,7 +96,7 @@ return [
 
             'speedy_downloads' => [
                 'title' => 'Téléchargements plus rapides',
-                'description' => 'Des restrictions de téléchargement plus clémentes, notamment grâce à osu!direct.',
+                'description' => 'Des téléchargements plus rapides, notamment grâce à osu!direct.',
             ],
 
             'change_username' => [
@@ -121,7 +121,7 @@ return [
 
             'more_favourites' => [
                 'title' => 'Plus de favoris',
-                'description' => 'Le nombre maximum de beatmaps que vous pouvez ajouter au favoris est augmenté de :normally &rarr; :supporter',
+                'description' => 'Le nombre maximum de beatmaps que vous pouvez ajouter aux favoris est augmenté de :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Plus d\'amis',

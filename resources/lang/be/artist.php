@@ -31,7 +31,7 @@ return [
         '_' => 'Песні',
         'count' => ':count_delimited песня|:count_delimited песні|:count_delimited песень',
         'original' => 'osu! арыгінал',
-        'original_badge' => '',
+        'original_badge' => 'АРЫГІНАЛ',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'пошук трэкаў',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Пашыраны пошук',
+                'album' => 'Альбом',
+                'artist' => 'Артыст',
+                'bpm_gte' => 'УУХ (bpm) Мінімум',
+                'bpm_lte' => 'УУХ (bpm) Максімум',
+                'empty' => 'Не знойдзена трэкаў, супадаючых з гэтымі крытэрыямі пошука.',
+                'genre' => 'Жанр',
+                'genre_all' => 'Усё',
+                'length_gte' => 'Мінімальная даўжыня',
+                'length_lte' => 'Максімальная даўжыня',
             ],
         ],
     ],

@@ -14,7 +14,7 @@ return [
 
         'slogan' => [
             'main' => 'le meilleur jeu de rythme free-to-win',
-            'sub' => 'le rythme est à portée de clic',
+            'sub' => 'rhythm is just a click away',
         ],
     ],
 
@@ -131,16 +131,5 @@ return [
             'support' => 'Soutenir osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow !',
-        'subtitle' => 'Vous semblez passer un bon moment ! :D',
-        'body' => [
-            'part-1' => 'Saviez-vous que osu! fonctionne sans publicité et compte sur les joueurs pour soutenir son développement et ses coûts ?',
-            'part-2' => 'Saviez-vous aussi que soutenir osu! permet d\'obtenir une poignée de fonctions utiles, comme le <strong>téléchargement de beatmaps en jeu</strong> qui est automatique en mode spectateur et dans les parties multijoueur ?',
-        ],
-        'find-out-more' => 'Cliquez ici pour en savoir plus !',
-        'download-starting' => "Oh, et ne vous inquiétez pas - votre téléchargement a déjà commencé pour vous ;)",
     ],
 ];

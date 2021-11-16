@@ -132,15 +132,4 @@ return [
             'store' => 'osu!store',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Dir scheint es ja richtig Spaß zu machen! :D',
-        'body' => [
-            'part-1' => 'Wusstest du, dass osu! ohne Werbung läuft und sich für seine Entwicklungs- und andere laufende Kosten auf die Unterstützung durch seine Spieler verlässt?',
-            'part-2' => 'Wusstest du auch, dass du fürs Unterstützen eine Menge nützlicher Features wie <strong>Beatmapdownloads innerhalb des Spiels</strong> (die im Mehrspieler oder beim Zuschauen automatisch starten) erhältst?',
-        ],
-        'find-out-more' => 'Hier klicken, um mehr herauszufinden!',
-        'download-starting' => "Oh, und keine Sorge - dein Download wurde schon für dich gestartet ;)",
-    ],
 ];
