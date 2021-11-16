@@ -18,7 +18,7 @@ use App\Models\User;
  * @property int $beatmap_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
- * @property int $user_id
+ * @property int $owner_id
  * @property int|null $playlist_order
  * @property json|null $required_mods
  * @property Room $room
@@ -74,7 +74,7 @@ class PlaylistItem extends Model
             $obj->ruleset_id
         );
 
-        $obj->user_id = $owner->getKey();
+        $obj->owner_id = $owner->getKey();
 
         return $obj;
     }
