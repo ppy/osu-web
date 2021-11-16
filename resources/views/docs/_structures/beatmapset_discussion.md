@@ -25,7 +25,6 @@ starting_post           | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)?
 timestamp               | number?                                                  | |
 updated_at              | [Timestamp](#timestamp)                                  | |
 user_id                 | number                                                   | |
-votes                   | object[]                                                 | TODO: change structure
 
 ### MessageType
 
