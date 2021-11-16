@@ -2,7 +2,7 @@
 
 There's only one image to be built:
 
-    docker build -f Docker.deployment --tag <repository>:<tag> --build-arg <buildarg1> --build-arg <buildarg2> .
+    docker build -f Dockerfile.deployment --tag <repository>:<tag> --build-arg <buildarg1> --build-arg <buildarg2> .
 
 There are several build arguments required:
 
