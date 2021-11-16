@@ -13,8 +13,8 @@ return [
         'edit' => 'Modifier la couverture',
 
         'create' => [
-            '_' => 'Définir l\'image de couverture',
-            'button' => 'Télécharger la couverture',
+            '_' => 'Définir une image de couverture',
+            'button' => 'Uploader une image',
             'info' => 'La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi faire glisser l\'image ici pour l\'uploader',
         ],
 
@@ -124,7 +124,56 @@ return [
             'first' => 'aller au premier post',
             'last' => 'aller au dernier post',
             'next' => 'sauter les 10 prochains messages',
-            'previous' => 'retournez 10 postes en arrière',
+            'previous' => 'retournez 10 posts en arrière',
+        ],
+
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => '',
+                'date' => '',
+                'user' => '',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
         ],
 
         'post_edit' => [
@@ -183,8 +232,8 @@ return [
                 'length_days_suffix' => 'jours',
                 'length_info' => 'Laissez vide pour un sondage sans fin',
                 'max_options' => 'Réponses par utilisateur',
-                'max_options_info' => 'Il s\'agit du nombre d\'options que chaque utilisateur peut sélectionner lors du vote.',
-                'options' => 'Options',
+                'max_options_info' => 'C\'est le nombre de réponses qu\'un utilisateur peut choisir.',
+                'options' => 'Réponses',
                 'options_info' => 'Entrez chaque réponse sur une nouvelle ligne. Vous pouvez entrer jusqu\'à 10 réponses.',
                 'title' => 'Question',
                 'vote_change' => 'Autoriser le changement de vote.',

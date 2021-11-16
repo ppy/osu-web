@@ -132,15 +132,4 @@ return [
             'store' => 'osu!store',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Woah!',
-        'subtitle' => 'Vypadá to, že se dobře bavíš! :D',
-        'body' => [
-            'part-1' => 'Věděl jsi, že osu! běží bez reklam a spoléhá se pouze na hráčích, aby podpořili rozvoj a provozní náklady?',
-            'part-2' => 'Věděl jsi také, že podpořením osu! získáš spoustu užitečných výhod, jako třeba <strong>in-game stahování</strong> které se automaticky spustí při pozorování a multiplayer hrách?',
-        ],
-        'find-out-more' => 'Klikni zde abyste zjistili víc!',
-        'download-starting' => "Ou, a není se čeho bát - Tvé stahování již bylo zahájeno :)",
-    ],
 ];

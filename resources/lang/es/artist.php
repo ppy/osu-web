@@ -31,7 +31,7 @@ return [
         '_' => 'Canciones',
         'count' => ':count canción|:count canciones',
         'original' => 'Original de osu!',
-        'original_badge' => '',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'búsqueda de pistas',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Búsqueda avanzada',
+                'album' => 'Álbum',
+                'artist' => 'Artista',
+                'bpm_gte' => 'BPM mínimo',
+                'bpm_lte' => 'BPM máximo',
+                'empty' => 'No se encontraron pistas que coincidieran con ese criterio de búsqueda.',
+                'genre' => 'Género',
+                'genre_all' => 'Todos',
+                'length_gte' => 'Duración mínima',
+                'length_lte' => 'Duración máxima',
             ],
         ],
     ],

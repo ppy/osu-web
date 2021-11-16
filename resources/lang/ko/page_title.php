@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => '포럼',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => '대시보드',
         ],
@@ -39,7 +42,7 @@ return [
             'verify_link' => '계정 인증',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => '공식 아티스트',
         ],
         'artists_controller' => [
             '_' => '공식 아티스트',

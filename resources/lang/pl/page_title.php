@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'strona główna',
         ],
@@ -39,7 +42,7 @@ return [
             'verify_link' => 'weryfikacja konta',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'wyróżnieni artyści',
         ],
         'artists_controller' => [
             '_' => 'wyróżnieni artyści',

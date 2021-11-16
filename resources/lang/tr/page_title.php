@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'kontrol paneli',
         ],
@@ -39,7 +42,7 @@ return [
             'verify_link' => 'hesap doğrulama',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'featured artist\'ler',
         ],
         'artists_controller' => [
             '_' => 'featured artist\'ler',

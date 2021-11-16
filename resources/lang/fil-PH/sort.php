@@ -16,14 +16,14 @@ return [
     'username' => 'Username',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Album',
+        'artist' => 'Artist',
+        'bpm' => 'BPM',
+        'genre' => 'Genre',
+        'length' => 'Length',
+        'relevance' => 'Relevance',
+        'title' => 'Title',
+        'update' => 'Update',
     ],
 
     'forum_posts' => [

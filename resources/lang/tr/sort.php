@@ -16,14 +16,14 @@ return [
     'username' => 'Kullanıcı adı',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
+        'album' => 'Albüm',
+        'artist' => 'Sanatçı',
         'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'genre' => 'Tür',
+        'length' => 'Uzunluk',
+        'relevance' => 'Alaka Düzeyi',
+        'title' => 'Başlık',
+        'update' => 'Güncelle',
     ],
 
     'forum_posts' => [
