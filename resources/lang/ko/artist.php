@@ -31,7 +31,7 @@ return [
         '_' => '곡',
         'count' => ':count 곡',
         'original' => 'osu! 오리지널',
-        'original_badge' => '',
+        'original_badge' => '오리지널',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => '트랙 검색',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => '고급 검색',
+                'album' => '앨범',
+                'artist' => '아티스트',
+                'bpm_gte' => '최소 BPM',
+                'bpm_lte' => '최대 BPM',
+                'empty' => '검색 조건에 맞는 트랙을 찾을 수 없습니다.',
+                'genre' => '장르',
+                'genre_all' => '전체',
+                'length_gte' => '최소 길이',
+                'length_lte' => '최대 길이',
             ],
         ],
     ],

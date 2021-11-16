@@ -39,7 +39,7 @@ return [
 
     'mode' => [
         'artist' => '艺术家/专辑',
-        'chart' => '季赛',
+        'chart' => '聚光灯',
         'standard' => '常规',
         'theme' => '主题',
     ],

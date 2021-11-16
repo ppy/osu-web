@@ -61,7 +61,7 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => 'La personne qui vous a donné ce tag peut choisir de rester anonyme, donc elle n\'a pas été mentionnée dans cette notification.',
+        'anonymous_gift' => 'La personne qui vous a offert ce tag peut choisir de rester anonyme, donc elle n\'a pas été mentionnée dans cette notification.',
         'anonymous_gift_maybe_not' => 'Mais vous savez probablement déjà qui c\'est ;).',
         'duration' => 'Grâce à cette personne, vous pouvez utiliser osu!direct et d\'autres avantages osu!supporter pour les prochains :duration.',
         'features' => 'Vous trouverez plus de détails sur ces fonctionnalités ici :',
@@ -90,8 +90,8 @@ return [
     ],
 
     'user_password_updated' => [
-        'confirmation' => 'Ceci est juste une confirmation que votre mot de passe osu! a été changé.',
-        'subject' => 'confirmation du changement de mot de passe d\'osu!',
+        'confirmation' => 'Ceci est une confirmation que votre mot de passe osu! a été changé.',
+        'subject' => 'confirmation du changement de mot de passe osu!',
     ],
 
     'user_verification' => [

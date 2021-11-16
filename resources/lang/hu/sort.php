@@ -16,14 +16,14 @@ return [
     'username' => 'Felhasználónév',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Album',
+        'artist' => 'Előadó',
+        'bpm' => 'BPM',
+        'genre' => 'Műfaj',
+        'length' => 'Hossz',
+        'relevance' => 'Relevancia',
+        'title' => 'Cím',
+        'update' => 'Frissités',
     ],
 
     'forum_posts' => [

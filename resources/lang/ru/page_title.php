@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'форум',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'инфопанель',
         ],
@@ -39,7 +42,7 @@ return [
             'verify_link' => 'верификация аккаунта',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'избранные исполнители',
         ],
         'artists_controller' => [
             '_' => 'избранные исполнители',

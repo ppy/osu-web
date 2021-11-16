@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => '',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => '',
         ],
