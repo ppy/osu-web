@@ -64,7 +64,7 @@ level.current             | number                      | Current level.
 level.progress            | number                      | Progress to next level.
 maximum_combo             | number                      | Highest maximum combo.
 play_count                | number                      | Number of maps played.
-play_time                 | number                      | Cumulative time played.
+play_time                 | number?                     | Cumulative time played.
 pp                        | number                      | Performance points
 global_rank               | number?                     | Current rank according to pp.
 ranked_score              | number                      | Current ranked score.
