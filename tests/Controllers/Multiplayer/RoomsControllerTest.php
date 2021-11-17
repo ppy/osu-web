@@ -113,7 +113,7 @@ class RoomsControllerTest extends TestCase
     public function testStoreRealtimeByQueueMode()
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
-        $queue_mode = array_rand_val(Room::REALTIME_DEFAULT_QUEUE_MODE);
+        $queue_mode = array_rand_val(Room::REALTIME_QUEUE_MODES);
 
         $response = $this
             ->actingWithToken($token)
