@@ -17,7 +17,7 @@ class AddOwnerIdToMultiplayerPlaylistItems extends Migration
     public function up()
     {
         Schema::table('multiplayer_playlist_items', function (Blueprint $table) {
-            $table->unsignedInteger('owner_id')->after('room_id')->default(0);
+            $table->unsignedInteger('owner_id')->after('room_id');
         });
     }
 
