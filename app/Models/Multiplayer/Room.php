@@ -58,6 +58,7 @@ class Room extends Model
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
     const REALTIME_TYPES = ['head_to_head', 'team_versus'];
 
+    const PLAYLIST_QUEUE_MODE = 'host_only';
     const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
     const REALTIME_QUEUE_MODES = [ 'host_only', 'free_for_all', 'fair_rotate' ];
 
@@ -357,6 +358,7 @@ class Room extends Model
             $this->ends_at = now()->addSeconds(30);
         } else {
             $this->type = static::PLAYLIST_TYPE;
+            $this->queue_mode = static::PLAYLIST_QUEUE_MODE;
             if ($params['ends_at'] !== null) {
                 $this->ends_at = $params['ends_at'];
             } elseif ($params['duration'] !== null) {
