@@ -11,12 +11,12 @@ beatmapset_id           | number                                                
 can_be_resolved         | boolean                                                  | |
 can_grant_kudosu        | boolean                                                  | |
 created_at              | [Timestamp](#timestamp)                                  | |
-current_user_attributes | [CurrentUserAttributes](#currentuserattributes)?         | |
+current_user_attributes | [CurrentUserAttributes](#currentuserattributes)          | |
 deleted_at              | [Timestamp](#timestamp)?                                 | |
 deleted_by_id           | number?                                                  | |
 id                      | number                                                   | |
 kudosu_denied           | boolean                                                  | |
-last_post_at            | [Timestamp](#timestamp)?                                 | |
+last_post_at            | [Timestamp](#timestamp)                                  | |
 message_type            | [MessageType](#messagetype)                              | |
 parent_id               | number?                                                  | |
 posts                   | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[]? | |
