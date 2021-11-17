@@ -1,8 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import DispatcherAction from 'actions/dispatcher-action';
+import SocketMessageSendAction from 'actions/socket-message-send-action';
 import SocketStateChangedAction from 'actions/socket-state-changed-action';
-import { dispatch } from 'app-dispatcher';
+import { dispatch, dispatchListener } from 'app-dispatcher';
 import { route } from 'laroute';
 import { forEach } from 'lodash';
 import { action, computed, makeObservable, observable, reaction } from 'mobx';
@@ -21,6 +23,7 @@ interface NotificationFeedMetaJson {
 
 type ConnectionStatus = 'disconnected' | 'disconnecting' | 'connecting' | 'connected';
 
+@dispatchListener
 export default class SocketWorker {
   @observable connectionStatus: ConnectionStatus = 'disconnected';
   @observable hasConnectedOnce = false;
@@ -53,6 +56,15 @@ export default class SocketWorker {
 
     if (this.active) {
       this.startWebSocket();
+    }
+  }
+
+  handleDispatchAction(event: DispatcherAction) {
+    // ignore everything if not connected.
+    if (this.ws?.readyState !== WebSocket.OPEN) return;
+
+    if (event instanceof SocketMessageSendAction) {
+      this.ws?.send(JSON.stringify(event.message));
     }
   }
 

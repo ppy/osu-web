@@ -4,9 +4,10 @@
 import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
+import SocketMessageSendAction from 'actions/socket-message-send-action';
 import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatchListener } from 'app-dispatcher';
+import { dispatch, dispatchListener } from 'app-dispatcher';
 import { getUpdates } from 'chat/chat-api';
 import { ChatChannelJoinEvent, ChatChannelPartEvent } from 'chat/chat-events';
 import PingService from 'chat/ping-service';
@@ -58,8 +59,10 @@ export default class ChatStateStore implements DispatchListener {
     autorun(() => {
       if (this.isReady && this.isChatMounted) {
         this.pingService.start();
+        dispatch(new SocketMessageSendAction({ event: 'chat.start' }));
       } else {
         this.pingService.stop();
+        dispatch(new SocketMessageSendAction({ event: 'chat.end' }));
       }
     });
 
