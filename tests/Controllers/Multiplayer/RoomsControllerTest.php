@@ -88,7 +88,7 @@ class RoomsControllerTest extends TestCase
         $this->assertNotNull($room);
         $this->assertTrue($room->isRealtime());
         $this->assertSame($type, $room->type);
-        $this->assertSame($token->user->user_id, $room->playlist()->first()->owner_id);
+        $this->assertSame($token->user->getKey(), $room->playlist()->first()->owner_id);
     }
 
     public function testStoreRealtimeByType()
@@ -113,7 +113,7 @@ class RoomsControllerTest extends TestCase
     public function testStoreRealtimeByQueueMode()
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
-        $queue_mode = array_rand_val(Room::REALTIME_QUEUE_MODES);
+        $queueMode = array_rand_val(Room::REALTIME_QUEUE_MODES);
 
         $response = $this
             ->actingWithToken($token)
@@ -121,7 +121,7 @@ class RoomsControllerTest extends TestCase
                 $this->createBasicStoreParams(),
                 [
                     'type' => Room::REALTIME_DEFAULT_TYPE,
-                    'queue_mode' => $queue_mode,
+                    'queue_mode' => $queueMode,
                 ],
             ))->assertSuccessful();
 
@@ -129,7 +129,7 @@ class RoomsControllerTest extends TestCase
         $room = Room::find($responseJson['id']);
         $this->assertNotNull($room);
         $this->assertTrue($room->isRealtime());
-        $this->assertSame($queue_mode, $room->queue_mode);
+        $this->assertSame($queueMode, $room->queue_mode);
     }
 
     // TODO: remove once client sends type instead of category
