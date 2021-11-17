@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapPlaycount } from './beatmap-playcount'
+import BeatmapPlaycount from 'profile-page/beatmap-playcount'
 import ExtraHeader from 'profile-page/extra-header'
 import core from 'osu-core-singleton'
 import PlayDetailList from 'play-detail-list'
