@@ -88,7 +88,7 @@ class RoomsControllerTest extends TestCase
         $this->assertNotNull($room);
         $this->assertTrue($room->isRealtime());
         $this->assertSame($type, $room->type);
-        $this->assertSame($token->user, $room->playlist()->first()->owner_id)
+        $this->assertSame($token->user, $room->playlist()->first()->owner_id);
     }
 
     public function testStoreRealtimeByType()
