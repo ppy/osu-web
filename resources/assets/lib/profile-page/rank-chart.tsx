@@ -81,6 +81,10 @@ export default class RankChart extends React.Component<Props> {
     core.reactTurbolinks.runAfterPageLoad(this.id, this.loadRankChart);
   }
 
+  componentDidUpdate() {
+    this.loadRankChart();
+  }
+
   componentWillUnmount() {
     $(window).off(`.${this.id}`);
   }
@@ -90,8 +94,6 @@ export default class RankChart extends React.Component<Props> {
   }
 
   private loadRankChart = () => {
-    if (this.rankChart == null) return;
-
-    this.rankChart.loadData(this.data);
+    this.rankChart?.loadData(this.data);
   };
 }
