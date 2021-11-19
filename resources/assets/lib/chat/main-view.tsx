@@ -3,16 +3,15 @@
 
 import HeaderV4 from 'header-v4';
 import Img2x from 'img2x';
-import { observer, Provider } from 'mobx-react';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
-import RootDataStore from 'stores/root-data-store';
 import ChatWorker from './chat-worker';
 import ConversationList from './conversation-list';
 import ConversationView from './conversation-view';
 import InputBox from './input-box';
 
 interface Props {
-  dataStore: RootDataStore;
   worker: ChatWorker;
 }
 
@@ -33,28 +32,26 @@ export default class MainView extends React.Component<Props> {
     return (
       <>
         <HeaderV4 theme='chat' />
-        <Provider dataStore={this.props.dataStore}>
-          {this.props.dataStore.channelStore.channels.size > 0 ? (
-            <div className='chat osu-page osu-page--chat'>
-              <div className='chat__sidebar'>
-                <ConversationList />
-              </div>
-              <div className='chat__conversation-area'>
-                <ConversationView />
-                <InputBox />
-              </div>
+        {core.dataStore.channelStore.channels.size > 0 ? (
+          <div className='chat osu-page osu-page--chat'>
+            <div className='chat__sidebar'>
+              <ConversationList />
             </div>
-          ) : (
-            <div className='chat osu-page osu-page--chat'>
-              <div className='chat__not-active'>
-                <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />
-                <div className='chat__title'>{osu.trans('chat.no-conversations.title')}</div>
-                <div className='chat__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
-                <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', {link: lazerLink})}} />
-              </div>
+            <div className='chat__conversation-area'>
+              <ConversationView />
+              <InputBox />
             </div>
-          )}
-        </Provider>
+          </div>
+        ) : (
+          <div className='chat osu-page osu-page--chat'>
+            <div className='chat__not-active'>
+              <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />
+              <div className='chat__title'>{osu.trans('chat.no-conversations.title')}</div>
+              <div className='chat__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
+              <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', {link: lazerLink})}} />
+            </div>
+          </div>
+        )}
       </>
     );
   }
