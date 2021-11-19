@@ -60,7 +60,7 @@ class Room extends Model
 
     const PLAYLIST_QUEUE_MODE = 'host_only';
     const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
-    const REALTIME_QUEUE_MODES = [ 'host_only', 'free_for_all', 'fair_rotate' ];
+    const REALTIME_QUEUE_MODES = [ 'host_only', 'all_players', 'all_players_round_robin' ];
 
     protected $casts = [
         'password' => PresentString::class,
