@@ -75,9 +75,12 @@ class Image implements WikiObject
 
         try {
             $content = OsuWiki::fetchContent('wiki/'.$this->path);
-            $type = image_type_to_mime_type(
-                read_image_properties_from_string($content)[2] ?? null
-            );
+            // the image mime type function doesn't support svg file
+            $type = pathinfo($this->path, PATHINFO_EXTENSION) === 'svg'
+                ? 'image/svg+xml'
+                : image_type_to_mime_type(
+                    read_image_properties_from_string($content)[2] ?? null
+                );
 
             $data = compact('content', 'type');
         } catch (GitHubNotFoundException $e) {
