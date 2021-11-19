@@ -28,11 +28,6 @@ export default class ChannelStore {
   private api = new ChatAPI();
   private markingAsRead: Partial<Record<number, number>> = {};
 
-  @computed
-  get channelList(): Channel[] {
-    return [...this.nonPmChannels, ...this.pmChannels];
-  }
-
   @computed({ equals: comparer.shallow })
   get publicChannels(): Channel[] {
     const sortedChannels: Channel[] = [];

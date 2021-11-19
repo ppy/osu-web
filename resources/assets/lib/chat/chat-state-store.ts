@@ -8,6 +8,7 @@ import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatchListener } from 'app-dispatcher';
 import { clamp } from 'lodash';
 import { action, computed, makeObservable, observable, observe } from 'mobx';
+import Channel from 'models/chat/channel';
 import ChannelStore from 'stores/channel-store';
 
 @dispatchListener
@@ -30,6 +31,11 @@ export default class ChatStateStore {
   @computed
   get selectedChannel() {
     return this.channelStore.get(this.selected);
+  }
+
+  @computed
+  private get channelList(): Channel[] {
+    return [...this.channelStore.publicChannels, ...this.channelStore.pmChannels];
   }
 
   constructor(protected channelStore: ChannelStore) {
@@ -70,7 +76,7 @@ export default class ChatStateStore {
     }
 
     this.selected = channelId;
-    this.selectedIndex = this.channelStore.channelList.indexOf(channel);
+    this.selectedIndex = this.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     await this.channelStore.loadChannel(channelId);
@@ -79,13 +85,12 @@ export default class ChatStateStore {
 
   @action
   private focusChannelAtIndex(index: number) {
-    const channelList = this.channelStore.channelList;
-    if (channelList.length === 0) {
+    if (this.channelList.length === 0) {
       return;
     }
 
-    const nextIndex = clamp(index, 0, channelList.length - 1);
-    const channel = this.channelStore.channelList[nextIndex];
+    const nextIndex = clamp(index, 0, this.channelList.length - 1);
+    const channel = this.channelList[nextIndex];
 
     this.selectChannel(channel.channelId);
   }
