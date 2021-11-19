@@ -149,6 +149,9 @@ return [
                 'user_beatmapset_new' => 'Beatmap mới ":title" bởi :username',
                 'user_beatmapset_new_compact' => 'Beatmap mới ":title"',
                 'user_beatmapset_new_group' => 'Beatmaps mới bởi :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

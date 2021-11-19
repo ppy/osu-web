@@ -132,15 +132,4 @@ return [
             'store' => 'osu!butikken',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Du ser ut som du trives! :D',
-        'body' => [
-            'part-1' => 'Visste du, at osu! kjører uten reklamering, og er avhengig av spillernes støtte for sin utvikling og driftskostnader?',
-            'part-2' => 'Visste du også, at ved å støtte osu! får du en haug med nyttige funksjoner, som for eksempel <strong>nedlasting i spillet</strong> som automatisk laster ned maps mens du ser på andre eller spiller i flerspillerspill?',
-        ],
-        'find-out-more' => 'Klikk her for å finne ut mer!',
-        'download-starting' => "Åh, og ikke bekymre deg - nedlastingen din har allerede begynt :)",
-    ],
 ];

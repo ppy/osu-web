@@ -158,7 +158,7 @@ return [
                 '_' => 'Vous devez avoir eu :link pour changer votre nom !',
                 'link_text' => 'un osu!supporter',
             ],
-            'username_is_same' => 'C\'est déjà ton nom d\'utilisateur !',
+            'username_is_same' => 'C\'est déjà votre nom d\'utilisateur en fait...',
         ],
     ],
 

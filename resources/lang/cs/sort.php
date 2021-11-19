@@ -16,19 +16,19 @@ return [
     'username' => 'Uživatelské jméno',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Album',
+        'artist' => 'Umělec',
+        'bpm' => 'BPM',
+        'genre' => 'Žánr',
+        'length' => 'Délka',
+        'relevance' => 'Relevance',
+        'title' => 'Název',
+        'update' => 'Aktualizace',
     ],
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Čas postnutí',
+        'relevance' => 'Relevance',
     ],
 
     'forum_topics' => [
@@ -37,7 +37,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Relevance',
+        'username' => 'Jméno',
     ],
 ];
