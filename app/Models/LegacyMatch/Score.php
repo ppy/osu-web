@@ -6,7 +6,7 @@
 namespace App\Models\LegacyMatch;
 
 use App\Models\Beatmap;
-use App\Traits\Scoreable;
+use App\Models\Traits\Scoreable;
 
 /**
  * @property int $count100
