@@ -34,7 +34,7 @@ export default class ChannelStore {
   }
 
   @computed({ equals: comparer.shallow })
-  get nonPmChannels(): Channel[] {
+  get publicChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
       if (channel.type !== 'PM' && channel.isDisplayable) {
@@ -321,7 +321,7 @@ export default class ChannelStore {
 
   @action
   private removePublicMessagesFromUserIds(userIds: Set<number>) {
-    this.nonPmChannels.forEach((channel) => {
+    this.publicChannels.forEach((channel) => {
       channel.removeMessagesFromUserIds(userIds);
     });
   }

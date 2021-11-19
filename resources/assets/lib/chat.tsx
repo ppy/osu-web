@@ -57,8 +57,8 @@ core.reactTurbolinks.register('chat', action(() => {
     initialChannel = dataStore.channelStore.get(channelId) != null ? channelId : dataStore.chatState.selected;
 
     if (initialChannel === 0) {
-      if (dataStore.channelStore.nonPmChannels.length > 0) {
-        initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
+      if (dataStore.channelStore.publicChannels.length > 0) {
+        initialChannel = dataStore.channelStore.publicChannels[0].channelId;
       } else if (dataStore.channelStore.pmChannels.length > 0) {
         initialChannel = dataStore.channelStore.pmChannels[0].channelId;
       }
