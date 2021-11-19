@@ -3,14 +3,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Traits;
+namespace App\Models\Traits\Es;
 
 use App\Libraries\Elasticsearch\Es;
 use Log;
 
-trait EsIndexableModel
+trait BaseDbIndexable
 {
-    use EsIndexable;
+    use BaseIndexable;
 
     abstract public static function esIndexingQuery();
 

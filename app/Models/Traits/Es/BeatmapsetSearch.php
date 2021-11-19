@@ -3,15 +3,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Models\Elasticsearch;
+namespace App\Models\Traits\Es;
 
 use App\Models\Beatmap;
-use App\Traits\EsIndexableModel;
 use Carbon\Carbon;
 
-trait BeatmapsetTrait
+trait BeatmapsetSearch
 {
-    use EsIndexableModel;
+    use BaseDbIndexable;
 
     public static function esIndexName()
     {

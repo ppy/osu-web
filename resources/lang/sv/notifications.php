@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'Ny beatmap ":title" av :username',
                 'user_beatmapset_new_compact' => 'Ny beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nya beatmaps av :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

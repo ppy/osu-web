@@ -16,14 +16,14 @@ return [
     'username' => 'Nom d’utilisateur',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Album',
+        'artist' => 'Artiste',
+        'bpm' => 'BPM',
+        'genre' => 'Genre',
+        'length' => 'Durée',
+        'relevance' => 'Pertinence',
+        'title' => 'Titre',
+        'update' => 'Mis à jour',
     ],
 
     'forum_posts' => [
@@ -32,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'feature_votes' => 'Priorité d\'étoiles',
+        'feature_votes' => 'Star priority',
         'new' => 'Dernière réponse',
     ],
 

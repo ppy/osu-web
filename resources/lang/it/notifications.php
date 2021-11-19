@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'Nuova beatmap ":title" di :username',
                 'user_beatmapset_new_compact' => 'Nuova beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nuove beatmap di :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

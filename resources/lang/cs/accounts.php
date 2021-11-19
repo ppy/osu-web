@@ -76,7 +76,7 @@ return [
 
     'options' => [
         'beatmapset_show_nsfw' => 'skrýt varování před explicitním obsahem v beatmapách',
-        'beatmapset_title_show_original' => 'zobrazit informace map v originálním jazyce',
+        'beatmapset_title_show_original' => 'zobrazovat metadata beatmap v původním jazyce',
         'title' => 'Možnosti',
 
         'beatmapset_download' => [

@@ -149,6 +149,9 @@ return [
                 'user_beatmapset_new' => 'Új ":title" beatmap :username által',
                 'user_beatmapset_new_compact' => 'Új beatmap: ":title"',
                 'user_beatmapset_new_group' => 'Új beatmapek :username által',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

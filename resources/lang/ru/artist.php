@@ -31,7 +31,7 @@ return [
         '_' => 'Песни',
         'count' => ':count песня|:count песни|:count песен',
         'original' => 'исключительно для osu!',
-        'original_badge' => '',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'поиск треков',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Расширенный поиск',
+                'album' => 'Альбом',
+                'artist' => 'Исполнитель',
+                'bpm_gte' => 'Минимальный BPM',
+                'bpm_lte' => 'Максимальный BPM',
+                'empty' => 'Треков, соответствующих критериям поиска, не найдено.',
+                'genre' => 'Жанр',
+                'genre_all' => 'Все',
+                'length_gte' => 'Минимальная длина',
+                'length_lte' => 'Максимальная длина',
             ],
         ],
     ],

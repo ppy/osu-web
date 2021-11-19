@@ -56,7 +56,7 @@ return [
 
         'options' => [
             '_' => 'types d\'alertes',
-            'beatmap_owner_change' => 'difficultés invités',
+            'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'modding de beatmap',
             'channel_message' => 'messages privés',
             'comment_new' => 'nouveaux commentaires',
