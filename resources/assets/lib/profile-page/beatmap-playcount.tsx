@@ -55,7 +55,7 @@ export default class BeatmapPlaycount extends React.PureComponent<Props> {
               <span className={`${bn}__artist`}>
                 <StringWithComponent
                   mappings={{
-                    artist: <strong>getArtist(beatmapset)</strong>,
+                    artist: <strong>{getArtist(beatmapset)}</strong>,
                   }}
                   pattern={osu.trans('users.show.extra.beatmaps.by_artist')}
                 />
