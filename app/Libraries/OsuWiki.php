@@ -120,7 +120,7 @@ class OsuWiki
 
     public static function isImage($path)
     {
-        return preg_match('/\.(?:jpe?g|gif|png|svg)$/i', $path) === 1;
+        return preg_match('/\.(?:jpe?g|gif|png|svg|webp)$/i', $path) === 1;
     }
 
     public static function branch()
