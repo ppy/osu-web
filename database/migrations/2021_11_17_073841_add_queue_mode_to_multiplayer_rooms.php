@@ -17,7 +17,7 @@ class AddQueueModeToMultiplayerRooms extends Migration
     public function up()
     {
         Schema::table('multiplayer_rooms', function (Blueprint $table) {
-            $table->enum('queue_mode', ['host_only', 'free_for_all', 'fair_rotate'])->after('type')->default('host_only');
+            $table->enum('queue_mode', ['host_only', 'all_players', 'all_players_round_robin'])->after('type')->default('host_only');
         });
     }
 
