@@ -167,11 +167,11 @@ class window.FancyChart
     $.publish "fancy-chart:hover-#{@options.hoverId}:end"
 
 
-  hoverRefresh: =>
+  hoverRefresh: (event) =>
     return if !@options.hoverId?
     return if !@data[0]?
 
-    x = @options.scales.x.invert(d3.mouse(@svgHoverArea.node())[0] - @margins.left)
+    x = @options.scales.x.invert(d3.pointer(event)[0] - @margins.left)
     i = @lookupIndexFromX x
 
     return unless i?

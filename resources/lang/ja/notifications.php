@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => ':username による新しいビートマップ「:title」',
                 'user_beatmapset_new_compact' => '新しいビートマップ「:title」',
                 'user_beatmapset_new_group' => ':username の新しいビートマップ',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

@@ -21,8 +21,8 @@ return [
         'charts' => 'па чартам',
         'country' => 'па краінам',
         'multiplayer' => 'мультыплэер',
-        'performance' => 'прадукцыйнасць',
-        'score' => 'Ачкі',
+        'performance' => 'па прадукцыйнасці',
+        'score' => 'па ачках',
     ],
 
     'spotlight' => [

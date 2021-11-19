@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'dashboard',
         ],
@@ -39,7 +42,7 @@ return [
             'verify_link' => 'beripikasyon ng account',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'featured artists',
         ],
         'artists_controller' => [
             '_' => 'featured artists',

@@ -6,6 +6,7 @@ import * as React from 'react';
 import { Option, OptionRenderProps, SelectOptions } from 'select-options';
 import { Sort } from 'sort';
 import { currentUrlParams } from 'utils/turbolinks';
+import { updateQueryString } from 'utils/url';
 
 type RankingTypes = 'performance' | 'charts' | 'scores' | 'country';
 
@@ -75,18 +76,18 @@ export default class RankingFilter extends React.PureComponent<Props> {
 
   // TODO: rename component prop to onChange
   handleCountryChange = (option: Option) => {
-    osu.navigate(osu.updateQueryString(null, { country: option.id, page: null }));
+    osu.navigate(updateQueryString(null, { country: option.id, page: null }));
   };
 
   handleFilterChange = (event: React.MouseEvent<HTMLButtonElement>) => {
-    osu.navigate(osu.updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
+    osu.navigate(updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
   };
 
   handleRenderOption = (props: OptionRenderProps) => (
     <a
       key={props.option.id ?? ''}
       className={props.cssClasses}
-      href={osu.updateQueryString(null, { country: props.option.id, page: null })}
+      href={updateQueryString(null, { country: props.option.id, page: null })}
       onClick={props.onClick}
     >
       {props.children}
@@ -94,7 +95,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
   );
 
   handleVariantChange = (event: React.MouseEvent<HTMLButtonElement>) => {
-    osu.navigate(osu.updateQueryString(null, { page: null, variant: event.currentTarget.dataset.value }));
+    osu.navigate(updateQueryString(null, { page: null, variant: event.currentTarget.dataset.value }));
   };
 
   render() {

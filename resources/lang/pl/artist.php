@@ -31,7 +31,7 @@ return [
         '_' => 'Utwory',
         'count' => ':count utwór|:count utwory|:count utworów',
         'original' => 'ekskluzywny dla osu!',
-        'original_badge' => '',
+        'original_badge' => 'EKSKLUZYWNY',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'wyszukiwarka utworów',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Wyszukiwanie zaawansowane',
+                'album' => 'Album',
+                'artist' => 'Artysta',
+                'bpm_gte' => 'Minimalny BPM',
+                'bpm_lte' => 'Maksymalny BPM',
+                'empty' => 'Brak utworów spełniających wybrane kryteria wyszukiwania.',
+                'genre' => 'Gatunek',
+                'genre_all' => 'Wszystkie',
+                'length_gte' => 'Minimalna długość',
+                'length_lte' => 'Maksymalna długość',
             ],
         ],
     ],

@@ -2,14 +2,14 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { DetailBar } from './detail-bar'
-import { RankChart } from './rank-chart'
-import { RankCount } from './rank-count'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import MedalsCount from 'profile-page/medals-count'
 import PlayTime from 'profile-page/play-time'
 import Pp from 'profile-page/pp'
 import Rank from 'profile-page/rank'
+import RankChart from 'profile-page/rank-chart'
+import RankCount from 'profile-page/rank-count'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement

@@ -82,9 +82,9 @@ return [
             'invalid_block_type' => 'type de bloc invalide',
             'invalid_document' => 'review invalide',
             'invalid_discussion_type' => 'type de discussion invalide',
-            'minimum_issues' => 'le review doit contenir un minimum de :count problème|le review doit contenir un minimum de :count problèmes',
+            'minimum_issues' => 'la review doit contenir un minimum de :count problème|la review doit contenir un minimum de :count problèmes',
             'missing_text' => 'le bloc n\'a pas de texte',
-            'too_many_blocks' => 'les avis ne doivent contenir que :count paragraphes/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',
+            'too_many_blocks' => 'les avis ne doivent contenir que :count paragraphe/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',
         ],
     ],
 

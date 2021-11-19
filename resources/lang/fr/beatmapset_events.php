@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approuvé.',
-        'beatmap_owner_change' => 'Propriétaire de la difficulté :beatmap changé par :new_user.',
+        'beatmap_owner_change' => 'Propriétaire de la difficulté :beatmap remplacé par :new_user.',
         'discussion_delete' => 'Un modérateur a supprimé la discussion :discussion.',
         'discussion_lock' => 'La discussion pour cette beatmap a été désactivée. (:text)',
         'discussion_post_delete' => 'Un modérateur a supprimé le post de la discussion :discussion.',
@@ -19,7 +19,7 @@ return [
         'issue_reopen' => 'Le problème :discussion a été résolu par :discussion_user et rouvert par :user.',
         'issue_resolve' => 'Le problème :discussion écrit par :discussion_user a été marqué comme résolu par :user.',
         'kudosu_allow' => 'Le refus de Kudosu pour la discussion :discussion a été supprimé.',
-        'kudosu_deny' => 'La discussion :discussion a été refusée pour l\'attribution de kudosu.',
+        'kudosu_deny' => 'L\'attribution de kudosu pour la discussion :discussion a été refusée.',
         'kudosu_gain' => 'La discussion :discussion par :user a obtenu assez de votes pour obtenir un kudosu.',
         'kudosu_lost' => 'La discussion :discussion par :user a perdu ses votes et le kudosu accordé a été retiré.',
         'kudosu_recalculate' => 'La discussion :discussion a vu ses kudosu accordés recalculés.',
@@ -41,7 +41,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Événements de la beatmapset',
+        'title' => 'Événements du beatmapset',
 
         'form' => [
             'period' => 'Période',

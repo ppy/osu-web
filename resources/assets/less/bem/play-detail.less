@@ -64,29 +64,6 @@
 
   &__beatmap-and-time {
     margin-top: 2px;
-
-    @media @desktop {
-      display: block;
-    }
-
-    .@{_top}--compact & {
-      @media @mobile {
-        display: none;
-      }
-    }
-  }
-
-  &__compact-toggle {
-    .reset-input();
-    .center-content();
-    align-self: flex-start;
-    margin: (-@_padding-vertical) (-@_padding-horizontal) (-@_padding-vertical) 0;
-    height: @_min-height;
-    width: @_menu-button-width;
-
-    @media @desktop {
-      display: none;
-    }
   }
 
   &__detail {
@@ -105,12 +82,6 @@
       @media @desktop {
         display: flex;
         padding: 0;
-      }
-
-      .@{_top}--compact & {
-        @media @mobile {
-          display: none;
-        }
       }
     }
 
@@ -159,12 +130,6 @@
         display: block;
         height: 20px;
         width: 40px;
-      }
-
-      .@{_top}--compact & {
-        @media @mobile {
-          display: block;
-        }
       }
     }
   }

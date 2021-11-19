@@ -23,12 +23,15 @@ return [
             '405' => 'manquant',
             '422' => 'requête invalide',
             '429' => 'trop de requêtes',
-            '500' => 'quelque chose est cassé',
+            '500' => 'quelque chose s\'est mal passé',
             '503' => 'maintenance',
         ],
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'tableau de bord',
         ],
@@ -39,7 +42,7 @@ return [
             'verify_link' => 'vérification du compte',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'featured artists',
         ],
         'artists_controller' => [
             '_' => 'featured artists',
@@ -63,7 +66,7 @@ return [
             'index' => 'tableau de bord',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'discussion de la beatmap',
+            'discussion' => 'discussion sur les beatmaps',
             'index' => 'liste des beatmaps',
             'show' => 'informations sur la beatmap',
         ],

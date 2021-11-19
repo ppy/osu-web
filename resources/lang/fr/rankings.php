@@ -18,7 +18,7 @@ return [
     ],
 
     'type' => [
-        'charts' => 'mise en avant',
+        'charts' => 'spotlights',
         'country' => 'pays',
         'multiplayer' => 'multijoueur',
         'performance' => 'performance',
@@ -39,7 +39,7 @@ return [
         'play_count' => 'Nombres de parties',
         'performance' => 'Performance',
         'total_score' => 'Score total',
-        'ranked_score' => 'Score Classé',
+        'ranked_score' => 'Score classé',
         'average_score' => 'Score Moyen',
         'average_performance' => 'Performance moyenne.',
         'ss' => '',
