@@ -2,10 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import MessagesNewJson from 'interfaces/chat/messages-new-json';
 
-export default class ChatMessageNewEvent extends DispatcherAction {
-  constructor(readonly json: MessagesNewJson) {
+export default class ChannelPartEvent extends DispatcherAction {
+  constructor(readonly channelId: number) {
     super();
   }
 }

@@ -14,8 +14,8 @@ import DispatchListener from 'dispatch-listener';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import ChannelStore from 'stores/channel-store';
-import ChatChannelJoinEvent from './chat-channel-join-event';
-import ChatChannelPartEvent from './chat-channel-part-event';
+import ChannelJoinEvent from './channel-join-event';
+import ChannelPartEvent from './channel-part-event';
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
@@ -79,9 +79,9 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof ChatChannelJoinEvent) {
+    if (event instanceof ChannelJoinEvent) {
       this.handleChatChannelJoinEvent(event);
-    } else if (event instanceof ChatChannelPartEvent) {
+    } else if (event instanceof ChannelPartEvent) {
       this.handleChatChannelPartEvent(event);
     } else if (event instanceof ChatMessageSendAction) {
       this.autoScroll = true;
@@ -132,12 +132,12 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  private handleChatChannelJoinEvent(event: ChatChannelJoinEvent) {
+  private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
     this.channelStore.channels.set(event.channel.channelId, event.channel);
   }
 
   @action
-  private handleChatChannelPartEvent(event: ChatChannelPartEvent) {
+  private handleChatChannelPartEvent(event: ChannelPartEvent) {
     this.channelStore.partChannel(event.channelId, false);
   }
 

@@ -8,22 +8,22 @@ import { isChannelEvent } from 'interfaces/chat/channel-event-json';
 import { isMessageNewEvent } from 'interfaces/chat/messages-new-event-json';
 import Channel from 'models/chat/channel';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
-import ChatChannelJoinEvent from './chat-channel-join-event';
-import ChatChannelPartEvent from './chat-channel-part-event';
-import ChatMessageNewEvent from './chat-message-new-event';
+import ChannelJoinEvent from './channel-join-event';
+import ChannelPartEvent from './channel-part-event';
+import MessageNewEvent from './message-new-event';
 
 function newDispatchActionFromJson(json: SocketEventData) {
   if (isMessageNewEvent(json)) {
-    return new ChatMessageNewEvent(json.data);
+    return new MessageNewEvent(json.data);
   } else if (isChannelEvent(json)) {
     switch (json.event) {
       case 'chat.channel.join': {
         const channel = new Channel(json.data.channel_id);
         channel.updateWithJson(json.data);
-        return new ChatChannelJoinEvent(channel);
+        return new ChannelJoinEvent(channel);
       }
       case 'chat.channel.part':
-        return new ChatChannelPartEvent(json.data.channel_id);
+        return new ChannelPartEvent(json.data.channel_id);
     }
   }
 }

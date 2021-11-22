@@ -4,7 +4,7 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import Channel from 'models/chat/channel';
 
-export default class ChatChannelJoinEvent extends DispatcherAction {
+export default class ChannelJoinEvent extends DispatcherAction {
   constructor(readonly channel: Channel) {
     super();
   }

@@ -9,7 +9,7 @@ import ChatUpdateSilences from 'actions/chat-update-silences';
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import { markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
-import ChatMessageNewEvent from 'chat/chat-message-new-event';
+import MessageNewEvent from 'chat/message-new-event';
 import DispatchListener from 'dispatch-listener';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
@@ -128,7 +128,7 @@ export default class ChannelStore implements DispatchListener {
   }
 
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof ChatMessageNewEvent) {
+    if (event instanceof MessageNewEvent) {
       this.handleChatMessageNewEvent(event);
     } else if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
@@ -237,7 +237,7 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  private handleChatMessageNewEvent(event: ChatMessageNewEvent) {
+  private handleChatMessageNewEvent(event: MessageNewEvent) {
     for (const message of event.json.messages) {
       const channel = this.channels.get(message.channel_id);
       if (channel == null) continue;

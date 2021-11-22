@@ -3,7 +3,7 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatchListener } from 'app-dispatcher';
-import ChatMessageNewEvent from 'chat/chat-message-new-event';
+import MessageNewEvent from 'chat/message-new-event';
 import DispatchListener from 'dispatch-listener';
 import UserJson from 'interfaces/user-json';
 import { action, makeObservable, observable } from 'mobx';
@@ -51,7 +51,7 @@ export default class UserStore implements DispatchListener {
   }
 
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof ChatMessageNewEvent) {
+    if (event instanceof MessageNewEvent) {
       this.updateWithJson(event.json.users);
     }
   }
