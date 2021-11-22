@@ -18,7 +18,7 @@ import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 import UserStore from './user-store';
 
-const skippedChannelTypes = new Set<ChannelType>(['MULTIPLAYER', 'TEMPORARY']);
+const visibleChannelTypes = new Set<ChannelType>(['PM', 'PUBLIC']);
 
 @dispatchListener
 export default class ChannelStore {
@@ -32,7 +32,7 @@ export default class ChannelStore {
   get publicChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
-      if (channel.type !== 'PM' && channel.isDisplayable) {
+      if (channel.type === 'PUBLIC' && channel.isDisplayable) {
         sortedChannels.push(channel);
       }
     });
@@ -243,7 +243,7 @@ export default class ChannelStore {
   @action
   updateWithPresence(presence: ChannelJson[]) {
     presence.forEach((json) => {
-      if (!skippedChannelTypes.has(json.type)) {
+      if (visibleChannelTypes.has(json.type)) {
         this.getOrCreate(json.channel_id).updatePresence(json);
       }
     });
