@@ -18,7 +18,7 @@ import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 import UserStore from './user-store';
 
-const visibleChannelTypes = new Set<ChannelType>(['PM', 'PUBLIC']);
+const visibleChannelTypes = new Set<ChannelType>(['GROUP', 'PM', 'PUBLIC']);
 
 @dispatchListener
 export default class ChannelStore {
@@ -32,7 +32,7 @@ export default class ChannelStore {
   get publicChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
-      if (channel.type === 'PUBLIC' && channel.isDisplayable) {
+      if (channel.type !== 'PM' && channel.isDisplayable) {
         sortedChannels.push(channel);
       }
     });
