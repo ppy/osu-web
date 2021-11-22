@@ -12,9 +12,9 @@ import MedalsCount from 'profile-page/medals-count';
 import PlayTime from 'profile-page/play-time';
 import Pp from 'profile-page/pp';
 import Rank from 'profile-page/rank';
+import RankChart from 'profile-page/rank-chart';
 import RankCount from 'profile-page/rank-count';
 import * as React from 'react';
-import { RankChart } from 'react/profile-page/rank-chart';
 
 export type DetailType = 'modding' | 'multiplayer' | 'user';
 
