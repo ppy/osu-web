@@ -10,14 +10,12 @@ import UserJson from 'interfaces/user-json';
 import Channel from 'models/chat/channel';
 import { SocketEventData } from 'socket-message-event';
 
-export type ChatEventJson = ChatChannelEventJson | ChatMessageEventJson;
-
-export interface ChatChannelEventJson {
+interface ChatChannelEventJson {
   data: ChannelJson;
   event: string;
 }
 
-export interface ChatMessageEventJson {
+interface ChatMessageEventJson {
   data: ChatMessagesNewJson;
   event: string;
 }

@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatUpdateSilences } from 'actions/chat-update-silences';
+import ChatUpdateSilences from 'actions/chat-update-silences';
 import { dispatch } from 'app-dispatcher';
 import { ack } from 'chat/chat-api';
 import AckResponseJson from 'interfaces/chat/ack-response-json';

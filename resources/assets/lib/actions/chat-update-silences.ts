@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import { ChatSilenceJson } from 'interfaces/chat/chat-updates-json';
+import ChatSilenceJson from 'interfaces/chat/chat-silence-json';
 
-export class ChatUpdateSilences implements DispatcherAction {
+export default class ChatUpdateSilences implements DispatcherAction {
   constructor(public json: ChatSilenceJson[]) {}
 }
