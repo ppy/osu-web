@@ -7,7 +7,7 @@ import UserStatisticsJson from 'interfaces/user-statistics-json';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
-import DetailBarColumns from 'profile-page/detail-bar-columns';
+import DetailBarButtons from 'profile-page/detail-bar-buttons';
 import MedalsCount from 'profile-page/medals-count';
 import PlayTime from 'profile-page/play-time';
 import Pp from 'profile-page/pp';
@@ -15,8 +15,6 @@ import Rank from 'profile-page/rank';
 import RankChart from 'profile-page/rank-chart';
 import RankCount from 'profile-page/rank-count';
 import * as React from 'react';
-
-export type DetailType = 'modding' | 'multiplayer' | 'user';
 
 type Props = {
   stats: UserStatisticsJson;
@@ -49,10 +47,13 @@ export default class Detail extends React.Component<Props> {
       <div className='profile-detail'>
         <div className='profile-detail-bar'>
           {this.renderExpander()}
-          <DetailBarColumns user={this.props.user}>
+          <div className='profile-detail-bar__column'>
+            <DetailBarButtons user={this.props.user} />
+          </div>
+          <div className='profile-detail-bar__column profile-detail-bar__column--right'>
             {this.renderUser()}
             {this.renderModding()}
-          </DetailBarColumns>
+          </div>
         </div>
         {this.renderExpandedDetails()}
       </div>
