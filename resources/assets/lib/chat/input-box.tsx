@@ -8,7 +8,7 @@ import { dispatch, dispatcher } from 'app-dispatcher';
 import BigButton from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import { trim } from 'lodash';
-import { computed, observe } from 'mobx';
+import { computed, makeObservable, observe } from 'mobx';
 import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
@@ -46,6 +46,8 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     super(props);
 
     dispatcher.register(this);
+
+    makeObservable(this);
 
     disposeOnUnmount(
       this,
