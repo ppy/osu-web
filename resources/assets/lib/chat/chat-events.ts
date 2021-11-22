@@ -10,14 +10,17 @@ import UserJson from 'interfaces/user-json';
 import Channel from 'models/chat/channel';
 import { SocketEventData } from 'socket-message-event';
 
+const chatChannelEvents = ['chat.channel.join', 'chat.channel.part'] as const;
+type ChatChannelEvent = (typeof chatChannelEvents)[number];
+
 interface ChatChannelEventJson {
   data: ChannelJson;
-  event: string;
+  event: ChatChannelEvent;
 }
 
 interface ChatMessageEventJson {
   data: ChatMessagesNewJson;
-  event: string;
+  event: 'chat.message.new';
 }
 
 interface ChatMessagesNewJson {
@@ -26,11 +29,11 @@ interface ChatMessagesNewJson {
 }
 
 export function isChannelEvent(arg: SocketEventData): arg is ChatChannelEventJson {
-  return arg.event?.startsWith('chat.channel.') ?? false;
+  return arg.event != null && (chatChannelEvents as Readonly<string[]>).includes(arg.event);
 }
 
 export function isMessageEvent(arg: SocketEventData): arg is ChatMessageEventJson {
-  return arg.event?.startsWith('chat.message.') ?? false;
+  return arg.event === 'chat.message.new';
 }
 
 export class ChatChannelJoinEvent extends DispatcherAction {
