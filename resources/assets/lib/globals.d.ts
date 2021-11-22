@@ -100,19 +100,6 @@ interface ChangelogBuild {
   version: string;
 }
 
-// FIXME: make importable
-interface Country {
-  code: string;
-  display?: number;
-  name: string;
-}
-
-interface Cover {
-  custom_url: string | null;
-  id: string | null;
-  url: string | null;
-}
-
 interface BeatmapFailTimesArray {
   exit: number[];
   fail: number[];

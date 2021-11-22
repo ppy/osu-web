@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import CountryJson from 'interfaces/country-json';
 import GameMode from 'interfaces/game-mode';
 import * as React from 'react';
 import { Option, OptionRenderProps, SelectOptions } from 'select-options';
@@ -11,7 +12,7 @@ import { updateQueryString } from 'utils/url';
 type RankingTypes = 'performance' | 'charts' | 'scores' | 'country';
 
 interface Props {
-  countries?: Required<Country>[];
+  countries?: Required<CountryJson>[];
   gameMode: GameMode;
   type: RankingTypes;
   variants?: string[];
@@ -20,9 +21,9 @@ interface Props {
 const allCountries = { id: null, text: osu.trans('rankings.countries.all') };
 
 export default class RankingFilter extends React.PureComponent<Props> {
-  private countriesSorted?: Required<Country>[];
+  private countriesSorted?: Required<CountryJson>[];
   private optionsCached?: Map<string | null, Option<string>>;
-  private prevCountries?: Required<Country>[];
+  private prevCountries?: Required<CountryJson>[];
 
   get countries() {
     if (this.props.countries == null) return [];

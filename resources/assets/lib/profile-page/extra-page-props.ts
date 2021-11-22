@@ -19,7 +19,7 @@ type ProfilePageIncludes =
   | 'scores_first_count'
   | 'scores_recent_count';
 
-type ProfilePageUserJson = UserExtendedJson & Required<Pick<UserExtendedJson, ProfilePageIncludes>>;
+export type ProfilePageUserJson = UserExtendedJson & Required<Pick<UserExtendedJson, ProfilePageIncludes>>;
 
 interface Pagination {
   hasMore: boolean;

@@ -13,28 +13,30 @@ export type ProfileExtraPage =
   | 'recent_activity'
   | 'top_ranks';
 
-export default interface UserExtendedJson extends UserJson {
-  country: Country;
-  cover: Cover;
+type UserExtendedDefaultIncludes =
+  'country'
+  | 'cover'
+  | 'is_admin'
+  | 'is_bng'
+  | 'is_full_bn'
+  | 'is_gmt'
+  | 'is_limited_bn'
+  | 'is_moderator'
+  | 'is_nat'
+  | 'is_restricted'
+  | 'is_silenced';
+
+interface UserExtendedAdditionalAttributes {
   discord: string | null;
   has_supported: boolean;
   interests: string | null;
-  is_admin: boolean;
-  is_bng: boolean;
-  is_full_bn: boolean;
-  is_gmt: boolean;
-  is_limited_bn: boolean;
-  is_moderator: boolean;
-  is_nat: boolean;
-  is_restricted: boolean;
-  is_silenced: boolean;
   join_date: string;
   kudosu: {
     available: number;
     total: number;
   };
   location: string | null;
-  mapping_follower_count: number;
+  max_blocks: number;
   max_friends: number;
   occupation: string | null;
   playmode: GameMode | null;
@@ -46,3 +48,6 @@ export default interface UserExtendedJson extends UserJson {
   twitter: string | null;
   website: string | null;
 }
+type UserExtendedJson = UserJson & Required<Pick<UserJson, UserExtendedDefaultIncludes>> & UserExtendedAdditionalAttributes;
+
+export default UserExtendedJson;
