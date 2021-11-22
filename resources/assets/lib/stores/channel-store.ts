@@ -145,11 +145,7 @@ export default class ChannelStore implements DispatchListener {
 
   @action
   loadChannelEarlierMessages(channelId: number) {
-    const channel = this.get(channelId);
-
-    if (channel != null) {
-      void channel.loadEarlierMessages();
-    }
+    this.get(channelId)?.loadEarlierMessages();
   }
 
   @action

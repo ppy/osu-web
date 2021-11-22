@@ -181,13 +181,11 @@ export default class Channel {
       const messages = await getMessages(this.channelId, { until });
 
       runInAction(() => {
+        this.addMessages(messages);
         if (messages.length === 0) {
           // assume no more messages.
           this.firstMessageId = this.minMessageId;
-          return;
         }
-
-        this.addMessages(messages);
       });
     } finally {
       runInAction(() => {

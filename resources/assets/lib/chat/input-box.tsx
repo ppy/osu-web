@@ -15,6 +15,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import RootDataStore from 'stores/root-data-store';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   dataStore?: RootDataStore;
@@ -109,7 +110,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
         <TextareaAutosize
           ref={this.inputBoxRef}
           autoComplete='off'
-          className={`chat-input__box${this.inputDisabled ? ' chat-input__box--disabled' : ''}`}
+          className={classWithModifiers('chat-input__box', { disabled: this.inputDisabled })}
           disabled={this.inputDisabled}
           maxRows={3}
           name='textbox'

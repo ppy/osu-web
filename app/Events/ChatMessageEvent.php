@@ -29,9 +29,10 @@ class ChatMessageEvent implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return array_map(function ($userId) {
-            return new Channel("private:user:{$userId}");
-        }, $this->message->channel->activeUserIds());
+        return array_map(
+            fn ($userId) => new Channel("private:user:{$userId}"),
+            $this->message->channel->activeUserIds()
+        );
     }
 
     public function broadcastWith()
