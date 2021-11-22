@@ -7,7 +7,7 @@ import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
 import MessageJson from 'interfaces/chat/message-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { runInAction } from 'mobx';
+import { action } from 'mobx';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 
@@ -29,13 +29,11 @@ export function ack(since: number, lastHistoryId?: number) {
 export function getMessages(channelId: number, params?: { until?: number }) {
   const request = $.get(route('chat.channels.messages.index', { channel: channelId, return_object: 1, ...params })) as JQuery.jqXHR<GetMessagesResponse>;
 
-  return request.then((response) => {
-    runInAction(() => {
-      core.dataStore.userStore.updateWithJson(response.users);
-    });
+  return request.then(action((response) => {
+    core.dataStore.userStore.updateWithJson(response.users);
 
     return response.messages.map((messageJson) => Message.fromJson(messageJson));
-  });
+  }));
 }
 
 export function getUpdates(since: number, lastHistoryId?: number | null) {
