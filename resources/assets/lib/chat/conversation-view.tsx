@@ -252,10 +252,10 @@ export default class ConversationView extends React.Component<Props> {
         }
         <ShowMoreLink
           callback={this.loadEarlierMessages}
-          direction={'up'}
+          direction='up'
           hasMore={channel.hasEarlierMessages}
           loading={channel.loadingEarlierMessages}
-          modifiers={['chat-conversation-earlier-messages']}
+          modifiers='chat-conversation-earlier-messages'
         />
         {channel.loadingMessages &&
           <div className='chat-conversation__day-divider'>
