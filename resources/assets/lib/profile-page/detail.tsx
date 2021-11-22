@@ -4,7 +4,7 @@
 import UserAchievementJson from 'interfaces/user-achievement-json';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import UserStatisticsJson from 'interfaces/user-statistics-json';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import DetailBarColumns from 'profile-page/detail-bar-columns';
@@ -37,6 +37,11 @@ export default class Detail extends React.Component<Props> {
   @computed
   get isExpanded() {
     return core.userPreferences.get('ranking_expanded');
+  }
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
   }
 
   render() {
