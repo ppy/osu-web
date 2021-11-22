@@ -132,15 +132,4 @@ return [
             'store' => 'osu!store',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Oho!',
-        'subtitle' => 'Atrodo, kad jūs gerai praleidžiat laiką! :D',
-        'body' => [
-            'part-1' => '',
-            'part-2' => '',
-        ],
-        'find-out-more' => 'Jeigu norite sužinoti daugiau, spauskite čia!',
-        'download-starting' => "",
-    ],
 ];

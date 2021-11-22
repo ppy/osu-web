@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu ! - Le rythme n\'est plus qu\'à un *clic* !  Avec les modes de jeu Ouendan/EBA, Taiko et original, ainsi qu\'un éditeur de niveaux entièrement fonctionnel.',
+        'page_description' => 'osu! - Rhythm is just a *click* away! Avec les modes de jeu Ouendan/EBA, Taiko et d\'autres modes de jeu originaux, ainsi qu\'un éditeur de niveaux entièrement fonctionnel.',
     ],
 
     'header' => [

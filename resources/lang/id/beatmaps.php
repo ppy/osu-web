@@ -237,7 +237,7 @@ return [
                 'artist' => 'Artis',
                 'difficulty' => 'Tingkat Kesulitan',
                 'favourites' => 'Jumlah Favorit',
-                'updated' => 'Tanggal Pembaruan Terakhir',
+                'updated' => 'Tanggal Pembaruan',
                 'ranked' => 'Tanggal Ranked',
                 'rating' => 'Nilai Pengguna',
                 'plays' => 'Jumlah Permainan',

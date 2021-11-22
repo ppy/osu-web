@@ -204,8 +204,8 @@ class window.LineChart
     d3.bisector((d) => d.x).left @data, x
 
 
-  onHover: =>
-    x = @options.scales.x.invert(d3.mouse(@hoverArea.node())[0])
+  onHover: (event) =>
+    x = @options.scales.x.invert(d3.pointer(event)[0])
     i = @lookupIndexFromX x
 
     return unless i
@@ -226,7 +226,7 @@ class window.LineChart
     @hoverInfoBoxX.html (@options.infoBoxFormats?.x ? @options.formats.x)(d.x)
     @hoverInfoBoxY.html (@options.infoBoxFormats?.y ? @options.formats.y)(d.y)
 
-    mouseX = d3.event.clientX
+    mouseX = event.clientX
 
     if mouseX?
       infoBoxRect = @hoverInfoBox.node().getBoundingClientRect()

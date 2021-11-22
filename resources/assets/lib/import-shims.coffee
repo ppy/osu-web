@@ -16,7 +16,6 @@ import { make2x } from 'utils/html'
 import { jsonClone, parseJson, parseJsonNullable, storeJson } from 'utils/json'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
 import { currentUrl } from 'utils/turbolinks'
-import * as OsuUrlHelper from 'utils/url'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -31,7 +30,6 @@ window.Fade =
 window.gallery ?= new Gallery
 
 window._exported = {
-  OsuUrlHelper
   classWithModifiers
   currentUrl
   discussionLinkify

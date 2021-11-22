@@ -32,6 +32,12 @@ declare const Lang: LangClass;
 declare const fallbackLocale: string;
 declare const currentLocale: string;
 
+declare class LineChart {
+  loadData: (data: { x: number; y: number }[]) => void;
+  resize: () => void;
+  constructor(area: HTMLElement, options: Record<string, unknown>);
+}
+
 // Global object types
 interface Comment {
   id: number;
@@ -71,8 +77,6 @@ interface OsuCommon {
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
-  link: (url: string, text: string, options?: OsuLinkOptions) => string;
-  linkify: (text: string, newWindow?: boolean) => string;
   navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
   popup: (message: string, type: string) => void;
   popupShowing: () => boolean;
@@ -84,18 +88,9 @@ interface OsuCommon {
   transArray: (array: any[], key?: string) => string;
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
   transExists: (key: string, locale?: string) => boolean;
-  updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
   urlPresence: (url?: string | null) => string;
-  urlRegex: RegExp;
   uuid: () => string;
   xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
-}
-
-interface OsuLinkOptions {
-  classNames?: string[];
-  isRemote?: boolean;
-  props?: Partial<Record<string, any>>;
-  unescape?: boolean;
 }
 
 interface ChangelogBuild {

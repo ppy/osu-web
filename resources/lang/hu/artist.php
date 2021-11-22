@@ -31,7 +31,7 @@ return [
         '_' => 'Zenék',
         'count' => ':count szám|:count szám',
         'original' => 'osu! eredeti',
-        'original_badge' => '',
+        'original_badge' => 'EREDETI',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'zeneszám keresés',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Részletes keresés',
+                'album' => 'Album',
+                'artist' => 'Előadó',
+                'bpm_gte' => 'Minimum BPM',
+                'bpm_lte' => 'Maximum BPM',
+                'empty' => 'Nem található a keresési feltételeknek megfelelő zeneszám.',
+                'genre' => 'Műfaj',
+                'genre_all' => 'Mind',
+                'length_gte' => 'Minimum hossz',
+                'length_lte' => 'Maximum hossz',
             ],
         ],
     ],

@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'Beatmap baru ":title" oleh :username',
                 'user_beatmapset_new_compact' => 'Beatmap baru ":title"',
                 'user_beatmapset_new_group' => 'Beatmap-beatmap baru oleh :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

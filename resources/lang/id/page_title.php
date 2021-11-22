@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'dasbor',
         ],
@@ -39,7 +42,7 @@ return [
             'verify_link' => 'verifikasi akun',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'featured artist',
         ],
         'artists_controller' => [
             '_' => 'featured artist',

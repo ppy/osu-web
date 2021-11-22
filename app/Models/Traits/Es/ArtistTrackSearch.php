@@ -5,14 +5,13 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Elasticsearch;
+namespace App\Models\Traits\Es;
 
-use App\Traits\EsIndexableModel;
 use Carbon\Carbon;
 
-trait ArtistTrackTrait
+trait ArtistTrackSearch
 {
-    use EsIndexableModel;
+    use BaseDbIndexable;
 
     public static function esIndexingQuery()
     {

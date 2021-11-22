@@ -25,7 +25,7 @@ return [
         ],
 
         'friends' => [
-            'read' => 'Koukněte se, koho sledujete.',
+            'read' => 'Vidět, koho sledujete.',
         ],
 
         'public' => 'Číst veřejná data vaším jménem.',

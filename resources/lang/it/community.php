@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Carica di più',
-                'description' => 'Spazi addizionali per beatmap in attesa (per beatmap classificate) fino ad un massimo di 10.',
+                'description' => 'Spazi addizionali di beatmap in attesa (per ogni beatmap classificata) fino a un massimo di 10.',
             ],
 
             'early_access' => [

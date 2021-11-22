@@ -5,6 +5,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, a, span } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { updateQueryString } from 'utils/url'
 el = React.createElement
 controller = core.beatmapsetSearchController
 
@@ -52,7 +53,7 @@ export class SearchFilter extends React.PureComponent
     updatedFilter[@props.name] = @newSelection(id)
     filters = _.assign {}, @props.filters.values, updatedFilter
 
-    osu.updateQueryString null, BeatmapsetFilter.queryParamsFromFilters(filters)
+    updateQueryString null, BeatmapsetFilter.queryParamsFromFilters(filters)
 
 
   select: (e) =>

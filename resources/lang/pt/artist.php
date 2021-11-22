@@ -31,7 +31,7 @@ return [
         '_' => 'Canções',
         'count' => ':count canção|:count canções',
         'original' => 'Original do osu!',
-        'original_badge' => '',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'pesquisa de faixas',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Pesquisa avançada',
+                'album' => 'Álbum',
+                'artist' => 'Artista',
+                'bpm_gte' => 'BPM mínimos',
+                'bpm_lte' => 'BPM máximos',
+                'empty' => 'Não foram encontradas faixas que correspondessem aos critérios de pesquisa.',
+                'genre' => 'Género',
+                'genre_all' => 'Todas',
+                'length_gte' => 'Duração mínima',
+                'length_lte' => 'Duração máxima',
             ],
         ],
     ],

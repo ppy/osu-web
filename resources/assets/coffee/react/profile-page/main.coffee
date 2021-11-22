@@ -1,18 +1,17 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { ExtraTab } from './extra-tab'
 import { Header } from './header'
 import { Historical } from './historical'
 import { Medals } from './medals'
-import { TopRanks } from './top-ranks'
-import { BlockButton } from 'block-button'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
 import AccountStanding from 'profile-page/account-standing'
 import Beatmapsets from 'profile-page/beatmapsets'
+import ExtraTab from 'profile-page/extra-tab'
 import Kudosu from 'profile-page/kudosu'
 import RecentActivity from 'profile-page/recent-activity'
+import TopScores from 'profile-page/top-scores'
 import UserPage from 'profile-page/user-page'
 import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
@@ -22,6 +21,7 @@ import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
+import { updateQueryString } from 'utils/url'
 
 el = React.createElement
 
@@ -209,6 +209,7 @@ export class Main extends React.PureComponent
           pagination: @state.showMorePagination
         component: Kudosu
 
+      # TODO: rename to top_scores (also in model's UserProfileCustomization and translations)
       when 'top_ranks'
         props:
           user: @state.user
@@ -217,7 +218,7 @@ export class Main extends React.PureComponent
           currentMode: @props.currentMode
           pagination: @state.showMorePagination
           scoresNotice: @props.scoresNotice
-        component: TopRanks
+        component: TopScores
 
       when 'beatmaps'
         props:
@@ -267,7 +268,7 @@ export class Main extends React.PureComponent
     paginationState[name].loading = true
 
     @setState showMorePagination: paginationState, ->
-      $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
+      $.get updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
         state = _.cloneDeep(@state[name]).concat(data)
         hasMore = data.length > perPage
 

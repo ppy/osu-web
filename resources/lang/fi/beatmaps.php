@@ -222,7 +222,7 @@ return [
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... mitään ei löytynyt.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Yleinen',
                 'genre' => 'Tyylilaji',
                 'language' => 'Kieli',
@@ -290,7 +290,7 @@ return [
         'metal' => 'Metalli',
         'classical' => 'Klassinen',
         'folk' => 'Kansanmusiikki',
-        'jazz' => 'Jatsi',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '',
@@ -329,8 +329,8 @@ return [
         'korean' => 'korea',
         'spanish' => 'espanja',
         'swedish' => 'ruotsi',
-        'russian' => 'Venäläinen',
-        'polish' => 'Puolalainen',
+        'russian' => 'venäjä',
+        'polish' => 'puola',
         'instrumental' => 'Instrumentaalinen',
         'other' => 'Muu',
         'unspecified' => 'Täsmentämätön',

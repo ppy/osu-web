@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BlockButton } from 'block-button';
+import BlockButton from 'components/block-button';
 import FriendButton from 'components/friend-button';
 import FlagCountry from 'flag-country';
 import FollowUserMappingButton from 'follow-user-mapping-button';

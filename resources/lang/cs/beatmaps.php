@@ -240,7 +240,7 @@ return [
                 'updated' => 'Aktualizováno',
                 'ranked' => 'Hodnocené',
                 'rating' => 'Hodnocení',
-                'plays' => 'Zahraní',
+                'plays' => 'Zahrání',
                 'relevance' => 'Relevance',
                 'nominations' => 'Nominace',
             ],
