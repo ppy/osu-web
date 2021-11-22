@@ -1,12 +1,12 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { CoverSelection } from './cover-selection'
-import { CoverUploader } from './cover-uploader'
+import CoverSelection from 'profile-page/cover-selection'
 import * as React from 'react'
 import { div, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
 import { nextVal } from 'utils/seq'
+import { CoverUploader } from './cover-uploader'
 el = React.createElement
 
 export class CoverSelector extends React.PureComponent

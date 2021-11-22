@@ -1,48 +1,67 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import { button, span } from 'react-dom-factories'
-import { classWithModifiers } from 'utils/css'
+import { route } from 'laroute';
+import * as React from 'react';
+import { onErrorWithCallback } from 'utils/ajax';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
-bn = 'profile-cover-selection'
+const bn = 'profile-cover-selection';
 
-export class CoverSelection extends React.PureComponent
-  render: =>
-    button
-      className: classWithModifiers(bn, @props.modifiers)
-      style:
-        backgroundImage: osu.urlPresence(@props.thumbUrl)
-      onClick: @onClick
-      onMouseEnter: @onMouseEnter
-      onMouseLeave: @onMouseLeave
-      if @props.isSelected
-        span className: 'profile-cover-selection__selected',
-          span className: 'far fa-check-circle'
+interface Props {
+  isSelected: boolean;
+  modifiers?: Modifiers;
+  name: string;
+  thumbUrl: string | null;
+  url: string | null;
+}
 
+export default class CoverSelection extends React.PureComponent<Props> {
+  render() {
+    return (
+      <button
+        className={classWithModifiers(bn, this.props.modifiers)}
+        onClick={this.onClick}
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
+        style={{
+          backgroundImage: osu.urlPresence(this.props.thumbUrl),
+        }}
+      >
+        {this.props.isSelected && (
+          <span className='profile-cover-selection__selected'>
+            <span className='far fa-check-circle' />
+          </span>
+        )}
+      </button>
+    );
+  }
 
-  onClick: (e) =>
-    return if !@props.url?
+  private readonly onClick = () => {
+    if (this.props.url == null) return;
 
-    $.publish 'user:cover:upload:state', [true]
+    $.publish('user:cover:upload:state', [true]);
 
-    $.ajax laroute.route('account.cover'),
-      method: 'post'
-      data:
-        cover_id: @props.name
-      dataType: 'json'
-    .always ->
-      $.publish 'user:cover:upload:state', [false]
-    .done (userData) ->
-      $.publish 'user:update', userData
-    .fail osu.emitAjaxError(e.target)
+    $.ajax(route('account.cover'), {
+      data: {
+        cover_id: this.props.name,
+      },
+      dataType: 'json',
+      method: 'post',
+    }).always(() => {
+      $.publish('user:cover:upload:state', [false]);
+    }).done((userData) => {
+      $.publish('user:update', userData);
+    }).fail(onErrorWithCallback(this.onClick));
+  };
 
+  private readonly onMouseEnter = () => {
+    if (this.props.url == null) return;
 
-  onMouseEnter: =>
-    return if !@props.url?
+    $.publish('user:cover:set', this.props.url);
+  };
 
-    $.publish 'user:cover:set', @props.url
-
-
-  onMouseLeave: ->
-    $.publish 'user:cover:reset'
+  private readonly onMouseLeave = () => {
+    $.publish('user:cover:reset');
+  };
+}
