@@ -18,7 +18,7 @@ interface ChatChannelEventJson {
   event: ChatChannelEvent;
 }
 
-interface ChatMessageEventJson {
+interface ChatMessageNewEventJson {
   data: ChatMessagesNewJson;
   event: 'chat.message.new';
 }
@@ -32,7 +32,7 @@ export function isChannelEvent(arg: SocketEventData): arg is ChatChannelEventJso
   return arg.event != null && (chatChannelEvents as Readonly<string[]>).includes(arg.event);
 }
 
-export function isMessageEvent(arg: SocketEventData): arg is ChatMessageEventJson {
+export function isMessageNewEvent(arg: SocketEventData): arg is ChatMessageNewEventJson {
   return arg.event === 'chat.message.new';
 }
 

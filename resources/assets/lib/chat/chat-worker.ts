@@ -3,17 +3,14 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import { ChatChannelJoinEvent, ChatChannelPartEvent, ChatMessageNewEvent, isChannelEvent, isMessageEvent } from 'chat/chat-events';
+import { ChatChannelJoinEvent, ChatChannelPartEvent, ChatMessageNewEvent, isChannelEvent, isMessageNewEvent } from 'chat/chat-events';
 import DispatchListener from 'dispatch-listener';
 import Channel from 'models/chat/channel';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
 
 function newDispatchActionFromJson(json: SocketEventData) {
-  if (isMessageEvent(json)) {
-    switch (json.event) {
-      case 'chat.message.new':
-        return new ChatMessageNewEvent(json.data);
-    }
+  if (isMessageNewEvent(json)) {
+    return new ChatMessageNewEvent(json.data);
   } else if (isChannelEvent(json)) {
     switch (json.event) {
       case 'chat.channel.join': {
