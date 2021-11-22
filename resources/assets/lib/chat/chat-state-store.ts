@@ -9,12 +9,13 @@ import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import { getUpdates } from 'chat/chat-api';
-import { ChatChannelJoinEvent, ChatChannelPartEvent } from 'chat/chat-events';
 import PingService from 'chat/ping-service';
 import DispatchListener from 'dispatch-listener';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import ChannelStore from 'stores/channel-store';
+import ChatChannelJoinEvent from './chat-channel-join-event';
+import ChatChannelPartEvent from './chat-channel-part-event';
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {

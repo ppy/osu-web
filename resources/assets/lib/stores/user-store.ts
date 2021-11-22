@@ -3,7 +3,7 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatchListener } from 'app-dispatcher';
-import { ChatMessageNewEvent } from 'chat/chat-events';
+import ChatMessageNewEvent from 'chat/chat-message-new-event';
 import DispatchListener from 'dispatch-listener';
 import UserJson from 'interfaces/user-json';
 import { action, makeObservable, observable } from 'mobx';

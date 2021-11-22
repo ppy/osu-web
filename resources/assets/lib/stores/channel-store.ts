@@ -9,7 +9,7 @@ import ChatUpdateSilences from 'actions/chat-update-silences';
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import { markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
-import { ChatMessageNewEvent } from 'chat/chat-events';
+import ChatMessageNewEvent from 'chat/chat-message-new-event';
 import DispatchListener from 'dispatch-listener';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';

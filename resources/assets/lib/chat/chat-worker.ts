@@ -3,10 +3,14 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import { ChatChannelJoinEvent, ChatChannelPartEvent, ChatMessageNewEvent, isChannelEvent, isMessageNewEvent } from 'chat/chat-events';
 import DispatchListener from 'dispatch-listener';
+import { isChannelEvent } from 'interfaces/chat/channel-event-json';
+import { isMessageNewEvent } from 'interfaces/chat/messages-new-event-json';
 import Channel from 'models/chat/channel';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
+import ChatChannelJoinEvent from './chat-channel-join-event';
+import ChatChannelPartEvent from './chat-channel-part-event';
+import ChatMessageNewEvent from './chat-message-new-event';
 
 function newDispatchActionFromJson(json: SocketEventData) {
   if (isMessageNewEvent(json)) {
