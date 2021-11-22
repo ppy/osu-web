@@ -6,7 +6,7 @@ import * as React from 'react'
 import { div, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
 import { nextVal } from 'utils/seq'
-import { CoverUploader } from './cover-uploader'
+import CoverUploader from 'profile-page/cover-uploader'
 el = React.createElement
 
 export class CoverSelector extends React.PureComponent
