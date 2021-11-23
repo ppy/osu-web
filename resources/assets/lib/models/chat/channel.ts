@@ -10,6 +10,15 @@ import User from 'models/user';
 import core from 'osu-core-singleton';
 import Message from './message';
 
+export type ChannelGroup = 'broadcast' | 'pm' | 'public';
+
+export const groupMap: Partial<Record<ChannelType, ChannelGroup>> = {
+  BROADCAST: 'broadcast',
+  GROUP: 'public',
+  PM: 'pm',
+  PUBLIC: 'public',
+};
+
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
 
@@ -39,6 +48,11 @@ export default class Channel {
   @computed
   get hasEarlierMessages() {
     return this.firstMessageId !== this.minMessageId;
+  }
+
+  @computed
+  get group() {
+    return groupMap[this.type];
   }
 
   @computed
