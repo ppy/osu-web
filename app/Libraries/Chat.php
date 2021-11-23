@@ -6,6 +6,7 @@
 namespace App\Libraries;
 
 use App\Exceptions\API;
+use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use ChaseConey\LaravelDatadogHelper\Datadog;
@@ -26,6 +27,36 @@ class Chat
         }
 
         $transaction->exec();
+    }
+
+    public static function createBroadcast(User $sender, array $targetIds, ?string $message = null, ?string $uuid = null)
+    {
+        priv_check_user($sender, 'ChatBroadcast')->ensureCan();
+
+        $targets = User::whereIn('user_id', $targetIds)->pluck('user_id');
+        if ($targets->isEmpty()) {
+            throw new InvariantException('Nobody to broadcast to!');
+        }
+
+        $targets->push($sender->getKey());
+
+        $channel = new Channel([
+            'description' => 'announcements',
+            'moderated' => true,
+            'name' => 'broadcast channel',
+            'type' => 'BROADCAST',
+        ]);
+
+        return $channel->getConnection()->transaction(function () use ($channel, $sender, $targets, $message, $uuid) {
+            $channel->save();
+            $channel->userChannels()->createMany($targets->map(fn ($target) => ['user_id' => $target]));
+
+            $ret = static::sendMessage($sender, $channel, $message, false, $uuid);
+
+            Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
+
+            return $ret;
+        });
     }
 
     // Do the restricted user lookup before calling this.

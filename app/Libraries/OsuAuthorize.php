@@ -832,6 +832,22 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkChatBroadcast(?User $user, Channel $channel): string
+    {
+        $prefix = 'chat.';
+
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
      * @param Channel $channel
      * @return string
      * @throws AuthorizationCheckException
