@@ -53,6 +53,7 @@ class Channel extends Model
     private array $preloadedUserChannels = [];
 
     const TYPES = [
+        'broadcast' => 'BROADCAST',
         'public' => 'PUBLIC',
         'private' => 'PRIVATE',
         'multiplayer' => 'MULTIPLAYER',
@@ -254,6 +255,11 @@ class Channel extends Model
     public function getAllowedGroupsAttribute($allowed_groups)
     {
         return $allowed_groups === null ? [] : array_map('intval', explode(',', $allowed_groups));
+    }
+
+    public function isBroadcast()
+    {
+        return $this->type === static::TYPES['broadcast'];
     }
 
     public function isMultiplayer()
