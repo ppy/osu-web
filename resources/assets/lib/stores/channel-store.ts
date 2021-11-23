@@ -20,7 +20,21 @@ import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 
-const skippedChannelTypes = new Set<ChannelType>(['MULTIPLAYER', 'TEMPORARY']);
+const channelGroups: Record<string, ChannelType[]> = {
+  broadcast: ['BROADCAST'],
+  pm: ['PM'],
+  public: ['GROUP', 'PUBLIC'],
+};
+
+const visibleChannelTypes = new Set<ChannelType>(Object.values(channelGroups).flat());
+
+function alphabeticalSort(a: Channel, b: Channel) {
+  if (a.name === b.name) {
+    return 0;
+  }
+
+  return a.name > b.name ? -1 : 1;
+}
 
 @dispatchListener
 export default class ChannelStore implements DispatchListener {
@@ -30,38 +44,28 @@ export default class ChannelStore implements DispatchListener {
   private markingAsRead: Partial<Record<number, number>> = {};
 
   @computed
+  get groupedChannels() {
+    return groupBy([...this.channels.values()], 'type');
+  }
+
+  @computed
   get channelList(): Channel[] {
-    return [...this.nonPmChannels, ...this.pmChannels];
+    return [...this.broadcastChannels, ...this.nonPmChannels, ...this.pmChannels];
+  }
+
+  @computed({ equals: comparer.shallow })
+  get broadcastChannels(): Channel[] {
+    return (this.groupedChannels.BROADCAST ?? []).filter((channel) => channel.isDisplayable).sort(alphabeticalSort);
   }
 
   @computed({ equals: comparer.shallow })
   get nonPmChannels(): Channel[] {
-    const sortedChannels: Channel[] = [];
-    this.channels.forEach((channel) => {
-      if (channel.type !== 'PM' && channel.isDisplayable) {
-        sortedChannels.push(channel);
-      }
-    });
-
-    return sortedChannels.sort((a, b) => {
-      if (a.name === b.name) {
-        return 0;
-      }
-
-      return a.name > b.name ? -1 : 1;
-    });
+    return [...(this.groupedChannels.PUBLIC ?? []), ...(this.groupedChannels.GROUP ?? [])].filter((channel) => channel.isDisplayable).sort(alphabeticalSort);
   }
 
   @computed({ equals: comparer.shallow })
   get pmChannels(): Channel[] {
-    const sortedChannels: Channel[] = [];
-    this.channels.forEach((channel) => {
-      if (channel.newPmChannel || (channel.type === 'PM' && channel.isDisplayable)) {
-        sortedChannels.push(channel);
-      }
-    });
-
-    return sortedChannels.sort((a, b) => {
+    return (this.groupedChannels.PM ?? []).filter((channel) => channel.newPmChannel || channel.isDisplayable).sort((a, b) => {
       // so 'new' channels always end up on top
       if (a.newPmChannel) return -1;
       if (b.newPmChannel) return 1;
@@ -215,7 +219,7 @@ export default class ChannelStore implements DispatchListener {
   @action
   updateWithPresence(presence: ChannelJson[]) {
     presence.forEach((json) => {
-      if (!skippedChannelTypes.has(json.type)) {
+      if (visibleChannelTypes.has(json.type)) {
         this.getOrCreate(json.channel_id).updatePresence(json);
       }
     });
