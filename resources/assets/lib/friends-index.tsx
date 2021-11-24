@@ -7,5 +7,5 @@ import * as React from 'react';
 import { parseJson } from 'utils/json';
 
 core.reactTurbolinks.register('friends-index', () => (
-  <Main friends={parseJson('json-users')} />
+  <Main friends={parseJson('json-users')} user={core.currentUserOrFail} />
 ));

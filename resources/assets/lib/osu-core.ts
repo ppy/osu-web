@@ -24,16 +24,10 @@ import ReferenceLinkTooltip from 'core/wiki/reference-link-tooltip';
 import WindowFocusObserver from 'core/window-focus-observer';
 import WindowSize from 'core/window-size';
 import CurrentUserJson from 'interfaces/current-user-json';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import NotificationsWorker from 'notifications/worker';
 import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
-
-declare global {
-  interface Window {
-    currentUser: CurrentUserJson;
-  }
-}
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
@@ -63,6 +57,15 @@ export default class OsuCore {
   readonly userVerification = new UserVerification();
   windowFocusObserver: WindowFocusObserver;
   readonly windowSize = new WindowSize();
+
+  @computed
+  get currentUserOrFail() {
+    if (this.currentUser == null) {
+      throw new Error('current user is null');
+    }
+
+    return this.currentUser;
+  }
 
   constructor() {
     // refresh current user on page reload (and initial page load)
@@ -96,10 +99,14 @@ export default class OsuCore {
   };
 
   @action
-  private setCurrentUser = (user: CurrentUserJson) => {
-    this.dataStore.userStore.getOrCreate(user.id, user);
-    this.socketWorker.setUserId(user.id);
-    this.currentUser = user.id == null ? undefined : user;
+  private setCurrentUser = (userOrEmpty: typeof window.currentUser) => {
+    const user = userOrEmpty.id == null ? undefined : userOrEmpty;
+
+    if (user != null) {
+      this.dataStore.userStore.getOrCreate(user.id, user);
+    }
+    this.socketWorker.setUserId(user?.id ?? null);
+    this.currentUser = user;
     this.userPreferences.setUser(this.currentUser);
   };
 }
