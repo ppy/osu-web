@@ -39,7 +39,7 @@ interface UserExtendedAdditionalAttributes {
   max_blocks: number;
   max_friends: number;
   occupation: string | null;
-  playmode: GameMode | null;
+  playmode: GameMode;
   playstyle: string[];
   post_count: number;
   profile_order: ProfileExtraPage[];
@@ -48,6 +48,7 @@ interface UserExtendedAdditionalAttributes {
   twitter: string | null;
   website: string | null;
 }
+
 type UserExtendedJson = UserJson & Required<Pick<UserJson, UserExtendedDefaultIncludes>> & UserExtendedAdditionalAttributes;
 
 export default UserExtendedJson;

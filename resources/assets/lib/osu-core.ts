@@ -23,7 +23,7 @@ import UserVerification from 'core/user/user-verification';
 import ReferenceLinkTooltip from 'core/wiki/reference-link-tooltip';
 import WindowFocusObserver from 'core/window-focus-observer';
 import WindowSize from 'core/window-size';
-import CurrentUser from 'interfaces/current-user';
+import CurrentUserJson from 'interfaces/current-user-json';
 import { action, makeObservable, observable } from 'mobx';
 import NotificationsWorker from 'notifications/worker';
 import SocketWorker from 'socket-worker';
@@ -31,7 +31,7 @@ import RootDataStore from 'stores/root-data-store';
 
 declare global {
   interface Window {
-    currentUser: CurrentUser;
+    currentUser: CurrentUserJson;
   }
 }
 
@@ -41,7 +41,7 @@ export default class OsuCore {
   readonly captcha = new Captcha();
   chatWorker: ChatWorker;
   readonly clickMenu = new ClickMenu();
-  @observable currentUser?: CurrentUser;
+  @observable currentUser?: CurrentUserJson;
   dataStore: RootDataStore;
   readonly enchant: Enchant;
   readonly forumPoll = new ForumPoll();
@@ -88,7 +88,7 @@ export default class OsuCore {
     makeObservable(this);
   }
 
-  private onCurrentUserUpdate = (event: unknown, user: CurrentUser) => {
+  private onCurrentUserUpdate = (event: unknown, user: CurrentUserJson) => {
     this.setCurrentUser(user);
   };
 
@@ -97,7 +97,7 @@ export default class OsuCore {
   };
 
   @action
-  private setCurrentUser = (user: CurrentUser) => {
+  private setCurrentUser = (user: CurrentUserJson) => {
     this.dataStore.userStore.getOrCreate(user.id, user);
     this.socketWorker.setUserId(user.id);
     this.currentUser = user.id == null ? undefined : user;

@@ -6,7 +6,7 @@ import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
-  country?: CountryJson;
+  country?: CountryJson | null;
   modifiers?: Modifiers;
 }
 
