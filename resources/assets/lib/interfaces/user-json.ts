@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import CountryJson from './country-json';
-import GameMode from './game-mode';
 import ProfileBannerJson from './profile-banner';
 import RankHistoryJson from './rank-history-json';
 import UserAccountHistoryJson from './user-account-history-json';
@@ -10,21 +9,12 @@ import UserAchievementJson from './user-achievement-json';
 import UserBadgeJson from './user-badge-json';
 import UserCoverJson from './user-cover-json';
 import UserGroupJson from './user-group-json';
+import UserMonthlyPlaycountJson from './user-monthly-playcount-json';
 import UserPreferencesJson from './user-preferences-json';
 import UserRelationJson from './user-relation-json';
+import UserReplaysWatchedCountJson from './user-replays-watched-count-json';
 import UserStatisticsJson from './user-statistics-json';
-
-interface UserMonthlyPlaycountJson {
-  count: number;
-  start_date: string;
-}
-
-type UserStatisticsRulesetsJson = Partial<Record<GameMode, UserStatisticsJson | null>>;
-
-interface UserReplaysWatchedCount {
-  count: number;
-  start_date: string;
-}
+import UserStatisticsRulesetsJson from './user-statistics-rulesets-json';
 
 interface UserJsonAvailableIncludes {
   account_history: UserAccountHistoryJson[];
@@ -61,7 +51,7 @@ interface UserJsonAvailableIncludes {
   previous_usernames: string[];
   rank_history: RankHistoryJson | null;
   ranked_beatmapset_count: number;
-  replays_watched_counts: UserReplaysWatchedCount[];
+  replays_watched_counts: UserReplaysWatchedCountJson[];
   scores_best_count: number;
   scores_first_count: number;
   scores_recent_count: number;
