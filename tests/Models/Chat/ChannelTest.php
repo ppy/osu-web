@@ -80,6 +80,11 @@ class ChannelTest extends TestCase
             'foe' => true,
         ]);
 
+        // reset caches from previous steps.
+        $user->refresh();
+        $otherUser->refresh();
+        app('OsuAuthorize')->resetCache();
+
         // this assertion to make sure the correct block direction is being tested.
         $this->assertTrue($user->hasBlocked($otherUser));
         $this->assertSame($canMessage, $channel->canMessage($user));
@@ -100,6 +105,11 @@ class ChannelTest extends TestCase
             'foe' => true,
         ]);
 
+        // reset caches from previous steps.
+        $user->refresh();
+        $otherUser->refresh();
+        app('OsuAuthorize')->resetCache();
+
         // this assertion to make sure the correct block direction is being tested.
         $this->assertTrue($otherUser->hasBlocked($user));
         $this->assertSame($canMessage, $channel->canMessage($user));
@@ -113,6 +123,8 @@ class ChannelTest extends TestCase
         $user = User::factory()->withGroup($group)->create();
         $otherUser = User::factory()->create(['pm_friends_only' => true]);
         $channel = $this->createChannel([$user, $otherUser], 'pm');
+
+        app('OsuAuthorize')->resetCache();
 
         $this->assertSame($canMessage, $channel->canMessage($user));
     }

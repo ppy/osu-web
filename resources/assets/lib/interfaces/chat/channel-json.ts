@@ -10,7 +10,6 @@ export default interface ChannelJson {
     last_read_id: number;
   };
   description?: string;
-  first_message_id?: number;
   icon?: string;
   last_message_id?: number;
   name: string;
