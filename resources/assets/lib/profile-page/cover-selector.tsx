@@ -10,8 +10,8 @@ import { nextVal } from 'utils/seq';
 import CoverSelection from './cover-selection';
 import CoverUploader from './cover-uploader';
 
-type DropOverlayState = 'hover' | '';
-type DropOverlayVisibility = 'hidden' | '';
+type DropOverlayState = 'hover' | undefined;
+type DropOverlayVisibility = 'hidden' | undefined;
 
 const coverIndexes = [...new Array(8)].map((_empty, i) => i.toString());
 
@@ -22,7 +22,7 @@ interface Props {
 
 @observer
 export default class CoverSelector extends React.Component<Props> {
-  @observable private dropOverlayState: DropOverlayState = '';
+  @observable private dropOverlayState: DropOverlayState;
   @observable private dropOverlayVisibility: DropOverlayVisibility = 'hidden';
   private readonly dropzoneRef = React.createRef<HTMLDivElement>();
   private readonly eventId = `users-show-cover-selector-${nextVal()}`;
@@ -95,11 +95,11 @@ export default class CoverSelector extends React.Component<Props> {
 
   @action
   private readonly dropOverlayLeave = () => {
-    this.dropOverlayState = '';
+    this.dropOverlayState = undefined;
   };
 
   @action
   private readonly dropOverlayStart = () => {
-    this.dropOverlayVisibility = '';
+    this.dropOverlayVisibility = undefined;
   };
 }
