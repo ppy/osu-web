@@ -44,14 +44,15 @@ export default class Message {
       persisted: true,
       senderId: json.sender_id,
       timestamp: json.timestamp,
-      uuid: osu.uuid(),
+      uuid: json.uuid ?? message.uuid,
     });
   }
 
   @action
-  persist(): Message {
+  persist(json: MessageJson) {
+    if (this.persisted) return;
+    this.messageId = json.message_id;
+    this.timestamp = json.timestamp;
     this.persisted = true;
-
-    return this;
   }
 }

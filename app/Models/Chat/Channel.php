@@ -5,9 +5,11 @@
 
 namespace App\Models\Chat;
 
+use App\Events\ChatChannelEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\ChannelMessage;
+use App\Libraries\Chat\MessageTask;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
@@ -34,6 +36,7 @@ class Channel extends Model
 {
     use Memoizes;
 
+    const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
     const PRELOADED_USERS_KEY = 'preloadedUsers';
 
     protected $primaryKey = 'channel_id';
@@ -103,6 +106,11 @@ class Channel extends Model
         return $channel;
     }
 
+    public static function getAckKey(int $channelId)
+    {
+        return "chat:channel:{$channelId}";
+    }
+
     /**
      * @param User $user1
      * @param User $user2
@@ -115,6 +123,13 @@ class Channel extends Model
         sort($userIds);
 
         return '#pm_'.implode('-', $userIds);
+    }
+
+    public function activeUserIds()
+    {
+        return $this->isPublic()
+            ? Redis::zrangebyscore(static::getAckKey($this->getKey()), now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
+            : $this->userIds();
     }
 
     /**
@@ -307,7 +322,7 @@ class Channel extends Model
         });
     }
 
-    public function receiveMessage(User $sender, ?string $content, bool $isAction = false)
+    public function receiveMessage(User $sender, ?string $content, bool $isAction = false, ?string $uuid = null)
     {
         $content = str_replace(["\r", "\n"], ' ', trim($content));
 
@@ -358,8 +373,8 @@ class Channel extends Model
             'timestamp' => $now,
         ]);
 
-        $message->sender()->associate($sender);
-        $message->channel()->associate($this);
+        $message->sender()->associate($sender)->channel()->associate($this)
+            ->uuid = $uuid; // relay any message uuid back.
         $message->save();
 
         $this->update(['last_message_id' => $message->getKey()]);
@@ -369,6 +384,8 @@ class Channel extends Model
         if ($userChannel) {
             $userChannel->markAsRead($message->message_id);
         }
+
+        MessageTask::dispatch($message);
 
         if ($this->isPM()) {
             $this->unhide();
@@ -385,7 +402,10 @@ class Channel extends Model
         $userChannel = $this->userChannelFor($user);
 
         if ($userChannel) {
+            // already in channel, just broadcast event.
             if (!$userChannel->isHidden()) {
+                event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
+
                 return;
             }
 
@@ -397,6 +417,8 @@ class Channel extends Model
             $userChannel->save();
             $this->resetMemoized();
         }
+
+        event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
 
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
     }
@@ -418,6 +440,8 @@ class Channel extends Model
         } else {
             $userChannel->delete();
         }
+
+        event(new ChatChannelEvent($userChannel->channel, $user, 'part'));
 
         Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
     }

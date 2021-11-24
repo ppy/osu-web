@@ -1,16 +1,17 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import EventJson from 'interfaces/event-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { snakeCase } from 'lodash';
 import ExtraHeader from 'profile-page/extra-header';
-import { Event, parseEvent } from 'profile-page/recent-activity-events';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { stripTags } from 'utils/html';
+import parseEvent from './parse-event';
 
 interface Props {
   name: string;
@@ -20,7 +21,7 @@ interface Props {
       loading: boolean;
     };
   };
-  recentActivity: Event[];
+  recentActivity: EventJson[];
   user: UserJson;
   withEdit: boolean;
 }
@@ -59,7 +60,7 @@ export default class RecentActivity extends React.PureComponent<Props> {
     );
   }
 
-  private renderEntry = (event: Event) => {
+  private renderEntry = (event: EventJson) => {
     const { badge, mappings } = parseEvent(event, 'recent-activity');
     if (mappings == null) return null;
 
