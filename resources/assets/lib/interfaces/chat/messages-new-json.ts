@@ -2,14 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJson from 'interfaces/user-json';
+import MessageJson from './message-json';
 
-export default interface MessageJson {
-  channel_id: number;
-  content: string;
-  is_action: boolean;
-  message_id: number;
-  sender?: UserJson;
-  sender_id: number;
-  timestamp: string;
-  uuid?: string | null;
+export default interface MessagesNewJson {
+  messages: MessageJson[];
+  users: UserJson[];
 }

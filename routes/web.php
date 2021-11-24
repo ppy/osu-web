@@ -168,9 +168,10 @@ Route::group(['middleware' => ['web']], function () {
         });
 
         Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
+            Route::post('ack', 'ChatController@ack')->name('ack');
             Route::post('new', 'ChatController@newConversation')->name('new');
-            Route::get('updates', 'ChatController@updates')->name('updates');
             Route::get('presence', 'ChatController@presence')->name('presence');
+            Route::get('updates', 'ChatController@updates')->name('updates');
             Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
                 Route::apiResource('{channel}/messages', 'Channels\MessagesController', ['only' => ['index', 'store']]);
                 Route::put('{channel}/users/{user}', 'ChannelsController@join')->name('join');

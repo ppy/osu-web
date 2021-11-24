@@ -82,9 +82,7 @@ class ChannelsController extends Controller
             abort(403);
         }
 
-        if (!$channel->hasUser($user)) {
-            $channel->addUser($user);
-        }
+        $channel->addUser(Auth::user());
 
         return json_item($channel, ChannelTransformer::forUser($user), ChannelTransformer::LISTING_INCLUDES);
     }
