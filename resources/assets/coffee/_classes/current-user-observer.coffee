@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { pull } from 'lodash'
 import core from 'osu-core-singleton'
 
 class window.CurrentUserObserver
@@ -52,9 +53,10 @@ class window.CurrentUserObserver
 
   updateFollowUserMapping: (_e, data) =>
     if data.following
-      currentUser.follow_user_mapping = currentUser.follow_user_mapping.concat(data.userId)
+      currentUser.follow_user_mapping.push(data.userId)
     else
-      currentUser.follow_user_mapping = _.without(currentUser.follow_user_mapping, data.userId)
+      pull(currentUser.follow_user_mapping, data.userId)
+
     core.currentUser.follow_user_mapping = currentUser.follow_user_mapping
 
     $.publish 'user:followUserMapping:refresh'
