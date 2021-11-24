@@ -28,6 +28,125 @@ class ChatController extends Controller
         return parent::__construct();
     }
 
+    public function ack()
+    {
+        Chat::ack(auth()->user());
+
+        $params = get_params(request()->all(), null, [
+            'history_since:int',
+            'since:int',
+        ], ['null_missing' => true]);
+
+        return [
+            'silences' => json_collection($this->getSilences($params['history_since'], $params['since']), new UserSilenceTransformer()),
+        ];
+    }
+
+    /**
+     * Create New PM
+     *
+     * This endpoint allows you to create a new PM channel.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field            | Type
+     * ---------------- | -----------------
+     * new_channel_id   | `channel_id` of newly created [ChatChannel](#chatchannel)
+     * presence         | array of [ChatChannel](#chatchannel)
+     * message          | the sent [ChatMessage](#chatmessage)
+     *
+     * <aside class="notice">
+     *   This endpoint will only allow the creation of PMs initially, group chat support will come later.
+     * </aside>
+     *
+     * @bodyParam target_id integer required `user_id` of user to start PM with
+     * @bodyParam message string required message to send
+     * @bodyParam is_action boolean required whether the message is an action
+     *
+     * @response {
+     *   "channel": [
+     *     {
+     *       "channel_id": 1234,
+     *       "current_user_attributes": {
+     *         "can_message": true,
+     *         "last_read_id": 9150005005
+     *       },
+     *       "name": "peppy",
+     *       "description": "",
+     *       "type": "PM",
+     *       "last_read_id": 9150005005,
+     *       "last_message_id": 9150005005
+     *     }
+     *   ],
+     *   "message": {
+     *     "message_id": 9150005005,
+     *     "sender_id": 102,
+     *     "channel_id": 1234,
+     *     "timestamp": "2018-07-06T06:33:42+00:00",
+     *     "content": "i can haz featured artist plz?",
+     *     "is_action": 0,
+     *     "sender": {
+     *       "id": 102,
+     *       "username": "nekodex",
+     *       "profile_colour": "#333333",
+     *       "avatar_url": "https://a.ppy.sh/102?1500537068",
+     *       "country_code": "AU",
+     *       "is_active": true,
+     *       "is_bot": false,
+     *       "is_online": true,
+     *       "is_supporter": true
+     *     }
+     *   },
+     *   "new_channel_id": 1234,
+     * }
+     */
+    public function newConversation()
+    {
+        $params = get_params(request()->all(), null, [
+            'is_action:bool',
+            'message',
+            'target_id:int',
+        ], ['null_missing' => true]);
+
+        $target = User::lookup($params['target_id'], 'id');
+        if ($target === null) {
+            abort(422, 'target user not found');
+        }
+
+        $sender = auth()->user();
+
+        /** @var Message $message */
+        $message = Chat::sendPrivateMessage(
+            $sender,
+            $target,
+            $params['message'],
+            $params['is_action']
+        );
+
+        $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ChannelTransformer::CONVERSATION_INCLUDES);
+
+        return [
+            'channel' => $channelJson,
+            'message' => json_item(
+                $message,
+                new MessageTransformer(),
+                ['sender']
+            ),
+            'new_channel_id' => $message->channel_id,
+        ];
+    }
+
+    // TODO: I don't think anything actually calls this?
+    /**
+     * @group Undocumented
+     */
+    public function presence()
+    {
+        return (new UserChannelList(auth()->user()))->get();
+    }
+
     /**
      * Get Updates
      *
@@ -218,107 +337,22 @@ class ChatController extends Controller
         return $hasAny ? $response : response()->noContent();
     }
 
-    /**
-     * @group Undocumented
-     */
-    public function presence()
+    private function getSilences(?int $lastHistoryId, ?int $since)
     {
-        return (new UserChannelList(auth()->user()))->get();
-    }
+        $silenceQuery = UserAccountHistory::bans()->limit(100);
 
-    /**
-     * Create New PM
-     *
-     * This endpoint allows you to create a new PM channel.
-     *
-     * ---
-     *
-     * ### Response Format
-     *
-     * Field            | Type
-     * ---------------- | -----------------
-     * new_channel_id   | `channel_id` of newly created [ChatChannel](#chatchannel)
-     * presence         | array of [ChatChannel](#chatchannel)
-     * message          | the sent [ChatMessage](#chatmessage)
-     *
-     * <aside class="notice">
-     *   This endpoint will only allow the creation of PMs initially, group chat support will come later.
-     * </aside>
-     *
-     * @bodyParam target_id integer required `user_id` of user to start PM with
-     * @bodyParam message string required message to send
-     * @bodyParam is_action boolean required whether the message is an action
-     *
-     * @response {
-     *   "channel": [
-     *     {
-     *       "channel_id": 1234,
-     *       "current_user_attributes": {
-     *         "can_message": true,
-     *         "last_read_id": 9150005005
-     *       },
-     *       "name": "peppy",
-     *       "description": "",
-     *       "type": "PM",
-     *       "last_read_id": 9150005005,
-     *       "last_message_id": 9150005005
-     *     }
-     *   ],
-     *   "message": {
-     *     "message_id": 9150005005,
-     *     "sender_id": 102,
-     *     "channel_id": 1234,
-     *     "timestamp": "2018-07-06T06:33:42+00:00",
-     *     "content": "i can haz featured artist plz?",
-     *     "is_action": 0,
-     *     "sender": {
-     *       "id": 102,
-     *       "username": "nekodex",
-     *       "profile_colour": "#333333",
-     *       "avatar_url": "https://a.ppy.sh/102?1500537068",
-     *       "country_code": "AU",
-     *       "is_active": true,
-     *       "is_bot": false,
-     *       "is_online": true,
-     *       "is_supporter": true
-     *     }
-     *   },
-     *   "new_channel_id": 1234,
-     * }
-     */
-    public function newConversation()
-    {
-        $params = get_params(request()->all(), null, [
-            'is_action:bool',
-            'message',
-            'target_id:int',
-        ], ['null_missing' => true]);
+        if ($lastHistoryId === null) {
+            $previousMessage = Message::where('message_id', '<=', $since)->last();
 
-        $target = User::lookup($params['target_id'], 'id');
-        if ($target === null) {
-            abort(422, 'target user not found');
+            if ($previousMessage === null) {
+                $silenceQuery->none();
+            } else {
+                $silenceQuery->where('timestamp', '>', $previousMessage->timestamp);
+            }
+        } else {
+            $silenceQuery->where('ban_id', '>', $lastHistoryId)->reorderBy('ban_id', 'DESC');
         }
 
-        $sender = auth()->user();
-
-        /** @var Message $message */
-        $message = Chat::sendPrivateMessage(
-            $sender,
-            $target,
-            $params['message'],
-            $params['is_action']
-        );
-
-        $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ChannelTransformer::CONVERSATION_INCLUDES);
-
-        return [
-            'channel' => $channelJson,
-            'message' => json_item(
-                $message,
-                new MessageTransformer(),
-                ['sender']
-            ),
-            'new_channel_id' => $message->channel_id,
-        ];
+        return $silenceQuery->get();
     }
 }

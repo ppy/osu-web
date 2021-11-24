@@ -33,7 +33,7 @@ core.reactTurbolinks.register('chat', action(() => {
       dataStore.channelStore.updateWithPresence(initial.presence);
     }
 
-    dataStore.channelStore.lastPolledMessageId = initial.last_message_id ?? 0;
+    dataStore.channelStore.lastReceivedMessageId = initial.last_message_id ?? 0;
   }
 
   let initialChannel = 0;
@@ -69,5 +69,5 @@ core.reactTurbolinks.register('chat', action(() => {
     void dataStore.chatState.selectChannel(initialChannel);
   }
 
-  return <MainView dataStore={core.dataStore} worker={core.chatWorker} />;
+  return <MainView dataStore={core.dataStore} />;
 }));

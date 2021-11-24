@@ -10,14 +10,29 @@ export type TopScoreSection = typeof topScoreSections[number];
 
 type ProfilePageIncludes =
   'account_history'
+  | 'active_tournament_banner'
+  | 'badges'
+  | 'beatmap_playcounts_count'
+  | 'comments_count'
+  | 'favourite_beatmapset_count'
+  | 'follower_count'
+  | 'graveyard_beatmapset_count'
+  | 'groups'
   | 'loved_beatmapset_count'
   | 'mapping_follower_count'
+  | 'monthly_playcounts'
+  | 'page'
   | 'pending_beatmapset_count'
+  | 'previous_usernames'
+  | 'rank_history'
   | 'ranked_beatmapset_count'
   | 'replays_watched_counts'
   | 'scores_best_count'
   | 'scores_first_count'
-  | 'scores_recent_count';
+  | 'scores_recent_count'
+  | 'statistics'
+  | 'support_level'
+  | 'user_achievements';
 
 export type ProfilePageUserJson = UserExtendedJson & Required<Pick<UserExtendedJson, ProfilePageIncludes>>;
 

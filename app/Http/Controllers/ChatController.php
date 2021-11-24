@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\Chat;
 use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
@@ -17,12 +18,19 @@ class ChatController extends Controller
     {
         $this->middleware('auth');
 
+        // TODO: notification server and chat client needs some updating
+        // to handle verification_requirement_change properly.
+        if (config('osu.user.post_action_verification')) {
+            $this->middleware('verify-user');
+        }
+
         return parent::__construct();
     }
 
     public function index()
     {
         $user = auth()->user();
+        Chat::ack($user);
 
         $json = [
             'last_message_id' => optional(Message::last())->getKey(),
