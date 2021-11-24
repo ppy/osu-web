@@ -13,7 +13,7 @@ import CoverUploader from './cover-uploader';
 type DropOverlayState = 'hover' | undefined;
 type DropOverlayVisibility = 'hidden' | undefined;
 
-const coverIndexes = [...new Array(8)].map((_empty, i) => i.toString());
+const coverIndexes = [...new Array(8)].map((_empty, i) => (i + 1).toString());
 
 interface Props {
   canUpload: boolean;
