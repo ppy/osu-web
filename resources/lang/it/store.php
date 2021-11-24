@@ -36,7 +36,7 @@ return [
         'title_compact' => 'pagamento',
 
         'has_pending' => [
-            '_' => 'Hai pagamenti incompleti, clicca :link per vederli.',
+            '_' => 'Hai dei pagamenti incompleti, clicca :link per vederli.',
             'link_text' => 'qui',
         ],
 

@@ -39,7 +39,7 @@ return [
 
     'mode' => [
         'artist' => 'Artiste/Album',
-        'chart' => 'En avant',
+        'chart' => 'Spotlights',
         'standard' => 'Standard',
         'theme' => 'Thème',
     ],

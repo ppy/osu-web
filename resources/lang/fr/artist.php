@@ -31,7 +31,7 @@ return [
         '_' => 'Titres',
         'count' => ':count titre|:count titres',
         'original' => 'osu! original',
-        'original_badge' => '',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'recherche de musiques',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Recherche Avancée',
+                'album' => 'Album',
+                'artist' => 'Artiste',
+                'bpm_gte' => 'BPM Minimum',
+                'bpm_lte' => 'BPM Maximum',
+                'empty' => 'Aucune musique correspondant aux critères de recherche n\'a été trouvée.',
+                'genre' => 'Genre',
+                'genre_all' => 'Tout',
+                'length_gte' => 'Durée minimale',
+                'length_lte' => 'Durée maximale',
             ],
         ],
     ],

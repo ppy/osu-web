@@ -5,8 +5,8 @@
 
 namespace App\Models\LegacyMatch;
 
+use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
-use App\Traits\WithDbCursorHelper;
 use Cache;
 
 /**

@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'Échec pendant l\'actualisation du vote',
+            'error' => 'Impossible de modifier le vote',
         ],
     ],
 
@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'refuser le kudosu',
         'edit' => 'éditer',
         'edited' => 'Dernière modification par :editor il y a :update_time.',
-        'guest' => 'Difficulté de l\'invité par :user',
+        'guest' => 'Guest difficulty par :user',
         'kudosu_denied' => 'Le kudosu a été refusé pour ce post.',
         'message_placeholder_deleted_beatmap' => 'Cette difficulté a été supprimée, il n\'est plus possible d\'en discuter.',
         'message_placeholder_locked' => 'La discussion pour cette beatmap a été désactivée.',
@@ -105,7 +105,7 @@ return [
                 'unsaved' => 'Non sauvegardé',
                 'timestamp' => [
                     'all-diff' => 'Les messages sur "Toutes les difficultés" ne peuvent pas être horodatés.',
-                    'diff' => 'Si :type commence par un horodatage, il sera affiché sous la chronologie.',
+                    'diff' => 'Si :type commence par un timestamp, il sera affiché sous la timeline.',
                 ],
             ],
             'insert-block' => [
@@ -180,7 +180,7 @@ return [
         'disqualification_prompt' => 'Raison de la disqualification ?',
         'disqualified_at' => 'disqualifiée :time_ago (:reason).',
         'disqualified_no_reason' => 'aucune raison spécifiée',
-        'disqualify' => 'Disqualifiée',
+        'disqualify' => 'Disqualifier',
         'incorrect_state' => 'Une erreur s\'est produite, essayez de rafraîchir la page.',
         'love' => 'Aimer',
         'love_choose' => 'Choisissez la difficulté pour loved',
@@ -194,7 +194,7 @@ return [
         'required_text' => 'Nominations: :current/:required',
         'reset_message_deleted' => 'supprimée',
         'title' => 'Statut de la nomination',
-        'unresolved_issues' => 'Il y a encore des questions non résolues qui doivent être traitées en priorité.',
+        'unresolved_issues' => 'Il y a encore des problèmes non résolus qui doivent être traités en priorité.',
 
         'rank_estimate' => [
             '_' => 'Cette beatmap devrait être classée le :date si aucun problème n\'est trouvé. Elle est #:position dans la :queue.',
@@ -204,7 +204,7 @@ return [
 
         'reset_at' => [
             'nomination_reset' => 'Le processus de nomination a été réinitialisé :time_ago par :user avec le nouveau problème :discussion (:message).',
-            'disqualify' => 'Disqualifiée le :time_ago par :user avec le nouveau problème :discussion (:message).',
+            'disqualify' => 'Disqualifiée :time_ago par :user avec le nouveau problème :discussion (:message).',
         ],
 
         'reset_confirm' => [
@@ -253,7 +253,7 @@ return [
     'general' => [
         'converts' => 'Inclure les beatmaps converties',
         'featured_artists' => 'Featured artists',
-        'follows' => 'Mappeurs abonnés',
+        'follows' => 'Mappeurs suivis',
         'recommended' => 'Difficulté recommandée',
     ],
     'mode' => [
@@ -347,8 +347,8 @@ return [
         'unplayed' => 'Non jouée',
     ],
     'extra' => [
-        'video' => 'Possède une vidéo',
-        'storyboard' => 'Possède un storyboard',
+        'video' => 'Avec vidéo',
+        'storyboard' => 'Avec storyboard',
     ],
     'rank' => [
         'any' => 'Tous',

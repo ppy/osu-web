@@ -302,7 +302,7 @@ return [
                 'title' => 'Mitalit',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Moninpelejä',
             ],
             'posts' => [
                 'title' => 'Julkaisut',

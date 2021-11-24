@@ -174,7 +174,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Загрузка доступна только :link',
-                        'link' => 'приобретшим тег osu!supporter',
+                        'link' => 'с тегом osu!supporter',
                     ],
                 ],
             ],
@@ -208,7 +208,7 @@ return [
                     'title' => 'Любимые карты',
                 ],
                 'pending' => [
-                    'title' => 'Ожидающие',
+                    'title' => 'На рассмотрении',
                 ],
                 'ranked' => [
                     'title' => 'Рейтинговые и одобренные карты',

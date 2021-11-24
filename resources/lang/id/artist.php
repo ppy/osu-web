@@ -31,7 +31,7 @@ return [
         '_' => 'Lagu',
         'count' => ':count lagu',
         'original' => 'osu! original',
-        'original_badge' => '',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'pencarian lagu',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Pencarian Lanjutan',
+                'album' => 'Album',
+                'artist' => 'Artis',
+                'bpm_gte' => 'BPM Minimal',
+                'bpm_lte' => 'BPM Maksimal',
+                'empty' => 'Tidak ada lagu yang cocok dengan kriteria pencarian Anda.',
+                'genre' => 'Aliran',
+                'genre_all' => 'Semua',
+                'length_gte' => 'Durasi Minimal',
+                'length_lte' => 'Durasi Maksimal',
             ],
         ],
     ],

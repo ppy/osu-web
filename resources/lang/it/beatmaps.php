@@ -55,7 +55,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Questo post andrà nella discussione generale del beatmapset. Per moddare questa beatmap, inizia il tuo messaggio con un timestamp (es. 00:12:345).',
+            'in_general' => 'Questo post andrà nella discussione generale della beatmap. Per moddare questa beatmap, inizia il tuo messaggio con un timestamp (es. 00:12:345).',
             'in_timeline' => 'Per moddare più timestamp, posta più volte (un post per timestamp).',
         ],
 
@@ -272,7 +272,7 @@ return [
         'leaderboard' => 'Con classifica',
         'loved' => 'Amate',
         'mine' => 'Le mie mappe',
-        'pending' => 'In Attesa & WIP',
+        'pending' => 'In Attesa',
         'qualified' => 'Qualificate',
         'ranked' => 'Classificate',
     ],

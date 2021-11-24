@@ -169,9 +169,9 @@ return [
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'La page de l\'utilisateur est verrouillée.',
+                'locked' => 'La page utilisateur est verrouillée.',
                 'not_owner' => 'Vous ne pouvez éditer que votre propre page, pas celle d\'autres utilisateurs.',
-                'require_supporter_tag' => 'le tag osu!supporter est requis.',
+                'require_supporter_tag' => 'vous devez être un osu!supporter.',
             ],
         ],
     ],
