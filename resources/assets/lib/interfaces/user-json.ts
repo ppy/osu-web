@@ -6,17 +6,13 @@ import GameMode from './game-mode';
 import ProfileBannerJson from './profile-banner';
 import RankHistoryJson from './rank-history-json';
 import UserAccountHistoryJson from './user-account-history-json';
+import UserAchievementJson from './user-achievement-json';
 import UserBadgeJson from './user-badge-json';
 import UserCoverJson from './user-cover-json';
 import UserGroupJson from './user-group-json';
 import UserPreferencesJson from './user-preferences-json';
 import UserRelationJson from './user-relation-json';
 import UserStatisticsJson from './user-statistics-json';
-
-interface UserAchievementJson {
-  achieved_at: string;
-  achievement_id: number;
-}
 
 interface UserMonthlyPlaycountJson {
   count: number;
