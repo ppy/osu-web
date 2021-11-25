@@ -3,6 +3,6 @@
 
 export const gameModes = ['osu', 'taiko', 'fruits', 'mania'] as const;
 
-type GameMode = typeof gameModes[number]
+type GameMode = typeof gameModes[number];
 
 export default GameMode;
