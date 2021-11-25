@@ -15,6 +15,7 @@ import Rank from 'profile-page/rank';
 import RankChart from 'profile-page/rank-chart';
 import RankCount from 'profile-page/rank-count';
 import * as React from 'react';
+import { ProfilePageUserJson } from './extra-page-props';
 
 type Props = {
   stats: UserStatisticsJson;
@@ -26,7 +27,7 @@ type Props = {
 } | {
   stats: UserStatisticsJson;
   type: 'user';
-  user: UserExtendedJson;
+  user: ProfilePageUserJson;
   userAchievements: UserAchievementJson[];
 };
 
