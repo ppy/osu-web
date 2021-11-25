@@ -1,31 +1,50 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import MedalsCount from 'profile-page/medals-count'
-import PlayTime from 'profile-page/play-time'
-import Pp from 'profile-page/pp'
-import Rank from 'profile-page/rank'
-import RankChart from 'profile-page/rank-chart'
-import * as React from 'react'
-import { div } from 'react-dom-factories'
-el = React.createElement
+import RankHistoryJson from 'interfaces/rank-history-json';
+import UserAchievementJson from 'interfaces/user-achievement-json';
+import UserStatisticsJson from 'interfaces/user-statistics-json';
+import * as React from 'react';
+import MedalsCount from './medals-count';
+import PlayTime from './play-time';
+import Pp from './pp';
+import Rank from './rank';
+import RankChart from './rank-chart';
 
+interface Props {
+  rankHistory: RankHistoryJson;
+  stats: UserStatisticsJson;
+  userAchievements: UserAchievementJson[];
+}
 
-export class DetailMobile extends React.PureComponent
-  render: =>
-    div className: 'profile-detail-mobile',
-      if @props.stats.is_ranked
-        div className: 'profile-detail-mobile__item profile-detail-mobile__item--rank-chart',
-          el RankChart,
-            rankHistory: @props.rankHistory
-            stats: @props.stats
-      div className: 'profile-detail-mobile__item',
-        el Rank, type: 'global', stats: @props.stats
-      div className: 'profile-detail-mobile__item',
-        el Rank, type: 'country', stats: @props.stats
-      div className: 'profile-detail-mobile__item',
-        el PlayTime, stats: @props.stats
-      div className: 'profile-detail-mobile__item profile-detail-mobile__item--half',
-        el MedalsCount, userAchievements: @props.userAchievements
-      div className: 'profile-detail-mobile__item profile-detail-mobile__item--half',
-        el Pp, stats: @props.stats
+export default class DetailMobile extends React.PureComponent<Props> {
+  render() {
+    return (
+      <div className='profile-detail-mobile'>
+        {this.props.stats.is_ranked &&
+          <div className='profile-detail-mobile__item profile-detail-mobile__item--rank-chart'>
+            <RankChart
+              rankHistory={this.props.rankHistory}
+              stats={this.props.stats}
+            />
+          </div>
+        }
+        <div className='profile-detail-mobile__item'>
+          <Rank stats={this.props.stats} type='global' />
+        </div>
+        <div className='profile-detail-mobile__item'>
+          <Rank stats={this.props.stats} type='country' />
+        </div>
+        <div className='profile-detail-mobile__item'>
+          <PlayTime stats={this.props.stats} />
+        </div>
+        <div className='profile-detail-mobile__item profile-detail-mobile__item--half'>
+          <MedalsCount userAchievements={this.props.userAchievements} />
+        </div>
+        <div className='profile-detail-mobile__item profile-detail-mobile__item--half'>
+          <Pp stats={this.props.stats} />
+        </div>
+      </div>
+    );
+  }
+}
