@@ -3,7 +3,7 @@
 
 import { Header } from './header'
 import { Historical } from './historical'
-import { Medals } from './medals'
+import Medals from 'profile-page/medals'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
 import AccountStanding from 'profile-page/account-standing'
