@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import GameMode from 'interfaces/game-mode';
+import RankHistoryJson from 'interfaces/rank-history-json';
 import UserJson from 'interfaces/user-json';
 
 export type ProfileExtraPage =
@@ -41,6 +42,7 @@ export default interface UserExtendedJson extends UserJson {
   playstyle: string[];
   post_count: number;
   profile_order: ProfileExtraPage[];
+  rank_history: RankHistoryJson;
   title: string | null;
   title_url: string | null;
   twitter: string | null;
