@@ -5,6 +5,7 @@
 
 namespace App\Libraries;
 
+use App\Events\ChatChannelEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
@@ -33,12 +34,12 @@ class Chat
     {
         priv_check_user($sender, 'ChatBroadcast')->ensureCan();
 
-        $targets = User::whereIn('user_id', $targetIds)->pluck('user_id');
-        if ($targets->isEmpty()) {
+        $users = User::whereIn('user_id', $targetIds)->get();
+        if ($users->isEmpty()) {
             throw new InvariantException('Nobody to broadcast to!');
         }
 
-        $targets->push($sender->getKey());
+        $users = $users->push($sender)->uniqueStrict('user_id');
 
         $channel = new Channel([
             'description' => 'announcements',
@@ -47,9 +48,9 @@ class Chat
             'type' => 'BROADCAST',
         ]);
 
-        return $channel->getConnection()->transaction(function () use ($channel, $sender, $targets, $message, $uuid) {
+        $message = $channel->getConnection()->transaction(function () use ($channel, $sender, $message, $users, $uuid) {
             $channel->save();
-            $channel->userChannels()->createMany($targets->map(fn ($target) => ['user_id' => $target]));
+            $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
 
             $ret = static::sendMessage($sender, $channel, $message, false, $uuid);
 
@@ -57,6 +58,13 @@ class Chat
 
             return $ret;
         });
+
+        // TODO: this event should be sent before the message.
+        foreach ($users as $user) {
+            event(new ChatChannelEvent($channel, $user, 'join'));
+        }
+
+        return $message;
     }
 
     // Do the restricted user lookup before calling this.
