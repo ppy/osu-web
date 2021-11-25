@@ -50,19 +50,22 @@ class Chat
 
         $message = $channel->getConnection()->transaction(function () use ($channel, $sender, $message, $users, $uuid) {
             $channel->save();
-            $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
+            $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
+            foreach ($userChannels as $userChannel) {
+                // preset to avoid extra queries during permission check.
+                $userChannel->setRelation('channel', $channel);
+                $userChannel->channel->setUserChannel($userChannel);
+            }
 
-            $ret = static::sendMessage($sender, $channel, $message, false, $uuid);
-
-            Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
-
-            return $ret;
+            return static::sendMessage($sender, $channel, $message, false, $uuid);
         });
 
         // TODO: this event should be sent before the message.
         foreach ($users as $user) {
             event(new ChatChannelEvent($channel, $user, 'join'));
         }
+
+        Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
 
         return $message;
     }
