@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import * as d3 from 'd3';
 import LineChart, { makeOptionsNumber } from 'charts/line-chart';
+import { scaleLinear, scaleLog } from 'd3';
 import RankHistoryJson from 'interfaces/rank-history-json';
 import UserStatisticsJson from 'interfaces/user-statistics-json';
 import { last } from 'lodash';
@@ -25,8 +25,8 @@ const options = makeOptionsNumber({
   marginRight: 15,
   marginTop: 15,
   modifiers: 'profile-page',
-  scaleX: d3.scaleLinear(),
-  scaleY: d3.scaleLog(),
+  scaleX: scaleLinear(),
+  scaleY: scaleLog(),
 });
 
 function formatX(d: number) {
