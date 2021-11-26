@@ -3,12 +3,12 @@
 
 import { CoverSelector } from './cover-selector'
 import { DetailMobile } from './detail-mobile'
-import { GameModeSwitcher } from './game-mode-switcher'
 import * as React from 'react'
 import HeaderV4 from 'header-v4'
 import Img2x from 'img2x'
 import Badges from 'profile-page/badges'
 import Detail from 'profile-page/detail'
+import GameModeSwitcher from 'profile-page/game-mode-switcher'
 import HeaderInfo from 'profile-page/header-info'
 import headerLinks from 'profile-page/header-links'
 import Links from 'profile-page/links'
