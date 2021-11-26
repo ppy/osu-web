@@ -31,37 +31,6 @@ class Chat
         $transaction->exec();
     }
 
-    /**
-     * Creates a chat broadcast Channel and associated UserChannels.
-     *
-     * @param Collection $users
-     * @param array $rawParams
-     * @return Channel
-     */
-    public static function createBroadcastChannel(Collection $users, array $rawParams): Channel
-    {
-        $params = get_params($rawParams, 'channel', [
-            'description:string',
-            'name:string',
-        ], ['null_missing' => true]);
-
-        $params['moderated'] = true;
-        $params['type'] = 'BROADCAST';
-
-        $channel = new Channel($params);
-        $channel->getConnection()->transaction(function () use ($channel, $users) {
-            $channel->save();
-            $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
-            foreach ($userChannels as $userChannel) {
-                // preset to avoid extra queries during permission check.
-                $userChannel->setRelation('channel', $channel);
-                $userChannel->channel->setUserChannel($userChannel);
-            }
-        });
-
-        return $channel;
-    }
-
     public static function createBroadcast(User $sender, array $rawParams, ?string $uuid = null)
     {
         priv_check_user($sender, 'ChatBroadcast')->ensureCan();
@@ -88,7 +57,7 @@ class Chat
         $users = $users->push($sender)->uniqueStrict('user_id');
 
         $channel = (new Channel())->getConnection()->transaction(function () use ($sender, $params, $users, $uuid) {
-            $channel = static::createBroadcastChannel($users, $params['channel']);
+            $channel = Channel::createBroadcastChannel($users, $params['channel']);
             static::sendMessage($sender, $channel, $params['message'], false, $uuid);
 
             return $channel;

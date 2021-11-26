@@ -63,6 +63,37 @@ class Channel extends Model
         'group' => 'GROUP',
     ];
 
+    /**
+     * Creates a chat broadcast Channel and associated UserChannels.
+     *
+     * @param Collection $users
+     * @param array $rawParams
+     * @return Channel
+     */
+    public static function createBroadcast(Collection $users, array $rawParams): self
+    {
+        $params = get_params($rawParams, 'channel', [
+            'description:string',
+            'name:string',
+        ], ['null_missing' => true]);
+
+        $params['moderated'] = true;
+        $params['type'] = static::TYPES['broadcast'];
+
+        $channel = new static($params);
+        $channel->getConnection()->transaction(function () use ($channel, $users) {
+            $channel->save();
+            $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
+            foreach ($userChannels as $userChannel) {
+                // preset to avoid extra queries during permission check.
+                $userChannel->setRelation('channel', $channel);
+                $userChannel->channel->setUserChannel($userChannel);
+            }
+        });
+
+        return $channel;
+    }
+
     public static function createMultiplayer(Room $room)
     {
         if (!$room->exists) {
