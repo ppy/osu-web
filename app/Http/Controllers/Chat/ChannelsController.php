@@ -253,10 +253,7 @@ class ChannelsController extends Controller
                 $channel->addUser($sender);
             }
         } else if ($params['type'] === Channel::TYPES['broadcast']) {
-            abort_if($params['target_ids'] === null, 422, 'missing target_ids parameter');
-            abort_if($params['channel'] === null, 422, 'missing channel parameter');
-
-            $channel = Chat::createBroadcast($sender, $params['target_ids'], $params);
+            $channel = Chat::createBroadcast($sender, $params);
         }
 
         if (isset($channel)) {

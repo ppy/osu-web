@@ -30,11 +30,23 @@ class Chat
         $transaction->exec();
     }
 
-    public static function createBroadcast(User $sender, array $targetIds, array $rawParams = [], ?string $uuid = null)
+    public static function createBroadcast(User $sender, array $rawParams, ?string $uuid = null)
     {
         priv_check_user($sender, 'ChatBroadcast')->ensureCan();
 
-        $message = $rawParams['message'] ?? null;
+        $params = get_params($rawParams, null, [
+            'message:string',
+            'target_ids:int[]',
+        ], ['null_missing' => true]);
+
+        if (!isset($params['target_ids'])) {
+            throw new InvariantException('missing target_ids parameter');
+        }
+
+        if (!isset($rawParams['channel'])) {
+            throw new InvariantException('missing channel parameter');
+        }
+
         $channelParams = get_params($rawParams, 'channel', [
             'description:string',
             'name:string',
@@ -43,7 +55,7 @@ class Chat
         $channelParams['moderated'] = true;
         $channelParams['type'] = 'BROADCAST';
 
-        $users = User::whereIn('user_id', $targetIds)->get();
+        $users = User::whereIn('user_id', $params['target_ids'])->get();
         if ($users->isEmpty()) {
             throw new InvariantException('Nobody to broadcast to!');
         }
@@ -52,7 +64,7 @@ class Chat
 
         $channel = new Channel($channelParams);
 
-        $channel->getConnection()->transaction(function () use ($channel, $sender, $message, $users, $uuid) {
+        $channel->getConnection()->transaction(function () use ($channel, $sender, $params, $users, $uuid) {
             $channel->save();
             $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
             foreach ($userChannels as $userChannel) {
@@ -61,7 +73,7 @@ class Chat
                 $userChannel->channel->setUserChannel($userChannel);
             }
 
-            static::sendMessage($sender, $channel, $message, false, $uuid);
+            static::sendMessage($sender, $channel, $params['message'], false, $uuid);
         });
 
         // TODO: this event should be sent before the message.
