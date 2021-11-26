@@ -835,7 +835,7 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkChatBroadcast(?User $user, Channel $channel): string
+    public function checkChatBroadcast(?User $user): string
     {
         $prefix = 'chat.';
 
