@@ -1,7 +1,24 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { pointer, bisector, ScaleTime, ScaleContinuousNumeric, CurveFactory, scaleTime, scaleLinear, axisBottom, axisLeft, curveMonotoneX, Selection, Axis, Line, select, extent, line } from 'd3';
+import {
+  Axis,
+  axisBottom,
+  axisLeft,
+  bisector,
+  CurveFactory,
+  curveMonotoneX,
+  extent,
+  Line,
+  line,
+  pointer,
+  ScaleContinuousNumeric,
+  scaleLinear,
+  ScaleTime,
+  scaleTime,
+  select,
+  Selection,
+} from 'd3';
 import core from 'osu-core-singleton';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { fadeIn, fadeOut } from 'utils/fade';
