@@ -90,7 +90,7 @@ export default class LineChart<X extends Date | number> {
   private readonly svgWrapper: Selection<SVGGElement, unknown, null, undefined>;
   private width = 0;
 
-  constructor(area: HTMLElement, private options: Options<X>) {
+  constructor(area: HTMLElement, public options: Options<X>) {
     this.area = select(area)
       .classed(classWithModifiers(bn, this.options.modifiers), true);
 
