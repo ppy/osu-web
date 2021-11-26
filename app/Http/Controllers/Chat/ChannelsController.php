@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers\Chat;
 
+use App\Libraries\Chat;
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
@@ -230,14 +231,18 @@ class ChannelsController extends Controller
     public function store()
     {
         $params = get_params(request()->all(), null, [
+            'channel:any',
+            'message:string',
             'target_id:int',
+            'target_ids:int[]',
             'type:string',
         ], ['null_missing' => true]);
 
         $sender = auth()->user();
-        abort_if($params['target_id'] === null, 422, 'missing target_id parameter');
 
         if ($params['type'] === Channel::TYPES['pm']) {
+            abort_if($params['target_id'] === null, 422, 'missing target_id parameter');
+
             $target = User::findOrFail($params['target_id']);
 
             priv_check('ChatPmStart', $target)->ensureCan();
@@ -247,6 +252,12 @@ class ChannelsController extends Controller
             if ($channel->exists) {
                 $channel->addUser($sender);
             }
+        } else if ($params['type'] === Channel::TYPES['broadcast']) {
+            abort_if($params['target_ids'] === null, 422, 'missing target_ids parameter');
+            abort_if($params['channel'] === null, 422, 'missing channel parameter');
+
+            $message = Chat::createBroadcast($sender, $params['target_ids'], $params['message'], $params['channel']);
+            $channel = $message->channel;
         }
 
         if (isset($channel)) {

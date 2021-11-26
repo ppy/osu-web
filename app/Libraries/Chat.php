@@ -30,9 +30,18 @@ class Chat
         $transaction->exec();
     }
 
-    public static function createBroadcast(User $sender, array $targetIds, ?string $message = null, ?string $uuid = null)
+    public static function createBroadcast(User $sender, array $targetIds, ?string $message, array $rawParams = [], ?string $uuid = null)
     {
         priv_check_user($sender, 'ChatBroadcast')->ensureCan();
+
+        $params = get_params($rawParams, null, [
+            'description:string',
+            'name:string',
+        ], ['null_missing' => true]);
+
+        $params['moderated'] = true;
+        $params['type'] = 'BROADCAST';
+
 
         $users = User::whereIn('user_id', $targetIds)->get();
         if ($users->isEmpty()) {
@@ -41,12 +50,7 @@ class Chat
 
         $users = $users->push($sender)->uniqueStrict('user_id');
 
-        $channel = new Channel([
-            'description' => 'announcements',
-            'moderated' => true,
-            'name' => 'broadcast channel',
-            'type' => 'BROADCAST',
-        ]);
+        $channel = new Channel($params);
 
         $message = $channel->getConnection()->transaction(function () use ($channel, $sender, $message, $users, $uuid) {
             $channel->save();
