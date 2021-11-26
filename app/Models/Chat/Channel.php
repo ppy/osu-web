@@ -14,6 +14,7 @@ use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
 use App\Traits\Memoizes;
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
 use Illuminate\Support\Collection;
@@ -34,7 +35,7 @@ use LaravelRedis as Redis;
  */
 class Channel extends Model
 {
-    use Memoizes;
+    use Memoizes, Validatable;
 
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
     const PRELOADED_USERS_KEY = 'preloadedUsers';
@@ -82,7 +83,7 @@ class Channel extends Model
 
         $channel = new static($params);
         $channel->getConnection()->transaction(function () use ($channel, $users) {
-            $channel->save();
+            $channel->saveOrExplode();
             $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
             foreach ($userChannels as $userChannel) {
                 // preset to avoid extra queries during permission check.
@@ -116,7 +117,7 @@ class Channel extends Model
         ]);
 
         $channel->getConnection()->transaction(function () use ($channel, $user1, $user2) {
-            $channel->save();
+            $channel->saveOrExplode();
             $channel->addUser($user1);
             $channel->addUser($user2);
             $channel->pmUsers = collect([$user1, $user2]);
@@ -331,6 +332,21 @@ class Channel extends Model
         }
     }
 
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
+
+        if (mb_strlen(trim($this->name)) === 0) {
+            $this->validationErrors()->add('name', 'required');
+        }
+
+        if (mb_strlen(trim($this->description)) === 0) {
+            $this->validationErrors()->add('description', 'required');
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
     public function getRoomIdAttribute()
     {
         // 9 = strlen('#lazermp_')
@@ -492,6 +508,11 @@ class Channel extends Model
         ])->exists();
     }
 
+    public function save(array $options = [])
+    {
+        return $this->isValid() && parent::save($options);
+    }
+
     public function setUserChannel(UserChannel $userChannel)
     {
         if ($userChannel->channel_id !== $this->getKey()) {
@@ -499,6 +520,11 @@ class Channel extends Model
         }
 
         $this->preloadedUserChannels[$userChannel->user_id] = $userChannel;
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'chat.channel';
     }
 
     private function unhide()
