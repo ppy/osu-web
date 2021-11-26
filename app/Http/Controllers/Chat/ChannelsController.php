@@ -230,7 +230,7 @@ class ChannelsController extends Controller
     public function store()
     {
         $params = get_params(request()->all(), null, [
-            'target_id:number',
+            'target_id:int',
             'type:string',
         ], ['null_missing' => true]);
 
