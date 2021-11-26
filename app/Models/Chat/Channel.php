@@ -72,7 +72,7 @@ class Channel extends Model
      */
     public static function createBroadcast(Collection $users, array $rawParams): self
     {
-        $params = get_params($rawParams, 'channel', [
+        $params = get_params($rawParams, null, [
             'description:string',
             'name:string',
         ], ['null_missing' => true]);
