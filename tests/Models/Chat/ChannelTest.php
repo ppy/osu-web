@@ -129,6 +129,19 @@ class ChannelTest extends TestCase
         $this->assertSame($canMessage, $channel->canMessage($user));
     }
 
+    public function testCreateBroadcastChannel()
+    {
+        $users = User::factory()->count(2)->create();
+
+        $channel = Channel::createBroadcast($users, ['description' => 'channel', 'name' => 'the best']);
+
+        $channel = $channel->fresh();
+
+        $this->assertEmpty($users->diff($channel->users()), 'created channel has too many users.');
+        $this->assertEmpty($channel->users()->diff($users), 'created channel is missing users.');
+        $this->assertSame(Channel::TYPES['broadcast'], $channel->type);
+    }
+
     public function testPmChannelIcon()
     {
         Storage::fake('local-avatar');
