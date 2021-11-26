@@ -33,12 +33,6 @@ declare const Lang: LangClass;
 declare const fallbackLocale: string;
 declare const currentLocale: string;
 
-declare class LineChart {
-  loadData: (data: { x: number; y: number }[]) => void;
-  resize: () => void;
-  constructor(area: HTMLElement, options: Record<string, unknown>);
-}
-
 // Global object types
 interface Comment {
   id: number;

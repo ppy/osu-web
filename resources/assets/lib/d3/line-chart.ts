@@ -1,258 +1,360 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as d3 from 'd3'
+import { pointer, bisector, ScaleTime, ScaleContinuousNumeric, CurveFactory, scaleTime, scaleLinear, axisBottom, axisLeft, curveMonotoneX, Selection, Axis, Line, select, extent, line } from 'd3';
+import core from 'osu-core-singleton';
+import { classWithModifiers, Modifiers } from 'utils/css';
+import { fadeIn, fadeOut } from 'utils/fade';
 
-bn = 'line-chart'
+const bn = 'line-chart';
 
-export default class LineChart
-  constructor: (area, @options = {}) ->
-    @margins =
-      top: 20
-      right: 20
-      bottom: 50
-      left: 60
+type ScaleOf<T extends Date | number> = T extends Date ? ScaleTime<number, number> : ScaleContinuousNumeric<number, number>;
 
-    _.assign @margins, @options.margins
+interface Options<X extends Date | number> {
+  axisLabels: boolean;
+  circleLine: boolean;
+  curve: CurveFactory;
+  formatX: (d: X) => string;
+  formatY: (d: number) => string;
+  infoBoxFormatX: (d: X) => string;
+  infoBoxFormatY: (d: number) => string;
+  marginBottom: number;
+  marginLeft: number;
+  marginRight: number;
+  marginTop: number;
+  modifiers?: Modifiers;
+  scaleX: ScaleOf<X>;
+  scaleY: ScaleContinuousNumeric<number, number>;
+  ticksX?: number;
+  tickValuesX?: X[] | null;
+}
 
-    @id = Math.floor(Math.random() * 1000)
-    @options.scales ?= {}
-    @options.scales.x ?= d3.scaleTime()
-    @options.scales.y ?= d3.scaleLinear()
-    @options.circleLine ?= false
-    @options.axisLabels ?= true
+function defaultFormatter(d: Date | number) {
+  return d.toString();
+}
 
-    @area = d3.select(area)
-      .classed _exported.classWithModifiers(bn, @options.modifiers), true
+export function makeOptionsDate(options: Partial<Options<Date>>): Options<Date> {
+  return {
+    ...makeSharedDefaultOptions(options),
+    scaleX: options.scaleX ?? scaleTime(),
+  };
+}
+export function makeOptionsNumber(options: Partial<Options<number>>): Options<number> {
+  return {
+    ...makeSharedDefaultOptions(options),
+    scaleX: options.scaleX ?? scaleLinear(),
+  };
+}
 
-    @svg = @area.append 'svg'
+function makeSharedDefaultOptions<X extends Date | number>(options: Partial<Options<X>>): Omit<Options<X>, 'scaleX'> {
+  return {
+    axisLabels: options.axisLabels ?? true,
+    circleLine: options.circleLine ?? false,
+    curve: options.curve ?? curveMonotoneX,
+    formatX: options.formatX ?? defaultFormatter,
+    formatY: options.formatY ?? defaultFormatter,
+    infoBoxFormatX: options.infoBoxFormatX ?? options.formatX ?? defaultFormatter,
+    infoBoxFormatY: options.infoBoxFormatY ?? options.formatY ?? defaultFormatter,
+    marginBottom: options.marginBottom ?? 50,
+    marginLeft: options.marginLeft ?? 60,
+    marginRight: options.marginRight ?? 20,
+    marginTop: options.marginTop ?? 20,
+    modifiers: options.modifiers,
+    scaleY: options.scaleY ?? scaleLinear(),
+    ticksX: options.ticksX,
+    tickValuesX: options.tickValuesX,
+  };
+}
 
-    @svgWrapper = @svg.append 'g'
-      .classed "#{bn}__wrapper", true
+export default class LineChart<X extends Date | number> {
+  private readonly area: Selection<HTMLElement, unknown, null, undefined>;
+  private autoEndHoverTimeout?: number;
+  private readonly axes?: {
+    svgX: Selection<SVGGElement, unknown, null, undefined>;
+    svgY: Selection<SVGGElement, unknown, null, undefined>;
+    x: Axis<number | { valueOf(): number }>;
+    y: Axis<number | { valueOf(): number }>;
+  };
+  private data: { x: X; y: number}[] = [];
+  private height = 0;
+  private readonly hover: Selection<HTMLDivElement, unknown, null, undefined>;
+  private readonly hoverArea: Selection<HTMLDivElement, unknown, null, undefined>;
+  private readonly hoverCircle: Selection<HTMLDivElement, unknown, null, undefined>;
+  private readonly hoverInfoBox: Selection<HTMLDivElement, unknown, null, undefined>;
+  private readonly hoverInfoBoxX: Selection<HTMLDivElement, unknown, null, undefined>;
+  private readonly hoverInfoBoxY: Selection<HTMLDivElement, unknown, null, undefined>;
+  private readonly hoverLine?: Selection<HTMLDivElement, unknown, null, undefined>;
+  private readonly line: Line<typeof this.data[number]>;
+  private readonly svg: Selection<SVGSVGElement, unknown, null, undefined>;
+  private readonly svgLine: Selection<SVGPathElement, unknown, null, undefined>;
+  private readonly svgWrapper: Selection<SVGGElement, unknown, null, undefined>;
+  private width = 0;
 
-    if @options.axisLabels
-      @svgXAxis = @svgWrapper.append 'g'
-        .classed "#{bn}__axis #{bn}__axis--x", true
+  constructor(area: HTMLElement, private options: Options<X>) {
+    this.area = select(area)
+      .classed(classWithModifiers(bn, this.options.modifiers), true);
 
-      @svgYAxis = @svgWrapper.append 'g'
-        .classed "#{bn}__axis #{bn}__axis--y", true
+    this.svg = this.area.append('svg');
 
-    @svgLine = @svgWrapper.append 'path'
-      .classed "#{bn}__line", true
+    this.svgWrapper = this.svg.append('g')
+      .classed(`${bn}__wrapper`, true);
 
-    @hoverArea = @area.append 'div'
-      .classed "#{bn}__hover-area", true
-      .on 'mouseout', @hoverEnd
-      .on 'mousemove', @onHover
-      .on 'drag', @onHover
+    if (this.options.axisLabels) {
+      this.axes = {
+        svgX: this.svgWrapper.append('g')
+          .classed(`${bn}__axis ${bn}__axis--x`, true),
 
-    for own pos, size of @margins
-      @hoverArea.style pos, "#{size}px"
+        svgY: this.svgWrapper.append('g')
+          .classed(`${bn}__axis ${bn}__axis--y`, true),
 
-    @hover = @hoverArea.append 'div'
-      .classed "#{bn}__hover", true
-      .attr 'data-visibility', 'hidden'
+        x: axisBottom(this.options.scaleX)
+          .tickSizeOuter(0)
+          .tickPadding(5),
 
-    if @options.circleLine
-      @hoverLine = @hover.append 'div'
-        .classed "#{bn}__hover-line", true
-
-    @hoverCircle = @hover.append 'div'
-      .classed "#{bn}__hover-circle", true
-
-    @hoverInfoBox = @hover.append 'div'
-      .classed "#{bn}__hover-info-box", true
-      .attr 'data-float', 'left'
-
-    @hoverInfoBoxX = @hoverInfoBox.append 'div'
-      .classed "#{bn}__hover-info-box-text #{bn}__hover-info-box-text--x", true
-
-    @hoverInfoBoxY = @hoverInfoBox.append 'div'
-      .classed "#{bn}__hover-info-box-text #{bn}__hover-info-box-text--y", true
-
-    if @options.axisLabels
-      @xAxis = d3.axisBottom()
-        .tickSizeOuter 0
-        .tickPadding 5
-
-      @yAxis = d3.axisLeft().ticks(4)
-
-    @line = d3.line()
-      .curve(@options.curve ? d3.curveMonotoneX)
-
-
-  loadData: (data) =>
-    @data = data
-    @svgLine.datum data
-
-    @resize()
-
-
-  setDimensions: =>
-    areaDims = @area.node().getBoundingClientRect()
-
-    return false unless areaDims.width > 0 && areaDims.height > 0
-
-    @width = areaDims.width - (@margins.left + @margins.right)
-    @height = areaDims.height - (@margins.top + @margins.bottom)
-
-    true
-
-
-  setScalesRange: =>
-    @options.scales.x
-      .range [0, @width]
-      .domain @options.domains?.x || d3.extent(@data, (d) => d.x)
-
-    @options.scales.y
-      .range [@height, 0]
-      .domain @options.domains?.y || d3.extent(@data, (d) => d.y)
-
-
-  setAxesSize: =>
-    return unless @options.axisLabels
-
-    @xAxis
-      .scale @options.scales.x
-      .tickSizeInner -@height
-      .ticks @options.ticks?.x ? 15
-      .tickFormat @options.formats.x
-      .tickValues @options.tickValues?.x
-
-    @yAxis
-      .scale @options.scales.y
-      .tickSizeInner -@width
-      .tickFormat @options.formats.y
-      .tickValues @options.tickValues?.y
+        y: axisLeft(this.options.scaleY).ticks(4),
+      };
+    }
 
 
-  setLineSize: =>
-    @line
-      .x (d) => @options.scales.x d.x
-      .y (d) => @options.scales.y d.y
+    this.svgLine = this.svgWrapper.append('path')
+      .classed(`${bn}__line`, true);
 
+    this.hoverArea = this.area.append('div')
+      .classed(`${bn}__hover-area`, true)
+      .style('top', `${this.options.marginTop}px`)
+      .style('bottom', `${this.options.marginBottom}px`)
+      .style('left', `${this.options.marginLeft}px`)
+      .style('right', `${this.options.marginRight}px`)
+      .on('mouseout', this.hoverEnd)
+      .on('mousemove', this.onHover)
+      .on('drag', this.onHover);
 
-  setSvgSize: =>
-    @svg
-      .attr 'width', @width + (@margins.left + @margins.right)
-      .attr 'height', @height + (@margins.top + @margins.bottom)
+    this.hover = this.hoverArea.append('div')
+      .classed(`${bn}__hover`, true)
+      .attr('data-visibility', 'hidden');
 
+    if (this.options.circleLine) {
+      this.hoverLine = this.hover.append('div')
+        .classed(`${bn}__hover-line`, true);
+    }
 
-  setWrapperSize: =>
-    @svgWrapper
-      .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
+    this.hoverCircle = this.hover.append('div')
+      .classed(`${bn}__hover-circle`, true);
 
+    this.hoverInfoBox = this.hover.append('div')
+      .classed(`${bn}__hover-info-box`, true)
+      .attr('data-float', 'left');
 
-  drawAxes: =>
-    return unless @options.axisLabels
+    this.hoverInfoBoxX = this.hoverInfoBox.append('div')
+      .classed(`${bn}__hover-info-box-text ${bn}__hover-info-box-text--x`, true);
 
-    @svgXAxis
+    this.hoverInfoBoxY = this.hoverInfoBox.append('div')
+      .classed(`${bn}__hover-info-box-text ${bn}__hover-info-box-text--y`, true);
+
+    this.line = line<typeof this.data[number]>().curve(this.options.curve);
+  }
+
+  loadData(data: typeof this.data) {
+    this.data = data;
+    this.svgLine.datum(data);
+
+    this.resize();
+  }
+
+  readonly resize = () => {
+    const hasDimensions = this.setDimensions();
+
+    if (!hasDimensions) return;
+
+    this.setScalesRange();
+
+    this.setSvgSize();
+    this.setWrapperSize();
+    this.setAxesSize();
+    this.setLineSize();
+
+    this.drawAxes();
+    this.drawLine();
+
+    this.hoverReset();
+  };
+
+  private drawAxes() {
+    if (this.axes == null) return;
+
+    this.axes.svgX
       .transition()
-      .attr 'transform', "translate(0, #{@height})"
-      .call @xAxis
+      .attr('transform', `translate(0, ${this.height})`)
+      .call(this.axes.x);
 
-    @svgYAxis
+    this.axes.svgY
       .transition()
-      .call @yAxis
+      .call(this.axes.y);
 
-    @svgXAxis.selectAll '.tick line'
-      .classed "#{bn}__tick-line #{bn}__tick-line--default", true
+    this.axes.svgX.selectAll('.tick line')
+      .classed(`${bn}__tick-line ${bn}__tick-line--default`, true);
 
-    @svgYAxis.selectAll '.tick line'
-      .classed "#{bn}__tick-line #{bn}__tick-line--default", true
+    this.axes.svgY.selectAll('.tick line')
+      .classed(`${bn}__tick-line ${bn}__tick-line--default`, true);
 
-    @svgXAxis.selectAll '.domain'
-      .classed 'u-hidden', true
+    this.axes.svgX.selectAll('.domain')
+      .classed('u-hidden', true);
 
-    @svgYAxis.selectAll '.domain'
-      .classed 'u-hidden', true
+    this.axes.svgY.selectAll('.domain')
+      .classed('u-hidden', true);
 
-    @svgXAxis.selectAll 'text'
-      .style 'text-anchor', 'start'
-      .attr 'transform', 'rotate(45) translate(5, 0)'
-      .classed "#{bn}__tick-text #{bn}__tick-text--strong", true
+    this.axes.svgX.selectAll('text')
+      .style('text-anchor', 'start')
+      .attr('transform', 'rotate(45) translate(5, 0)')
+      .classed(`${bn}__tick-text ${bn}__tick-text--strong`, true);
 
-    @svgYAxis.selectAll 'text'
-      .classed "#{bn}__tick-text", true
+    this.axes.svgY.selectAll('text')
+      .classed(`${bn}__tick-text`, true);
+  }
 
-
-  drawLine: =>
-    @svgLine
+  private drawLine() {
+    this.svgLine
       .transition()
-      .attr 'd', @line
+      .attr('d', this.line);
+  }
 
+  private readonly hoverEnd = () => {
+    fadeOut(this.hover.node());
+  };
 
-  hoverEnd: =>
-    Fade.out @hover.node()
+  private hoverReset() {
+    // Immediately hide so its position can be invisibly reset.
+    this.hoverStyle('transition', 'none');
+    this.hoverEnd();
+    this.hoverStyle('transform', '');
+    // Out of current loop so browser doesn't optimize out the styling
+    // and ignores previously set transition override.
+    window.setTimeout(() => {
+      this.hoverStyle('transition', '');
+    });
+  }
 
+  private readonly hoverStart = () => {
+    fadeIn(this.hover.node());
+  };
 
-  hoverReset: =>
-    style = (key, value) =>
-      elem.style(key, value) for elem in [@hoverLine, @hoverCircle]
-    # Immediately hide so its position can be invisibly reset.
-    style 'transition', 'none'
-    @hoverEnd()
-    style 'transform', null
-    # Out of current loop so browser doesn't optimize out the styling
-    # and ignores previously set transition override.
-    Timeout.set 0, => style 'transition', null
+  private hoverStyle(key: string, value: string | number | boolean) {
+    for (const elem of  [this.hoverLine, this.hoverCircle]) {
+      elem?.style(key, value);
+    }
+  }
 
+  private lookupIndexFromX(x: X) {
+    return bisector((d: typeof this.data[number]) => d.x).left(this.data, x);
+  }
 
-  hoverStart: =>
-    Fade.in @hover.node()
+  private readonly onHover = (event: DragEvent | MouseEvent) => {
+    // invert of scaleX should give X. Without the cast it'll be union of possible types of X instead.
+    const x = this.options.scaleX.invert(pointer(event)[0]) as X;
+    const i = this.lookupIndexFromX(x);
 
+    if (i == null) return;
+    if (this.data[i - 1] == null || this.data[i] == null) return;
 
-  lookupIndexFromX: (x) =>
-    d3.bisector((d) => d.x).left @data, x
+    this.hoverStart();
+    window.clearTimeout(this.autoEndHoverTimeout);
+    if (core.windowSize.isMobile) {
+      this.autoEndHoverTimeout = window.setTimeout(this.hoverEnd, 3000);
+    }
 
+    const d = x.valueOf() - this.data[i - 1].x.valueOf() <= this.data[i].x.valueOf() - x.valueOf() ? this.data[i - 1] : this.data[i];
 
-  onHover: (event) =>
-    x = @options.scales.x.invert(d3.pointer(event)[0])
-    i = @lookupIndexFromX x
+    // rounded to avoid blurry positioning
+    const coords = [
+      `${Math.round(this.options.scaleX(d.x))}px`,
+      `${Math.round(this.options.scaleY(d.y))}px`,
+    ];
 
-    return unless i
-    return unless @data[i - 1] && @data[i]
+    this.hoverLine?.style('transform', `translateX(${coords[0]})`);
+    this.hoverCircle.style('transform', `translate(${coords.join(',')})`);
 
-    @hoverStart()
-    Timeout.clear @_autoEndHover
-    @_autoEndHover = Timeout.set(3000, @hoverEnd) if osuCore.windowSize.isMobile
+    this.hoverInfoBoxX.html(this.options.infoBoxFormatX(d.x));
+    this.hoverInfoBoxY.html(this.options.infoBoxFormatY(d.y));
 
-    d = if x - @data[i - 1].x <= @data[i].x - x then @data[i - 1] else @data[i]
-    coords = ['x', 'y'].map (axis) =>
-      # rounded to avoid blurry positioning
-      "#{Math.round(@options.scales[axis](d[axis]))}px"
+    const mouseX = event.clientX;
 
-    @hoverLine.style 'transform', "translateX(#{coords[0]})"
-    @hoverCircle.style 'transform', "translate(#{coords.join(',')})"
+    const infoBoxRect = this.hoverInfoBox.node()?.getBoundingClientRect();
+    if (infoBoxRect != null) {
+      if (this.hoverInfoBox.attr('data-float') === 'right') {
+        if (mouseX > infoBoxRect.left) {
+          this.hoverInfoBox.attr('data-float', 'left');
+        }
+      } else {
+        if (mouseX < infoBoxRect.right) {
+          this.hoverInfoBox.attr('data-float', 'right');
+        }
+      }
+    }
+  };
 
-    @hoverInfoBoxX.html (@options.infoBoxFormats?.x ? @options.formats.x)(d.x)
-    @hoverInfoBoxY.html (@options.infoBoxFormats?.y ? @options.formats.y)(d.y)
+  private setAxesSize() {
+    if (this.axes == null) return;
 
-    mouseX = event.clientX
+    this.axes.x
+      .scale(this.options.scaleX)
+      .tickSizeInner(-this.height)
+      .ticks(this.options.ticksX ?? 15)
+      .tickFormat(this.options.formatX);
 
-    if mouseX?
-      infoBoxRect = @hoverInfoBox.node().getBoundingClientRect()
-      if @hoverInfoBox.attr('data-float') == 'right'
-        if mouseX > infoBoxRect.left
-          @hoverInfoBox.attr('data-float', 'left')
-      else
-        if mouseX < infoBoxRect.right
-          @hoverInfoBox.attr('data-float', 'right')
+    // this looks dumb but the typing doesn't allow `tickValuesX ?? null` argument...
+    if (this.options.tickValuesX == null) {
+      this.axes.x.tickValues(null);
+    } else {
+      this.axes.x.tickValues(this.options.tickValuesX);
+    }
 
+    this.axes.y
+      .scale(this.options.scaleY)
+      .tickSizeInner(-this.width)
+      .tickFormat(this.options.formatY);
+  }
 
-  resize: =>
-    hasDimensions = @setDimensions()
+  private setDimensions() {
+    const areaDims = this.area.node()?.getBoundingClientRect();
 
-    return unless hasDimensions
+    if (areaDims == null || areaDims.width === 0 || areaDims.height === 0) {
+      return false;
+    }
 
-    @setScalesRange()
+    this.width = areaDims.width - (this.options.marginLeft + this.options.marginRight);
+    this.height = areaDims.height - (this.options.marginTop + this.options.marginBottom);
 
-    @setSvgSize()
-    @setWrapperSize()
-    @setAxesSize()
-    @setLineSize()
+    return true;
+  }
 
-    @drawAxes()
-    @drawLine()
+  private setLineSize() {
+    this.line
+      .x((d) => this.options.scaleX(d.x))
+      .y((d) => this.options.scaleY(d.y));
+  }
 
-    @hoverReset()
+  private setScalesRange() {
+    this.options.scaleX.range([0, this.width]);
+    const [minX, maxX] = extent(this.data.map((d) => d.x));
+    if (minX != null && maxX != null) {
+      this.options.scaleX.domain([minX, maxX]);
+    }
+
+    this.options.scaleY.range([this.height, 0]);
+    const [minY, maxY] = extent(this.data.map((d) => d.y));
+    if (minY != null && maxY != null) {
+      this.options.scaleY.domain([minY, maxY]);
+    }
+  }
+
+  private setSvgSize() {
+    this.svg
+      .attr('width', this.width + (this.options.marginLeft + this.options.marginRight))
+      .attr('height', this.height + (this.options.marginTop + this.options.marginBottom));
+  }
+
+  private setWrapperSize() {
+    this.svgWrapper
+      .attr('transform', `translate(${this.options.marginLeft}, ${this.options.marginTop})`);
+  }
+}
