@@ -188,6 +188,16 @@ class Channel extends Model
         return $this->pmTargetFor($user)?->username;
     }
 
+    public function setDescriptionAttribute(?string $value)
+    {
+        $this->attributes['description'] = $value !== null ? trim($value) : null;
+    }
+
+    public function setNameAttribute(?string $value)
+    {
+        $this->attributes['name'] = presence(trim($value));
+    }
+
     public function isVisibleFor(User $user): bool
     {
         if (!$this->isPM()) {
@@ -336,11 +346,11 @@ class Channel extends Model
     {
         $this->validationErrors()->reset();
 
-        if (mb_strlen(trim($this->name)) === 0) {
+        if ($this->name === null) {
             $this->validationErrors()->add('name', 'required');
         }
 
-        if (mb_strlen(trim($this->description)) === 0) {
+        if ($this->description === null) {
             $this->validationErrors()->add('description', 'required');
         }
 
