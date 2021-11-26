@@ -256,8 +256,7 @@ class ChannelsController extends Controller
             abort_if($params['target_ids'] === null, 422, 'missing target_ids parameter');
             abort_if($params['channel'] === null, 422, 'missing channel parameter');
 
-            $message = Chat::createBroadcast($sender, $params['target_ids'], $params['message'], $params['channel']);
-            $channel = $message->channel;
+            $channel = Chat::createBroadcast($sender, $params['target_ids'], $params);
         }
 
         if (isset($channel)) {

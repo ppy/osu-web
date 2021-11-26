@@ -30,18 +30,18 @@ class Chat
         $transaction->exec();
     }
 
-    public static function createBroadcast(User $sender, array $targetIds, ?string $message, array $rawParams = [], ?string $uuid = null)
+    public static function createBroadcast(User $sender, array $targetIds, array $rawParams = [], ?string $uuid = null)
     {
         priv_check_user($sender, 'ChatBroadcast')->ensureCan();
 
-        $params = get_params($rawParams, null, [
+        $message = $rawParams['message'] ?? null;
+        $channelParams = get_params($rawParams, 'channel', [
             'description:string',
             'name:string',
         ], ['null_missing' => true]);
 
-        $params['moderated'] = true;
-        $params['type'] = 'BROADCAST';
-
+        $channelParams['moderated'] = true;
+        $channelParams['type'] = 'BROADCAST';
 
         $users = User::whereIn('user_id', $targetIds)->get();
         if ($users->isEmpty()) {
@@ -50,9 +50,9 @@ class Chat
 
         $users = $users->push($sender)->uniqueStrict('user_id');
 
-        $channel = new Channel($params);
+        $channel = new Channel($channelParams);
 
-        $message = $channel->getConnection()->transaction(function () use ($channel, $sender, $message, $users, $uuid) {
+        $channel->getConnection()->transaction(function () use ($channel, $sender, $message, $users, $uuid) {
             $channel->save();
             $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
             foreach ($userChannels as $userChannel) {
@@ -61,7 +61,7 @@ class Chat
                 $userChannel->channel->setUserChannel($userChannel);
             }
 
-            return static::sendMessage($sender, $channel, $message, false, $uuid);
+            static::sendMessage($sender, $channel, $message, false, $uuid);
         });
 
         // TODO: this event should be sent before the message.
@@ -71,7 +71,7 @@ class Chat
 
         Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
 
-        return $message;
+        return $channel;
     }
 
     // Do the restricted user lookup before calling this.
