@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as d3 from 'd3';
-import LineChart, { makeOptionsNumber } from 'd3/line-chart';
+import LineChart, { makeOptionsNumber } from 'charts/line-chart';
 import RankHistoryJson from 'interfaces/rank-history-json';
 import UserStatisticsJson from 'interfaces/user-statistics-json';
 import { last } from 'lodash';

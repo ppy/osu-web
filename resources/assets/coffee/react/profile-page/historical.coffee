@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import BeatmapPlaycount from 'profile-page/beatmap-playcount'
-import LineChart, { makeOptionsDate } from 'd3/line-chart'
+import LineChart, { makeOptionsDate } from 'charts/line-chart'
 import ExtraHeader from 'profile-page/extra-header'
 import core from 'osu-core-singleton'
 import PlayDetailList from 'play-detail-list'
