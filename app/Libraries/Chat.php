@@ -11,6 +11,7 @@ use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use ChaseConey\LaravelDatadogHelper\Datadog;
+use Illuminate\Support\Collection;
 use LaravelRedis as Redis;
 
 class Chat
@@ -30,11 +31,43 @@ class Chat
         $transaction->exec();
     }
 
+    /**
+     * Creates a chat broadcast Channel and associated UserChannels.
+     *
+     * @param Collection $users
+     * @param array $rawParams
+     * @return Channel
+     */
+    public static function createBroadcastChannel(Collection $users, array $rawParams): Channel
+    {
+        $params = get_params($rawParams, 'channel', [
+            'description:string',
+            'name:string',
+        ], ['null_missing' => true]);
+
+        $params['moderated'] = true;
+        $params['type'] = 'BROADCAST';
+
+        $channel = new Channel($params);
+        $channel->getConnection()->transaction(function () use ($channel, $users) {
+            $channel->save();
+            $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
+            foreach ($userChannels as $userChannel) {
+                // preset to avoid extra queries during permission check.
+                $userChannel->setRelation('channel', $channel);
+                $userChannel->channel->setUserChannel($userChannel);
+            }
+        });
+
+        return $channel;
+    }
+
     public static function createBroadcast(User $sender, array $rawParams, ?string $uuid = null)
     {
         priv_check_user($sender, 'ChatBroadcast')->ensureCan();
 
         $params = get_params($rawParams, null, [
+            'channel:any',
             'message:string',
             'target_ids:int[]',
         ], ['null_missing' => true]);
@@ -47,14 +80,6 @@ class Chat
             throw new InvariantException('missing channel parameter');
         }
 
-        $channelParams = get_params($rawParams, 'channel', [
-            'description:string',
-            'name:string',
-        ], ['null_missing' => true]);
-
-        $channelParams['moderated'] = true;
-        $channelParams['type'] = 'BROADCAST';
-
         $users = User::whereIn('user_id', $params['target_ids'])->get();
         if ($users->isEmpty()) {
             throw new InvariantException('Nobody to broadcast to!');
@@ -62,18 +87,11 @@ class Chat
 
         $users = $users->push($sender)->uniqueStrict('user_id');
 
-        $channel = new Channel($channelParams);
-
-        $channel->getConnection()->transaction(function () use ($channel, $sender, $params, $users, $uuid) {
-            $channel->save();
-            $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
-            foreach ($userChannels as $userChannel) {
-                // preset to avoid extra queries during permission check.
-                $userChannel->setRelation('channel', $channel);
-                $userChannel->channel->setUserChannel($userChannel);
-            }
-
+        $channel = (new Channel())->getConnection()->transaction(function () use ($sender, $params, $users, $uuid) {
+            $channel = static::createBroadcastChannel($users, $params['channel']);
             static::sendMessage($sender, $channel, $params['message'], false, $uuid);
+
+            return $channel;
         });
 
         // TODO: this event should be sent before the message.
