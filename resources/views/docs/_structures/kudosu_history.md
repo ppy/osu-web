@@ -3,7 +3,7 @@
 Field      | Type       | Description
 -----------|------------|-----------------------------
 id         | number     | |
-action     | string     | Either `vote.give`, `vote.reset`, or `vote.revoke`.
+action     | string     | One of `give`, `vote.give`, `reset`, `vote.reset`, `revoke`, or `vote.revoke`.
 amount     | number     | |
 model      | string     | Object type which the exchange happened on (`forum_post`, etc).
 created_at | Timestamp  | |
