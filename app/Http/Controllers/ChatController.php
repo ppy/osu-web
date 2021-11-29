@@ -32,16 +32,26 @@ class ChatController extends Controller
         $user = auth()->user();
         Chat::ack($user);
 
+        $targetId = get_params(request()->all(), null, ['sendto:int'], ['null_missing' => true])['sendto'];
+        // rejoin any existing channel first, otherwise it'll be missing from the preload later.
+        $targetUser = $targetId !== null ? User::lookup($targetId, 'id') : null;
+        if ($targetUser !== null) {
+            $channel = Channel::findPM($targetUser, $user);
+            $channel?->addUser($user);
+
+            $sendToJson = [
+                'can_message' => $channel?->canMessage($user) ?? priv_check('ChatPmStart', $targetUser),
+                'channel_id' => $channel?->getKey(),
+                'target' => json_item($targetUser, 'UserCompact'),
+            ];
+        }
+
         $json = [
             'last_message_id' => optional(Message::last())->getKey(),
             'presence' => (new UserChannelList($user))->get(),
         ];
 
-        $targetUser = User::lookup(Request::input('sendto'), 'id');
-        if ($targetUser) {
-            $channel = Channel::findPM($targetUser, $user);
-            $channel?->addUser($user);
-
+        if (isset($sendToJson)) {
             $json['send_to'] = [
                 'can_message' => $channel?->canMessage($user) ?? priv_check('ChatPmStart', $targetUser),
                 'channel_id' => $channel?->getKey(),
