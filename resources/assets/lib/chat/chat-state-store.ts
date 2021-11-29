@@ -133,7 +133,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
-    this.channelStore.channels.set(event.channel.channelId, event.channel);
+    this.channelStore.getOrCreate(event.json.channel_id).updateWithJson(event.json);
   }
 
   @action
