@@ -10,12 +10,13 @@ import * as React from 'react';
 import StringWithComponent from 'string-with-component';
 import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
+import { ProfilePageUserJson } from './extra-page-props';
 
 const bn = 'game-mode';
 
 interface Props {
   currentMode: GameMode;
-  user: CurrentUserJson;
+  user: ProfilePageUserJson;
   withEdit: boolean;
 }
 
