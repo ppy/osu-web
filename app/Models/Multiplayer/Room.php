@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $starts_at
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
+ * @property string $type
+ * @property string $queue_mode
  */
 class Room extends Model
 {
@@ -55,6 +57,10 @@ class Room extends Model
     const PLAYLIST_TYPE = 'playlists';
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
     const REALTIME_TYPES = ['head_to_head', 'team_versus'];
+
+    const PLAYLIST_QUEUE_MODE = 'host_only';
+    const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
+    const REALTIME_QUEUE_MODES = [ 'host_only', 'all_players', 'all_players_round_robin' ];
 
     protected $casts = [
         'password' => PresentString::class,
@@ -325,6 +331,7 @@ class Room extends Model
             'password',
             'playlist:array',
             'type',
+            'queue_mode',
         ], ['null_missing' => true]);
 
         $this->fill([
@@ -332,6 +339,7 @@ class Room extends Model
             'name' => $params['name'],
             'starts_at' => now(),
             'type' => $params['type'],
+            'queue_mode' => $params['queue_mode'],
             'user_id' => $owner->getKey(),
         ]);
 
@@ -342,11 +350,15 @@ class Room extends Model
             if (!in_array($this->type, static::REALTIME_TYPES, true)) {
                 $this->type = static::REALTIME_DEFAULT_TYPE;
             }
+            if (!in_array($this->queue_mode, static::REALTIME_QUEUE_MODES, true)) {
+                $this->queue_mode = static::REALTIME_DEFAULT_QUEUE_MODE;
+            }
             // only for realtime rooms for now
             $this->password = $params['password'];
             $this->ends_at = now()->addSeconds(30);
         } else {
             $this->type = static::PLAYLIST_TYPE;
+            $this->queue_mode = static::PLAYLIST_QUEUE_MODE;
             if ($params['ends_at'] !== null) {
                 $this->ends_at = $params['ends_at'];
             } elseif ($params['duration'] !== null) {
@@ -362,7 +374,7 @@ class Room extends Model
 
         $playlistItems = [];
         foreach ($params['playlist'] as $item) {
-            $playlistItems[] = PlaylistItem::fromJsonParams($item);
+            $playlistItems[] = PlaylistItem::fromJsonParams($owner, $item);
         }
 
         $playlistItemsCount = count($playlistItems);

@@ -7,6 +7,7 @@ import { BeatmapsetSearchFilters, BeatmapsetSearchParams } from 'beatmapset-sear
 import { route } from 'laroute';
 import { debounce, intersection, map } from 'lodash';
 import { action, computed, IObjectDidChange, Lambda, makeObservable, observable, observe, runInAction } from 'mobx';
+import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
 
 export interface SearchStatus {
@@ -68,7 +69,7 @@ export class BeatmapsetSearchController {
 
   @computed
   get isSupporterMissing() {
-    return !currentUser.is_supporter && BeatmapsetFilter.supporterRequired(this.filters).length > 0;
+    return !(core.currentUser?.is_supporter ?? false) && BeatmapsetFilter.supporterRequired(this.filters).length > 0;
   }
 
   @computed

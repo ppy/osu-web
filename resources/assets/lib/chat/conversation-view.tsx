@@ -46,7 +46,7 @@ export default class ConversationView extends React.Component<Props> {
     each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
       // when messageId is a uuid, comparison will always be false.
-      if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== currentUser.id) {
+      if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== core.currentUser?.id) {
         unreadMarkerShown = true;
 
         // If the unread marker is the first element in this conversation, it most likely means that the unread cursor
@@ -122,11 +122,7 @@ export default class ConversationView extends React.Component<Props> {
   @action
   componentDidUpdate(prevProps?: Readonly<Props>, prevState?: Readonly<Record<string, never>>, snapshot?: Snapshot) {
     const chatView = this.chatViewRef.current;
-    if (!chatView) {
-      return;
-    }
-
-    if (!this.currentChannel?.loaded) {
+    if (!chatView || !this.currentChannel) {
       return;
     }
 
@@ -139,7 +135,7 @@ export default class ConversationView extends React.Component<Props> {
       this.didSwitchChannel = false;
     } else {
       snapshot = snapshot ?? blankSnapshot();
-      const prepending = this.firstMessage !== this.currentChannel?.firstMessage;
+      const prepending = this.firstMessage !== this.currentChannel.firstMessage;
 
       if (prepending && this.chatViewRef.current != null) {
         const chatEl = this.chatViewRef.current;
@@ -248,16 +244,14 @@ export default class ConversationView extends React.Component<Props> {
             {channel.description}
           </div>
         }
-        {!channel.loading &&
-          <ShowMoreLink
-            callback={this.loadEarlierMessages}
-            direction={'up'}
-            hasMore={channel.hasEarlierMessages}
-            loading={channel.loadingEarlierMessages}
-            modifiers={['chat-conversation-earlier-messages']}
-          />
-        }
-        {channel.loading &&
+        <ShowMoreLink
+          callback={this.loadEarlierMessages}
+          direction='up'
+          hasMore={channel.hasEarlierMessages}
+          loading={channel.loadingEarlierMessages}
+          modifiers='chat-conversation-earlier-messages'
+        />
+        {channel.loadingMessages &&
           <div className='chat-conversation__day-divider'>
             <Spinner />
           </div>

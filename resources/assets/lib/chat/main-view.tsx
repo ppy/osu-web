@@ -3,28 +3,27 @@
 
 import HeaderV4 from 'header-v4';
 import Img2x from 'img2x';
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import ChatWorker from './chat-worker';
 import ConversationList from './conversation-list';
 import ConversationView from './conversation-view';
 import InputBox from './input-box';
 
-interface Props {
-  worker: ChatWorker;
-}
 
 @observer
-export default class MainView extends React.Component<Props> {
+export default class MainView extends React.Component {
+  @action
   componentDidMount() {
     $('html').addClass('osu-layout--mobile-app');
-    this.props.worker.startPolling();
+    core.dataStore.chatState.isChatMounted = true;
   }
 
+  @action
   componentWillUnmount() {
     $('html').removeClass('osu-layout--mobile-app');
-    this.props.worker.stopPolling();
+    core.dataStore.chatState.isChatMounted = false;
   }
 
   render(): React.ReactNode {

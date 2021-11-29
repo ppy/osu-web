@@ -4,17 +4,30 @@
 import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
+import SocketMessageSendAction from 'actions/socket-message-send-action';
+import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatchListener } from 'app-dispatcher';
-import { clamp } from 'lodash';
-import { action, computed, makeObservable, observable, observe } from 'mobx';
+import { dispatch, dispatchListener } from 'app-dispatcher';
+import DispatchListener from 'dispatch-listener';
+import { clamp, maxBy } from 'lodash';
+import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import ChannelStore from 'stores/channel-store';
+import ChannelJoinEvent from './channel-join-event';
+import ChannelPartEvent from './channel-part-event';
+import { getUpdates } from './chat-api';
+import PingService from './ping-service';
 
 @dispatchListener
-export default class ChatStateStore {
+export default class ChatStateStore implements DispatchListener {
   @observable autoScroll = false;
+  @observable isChatMounted = false;
+  @observable isReady = false;
   @observable selectedBoxed = observable.box(0);
+  @observable private isConnected = false;
+  private lastHistoryId: number | null = null;
+  @observable private needsRefresh = true;
+  private pingService: PingService;
   private selectedIndex = 0;
 
   @computed
@@ -39,6 +52,10 @@ export default class ChatStateStore {
   }
 
   constructor(protected channelStore: ChannelStore) {
+    this.pingService = new PingService(channelStore);
+
+    makeObservable(this);
+
     observe(channelStore.channels, (changes) => {
       // refocus channels if any gets removed
       if (changes.type === 'delete') {
@@ -46,21 +63,45 @@ export default class ChatStateStore {
       }
     });
 
-    makeObservable(this);
+    autorun(() => {
+      if (this.isReady && this.isChatMounted) {
+        this.pingService.start();
+        dispatch(new SocketMessageSendAction({ event: 'chat.start' }));
+      } else {
+        this.pingService.stop();
+        dispatch(new SocketMessageSendAction({ event: 'chat.end' }));
+      }
+    });
+
+    autorun(async () => {
+      if (this.isConnected && this.isChatMounted && this.needsRefresh) {
+        await this.updateChannelList();
+        runInAction(() => {
+          this.channelStore.loadChannel(this.selected);
+          this.isReady = true;
+        });
+      }
+    });
   }
 
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof ChatMessageSendAction) {
+    if (event instanceof ChannelJoinEvent) {
+      this.handleChatChannelJoinEvent(event);
+    } else if (event instanceof ChannelPartEvent) {
+      this.handleChatChannelPartEvent(event);
+    } else if (event instanceof ChatMessageSendAction) {
       this.autoScroll = true;
     } else if (event instanceof ChatNewConversationAdded) {
       this.handleChatNewConversationAdded(event);
+    } else if (event instanceof SocketStateChangedAction) {
+      this.handleSocketStateChanged(event);
     } else if (event instanceof WindowFocusAction) {
       this.handleWindowFocusAction();
     }
   }
 
   @action
-  async selectChannel(channelId: number) {
+  selectChannel(channelId: number) {
     if (this.selected === channelId) return;
 
     const channel = this.channelStore.get(channelId);
@@ -79,7 +120,7 @@ export default class ChatStateStore {
     this.selectedIndex = this.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
-    await this.channelStore.loadChannel(channelId);
+    this.channelStore.loadChannel(channelId);
     this.channelStore.markAsRead(channelId);
   }
 
@@ -96,10 +137,30 @@ export default class ChatStateStore {
   }
 
   @action
+  private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
+    this.channelStore.channels.set(event.channel.channelId, event.channel);
+  }
+
+  @action
+  private handleChatChannelPartEvent(event: ChannelPartEvent) {
+    this.channelStore.partChannel(event.channelId, false);
+  }
+
+  @action
   private handleChatNewConversationAdded(event: ChatNewConversationAdded) {
     // TODO: currently only the current window triggers the action, but this should be updated
     // to ignore unfocused windows once new conversation added messages start getting triggered over the websocket.
     this.selectChannel(event.channelId);
+  }
+
+  @action
+  private handleSocketStateChanged(event: SocketStateChangedAction) {
+    this.isConnected = event.connected;
+    if (!event.connected) {
+      this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
+      this.needsRefresh = true;
+      this.isReady = false;
+    }
   }
 
   @action
@@ -117,5 +178,21 @@ export default class ChatStateStore {
     } else {
       this.focusChannelAtIndex(this.selectedIndex);
     }
+  }
+
+  @action
+  private async updateChannelList() {
+    const json = await getUpdates(this.channelStore.lastReceivedMessageId, this.lastHistoryId);
+    if (!json) return; // FIXME: fix response
+
+    runInAction(() => {
+      const newHistoryId = maxBy(json.silences, 'id')?.id;
+
+      if (newHistoryId != null) {
+        this.lastHistoryId = newHistoryId;
+      }
+
+      this.channelStore.updateWithJson(json);
+    });
   }
 }

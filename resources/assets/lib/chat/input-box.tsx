@@ -7,13 +7,14 @@ import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatcher } from 'app-dispatcher';
 import BigButton from 'big-button';
 import DispatchListener from 'dispatch-listener';
-import * as _ from 'lodash';
-import { computed, observe } from 'mobx';
+import { trim } from 'lodash';
+import { computed, makeObservable, observe } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
+import { classWithModifiers } from 'utils/css';
 
 type Props = Record<string, never>;
 
@@ -26,10 +27,22 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     return core.dataStore.chatState.selectedChannel;
   }
 
+  @computed
+  get inputDisabled() {
+    return !this.currentChannel?.canMessage;
+  }
+
+  @computed
+  get sendDisabled() {
+    return this.inputDisabled || !core.dataStore.chatState.isReady;
+  }
+
   constructor(props: Props) {
     super(props);
 
     dispatcher.register(this);
+
+    makeObservable(this);
 
     disposeOnUnmount(
       this,
@@ -49,8 +62,10 @@ export default class InputBox extends React.Component<Props> implements Dispatch
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.keyCode === 13) {
       e.preventDefault();
-      this.sendMessage(this.currentChannel?.inputText);
-      this.currentChannel?.setInputText('');
+      if (!this.sendDisabled) {
+        this.sendMessage(this.currentChannel?.inputText);
+        this.currentChannel?.setInputText('');
+      }
     }
   };
 
@@ -81,38 +96,39 @@ export default class InputBox extends React.Component<Props> implements Dispatch
 
   render(): React.ReactNode {
     const channel = this.currentChannel;
-    const disableInput = !channel || !channel.canMessage;
+    const buttonIcon = core.dataStore.chatState.isReady ? 'fas fa-reply' : 'fas fa-times';
+    const buttonText = osu.trans(core.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
 
     return (
       <div className='chat-input'>
         <TextareaAutosize
           ref={this.inputBoxRef}
           autoComplete='off'
-          className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
-          disabled={disableInput}
+          className={classWithModifiers('chat-input__box', { disabled: this.inputDisabled })}
+          disabled={this.inputDisabled}
           maxRows={3}
           name='textbox'
           onChange={this.handleChange}
           onKeyDown={this.checkIfEnterPressed}
-          placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
+          placeholder={this.inputDisabled ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
           value={channel?.inputText}
         />
 
         <BigButton
-          disabled={disableInput}
-          icon='fas fa-reply'
+          disabled={this.sendDisabled}
+          icon={buttonIcon}
           modifiers='chat-send'
           props={{
             onClick: this.buttonClicked,
           }}
-          text={osu.trans('chat.input.send')}
+          text={buttonText}
         />
       </div>
     );
   }
 
   sendMessage(messageText?: string) {
-    if (!messageText || !osu.present(_.trim(messageText))) {
+    if (!messageText || !osu.present(trim(messageText))) {
       return;
     }
 
@@ -126,7 +142,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
       }
 
       command = messageText.substring(1, split);
-      messageText = _.trim(messageText.substring(split + 1));
+      messageText = trim(messageText.substring(split + 1));
 
       // we only support /me commands for now
       if (command !== 'me' || !osu.present(messageText)) {
@@ -135,7 +151,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     }
 
     const message = new Message();
-    message.senderId = currentUser.id;
+    message.senderId = core.currentUserOrFail.id;
     message.channelId = core.dataStore.chatState.selected;
     message.content = messageText;
 

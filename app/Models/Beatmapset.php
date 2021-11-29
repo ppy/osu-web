@@ -1135,15 +1135,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return array_search_null($this->approved, static::STATES);
     }
 
-    public function defaultJson()
-    {
-        return json_item($this, 'Beatmapset', [
-            'beatmaps',
-            'current_user_attributes',
-            'nominations',
-        ]);
-    }
-
     public function defaultDiscussionJson()
     {
         return json_item(
