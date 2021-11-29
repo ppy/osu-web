@@ -9,20 +9,12 @@ import ConversationListItem from './conversation-list-item';
 
 @observer
 export default class ConversationList extends React.Component {
-  private get publicChannels() {
-    return core.dataStore.channelStore.publicChannels;
-  }
-
-  private get pmChannels() {
-    return core.dataStore.channelStore.pmChannels;
-  }
-
   render(): React.ReactNode {
     return (
       <div className='chat-conversation-list'>
-        {this.renderChannels(this.publicChannels)}
+        {this.renderChannels(core.dataStore.channelStore.publicChannels)}
         {this.renderSeparator()}
-        {this.renderChannels(this.pmChannels)}
+        {this.renderChannels(core.dataStore.channelStore.pmChannels)}
       </div>
     );
   }
@@ -32,10 +24,6 @@ export default class ConversationList extends React.Component {
   }
 
   private renderSeparator() {
-    if (this.publicChannels.length === 0 || this.pmChannels.length === 0) {
-      return null;
-    }
-
     return <div className='chat-conversation-list-separator' />;
   }
 }
