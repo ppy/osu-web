@@ -1,176 +1,204 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import HeaderV4 from 'header-v4'
-import Img2x from 'img2x'
-import Badges from 'profile-page/badges'
-import CoverSelector from 'profile-page/cover-selector'
-import Detail from 'profile-page/detail'
-import DetailMobile from 'profile-page/detail-mobile'
-import GameModeSwitcher from 'profile-page/game-mode-switcher'
-import HeaderInfo from 'profile-page/header-info'
-import headerLinks from 'profile-page/header-links'
-import Links from 'profile-page/links'
-import RankCount from 'profile-page/rank-count'
-import Stats from 'profile-page/stats'
-import ProfileTournamentBanner from 'profile-tournament-banner'
-import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
-import { Spinner } from 'spinner'
-import { nextVal } from 'utils/seq'
-el = React.createElement
+import HeaderV4 from 'header-v4';
+import CurrentUserJson from 'interfaces/current-user-json';
+import GameMode from 'interfaces/game-mode';
+import UserAchievementJson from 'interfaces/user-achievement-json';
+import UserStatisticsJson from 'interfaces/user-statistics-json';
+import { debounce } from 'lodash';
+import { observable, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
+import Badges from 'profile-page/badges';
+import CoverSelector from 'profile-page/cover-selector';
+import Detail from 'profile-page/detail';
+import DetailMobile from 'profile-page/detail-mobile';
+import GameModeSwitcher from 'profile-page/game-mode-switcher';
+import HeaderInfo from 'profile-page/header-info';
+import headerLinks from 'profile-page/header-links';
+import Links from 'profile-page/links';
+import RankCount from 'profile-page/rank-count';
+import Stats from 'profile-page/stats';
+import ProfileTournamentBanner from 'profile-tournament-banner';
+import * as React from 'react';
+import { nextVal } from 'utils/seq';
+import { ProfilePageUserJson } from './extra-page-props';
 
+interface Props {
+  currentMode: GameMode;
+  stats: UserStatisticsJson;
+  user: ProfilePageUserJson;
+  userAchievements: UserAchievementJson[];
+  withEdit: boolean;
+}
 
-export class Header extends React.Component
-  constructor: (props) ->
-    super props
+@observer
+export default class Header extends React.Component<Props> {
+  private readonly coverSelector = React.createRef<HTMLDivElement>();
+  @observable private coverUrl: string | null = this.props.user.cover.url;
+  private readonly debouncedCoverSet = debounce((url: string | null) => {
+    this.coverSet(url);
+  }, 300);
+  @observable private editing = false;
+  private readonly eventId = `users-show-header-${nextVal()}`;
+  @observable private isCoverUpdating = false;
+  private xhr?: JQuery.jqXHR<CurrentUserJson>;
 
-    @eventId = "users-show-header-#{nextVal()}"
-    @state =
-      editing: false
-      coverUrl: props.user.cover.url
-      isCoverUpdating: false
-      settingDefaultMode: false
+  constructor(props: Props) {
+    super(props);
 
-    @coverSelector = React.createRef()
-    @debouncedCoverSet = _.debounce @coverSet, 300
+    makeObservable(this);
+  }
 
+  componentDidMount() {
+    $.subscribe(`user:cover:reset.${this.eventId}`, this.coverReset);
+    $.subscribe(`user:cover:set.${this.eventId}`, this.onCoverSet);
+    $.subscribe(`user:cover:upload:state.${this.eventId}`, this.onCoverUploadState);
 
-  componentDidMount: =>
-    $.subscribe "user:cover:reset.#{@eventId}", @coverReset
-    $.subscribe "user:cover:set.#{@eventId}", @debouncedCoverSet
-    $.subscribe "user:cover:upload:state.#{@eventId}", @coverUploadState
+    $.subscribe(`key:esc.${this.eventId}`, this.onCloseEdit);
+    $(document).on(`click.${this.eventId}`, this.onCloseEdit);
+  }
 
-    $.subscribe "key:esc.#{@eventId}", @closeEdit
-    $(document).on "click.#{@eventId}", @closeEdit
+  componentWillReceiveProps(newProps: Props) {
+    this.debouncedCoverSet(newProps.user.cover.url);
+  }
 
+  componentWillUnmount() {
+    $.unsubscribe(`.${this.eventId}`);
+    $(document).off(`.${this.eventId}`);
 
-  componentWillReceiveProps: (newProps) =>
-    @debouncedCoverSet null, newProps.user.cover.url
+    this.closeEdit();
+    this.debouncedCoverSet.cancel();
+    this.xhr?.abort();
+  }
 
+  render() {
+    return (
+      <div className='js-switchable-mode-page--scrollspy js-switchable-mode-page--page' data-page-id='main'>
+        <HeaderV4
+          backgroundImage={this.coverUrl}
+          contentPrepend={<ProfileTournamentBanner banner={this.props.user.active_tournament_banner} />}
+          isCoverUpdating={this.isCoverUpdating}
+          links={headerLinks(this.props.user, 'show')}
+          theme='users'
+          titleAppend={<GameModeSwitcher
+            currentMode={this.props.currentMode}
+            user={this.props.user}
+            withEdit={this.props.withEdit}
+          />}
+        />
 
-  componentWillUnmount: =>
-    $.unsubscribe ".#{@eventId}"
-    $(document).off ".#{@eventId}"
+        <div className='osu-page osu-page--users'>
+          <div className='profile-header'>
+            <div className='profile-header__top'>
+              <HeaderInfo coverUrl={this.coverUrl} currentMode={this.props.currentMode} user={this.props.user} />
 
-    @closeEdit()
-    @debouncedCoverSet.cancel()
-    @xhr?.abort()
+              {!this.props.user.is_bot &&
+                <>
+                  <DetailMobile
+                    rankHistory={this.props.user.rank_history}
+                    stats={this.props.stats}
+                    userAchievements={this.props.userAchievements}
+                  />
 
+                  <Stats stats={this.props.stats} />
 
-  render: =>
-    div
-      className: 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
-      'data-page-id': 'main'
-      el HeaderV4,
-        backgroundImage: @state.coverUrl
-        contentPrepend: el ProfileTournamentBanner,
-          banner: @props.user.active_tournament_banner
-        isCoverUpdating: @state.isCoverUpdating
-        links: headerLinks(@props.user, 'show')
-        theme: 'users'
-        titleAppend: el GameModeSwitcher,
-          currentMode: @props.currentMode
-          user: @props.user
-          withEdit: @props.withEdit
+                  <div className='profile-header__rank-count-mobile'>
+                    <RankCount stats={this.props.stats} />
+                  </div>
+                </>
+              }
+            </div>
 
-      div className: 'osu-page osu-page--users',
-        div className: 'profile-header',
-          div className: 'profile-header__top',
-            el HeaderInfo, user: @props.user, currentMode: @props.currentMode, coverUrl: @state.coverUrl
+            <Detail
+              stats={this.props.stats}
+              type='user'
+              user={this.props.user}
+              userAchievements={this.props.userAchievements}
+            />
 
-            if !@props.user.is_bot
-              el React.Fragment, null,
-                el DetailMobile,
-                  stats: @props.stats
-                  userAchievements: @props.userAchievements
-                  rankHistory: @props.user.rank_history
+            <Badges badges={this.props.user.badges} />
 
-                el Stats, stats: @props.stats
+            <Links user={this.props.user} />
 
-                div className: 'profile-header__rank-count-mobile',
-                  el RankCount, stats: @props.stats
+            {this.renderCoverSelector()}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-          el Detail,
-            stats: @props.stats
-            type: 'user'
-            user: @props.user
-            userAchievements: @props.userAchievements
+  private closeEdit() {
+    this.editing = false;
+    this.coverReset();
+  }
 
-          el Badges, badges: @props.user.badges
+  private readonly coverReset = () => {
+    this.debouncedCoverSet(this.props.user.cover.url);
+  };
 
-          el Links, user: @props.user
+  private coverSet(url: string | null) {
+    if (this.isCoverUpdating) return;
 
-          @renderCoverSelector()
+    this.coverUrl = url;
+  }
 
+  private readonly onCloseEdit = (e?: JQuery.Event | JQuery.ClickEvent) => {
+    if (!this.editing) return;
 
-  renderCoverSelector: =>
-    if @props.withEdit
-      div
-        ref: @coverSelector
-        className: 'profile-header__cover-editor'
-        button
-          className: 'btn-circle btn-circle--page-toggle'
-          title: osu.trans('users.show.edit.cover.button')
-          onClick: @toggleEdit
-          span className: 'fas fa-pencil-alt'
-        if @state.editing
-          el CoverSelector,
-            canUpload: @props.user.is_supporter
-            cover: @props.user.cover
+    if (e != null) {
+      if (e.button !== 0) return;
+      if ('target' in e && this.coverSelector.current != null && $(e.target).closest(this.coverSelector.current).length) {
+        return;
+      }
+    }
 
+    if ($('#overlay').is(':visible')) return;
+    if (document.body.classList.contains('modal-open')) return;
 
-  closeEdit: (e) =>
-    return unless @state.editing
+    this.closeEdit();
+  };
 
-    if e?
-      return if e.button != 0
-      return if $(e.target).closest(@coverSelector.current).length
+  private readonly onCoverSet = (_e: unknown, url: string) => {
+    this.debouncedCoverSet(url);
+  };
 
-    return if $('#overlay').is(':visible')
-    return if document.body.classList.contains('modal-open')
+  private readonly onCoverUploadState = (_e: unknown, state: boolean) => {
+    this.isCoverUpdating = state;
+  };
 
-    @setState editing: false, @coverReset
+  private readonly onToggleEdit = () => {
+    if (this.editing) {
+      this.closeEdit();
+    } else {
+      this.openEdit();
+    }
+  };
 
+  private readonly openEdit = () => {
+    this.editing = true;
+  };
 
-  coverReset: =>
-    @debouncedCoverSet null, @props.user.cover.url
+  private renderCoverSelector() {
+    if (!this.props.withEdit) return null;
 
+    return (
+      <div ref={this.coverSelector} className='profile-header__cover-editor'>
+        <button
+          className='btn-circle btn-circle--page-toggle'
+          onClick={this.onToggleEdit}
+          title={osu.trans('users.show.edit.cover.button')}
+        >
+          <span className='fas fa-pencil-alt' />
+        </button>
 
-  coverSet: (_e, url) =>
-    return if @state.isCoverUpdating
-
-    @setState coverUrl: url
-
-
-  coverUploadState: (_e, state) =>
-    @setState isCoverUpdating: state
-
-
-  openEdit: =>
-    @setState editing: true
-
-
-  toggleEdit: =>
-    if @state.editing
-      @closeEdit()
-    else
-      @openEdit()
-
-
-  setDefaultMode: =>
-    @setState settingDefaultMode: true
-
-    @xhr = $.ajax laroute.route('account.update'),
-      method: 'PUT'
-      data:
-        user:
-          playmode: @props.currentMode
-    .done (data) ->
-      $.publish 'user:update', data
-    .fail (xhr, status) ->
-      return if status == 'abort'
-
-      osu.emitAjaxError() xhr
-    .always =>
-      @setState settingDefaultMode: false
+        {this.editing &&
+          <CoverSelector
+            canUpload={this.props.user.is_supporter}
+            cover={this.props.user.cover}
+          />
+        }
+      </div>
+    );
+  }
+}
