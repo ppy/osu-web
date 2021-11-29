@@ -8,6 +8,8 @@ export type BeatmapsetSection = 'favouriteBeatmapsets' | 'rankedBeatmapsets' | '
 export const topScoreSections = ['scoresBest', 'scoresFirsts'] as const;
 export type TopScoreSection = typeof topScoreSections[number];
 
+type HistoricalSection = 'beatmapPlaycounts' | 'scoresRecent';
+
 type ProfilePageIncludes =
   'account_history'
   | 'active_tournament_banner'
@@ -41,7 +43,7 @@ interface Pagination {
   loading: boolean;
 }
 
-export type ProfilePagePaginationData = Record<BeatmapsetSection | TopScoreSection | 'recentlyReceivedKudosu', Pagination>;
+export type ProfilePagePaginationData = Record<BeatmapsetSection | TopScoreSection | HistoricalSection | 'recentlyReceivedKudosu', Pagination>;
 
 export default interface ExtraPageProps {
   name: string;

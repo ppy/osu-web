@@ -1,197 +1,242 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import BeatmapPlaycount from 'profile-page/beatmap-playcount'
-import LineChart, { makeOptionsDate } from 'charts/line-chart'
-import ExtraHeader from 'profile-page/extra-header'
-import core from 'osu-core-singleton'
-import PlayDetailList from 'play-detail-list'
-import * as React from 'react'
-import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
-import ShowMoreLink from 'show-more-link'
-import { nextVal } from 'utils/seq'
-el = React.createElement
+import LineChart, { makeOptionsDate } from 'charts/line-chart';
+import { curveLinear } from 'd3';
+import BeatmapPlaycountJson from 'interfaces/beatmap-playcount-json';
+import GameMode from 'interfaces/game-mode';
+import ScoreJson from 'interfaces/score-json';
+import { route } from 'laroute';
+import { escape, sortBy, times } from 'lodash';
+import * as moment from 'moment';
+import core from 'osu-core-singleton';
+import PlayDetailList from 'play-detail-list';
+import * as React from 'react';
+import ShowMoreLink from 'show-more-link';
+import { nextVal } from 'utils/seq';
+import BeatmapPlaycount from './beatmap-playcount';
+import ExtraHeader from './extra-header';
+import ExtraPageProps, { ProfilePagePaginationData } from './extra-page-props';
 
+type ChartSection = 'monthly_playcounts' | 'replays_watched_counts';
 
-export class Historical extends React.PureComponent
-  constructor: (props) ->
-    super props
+// conveniently both charts share same interface
+interface ChartData {
+  x: Date;
+  y: number;
+}
 
-    @id = "users-show-historical-#{nextVal()}"
-    @monthlyPlaycountsChartArea = React.createRef()
-    @replaysWatchedCountsChartArea = React.createRef()
+function dataPadder(padded: ChartData[], entry: ChartData) {
+  if (padded.length > 0) {
+    const lastEntry = padded[padded.length - 1];
+    const missingMonths = moment(entry.x).diff(moment(lastEntry.x), 'months') - 1;
 
-    @charts = {}
+    times(missingMonths, (i) => {
+      padded.push({
+        x: moment(lastEntry.x).add(i + 1, 'months').toDate(),
+        y: 0,
+      });
+    });
+  }
 
+  padded.push(entry);
 
-  componentDidMount: =>
-    $(window).on "resize.#{@id}", @resizeCharts
-    @monthlyPlaycountsChartUpdate()
-    @replaysWatchedCountsChartUpdate()
+  return padded;
+}
 
+function updateTicks(chart: LineChart<Date>, data?: ChartData[]) {
+  data ??= chart.data;
 
-  componentDidUpdate: =>
-    @monthlyPlaycountsChartUpdate()
-    @replaysWatchedCountsChartUpdate()
+  if (core.windowSize.isDesktop) {
+    chart.options.ticksX = undefined;
 
+    chart.options.tickValuesX = data.length < 10 ?  data.map((d) => d.x) : undefined;
+  } else {
+    chart.options.ticksX = Math.min(6, data.length);
+    chart.options.tickValuesX = undefined;
+  }
+}
 
-  componentWillUnmount: =>
-    $(window).off ".#{@id}"
-    $(document).off ".#{@id}"
+interface Props extends ExtraPageProps {
+  beatmapPlaycounts: BeatmapPlaycountJson[];
+  currentMode: GameMode;
+  pagination: ProfilePagePaginationData;
+  scoresRecent: ScoreJson[];
+}
 
+export default class Historical extends React.PureComponent<Props> {
+  private readonly charts: Partial<Record<ChartSection, LineChart<Date>>> = {};
+  private readonly id = `users-show-historical-${nextVal()}`;
+  private readonly monthlyPlaycountsChartArea = React.createRef<HTMLDivElement>();
+  private readonly replaysWatchedCountsChartArea = React.createRef<HTMLDivElement>();
 
-  render: =>
-    div
-      className: 'page-extra'
+  private get hasMonthlyPlaycounts() {
+    return this.props.user.monthly_playcounts.length > 0;
+  }
 
-      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
+  private get hasReplaysWatchedCounts() {
+    return this.props.user.replays_watched_counts.length > 0;
+  }
 
-      if @hasMonthlyPlaycounts()
-        el React.Fragment, null,
-          h3
-            className: 'title title--page-extra-small'
-            osu.trans('users.show.extra.historical.monthly_playcounts.title')
+  componentDidMount() {
+    $(window).on(`resize.${this.id}`, this.resizeCharts);
+    this.monthlyPlaycountsChartUpdate();
+    this.replaysWatchedCountsChartUpdate();
+  }
 
-          div className: 'page-extra__chart',
-            div ref: @monthlyPlaycountsChartArea
+  componentDidUpdate() {
+    this.monthlyPlaycountsChartUpdate();
+    this.replaysWatchedCountsChartUpdate();
+  }
 
+  componentWillUnmount() {
+    $(window).off(`.${this.id}`);
+    $(document).off(`.${this.id}`);
+  }
 
-      h3
-        className: 'title title--page-extra-small'
-        osu.trans('users.show.extra.historical.most_played.title')
-        span className: 'title__count', osu.formatNumber(@props.user.beatmap_playcounts_count)
+  render() {
+    return (
+      <div className='page-extra'>
+        <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
 
-      if (@props.beatmapPlaycounts?.length ? 0) != 0
-        el React.Fragment, null,
-          for playcount in @props.beatmapPlaycounts
-            el BeatmapPlaycount,
-              key: playcount.beatmap.id
-              playcount: playcount
-              currentMode: @props.currentMode
-          el ShowMoreLink,
-            key: 'show-more-row'
-            modifiers: 'profile-page'
-            event: 'profile:showMore'
-            hasMore: @props.pagination.beatmapPlaycounts.hasMore
-            loading: @props.pagination.beatmapPlaycounts.loading
-            data:
-              name: 'beatmapPlaycounts'
-              url: laroute.route 'users.beatmapsets',
-                  user: @props.user.id
-                  type: 'most_played'
+        {this.hasMonthlyPlaycounts &&
+          <>
+            <h3 className='title title--page-extra-small'>
+              {osu.trans('users.show.extra.historical.monthly_playcounts.title')}
+            </h3>
 
-      h3
-        className: 'title title--page-extra-small'
-        osu.trans('users.show.extra.historical.recent_plays.title')
-        span className: 'title__count', osu.formatNumber(@props.user.scores_recent_count)
+            <div className='page-extra__chart'>
+              <div ref={this.monthlyPlaycountsChartArea} />
+            </div>
+          </>
+        }
 
-      if (@props.scoresRecent?.length ? 0) != 0
-        el React.Fragment, null,
-          el PlayDetailList, key: 'play-detail-list', scores: @props.scoresRecent
+        <h3 className='title title--page-extra-small'>
+          {osu.trans('users.show.extra.historical.most_played.title')}
+          <span className='title__count'>
+            {osu.formatNumber(this.props.user.beatmap_playcounts_count)}
+          </span>
+        </h3>
 
-          el ShowMoreLink,
-            key: 'show-more-row'
-            modifiers: 'profile-page'
-            event: 'profile:showMore'
-            hasMore: @props.pagination.scoresRecent.hasMore
-            loading: @props.pagination.scoresRecent.loading
-            data:
-              name: 'scoresRecent'
-              url: laroute.route 'users.scores',
-                  user: @props.user.id
-                  type: 'recent'
-                  mode: @props.currentMode
+        {this.props.beatmapPlaycounts.length > 0 &&
+          <>
+            {this.props.beatmapPlaycounts.map((playcount) => (
+              <BeatmapPlaycount
+                key={playcount.beatmap_id}
+                currentMode={this.props.currentMode}
+                playcount={playcount}
+              />
+            ))}
+            <ShowMoreLink
+              data={{
+                name: 'beatmapPlaycounts',
+                url: route('users.beatmapsets', { type: 'most_played', user: this.props.user.id }),
+              }}
+              event='profile:showMore'
+              hasMore={this.props.pagination.beatmapPlaycounts.hasMore}
+              loading={this.props.pagination.beatmapPlaycounts.loading}
+              modifiers='profile-page'
+            />
+          </>
+        }
 
-      if @hasReplaysWatchedCounts()
-        el React.Fragment, null,
-          h3
-            className: 'title title--page-extra-small'
-            osu.trans('users.show.extra.historical.replays_watched_counts.title')
+        <h3 className='title title--page-extra-small'>
+          {osu.trans('users.show.extra.historical.recent_plays.title')}
+          <span className='title__count'>
+            {osu.formatNumber(this.props.user.scores_recent_count)}
+          </span>
+        </h3>
 
-          div className: 'page-extra__chart',
-            div ref: @replaysWatchedCountsChartArea
+        {this.props.scoresRecent.length > 0 &&
+          <>
+            <PlayDetailList scores={this.props.scoresRecent} />
 
+            <ShowMoreLink
+              data={{
+                name: 'scoresRecent',
+                url: route('users.scores', { mode: this.props.currentMode, type: 'recent', user: this.props.user.id }),
+              }}
+              event='profile:showMore'
+              hasMore={this.props.pagination.scoresRecent.hasMore}
+              loading={this.props.pagination.scoresRecent.loading}
+              modifiers='profile-page'
+            />
+          </>
+        }
 
-  chartUpdate: (attribute, area) =>
-    dataPadder = (padded, entry) ->
-      if padded.length > 0
-        lastEntry = _.last(padded)
-        missingMonths = entry.x.diff(lastEntry.x, 'months') - 1
+        {this.hasReplaysWatchedCounts &&
+          <>
+            <h3 className='title title--page-extra-small'>
+              {osu.trans('users.show.extra.historical.replays_watched_counts.title')}
+            </h3>
 
-        _.times missingMonths, (i) ->
-          padded.push
-            x: lastEntry.x.clone().add(i + 1, 'months')
-            y: 0
+            <div className='page-extra__chart'>
+              <div ref={this.replaysWatchedCountsChartArea} />
+            </div>
+          </>
+        }
+      </div>
+    );
+  }
 
-      padded.push entry
-      padded
+  private chartUpdate(attribute: ChartSection, area: HTMLDivElement | null) {
+    if (area == null) {
+      throw new Error("chart can't be updated before the component is mounted");
+    }
 
-    data = _(@props.user[attribute])
-      .sortBy 'start_date'
-      .map (count) ->
-        x: moment(count.start_date)
-        y: count.count
-      .reduce dataPadder, []
+    const data = sortBy(this.props.user[attribute], 'start_date')
+      .map((count) => ({
+        x: new Date(count.start_date),
+        y: count.count,
+      })).reduce(dataPadder, []);
 
-    if data.length == 1
-      data.unshift
-        x: data[0].x.clone().subtract(1, 'month')
-        y: 0
+    if (data.length === 1) {
+      data.unshift({
+        x: moment(data[0].x).subtract(1, 'month').toDate(),
+        y: 0,
+      });
+    }
 
-    if !@charts[attribute]?
-      options = makeOptionsDate
-        curve: d3.curveLinear
-        formatX: (d) -> moment(d).format(osu.trans('common.datetime.year_month_short.moment'))
-        formatY: (d) -> osu.formatNumber(d)
-        marginRight: 60 # more spacing for x axis label
-        infoBoxFormatX: (d) -> moment(d).format(osu.trans('common.datetime.year_month.moment'))
-        infoBoxFormatY: (d) -> "<strong>#{osu.trans("users.show.extra.historical.#{attribute}.count_label")}</strong> #{_.escape(osu.formatNumber(d))}"
-        circleLine: true
-        modifiers: 'profile-page'
+    let chart = this.charts[attribute];
+    if (chart == null) {
+      const options = makeOptionsDate({
+        circleLine: true,
+        curve: curveLinear,
+        formatX: (d: Date) => moment(d).format(osu.trans('common.datetime.year_month_short.moment')),
+        formatY: (d: number) => osu.formatNumber(d),
+        infoBoxFormatX: (d: Date) => moment(d).format(osu.trans('common.datetime.year_month.moment')),
+        infoBoxFormatY: (d: number) => `<strong>${osu.trans(`users.show.extra.historical.${attribute}.count_label`)}</strong> ${escape(osu.formatNumber(d))}`,
+        marginRight: 60, // more spacing for x axis label
+        modifiers: 'profile-page',
+      });
 
-      @charts[attribute] = new LineChart(area, options)
+      chart = this.charts[attribute] = new LineChart(area, options);
+    }
 
-    core.reactTurbolinks.runAfterPageLoad @id, =>
-      @updateTicks @charts[attribute], data
-      @charts[attribute].loadData data
+    const definedChart = chart;
 
+    core.reactTurbolinks.runAfterPageLoad(this.id, () => {
+      updateTicks(definedChart, data);
+      definedChart.loadData(data);
+    });
+  }
 
-  hasMonthlyPlaycounts: =>
-    @props.user.monthly_playcounts.length > 0
+  private monthlyPlaycountsChartUpdate() {
+    if (!this.hasMonthlyPlaycounts) return;
 
+    this.chartUpdate('monthly_playcounts', this.monthlyPlaycountsChartArea.current);
+  }
 
-  hasReplaysWatchedCounts: =>
-    @props.user.replays_watched_counts.length > 0
+  private replaysWatchedCountsChartUpdate() {
+    if (!this.hasReplaysWatchedCounts) return;
 
+    this.chartUpdate('replays_watched_counts', this.replaysWatchedCountsChartArea.current);
+  }
 
-  monthlyPlaycountsChartUpdate: =>
-    return if !@hasMonthlyPlaycounts()
-
-    @chartUpdate 'monthly_playcounts', @monthlyPlaycountsChartArea.current
-
-
-  replaysWatchedCountsChartUpdate: =>
-    return if !@hasReplaysWatchedCounts()
-
-    @chartUpdate 'replays_watched_counts', @replaysWatchedCountsChartArea.current
-
-
-  updateTicks: (chart, data) =>
-    if core.windowSize.isDesktop
-      chart.options.ticksX = undefined
-
-      data ?= chart.data
-      chart.options.tickValuesX =
-        if data.length < 10
-          data.map (d) -> d.x
-        else
-          undefined
-    else
-      chart.options.ticksX = Math.min(6, (data ? chart.data).length)
-      chart.options.tickValuesX = undefined
-
-
-  resizeCharts: =>
-    for own _name, chart of @charts
-      @updateTicks chart
-      chart.resize()
+  private readonly resizeCharts = () => {
+    Object.values(this.charts).forEach((chart) => {
+      updateTicks(chart);
+      chart.resize();
+    });
+  };
+}

@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { Header } from './header'
-import { Historical } from './historical'
+import Historical from 'profile-page/historical'
 import { Medals } from './medals'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
