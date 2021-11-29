@@ -1,9 +1,9 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { gameModes } from 'interfaces/game-mode'
 import * as React from 'react'
 import { a, button, div, li, span, ul } from 'react-dom-factories'
-import { modes } from 'utils/beatmap-helper'
 el = React.createElement
 bn = 'game-mode'
 
@@ -25,7 +25,7 @@ export class GameModeSwitcher extends React.PureComponent
     div className: bn,
       @renderSetDefault()
       ul className: "#{bn}__items",
-        for mode in modes
+        for mode in gameModes
           linkClass = 'game-mode-link'
           linkClass += ' game-mode-link--active' if mode == @props.currentMode
 
