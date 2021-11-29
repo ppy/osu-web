@@ -10,6 +10,16 @@ import User from 'models/user';
 import core from 'osu-core-singleton';
 import Message from './message';
 
+// supported channel types only
+const channelGroups = ['public', 'group', 'pm'] as const;
+export type ChannelGroup = (typeof channelGroups)[number];
+
+export const groupMap: Partial<Record<ChannelType, ChannelGroup>> = {
+  GROUP: 'group',
+  PM: 'pm',
+  PUBLIC: 'public',
+};
+
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
 

@@ -11,16 +11,14 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import { markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
 import MessageNewEvent from 'chat/message-new-event';
 import DispatchListener from 'dispatch-listener';
-import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
+import ChannelJson from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { groupBy, maxBy } from 'lodash';
 import { action, comparer, computed, makeObservable, observable, runInAction } from 'mobx';
-import Channel from 'models/chat/channel';
+import Channel, { groupMap } from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
-
-const visibleChannelTypes = new Set<ChannelType>(['GROUP', 'PM', 'PUBLIC']);
 
 @dispatchListener
 export default class ChannelStore implements DispatchListener {
@@ -210,7 +208,7 @@ export default class ChannelStore implements DispatchListener {
   @action
   updateWithPresence(presence: ChannelJson[]) {
     presence.forEach((json) => {
-      if (visibleChannelTypes.has(json.type)) {
+      if (groupMap[json.type] != null) {
         this.getOrCreate(json.channel_id).updatePresence(json);
       }
     });
