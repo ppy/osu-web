@@ -10,7 +10,6 @@ use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\User;
-use Request;
 
 class ChatController extends Controller
 {
