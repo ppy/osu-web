@@ -15,7 +15,7 @@ import ChannelJson from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { groupBy, maxBy } from 'lodash';
-import { action, comparer, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import Channel, { ChannelGroup, channelGroups, groupMap } from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
@@ -57,7 +57,7 @@ export default class ChannelStore implements DispatchListener {
 
     // remove any keys that don't belong here.
     for (const key of Object.keys(grouped)) {
-      if (!channelGroups.includes(key)) {
+      if (!(channelGroups as Readonly<string[]>).includes(key)) {
         delete grouped[key];
       }
     }
@@ -69,17 +69,6 @@ export default class ChannelStore implements DispatchListener {
     }
 
     return grouped as Record<ChannelGroup, Channel[]>;
-  }
-
-  @computed({ equals: comparer.shallow })
-  get publicChannels() {
-    // TODO: isDisplayable filter might not be necessary anymore?
-    return this.groupedChannels.public.filter((channel) => channel.isDisplayable);
-  }
-
-  @computed({ equals: comparer.shallow })
-  get pmChannels(): Channel[] {
-    return this.groupedChannels.pm.filter((channel) => channel.isDisplayable);
   }
 
   constructor() {
@@ -293,7 +282,7 @@ export default class ChannelStore implements DispatchListener {
 
   @action
   private removePublicMessagesFromUserIds(userIds: Set<number>) {
-    this.publicChannels.forEach((channel) => {
+    this.groupedChannels.public.forEach((channel) => {
       channel.removeMessagesFromUserIds(userIds);
     });
   }

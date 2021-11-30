@@ -125,6 +125,13 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
+  selectFirst() {
+    if (this.channelList.length === 0) return;
+
+    this.selectChannel(this.channelList[0].channelId);
+  }
+
+  @action
   private focusChannelAtIndex(index: number) {
     if (this.channelList.length === 0) {
       return;
