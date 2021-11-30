@@ -30,7 +30,7 @@ export default class ConversationListItem extends React.Component<Props> {
 
     return (
       <div className={classWithModifiers(baseClassName, { selected })}>
-        {conversation.isUnread
+        {conversation.isUnread && !selected
           ? <div className={`${baseClassName}__unread-indicator`} />
           : null}
 
