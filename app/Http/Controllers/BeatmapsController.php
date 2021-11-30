@@ -63,7 +63,7 @@ class BeatmapsController extends Controller
                 ::whereIn('beatmap_id', $ids)
                 ->with([
                     // to preload #playmodes which is used to generate nomination data
-                    'beatmapset.beatmaps' => fn ($q) => $q->select('playmode'),
+                    'beatmapset.beatmaps' => fn ($q) => $q->select('beatmapset_id', 'playmode'),
                     'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
                     'failtimes',
                 ])->withMaxCombo()
