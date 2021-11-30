@@ -69,7 +69,7 @@ class BeatmapsController extends Controller
         }
 
         return [
-            'beatmaps' => json_collection($beatmaps ?? [], new BeatmapTransformer, static::DEFAULT_API_INCLUDES),
+            'beatmaps' => json_collection($beatmaps ?? [], new BeatmapTransformer(), static::DEFAULT_API_INCLUDES),
         ];
     }
 
@@ -112,7 +112,7 @@ class BeatmapsController extends Controller
             abort(404);
         }
 
-        return json_item($beatmap, new BeatmapTransformer, static::DEFAULT_API_INCLUDES);
+        return json_item($beatmap, new BeatmapTransformer(), static::DEFAULT_API_INCLUDES);
     }
 
     /**
@@ -142,7 +142,7 @@ class BeatmapsController extends Controller
         $beatmap = Beatmap::findOrFail($id);
 
         if (is_api_request()) {
-            return json_item($beatmap, new BeatmapTransformer, static::DEFAULT_API_INCLUDES);
+            return json_item($beatmap, new BeatmapTransformer(), static::DEFAULT_API_INCLUDES);
         }
 
         $beatmapset = $beatmap->beatmapset;
