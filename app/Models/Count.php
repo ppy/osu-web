@@ -11,10 +11,11 @@ namespace App\Models;
  */
 class Count extends Model
 {
-    protected $table = 'osu_counts';
-    protected $primaryKey = 'name';
-
+    public $incrementing = false;
     public $timestamps = false;
+
+    protected $primaryKey = 'name';
+    protected $table = 'osu_counts';
 
     public static function currentRankStart(string $mode): int
     {
