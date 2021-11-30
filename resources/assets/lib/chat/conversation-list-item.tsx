@@ -5,6 +5,7 @@ import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
 import UserAvatar from 'user-avatar';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   channelId: number;
@@ -25,17 +26,10 @@ export default class ConversationListItem extends React.Component<Props> {
       return;
     }
 
-    let className = baseClassName;
-    if (this.props.channelId === uiState.selected) {
-      className += ` ${baseClassName}--selected`;
-    }
-
-    if (conversation.isUnread) {
-      className += ` ${baseClassName}--unread`;
-    }
+    const selected = this.props.channelId === uiState.selected;
 
     return (
-      <div className={className}>
+      <div className={classWithModifiers(baseClassName, { selected })}>
         {conversation.isUnread
           ? <div className={`${baseClassName}__unread-indicator`} />
           : null}
@@ -46,7 +40,7 @@ export default class ConversationListItem extends React.Component<Props> {
 
         <button className={`${baseClassName}__tile`} onClick={this.switch}>
           <div className={`${baseClassName}__avatar`}>
-            <UserAvatar modifiers={['full-circle']} user={{ avatar_url: conversation.icon }} />
+            <UserAvatar modifiers='full-circle' user={{ avatar_url: conversation.icon }} />
           </div>
           <div className={`${baseClassName}__name`}>{conversation.name}</div>
           <div className={`${baseClassName}__chevron`}>
