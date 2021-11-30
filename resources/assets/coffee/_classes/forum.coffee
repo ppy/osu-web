@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { bottomPage } from 'utils/html'
 import { hideLoadingOverlay } from 'utils/loading-overlay'
 
 replaceUrl = (url) ->
@@ -160,7 +161,7 @@ class window.Forum
 
     currentPost = null
 
-    if osu.bottomPage()
+    if bottomPage()
       currentPost = @posts[@posts.length - 1]
     else
       scrollOffset = window.stickyHeader.scrollOffsetValue()

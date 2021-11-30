@@ -1,6 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+export function bottomPage() {
+  return bottomPageDistance() === 0;
+}
+
+export function bottomPageDistance() {
+  const page = document.documentElement;
+
+  return page.scrollHeight - page.scrollTop - page.clientHeight;
+}
+
 export function createClickCallback(target: unknown) {
   if (target instanceof HTMLElement) {
     // plain javascript here doesn't trigger submit events
