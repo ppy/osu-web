@@ -25,7 +25,7 @@ export default class Channel {
   @observable name = '';
   needsRefresh = true;
   @observable newPmChannel = false;
-  @observable type: ChannelType = 'NEW';
+  @observable type: ChannelType = 'TEMPORARY';
   @observable users: number[] = [];
 
   @observable private messagesMap = new Map<number | string, Message>();
@@ -90,11 +90,6 @@ export default class Channel {
     }
 
     return this.users.find((userId: number) => userId !== core.currentUserOrFail.id);
-  }
-
-  @computed
-  get transient() {
-    return this.type === 'NEW';
   }
 
   constructor(channelId: number) {

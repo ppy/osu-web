@@ -104,11 +104,8 @@ export default class ChatStateStore implements DispatchListener {
       return;
     }
 
-    if (!(this.selectedChannel?.transient ?? true)) {
-      // don't disable autoScroll if we're 'switching' away from the 'new chat' screen
-      //   e.g. keep autoScroll enabled to jump to the newly sent message when restarting an old conversation
-      this.autoScroll = false;
-    }
+    // TODO: needed?
+    this.autoScroll = false;
 
     this.selected = channelId;
     this.selectedIndex = this.channelStore.channelList.indexOf(channel);
