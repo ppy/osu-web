@@ -59,7 +59,13 @@ class BeatmapsController extends Controller
         $ids = array_slice(get_arr(request('ids'), 'get_int'), 0, 50);
 
         if (count($ids) > 0) {
-            $beatmaps = Beatmap::whereIn('beatmap_id', $ids)->get();
+            $beatmaps = Beatmap
+                ::whereIn('beatmap_id', $ids)
+                ->with([
+                    'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
+                    'failtimes',
+                ])->withMaxCombo()
+                ->get();
         }
 
         return [

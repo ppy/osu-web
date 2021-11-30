@@ -1050,7 +1050,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function playmodes()
     {
-        return $this->beatmaps->pluck('playmode')->unique()->values();
+        return collect(explode(',', $this->difficulty_names))
+            ->map(fn ($diffName) => Beatmap::modeStr((int) substr($diffName, strrpos($diffName, '@') + 1)))
+            ->unique();
     }
 
     public function playmodeCount()
@@ -1200,13 +1202,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $ratings[$i] = 0;
         }
 
-        $userRatings = $this->userRatings()
-            ->select('rating', \DB::raw('count(*) as count'))
-            ->groupBy('rating')
-            ->get();
+        if ($this->relationLoaded('userRatings')) {
+            foreach ($this->userRatings as $userRating) {
+                $ratings[$userRating->rating]++;
+            }
+        } else {
+            $userRatings = $this->userRatings()
+                ->select('rating', \DB::raw('count(*) as count'))
+                ->groupBy('rating')
+                ->get();
 
-        foreach ($userRatings as $rating) {
-            $ratings[$rating->rating] = $rating->count;
+            foreach ($userRatings as $rating) {
+                $ratings[$rating->rating] = $rating->count;
+            }
         }
 
         return $ratings;
