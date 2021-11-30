@@ -36,9 +36,7 @@ interface Props {
 export default class Header extends React.Component<Props> {
   private readonly coverSelector = React.createRef<HTMLDivElement>();
   @observable private coverUrl: string | null = this.props.user.cover.url;
-  private readonly debouncedCoverSet = debounce((url: string | null) => {
-    this.coverSet(url);
-  }, 300);
+  private readonly debouncedCoverSet = debounce((url: string | null) => this.coverSet(url), 300);
   @observable private editing = false;
   private readonly eventId = `users-show-header-${nextVal()}`;
   @observable private isCoverUpdating = false;
