@@ -98,6 +98,11 @@ export default class ChatStateStore implements DispatchListener {
   selectChannel(channelId: number) {
     if (this.selected === channelId) return;
 
+    // mark the channel being switched away from as read.
+    if (this.selectedChannel != null) {
+      this.channelStore.markAsRead(this.selectedChannel.channelId);
+    }
+
     const channel = this.channelStore.get(channelId);
     if (channel == null) {
       console.error(`Trying to switch to non-existent channel ${channelId}`);
@@ -112,7 +117,6 @@ export default class ChatStateStore implements DispatchListener {
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId);
-    this.channelStore.markAsRead(channelId);
   }
 
   @action
