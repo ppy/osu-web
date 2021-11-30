@@ -44,7 +44,6 @@ window._exported = {
 # FIXME: remove once everything imports instead of using global
 window.laroute ?= laroute
 
-# refer to variables.less
 window._styles =
   header:
     height: 90 # @nav2-height
