@@ -389,7 +389,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             });
         });
 
-        Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
+        Route::resource('beatmaps', 'BeatmapsController', ['only' => ['index', 'show']]);
 
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::apiResource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
