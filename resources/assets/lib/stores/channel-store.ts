@@ -20,6 +20,30 @@ import Channel, { ChannelGroup, channelGroups, groupMap } from 'models/chat/chan
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 
+function alphabeticalSort(a: Channel, b: Channel) {
+  if (a.name === b.name) {
+    return 0;
+  }
+
+  return a.name > b.name ? -1 : 1;
+}
+
+const channelSorts = {
+  group: alphabeticalSort,
+  pm: (a: Channel, b: Channel) => {
+    // so 'new' channels always end up on top
+    if (a.newPmChannel) return -1;
+    if (b.newPmChannel) return 1;
+
+    if (a.lastMessageId === b.lastMessageId) {
+      return 0;
+    }
+
+    return a.lastMessageId > b.lastMessageId ? -1 : 1;
+  },
+  public: alphabeticalSort,
+};
+
 @dispatchListener
 export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
@@ -31,14 +55,17 @@ export default class ChannelStore implements DispatchListener {
   get groupedChannels() {
     const grouped = groupBy([...this.channels.values()], 'group');
 
-    delete grouped.undefined; // Channel.group can return undefined, so make sure it isn't there.
-
+    // remove any keys that don't belong here.
     for (const key of Object.keys(grouped)) {
       if (!channelGroups.includes(key)) {
         delete grouped[key];
-      } else {
-        grouped[key] ??= [];
       }
+    }
+
+    // fill missing keys and sort.
+    for (const key of channelGroups) {
+      grouped[key] ??= [];
+      grouped[key] = grouped[key].sort(channelSorts[key]);
     }
 
     return grouped as Record<ChannelGroup, Channel[]>;
@@ -47,28 +74,12 @@ export default class ChannelStore implements DispatchListener {
   @computed({ equals: comparer.shallow })
   get publicChannels() {
     // TODO: isDisplayable filter might not be necessary anymore?
-    return this.groupedChannels.public.filter((channel) => channel.isDisplayable).sort((a, b) => {
-      if (a.name === b.name) {
-        return 0;
-      }
-
-      return a.name > b.name ? -1 : 1;
-    });
+    return this.groupedChannels.public.filter((channel) => channel.isDisplayable);
   }
 
   @computed({ equals: comparer.shallow })
   get pmChannels(): Channel[] {
-    return this.groupedChannels.pm.filter((channel) => channel.isDisplayable).sort((a, b) => {
-      // so 'new' channels always end up on top
-      if (a.newPmChannel) return -1;
-      if (b.newPmChannel) return 1;
-
-      if (a.lastMessageId === b.lastMessageId) {
-        return 0;
-      }
-
-      return a.lastMessageId > b.lastMessageId ? -1 : 1;
-    });
+    return this.groupedChannels.pm.filter((channel) => channel.isDisplayable);
   }
 
   constructor() {

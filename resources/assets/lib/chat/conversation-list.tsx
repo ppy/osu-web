@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { observer } from 'mobx-react';
-import Channel from 'models/chat/channel';
+import Channel, { channelGroups } from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import ConversationListItem from './conversation-list-item';
@@ -12,9 +12,12 @@ export default class ConversationList extends React.Component {
   render(): React.ReactNode {
     return (
       <div className='chat-conversation-list'>
-        {this.renderChannels(core.dataStore.channelStore.publicChannels)}
-        {this.renderSeparator()}
-        {this.renderChannels(core.dataStore.channelStore.pmChannels)}
+        {channelGroups.map((group) => (
+          <React.Fragment key={group}>
+            {this.renderChannels(core.dataStore.channelStore.groupedChannels[group])}
+            {this.renderSeparator()}
+          </React.Fragment>
+        ))}
       </div>
     );
   }

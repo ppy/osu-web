@@ -11,7 +11,7 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
-import Channel from 'models/chat/channel';
+import Channel, { channelGroups } from 'models/chat/channel';
 import ChannelStore from 'stores/channel-store';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
@@ -48,7 +48,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @computed
   private get channelList(): Channel[] {
-    return [...this.channelStore.publicChannels, ...this.channelStore.pmChannels];
+    return channelGroups.flatMap((group) => this.channelStore.groupedChannels[group]);
   }
 
   constructor(protected channelStore: ChannelStore) {
