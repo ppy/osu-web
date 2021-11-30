@@ -44,10 +44,4 @@ window._exported = {
 # FIXME: remove once everything imports instead of using global
 window.laroute ?= laroute
 
-window._styles =
-  header:
-    height: 90 # @nav2-height
-    heightSticky: 50 # @nav2-height--pinned
-    heightMobile: 50 # @navbar-height
-
 window.StoreCheckout = StoreCheckout
