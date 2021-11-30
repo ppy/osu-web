@@ -6,9 +6,9 @@ import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { minBy, sortBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
-import Message from 'models/chat/message';
 import User from 'models/user';
 import core from 'osu-core-singleton';
+import Message from './message';
 
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
@@ -89,7 +89,7 @@ export default class Channel {
       return;
     }
 
-    return this.users.find((userId: number) => userId !== currentUser.id);
+    return this.users.find((userId: number) => userId !== core.currentUserOrFail.id);
   }
 
   @computed
@@ -109,7 +109,7 @@ export default class Channel {
     channel.type = 'PM';
     channel.name = target.username;
     channel.icon = target.avatarUrl;
-    channel.users = [currentUser.id, target.id];
+    channel.users = [core.currentUserOrFail.id, target.id];
 
     return channel;
   }

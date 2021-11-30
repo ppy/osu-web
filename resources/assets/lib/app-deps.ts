@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import CurrentUserJson from 'interfaces/current-user-json';
+
 // import jquery + plugins
 import * as $ from 'jquery';
 import 'jquery-ujs';
@@ -23,6 +25,7 @@ declare global {
   interface Window {
     $: any;
     currentLocale: string;
+    currentUser: CurrentUserJson | { id: undefined };
     fallbackLocale: string;
     jQuery: any;
     Lang: Lang;

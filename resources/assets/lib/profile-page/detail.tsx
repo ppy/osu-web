@@ -15,6 +15,7 @@ import Rank from 'profile-page/rank';
 import RankChart from 'profile-page/rank-chart';
 import RankCount from 'profile-page/rank-count';
 import * as React from 'react';
+import { ProfilePageUserJson } from './extra-page-props';
 
 type Props = {
   stats: UserStatisticsJson;
@@ -26,7 +27,7 @@ type Props = {
 } | {
   stats: UserStatisticsJson;
   type: 'user';
-  user: UserExtendedJson;
+  user: ProfilePageUserJson;
   userAchievements: UserAchievementJson[];
 };
 
@@ -95,10 +96,10 @@ export default class Detail extends React.Component<Props> {
 
           </div>
           <div className='profile-detail__col profile-detail__col--bottom-right'>
-            <div className='profile-detail-bar__bottom-right-item'>
+            <div className='profile-detail__bottom-right-item'>
               <Rank modifiers='large' stats={this.props.stats} type='global' />
             </div>
-            <div className='profile-detail-bar__bottom-right-item'>
+            <div className='profile-detail__bottom-right-item'>
               <Rank stats={this.props.stats} type='country' />
             </div>
           </div>

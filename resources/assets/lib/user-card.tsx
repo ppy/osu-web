@@ -8,6 +8,7 @@ import FollowUserMappingButton from 'follow-user-mapping-button';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import core from 'osu-core-singleton';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
@@ -67,7 +68,7 @@ export class UserCard extends React.PureComponent<Props, State> {
 
   private get canMessage() {
     return !this.isSelf
-      && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
+      && _.find(core.currentUser?.blocks ?? [], { target_id: this.user.id }) == null;
   }
 
   private get isOnline() {
@@ -75,7 +76,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   private get isSelf() {
-    return currentUser.id === this.user.id;
+    return core.currentUser != null && core.currentUser.id === this.user.id;
   }
 
   private get isUserLoaded() {
