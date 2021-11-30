@@ -16,7 +16,7 @@ import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { groupBy, maxBy } from 'lodash';
 import { action, comparer, computed, makeObservable, observable, runInAction } from 'mobx';
-import Channel, { groupMap } from 'models/chat/channel';
+import Channel, { ChannelGroup, channelGroups, groupMap } from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 
@@ -27,16 +27,27 @@ export default class ChannelStore implements DispatchListener {
 
   private markingAsRead: Partial<Record<number, number>> = {};
 
-  @computed({ equals: comparer.shallow })
-  get publicChannels(): Channel[] {
-    const sortedChannels: Channel[] = [];
-    this.channels.forEach((channel) => {
-      if (channel.type !== 'PM' && channel.isDisplayable) {
-        sortedChannels.push(channel);
-      }
-    });
+  @computed
+  get groupedChannels() {
+    const grouped = groupBy([...this.channels.values()], 'group');
 
-    return sortedChannels.sort((a, b) => {
+    delete grouped.undefined; // Channel.group can return undefined, so make sure it isn't there.
+
+    for (const key of Object.keys(grouped)) {
+      if (!channelGroups.includes(key)) {
+        delete grouped[key];
+      } else {
+        grouped[key] ??= [];
+      }
+    }
+
+    return grouped as Record<ChannelGroup, Channel[]>;
+  }
+
+  @computed({ equals: comparer.shallow })
+  get publicChannels() {
+    // TODO: isDisplayable filter might not be necessary anymore?
+    return this.groupedChannels.public.filter((channel) => channel.isDisplayable).sort((a, b) => {
       if (a.name === b.name) {
         return 0;
       }
@@ -47,14 +58,7 @@ export default class ChannelStore implements DispatchListener {
 
   @computed({ equals: comparer.shallow })
   get pmChannels(): Channel[] {
-    const sortedChannels: Channel[] = [];
-    this.channels.forEach((channel) => {
-      if (channel.newPmChannel || (channel.type === 'PM' && channel.isDisplayable)) {
-        sortedChannels.push(channel);
-      }
-    });
-
-    return sortedChannels.sort((a, b) => {
+    return this.groupedChannels.pm.filter((channel) => channel.isDisplayable).sort((a, b) => {
       // so 'new' channels always end up on top
       if (a.newPmChannel) return -1;
       if (b.newPmChannel) return 1;

@@ -11,7 +11,7 @@ import core from 'osu-core-singleton';
 import Message from './message';
 
 // supported channel types only
-const channelGroups = ['public', 'group', 'pm'] as const;
+export const channelGroups = ['public', 'group', 'pm'] as const;
 export type ChannelGroup = (typeof channelGroups)[number];
 
 export const groupMap: Partial<Record<ChannelType, ChannelGroup>> = {
@@ -44,6 +44,11 @@ export default class Channel {
   @computed
   get firstMessage() {
     return this.messages.length > 0 ? this.messages[0] : undefined;
+  }
+
+  @computed
+  get group() {
+    return groupMap[this.type];
   }
 
   @computed
