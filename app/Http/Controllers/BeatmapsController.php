@@ -23,9 +23,78 @@ class BeatmapsController extends Controller
         $this->middleware('require-scopes:public');
     }
 
+    /**
+     * Lookup Beatmap
+     *
+     * Returns beatmap.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * See [Get Beatmap](#get-beatmap)
+     *
+     * @queryParam checksum A beatmap checksum.
+     * @queryParam filename A filename to lookup.
+     * @queryParam id A beatmap ID to lookup.
+     *
+     * @response "See Beatmap object section"
+     */
+    public function lookup()
+    {
+        static $keyMap = [
+            'checksum' => 'checksum',
+            'filename' => 'filename',
+            'id' => 'beatmap_id',
+        ];
+
+        $params = get_params(request()->all(), null, ['checksum:string', 'filename:string', 'id:int']);
+
+        foreach ($params as $key => $value) {
+            $beatmap = Beatmap::firstWhere($keyMap[$key], $value);
+
+            if ($beatmap === null) {
+                break;
+            }
+        }
+
+        if (!isset($beatmap)) {
+            abort(404);
+        }
+
+        return json_item($beatmap, 'Beatmap', ['beatmapset.ratings', 'failtimes', 'max_combo']);
+    }
+
+    /**
+     * Get Beatmap
+     *
+     * Gets beatmap data for the specified beatmap ID.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Returns [Beatmap](#beatmap) object.
+     * Following attributes are included in the response object when applicable,
+     *
+     * Attribute                            | Notes
+     * -------------------------------------|------
+     * beatmapset                           | Includes ratings property.
+     * failtimes                            | |
+     * max_combo                            | |
+     *
+     * @urlParam beatmap integer required The ID of the beatmap.
+     *
+     * @response "See Beatmap object section."
+     */
     public function show($id)
     {
         $beatmap = Beatmap::findOrFail($id);
+
+        if (is_api_request()) {
+            return json_item($beatmap, 'Beatmap', ['beatmapset.ratings', 'failtimes', 'max_combo']);
+        }
+
         $beatmapset = $beatmap->beatmapset;
 
         if ($beatmapset === null) {
