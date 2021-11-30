@@ -1,14 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GameMode from 'interfaces/game-mode';
-import ScoreJson from 'interfaces/score-json';
-import { route } from 'laroute';
+import { observer } from 'mobx-react';
 import PlayDetailList from 'play-detail-list';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
-import ExtraPageProps, { ProfilePagePaginationData, TopScoreSection } from './extra-page-props';
+import ExtraPageProps, { TopScoreSection } from './extra-page-props';
 
 interface SectionMap {
   count: 'scores_best_count' | 'scores_first_count';
@@ -32,29 +30,20 @@ const sectionMaps: SectionMap[] = [
   },
 ];
 
-type ScoreData = ScoreJson[] | { error: string };
-
-type Props = {
-  currentMode: GameMode;
-  pagination: ProfilePagePaginationData;
-  scoresNotice?: string;
-} & {
-  [key in TopScoreSection]?: ScoreData;
-} & ExtraPageProps;
-
-export default class TopScores extends React.PureComponent<Props> {
+@observer
+export default class TopScores extends React.Component<ExtraPageProps> {
   render() {
     return (
       <div className='page-extra'>
-        <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
+        <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
 
-        {this.props.scoresNotice != null && (
+        {this.props.controller.scoresNotice != null && (
           <div className='wiki-notice'>
             <span className='fas fa-exclamation-circle' />
             {' '}
             <div
               className='wiki-notice__markdown-inline-content'
-              dangerouslySetInnerHTML={{ __html: this.props.scoresNotice }}
+              dangerouslySetInnerHTML={{ __html: this.props.controller.scoresNotice }}
             />
           </div>
         )}
@@ -64,7 +53,7 @@ export default class TopScores extends React.PureComponent<Props> {
             <h3 className='title title--page-extra-small'>
               {osu.trans(`users.show.extra.top_ranks.${section.translationKey}.title`)}
               <span className='title__count'>
-                {osu.formatNumber(this.props.user[section.count])}
+                {osu.formatNumber(this.props.controller.state.user[section.count])}
               </span>
             </h3>
 
@@ -75,11 +64,13 @@ export default class TopScores extends React.PureComponent<Props> {
     );
   }
 
-  private renderScores(section: SectionMap) {
-    const pagination = this.props.pagination[section.key];
-    const scores = this.props[section.key];
+  private readonly onShowMore = (section: TopScoreSection) => {
+    this.props.controller.apiShowMore(section);
+  };
 
-    if (scores == null) return null;
+  private renderScores(section: SectionMap) {
+    const pagination = this.props.controller.state.pagination[section.key];
+    const scores = this.props.controller.state.extras[section.key];
 
     if (Array.isArray(scores)) {
       return (
@@ -88,17 +79,9 @@ export default class TopScores extends React.PureComponent<Props> {
 
           <div className='profile-extra-entries__item'>
             <ShowMoreLink
-              data={{
-                name: section.key,
-                url: route('users.scores', {
-                  mode: this.props.currentMode,
-                  type: section.type,
-                  user: this.props.user.id,
-                }),
-              }}
-              event='profile:showMore'
-              hasMore={pagination.hasMore}
-              loading={pagination.loading}
+              {...pagination}
+              callback={this.onShowMore}
+              data={section.key}
               modifiers='profile-page'
             />
           </div>

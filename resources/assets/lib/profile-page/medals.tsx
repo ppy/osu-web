@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import AchievementJson from 'interfaces/achievement-json';
-import GameMode from 'interfaces/game-mode';
 import UserAchievementJson from 'interfaces/user-achievement-json';
 import { keyBy } from 'lodash';
 import { computed, makeObservable } from 'mobx';
@@ -18,22 +17,18 @@ interface UserAchievementData {
   userAchievement?: UserAchievementJson;
 }
 
-interface Props extends ExtraPageProps {
-  achievements: Record<number | string, AchievementJson>;
-  currentMode: GameMode;
-  userAchievements: UserAchievementJson[];
-}
-
 @observer
-export default class Medals extends React.Component<Props> {
+export default class Medals extends React.Component<ExtraPageProps> {
   @computed
   private get groupedAchievements() {
-    const isCurrentUser = core.currentUser?.id === this.props.user.id;
+    const isCurrentUser = core.currentUser?.id === this.props.controller.state.user.id;
 
     // group by .grouping and then further group by .ordering
     const ret = new Map<string, Map<number, UserAchievementData[]>>();
 
-    for (const achievement of Object.values(this.props.achievements)) {
+    for (const achievement of Object.values(this.props.controller.achievements)) {
+      if (achievement == null) continue;
+
       const userAchievement = this.userAchievements[achievement.id.toString()];
       const visible = this.currentModeFilter(achievement) && (isCurrentUser || userAchievement != null);
 
@@ -60,8 +55,8 @@ export default class Medals extends React.Component<Props> {
   private get recentUserAchievements() {
     const ret: Required<UserAchievementData>[] = [];
 
-    for (const ua of this.props.userAchievements) {
-      const achievement = this.props.achievements[ua.achievement_id];
+    for (const ua of this.props.controller.state.user.user_achievements) {
+      const achievement = this.props.controller.achievements[ua.achievement_id];
 
       if (achievement != null && this.currentModeFilter(achievement)) {
         ret.push({
@@ -80,10 +75,10 @@ export default class Medals extends React.Component<Props> {
 
   @computed
   private get userAchievements() {
-    return keyBy(this.props.userAchievements, 'achievement_id');
+    return keyBy(this.props.controller.state.user.user_achievements, 'achievement_id');
   }
 
-  constructor(props: Props) {
+  constructor(props: ExtraPageProps) {
     super(props);
 
     makeObservable(this);
@@ -92,7 +87,7 @@ export default class Medals extends React.Component<Props> {
   render() {
     return (
       <div className='page-extra'>
-        <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
+        <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
 
         {this.recentUserAchievements.length > 0 &&
           <div className='page-extra__recent-medals-box'>
@@ -143,6 +138,6 @@ export default class Medals extends React.Component<Props> {
   }
 
   private currentModeFilter(achievement: AchievementJson) {
-    return achievement.mode == null || achievement.mode === this.props.currentMode;
+    return achievement.mode == null || achievement.mode === this.props.controller.currentMode;
   }
 }

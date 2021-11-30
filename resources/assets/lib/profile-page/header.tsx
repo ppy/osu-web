@@ -2,11 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'header-v4';
-import CurrentUserJson from 'interfaces/current-user-json';
-import GameMode from 'interfaces/game-mode';
-import UserAchievementJson from 'interfaces/user-achievement-json';
-import UserStatisticsJson from 'interfaces/user-statistics-json';
-import { debounce } from 'lodash';
 import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import Badges from 'profile-page/badges';
@@ -22,25 +17,17 @@ import Stats from 'profile-page/stats';
 import ProfileTournamentBanner from 'profile-tournament-banner';
 import * as React from 'react';
 import { nextVal } from 'utils/seq';
-import { ProfilePageUserJson } from './extra-page-props';
+import Controller from './controller';
 
 interface Props {
-  currentMode: GameMode;
-  stats: UserStatisticsJson;
-  user: ProfilePageUserJson;
-  userAchievements: UserAchievementJson[];
-  withEdit: boolean;
+  controller: Controller;
 }
 
 @observer
 export default class Header extends React.Component<Props> {
   private readonly coverSelector = React.createRef<HTMLDivElement>();
-  @observable private coverUrl: string | null = this.props.user.cover.url;
-  private readonly debouncedCoverSet = debounce((url: string | null) => this.coverSet(url), 300);
   private readonly eventId = `users-show-header-${nextVal()}`;
-  @observable private isCoverUpdating = false;
   @observable private selectingCover = false;
-  private xhr?: JQuery.jqXHR<CurrentUserJson>;
 
   constructor(props: Props) {
     super(props);
@@ -49,16 +36,8 @@ export default class Header extends React.Component<Props> {
   }
 
   componentDidMount() {
-    $.subscribe(`user:cover:reset.${this.eventId}`, this.coverReset);
-    $.subscribe(`user:cover:set.${this.eventId}`, this.onCoverSet);
-    $.subscribe(`user:cover:upload:state.${this.eventId}`, this.onCoverUploadState);
-
     $.subscribe(`key:esc.${this.eventId}`, this.tryCloseCoverSelector);
     $(document).on(`click.${this.eventId}`, this.onDocumentClick);
-  }
-
-  componentWillReceiveProps(newProps: Props) {
-    this.debouncedCoverSet(newProps.user.cover.url);
   }
 
   componentWillUnmount() {
@@ -66,58 +45,52 @@ export default class Header extends React.Component<Props> {
     $(document).off(`.${this.eventId}`);
 
     this.closeCoverSelector();
-    this.debouncedCoverSet.cancel();
-    this.xhr?.abort();
   }
 
   render() {
     return (
       <div className='js-switchable-mode-page--scrollspy js-switchable-mode-page--page' data-page-id='main'>
         <HeaderV4
-          backgroundImage={this.coverUrl}
-          contentPrepend={<ProfileTournamentBanner banner={this.props.user.active_tournament_banner} />}
-          isCoverUpdating={this.isCoverUpdating}
-          links={headerLinks(this.props.user, 'show')}
+          backgroundImage={this.props.controller.displayCoverUrl}
+          contentPrepend={<ProfileTournamentBanner banner={this.props.controller.state.user.active_tournament_banner} />}
+          isCoverUpdating={this.props.controller.isUpdatingCover}
+          links={headerLinks(this.props.controller.state.user, 'show')}
           theme='users'
-          titleAppend={<GameModeSwitcher
-            currentMode={this.props.currentMode}
-            user={this.props.user}
-            withEdit={this.props.withEdit}
-          />}
+          titleAppend={<GameModeSwitcher controller={this.props.controller} />}
         />
 
         <div className='osu-page osu-page--users'>
           <div className='profile-header'>
             <div className='profile-header__top'>
-              <HeaderInfo coverUrl={this.coverUrl} currentMode={this.props.currentMode} user={this.props.user} />
+              <HeaderInfo coverUrl={this.props.controller.displayCoverUrl} currentMode={this.props.controller.currentMode} user={this.props.controller.state.user} />
 
-              {!this.props.user.is_bot &&
+              {!this.props.controller.state.user.is_bot &&
                 <>
                   <DetailMobile
-                    rankHistory={this.props.user.rank_history}
-                    stats={this.props.stats}
-                    userAchievements={this.props.userAchievements}
+                    rankHistory={this.props.controller.state.user.rank_history}
+                    stats={this.props.controller.state.user.statistics}
+                    userAchievements={this.props.controller.state.user.user_achievements}
                   />
 
-                  <Stats stats={this.props.stats} />
+                  <Stats stats={this.props.controller.state.user.statistics} />
 
                   <div className='profile-header__rank-count-mobile'>
-                    <RankCount stats={this.props.stats} />
+                    <RankCount stats={this.props.controller.state.user.statistics} />
                   </div>
                 </>
               }
             </div>
 
             <Detail
-              stats={this.props.stats}
+              stats={this.props.controller.state.user.statistics}
               type='user'
-              user={this.props.user}
-              userAchievements={this.props.userAchievements}
+              user={this.props.controller.state.user}
+              userAchievements={this.props.controller.state.user.user_achievements}
             />
 
-            <Badges badges={this.props.user.badges} />
+            <Badges badges={this.props.controller.state.user.badges} />
 
-            <Links user={this.props.user} />
+            <Links user={this.props.controller.state.user} />
 
             {this.renderCoverSelector()}
           </div>
@@ -129,18 +102,8 @@ export default class Header extends React.Component<Props> {
   @action
   private readonly closeCoverSelector = () => {
     this.selectingCover = false;
-    this.coverReset();
+    this.props.controller.setDisplayCoverUrl(null);
   };
-
-  private readonly coverReset = () => {
-    this.debouncedCoverSet(this.props.user.cover.url);
-  };
-
-  private coverSet(url: string | null) {
-    if (this.isCoverUpdating) return;
-
-    this.coverUrl = url;
-  }
 
   private readonly onClickCoverSelectorToggle = () => {
     if (this.selectingCover) {
@@ -148,14 +111,6 @@ export default class Header extends React.Component<Props> {
     } else {
       this.openCoverSelector();
     }
-  };
-
-  private readonly onCoverSet = (_e: unknown, url: string) => {
-    this.debouncedCoverSet(url);
-  };
-
-  private readonly onCoverUploadState = (_e: unknown, state: boolean) => {
-    this.isCoverUpdating = state;
   };
 
   private readonly onDocumentClick = (e: JQuery.ClickEvent) => {
@@ -170,12 +125,13 @@ export default class Header extends React.Component<Props> {
     this.tryCloseCoverSelector();
   };
 
+  @action
   private readonly openCoverSelector = () => {
     this.selectingCover = true;
   };
 
   private renderCoverSelector() {
-    if (!this.props.withEdit) return null;
+    if (!this.props.controller.withEdit) return null;
 
     return (
       <div ref={this.coverSelector} className='profile-header__cover-editor'>
@@ -188,10 +144,7 @@ export default class Header extends React.Component<Props> {
         </button>
 
         {this.selectingCover &&
-          <CoverSelector
-            canUpload={this.props.user.is_supporter}
-            cover={this.props.user.cover}
-          />
+          <CoverSelector controller={this.props.controller} />
         }
       </div>
     );
