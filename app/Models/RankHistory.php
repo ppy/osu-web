@@ -111,7 +111,7 @@ class RankHistory extends Model
     {
         $data = [];
 
-        $startOffset = Count::currentRankStart($this->mode);
+        $startOffset = Count::currentRankStart($this->mode)->count;
         $end = $startOffset + 90;
 
         for ($i = $startOffset; $i < $end; $i++) {
