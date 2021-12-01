@@ -3,7 +3,7 @@
 
 import HeaderV4 from 'header-v4';
 import Img2x from 'img2x';
-import { action, makeObservable } from 'mobx';
+import { action, makeObservable, runInAction } from 'mobx';
 import { observer, Provider } from 'mobx-react';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
@@ -29,10 +29,12 @@ export default class MainView extends React.Component<Props> {
     this.props.dataStore.chatState.isChatMounted = true;
   }
 
-  @action
   componentWillUnmount() {
     $('html').removeClass('osu-layout--mobile-app');
-    this.props.dataStore.chatState.isChatMounted = false;
+
+    runInAction(() => {
+      this.props.dataStore.chatState.isChatMounted = false;
+    });
   }
 
   render(): React.ReactNode {
