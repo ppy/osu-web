@@ -196,7 +196,8 @@ class LegacyInterOpController extends Controller
      *   - too many messages has been sent by the sender
      *
      * @bodyParam messages[<id>][sender_id] integer required id of user sending the message
-     * @bodyParam messages[<id>][target_id] integer required id of user receiving the message. Must not be restricted
+     * @bodyParam messages[<id>][target_id] integer required id of user receiving the message if `type` is `pm`; channel, otherwise. Must not be restricted
+     * @bodyParam messages[<id>][type] string required type of the target of the message, `pm` or `public`
      * @bodyParam messages[<id>][message] string required message to send. Empty string is not allowed
      * @bodyParam messages[<id>][is_action] boolean required set to true (`1`/`on`/`true`) for `/me` message. Default false
      */
