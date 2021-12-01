@@ -27,6 +27,7 @@ use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\Chat\MessageTransformer;
 use Datadog;
+use Ds\Set;
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use stdClass;
@@ -213,9 +214,8 @@ class LegacyInterOpController extends Controller
             abort(422, '"messages" parameter must be a list');
         }
 
-        // TODO: Set?
-        $channelIds = [];
-        $userIds = [];
+        $channelIds = new Set();
+        $userIds = new Set();
 
         foreach ($params as $key => $messageParams) {
             if (!is_array($messageParams)) {
@@ -235,14 +235,14 @@ class LegacyInterOpController extends Controller
             // ignore if type missing (and return error?)
             if (in_array($messageType, ['pm', 'public'], true)) {
                 if (isset($messageParams['sender_id'])) {
-                    $userIds[$messageParams['sender_id']] = true;
+                    $userIds->add($messageParams['sender_id']);
                 }
 
                 if (isset($messageParams['target_id'])) {
                     if ($messageType === 'pm') {
-                        $userIds[$messageParams['target_id']] = true;
+                        $userIds->add([$messageParams['target_id']]);
                     } else {
-                        $channelIds[$messageParams['target_id']] = true;
+                        $channelIds->add([$messageParams['target_id']]);
                     }
                 }
             }
@@ -250,18 +250,15 @@ class LegacyInterOpController extends Controller
             $params[$key] = $messageParams;
         }
 
-        $channelIds = array_keys($channelIds);
-        $userIds = array_keys($userIds);
-
         $users = User
-            ::whereIn('user_id', $userIds)
+            ::whereIn('user_id', $userIds->toArray())
             ->with(['userGroups', 'blocks'])
             ->get()
             ->keyBy('user_id');
 
         $channels = Channel
             ::public()
-            ->whereIn('channel_id', $channelIds)
+            ->whereIn('channel_id', $channelIds->toArray())
             ->get()
             ->keyBy('channel_id');
 
