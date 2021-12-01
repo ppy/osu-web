@@ -401,14 +401,21 @@ class Channel extends Model
     {
         $userChannel = $this->userChannelFor($user);
 
-        if ($userChannel === null) {
+        if ($userChannel) {
+            // already in channel, just broadcast event.
+            if (!$userChannel->isHidden()) {
+                event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
+
+                return;
+            }
+
+            $userChannel->update(['hidden' => false]);
+        } else {
             $userChannel = new UserChannel();
             $userChannel->user()->associate($user);
             $userChannel->channel()->associate($this);
             $userChannel->save();
             $this->resetMemoized();
-        } elseif ($userChannel->isHidden()) {
-            $userChannel->update(['hidden' => false]);
         }
 
         event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
