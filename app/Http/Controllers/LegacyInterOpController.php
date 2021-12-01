@@ -230,7 +230,8 @@ class LegacyInterOpController extends Controller
                 'is_action:bool',
             ]);
 
-            $messageType = $messageParams['type'] ?? null;
+            // TODO: default to null later
+            $messageType = $messageParams['type'] ?? 'pm';
             // ignore if type missing (and return error?)
             if (in_array($messageType, ['pm', 'public'], true)) {
                 if (isset($messageParams['sender_id'])) {
