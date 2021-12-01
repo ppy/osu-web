@@ -222,15 +222,21 @@ class LegacyInterOpController extends Controller
             $messageParams = get_params($messageParams, null, [
                 'sender_id:int',
                 'target_id:int',
+                'type:string',
                 'message:string',
                 'is_action:bool',
             ]);
 
-            if (isset($messageParams['sender_id'])) {
-                $userIds[$messageParams['sender_id']] = true;
-            }
-            if (isset($messageParams['target_id'])) {
-                $userIds[$messageParams['target_id']] = true;
+            $messageType = $messageParams['type'] ?? null;
+            // ignore if type missing (and return error?)
+            if (in_array($messageType, ['pm', 'public'], true)) {
+                if (isset($messageParams['sender_id'])) {
+                    $userIds[$messageParams['sender_id']] = true;
+                }
+
+                if ($messageType === 'pm' && isset($messageParams['target_id'])) {
+                    $userIds[$messageParams['target_id']] = true;
+                }
             }
 
             $params[$key] = $messageParams;
@@ -250,7 +256,7 @@ class LegacyInterOpController extends Controller
                     abort(422);
                 }
 
-                if (!isset($messageParams['sender_id']) || !isset($messageParams['target_id'])) {
+                if (!isset($messageParams['type']) || !isset($messageParams['sender_id']) || !isset($messageParams['target_id'])) {
                     abort(422);
                 }
 
