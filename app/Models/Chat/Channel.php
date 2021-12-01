@@ -411,7 +411,7 @@ class Channel extends Model
             $userChannel->update(['hidden' => false]);
         }
 
-        event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
+        event(new ChatChannelEvent($this, $user, 'join'));
 
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
     }
@@ -434,7 +434,7 @@ class Channel extends Model
             $userChannel->delete();
         }
 
-        event(new ChatChannelEvent($userChannel->channel, $user, 'part'));
+        event(new ChatChannelEvent($this, $user, 'part'));
 
         Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
     }
