@@ -20,7 +20,7 @@ class BeatmapFactory extends Factory
         return [
             'beatmapset_id' => fn () => Beatmapset::factory(),
             'filename' => fn () => $this->faker->sentence(3),
-            'checksum' => str_repeat('0', 32),
+            'checksum' => md5((string) rand()),
             'version' => fn () => $this->faker->domainWord(),
             'total_length' => rand(30, 200),
             'hit_length' => fn (array $attr) => $attr['total_length'] - rand(0, 20),
