@@ -83,7 +83,7 @@ class UserChannelList
 
         foreach ($this->channels as $channel) {
             if ($channel->isPM()) {
-                $channel->setPmUsers(collect(array_map(fn ($id) => $usersMap->get($id, null), $channel->userIds())));
+                $channel->setPmUsers(array_map(fn ($id) => $usersMap->get($id, null), $channel->userIds()));
             }
         }
     }

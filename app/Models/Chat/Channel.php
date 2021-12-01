@@ -86,7 +86,7 @@ class Channel extends Model
             $channel->save();
             $channel->addUser($user1);
             $channel->addUser($user2);
-            $channel->pmUsers = collect([$user1, $user2]);
+            $channel->setPmUsers([$user1, $user2]);
         });
 
         return $channel;
@@ -98,9 +98,7 @@ class Channel extends Model
 
         $channel = static::where('name', $channelName)->first();
 
-        if ($channel !== null) {
-            $channel->pmUsers = collect([$user1, $user2]);
-        }
+        $channel?->setPmUsers([$user1, $user2]);
 
         return $channel;
     }
@@ -450,9 +448,9 @@ class Channel extends Model
         ])->exists();
     }
 
-    public function setPmUsers(Collection $users)
+    public function setPmUsers(array $users)
     {
-        $this->pmUsers = $users;
+        $this->pmUsers = collect($users);
     }
 
     public function setUserChannel(UserChannel $userChannel)
