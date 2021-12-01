@@ -61,6 +61,7 @@ class BeatmapsController extends Controller
         if (count($ids) > 0) {
             $beatmaps = Beatmap
                 ::whereIn('beatmap_id', $ids)
+                ->whereHas('beatmapset')
                 ->with([
                     // to preload #playmodes which is used to generate nomination data
                     'beatmapset.beatmaps' => fn ($q) => $q->select('beatmapset_id', 'playmode'),
@@ -103,7 +104,7 @@ class BeatmapsController extends Controller
         $params = get_params(request()->all(), null, ['checksum:string', 'filename:string', 'id:int']);
 
         foreach ($params as $key => $value) {
-            $beatmap = Beatmap::firstWhere($keyMap[$key], $value);
+            $beatmap = Beatmap::whereHas('beatmapset')->firstWhere($keyMap[$key], $value);
 
             if ($beatmap === null) {
                 break;
@@ -141,7 +142,7 @@ class BeatmapsController extends Controller
      */
     public function show($id)
     {
-        $beatmap = Beatmap::findOrFail($id);
+        $beatmap = Beatmap::whereHas('beatmapset')->findOrFail($id);
 
         if (is_api_request()) {
             return json_item($beatmap, new BeatmapTransformer(), static::DEFAULT_API_INCLUDES);
