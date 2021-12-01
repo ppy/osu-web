@@ -11,8 +11,8 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
-use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Tests\TestCase;
 
 class BeatmapsControllerTest extends TestCase
 {
@@ -36,8 +36,7 @@ class BeatmapsControllerTest extends TestCase
                     ->where('beatmaps.0.id', $beatmap->getKey())
                     ->where('beatmaps.1.id', $beatmapB->getKey())
                     ->missing('beatmaps.2')
-                    ->etc()
-            );
+                    ->etc());
     }
 
     public function testInvalidMode()
