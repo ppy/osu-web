@@ -232,15 +232,15 @@ class LegacyInterOpController extends Controller
             ]);
 
             // TODO: default to null later
-            $messageType = $messageParams['type'] ?? 'pm';
+            $messageParams['type'] ??= 'pm';
             // ignore if type missing (and return error?)
-            if (in_array($messageType, ['pm', 'public'], true)) {
+            if (in_array($messageParams['type'], ['pm', 'public'], true)) {
                 if (isset($messageParams['sender_id'])) {
                     $userIds->add($messageParams['sender_id']);
                 }
 
                 if (isset($messageParams['target_id'])) {
-                    if ($messageType === 'pm') {
+                    if ($messageParams['type'] === 'pm') {
                         $userIds->add([$messageParams['target_id']]);
                     } else {
                         $channelIds->add([$messageParams['target_id']]);
