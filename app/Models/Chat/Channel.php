@@ -404,7 +404,7 @@ class Channel extends Model
         if ($userChannel) {
             // already in channel, just broadcast event.
             if (!$userChannel->isHidden()) {
-                event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
+                event(new ChatChannelEvent($this, $user, 'join'));
 
                 return;
             }
