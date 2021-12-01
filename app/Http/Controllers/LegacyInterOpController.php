@@ -296,8 +296,9 @@ class LegacyInterOpController extends Controller
                         abort(422, 'channel not found');
                     }
 
-                    $message = $channel->receiveMessage(
+                    $message = Chat::sendMessage(
                         $sender,
+                        $channel,
                         presence($messageParams['message'] ?? null),
                         $messageParams['is_action'] ?? false
                     );
