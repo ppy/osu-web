@@ -28,6 +28,15 @@ function alphabeticalSort(a: Channel, b: Channel) {
   return a.name > b.name ? -1 : 1;
 }
 
+function makeEmptyGroupedChannels() {
+  const empty: Partial<Record<ChannelGroup, Channel[]>> = {};
+  for (const group of channelGroups) {
+    empty[group] = [];
+  }
+
+  return empty as Record<ChannelGroup, Channel[]>;
+}
+
 const channelSorts = {
   group: alphabeticalSort,
   pm: (a: Channel, b: Channel) => {
@@ -53,22 +62,20 @@ export default class ChannelStore implements DispatchListener {
 
   @computed
   get groupedChannels() {
-    const grouped = groupBy([...this.channels.values()], 'group');
-
-    // remove any keys that don't belong here.
-    for (const key of Object.keys(grouped)) {
-      if (!(channelGroups as Readonly<string[]>).includes(key)) {
-        delete grouped[key];
+    const grouped = makeEmptyGroupedChannels();
+    // fill
+    for (const channel of this.channels.values()) {
+      if (channel.group != null) {
+        grouped[channel.group].push(channel);
       }
     }
 
-    // fill missing keys and sort.
+    // sort
     for (const key of channelGroups) {
-      grouped[key] ??= [];
       grouped[key] = grouped[key].sort(channelSorts[key]);
     }
 
-    return grouped as Record<ChannelGroup, Channel[]>;
+    return grouped;
   }
 
   constructor() {
