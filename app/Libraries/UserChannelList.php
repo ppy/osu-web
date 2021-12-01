@@ -81,6 +81,10 @@ class UserChannelList
             $usersMap->put($user->getKey(), $user);
         }
 
-        request()->attributes->set(Channel::PRELOADED_USERS_KEY, $usersMap);
+        foreach ($this->channels as $channel) {
+            if ($channel->isPM()) {
+                $channel->setPmUsers(collect(array_map(fn ($id) => $usersMap->get($id, null), $channel->userIds())));
+            }
+        }
     }
 }
