@@ -39,6 +39,15 @@ class BeatmapsControllerTest extends TestCase
                     ->etc());
     }
 
+    public function testIndexForApiMissingParameter(): void
+    {
+        $this->actAsScopedUser(User::factory()->create(), ['*']);
+
+        $this
+            ->get(route('api.beatmaps.index'))
+            ->assertSuccessful();
+    }
+
     public function testInvalidMode()
     {
         $this->json('GET', route('beatmaps.scores', $this->beatmap), [

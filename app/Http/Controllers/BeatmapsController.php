@@ -56,7 +56,7 @@ class BeatmapsController extends Controller
      */
     public function index()
     {
-        $ids = array_slice(get_arr(request('ids'), 'get_int'), 0, 50);
+        $ids = array_slice(get_arr(request('ids'), 'get_int') ?? [], 0, 50);
 
         if (count($ids) > 0) {
             $beatmaps = Beatmap
