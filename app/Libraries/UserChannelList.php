@@ -54,10 +54,9 @@ class UserChannelList
     {
         // Getting user list; Limited to PM channels due to large size of public channels.
         $userIds = new Set();
-        foreach ($this->channels as $channel) {
-            if ($channel->isPM()) {
-                $userIds->add(...$channel->userIds());
-            }
+        $pmChannels = $this->channels->filter(fn ($channel) => $channel->isPM());
+        foreach ($pmChannels as $channel) {
+            $userIds->add(...$channel->userIds());
         }
 
         $users = User::default()
@@ -81,10 +80,8 @@ class UserChannelList
             $usersMap->put($user->getKey(), $user);
         }
 
-        foreach ($this->channels as $channel) {
-            if ($channel->isPM()) {
-                $channel->setPmUsers(array_map(fn ($id) => $usersMap->get($id, null), $channel->userIds()));
-            }
+        foreach ($pmChannels as $channel) {
+            $channel->setPmUsers(array_map(fn ($id) => $usersMap->get($id, null), $channel->userIds()));
         }
     }
 }
