@@ -15,6 +15,7 @@ use App\Libraries\UserBestScoresCheck;
 use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\Event;
@@ -212,6 +213,8 @@ class LegacyInterOpController extends Controller
             abort(422, '"messages" parameter must be a list');
         }
 
+        // TODO: Set?
+        $channelIds = [];
         $userIds = [];
 
         foreach ($params as $key => $messageParams) {
@@ -234,14 +237,19 @@ class LegacyInterOpController extends Controller
                     $userIds[$messageParams['sender_id']] = true;
                 }
 
-                if ($messageType === 'pm' && isset($messageParams['target_id'])) {
-                    $userIds[$messageParams['target_id']] = true;
+                if (isset($messageParams['target_id'])) {
+                    if ($messageType === 'pm') {
+                        $userIds[$messageParams['target_id']] = true;
+                    } else {
+                        $channelIds[$messageParams['target_id']] = true;
+                    }
                 }
             }
 
             $params[$key] = $messageParams;
         }
 
+        $channelIds = array_keys($channelIds);
         $userIds = array_keys($userIds);
 
         $users = User
@@ -249,6 +257,12 @@ class LegacyInterOpController extends Controller
             ->with(['userGroups', 'blocks'])
             ->get()
             ->keyBy('user_id');
+
+        $channels = Channel
+            ::public()
+            ->whereIn('channel_id', $channelIds)
+            ->get()
+            ->keyBy('channel_id');
 
         foreach ($params as $id => $messageParams) {
             try {
@@ -265,17 +279,30 @@ class LegacyInterOpController extends Controller
                     abort(422, 'sender not found');
                 }
 
-                $target = $users[$messageParams['target_id']] ?? null;
-                if ($target === null) {
-                    abort(422, 'target user not found');
-                }
+                if ($messageParams['type'] === 'pm') {
+                    $pmTarget = $users[$messageParams['target_id']] ?? null;
+                    if ($pmTarget === null) {
+                        abort(422, 'target user not found');
+                    }
 
-                $message = Chat::sendPrivateMessage(
-                    $sender,
-                    $target,
-                    presence($messageParams['message'] ?? null),
-                    $messageParams['is_action'] ?? null
-                );
+                    $message = Chat::sendPrivateMessage(
+                        $sender,
+                        $pmTarget,
+                        presence($messageParams['message'] ?? null),
+                        $messageParams['is_action'] ?? null
+                    );
+                } else {
+                    $channel = $channels[$messageParams['target_id']] ?? null;
+                    if ($channel === null) {
+                        abort(422, 'channel not found');
+                    }
+
+                    $message = $channel->receiveMessage(
+                        $sender,
+                        presence($messageParams['message'] ?? null),
+                        $messageParams['is_action'] ?? false
+                    );
+                }
 
                 $result = [
                     'status' => 200,
