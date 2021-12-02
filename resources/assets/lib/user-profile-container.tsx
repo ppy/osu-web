@@ -3,7 +3,7 @@
 
 import BlockButton from 'components/block-button';
 import UserJson from 'interfaces/user-json';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { NotificationBanner } from 'notification-banner';
 import * as React from 'react';
@@ -26,6 +26,12 @@ export default class UserProfileContainer extends React.Component<Props, State> 
   @computed
   get isBlocked() {
     return isBlocked(this.props.user);
+  }
+
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
   }
 
   render() {
