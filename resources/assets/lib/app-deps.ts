@@ -21,9 +21,18 @@ import { configure as mobxConfigure } from 'mobx';
 import * as moment from 'moment';
 import Turbolinks from 'turbolinks';
 
+interface SharedStyles {
+  header: {
+    height: number;
+    heightMobile: number;
+    heightSticky: number;
+  };
+}
+
 declare global {
   interface Window {
     $: any;
+    _styles: SharedStyles;
     currentLocale: string;
     currentUser: CurrentUserJson | { id: undefined };
     fallbackLocale: string;
@@ -45,6 +54,15 @@ window.Lang = patchPluralHandler(new Lang({
 }));
 window.moment = moment;
 window.Turbolinks = Turbolinks;
+
+// refer to variables.less
+window._styles = {
+  header: {
+    height: 90, // @nav2-height
+    heightMobile: 50, // @navbar-height
+    heightSticky: 50, // @nav2-height--pinned
+  },
+};
 
 mobxConfigure({
   computedRequiresReaction: true,
