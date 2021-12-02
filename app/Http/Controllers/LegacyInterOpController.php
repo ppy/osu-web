@@ -233,18 +233,16 @@ class LegacyInterOpController extends Controller
 
             // TODO: default to null later
             $messageParams['type'] ??= 'pm';
-            // ignore if type missing (and return error?)
-            if (in_array($messageParams['type'], ['pm', 'public'], true)) {
-                if (isset($messageParams['sender_id'])) {
-                    $userIds->add($messageParams['sender_id']);
-                }
+            // TODO: also ignore if type missing (and return error?)
+            if (isset($messageParams['sender_id'])) {
+                $userIds->add($messageParams['sender_id']);
+            }
 
-                if (isset($messageParams['target_id'])) {
-                    if ($messageParams['type'] === 'pm') {
-                        $userIds->add([$messageParams['target_id']]);
-                    } else {
-                        $channelIds->add([$messageParams['target_id']]);
-                    }
+            if (isset($messageParams['target_id'])) {
+                if ($messageParams['type'] === 'pm') {
+                    $userIds->add([$messageParams['target_id']]);
+                } else {
+                    $channelIds->add([$messageParams['target_id']]);
                 }
             }
 
@@ -258,8 +256,7 @@ class LegacyInterOpController extends Controller
             ->keyBy('user_id');
 
         $channels = Channel
-            ::public()
-            ->whereIn('channel_id', $channelIds->toArray())
+            ::whereIn('channel_id', $channelIds->toArray())
             ->get()
             ->keyBy('channel_id');
 
