@@ -14,16 +14,13 @@ import { htmlElementOrNull } from 'utils/html';
  */
 export default class StickyHeader {
   private readonly debouncedOnScroll = debounce(() => this.onScroll(), 20);
-  private readonly header = document.getElementsByClassName('js-pinned-header');
-  private readonly marker = document.getElementsByClassName('js-sticky-header');
-  private readonly pinnedSticky = document.getElementsByClassName('js-pinned-header-sticky');
 
   get breadcrumbsElement() {
-    return htmlElementOrNull(window.newBody?.querySelector('.js-sticky-header-breadcrumbs'));
+    return window.newBody?.querySelector('.js-sticky-header-breadcrumbs');
   }
 
   get contentElement() {
-    return htmlElementOrNull(window.newBody?.querySelector('.js-sticky-header-content'));
+    return window.newBody?.querySelector('.js-sticky-header-content');
   }
 
   get headerHeight() {
@@ -34,18 +31,30 @@ export default class StickyHeader {
       : styles.heightSticky;
   }
 
+  private get header() {
+    return document.querySelector('.js-pinned-header');
+  }
+
+  private get marker() {
+    return document.querySelector('.js-sticky-header');
+  }
+
+  private get pinnedSticky() {
+    return document.querySelector('.js-pinned-header-sticky');
+  }
+
   private get scrollOffsetValue() {
     // just assume scroll will always try to go to a position that causes sticky to show.
     // TODO: don't assume.
-    const pinnedSticky = this.pinnedSticky[0];
+    const pinnedSticky = this.pinnedSticky;
     const stickyHeight = pinnedSticky == null ? 0 : pinnedSticky.getBoundingClientRect().height;
 
     return this.headerHeight + stickyHeight;
   }
 
   private get shouldStick() {
-    const marker = this.marker[0];
-    const pinnedSticky = this.pinnedSticky[0];
+    const marker = this.marker;
+    const pinnedSticky = this.pinnedSticky;
 
     if (marker == null || pinnedSticky == null) return;
 
@@ -72,7 +81,7 @@ export default class StickyHeader {
   };
 
   private pin() {
-    if (this.header[0] == null) return;
+    if (this.header == null) return;
 
     if (this.shouldPin()) {
       document.body.classList.add('js-header-is-pinned');
@@ -82,7 +91,7 @@ export default class StickyHeader {
   }
 
   private setVisible(visible: boolean) {
-    fadeToggle(htmlElementOrNull(this.pinnedSticky[0]), visible);
+    fadeToggle(htmlElementOrNull(this.pinnedSticky), visible);
 
     $(document).trigger('sticky-header:sticking', [visible]);
   }
