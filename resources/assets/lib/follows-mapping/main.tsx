@@ -6,21 +6,17 @@ import FollowToggle from 'follow-toggle';
 import FollowsSubtypes from 'follows-subtypes';
 import HeaderV4 from 'header-v4';
 import homeLinks from 'home-links';
+import CurrentUserJson from 'interfaces/current-user-json';
 import FollowMappingJson from 'interfaces/follow-mapping-json';
-import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
 
 interface Props {
   follows: FollowMappingJson[];
-  user: UserJson;
+  user: CurrentUserJson;
 }
 
 export default class Main extends React.PureComponent<Props> {
-  static defaultProps = {
-    user: currentUser,
-  };
-
   render() {
     return (
       <div className='osu-layout osu-layout--full'>
