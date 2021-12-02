@@ -3,7 +3,7 @@
 
 import HeaderV4 from 'header-v4';
 import Img2x from 'img2x';
-import { action } from 'mobx';
+import { action, makeObservable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -11,19 +11,25 @@ import ConversationList from './conversation-list';
 import ConversationView from './conversation-view';
 import InputBox from './input-box';
 
-
 @observer
-export default class MainView extends React.Component {
+export default class MainView extends React.Component<Record<string, never>> {
+  constructor(props: Record<string, never>) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   @action
   componentDidMount() {
     $('html').addClass('osu-layout--mobile-app');
     core.dataStore.chatState.isChatMounted = true;
   }
 
-  @action
   componentWillUnmount() {
     $('html').removeClass('osu-layout--mobile-app');
-    core.dataStore.chatState.isChatMounted = false;
+    runInAction(() => {
+      core.dataStore.chatState.isChatMounted = false;
+    });
   }
 
   render(): React.ReactNode {
