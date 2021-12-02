@@ -25,8 +25,8 @@ export class SearchPanel extends React.Component
     @contentPortal.id = 'search-panel-content-portal'
 
     @prevText = null
-    @breadcrumbsElement = window.stickyHeader.breadcrumbsElement()
-    @contentElement = window.stickyHeader.contentElement()
+    @breadcrumbsElement = core.stickyHeader.breadcrumbsElement
+    @contentElement = core.stickyHeader.contentElement
 
 
   componentDidMount: =>

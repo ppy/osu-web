@@ -48,7 +48,6 @@ import '_classes/post-preview.coffee';
 import '_classes/search.coffee';
 import '_classes/stacked-bar-chart.coffee';
 import '_classes/sticky-footer.coffee';
-import '_classes/sticky-header.coffee';
 import '_classes/store-cart.coffee';
 import '_classes/store-supporter-tag-price.coffee';
 import '_classes/store-supporter-tag.coffee';
