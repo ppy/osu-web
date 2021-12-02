@@ -11,6 +11,7 @@ use App\Jobs\Notifications\ForumTopicReply;
 use App\Jobs\Notifications\UserAchievementUnlock;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Libraries\Chat;
+use App\Libraries\OsuAuthorize;
 use App\Libraries\UserBestScoresCheck;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -203,6 +204,8 @@ class LegacyInterOpController extends Controller
      */
     public function userBatchSendMessage()
     {
+        request()->attributes->set(OsuAuthorize::REQUEST_LIO_KEY, true);
+
         $params = request('messages');
 
         $results = new stdClass();
