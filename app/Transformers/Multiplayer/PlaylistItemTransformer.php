@@ -26,6 +26,7 @@ class PlaylistItemTransformer extends TransformerAbstract
             'required_mods' => $item->required_mods,
             'expired' => $item->expired,
             'owner_id' => $item->owner_id,
+            'gameplay_order' => $item->gameplay_order
         ];
     }
 
