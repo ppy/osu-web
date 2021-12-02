@@ -32,7 +32,7 @@ use Ds;
 class OsuAuthorize
 {
     const REQUEST_ATTRIBUTE_KEY = 'auth_map';
-    const REQUEST_LIO_KEY = 'is_lio_request';
+    const REQUEST_IS_INTEROP_KEY = 'interop_request';
 
     public static function alwaysCheck($ability)
     {
@@ -870,7 +870,7 @@ class OsuAuthorize
         }
 
         // TODO: add actual permission checks for bancho multiplayer games?
-        if ($channel->isBanchoMultiplayerChat() && !request()->attributes->get(static::REQUEST_LIO_KEY)) {
+        if ($channel->isBanchoMultiplayerChat() && !request()->attributes->get(static::REQUEST_IS_INTEROP_KEY)) {
             return $prefix.'no_access';
         }
 

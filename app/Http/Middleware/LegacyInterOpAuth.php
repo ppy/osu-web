@@ -29,7 +29,7 @@ class LegacyInterOpAuth
             abort(403);
         }
 
-        request()->attributes->set(OsuAuthorize::REQUEST_LIO_KEY, true);
+        request()->attributes->set(OsuAuthorize::REQUEST_IS_INTEROP_KEY, true);
 
         return $next($request);
     }
