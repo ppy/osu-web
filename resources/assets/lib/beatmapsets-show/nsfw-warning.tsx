@@ -54,7 +54,7 @@ export default class NsfwWarning extends React.PureComponent<Props, State> {
               {osu.trans('beatmapsets.show.nsfw_warning.buttons.show')}
             </button>
 
-            {currentUser.id != null &&
+            {core.currentUser != null &&
               <button
                 className='nsfw-warning__button nsfw-warning__button--show'
                 disabled={this.state.busy}

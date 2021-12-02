@@ -6,6 +6,7 @@ import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import { compact } from 'lodash';
 import * as moment from 'moment';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import StringWithComponent, { Props as StringWithComponentProps } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
@@ -167,7 +168,7 @@ export default class Links extends React.PureComponent<Props> {
         {rows.map((row, index) => (
           <div key={index} className={`profile-links__row profile-links__row--${index}`}>{row}</div>
         ))}
-        {this.props.user.id === currentUser.id && (
+        {this.props.user.id === core.currentUser?.id && (
           <div className='profile-links__edit'>
             <a className='btn-circle btn-circle--page-toggle' href={route('account.edit')} title={osu.trans('users.show.page.button')}>
               <span className='fas fa-pencil-alt' />

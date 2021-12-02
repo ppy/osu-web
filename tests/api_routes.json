@@ -5,7 +5,7 @@
             "GET",
             "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\API\\BeatmapsController@lookup",
+        "controller": "App\\Http\\Controllers\\BeatmapsController@lookup",
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
@@ -74,12 +74,28 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/beatmaps",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapsController@index",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/beatmaps/{beatmap}",
         "methods": [
             "GET",
             "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\API\\BeatmapsController@show",
+        "controller": "App\\Http\\Controllers\\BeatmapsController@show",
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
