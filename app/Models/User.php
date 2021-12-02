@@ -1644,20 +1644,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->user_unread_privmsg;
     }
 
-    // TODO: we should rename this to currentUserJson or something.
-    public function defaultJson()
-    {
-        return json_item($this, 'User', [
-            'blocks',
-            'follow_user_mapping',
-            'friends',
-            'groups',
-            'is_admin',
-            'unread_pm_count',
-            'user_preferences',
-        ]);
-    }
-
     public function supportLength()
     {
         return $this->memoize(__FUNCTION__, function () {
@@ -1913,27 +1899,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             }
 
             return $unionQuery->get()->sum('playcount');
-        });
-    }
-
-    public function lastPlayed()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            $unionQuery = null;
-
-            foreach (Beatmap::MODES as $key => $_value) {
-                $query = $this->statistics($key, true)->select('last_played');
-
-                if ($unionQuery === null) {
-                    $unionQuery = $query;
-                } else {
-                    $unionQuery->unionAll($query);
-                }
-            }
-
-            $lastPlayed = $unionQuery->get()->max('last_played') ?? 0;
-
-            return Carbon::parse($lastPlayed);
         });
     }
 

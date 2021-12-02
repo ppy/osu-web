@@ -3,29 +3,38 @@
 
 import HeaderV4 from 'header-v4';
 import Img2x from 'img2x';
+import { action, makeObservable, runInAction } from 'mobx';
 import { observer, Provider } from 'mobx-react';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
-import ChatWorker from './chat-worker';
 import ConversationList from './conversation-list';
 import ConversationView from './conversation-view';
 import InputBox from './input-box';
 
 interface Props {
   dataStore: RootDataStore;
-  worker: ChatWorker;
 }
 
 @observer
 export default class MainView extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
+  }
+
+  @action
   componentDidMount() {
     $('html').addClass('osu-layout--mobile-app');
-    this.props.worker.startPolling();
+    this.props.dataStore.chatState.isChatMounted = true;
   }
 
   componentWillUnmount() {
     $('html').removeClass('osu-layout--mobile-app');
-    this.props.worker.stopPolling();
+
+    runInAction(() => {
+      this.props.dataStore.chatState.isChatMounted = false;
+    });
   }
 
   render(): React.ReactNode {

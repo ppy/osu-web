@@ -11,4 +11,5 @@ export default interface MessageJson {
   sender?: UserJson;
   sender_id: number;
   timestamp: string;
+  uuid?: string | null;
 }
