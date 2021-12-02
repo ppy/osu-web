@@ -950,6 +950,11 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
 
+        // FIXME: this should be eventually removed and users should have their respective UserChannel entry
+        if (!$channel->isPM() && request()->attributes->get(static::REQUEST_IS_INTEROP_KEY)) {
+            return 'ok';
+        }
+
         if ($channel->hasUser($user)) {
             return 'ok';
         }
