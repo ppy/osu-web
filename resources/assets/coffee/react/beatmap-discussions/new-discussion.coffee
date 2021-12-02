@@ -4,6 +4,7 @@
 import { MessageLengthCounter } from './message-length-counter'
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
 import BigButton from 'big-button'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
@@ -209,7 +210,7 @@ export class NewDiscussion extends React.PureComponent
 
   cssTop: (sticky) =>
     return if !sticky || !@props.stickTo?.current?
-    window.stickyHeader.headerHeight() + @props.stickTo.current.getBoundingClientRect().height
+    core.stickyHeader.headerHeight + @props.stickTo.current.getBoundingClientRect().height
 
 
   handleKeyDownCallback: (type, event) =>

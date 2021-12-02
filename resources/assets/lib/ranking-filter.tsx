@@ -3,6 +3,7 @@
 
 import CountryJson from 'interfaces/country-json';
 import GameMode from 'interfaces/game-mode';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Option, OptionRenderProps, SelectOptions } from 'select-options';
 import { Sort } from 'sort';
@@ -31,8 +32,8 @@ export default class RankingFilter extends React.PureComponent<Props> {
     if (this.countriesSorted == null) {
       this.countriesSorted = this.props.countries.sort((a, b) => {
         // prioritizes current user's country
-        if (currentUser?.country_code === a.code) return -1;
-        if (currentUser?.country_code === b.code) return 1;
+        if (core.currentUser?.country_code === a.code) return -1;
+        if (core.currentUser?.country_code === b.code) return 1;
 
         const priority = b.display - a.display;
 
@@ -113,7 +114,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
           {this.renderCountries()}
         </div>
 
-        {currentUser.id != null && (
+        {core.currentUser != null && (
           <div className='ranking-filter__item'>
             <div className='ranking-filter__item--title'>
               {osu.trans('rankings.filter.title')}

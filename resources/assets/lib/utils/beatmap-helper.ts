@@ -143,7 +143,7 @@ export function sortWithMode<T extends BeatmapJson>(beatmaps: T[]): T[] {
 }
 
 function userModes() {
-  const currentMode: GameMode | undefined = currentUser.playmode;
+  const currentMode = core.currentUser?.playmode;
   if (currentMode == null || !gameModes.includes(currentMode)) {
     return gameModes;
   }

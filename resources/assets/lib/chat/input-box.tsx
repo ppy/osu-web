@@ -157,7 +157,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     }
 
     const message = new Message();
-    message.senderId = currentUser.id;
+    message.senderId = core.currentUserOrFail.id;
     message.channelId = this.dataStore.chatState.selected;
     message.content = messageText;
 

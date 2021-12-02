@@ -6,7 +6,6 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { isChannelEvent } from 'interfaces/chat/channel-event-json';
 import { isMessageNewEvent } from 'interfaces/chat/messages-new-event-json';
-import Channel from 'models/chat/channel';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
@@ -18,9 +17,7 @@ function newDispatchActionFromJson(json: SocketEventData) {
   } else if (isChannelEvent(json)) {
     switch (json.event) {
       case 'chat.channel.join': {
-        const channel = new Channel(json.data.channel_id);
-        channel.updateWithJson(json.data);
-        return new ChannelJoinEvent(channel);
+        return new ChannelJoinEvent(json.data);
       }
       case 'chat.channel.part':
         return new ChannelPartEvent(json.data.channel_id);

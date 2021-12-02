@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'big-button';
-import { action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Modal } from 'modal';
 import { ClientDetails } from 'oauth/client-details';
@@ -16,6 +16,12 @@ const uiState = core.dataStore.uiState;
 
 @observer
 export class OwnClients extends React.Component {
+  constructor(props: Record<string, never>) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   @action
   handleModalClose = () => {
     uiState.account.client = null;
