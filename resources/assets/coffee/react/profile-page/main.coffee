@@ -16,7 +16,6 @@ import UserPage from 'profile-page/user-page'
 import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
-import * as BeatmapHelper from 'utils/beatmap-helper'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
@@ -410,15 +409,6 @@ export class Main extends React.PureComponent
   userPageUpdate: (_e, newUserPage) =>
     currentUserPage = _.cloneDeep @state.userPage
     @setState userPage: _.extend(currentUserPage, newUserPage)
-
-
-  validMode: (mode) =>
-    modes = BeatmapHelper.modes
-
-    if _.includes(modes, mode)
-      mode
-    else
-      modes[0]
 
   isSortablePage: (page) ->
     _.includes @state.profileOrder, page

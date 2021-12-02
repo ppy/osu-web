@@ -171,7 +171,7 @@ export default class ChannelStore implements DispatchListener {
       // TODO: need to mark again in case the marker has moved?
 
       // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
-      if (channel.lastMessage?.sender.id === window.currentUser.id) {
+      if (channel.lastMessage?.sender.id === core.currentUser?.id) {
         return;
       }
 
@@ -184,7 +184,7 @@ export default class ChannelStore implements DispatchListener {
   @action
   partChannel(channelId: number, remote = true) {
     if (channelId > 0 && remote) {
-      apiPartChannel(channelId, window.currentUser.id);
+      apiPartChannel(channelId, core.currentUserOrFail.id);
     }
 
     this.channels.delete(channelId);
@@ -253,7 +253,7 @@ export default class ChannelStore implements DispatchListener {
     try {
       if (channel.newPmChannel) {
         const users = channel.users.slice();
-        const userId = users.find((user) => user !== currentUser.id);
+        const userId = users.find((user) => user !== core.currentUserOrFail.id);
 
         if (userId == null) {
           console.debug('sendMessage:: userId not found?? this shouldn\'t happen');

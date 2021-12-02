@@ -4,6 +4,7 @@
 import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import UserAvatar from 'user-avatar';
@@ -25,7 +26,7 @@ export default class MessageGroup extends React.Component<Props, any> {
     const sender = messages[0].sender;
 
     let className = 'chat-message-group';
-    if (sender.id === currentUser.id) {
+    if (sender.id === core.currentUser?.id) {
       className += ' chat-message-group--own';
     }
 
