@@ -232,14 +232,15 @@ class LegacyInterOpController extends Controller
             ]);
 
             // TODO: default to null later
-            $messageParams['type'] ??= 'pm';
+            $messageParams['type'] ??= Channel::TYPES['pm'];
+            $messageParams['type'] = strtoupper($messageParams['type']);
             // TODO: also ignore if type missing (and return error?)
             if (isset($messageParams['sender_id'])) {
                 $userIds->add($messageParams['sender_id']);
             }
 
             if (isset($messageParams['target_id'])) {
-                if ($messageParams['type'] === 'pm') {
+                if ($messageParams['type'] === Channel::TYPES['pm']) {
                     $userIds->add([$messageParams['target_id']]);
                 } else {
                     $channelIds->add([$messageParams['target_id']]);
@@ -275,7 +276,7 @@ class LegacyInterOpController extends Controller
                     abort(422, 'sender not found');
                 }
 
-                if ($messageParams['type'] === 'pm') {
+                if ($messageParams['type'] === Channel::TYPES['pm']) {
                     $pmTarget = $users[$messageParams['target_id']] ?? null;
                     if ($pmTarget === null) {
                         abort(422, 'target user not found');
