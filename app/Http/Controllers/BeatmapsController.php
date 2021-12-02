@@ -10,12 +10,15 @@ use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
+use App\Transformers\BeatmapTransformer;
 
 /**
  * @group Beatmaps
  */
 class BeatmapsController extends Controller
 {
+    const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo'];
+
     public function __construct()
     {
         parent::__construct();
@@ -23,9 +26,128 @@ class BeatmapsController extends Controller
         $this->middleware('require-scopes:public');
     }
 
+    /**
+     * Get Beatmaps
+     *
+     * Returns list of beatmaps.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Field | Type | Description
+     * ----- | ---- | -----------
+     * beatmaps | [BeatmapCompact](#beatmapcompact)[] | Includes: beatmapset (with ratings), failtimes, max_combo.
+     *
+     * @queryParam ids[] Beatmap id to be returned. Specify once for each beatmap id requested. Up to 50 beatmaps can be requested at once. Example: 1
+     *
+     * @response {
+     *   "beatmaps": [
+     *     {
+     *       "id": 1,
+     *       "other": "attributes..."
+     *     },
+     *     {
+     *       "id": 2,
+     *       "other": "attributes..."
+     *     }
+     *   ]
+     * }
+     */
+    public function index()
+    {
+        $ids = array_slice(get_arr(request('ids'), 'get_int') ?? [], 0, 50);
+
+        if (count($ids) > 0) {
+            $beatmaps = Beatmap
+                ::whereIn('beatmap_id', $ids)
+                ->whereHas('beatmapset')
+                ->with([
+                    // to preload #playmodes which is used to generate nomination data
+                    'beatmapset.beatmaps' => fn ($q) => $q->select('beatmapset_id', 'playmode'),
+                    'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
+                    'failtimes',
+                ])->withMaxCombo()
+                ->get();
+        }
+
+        return [
+            'beatmaps' => json_collection($beatmaps ?? [], new BeatmapTransformer(), static::DEFAULT_API_INCLUDES),
+        ];
+    }
+
+    /**
+     * Lookup Beatmap
+     *
+     * Returns beatmap.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * See [Get Beatmap](#get-beatmap)
+     *
+     * @queryParam checksum A beatmap checksum.
+     * @queryParam filename A filename to lookup.
+     * @queryParam id A beatmap ID to lookup.
+     *
+     * @response "See Beatmap object section"
+     */
+    public function lookup()
+    {
+        static $keyMap = [
+            'checksum' => 'checksum',
+            'filename' => 'filename',
+            'id' => 'beatmap_id',
+        ];
+
+        $params = get_params(request()->all(), null, ['checksum:string', 'filename:string', 'id:int']);
+
+        foreach ($params as $key => $value) {
+            $beatmap = Beatmap::whereHas('beatmapset')->firstWhere($keyMap[$key], $value);
+
+            if ($beatmap === null) {
+                break;
+            }
+        }
+
+        if (!isset($beatmap)) {
+            abort(404);
+        }
+
+        return json_item($beatmap, new BeatmapTransformer(), static::DEFAULT_API_INCLUDES);
+    }
+
+    /**
+     * Get Beatmap
+     *
+     * Gets beatmap data for the specified beatmap ID.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Returns [Beatmap](#beatmap) object.
+     * Following attributes are included in the response object when applicable,
+     *
+     * Attribute                            | Notes
+     * -------------------------------------|------
+     * beatmapset                           | Includes ratings property.
+     * failtimes                            | |
+     * max_combo                            | |
+     *
+     * @urlParam beatmap integer required The ID of the beatmap.
+     *
+     * @response "See Beatmap object section."
+     */
     public function show($id)
     {
-        $beatmap = Beatmap::findOrFail($id);
+        $beatmap = Beatmap::whereHas('beatmapset')->findOrFail($id);
+
+        if (is_api_request()) {
+            return json_item($beatmap, new BeatmapTransformer(), static::DEFAULT_API_INCLUDES);
+        }
+
         $beatmapset = $beatmap->beatmapset;
 
         if ($beatmapset === null) {

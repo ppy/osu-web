@@ -50,6 +50,14 @@ export function formatNumberSuffixed(num?: number, precision?: number, options?:
   return `${format(num / Math.pow(k, i))}${suffixes[i]}`;
 }
 
+export function htmlElementOrNull(thing: unknown) {
+  if (thing instanceof HTMLElement) {
+    return thing;
+  }
+
+  return null;
+}
+
 export const transparentGif = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 export function make2x(url?: string) {

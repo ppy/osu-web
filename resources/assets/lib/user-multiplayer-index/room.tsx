@@ -6,7 +6,7 @@ import Img2x from 'img2x';
 import RoomJson from 'interfaces/room-json';
 import { route } from 'laroute';
 import { maxBy, minBy } from 'lodash';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import * as React from 'react';
@@ -57,6 +57,12 @@ export default class Room extends React.Component<Props> {
     if (beatmapset == null) return undefined;
 
     return beatmapset.covers.cover;
+  }
+
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
   }
 
   render() {

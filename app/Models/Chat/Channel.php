@@ -283,7 +283,7 @@ class Channel extends Model
 
     public function isBanchoMultiplayerChat()
     {
-        return $this->type === static::TYPES['temporary'] && starts_with($this->name, '#mp_');
+        return $this->type === static::TYPES['temporary'] && starts_with($this->name, ['#mp_', '#spect_']);
     }
 
     public function getMatchIdAttribute()
@@ -404,7 +404,7 @@ class Channel extends Model
         if ($userChannel) {
             // already in channel, just broadcast event.
             if (!$userChannel->isHidden()) {
-                event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
+                event(new ChatChannelEvent($this, $user, 'join'));
 
                 return;
             }
@@ -418,7 +418,7 @@ class Channel extends Model
             $this->resetMemoized();
         }
 
-        event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
+        event(new ChatChannelEvent($this, $user, 'join'));
 
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
     }
@@ -441,7 +441,7 @@ class Channel extends Model
             $userChannel->delete();
         }
 
-        event(new ChatChannelEvent($userChannel->channel, $user, 'part'));
+        event(new ChatChannelEvent($this, $user, 'part'));
 
         Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
     }
