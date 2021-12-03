@@ -55,7 +55,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Geen van deze posts pakken mijn punten van zorg aan',
         'notice' => 'Dit zijn de posts rond :timestamp (:existing_timestamp). Controleer ze voor te posten.',
-        'unsaved' => ':count in deze review',
+        'unsaved' => ':count in deze recensie',
     ],
 
     'owner_editor' => [
@@ -82,9 +82,9 @@ return [
             'invalid_block_type' => 'ongeldige bloktype',
             'invalid_document' => 'ongeldige beoordeling',
             'invalid_discussion_type' => 'ongeldige discussie type',
-            'minimum_issues' => 'beoordeling moet een minimum van :count issue|review moeten een minimum :count issues bevatten',
+            'minimum_issues' => 'recensie moet minstens :count probleem bevatten|recensie moet minstens :count problemen bevatten',
             'missing_text' => 'blok mist tekst',
-            'too_many_blocks' => 'beoordelingen kunnen alleen :count alinea/issuemaybe beoordelingen bevatten max. :count alinea/issues',
+            'too_many_blocks' => 'recensies mogen slechts :count alinea/probleem bevatten|recensies mogen maximaal :count alinea\'s/problemen bevatten',
         ],
     ],
 

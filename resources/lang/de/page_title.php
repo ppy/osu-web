@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => 'forum',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'thread-protokolle',
         ],
         'topic_watches_controller' => [
             'index' => 'dashboard',
@@ -42,7 +42,7 @@ return [
             'verify_link' => 'accountverifizierung',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'featured artists',
         ],
         'artists_controller' => [
             '_' => 'featured artists',

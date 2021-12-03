@@ -208,7 +208,7 @@ return [
                     'title' => 'Loved Beatmaps',
                 ],
                 'pending' => [
-                    'title' => 'Beatmap Đang Chờ (:count)',
+                    'title' => 'Beatmap Đang Chờ',
                 ],
                 'ranked' => [
                     'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
@@ -408,7 +408,7 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => '',
             'loved_beatmapset_count' => '',
-            'pending_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Beatmap Đang Chờ',
             'ranked_beatmapset_count' => '',
         ],
     ],
