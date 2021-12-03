@@ -12,7 +12,7 @@ export default class ConversationList extends React.Component {
   render(): React.ReactNode {
     return (
       <div className='chat-conversation-list'>
-        {this.renderChannels(core.dataStore.channelStore.broadcastChannels)}
+        {this.renderChannels(core.dataStore.channelStore.announcementChannels)}
         {this.renderSeparator()}
         {this.renderChannels(core.dataStore.channelStore.nonPmChannels)}
         {this.renderSeparator()}

@@ -10,10 +10,10 @@ import User from 'models/user';
 import core from 'osu-core-singleton';
 import Message from './message';
 
-export type ChannelGroup = 'broadcast' | 'pm' | 'public';
+export type ChannelGroup = 'announce' | 'pm' | 'public';
 
 export const groupMap: Partial<Record<ChannelType, ChannelGroup>> = {
-  BROADCAST: 'broadcast',
+  ANNOUNCE: 'announce',
   GROUP: 'public',
   PM: 'pm',
   PUBLIC: 'public',

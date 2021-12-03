@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AddBroadcastTypeToChannels extends Migration
+class AddAnnounceTypeToChannels extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class AddBroadcastTypeToChannels extends Migration
             'TEMPORARY',
             'PM',
             'GROUP',
-            'BROADCAST'
+            'ANNOUNCE'
         ) NOT NULL DEFAULT 'TEMPORARY'");
     }
 
@@ -30,7 +30,7 @@ class AddBroadcastTypeToChannels extends Migration
      */
     public function down()
     {
-        DB::connection('mysql-chat')->statement("UPDATE `channels` SET `type`='TEMPORARY' where `type` = 'BROADCAST'");
+        DB::connection('mysql-chat')->statement("UPDATE `channels` SET `type`='TEMPORARY' where `type` = 'ANNOUNCE'");
         DB::connection('mysql-chat')->statement("ALTER TABLE `channels` MODIFY `type` ENUM(
             'PUBLIC',
             'PRIVATE',

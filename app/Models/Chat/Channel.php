@@ -54,7 +54,7 @@ class Channel extends Model
     private array $preloadedUserChannels = [];
 
     const TYPES = [
-        'broadcast' => 'BROADCAST',
+        'announce' => 'ANNOUNCE',
         'public' => 'PUBLIC',
         'private' => 'PRIVATE',
         'multiplayer' => 'MULTIPLAYER',
@@ -71,7 +71,7 @@ class Channel extends Model
      * @param array $rawParams
      * @return Channel
      */
-    public static function createBroadcast(Collection $users, array $rawParams): self
+    public static function createAnnouncement(Collection $users, array $rawParams): self
     {
         $params = get_params($rawParams, null, [
             'description:string',
@@ -79,7 +79,7 @@ class Channel extends Model
         ], ['null_missing' => true]);
 
         $params['moderated'] = true;
-        $params['type'] = static::TYPES['broadcast'];
+        $params['type'] = static::TYPES['announce'];
 
         $channel = new static($params);
         $channel->getConnection()->transaction(function () use ($channel, $users) {
@@ -299,9 +299,9 @@ class Channel extends Model
         return $allowed_groups === null ? [] : array_map('intval', explode(',', $allowed_groups));
     }
 
-    public function isBroadcast()
+    public function isAnnouncement()
     {
-        return $this->type === static::TYPES['broadcast'];
+        return $this->type === static::TYPES['announce'];
     }
 
     public function isMultiplayer()

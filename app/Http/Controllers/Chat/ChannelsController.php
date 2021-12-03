@@ -252,8 +252,8 @@ class ChannelsController extends Controller
             if ($channel->exists) {
                 $channel->addUser($sender);
             }
-        } else if ($params['type'] === Channel::TYPES['broadcast']) {
-            $channel = Chat::createBroadcast($sender, $params);
+        } else if ($params['type'] === Channel::TYPES['announce']) {
+            $channel = Chat::createAnnouncement($sender, $params);
         }
 
         if (isset($channel)) {

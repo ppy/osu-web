@@ -835,7 +835,7 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkChatBroadcast(?User $user): string
+    public function checkChatAnnounce(?User $user): string
     {
         $prefix = 'chat.';
 
@@ -867,7 +867,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($channel->type === Channel::TYPES['broadcast'] && $user->isChatAnnouncer()) {
+        if ($channel->type === Channel::TYPES['announce'] && $user->isChatAnnouncer()) {
             return 'ok';
         }
 

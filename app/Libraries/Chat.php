@@ -31,9 +31,9 @@ class Chat
         $transaction->exec();
     }
 
-    public static function createBroadcast(User $sender, array $rawParams, ?string $uuid = null)
+    public static function createAnnouncement(User $sender, array $rawParams, ?string $uuid = null)
     {
-        priv_check_user($sender, 'ChatBroadcast')->ensureCan();
+        priv_check_user($sender, 'ChatAnnounce')->ensureCan();
 
         $params = get_params($rawParams, null, [
             'channel:any',
@@ -57,7 +57,7 @@ class Chat
         $users = $users->push($sender)->uniqueStrict('user_id');
 
         $channel = (new Channel())->getConnection()->transaction(function () use ($sender, $params, $users, $uuid) {
-            $channel = Channel::createBroadcast($users, $params['channel']);
+            $channel = Channel::createAnnouncement($users, $params['channel']);
             static::sendMessage($sender, $channel, $params['message'], false, $uuid);
 
             return $channel;

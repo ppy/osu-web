@@ -49,12 +49,12 @@ export default class ChannelStore implements DispatchListener {
 
   @computed
   get channelList(): Channel[] {
-    return [...this.broadcastChannels, ...this.nonPmChannels, ...this.pmChannels];
+    return [...this.announcementChannels, ...this.nonPmChannels, ...this.pmChannels];
   }
 
   @computed({ equals: comparer.shallow })
-  get broadcastChannels(): Channel[] {
-    return this.groupedChannels.broadcast.filter((channel) => channel.isDisplayable).sort(alphabeticalSort);
+  get announcementChannels(): Channel[] {
+    return this.groupedChannels.announce.filter((channel) => channel.isDisplayable).sort(alphabeticalSort);
   }
 
   @computed({ equals: comparer.shallow })
