@@ -24,6 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'nedá sa poslať správa...',
+        'disconnected' => '',
         'placeholder' => 'napíšte správu...',
         'send' => 'Odoslať',
     ],

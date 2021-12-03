@@ -55,7 +55,7 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => 'Land Ranglijst',
+                'title' => 'Landelijke Ranking',
                 'description' => 'Verover je land voordat je de wereld verovert.',
             ],
 

@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => '論壇',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => '主題日誌',
         ],
         'topic_watches_controller' => [
             'index' => '主頁',

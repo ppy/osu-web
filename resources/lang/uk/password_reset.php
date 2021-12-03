@@ -30,7 +30,7 @@ return [
     'started' => [
         'password' => 'Новий пароль',
         'password_confirmation' => 'Повторіть новий пароль',
-        'title' => 'Відновлення доступу до аккаунту <strong>:username</strong>.',
+        'title' => 'Відновлення доступу до акаунту <strong>:username</strong>.',
         'verification_key' => 'Код підтвердження',
     ],
 
