@@ -156,8 +156,8 @@ return [
         'title' => "Profiel van :username",
 
         'comments_count' => [
-            '_' => 'Geplaatst op :link',
-            'count' => ':count_delimited commentaar::count_delimited reacties',
+            '_' => 'Heeft :link gepost',
+            'count' => ':count_delimited reactie|:count_delimited reacties',
         ],
         'edit' => [
             'cover' => [

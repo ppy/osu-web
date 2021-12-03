@@ -9,7 +9,7 @@ return [
         'beatmap_owner_change' => ':new_user lett az új tulajdonosa :beatmap nehézségnek.',
         'discussion_delete' => 'A moderátor kitörölte a :discussion megbeszélést.',
         'discussion_lock' => 'A beatmap megbeszélése meg lett tiltva. (:text)',
-        'discussion_post_delete' => 'A moderátor posztot törölt a :discussion megbeszélésből.',
+        'discussion_post_delete' => 'A moderátor hozzászólást törölt a :discussion megbeszélésből.',
         'discussion_post_restore' => 'A moderátor posztot állított vissza a :discussion megbeszélésben.',
         'discussion_restore' => 'A moderátor visszaállította a következő megbeszélést :discussion.',
         'discussion_unlock' => 'A beatmap megbeszélése engedélyezve lett.',
