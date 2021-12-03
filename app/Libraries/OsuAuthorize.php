@@ -839,6 +839,9 @@ class OsuAuthorize
     {
         $prefix = 'chat.';
 
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user, $prefix);
+
         if ($user->isModerator() || $user->isChatAnnouncer()) {
             return 'ok';
         }
@@ -856,6 +859,12 @@ class OsuAuthorize
     {
         $prefix = 'chat.';
 
+        if ($channel->isAnnouncement()) {
+            $chatBroadcastPermission = $this->doCheckUser($user, 'ChatAnnounce');
+
+            return $chatBroadcastPermission->can() ? 'ok' : $chatBroadcastPermission->rawMessage();
+        }
+
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
@@ -864,10 +873,6 @@ class OsuAuthorize
         }
 
         if ($user->isModerator()) {
-            return 'ok';
-        }
-
-        if ($channel->type === Channel::TYPES['announce'] && $user->isChatAnnouncer()) {
             return 'ok';
         }
 
