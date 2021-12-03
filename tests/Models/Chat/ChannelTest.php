@@ -129,7 +129,7 @@ class ChannelTest extends TestCase
         $this->assertSame($canMessage, $channel->canMessage($user));
     }
 
-    public function testCreateBroadcastChannel()
+    public function testCreateBroadcast()
     {
         $users = User::factory()->count(2)->create();
 

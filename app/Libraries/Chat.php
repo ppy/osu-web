@@ -57,7 +57,7 @@ class Chat
         $users = $users->push($sender)->uniqueStrict('user_id');
 
         $channel = (new Channel())->getConnection()->transaction(function () use ($sender, $params, $users, $uuid) {
-            $channel = Channel::createBroadcastChannel($users, $params['channel']);
+            $channel = Channel::createBroadcast($users, $params['channel']);
             static::sendMessage($sender, $channel, $params['message'], false, $uuid);
 
             return $channel;
