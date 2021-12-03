@@ -9,9 +9,10 @@ import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
+import { supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
-import Channel, { channelGroups } from 'models/chat/channel';
+import Channel from 'models/chat/channel';
 import ChannelStore from 'stores/channel-store';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
@@ -48,7 +49,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @computed
   private get channelList(): Channel[] {
-    return channelGroups.flatMap((group) => this.channelStore.groupedChannels[group]);
+    return supportedChannelTypes.flatMap((type) => this.channelStore.groupedChannels[type]);
   }
 
   constructor(protected channelStore: ChannelStore) {

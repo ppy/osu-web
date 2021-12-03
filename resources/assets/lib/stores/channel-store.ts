@@ -11,12 +11,12 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import { markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
 import MessageNewEvent from 'chat/message-new-event';
 import DispatchListener from 'dispatch-listener';
-import ChannelJson from 'interfaces/chat/channel-json';
+import ChannelJson, { SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { groupBy, maxBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
-import Channel, { ChannelGroup, channelGroups, groupMap } from 'models/chat/channel';
+import Channel, { supportedTypeLookup } from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 
@@ -29,17 +29,17 @@ function alphabeticalSort(a: Channel, b: Channel) {
 }
 
 function makeEmptyGroupedChannels() {
-  const empty: Partial<Record<ChannelGroup, Channel[]>> = {};
-  for (const group of channelGroups) {
-    empty[group] = [];
+  const empty: Partial<Record<SupportedChannelType, Channel[]>> = {};
+  for (const type of supportedChannelTypes) {
+    empty[type] = [];
   }
 
-  return empty as Record<ChannelGroup, Channel[]>;
+  return empty as Record<SupportedChannelType, Channel[]>;
 }
 
 const channelSorts = {
-  group: alphabeticalSort,
-  pm: (a: Channel, b: Channel) => {
+  GROUP: alphabeticalSort,
+  PM: (a: Channel, b: Channel) => {
     // so 'new' channels always end up on top
     if (a.newPmChannel) return -1;
     if (b.newPmChannel) return 1;
@@ -50,7 +50,7 @@ const channelSorts = {
 
     return a.lastMessageId > b.lastMessageId ? -1 : 1;
   },
-  public: alphabeticalSort,
+  PUBLIC: alphabeticalSort,
 };
 
 @dispatchListener
@@ -65,13 +65,13 @@ export default class ChannelStore implements DispatchListener {
     const grouped = makeEmptyGroupedChannels();
     // fill
     for (const channel of this.channels.values()) {
-      if (channel.group != null) {
-        grouped[channel.group].push(channel);
+      if (channel.supportedType != null) {
+        grouped[channel.supportedType].push(channel);
       }
     }
 
     // sort
-    for (const key of channelGroups) {
+    for (const key of supportedChannelTypes) {
       grouped[key] = grouped[key].sort(channelSorts[key]);
     }
 
@@ -219,7 +219,7 @@ export default class ChannelStore implements DispatchListener {
   @action
   updateWithPresence(presence: ChannelJson[]) {
     presence.forEach((json) => {
-      if (groupMap[json.type] != null) {
+      if (supportedTypeLookup.has(json.type)) {
         this.getOrCreate(json.channel_id).updatePresence(json);
       }
     });
@@ -289,7 +289,7 @@ export default class ChannelStore implements DispatchListener {
 
   @action
   private removePublicMessagesFromUserIds(userIds: Set<number>) {
-    this.groupedChannels.public.forEach((channel) => {
+    this.groupedChannels.PUBLIC.forEach((channel) => {
       channel.removeMessagesFromUserIds(userIds);
     });
   }
