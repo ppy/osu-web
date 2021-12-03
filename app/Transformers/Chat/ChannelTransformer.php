@@ -56,6 +56,7 @@ class ChannelTransformer extends TransformerAbstract
     {
         return $this->primitive([
             'can_message' => $channel->canMessage($this->user),
+            'can_message_error' => $channel->canMessageError($this->user),
             'last_read_id' => $channel->lastReadIdFor($this->user),
         ]);
     }

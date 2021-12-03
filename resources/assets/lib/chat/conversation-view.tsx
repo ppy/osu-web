@@ -179,29 +179,14 @@ export default class ConversationView extends React.Component<Props> {
       return (
         <div>
           <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.user')}</div>
-          <ul className='chat-conversation__cannot-message-reasons'>
-            <li>{osu.trans('chat.cannot_send.reasons.friends_only')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.target_restricted')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.silenced')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.blocked')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.not_enough_plays')}</li>
-            {/* TODO: missing verification */}
-            <li>{osu.trans('chat.cannot_send.reasons.not_verified')}</li>
-          </ul>
+          <div className='chat-conversation__cannot-message-reasons'>{this.currentChannel.canMessageError}</div>
         </div>
       );
     } else if (this.currentChannel.type === 'GROUP') {
       return (
         <div>
           <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.channel')}</div>
-          <ul className='chat-conversation__cannot-message-reasons'>
-            <li>{osu.trans('chat.cannot_send.reasons.channel_moderated')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.silenced')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.not_enough_plays')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.not_verified')}</li>
-          </ul>
+          <div className='chat-conversation__cannot-message-reasons'>{this.currentChannel.canMessageError}</div>
         </div>
       );
     }

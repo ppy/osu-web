@@ -141,6 +141,11 @@ class Channel extends Model
         return priv_check_user($user, 'ChatChannelCanMessage', $this)->can();
     }
 
+    public function canMessageError(User $user): ?string
+    {
+        return priv_check_user($user, 'ChatChannelCanMessage', $this)->message();
+    }
+
     public function displayIconFor(?User $user): ?string
     {
         return $this->pmTargetFor($user)?->user_avatar;
