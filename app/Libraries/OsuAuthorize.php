@@ -839,7 +839,7 @@ class OsuAuthorize
     {
         $prefix = 'chat.';
 
-        if ($user->isModerator()) {
+        if ($user->isModerator() || $user->isChatAnnouncer()) {
             return 'ok';
         }
 
@@ -864,6 +864,10 @@ class OsuAuthorize
         }
 
         if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        if ($channel->type === Channel::TYPES['broadcast'] && $user->isChatAnnouncer()) {
             return 'ok';
         }
 
