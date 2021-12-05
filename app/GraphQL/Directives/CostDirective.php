@@ -18,11 +18,11 @@ class CostDirective extends BaseDirective implements ComplexityResolverDirective
 Defines the complexity cost of a field. This is a simpler alternative to the @complexity directive
 """
 directive @cost(
-  """
-  The complexity cost of the field, used to calculate total query complexity
-  By default, it's 2 for object-type fields and 1 for leaf-type (enums and scalars) fields
-  """
-  complexity: Number
+    """
+    The complexity cost of the field, used to calculate total query complexity
+    By default, it's 2 for object-type fields and 1 for leaf-type (enums and scalars) fields
+    """
+    complexity: Number
 ) on FIELD_DEFINITION 
 GRAPHQL;
     }
