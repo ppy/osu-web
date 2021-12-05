@@ -27,6 +27,8 @@ use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Nuwave\Lighthouse\Support\Contracts\TypeExtensionManipulator;
 use Nuwave\Lighthouse\Support\Contracts\TypeManipulator;
 
+// TODO: implement ArgManipulator to check at schema-compile-time for isCurrentUser, as it doesn't make sense on an argument
+// This might have to be split into multiple directives as it can get a lot more complicated later on
 /**
  * GraphQL directive for general authorisation checks
  */
