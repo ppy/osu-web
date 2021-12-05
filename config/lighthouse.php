@@ -30,7 +30,7 @@ return [
          */
         'middleware' => [
             \Nuwave\Lighthouse\Support\Http\Middleware\AcceptJson::class,
-            'throttle-graphql:'.env('API_THROTTLE_GRAPHQL', '10,1,api-graphql').':',
+            'throttle-graphql:'.env('API_THROTTLE_GRAPHQL', '60,1,api-graphql').':',
             \App\GraphQL\Middleware\WrappedAuthApi::class,
 
             // Logs in a user if they are authenticated. In contrast to Laravel's 'auth'
