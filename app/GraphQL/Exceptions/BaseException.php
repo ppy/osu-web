@@ -7,7 +7,6 @@ namespace App\GraphQL\Exceptions;
 
 use Exception;
 use GraphQL\Error\ClientAware;
-use GraphQL\Error\Error;
 use Illuminate\Http\JsonResponse;
 use Nuwave\Lighthouse\Exceptions\RendersErrorsExtensions;
 

@@ -37,7 +37,7 @@ class AuthApi
             $token = $this->validTokenFromRequest($psr);
             $request->attributes->set(static::REQUEST_OAUTH_TOKEN_KEY, $token);
         } else {
-            if (!RequireScopes::noTokenRequired($request) && $request->decodedPath() !== "graphql") {
+            if (!RequireScopes::noTokenRequired($request) && $request->decodedPath() !== 'graphql') {
                 throw new AuthenticationException();
             }
         }
