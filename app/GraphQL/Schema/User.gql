@@ -1,0 +1,24 @@
+"Represents an osu user"
+type User {
+    "The user's ID"
+    id: Int! @rename(attribute: "user_id")
+
+    "The user's username"
+    username: String!
+
+    "The user's twitter as set in their profile"
+    twitter: String @rename(attribute: "user_twitter")
+
+    "The user's website as set in their profile"
+    website: String @rename(attribute: "user_website")
+
+    """
+    The user's friends 
+
+    This field is only accessible by the token owner
+    """
+    friends: [User!]!
+        @restrict(scopes: ["friends.read"])
+        @restrict(isCurrentUser: true)
+        @belongsToMany(type: "paginator")
+}

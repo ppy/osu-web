@@ -36,6 +36,8 @@
     "league/oauth2-server": "^8.3",
     "maennchen/zipstream-php": "^2.1",
     "mariuzzo/laravel-js-localization": "*",
+    "mll-lab/laravel-graphql-playground": "^2.5",
+    "nuwave/lighthouse": "^5.27.3",
     "paypal/paypal-checkout-sdk": "*",
     "php-ds/php-ds": "^1.3",
     "sentry/sentry-laravel": "dev-feature/laravel-octane-support as 2.8",

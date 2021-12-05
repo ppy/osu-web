@@ -222,6 +222,9 @@ return [
 
         /* Override default migrate:fresh */
         App\Providers\MigrationServiceProvider::class,
+
+        /* GraphQL Service Provider */
+        App\Providers\GraphQLServiceProvider::class,
     ],
 
     /*

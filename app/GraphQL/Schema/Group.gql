@@ -1,0 +1,5 @@
+"Represents a player group"
+type Group {
+    "The group's ID"
+    id: ID! @method(name: "getKey")
+}

@@ -8,6 +8,7 @@ fi
 
 _php() {
     /app/artisan config:cache
+    /app/artisan lighthouse:cache
     /app/artisan route:cache
     exec php-fpm8.0 -y /app/docker/deployment/php-fpm.conf
 }
