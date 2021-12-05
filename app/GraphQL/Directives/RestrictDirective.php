@@ -136,7 +136,7 @@ GRAPHQL;
         throw new AuthorisationException(ErrorCodes::AUTH_SUPPORTER_REQUIRED);
     }
 
-    /* Checks that the `isCurrentUser` argument is only used on fields of object type user */
+    /* Checks that the `isCurrentUser` argument is only used on fields of object type User */
     public function manipulateFieldDefinition(DocumentAST &$documentAST, FieldDefinitionNode &$fieldDefinition, ObjectTypeDefinitionNode &$parentType)
     {
         /** @var iterable<\GraphQL\Language\AST\DirectiveNode> $directiveIterator */

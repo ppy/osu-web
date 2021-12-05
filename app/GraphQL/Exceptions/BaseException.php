@@ -39,22 +39,9 @@ abstract class BaseException extends Exception implements ClientAware, RendersEr
         ];
     }
 
-    public function intoGraphQLError(): Error
-    {
-        return new Error(
-            $this->getMessage(),
-            null,
-            null,
-            [],
-            null,
-            $this,
-            $this->extensionsContent(),
-        );
-    }
-
     /**
      * Manually throws a spec-compliant response
-     * This should only ever be used by middleware, where the GraphQL error handler has not yet been initialised
+     * This should only ever be used by middleware, where the GraphQL error handler is not yet available
      */
     public function throw()
     {
