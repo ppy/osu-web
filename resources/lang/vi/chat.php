@@ -24,6 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'không thể gửi tin nhắn...',
+        'disconnected' => '',
         'placeholder' => 'soạn tin nhắn...',
         'send' => 'Gửi',
     ],

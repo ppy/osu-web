@@ -71,6 +71,25 @@ class BeatmapsControllerTest extends TestCase
     }
 
     /**
+     * Make sure the lookup stops when finding beatmap from one of the parameters
+     */
+    public function testLookupMultipleParamsForApi(): void
+    {
+        $beatmap = Beatmap::factory()->create();
+
+        $this->actAsScopedUser(User::factory()->create(), ['*']);
+
+        $this
+            ->get(route('api.beatmaps.lookup', [
+                'checksum' => '',
+                'id' => (string) $beatmap->getKey(),
+                'filename' => '',
+            ]))
+            ->assertSuccessful()
+            ->assertJsonPath('id', $beatmap->getKey());
+    }
+
+    /**
      * Checks whether HTTP 403 is thrown when a logged out
      * user tries to access the non-general (country or friend ranking)
      * scoreboards.

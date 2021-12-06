@@ -117,7 +117,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title, :mapper님이 ',
+            'title' => ':mapper 님이 제작한 :title',
         ],
 
         'sort' => [
@@ -130,7 +130,7 @@ return [
             'deleted' => '삭제됨',
             'mapper_notes' => '노트',
             'mine' => '내 글',
-            'pending' => 'Pending',
+            'pending' => '보류 중',
             'praises' => '칭찬',
             'resolved' => '해결됨',
             'total' => '모두',
