@@ -16,7 +16,6 @@ use GraphQL\Language\AST\TypeNode;
 use GraphQL\Language\Parser;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Nuwave\Lighthouse\Events\ManipulateAST;
 use Nuwave\Lighthouse\Schema\AST\ASTHelper;
@@ -111,7 +110,6 @@ class GraphQLServiceProvider extends ServiceProvider
         /** @var iterable<\GraphQL\Language\AST\DirectiveNode> $iterator */
         $iterator = $fieldDefinition->directives->getIterator();
         foreach ($iterator as $directive) {
-            Log::debug($directive->name->value);
             if ($directive->name->value === 'cost') {
                 return;
             }
