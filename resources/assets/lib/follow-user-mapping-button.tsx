@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { onErrorWithClick } from 'utils/ajax';
@@ -32,7 +33,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
   constructor(props: Props) {
     super(props);
 
-    const following = currentUser.follow_user_mapping?.includes(this.props.userId) ?? false;
+    const following = core.currentUser?.follow_user_mapping.includes(this.props.userId) ?? false;
     let followersWithoutSelf = this.props.followers ?? 0;
 
     if (following !== false) followersWithoutSelf -= 1;
@@ -54,7 +55,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
   }
 
   render() {
-    const canToggle = !(currentUser.id == null || currentUser.id === this.props.userId);
+    const canToggle = !(core.currentUser == null || core.currentUser.id === this.props.userId);
 
     if (!canToggle && !this.props.alwaysVisible) {
       return null;
@@ -120,7 +121,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
 
   private refresh = () => {
     this.setState({
-      following: currentUser.follow_user_mapping.includes(this.props.userId),
+      following: core.currentUser?.follow_user_mapping.includes(this.props.userId) ?? false,
     });
   };
 

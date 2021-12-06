@@ -1200,13 +1200,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $ratings[$i] = 0;
         }
 
-        $userRatings = $this->userRatings()
-            ->select('rating', \DB::raw('count(*) as count'))
-            ->groupBy('rating')
-            ->get();
+        if ($this->relationLoaded('userRatings')) {
+            foreach ($this->userRatings as $userRating) {
+                $ratings[$userRating->rating]++;
+            }
+        } else {
+            $userRatings = $this->userRatings()
+                ->select('rating', \DB::raw('count(*) as count'))
+                ->groupBy('rating')
+                ->get();
 
-        foreach ($userRatings as $rating) {
-            $ratings[$rating->rating] = $rating->count;
+            foreach ($userRatings as $rating) {
+                $ratings[$rating->rating] = $rating->count;
+            }
         }
 
         return $ratings;
