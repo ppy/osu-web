@@ -23,11 +23,11 @@ enum Playstyle {
 }
 
 enum BeatmapStates {
-    graveyard @enum(value: -2)
-    wip       @enum(value: -1)
-    pending   @enum(value:  0)
-    ranked    @enum(value:  1)
-    approved  @enum(value:  2)
-    qualified @enum(value:  3)
-    loved     @enum(value:  4)
+    graveyard
+    wip
+    pending
+    ranked
+    approved
+    qualified
+    loved
 }
