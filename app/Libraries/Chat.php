@@ -11,7 +11,6 @@ use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use ChaseConey\LaravelDatadogHelper\Datadog;
-use Illuminate\Support\Collection;
 use LaravelRedis as Redis;
 
 class Chat
@@ -58,15 +57,15 @@ class Chat
 
         $channel = (new Channel())->getConnection()->transaction(function () use ($sender, $params, $users, $uuid) {
             $channel = Channel::createAnnouncement($users, $params['channel']);
+
+            foreach ($users as $user) {
+                event(new ChatChannelEvent($channel, $user, 'join'));
+            }
+
             static::sendMessage($sender, $channel, $params['message'], false, $uuid);
 
             return $channel;
         });
-
-        // TODO: this event should be sent before the message.
-        foreach ($users as $user) {
-            event(new ChatChannelEvent($channel, $user, 'join'));
-        }
 
         Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
 
