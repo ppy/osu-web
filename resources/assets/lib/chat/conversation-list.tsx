@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { observer } from 'mobx-react';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
@@ -12,11 +13,12 @@ export default class ConversationList extends React.Component {
   render(): React.ReactNode {
     return (
       <div className='chat-conversation-list'>
-        {this.renderChannels(core.dataStore.channelStore.announcementChannels)}
-        {this.renderSeparator()}
-        {this.renderChannels(core.dataStore.channelStore.nonPmChannels)}
-        {this.renderSeparator()}
-        {this.renderChannels(core.dataStore.channelStore.pmChannels)}
+        {supportedChannelTypes.map((type) => (
+          <React.Fragment key={type}>
+            {this.renderChannels(core.dataStore.channelStore.groupedChannels[type])}
+            {this.renderSeparator()}
+          </React.Fragment>
+        ))}
       </div>
     );
   }
