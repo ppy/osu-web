@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Bài hát',
         'count' => ':count bài hát',
-        'original' => 'osu! nguyên bản',
+        'original' => 'osu! original',
         'original_badge' => '',
     ],
 

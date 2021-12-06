@@ -106,7 +106,7 @@ class BeatmapsController extends Controller
         foreach ($params as $key => $value) {
             $beatmap = Beatmap::whereHas('beatmapset')->firstWhere($keyMap[$key], $value);
 
-            if ($beatmap === null) {
+            if ($beatmap !== null) {
                 break;
             }
         }
