@@ -5,16 +5,50 @@
 
 namespace Tests\Libraries;
 
+use App\Exceptions\AuthorizationException;
 use App\Exceptions\VerificationRequiredException;
 use App\Libraries\Chat;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
+use App\Models\OAuth\Client;
 use App\Models\User;
 use Exception;
 use Tests\TestCase;
 
 class ChatTest extends TestCase
 {
+    /**
+     * @dataProvider createAnnouncementApiDataProvider
+     */
+    public function testCreateAnnouncementApi(?string $group, bool $isApiRequest, bool $isAllowed)
+    {
+        $sender = User::factory()->withGroup($group)->create()->markSessionVerified();
+        $users = User::factory()->count(2)->create();
+
+        if ($isApiRequest) {
+            $client = Client::factory()->create(['user_id' => $sender]);
+            $token = $this->createToken($sender, ['chat.write'], $client);
+            $sender->withAccessToken($token);
+        }
+
+        if (!$isAllowed) {
+            $this->expectException(AuthorizationException::class);
+        }
+
+        $channel = Chat::createAnnouncement($sender, [
+            'channel' => [
+                'description' => 'best',
+                'name' => 'annoucements',
+            ],
+            'message' => 'test',
+            'target_ids' => $users->pluck('user_id')->toArray(),
+        ]);
+
+        if ($isAllowed) {
+            $this->assertTrue($channel->fresh()->exists());
+        }
+    }
+
     /**
      * @dataProvider verifiedDataProvider
      */
@@ -127,6 +161,26 @@ class ChatTest extends TestCase
 
         $this->assertSame($initialChannelsCount, Channel::count());
         $this->assertSame($initialMessagesCount + 1, Message::count());
+    }
+
+    public function createAnnouncementApiDataProvider()
+    {
+        return [
+            [null, false, false],
+            [null, true, false],
+            ['admin', false, true],
+            ['admin', true, false],
+            ['announce', false, true],
+            ['announce', true, true], // announce group retains its group permission with OAuth.
+            ['bng', false, false],
+            ['bng', true, false],
+            ['bot', false, false],
+            ['bot', true, false],
+            ['gmt', false, true],
+            ['gmt', true, false],
+            ['nat', false, true],
+            ['nat', true, false],
+        ];
     }
 
     public function groupsDataProvider()
