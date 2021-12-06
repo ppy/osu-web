@@ -17,6 +17,13 @@ use Auth;
  */
 class ChannelsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('require-scopes:chat.write', ['only' => 'store']);
+
+        return parent::__construct();
+    }
+
     /**
      * Get Channel List
      *
