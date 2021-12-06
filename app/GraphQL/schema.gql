@@ -8,9 +8,9 @@ type Query {
         build: String @eq(key: "build"),
         stream: String @eq(key: "stream_id")
     ): Changelog @first
-    changelogs: [Changelog!]! @paginate
+    changelogs: [Changelog!]! @paginate(type: SIMPLE)
 
-    news: [NewsPost!]! @paginate
+    news: [NewsPost!]! @paginate(type: SIMPLE)
 
     "Get an osu user"
     user(
@@ -34,7 +34,7 @@ extend type Query @oauth {
 
     beatmaps(
         includeIDs: [Int!]! @in(key: "beatmap_id")
-    ): [Beatmap!]! @paginate
+    ): [Beatmap!]! @all
 
     beatmapsets(
         includeIDs: [Int!] @in(key: "beatmapset_id")
@@ -42,7 +42,7 @@ extend type Query @oauth {
             "title",
             "artist"
         ])
-    ): [Beatmapset!]! @paginate
+    ): [Beatmapset!]! @paginate(type: SIMPLE)
 
-    groups: [Group!]! @paginate
+    groups: [Group!]! @paginate(type: SIMPLE)
 }

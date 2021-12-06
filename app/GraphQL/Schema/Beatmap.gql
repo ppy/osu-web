@@ -52,5 +52,6 @@ type Beatmap {
         mods: [String] @restrict(requiresSupporter: true),
         type: String @restrict(requiresSupporter: true),
     ): [BestScore!]!
-        @paginate(builder: "App\\GraphQL\\Resolvers\\BeatmapResolver@bestScores")
+        # FIXME: this is N+1
+        @paginate(type: SIMPLE, builder: "App\\GraphQL\\Resolvers\\BeatmapResolver@bestScores")
 }
