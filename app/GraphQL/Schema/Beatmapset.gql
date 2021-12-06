@@ -1,0 +1,11 @@
+# TODO
+
+type Beatmapset {
+    artist: String!
+    beatmaps: [Beatmap!]! @hasMany
+    language: Language! @belongsTo
+    genre: Genre! @belongsTo
+    id: Int! @rename(attribute: "beatmapset_id")
+    title: String!
+    user: User! @belongsTo
+}

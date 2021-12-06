@@ -1,0 +1,7 @@
+# TODO
+
+type NewsPost {
+    id: Int!
+    author: String!
+}
+

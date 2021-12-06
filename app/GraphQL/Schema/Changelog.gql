@@ -1,0 +1,9 @@
+# vim: ft=graphql
+# TODO
+
+type Changelog {
+    id: Int! @rename(attribute: "changelog_id")
+    build: String
+    category: String!
+    checksum: String!
+}

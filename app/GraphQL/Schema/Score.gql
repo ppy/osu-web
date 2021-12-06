@@ -1,0 +1,21 @@
+type BestScore @model(class: "App\\Models\\Score\\Best\\Model") {
+    id: Int! @rename(attribute: "best_id")
+    beatmap: Beatmap! @belongsTo
+    user: User! @belongsTo
+
+    count100: Int!
+    count300: Int!
+    count50: Int!
+    countgeki: Int!
+    countkatu: Int!
+    countmiss: Int!
+    created_at: DateTimeTz! @rename(attribute: "date")
+    date: DateTimeTz!
+    mods: Int! @rename(attribute: "enabled_mods")
+    max_combo: Int! @rename(attribute: "maxcombo")
+    passed: Boolean! @rename(attribute: "pass")
+    perfect: Boolean!
+    pp: Float
+    replay: Boolean!
+    score: Int!
+}

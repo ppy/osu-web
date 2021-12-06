@@ -1,0 +1,9 @@
+type Language {
+    id: Int! @rename(attribute: "language_id")
+    name: String!
+}
+
+type Genre {
+    id: Int! @rename(attribute: "genre_id")
+    name: String!
+}
