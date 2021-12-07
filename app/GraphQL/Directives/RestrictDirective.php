@@ -86,12 +86,12 @@ GRAPHQL;
 
     public function checkScope()
     {
-        $token = oauth_token();
-
         $scopes = $this->directiveArgValue('scopes');
         if ($scopes === null) {
             return true;
         }
+
+        $token = oauth_token();
 
         if ($token === null) {
             throw new AuthorisationException(ErrorCodes::AUTH_MISSING_TOKEN);
@@ -101,7 +101,7 @@ GRAPHQL;
         $missingScopes = [];
         foreach ($scopes as $scope) {
             if ($scope !== 'any' && !$token->can($scope)) {
-                array_push($missingScopes, $scope);
+                $missingScopes[] = $scope;
             }
         }
 
@@ -112,8 +112,8 @@ GRAPHQL;
 
     public function checkCurrentUser(GraphQLContext $context, $root)
     {
-        $shouldCheck = $this->directiveArgValue('isCurrentUser');
-        if ($shouldCheck === null || $shouldCheck === false) {
+        $shouldCheck = $this->directiveArgValue('isCurrentUser', false);
+        if (!$shouldCheck) {
             return;
         }
 
@@ -126,8 +126,8 @@ GRAPHQL;
 
     public function checkSupporter()
     {
-        $shouldCheck = $this->directiveArgValue('requiresSupporter');
-        if ($shouldCheck === null || $shouldCheck === false) {
+        $shouldCheck = $this->directiveArgValue('requiresSupporter', false);
+        if (!$shouldCheck) {
             return;
         }
 
