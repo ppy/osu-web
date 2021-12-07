@@ -2,13 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
-import { route } from 'laroute';
+import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
-import ExtraPageProps, { ProfilePagePaginationData } from 'profile-page/extra-page-props';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
+import { OffsetPaginatorJson, itemsLength } from 'utils/offset-paginator';
 import { wikiUrl } from 'utils/url';
 import ValueDisplay from 'value-display';
 
@@ -44,12 +44,17 @@ function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
   );
 }
 
-interface Props extends ExtraPageProps {
-  pagination: ProfilePagePaginationData;
-  recentlyReceivedKudosu?: KudosuHistoryJson[];
+interface Props {
+  kudosu: OffsetPaginatorJson<KudosuHistoryJson>;
+  name: string;
+  onShowMore: () => void;
+  total: number;
+  userId: number;
+  withEdit: boolean;
 }
 
-export default class Kudosu extends React.Component<Props> {
+@observer
+export default class ProfilePageKudosu extends React.Component<Props> {
   render() {
     return (
       <div className='page-extra'>
@@ -71,7 +76,7 @@ export default class Kudosu extends React.Component<Props> {
             )}
             label={osu.trans('users.show.extra.kudosu.total')}
             modifiers='kudosu'
-            value={osu.formatNumber(this.props.user.kudosu.total)}
+            value={osu.formatNumber(this.props.total)}
           />
         </div>
 
@@ -81,7 +86,7 @@ export default class Kudosu extends React.Component<Props> {
   }
 
   private renderEntries() {
-    if (this.props.recentlyReceivedKudosu == null || this.props.recentlyReceivedKudosu.length === 0) {
+    if (itemsLength(this.props.kudosu.items) === 0) {
       return (
         <div className='profile-extra-entries profile-extra-entries--kudosu'>
           {osu.trans('users.show.extra.kudosu.entry.empty')}
@@ -91,17 +96,12 @@ export default class Kudosu extends React.Component<Props> {
 
     return (
       <ul className='profile-extra-entries profile-extra-entries--kudosu'>
-        {this.props.recentlyReceivedKudosu.map((kudosu) => <Entry key={kudosu.id} kudosu={kudosu} />)}
+        {Array.isArray(this.props.kudosu.items) && this.props.kudosu.items.map((kudosu) => <Entry key={kudosu.id} kudosu={kudosu} />)}
 
         <li className='profile-extra-entries__item'>
           <ShowMoreLink
-            data={{
-              name: 'recentlyReceivedKudosu',
-              url: route('users.kudosu', { user: this.props.user.id }),
-            }}
-            event='profile:showMore'
-            hasMore={this.props.pagination.recentlyReceivedKudosu.hasMore}
-            loading={this.props.pagination.recentlyReceivedKudosu.loading}
+            {...this.props.kudosu.pagination}
+            callback={this.props.onShowMore}
             modifiers='profile-page'
           />
         </li>

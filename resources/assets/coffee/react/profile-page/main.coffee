@@ -60,12 +60,11 @@ export class Main extends React.PureComponent
         lovedBeatmapsets: @props.extras.lovedBeatmapsets
         pendingBeatmapsets: @props.extras.pendingBeatmapsets
         graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
-        recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
         showMorePagination: {}
 
       for own elem, perPage of @props.perPage
         @state.showMorePagination[elem] ?= {}
-        @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
+        @state.showMorePagination[elem].hasMore = @state[elem]?.length > perPage
 
         if @state.showMorePagination[elem].hasMore
           @state[elem].pop()
@@ -204,9 +203,10 @@ export class Main extends React.PureComponent
 
       when 'kudosu'
         props:
-          user: @state.user
-          recentlyReceivedKudosu: @state.recentlyReceivedKudosu
-          pagination: @state.showMorePagination
+          userId: @state.user.id
+          initialKudosu: @props.extras.recentlyReceivedKudosu
+          expectedInitialCount: @props.perPage.recentlyReceivedKudosu
+          total: @state.user.kudosu.total
         component: Kudosu
 
       # TODO: rename to top_scores (also in model's UserProfileCustomization and translations)
