@@ -30,7 +30,7 @@ class Chat
         $transaction->exec();
     }
 
-    public static function createAnnouncement(User $sender, array $rawParams, ?string $uuid = null)
+    public static function createAnnouncement(User $sender, array $rawParams)
     {
         priv_check_user($sender, 'ChatAnnounce')->ensureCan();
 
@@ -55,14 +55,14 @@ class Chat
 
         $users = $users->push($sender)->uniqueStrict('user_id');
 
-        $channel = (new Channel())->getConnection()->transaction(function () use ($sender, $params, $users, $uuid) {
+        $channel = (new Channel())->getConnection()->transaction(function () use ($sender, $params, $users) {
             $channel = Channel::createAnnouncement($users, $params['channel']);
 
             foreach ($users as $user) {
                 event(new ChatChannelEvent($channel, $user, 'join'));
             }
 
-            static::sendMessage($sender, $channel, $params['message'], false, $uuid);
+            static::sendMessage($sender, $channel, $params['message'], false);
 
             return $channel;
         });
