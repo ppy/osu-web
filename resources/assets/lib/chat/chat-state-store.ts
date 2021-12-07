@@ -178,7 +178,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   private handleWindowFocusAction(event: WindowFocusAction) {
-    if (event.focused) {
+    if (this.isChatMounted && event.focused) {
       this.channelStore.markAsRead(this.selected);
     }
   }
