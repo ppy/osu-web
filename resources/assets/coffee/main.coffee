@@ -33,7 +33,6 @@ $(document).on 'turbolinks:load', ->
 # ensure currentUser is updated early enough.
 window.currentUserObserver ?= new CurrentUserObserver
 window.syncHeight ?= new SyncHeight
-window.stickyHeader ?= new StickyHeader
 
 window.accountEdit ?= new AccountEdit
 window.accountEditAvatar ?= new AccountEditAvatar

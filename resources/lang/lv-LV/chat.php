@@ -24,6 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'neizdevās nosūtīt ziņu...',
+        'disconnected' => '',
         'placeholder' => 'rakstīt ziņu...',
         'send' => 'Sūtīt',
     ],

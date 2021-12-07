@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => 'fórum',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'téma napló',
         ],
         'topic_watches_controller' => [
             'index' => 'írányítópult',
