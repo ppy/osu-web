@@ -46,7 +46,7 @@ export const apiShowMore = action(<T extends unknown>(json: OffsetPaginatorJson<
 
 export const apiShowMoreRecentlyReceivedKudosu = (json: OffsetPaginatorJson<KudosuHistoryJson>, userId: number): JQuery.jqXHR<KudosuHistoryJson[]> => apiShowMore(json, 'users.kudosu', { user: userId });
 
-const appendItems = action(<T extends unknown>(json: OffsetPaginatorJson<T>, newItems: typeof json.items, fetchLimit: number) => {
+export const appendItems = action(<T extends unknown>(json: OffsetPaginatorJson<T>, newItems: typeof json.items, fetchLimit: number) => {
   if (!Array.isArray(newItems)) {
     if (itemsLength(json.items) === 0) {
       json.items = newItems;

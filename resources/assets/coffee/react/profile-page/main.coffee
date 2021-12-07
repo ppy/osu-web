@@ -17,7 +17,9 @@ import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
 import { bottomPage } from 'utils/html'
+import { jsonClone } from 'utils/json'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+import { hasMoreCheck, appendItems } from 'utils/offset-paginator'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
@@ -64,10 +66,7 @@ export class Main extends React.PureComponent
 
       for own elem, perPage of @props.perPage
         @state.showMorePagination[elem] ?= {}
-        @state.showMorePagination[elem].hasMore = @state[elem]?.length > perPage
-
-        if @state.showMorePagination[elem].hasMore
-          @state[elem].pop()
+        @state.showMorePagination[elem].hasMore = hasMoreCheck(perPage, @state[elem])
 
 
   componentDidMount: =>
@@ -269,18 +268,17 @@ export class Main extends React.PureComponent
 
     @setState showMorePagination: paginationState, ->
       $.get updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
-        state = _.cloneDeep(@state[name]).concat(data)
-        hasMore = data.length > perPage
+        newPagination = jsonClone(@state.showMorePagination)
+        paginatorJson =
+          items: jsonClone @state[name]
+          pagination: newPagination[name]
+        appendItems(paginatorJson, data, perPage + 1)
 
-        state.pop() if hasMore
-
-        paginationState = _.cloneDeep @state.showMorePagination
-        paginationState[name].loading = false
-        paginationState[name].hasMore = hasMore
+        paginatorJson.pagination.loading = false
 
         @setState
-          "#{name}": state
-          showMorePagination: paginationState
+          "#{name}": paginatorJson.items
+          showMorePagination: newPagination
 
       .catch (error) =>
         osu.ajaxError error
