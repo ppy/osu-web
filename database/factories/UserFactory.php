@@ -58,10 +58,10 @@ class UserFactory extends Factory
             'user_website' => 'http://www.google.com/',
             'user_twitter' => 'ppy',
             'user_permissions' => '',
-            'user_interests' => fn () => substr($this->faker->bs(), 30),
-            'user_occ' => fn () => substr($this->faker->catchPhrase(), 30),
+            'user_interests' => fn () => mb_substr($this->faker->bs(), 0, 30),
+            'user_occ' => fn () => mb_substr($this->faker->catchPhrase(), 0, 30),
             'user_sig' => fn () => $this->faker->realText(155),
-            'user_from' => fn () => substr($this->faker->country(), 30),
+            'user_from' => fn () => mb_substr($this->faker->country(), 0, 30),
             'user_regdate' => fn () => $this->faker->dateTimeBetween('-6 years'),
         ];
     }
