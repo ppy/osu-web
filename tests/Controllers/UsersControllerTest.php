@@ -221,4 +221,11 @@ class UsersControllerTest extends TestCase
             ->get(route('api.users.show', ['user' => $user->username]))
             ->assertSuccessful();
     }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Country::factory()->fallback()->create();
+    }
 }
