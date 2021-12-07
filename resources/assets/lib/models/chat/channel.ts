@@ -2,15 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { getMessages } from 'chat/chat-api';
-import ChannelJson, { ChannelType, SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
+import ChannelJson, { ChannelType, SupportedChannelType, supportedTypeLookup } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { minBy, sortBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import User from 'models/user';
 import core from 'osu-core-singleton';
 import Message from './message';
-
-export const supportedTypeLookup = new Set(supportedChannelTypes) as Set<ChannelType>;
 
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?

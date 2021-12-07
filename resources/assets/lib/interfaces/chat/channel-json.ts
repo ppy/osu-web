@@ -3,8 +3,13 @@
 
 export const supportedChannelTypes = ['PUBLIC', 'GROUP', 'PM'] as const;
 export type SupportedChannelType = (typeof supportedChannelTypes)[number];
+export const supportedTypeLookup = new Set(supportedChannelTypes) as Set<ChannelType>;
 
 export type ChannelType = SupportedChannelType | 'PRIVATE' | 'MULTIPLAYER' | 'SPECTATOR' | 'TEMPORARY';
+
+export function filterSupportedChannelTypes(json: ChannelJson[]) {
+  return json.filter((channel) => supportedTypeLookup.has(channel.type)) as (ChannelJson & { type: SupportedChannelType })[];
+}
 
 export default interface ChannelJson {
   channel_id: number;
