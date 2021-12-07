@@ -24,6 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'žinutės išsiųsti nepavyko...',
+        'disconnected' => '',
         'placeholder' => 'rašyk čia...',
         'send' => 'Siųsti',
     ],

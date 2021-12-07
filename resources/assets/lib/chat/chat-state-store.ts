@@ -98,24 +98,25 @@ export default class ChatStateStore implements DispatchListener {
   selectChannel(channelId: number) {
     if (this.selected === channelId) return;
 
+    // mark the channel being switched away from as read.
+    if (this.selectedChannel != null) {
+      this.channelStore.markAsRead(this.selectedChannel.channelId);
+    }
+
     const channel = this.channelStore.get(channelId);
     if (channel == null) {
       console.error(`Trying to switch to non-existent channel ${channelId}`);
       return;
     }
 
-    if (!(this.selectedChannel?.transient ?? true)) {
-      // don't disable autoScroll if we're 'switching' away from the 'new chat' screen
-      //   e.g. keep autoScroll enabled to jump to the newly sent message when restarting an old conversation
-      this.autoScroll = false;
-    }
+    // TODO: needed?
+    this.autoScroll = false;
 
     this.selected = channelId;
     this.selectedIndex = this.channelStore.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId);
-    this.channelStore.markAsRead(channelId);
   }
 
   @action
@@ -133,7 +134,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
-    this.channelStore.channels.set(event.channel.channelId, event.channel);
+    this.channelStore.getOrCreate(event.json.channel_id).updateWithJson(event.json);
   }
 
   @action

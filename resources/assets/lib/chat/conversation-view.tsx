@@ -7,6 +7,7 @@ import { action, computed, makeObservable, observe } from 'mobx';
 import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { Spinner } from 'spinner';
@@ -30,7 +31,6 @@ const blankSnapshot = (): Snapshot => ({ chatHeight: 0, chatTop: 0 });
 @inject('dataStore')
 @observer
 export default class ConversationView extends React.Component<Props> {
-  private assumeHasBacklog = false;
   private chatViewRef = React.createRef<HTMLDivElement>();
   private readonly dataStore: RootDataStore;
   private didSwitchChannel = true;
@@ -50,18 +50,9 @@ export default class ConversationView extends React.Component<Props> {
     each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
       // when messageId is a uuid, comparison will always be false.
-      if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== currentUser.id) {
+      if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== core.currentUser?.id) {
         unreadMarkerShown = true;
-
-        // If the unread marker is the first element in this conversation, it most likely means that the unread cursor
-        // is even further in the past, making the displayed marker somewhat useless (until we can back-load those
-        // past messages in)... thus we ignore it when auto-scrolling and just go to the bottom instead.
-        //
-        // TODO: Actually in hindsight, there's another scenario where the first element in the conversation is an
-        // unread marker - when you receive new PMs and have yet to read any. Will look to handle this case later...
-        if (isEmpty(conversationStack)) {
-          this.assumeHasBacklog = true;
-        }
+        // TODO: handle the case where unread messages are in the backlog
 
         if (!isEmpty(currentGroup)) {
           conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
@@ -128,7 +119,7 @@ export default class ConversationView extends React.Component<Props> {
   @action
   componentDidUpdate(prevProps?: Props, prevState?: Readonly<Record<string, never>>, snapshot?: Snapshot) {
     const chatView = this.chatViewRef.current;
-    if (!chatView || !this.currentChannel) {
+    if (!chatView || !this.currentChannel || this.currentChannel.loadingMessages) {
       return;
     }
 
@@ -174,7 +165,7 @@ export default class ConversationView extends React.Component<Props> {
       return;
     }
 
-    if (this.currentChannel.type === 'PM' || this.currentChannel.transient) {
+    if (this.currentChannel.type === 'PM') {
       return (
         <div>
           <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.user')}</div>
@@ -215,7 +206,6 @@ export default class ConversationView extends React.Component<Props> {
 
   render(): React.ReactNode {
     const channel = this.currentChannel;
-    this.assumeHasBacklog = false;
 
     if (channel == null || !channel.isDisplayable) {
       return <div className='chat-conversation' />;
@@ -280,11 +270,7 @@ export default class ConversationView extends React.Component<Props> {
   scrollToUnread = (): void => {
     const chatView = this.chatViewRef.current;
     if (chatView && this.unreadMarkerRef.current) {
-      if (this.assumeHasBacklog) {
-        this.scrollToBottom();
-      } else {
-        $(chatView).scrollTop(this.unreadMarkerRef.current.offsetTop);
-      }
+      $(chatView).scrollTop(this.unreadMarkerRef.current.offsetTop);
     }
   };
 

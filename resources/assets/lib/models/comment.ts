@@ -3,6 +3,7 @@
 
 import { CommentJson } from 'interfaces/comment-json';
 import { computed, makeObservable } from 'mobx';
+import core from 'osu-core-singleton';
 
 export type CommentSort = 'new' | 'old' | 'top';
 
@@ -64,17 +65,17 @@ export class Comment {
 
   @computed
   get canModerate() {
-    return currentUser.is_admin || currentUser.is_moderator;
+    return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator);
   }
 
   @computed
   get canPin() {
-    return currentUser.is_admin && (this.parentId == null || this.pinned);
+    return core.currentUser?.is_admin && (this.parentId == null || this.pinned);
   }
 
   @computed
   get canReport() {
-    return currentUser.id != null && this.userId !== currentUser.id;
+    return core.currentUser != null && this.userId !== core.currentUser.id;
   }
 
   @computed
@@ -99,6 +100,6 @@ export class Comment {
 
   @computed
   get isOwner() {
-    return currentUser.id != null && this.userId === currentUser.id;
+    return core.currentUser != null && this.userId === core.currentUser.id;
   }
 }

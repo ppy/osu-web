@@ -24,6 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'gagal mengirim pesan...',
+        'disconnected' => '',
         'placeholder' => 'ketikkan pesan...',
         'send' => 'Kirim',
     ],

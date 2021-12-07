@@ -6,7 +6,7 @@
 return [
     'achievement' => '<strong><em>:user</em></strong> presteerde "<strong>:achievement</strong>"!',
     'beatmap_playcount' => ':beatmap is :count keer gespeeld!',
-    'beatmapset_approve' => ':beatmapset door <strong>:user</strong> is geaccepteerd!',
+    'beatmapset_approve' => ':beatmapset door <strong>:user</strong> is :approval!',
     'beatmapset_delete' => ':beatmapset is verwijderd.',
     'beatmapset_revive' => ':beatmapset is ontwaakt uit zijn eeuwige slaap door <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> heeft de beatmap "<em>:beatmapset</em>" bijgewerkt.',

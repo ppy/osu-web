@@ -7,5 +7,5 @@ import * as React from 'react';
 import { parseJson } from 'utils/json';
 
 core.reactTurbolinks.register('follows-comment', () => (
-  <Main follows={parseJson('json-follows-comment')} />
+  <Main follows={parseJson('json-follows-comment')} user={core.currentUserOrFail} />
 ));

@@ -5,6 +5,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Libraries\OsuAuthorize;
 use Carbon\Carbon;
 use Closure;
 
@@ -27,6 +28,8 @@ class LegacyInterOpAuth
         if (!present($signature) || !present($timestamp) || $diff > 300 || !hash_equals($expected, $signature)) {
             abort(403);
         }
+
+        request()->attributes->set(OsuAuthorize::REQUEST_IS_INTEROP_KEY, true);
 
         return $next($request);
     }
