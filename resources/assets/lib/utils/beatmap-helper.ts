@@ -5,12 +5,10 @@ import * as d3 from 'd3';
 import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import GameMode from 'interfaces/game-mode';
+import GameMode, { gameModes } from 'interfaces/game-mode';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
 import { parseJsonNullable } from 'utils/json';
-
-export const modes: GameMode[] = ['osu', 'taiko', 'fruits', 'mania'];
 
 function isVisibleBeatmap(beatmap: BeatmapJson) {
   if (isBeatmapExtendedJson(beatmap)) {
@@ -36,7 +34,7 @@ export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>)
   if (params.items != null) {
     let currentDiffDelta: number;
     let currentItem: T | null = null;
-    const targetDiff = userRecommendedDifficulty(params.mode ?? modes[0]);
+    const targetDiff = userRecommendedDifficulty(params.mode ?? gameModes[0]);
 
     params.items.forEach((item) => {
       const diffDelta = Math.abs(item.difficulty_rating - targetDiff);
@@ -117,7 +115,7 @@ export function group<T extends BeatmapJson>(beatmaps?: T[] | null): Map<GameMod
   const grouped = _.groupBy(beatmaps ?? [], 'mode');
   const ret = new Map<GameMode, T[]>();
 
-  modes.forEach((mode) => {
+  gameModes.forEach((mode) => {
     ret.set(mode, sort(grouped[mode] ?? []));
   });
 
@@ -145,12 +143,12 @@ export function sortWithMode<T extends BeatmapJson>(beatmaps: T[]): T[] {
 }
 
 function userModes() {
-  const currentMode: GameMode | undefined = currentUser.playmode;
-  if (currentMode == null || !modes.includes(currentMode)) {
-    return modes;
+  const currentMode = core.currentUser?.playmode;
+  if (currentMode == null || !gameModes.includes(currentMode)) {
+    return gameModes;
   }
 
-  const ret = _.without(modes, currentMode);
+  const ret = _.without(gameModes, currentMode);
   ret.unshift(currentMode);
 
   return ret;

@@ -14,6 +14,7 @@ import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
 import OsuLayzr from 'core/osu-layzr';
 import ReactTurbolinks from 'core/react-turbolinks';
+import StickyHeader from 'core/sticky-header';
 import Timeago from 'core/timeago';
 import TurbolinksReload from 'core/turbolinks-reload';
 import UserLogin from 'core/user/user-login';
@@ -24,16 +25,10 @@ import ReferenceLinkTooltip from 'core/wiki/reference-link-tooltip';
 import WindowFocusObserver from 'core/window-focus-observer';
 import WindowSize from 'core/window-size';
 import CurrentUserJson from 'interfaces/current-user-json';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import NotificationsWorker from 'notifications/worker';
 import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
-
-declare global {
-  interface Window {
-    currentUser: CurrentUserJson;
-  }
-}
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
@@ -55,6 +50,7 @@ export default class OsuCore {
   readonly reactTurbolinks: ReactTurbolinks;
   readonly referenceLinkTooltip = new ReferenceLinkTooltip();
   socketWorker: SocketWorker;
+  readonly stickyHeader = new StickyHeader();
   readonly timeago = new Timeago();
   readonly turbolinksReload = new TurbolinksReload();
   readonly userLogin: UserLogin;
@@ -63,6 +59,15 @@ export default class OsuCore {
   readonly userVerification = new UserVerification();
   windowFocusObserver: WindowFocusObserver;
   readonly windowSize = new WindowSize();
+
+  @computed
+  get currentUserOrFail() {
+    if (this.currentUser == null) {
+      throw new Error('current user is null');
+    }
+
+    return this.currentUser;
+  }
 
   constructor() {
     // refresh current user on page reload (and initial page load)
@@ -96,10 +101,14 @@ export default class OsuCore {
   };
 
   @action
-  private setCurrentUser = (user: CurrentUserJson) => {
-    this.dataStore.userStore.getOrCreate(user.id, user);
-    this.socketWorker.setUserId(user.id);
-    this.currentUser = user.id == null ? undefined : user;
+  private setCurrentUser = (userOrEmpty: typeof window.currentUser) => {
+    const user = userOrEmpty.id == null ? undefined : userOrEmpty;
+
+    if (user != null) {
+      this.dataStore.userStore.getOrCreate(user.id, user);
+    }
+    this.socketWorker.setUserId(user?.id ?? null);
+    this.currentUser = user;
     this.userPreferences.setUser(this.currentUser);
   };
 }

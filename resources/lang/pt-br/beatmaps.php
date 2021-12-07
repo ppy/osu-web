@@ -183,7 +183,7 @@ return [
         'disqualify' => 'Desqualificar',
         'incorrect_state' => 'Erro ao realizar essa ação, tente atualizar a página.',
         'love' => 'Amar',
-        'love_choose' => '',
+        'love_choose' => 'Escolher dificuldade para os mapas loved',
         'love_confirm' => 'Amar esse beatmap?',
         'nominate' => 'Nomear',
         'nominate_confirm' => 'Nomear este beatmap?',

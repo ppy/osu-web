@@ -8,7 +8,7 @@ return [
         'beatmap-deleted' => 'изтрит бийтмап',
         'difference' => 'по :difference',
         'failed' => 'ПРОВАЛИЛ СЕ',
-        'header' => 'Мултиплейър Състезания',
+        'header' => 'Мултиплейър състезания',
         'in-progress' => '(състезание в ход)',
         'in_progress_spinner_label' => 'състезание в ход',
         'loading-events' => 'Зареждане на събитията...',

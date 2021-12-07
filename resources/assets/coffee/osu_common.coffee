@@ -4,15 +4,6 @@
 window.osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
-  bottomPage: ->
-    osu.bottomPageDistance() == 0
-
-
-  bottomPageDistance: ->
-    body = document.documentElement ? document.body.parent ? document.body
-    (body.scrollHeight - body.scrollTop) - body.clientHeight
-
-
   currentUserIsFriendsWith: (user_id) ->
     _.find currentUser.friends, target_id: user_id
 

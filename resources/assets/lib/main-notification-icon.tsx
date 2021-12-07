@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { typeNames } from 'models/notification-type';
 import NotificationIcon from 'notification-icon';
@@ -23,6 +23,12 @@ export default class MainNotificationIcon extends React.Component<Props> {
 
   private get unreadLegacyPmCount() {
     return core.currentUser?.unread_pm_count ?? 0;
+  }
+
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
   }
 
   render() {
