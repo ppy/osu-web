@@ -44,6 +44,7 @@ class UsersControllerTest extends TestCase
                 'HTTP_USER_AGENT' => config('osu.client.user_agent'),
             ])->assertJsonFragment([
                 'username' => 'user1',
+                'country_code' => Country::UNKNOWN,
             ]);
 
         $this->assertSame($previousCount + 1, User::count());
