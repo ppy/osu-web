@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import core from 'osu-core-singleton'
+import { bottomPage } from 'utils/html'
 import { hideLoadingOverlay } from 'utils/loading-overlay'
 
 replaceUrl = (url) ->
@@ -161,7 +162,7 @@ class window.Forum
 
     currentPost = null
 
-    if osu.bottomPage()
+    if bottomPage()
       currentPost = @posts[@posts.length - 1]
     else
       scrollOffset = core.stickyHeader.scrollOffsetValue
