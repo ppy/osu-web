@@ -216,15 +216,6 @@ export default class Channel {
   }
 
   @action
-  updatePresence = (json: ChannelJson) => {
-    this.updateWithJson(json);
-
-    if (json.current_user_attributes != null) {
-      this.setLastReadId(json.current_user_attributes.last_read_id);
-    }
-  };
-
-  @action
   updateWithJson(json: ChannelJson) {
     this.name = json.name;
     this.description = json.description;
@@ -236,6 +227,7 @@ export default class Channel {
 
     if (json.current_user_attributes != null) {
       this.canMessage = json.current_user_attributes.can_message;
+      this.setLastReadId(json.current_user_attributes.last_read_id);
     }
   }
 

@@ -220,7 +220,7 @@ export default class ChannelStore implements DispatchListener {
   updateWithPresence(presence: ChannelJson[]) {
     presence.forEach((json) => {
       if (supportedTypeLookup.has(json.type)) {
-        this.getOrCreate(json.channel_id).updatePresence(json);
+        this.getOrCreate(json.channel_id).updateWithJson(json);
       }
     });
 
