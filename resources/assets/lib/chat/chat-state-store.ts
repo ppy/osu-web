@@ -6,7 +6,7 @@ import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import SocketMessageSendAction from 'actions/socket-message-send-action';
 import SocketStateChangedAction from 'actions/socket-state-changed-action';
-import { WindowFocusAction } from 'actions/window-focus-actions';
+import WindowFocusAction from 'actions/window-focus-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { supportedChannelTypes } from 'interfaces/chat/channel-json';
@@ -102,7 +102,7 @@ export default class ChatStateStore implements DispatchListener {
     } else if (event instanceof SocketStateChangedAction) {
       this.handleSocketStateChanged(event);
     } else if (event instanceof WindowFocusAction) {
-      this.handleWindowFocusAction();
+      this.handleWindowFocusAction(event);
     }
   }
 
@@ -177,8 +177,10 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  private handleWindowFocusAction() {
-    this.channelStore.markAsRead(this.selected);
+  private handleWindowFocusAction(event: WindowFocusAction) {
+    if (event.focused) {
+      this.channelStore.markAsRead(this.selected);
+    }
   }
 
   @action

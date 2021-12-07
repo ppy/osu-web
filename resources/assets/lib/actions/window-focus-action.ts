@@ -3,8 +3,6 @@
 /* eslint-disable max-classes-per-file */
 import DispatcherAction from './dispatcher-action';
 
-export class WindowBlurAction implements DispatcherAction {
-}
-
-export class WindowFocusAction implements DispatcherAction {
+export default class WindowFocusAction implements DispatcherAction {
+  constructor(readonly focused: boolean) {}
 }
