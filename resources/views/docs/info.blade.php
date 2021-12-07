@@ -18,22 +18,6 @@ Use the API for good. Don't overdo it. If in doubt, ask before (ab)using :). _th
 
 Current rate limit is set at an insanely high 1200 requests per minute, with burst capability of up to 200 beyond that. If you require more, you probably fall into the above category of abuse. If you are doing more than 60 requests a minute, you should probably give [peppy](mailto:pe@ppy.sh) a yell.
 
-# Endpoint
-
-## Base URL
-
-The base URL is: `{{ config('app.url') }}/api/[version]/`
-
-## API Versions
-
-This is combined with the base endpoint to determine where requests should be sent.
-
-Version | Status
-------- | ---------------------------------------------------------------
-v2      | current _(not yet public, consider unstable and expect breaking changes)_
-v1      | _legacy api provided by the old site, will be deprecated soon_
-
-
 # Changelog
 
 For a full list of changes, see the
@@ -83,3 +67,19 @@ For a full list of changes, see the
 
 ### 2019-07-18
 - [`User`](#user) now returns counts directly as primitives instead of numbers wrapped in an array.
+
+
+# Endpoint
+
+## Base URL
+
+The base URL is: `{{ config('app.url') }}/api/[version]/`
+
+## API Versions
+
+This is combined with the base endpoint to determine where requests should be sent.
+
+Version | Status
+------- | ---------------------------------------------------------------
+v2      | current _(not yet public, consider unstable and expect breaking changes)_
+v1      | _legacy api provided by the old site, will be deprecated soon_
