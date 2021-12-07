@@ -27,8 +27,8 @@ return [
     ],
 
     'forum_posts' => [
-        'created' => 'Время публикации',
-        'relevance' => 'Релевантность',
+        'created' => 'Времени публикации',
+        'relevance' => 'Релевантности',
     ],
 
     'forum_topics' => [
@@ -37,7 +37,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => 'Релевантность',
-        'username' => 'Имя',
+        'relevance' => 'Релевантности',
+        'username' => 'Имени',
     ],
 ];

@@ -27,7 +27,7 @@ export default class Channel {
   @observable name = '';
   needsRefresh = true;
   @observable newPmChannel = false;
-  @observable type: ChannelType = 'NEW'; // TODO: look at making this support channels only after #8388
+  @observable type: ChannelType = 'TEMPORARY'; // TODO: look at making this support channels only
   @observable users: number[] = [];
 
   @observable private messagesMap = new Map<number | string, Message>();
@@ -97,11 +97,6 @@ export default class Channel {
   @computed
   get supportedType() {
     return supportedTypeLookup.has(this.type) ? this.type as SupportedChannelType : null;
-  }
-
-  @computed
-  get transient() {
-    return this.type === 'NEW';
   }
 
   constructor(channelId: number) {

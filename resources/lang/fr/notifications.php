@@ -149,8 +149,8 @@ return [
                 'user_beatmapset_new_compact' => 'Nouvelle beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nouvelles beatmaps par :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'La beatmap ":title" a été ramenée à la vie par :username',
+                'user_beatmapset_revive_compact' => 'La beatmap ":title" a été ramenée à la vie',
             ],
         ],
 

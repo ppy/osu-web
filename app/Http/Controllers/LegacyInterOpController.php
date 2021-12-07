@@ -197,7 +197,7 @@ class LegacyInterOpController extends Controller
      *
      * @bodyParam messages[<id>][sender_id] integer required id of user sending the message
      * @bodyParam messages[<id>][target_id] integer required id of user receiving the message if `type` is `pm`; channel, otherwise. Must not be restricted
-     * @bodyParam messages[<id>][type] string required type of the target of the message, `pm` or `public`
+     * @bodyParam messages[<id>][type] string required type of the target of the message. See [ChatChannel](#chatchannel)
      * @bodyParam messages[<id>][message] string required message to send. Empty string is not allowed
      * @bodyParam messages[<id>][is_action] boolean required set to true (`1`/`on`/`true`) for `/me` message. Default false
      */
@@ -232,19 +232,18 @@ class LegacyInterOpController extends Controller
             ]);
 
             // TODO: default to null later
-            $messageParams['type'] ??= 'pm';
-            // ignore if type missing (and return error?)
-            if (in_array($messageParams['type'], ['pm', 'public'], true)) {
-                if (isset($messageParams['sender_id'])) {
-                    $userIds->add($messageParams['sender_id']);
-                }
+            $messageParams['type'] ??= Channel::TYPES['pm'];
+            $messageParams['type'] = strtoupper($messageParams['type']);
+            // TODO: also ignore if type missing (and return error?)
+            if (isset($messageParams['sender_id'])) {
+                $userIds->add($messageParams['sender_id']);
+            }
 
-                if (isset($messageParams['target_id'])) {
-                    if ($messageParams['type'] === 'pm') {
-                        $userIds->add([$messageParams['target_id']]);
-                    } else {
-                        $channelIds->add([$messageParams['target_id']]);
-                    }
+            if (isset($messageParams['target_id'])) {
+                if ($messageParams['type'] === Channel::TYPES['pm']) {
+                    $userIds->add([$messageParams['target_id']]);
+                } else {
+                    $channelIds->add([$messageParams['target_id']]);
                 }
             }
 
@@ -258,8 +257,7 @@ class LegacyInterOpController extends Controller
             ->keyBy('user_id');
 
         $channels = Channel
-            ::public()
-            ->whereIn('channel_id', $channelIds->toArray())
+            ::whereIn('channel_id', $channelIds->toArray())
             ->get()
             ->keyBy('channel_id');
 
@@ -278,7 +276,7 @@ class LegacyInterOpController extends Controller
                     abort(422, 'sender not found');
                 }
 
-                if ($messageParams['type'] === 'pm') {
+                if ($messageParams['type'] === Channel::TYPES['pm']) {
                     $pmTarget = $users[$messageParams['target_id']] ?? null;
                     if ($pmTarget === null) {
                         abort(422, 'target user not found');

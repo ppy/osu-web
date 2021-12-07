@@ -50,10 +50,10 @@ return [
 
         'mode' => [
             'all' => 'всички',
-            'beatmapset' => 'бийтмапове',
+            'beatmapset' => 'бийтмап',
             'forum_post' => 'форум',
             'user' => 'играч',
-            'wiki_page' => 'osu!wiki',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -78,7 +78,7 @@ return [
 
         'help' => [
             '_' => 'при проблем със стартиране на играта или регистриране на профил, посетете :help_forum_link или :support_button.',
-            'help_forum_link' => 'форум за помощ',
+            'help_forum_link' => 'форума за помощ',
             'support_button' => 'се свържете с поддръжка',
         ],
 

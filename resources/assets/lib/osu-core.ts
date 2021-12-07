@@ -14,6 +14,7 @@ import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
 import OsuLayzr from 'core/osu-layzr';
 import ReactTurbolinks from 'core/react-turbolinks';
+import StickyHeader from 'core/sticky-header';
 import Timeago from 'core/timeago';
 import TurbolinksReload from 'core/turbolinks-reload';
 import UserLogin from 'core/user/user-login';
@@ -49,6 +50,7 @@ export default class OsuCore {
   readonly reactTurbolinks: ReactTurbolinks;
   readonly referenceLinkTooltip = new ReferenceLinkTooltip();
   socketWorker: SocketWorker;
+  readonly stickyHeader = new StickyHeader();
   readonly timeago = new Timeago();
   readonly turbolinksReload = new TurbolinksReload();
   readonly userLogin: UserLogin;
