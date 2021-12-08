@@ -5,7 +5,7 @@ import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import { dispatch } from 'app-dispatcher';
 import BigButton from 'big-button';
 import { trim } from 'lodash';
-import { autorun, computed, makeObservable, observe } from 'mobx';
+import { action, autorun, computed, makeObservable, observe } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
@@ -121,6 +121,8 @@ export default class InputBox extends React.Component<Props> {
     );
   }
 
+  // TODO: move to channel?
+  @action
   sendMessage(messageText?: string) {
     if (!messageText || !osu.present(trim(messageText))) {
       return;
@@ -152,6 +154,10 @@ export default class InputBox extends React.Component<Props> {
     // Technically we don't need to check command here, but doing so in case we add more commands
     if (isCommand && command === 'me') {
       message.isAction = true;
+    }
+
+    if (this.currentChannel != null) {
+      this.currentChannel.uiState.autoScroll = true;
     }
 
     dispatch(new ChatMessageSendAction(message));

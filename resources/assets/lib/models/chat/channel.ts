@@ -26,6 +26,10 @@ export default class Channel {
   needsRefresh = true;
   @observable newPmChannel = false;
   @observable type: ChannelType = 'TEMPORARY'; // TODO: look at making this support channels only
+  @observable uiState = {
+    autoScroll: true,
+    scrollY: 0,
+  };
   @observable users: number[] = [];
 
   @observable private messagesMap = new Map<number | string, Message>();

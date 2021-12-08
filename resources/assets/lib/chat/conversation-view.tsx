@@ -13,6 +13,7 @@ import ShowMoreLink from 'show-more-link';
 import { Spinner } from 'spinner';
 import StringWithComponent from 'string-with-component';
 import UserAvatar from 'user-avatar';
+import { nextVal } from 'utils/seq';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
@@ -30,6 +31,7 @@ export default class ConversationView extends React.Component<Props> {
   private chatViewRef = React.createRef<HTMLDivElement>();
   private didSwitchChannel = true;
   private firstMessage?: Message;
+  private readonly id = `conversation-view-${nextVal()}`;
   private unreadMarkerRef = React.createRef<HTMLDivElement>();
 
   @computed
@@ -116,23 +118,33 @@ export default class ConversationView extends React.Component<Props> {
       return;
     }
 
+    const uiState = this.currentChannel.uiState;
+
     if (this.didSwitchChannel) {
-      if (this.unreadMarkerRef.current) {
-        this.scrollToUnread();
-      } else {
-        this.scrollToBottom();
-      }
-      this.didSwitchChannel = false;
+      // This can happen after a turbolinks navigation,
+      // so we have to wait for the elements to be on the current document before scrolling.
+      core.reactTurbolinks.runAfterPageLoad(this.id, action(() => {
+        if (this.unreadMarkerRef.current) {
+          this.scrollToUnread();
+        } else {
+          if (uiState.autoScroll) {
+            this.scrollToBottom();
+          } else {
+            chatView.scrollTo(0, uiState.scrollY);
+          }
+        }
+
+        this.didSwitchChannel = false;
+      }));
     } else {
       snapshot = snapshot ?? blankSnapshot();
       const prepending = this.firstMessage !== this.currentChannel.firstMessage;
 
-      if (prepending && this.chatViewRef.current != null) {
-        const chatEl = this.chatViewRef.current;
-        const newHeight = chatEl.scrollHeight;
-        chatEl.scrollTo(chatEl.scrollLeft, snapshot.chatTop + (newHeight - snapshot.chatHeight));
+      if (prepending) {
+        const newHeight = chatView.scrollHeight;
+        chatView.scrollTo(chatView.scrollLeft, snapshot.chatTop + (newHeight - snapshot.chatHeight));
       } else {
-        if (core.dataStore.chatState.autoScroll) {
+        if (uiState.autoScroll) {
           this.scrollToBottom();
         }
       }
@@ -190,11 +202,12 @@ export default class ConversationView extends React.Component<Props> {
     }
   }
 
+  @action
   onScroll = () => {
     const chatView = this.chatViewRef.current;
-    if (chatView) {
-      core.dataStore.chatState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
-    }
+    if (chatView == null || this.currentChannel == null) return;
+    this.currentChannel.uiState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
+    this.currentChannel.uiState.scrollY = chatView.scrollTop;
   };
 
   render(): React.ReactNode {
@@ -253,7 +266,7 @@ export default class ConversationView extends React.Component<Props> {
     );
   }
 
-  scrollToBottom = (): void => {
+  scrollToBottom = () => {
     const chatView = this.chatViewRef.current;
     if (chatView) {
       $(chatView).scrollTop(chatView.scrollHeight);
