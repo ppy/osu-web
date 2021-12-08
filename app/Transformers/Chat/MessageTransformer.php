@@ -16,7 +16,7 @@ class MessageTransformer extends TransformerAbstract
         'sender',
     ];
 
-    public function transform($message)
+    public function transform(Message $message)
     {
         $response = [
             'message_id' => $message->message_id,
@@ -29,6 +29,10 @@ class MessageTransformer extends TransformerAbstract
 
         if ($message->uuid !== null) {
             $response['uuid'] = $message->uuid;
+        }
+
+        if ($message->channel->isAnnouncement()) {
+            $response['content_html'] = markdown_plain($message->content);
         }
 
         return $response;
