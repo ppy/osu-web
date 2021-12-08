@@ -35,7 +35,7 @@ export default class ConversationView extends React.Component<Props> {
   private unreadMarkerRef = React.createRef<HTMLDivElement>();
 
   @computed
-  get conversationStack() {
+  private get conversationStack() {
     const channel = this.currentChannel;
     if (channel == null) return [];
 
@@ -87,7 +87,7 @@ export default class ConversationView extends React.Component<Props> {
   }
 
   @computed
-  get currentChannel() {
+  private get currentChannel() {
     return core.dataStore.chatState.selectedChannel;
   }
 
@@ -117,7 +117,7 @@ export default class ConversationView extends React.Component<Props> {
 
   componentDidMount() {
     this.componentDidUpdate();
-    $(window).on('scroll', throttle(this.onScroll, 1000));
+    $(window).on('scroll', throttle(this.handleOnScroll, 1000));
   }
 
   @action
@@ -173,54 +173,7 @@ export default class ConversationView extends React.Component<Props> {
     return snapshot;
   }
 
-  noCanSendMessage(): React.ReactNode {
-    if (this.currentChannel == null) {
-      // this shouldn't happen...
-      return;
-    }
-
-    if (this.currentChannel.type === 'PM') {
-      return (
-        <div>
-          <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.user')}</div>
-          <ul className='chat-conversation__cannot-message-reasons'>
-            <li>{osu.trans('chat.cannot_send.reasons.friends_only')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.target_restricted')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.silenced')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.blocked')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.not_enough_plays')}</li>
-            {/* TODO: missing verification */}
-            <li>{osu.trans('chat.cannot_send.reasons.not_verified')}</li>
-          </ul>
-        </div>
-      );
-    } else if (this.currentChannel.type === 'GROUP') {
-      return (
-        <div>
-          <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.channel')}</div>
-          <ul className='chat-conversation__cannot-message-reasons'>
-            <li>{osu.trans('chat.cannot_send.reasons.channel_moderated')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.silenced')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.not_enough_plays')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.not_verified')}</li>
-          </ul>
-        </div>
-      );
-    }
-  }
-
-  @action
-  onScroll = () => {
-    const chatView = this.chatViewRef.current;
-    if (chatView == null || this.currentChannel == null) return;
-
-    this.currentChannel.uiState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
-    this.currentChannel.uiState.scrollY = chatView.scrollTop;
-  };
-
-  render(): React.ReactNode {
+  render() {
     const channel = this.currentChannel;
 
     if (channel == null || !channel.isDisplayable) {
@@ -228,7 +181,7 @@ export default class ConversationView extends React.Component<Props> {
     }
 
     return (
-      <div ref={this.chatViewRef} className='chat-conversation' onScroll={this.onScroll}>
+      <div ref={this.chatViewRef} className='chat-conversation' onScroll={this.handleOnScroll}>
         <div className='chat-conversation__new-chat-avatar'>
           <UserAvatar user={{ avatar_url: channel.icon }} />
         </div>
@@ -270,24 +223,19 @@ export default class ConversationView extends React.Component<Props> {
         }
         {this.conversationStack}
         {!channel.canMessage &&
-          this.noCanSendMessage()
+          this.renderCannotSendMessage()
         }
       </div>
     );
   }
 
-  scrollToBottom = () => {
+  @action
+  private handleOnScroll = () => {
     const chatView = this.chatViewRef.current;
-    if (chatView) {
-      $(chatView).scrollTop(chatView.scrollHeight);
-    }
-  };
+    if (chatView == null || this.currentChannel == null) return;
 
-  scrollToUnread = (): void => {
-    const chatView = this.chatViewRef.current;
-    if (chatView && this.unreadMarkerRef.current) {
-      $(chatView).scrollTop(this.unreadMarkerRef.current.offsetTop);
-    }
+    this.currentChannel.uiState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
+    this.currentChannel.uiState.scrollY = chatView.scrollTop;
   };
 
   private loadEarlierMessages = () => {
@@ -295,9 +243,60 @@ export default class ConversationView extends React.Component<Props> {
     core.dataStore.channelStore.loadChannelEarlierMessages(this.currentChannel.channelId);
   };
 
-  @action
   private maybeMarkAsRead() {
     if (this.currentChannel == null) return;
     core.dataStore.channelStore.markAsRead(this.currentChannel.channelId);
+  }
+
+  private renderCannotSendMessage() {
+    if (this.currentChannel == null) {
+      // this shouldn't happen...
+      return;
+    }
+
+    if (this.currentChannel.type === 'PM') {
+      return (
+        <div>
+          <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.user')}</div>
+          <ul className='chat-conversation__cannot-message-reasons'>
+            <li>{osu.trans('chat.cannot_send.reasons.friends_only')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.target_restricted')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.silenced')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.blocked')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.not_enough_plays')}</li>
+            {/* TODO: missing verification */}
+            <li>{osu.trans('chat.cannot_send.reasons.not_verified')}</li>
+          </ul>
+        </div>
+      );
+    } else if (this.currentChannel.type === 'GROUP') {
+      return (
+        <div>
+          <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.channel')}</div>
+          <ul className='chat-conversation__cannot-message-reasons'>
+            <li>{osu.trans('chat.cannot_send.reasons.channel_moderated')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.silenced')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.not_enough_plays')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.not_verified')}</li>
+          </ul>
+        </div>
+      );
+    }
+  }
+
+  private scrollToBottom() {
+    const chatView = this.chatViewRef.current;
+    if (chatView) {
+      $(chatView).scrollTop(chatView.scrollHeight);
+    }
+  }
+
+  private scrollToUnread() {
+    const chatView = this.chatViewRef.current;
+    if (chatView && this.unreadMarkerRef.current) {
+      $(chatView).scrollTop(this.unreadMarkerRef.current.offsetTop);
+    }
   }
 }
