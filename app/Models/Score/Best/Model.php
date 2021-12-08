@@ -26,7 +26,7 @@ abstract class Model extends BaseModel
     use Traits\Reportable, Traits\WithDbCursorHelper;
 
     public $position = null;
-    public $weight = null;
+    public ?float $weight = null;
 
     protected $macros = [
         'accurateRankCounts',
@@ -71,7 +71,7 @@ abstract class Model extends BaseModel
         return null;
     }
 
-    public function weightedPp()
+    public function weightedPp(): ?float
     {
         return $this->weight === null ? null : $this->weight * $this->pp;
     }
