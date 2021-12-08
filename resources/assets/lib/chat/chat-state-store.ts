@@ -6,13 +6,13 @@ import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import SocketMessageSendAction from 'actions/socket-message-send-action';
 import SocketStateChangedAction from 'actions/socket-state-changed-action';
-import WindowFocusAction from 'actions/window-focus-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
+import core from 'osu-core-singleton';
 import ChannelStore from 'stores/channel-store';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
@@ -88,6 +88,13 @@ export default class ChatStateStore implements DispatchListener {
         });
       }
     });
+
+    autorun(() => {
+      if (this.isChatMounted && core.windowFocusObserver.hasFocus) {
+        // TODO: should only mark as read when at the bottom of channel...or not at all (only when switching away from channel)?
+        this.channelStore.markAsRead(this.selected);
+      }
+    });
   }
 
   handleDispatchAction(event: DispatcherAction) {
@@ -101,8 +108,6 @@ export default class ChatStateStore implements DispatchListener {
       this.handleChatNewConversationAdded(event);
     } else if (event instanceof SocketStateChangedAction) {
       this.handleSocketStateChanged(event);
-    } else if (event instanceof WindowFocusAction) {
-      this.handleWindowFocusAction(event);
     }
   }
 
@@ -173,13 +178,6 @@ export default class ChatStateStore implements DispatchListener {
     if (!event.connected) {
       this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
       this.isReady = false;
-    }
-  }
-
-  @action
-  private handleWindowFocusAction(event: WindowFocusAction) {
-    if (this.isChatMounted && event.focused) {
-      this.channelStore.markAsRead(this.selected);
     }
   }
 

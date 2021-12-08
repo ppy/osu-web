@@ -2,13 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { ChatMessageSendAction } from 'actions/chat-message-send-action';
-import DispatcherAction from 'actions/dispatcher-action';
-import WindowFocusAction from 'actions/window-focus-action';
-import { dispatch, dispatcher } from 'app-dispatcher';
+import { dispatch } from 'app-dispatcher';
 import BigButton from 'big-button';
-import DispatchListener from 'dispatch-listener';
 import { trim } from 'lodash';
-import { computed, makeObservable, observe } from 'mobx';
+import { autorun, computed, makeObservable, observe } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
@@ -19,7 +16,7 @@ import { classWithModifiers } from 'utils/css';
 type Props = Record<string, never>;
 
 @observer
-export default class InputBox extends React.Component<Props> implements DispatchListener {
+export default class InputBox extends React.Component<Props> {
   private inputBoxRef = React.createRef<HTMLTextAreaElement>();
 
   @computed
@@ -40,9 +37,16 @@ export default class InputBox extends React.Component<Props> implements Dispatch
   constructor(props: Props) {
     super(props);
 
-    dispatcher.register(this);
-
     makeObservable(this);
+
+    disposeOnUnmount(
+      this,
+      autorun(() => {
+        if (core.windowFocusObserver.hasFocus) {
+          this.focusInput();
+        }
+      }),
+    );
 
     disposeOnUnmount(
       this,
@@ -73,10 +77,6 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     this.focusInput();
   }
 
-  componentWillUnmount() {
-    dispatcher.unregister(this);
-  }
-
   focusInput() {
     if (this.inputBoxRef.current) {
       this.inputBoxRef.current.focus();
@@ -87,12 +87,6 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     const message = e.target.value;
     this.currentChannel?.setInputText(message);
   };
-
-  handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof WindowFocusAction && action.focused) {
-      this.focusInput();
-    }
-  }
 
   render(): React.ReactNode {
     const channel = this.currentChannel;
