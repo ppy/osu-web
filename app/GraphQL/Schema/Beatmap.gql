@@ -15,16 +15,16 @@ type Beatmap {
     accuracy: Float! @rename(attribute: "diff_overall")
     ar: Float! @rename(attribute: "diff_approach")
     bpm: Float!
-    convert: Boolean!
-    count_normal: Int!
-    count_slider: Int!
-    count_spinner: Int!
-    count_total: Int!
+    convert: Boolean! @rename(attribute: "convert")
+    count_normal: Int! @rename(attribute: "countNormal")
+    count_slider: Int! @rename(attribute: "countSlider")
+    count_spinner: Int! @rename(attribute: "countSpinner")
+    count_total: Int! @rename(attribute: "countTotal")
     cs: Float! @rename(attribute: "diff_size")
     deleted_at: DateTimeTz
     drain: Float! @rename(attribute: "diff_drain")
     hit_length: Int!
-    is_scoreable: Boolean!
+    is_scoreable: Boolean! @method(name: "isScoreable")
     last_updated: DateTimeTz! @rename(attribute: "last_update")
     mode_int: Int! @rename(attribute: "playmode")
     passcount: Int!

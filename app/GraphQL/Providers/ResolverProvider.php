@@ -6,8 +6,8 @@
 namespace App\GraphQL\Providers;
 
 use Closure;
+use GraphQL\Executor\Executor;
 use GraphQL\Type\Definition\ResolveInfo;
-use Illuminate\Support\Str;
 use Nuwave\Lighthouse\Exceptions\DefinitionException;
 use Nuwave\Lighthouse\Schema\Values\FieldValue;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
@@ -23,11 +23,8 @@ class ResolverProvider implements ProvidesResolver
 
     public static function fieldResolver(...$params)
     {
-        $fieldName = $params[3]->fieldName;
-
         return static::findCustomResolver(...$params)
-            ?? static::tryResolve($fieldName, ...$params)
-            ?? static::tryResolve($fieldName, ...$params);
+            ?? Executor::getDefaultFieldResolver()(...$params);
     }
 
     public static function findCustomResolver($root, array $args, GraphQLContext $context, ResolveInfo $info)
@@ -35,8 +32,8 @@ class ResolverProvider implements ProvidesResolver
         $splitRootClass = explode('\\', get_class($root));
         $rootName = end($splitRootClass);
 
-        $className = Str::studly($rootName).'Resolver';
-        $methodName = Str::camel($info->fieldName);
+        $className = studly_case($rootName).'Resolver';
+        $methodName = camel_case($info->fieldName);
 
         $namespacedClassName = Utils::namespaceClassName(
             $className,
@@ -57,24 +54,5 @@ class ResolverProvider implements ProvidesResolver
         return $resolver instanceof Closure
             ? $resolver($root, $args, $context, $info)
             : null;
-    }
-
-    public static function tryResolve(string $fieldName, $root, array $args, GraphQLContext $context, ResolveInfo $info)
-    {
-        $property = null;
-
-        if (is_array($root) || $root instanceof \ArrayAccess) {
-            if (isset($root[$fieldName])) {
-                $property = $root[$fieldName];
-            }
-        } elseif (is_object($root)) {
-            if (isset($root->{$fieldName})) {
-                $property = $root->{$fieldName};
-            }
-        }
-
-        return $property instanceof Closure
-            ? $property($root, $args, $context, $info)
-            : $property;
     }
 }
