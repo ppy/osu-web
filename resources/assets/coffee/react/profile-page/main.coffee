@@ -16,6 +16,7 @@ import UserPage from 'profile-page/user-page'
 import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
+import { bottomPage } from 'utils/html'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
@@ -333,7 +334,7 @@ export class Main extends React.PureComponent
 
     anchorHeight = pagesOffset[0].getBoundingClientRect().height
 
-    if osu.bottomPage()
+    if bottomPage()
       @setCurrentPage null, _.last(pages).dataset.pageId
       return
 

@@ -8,14 +8,16 @@ import SocketMessageSendAction from 'actions/socket-message-send-action';
 import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import { getUpdates } from 'chat/chat-api';
-import PingService from 'chat/ping-service';
 import DispatchListener from 'dispatch-listener';
+import { supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
+import Channel from 'models/chat/channel';
 import ChannelStore from 'stores/channel-store';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
+import { getUpdates } from './chat-api';
+import PingService from './ping-service';
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
@@ -43,6 +45,11 @@ export default class ChatStateStore implements DispatchListener {
   @computed
   get selectedChannel() {
     return this.channelStore.get(this.selected);
+  }
+
+  @computed
+  private get channelList(): Channel[] {
+    return supportedChannelTypes.flatMap((type) => this.channelStore.groupedChannels[type]);
   }
 
   constructor(protected channelStore: ChannelStore) {
@@ -98,35 +105,42 @@ export default class ChatStateStore implements DispatchListener {
   selectChannel(channelId: number) {
     if (this.selected === channelId) return;
 
+    // mark the channel being switched away from as read.
+    if (this.selectedChannel != null) {
+      this.channelStore.markAsRead(this.selectedChannel.channelId);
+    }
+
     const channel = this.channelStore.get(channelId);
     if (channel == null) {
       console.error(`Trying to switch to non-existent channel ${channelId}`);
       return;
     }
 
-    if (!(this.selectedChannel?.transient ?? true)) {
-      // don't disable autoScroll if we're 'switching' away from the 'new chat' screen
-      //   e.g. keep autoScroll enabled to jump to the newly sent message when restarting an old conversation
-      this.autoScroll = false;
-    }
+    // TODO: needed?
+    this.autoScroll = false;
 
     this.selected = channelId;
-    this.selectedIndex = this.channelStore.channelList.indexOf(channel);
+    this.selectedIndex = this.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId);
-    this.channelStore.markAsRead(channelId);
+  }
+
+  @action
+  selectFirst() {
+    if (this.channelList.length === 0) return;
+
+    this.selectChannel(this.channelList[0].channelId);
   }
 
   @action
   private focusChannelAtIndex(index: number) {
-    const channelList = this.channelStore.channelList;
-    if (channelList.length === 0) {
+    if (this.channelList.length === 0) {
       return;
     }
 
-    const nextIndex = clamp(index, 0, channelList.length - 1);
-    const channel = this.channelStore.channelList[nextIndex];
+    const nextIndex = clamp(index, 0, this.channelList.length - 1);
+    const channel = this.channelList[nextIndex];
 
     this.selectChannel(channel.channelId);
   }

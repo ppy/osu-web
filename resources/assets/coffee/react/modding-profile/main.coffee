@@ -17,6 +17,7 @@ import ExtraTab from 'profile-page/extra-tab'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
+import { bottomPage } from 'utils/html'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
@@ -308,7 +309,7 @@ export class Main extends React.PureComponent
 
     anchorHeight = pagesOffset[0].getBoundingClientRect().height
 
-    if osu.bottomPage()
+    if bottomPage()
       @setCurrentPage null, _.last(pages).dataset.pageId
       return
 
