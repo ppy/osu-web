@@ -25,9 +25,9 @@ export default class ChatStateStore implements DispatchListener {
   @observable isChatMounted = false;
   @observable isReady = false;
   @observable selectedBoxed = observable.box(0);
+  skipRefresh = false;
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
-  @observable private needsRefresh = true;
   private pingService: PingService;
   private selectedIndex = 0;
 
@@ -75,8 +75,13 @@ export default class ChatStateStore implements DispatchListener {
     });
 
     autorun(async () => {
-      if (this.isConnected && this.isChatMounted && this.needsRefresh) {
-        await this.updateChannelList();
+      if (this.isConnected && this.isChatMounted) {
+        if (this.skipRefresh) {
+          this.skipRefresh = false;
+        } else {
+          await this.updateChannelList();
+        }
+
         runInAction(() => {
           this.channelStore.loadChannel(this.selected);
           this.isReady = true;
@@ -167,7 +172,6 @@ export default class ChatStateStore implements DispatchListener {
     this.isConnected = event.connected;
     if (!event.connected) {
       this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
-      this.needsRefresh = true;
       this.isReady = false;
     }
   }
