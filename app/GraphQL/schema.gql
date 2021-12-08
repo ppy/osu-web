@@ -10,8 +10,11 @@ type Query {
     ): Changelog @first
     changelogs: [Changelog!]! @paginate(type: SIMPLE)
 
+    newsPost(
+        id: Int @eq,
+        slug: String @eq
+    ): NewsPost @first
     news: [NewsPost!]! @paginate(type: SIMPLE)
-
 }
 
 extend type Query @oauth {
@@ -21,7 +24,6 @@ extend type Query @oauth {
         checksum: String
         filename: String
     ): Beatmap @first
-
     beatmaps(
         includeIDs: [Int!]! @in(key: "beatmap_id")
     ): [Beatmap!]! @all
@@ -34,6 +36,9 @@ extend type Query @oauth {
         ])
     ): [Beatmapset!]! @paginate(type: SIMPLE)
 
+    group(
+        id: Int @eq(key: "group_id")
+    ): Group @first
     groups: [Group!]! @paginate(type: SIMPLE)
 
     "Get an osu user"

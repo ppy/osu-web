@@ -2,6 +2,6 @@
 
 type NewsPost {
     id: Int!
-    author: String!
+    slug: String!
 }
 

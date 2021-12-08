@@ -1,5 +1,5 @@
 "Represents a player group"
 type Group {
     "The group's ID"
-    id: ID! @method(name: "getKey")
+    id: Int! @rename(attribute: "group_id")
 }
