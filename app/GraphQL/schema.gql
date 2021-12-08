@@ -12,16 +12,6 @@ type Query {
 
     news: [NewsPost!]! @paginate(type: SIMPLE)
 
-    "Get an osu user"
-    user(
-        id: Int @eq(key: "user_id")
-        username: String @eq
-    ): User @first
-
-    "Gets the currently authenticated user"
-    me: User
-        @restrict(scopes: ["identify"])
-        @auth
 }
 
 extend type Query @oauth {
@@ -45,4 +35,15 @@ extend type Query @oauth {
     ): [Beatmapset!]! @paginate(type: SIMPLE)
 
     groups: [Group!]! @paginate(type: SIMPLE)
+
+    "Get an osu user"
+    user(
+        id: Int @eq(key: "user_id")
+        username: String @eq
+    ): User @first
+
+    "Gets the currently authenticated user"
+    me: User
+        @restrict(scopes: ["identify"])
+        @auth
 }
