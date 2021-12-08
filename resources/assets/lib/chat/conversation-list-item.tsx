@@ -1,42 +1,34 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { inject, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
 import UserAvatar from 'user-avatar';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   channelId: number;
   dataStore?: RootDataStore;
 }
 
-@inject('dataStore')
 @observer
 export default class ConversationListItem extends React.Component<Props> {
-  readonly dataStore: RootDataStore = this.props.dataStore!;
-
   render(): React.ReactNode {
-    const uiState = this.dataStore.chatState;
-    const conversation = this.dataStore.channelStore.get(this.props.channelId);
+    const uiState = core.dataStore.chatState;
+    const conversation = core.dataStore.channelStore.get(this.props.channelId);
     const baseClassName = 'chat-conversation-list-item';
 
     if (!conversation) {
       return;
     }
 
-    let className = baseClassName;
-    if (this.props.channelId === uiState.selected) {
-      className += ` ${baseClassName}--selected`;
-    }
-
-    if (conversation.isUnread) {
-      className += ` ${baseClassName}--unread`;
-    }
+    const selected = this.props.channelId === uiState.selected;
 
     return (
-      <div className={className}>
-        {conversation.isUnread
+      <div className={classWithModifiers(baseClassName, { selected })}>
+        {conversation.isUnread && !selected
           ? <div className={`${baseClassName}__unread-indicator`} />
           : null}
 
@@ -46,7 +38,7 @@ export default class ConversationListItem extends React.Component<Props> {
 
         <button className={`${baseClassName}__tile`} onClick={this.switch}>
           <div className={`${baseClassName}__avatar`}>
-            <UserAvatar modifiers={['full-circle']} user={{ avatar_url: conversation.icon }} />
+            <UserAvatar modifiers='full-circle' user={{ avatar_url: conversation.icon }} />
           </div>
           <div className={`${baseClassName}__name`}>{conversation.name}</div>
           <div className={`${baseClassName}__chevron`}>
@@ -58,10 +50,10 @@ export default class ConversationListItem extends React.Component<Props> {
   }
 
   private part = () => {
-    this.dataStore.channelStore.partChannel(this.props.channelId);
+    core.dataStore.channelStore.partChannel(this.props.channelId);
   };
 
   private switch = () => {
-    this.dataStore.chatState.selectChannel(this.props.channelId);
+    core.dataStore.chatState.selectChannel(this.props.channelId);
   };
 }

@@ -189,7 +189,7 @@ return [
             'account-edit' => 'Impostazioni',
             'follows' => 'Iscrizioni',
             'friends' => 'Amici',
-            'logout' => 'Disconnettiti',
+            'logout' => 'Esci',
             'profile' => 'Profilo',
         ],
     ],

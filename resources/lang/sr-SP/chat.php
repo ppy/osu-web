@@ -24,6 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => '',
+        'disconnected' => '',
         'placeholder' => '',
         'send' => '',
     ],

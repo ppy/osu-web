@@ -2,13 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { getMessages } from 'chat/chat-api';
-import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
+import ChannelJson, { ChannelType, SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { minBy, sortBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import User from 'models/user';
 import core from 'osu-core-singleton';
 import Message from './message';
+
+export const supportedTypeLookup = new Set(supportedChannelTypes) as Set<ChannelType>;
 
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
@@ -25,7 +27,7 @@ export default class Channel {
   @observable name = '';
   needsRefresh = true;
   @observable newPmChannel = false;
-  @observable type: ChannelType = 'NEW';
+  @observable type: ChannelType = 'TEMPORARY'; // TODO: look at making this support channels only
   @observable users: number[] = [];
 
   @observable private messagesMap = new Map<number | string, Message>();
@@ -93,8 +95,8 @@ export default class Channel {
   }
 
   @computed
-  get transient() {
-    return this.type === 'NEW';
+  get supportedType() {
+    return supportedTypeLookup.has(this.type) ? this.type as SupportedChannelType : null;
   }
 
   constructor(channelId: number) {

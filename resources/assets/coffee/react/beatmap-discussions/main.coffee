@@ -14,6 +14,7 @@ import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
 import { div } from 'react-dom-factories'
 import NewReview from 'beatmap-discussions/new-review'
+import core from 'osu-core-singleton'
 import * as BeatmapHelper from 'utils/beatmap-helper'
 import { nextVal } from 'utils/seq'
 import { currentUrl } from 'utils/turbolinks'
@@ -386,7 +387,7 @@ export class Main extends React.PureComponent
       offsetTop = target.offset().top - @modeSwitcherRef.current.getBoundingClientRect().height
       offsetTop -= @newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
 
-      $(window).stop().scrollTo window.stickyHeader.scrollOffset(offsetTop), 500
+      $(window).stop().scrollTo core.stickyHeader.scrollOffset(offsetTop), 500
 
     @update null, newState
 

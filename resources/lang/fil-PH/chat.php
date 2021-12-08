@@ -24,6 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'hindi maipadala ang mensahe...',
+        'disconnected' => '',
         'placeholder' => 'gumawa ng mensahe...',
         'send' => 'Ipadala',
     ],

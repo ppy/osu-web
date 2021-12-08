@@ -1,7 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import * as d3 from 'd3';
+import LineChart, { makeOptionsNumber } from 'charts/line-chart';
+import { scaleLinear, scaleLog } from 'd3';
 import RankHistoryJson from 'interfaces/rank-history-json';
 import UserStatisticsJson from 'interfaces/user-statistics-json';
 import { last } from 'lodash';
@@ -14,25 +15,19 @@ interface Props {
   stats: UserStatisticsJson;
 }
 
-const options = {
+const options = makeOptionsNumber({
   axisLabels: false,
   circleLine: true,
-  infoBoxFormats: {
-    x: formatX,
-    y: formatY,
-  },
-  margins: {
-    bottom: 15,
-    left: 15, // referenced in css .profile-detail__col--bottom-left
-    right: 15,
-    top: 15,
-  },
+  infoBoxFormatX: formatX,
+  infoBoxFormatY: formatY,
+  marginBottom: 15,
+  marginLeft: 15, // referenced in css .profile-detail__col--bottom-left
+  marginRight: 15,
+  marginTop: 15,
   modifiers: 'profile-page',
-  scales: {
-    x: d3.scaleLinear(),
-    y: d3.scaleLog(),
-  },
-};
+  scaleX: scaleLinear(),
+  scaleY: scaleLog(),
+});
 
 function formatX(d: number) {
   return d === 0 ? osu.trans('common.time.now') : osu.transChoice('common.time.days_ago', -d);
@@ -44,7 +39,7 @@ function formatY(d: number) {
 
 export default class RankChart extends React.Component<Props> {
   private readonly id = `rank-chart-${nextVal()}`;
-  private rankChart?: LineChart;
+  private rankChart?: LineChart<number>;
   private readonly rankChartArea = React.createRef<HTMLDivElement>();
 
   get data() {

@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import core from 'osu-core-singleton'
+import { bottomPage } from 'utils/html'
 import { hideLoadingOverlay } from 'utils/loading-overlay'
 
 replaceUrl = (url) ->
@@ -160,10 +162,10 @@ class window.Forum
 
     currentPost = null
 
-    if osu.bottomPage()
+    if bottomPage()
       currentPost = @posts[@posts.length - 1]
     else
-      scrollOffset = window.stickyHeader.scrollOffsetValue()
+      scrollOffset = core.stickyHeader.scrollOffsetValue
 
       for post in @posts
         postTop = post.getBoundingClientRect().top
@@ -222,7 +224,7 @@ class window.Forum
                 $(post).offset().top
 
     $.publish 'sync-height:force'
-    postTop = window.stickyHeader.scrollOffset(postTop) if postTop != 0
+    postTop = core.stickyHeader.scrollOffset(postTop) if postTop != 0
 
     # using jquery smooth scrollTo will cause unwanted events to trigger on the way down.
     window.scrollTo window.pageXOffset, postTop

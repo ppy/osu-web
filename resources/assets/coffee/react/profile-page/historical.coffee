@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import BeatmapPlaycount from 'profile-page/beatmap-playcount'
+import LineChart, { makeOptionsDate } from 'charts/line-chart'
 import ExtraHeader from 'profile-page/extra-header'
 import core from 'osu-core-singleton'
 import PlayDetailList from 'play-detail-list'
@@ -138,19 +139,15 @@ export class Historical extends React.PureComponent
         y: 0
 
     if !@charts[attribute]?
-      options =
+      options = makeOptionsDate
         curve: d3.curveLinear
-        formats:
-          x: (d) -> moment(d).format(osu.trans('common.datetime.year_month_short.moment'))
-          y: (d) -> osu.formatNumber(d)
-        margins: right: 60 # more spacing for x axis label
-        infoBoxFormats:
-          x: (d) -> moment(d).format(osu.trans('common.datetime.year_month.moment'))
-          y: (d) -> "<strong>#{osu.trans("users.show.extra.historical.#{attribute}.count_label")}</strong> #{_.escape(osu.formatNumber(d))}"
-        tickValues: {}
-        ticks: {}
+        formatX: (d) -> moment(d).format(osu.trans('common.datetime.year_month_short.moment'))
+        formatY: (d) -> osu.formatNumber(d)
+        marginRight: 60 # more spacing for x axis label
+        infoBoxFormatX: (d) -> moment(d).format(osu.trans('common.datetime.year_month.moment'))
+        infoBoxFormatY: (d) -> "<strong>#{osu.trans("users.show.extra.historical.#{attribute}.count_label")}</strong> #{_.escape(osu.formatNumber(d))}"
         circleLine: true
-        modifiers: ['profile-page']
+        modifiers: 'profile-page'
 
       @charts[attribute] = new LineChart(area, options)
 
@@ -181,17 +178,17 @@ export class Historical extends React.PureComponent
 
   updateTicks: (chart, data) =>
     if core.windowSize.isDesktop
-      chart.options.ticks.x = null
+      chart.options.ticksX = undefined
 
       data ?= chart.data
-      chart.options.tickValues.x =
+      chart.options.tickValuesX =
         if data.length < 10
           data.map (d) -> d.x
         else
-          null
+          undefined
     else
-      chart.options.ticks.x = Math.min(6, (data ? chart.data).length)
-      chart.options.tickValues.x = null
+      chart.options.ticksX = Math.min(6, (data ? chart.data).length)
+      chart.options.tickValuesX = undefined
 
 
   resizeCharts: =>

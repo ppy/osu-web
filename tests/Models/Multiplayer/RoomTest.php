@@ -117,4 +117,24 @@ class RoomTest extends TestCase
         $room->startPlay($user, $playlistItem2);
         $this->assertSame($initialCount + 1, $room->scores()->count());
     }
+
+    public function testCannotStartPlayedItem()
+    {
+        $beatmap = Beatmap::factory()->create();
+        $user = User::factory()->create();
+
+        $params = [
+            'name' => 'test',
+            'playlist' => [
+                [
+                    'beatmap_id' => $beatmap->getKey(),
+                    'ruleset_id' => $beatmap->playmode,
+                    'played_at' => time(),
+                ],
+            ],
+        ];
+
+        $this->expectException(InvariantException::class);
+        (new Room())->startGame($user, $params);
+    }
 }

@@ -149,8 +149,8 @@ return [
                 'user_beatmapset_new_compact' => 'Новая бітмапа ":title"',
                 'user_beatmapset_new_group' => 'Новая бітмапа ад :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Бітмапа ":title" адноўлена :username',
+                'user_beatmapset_revive_compact' => 'Бітмапа ":title" адноўлена',
             ],
         ],
 

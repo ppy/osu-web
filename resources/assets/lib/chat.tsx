@@ -56,19 +56,13 @@ core.reactTurbolinks.register('chat', action(() => {
     const channelId = parseInt(currentUrlParams().get('channel_id') ?? '', 10);
     // TODO: should clear query string as well (and maybe update on channel selection?)
     initialChannel = dataStore.channelStore.get(channelId) != null ? channelId : dataStore.chatState.selected;
-
-    if (initialChannel === 0) {
-      if (dataStore.channelStore.nonPmChannels.length > 0) {
-        initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
-      } else if (dataStore.channelStore.pmChannels.length > 0) {
-        initialChannel = dataStore.channelStore.pmChannels[0].channelId;
-      }
-    }
   }
 
   if (initialChannel !== 0) {
-    void dataStore.chatState.selectChannel(initialChannel);
+    dataStore.chatState.selectChannel(initialChannel);
+  } else {
+    dataStore.chatState.selectFirst();
   }
 
-  return <MainView dataStore={core.dataStore} />;
+  return <MainView />;
 }));

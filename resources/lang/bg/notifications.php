@@ -19,7 +19,7 @@ return [
         'beatmapset' => 'бийтмапове',
         'forum_topic' => 'форум',
         'news_post' => 'новини',
-        'build' => 'версии',
+        'build' => 'промени',
         'channel' => 'чат',
     ],
 
