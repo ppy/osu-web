@@ -5,6 +5,7 @@ import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import Editor from './editor';
@@ -22,17 +23,6 @@ interface Props {
 
 interface State {
   cssTop: string | number | undefined;
-}
-
-// TODO: move to globals.d.ts
-interface StickyHeader {
-  headerHeight: () => number;
-}
-
-declare global {
-  interface Window {
-    stickyHeader: StickyHeader;
-  }
 }
 
 export default class NewReview extends React.Component<Props, State> {
@@ -59,7 +49,7 @@ export default class NewReview extends React.Component<Props, State> {
       return;
     }
 
-    return window.stickyHeader.headerHeight() + this.props.stickTo?.current?.getBoundingClientRect().height;
+    return core.stickyHeader.headerHeight + this.props.stickTo?.current?.getBoundingClientRect().height;
   };
 
   onFocus = () => this.setSticky(true);

@@ -9,28 +9,22 @@ import BigButton from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import { trim } from 'lodash';
 import { computed, makeObservable, observe } from 'mobx';
-import { disposeOnUnmount, inject, observer } from 'mobx-react';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
-import RootDataStore from 'stores/root-data-store';
 import { classWithModifiers } from 'utils/css';
 
-interface Props {
-  dataStore?: RootDataStore;
-}
+type Props = Record<string, never>;
 
-@inject('dataStore')
 @observer
 export default class InputBox extends React.Component<Props> implements DispatchListener {
-  readonly dataStore: RootDataStore = this.props.dataStore!;
-
   private inputBoxRef = React.createRef<HTMLTextAreaElement>();
 
   @computed
   get currentChannel() {
-    return this.dataStore.chatState.selectedChannel;
+    return core.dataStore.chatState.selectedChannel;
   }
 
   @computed
@@ -40,7 +34,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
 
   @computed
   get sendDisabled() {
-    return this.inputDisabled || !this.dataStore.chatState.isReady;
+    return this.inputDisabled || !core.dataStore.chatState.isReady;
   }
 
   constructor(props: Props) {
@@ -52,7 +46,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
 
     disposeOnUnmount(
       this,
-      observe(this.dataStore.chatState.selectedBoxed, (change) => {
+      observe(core.dataStore.chatState.selectedBoxed, (change) => {
         if (change.newValue !== change.oldValue && core.windowSize.isDesktop) {
           this.focusInput();
         }
@@ -102,8 +96,8 @@ export default class InputBox extends React.Component<Props> implements Dispatch
 
   render(): React.ReactNode {
     const channel = this.currentChannel;
-    const buttonIcon = this.dataStore.chatState.isReady ? 'fas fa-reply' : 'fas fa-times';
-    const buttonText = osu.trans(this.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
+    const buttonIcon = core.dataStore.chatState.isReady ? 'fas fa-reply' : 'fas fa-times';
+    const buttonText = osu.trans(core.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
 
     return (
       <div className='chat-input'>
@@ -158,7 +152,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
 
     const message = new Message();
     message.senderId = core.currentUserOrFail.id;
-    message.channelId = this.dataStore.chatState.selected;
+    message.channelId = core.dataStore.chatState.selected;
     message.content = messageText;
 
     // Technically we don't need to check command here, but doing so in case we add more commands

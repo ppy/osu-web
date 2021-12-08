@@ -8,6 +8,7 @@ namespace App\Models\Score\Best;
 use App\Libraries\ReplayFile;
 use App\Models\Beatmap;
 use App\Models\BeatmapModeStats;
+use App\Models\Country;
 use App\Models\ReplayViewCount;
 use App\Models\Score\Model as BaseModel;
 use App\Models\Traits;
@@ -302,7 +303,7 @@ abstract class Model extends BaseModel
     {
         switch ($type) {
             case 'country':
-                $countryAcronym = $options['countryAcronym'] ?? $options['user']->country_acronym ?? 'XX';
+                $countryAcronym = $options['countryAcronym'] ?? $options['user']->country_acronym ?? Country::UNKNOWN;
 
                 return $query->fromCountry($countryAcronym);
             case 'friend':

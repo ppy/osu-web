@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetCardSize } from 'beatmapset-panel';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -23,6 +23,12 @@ export default class BeatmapsetCardViewSelector extends React.Component<Props> {
   @computed
   private get isActive() {
     return this.props.size === core.userPreferences.get('beatmapset_card_size');
+  }
+
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
   }
 
   render() {

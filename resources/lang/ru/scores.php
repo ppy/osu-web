@@ -13,7 +13,7 @@ return [
 
         'player' => [
             'by' => 'Сыграна',
-            'submitted_on' => 'Отправлено',
+            'submitted_on' => 'Рекорд поставлен',
 
             'rank' => [
                 'country' => 'Рейтинг страны',
