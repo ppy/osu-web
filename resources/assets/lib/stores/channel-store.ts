@@ -156,7 +156,7 @@ export default class ChannelStore implements DispatchListener {
   markAsRead(channelId: number) {
     const channel = this.get(channelId);
 
-    if (channel == null || !channel.isUnread) {
+    if (channel == null || !channel.isUnread || !channel.uiState.autoScroll) {
       return;
     }
 

@@ -98,6 +98,15 @@ export default class ConversationView extends React.Component<Props> {
 
     disposeOnUnmount(
       this,
+      observe(core.windowFocusObserver, 'hasFocus', (change) => {
+        if (change.newValue) {
+          this.maybeMarkAsRead();
+        }
+      }),
+    );
+
+    disposeOnUnmount(
+      this,
       observe(core.dataStore.chatState.selectedBoxed, (change) => {
         if (change.newValue !== change.oldValue) {
           this.didSwitchChannel = true;
@@ -206,6 +215,7 @@ export default class ConversationView extends React.Component<Props> {
   onScroll = () => {
     const chatView = this.chatViewRef.current;
     if (chatView == null || this.currentChannel == null) return;
+
     this.currentChannel.uiState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
     this.currentChannel.uiState.scrollY = chatView.scrollTop;
   };
@@ -284,4 +294,10 @@ export default class ConversationView extends React.Component<Props> {
     if (this.currentChannel == null) return;
     core.dataStore.channelStore.loadChannelEarlierMessages(this.currentChannel.channelId);
   };
+
+  @action
+  private maybeMarkAsRead() {
+    if (this.currentChannel == null) return;
+    core.dataStore.channelStore.markAsRead(this.currentChannel.channelId);
+  }
 }
