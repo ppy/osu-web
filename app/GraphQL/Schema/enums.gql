@@ -1,8 +1,8 @@
 enum Playmode {
     osu
     taiko
+    fruits
     mania
-    catch
 }
 
 enum ProfileElement {
