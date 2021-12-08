@@ -73,7 +73,7 @@ abstract class Model extends BaseModel
 
     public function weightedPp()
     {
-        return $this->weight * $this->pp;
+        return $this->weight === null ? null : $this->weight * $this->pp;
     }
 
     public function macroForListing()
