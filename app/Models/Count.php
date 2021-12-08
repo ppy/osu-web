@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 /**
@@ -17,17 +19,17 @@ class Count extends Model
     protected $primaryKey = 'name';
     protected $table = 'osu_counts';
 
-    public static function currentRankStart(string $mode): int
+    public static function currentRankStart(string $mode): static
     {
         return static::firstOrCreate(['name' => "pp_rank_column_{$mode}"], ['count' => 0]);
     }
 
-    public static function totalUsers()
+    public static function totalUsers(): static
     {
         return static::firstOrCreate(['name' => 'usercount'], ['count' => 0]);
     }
 
-    public static function lastMailUserNotificationIdSent()
+    public static function lastMailUserNotificationIdSent(): static
     {
         return static::firstOrCreate(['name' => 'last_mail_user_notification_id_sent'], ['count' => 0]);
     }
