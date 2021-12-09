@@ -206,7 +206,6 @@ const rules = [
     test: /\.tsx?$/,
   },
   {
-    // loader for import-based coffeescript
     test: /\.coffee$/,
     use: ['coffee-loader'],
   },
