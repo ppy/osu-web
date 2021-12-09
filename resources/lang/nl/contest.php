@@ -51,8 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'stemmen',
-        'count' => ':count stem|:count stemmen',
-        'points' => ':count punt|:count punten',
+        'count' => ':count_delimited stem|:count_delimited stemmen',
+        'points' => ':count_delimited punt|:count_delimited punten',
     ],
     'dates' => [
         'ended' => 'Gesloten :date',

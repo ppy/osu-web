@@ -16,6 +16,7 @@ import UserPage from 'profile-page/user-page'
 import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
+import { bottomPage } from 'utils/html'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
@@ -312,7 +313,7 @@ export class Main extends React.PureComponent
     # otherwise the calculation needs another phase and gets a bit messy.
     offsetTop = target.offset().top - pagesOffset[0].getBoundingClientRect().height
 
-    $(window).stop().scrollTo window.stickyHeader.scrollOffset(offsetTop), 500,
+    $(window).stop().scrollTo core.stickyHeader.scrollOffset(offsetTop), 500,
       onAfter: =>
         # Manually set the mode to avoid confusion (wrong highlight).
         # Scrolling will obviously break it but that's unfortunate result
@@ -333,7 +334,7 @@ export class Main extends React.PureComponent
 
     anchorHeight = pagesOffset[0].getBoundingClientRect().height
 
-    if osu.bottomPage()
+    if bottomPage()
       @setCurrentPage null, _.last(pages).dataset.pageId
       return
 

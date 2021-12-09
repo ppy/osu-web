@@ -159,7 +159,7 @@ return [
                 'rank' => 'Rang',
                 'score_total' => 'Score total',
                 'score' => 'Score',
-                'time' => 'Temps',
+                'time' => 'Date',
             ],
 
             'no_scores' => [

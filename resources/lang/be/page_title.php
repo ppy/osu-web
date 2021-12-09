@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => 'форум',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'статыстыка тэмы',
         ],
         'topic_watches_controller' => [
             'index' => 'панэль кіравання',

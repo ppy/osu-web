@@ -137,7 +137,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited ongelezen bericht.|:count_delimited berichten.',
+                'legacy_pm' => ':count_delimited ongelezen bericht|:count_delimited berichten',
             ],
         ],
 
@@ -149,8 +149,10 @@ return [
                 'user_beatmapset_new_compact' => 'Nieuwe beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nieuwe beatmaps door :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => '
+Beatmap ":title" vernieuwd door :username',
+                'user_beatmapset_revive_compact' => '
+Beatmap ":title" vernieuwd',
             ],
         ],
 

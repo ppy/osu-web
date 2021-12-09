@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'pinned_topics' => 'Připnuté témata',
+    'pinned_topics' => 'Připnutá témata',
     'slogan' => "je nebezpečné hrát sám.",
     'subforums' => 'Subfóra',
     'title' => 'osu! fóra',
@@ -47,7 +47,7 @@ return [
         'confirm_restore' => 'Opravdu chcete příspěvek obnovit?',
         'edited' => 'Naposledy upravil :user :when, upraveno celkem :count_delimited krát.',
         'posted_at' => 'publikováno :when',
-        'posted_by' => '',
+        'posted_by' => 'příspěvek přidal :username',
 
         'actions' => [
             'destroy' => 'Odstranit příspěvek',
@@ -64,7 +64,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited příspěvek|:count_delimited příspěvky|:count_delimited příspěvků',
-            'topic_starter' => '',
+            'topic_starter' => 'Autor tématu',
         ],
     ],
 
@@ -132,29 +132,29 @@ return [
             'button' => '',
 
             'columns' => [
-                'action' => '',
-                'date' => '',
-                'user' => '',
+                'action' => 'Akce',
+                'date' => 'Datum',
+                'user' => 'Uživatel',
             ],
 
             'data' => [
                 'add_tag' => '',
                 'announcement' => '',
                 'edit_topic' => '',
-                'fork' => '',
+                'fork' => 'z :topic',
                 'pin' => '',
-                'post_operation' => '',
+                'post_operation' => 'příspěvek přidal :username',
                 'remove_tag' => '',
-                'source_forum_operation' => '',
+                'source_forum_operation' => 'z :forum',
                 'unpin' => '',
             ],
 
             'no_results' => '',
 
             'operations' => [
-                'delete_post' => '',
-                'delete_topic' => '',
-                'edit_topic' => '',
+                'delete_post' => 'Smazaný příspěvek',
+                'delete_topic' => 'Smazané téma',
+                'edit_topic' => 'Změněný titulek tématu',
                 'edit_poll' => '',
                 'fork' => '',
                 'issue_tag' => '',
@@ -162,7 +162,7 @@ return [
                 'merge' => '',
                 'move' => '',
                 'pin' => '',
-                'post_edited' => '',
+                'post_edited' => 'Upravený příspěvek',
                 'restore_post' => '',
                 'restore_topic' => '',
                 'split_destination' => '',

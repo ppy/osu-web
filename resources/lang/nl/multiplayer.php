@@ -9,8 +9,8 @@ return [
     'room' => [
         'hosted_by' => 'gehost door :user',
         'invalid_password' => 'Wachtwoord ongeldig',
-        'map_count' => ':count_delimited map:count_delimited mappen',
-        'player_count' => ':count_delimited speler:count_delimited spelers',
+        'map_count' => ':count_delimited map|:count_delimited maps',
+        'player_count' => ':count_delimited speler|:count_delimited spelers',
         'time_left' => ':time resterend',
 
         'status' => [

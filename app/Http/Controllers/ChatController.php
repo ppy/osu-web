@@ -10,7 +10,6 @@ use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\User;
-use Request;
 
 class ChatController extends Controller
 {
@@ -32,21 +31,26 @@ class ChatController extends Controller
         $user = auth()->user();
         Chat::ack($user);
 
+        // rejoin any existing channel first, otherwise it'll be missing from the preload later.
+        $targetUser = User::lookup(get_int(request('sendto')), 'id');
+        if ($targetUser !== null) {
+            $channel = Channel::findPM($targetUser, $user);
+            $channel?->addUser($user);
+
+            $sendToJson = [
+                'can_message' => $channel?->canMessage($user) ?? priv_check('ChatPmStart', $targetUser)->can(),
+                'channel_id' => $channel?->getKey(),
+                'target' => json_item($targetUser, 'UserCompact'),
+            ];
+        }
+
         $json = [
             'last_message_id' => optional(Message::last())->getKey(),
             'presence' => (new UserChannelList($user))->get(),
         ];
 
-        $targetUser = User::lookup(Request::input('sendto'), 'id');
-        if ($targetUser) {
-            $channel = Channel::findPM($targetUser, $user);
-            $channel?->addUser($user);
-
-            $json['send_to'] = [
-                'can_message' => $channel?->canMessage($user) ?? priv_check('ChatPmStart', $targetUser),
-                'channel_id' => $channel?->getKey(),
-                'target' => json_item($targetUser, 'UserCompact'),
-            ];
+        if (isset($sendToJson)) {
+            $json['send_to'] = $sendToJson;
         }
 
         return ext_view('chat.index', compact('json'));

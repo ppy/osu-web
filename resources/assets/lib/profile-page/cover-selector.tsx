@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserCoverJson from 'interfaces/user-cover-json';
+import { times } from 'lodash';
 import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -13,7 +14,7 @@ import CoverUploader from './cover-uploader';
 type DropOverlayState = 'hover' | undefined;
 type DropOverlayVisibility = 'hidden' | undefined;
 
-const coverIndexes = [...new Array(8)].map((_empty, i) => (i + 1).toString());
+const coverIndexes = times(8, (i) => (i + 1).toString());
 
 interface Props {
   canUpload: boolean;

@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => 'foro',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'registros de temas',
         ],
         'topic_watches_controller' => [
             'index' => 'panel',

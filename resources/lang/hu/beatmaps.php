@@ -22,7 +22,7 @@ return [
         'kudosu_denied' => 'Kudosu szerzéstől megtagadva.',
         'message_placeholder_deleted_beatmap' => 'Ez a nehézség törölve lett, ezért a beszélgetés nem lehetséges.',
         'message_placeholder_locked' => 'A beatmap megbeszélése meg lett tiltva.',
-        'message_placeholder_silenced' => "Nem posztolhatsz beszélgetést, amíg némítva vagy.",
+        'message_placeholder_silenced' => "Nem hozhatsz létre beszélgetést, amíg némítva vagy.",
         'message_type_select' => 'Komment-típus választása',
         'reply_notice' => 'Nyomj entert a válaszoláshoz.',
         'reply_placeholder' => 'Ide írd a válaszod',
@@ -55,13 +55,13 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Ez a poszt be fog kerülni az általános beatmap szett megbeszélésébe. A beatmap modolásához időbélyeggel kezdd az üzenetet (pl.: 00:12:345).',
+            'in_general' => 'Ez a hozzászólás be fog kerülni az általános beatmap megbeszélésébe. A beatmap modolásához időbélyeggel kezdd az üzenetet (pl.: 00:12:345).',
             'in_timeline' => 'Több időbélyeg modolásához több poszt szükséges (egy poszt egy időbélyeghez).',
         ],
 
         'message_placeholder' => [
             'general' => 'Írj ide az Általános (:version) részlegbe való posztoláshoz',
-            'generalAll' => 'Ide írj az Általánosba posztoláshoz (Összes nehézség)',
+            'generalAll' => 'Ide írj az Általánosba való hozzászóláshoz (Összes nehézség)',
             'review' => 'Ide írj, hogy hozzászólj',
             'timeline' => 'Írj ide az Idővonalra (:version) való posztoláshoz',
         ],
@@ -104,7 +104,7 @@ return [
                 'unlink' => 'Leválasztás',
                 'unsaved' => 'Mentetlen',
                 'timestamp' => [
-                    'all-diff' => 'Az összes nehézséget tartalmazó posztra posztolni, nem lehet időjelölni.',
+                    'all-diff' => 'Az "All difficulties"-ban lévő hozzászólásokat nem lehet időbélyegezni.',
                     'diff' => 'Ha :type típussal fog kezdődni, akkor az idővonal alatt fog megjelenni.',
                 ],
             ],

@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => '포럼',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => '주제 로그',
         ],
         'topic_watches_controller' => [
             'index' => '대시보드',

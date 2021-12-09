@@ -84,7 +84,7 @@ function makeSharedDefaultOptions<X extends Date | number>(options: Partial<Opti
 }
 
 export default class LineChart<X extends Date | number> {
-  data: { x: X; y: number}[] = [];
+  data: { x: X; y: number }[] = [];
 
   private readonly area: Selection<HTMLElement, unknown, null, undefined>;
   private autoEndHoverTimeout?: number;
