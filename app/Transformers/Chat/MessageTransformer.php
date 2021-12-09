@@ -9,6 +9,7 @@ use App\Models\Chat\Message;
 use App\Models\DeletedUser;
 use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
+use Throwable;
 
 class MessageTransformer extends TransformerAbstract
 {
@@ -32,7 +33,11 @@ class MessageTransformer extends TransformerAbstract
         }
 
         if ($message->channel->isAnnouncement()) {
-            $response['content_html'] = markdown_plain($message->content);
+            try {
+                $response['content_html'] = markdown_chat($message->content);
+            } catch (Throwable $e) {
+                \Log::debug($e->getMessage());
+            }
         }
 
         return $response;

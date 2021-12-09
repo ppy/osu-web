@@ -380,6 +380,7 @@ class Channel extends Model
 
     public function receiveMessage(User $sender, ?string $content, bool $isAction = false, ?string $uuid = null)
     {
+        \Log::debug($this->isAnnouncement());
         if (!$this->isAnnouncement()) {
             $content = str_replace(["\r", "\n"], ' ', trim($content));
         }
