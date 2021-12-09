@@ -3,7 +3,6 @@
 
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
 
 interface State {
   hasError: boolean;
@@ -20,8 +19,8 @@ export default class MessageErrorBoundary extends React.Component<unknown, State
   render() {
     if (this.state.hasError) {
       return (
-        <div className='chat-message-group__message'>
-          {osu.trans('chat.message.render_failed')}
+        <div className='chat-message-item'>
+          <span className='chat-message-item__error'>{osu.trans('chat.message.render_failed')}</span>
         </div>
       );
     }

@@ -31,7 +31,7 @@ return [
     ],
 
     'message' => [
-        'render_failed' => 'problem displaying this message.',
+        'render_failed' => 'This message could not be displayed.',
     ],
 
     'no-conversations' => [
