@@ -6,10 +6,10 @@ import Message from 'models/chat/message';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { Spinner } from 'spinner';
 import UserAvatar from 'user-avatar';
 import { UserLink } from 'user-link';
 import { classWithModifiers } from 'utils/css';
+import MessageItem from './message-item';
 
 interface Props {
   messages: Message[];
@@ -50,29 +50,7 @@ export default class MessageGroup extends React.Component<Props> {
               // or if the next message has a different displayed timestamp
               (moment(message.timestamp).format('LT') !== moment(messages[key + 1].timestamp).format('LT'));
 
-            return (
-              <div key={message.uuid} className={classWithModifiers('chat-message-group__message', { sending: !message.persisted })}>
-                <div className='chat-message-group__message-entry'>
-                  <span
-                    className={classWithModifiers('chat-message-group__message-content', { action: message.isAction })}
-                    dangerouslySetInnerHTML={{__html: message.parsedContent}}
-                  />
-                  {!message.persisted && !message.errored &&
-                    <div className='chat-message-group__message-status'>
-                      <Spinner />
-                    </div>
-                  }
-                  {message.errored &&
-                    <div className='chat-message-group__message-status chat-message-group__message-status--errored'>
-                      <i className='fas fa-times'/>
-                    </div>
-                  }
-                </div>
-                {showTimestamp &&
-                  <div className='chat-message-group__message-timestamp'>{moment(message.timestamp).format('LT')}</div>
-                }
-              </div>
-            );
+            return <MessageItem key={message.uuid} message={message} showTimestamp={showTimestamp} />;
           })}
         </div>
       </div>
