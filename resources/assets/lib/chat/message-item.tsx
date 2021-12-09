@@ -17,25 +17,25 @@ interface Props {
 export default class MessageItem extends React.Component<Props> {
   render() {
     return (
-      <div className={classWithModifiers('chat-message-group__message', { sending: !this.props.message.persisted })}>
-        <div className='chat-message-group__message-entry'>
+      <div className={classWithModifiers('chat-message-item', { sending: !this.props.message.persisted })}>
+        <div className='chat-message-item__entry'>
           <span
             dangerouslySetInnerHTML={{__html: this.props.message.parsedContent}}
-            className={classWithModifiers('chat-message-group__message-content', { action: this.props.message.isAction })}
+            className={classWithModifiers('chat-message-item__content', { action: this.props.message.isAction })}
           />
           {!this.props.message.persisted && !this.props.message.errored &&
-            <div className='chat-message-group__message-status'>
+            <div className='chat-message-item__status'>
               <Spinner />
             </div>
           }
           {this.props.message.errored &&
-            <div className='chat-message-group__message-status chat-message-group__message-status--errored'>
+            <div className='chat-message-item__status chat-message-item__status--errored'>
               <i className='fas fa-times'/>
             </div>
           }
         </div>
         {this.props.showTimestamp &&
-          <div className='chat-message-group__message-timestamp'>{moment(this.props.message.timestamp).format('LT')}</div>
+          <div className='chat-message-item__timestamp'>{moment(this.props.message.timestamp).format('LT')}</div>
         }
       </div>
     );
