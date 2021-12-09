@@ -38,7 +38,6 @@ class Channel extends Model
     use Memoizes, Validatable;
 
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
-    const PRELOADED_USERS_KEY = 'preloadedUsers';
 
     protected $primaryKey = 'channel_id';
 
@@ -120,7 +119,7 @@ class Channel extends Model
             $channel->saveOrExplode();
             $channel->addUser($user1);
             $channel->addUser($user2);
-            $channel->pmUsers = collect([$user1, $user2]);
+            $channel->setPmUsers([$user1, $user2]);
         });
 
         return $channel;
@@ -132,9 +131,7 @@ class Channel extends Model
 
         $channel = static::where('name', $channelName)->first();
 
-        if ($channel !== null) {
-            $channel->pmUsers = collect([$user1, $user2]);
-        }
+        $channel?->setPmUsers([$user1, $user2]);
 
         return $channel;
     }
@@ -264,10 +261,8 @@ class Channel extends Model
     public function users()
     {
         return $this->memoize(__FUNCTION__, function () {
-            // use lookup table if it exists
-            $usersMap = request()->attributes->get(static::PRELOADED_USERS_KEY);
-            if ($usersMap !== null) {
-                return collect(array_map(fn ($id) => $usersMap->get($id, null), $this->userIds()));
+            if ($this->isPM() && isset($this->pmUsers)) {
+                return $this->pmUsers;
             }
 
             // This isn't a has-many-through because the relationship is cross-database.
@@ -379,9 +374,7 @@ class Channel extends Model
         $userId = $user->getKey();
 
         return $this->memoize(__FUNCTION__.':'.$userId, function () use ($userId) {
-            $users = $this->pmUsers ?? $this->users();
-
-            return $users->firstWhere('user_id', '<>', $userId);
+            return $this->users()->firstWhere('user_id', '<>', $userId);
         });
     }
 
@@ -451,7 +444,11 @@ class Channel extends Model
         MessageTask::dispatch($message);
 
         if ($this->isPM()) {
-            $this->unhide();
+            if ($this->unhide()) {
+                // assume a join event has to be sent if any channels need to need to be unhidden.
+                event(new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'));
+            }
+
             (new ChannelMessage($message, $sender))->dispatch();
         }
 
@@ -523,6 +520,11 @@ class Channel extends Model
         return $this->isValid() && parent::save($options);
     }
 
+    public function setPmUsers(array $users)
+    {
+        $this->pmUsers = collect($users);
+    }
+
     public function setUserChannel(UserChannel $userChannel)
     {
         if ($userChannel->channel_id !== $this->getKey()) {
@@ -543,7 +545,7 @@ class Channel extends Model
             return;
         }
 
-        UserChannel::where([
+        return UserChannel::where([
             'channel_id' => $this->channel_id,
             'hidden' => true,
         ])->update([

@@ -4,7 +4,7 @@
 export const supportedChannelTypes = ['ANNOUNCE', 'PUBLIC', 'GROUP', 'PM'] as const;
 export type SupportedChannelType = (typeof supportedChannelTypes)[number];
 
-export type ChannelType = SupportedChannelType | 'PRIVATE' | 'MULTIPLAYER' | 'SPECTATOR' | 'TEMPORARY' | 'NEW';
+export type ChannelType = SupportedChannelType | 'PRIVATE' | 'MULTIPLAYER' | 'SPECTATOR' | 'TEMPORARY';
 
 export default interface ChannelJson {
   channel_id: number;

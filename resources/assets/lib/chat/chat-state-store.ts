@@ -25,9 +25,9 @@ export default class ChatStateStore implements DispatchListener {
   @observable isChatMounted = false;
   @observable isReady = false;
   @observable selectedBoxed = observable.box(0);
+  skipRefresh = false;
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
-  @observable private needsRefresh = true;
   private pingService: PingService;
   private selectedIndex = 0;
 
@@ -75,8 +75,13 @@ export default class ChatStateStore implements DispatchListener {
     });
 
     autorun(async () => {
-      if (this.isConnected && this.isChatMounted && this.needsRefresh) {
-        await this.updateChannelList();
+      if (this.isConnected && this.isChatMounted) {
+        if (this.skipRefresh) {
+          this.skipRefresh = false;
+        } else {
+          await this.updateChannelList();
+        }
+
         runInAction(() => {
           this.channelStore.loadChannel(this.selected);
           this.isReady = true;
@@ -105,24 +110,25 @@ export default class ChatStateStore implements DispatchListener {
   selectChannel(channelId: number) {
     if (this.selected === channelId) return;
 
+    // mark the channel being switched away from as read.
+    if (this.selectedChannel != null) {
+      this.channelStore.markAsRead(this.selectedChannel.channelId);
+    }
+
     const channel = this.channelStore.get(channelId);
     if (channel == null) {
       console.error(`Trying to switch to non-existent channel ${channelId}`);
       return;
     }
 
-    if (!(this.selectedChannel?.transient ?? true)) {
-      // don't disable autoScroll if we're 'switching' away from the 'new chat' screen
-      //   e.g. keep autoScroll enabled to jump to the newly sent message when restarting an old conversation
-      this.autoScroll = false;
-    }
+    // TODO: needed?
+    this.autoScroll = false;
 
     this.selected = channelId;
     this.selectedIndex = this.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId);
-    this.channelStore.markAsRead(channelId);
   }
 
   @action
@@ -166,7 +172,6 @@ export default class ChatStateStore implements DispatchListener {
     this.isConnected = event.connected;
     if (!event.connected) {
       this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
-      this.needsRefresh = true;
       this.isReady = false;
     }
   }
