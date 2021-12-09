@@ -22,12 +22,18 @@ return [
             'target_restricted' => 'The recipient is currently restricted',
         ],
     ],
+
     'input' => [
         'disabled' => 'unable to send message...',
         'disconnected' => 'Disconnected',
         'placeholder' => 'type message...',
         'send' => 'Send',
     ],
+
+    'message' => [
+        'render_failed' => 'problem displaying this message.',
+    ],
+
     'no-conversations' => [
         'howto' => "Start conversations from a user's profile or a usercard popup.",
         'lazer' => 'Public channels you join via <a href=":link">osu!lazer</a> will also be visible here.',
