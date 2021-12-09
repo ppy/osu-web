@@ -4,7 +4,7 @@
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { parseJson } from 'utils/json'
-import { Main } from './modding-profile/main'
+import { Main } from 'modding-profile/main'
 
 core.reactTurbolinks.register 'modding-profile', (container) ->
   createElement Main,
