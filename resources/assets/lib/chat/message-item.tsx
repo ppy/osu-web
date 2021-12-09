@@ -20,7 +20,7 @@ export default class MessageItem extends React.Component<Props> {
       <div className={classWithModifiers('chat-message-item', { sending: !this.props.message.persisted })}>
         <div className='chat-message-item__entry'>
           <span
-            dangerouslySetInnerHTML={{__html: this.props.message.parsedContent}}
+            dangerouslySetInnerHTML={{ __html: this.props.message.parsedContent }}
             className={classWithModifiers('chat-message-item__content', { action: this.props.message.isAction })}
           />
           {!this.props.message.persisted && !this.props.message.errored &&
