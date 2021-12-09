@@ -158,27 +158,17 @@ export default class ConversationView extends React.Component<Props> {
       return;
     }
 
-    if (this.currentChannel.type === 'PM') {
-      return (
-        <div>
-          <div className='chat-conversation__cannot-message'>
-            {osu.trans('chat.cannot_send.user')}
-            {' '}
-            {this.currentChannel.canMessageError}
-          </div>
+    const message = this.currentChannel.type === 'PM' ? osu.trans('chat.cannot_send.user') : osu.trans('chat.cannot_send.channel');
+
+    return (
+      <div>
+        <div className='chat-conversation__cannot-message'>
+          {message}
+          {' '}
+          {this.currentChannel.canMessageError}
         </div>
-      );
-    } else if (this.currentChannel.type === 'GROUP') {
-      return (
-        <div>
-          <div className='chat-conversation__cannot-message'>
-            {osu.trans('chat.cannot_send.channel')}
-            {' '}
-            {this.currentChannel.canMessageError}
-          </div>
-        </div>
-      );
-    }
+      </div>
+    );
   }
 
   onScroll = () => {
