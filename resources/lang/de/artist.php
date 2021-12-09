@@ -31,7 +31,7 @@ return [
         '_' => 'Lieder',
         'count' => ':count_delimited Lied|:count_delimited Lieder',
         'original' => 'osu! Original',
-        'original_badge' => '',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -43,7 +43,7 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => 'Lied Suche',
+            '_' => 'liedersuche',
 
             'form' => [
                 'advanced' => 'Erweiterte Suche',

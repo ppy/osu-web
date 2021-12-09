@@ -128,25 +128,25 @@ return [
         ],
 
         'logs' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Dzienniki zdarzeń wątków',
+            'button' => 'Przeglądaj dzienniki zdarzeń wątków',
 
             'columns' => [
-                'action' => '',
-                'date' => '',
-                'user' => '',
+                'action' => 'Zdarzenie',
+                'date' => 'Data',
+                'user' => 'Użytkownik',
             ],
 
             'data' => [
                 'add_tag' => '',
-                'announcement' => '',
+                'announcement' => 'przypięto wątek i oznaczono jako ogłoszenie',
                 'edit_topic' => '',
                 'fork' => '',
                 'pin' => '',
                 'post_operation' => '',
                 'remove_tag' => '',
                 'source_forum_operation' => '',
-                'unpin' => '',
+                'unpin' => 'odpięto wątek',
             ],
 
             'no_results' => '',

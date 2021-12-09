@@ -44,6 +44,7 @@ class UsersControllerTest extends TestCase
                 'HTTP_USER_AGENT' => config('osu.client.user_agent'),
             ])->assertJsonFragment([
                 'username' => 'user1',
+                'country_code' => Country::UNKNOWN,
             ]);
 
         $this->assertSame($previousCount + 1, User::count());
@@ -220,5 +221,12 @@ class UsersControllerTest extends TestCase
         $this
             ->get(route('api.users.show', ['user' => $user->username]))
             ->assertSuccessful();
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Country::factory()->fallback()->create();
     }
 }

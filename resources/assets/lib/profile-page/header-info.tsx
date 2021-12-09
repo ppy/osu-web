@@ -6,6 +6,7 @@ import GameMode from 'interfaces/game-mode';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import UserAvatar from 'user-avatar';
 import UserGroupBadges from 'user-group-badges';
@@ -26,7 +27,7 @@ export default class HeaderInfo extends React.PureComponent<Props> {
     return (
       <div className='profile-info'>
         <div className='profile-info__bg' style={{ backgroundImage: osu.urlPresence(this.props.coverUrl) }} />
-        {this.props.user.id === currentUser.id ? (
+        {this.props.user.id === core.currentUser?.id ? (
           <a className='profile-info__avatar' href={`${route('account.edit')}#avatar`} title={osu.trans('users.show.change_avatar')}>{avatar}</a>
         ) : (
           <div className='profile-info__avatar'>{avatar}</div>

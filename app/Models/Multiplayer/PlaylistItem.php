@@ -27,6 +27,7 @@ use App\Models\User;
  * @property \Illuminate\Database\Eloquent\Collection $scores Score
  * @property \Carbon\Carbon|null $updated_at
  * @property bool expired
+ * @property \Carbon\Carbon|null $played_at
  */
 class PlaylistItem extends Model
 {
