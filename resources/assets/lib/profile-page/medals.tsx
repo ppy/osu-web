@@ -63,18 +63,15 @@ export default class Medals extends React.Component<Props> {
     for (const ua of this.props.userAchievements) {
       const achievement = this.props.achievements[ua.achievement_id];
 
-      if (achievement == null) {
-        continue;
-      }
-      if (this.currentModeFilter(achievement)) {
+      if (achievement != null && this.currentModeFilter(achievement)) {
         ret.push({
           achievement,
           userAchievement: ua,
         });
-      }
 
-      if (ret.length >= 8) {
-        break;
+        if (ret.length >= 8) {
+          break;
+        }
       }
     }
 
