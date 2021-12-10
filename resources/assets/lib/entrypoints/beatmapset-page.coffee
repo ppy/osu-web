@@ -4,10 +4,9 @@
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { parseJson } from 'utils/json'
-import { Main } from './changelog-build/main'
+import { Main } from 'beatmapset-page/main'
 
-core.reactTurbolinks.register 'changelog-build', (container) ->
+core.reactTurbolinks.register 'beatmapset-page', (container) ->
   createElement Main,
+    beatmapset: parseJson('json-beatmapset')
     container: container
-    updateStreams: parseJson('json-update-streams')
-    build: parseJson('json-build')
