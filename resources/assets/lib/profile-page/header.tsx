@@ -7,7 +7,7 @@ import GameMode from 'interfaces/game-mode';
 import UserAchievementJson from 'interfaces/user-achievement-json';
 import UserStatisticsJson from 'interfaces/user-statistics-json';
 import { debounce } from 'lodash';
-import { observable, makeObservable } from 'mobx';
+import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import Badges from 'profile-page/badges';
 import CoverSelector from 'profile-page/cover-selector';
@@ -53,8 +53,8 @@ export default class Header extends React.Component<Props> {
     $.subscribe(`user:cover:set.${this.eventId}`, this.onCoverSet);
     $.subscribe(`user:cover:upload:state.${this.eventId}`, this.onCoverUploadState);
 
-    $.subscribe(`key:esc.${this.eventId}`, this.onCloseEdit);
-    $(document).on(`click.${this.eventId}`, this.onCloseEdit);
+    $.subscribe(`key:esc.${this.eventId}`, this.closeEdit);
+    $(document).on(`click.${this.eventId}`, this.onDocumentClick);
   }
 
   componentWillReceiveProps(newProps: Props) {
@@ -126,10 +126,11 @@ export default class Header extends React.Component<Props> {
     );
   }
 
-  private closeEdit() {
+  @action
+  private readonly closeEdit = () => {
     this.editing = false;
     this.coverReset();
-  }
+  };
 
   private readonly coverReset = () => {
     this.debouncedCoverSet(this.props.user.cover.url);
@@ -141,28 +142,27 @@ export default class Header extends React.Component<Props> {
     this.coverUrl = url;
   }
 
-  private readonly onCloseEdit = (e?: JQuery.Event | JQuery.ClickEvent) => {
-    if (!this.editing) return;
-
-    if (e != null) {
-      if (e.button !== 0) return;
-      if ('target' in e && this.coverSelector.current != null && $(e.target).closest(this.coverSelector.current).length) {
-        return;
-      }
-    }
-
-    if ($('#overlay').is(':visible')) return;
-    if (document.body.classList.contains('modal-open')) return;
-
-    this.closeEdit();
-  };
-
   private readonly onCoverSet = (_e: unknown, url: string) => {
     this.debouncedCoverSet(url);
   };
 
   private readonly onCoverUploadState = (_e: unknown, state: boolean) => {
     this.isCoverUpdating = state;
+  };
+
+  private readonly onDocumentClick = (e: JQuery.ClickEvent) => {
+    if (!this.editing) return;
+
+    if (e.button !== 0) return;
+
+    if ('target' in e && this.coverSelector.current != null && $(e.target).closest(this.coverSelector.current).length) {
+      return;
+    }
+
+    if ($('#overlay').is(':visible')) return;
+    if (document.body.classList.contains('modal-open')) return;
+
+    this.closeEdit();
   };
 
   private readonly onToggleEdit = () => {
