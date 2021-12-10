@@ -31,6 +31,7 @@ core.reactTurbolinks.register('chat', action(() => {
     if (Array.isArray(initial.presence)) {
       // initial population of channel/presence data
       dataStore.channelStore.updateWithPresence(initial.presence);
+      dataStore.chatState.skipRefresh = true;
     }
 
     dataStore.channelStore.lastReceivedMessageId = initial.last_message_id ?? 0;

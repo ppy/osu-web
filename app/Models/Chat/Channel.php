@@ -382,7 +382,11 @@ class Channel extends Model
         MessageTask::dispatch($message);
 
         if ($this->isPM()) {
-            $this->unhide();
+            if ($this->unhide()) {
+                // assume a join event has to be sent if any channels need to need to be unhidden.
+                event(new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'));
+            }
+
             (new ChannelMessage($message, $sender))->dispatch();
         }
 
@@ -469,7 +473,7 @@ class Channel extends Model
             return;
         }
 
-        UserChannel::where([
+        return UserChannel::where([
             'channel_id' => $this->channel_id,
             'hidden' => true,
         ])->update([
