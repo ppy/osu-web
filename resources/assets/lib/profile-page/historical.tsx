@@ -52,7 +52,7 @@ function updateTicks(chart: LineChart<Date>, data?: ChartData[]) {
   if (core.windowSize.isDesktop) {
     chart.options.ticksX = undefined;
 
-    chart.options.tickValuesX = data.length < 10 ?  data.map((d) => d.x) : undefined;
+    chart.options.tickValuesX = data.length < 10 ? data.map((d) => d.x) : undefined;
   } else {
     chart.options.ticksX = Math.min(6, data.length);
     chart.options.tickValuesX = undefined;
