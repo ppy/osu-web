@@ -18,7 +18,8 @@ import BeatmapPlaycount from './beatmap-playcount';
 import ExtraHeader from './extra-header';
 import ExtraPageProps, { ProfilePagePaginationData } from './extra-page-props';
 
-type ChartSection = 'monthly_playcounts' | 'replays_watched_counts';
+const chartSections =['monthly_playcounts', 'replays_watched_counts'] as const;
+type ChartSection = typeof chartSections[number];
 
 // conveniently both charts share same interface
 interface ChartData {
@@ -65,28 +66,20 @@ interface Props extends ExtraPageProps {
 }
 
 export default class Historical extends React.PureComponent<Props> {
+  private readonly chartRefs = {
+    monthly_playcounts: React.createRef<HTMLDivElement>(),
+    replays_watched_counts: React.createRef<HTMLDivElement>(),
+  };
   private readonly charts: Partial<Record<ChartSection, LineChart<Date>>> = {};
   private readonly id = `users-show-historical-${nextVal()}`;
-  private readonly monthlyPlaycountsChartArea = React.createRef<HTMLDivElement>();
-  private readonly replaysWatchedCountsChartArea = React.createRef<HTMLDivElement>();
-
-  private get hasMonthlyPlaycounts() {
-    return this.props.user.monthly_playcounts.length > 0;
-  }
-
-  private get hasReplaysWatchedCounts() {
-    return this.props.user.replays_watched_counts.length > 0;
-  }
 
   componentDidMount() {
     $(window).on(`resize.${this.id}`, this.resizeCharts);
-    this.monthlyPlaycountsChartUpdate();
-    this.replaysWatchedCountsChartUpdate();
+    this.updateCharts();
   }
 
   componentDidUpdate() {
-    this.monthlyPlaycountsChartUpdate();
-    this.replaysWatchedCountsChartUpdate();
+    this.updateCharts();
   }
 
   componentWillUnmount() {
@@ -99,14 +92,14 @@ export default class Historical extends React.PureComponent<Props> {
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
 
-        {this.hasMonthlyPlaycounts &&
+        {this.hasSection('monthly_playcounts') &&
           <>
             <h3 className='title title--page-extra-small'>
               {osu.trans('users.show.extra.historical.monthly_playcounts.title')}
             </h3>
 
             <div className='page-extra__chart'>
-              <div ref={this.monthlyPlaycountsChartArea} />
+              <div ref={this.chartRefs.monthly_playcounts} />
             </div>
           </>
         }
@@ -164,14 +157,14 @@ export default class Historical extends React.PureComponent<Props> {
           </>
         }
 
-        {this.hasReplaysWatchedCounts &&
+        {this.hasSection('replays_watched_counts') &&
           <>
             <h3 className='title title--page-extra-small'>
               {osu.trans('users.show.extra.historical.replays_watched_counts.title')}
             </h3>
 
             <div className='page-extra__chart'>
-              <div ref={this.replaysWatchedCountsChartArea} />
+              <div ref={this.chartRefs.replays_watched_counts} />
             </div>
           </>
         }
@@ -179,12 +172,29 @@ export default class Historical extends React.PureComponent<Props> {
     );
   }
 
-  private chartUpdate(attribute: ChartSection, area: HTMLDivElement | null) {
+  private hasSection(attribute: ChartSection) {
+    return this.props.user[attribute].length > 0;
+  }
+
+  private readonly resizeCharts = () => {
+    Object.values(this.charts).forEach((chart) => {
+      updateTicks(chart);
+      chart.resize();
+    });
+  };
+
+  private readonly updateChart = (attribute: ChartSection) => {
+    const rawData = this.props.user[attribute];
+
+    if (rawData.length === 0) return;
+
+    const area = this.chartRefs[attribute].current;
+
     if (area == null) {
       throw new Error("chart can't be updated before the component is mounted");
     }
 
-    const data = sortBy(this.props.user[attribute], 'start_date')
+    const data = sortBy(rawData, 'start_date')
       .map((count) => ({
         x: new Date(count.start_date),
         y: count.count,
@@ -219,24 +229,9 @@ export default class Historical extends React.PureComponent<Props> {
       updateTicks(definedChart, data);
       definedChart.loadData(data);
     });
-  }
-
-  private monthlyPlaycountsChartUpdate() {
-    if (!this.hasMonthlyPlaycounts) return;
-
-    this.chartUpdate('monthly_playcounts', this.monthlyPlaycountsChartArea.current);
-  }
-
-  private replaysWatchedCountsChartUpdate() {
-    if (!this.hasReplaysWatchedCounts) return;
-
-    this.chartUpdate('replays_watched_counts', this.replaysWatchedCountsChartArea.current);
-  }
-
-  private readonly resizeCharts = () => {
-    Object.values(this.charts).forEach((chart) => {
-      updateTicks(chart);
-      chart.resize();
-    });
   };
+
+  private updateCharts() {
+    chartSections.forEach(this.updateChart);
+  }
 }
