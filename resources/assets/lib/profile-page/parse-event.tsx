@@ -15,12 +15,9 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
       return {
         badge: (
           <AchievementBadge
+            achievedAt={event.created_at}
             achievement={event.achievement}
             modifiers={modifiers}
-            userAchievement={{
-              achieved_at: event.created_at,
-              achievement_id: event.achievement.id,
-            }}
           />
         ),
         mappings: {
