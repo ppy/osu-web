@@ -2,14 +2,14 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { Header } from './header'
-import { Historical } from './historical'
-import Medals from 'profile-page/medals'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
 import AccountStanding from 'profile-page/account-standing'
 import Beatmapsets from 'profile-page/beatmapsets'
 import ExtraTab from 'profile-page/extra-tab'
+import Historical from 'profile-page/historical'
 import Kudosu from 'profile-page/kudosu'
+import Medals from 'profile-page/medals'
 import RecentActivity from 'profile-page/recent-activity'
 import TopScores from 'profile-page/top-scores'
 import UserPage from 'profile-page/user-page'
