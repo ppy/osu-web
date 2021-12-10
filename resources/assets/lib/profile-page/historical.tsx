@@ -45,6 +45,7 @@ function dataPadder(padded: ChartData[], entry: ChartData) {
   return padded;
 }
 
+// TODO: convert to reaction when converting component to observer
 function updateTicks(chart: LineChart<Date>, data?: ChartData[]) {
   data ??= chart.data;
 
