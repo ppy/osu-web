@@ -37,7 +37,7 @@ export default class Header extends React.Component<Props> {
   private readonly coverSelector = React.createRef<HTMLDivElement>();
   @observable private coverUrl: string | null = this.props.user.cover.url;
   private readonly debouncedCoverSet = debounce((url: string | null) => this.coverSet(url), 300);
-  @observable private editing = false;
+  @observable private selectingCover = false;
   private readonly eventId = `users-show-header-${nextVal()}`;
   @observable private isCoverUpdating = false;
   private xhr?: JQuery.jqXHR<CurrentUserJson>;
@@ -53,7 +53,7 @@ export default class Header extends React.Component<Props> {
     $.subscribe(`user:cover:set.${this.eventId}`, this.onCoverSet);
     $.subscribe(`user:cover:upload:state.${this.eventId}`, this.onCoverUploadState);
 
-    $.subscribe(`key:esc.${this.eventId}`, this.closeEdit);
+    $.subscribe(`key:esc.${this.eventId}`, this.tryCloseCoverSelector);
     $(document).on(`click.${this.eventId}`, this.onDocumentClick);
   }
 
@@ -65,7 +65,7 @@ export default class Header extends React.Component<Props> {
     $.unsubscribe(`.${this.eventId}`);
     $(document).off(`.${this.eventId}`);
 
-    this.closeEdit();
+    this.closeCoverSelector();
     this.debouncedCoverSet.cancel();
     this.xhr?.abort();
   }
@@ -127,8 +127,8 @@ export default class Header extends React.Component<Props> {
   }
 
   @action
-  private readonly closeEdit = () => {
-    this.editing = false;
+  private readonly closeCoverSelector = () => {
+    this.selectingCover = false;
     this.coverReset();
   };
 
@@ -151,7 +151,7 @@ export default class Header extends React.Component<Props> {
   };
 
   private readonly onDocumentClick = (e: JQuery.ClickEvent) => {
-    if (!this.editing) return;
+    if (!this.selectingCover) return;
 
     if (e.button !== 0) return;
 
@@ -159,22 +159,19 @@ export default class Header extends React.Component<Props> {
       return;
     }
 
-    if ($('#overlay').is(':visible')) return;
-    if (document.body.classList.contains('modal-open')) return;
-
-    this.closeEdit();
+    this.tryCloseCoverSelector();
   };
 
-  private readonly onToggleEdit = () => {
-    if (this.editing) {
-      this.closeEdit();
+  private readonly onClickCoverSelectorToggle = () => {
+    if (this.selectingCover) {
+      this.closeCoverSelector();
     } else {
-      this.openEdit();
+      this.openCoverSelector();
     }
   };
 
-  private readonly openEdit = () => {
-    this.editing = true;
+  private readonly openCoverSelector = () => {
+    this.selectingCover = true;
   };
 
   private renderCoverSelector() {
@@ -184,13 +181,13 @@ export default class Header extends React.Component<Props> {
       <div ref={this.coverSelector} className='profile-header__cover-editor'>
         <button
           className='btn-circle btn-circle--page-toggle'
-          onClick={this.onToggleEdit}
+          onClick={this.onClickCoverSelectorToggle}
           title={osu.trans('users.show.edit.cover.button')}
         >
           <span className='fas fa-pencil-alt' />
         </button>
 
-        {this.editing &&
+        {this.selectingCover &&
           <CoverSelector
             canUpload={this.props.user.is_supporter}
             cover={this.props.user.cover}
@@ -199,4 +196,11 @@ export default class Header extends React.Component<Props> {
       </div>
     );
   }
+
+  private readonly tryCloseCoverSelector = () => {
+    if ($('#overlay').is(':visible')) return;
+    if (document.body.classList.contains('modal-open')) return;
+
+    this.closeCoverSelector();
+  };
 }
