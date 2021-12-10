@@ -12,7 +12,7 @@ import Rank from './rank';
 import RankChart from './rank-chart';
 
 interface Props {
-  rankHistory: RankHistoryJson;
+  rankHistory: RankHistoryJson | null;
   stats: UserStatisticsJson;
   userAchievements: UserAchievementJson[];
 }
