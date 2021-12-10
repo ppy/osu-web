@@ -1,13 +1,13 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Historical } from './historical'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
 import AccountStanding from 'profile-page/account-standing'
 import Beatmapsets from 'profile-page/beatmapsets'
 import ExtraTab from 'profile-page/extra-tab'
 import Header from 'profile-page/header'
+import Historical from 'profile-page/historical'
 import Kudosu from 'profile-page/kudosu'
 import Medals from 'profile-page/medals'
 import RecentActivity from 'profile-page/recent-activity'

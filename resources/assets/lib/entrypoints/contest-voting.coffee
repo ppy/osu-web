@@ -4,8 +4,8 @@
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { parseJson } from 'utils/json'
-import { ArtEntryList } from './contest-voting/art-entry-list'
-import { EntryList } from './contest-voting/entry-list'
+import { ArtEntryList } from 'contest-voting/art-entry-list'
+import { EntryList } from 'contest-voting/entry-list'
 
 propsFunction = (container) ->
   data = parseJson container.dataset.src

@@ -12,5 +12,5 @@
         data-props="{{ json_encode(compact('availableGenres', 'data')) }}"
     ></div>
 
-    @include('layout._react_js', ['src' => 'js/react/artist-tracks-index.js'])
+    @include('layout._react_js', ['src' => 'js/artist-tracks-index.js'])
 @endsection
