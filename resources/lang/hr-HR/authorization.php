@@ -9,7 +9,7 @@ return [
     'require_verification' => '',
     'restricted' => "",
     'silenced' => "",
-    'unauthorized' => '',
+    'unauthorized' => 'Zabranjen pristup.',
 
     'beatmap_discussion' => [
         'destroy' => [

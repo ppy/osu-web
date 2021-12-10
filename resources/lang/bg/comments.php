@@ -25,7 +25,7 @@ return [
     'editor' => [
         'textarea_hint' => [
             '_' => 'Натисни Enter за :action. Използвай Shift + Enter за нов ред.',
-            'edit' => 'запази',
+            'edit' => 'запазване',
             'new' => 'публикуване',
             'reply' => 'отговор',
         ],
@@ -38,7 +38,7 @@ return [
 
     'index' => [
         'nav_comments' => 'коментари',
-        'nav_title' => 'списък',
+        'nav_title' => 'последни коментари',
         'no_comments' => 'не са намерени коментари...',
     ],
 

@@ -24,6 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'nu poți trimite mesaje...',
+        'disconnected' => '',
         'placeholder' => 'scrie un mesaj...',
         'send' => 'Trimite',
     ],

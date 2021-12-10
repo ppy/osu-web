@@ -24,6 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'viestiä ei voida lähettää...',
+        'disconnected' => '',
         'placeholder' => 'kirjoita viesti...',
         'send' => 'Lähetä',
     ],

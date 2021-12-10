@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => 'forum',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'dzienniki zdarzeń wątków',
         ],
         'topic_watches_controller' => [
             'index' => 'strona główna',

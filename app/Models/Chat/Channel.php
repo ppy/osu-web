@@ -37,7 +37,6 @@ class Channel extends Model
     use Memoizes;
 
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
-    const PRELOADED_USERS_KEY = 'preloadedUsers';
 
     protected $primaryKey = 'channel_id';
 
@@ -87,7 +86,7 @@ class Channel extends Model
             $channel->save();
             $channel->addUser($user1);
             $channel->addUser($user2);
-            $channel->pmUsers = collect([$user1, $user2]);
+            $channel->setPmUsers([$user1, $user2]);
         });
 
         return $channel;
@@ -99,9 +98,7 @@ class Channel extends Model
 
         $channel = static::where('name', $channelName)->first();
 
-        if ($channel !== null) {
-            $channel->pmUsers = collect([$user1, $user2]);
-        }
+        $channel?->setPmUsers([$user1, $user2]);
 
         return $channel;
     }
@@ -221,10 +218,8 @@ class Channel extends Model
     public function users()
     {
         return $this->memoize(__FUNCTION__, function () {
-            // use lookup table if it exists
-            $usersMap = request()->attributes->get(static::PRELOADED_USERS_KEY);
-            if ($usersMap !== null) {
-                return collect(array_map(fn ($id) => $usersMap->get($id, null), $this->userIds()));
+            if ($this->isPM() && isset($this->pmUsers)) {
+                return $this->pmUsers;
             }
 
             // This isn't a has-many-through because the relationship is cross-database.
@@ -283,7 +278,7 @@ class Channel extends Model
 
     public function isBanchoMultiplayerChat()
     {
-        return $this->type === static::TYPES['temporary'] && starts_with($this->name, '#mp_');
+        return $this->type === static::TYPES['temporary'] && starts_with($this->name, ['#mp_', '#spect_']);
     }
 
     public function getMatchIdAttribute()
@@ -316,9 +311,7 @@ class Channel extends Model
         $userId = $user->getKey();
 
         return $this->memoize(__FUNCTION__.':'.$userId, function () use ($userId) {
-            $users = $this->pmUsers ?? $this->users();
-
-            return $users->firstWhere('user_id', '<>', $userId);
+            return $this->users()->firstWhere('user_id', '<>', $userId);
         });
     }
 
@@ -388,7 +381,11 @@ class Channel extends Model
         MessageTask::dispatch($message);
 
         if ($this->isPM()) {
-            $this->unhide();
+            if ($this->unhide()) {
+                // assume a join event has to be sent if any channels need to need to be unhidden.
+                event(new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'));
+            }
+
             (new ChannelMessage($message, $sender))->dispatch();
         }
 
@@ -404,7 +401,7 @@ class Channel extends Model
         if ($userChannel) {
             // already in channel, just broadcast event.
             if (!$userChannel->isHidden()) {
-                event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
+                event(new ChatChannelEvent($this, $user, 'join'));
 
                 return;
             }
@@ -418,7 +415,7 @@ class Channel extends Model
             $this->resetMemoized();
         }
 
-        event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
+        event(new ChatChannelEvent($this, $user, 'join'));
 
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
     }
@@ -441,7 +438,7 @@ class Channel extends Model
             $userChannel->delete();
         }
 
-        event(new ChatChannelEvent($userChannel->channel, $user, 'part'));
+        event(new ChatChannelEvent($this, $user, 'part'));
 
         Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
     }
@@ -453,6 +450,11 @@ class Channel extends Model
             'user_id' => $user->user_id,
             'hidden' => false,
         ])->exists();
+    }
+
+    public function setPmUsers(array $users)
+    {
+        $this->pmUsers = collect($users);
     }
 
     public function setUserChannel(UserChannel $userChannel)
@@ -470,7 +472,7 @@ class Channel extends Model
             return;
         }
 
-        UserChannel::where([
+        return UserChannel::where([
             'channel_id' => $this->channel_id,
             'hidden' => true,
         ])->update([

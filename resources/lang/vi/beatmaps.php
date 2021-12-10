@@ -253,7 +253,7 @@ return [
     'general' => [
         'converts' => 'Bao gồm beatmap được chuyển đổi',
         'featured_artists' => 'Nghệ sĩ nổi bật',
-        'follows' => 'Đăng kí người vẽ bản đồ',
+        'follows' => 'Mapper đã đăng ký',
         'recommended' => 'Độ khó đề nghị',
     ],
     'mode' => [

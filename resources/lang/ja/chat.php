@@ -24,6 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'メッセージの送信ができません...',
+        'disconnected' => '',
         'placeholder' => 'メッセージを入力...',
         'send' => '送信',
     ],

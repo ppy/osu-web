@@ -15,5 +15,5 @@
         {!! json_encode($bundleJson) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/react/notifications-index.js'])
+    @include('layout._react_js', ['src' => 'js/notifications-index.js'])
 @endsection

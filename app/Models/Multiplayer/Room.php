@@ -511,5 +511,9 @@ class Room extends Model
         if ($playlistItem->expired) {
             throw new InvariantException('Cannot play an expired playlist item.');
         }
+
+        if ($playlistItem->played_at !== null) {
+            throw new InvariantException('Cannot play a playlist item that has already been played.');
+        }
     }
 }
