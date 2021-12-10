@@ -60,7 +60,8 @@ class ChannelsController extends Controller
      * @response {
      *   "channel_id": 5,
      *   "current_user_attributes": {
-     *     "can_message": true
+     *     "can_message": true,
+     *     "can_message_error": null
      *   },
      *   "description": "The official osu! channel (english only).",
      *   "icon": "https://a.ppy.sh/2?1519081077.png",
@@ -139,7 +140,8 @@ class ChannelsController extends Controller
      *   "channel": {
      *     "channel_id": 1337,
      *     "current_user_attributes": {
-     *       "can_message": true
+     *       "can_message": true,
+     *       "can_message_error": null
      *     },
      *     "name": "test channel",
      *     "description": "wheeeee",
