@@ -4,22 +4,19 @@
 import { route } from 'laroute';
 import { each, isEmpty, last, throttle } from 'lodash';
 import { action, computed, makeObservable, observe } from 'mobx';
-import { disposeOnUnmount, inject, observer } from 'mobx-react';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { Spinner } from 'spinner';
-import RootDataStore from 'stores/root-data-store';
 import StringWithComponent from 'string-with-component';
 import UserAvatar from 'user-avatar';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
-interface Props {
-  dataStore?: RootDataStore;
-}
+type Props = Record<string, never>;
 
 interface Snapshot {
   chatHeight: number;
@@ -28,11 +25,9 @@ interface Snapshot {
 
 const blankSnapshot = (): Snapshot => ({ chatHeight: 0, chatTop: 0 });
 
-@inject('dataStore')
 @observer
 export default class ConversationView extends React.Component<Props> {
   private chatViewRef = React.createRef<HTMLDivElement>();
-  private readonly dataStore: RootDataStore;
   private didSwitchChannel = true;
   private firstMessage?: Message;
   private unreadMarkerRef = React.createRef<HTMLDivElement>();
@@ -91,19 +86,17 @@ export default class ConversationView extends React.Component<Props> {
 
   @computed
   get currentChannel() {
-    return this.dataStore.chatState.selectedChannel;
+    return core.dataStore.chatState.selectedChannel;
   }
 
   constructor(props: Props) {
     super(props);
 
-    this.dataStore = props.dataStore!;
-
     makeObservable(this);
 
     disposeOnUnmount(
       this,
-      observe(this.dataStore.chatState.selectedBoxed, (change) => {
+      observe(core.dataStore.chatState.selectedBoxed, (change) => {
         if (change.newValue !== change.oldValue) {
           this.didSwitchChannel = true;
         }
@@ -117,7 +110,7 @@ export default class ConversationView extends React.Component<Props> {
   }
 
   @action
-  componentDidUpdate(prevProps?: Props, prevState?: Readonly<Record<string, never>>, snapshot?: Snapshot) {
+  componentDidUpdate(prevProps?: Readonly<Props>, prevState?: Readonly<Record<string, never>>, snapshot?: Snapshot) {
     const chatView = this.chatViewRef.current;
     if (!chatView || !this.currentChannel || this.currentChannel.loadingMessages) {
       return;
@@ -139,7 +132,7 @@ export default class ConversationView extends React.Component<Props> {
         const newHeight = chatEl.scrollHeight;
         chatEl.scrollTo(chatEl.scrollLeft, snapshot.chatTop + (newHeight - snapshot.chatHeight));
       } else {
-        if (this.dataStore.chatState.autoScroll) {
+        if (core.dataStore.chatState.autoScroll) {
           this.scrollToBottom();
         }
       }
@@ -200,7 +193,7 @@ export default class ConversationView extends React.Component<Props> {
   onScroll = () => {
     const chatView = this.chatViewRef.current;
     if (chatView) {
-      this.dataStore.chatState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
+      core.dataStore.chatState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
     }
   };
 
@@ -276,6 +269,6 @@ export default class ConversationView extends React.Component<Props> {
 
   private loadEarlierMessages = () => {
     if (this.currentChannel == null) return;
-    this.dataStore.channelStore.loadChannelEarlierMessages(this.currentChannel.channelId);
+    core.dataStore.channelStore.loadChannelEarlierMessages(this.currentChannel.channelId);
   };
 }

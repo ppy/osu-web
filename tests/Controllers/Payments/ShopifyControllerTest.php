@@ -6,6 +6,7 @@
 namespace Tests\Controllers\Payments;
 
 use App\Libraries\Payments\ShopifySignature;
+use App\Models\Country;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use Tests\TestCase;
@@ -18,7 +19,7 @@ class ShopifyControllerTest extends TestCase
         $payment = new Payment([
             'provider' => Order::PROVIDER_SHOPIFY,
             'transaction_id' => $order->getProviderReference(),
-            'country_code' => 'XX',
+            'country_code' => Country::UNKNOWN,
             'paid_at' => now(),
         ]);
         $order->payments()->save($payment);
