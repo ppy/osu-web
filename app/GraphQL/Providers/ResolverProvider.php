@@ -23,8 +23,11 @@ class ResolverProvider implements ProvidesResolver
 
     public static function fieldResolver(...$params)
     {
-        return static::findCustomResolver(...$params)
-            ?? Executor::getDefaultFieldResolver()(...$params);
+        $result = null;
+        if (is_object($params[0])) {
+            $result = static::findCustomResolver(...$params);
+        }
+        return $result ?? Executor::getDefaultFieldResolver()(...$params);
     }
 
     public static function findCustomResolver($root, array $args, GraphQLContext $context, ResolveInfo $info)
