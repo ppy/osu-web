@@ -5639,16 +5639,16 @@
         },
         {
             "name": "nuwave/lighthouse",
-            "version": "v5.27.3",
+            "version": "v5.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nuwave/lighthouse.git",
-                "reference": "b28fb817f6d8a410e303a11ae69b4c10ca0f019c"
+                "reference": "9525acf3fa898cee1dde327c72dae1ef93f57fae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nuwave/lighthouse/zipball/b28fb817f6d8a410e303a11ae69b4c10ca0f019c",
-                "reference": "b28fb817f6d8a410e303a11ae69b4c10ca0f019c",
+                "url": "https://api.github.com/repos/nuwave/lighthouse/zipball/9525acf3fa898cee1dde327c72dae1ef93f57fae",
+                "reference": "9525acf3fa898cee1dde327c72dae1ef93f57fae",
                 "shasum": ""
             },
             "require": {
@@ -5675,7 +5675,8 @@
                 "laravel/legacy-factories": "^1",
                 "laravel/lumen-framework": "5.6.* || 5.7.* || 5.8.* || ^6 || ^7 || ^8",
                 "laravel/scout": "^7 || ^8",
-                "mll-lab/graphql-php-scalars": "^4",
+                "mll-lab/graphql-php-scalars": "^4 || ^5",
+                "mll-lab/php-cs-fixer-config": "^4.4.1",
                 "mockery/mockery": "^1",
                 "nunomaduro/larastan": "^0.6 || ^0.7 || ^1",
                 "orchestra/testbench": "3.6.* || 3.7.* || 3.8.* || 3.9.* || ^4 || ^5 || ^6",
@@ -5765,7 +5766,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-05T10:30:27+00:00"
+            "time": "2021-12-10T17:09:25+00:00"
         },
         {
             "name": "nyholm/psr7",
