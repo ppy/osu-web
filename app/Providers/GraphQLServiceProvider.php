@@ -84,6 +84,15 @@ class GraphQLServiceProvider extends ServiceProvider
 
     private static function applyCostToField(array $leafTypeRegistry, FieldDefinitionNode $fieldDefinition, ObjectTypeDefinitionNode $typeDefinition)
     {
+        /* Checks if there's already a cost directive on the field */
+        /** @var iterable<\GraphQL\Language\AST\DirectiveNode> $iterator */
+        $iterator = $fieldDefinition->directives->getIterator();
+        foreach ($iterator as $directive) {
+            if ($directive->name->value === 'cost') {
+                return;
+            }
+        }
+
         /* Recurse until we can retrieve the field's type name */
         $fieldType = $fieldDefinition->type;
         while ($fieldType instanceof TypeNode) {
@@ -101,18 +110,15 @@ class GraphQLServiceProvider extends ServiceProvider
             $cost = 2;
         }
 
-        /* Assuming 'data' is part of pagination, assign cost 0 since it has virtually no overhead */
-        if ($fieldDefinition->name->value === 'data' && str_ends_with($typeDefinition->name->value, 'Paginator')) {
+        /* Assuming the type is generated from a paginator, assign cost 0 */
+        if (str_ends_with($typeDefinition->name->value, 'Connection')) {
             $cost = 0;
         }
-
-        /* Checks if there's already a cost directive on the field */
-        /** @var iterable<\GraphQL\Language\AST\DirectiveNode> $iterator */
-        $iterator = $fieldDefinition->directives->getIterator();
-        foreach ($iterator as $directive) {
-            if ($directive->name->value === 'cost') {
-                return;
-            }
+        if ($fieldDefinition->name->value === 'node' && str_ends_with($typeDefinition->name->value, 'Edge')) {
+            $cost = 0;
+        }
+        if ($fieldDefinition->name->value === 'data' && str_ends_with($typeDefinition->name->value, 'Paginator')) {
+            $cost = 0;
         }
 
         /* Finally, apply the cost to the field */
