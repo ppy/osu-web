@@ -22,5 +22,5 @@ type User {
     friends: [User!]!
         @restrict(scopes: ["friends.read"])
         @restrict(isCurrentUser: true)
-        @belongsToMany(type: SIMPLE)
+        @belongsToMany(type: CONNECTION)
 }

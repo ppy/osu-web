@@ -2,7 +2,7 @@
 
 type Beatmapset {
     artist: String!
-    beatmaps: [Beatmap!]! @hasMany
+    beatmaps: [Beatmap!]! @hasMany(type: CONNECTION)
     language: Language! @belongsTo
     genre: Genre! @belongsTo
     id: Int! @rename(attribute: "beatmapset_id")

@@ -8,13 +8,13 @@ type Query {
         build: String @eq(key: "build"),
         stream: String @eq(key: "stream_id")
     ): Changelog @first
-    changelogs: [Changelog!]! @paginate(type: SIMPLE)
+    changelogs: [Changelog!]! @paginate(type: CONNECTION)
 
     newsPost(
         id: Int @eq,
         slug: String @eq
     ): NewsPost @first
-    news: [NewsPost!]! @paginate(type: SIMPLE)
+    news: [NewsPost!]! @paginate(type: CONNECTION)
 }
 
 extend type Query @oauth {
@@ -34,12 +34,12 @@ extend type Query @oauth {
             "title",
             "artist"
         ])
-    ): [Beatmapset!]! @paginate(type: SIMPLE)
+    ): [Beatmapset!]! @paginate(type: CONNECTION)
 
     group(
         id: Int @eq(key: "group_id")
     ): Group @first
-    groups: [Group!]! @paginate(type: SIMPLE)
+    groups: [Group!]! @paginate(type: CONNECTION)
 
     "Get an osu user"
     user(

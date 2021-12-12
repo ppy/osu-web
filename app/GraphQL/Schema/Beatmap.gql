@@ -53,5 +53,5 @@ type Beatmap {
         type: String @restrict(requiresSupporter: true),
     ): [BestScore!]!
         # FIXME: this is N+1
-        @paginate(type: SIMPLE, builder: "App\\GraphQL\\Resolvers\\BeatmapResolver@bestScores")
+        @paginate(type: CONNECTION, builder: "App\\GraphQL\\Resolvers\\BeatmapResolver@bestScores")
 }
