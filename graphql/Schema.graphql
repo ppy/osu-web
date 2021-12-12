@@ -1,4 +1,5 @@
-#import Schema/*.gql
+#import Enums.graphql
+#import Models/*.graphql
 
 scalar DateTimeTz @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTimeTz")
 

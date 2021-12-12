@@ -72,7 +72,7 @@ return [
     */
 
     'schema' => [
-        'register' => base_path('app/GraphQL/schema.gql'),
+        'register' => base_path('graphql/Schema.graphql'),
     ],
 
     /*
