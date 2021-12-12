@@ -25,12 +25,13 @@ extend type Query @oauth {
         checksum: String
         filename: String
     ): Beatmap @first
+
     beatmaps(
-        includeIDs: [Int!]! @in(key: "beatmap_id")
-    ): [Beatmap!]! @all
+        ids: [Int!] @in(key: "beatmap_id")
+    ): [Beatmap!]! @paginate(type: CONNECTION)
 
     beatmapsets(
-        includeIDs: [Int!] @in(key: "beatmapset_id")
+        ids: [Int!] @in(key: "beatmapset_id")
         orderBy: _ @orderBy(columns: [
             "title",
             "artist"
