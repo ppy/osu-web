@@ -422,7 +422,6 @@ function markdown_chat($input)
     if (!isset($converter)) {
         $environment = new League\CommonMark\Environment\Environment([
             'allow_unsafe_links' => false,
-            'html_input' => 'strip',
             'max_nesting_level' => 20,
             'renderer' => ['soft_break' => '<br />'],
         ]);
