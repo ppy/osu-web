@@ -36,6 +36,7 @@ class MessageTransformer extends TransformerAbstract
             try {
                 $response['content_html'] = markdown_chat($message->content);
             } catch (Throwable $e) {
+                // TODO: set error in response?
                 \Log::debug($e->getMessage());
             }
         }
