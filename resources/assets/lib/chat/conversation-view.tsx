@@ -13,6 +13,7 @@ import ShowMoreLink from 'show-more-link';
 import { Spinner } from 'spinner';
 import StringWithComponent from 'string-with-component';
 import UserAvatar from 'user-avatar';
+import { classWithModifiers } from 'utils/css';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
@@ -205,7 +206,7 @@ export default class ConversationView extends React.Component<Props> {
     }
 
     return (
-      <div ref={this.chatViewRef} className='chat-conversation' onScroll={this.onScroll}>
+      <div ref={this.chatViewRef} className={classWithModifiers('chat-conversation', channel.type)} onScroll={this.onScroll}>
         <div className='chat-conversation__new-chat-avatar'>
           <UserAvatar user={{ avatar_url: channel.icon }} />
         </div>
