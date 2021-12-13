@@ -2,11 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import GameMode from 'interfaces/game-mode';
-
-type ScoreStatsAttribute = 'count_50' | 'count_100' | 'count_300' | 'count_geki' | 'count_katu' | 'count_miss';
+import { ScoreStatisticsAttribute } from 'interfaces/score-json';
 
 interface AttributeData {
-  attribute: ScoreStatsAttribute;
+  attribute: ScoreStatisticsAttribute;
   label: string;
 }
 
