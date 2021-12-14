@@ -98,9 +98,9 @@ export default class Medals extends React.Component<ExtraPageProps> {
               {this.recentUserAchievements.map((ua) => (
                 <div key={ua.achievement.id} className='page-extra__recent-medal'>
                   <AchievementBadge
+                    achievedAt={ua.userAchievement.achieved_at}
                     achievement={ua.achievement}
                     modifiers='dynamic-height'
-                    userAchievement={ua.userAchievement}
                   />
                 </div>
               ))}
@@ -119,9 +119,9 @@ export default class Medals extends React.Component<ExtraPageProps> {
                     {orderedAchievements.map((ua) => (
                       <div key={ua.achievement.id} className='medals-group__medal'>
                         <AchievementBadge
+                          achievedAt={ua.userAchievement?.achieved_at}
                           achievement={ua.achievement}
                           modifiers='listing'
-                          userAchievement={ua.userAchievement}
                         />
                       </div>
                     ))}
