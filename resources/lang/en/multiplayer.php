@@ -13,6 +13,11 @@ return [
         'player_count' => ':count_delimited player|:count_delimited players',
         'time_left' => ':time left',
 
+        'errors' => [
+            'duration_require_supporter' => 'Durations longer than 2 weeks requires an active osu!supporter tag.',
+            'duration_too_long' => 'Duration cannot be more than 3 months.',
+        ],
+
         'status' => [
             'active' => 'active',
             'ended' => 'ended',

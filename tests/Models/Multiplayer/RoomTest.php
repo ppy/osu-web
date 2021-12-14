@@ -15,6 +15,39 @@ use Tests\TestCase;
 
 class RoomTest extends TestCase
 {
+    /**
+     * @dataProvider startGameDurationDataProvider
+     */
+    public function testStartGameDuration(int $duration, bool $isSupporter, ?string $errorMessageKey)
+    {
+        $beatmap = Beatmap::factory()->create();
+        $user = User::factory();
+        if ($isSupporter) {
+            $user = $user->supporter();
+        }
+
+        $user = $user->create();
+
+        $params = [
+            'duration' => $duration,
+            'name' => 'test',
+            'playlist' => [
+                [
+                    'beatmap_id' => $beatmap->getKey(),
+                    'ruleset_id' => $beatmap->playmode,
+                ],
+            ],
+        ];
+
+        if ($errorMessageKey !== null) {
+            $this->expectException(InvariantException::class);
+            $this->expectExceptionMessage(osu_trans($errorMessageKey));
+        }
+
+        $room = (new Room())->startGame($user, $params);
+        $this->assertSame($errorMessageKey === null, $room->exists);
+    }
+
     public function testStartGameWithBeatmap()
     {
         $beatmap = Beatmap::factory()->create();
@@ -136,5 +169,19 @@ class RoomTest extends TestCase
 
         $this->expectException(InvariantException::class);
         (new Room())->startGame($user, $params);
+    }
+
+    public function startGameDurationDataProvider()
+    {
+        return [
+            '2 weeks' => [20160, true, null],
+            '2 weeks (with supporter)' => [20160, true, null],
+            'more than 2 weeks' => [20161, false, 'multiplayer.room.errors.duration_require_supporter'],
+            'more than 2 weeks (with supporter)' => [20161, true, null],
+            '3 months' => [90720, false, 'multiplayer.room.errors.duration_require_supporter'],
+            '3 months (with supporter)' => [90720, true, null],
+            'more than 3 months' => [90721, false, 'multiplayer.room.errors.duration_require_supporter'],
+            'more than 3 months (with supporter)' => [90721, true, 'multiplayer.room.errors.duration_too_long'],
+        ];
     }
 }
