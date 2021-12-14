@@ -24,7 +24,6 @@
     padding-bottom: $padding-top;
     background-color: hsl(var(--hsl-b2));
     border-radius: @border-radius-large;
-    max-height: 80vh;
   }
 
   &--profile-page {
@@ -57,6 +56,11 @@
     .@{_top}[data-state=loading-preview] & {
       opacity: 0.5;
       pointer-events: none;
+    }
+
+    .@{_top}--beatmapset-description-editor & {
+      // approximation of 80vh - 3 lines of button bars and editor padding
+      max-height: calc(80vh - 30px - 20px - 3 * (1em + 10px));
     }
   }
 
