@@ -9,8 +9,8 @@ return [
     'title_compact' => 'chat',
 
     'cannot_send' => [
-        'channel' => 'You cannot message this channel at this time. This may be due to any of the following reasons:',
-        'user' => 'You cannot message this user at this time. This may be due to any of the following reasons:',
+        'channel' => 'You cannot message this channel at this time.',
+        'user' => 'You cannot message this user at this time.',
         'reasons' => [
             'blocked' => 'You were blocked by the recipient',
             'channel_moderated' => 'The channel has been moderated',
