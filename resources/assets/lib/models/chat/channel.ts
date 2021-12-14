@@ -13,7 +13,7 @@ import Message from './message';
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
 
-  @observable canMessage = true;
+  @observable canMessageError: string | null = null;
   @observable channelId: number;
   @observable description?: string;
   @observable firstMessageId = -1;
@@ -34,6 +34,11 @@ export default class Channel {
 
   @observable private messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
+
+  @computed
+  get canMessage() {
+    return this.canMessageError == null;
+  }
 
   @computed
   get firstMessage() {
@@ -228,7 +233,7 @@ export default class Channel {
     this.serverLastMessageId = json.last_message_id;
 
     if (json.current_user_attributes != null) {
-      this.canMessage = json.current_user_attributes.can_message;
+      this.canMessageError = json.current_user_attributes.can_message_error;
       this.setLastReadId(json.current_user_attributes.last_read_id);
     }
   }

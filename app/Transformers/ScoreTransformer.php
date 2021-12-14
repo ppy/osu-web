@@ -109,16 +109,12 @@ class ScoreTransformer extends TransformerAbstract
 
     public function includeWeight($score)
     {
-        if (($score instanceof ScoreBest) === false) {
-            return;
-        }
-
-        return $this->item($score, function ($score) {
-            return [
+        if ($score instanceof ScoreBest && $score->weight !== null) {
+            return $this->primitive([
                 'percentage' => $score->weight * 100,
                 'pp' => $score->weightedPp(),
-            ];
-        });
+            ]);
+        }
     }
 
     public function includeUser($score)

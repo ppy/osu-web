@@ -9,6 +9,7 @@ use App\Events\ChatChannelEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\ChannelMessage;
+use App\Libraries\AuthorizationResult;
 use App\Libraries\Chat\MessageTask;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
@@ -130,12 +131,12 @@ class Channel extends Model
     }
 
     /**
-     * This check is for whether the user can enter into the input box for the channel,
+     * This check is used for whether the user can enter into the input box for the channel,
      * not if a message is actually allowed to be sent.
      */
-    public function canMessage(User $user): bool
+    public function checkCanMessage(User $user): AuthorizationResult
     {
-        return priv_check_user($user, 'ChatChannelCanMessage', $this)->can();
+        return priv_check_user($user, 'ChatChannelCanMessage', $this);
     }
 
     public function displayIconFor(?User $user): ?string
@@ -381,7 +382,11 @@ class Channel extends Model
         MessageTask::dispatch($message);
 
         if ($this->isPM()) {
-            $this->unhide();
+            if ($this->unhide()) {
+                // assume a join event has to be sent if any channels need to need to be unhidden.
+                event(new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'));
+            }
+
             (new ChannelMessage($message, $sender))->dispatch();
         }
 
@@ -468,7 +473,7 @@ class Channel extends Model
             return;
         }
 
-        UserChannel::where([
+        return UserChannel::where([
             'channel_id' => $this->channel_id,
             'hidden' => true,
         ])->update([

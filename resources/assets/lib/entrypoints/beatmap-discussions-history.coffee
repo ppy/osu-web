@@ -4,7 +4,7 @@
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { parseJson } from 'utils/json'
-import { Main } from './beatmap-discussions-history/main'
+import { Main } from 'beatmap-discussions-history/main'
 
 core.reactTurbolinks.register 'beatmap-discussions-history', (container) ->
   bundle = parseJson 'json-index'

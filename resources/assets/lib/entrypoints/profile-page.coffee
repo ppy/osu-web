@@ -4,7 +4,7 @@
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { parseJson, parseJsonNullable } from 'utils/json'
-import { Main } from './profile-page/main'
+import { Main } from 'profile-page/main'
 
 core.reactTurbolinks.register 'profile-page', (container) ->
   user = parseJson('json-user')
