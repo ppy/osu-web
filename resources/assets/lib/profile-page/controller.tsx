@@ -16,6 +16,17 @@ import { apiShowMore, apiShowMoreRecentlyReceivedKudosu, hasMoreCheck, OffsetPag
 import { switchNever } from 'utils/switch-never';
 import { ProfilePageSection, profilePageSections, ProfilePageUserJson } from './extra-page-props';
 
+const sectionToUrlType = {
+  favouriteBeatmapsets: 'favourite',
+  graveyardBeatmapsets: 'graveyard',
+  lovedBeatmapsets: 'loved',
+  pendingBeatmapsets: 'pending',
+  rankedBeatmapsets: 'ranked',
+  scoresBest: 'best',
+  scoresFirsts: 'firsts',
+  scoresRecent: 'recent',
+};
+
 export type PaginationData = Record<ProfilePageSection, OffsetPaginationJson>;
 
 export function validPage(page: unknown) {
@@ -208,38 +219,14 @@ export default class Controller {
         break;
 
       case 'favouriteBeatmapsets':
-        this.xhr[section] = apiShowMore({
-          items: this.state.extras[section],
-          pagination: this.state.pagination[section],
-        }, 'users.beatmapsets', { ...baseParams, type: 'favourite' });
-        break;
-
       case 'graveyardBeatmapsets':
-        this.xhr[section] = apiShowMore({
-          items: this.state.extras[section],
-          pagination: this.state.pagination[section],
-        }, 'users.beatmapsets', { ...baseParams, type: 'graveyard' });
-        break;
-
       case 'lovedBeatmapsets':
-        this.xhr[section] = apiShowMore({
-          items: this.state.extras[section],
-          pagination: this.state.pagination[section],
-        }, 'users.beatmapsets', { ...baseParams, type: 'loved' });
-        break;
-
       case 'pendingBeatmapsets':
-        this.xhr[section] = apiShowMore({
-          items: this.state.extras[section],
-          pagination: this.state.pagination[section],
-        }, 'users.beatmapsets', { ...baseParams, type: 'pending' });
-        break;
-
       case 'rankedBeatmapsets':
         this.xhr[section] = apiShowMore({
           items: this.state.extras[section],
           pagination: this.state.pagination[section],
-        }, 'users.beatmapsets', { ...baseParams, type: 'ranked' });
+        }, 'users.beatmapsets', { ...baseParams, type: sectionToUrlType[section] });
         break;
 
       case 'recentActivity':
@@ -257,24 +244,12 @@ export default class Controller {
         break;
 
       case 'scoresBest':
-        this.xhr[section] = apiShowMore({
-          items: this.state.extras[section],
-          pagination: this.state.pagination[section],
-        }, 'users.scores', { ...baseParams, mode: this.currentMode, type: 'best' });
-        break;
-
       case 'scoresFirsts':
-        this.xhr[section] = apiShowMore({
-          items: this.state.extras[section],
-          pagination: this.state.pagination[section],
-        }, 'users.scores', { ...baseParams, mode: this.currentMode, type: 'firsts' });
-        break;
-
       case 'scoresRecent':
         this.xhr[section] = apiShowMore({
           items: this.state.extras[section],
           pagination: this.state.pagination[section],
-        }, 'users.scores', { ...baseParams, mode: this.currentMode, type: 'recent' });
+        }, 'users.scores', { ...baseParams, mode: this.currentMode, type: sectionToUrlType[section] });
         break;
 
       default:
