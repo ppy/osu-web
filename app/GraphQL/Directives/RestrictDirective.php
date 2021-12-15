@@ -5,9 +5,9 @@
 
 namespace App\GraphQL\Directives;
 
-use App\GraphQL\ErrorCodes;
-use App\GraphQL\Exceptions\AuthorisationException;
-use App\GraphQL\Exceptions\MissingScopesException;
+use App\GraphQL\Exceptions\AuthenticationException;
+use App\GraphQL\Exceptions\AuthorizationException;
+use App\GraphQL\Exceptions\MissingScopeException;
 use Closure;
 use GraphQL\Language\AST\FieldDefinitionNode;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
@@ -88,14 +88,13 @@ GRAPHQL;
     {
         $scopes = $this->directiveArgValue('scopes');
         if ($scopes === null) {
-            return true;
+            return;
         }
 
         $token = oauth_token();
 
         if ($token === null) {
-            throw new AuthorisationException(ErrorCodes::AUTH_MISSING_TOKEN);
-            return;
+            throw new AuthenticationException();
         }
 
         $missingScopes = [];
@@ -106,7 +105,7 @@ GRAPHQL;
         }
 
         if (count($missingScopes) !== 0) {
-            throw new MissingScopesException($missingScopes);
+            throw new MissingScopeException($missingScopes);
         }
     }
 
@@ -121,7 +120,7 @@ GRAPHQL;
             return;
         }
 
-        throw new AuthorisationException(ErrorCodes::AUTH_OWNER_ONLY);
+        throw new AuthorizationException();
     }
 
     public function checkSupporter()
@@ -135,7 +134,7 @@ GRAPHQL;
             return;
         }
 
-        throw new AuthorisationException(ErrorCodes::AUTH_SUPPORTER_REQUIRED);
+        throw new AuthorizationException(osu_trans('errors.supporter_only'), 'AUTH_SUPPORTER_REQUIRED');
     }
 
     /* Checks that the `isCurrentUser` argument is only used on fields of object type User */

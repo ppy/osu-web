@@ -718,6 +718,11 @@ function is_api_request()
     return request()->is('api/*');
 }
 
+function is_graphql_request()
+{
+    return request()->is('api/graphql');
+}
+
 function is_json_request()
 {
     return is_api_request() || request()->expectsJson();

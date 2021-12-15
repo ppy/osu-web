@@ -5,8 +5,7 @@
 
 namespace App\GraphQL\Directives;
 
-use App\GraphQL\ErrorCodes;
-use App\GraphQL\Exceptions\AuthorisationException;
+use App\GraphQL\Exceptions\AuthenticationException;
 use Closure;
 use GraphQL\Language\AST\TypeDefinitionNode;
 use GraphQL\Language\AST\TypeExtensionNode;
@@ -39,7 +38,7 @@ GRAPHQL;
                     $token = oauth_token();
 
                     if ($token === null) {
-                        throw new AuthorisationException(ErrorCodes::AUTH_MISSING_TOKEN);
+                        throw new AuthenticationException();
                     }
 
                     return $originalResolver($root, $args, $context, $resolveInfo);

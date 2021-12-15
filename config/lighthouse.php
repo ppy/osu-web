@@ -30,8 +30,10 @@ return [
          */
         'middleware' => [
             \Nuwave\Lighthouse\Support\Http\Middleware\AcceptJson::class,
-            'throttle-graphql:'.env('API_THROTTLE_GRAPHQL', '60,1,api-graphql').':',
-            \App\GraphQL\Middleware\WrappedAuthApi::class,
+            //'throttle-graphql:'.env('API_THROTTLE_GRAPHQL', '60,1,api-graphql').':',
+            'throttle:'.env('API_THROTTLE_GRAPHQL', '60,1,api-graphql').':',
+            //\App\GraphQL\Middleware\WrappedAuthApi::class,
+            'api',
 
             // Logs in a user if they are authenticated. In contrast to Laravel's 'auth'
             // middleware, this delegates auth and permission checks to the field level.
@@ -230,8 +232,7 @@ return [
     */
 
     'error_handlers' => [
-        \Nuwave\Lighthouse\Execution\AuthenticationErrorHandler::class,
-        \Nuwave\Lighthouse\Execution\AuthorizationErrorHandler::class,
+        \App\GraphQL\ErrorHandler::class,
         \Nuwave\Lighthouse\Execution\ValidationErrorHandler::class,
         \Nuwave\Lighthouse\Execution\ExtensionErrorHandler::class,
         \Nuwave\Lighthouse\Execution\ReportingErrorHandler::class,

@@ -7,6 +7,8 @@ namespace App\Exceptions;
 
 use App\Libraries\UserVerification;
 use Auth;
+use GraphQL\Error\Error as GraphQLError;
+use GraphQL\Executor\ExecutionResult;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -16,6 +18,7 @@ use Illuminate\Session\TokenMismatchException;
 use Laravel\Passport\Exceptions\MissingScopeException;
 use Laravel\Passport\Exceptions\OAuthServerException as PassportOAuthServerException;
 use League\OAuth2\Server\Exception\OAuthServerException;
+use Nuwave\Lighthouse\GraphQL;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -116,6 +119,24 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
+        if (is_graphql_request()) {
+            $formatted = app(GraphQL::class)->serializable(new ExecutionResult(null, [new GraphQLError(
+                static::exceptionMessage($e) ?? 'Unknown error',
+                null,
+                null,
+                [],
+                null,
+                $e,
+                []
+            )]));
+
+            $headers = [];
+            if (method_exists($e, 'getHeaders')) {
+                $headers = $e->getHeaders();
+            }
+            return response($formatted, static::statusCode($e), $headers);
+        }
+
         if ($e instanceof HttpResponseException || $e instanceof UserProfilePageLookupException) {
             return $e->getResponse();
         }

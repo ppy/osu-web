@@ -5,7 +5,6 @@
 
 namespace Tests\GraphQL;
 
-use App\GraphQL\ErrorCodes;
 use App\Models\User;
 use GraphQL\Validator\Rules\QueryComplexity;
 use Nuwave\Lighthouse\Testing\MakesGraphQLRequests;
@@ -80,7 +79,7 @@ class DirectivesTest extends TestCase
         }
         ')
             ->assertJsonCount(1, 'errors')
-            ->assertJsonPath('errors.0.extensions.code', ErrorCodes::AUTH_MISSING_TOKEN[0]);
+            ->assertJsonPath('errors.0.extensions.code', 'AUTH_UNAUTHENTICATED');
 
         // Test with auth
         $this->actAsScopedUser($this->viewer);
@@ -108,7 +107,7 @@ class DirectivesTest extends TestCase
         }
         ')
             ->assertJsonCount(1, 'errors')
-            ->assertJsonPath('errors.0.extensions.code', ErrorCodes::AUTH_MISSING_SCOPES[0])
+            ->assertJsonPath('errors.0.extensions.code', 'AUTH_MISSING_SCOPES')
             ->assertJsonPath('errors.0.extensions.missingScopes', ['fakeScope1', 'fakeScope2']);
 
         // Test with one scope
@@ -119,7 +118,7 @@ class DirectivesTest extends TestCase
         }
         ')
             ->assertJsonCount(1, 'errors')
-            ->assertJsonPath('errors.0.extensions.code', ErrorCodes::AUTH_MISSING_SCOPES[0])
+            ->assertJsonPath('errors.0.extensions.code', 'AUTH_MISSING_SCOPES')
             ->assertJsonPath('errors.0.extensions.missingScopes', ['fakeScope2']);
 
         // Test with both scopes
@@ -154,7 +153,7 @@ class DirectivesTest extends TestCase
         }
         ')
             ->assertJsonCount(1, 'errors')
-            ->assertJsonPath('errors.0.extensions.code', ErrorCodes::AUTH_OWNER_ONLY[0]);
+            ->assertJsonPath('errors.0.extensions.code', 'AUTH_UNAUTHORIZED');
 
         // Test as user
         $this->actAsScopedUser($user);
@@ -187,7 +186,7 @@ class DirectivesTest extends TestCase
         }
         ')
             ->assertJsonCount(1, 'errors')
-            ->assertJsonPath('errors.0.extensions.code', ErrorCodes::AUTH_SUPPORTER_REQUIRED[0]);
+            ->assertJsonPath('errors.0.extensions.code', 'AUTH_SUPPORTER_REQUIRED');
 
         // Test as user with supporter
         $this->actAsScopedUser($userWithSupporter);
