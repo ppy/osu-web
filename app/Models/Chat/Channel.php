@@ -369,26 +369,29 @@ class Channel extends Model
 
         $message->sender()->associate($sender)->channel()->associate($this)
             ->uuid = $uuid; // relay any message uuid back.
-        $message->save();
 
-        $this->update(['last_message_id' => $message->getKey()]);
+        $message->getConnection()->transaction(function () use ($message, $sender) {
+            $message->save();
 
-        $userChannel = $this->userChannelFor($sender);
+            $this->update(['last_message_id' => $message->getKey()]);
 
-        if ($userChannel) {
-            $userChannel->markAsRead($message->message_id);
-        }
+            $userChannel = $this->userChannelFor($sender);
 
-        MessageTask::dispatch($message);
-
-        if ($this->isPM()) {
-            if ($this->unhide()) {
-                // assume a join event has to be sent if any channels need to need to be unhidden.
-                event_after_commit(new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'));
+            if ($userChannel) {
+                $userChannel->markAsRead($message->message_id);
             }
 
-            (new ChannelMessage($message, $sender))->dispatch();
-        }
+            if ($this->isPM()) {
+                if ($this->unhide()) {
+                    // assume a join event has to be sent if any channels need to need to be unhidden.
+                    event_after_commit(new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'));
+                }
+
+                (new ChannelMessage($message, $sender))->dispatch();
+            }
+
+            MessageTask::dispatch($message);
+        });
 
         Datadog::increment('chat.channel.send', 1, ['target' => $this->type]);
 
