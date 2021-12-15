@@ -9,6 +9,7 @@ use App\Libraries\Notification\BatchIdentities;
 use App\Models\User;
 use App\Models\UserNotification;
 use DB;
+use Illuminate\Database\Query\Expression;
 
 /**
  * @property Channel $channel
@@ -27,8 +28,8 @@ class UserChannel extends Model
 
     public function getLastReadIdAttribute($value): ?int
     {
-        // return the value we tried to set it to, not the builder.
-        return $this->lastReadIdToSet ?? $value;
+        // return the value we tried to set it to, not the query expression.
+        return $value instanceof Expression ? $this->lastReadIdToSet : $value;
     }
 
     public function user()
