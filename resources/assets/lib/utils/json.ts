@@ -51,7 +51,7 @@ export function parseJsonNullable<T>(id: string, remove = false): T | undefined 
  * @param id id of the element to store to. Contents of an existing HTMLScriptElement will be overriden.
  * @param object state to store.
  */
-export function storeJson(id: string, object: Record<string, unknown>) {
+export function storeJson(id: string, object: unknown) {
   const json = JSON.stringify(object);
   const maybeElement = document.getElementById(id);
 
