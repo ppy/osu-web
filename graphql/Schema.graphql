@@ -2,6 +2,7 @@
 #import Models/*.graphql
 
 scalar DateTimeTz @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTimeTz")
+scalar Long @scalar(class: "App\\GraphQL\\Scalars\\Long")
 
 type Query {
     changelog(
