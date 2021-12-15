@@ -84,7 +84,7 @@ class RouteScopesHelper
         $this->routes = [];
 
         foreach (Route::getRoutes() as $route) {
-            if (!starts_with($route->uri, 'api/')) {
+            if (!starts_with($route->uri, 'api/') || starts_with($route->uri, 'api/graphql')) {
                 continue;
             }
 
