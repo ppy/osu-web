@@ -134,6 +134,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     {
         $this->name = snake_case(get_class_basename(get_class($this)));
         $this->source = $source;
+        $this->afterCommit = true;
     }
 
     abstract public function getDetails(): array;
