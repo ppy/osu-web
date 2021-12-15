@@ -5,6 +5,8 @@
 
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
+use Illuminate\Contracts\Broadcasting\Factory as BroadcastFactory;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Support\HtmlString;
 
 /*
@@ -52,6 +54,11 @@ function beatmap_timestamp_format($ms)
 function blade_safe($html)
 {
     return new Illuminate\Support\HtmlString($html);
+}
+
+function broadcast_after_commit(ShouldBroadcast $event)
+{
+    DB::afterCommit(fn () => app(BroadcastFactory::class)->queue($event));
 }
 
 /**
@@ -302,11 +309,6 @@ function db_unsigned_increment($column, $count)
 function default_mode()
 {
     return optional(auth()->user())->playmode ?? 'osu';
-}
-
-function event_after_commit(...$args)
-{
-    DB::afterCommit(fn () => event(...$args));
 }
 
 function flag_url($countryCode)
