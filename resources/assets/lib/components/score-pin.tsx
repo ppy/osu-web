@@ -10,7 +10,7 @@ import { onErrorWithCallback } from 'utils/ajax';
 
 interface Props {
   className: string;
-  onClick?: () => void;
+  onUpdate?: () => void;
   score: ScoreJson;
 }
 
@@ -48,7 +48,7 @@ export default class ScorePin extends React.Component<Props> {
     core.scorePins.apiPin(this.props.score, !this.isPinned)
       .done(() => {
         osu.popup(osu.trans(`users.show.extra.top_ranks.pin.to_${targetState}_done`), 'info');
-        this.props.onClick?.();
+        this.props.onUpdate?.();
       }).fail(onErrorWithCallback(this.onClick));
   };
 }

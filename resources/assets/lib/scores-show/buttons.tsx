@@ -15,11 +15,21 @@ interface Props {
 }
 
 export default function Buttons(props: Props) {
+  const visibleMenuItems = new Set<string>();
+
+  if (canBeReported(props.score)) {
+    visibleMenuItems.add('report');
+  }
+
+  if (core.scorePins.canBePinned(props.score)) {
+    visibleMenuItems.add('pin');
+  }
+
   return (
     <div className='score-buttons'>
       {props.score.replay && (
         <a
-          className='js-login-required--click btn-osu-big btn-osu-big--rounded-thin'
+          className='js-login-required--click btn-osu-big btn-osu-big--rounded'
           data-turbolinks={false}
           href={route('scores.download', { mode: props.score.mode, score: props.score.best_id })}
         >
@@ -27,22 +37,28 @@ export default function Buttons(props: Props) {
         </a>
       )}
 
-      {core.scorePins.canBePinned(props.score) &&
-        <ScorePin className='btn-osu-big btn-osu-big--rounded-thin' score={props.score} />
-      }
-
-      {canBeReported(props.score) && (
+      {visibleMenuItems.size > 0 && (
         <div className='score-buttons__menu'>
           <PopupMenuPersistent>
-            {() => (
+            {(dismiss: () => void) => (
               <div className='simple-menu'>
-                <ReportReportable
-                  baseKey='scores'
-                  className='simple-menu__item'
-                  reportableId={props.score.best_id?.toString() ?? ''}
-                  reportableType={`score_best_${props.score.mode}`}
-                  user={props.score.user}
-                />
+                {visibleMenuItems.has('pin') &&
+                  <ScorePin
+                    className='simple-menu__item'
+                    onUpdate={dismiss}
+                    score={props.score}
+                  />
+                }
+                {visibleMenuItems.has('report') &&
+                  <ReportReportable
+                    baseKey='scores'
+                    className='simple-menu__item'
+                    onFormClose={dismiss}
+                    reportableId={props.score.best_id?.toString() ?? ''}
+                    reportableType={`score_best_${props.score.mode}`}
+                    user={props.score.user}
+                  />
+                }
               </div>
             )}
           </PopupMenuPersistent>

@@ -25,7 +25,7 @@ export class PlayDetailMenu extends React.Component<Props> {
         {core.scorePins.canBePinned(score) && (
           <ScorePin
             className='simple-menu__item'
-            onClick={dismiss}
+            onUpdate={dismiss}
             score={score}
           />
         )}
