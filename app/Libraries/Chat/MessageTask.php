@@ -7,6 +7,7 @@ namespace App\Libraries\Chat;
 
 use App\Events\ChatMessageEvent;
 use App\Models\Chat\Message;
+use DB;
 use Laravel\Octane\Facades\Octane;
 
 /**
@@ -20,11 +21,11 @@ class MessageTask
 
     public static function dispatch(Message $message)
     {
-        Octane::tasks()->dispatch([new static($message)]);
+        DB::afterCommit(fn () => Octane::tasks()->dispatch([new static($message)]));
     }
 
     public function __invoke()
     {
-        event_after_commit(new ChatMessageEvent($this->message));
+        event(new ChatMessageEvent($this->message));
     }
 }
