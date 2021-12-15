@@ -25,6 +25,6 @@ class MessageTask
 
     public function __invoke()
     {
-        event(new ChatMessageEvent($this->message));
+        event_after_commit(new ChatMessageEvent($this->message));
     }
 }

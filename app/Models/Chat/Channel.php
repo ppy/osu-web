@@ -384,7 +384,7 @@ class Channel extends Model
         if ($this->isPM()) {
             if ($this->unhide()) {
                 // assume a join event has to be sent if any channels need to need to be unhidden.
-                event(new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'));
+                event_after_commit(new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'));
             }
 
             (new ChannelMessage($message, $sender))->dispatch();
@@ -402,7 +402,7 @@ class Channel extends Model
         if ($userChannel) {
             // already in channel, just broadcast event.
             if (!$userChannel->isHidden()) {
-                event(new ChatChannelEvent($this, $user, 'join'));
+                event_after_commit(new ChatChannelEvent($this, $user, 'join'));
 
                 return;
             }
@@ -416,7 +416,7 @@ class Channel extends Model
             $this->resetMemoized();
         }
 
-        event(new ChatChannelEvent($this, $user, 'join'));
+        event_after_commit(new ChatChannelEvent($this, $user, 'join'));
 
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
     }
@@ -439,7 +439,7 @@ class Channel extends Model
             $userChannel->delete();
         }
 
-        event(new ChatChannelEvent($this, $user, 'part'));
+        event_after_commit(new ChatChannelEvent($this, $user, 'part'));
 
         Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
     }

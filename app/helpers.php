@@ -304,6 +304,11 @@ function default_mode()
     return optional(auth()->user())->playmode ?? 'osu';
 }
 
+function event_after_commit(...$args)
+{
+    DB::afterCommit(fn () => event(...$args));
+}
+
 function flag_url($countryCode)
 {
     $chars = str_split($countryCode);
