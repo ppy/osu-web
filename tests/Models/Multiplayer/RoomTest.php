@@ -45,7 +45,7 @@ class RoomTest extends TestCase
         }
 
         $room = (new Room())->startGame($user, $params);
-        $this->assertSame($errorMessageKey === null, $room->exists);
+        $this->assertTrue($room->exists);
     }
 
     public function testStartGameWithBeatmap()
