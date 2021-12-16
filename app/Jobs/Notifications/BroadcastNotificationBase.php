@@ -208,7 +208,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         });
 
         if (!empty($pushReceiverIds)) {
-            event(new NewPrivateNotificationEvent($notification, $pushReceiverIds));
+            (new NewPrivateNotificationEvent($notification, $pushReceiverIds))->broadcast();
         }
     }
 

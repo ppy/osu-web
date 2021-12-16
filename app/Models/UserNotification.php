@@ -62,11 +62,11 @@ class UserNotification extends Model
             $readCount += $unreadCountInitial - $unreadCountCurrent;
         }
 
-        event(new NotificationDeleteEvent($user->getKey(), [
+        (new NotificationDeleteEvent($user->getKey(), [
             'notifications' => $identities,
             'read_count' => $readCount,
             'timestamp' => $now,
-        ]));
+        ]))->broadcast();
     }
 
     public static function batchMarkAsRead(User $user, BatchIdentities $batchIdentities)
@@ -102,7 +102,7 @@ class UserNotification extends Model
         }
 
         if ($count > 0) {
-            event(new NotificationReadEvent($user->getKey(), ['notifications' => $identities, 'read_count' => $count, 'timestamp' => $now]));
+            (new NotificationReadEvent($user->getKey(), ['notifications' => $identities, 'read_count' => $count, 'timestamp' => $now]))->broadcast();
         }
     }
 
