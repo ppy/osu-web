@@ -30,16 +30,11 @@ class ScorePinsController extends Controller
     {
         $params = $this->getScoreParams();
 
-        if (!ScorePin::isValidType($params['score_type'])) {
-            abort(422);
-        }
+        abort_if(!ScorePin::isValidType($params['score_type']), 422, 'invalid score_type');
 
         $score = Relation::getMorphedModel($params['score_type'])::find($params['score_id']);
 
-        if ($score === null) {
-            // return 422 instead of 404 when those parameters are invalid
-            abort(422);
-        }
+        abort_if($score === null, 422, "specified score couldn't be found");
 
         $user = auth()->user();
 
