@@ -11,8 +11,18 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 abstract class BroadcastableEventBase implements ShouldBroadcast
 {
-    public function broadcast()
+    /**
+     * Broadcasts the event.
+     *
+     * @param bool $afterCommit true to broadcast after the current connection's transaction is committed, false to queue immediately.
+     * @return void
+     */
+    public function broadcast(bool $afterCommit = false)
     {
-        DB::afterCommit(fn () => app(Factory::class)->queue($this));
+        if ($afterCommit) {
+            DB::afterCommit(fn () => app(Factory::class)->queue($this));
+        } else {
+            app(Factory::class)->queue($this);
+        }
     }
 }
