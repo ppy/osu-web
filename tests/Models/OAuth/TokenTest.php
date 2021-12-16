@@ -189,7 +189,7 @@ class TokenTest extends TestCase
 
         $this->assertTrue($refreshToken->fresh()->revoked);
         $this->assertTrue($token->fresh()->revoked);
-        Event::assertDispatched(UserSessionEvent::class);
+        Event::assertDispatched(UserSessionEvent::class, fn (UserSessionEvent $event) => $event->action === 'logout');
     }
 
     public function authCodeChatWriteRequiresBotGroupDataProvider()
