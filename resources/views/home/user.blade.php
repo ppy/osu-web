@@ -65,7 +65,7 @@
                             'href' => route('support-the-game'),
                             'label' => osu_trans('home.user.buttons.support'),
                             'icon' => 'heart',
-                            'colour' => 'c-green'
+                            'colour' => 'c-pink-darker'
                         ])
                     </div>
 
@@ -74,7 +74,7 @@
                             'href' => route('store.products.index'),
                             'label' => osu_trans('home.user.buttons.store'),
                             'icon' => 'shopping-cart',
-                            'colour' => 'c-pink-darker'
+                            'colour' => 'c-darkorange'
                         ])
                     </div>
                 </div>
