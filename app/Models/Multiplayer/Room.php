@@ -343,7 +343,7 @@ class Room extends Model
             'user_id' => $owner->getKey(),
         ]);
 
-        $this->setRelation('user', $owner);
+        $this->setRelation('host', $owner);
 
         // TODO: remove category params support (and forcing default type) once client sends type parameter
         if ($this->isRealtime() || $params['category'] === 'realtime') {
@@ -442,14 +442,14 @@ class Room extends Model
 
     private function assertUserRoomAllowance()
     {
-        $query = static::active()->startedBy($this->user);
+        $query = static::active()->startedBy($this->host);
 
         if ($this->isRealtime()) {
             $query->whereIn('type', static::REALTIME_TYPES);
             $max = 1;
         } else {
             $query->where('type', static::PLAYLIST_TYPE);
-            $max = $this->user->maxMultiplayerRooms();
+            $max = $this->host->maxMultiplayerRooms();
         }
 
         if ($query->count() >= $max) {
