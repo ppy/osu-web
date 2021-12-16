@@ -9,8 +9,8 @@ use App\Exceptions\ClassNotFoundException;
 use App\Libraries\ModsHelper;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
+use App\Models\Traits\Scoreable;
 use App\Models\User;
-use App\Traits\Scoreable;
 
 /**
  * @property Beatmap $beatmap

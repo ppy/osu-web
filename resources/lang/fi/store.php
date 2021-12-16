@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Varasto',
-    ],
-
     'cart' => [
         'checkout' => 'Kassa',
         'info' => ':count_delimited tuote ostoskorissa ($:subtotal)|:count_delimited tuotteet ostoskorissa ($:subtotal)',

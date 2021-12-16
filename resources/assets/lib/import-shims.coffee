@@ -13,9 +13,9 @@ import { classWithModifiers } from 'utils/css'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade'
 import { make2x } from 'utils/html'
+import { jsonClone, parseJson, parseJsonNullable, storeJson } from 'utils/json'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
 import { currentUrl } from 'utils/turbolinks'
-import * as OsuUrlHelper from 'utils/url'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -30,7 +30,6 @@ window.Fade =
 window.gallery ?= new Gallery
 
 window._exported = {
-  OsuUrlHelper
   classWithModifiers
   currentUrl
   discussionLinkify
@@ -38,16 +37,11 @@ window._exported = {
   make2x
   pageChange
   pageChangeImmediate
+  parseJson
+  parseJsonNullable
 }
 
 # FIXME: remove once everything imports instead of using global
 window.laroute ?= laroute
-
-# refer to variables.less
-window._styles =
-  header:
-    height: 90 # @nav2-height
-    heightSticky: 50 # @nav2-height--pinned
-    heightMobile: 50 # @navbar-height
 
 window.StoreCheckout = StoreCheckout

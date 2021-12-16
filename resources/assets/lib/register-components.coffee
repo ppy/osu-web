@@ -3,13 +3,12 @@
 
 import Events from 'beatmap-discussions/events'
 import BeatmapsetPanel from 'beatmapset-panel'
-import { BlockButton } from 'block-button'
 import ChatIcon from 'chat-icon'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
+import BlockButton from 'components/block-button'
 import { CountdownTimer } from 'countdown-timer'
 import ForumPostReport from 'forum-post-report'
-import { FriendButton } from 'friend-button'
 import { LandingNews } from 'landing-news'
 import { keyBy } from 'lodash'
 import { observable } from 'mobx'
@@ -31,32 +30,25 @@ import { UserCards } from 'user-cards'
 import { WikiSearch } from 'wiki-search'
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
+import { parseJson, parseJsonNullable } from 'utils/json'
 
 # Globally init countdown timers
 core.reactTurbolinks.register 'countdownTimer', (container) ->
   createElement CountdownTimer, deadline: container.dataset.deadline
 
-# Globally init friend buttons
-core.reactTurbolinks.register 'friendButton', (container) ->
-  createElement FriendButton,
-    container: container
-    userId: parseInt(container.dataset.target)
-
 # Globally init block buttons
 core.reactTurbolinks.register 'blockButton', (container) ->
   createElement BlockButton,
-    container: container
     userId: parseInt(container.dataset.target)
 
 core.reactTurbolinks.register 'beatmap-discussion-events', (container) ->
   props = {
-    events: osu.parseJson('json-events')
+    events: parseJson('json-events')
     mode: 'list'
-    posts: osu.parseJson('json-posts')
   }
 
   # TODO: move to store?
-  users = osu.parseJson('json-users')
+  users = parseJson('json-users')
   props.users = _.keyBy(users, 'id')
   props.users[null] = props.users[undefined] = deletedUser.toJson()
 
@@ -69,10 +61,10 @@ core.reactTurbolinks.register 'beatmapset-panel', (container) ->
 core.reactTurbolinks.register 'forum-post-report', -> createElement(ForumPostReport)
 
 core.reactTurbolinks.register 'spotlight-select-options', ->
-  createElement SpotlightSelectOptions, osu.parseJson('json-spotlight-select-options')
+  createElement SpotlightSelectOptions, parseJson('json-spotlight-select-options')
 
 core.reactTurbolinks.register 'multiplayer-select-options', ->
-  createElement MultiplayerSelectOptions, osu.parseJson('json-multiplayer-select-options')
+  createElement MultiplayerSelectOptions, parseJson('json-multiplayer-select-options')
 
 core.reactTurbolinks.register 'comments', (container) ->
   props = JSON.parse(container.dataset.props)
@@ -98,7 +90,7 @@ core.reactTurbolinks.register 'quick-search-button', ->
 
 core.reactTurbolinks.register 'ranking-filter', (container) ->
   createElement RankingFilter,
-    countries: osu.parseJson 'json-countries'
+    countries: parseJsonNullable 'json-countries'
     gameMode: container.dataset.gameMode
     type: container.dataset.type
     variants: try JSON.parse(container.dataset.variants)
@@ -125,4 +117,4 @@ core.reactTurbolinks.register 'user-cards', (container) ->
 core.reactTurbolinks.register 'wiki-search', -> createElement(WikiSearch)
 
 core.reactTurbolinks.register 'landing-news', ->
-  createElement LandingNews, posts: osu.parseJson('json-posts')
+  createElement LandingNews, posts: parseJson('json-posts')

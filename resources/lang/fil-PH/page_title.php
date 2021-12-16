@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'dashboard',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'dashboard',
             'verify_link' => 'beripikasyon ng account',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'featured artists',
         ],
         'artists_controller' => [
             '_' => 'featured artists',
@@ -133,6 +139,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'ranking',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'panhitulutan ang app',
         ],
     ],
     'store' => [

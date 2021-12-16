@@ -8,8 +8,7 @@ import { observable } from 'mobx';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import ExtraHeader from './extra-header';
-import { BeatmapsetSection } from './extra-page-props';
-import ExtraPageProps from './extra-page-props';
+import ExtraPageProps, { BeatmapsetSection, ProfilePagePaginationData } from './extra-page-props';
 
 const sectionKeys: [BeatmapsetSection, string][] = [
   ['favouriteBeatmapsets', 'favourite'],
@@ -21,6 +20,7 @@ const sectionKeys: [BeatmapsetSection, string][] = [
 
 type Props = {
   counts: Record<BeatmapsetSection, number>;
+  pagination: ProfilePagePaginationData;
 } & {
   [key in BeatmapsetSection]: BeatmapsetExtendedJson[];
 } & ExtraPageProps;
@@ -70,7 +70,7 @@ export default class Beatmapsets extends React.PureComponent<Props> {
                 event='profile:showMore'
                 hasMore={pagination.hasMore}
                 loading={pagination.loading}
-                modifiers={['profile-page', 't-greyseafoam-dark']}
+                modifiers='profile-page'
               />
             </div>
           </div>

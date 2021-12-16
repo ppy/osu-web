@@ -17,8 +17,8 @@ class RoomTest extends TestCase
 {
     public function testStartGameWithBeatmap()
     {
-        $beatmap = factory(Beatmap::class)->create();
-        $user = factory(User::class)->create();
+        $beatmap = Beatmap::factory()->create();
+        $user = User::factory()->create();
 
         $params = [
             'duration' => 60,
@@ -37,8 +37,8 @@ class RoomTest extends TestCase
 
     public function testStartGameWithDeletedBeatmap()
     {
-        $beatmap = factory(Beatmap::class)->create(['deleted_at' => now()]);
-        $user = factory(User::class)->create();
+        $beatmap = Beatmap::factory()->create(['deleted_at' => now()]);
+        $user = User::factory()->create();
 
         $params = [
             'duration' => 60,
@@ -57,7 +57,7 @@ class RoomTest extends TestCase
 
     public function testRoomHasEnded()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $room = factory(Room::class)->states('ended')->create();
         $playlistItem = factory(PlaylistItem::class)->create([
             'room_id' => $room->getKey(),
@@ -69,7 +69,7 @@ class RoomTest extends TestCase
 
     public function testMaxAttemptsReached()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $room = factory(Room::class)->create(['max_attempts' => 2]);
         $playlistItem1 = factory(PlaylistItem::class)->create([
             'room_id' => $room->getKey(),
@@ -90,7 +90,7 @@ class RoomTest extends TestCase
 
     public function testMaxAttemptsForItemReached()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $room = factory(Room::class)->create();
         $playlistItem1 = factory(PlaylistItem::class)->create([
             'room_id' => $room->getKey(),
@@ -116,5 +116,25 @@ class RoomTest extends TestCase
         $initialCount = $room->scores()->count();
         $room->startPlay($user, $playlistItem2);
         $this->assertSame($initialCount + 1, $room->scores()->count());
+    }
+
+    public function testCannotStartPlayedItem()
+    {
+        $beatmap = Beatmap::factory()->create();
+        $user = User::factory()->create();
+
+        $params = [
+            'name' => 'test',
+            'playlist' => [
+                [
+                    'beatmap_id' => $beatmap->getKey(),
+                    'ruleset_id' => $beatmap->playmode,
+                    'played_at' => time(),
+                ],
+            ],
+        ];
+
+        $this->expectException(InvariantException::class);
+        (new Room())->startGame($user, $params);
     }
 }

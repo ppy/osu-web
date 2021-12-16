@@ -30,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Bài hát',
         'count' => ':count bài hát',
-        'original' => 'osu! nguyên bản',
+        'original' => 'osu! original',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => 'độ dài',
         'bpm' => 'bpm',
         'genre' => 'thể loại',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

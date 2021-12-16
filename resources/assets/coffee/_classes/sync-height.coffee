@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @SyncHeight
+class window.SyncHeight
   constructor: ->
     @targets = document.getElementsByClassName('js-sync-height--target')
     @references = document.getElementsByClassName('js-sync-height--reference')

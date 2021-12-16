@@ -4,6 +4,7 @@
 import HeaderV4 from 'header-v4';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import Badges from 'profile-page/badges';
+import Detail from 'profile-page/detail';
 import HeaderInfo from 'profile-page/header-info';
 import headerLinks from 'profile-page/header-links';
 import Links from 'profile-page/links';
@@ -29,6 +30,8 @@ export default class Header extends React.Component<Props> {
             <div className='profile-header__top'>
               <HeaderInfo coverUrl={this.props.user.cover.url} currentMode={this.props.user.playmode} user={this.props.user} />
             </div>
+
+            <Detail type='multiplayer' user={this.props.user} />
             <Badges badges={this.props.user.badges} />
             <Links user={this.props.user} />
           </div>

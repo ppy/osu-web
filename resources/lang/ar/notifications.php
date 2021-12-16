@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'خريطة جديدة ":title" بواسطة :username',
                 'user_beatmapset_new_compact' => 'خريطة جديدة ":title"',
                 'user_beatmapset_new_group' => 'خرائِط جديدة بواسطة :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

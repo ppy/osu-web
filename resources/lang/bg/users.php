@@ -195,7 +195,7 @@ return [
                 'title' => 'Постижения',
             ],
             'beatmaps' => [
-                'by_artist' => 'по :artist',
+                'by_artist' => '- :artist',
                 'title' => 'Бийтмапове',
 
                 'favourite' => [
@@ -302,7 +302,7 @@ return [
                 'title' => 'Медали',
             ],
             'multiplayer' => [
-                'title' => 'Игри в Мултиплейър',
+                'title' => 'Игри в мултиплейър',
             ],
             'posts' => [
                 'title' => 'Публикации',

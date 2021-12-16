@@ -127,6 +127,55 @@ return [
             'previous' => 'вярнуцца на папярэднія 10 допісаў',
         ],
 
+        'logs' => [
+            '_' => '',
+            'button' => 'Пошук па тэмам',
+
+            'columns' => [
+                'action' => 'Дзеянне',
+                'date' => 'Дата',
+                'user' => 'Карыстальнiк',
+            ],
+
+            'data' => [
+                'add_tag' => 'дададзен ":tag" тэг',
+                'announcement' => '',
+                'edit_topic' => 'у :title',
+                'fork' => 'з :topic',
+                'pin' => 'замацаваная тэма',
+                'post_operation' => 'апублікаванна :username',
+                'remove_tag' => 'выдалены ":tag" тэг',
+                'source_forum_operation' => 'з :forum',
+                'unpin' => 'адмацаваная тэма',
+            ],
+
+            'no_results' => 'няма запiсаў...',
+
+            'operations' => [
+                'delete_post' => 'Выдалены допіс',
+                'delete_topic' => 'Выдаленая тэма',
+                'edit_topic' => 'Змененая назва тэмы',
+                'edit_poll' => '',
+                'fork' => 'Скапіяваная тэма',
+                'issue_tag' => 'Выдадзены тэг',
+                'lock' => 'Закрытая тэма',
+                'merge' => '',
+                'move' => 'Ссунутая тэма',
+                'pin' => 'Замацаваная тэма',
+                'post_edited' => 'Адрэдагаваны допіс',
+                'restore_post' => 'Адноўлены допіс',
+                'restore_topic' => 'Адноўлена тэма',
+                'split_destination' => '',
+                'split_source' => 'Падзяліць запісы',
+                'topic_type' => 'Усталяваць тып тэмы',
+                'topic_type_changed' => '',
+                'unlock' => 'Адкрытая тэма',
+                'unpin' => 'Адманцаваная тэма',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Скасаваць',
             'post' => 'Захаваць',

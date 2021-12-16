@@ -75,7 +75,7 @@ return [
         'months' => ':count hónap|:count hónap',
         'notifications' => ':count_delimited értesítés|:count_delimited értesítések',
         'plus_others' => '+ :count_delimited más!|+ :count_delimited mások!',
-        'post' => ':count_delimited poszt|:count_delimited posztok',
+        'post' => ':count_delimited hozzászólás|:count_delimited hozzászólás',
         'second_short_unit' => 'mp|mp',
         'star_priority' => ':count_delimited: csillag prioritás|:count_delimited csillag prioritások',
         'update' => ':count_delimited frissítés|:count_delimited frissítések',

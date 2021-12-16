@@ -8,10 +8,10 @@ import Mod from 'mod'
 import { PlayDetailMenu } from 'play-detail-menu'
 import * as React from 'react'
 import { a, div, span, tr, td } from 'react-dom-factories'
-import { hasMenu } from 'score-helper'
 import ScoreboardTime from 'scoreboard-time'
 import PpValue from 'scores/pp-value'
 import { classWithModifiers } from 'utils/css'
+import { hasMenu } from 'utils/score-helper'
 
 el = React.createElement
 bn = 'beatmap-scoreboard-table'

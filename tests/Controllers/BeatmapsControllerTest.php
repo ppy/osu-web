@@ -3,12 +3,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class BeatmapsControllerTest extends TestCase
@@ -16,11 +19,74 @@ class BeatmapsControllerTest extends TestCase
     private $user;
     private $beatmap;
 
+    public function testIndexForApi(): void
+    {
+        $beatmap = Beatmap::factory()->create();
+        $beatmapB = Beatmap::factory()->create();
+        $beatmapC = Beatmap::factory()->create();
+        $beatmapC->beatmapset->update(['active' => false]);
+
+        $this->actAsScopedUser(User::factory()->create(), ['*']);
+
+        $this
+            ->get(route('api.beatmaps.index', ['ids' => [$beatmap->getKey(), $beatmapB->getKey(), $beatmapC->getKey()]]))
+            ->assertSuccessful()
+            ->assertJson(fn (AssertableJson $json) =>
+                $json
+                    ->where('beatmaps.0.id', $beatmap->getKey())
+                    ->where('beatmaps.1.id', $beatmapB->getKey())
+                    ->missing('beatmaps.2')
+                    ->etc());
+    }
+
+    public function testIndexForApiMissingParameter(): void
+    {
+        $this->actAsScopedUser(User::factory()->create(), ['*']);
+
+        $this
+            ->get(route('api.beatmaps.index'))
+            ->assertSuccessful();
+    }
+
     public function testInvalidMode()
     {
         $this->json('GET', route('beatmaps.scores', $this->beatmap), [
             'mode' => 'nope',
         ])->assertStatus(404);
+    }
+
+    /**
+     * @dataProvider dataProviderForTestLookupForApi
+     */
+    public function testLookupForApi(string $key, callable $valueFn): void
+    {
+        $beatmap = Beatmap::factory()->create();
+
+        $this->actAsScopedUser(User::factory()->create(), ['*']);
+
+        $this
+            ->get(route('api.beatmaps.lookup', [$key => $valueFn($beatmap)]))
+            ->assertSuccessful()
+            ->assertJsonPath('id', $beatmap->getKey());
+    }
+
+    /**
+     * Make sure the lookup stops when finding beatmap from one of the parameters
+     */
+    public function testLookupMultipleParamsForApi(): void
+    {
+        $beatmap = Beatmap::factory()->create();
+
+        $this->actAsScopedUser(User::factory()->create(), ['*']);
+
+        $this
+            ->get(route('api.beatmaps.lookup', [
+                'checksum' => '',
+                'id' => (string) $beatmap->getKey(),
+                'filename' => '',
+            ]))
+            ->assertSuccessful()
+            ->assertJsonPath('id', $beatmap->getKey());
     }
 
     /**
@@ -57,12 +123,24 @@ class BeatmapsControllerTest extends TestCase
             ])->assertStatus(200);
     }
 
+    public function testShowForApi()
+    {
+        $beatmap = Beatmap::factory()->create();
+
+        $this->actAsScopedUser(User::factory()->create(), ['*']);
+
+        $this
+            ->get(route('api.beatmaps.show', ['beatmap' => $beatmap->getKey()]))
+            ->assertSuccessful()
+            ->assertJsonPath('id', $beatmap->getKey());
+    }
+
     public function testUpdateOwner(): void
     {
-        $otherUser = factory(User::class)->create();
-        $beatmapset = factory(Beatmapset::class)->create([
+        $otherUser = User::factory()->create();
+        $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES['pending'],
-            'user_id' => $this->user->getKey(),
+            'user_id' => $this->user,
         ]);
         $this->beatmap->update([
             'beatmapset_id' => $beatmapset->getKey(),
@@ -82,10 +160,10 @@ class BeatmapsControllerTest extends TestCase
 
     public function testUpdateOwnerInvalidState(): void
     {
-        $otherUser = factory(User::class)->create();
-        $beatmapset = factory(Beatmapset::class)->create([
+        $otherUser = User::factory()->create();
+        $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES['qualified'],
-            'user_id' => $this->user->getKey(),
+            'user_id' => $this->user,
         ]);
         $this->beatmap->update([
             'beatmapset_id' => $beatmapset->getKey(),
@@ -105,9 +183,9 @@ class BeatmapsControllerTest extends TestCase
 
     public function testUpdateOwnerInvalidUser(): void
     {
-        $beatmapset = factory(Beatmapset::class)->create([
+        $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES['pending'],
-            'user_id' => $this->user->getKey(),
+            'user_id' => $this->user,
         ]);
         $this->beatmap->update([
             'beatmapset_id' => $beatmapset->getKey(),
@@ -127,8 +205,8 @@ class BeatmapsControllerTest extends TestCase
 
     public function testUpdateOwnerNotOwner(): void
     {
-        $otherUser = factory(User::class)->create();
-        $beatmapset = factory(Beatmapset::class)->create(['user_id' => $this->user->getKey()]);
+        $otherUser = User::factory()->create();
+        $beatmapset = Beatmapset::factory()->create(['user_id' => $this->user]);
         $this->beatmap->update([
             'beatmapset_id' => $beatmapset->getKey(),
             'user_id' => $this->user->getKey(),
@@ -147,9 +225,9 @@ class BeatmapsControllerTest extends TestCase
 
     public function testUpdateOwnerSameOwner(): void
     {
-        $beatmapset = factory(Beatmapset::class)->create([
+        $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES['pending'],
-            'user_id' => $this->user->getKey(),
+            'user_id' => $this->user,
         ]);
         $this->beatmap->update([
             'beatmapset_id' => $beatmapset->getKey(),
@@ -167,11 +245,20 @@ class BeatmapsControllerTest extends TestCase
         $this->assertSame($beatmapsetEventCount, BeatmapsetEvent::count());
     }
 
+    public function dataProviderForTestLookupForApi(): array
+    {
+        return [
+            'checksum' => ['checksum', fn (Beatmap $b) => $b->checksum],
+            'filename' => ['filename', fn (Beatmap $b) => $b->filename],
+            'id' => ['id', fn (Beatmap $b) => $b->getKey()],
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
-        $this->beatmap = factory(Beatmap::class)->states('approved')->create();
+        $this->user = User::factory()->create();
+        $this->beatmap = Beatmap::factory()->qualified()->create();
     }
 }

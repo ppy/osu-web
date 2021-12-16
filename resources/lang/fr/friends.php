@@ -10,6 +10,6 @@ return [
     'buttons' => [
         'add' => 'ajouter aux amis',
         'disabled' => 'abonnés',
-        'remove' => 'supprimer des amis',
+        'remove' => 'retirer des amis',
     ],
 ];

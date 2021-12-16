@@ -4,13 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Warenhuis',
-    ],
-
     'cart' => [
         'checkout' => 'Afrekenen',
-        'info' => ':count_delimited item in winkelwagen ($:subtotal)##:count_delimited items in winkelwagen ($:subtotal)',
+        'info' => ':count_delimited artikel in winkelwagen ($:subtotal)|:count_delimited artikels in winkelwagen ($:subtotal)',
         'more_goodies' => 'Ik wil meer goodies bekijken voordat ik de bestelling voltooi',
         'shipping_fees' => 'verzendkosten',
         'title' => 'Winkelwagen',

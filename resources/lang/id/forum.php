@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'pinned_topics' => 'Topik yang Disematkan',
+    'pinned_topics' => 'Topik-Topik yang Disematkan',
     'slogan' => "Bermain sendiri itu berbahaya.",
     'subforums' => 'Subforum',
     'title' => 'Forum',
@@ -53,7 +53,7 @@ return [
             'destroy' => 'Hapus Kiriman',
             'edit' => 'Sunting post',
             'report' => 'Laporkan post',
-            'restore' => 'Kembalikan post',
+            'restore' => 'Pulihkan post',
         ],
 
         'create' => [
@@ -63,27 +63,27 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count_delimited postingan',
+            'post_count' => ':count_delimited postingan|:count_delimited postingan',
             'topic_starter' => 'Pembuka Topik',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Pergi ke post',
+        'go_to_post' => 'Tuju post',
         'post_number_input' => 'masukkan nomor post',
-        'total_posts' => ':posts_count post total',
+        'total_posts' => ':posts_count total postingan',
     ],
 
     'topic' => [
         'confirm_destroy' => 'Apakah Anda yakin untuk menghapus topik ini?',
         'confirm_restore' => 'Apakah Anda yakin untuk mengembalikan topik ini?',
         'deleted' => 'topik yang dihapus',
-        'go_to_latest' => 'lihat posting terbaru',
+        'go_to_latest' => 'lihat postingan terbaru',
         'has_replied' => 'Anda telah mengirimkan balasan pada topik ini',
         'in_forum' => 'pada forum :forum',
         'latest_post' => ':when oleh :user',
         'latest_reply_by' => 'balasan terbaru oleh :user',
-        'new_topic' => 'Post topik baru',
+        'new_topic' => 'Topik baru',
         'new_topic_login' => 'Silakan masuk untuk membuat topik baru',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Ketik di sini untuk membalas',
@@ -109,7 +109,7 @@ return [
 
                 'new_topic' => [
                     '_' => "Topik ini sudah tidak aktif untuk beberapa waktu. Jika Anda tidak memiliki alasan khusus untuk memposting di sini, silakan :create saja.",
-                    'create' => 'post topik baru',
+                    'create' => 'buat topik baru',
                 ],
             ],
 
@@ -121,10 +121,59 @@ return [
 
         'jump' => [
             'enter' => 'klik untuk memasukkan nomor tertentu',
-            'first' => 'pergi ke post pertama',
-            'last' => 'pergi ke post terakhir',
-            'next' => 'lewati 10 post berikutnya',
-            'previous' => 'tuju 10 post terdahulu',
+            'first' => 'tuju postingan pertama',
+            'last' => 'tuju postingan terakhir',
+            'next' => 'lewati 10 postingan berikutnya',
+            'previous' => 'tuju 10 postingan sebelumnya',
+        ],
+
+        'logs' => [
+            '_' => 'Log topik',
+            'button' => 'Telusuri log topik',
+
+            'columns' => [
+                'action' => 'Tindakan',
+                'date' => 'Tanggal',
+                'user' => 'Pengguna',
+            ],
+
+            'data' => [
+                'add_tag' => 'tag ":tag" disematkan',
+                'announcement' => 'topik disematkan dan ditandai sebagai pengumuman',
+                'edit_topic' => 'menuju :title',
+                'fork' => 'dari :topic',
+                'pin' => 'topik yang disematkan',
+                'post_operation' => 'di-post oleh :username',
+                'remove_tag' => 'tag ":tag" dihapus',
+                'source_forum_operation' => 'dari :forum',
+                'unpin' => 'topik yang tidak disematkan',
+            ],
+
+            'no_results' => 'tidak ada rekaman aktivitas yang tercatat...',
+
+            'operations' => [
+                'delete_post' => 'Postingan dihapus',
+                'delete_topic' => 'Topik dihapus',
+                'edit_topic' => 'Judul topik diubah',
+                'edit_poll' => 'Jajak pendapat topik disunting',
+                'fork' => 'Topik disalin',
+                'issue_tag' => 'Tag disematkan',
+                'lock' => 'Topik dikunci',
+                'merge' => 'Postingan-postingan digabungkan ke dalam topik ini',
+                'move' => 'Topik dipindahkan',
+                'pin' => 'Topik disematkan',
+                'post_edited' => 'Postingan disunting',
+                'restore_post' => 'Postingan dipulihkan',
+                'restore_topic' => 'Topik dipulihkan',
+                'split_destination' => 'Postingan-postingan yang telah dipisah dipindahkan',
+                'split_source' => 'Pisahkan post-post yang ada',
+                'topic_type' => 'Tentukan tipe topik',
+                'topic_type_changed' => 'Tipe topik diubah',
+                'unlock' => 'Kunci topik dibuka',
+                'unpin' => 'Sematan topik dilepas',
+                'user_lock' => 'Topik milik sendiri dikunci',
+                'user_unlock' => 'Kunci topik milik sendiri dibuka',
+            ],
         ],
 
         'post_edit' => [
@@ -162,7 +211,7 @@ return [
         'actions' => [
             'login_reply' => 'Masuk untuk Membalas',
             'reply' => 'Balas',
-            'reply_with_quote' => 'Kutip posting untuk balasan',
+            'reply_with_quote' => 'Kutip isi pesan sebagai bahan balasan',
             'search' => 'Cari',
         ],
 
@@ -203,45 +252,45 @@ return [
         ],
 
         'issue_tag_added' => [
-            'to_0' => 'Hapus tanda "tertambahkan"',
-            'to_0_done' => 'Tanda "tertambahkan" telah dihapus',
-            'to_1' => 'Tambahkan tanda "tertambahkan"',
-            'to_1_done' => 'Tanda "tertambahkan" telah ditambahkan',
+            'to_0' => 'Hapus tag "added"',
+            'to_0_done' => 'Tag "added" telah dihapus',
+            'to_1' => 'Sematkan tag "added"',
+            'to_1_done' => 'Tag "added" telah disematkan',
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => 'Hapus tanda "tertentukan"',
-            'to_0_done' => 'Tanda "tertentukan" telah dihapus',
-            'to_1' => 'Tambahkan tanda "tertentukan"',
-            'to_1_done' => 'Tanda "tertentukan" telah ditambahkan',
+            'to_0' => 'Hapus tag "assigned"',
+            'to_0_done' => 'Tag "assigned" telah dihapus',
+            'to_1' => 'Sematkan tag "assigned"',
+            'to_1_done' => 'Tag "assigned" telah disematkan',
         ],
 
         'issue_tag_confirmed' => [
-            'to_0' => 'Hapus tanda "terkonfirmasi"',
-            'to_0_done' => 'Tanda "terkonfirmasi" telah dihapus',
-            'to_1' => 'Tambahkan tanda "terkonfirmasi"',
-            'to_1_done' => 'Tanda "terkonfirmasi" telah ditambahkan',
+            'to_0' => 'Hapus tag "confirmed"',
+            'to_0_done' => 'Tag "confirmed" telah dihapus',
+            'to_1' => 'Sematkan tag "confirmed"',
+            'to_1_done' => 'Tag "confirmed" telah disematkan',
         ],
 
         'issue_tag_duplicate' => [
-            'to_0' => 'Hapus tanda "terselesaikan"',
-            'to_0_done' => 'Tanda "terselesaikan" telah dihapus',
-            'to_1' => 'Tambahkan tanda "terselesaikan"',
-            'to_1_done' => 'Tanda "terselesaikan" telah ditambahkan',
+            'to_0' => 'Hapus tag "duplicate"',
+            'to_0_done' => 'Tag "duplilcate" telah dihapus',
+            'to_1' => 'Sematkan tag "duplicate"',
+            'to_1_done' => 'Tag "duplicate" telah disematkan',
         ],
 
         'issue_tag_invalid' => [
-            'to_0' => 'Hapus tanda "tidak valid"',
-            'to_0_done' => 'Tanda "tidak valid" telah dihapus',
-            'to_1' => 'Tambahkan tanda "tidak valid"',
-            'to_1_done' => 'Tanda "tidak valid" telah ditambahkan',
+            'to_0' => 'Hapus tag "invalid"',
+            'to_0_done' => 'Tag "invalid" telah dihapus',
+            'to_1' => 'Sematkan tag "invalid"',
+            'to_1_done' => 'Tag "invalid" telah disematkan',
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => 'Hapus tanda "terselesaikan"',
-            'to_0_done' => 'Tanda "terselesaikan" telah dihapus',
-            'to_1' => 'Tambahkan tanda "terselesaikan"',
-            'to_1_done' => 'Tanda "terselesaikan" telah ditambahkan',
+            'to_0' => 'Hapus tag "resolved"',
+            'to_0_done' => 'Tag "resolved" telah dihapus',
+            'to_1' => 'Sematkan tag "resolved"',
+            'to_1_done' => 'Tag "resolved" telah disematkan',
         ],
 
         'lock' => [

@@ -32,13 +32,11 @@ export class Events extends React.PureComponent
                   key: "date-#{lastCreatedAtString}"
                   className: 'beatmapset-events__title'
                   lastCreatedAtString
-              div
+              el Event,
                 key: event.id
-                className: 'beatmapset-events__event'
-                el Event,
-                  event: event
-                  discussions: @props.discussions
-                  mode: 'discussions'
-                  time: event.created_at
-                  users: @props.users
+                event: event
+                discussions: @props.discussions
+                mode: 'discussions'
+                time: event.created_at
+                users: @props.users
             ]

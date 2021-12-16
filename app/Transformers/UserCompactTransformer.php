@@ -36,6 +36,7 @@ class UserCompactTransformer extends TransformerAbstract
         'comments_count',
         'follower_count',
         'groups',
+        'mapping_follower_count',
         'previous_usernames',
         'support_level',
     ];
@@ -201,14 +202,6 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->profileBeatmapsetsFavourite()->count());
     }
 
-    public function includeFriends(User $user)
-    {
-        return $this->collection(
-            $user->relations()->friends()->withMutual()->get(),
-            new UserRelationTransformer()
-        );
-    }
-
     public function includeFollowUserMapping(User $user)
     {
         return $this->primitive(
@@ -222,6 +215,14 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeFollowerCount(User $user)
     {
         return $this->primitive($user->followerCount());
+    }
+
+    public function includeFriends(User $user)
+    {
+        return $this->collection(
+            $user->relations()->friends()->withMutual()->get(),
+            new UserRelationTransformer()
+        );
     }
 
     public function includeGraveyardBeatmapsetCount(User $user)
@@ -299,16 +300,14 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includePage(User $user)
     {
-        return $this->item($user, function ($user) {
-            if ($user->userPage !== null) {
-                return [
+        return $this->primitive(
+            $user->userPage === null
+                ? ['html' => '', 'raw' => '']
+                : [
                     'html' => $user->userPage->bodyHTML(['modifiers' => ['profile-page']]),
                     'raw' => $user->userPage->bodyRaw,
-                ];
-            } else {
-                return ['html' => '', 'raw' => ''];
-            }
-        });
+                ]
+        );
     }
 
     public function includePendingBeatmapsetCount(User $user)
@@ -321,16 +320,6 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->previousUsernames()->unique()->values()->toArray());
     }
 
-    public function includeRankedAndApprovedBeatmapsetCount(User $user)
-    {
-        return $this->includeRankedBeatmapsetCount($user);
-    }
-
-    public function includeRankedBeatmapsetCount(User $user)
-    {
-        return $this->primitive($user->profileBeatmapsetsRanked()->count());
-    }
-
     public function includeRankHistory(User $user)
     {
         $rankHistoryData = $user->rankHistories()
@@ -341,6 +330,16 @@ class UserCompactTransformer extends TransformerAbstract
         return $rankHistoryData === null
             ? $this->primitive(null)
             : $this->item($rankHistoryData, new RankHistoryTransformer());
+    }
+
+    public function includeRankedAndApprovedBeatmapsetCount(User $user)
+    {
+        return $this->includeRankedBeatmapsetCount($user);
+    }
+
+    public function includeRankedBeatmapsetCount(User $user)
+    {
+        return $this->primitive($user->profileBeatmapsetsRanked()->count());
     }
 
     public function includeReplaysWatchedCounts(User $user)

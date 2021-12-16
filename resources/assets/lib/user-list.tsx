@@ -3,7 +3,6 @@
 
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
-import * as _ from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -12,6 +11,7 @@ import { ViewMode, viewModes } from 'user-card';
 import { UserCards } from 'user-cards';
 import { classWithModifiers } from 'utils/css';
 import { currentUrlParams } from 'utils/turbolinks';
+import { updateQueryString } from 'utils/url';
 
 export type Filter = 'all' | 'online' | 'offline';
 type PlayModeFilter = 'all' | GameMode;
@@ -111,7 +111,7 @@ export class UserList extends React.PureComponent<Props> {
 
   handleSortChange = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
-    const url = osu.updateQueryString(null, { sort: value });
+    const url = updateQueryString(null, { sort: value });
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ sortMode: value }, () => {
@@ -121,7 +121,7 @@ export class UserList extends React.PureComponent<Props> {
 
   onViewSelected = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
-    const url = osu.updateQueryString(null, { view: value });
+    const url = updateQueryString(null, { view: value });
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ viewMode: value }, () => {
@@ -132,7 +132,7 @@ export class UserList extends React.PureComponent<Props> {
   optionSelected = (event: React.SyntheticEvent) => {
     event.preventDefault();
     const key = (event.currentTarget as HTMLElement).dataset.key;
-    const url = osu.updateQueryString(null, { filter: key });
+    const url = updateQueryString(null, { filter: key });
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ filter: key }, () => {
@@ -142,7 +142,7 @@ export class UserList extends React.PureComponent<Props> {
 
   playmodeSelected = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
-    const url = osu.updateQueryString(null, { mode: value });
+    const url = updateQueryString(null, { mode: value });
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ playMode: value });
@@ -193,7 +193,7 @@ export class UserList extends React.PureComponent<Props> {
         key={key}
         className={className}
         data-key={key}
-        href={osu.updateQueryString(null, { filter: key })}
+        href={updateQueryString(null, { filter: key })}
         onClick={this.optionSelected}
       >
         <div className='update-streams-v2__bar u-changelog-stream--bg' />

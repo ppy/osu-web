@@ -19,7 +19,6 @@ return [
             'contest' => 'مسابقة',
             'contests' => 'المسابقات',
             'root' => 'وحدة التحكم',
-            'store_orders' => 'مشرف المتجر',
         ],
 
         'artists' => [

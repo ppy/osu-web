@@ -85,7 +85,7 @@ return [
         'latest_reply_by' => 'последно отговори :user',
         'new_topic' => 'Създай нова тема',
         'new_topic_login' => 'Моля, влез в профила си, за публикуване',
-        'post_reply' => 'Публикувай',
+        'post_reply' => 'Публикуване',
         'reply_box_placeholder' => 'Пишете тук да отговорите',
         'reply_title_prefix' => 'Отговор',
         'started_by' => 'от :user',
@@ -102,7 +102,7 @@ return [
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Запиши',
-            'submit' => 'Публикувай',
+            'submit' => 'Публикуване',
 
             'necropost' => [
                 'default' => 'Тази тема е неактивна от известно време. Пишете тук само ако имате конкретна причина.',
@@ -125,6 +125,55 @@ return [
             'last' => 'иди в края',
             'next' => 'напред с 10 съобщения',
             'previous' => 'назад с 10 съобщения',
+        ],
+
+        'logs' => [
+            '_' => 'Дневник на мненията',
+            'button' => 'Дневник на мненията',
+
+            'columns' => [
+                'action' => 'Действие',
+                'date' => 'Дата',
+                'user' => 'Потребител',
+            ],
+
+            'data' => [
+                'add_tag' => 'добави ":tag" етикет',
+                'announcement' => 'закачи тема и я отбеляза като уведомление',
+                'edit_topic' => 'към :title',
+                'fork' => 'от :topic',
+                'pin' => 'закачи тема',
+                'post_operation' => 'публикувано от :username',
+                'remove_tag' => 'премахна ":tag" етикет',
+                'source_forum_operation' => 'от :forum',
+                'unpin' => 'откачи тема',
+            ],
+
+            'no_results' => 'не са открити логове...',
+
+            'operations' => [
+                'delete_post' => 'Изтри мнение',
+                'delete_topic' => 'Изтри тема',
+                'edit_topic' => 'Промени заглавието на тема',
+                'edit_poll' => 'Редактира анкета в тема',
+                'fork' => 'Копира тема',
+                'issue_tag' => 'Постави етикет',
+                'lock' => 'Заключи тема',
+                'merge' => 'Обедини мненията в тема',
+                'move' => 'Премести тема',
+                'pin' => 'Закачи тема',
+                'post_edited' => 'Редактира мнение',
+                'restore_post' => 'Възстанови мнение',
+                'restore_topic' => 'Възстанови тема',
+                'split_destination' => 'Премести разделените мнения',
+                'split_source' => 'Раздели мненията',
+                'topic_type' => 'Зададе вид на тема',
+                'topic_type_changed' => 'Промени вида на тема',
+                'unlock' => 'Отключи тема',
+                'unpin' => 'Откачи тема',
+                'user_lock' => 'Заключи собствена тема',
+                'user_unlock' => 'Отключи собствена тема',
+            ],
         ],
 
         'post_edit' => [
@@ -161,7 +210,7 @@ return [
 
         'actions' => [
             'login_reply' => 'Моля, влез в профила си, за да отговорите',
-            'reply' => 'Отговори',
+            'reply' => 'Отговор',
             'reply_with_quote' => 'Цитирай в отговора',
             'search' => 'Търсене',
         ],
@@ -198,7 +247,7 @@ return [
 
         'index' => [
             'feature_votes' => 'приоритет по звезди',
-            'replies' => 'отговори',
+            'replies' => 'отговор',
             'views' => 'прегледи',
         ],
 

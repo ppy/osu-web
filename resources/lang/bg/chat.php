@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => 'говорите в :channel',
-    'talking_with' => 'в разговор с :name',
+    'talking_in' => 'разговаряте в :channel',
+    'talking_with' => 'разговаряте с :name',
     'title_compact' => 'чат',
 
     'cannot_send' => [
@@ -24,11 +24,12 @@ return [
     ],
     'input' => [
         'disabled' => 'неуспешно изпратено съобщение...',
+        'disconnected' => '',
         'placeholder' => 'напиши своето съобщение...',
-        'send' => 'Изпрати',
+        'send' => 'Изпращане',
     ],
     'no-conversations' => [
-        'howto' => "Започни дискусия с потребител от неговия профил или изкачащ прозорец.",
+        'howto' => "Започни дискусия с потребител от неговия профил или изскачащ прозорец.",
         'lazer' => 'Публичните канали, в които сте се присъединили чрез <a href=":link">osu!lazer</a> ще бъдат видими и тук.',
         'title' => 'няма налични дискусии',
     ],

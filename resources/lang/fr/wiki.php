@@ -6,13 +6,13 @@
 return [
     'show' => [
         'fallback_translation' => 'La page demandée n\'est pas encore traduite dans votre langue (:language). Affichage de la version anglaise.',
-        'incomplete_or_outdated' => 'Le contenu de cette page est incomplet ou obsolète. Si vous êtes en mesure d\'aider, veuillez envisager de mettre à jour l\'article !',
+        'incomplete_or_outdated' => 'Le contenu de cette page est incomplet ou obsolète. Si vous souhaitez aider, veuillez mettre à jour l\'article !',
         'missing' => 'La page demandée ":keyword" n\'a pas été trouvée.',
         'missing_title' => 'Non trouvé',
         'missing_translation' => 'La page demandée n\'a pas pu être trouvée pour la langue sélectionnée actuellement.',
-        'needs_cleanup_or_rewrite' => 'Cette page ne correspond pas aux standards du osu! wiki et doit être nettoyée ou réécrite. Si vous êtes en mesure d\'aider, envisagez de mettre à jour l\'article !',
+        'needs_cleanup_or_rewrite' => 'Cette page ne correspond pas aux standards du wiki osu! et doit être nettoyée ou réécrite. Si vous souhaitez aider, vous pouvez mettre à jour l\'article !',
         'search' => 'Rechercher des pages existantes pour :link.',
-        'stub' => '',
+        'stub' => 'Cet article est incomplet et est en attente de quelqu\'un pour l\'agrandir.',
         'toc' => 'Contenu',
 
         'edit' => [

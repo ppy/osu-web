@@ -16,11 +16,11 @@ return [
     'error' => [
         'error' => [
             '400' => 'permintaan tidak valid',
-            '404' => 'hilang',
+            '404' => 'tidak ditemukan',
             '403' => 'terlarang',
             '401' => 'tidak terotorisir',
             '401-verification' => 'verifikasi akun',
-            '405' => 'hilang',
+            '405' => 'tidak ditemukan',
             '422' => 'permintaan tidak valid',
             '429' => 'terlalu banyak permintaan',
             '500' => 'ada yang rusak',
@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => 'log topik',
+        ],
         'topic_watches_controller' => [
             'index' => 'dasbor',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'dasbor',
             'verify_link' => 'verifikasi akun',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'featured artist',
         ],
         'artists_controller' => [
             '_' => 'featured artist',
@@ -133,6 +139,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'peringkat',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'otorisir aplikasi',
         ],
     ],
     'store' => [

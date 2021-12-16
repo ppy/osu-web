@@ -4,21 +4,19 @@
 import { route } from 'laroute';
 import { each, isEmpty, last, throttle } from 'lodash';
 import { action, computed, makeObservable, observe } from 'mobx';
-import { disposeOnUnmount, inject, observer } from 'mobx-react';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { Spinner } from 'spinner';
-import RootDataStore from 'stores/root-data-store';
 import StringWithComponent from 'string-with-component';
 import UserAvatar from 'user-avatar';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
-interface Props {
-  dataStore?: RootDataStore;
-}
+type Props = Record<string, never>;
 
 interface Snapshot {
   chatHeight: number;
@@ -27,12 +25,9 @@ interface Snapshot {
 
 const blankSnapshot = (): Snapshot => ({ chatHeight: 0, chatTop: 0 });
 
-@inject('dataStore')
 @observer
 export default class ConversationView extends React.Component<Props> {
-  private assumeHasBacklog = false;
   private chatViewRef = React.createRef<HTMLDivElement>();
-  private readonly dataStore: RootDataStore;
   private didSwitchChannel = true;
   private firstMessage?: Message;
   private unreadMarkerRef = React.createRef<HTMLDivElement>();
@@ -50,18 +45,9 @@ export default class ConversationView extends React.Component<Props> {
     each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
       // when messageId is a uuid, comparison will always be false.
-      if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== currentUser.id) {
+      if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== core.currentUser?.id) {
         unreadMarkerShown = true;
-
-        // If the unread marker is the first element in this conversation, it most likely means that the unread cursor
-        // is even further in the past, making the displayed marker somewhat useless (until we can back-load those
-        // past messages in)... thus we ignore it when auto-scrolling and just go to the bottom instead.
-        //
-        // TODO: Actually in hindsight, there's another scenario where the first element in the conversation is an
-        // unread marker - when you receive new PMs and have yet to read any. Will look to handle this case later...
-        if (isEmpty(conversationStack)) {
-          this.assumeHasBacklog = true;
-        }
+        // TODO: handle the case where unread messages are in the backlog
 
         if (!isEmpty(currentGroup)) {
           conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
@@ -100,19 +86,17 @@ export default class ConversationView extends React.Component<Props> {
 
   @computed
   get currentChannel() {
-    return this.dataStore.chatState.selectedChannel;
+    return core.dataStore.chatState.selectedChannel;
   }
 
   constructor(props: Props) {
     super(props);
 
-    this.dataStore = props.dataStore!;
-
     makeObservable(this);
 
     disposeOnUnmount(
       this,
-      observe(this.dataStore.chatState.selectedBoxed, (change) => {
+      observe(core.dataStore.chatState.selectedBoxed, (change) => {
         if (change.newValue !== change.oldValue) {
           this.didSwitchChannel = true;
         }
@@ -122,17 +106,13 @@ export default class ConversationView extends React.Component<Props> {
 
   componentDidMount() {
     this.componentDidUpdate();
-    $(window).on('scroll', throttle(this.onScroll, 1000));
+    $(window).on('scroll.conversation-view', throttle(this.onScroll, 1000));
   }
 
   @action
-  componentDidUpdate(prevProps?: Props, prevState?: Readonly<Record<string, never>>, snapshot?: Snapshot) {
+  componentDidUpdate(prevProps?: Readonly<Props>, prevState?: Readonly<Record<string, never>>, snapshot?: Snapshot) {
     const chatView = this.chatViewRef.current;
-    if (!chatView) {
-      return;
-    }
-
-    if (!this.currentChannel?.loaded) {
+    if (!chatView || !this.currentChannel || this.currentChannel.loadingMessages) {
       return;
     }
 
@@ -145,20 +125,24 @@ export default class ConversationView extends React.Component<Props> {
       this.didSwitchChannel = false;
     } else {
       snapshot = snapshot ?? blankSnapshot();
-      const prepending = this.firstMessage !== this.currentChannel?.firstMessage;
+      const prepending = this.firstMessage !== this.currentChannel.firstMessage;
 
       if (prepending && this.chatViewRef.current != null) {
         const chatEl = this.chatViewRef.current;
         const newHeight = chatEl.scrollHeight;
         chatEl.scrollTo(chatEl.scrollLeft, snapshot.chatTop + (newHeight - snapshot.chatHeight));
       } else {
-        if (this.dataStore.chatState.autoScroll) {
+        if (core.dataStore.chatState.autoScroll) {
           this.scrollToBottom();
         }
       }
     }
 
     this.firstMessage = this.currentChannel.firstMessage;
+  }
+
+  componentWillUnmount() {
+    $(window).off('.conversation-view');
   }
 
   getSnapshotBeforeUpdate() {
@@ -178,48 +162,28 @@ export default class ConversationView extends React.Component<Props> {
       return;
     }
 
-    if (this.currentChannel.type === 'PM' || this.currentChannel.transient) {
-      return (
-        <div>
-          <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.user')}</div>
-          <ul className='chat-conversation__cannot-message-reasons'>
-            <li>{osu.trans('chat.cannot_send.reasons.friends_only')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.target_restricted')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.silenced')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.blocked')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.not_enough_plays')}</li>
-            {/* TODO: missing verification */}
-            <li>{osu.trans('chat.cannot_send.reasons.not_verified')}</li>
-          </ul>
+    const message = this.currentChannel.type === 'PM' ? osu.trans('chat.cannot_send.user') : osu.trans('chat.cannot_send.channel');
+
+    return (
+      <div>
+        <div className='chat-conversation__cannot-message'>
+          {message}
+          {' '}
+          {this.currentChannel.canMessageError}
         </div>
-      );
-    } else if (this.currentChannel.type === 'GROUP') {
-      return (
-        <div>
-          <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.channel')}</div>
-          <ul className='chat-conversation__cannot-message-reasons'>
-            <li>{osu.trans('chat.cannot_send.reasons.channel_moderated')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.silenced')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.not_enough_plays')}</li>
-            <li>{osu.trans('chat.cannot_send.reasons.not_verified')}</li>
-          </ul>
-        </div>
-      );
-    }
+      </div>
+    );
   }
 
   onScroll = () => {
     const chatView = this.chatViewRef.current;
     if (chatView) {
-      this.dataStore.chatState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
+      core.dataStore.chatState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
     }
   };
 
   render(): React.ReactNode {
     const channel = this.currentChannel;
-    this.assumeHasBacklog = false;
 
     if (channel == null || !channel.isDisplayable) {
       return <div className='chat-conversation' />;
@@ -254,16 +218,14 @@ export default class ConversationView extends React.Component<Props> {
             {channel.description}
           </div>
         }
-        {!channel.loading &&
-          <ShowMoreLink
-            callback={this.loadEarlierMessages}
-            direction={'up'}
-            hasMore={channel.hasEarlierMessages}
-            loading={channel.loadingEarlierMessages}
-            modifiers={['chat-conversation-earlier-messages']}
-          />
-        }
-        {channel.loading &&
+        <ShowMoreLink
+          callback={this.loadEarlierMessages}
+          direction='up'
+          hasMore={channel.hasEarlierMessages}
+          loading={channel.loadingEarlierMessages}
+          modifiers='chat-conversation-earlier-messages'
+        />
+        {channel.loadingMessages &&
           <div className='chat-conversation__day-divider'>
             <Spinner />
           </div>
@@ -286,16 +248,12 @@ export default class ConversationView extends React.Component<Props> {
   scrollToUnread = (): void => {
     const chatView = this.chatViewRef.current;
     if (chatView && this.unreadMarkerRef.current) {
-      if (this.assumeHasBacklog) {
-        this.scrollToBottom();
-      } else {
-        $(chatView).scrollTop(this.unreadMarkerRef.current.offsetTop);
-      }
+      $(chatView).scrollTop(this.unreadMarkerRef.current.offsetTop);
     }
   };
 
   private loadEarlierMessages = () => {
     if (this.currentChannel == null) return;
-    this.dataStore.channelStore.loadChannelEarlierMessages(this.currentChannel.channelId);
+    core.dataStore.channelStore.loadChannelEarlierMessages(this.currentChannel.channelId);
   };
 }

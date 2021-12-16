@@ -1,12 +1,13 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-@polyfills ?= new Polyfills
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+
+window.polyfills ?= new Polyfills
 
 Turbolinks.start()
 Turbolinks.setProgressBarDelay(0)
 
-Lang.setLocale(@currentLocale)
 moment.relativeTimeThreshold('ss', 44)
 moment.relativeTimeThreshold('s', 120)
 moment.relativeTimeThreshold('m', 120)
@@ -18,11 +19,11 @@ jQuery.timeago.inWords = (distanceMillis) ->
 
 # loading animation overlay
 # fired from turbolinks
-$(document).on 'turbolinks:request-start', LoadingOverlay.show
-$(document).on 'turbolinks:request-end', LoadingOverlay.hide
+$(document).on 'turbolinks:request-start', showLoadingOverlay
+$(document).on 'turbolinks:request-end', hideLoadingOverlay
 # form submission is not covered by turbolinks
 $(document).on 'submit', 'form', (e) ->
-  LoadingOverlay.show() if e.currentTarget.dataset.loadingOverlay != '0'
+  showLoadingOverlay() if e.currentTarget.dataset.loadingOverlay != '0'
 
 $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()
@@ -30,44 +31,41 @@ $(document).on 'turbolinks:load', ->
   StoreCheckout.initialize()
 
 # ensure currentUser is updated early enough.
-@currentUserObserver ?= new CurrentUserObserver
-@syncHeight ?= new SyncHeight
-@stickyHeader ?= new StickyHeader
+window.currentUserObserver ?= new CurrentUserObserver
+window.syncHeight ?= new SyncHeight
 
-@accountEdit ?= new AccountEdit
-@accountEditAvatar ?= new AccountEditAvatar
-@accountEditBlocklist ?= new AccountEditBlocklist
-@bbcodePreview ?= new BbcodePreview
-@beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
-@changelogChartLoader ?= new ChangelogChartLoader
-@checkboxValidation ?= new CheckboxValidation
-@fancyGraph ?= new FancyGraph
-@formClear ?= new FormClear
-@formError ?= new FormError
-@formPlaceholderHide ?= new FormPlaceholderHide
-@formToggle ?= new FormToggle
-@forum ?= new Forum
-@forumAutoClick ?= new ForumAutoClick
-@forumCover ?= new ForumCover
-@forumTopicTitle ?= new ForumTopicTitle
-@forumTopicWatchAjax ?= new ForumTopicWatchAjax
-@globalDrag ?= new GlobalDrag
-@landingGraph ?= new LandingGraph
-@menu ?= new Menu
-@navButton ?= new NavButton
-@postPreview ?= new PostPreview
-@scale ?= new Scale
-@search ?= new Search
-@stickyFooter ?= new StickyFooter
-@tooltipBeatmap ?= new TooltipBeatmap
-@tooltipDefault ?= new TooltipDefault
+window.accountEdit ?= new AccountEdit
+window.accountEditAvatar ?= new AccountEditAvatar
+window.accountEditBlocklist ?= new AccountEditBlocklist
+window.bbcodePreview ?= new BbcodePreview
+window.changelogChartLoader ?= new ChangelogChartLoader
+window.checkboxValidation ?= new CheckboxValidation
+window.fancyGraph ?= new FancyGraph
+window.formClear ?= new FormClear
+window.formError ?= new FormError
+window.formPlaceholderHide ?= new FormPlaceholderHide
+window.formToggle ?= new FormToggle
+window.forum ?= new Forum
+window.forumAutoClick ?= new ForumAutoClick
+window.forumCover ?= new ForumCover
+window.forumTopicTitle ?= new ForumTopicTitle
+window.forumTopicWatchAjax ?= new ForumTopicWatchAjax
+window.globalDrag ?= new GlobalDrag
+window.landingGraph ?= new LandingGraph
+window.menu ?= new Menu
+window.navButton ?= new NavButton
+window.postPreview ?= new PostPreview
+window.search ?= new Search
+window.stickyFooter ?= new StickyFooter
+window.tooltipBeatmap ?= new TooltipBeatmap
+window.tooltipDefault ?= new TooltipDefault
 
-@formConfirmation ?= new FormConfirmation(@formError)
-@forumPostsSeek ?= new ForumPostsSeek(@forum)
-@forumTopicPostJump ?= new ForumTopicPostJump(@forum)
-@forumTopicReply ?= new ForumTopicReply({ @bbcodePreview, @forum, @stickyFooter })
-@nav2 ?= new Nav2(osuCore.clickMenu)
-@twitchPlayer ?= new TwitchPlayer(osuCore.turbolinksReload)
+window.formConfirmation ?= new FormConfirmation(window.formError)
+window.forumPostsSeek ?= new ForumPostsSeek(window.forum)
+window.forumTopicPostJump ?= new ForumTopicPostJump(window.forum)
+window.forumTopicReply ?= new ForumTopicReply(bbcodePreview: window.bbcodePreview, forum: window.forum, stickyFooter: window.stickyFooter)
+window.nav2 ?= new Nav2(osuCore.clickMenu)
+window.twitchPlayer ?= new TwitchPlayer(osuCore.turbolinksReload)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->

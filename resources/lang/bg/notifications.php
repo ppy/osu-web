@@ -10,7 +10,7 @@ return [
     'mark_read' => 'Изчисти :type',
     'none' => 'Няма известия',
     'see_all' => 'виж всички известия',
-    'see_channel' => 'иди в чат',
+    'see_channel' => 'към чат',
     'verifying' => 'Моля, потвърдете сесията, за преглед на известия',
 
     'filters' => [
@@ -19,7 +19,7 @@ return [
         'beatmapset' => 'бийтмапове',
         'forum_topic' => 'форум',
         'news_post' => 'новини',
-        'build' => 'версии',
+        'build' => 'промени',
         'channel' => 'чат',
     ],
 
@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'Нов бийтмап ":title" от :username',
                 'user_beatmapset_new_compact' => 'Нов бийтмап ":title"',
                 'user_beatmapset_new_group' => 'Нов бийтмап от :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

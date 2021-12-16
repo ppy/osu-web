@@ -4,17 +4,17 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => '',
+    'empty' => 'Uživatel zatím nehrál žádné multiplayer osu!(lazer) hry!',
 
     'room' => [
         'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'invalid_password' => 'Nesprávné heslo místnosti',
+        'map_count' => ':count_delimited mapa|:count_delimited mapy|:count_delimited map',
+        'player_count' => ':count_delimited hráč|:count_delimited hráči|:count_delimited hráčů',
+        'time_left' => ':time zbývá',
 
         'status' => [
-            'active' => '',
+            'active' => 'aktivní',
             'ended' => '',
             'soon' => '',
         ],

@@ -5,13 +5,13 @@ import AdminMenu from 'admin-menu';
 import PostJson from 'interfaces/news-post-json';
 import NewsSidebarMetaJson from 'interfaces/news-sidebar-meta-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import NewsHeader from 'news-header';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
+import { jsonClone } from 'utils/json';
 import PostItem from './post-item';
 
 interface NewsSearch {
@@ -33,7 +33,7 @@ interface Props {
 
 @observer
 export default class Main extends React.Component<Props> {
-  @observable private data = osu.jsonClone(this.props.data);
+  @observable private data = jsonClone(this.props.data);
   @observable private loadingXhr?: JQuery.jqXHR | null = null;
 
   constructor(props: Props) {
@@ -61,7 +61,7 @@ export default class Main extends React.Component<Props> {
 
             <div className='wiki-page__content'>
               <div className='news-index'>
-                {this.data.news_posts.map((post, i) => (
+                {this.data.news_posts.map((post) => (
                   <PostItem key={post.id} post={post} />
                 ))}
 

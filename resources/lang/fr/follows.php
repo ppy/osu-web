@@ -24,7 +24,7 @@ return [
     ],
 
     'mapping' => [
-        'empty' => 'Pas de mappers suivis.',
+        'empty' => 'Pas de mappeurs suivis.',
         'followers' => 'abonnés au mapping',
         'page_title' => 'liste de suivi du mappeur',
         'title' => 'mappeur',

@@ -2,9 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderLink from 'interfaces/header-link';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { classWithModifiers } from 'utils/css';
+import { parseJson } from 'utils/json';
 
 interface Props {
   backgroundImage?: string | null;
@@ -32,14 +34,11 @@ export default class HeaderV4 extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    let classNames = 'header-v4';
-    if (this.props.theme) {
-      classNames += ` header-v4--${this.props.theme}`;
-    }
-
-    if (currentUser.is_restricted) {
-      classNames += ' header-v4--restricted';
-    }
+    const classNames = classWithModifiers(
+      'header-v4',
+      osu.presence(this.props.theme),
+      { restricted: core.currentUser?.is_restricted ?? false },
+    );
 
     return (
       <div className={classNames}>
@@ -180,19 +179,17 @@ export default class HeaderV4 extends React.Component<Props> {
   }
 
   private title() {
-    const routeSection: RouteSection | null = osu.parseJson('json-route-section');
+    const routeSection = parseJson<RouteSection>('json-route-section');
 
-    if (routeSection != null) {
-      const keys = [
-        `page_title.${routeSection.namespace}.${routeSection.controller}.${routeSection.action}`,
-        `page_title.${routeSection.namespace}.${routeSection.controller}._`,
-        `page_title.${routeSection.namespace}._`,
-      ];
+    const keys = [
+      `page_title.${routeSection.namespace}.${routeSection.controller}.${routeSection.action}`,
+      `page_title.${routeSection.namespace}.${routeSection.controller}._`,
+      `page_title.${routeSection.namespace}._`,
+    ];
 
-      for (const key of keys) {
-        if (osu.transExists(key, fallbackLocale)) {
-          return osu.trans(key);
-        }
+    for (const key of keys) {
+      if (osu.transExists(key, fallbackLocale)) {
+        return osu.trans(key);
       }
     }
 

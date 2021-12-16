@@ -97,7 +97,7 @@ return [
         ],
 
         'build' => [
-            '_' => 'Спic змен',
+            '_' => 'Гісторыя змен',
 
             'comment' => [
                 '_' => 'Новы каментарый',
@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'Новая бітмапа ":title" ад :username',
                 'user_beatmapset_new_compact' => 'Новая бітмапа ":title"',
                 'user_beatmapset_new_group' => 'Новая бітмапа ад :username',
+
+                'user_beatmapset_revive' => 'Бітмапа ":title" адноўлена :username',
+                'user_beatmapset_revive_compact' => 'Бітмапа ":title" адноўлена',
             ],
         ],
 
@@ -202,7 +205,7 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => 'Журнал зменаў ":title" мае новыя каментарыі',
+                'comment_new' => 'Гісторыя зменаў ":title" мае новыя каментарыі',
             ],
         ],
 

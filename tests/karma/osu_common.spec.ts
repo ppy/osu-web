@@ -7,7 +7,7 @@ import * as React from 'react';
 describe('osu_common', () => {
   describe('locale file loaded in test runner', () => {
     it('should be loaded', () => {
-      expect(Lang.has('common.confirmation')).toBe(true);
+      expect(window.Lang.has('common.confirmation')).toBe(true);
     });
   });
 
@@ -39,52 +39,6 @@ describe('osu_common', () => {
       expect(osu.groupColour()).toEqual({
         '--group-colour': 'initial',
       } as React.CSSProperties);
-    });
-  });
-
-  describe('jsonClone', () => {
-    it('clone object with different reference', () => {
-      const obj = { test: '1234' };
-      const result = osu.jsonClone(obj);
-
-      expect(result).toEqual(obj);
-      expect(result).not.toBe(obj);
-    });
-
-    it('clone nested object with different reference', () => {
-      const obj = { test: { inner: '1234' } };
-      const result = osu.jsonClone(obj);
-
-      expect(result.test).toEqual(obj.test);
-      expect(result.test).not.toBe(obj.test);
-    });
-
-    it('clone null', () => {
-      expect(osu.jsonClone(null)).toBe(null);
-    });
-
-    it('clone undefined', () => {
-      expect(osu.jsonClone(undefined)).toBe(undefined);
-    });
-  });
-
-  describe('linkify', () => {
-    const textWithLink = 'Please visit https://link.com';
-
-    it('replaces the link with an anchor element', () => {
-      expect(osu.linkify(textWithLink)).toBe(
-        'Please visit <a href="https://link.com" rel="nofollow noreferrer">link.com</a>',
-      );
-    });
-
-    it('replaces the link with an anchor element with target blank', () => {
-      expect(osu.linkify(textWithLink, true)).toBe(
-        'Please visit <a href="https://link.com" rel="nofollow noreferrer" target="_blank">link.com</a>',
-      );
-    });
-
-    it('does not change the string', () => {
-      expect(osu.linkify('plain text')).toBe('plain text');
     });
   });
 
@@ -191,53 +145,6 @@ describe('osu_common', () => {
 
     it('check if translation does not exist', () => {
       expect(osu.transExists('common.this_is_not_existed')).toBe(false);
-    });
-  });
-
-  describe('updateQueryString', () => {
-    it('should add the new parameter to the query string', () => {
-      const params = {
-        foo: 'bar',
-      };
-
-      const expected = new URL('/nowhere?foo=bar', location.origin).href;
-      const result = osu.updateQueryString('/nowhere', params);
-
-      expect(result).toBe(expected);
-    });
-
-    it('should update the existing parameter value', () => {
-      const params = {
-        something: '2',
-      };
-
-      const expected = new URL('/nowhere?something=2', location.origin).href;
-      const result = osu.updateQueryString('/nowhere?something=1', params);
-
-      expect(result).toBe(expected);
-    });
-
-    it('should append the new parameter value', () => {
-      const params = {
-        more: '3',
-      };
-
-      const expected = new URL('/nowhere?something=1&more=3', location.origin).href;
-      const result = osu.updateQueryString('/nowhere?something=1', params);
-
-      expect(result).toBe(expected);
-    });
-
-    it('should update the existing parameter and append the new parameter value', () => {
-      const params = {
-        more: '3',
-        something: '5',
-      };
-
-      const expected = new URL('/nowhere?something=5&more=3', location.origin).href;
-      const result = osu.updateQueryString('/nowhere?something=1', params);
-
-      expect(result).toBe(expected);
     });
   });
 });

@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => ':username 上傳了標題為 “:title” 的新圖譜',
                 'user_beatmapset_new_compact' => '新圖譜 ":title"',
                 'user_beatmapset_new_group' => ':username 上傳了新圖譜',
+
+                'user_beatmapset_revive' => '「:title」圖譜已被 :username 恢復',
+                'user_beatmapset_revive_compact' => '已恢復「:title」圖譜',
             ],
         ],
 

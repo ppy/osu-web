@@ -4,18 +4,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Наразі немає мультиплеєрних ігор osu!(lazer)!',
+    'empty' => 'Наразі немає мультиплеєрних ігор osu!(lazer)! ',
 
     'room' => [
         'hosted_by' => 'власник: :user',
-        'invalid_password' => '',
+        'invalid_password' => 'Неправильний пароль ',
         'map_count' => ':count_delimited мапа|:count_delimited карт',
         'player_count' => ':count_delimited гравець|:count_delimited гравців',
         'time_left' => ':time залишилось',
 
         'status' => [
             'active' => 'активний',
-            'ended' => 'завершено',
+            'ended' => 'закінчино ',
             'soon' => 'скоро закінчується',
         ],
     ],

@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Rytmus je jen o klkání! Spolu s Ouendan/EBA, Taikem, originálními herními módy a plně funkčním level editorem.',
+        'page_description' => 'osu! - Rytmus je na dosah jen jednoho *kliknutí*! Spolu s Ouendan/EBA, Taikem, originálními herními módy a také plně funkčním level editorem.',
     ],
 
     'header' => [
@@ -19,7 +19,6 @@ return [
             'contest' => 'soutěž',
             'contests' => 'soutěže',
             'root' => 'konzole',
-            'store_orders' => '',
         ],
 
         'artists' => [
@@ -27,7 +26,7 @@ return [
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'výpis',
         ],
 
         'help' => [
@@ -70,7 +69,7 @@ return [
         ],
         'help' => [
             '_' => 'nápověda',
-            'getAbuse' => '',
+            'getAbuse' => 'nahlásit zneužití',
             'getFaq' => 'časté dotazy',
             'getRules' => 'pravidla',
             'getSupport' => 'ne, vážně, potřebuji pomoc!',
@@ -98,7 +97,7 @@ return [
         ],
         'help' => [
             '_' => 'Nápověda & Komunita',
-            'faq' => 'Často kladené dotazy',
+            'faq' => 'Často kladené otázky',
             'forum' => 'Komunitní fóra',
             'livestreams' => 'Živá vysílání',
             'report' => 'Náhlasit chybu',

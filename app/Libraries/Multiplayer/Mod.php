@@ -28,6 +28,7 @@ class Mod
     const RANDOM = 'RD';
     const MIRROR = 'MR';
     const MUTED = 'MU';
+    const NO_SCOPE = 'NS';
 
     // osu-specific
     const OSU_AUTOPILOT = 'AP';
@@ -228,6 +229,12 @@ class Mod
         self::PERFECT => [
             'restart' => 'bool',
         ],
+        self::NO_SCOPE => [
+            'hidden_combo_count' => 'int',
+        ],
+        self::HIDDEN => [
+            'only_fade_approach_circles' => 'bool',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
@@ -301,6 +308,7 @@ class Mod
                         self::RANDOM,
                         self::OSU_APPROACH_DIFFERENT,
                         self::MIRROR,
+                        self::NO_SCOPE,
                     ]
                 ),
 
@@ -317,6 +325,7 @@ class Mod
                     [
                         self::CATCH_FLOATINGFRUIT,
                         self::MIRROR,
+                        self::NO_SCOPE,
                     ]
                 ),
 

@@ -1,5 +1,10 @@
 <?php
 
+$profileScoresNotice = presence(env('USER_PROFILE_SCORES_NOTICE'));
+if ($profileScoresNotice !== null) {
+    $profileScoresNotice = markdown_plain($profileScoresNotice);
+}
+
 // osu config~
 return [
     'achievement' => [
@@ -166,9 +171,6 @@ return [
         'ends_at' => env('SEASONAL_ENDS_AT'),
     ],
 
-    'support' => [
-        'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
-    ],
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
@@ -221,6 +223,7 @@ return [
         'min_plays_for_posting' => get_int(env('USER_MIN_PLAYS_FOR_POSTING')) ?? 10,
         'min_plays_allow_verified_bypass' => get_bool(env('USER_MIN_PLAYS_ALLOW_VERIFIED_BYPASS')) ?? true,
         'post_action_verification' => get_bool(env('USER_POST_ACTION_VERIFICATION')) ?? true,
+        'profile_scores_notice' => $profileScoresNotice,
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,

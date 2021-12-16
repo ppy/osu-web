@@ -7,13 +7,12 @@ return [
     'deleted' => 'odstraněno',
     'deleted_by' => '',
     'deleted_by_system' => '',
-    'deleted_count' => ':count_delimited smazaný komentář
-:count_delimited smazané komentáře',
+    'deleted_count' => ':count_delimited smazaný komentář|:count_delimited smazané komentáře|:count_delimited smazaných komentářů',
     'edited' => 'upraveno před :timeago uživatelem :user',
     'pinned' => 'připnuto',
     'empty' => 'Zatím zde nejsou žádné komentáře.',
     'load_replies' => 'načíst odpovědi',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited odpověď|:count_delimited odpovědi|:count_delimited odpovědí',
     'title' => 'Komentáře',
 
     'commentable_name' => [

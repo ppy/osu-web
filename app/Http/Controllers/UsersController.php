@@ -21,6 +21,7 @@ use App\Models\Log;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
+use App\Transformers\CurrentUserTransformer;
 use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
@@ -167,7 +168,7 @@ class UsersController extends Controller
                 );
             }
 
-            return $registration->user()->fresh()->defaultJson();
+            return json_item($registration->user()->fresh(), new CurrentUserTransformer());
         } catch (ValidationException $e) {
             return response(['form_error' => [
                 'user' => $registration->user()->validationErrors()->all(),
@@ -520,7 +521,6 @@ class UsersController extends Controller
             'favourite_beatmapset_count',
             'graveyard_beatmapset_count',
             'loved_beatmapset_count',
-            'mapping_follower_count',
             'monthly_playcounts',
             'page',
             'pending_beatmapset_count',

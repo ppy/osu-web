@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { FormErrors } from 'form-errors';
-import { action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
@@ -31,6 +31,12 @@ export class ClientDetails extends React.Component<Props, State> {
   };
 
   private errors = new FormErrors();
+
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
+  }
 
   @action
   handleClose = () => {

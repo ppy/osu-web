@@ -15,6 +15,17 @@ return [
     'top' => '熱門',
     'username' => '使用者名稱',
 
+    'artist_tracks' => [
+        'album' => '專輯',
+        'artist' => '演出者',
+        'bpm' => 'BPM',
+        'genre' => '曲風',
+        'length' => '長度',
+        'relevance' => '相關度',
+        'title' => '曲名',
+        'update' => '更新',
+    ],
+
     'forum_posts' => [
         'created' => '發表時間',
         'relevance' => '相關度',

@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => ':username tarafından yeni beatmap ":title"',
                 'user_beatmapset_new_compact' => 'Yeni beatmap ":title"',
                 'user_beatmapset_new_group' => ' :username tarafından yapılmış yeni beatmapler',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

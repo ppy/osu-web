@@ -1,34 +1,42 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
+import { getMessages } from 'chat/chat-api';
+import ChannelJson, { ChannelType, SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
-import * as _ from 'lodash';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { minBy, sortBy } from 'lodash';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import User from 'models/user';
+import core from 'osu-core-singleton';
 import Message from './message';
+
+export const supportedTypeLookup = new Set(supportedChannelTypes) as Set<ChannelType>;
 
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
 
-  @observable canMessage = true;
+  @observable canMessageError: string | null = null;
   @observable channelId: number;
   @observable description?: string;
   @observable firstMessageId = -1;
   @observable icon?: string;
   @observable inputText = '';
   @observable lastReadId?: number;
-  @observable loaded = false;
-  @observable loading = false;
   @observable loadingEarlierMessages = false;
-  @observable messages: Message[] = observable([]);
+  @observable loadingMessages = false;
   @observable name = '';
+  needsRefresh = true;
   @observable newPmChannel = false;
-  newPmChannelTransient = false;
-  @observable type: ChannelType = 'NEW';
+  @observable type: ChannelType = 'TEMPORARY'; // TODO: look at making this support channels only
   @observable users: number[] = [];
 
-  private initialLastMessageId?: number;
+  @observable private messagesMap = new Map<number | string, Message>();
+  private serverLastMessageId?: number;
+
+  @computed
+  get canMessage() {
+    return this.canMessageError == null;
+  }
 
   @computed
   get firstMessage() {
@@ -38,6 +46,11 @@ export default class Channel {
   @computed
   get hasEarlierMessages() {
     return this.firstMessageId !== this.minMessageId;
+  }
+
+  @computed
+  get isDisplayable() {
+    return this.name.length > 0 && this.icon != null;
   }
 
   @computed
@@ -62,12 +75,12 @@ export default class Channel {
       }
     }
 
-    return this.initialLastMessageId ?? -1;
+    return this.serverLastMessageId ?? -1;
   }
 
   @computed
-  get isDisplayable() {
-    return this.name.length > 0 && this.icon != null;
+  get messages() {
+    return sortBy([...this.messagesMap.values()], ['timestamp', 'channelId']);
   }
 
   @computed
@@ -83,12 +96,12 @@ export default class Channel {
       return;
     }
 
-    return this.users.find((userId: number) => userId !== currentUser.id);
+    return this.users.find((userId: number) => userId !== core.currentUserOrFail.id);
   }
 
   @computed
-  get transient() {
-    return this.type === 'NEW';
+  get supportedType() {
+    return supportedTypeLookup.has(this.type) ? this.type as SupportedChannelType : null;
   }
 
   constructor(channelId: number) {
@@ -103,33 +116,89 @@ export default class Channel {
     channel.type = 'PM';
     channel.name = target.username;
     channel.icon = target.avatarUrl;
-    channel.users = [currentUser.id, target.id];
+    channel.users = [core.currentUserOrFail.id, target.id];
 
     return channel;
   }
 
+  /**
+   * For handling messages that come over the socket.
+   * May include relayed messages that are were just sent.
+   */
   @action
-  addMessages(messages: Message[], skipSort = false) {
-    this.messages.push(...messages);
-
-    if (!skipSort) {
-      this.resortMessages();
+  addMessage(json: MessageJson) {
+    if (json.uuid != null && json.sender_id === core.currentUser?.id) {
+      const existing = this.messagesMap.get(json.uuid);
+      if (existing != null) {
+        return this.persistMessage(existing, json);
+      }
     }
+
+    const message = Message.fromJson(json);
+    this.messagesMap.set(message.messageId, message);
+  }
+
+  /**
+   * Batch adding messages from updating channels.
+   */
+  @action
+  addMessages(messages: Message[]) {
+    messages.forEach((message) => this.messagesMap.set(message.messageId, message));
+  }
+
+  @action
+  addSendingMessage(message: Message) {
+    this.messagesMap.set(message.messageId, message);
+    this.markAsRead();
   }
 
   @action
   afterSendMesssage(message: Message, json: MessageJson | null) {
     if (json != null) {
-      message.messageId = json.message_id;
-      message.timestamp = json.timestamp;
-      message.persist();
+      this.persistMessage(message, json);
       this.setLastReadId(json.message_id);
     } else {
       message.errored = true;
       // delay and retry?
     }
+  }
 
-    this.resortMessages();
+  @action
+  load() {
+    // nothing to load
+    if (this.newPmChannel) return;
+
+    this.refreshMessages();
+  }
+
+  @action
+  async loadEarlierMessages() {
+    if (!this.hasEarlierMessages || this.loadingEarlierMessages) {
+      return;
+    }
+
+    this.loadingEarlierMessages = true;
+    let until: number | undefined;
+    // FIXME: nullable id instead?
+    if (this.minMessageId > 0) {
+      until = this.minMessageId;
+    }
+
+    try {
+      const messages = await getMessages(this.channelId, { until });
+
+      runInAction(() => {
+        this.addMessages(messages);
+        if (messages.length === 0) {
+          // assume no more messages.
+          this.firstMessageId = this.minMessageId;
+        }
+      });
+    } finally {
+      runInAction(() => {
+        this.loadingEarlierMessages = false;
+      });
+    }
   }
 
   @action
@@ -139,7 +208,11 @@ export default class Channel {
 
   @action
   removeMessagesFromUserIds(userIds: Set<number>) {
-    this.messages = this.messages.filter((message) => !userIds.has(message.senderId));
+    for (const [, message] of this.messagesMap) {
+      if (userIds.has(message.senderId)) {
+        this.messagesMap.delete(message.messageId);
+      }
+    }
   }
 
   @action
@@ -148,17 +221,8 @@ export default class Channel {
   }
 
   @action
-  unload() {
-    this.messages = observable([]);
-  }
-
-  @action
   updatePresence = (json: ChannelJson) => {
     this.updateWithJson(json);
-    // clear flag otherwise presence updates might not close the channel when closed in a different window.
-    if (this.newPmChannelTransient) {
-      this.newPmChannelTransient = false;
-    }
 
     if (json.current_user_attributes != null) {
       this.setLastReadId(json.current_user_attributes.last_read_id);
@@ -170,19 +234,62 @@ export default class Channel {
     this.name = json.name;
     this.description = json.description;
     this.type = json.type;
-    this.icon = json?.icon ?? Channel.defaultIcon;
+    this.icon = json.icon ?? Channel.defaultIcon;
     this.users = json.users ?? this.users;
 
-    this.initialLastMessageId = json.last_message_id ?? this.lastMessageId;
+    this.serverLastMessageId = json.last_message_id;
 
     if (json.current_user_attributes != null) {
-      this.canMessage = json.current_user_attributes.can_message;
+      this.canMessageError = json.current_user_attributes.can_message_error;
     }
   }
 
   @action
-  private resortMessages() {
-    this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
+  private persistMessage(message: Message, json: MessageJson) {
+    if (json.uuid != null) {
+      this.messagesMap.delete(json.uuid);
+    }
+
+    message.persist(json);
+    this.messagesMap.set(message.messageId, message);
+  }
+
+  @action
+  private async refreshMessages() {
+    if (!this.needsRefresh || this.loadingMessages) return;
+
+    this.loadingMessages = true;
+
+    let since: number | undefined;
+    if (this.messages.length > 0 && this.lastMessageId > 0) {
+      since = this.lastMessageId;
+    }
+
+    try {
+      const messages = await getMessages(this.channelId);
+
+      runInAction(() => {
+        // gap in messages, just clear all messages instead of dealing with the gap.
+        const minMessageId = minBy(messages, 'messageId')?.messageId ?? -1;
+        if (minMessageId > this.lastMessageId) {
+          // TODO: force scroll to the end.
+          this.messagesMap.clear();
+        }
+
+        this.addMessages(messages);
+
+        this.needsRefresh = false;
+        this.loadingMessages = false;
+
+        if (messages.length === 0 && since == null) {
+          // assume no more messages.
+          this.firstMessageId = this.minMessageId;
+          return;
+        }
+      });
+    } catch {
+      runInAction(() => this.loadingMessages = false);
+    }
   }
 
   @action

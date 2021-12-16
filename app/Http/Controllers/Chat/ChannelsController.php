@@ -60,7 +60,8 @@ class ChannelsController extends Controller
      * @response {
      *   "channel_id": 5,
      *   "current_user_attributes": {
-     *     "can_message": true
+     *     "can_message": true,
+     *     "can_message_error": null
      *   },
      *   "description": "The official osu! channel (english only).",
      *   "icon": "https://a.ppy.sh/2?1519081077.png",
@@ -82,9 +83,7 @@ class ChannelsController extends Controller
             abort(403);
         }
 
-        if (!$channel->hasUser($user)) {
-            $channel->addUser($user);
-        }
+        $channel->addUser(Auth::user());
 
         return json_item($channel, ChannelTransformer::forUser($user), ChannelTransformer::LISTING_INCLUDES);
     }
@@ -141,7 +140,8 @@ class ChannelsController extends Controller
      *   "channel": {
      *     "channel_id": 1337,
      *     "current_user_attributes": {
-     *       "can_message": true
+     *       "can_message": true,
+     *       "can_message_error": null
      *     },
      *     "name": "test channel",
      *     "description": "wheeeee",
@@ -232,7 +232,7 @@ class ChannelsController extends Controller
     public function store()
     {
         $params = get_params(request()->all(), null, [
-            'target_id:number',
+            'target_id:int',
             'type:string',
         ], ['null_missing' => true]);
 

@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'Nuevo mapa ":title" por :username',
                 'user_beatmapset_new_compact' => 'Nuevo mapa ":title"',
                 'user_beatmapset_new_group' => 'Nuevos mapas por :username',
+
+                'user_beatmapset_revive' => 'Mapa ":title" revivido por :username',
+                'user_beatmapset_revive_compact' => 'Mapa ":title" revivido',
             ],
         ],
 

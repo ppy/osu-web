@@ -4,6 +4,7 @@
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import { Modal } from 'modal';
+import core from 'osu-core-singleton';
 import QuickSearch from 'quick-search/main';
 import Worker from 'quick-search/worker';
 import * as React from 'react';
@@ -66,7 +67,7 @@ interface State {
   }
 
   private toggle = (event?: React.SyntheticEvent<HTMLElement>) => {
-    if (currentUser.id == null) {
+    if (core.currentUser == null) {
       return;
     }
 

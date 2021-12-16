@@ -47,7 +47,7 @@ class ChatControllerTest extends TestCase
      */
     public function testCreatePmWithClientCredentials($scopes, $expectedStatus)
     {
-        $client = factory(Client::class)->create(['user_id' => $this->user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $this->user]);
         $this->actAsScopedUser(null, $scopes, $client);
         $this->json(
             'POST',
@@ -64,7 +64,7 @@ class ChatControllerTest extends TestCase
      */
     public function testCreatePmWithClientCredentialsBotGroup($scopes, $expectedStatus)
     {
-        $client = factory(Client::class)->create(['user_id' => $this->user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $this->user]);
         $this->user->update(['group_id' => app('groups')->byIdentifier('bot')->getKey()]);
         $this->actAsScopedUser(null, $scopes, $client);
         $this->json(
@@ -165,7 +165,7 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenRestricted() // fail
     {
-        $restrictedUser = factory(User::class)->states('restricted')->create();
+        $restrictedUser = User::factory()->restricted()->create();
 
         $this->actAsScopedUser($restrictedUser, ['*']);
         $this->json(
@@ -180,7 +180,7 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenSilenced() // fail
     {
-        $silencedUser = factory(User::class)->states('silenced')->create();
+        $silencedUser = User::factory()->silenced()->create();
 
         $this->actAsScopedUser($silencedUser, ['*']);
         $this->json(
@@ -195,7 +195,7 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenTargetRestricted() // fail
     {
-        $restrictedUser = factory(User::class)->states('restricted')->create();
+        $restrictedUser = User::factory()->restricted()->create();
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json(
@@ -223,7 +223,7 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenFriendsOnlyAndNotFriended() // fail
     {
-        $privateUser = factory(User::class)->create(['pm_friends_only' => true]);
+        $privateUser = User::factory()->create(['pm_friends_only' => true]);
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json(
@@ -238,7 +238,7 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenFriendsOnlyAndFriended() // success
     {
-        $privateUser = factory(User::class)->create(['pm_friends_only' => true]);
+        $privateUser = User::factory()->create(['pm_friends_only' => true]);
         factory(UserRelation::class)->states('friend')->create([
             'user_id' => $privateUser->user_id,
             'zebra_id' => $this->user->user_id,
@@ -535,10 +535,10 @@ class ChatControllerTest extends TestCase
             }
         }
 
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         $minPlays = config('osu.user.min_plays_for_posting');
         $this->user->statisticsOsu()->create(['playcount' => $minPlays]);
 
-        $this->anotherUser = factory(User::class)->create();
+        $this->anotherUser = User::factory()->create();
     }
 }

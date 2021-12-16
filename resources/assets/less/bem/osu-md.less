@@ -90,8 +90,20 @@
     display: block;
     margin: 0 auto;
 
+    &--gallery {
+      cursor: pointer;
+    }
+
     .@{_top}--comment & {
       margin: 0;
+    }
+  }
+
+  &__footnote-container {
+    > ol {
+      padding-left: 0;
+      list-style: none;
+      counter-reset: c 0;
     }
   }
 
@@ -127,6 +139,8 @@
       .@{_top}--wiki & {
         margin-right: 0;
         margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid hsl(var(--hsl-b3));
       }
     }
 
@@ -141,6 +155,13 @@
 
       .@{_top}--news & {
         font-size: @font-size--title;
+        padding-bottom: 5px;
+        border-bottom: 1px solid hsl(var(--hsl-b3));
+      }
+
+      .@{_top}--wiki & {
+        padding-bottom: 5px;
+        border-bottom: 1px solid hsl(var(--hsl-b3));
       }
     }
 
@@ -226,6 +247,20 @@
     }
   }
 
+  &__link {
+    &--footnote-ref {
+      font-size: @font-size--small-2;
+
+      &::after {
+        content: "]";
+      }
+
+      &::before {
+        content: "[";
+      }
+    }
+  }
+
   &__list {
     padding-left: 20px;
 
@@ -243,7 +278,8 @@
       margin-left: 10px;
     }
 
-    .@{_top}__list--ordered > & {
+    .@{_top}__list--ordered > &,
+    .@{_top}__footnote-container & {
       counter-increment: c;
       display: flex;
 
@@ -272,6 +308,13 @@
 
     .@{_top}--store-product-small & {
       display: none;
+    }
+
+    .@{_top}__list-item--footnote & {
+      margin-bottom: 0;
+      flex: 1;
+      min-width: 0;
+      line-height: inherit;
     }
   }
 

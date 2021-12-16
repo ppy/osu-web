@@ -372,8 +372,8 @@ class ChannelsControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
-        $this->anotherUser = factory(User::class)->create();
+        $this->user = User::factory()->create();
+        $this->anotherUser = User::factory()->create();
         $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
         $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
         $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();

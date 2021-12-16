@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'diễn đàn',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'tổng quan',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'tổng quan',
             'verify_link' => 'xác thực tài khoản',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => 'nghệ sĩ tiêu biểu',
@@ -135,6 +141,11 @@ return [
         'rooms_controller' => [
             '_' => 'xếp hạng
 ',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
         ],
     ],
     'store' => [

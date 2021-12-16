@@ -181,7 +181,7 @@ return [
             'drain' => 'HP Drain',
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
+            'stars' => 'Star Rating',
             'total_length' => 'Length (Drain length: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Circle Count',

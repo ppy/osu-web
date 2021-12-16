@@ -7,6 +7,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import User from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
+import { linkify } from 'utils/url';
 
 export default class Message {
   @observable channelId = -1;
@@ -21,7 +22,7 @@ export default class Message {
 
   @computed
   get parsedContent(): string {
-    return osu.linkify(escape(this.content), true);
+    return linkify(escape(this.content), true);
   }
 
   @computed
@@ -43,14 +44,15 @@ export default class Message {
       persisted: true,
       senderId: json.sender_id,
       timestamp: json.timestamp,
-      uuid: osu.uuid(),
+      uuid: json.uuid ?? message.uuid,
     });
   }
 
   @action
-  persist(): Message {
+  persist(json: MessageJson) {
+    if (this.persisted) return;
+    this.messageId = json.message_id;
+    this.timestamp = json.timestamp;
     this.persisted = true;
-
-    return this;
   }
 }
