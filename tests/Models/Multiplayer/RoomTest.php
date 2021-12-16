@@ -18,7 +18,7 @@ class RoomTest extends TestCase
     /**
      * @dataProvider startGameDurationDataProvider
      */
-    public function testStartGameDuration(int $duration, bool $isSupporter, ?string $errorMessageKey)
+    public function testStartGameDuration(int $duration, bool $isSupporter, bool $expectException)
     {
         $beatmap = Beatmap::factory()->create();
         $user = User::factory();
@@ -39,9 +39,9 @@ class RoomTest extends TestCase
             ],
         ];
 
-        if ($errorMessageKey !== null) {
+        if ($expectException) {
             $this->expectException(InvariantException::class);
-            $this->expectExceptionMessage(osu_trans($errorMessageKey));
+            $this->expectExceptionMessage(osu_trans('multiplayer.room.errors.duration_too_long'));
         }
 
         $room = (new Room())->startGame($user, $params);
@@ -173,15 +173,20 @@ class RoomTest extends TestCase
 
     public function startGameDurationDataProvider()
     {
+        static $dayMinutes = 1440;
+
+        $maxDuration = config('osu.user.max_multiplayer_duration');
+        $maxDurationSupporter = config('osu.user.max_multiplayer_duration_supporter');
+
         return [
-            '2 weeks' => [20160, true, null],
-            '2 weeks (with supporter)' => [20160, true, null],
-            'more than 2 weeks' => [20161, false, 'multiplayer.room.errors.duration_require_supporter'],
-            'more than 2 weeks (with supporter)' => [20161, true, null],
-            '3 months' => [90720, false, 'multiplayer.room.errors.duration_require_supporter'],
-            '3 months (with supporter)' => [90720, true, null],
-            'more than 3 months' => [90721, false, 'multiplayer.room.errors.duration_require_supporter'],
-            'more than 3 months (with supporter)' => [90721, true, 'multiplayer.room.errors.duration_too_long'],
+            '2 weeks' => [$dayMinutes * $maxDuration, false, false],
+            '2 weeks (with supporter)' => [$dayMinutes * $maxDuration, true, false],
+            'more than 2 weeks' => [$dayMinutes * $maxDuration + 1, false, true],
+            'more than 2 weeks (with supporter)' => [$dayMinutes * $maxDuration + 1, true, false],
+            '3 months' => [$dayMinutes * $maxDurationSupporter, false, true],
+            '3 months (with supporter)' => [$dayMinutes * $maxDurationSupporter, true, false],
+            'more than 3 months' => [$dayMinutes * $maxDurationSupporter + 1, false, true],
+            'more than 3 months (with supporter)' => [$dayMinutes * $maxDurationSupporter + 1, true, true],
         ];
     }
 }

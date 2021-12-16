@@ -478,13 +478,7 @@ class Room extends Model
             throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
         }
 
-        // TODO: configurable duration (same for min and max durations)?
-        if (!$this->user->isSupporter() && $this->starts_at->addDays(14)->lt($this->ends_at)) {
-            throw new InvariantException(osu_trans('multiplayer.room.errors.duration_require_supporter'));
-        }
-
-        // see https://github.com/ppy/osu/pull/16024/files#diff-d5f8d0eb0eac5cfd6d2f486d34c4168e036b83b622c7a3c5bfce5205d67bf52bR327-R330
-        if ($this->starts_at->adddays(63)->lt($this->ends_at)) {
+        if ($this->starts_at->addDays($this->host->maxMultiplayerDuration())->lt($this->ends_at)) {
             throw new InvariantException(osu_trans('multiplayer.room.errors.duration_too_long'));
         }
 
