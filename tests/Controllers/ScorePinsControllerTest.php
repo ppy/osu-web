@@ -59,6 +59,80 @@ class ScorePinsControllerTest extends TestCase
         $this->assertSame(ScorePin::count(), $initialPinCount);
     }
 
+    // moving: [0]. expected order: [1] < [0]
+    public function testReorderMoveBottom()
+    {
+        $user = User::factory()->create();
+        $pins = collect([0, 1])->map(fn ($order) => ScorePin
+            ::factory(['display_order' => $order])
+            ->withScore(Osu::factory(['user_id' => $user])->create())
+            ->create());
+
+        $this->actAsUser($user, true);
+        $this
+            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[0]->score), ['order1_score_id' => $pins[1]->score_id]))
+            ->assertSuccessful();
+
+        $pins->map->refresh();
+        $this->assertTrue($pins[1]->display_order < $pins[0]->display_order);
+    }
+
+    // moving: [0]. expected order: [1] < [0] < [2]
+    public function testReorderMoveDown()
+    {
+        $user = User::factory()->create();
+        $pins = collect([0, 1, 2])->map(fn ($order) => ScorePin
+            ::factory(['display_order' => $order])
+            ->withScore(Osu::factory(['user_id' => $user])->create())
+            ->create());
+
+        $this->actAsUser($user, true);
+        $this
+            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[0]->score), ['order1_score_id' => $pins[1]->score_id]))
+            ->assertSuccessful();
+
+        $pins->map->refresh();
+        $this->assertTrue($pins[1]->display_order < $pins[0]->display_order);
+        $this->assertTrue($pins[0]->display_order < $pins[2]->display_order);
+    }
+
+    // moving: [1]. expected order: [1] < [0]
+    public function testReorderMoveTop()
+    {
+        $user = User::factory()->create();
+        $pins = collect([0, 1])->map(fn ($order) => ScorePin
+            ::factory(['display_order' => $order])
+            ->withScore(Osu::factory(['user_id' => $user])->create())
+            ->create());
+
+        $this->actAsUser($user, true);
+        $this
+            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[1]->score), ['order3_score_id' => $pins[0]->score_id]))
+            ->assertSuccessful();
+
+        $pins->map->refresh();
+        $this->assertTrue($pins[1]->display_order < $pins[0]->display_order);
+    }
+
+    // moving: [2]. expected order: [0] < [2] < [1]
+    public function testReorderMoveUp()
+    {
+        $user = User::factory()->create();
+        $pins = collect([0, 1, 2])->map(fn ($order) => ScorePin
+            ::factory(['display_order' => $order])
+            ->withScore(Osu::factory(['user_id' => $user])->create())
+            ->create());
+
+        $this->actAsUser($user, true);
+        $this
+            ->put(route('score-pins.reorder'), array_merge($this->makeParams($pins[2]->score), ['order1_score_id' => $pins[0]->score_id]))
+            ->assertSuccessful();
+
+        $pins->map->refresh();
+        $this->assertTrue($pins[0]->display_order < $pins[2]->display_order);
+        $this->assertTrue($pins[2]->display_order < $pins[1]->display_order);
+    }
+
     public function testStore()
     {
         $score = Osu::factory()->create();
