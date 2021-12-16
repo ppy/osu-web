@@ -5,8 +5,6 @@
 
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
-use Illuminate\Contracts\Broadcasting\Factory as BroadcastFactory;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Support\HtmlString;
 
 /*
@@ -54,11 +52,6 @@ function beatmap_timestamp_format($ms)
 function blade_safe($html)
 {
     return new Illuminate\Support\HtmlString($html);
-}
-
-function broadcast_after_commit(ShouldBroadcast $event)
-{
-    DB::afterCommit(fn () => app(BroadcastFactory::class)->queue($event));
 }
 
 /**

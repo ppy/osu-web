@@ -8,7 +8,6 @@ namespace App\Libraries\Chat;
 use App\Events\ChatMessageEvent;
 use App\Models\Chat\Message;
 use DB;
-use Illuminate\Contracts\Broadcasting\Factory;
 use Laravel\Octane\Facades\Octane;
 
 /**
@@ -27,6 +26,6 @@ class MessageTask
 
     public function __invoke()
     {
-        app(Factory::class)->queue(new ChatMessageEvent($this->message));
+        (new ChatMessageEvent($this->message))->broadcast();
     }
 }
