@@ -19,14 +19,14 @@ class ScorePinsController extends Controller
 
     public function destroy()
     {
-        auth()->user()->scorePins()->where($this->getScoreParams())->delete();
+        auth()->user()->scorePins()->where($this->getScoreParams(request()->all()))->delete();
 
         return response()->noContent();
     }
 
     public function store()
     {
-        $params = $this->getScoreParams();
+        $params = $this->getScoreParams(request()->all());
 
         abort_if(!ScorePin::isValidType($params['score_type']), 422, 'invalid score_type');
 
@@ -52,9 +52,9 @@ class ScorePinsController extends Controller
         return response()->noContent();
     }
 
-    private function getScoreParams()
+    private function getScoreParams($form)
     {
-        return get_params(request()->all(), null, [
+        return get_params($form, null, [
             'score_type:string',
             'score_id:int',
         ], ['null_missing' => true]);
