@@ -213,9 +213,9 @@ export default class Historical extends React.PureComponent<Props> {
       const options = makeOptionsDate({
         circleLine: true,
         curve: curveLinear,
-        formatX: (d: Date) => moment(d).format(osu.trans('common.datetime.year_month_short.moment')),
+        formatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month_short.moment')),
         formatY: (d: number) => osu.formatNumber(d),
-        infoBoxFormatX: (d: Date) => moment(d).format(osu.trans('common.datetime.year_month.moment')),
+        infoBoxFormatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month.moment')),
         infoBoxFormatY: (d: number) => `<strong>${osu.trans(`users.show.extra.historical.${attribute}.count_label`)}</strong> ${escape(osu.formatNumber(d))}`,
         marginRight: 60, // more spacing for x axis label
         modifiers: 'profile-page',
