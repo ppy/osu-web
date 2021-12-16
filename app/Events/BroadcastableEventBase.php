@@ -6,7 +6,6 @@
 namespace App\Events;
 
 use DB;
-use Illuminate\Contracts\Broadcasting\Factory;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 abstract class BroadcastableEventBase implements ShouldBroadcast
@@ -20,9 +19,9 @@ abstract class BroadcastableEventBase implements ShouldBroadcast
     public function broadcast(bool $afterCommit = false)
     {
         if ($afterCommit) {
-            DB::afterCommit(fn () => app(Factory::class)->queue($this));
+            DB::afterCommit(fn () => event($this));
         } else {
-            app(Factory::class)->queue($this);
+            event($this);
         }
     }
 }
