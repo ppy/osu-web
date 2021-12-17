@@ -5,25 +5,15 @@
   @top: chat-message-group;
 
   margin: 10px;
-  margin-left: 0px;
+  margin-left: 0;
   margin-right: 120px;
   color: white;
   display: flex;
 
   &--own {
     margin-left: 120px;
-    margin-right: 0px;
+    margin-right: 0;
     flex-direction: row-reverse;
-  }
-
-  &__sender {
-    width: 80px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    font-size: 10px;
-    color: white;
-    flex-shrink: 0;
   }
 
   &__avatar {
@@ -40,11 +30,20 @@
     overflow-x: auto;
   }
 
+  &__sender {
+    width: 80px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: @font-size--small;
+    color: white;
+    flex-shrink: 0;
+  }
+
   &__timestamp {
     font-family: @font-content;
     color: @osu-colour-f1;
-    font-size: 10px;
-    margin-left: 5px;
-    margin-top: 5px;
+    font-size: @font-size--small;
+    margin: 5px;
   }
 }
