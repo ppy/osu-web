@@ -6,7 +6,7 @@ import { createPortal } from 'react-dom'
 import * as React from 'react'
 import { button, div, i } from 'react-dom-factories'
 import { TooltipContext } from 'tooltip-context'
-import { Modal } from 'modal'
+import { isModalShowing } from 'modal-helper'
 import { nextVal } from 'utils/seq'
 
 export class PopupMenu extends PureComponent
@@ -94,7 +94,7 @@ export class PopupMenu extends PureComponent
 
 
   hide: (e) =>
-    return if !@state.active || Modal.isOpen() || osu.popupShowing()
+    return if !@state.active || isModalShowing()
 
     event = e.originalEvent
     return if !event? # originalEvent gets eaten by error popup?
