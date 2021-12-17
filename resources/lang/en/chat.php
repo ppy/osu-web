@@ -30,10 +30,6 @@ return [
         'send' => 'Send',
     ],
 
-    'message' => [
-        'render_failed' => 'This message could not be displayed.',
-    ],
-
     'no-conversations' => [
         'howto' => "Start conversations from a user's profile or a usercard popup.",
         'lazer' => 'Public channels you join via <a href=":link">osu!lazer</a> will also be visible here.',
