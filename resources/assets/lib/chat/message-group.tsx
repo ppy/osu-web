@@ -9,7 +9,6 @@ import * as React from 'react';
 import UserAvatar from 'user-avatar';
 import { UserLink } from 'user-link';
 import { classWithModifiers } from 'utils/css';
-import MessageErrorBoundary from './message-error-boundary';
 import MessageItem from './message-item';
 
 interface Props {
@@ -52,9 +51,7 @@ export default class MessageGroup extends React.Component<Props> {
               (moment(message.timestamp).format('LT') !== moment(messages[key + 1].timestamp).format('LT'));
 
             return (
-              <MessageErrorBoundary key={message.uuid}>
-                <MessageItem message={message} showTimestamp={showTimestamp} />
-              </MessageErrorBoundary>
+              <MessageItem key={message.uuid} message={message} showTimestamp={showTimestamp} />
             );
           })}
         </div>
