@@ -44,19 +44,24 @@ export default class MessageGroup extends React.Component<Props> {
               return;
             }
 
+            const timestamp = moment(message.timestamp).format('LT');
             const showTimestamp: boolean =
               // show timestamp if this is the last message in the group
               (key === messages.length - 1) ||
               // or if the next message has a different displayed timestamp
-              (moment(message.timestamp).format('LT') !== moment(messages[key + 1].timestamp).format('LT'));
+              (timestamp !== moment(messages[key + 1].timestamp).format('LT'));
 
             return (
-              <MessageItem key={message.uuid} message={message} showTimestamp={showTimestamp} />
+              <>
+                <MessageItem key={message.uuid} message={message} />
+                {showTimestamp && (
+                  <div className='chat-message-group__timestamp'>{timestamp}</div>
+                )}
+              </>
             );
           })}
         </div>
       </div>
     );
-
   }
 }

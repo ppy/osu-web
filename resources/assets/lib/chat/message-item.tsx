@@ -3,14 +3,12 @@
 
 import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
-import * as moment from 'moment';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
   message: Message;
-  showTimestamp: boolean;
 }
 
 @observer
@@ -34,9 +32,6 @@ export default class MessageItem extends React.Component<Props> {
             </div>
           }
         </div>
-        {this.props.showTimestamp &&
-          <div className='chat-message-item__timestamp'>{moment(this.props.message.timestamp).format('LT')}</div>
-        }
       </div>
     );
   }
