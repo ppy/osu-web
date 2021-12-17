@@ -34,7 +34,7 @@ export default class MessageGroup extends React.Component<Props> {
               <UserAvatar modifiers='full-circle' user={{ avatar_url: sender.avatarUrl }} />
             </div>
           </UserLink>
-          <div className='u-ellipsis-overflow' style={{maxWidth: '60px'}}>
+          <div className='chat-message-group__username u-ellipsis-overflow'>
             {sender.username}
           </div>
         </div>
