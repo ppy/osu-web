@@ -72,7 +72,6 @@ interface OsuCommon {
   isClickable: (el: HTMLElement) => boolean;
   navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
   popup: (message: string, type: string) => void;
-  popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
   present: (str?: string | null) => boolean;
   promisify: (xhr: JQuery.jqXHR) => Promise<any>;
