@@ -3,7 +3,7 @@
 
 import { route } from 'laroute';
 import { each, isEmpty, last, throttle } from 'lodash';
-import { action, computed, makeObservable, observe } from 'mobx';
+import { action, computed, makeObservable, observe, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
@@ -98,8 +98,8 @@ export default class ConversationView extends React.Component<Props> {
 
     disposeOnUnmount(
       this,
-      observe(core.windowFocusObserver, 'hasFocus', (change) => {
-        if (change.newValue) {
+      reaction(() => core.windowFocusObserver.hasFocus, (value) => {
+        if (value) {
           this.maybeMarkAsRead();
         }
       }),
@@ -107,6 +107,7 @@ export default class ConversationView extends React.Component<Props> {
 
     disposeOnUnmount(
       this,
+      // TODO: change to reaction and remove boxed value.
       observe(core.dataStore.chatState.selectedBoxed, (change) => {
         if (change.newValue !== change.oldValue) {
           this.didSwitchChannel = true;
