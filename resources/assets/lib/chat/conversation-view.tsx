@@ -165,6 +165,7 @@ export default class ConversationView extends React.Component<Props> {
 
   componentWillUnmount() {
     $(window).off(`.${this.id}`);
+    $(document).off(`.${this.id}`); // for runAfterPageLoad.
   }
 
   getSnapshotBeforeUpdate() {
