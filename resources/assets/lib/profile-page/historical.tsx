@@ -13,7 +13,6 @@ import core from 'osu-core-singleton';
 import PlayDetailList from 'play-detail-list';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
-import { nextVal } from 'utils/seq';
 import BeatmapPlaycount from './beatmap-playcount';
 import ExtraHeader from './extra-header';
 import ExtraPageProps, { ProfilePagePaginationData } from './extra-page-props';
@@ -72,10 +71,11 @@ export default class Historical extends React.PureComponent<Props> {
     replays_watched_counts: React.createRef<HTMLDivElement>(),
   };
   private readonly charts: Partial<Record<ChartSection, LineChart<Date>>> = {};
-  private readonly id = `users-show-historical-${nextVal()}`;
+  private readonly disposers: (() => void)[] = [];
 
   componentDidMount() {
-    $(window).on(`resize.${this.id}`, this.resizeCharts);
+    $(window).on('resize', this.resizeCharts);
+    this.disposers.push(() => $(window).off('resize', this.resizeCharts));
     this.updateCharts();
   }
 
@@ -84,8 +84,7 @@ export default class Historical extends React.PureComponent<Props> {
   }
 
   componentWillUnmount() {
-    $(window).off(`.${this.id}`);
-    $(document).off(`.${this.id}`);
+    this.disposers.forEach((disposer) => disposer());
   }
 
   render() {
@@ -226,10 +225,13 @@ export default class Historical extends React.PureComponent<Props> {
 
     const definedChart = chart;
 
-    core.reactTurbolinks.runAfterPageLoad(this.id, () => {
+    const disposer = core.reactTurbolinks.runAfterPageLoad(() => {
       updateTicks(definedChart, data);
       definedChart.loadData(data);
     });
+    if (disposer != null) {
+      this.disposers.push(disposer);
+    }
   };
 
   private updateCharts() {

@@ -8,7 +8,6 @@ import UserStatisticsJson from 'interfaces/user-statistics-json';
 import { last } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { nextVal } from 'utils/seq';
 
 interface Props {
   rankHistory: RankHistoryJson | null;
@@ -38,7 +37,7 @@ function formatY(d: number) {
 }
 
 export default class RankChart extends React.Component<Props> {
-  private readonly id = `rank-chart-${nextVal()}`;
+  private readonly disposers: (() => void)[] = [];
   private rankChart?: LineChart<number>;
   private readonly rankChartArea = React.createRef<HTMLDivElement>();
 
@@ -68,12 +67,16 @@ export default class RankChart extends React.Component<Props> {
     if (this.rankChartArea.current == null) return;
 
     if (this.rankChart == null) {
-      this.rankChart = new LineChart(this.rankChartArea.current, options);
-
-      $(window).on(`resize.${this.id}`, this.rankChart.resize);
+      const rankChart = new LineChart(this.rankChartArea.current, options);
+      $(window).on('resize', rankChart.resize);
+      this.disposers.push(() => $(window).off('resize', rankChart.resize));
+      this.rankChart = rankChart;
     }
 
-    core.reactTurbolinks.runAfterPageLoad(this.id, this.loadRankChart);
+    const disposer = core.reactTurbolinks.runAfterPageLoad(this.loadRankChart);
+    if (disposer != null) {
+      this.disposers.push(disposer);
+    }
   }
 
   componentDidUpdate() {
@@ -81,7 +84,7 @@ export default class RankChart extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    $(window).off(`.${this.id}`);
+    this.disposers.forEach((disposer) => disposer());
   }
 
   render() {

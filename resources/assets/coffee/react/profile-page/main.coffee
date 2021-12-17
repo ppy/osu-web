@@ -34,6 +34,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @disposers = []
     @eventId = "users-show-#{nextVal()}"
     @tabs = React.createRef()
     @pages = React.createRef()
@@ -106,9 +107,10 @@ export class Main extends React.PureComponent
     @modeScrollUrl = currentUrlRelative()
 
     if !@restoredState
-      core.reactTurbolinks.runAfterPageLoad @eventId, =>
+      disposer = core.reactTurbolinks.runAfterPageLoad =>
         # The scroll is a bit off on Firefox if not using timeout.
         Timeout.set 0, => @pageJump(null, @initialPage)
+      @disposers.push(disposer) if disposer?
 
 
   componentWillUnmount: =>
@@ -121,6 +123,7 @@ export class Main extends React.PureComponent
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
+    disposer() for disposer in @disposer
 
 
   render: =>
