@@ -14,7 +14,7 @@ return [
         'time_left' => ':time left',
 
         'errors' => [
-            'duration_too_long' => 'Duration cannot be more than :duration days.',
+            'duration_too_long' => 'Duration is too long.',
         ],
 
         'status' => [
