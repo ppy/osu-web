@@ -78,7 +78,7 @@ return [
         'go_to_child' => 'Посмотреть обсуждение',
         'validation' => [
             'block_too_large' => 'каждый блок может содержать до :limit символов',
-            'external_references' => 'отзыв содержит ссылки на проблемы, не отсоящиеся к этому отзыву',
+            'external_references' => 'отзыв содержит ссылки на проблемы, не отноcящиеся к этому отзыву',
             'invalid_block_type' => 'недопустимый тип блока',
             'invalid_document' => 'недопустимый отзыв',
             'invalid_discussion_type' => 'неверный тип обсуждения',

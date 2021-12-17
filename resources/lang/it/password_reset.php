@@ -30,7 +30,7 @@ return [
     'started' => [
         'password' => 'Nuova password',
         'password_confirmation' => 'Conferma password',
-        'title' => 'Resettando password per l\'account <strong>:username</strong>.',
+        'title' => 'Reimpostazione della password per l\'account <strong>:username</strong>.',
         'verification_key' => 'Codice verifica',
     ],
 
