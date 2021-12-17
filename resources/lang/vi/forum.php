@@ -132,13 +132,13 @@ return [
             'button' => '',
 
             'columns' => [
-                'action' => '',
-                'date' => '',
-                'user' => '',
+                'action' => 'Hành động',
+                'date' => 'Ngày',
+                'user' => 'Người dùng',
             ],
 
             'data' => [
-                'add_tag' => '',
+                'add_tag' => 'đã thêm nhãn ":tag"',
                 'announcement' => '',
                 'edit_topic' => '',
                 'fork' => '',

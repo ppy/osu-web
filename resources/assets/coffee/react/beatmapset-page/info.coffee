@@ -170,6 +170,7 @@ export class Info extends React.Component
               osu.trans 'beatmapsets.show.info.source'
 
             a
+              className: 'beatmapset-info__link'
               href: laroute.route('beatmapsets.index', q: @props.beatmapset.source)
               @props.beatmapset.source
 
@@ -178,6 +179,7 @@ export class Info extends React.Component
             h3 className: 'beatmapset-info__header',
               osu.trans 'beatmapsets.show.info.genre'
             a
+              className: 'beatmapset-info__link'
               href: laroute.route('beatmapsets.index', g: @props.beatmapset.genre.id)
               @props.beatmapset.genre.name
 
@@ -185,6 +187,7 @@ export class Info extends React.Component
             h3 className: 'beatmapset-info__header',
               osu.trans 'beatmapsets.show.info.language'
             a
+              className: 'beatmapset-info__link'
               href: laroute.route('beatmapsets.index', l: @props.beatmapset.language.id)
               @props.beatmapset.language.name
 
@@ -199,6 +202,7 @@ export class Info extends React.Component
                 [
                   a
                     key: tag
+                    className: 'beatmapset-info__link'
                     href: laroute.route('beatmapsets.index', q: tag)
                     tag
                   span key: "#{tag}-space", ' '

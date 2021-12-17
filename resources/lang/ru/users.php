@@ -336,7 +336,7 @@ return [
             'account_standing' => [
                 'title' => 'Нарушения',
                 'bad_standing' => "с аккаунтом <strong>:username</strong> не всё хорошо :(",
-                'remaining_silence' => 'пользователю <strong>:username</strong> можно будет говорить через :duration.',
+                'remaining_silence' => ':username сможет говорить снова через :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Недавние нарушения',

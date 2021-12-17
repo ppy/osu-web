@@ -17,7 +17,7 @@ return [
     'user_support_again' => '<strong>:user</strong> решил ещё раз поддержать osu! — благодарим за Вашу щедрость!',
     'user_support_first' => '<strong>:user</strong> приобрёл тег osu!supporter - благодарим за Вашу поддержку!',
     'user_support_gift' => '<strong>:user</strong> получил тег osu!supporter в подарок!',
-    'username_change' => '<strong>:previousUsername</strong> сменил свой ник на <strong><em>:user</strong></em>!',
+    'username_change' => '<strong>:previousUsername</strong> сменил свой ник на <strong><em>:user</em></strong>!',
 
     'beatmapset_status' => [
         'approved' => 'одобренной',

@@ -11,13 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'LEIA ISSO ANTES DE BAIXAR',
-            'instruction' => [
-                '_' => "Instalação: Assim que terminar de baixar um pacote, extraia o .rar na pasta Songs, no seu diretório do osu!.
-                    Todos os arquivos estão compactados dentro do pacote, então o osu! precisará extrair os beatmaps por sí só na próxima vez que você entrar no jogo.
-                    :scary tente descompactar os arquivos sozinho,
-                    ou os beatmaps não funcionarão corretamente quando tentar abrí-los.",
-                'scary' => 'NÃO',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Lembre-se que é altamente recomendado :scary, já que beatmaps mais antigos tem uma qualidade muito menor do que os mais recentes.',
                 'scary' => 'baixar os pacotes de beatmaps dos mais recentes para os mais antigos',

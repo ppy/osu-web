@@ -42,7 +42,7 @@ return [
             'verify_link' => 'xác thực tài khoản',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'nghệ sĩ tiêu biểu',
         ],
         'artists_controller' => [
             '_' => 'nghệ sĩ tiêu biểu',
@@ -145,7 +145,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'uỷ quyền ứng dụng',
         ],
     ],
     'store' => [

@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => 'форум',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'дневници',
         ],
         'topic_watches_controller' => [
             'index' => 'главно табло',
