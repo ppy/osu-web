@@ -52,12 +52,12 @@ export default class MessageGroup extends React.Component<Props> {
               (timestamp !== moment(messages[key + 1].timestamp).format('LT'));
 
             return (
-              <>
-                <MessageItem key={message.uuid} message={message} />
+              <React.Fragment key={message.uuid}>
+                <MessageItem message={message} />
                 {showTimestamp && (
                   <div className='chat-message-group__timestamp'>{timestamp}</div>
                 )}
-              </>
+              </React.Fragment>
             );
           })}
         </div>
