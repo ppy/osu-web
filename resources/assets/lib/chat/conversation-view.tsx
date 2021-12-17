@@ -118,7 +118,7 @@ export default class ConversationView extends React.Component<Props> {
 
   componentDidMount() {
     this.componentDidUpdate();
-    $(window).on('scroll.conversation-view', throttle(this.handleOnScroll, 1000));
+    $(window).on(`scroll.${this.id}`, throttle(this.handleOnScroll, 1000));
   }
 
   @action
@@ -164,7 +164,7 @@ export default class ConversationView extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    $(window).off('.conversation-view');
+    $(window).off(`.${this.id}`);
   }
 
   getSnapshotBeforeUpdate() {
