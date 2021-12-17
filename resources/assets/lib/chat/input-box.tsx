@@ -7,6 +7,7 @@ import BigButton from 'big-button';
 import { trim } from 'lodash';
 import { action, autorun, computed, makeObservable, observe } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
+import { Modal } from 'modal';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -43,7 +44,7 @@ export default class InputBox extends React.Component<Props> {
       this,
       autorun(() => {
         if (core.windowFocusObserver.hasFocus) {
-          this.focusInput(false);
+          this.focusInput();
         }
       }),
     );
@@ -77,11 +78,8 @@ export default class InputBox extends React.Component<Props> {
     this.focusInput();
   }
 
-  focusInput(always = true) {
-    const activeElement = document.activeElement;
-    if (!always && (activeElement instanceof HTMLInputElement || activeElement instanceof HTMLTextAreaElement)) {
-      return;
-    }
+  focusInput() {
+    if (Modal.isOpen() || osu.popupShowing()) return;
 
     if (this.inputBoxRef.current) {
       this.inputBoxRef.current.focus();
