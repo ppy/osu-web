@@ -1,12 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import SocketMessageSendAction from 'actions/socket-message-send-action';
 import SocketStateChangedAction from 'actions/socket-state-changed-action';
-import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { supportedChannelTypes } from 'interfaces/chat/channel-json';
@@ -21,7 +19,6 @@ import PingService from './ping-service';
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
-  @observable autoScroll = false;
   @observable isChatMounted = false;
   @observable isReady = false;
   @observable selectedBoxed = observable.box(0);
@@ -95,14 +92,10 @@ export default class ChatStateStore implements DispatchListener {
       this.handleChatChannelJoinEvent(event);
     } else if (event instanceof ChannelPartEvent) {
       this.handleChatChannelPartEvent(event);
-    } else if (event instanceof ChatMessageSendAction) {
-      this.autoScroll = true;
     } else if (event instanceof ChatNewConversationAdded) {
       this.handleChatNewConversationAdded(event);
     } else if (event instanceof SocketStateChangedAction) {
       this.handleSocketStateChanged(event);
-    } else if (event instanceof WindowFocusAction) {
-      this.handleWindowFocusAction();
     }
   }
 
@@ -120,9 +113,6 @@ export default class ChatStateStore implements DispatchListener {
       console.error(`Trying to switch to non-existent channel ${channelId}`);
       return;
     }
-
-    // TODO: needed?
-    this.autoScroll = false;
 
     this.selected = channelId;
     this.selectedIndex = this.channelList.indexOf(channel);
@@ -174,11 +164,6 @@ export default class ChatStateStore implements DispatchListener {
       this.channelStore.channels.forEach((channel) => channel.needsRefresh = true);
       this.isReady = false;
     }
-  }
-
-  @action
-  private handleWindowFocusAction() {
-    this.channelStore.markAsRead(this.selected);
   }
 
   @action
