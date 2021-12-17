@@ -43,7 +43,7 @@ export default class InputBox extends React.Component<Props> {
       this,
       autorun(() => {
         if (core.windowFocusObserver.hasFocus) {
-          this.focusInput();
+          this.focusInput(false);
         }
       }),
     );
@@ -77,7 +77,12 @@ export default class InputBox extends React.Component<Props> {
     this.focusInput();
   }
 
-  focusInput() {
+  focusInput(always = true) {
+    const activeElement = document.activeElement;
+    if (!always && (activeElement instanceof HTMLInputElement || activeElement instanceof HTMLTextAreaElement)) {
+      return;
+    }
+
     if (this.inputBoxRef.current) {
       this.inputBoxRef.current.focus();
     }
