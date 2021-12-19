@@ -63,7 +63,7 @@ class ComplexityProvider extends ServiceProvider
         }
     }
 
-    private function applyCostToField(FieldDefinitionNode $fieldDefinition, ObjectTypeDefinitionNode $typeDefinition)
+    private function applyCostToField(FieldDefinitionNode $fieldDefinition, ObjectTypeDefinitionNode $objectDefinition)
     {
         /* Checks if there's already a custom complexity calculator on the field */
         $directive = $this->directiveLocator->exclusiveOfType(
@@ -74,16 +74,9 @@ class ComplexityProvider extends ServiceProvider
             return;
         }
 
-        /* Recurse until we can retrieve the field's type name */
-        $fieldType = $fieldDefinition->type;
-        while ($fieldType instanceof TypeNode) {
-            if ($fieldType instanceof NamedTypeNode) {
-                $fieldType = $fieldType->name->value;
-            } else {
-                $fieldType = $fieldType->type;
-            }
-        }
-
+        $fieldType = ASTHelper::getUnderlyingTypeName($fieldDefinition);
+        $fieldName = $fieldDefinition->name->value;
+        $objectName = $objectDefinition->name->value;
         $cost = 1;
 
         /* If the type isn't found in our leafs registry, assume object and assign cost 2 */
@@ -92,13 +85,13 @@ class ComplexityProvider extends ServiceProvider
         }
 
         /* Assuming the type is generated from a paginator, assign cost 0 */
-        if (str_ends_with($typeDefinition->name->value, 'Connection')) {
+        if (ends_with($objectName, 'Connection')) {
             $cost = 0;
         }
-        if ($fieldDefinition->name->value === 'node' && str_ends_with($typeDefinition->name->value, 'Edge')) {
+        if ($fieldName === 'node' && ends_with($objectName, 'Edge')) {
             $cost = 0;
         }
-        if ($fieldDefinition->name->value === 'data' && str_ends_with($typeDefinition->name->value, 'Paginator')) {
+        if ($fieldName === 'data' && ends_with($objectName, 'Paginator')) {
             $cost = 0;
         }
 
