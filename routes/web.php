@@ -369,6 +369,19 @@ Route::group(['middleware' => ['web']], function () {
     route_redirect('help/wiki/{path?}', 'wiki.show')->where('path', '.+');
 });
 
+Route::group([
+    'as' => 'graphql.',
+    'prefix' => 'api',
+    'middleware' => [
+        \Nuwave\Lighthouse\Support\Http\Middleware\AcceptJson::class,
+        ThrottleRequests::getApiThrottle('graphql'),
+    ],
+], function () {
+    $controller = '\Nuwave\Lighthouse\Support\Http\Controllers\GraphQLController';
+    Route::match(['GET', 'POST'], 'graphql', $controller)->middleware('api');
+    Route::match(['GET', 'POST'], 'graphql-web', $controller)->middleware('web');
+});
+
 // API
 // require-scopes is not in the api group at the moment to reduce the number of things that need immediate fixing.
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', ThrottleRequests::getApiThrottle(), 'require-scopes']], function () {

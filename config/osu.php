@@ -16,8 +16,6 @@ return [
         // changing the prefix key is the only way to invalidate them.
         'throttle' => [
             'global' => env('API_THROTTLE_GLOBAL', '1200,1,api'),
-            // FIXME
-            // A similar entry exists in config/lighthouse.php
             'graphql' => env('API_THROTTLE_GRAPHQL', '60,1,api-graphql'),
             'scores_download' => env('API_THROTTLE_SCORES_DOWNLOAD', '10,1,api-scores-download'),
         ],
