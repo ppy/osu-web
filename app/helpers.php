@@ -720,7 +720,7 @@ function is_api_request()
 
 function is_graphql_request()
 {
-    return request()->is('api/graphql');
+    return request()->is('api/graphql', 'api/graphql-web');
 }
 
 function is_graphql_web_request()
