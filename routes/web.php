@@ -378,8 +378,8 @@ Route::group([
     ],
 ], function () {
     $controller = '\Nuwave\Lighthouse\Support\Http\Controllers\GraphQLController';
-    Route::match(['GET', 'POST'], 'graphql', $controller)->middleware('api');
-    Route::match(['GET', 'POST'], 'graphql-web', $controller)->middleware('web');
+    Route::match(['GET', 'POST'], 'graphql', $controller)->middleware('api')->name('api');
+    Route::match(['GET', 'POST'], 'graphql-web', $controller)->middleware('web')->name('web');
 });
 
 // API

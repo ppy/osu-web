@@ -20,6 +20,11 @@ class DirectivesTest extends TestCase
 
     protected $viewer;
 
+    protected function graphQLEndpointUrl(): string
+    {
+        return route('graphql.api');
+    }
+
     protected function setUp(): void
     {
         parent::setUp();

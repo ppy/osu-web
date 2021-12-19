@@ -23,6 +23,11 @@ class SchemaTest extends TestCase
     /** @var \App\Models\User $viewer */
     protected $viewer;
 
+    protected function graphQLEndpointUrl(): string
+    {
+        return route('graphql.api');
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
