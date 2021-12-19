@@ -57,7 +57,6 @@ class Kernel extends HttpKernel
         'guest' => Middleware\RedirectIfAuthenticated::class,
         'require-scopes' => Middleware\RequireScopes::class,
         'throttle' => Middleware\ThrottleRequests::class,
-        'throttle-graphql' => \App\GraphQL\Middleware\WrappedThrottleRequests::class,
         'verify-user' => Middleware\VerifyUser::class,
     ];
 }
