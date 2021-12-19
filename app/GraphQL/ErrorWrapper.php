@@ -21,7 +21,7 @@ use Nuwave\Lighthouse\Execution\ErrorHandler as BaseErrorHandler;
 /**
  * Wraps various exceptions into GraphQL exceptions
  */
-class ErrorHandler implements BaseErrorHandler
+class ErrorWrapper implements BaseErrorHandler
 {
     public function __invoke(?Error $error, Closure $next): ?array
     {
@@ -29,34 +29,38 @@ class ErrorHandler implements BaseErrorHandler
             return $next(null);
         }
 
-        $wrapped = null;
+        $wrapped = static::wrap($error->getPrevious());
 
-        $e = $error->getPrevious();
-        if ($error->getPrevious() instanceof WrappedException) {
+        if ($wrapped === null) {
             return $next($error);
         }
 
-        if ($e instanceof BaseAuthorizationException) {
-            $wrapped = AuthorizationException::wrap($e);
-        } elseif ($e instanceof BaseAuthenticationException) {
-            $wrapped = AuthenticationException::wrap($e);
-        } elseif ($e instanceof BaseMissingScopeException) {
-            $wrapped = MissingScopeException::wrap($e);
-        } elseif ($e instanceof BaseThrottleRequestsException) {
-            $wrapped = ThrottleRequestsException::wrap($e);
+        return $next(new Error(
+            $wrapped->getMessage(),
+            $error->getNodes(),
+            $error->getSource(),
+            $error->getPositions(),
+            $error->getPath(),
+            $wrapped
+        ));
+    }
+
+    public static function wrap(?\Throwable $throwable): ?\Throwable
+    {
+        if ($throwable instanceof WrappedException) {
+            return null;
         }
 
-        if ($wrapped !== null) {
-            return $next(new Error(
-                $wrapped->getMessage(),
-                $error->getNodes(),
-                $error->getSource(),
-                $error->getPositions(),
-                $error->getPath(),
-                $wrapped
-            ));
+        if ($throwable instanceof BaseAuthorizationException) {
+            return AuthorizationException::wrap($throwable);
+        } elseif ($throwable instanceof BaseAuthenticationException) {
+            return AuthenticationException::wrap($throwable);
+        } elseif ($throwable instanceof BaseMissingScopeException) {
+            return MissingScopeException::wrap($throwable);
+        } elseif ($throwable instanceof BaseThrottleRequestsException) {
+            return ThrottleRequestsException::wrap($throwable);
         }
 
-        return $next($error);
+        return null;
     }
 }
