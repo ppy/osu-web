@@ -13,7 +13,7 @@ class AuthenticationException extends BaseAuthenticationException implements Cli
 {
     protected string $graphQLCode;
 
-    public function __construct(string $message = null, string $graphQLCode = 'AUTH_UNAUTHENTICATED')
+    public function __construct(string $message = 'Unauthenticated.', string $graphQLCode = 'AUTH_UNAUTHENTICATED')
     {
         parent::__construct($message);
         $this->graphQLCode = $graphQLCode;
