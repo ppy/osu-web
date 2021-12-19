@@ -35,9 +35,14 @@ GRAPHQL;
         return $next(
             $fieldValue->setResolver(
                 function ($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) use ($originalResolver) {
-                    $token = oauth_token();
+                    $authenticated = false;
+                    if (is_graphql_web_request()) {
+                        $authenticated = request()->user('web') !== null;
+                    } else {
+                        $authenticated = oauth_token() !== null;
+                    }
 
-                    if ($token === null) {
+                    if (!$authenticated) {
                         throw new AuthenticationException();
                     }
 

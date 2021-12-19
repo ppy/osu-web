@@ -86,6 +86,15 @@ GRAPHQL;
 
     public function checkScope()
     {
+        // Allow all scopes if using session auth
+        if (is_graphql_web_request()) {
+            if (request()->user('web') !== null) {
+                return;
+            } else {
+                throw new AuthenticationException();
+            }
+        }
+
         $scopes = $this->directiveArgValue('scopes');
         if ($scopes === null) {
             return;
