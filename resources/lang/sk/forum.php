@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Naozaj chceš tento príspevok obnoviť?',
         'edited' => 'Naposledy upravil :user :when, celkový počet úprav :count.',
         'posted_at' => 'publikované :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Odstraniť príspevok',
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'odstranená téma',
         'go_to_latest' => 'zobraziť najnovší príspevok',
         'has_replied' => '',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'od :user',
         'started_by_verbose' => 'začaté použivateľom :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Zavrieť',
@@ -117,6 +125,55 @@ return [
             'last' => 'prejsť na posledný príspevok',
             'next' => 'preskočiť ďalších 10 príspevkov',
             'previous' => 'vrátiť sa o 10 príspevkov',
+        ],
+
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => '',
+                'date' => '',
+                'user' => '',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
         ],
 
         'post_edit' => [

@@ -5,9 +5,9 @@
 
 return [
     'username_change' => [
-        'only_one' => 'only 1 username change allowed per order fulfillment.',
-        'insufficient_paid' => 'Username change cost exceeds amount paid (:expected > :actual)',
-        'reverting_username_mismatch' => 'Current username (:current) is not the same as change to revoke (:username)',
+        'only_one' => '',
+        'insufficient_paid' => '',
+        'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'จำนวนเงินบริจาคน้อยเกินไปที่จะได้รับแท็ก osu!supporter (:actual > :expected)',

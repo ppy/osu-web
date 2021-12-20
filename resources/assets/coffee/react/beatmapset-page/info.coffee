@@ -2,16 +2,19 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import BbcodeEditor from 'bbcode-editor'
+import MetadataEditor from 'beatmapsets-show/metadata-editor'
 import { Modal } from 'modal'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
-import MetadataEditor from 'beatmapsets-show/metadata-editor'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Info extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapsets-show-info-#{nextVal()}"
     @overlayRef = React.createRef()
     @chartAreaRef = React.createRef()
 
@@ -30,33 +33,19 @@ export class Info extends React.Component
 
 
   componentWillUnmount: =>
-    $(window).off '.beatmapsetPageInfo'
+    $(window).off ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
 
-  # see Modal#hideModal
-  dismissEditor: (e) =>
-    @setState isEditingDescription: false if e.button == 0 &&
-                                  e.target == @overlayRef.current &&
-                                  @clickEndTarget == @clickStartTarget
-
-
-  editStart: =>
-    @setState isEditingDescription: true
-
-
-  handleClickEnd: (e) =>
-    @clickEndTarget = e.target
-
-
-  handleClickStart: (e) =>
-    @clickStartTarget = e.target
+  toggleEditingDescription: =>
+    @setState isEditingDescription: !@state.isEditingDescription
 
 
   onEditorChange: (action) =>
     switch action.type
       when 'save'
         if action.hasChanged
-          @saveDescription(action.value)
+          @saveDescription(action)
         else
           @setState isEditingDescription: false
 
@@ -64,11 +53,9 @@ export class Info extends React.Component
         @setState isEditingDescription: false
 
 
-  onSelectionUpdate: (selection) =>
-    @setState selection: selection
+  saveDescription: ({ event, value }) =>
+    target = event.target
 
-
-  saveDescription: (value) =>
     @setState isBusy: true
     $.ajax laroute.route('beatmapsets.update', beatmapset: @props.beatmapset.id),
       method: 'PATCH',
@@ -80,7 +67,7 @@ export class Info extends React.Component
         isEditingDescription: false
         description: data.description
 
-    .fail osu.ajaxError
+    .fail osu.emitAjaxError(target)
 
     .always =>
       @setState isBusy: false
@@ -90,7 +77,7 @@ export class Info extends React.Component
     @setState isEditingMetadata: !@state.isEditingMetadata
 
 
-  withEdit: =>
+  withEditDescription: =>
      @props.beatmapset.description.bbcode?
 
 
@@ -109,10 +96,11 @@ export class Info extends React.Component
         modifiers: ['beatmap-success-rate']
 
       @_failurePointsChart = new StackedBarChart @chartAreaRef.current, options
-      $(window).on 'resize.beatmapsetPageInfo', @_failurePointsChart.resize
+      $(window).on "resize.#{@eventId}", @_failurePointsChart.resize
 
-    @_failurePointsChart.loadData @props.beatmap.failtimes
-    @_failurePointsChart.reattach @chartAreaRef.current
+    core.reactTurbolinks.runAfterPageLoad @eventId, =>
+      @_failurePointsChart.loadData @props.beatmap.failtimes
+      @_failurePointsChart.reattach @chartAreaRef.current
 
 
   renderEditMetadataButton: =>
@@ -125,12 +113,12 @@ export class Info extends React.Component
           i className: 'fas fa-pencil-alt'
 
 
-  renderEditButton: =>
+  renderEditDescriptionButton: =>
     div className: 'beatmapset-info__edit-button',
       button
         type: 'button'
         className: 'btn-circle'
-        onClick: @editStart
+        onClick: @toggleEditingDescription
         span className: 'btn-circle__content',
           i className: 'fas fa-pencil-alt'
 
@@ -142,35 +130,25 @@ export class Info extends React.Component
       .slice(0, 21)
       .value()
 
-    if tags.length == 21
-      tags.pop()
-      tagsOverload = true
+    tagsOverload = tags.length == 21
+    tags.pop() if tagsOverload
 
     div className: 'beatmapset-info',
       if @state.isEditingDescription
-        div className: 'beatmapset-description-editor',
-          div
-            className: 'beatmapset-description-editor__overlay'
-            onClick: @dismissEditor
-            onMouseDown: @handleClickStart
-            onMouseUp: @handleClickEnd
-            ref: @overlayRef
-
-            div className: 'osu-page',
-              el BbcodeEditor,
-                modifiers: ['beatmapset-description-editor']
-                disabled: @state.isBusy
-                onChange: @onEditorChange
-                onSelectionUpdate: @onSelectionUpdate
-                rawValue: @state.description?.bbcode ? @props.beatmapset.description.bbcode
-                selection: @state.selection
+        el Modal, visible: true, onClose: @toggleEditingDescription,
+          div className: 'osu-page',
+            el BbcodeEditor,
+              modifiers: ['beatmapset-description-editor']
+              disabled: @state.isBusy
+              onChange: @onEditorChange
+              rawValue: @state.description?.bbcode ? @props.beatmapset.description.bbcode
 
       if @state.isEditingMetadata
         el Modal, visible: true, onClose: @toggleEditingMetadata,
           el MetadataEditor, onClose: @toggleEditingMetadata, beatmapset: @props.beatmapset
 
       div className: 'beatmapset-info__box beatmapset-info__box--description',
-        @renderEditButton() if @withEdit()
+        @renderEditDescriptionButton() if @withEditDescription()
 
         h3
           className: 'beatmapset-info__header'
@@ -192,6 +170,7 @@ export class Info extends React.Component
               osu.trans 'beatmapsets.show.info.source'
 
             a
+              className: 'beatmapset-info__link'
               href: laroute.route('beatmapsets.index', q: @props.beatmapset.source)
               @props.beatmapset.source
 
@@ -200,6 +179,7 @@ export class Info extends React.Component
             h3 className: 'beatmapset-info__header',
               osu.trans 'beatmapsets.show.info.genre'
             a
+              className: 'beatmapset-info__link'
               href: laroute.route('beatmapsets.index', g: @props.beatmapset.genre.id)
               @props.beatmapset.genre.name
 
@@ -207,6 +187,7 @@ export class Info extends React.Component
             h3 className: 'beatmapset-info__header',
               osu.trans 'beatmapsets.show.info.language'
             a
+              className: 'beatmapset-info__link'
               href: laroute.route('beatmapsets.index', l: @props.beatmapset.language.id)
               @props.beatmapset.language.name
 
@@ -221,6 +202,7 @@ export class Info extends React.Component
                 [
                   a
                     key: tag
+                    className: 'beatmapset-info__link'
                     href: laroute.route('beatmapsets.index', q: tag)
                     tag
                   span key: "#{tag}-space", ' '

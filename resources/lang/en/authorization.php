@@ -65,9 +65,10 @@ return [
     'chat' => [
         'blocked' => 'Cannot message a user that is blocking you or that you have blocked.',
         'friends_only' => 'User is blocking messages from people not on their friends list.',
-        'moderated' => 'That channel is currently moderated.',
+        'moderated' => 'This channel is currently moderated.',
         'no_access' => 'You do not have access to that channel.',
         'restricted' => 'You cannot send messages while silenced, restricted or banned.',
+        'silenced' => 'You cannot send messages while silenced, restricted or banned.',
     ],
 
     'comment' => [
@@ -78,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
+
+        'entry' => [
+            'limit_reached' => 'You have reached the entry limit for this contest',
+            'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
+        ],
     ],
 
     'forum' => [

@@ -5,15 +5,16 @@ import { Event } from './event'
 import { Game } from './game'
 import * as React from 'react'
 import { button, div, h3 } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 import { classWithModifiers } from 'utils/css'
+import { bottomPageDistance } from 'utils/html'
 
 el = React.createElement
 
 export class Content extends React.PureComponent
   getSnapshotBeforeUpdate: (prevProps, prevState) =>
     snapshot =
-      scrollToLastEvent: prevProps.isAutoloading && @props.isAutoloading && osu.bottomPageDistance() < 10
+      scrollToLastEvent: prevProps.isAutoloading && @props.isAutoloading && bottomPageDistance() < 10
 
     if !snapshot.scrollToLastEvent
       if prevProps.events?.length > 0 && @props.events?.length > 0

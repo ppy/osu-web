@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Jelentés',
+        'title' => 'Jelented :username beatmapját?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Jelentés',
         'title' => 'Jelented :username hozzászólását?',
@@ -15,8 +20,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Jelentés',
+        'title' => 'Jelented :username hozzászólását?',
     ],
 
     'scores' => [

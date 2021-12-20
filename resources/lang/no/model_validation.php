@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Sletting av beatmap metadata innlegget er ikke tillatt.',
             'beatmapset_post_no_edit' => 'Redigering av beatmap metadata innlegget er ikke tillatt.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Svaret ditt inneholder kun et sitat.',
 
             'attributes' => [
@@ -162,6 +164,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason er ikke gyldig for denne rapporttypen.',
         'self' => "Du kan ikke rapportere deg selv!",
     ],

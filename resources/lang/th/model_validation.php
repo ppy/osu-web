@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'ไม่อนุญาตให้ลบโพสต์ Metadata ของบีทแมพ',
             'beatmapset_post_no_edit' => 'ไม่อนุญาตให้ดัดแปลงโพสต์ Metadata ของบีทแมพ',
+            'first_post_no_delete' => 'ไม่สามารถลบโพสต์ที่เริ่มต้นได้',
+            'missing_topic' => 'โพสต์ไม่มีหัวข้อ',
             'only_quote' => 'การตอบกลับของคุณมีแค่คำพูด',
 
             'attributes' => [
@@ -161,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason ไม่สามารถใช้ได้กับการรายงานประเภทนี้',
         'self' => "เดี๋ยว คุณรายงานตัวเองไม่ได้",
     ],

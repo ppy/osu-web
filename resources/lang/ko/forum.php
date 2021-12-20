@@ -47,11 +47,12 @@ return [
         'confirm_restore' => '정말 이 글을 복원할까요?',
         'edited' => ':user 님이 마지막으로 :when에 수정하여 총 :count_delimited회 수정되었습니다.',
         'posted_at' => ':when에 게시됨',
+        'posted_by' => ':username 님이 게시함',
 
         'actions' => [
             'destroy' => '삭제',
             'edit' => '수정',
-            'report' => '',
+            'report' => '게시글 신고',
             'restore' => '복원',
         ],
 
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '정말 이 주제를 삭제할까요?',
+        'confirm_restore' => '정말 이 주제를 복원할까요?',
         'deleted' => '삭제된 주제',
         'go_to_latest' => '최근에 올라온 글 보기',
         'has_replied' => '이 주제에 답글을 달았습니다.',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => '답글',
         'started_by' => 'by :user',
         'started_by_verbose' => ':user 님이 시작함',
+
+        'actions' => [
+            'destroy' => '주제 삭제',
+            'restore' => '주제 복원',
+        ],
 
         'create' => [
             'close' => '닫기',
@@ -117,6 +125,55 @@ return [
             'last' => '마지막 글로 이동하기',
             'next' => '10개 글 건너뛰기',
             'previous' => '10개 글 이전으로',
+        ],
+
+        'logs' => [
+            '_' => '주제 로그',
+            'button' => '주제 로그 탐색',
+
+            'columns' => [
+                'action' => '작업',
+                'date' => '날짜',
+                'user' => '유저',
+            ],
+
+            'data' => [
+                'add_tag' => '":tag" 태그 추가함',
+                'announcement' => '주제를 고정하고 공지로 표시함',
+                'edit_topic' => ':title(으)로',
+                'fork' => ':topic에서',
+                'pin' => '주제를 고정함',
+                'post_operation' => ':username 님이 게시함',
+                'remove_tag' => '":tag" 태그 삭제함',
+                'source_forum_operation' => ':forum에서',
+                'unpin' => '주제 고정을 해제함',
+            ],
+
+            'no_results' => '로그를 찾을 수 없습니다...',
+
+            'operations' => [
+                'delete_post' => '게시글을 삭제함',
+                'delete_topic' => '주제를 삭제함',
+                'edit_topic' => '주제 제목을 변경함',
+                'edit_poll' => '주제 투표를 수정함',
+                'fork' => '주제를 복사함',
+                'issue_tag' => '태그를 발행함',
+                'lock' => '주제 글을 잠금',
+                'merge' => '게시글들을 이 주제로 병합함',
+                'move' => '주제를 이동함',
+                'pin' => '주제를 고정함',
+                'post_edited' => '게시글을 수정함',
+                'restore_post' => '게시글을 복구함',
+                'restore_topic' => '주제를 복구함',
+                'split_destination' => '나눠진 게시글을 이동함',
+                'split_source' => '게시글을 나눔',
+                'topic_type' => '주제 종류를 지정함',
+                'topic_type_changed' => '주제 종류를 변경함',
+                'unlock' => '주제를 잠금 해제함',
+                'unpin' => '주제를 고정 해제함',
+                'user_lock' => '자신의 토픽을 잠금',
+                'user_unlock' => '자신의 토픽을 잠금 해제함',
+            ],
         ],
 
         'post_edit' => [
@@ -242,7 +299,7 @@ return [
             'to_0_confirm' => '주제를 잠금 해제할까요?',
             'to_0_done' => '해당 주제의 잠금이 해제되었습니다,',
             'to_1' => '주제글 잠그기',
-            'to_1_confirm' => '주제를 잠글까요?',
+            'to_1_confirm' => '이 주제를 잠글까요?',
             'to_1_done' => '해당 주제가 잠겼습니다.',
         ],
 
@@ -252,13 +309,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => '주제글 고정 해제',
-            'to_0_confirm' => '주제를 고정 해제할까요?',
+            'to_0_confirm' => '이 주제를 고정 해제할까요?',
             'to_0_done' => '해당 주제의 고정이 해제되었습니다.',
             'to_1' => '주제글 고정',
-            'to_1_confirm' => '주제를 고정할까요?',
+            'to_1_confirm' => '이 주제를 고정할까요?',
             'to_1_done' => '해당 주제가 고정되었습니다.',
             'to_2' => '주제글을 고정하고 알림글로 나타내기',
-            'to_2_confirm' => '주제를 고정하고 공지 사항로 표시할까요?',
+            'to_2_confirm' => '이 주제를 고정하고 공지 사항으로 표시할까요?',
             'to_2_done' => '해당 주제가 고정되고 알림글로 표시됩니다.',
         ],
 

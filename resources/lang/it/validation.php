@@ -4,6 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'mixture' => ':attribute ha un numero o una lettera mancante',
-    'required' => ':attribute è richiesto',
+    'mixture' => ':attribute ha un numero o una lettera mancanti',
+    'required' => ':attribute è obbligatorio',
 ];

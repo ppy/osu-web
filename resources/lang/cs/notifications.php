@@ -6,10 +6,12 @@
 return [
     'all_read' => 'Všechna oznámení přečtena!',
     'delete' => '',
+    'loading' => 'Načítání nepřečtených oznámení...',
     'mark_read' => '',
     'none' => 'Žádná oznámení',
-    'see_all' => '',
-    'see_channel' => '',
+    'see_all' => 'zobrazit všechna oznámení',
+    'see_channel' => 'přejít na chat',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'vše',
@@ -24,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmapa',
+
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Diskuze o beatmapě',
@@ -129,7 +137,20 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => '',
+                'legacy_pm' => ':count_delimited nepřečtená zpráva|:count_delimited nepřečtené zprávy|:count_delimited nepřečtených zpráv',
+            ],
+        ],
+
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 
@@ -147,6 +168,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_post_new' => '',
@@ -174,7 +199,7 @@ return [
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Obdrželi jste novou zprávu od :username',
             ],
         ],
 
@@ -198,8 +223,12 @@ return [
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username odemkl novou medaili, ":title"!',
+                'user_achievement_unlock_self' => 'Odemkli jste novou medaili, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username vytvořil nové beatmapy',
             ],
         ],
     ],

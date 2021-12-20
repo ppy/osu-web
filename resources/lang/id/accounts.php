@@ -32,12 +32,11 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'lokasi saat ini',
                 'user_interests' => 'minat',
-                'user_msnm' => 'skype',
                 'user_occ' => 'pekerjaan',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'situs web',
             ],
         ],
@@ -57,11 +56,13 @@ return [
 
         'options' => [
             '_' => 'kirimkan notifikasi melalui',
+            'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'modding beatmap',
             'channel_message' => 'pesan pribadi',
             'comment_new' => 'komentar baru',
             'forum_topic_reply' => 'balasan pada topik',
             'mail' => 'email',
+            'mapping' => 'pembuat beatmap',
             'push' => 'web',
             'user_achievement_unlock' => 'terbukanya medali baru',
         ],
@@ -69,21 +70,21 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'klien yang memiliki akses',
-        'own_clients' => 'klien yang dimiliki',
+        'own_clients' => 'klien yang Anda miliki',
         'title' => 'OAuth',
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap-beatmap yang mengandung konten eksplisit',
+        'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
 
         'beatmapset_download' => [
             '_' => 'tipe pengunduhan beatmap default',
             'all' => 'dengan video (apabila tersedia)',
-            'no_video' => 'tanpa video',
             'direct' => 'buka melalui osu!direct',
+            'no_video' => 'tanpa video',
         ],
-
-        'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
     ],
 
     'playstyles' => [
@@ -103,7 +104,7 @@ return [
     'security' => [
         'current_session' => 'saat ini',
         'end_session' => 'Akhiri Sesi',
-        'end_session_confirmation' => 'Aksi ini akan langsung mengakhiri sesi anda di perangkat tersebut. Apakah anda yakin?',
+        'end_session_confirmation' => 'Tindakan ini akan secara otomatis mengakhiri sesi Anda pada perangkat yang bersangkutan. Apakah Anda yakin?',
         'last_active' => 'Terakhir aktif:',
         'title' => 'Keamanan',
         'web_sessions' => 'web session',
@@ -118,7 +119,7 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Kamu dapat menutup laman ini sekarang',
+        'text' => 'Anda dapat menutup laman ini sekarang',
         'title' => 'Verifikasi selesai',
     ],
 

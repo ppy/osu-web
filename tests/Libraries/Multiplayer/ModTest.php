@@ -106,6 +106,22 @@ class ModTest extends TestCase
     }
 
     /**
+     * @dataProvider modComboExclusives
+     */
+    public function testAssertValidExclusivity($ruleset, $requiredIds, $allowedIds, $isValid)
+    {
+        if (!$isValid) {
+            $this->expectException(InvariantException::class);
+        }
+
+        $result = Mod::assertValidExclusivity($requiredIds, $allowedIds, $ruleset);
+
+        if ($isValid) {
+            $this->assertTrue($result);
+        }
+    }
+
+    /**
      * @dataProvider modCombos
      */
     public function testValidateSelection($ruleset, $modCombo, $isValid)
@@ -151,18 +167,34 @@ class ModTest extends TestCase
             [Ruleset::OSU, ['5K'], false],
             [Ruleset::OSU, ['DS'], false],
             [Ruleset::OSU, ['HD', 'HD'], false],
-            [Ruleset::OSU, ['RX', 'PF'], false],
 
             [Ruleset::TAIKO, ['AP'], false],
-            [Ruleset::TAIKO, ['RX', 'PF'], false],
 
             [Ruleset::CATCH, ['4K'], false],
             [Ruleset::CATCH, ['AP'], false],
-            [Ruleset::CATCH, ['RX', 'PF'], false],
 
             [Ruleset::MANIA, ['AP'], false],
-            [Ruleset::MANIA, ['FI', 'HD'], false],
-            [Ruleset::MANIA, ['RX', 'PF'], false],
+        ];
+    }
+
+    public function modComboExclusives()
+    {
+        return [
+            // non-exclusive required mods and no allowed mods
+            [Ruleset::OSU, ['HD', 'NC'], [], true],
+            [Ruleset::MANIA, ['DT', 'PF'], [], true],
+
+            // no conflicting exclusive required mods and allowed mods
+            [Ruleset::OSU, ['HD'], ['NC'], true],
+            [Ruleset::MANIA, ['DT'], ['PF'], true],
+
+            // conflicting exclusive required mods
+            [Ruleset::OSU, ['RX', 'PF'], [], false],
+            [Ruleset::MANIA, ['FI', 'HD'], [], false],
+
+            // allowed mods conflicts with exclusive required mods
+            [Ruleset::OSU, ['RX'], ['PF'], false],
+            [Ruleset::MANIA, ['RX'], ['PF'], false],
         ];
     }
 }

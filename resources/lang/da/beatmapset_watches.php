@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Ingen beatmap-diskussioner fulgt.',
+            'last_update' => 'Sidst opdateret',
             'open_issues' => 'Åbne problemer',
             'state' => 'Status',
             'title' => 'Titel',

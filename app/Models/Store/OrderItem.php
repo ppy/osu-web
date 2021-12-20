@@ -5,11 +5,11 @@
 
 namespace App\Models\Store;
 
+use App\Exceptions\InvariantException;
 use App\Exceptions\ValidationException;
 use App\Libraries\ChangeUsername;
 use App\Models\SupporterTag;
 use App\Traits\Validatable;
-use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -69,8 +69,8 @@ class OrderItem extends Model
 
     public function delete()
     {
-        if ($this->order->status !== 'incart') {
-            throw new Exception("Delete not allowed on Order ({$this->order->getKey()}).");
+        if (!$this->order->isCart()) {
+            throw new InvariantException("Delete not allowed on Order ({$this->order->getKey()}).");
         }
 
         parent::delete();
@@ -125,20 +125,11 @@ class OrderItem extends Model
         }
     }
 
-    public function getDisplayName()
+    public function getDisplayName(bool $html = false)
     {
         switch ($this->product->custom_class) {
             case 'supporter-tag':
-                // FIXME: probably should move out...somewhere
-                $duration = (int) $this->extra_data['duration'];
-                $text = SupporterTag::getDurationText($duration);
-
-                return trans('store.order.item.display_name.supporter_tag', [
-                    'name' => $this->product->name,
-                    // test data didn't include username, so ?? ''
-                    'username' => $this->extra_data['username'] ?? '',
-                    'duration' => $text,
-                ]);
+                return SupporterTag::getDisplayName($this, $html);
             default:
                 return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
         }

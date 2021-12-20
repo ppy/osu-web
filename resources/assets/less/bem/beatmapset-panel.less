@@ -2,218 +2,489 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-panel {
-  @top: beatmapset-panel;
-  @padding: 10px;
-  @hover-transition-duration: 150ms;
-  .own-layer();
+  .desktop-hover() {
+    --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b4)), hsla(var(--hsl-b4), 0.8));
+    --menu-opacity: 1;
+    --menu-container-width: @_menu-width-visible;
+    --play-bg: hsla(var(--hsl-b6), 0.8);
+    --play-icon-opacity: 1;
+    --stats-opacity: 1;
+  }
+
+  @_top: beatmapset-panel;
+  @_hover-transition-duration: 150ms;
+  @_menu-width: 10px;
+  @_menu-width-visible: 30px;
+
+  // Extend by 1px on respective corner to prevent gap on some zoom levels.
+  // Sizing is based on @border-radius--large.
+  @_top-left-inverted-corner-path: path('M-1 -1 L-1 10 L0 10 A10 10 0 0 1 10 0 L10 -1 Z');
+  @_bottom-left-inverted-corner-path: path('M-1 11 L-1 0 L0 0 A10 10 0 0 0 10 10 L10 11 Z');
+  @_top-right-inverted-corner-path: path('M11 -1 L11 10 L10 10 A10 10 0 0 0 0 0 L0 -1 Z');
+  @_bottom-right-inverted-corner-path: path('M11 11 L11 0 L10 0 A10 10 0 0 1 0 10 L 0 11 Z');
+
+  --border-cover-opacity: 0;
+  // For elements which provide overall beatmap link.
+  // The link is disabled on mobile so it's easier to target
+  // other elements like expand button and mapper name.
+  --global-beatmap-link-pointer-events: none;
+  // This changes on hover on desktop and irrelevant in mobile.
+  // Background in mobile is controlled by &__cover-container::after.
+  --info-bg: transparent;
+  // Height of the card main content. A bit shorter on mobile than
+  // the actual card because of the extra row.
+  --main-height: 100px;
+  // Similar to --info-bg variable.
+  --menu-bg: transparent;
+  --menu-container-width: 0;
+  --menu-opacity: 0;
+  --mobile-extra-bar-height: calc(var(--panel-height) - var(--main-height));
+  --panel-height: @beatmapset-panel-height;
+  // Audio player progress (to be overridden)
   --progress: 0;
+  --play-bg: transparent;
+  --play-icon-opacity: 0;
+  --play-width: 80px;
+  --source-display: flex;
+  --stats-grid-template: "hype nominations favourite-count play-count date" / auto auto auto auto auto;
+  --stats-opacity: 1;
+  --transition: all 150ms ease-in-out;
 
-  &__content {
-    height: 75px;
-    padding: @padding;
-  }
+  position: relative;
+  background-color: @beatmapset-panel-bg;
+  border-radius: @border-radius--large;
+  font-size: @font-size--normal;
+  height: var(--panel-height);
+  .own-layer();
 
-  &__count {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-left: 16px;
-  }
+  @media @desktop {
+    --global-beatmap-link-pointer-events: auto;
+    --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
+    --menu-bg: hsl(var(--hsl-b3));
+    --menu-container-width: @_menu-width;
+    --main-height: 100%;
+    --panel-height: @beatmapset-panel-normal-height-desktop;
+    --play-width: 90px;
+    --stats-opacity: 0;
 
-  &__count-number {
-    padding-right: 5px;
-  }
-
-  &__counts-box {
-    position: absolute;
-    right: @padding;
-    top: @padding;
-    display: flex;
-  }
-
-  &__difficulties {
-    position: absolute;
-    bottom: @padding;
-    left: @padding;
-    display: flex;
-    align-items: center;
-    font-size: @font-size--normal;
-  }
-
-  &__difficulty-icon {
-    margin-right: 5px;
-  }
-
-  &__difficulty-count {
-    margin-right: 10px;
-    margin-left: 3px;
-    font-weight: bold;
-  }
-
-  &__header {
-    display: block;
-    .link-white();
-    .link-plain();
-    .solid-text-shadow();
-
-    .at2x('~@images/layout/beatmaps/default-bg.png');
-    background-position: center;
-    background-size: cover;
-
-    font-weight: 400;
-    height: 120px;
-
-    border-radius: @border-radius-base @border-radius-base 0 0;
-    overflow: hidden;
-    position: relative;
-  }
-
-  &__header-text {
-    font-weight: 600;
-    font-size: @font-size--title-small;
-
-    &--title {
-      font-size: 130%;
+    &:hover {
+      .desktop-hover();
     }
   }
 
-  &__icon {
+  // hide bottom radius when cover is shown
+  &::before {
+    content: '';
+    background-color: inherit;
+    height: @border-radius--large;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    opacity: var(--border-cover-opacity);
+    transition: var(--transition);
+    transition-duration: var(--beatmaps-popup-transition-duration);
+  }
+
+  &[data-audio-state="loading"],
+  &[data-audio-state="playing"] {
+    --play-bg: hsla(var(--hsl-b6), 0.8);
+    --play-icon-opacity: 1;
+  }
+
+  &--beatmaps-popup-visible {
+    --border-cover-opacity: 1;
+
+    @media @desktop {
+      .desktop-hover();
+    }
+  }
+
+  &--mobile-expanded {
+    @media @mobile {
+      --menu-opacity: 1;
+      --menu-container-width: @_menu-width-visible;
+      --play-bg: hsla(var(--hsl-b6), 0.8);
+      --play-icon-opacity: 1;
+      --stats-opacity: 1;
+    }
+  }
+
+  &--size-extra {
+    @media @desktop {
+      --panel-height: @beatmapset-panel-extra-height-desktop;
+      --stats-grid-template: "favourite-count hype date" "play-count nominations ." / auto auto auto;
+      --stats-opacity: 1;
+      --play-width: 140px;
+    }
+  }
+
+  &--size-normal {
+    @media @desktop {
+      --source-display: none;
+    }
+  }
+
+  &__beatmap-count {
+    font-weight: 600;
+  }
+
+  &__beatmap-dot {
+    margin-right: 1px;
+    width: 6px;
+    height: 12px;
+    border-radius: 10000px;
+    background-color: var(--bg);
+  }
+
+  &__beatmap-icon {
+    margin-right: 2px;
+    font-size: 14px; // icon size
+    display: flex;
+  }
+
+  &__content {
+    pointer-events: none;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: var(--main-height);
+  }
+
+  &__cover {
+    .full-size();
+    object-fit: cover;
+    border-radius: var(--border-radius);
+
+    &--default {
+      .at2x('~@images/layout/beatmaps/default-bg.png');
+      background-position: center;
+      background-size: cover;
+    }
+  }
+
+  &__cover-col {
+    position: relative;
+    --border-radius: 0;
+
+    &--play {
+      --border-radius: @border-radius--large 0 0 @border-radius--large;
+      width: calc(var(--play-width) + 10px);
+      flex: none;
+    }
+
+    &--info {
+      margin-right: @_menu-width;
+      flex: 1;
+    }
+  }
+
+  &__cover-container {
+    .full-size();
+    height: var(--main-height);
+    display: flex;
+    pointer-events: var(--global-beatmap-link-pointer-events);
+
+    // solid cover for mobile
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: calc(100% - var(--play-width));
+      height: 100%;
+      right: 0;
+      top: 0;
+      // Adjust radius to prevent bleeding of the underneath cover
+      // when hover background (of &__play) is active.
+      border-radius: @border-radius--large - 1px;
+      background-color: hsl(var(--hsl-b4));
+
+      @media @desktop {
+        display: none;
+      }
+    }
+  }
+
+  &__extra-item {
+    margin: 0 var(--gutter);
+    display: flex;
+
+    &--dots {
+      align-items: center;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 10px;
+    padding: 4px @border-radius--large 6px;
+    position: relative;
+    background: var(--info-bg);
+    display: flex;
+    flex-direction: column;
+    // Adjust radius to prevent bleeding of the underneath cover
+    // when hover background (of &__play) is active.
+    border-radius: (@border-radius--large - 1px) 0 0 (@border-radius--large - 1px);
+  }
+
+  &__info-row {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    position: relative;
+
+    &--artist {
+      .default-text-shadow();
+      font-size: @font-size--title-small;
+      font-weight: 600;
+    }
+
+    &--extra {
+      .link-plain();
+      .link-white();
+      --gutter: 3px;
+      pointer-events: var(--global-beatmap-link-pointer-events);
+      margin: 0 calc(var(--gutter) * -1);
+      align-items: center;
+
+      @media @mobile {
+        position: absolute;
+        left: calc(var(--play-width) * -1);
+        top: 100%;
+        height: var(--mobile-extra-bar-height);
+        width: calc(100% + var(--play-width) + var(--gutter) * 2);
+        padding: 0 30px 0 5px; // right padding to account for the expand button
+      }
+    }
+
+    &--mapper {
+      color: hsl(var(--hsl-c2));
+      font-weight: 600;
+      margin-top: auto;
+    }
+
+    &--source {
+      color: hsl(var(--hsl-c2));
+      display: var(--source-display);
+      font-weight: bold;
+
+      &::after {
+        content: '\a0';
+      }
+    }
+
+    &--stats {
+      opacity: var(--stats-opacity);
+      overflow: hidden;
+      display: grid;
+      grid-template: var(--stats-grid-template);
+      width: max-content;
+      max-width: 100%;
+      white-space: nowrap;
+
+      @media @desktop {
+        margin-bottom: 2px;
+      }
+    }
+
+    &--title {
+      .default-text-shadow();
+      font-size: @font-size--title-small-4;
+      font-weight: 600;
+    }
+  }
+
+  &__main-link {
+    .link-plain();
     .link-white();
-    padding-left: 5px;
+    pointer-events: auto;
+  }
+
+  &__menu {
+    .full-size();
+    opacity: var(--menu-opacity);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 12px; // icon size
+    color: hsl(var(--hsl-c2));
+    transition: var(--transition);
+    pointer-events: auto;
+    overflow: hidden;
+  }
+
+  &__menu-container {
+    width: var(--menu-container-width);
+    overflow: hidden;
+    flex: none;
+    background-color: var(--menu-bg);
+    position: relative;
+    border-radius: 0 @border-radius--large @border-radius--large 0;
+    transition: var(--transition);
+
+    @media @desktop {
+      overflow: visible;
+    }
+
+    &::after, &::before {
+      content: '';
+      width: @border-radius--large;
+      height: $width;
+      position: absolute;
+      background-color: inherit;
+      right: 100%;
+    }
+
+    &::before {
+      top: 0;
+      clip-path: @_top-right-inverted-corner-path;
+    }
+
+    &::after {
+      bottom: 0;
+      clip-path: @_bottom-right-inverted-corner-path;
+    }
+  }
+
+  &__menu-item {
+    .reset-input();
+    color: hsl(var(--hsl-l1));
+    width: 20px;
+    text-align: center;
+    padding: 3px 0;
+
+    .link-hover({
+      color: hsl(var(--hsl-c1));
+    });
 
     &--disabled {
-      color: #999;
-
       .link-hover({
-        color: #999;
+        color: hsl(var(--hsl-l1));
       });
     }
   }
 
-  &__icons-box {
-    flex: none;
-  }
-
-  &__image {
-    .full-size();
-    object-fit: cover;
-  }
-
-  &__image-overlay {
-    .full-size();
-    background-color: fade(#000, 40%);
-  }
-
-  &__mapper-source-box {
-    font-size: 70%;
-    flex: 1;
-    // avoid extending beyond container on long line
-    min-width: 0;
-  }
-
-  &__panel {
-    .own-layer();
-    .default-box-shadow();
-    border-radius: @border-radius-base + 2px @border-radius-base + 2px @border-radius-base @border-radius-base;
-
+  &__mobile-expand {
+    .reset-input();
+    pointer-events: auto;
+    height: var(--mobile-extra-bar-height);
     width: 100%;
-    background: @osu-colour-b3;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    align-items: center;
+    color: hsl(var(--hsl-c2));
+    position: absolute;
+    bottom: 0;
+    right: 0;
 
-    .@{top}:hover & {
-      background: @osu-colour-b2;
+    @media @desktop {
+      display: none;
     }
   }
 
   &__play {
     .reset-input();
-    .fas();
-    .link-plain();
-    .fade-element(@hover-transition-duration);
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: 40px;
-    opacity: 0;
-    line-height: 1;
-    padding: (@padding / 2) @padding @padding;
-    color: @osu-colour-c1;
-    --icon: @fa-var-play;
+    .full-size();
+    .center-content();
+    font-size: 14px; // icon size
+    padding: 15px;
+    pointer-events: auto;
+    opacity: var(--play-icon-opacity);
 
     &:hover {
-      color: @yellow;
+      color: hsl(var(--hsl-orange-1));
+    }
+
+    @media @mobile {
+      transition: var(--transition);
+    }
+  }
+
+  &__play-container {
+    width: var(--play-width);
+    flex: none;
+    background-color: var(--play-bg);
+    position: relative;
+    // Adjust radius to prevent bleeding of the underneath cover
+    // when hover background is active.
+    border-radius: (@border-radius--large - 1px) 0 0 (@border-radius--large - 1px);
+
+    &::after, &::before {
+      content: '';
+      width: @border-radius--large;
+      height: $width;
+      position: absolute;
+      background-color: inherit;
+      left: 100%;
     }
 
     &::before {
-      content: var(--icon);
+      top: 0;
+      clip-path: @_top-left-inverted-corner-path;
     }
 
-    .@{top}:hover & {
-      opacity: 1;
-    }
-
-    .@{top}[data-audio-state="loading"] &,
-    .@{top}[data-audio-state="playing"] & {
-      color: @yellow;
-      opacity: 1;
-      --icon: @fa-var-pause;
+    &::after {
+      bottom: 0;
+      clip-path: @_bottom-left-inverted-corner-path;
     }
   }
 
-  &__preview-bar {
-    background-color: @yellow;
+  &__play-icon {
+    .circle(20px);
+    .center-content();
+    font-size: 10px;
+    background: hsla(var(--hsl-b6), 0.5);
+    margin: 1px;
+    padding-top: 1px; // adjust alignment
+    pointer-events: auto;
+  }
+
+  &__play-icons {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: calc(var(--progress) * 100%);
-    height: 3px;
-  }
-
-  &__row {
+    top: 4px;
+    left: 4px;
     display: flex;
   }
 
-  &__status-container {
-    display: flex;
-    position: absolute;
-    margin: 5px;
-
-    .fade-element(@hover-transition-duration);
-
-    .@{top}:hover &,
-    .@{top}[data-audio-state="loading"] &,
-    .@{top}[data-audio-state="playing"] & {
-      opacity: 0;
-    }
-  }
-
-  &__shadow {
-    .default-border-radius();
-    .own-layer();
+  &__play-progress {
     .full-size();
-    .thicker-box-shadow();
-    .fade-element(@hover-transition-duration);
+    .center-content();
+    opacity: var(--play-icon-opacity);
+  }
 
-    opacity: 0;
-    pointer-events: none;
+  &__stats-item {
+    display: flex;
+    align-items: center;
+    pointer-events: auto;
+    margin-right: 10px;
 
-    .@{top}:hover & {
-      opacity: 1;
+    &--date {
+      grid-area: date;
+    }
+
+    &--favourite-count {
+      grid-area: favourite-count;
+    }
+
+    &--hype {
+      grid-area: hype;
+    }
+
+    &--nominations {
+      grid-area: nominations;
+    }
+
+    &--play-count {
+      grid-area: play-count;
     }
   }
 
-  &__title-artist-box {
-    position: absolute;
-    left: @padding;
-    bottom: @padding;
-    width: calc(100% - (@padding * 2));
-  }
-
-  &__extra-icon {
-    font-size: 14px;
-    line-height: 28px;
-    background: osu-hsla(@osu-colour-b4, 70%);
-    padding: 0px 5px;
-    margin-right: 5px;
-    border-radius: 14px;
+  &__stats-item-icon {
+    font-size: 8px;
+    margin-right: 4px;
+    color: hsl(var(--hsl-c2));
   }
 }

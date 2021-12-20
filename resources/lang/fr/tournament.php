@@ -6,7 +6,7 @@
 return [
     'index' => [
         'none_running' => 'Il n\'y a pas de tournois en ce moment, vérifiez plus tard !',
-        'registration_period' => 'Inscriptions : :start à :end',
+        'registration_period' => 'Inscriptions : du :start au :end',
 
         'header' => [
             'title' => 'Tournois communautaires',
@@ -28,12 +28,12 @@ return [
         'info_page' => 'Page d\'informations',
         'login_to_register' => 'Merci de :login pour voir les détails d\'inscription !',
         'not_yet_entered' => 'Vous n\'êtes pas inscrit à ce tournoi.',
-        'rank_too_low' => 'Désolé, vous ne respectez pas les critères de rang pour ce tournoi!',
+        'rank_too_low' => 'Désolé, vous ne respectez pas les critères de rang pour ce tournoi !',
         'registration_ends' => 'Les inscriptions ferment le :date',
 
         'button' => [
             'cancel' => 'Annuler l\'inscription',
-            'register' => 'Inscription!',
+            'register' => 'Inscription !',
         ],
 
         'period' => [
@@ -48,5 +48,5 @@ return [
             'running' => 'Ce tournoi est actuellement en cours. Visitez la page d\'informations pour plus de détails.',
         ],
     ],
-    'tournament_period' => ':start à :end',
+    'tournament_period' => 'Du :start au :end',
 ];

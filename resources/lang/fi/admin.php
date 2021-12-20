@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Luo uudelleen',
-            'regenerating' => 'Luodaan uudelleen...',
-            'remove' => 'Poista',
-            'removing' => 'Poistetaan...',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
             'title' => '',
         ],
         'show' => [
-            'covers' => 'Hallitse rytmikarttojen kansia',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modaus v2',
-                'activate' => 'aktivoi',
-                'activate_confirm' => 'aktivoi modaus v2 tälle rytmikartalle?',
-                'active' => 'aktiivinen',
-                'inactive' => 'epäaktiivinen',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Poista',
+                'delete' => '',
 
-                'forum-name' => 'Foorumi #:id: :nimi',
+                'forum-name' => '',
 
-                'no-cover' => 'Kantta ei ole asetettu',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Tallenna',
-                    'update' => 'Päivitä',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Foorumin Kansi Luettelo',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Oletus Aiheen Kansi',
-                    'main' => 'Foorumin kansi',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,7 +50,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Loki Katselija',
+            'title' => '',
         ],
     ],
 
@@ -58,25 +58,16 @@ return [
         'root' => [
             'sections' => [
                 'beatmapsets' => '',
-                'forum' => 'Foorumi',
-                'general' => 'Yleinen',
-                'store' => 'Kauppa',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Tilaus listaus',
+                'forum' => '',
+                'general' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Tämä käyttäjä on tällähetkellä rajoitettu.',
-            'message' => '(Vain ylläpitäjät näkevät tämän)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

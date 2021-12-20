@@ -1,61 +1,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-/* tslint:disable:max-classes-per-file */
+/* eslint-disable max-classes-per-file */
 
 // importable coffeescript modules
 declare module 'back-to-top' {
   interface Props {
-    anchor: React.RefObject<{}>;
-    ref: React.RefObject<{}>;
+    anchor: React.RefObject<HTMLElement>;
+    ref: React.RefObject<BackToTop>;
   }
 
   class BackToTop extends React.PureComponent<Props> {
     reset(): void;
   }
-}
-
-declare module 'block-button' {
-  interface Props {
-    modifiers?: string[];
-    onClick?: () => void;
-    userId: number;
-    wrapperClass?: string;
-  }
-
-  class BlockButton extends React.PureComponent<Props> {}
-}
-
-declare module 'big-button' {
-  interface Props {
-    extraClasses?: string[];
-    icon: string;
-    isBusy?: boolean;
-    modifiers?: string[];
-    props: any;
-    text: string;
-  }
-
-  class BigButton extends React.PureComponent<Props> {}
-}
-
-declare module 'friend-button' {
-  class FriendButton extends React.PureComponent<any> {}
-}
-
-declare module 'img2x' {
-  class Img2x extends React.PureComponent<any> {}
-}
-
-declare module 'spinner' {
-  interface Props {
-    modifiers?: string[];
-  }
-
-  class Spinner extends React.PureComponent<Props> {}
-}
-declare module 'user-avatar' {
-  class UserAvatar extends React.PureComponent<any> {}
 }
 
 declare module 'comments' {
@@ -78,7 +35,20 @@ declare module 'modal' {
     onClose?: () => void;
     visible: boolean;
   }
-  class Modal extends React.PureComponent<Props> {}
+
+  class Modal extends React.PureComponent<Props> {
+    static isOpen(): boolean;
+  }
+}
+
+declare module 'notification-banner' {
+  interface Props {
+    message: React.ReactFragment;
+    title: string;
+    type: string;
+  }
+
+  class NotificationBanner extends React.PureComponent<Props> {}
 }
 
 declare module 'popup-menu' {
@@ -87,6 +57,7 @@ declare module 'popup-menu' {
   interface Props {
     children: Children;
     customRender?: (children: JSX.Element[], ref: React.RefObject<HTMLElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => JSX.Element;
+    direction?: 'left' | 'right';
     onHide?: () => void;
     onShow?: () => void;
   }
@@ -99,7 +70,7 @@ declare module 'react/beatmaps/search-content' {
 
   interface Props {
     availableFilters: AvailableFilters;
-    backToTopAnchor: React.RefObject<{}>;
+    backToTopAnchor: React.RefObject<HTMLElement>;
   }
 
   class SearchContent extends React.PureComponent<Props> {}

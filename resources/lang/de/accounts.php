@@ -32,12 +32,11 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'aktueller standort',
                 'user_interests' => 'interessen',
-                'user_msnm' => 'skype',
                 'user_occ' => 'beschäftigung',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'webseite',
             ],
         ],
@@ -51,17 +50,19 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'erhalte benachrichtigungen für neue probleme auf qualifizierten beatmaps der folgenden modi',
         'beatmapset_disqualify' => 'erhalte benachrichtigungen, wenn beatmaps der folgenden modi disqualifiziert werden',
-        'comment_reply' => 'erhalte benachrichtigungen für antworten auf deine kommentare',
+        'comment_reply' => 'erhalte Benachrichtigungen für antworten auf deine Kommentare',
         'title' => 'Benachrichtigungen',
         'topic_auto_subscribe' => 'automatisch benachrichtigungen zu den von dir erstellten forenthreads aktivieren',
 
         'options' => [
             '_' => 'zustelloptionen',
+            'beatmap_owner_change' => 'gastschwierigkeitsstufe',
             'beatmapset:modding' => 'beatmap-modding',
             'channel_message' => 'private chatnachrichten',
             'comment_new' => 'neue kommentare',
             'forum_topic_reply' => 'antwort auf einen thread',
             'mail' => 'mail',
+            'mapping' => 'beatmap-mapper',
             'push' => 'push',
             'user_achievement_unlock' => 'medaille freigeschaltet',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'Warnungen für expliziten Inhalt in Beatmaps ausblenden',
+        'beatmapset_title_show_original' => 'beatmap-metadaten in originalsprache anzeigen',
         'title' => 'Optionen',
 
         'beatmapset_download' => [
-            '_' => 'bevorzuge beatmap-download',
-            'all' => 'mit video, falls verfügbar',
-            'no_video' => 'ohne video',
+            '_' => 'bevorzugter beatmap-download typ',
+            'all' => 'mit Video, falls verfügbar',
             'direct' => 'in osu!direct öffnen',
+            'no_video' => 'ohne video',
         ],
-
-        'beatmapset_title_show_original' => 'beatmap-metadaten in originalsprache anzeigen',
     ],
 
     'playstyles' => [
@@ -101,7 +102,7 @@ return [
     ],
 
     'security' => [
-        'current_session' => 'Aktuell',
+        'current_session' => 'aktuell',
         'end_session' => 'Sitzung beenden',
         'end_session_confirmation' => 'Das wird deine Sitzung auf diesem Gerät sofort beenden. Bist du sicher?',
         'last_active' => 'Zuletzt aktiv:',

@@ -9,6 +9,7 @@ use App\Http\Middleware\AuthApi;
 use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
 use App\Models\User;
+use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Firebase\JWT\JWT;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -23,7 +24,7 @@ use ReflectionProperty;
 
 class TestCase extends BaseTestCase
 {
-    use CreatesApplication, DatabaseTransactions;
+    use ArraySubsetAsserts, CreatesApplication, DatabaseTransactions;
 
     protected $connectionsToTransact = [
         'mysql',
@@ -33,7 +34,21 @@ class TestCase extends BaseTestCase
         'mysql-updates',
     ];
 
-    protected $baseUrl = 'http://localhost';
+    public function regularOAuthScopesDataProvider()
+    {
+        $data = [];
+
+        foreach (Passport::scopes()->pluck('id') as $scope) {
+            // just skip over any scopes that require special conditions for now.
+            if (in_array($scope, ['chat.write', 'delegate'], true)) {
+                continue;
+            }
+
+            $data[] = [$scope];
+        }
+
+        return $data;
+    }
 
     protected function setUp(): void
     {
@@ -65,17 +80,12 @@ class TestCase extends BaseTestCase
      * @param string $driver Auth driver to use.
      * @return void
      */
-    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], $driver = null)
+    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null, $driver = null)
     {
+        $client ??= Client::factory()->create();
+
         // create valid token
-        $client = factory(Client::class)->create();
-        $token = $client->tokens()->create([
-            'expires_at' => now()->addDays(1),
-            'id' => uniqid(),
-            'revoked' => false,
-            'scopes' => $scopes,
-            'user_id' => optional($user)->getKey(),
-        ]);
+        $token = $this->createToken($user, $scopes, $client);
 
         // mock the minimal number of things.
         // this skips the need to form a request with all the headers.
@@ -116,7 +126,7 @@ class TestCase extends BaseTestCase
     protected function actAsUserWithToken(Token $token, $driver = null)
     {
         $guard = app('auth')->guard($driver);
-        $user = $token->user;
+        $user = $token->getResourceOwner();
 
         if ($user !== null) {
             // guard doesn't accept null user.
@@ -165,6 +175,18 @@ class TestCase extends BaseTestCase
         ]);
     }
 
+    protected function createAllowedScopesDataProvider(array $allowedScopes)
+    {
+        $data = Passport::scopes()->pluck('id')->map(function ($scope) use ($allowedScopes) {
+            return [[$scope], in_array($scope, $allowedScopes, true)];
+        })->all();
+
+        // scopeless tokens should fail in general.
+        $data[] = [[], false];
+
+        return $data;
+    }
+
     protected function clearMailFake()
     {
         $mailer = app('mailer');
@@ -174,13 +196,27 @@ class TestCase extends BaseTestCase
         }
     }
 
-    protected function createUserWithGroup($groupIdentifier, array $attributes = []): ?User
+    /**
+     * Creates an OAuth token for the specified authorizing user.
+     *
+     * @param User|null $user The user that authorized the token.
+     * @param array|null $scopes scopes granted
+     * @param Client|null $client The client the token belongs to.
+     * @return Token
+     */
+    protected function createToken(?User $user, ?array $scopes = null, ?Client $client = null)
     {
-        if ($groupIdentifier === null) {
-            return null;
-        }
+        $client ??= Client::factory()->create();
 
-        return factory(User::class)->states($groupIdentifier)->create($attributes);
+        $token = $client->tokens()->create([
+            'expires_at' => now()->addDays(1),
+            'id' => uniqid(),
+            'revoked' => false,
+            'scopes' => $scopes,
+            'user_id' => optional($user)->getKey(),
+        ]);
+
+        return $token;
     }
 
     protected function fileList($path, $suffix)
@@ -229,7 +265,7 @@ class TestCase extends BaseTestCase
 
     protected function normalizeHTML($html)
     {
-        return str_replace('<br />', "<br />\n", str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html))));
+        return str_replace('<br />', "<br />\n", str_replace("\n", '', preg_replace('/>\s*</s', '><', trim($html))));
     }
 
     protected function runFakeQueue()

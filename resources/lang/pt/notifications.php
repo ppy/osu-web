@@ -6,10 +6,12 @@
 return [
     'all_read' => 'Todas as notificações foram lidas!',
     'delete' => 'Eliminar :type',
+    'loading' => 'A carregar notificações não lidas...',
     'mark_read' => 'Limpar :type',
     'none' => 'Sem notificações',
     'see_all' => 'ver todas as notificações',
     'see_channel' => 'ir para a conversa',
+    'verifying' => 'Por favor verifica a sessão para ver as notificações',
 
     'filters' => [
         '_' => 'todas',
@@ -24,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
+
+            'beatmap_owner_change' => [
+                '_' => 'Dificuldade de convidado',
+                'beatmap_owner_change' => 'És agora o dono da dificuldade ":beatmap" para o mapa ":title"',
+                'beatmap_owner_change_compact' => 'És agora o dono da dificuldade ":beatmap"',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Discussão do beatmap',
@@ -133,6 +141,19 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Novo beatmap',
+
+                'user_beatmapset_new' => 'Novo beatmap ":title" por :username',
+                'user_beatmapset_new_compact' => 'Novo beatmap ":title"',
+                'user_beatmapset_new_group' => 'Novos beatmaps por :username',
+
+                'user_beatmapset_revive' => 'O beatmap ":title", foi restaurado por :username',
+                'user_beatmapset_revive_compact' => 'O beatmap ":title", foi restaurado',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medalhas',
 
@@ -147,6 +168,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'És agora convidado do mapa ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'A conversa sobre ":title" foi bloqueada',
                 'beatmapset_discussion_post_new' => 'A conversa sobre ":title" tem novas atualizações ',
@@ -200,6 +225,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username desbloqueou uma nova medalha, ":title"!',
                 'user_achievement_unlock_self' => 'Desbloqueaste uma nova medalha: ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username criou novos beatmaps',
             ],
         ],
     ],

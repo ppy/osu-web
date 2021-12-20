@@ -7,7 +7,7 @@ namespace App\Models\Multiplayer;
 
 use App\Exceptions\GameCompletedException;
 use App\Exceptions\InvariantException;
-use App\Libraries\ScoreRank;
+use App\Libraries\ScoreCheck;
 use App\Models\Model;
 use App\Models\User;
 use Carbon\Carbon;
@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Room $room
  * @property int $room_id
  * @property \Carbon\Carbon $started_at
- * @property array|null $statistics
+ * @property \stdClass|null $statistics
  * @property int|null $total_score
  * @property \Carbon\Carbon|null $updated_at
  * @property User $user
@@ -45,7 +45,7 @@ class Score extends Model
     protected $casts = [
         'passed' => 'boolean',
         'mods' => 'object',
-        'statistics' => 'array',
+        'statistics' => 'object',
     ];
 
     public static function start(array $params)
@@ -74,6 +74,11 @@ class Score extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function getDataAttribute()
+    {
+        return $this;
+    }
+
     public function scopeCompleted($query)
     {
         return $query->whereNotNull('ended_at');
@@ -97,26 +102,6 @@ class Score extends Model
 
         $this->fill($params);
 
-        if (!ScoreRank::isValid($this->rank)) {
-            throw new InvariantException("'{$this->rank}' is not a valid rank.");
-        }
-
-        foreach (['total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
-            if (!present($this->$field)) {
-                throw new InvariantException("field missing: '{$field}'");
-            }
-        }
-
-        foreach (['mods', 'statistics'] as $field) {
-            if (!is_array($this->$field)) {
-                throw new InvariantException("field must be an array: '{$field}'");
-            }
-        }
-
-        if (empty($this->statistics)) {
-            throw new InvariantException("field cannot be empty: 'statistics'");
-        }
-
         if (!empty($this->playlistItem->required_mods)) {
             $missingMods = array_diff(
                 array_column($this->playlistItem->required_mods, 'acronym'),
@@ -131,6 +116,7 @@ class Score extends Model
         if (!empty($this->playlistItem->allowed_mods)) {
             $missingMods = array_diff(
                 array_column($this->mods, 'acronym'),
+                array_column($this->playlistItem->required_mods, 'acronym'),
                 array_column($this->playlistItem->allowed_mods, 'acronym')
             );
 
@@ -139,8 +125,7 @@ class Score extends Model
             }
         }
 
-        // todo: also, all the validationsz:
-        // - validate statistics json format
+        ScoreCheck::assertCompleted($this);
 
         $this->save();
     }
@@ -153,9 +138,9 @@ class Score extends Model
 
         $query = PlaylistItemUserHighScore
             ::where('playlist_item_id', $this->playlist_item_id)
-            ->cursorWhere([
-                ['column' => 'total_score', 'order' => 'ASC', 'value' => $this->total_score],
-                ['column' => 'score_id', 'order' => 'DESC', 'value' => $this->getKey()],
+            ->cursorSort('score_asc', [
+                'total_score' => $this->total_score,
+                'score_id' => $this->getKey(),
             ]);
 
         return 1 + $query->count();

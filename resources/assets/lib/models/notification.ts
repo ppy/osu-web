@@ -3,7 +3,7 @@
 
 import NotificationJson from 'interfaces/notification-json';
 import { camelCase, forEach } from 'lodash';
-import { computed, observable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import NotificationDetails, { newEmptyNotificationDetails } from 'models/notification-details';
 import { Name } from 'models/notification-type';
 import { categoryFromName, categoryGroupKey } from 'notification-maps/category';
@@ -53,14 +53,16 @@ export default class Notification implements NotificationReadable, NotificationD
   }
 
   @computed get title() {
-    if (core.currentUser?.user_preferences.beatmapset_title_show_original) {
+    if (core.userPreferences.get('beatmapset_title_show_original')) {
       return osu.presence(this.details.titleUnicode) ?? this.details.title;
     }
 
     return this.details.title;
   }
 
-  constructor(readonly id: number, readonly objectType: Name) {}
+  constructor(readonly id: number, readonly objectType: Name) {
+    makeObservable(this);
+  }
 
   static fromJson(json: NotificationJson): Notification {
     const obj = new Notification(json.id, json.object_type);
@@ -81,11 +83,11 @@ export default class Notification implements NotificationReadable, NotificationD
         this.details[camelCase(key)] = value;
       });
 
-      if (json.name === 'comment_new' && json.details.reply_to?.user_id === currentUser.id) {
+      if (json.name === 'comment_new' && json.details.reply_to?.user_id === core.currentUser?.id) {
         this.name = 'comment_reply';
       }
     }
 
     return this;
-  }
+  };
 }

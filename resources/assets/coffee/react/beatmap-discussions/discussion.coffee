@@ -5,12 +5,14 @@ import { NewReply } from './new-reply'
 import { Post } from './post'
 import { SystemPost } from './system-post'
 import { UserCard } from './user-card'
-import mapperGroup from 'beatmap-discussions/mapper-group'
+import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
-import { UserAvatar } from 'user-avatar'
+import UserAvatar from 'user-avatar'
+import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 
 el = React.createElement
 
@@ -77,8 +79,12 @@ export class Discussion extends React.PureComponent
       unread: !@isRead(firstPost)
     topClasses += ' js-beatmap-discussion-jump'
 
-    user = @props.users[@props.discussion.user_id]
-    group = if user.id == @props.beatmapset.user_id then mapperGroup else user.groups[0]
+    user = @props.users[@props.discussion.user_id] ? @props.users[null]
+    group = badgeGroup
+      beatmapset: @props.beatmapset
+      currentBeatmap: @props.currentBeatmap
+      discussion: @props.discussion
+      user: user
 
     div
       className: topClasses
@@ -98,7 +104,7 @@ export class Discussion extends React.PureComponent
               group: group
               hideStripe: true
           div className: "#{bn}__top-message",
-            @post firstPost, 'discussion', true
+            @post firstPost, 'discussion'
           div className: "#{bn}__top-actions",
             @postButtons() if !@props.preview
         @postFooter() if !@props.preview
@@ -167,7 +173,7 @@ export class Discussion extends React.PureComponent
 
     topClasses = "#{vbn} #{vbn}--#{type}"
     topClasses += " #{vbn}--inactive" if score != 0
-    user = @props.users[@props.discussion.user_id]
+    user = @props.users[@props.discussion.user_id] ? @props.users[null]
     disabled = @isOwner() || user.is_bot || (type == 'down' && !@canDownvote()) || !@canBeRepliedTo()
 
     button
@@ -221,11 +227,11 @@ export class Discussion extends React.PureComponent
 
 
   doVote: (e) =>
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @voteXhr?.abort()
 
-    @voteXhr = $.ajax laroute.route('beatmap-discussions.vote', beatmap_discussion: @props.discussion.id),
+    @voteXhr = $.ajax laroute.route('beatmapsets.discussions.vote', discussion: @props.discussion.id),
       method: 'PUT',
       data:
         beatmap_discussion_vote:
@@ -236,10 +242,11 @@ export class Discussion extends React.PureComponent
 
     .fail osu.ajaxError
 
-    .always LoadingOverlay.hide
+    .always hideLoadingOverlay
 
 
-  emitSetHighlight: =>
+  emitSetHighlight: (e) =>
+    return if e.defaultPrevented
     $.publish 'beatmapset-discussions:highlight', discussionId: @props.discussion.id
 
 
@@ -264,7 +271,7 @@ export class Discussion extends React.PureComponent
     (!@props.discussion.beatmap_id? || !@props.currentBeatmap.deleted_at?)
 
 
-  post: (post, type, hideUserCard) =>
+  post: (post, type) =>
     return if !post.id?
 
     elementName = if post.system then SystemPost else Post
@@ -286,13 +293,12 @@ export class Discussion extends React.PureComponent
       type: type
       read: @isRead(post)
       users: @props.users
-      user: @props.users[post.user_id]
-      lastEditor: @props.users[post.last_editor_id]
+      user: @props.users[post.user_id] ? @props.users[null]
+      lastEditor: @props.users[post.last_editor_id] ? @props.users[null] if post.last_editor_id?
       canBeEdited: @props.currentUser.is_admin || canBeEdited
       canBeDeleted: canBeDeleted
       canBeRestored: canModeratePosts
       currentUser: @props.currentUser
-      hideUserCard: hideUserCard
 
 
   resolvedSystemPostId: =>
@@ -313,11 +319,15 @@ export class Discussion extends React.PureComponent
           div className: "#{tbn}__icon",
             span
               className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{_.kebabCase(@props.discussion.message_type)}"
-              i className: BeatmapDiscussionHelper.messageType.icon[_.camelCase(@props.discussion.message_type)]
+              i
+                className: discussionTypeIcons[@props.discussion.message_type]
+                title: osu.trans "beatmaps.discussions.message_type.#{@props.discussion.message_type}"
 
           if @props.discussion.resolved
             div className: "#{tbn}__icon #{tbn}__icon--resolved",
-              i className: 'far fa-check-circle'
+              i
+                className: 'far fa-check-circle'
+                title: osu.trans 'beatmaps.discussions.resolved'
 
         div className: "#{tbn}__text",
           BeatmapDiscussionHelper.formatTimestamp @props.discussion.timestamp

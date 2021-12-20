@@ -10,31 +10,32 @@ interface Props {
 
 let isLocaleConfigured = false;
 
+const translatedUnits = {
+  d: 'd',
+  dd: 'dd',
+  h: 'h',
+  hh: 'hh',
+  m: 'm',
+  mm: 'mm',
+  month: 'M',
+  months: 'MM',
+  past: 'past',
+  s: 's',
+  y: 'y',
+  yy: 'yy',
+};
+
 function setupScoreboardLocale() {
   if (isLocaleConfigured) return;
 
   const previousLocale = moment.locale();
 
-  moment.defineLocale('scoreboard', {
-    // tslint complains that M should be before m. And m should be before M.
-    // tslint:disable: object-literal-sort-keys
-    relativeTime: {
-      future: '',
-      past: osu.trans('common.scoreboard_time.past'),
-      s: osu.trans('common.scoreboard_time.s'),
-      m: osu.trans('common.scoreboard_time.m'),
-      mm: osu.trans('common.scoreboard_time.mm'),
-      h: osu.trans('common.scoreboard_time.h'),
-      hh: osu.trans('common.scoreboard_time.hh'),
-      d: osu.trans('common.scoreboard_time.d'),
-      dd: osu.trans('common.scoreboard_time.dd'),
-      M: osu.trans('common.scoreboard_time.M'),
-      MM: osu.trans('common.scoreboard_time.MM'),
-      y: osu.trans('common.scoreboard_time.y'),
-      yy: osu.trans('common.scoreboard_time.yy'),
-    },
-    // tslint:enable: object-literal-sort-keys
-  });
+  const relativeTime: Partial<Record<string, string>> = { future: '' };
+  for (const [key, unit] of Object.entries(translatedUnits)) {
+    relativeTime[unit] = osu.trans(`common.scoreboard_time.${key}`);
+  }
+
+  moment.defineLocale('scoreboard', { relativeTime });
 
   moment.locale(previousLocale);
 

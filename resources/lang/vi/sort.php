@@ -6,8 +6,8 @@
 return [
     '_' => 'Sắp xếp theo',
 
-    'all' => '',
-    'friends' => '',
+    'all' => 'Tất cả',
+    'friends' => 'Bạn bè',
     'last_visit' => 'Hoạt động gần nhất',
     'new' => 'Gần đây',
     'old' => 'Cũ',
@@ -15,8 +15,29 @@ return [
     'top' => 'Hàng đầu',
     'username' => 'Tên người chơi',
 
+    'artist_tracks' => [
+        'album' => 'Album',
+        'artist' => 'Nghệ sĩ',
+        'bpm' => 'BPM',
+        'genre' => 'Thể loại',
+        'length' => 'Độ dài',
+        'relevance' => 'Mức độ liên quan',
+        'title' => 'Tiêu đề',
+        'update' => 'Cập nhật',
+    ],
+
+    'forum_posts' => [
+        'created' => 'Thời gian đăng',
+        'relevance' => 'Mức độ liên quan',
+    ],
+
     'forum_topics' => [
-        'new' => 'Trả lời cuối',
         'feature_votes' => 'Ưu tiên sao',
+        'new' => 'Trả lời cuối',
+    ],
+
+    'users' => [
+        'relevance' => 'Mức độ liên quan',
+        'username' => 'Tên',
     ],
 ];

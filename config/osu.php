@@ -1,5 +1,10 @@
 <?php
 
+$profileScoresNotice = presence(env('USER_PROFILE_SCORES_NOTICE'));
+if ($profileScoresNotice !== null) {
+    $profileScoresNotice = markdown_plain($profileScoresNotice);
+}
+
 // osu config~
 return [
     'achievement' => [
@@ -17,13 +22,8 @@ return [
 
     'avatar' => [
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
-        'default' => env('DEFAULT_AVATAR', '/images/layout/avatar-guest.png'),
+        'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest.png'),
         'storage' => env('AVATAR_STORAGE', 'local-avatar'),
-    ],
-
-    'assets' => [
-        'base_url' => env('ASSETS_URL'),
-        'mini_url' => env('MINI_ASSETS_URL'),
     ],
 
     'bbcode' => [
@@ -56,13 +56,12 @@ return [
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
         'required_nominations' => get_int(env('BEATMAPSET_REQUIRED_NOMINATIONS')) ?? 2,
         'required_nominations_hybrid' => get_int(env('BEATMAPSET_REQUIRED_NOMINATIONS_HYBRID')) ?? 2,
-        'storage' => env('BEATMAPSET_STORAGE'),
         'upload_allowed' => get_int(env('BEATMAPSET_UPLOAD_ALLOWED')) ?? 4,
+        'upload_allowed_supporter' => get_int(env('BEATMAPSET_UPLOAD_ALLOWED_SUPPORTER')) ?? 8,
         'upload_bonus_per_ranked' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED')) ?? 1,
         'upload_bonus_per_ranked_max' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED_MAX')) ?? 2,
-        'upload_allowed_supporter' => get_int(env('BEATMAPSET_UPLOAD_ALLOWED_SUPPORTER')) ?? 8,
-        'upload_bonus_per_ranked_supporter' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED_SUPPORTER')) ?? 1,
         'upload_bonus_per_ranked_max_supporter' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED_MAX_SUPPORTER')) ?? 12,
+        'upload_bonus_per_ranked_supporter' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED_SUPPORTER')) ?? 1,
         'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
         'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
     ],
@@ -71,6 +70,7 @@ return [
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
     ],
     'chat' => [
+        'channel_limit' => get_int(env('CHAT_CHANNEL_LIMIT')) ?? 10000,
         'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
         'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
         'rate_limits' => [
@@ -85,10 +85,10 @@ return [
         ],
     ],
     'client' => [
+        'check_version' => get_bool(env('CLIENT_CHECK_VERSION')) ?? true,
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
-        'number_of_shards' => env('ES_DEFAULT_SHARDS', 1),
         'prefix' => env('ES_INDEX_PREFIX'),
         'search_timeout' => env('ES_SEARCH_TIMEOUT', '5s'),
     ],
@@ -112,28 +112,36 @@ return [
             'author' => 24,
             'normal' => 72,
         ],
-
-        'slack_watch' => [
-            'forum_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_FORUM_IDS', '5 29 101 4 30 2'))),
-            'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
-        ],
     ],
     'git-sha' => presence(env('GIT_SHA'))
         ?? (file_exists(__DIR__.'/../version') ? trim(file_get_contents(__DIR__.'/../version')) : null)
         ?? 'unknown-version',
+    'is_development_deploy' => get_bool(env('IS_DEVELOPMENT_DEPLOY')) ?? true,
     'landing' => [
         'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),
     ],
     'legacy' => [
+        'bancho_bot_user_id' => get_int(env('BANCHO_BOT_USER_ID')) ?? 3,
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
+    ],
+    'multiplayer' => [
+        'max_attempts_limit' => get_int(env('MULTIPLAYER_MAX_ATTEMPTS_LIMIT')) ?? 128,
     ],
     'notification' => [
         'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
         'queue_name' => presence(env('NOTIFICATION_QUEUE'), 'notification'),
+
+        'cleanup' => [
+            'keep_days' => get_int(env('NOTIFICATION_CLEANUP_KEEP_DAYS')) ?? 180,
+            'max_delete_per_run' => get_int(env('NOTIFICATION_CLEANUP_MAX_DELETE')) ?? 50000,
+        ],
     ],
     'oauth' => [
         'retain_expired_tokens_days' => abs(get_int(env('OAUTH_RETAIN_EXPIRED_TOKENS_DAYS'))) ?? 30,
         'max_user_clients' => get_int(env('OAUTH_MAX_USER_CLIENTS')) ?? 1,
+    ],
+    'octane' => [
+        'local_cache_reset_requests' => get_int(env('OCTANE_LOCAL_CACHE_RESET_REQUESTS')) ?? 100,
     ],
     'pagination' => [
         'max_count' => get_int(env('PAGINATION_MAX_COUNT')) ?? 10000,
@@ -150,6 +158,12 @@ return [
     ],
     'scores' => [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
+        'rank_cache' => [
+            'local_server' => get_bool(env('SCORES_RANK_CACHE_LOCAL_SERVER')) ?? false,
+            'min_users' => get_int(env('SCORES_RANK_CACHE_MIN_USERS')) ?? 35000,
+            'server_url' => presence(env('SCORES_RANK_CACHE_SERVER_URL')),
+            'timeout' => get_int(env('SCORES_RANK_CACHE_TIMEOUT')) ?? 10,
+        ],
     ],
 
     'seasonal' => [
@@ -157,13 +171,7 @@ return [
         'ends_at' => env('SEASONAL_ENDS_AT'),
     ],
 
-    'static' => env('LEGACY_STATICS_HOST', ''),
-    'support' => [
-        'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
-    ],
     'store' => [
-        'delayed_shipping_order_threshold' => env('DELAYED_SHIPPING_ORDER_THRESHOLD', 100),
-        'delayed_shipping_order_message' => env('DELAYED_SHIPPING_ORDER_MESSAGE'),
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
@@ -189,28 +197,17 @@ return [
         'server_status' => 'https://twitter.com/osustatus',
         'smilies' => '/forum/images/smilies',
         'source_code' => 'https://github.com/ppy',
-        'support-the-game' => '/p/support#transactionarea',
         'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
 
         'social' => [
-            'twitter' => '/help/wiki/Twitter',
+            'twitter' => '/wiki/Twitter',
         ],
         'user' => [
-            'kudosu' => '/wiki/Kudosu',
             'recover' => '/p/forgot-email',
             'rules' => '/wiki/Osu!:Rules',
-            'inbox' => '/forum/ucp.php?i=pm&folder=inbox',
         ],
         'rankings' => [
-            'charts' => '/p/chart',
-            'country' => '/p/countryranking',
             'kudosu' => '/p/kudosu',
-        ],
-        'home' => [
-            'news' => '/p/news',
-        ],
-        'help' => [
-            'support' => 'http://help.ppy.sh/',
         ],
         'testflight' => [
             'public' => env('TESTFLIGHT_LINK'),
@@ -219,12 +216,14 @@ return [
     ],
     'user' => [
         'allow_email_login' => get_bool(env('USER_ALLOW_EMAIL_LOGIN')) ?? true,
-        'allow_registration' => get_bool(env('ALLOW_REGISTRATION', false)),
+        'allow_registration' => get_bool(env('ALLOW_REGISTRATION')) ?? true,
         'allowed_rename_groups' => explode(' ', env('USER_ALLOWED_RENAME_GROUPS', 'default')),
+        'bypass_verification' => get_bool(env('USER_BYPASS_VERIFICATION')) ?? false,
         'inactive_days_verification' => get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180,
         'min_plays_for_posting' => get_int(env('USER_MIN_PLAYS_FOR_POSTING')) ?? 10,
         'min_plays_allow_verified_bypass' => get_bool(env('USER_MIN_PLAYS_ALLOW_VERIFIED_BYPASS')) ?? true,
         'post_action_verification' => get_bool(env('USER_POST_ACTION_VERIFICATION')) ?? true,
+        'profile_scores_notice' => $profileScoresNotice,
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
@@ -234,7 +233,6 @@ return [
         'max_multiplayer_rooms' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS')) ?? 1,
         'max_multiplayer_rooms_supporter' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS_SUPPORTER')) ?? 5,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
-        'username_lock_rank_limit' => get_int(env('USER_USERNAME_LOCK_RANK_LIMIT')) ?? 100000,
         'password_reset' => [
             'expires_hour' => 2,
             'key_length' => 8,
@@ -244,7 +242,8 @@ return [
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
     ],
     'user_report_notification' => [
-        'endpoint' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT')),
+        'endpoint_moderation' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_MODERATION')),
+        'endpoint_cheating' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_CHEATING')),
     ],
     'wiki' => [
         'branch' => presence(env('WIKI_BRANCH'), 'master'),
@@ -256,7 +255,6 @@ return [
         'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
         'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
         'github_token' => env('CHANGELOG_GITHUB_TOKEN'),
-        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
         'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
     ],
 ];

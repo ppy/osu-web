@@ -19,7 +19,6 @@ return [
             'contest' => 'مسابقة',
             'contests' => 'المسابقات',
             'root' => 'وحدة التحكم',
-            'store_orders' => 'مشرف المتجر',
         ],
 
         'artists' => [
@@ -47,6 +46,7 @@ return [
 
         'users' => [
             'modding' => 'الاِقتراح',
+            'multiplayer' => 'متعدد اللاعبين',
             'show' => 'معلومات',
         ],
     ],
@@ -62,49 +62,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'خرائط الموسيقى',
-            'artists' => 'الفنانين الموصى بهم',
-            'index' => 'القائمة',
-            'packs' => 'حزم',
         ],
         'community' => [
             '_' => 'المجتمع',
-            'chat' => 'محادثة',
-            'contests' => 'مسابقة',
             'dev' => 'التطوير',
-            'forum-forums-index' => 'المنتديات',
-            'getLive' => 'مباشر',
-            'tournaments' => 'البطولات',
         ],
         'help' => [
             '_' => 'مساعدة',
-            'getAbuse' => '',
+            'getAbuse' => 'الإبلاغ عن إساءة',
             'getFaq' => 'الأسئلة الشائعة',
             'getRules' => 'القوانين',
             'getSupport' => 'لا، حقاً، أنا بحاجة إلى مساعدة!',
-            'getWiki' => 'ويكي',
         ],
         'home' => [
             '_' => 'الرئيسية',
-            'changelog-index' => 'سِجل التغييرات',
-            'getDownload' => 'تحميل',
-            'news-index' => 'الأخبار',
-            'search' => 'البحث',
             'team' => 'الفريق',
         ],
         'rankings' => [
             '_' => 'الترتيب',
-            'charts' => 'منطقة ألأضواء',
-            'country' => 'الدولة',
-            'index' => 'الأداء',
             'kudosu' => 'كودوسو',
-            'multiplayer' => 'متعدد اللاعبين',
-            'score' => 'النتيجة',
         ],
         'store' => [
             '_' => 'المتجر',
-            'cart-show' => 'عربة التسوق',
-            'getListing' => 'القائمة',
-            'orders-index' => 'تاريخ الطلب',
         ],
     ],
 
@@ -159,6 +138,10 @@ return [
             'error' => 'تعديلات الطلب خاطئة',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'تجاوزت افصى حد',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'اوه لا! كسر شيء! ;_;',
             'description' => "نحن معلمون تلقائيا بكل خطأ.",
@@ -204,6 +187,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'الاعدادات',
+            'follows' => 'قوائم المشاهدة',
             'friends' => 'الأصدقاء',
             'logout' => 'تسجيل الخروج',
             'profile' => 'الصفحة الشخصية',

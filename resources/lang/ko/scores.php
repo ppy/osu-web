@@ -8,7 +8,7 @@ return [
         'title' => ':title 에서의 :username 님 [:version]',
 
         'beatmap' => [
-            'by' => ':artist 님이 만듦',
+            'by' => 'by :artist',
         ],
 
         'player' => [
@@ -20,5 +20,10 @@ return [
                 'global' => '세계 순위',
             ],
         ],
+    ],
+
+    'status' => [
+        'non_best' => '개인 최고 점수만 pp를 얻습니다.',
+        'processing' => '이 점수는 아직 계산 중이며 곧 표시될 예정입니다.',
     ],
 ];

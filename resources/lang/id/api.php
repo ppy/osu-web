@@ -6,14 +6,23 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => 'Tidak bisa mengirim pesan kosong.',
+            'empty' => 'Tidak dapat mengirim pesan kosong.',
             'limit_exceeded' => 'Anda mengirim pesan terlalu cepat, harap tunggu sebentar sebelum mencoba lagi.',
-            'too_long' => 'Pesan yang Anda coba kirim terlalu panjang.',
+            'too_long' => 'Pesan yang hendak Anda kirim terlalu panjang.',
         ],
     ],
 
     'scopes' => [
+        'bot' => 'Bertindak selaku chat bot.',
         'identify' => 'Mengenali diri Anda dan membaca profil publik Anda.',
+
+        'chat' => [
+            'write' => 'Mengirimkan pesan-pesan atas nama akun Anda.',
+        ],
+
+        'forum' => [
+            'write' => 'Membuat dan menyunting postingan forum atas nama akun Anda.',
+        ],
 
         'friends' => [
             'read' => 'Melihat siapa saja yang Anda ikuti.',

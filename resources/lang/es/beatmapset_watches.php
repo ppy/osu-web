@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'No estás viendo ninguna discusión de un mapa.',
+            'last_update' => 'Última actualización',
             'open_issues' => 'Problemas abiertos',
             'state' => 'Estado',
             'title' => 'Título',

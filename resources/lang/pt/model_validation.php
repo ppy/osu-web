@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Não é permitido eliminar a publicação dos metadados do beatmap.',
             'beatmapset_post_no_edit' => 'Não é permitido editar a publicação dos metadados do beatmap.',
+            'first_post_no_delete' => 'Não é possível apagar a publicação inicial',
+            'missing_topic' => 'Está a faltar um tópico na publicação',
             'only_quote' => 'A tua resposta contém apenas uma citação.',
 
             'attributes' => [
@@ -161,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => 'Os beatmaps classificados não podem ser denunciados',
         'reason_not_valid' => ':reason não é valida para este tipo de denúncia.',
         'self' => "Não te podes denunciar a ti mesmo!",
     ],

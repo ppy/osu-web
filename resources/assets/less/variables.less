@@ -10,6 +10,7 @@
 @font-content: Inter, sans-serif;
 @font-default: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
 @font-default-vi: Quicksand, Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-default-th: Torus, Inter, 'Helvetica Neue', 'Prompt', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', "Apple SD Gothic Neo", sans-serif;
 @font-default-zh: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
 @font-default-zh-tw: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
 
@@ -28,7 +29,7 @@
 
 @admin-menu-icon-width: 50px;
 
-// update import-shims.coffee when changing the height of the header.
+// update app-deps.ts when changing the height of the header.
 @nav2-avatar-height: 60px;
 @nav2-avatar-height--pinned : 40px;
 @nav2-height: 90px;
@@ -50,12 +51,11 @@
 @padding-big: (20px + @logo-size + 10px);
 
 @gutter-profile-page: @gutter-v2;
-@gutter-profile-page-desktop: @gutter-desktop;
+@gutter-profile-page-desktop: @gutter-v2-desktop;
 @padding-profile-page: 10px;
 @profile-page-action: 20px;
 
-@gutter: 30px;
-@gutter-desktop: 70px;
+@md-paragraph-space: 1.5em;
 
 // ┐(ﾟ ヮﾟ)┌
 @gutter-v2: 10px;
@@ -92,9 +92,10 @@
 @z-index--wiki-search: 1;
 
 @z-index--beatmaps-panel: 4;
-@z-index--profile-page-cover-selector: 5;
 @z-index--profile-previous-usernames: 10;
 @z-index--profile-tournament-banner: 11;
+@z-index--page-extra-tabs: 99;
+@z-index--profile-page-cover-selector: 100; // must be at least 1 more than @z-index--page-extra-tabs
 @z-index--beatmap-discussion-editor-insertion-menu: 100;
 @z-index--simple-menu: 101;
 @z-index--simple-menu-hover-object: 102;
@@ -129,6 +130,7 @@
 @profile-avatar-size: 120px;
 @profile-stats-box-width-desktop: 300px;
 
+@beatmap-picker-size: 38px;
 @beatmapset-avatar-size: 50px;
 
 @beatmapset-float-box-width: 275px;
@@ -195,10 +197,6 @@
 @font-size--paginator: 12px;
 @font-size--phone-input: 16px;
 
-@font-size--support-osu-popup-body: 15px;
-@font-size--support-osu-popup-header: 48px;
-@font-size--support-osu-popup-header-smaller: 26px;
-
 @font-size--warning: 13px;
 @font-size--warning-icon: 20px;
 
@@ -238,6 +236,11 @@
 
 @forum-topic-nav-item--gutter: 2px;
 @forum-topic-nav-item--gutter-desktop: 3px;
+
+@beatmapset-panel-bg: hsl(var(--hsl-b2));
+@beatmapset-panel-height: 120px;
+@beatmapset-panel-extra-height-desktop: 140px;
+@beatmapset-panel-normal-height-desktop: 100px;
 
 @beatmap-discussion--avatar-size: 40px;
 @beatmap-discussion--reply-padding: (20px + @beatmap-discussion--avatar-size);
@@ -300,14 +303,14 @@
 @btn-circle-diameter: 30px;
 
 // difficulty colours
-@diff-easy: @green;
-@diff-normal: @blue;
-@diff-hard: @yellow;
-@diff-insane: @pink;
-@diff-expert: @purple-light;
-@diff-expert-plus: #121415;
-@diff-expert-plus-light: #999;
-@diff-default: @diff-expert-plus;
+@diff-easy: #4EBFFF;
+@diff-normal: #66FF91;
+@diff-hard: #F7E85D;
+@diff-insane: #FF7E68;
+@diff-expert: #FE3C71;
+@diff-expert-plus: #6662DD;
+@diff-expert-plus-light: #6662DD;
+@diff-default: #000;
 
 // store slider
 @slider-callout--arrow-height: 12px;

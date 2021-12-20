@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 
-class @InputHandler
+class window.InputHandler
   @CANCEL = 'cancel'
   @SUBMIT = 'submit'
 
@@ -13,7 +13,7 @@ class @InputHandler
     (event) =>
       if event.keyCode == @KEY_ESC
         type = @CANCEL
-      else if event.keyCode == @KEY_ENTER && !event.shiftKey && osu.isDesktop()
+      else if event.keyCode == @KEY_ENTER && !event.shiftKey && osuCore.windowSize.isDesktop
         event.preventDefault()
         type = @SUBMIT
 

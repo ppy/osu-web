@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Nečestné hranie / Podvádzanie',
+            'multiple_accounts' => '',
             'insults' => 'Urážanie mňa / iných',
             'spam' => 'Spam',
             'unwanted_content' => 'Posiela nevhodný obsah',
@@ -154,6 +155,10 @@ return [
         'plays_with' => 'Hrá s :devices',
         'title' => "profil používateľa :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Zmeniť pozadie profilu',
@@ -202,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Obľúbené Beatmapy',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Hodnotené & Schválené Beatmapy',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Čakajúce Beatmapy',
+                ],
+                'ranked' => [
+                    'title' => 'Hodnotené & Schválené Beatmapy',
                 ],
             ],
             'discussions' => [
@@ -296,6 +301,9 @@ return [
                 'recent' => 'Najnovšie',
                 'title' => 'Medaile',
             ],
+            'multiplayer' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => 'Príspevky',
                 'title_longer' => 'Nedávne príspevky',
@@ -353,7 +361,6 @@ return [
             'interests' => 'Záujmy',
             'location' => 'Súčasná Poloha',
             'occupation' => 'Povolanie',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Web Stránka',
         ],
@@ -399,11 +406,16 @@ return [
             'total_hits' => 'Celkových Zásahov',
             'total_score' => 'Celkové Skóre',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Hodnotené a Schválené Beatmapy',
-            'loved_beatmapset_count' => 'Obľúbené beatmapy',
-            'unranked_beatmapset_count' => 'Čakajúce Beatmapy',
             'graveyard_beatmapset_count' => 'Irelevantné beatmapy',
+            'loved_beatmapset_count' => 'Obľúbené beatmapy',
+            'pending_beatmapset_count' => 'Čakajúce Beatmapy',
+            'ranked_beatmapset_count' => 'Hodnotené a Schválené Beatmapy',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

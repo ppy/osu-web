@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Assinaturas não conferem',
+        'not_match' => '',
     ],
-    'notification_type' => 'notification_type é inválido :type',
+    'notification_type' => '',
     'order' => [
-        'invalid' => 'O pedido é inválido',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => 'Pagamento através de `:provider` é inválido para itens físicos.',
+            'virtual_only' => '',
         ],
         'status' => [
-            'not_checkout' => 'Tentando aceitar pagamento de um pedido no estado errado `:state`.',
-            'not_paid' => 'Tentando reembolsar pagamento de um pedido no estado errado `:state`.',
+            'not_checkout' => '',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => 'O parâmetro `:param` não confere',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => 'O pagamento pendente não é um pagamento virtual. (:actual)',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Quantia oferecida é inexata: :actual != :expected',
-            'currency' => 'O pagamento não é em dólar (USD). (:type)',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => 'ID de transação recebido é inválido',
-        'user_id_mismatch' => 'external_id contém número de usuário inválido',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

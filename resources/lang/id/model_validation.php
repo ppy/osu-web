@@ -12,10 +12,10 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Keterangan waktu telah ditentukan tetapi beatmap tidak ada.',
-        'beatmapset_no_hype' => "Beatmap tidak dapat dihype.",
-        'hype_requires_null_beatmap' => 'Hype harus dilakukan di bagian General (All difficulties).',
-        'invalid_beatmap_id' => 'Tingkat kesulitan yang tidak valid ditentukan.',
-        'invalid_beatmapset_id' => 'Beatmap yang tidak valid ditentukan.',
+        'beatmapset_no_hype' => "Beatmap ini tidak dapat di-hype.",
+        'hype_requires_null_beatmap' => 'Hype hanya dapat diberikan pada bagian Umum (Seluruh tingkat kesulitan).',
+        'invalid_beatmap_id' => 'Tingkat kesulitan yang ditentukan tidak valid.',
+        'invalid_beatmapset_id' => 'Beatmap yang ditentukan tidak valid.',
         'locked' => 'Diskusi dikunci.',
 
         'attributes' => [
@@ -27,14 +27,14 @@ return [
             'discussion_locked' => "Anda tidak dapat memberikan hype karena fitur diskusi untuk beatmap ini sedang dibekukan oleh moderator",
             'guest' => 'Silakan masuk untuk dapat memberikan hype.',
             'hyped' => 'Anda telah memberikan hype untuk beatmap ini.',
-            'limit_exceeded' => 'Anda telah menggunakan semua hype Anda.',
-            'not_hypeable' => 'Beatmap ini tidak dapat di-hype.',
-            'owner' => 'Tidak dapat memberikan hype pada beatmap anda sendiri.',
+            'limit_exceeded' => 'Anda telah mempergunakan seluruh hype yang Anda miliki.',
+            'not_hypeable' => 'Beatmap ini tidak dapat di-hype',
+            'owner' => 'Anda tidak dapat memberikan hype pada beatmap milik sendiri.',
         ],
 
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Keterangan waktu yang ditentukan melebihi panjang beatmap.',
-            'negative' => "Keterangan waktu tidak bisa bernilai negatif.",
+            'negative' => "Keterangan waktu tidak dapat mengacu pada nilai waktu yang negatif.",
         ],
     ],
 
@@ -48,7 +48,7 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => 'Membalas komentar yang sudah dihapus tidak diperbolehkan.',
+        'deleted_parent' => 'Anda tidak dapat membalas komentar yang sudah dihapus sebelumnya.',
         'top_only' => 'Tidak diperbolehkan menyemat balasan komentar.',
 
         'attributes' => [
@@ -57,7 +57,7 @@ return [
     ],
 
     'follow' => [
-        'invalid' => ':attribute yang Ditentukan Tidak Valid.',
+        'invalid' => ':attribute yang ditentukan tidak valid.',
     ],
 
     'forum' => [
@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Menghapus posting metadata beatmap tidak diizinkan.',
             'beatmapset_post_no_edit' => 'Menyunting posting metadata beatmap tidak diizinkan.',
+            'first_post_no_delete' => 'Tidak dapat menghapus postingan awal',
+            'missing_topic' => 'Postingan ini tidak memiliki topik',
             'only_quote' => 'Balasan Anda hanya berisi kutipan.',
 
             'attributes' => [
@@ -109,7 +111,7 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => 'Jumlah aplikasi OAuth melebihi batas maksimal.',
-            'url' => 'Harap masukkan URL valid.',
+            'url' => 'Harap masukkan URL yang valid.',
 
             'attributes' => [
                 'name' => 'Nama Aplikasi',
@@ -140,8 +142,8 @@ return [
         'username_too_long' => 'Nama pengguna yang diminta terlalu panjang.',
         'weak' => 'Kata sandi ini berada dalam daftar hitam.',
         'wrong_current_password' => 'Kata sandi saat ini salah.',
-        'wrong_email_confirmation' => 'Konfirmasi email tidak cocok.',
-        'wrong_password_confirmation' => 'Konfirmasi kata sandi tidak cocok.',
+        'wrong_email_confirmation' => 'Alamat email tidak cocok.',
+        'wrong_password_confirmation' => 'Kata sandi tidak cocok.',
         'too_long' => 'Melebihi batas maksimum - hanya bisa hingga :limit karakter.',
 
         'attributes' => [
@@ -161,7 +163,8 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => 'alasan :reason tidak sah untuk jenis laporan ini.',
+        'no_ranked_beatmapset' => 'Anda tidak dapat melaporkan beatmap yang berstatus Ranked',
+        'reason_not_valid' => ':reason bukan merupakan alasan yang valid untuk jenis laporan ini.',
         'self' => "Anda tidak dapat melaporkan diri Anda sendiri!",
     ],
 

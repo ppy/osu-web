@@ -6,17 +6,38 @@
 return [
     '_' => 'Lajittele',
 
-    'all' => '',
-    'friends' => '',
+    'all' => 'Kaikki',
+    'friends' => 'Kaverit',
     'last_visit' => 'Äskettäin aktiivinen',
     'new' => 'Viimeisin',
     'old' => 'Vanha',
-    'rank' => '',
+    'rank' => 'Sijoitus',
     'top' => 'Paras',
     'username' => 'Käyttäjänimi',
 
+    'artist_tracks' => [
+        'album' => 'Albumi',
+        'artist' => 'Artisti',
+        'bpm' => 'BPM',
+        'genre' => 'Lajityyppi',
+        'length' => 'Pituus',
+        'relevance' => 'Osuvuus',
+        'title' => 'Nimi',
+        'update' => 'Päivitä',
+    ],
+
+    'forum_posts' => [
+        'created' => 'Viestin aika',
+        'relevance' => 'Osuvuus',
+    ],
+
     'forum_topics' => [
-        'new' => 'Viimeisin kommentti',
         'feature_votes' => 'Tähtitaso',
+        'new' => 'Viimeisin kommentti',
+    ],
+
+    'users' => [
+        'relevance' => 'Osuvuus',
+        'username' => 'Nimi',
     ],
 ];

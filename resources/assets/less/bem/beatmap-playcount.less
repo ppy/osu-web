@@ -38,16 +38,14 @@
 
   &__cover {
     .cover-border-radius();
+    .at2x-simple('~@images/layout/beatmaps/default-bg.png');
     flex: none;
-    width: 80px;
+    width: 70px;
+    height: 60px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
-
-    @media @desktop {
-      width: 100px;
-    }
   }
 
   &__cover-count {

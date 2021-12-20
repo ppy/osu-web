@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Mit szólsz ahhoz, hogy ha egy kis osu!-t játszanál inkább?',
     'require_login' => 'Kérlek jelentkezz be a folytatáshoz.',
     'require_verification' => 'Kérlek, hagyd jóvá a folytatáshoz.',
     'restricted' => "Felfüggesztett állapotban erre nem vagy képes.",
@@ -18,14 +18,12 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Elérted a napi ajánlási limited, próbáld újra holnap.',
-            'full_bn_required' => 'Teljes jogú nominátornak kell lenned a kvalifikálásra nomináláshoz.',
-            'full_bn_required_hybrid' => 'Teljes jogú nominátornak kell lenned a több játékmódot tartalmazó beatmapszettek nominálásához.',
             'incorrect_state' => 'Hiba történt a művelet végrehajtása közben, próbáld frissíteni az oldalt.',
             'owner' => "Saját beatmap-et nem lehet ajánlani.",
             'set_metadata' => 'Mielőtt kijelölné, a műfajt és a nyelvet meg kell adnod',
         ],
         'resolve' => [
-            'not_owner' => 'Csak a poszt szerzője és a beatmap készítője tudja megoldottnak jelölni az adott problémát.',
+            'not_owner' => 'Csak a gondolatmenet kezdője és a beatmap tulajdonosa tudja megoldottnak jelölni az adott problémát.',
         ],
 
         'store' => [
@@ -42,9 +40,9 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Csak a saját posztjaidat tudod törölni.',
+            'not_owner' => 'Csak a saját hozzászólásaidat tudod törölni.',
             'resolved' => 'Nem törölhetsz bejegyzést egy megbeszélt témában.',
-            'system_generated' => 'Az automatikusan generált posztok nem törölhetőek.',
+            'system_generated' => 'Az automatikusan létrehozott hozzászólások nem törölhetőek.',
         ],
 
         'edit' => [
@@ -60,7 +58,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => 'Nem változtathatod meg egy map metaadatait. Ha úgy gondolod valami nincs rendben, lépj kapcsolatba egy BN vagy egy NAT taggal.',
+            'nominated' => 'Nem változtathatod meg egy nominált map metaadatait. Ha úgy gondolod valami nincs rendben, lépj kapcsolatba egy BN vagy egy NAT taggal.',
         ],
     ],
 
@@ -70,6 +68,7 @@ return [
         'moderated' => 'A csatorna jelenleg moderálva van.',
         'no_access' => 'Nincs hozzáférésed a csatornához.',
         'restricted' => 'Nem küldhetsz üzeneteket némított, felfüggesztett vagy kitiltott állapotban.',
+        'silenced' => 'Némítva, felfüggesztve vagy kitiltva nem küldhetsz üzeneteket.',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Nem változtathatod meg a szavazatod, mert ennek a versenynek a szavazási ideje lejárt.',
+
+        'entry' => [
+            'limit_reached' => 'Elérted a jelentkezési limited erre a versenyre',
+            'over' => 'Köszönjük a jelentkezéseidet! A beküldési lehetőség lezárult erre a versenyre és a szavazás hamarosan indul.',
+        ],
     ],
 
     'forum' => [

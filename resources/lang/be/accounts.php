@@ -11,7 +11,7 @@ return [
         'avatar' => [
             'title' => 'Аватар',
             'rules' => 'Калі ласка, упэўніцеся, што ваш аватар прытрымліваецца :link.<br/>Гэта значыць, што ён павінен <strong>падыходзіць для любога ўзросту</strong>. То-бок: ніякай галізны, лаянкі або задзірлівага змесціва.',
-            'rules_link' => 'правілы супольнасці',
+            'rules_link' => 'правіл супольнасці',
         ],
 
         'email' => [
@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'бягучае месцазнаходжанне',
                 'user_interests' => 'цікаўнасці',
-                'user_msnm' => '',
                 'user_occ' => 'занятак',
                 'user_twitter' => '',
                 'user_website' => 'вэб-сайт',
@@ -57,11 +56,13 @@ return [
 
         'options' => [
             '_' => 'спосабы дастаўкі',
+            'beatmap_owner_change' => 'гасцявая складанасць',
             'beatmapset:modding' => 'модынг бітмап',
             'channel_message' => 'асабістыя паведамленні',
             'comment_new' => 'новыя каментарыі',
             'forum_topic_reply' => 'адказы да тэмы',
             'mail' => 'пошта',
+            'mapping' => 'стваральнік бiтмапы',
             'push' => 'push',
             'user_achievement_unlock' => 'адкрыццё медаля',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'схаваць папярэджанні аб відавочным змесце ў бітмапах',
+        'beatmapset_title_show_original' => 'паказаць метададзеныя карты на зыходнай мове',
         'title' => 'Налады',
 
         'beatmapset_download' => [
             '_' => 'тып загрузкі бітмап па змаўчанні',
             'all' => 'з відэа, калі даступна',
-            'no_video' => 'без відэа',
             'direct' => 'адкрыць у osu!direct',
+            'no_video' => 'без відэа',
         ],
-
-        'beatmapset_title_show_original' => 'паказаць метададзеныя карты на зыходнай мове',
     ],
 
     'playstyles' => [

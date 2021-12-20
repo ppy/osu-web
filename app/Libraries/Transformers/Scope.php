@@ -6,11 +6,48 @@
 namespace App\Libraries\Transformers;
 
 use App\Transformers\TransformerAbstract;
+use InvalidArgumentException;
 use League\Fractal;
+use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
+use League\Fractal\Resource\NullResource;
 use League\Fractal\Serializer\SerializerAbstract;
 
 class Scope extends Fractal\Scope
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected function executeResourceTransformers()
+    {
+        $transformer = $this->resource->getTransformer();
+        $data = $this->resource->getData();
+
+        $transformedData = $includedData = [];
+
+        if ($this->resource instanceof Item) {
+            [$transformedData, $includedData[]] = $this->fireTransformer($transformer, $data);
+        } elseif ($this->resource instanceof Collection) {
+            foreach ($data as $value) {
+                [$itemTransformedData, $itemIncludedData] = $this->fireTransformer($transformer, $value);
+                if ($itemTransformedData !== null) {
+                    $transformedData[] = $itemTransformedData;
+                    $includedData[] = $itemIncludedData;
+                }
+            }
+        } elseif ($this->resource instanceof NullResource) {
+            $transformedData = null;
+            $includedData = [];
+        } else {
+            throw new InvalidArgumentException(
+                'Argument $resource should be an instance of League\Fractal\Resource\Item'
+                .' or League\Fractal\Resource\Collection'
+            );
+        }
+
+        return [$transformedData, $includedData];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -23,7 +60,13 @@ class Scope extends Fractal\Scope
             }
         }
 
-        return parent::fireTransformer($transformer, $data);
+        [$transformedData, $includedData] = parent::fireTransformer($transformer, $data);
+
+        if (empty($transformedData) && empty($includedData)) {
+            return [null, []];
+        }
+
+        return [$transformedData, $includedData];
     }
 
     protected function serializeResource(SerializerAbstract $serializer, $data)

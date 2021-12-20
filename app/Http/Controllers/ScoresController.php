@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Score\Best\Model as ScoreBest;
+use App\Transformers\UserCompactTransformer;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class ScoresController extends Controller
@@ -16,6 +17,7 @@ class ScoresController extends Controller
 
         $this->middleware('auth', ['except' => [
             'show',
+            'userRankLookup',
         ]]);
 
         $this->middleware('require-scopes:public');
@@ -30,7 +32,7 @@ class ScoresController extends Controller
             ->firstOrFail();
 
         if (!is_api_request() && !from_app_url()) {
-            return ujs_redirect(route('scores.show', ['score' => $id, 'mode' => $mode]));
+            return ujs_redirect(route('scores.show', ['score' => $score->getKey(), 'mode' => $mode]));
         }
 
         $replayFile = $score->replayFile();
@@ -40,19 +42,21 @@ class ScoresController extends Controller
 
         try {
             $filename = "replay-{$mode}_{$score->beatmap_id}_{$score->getKey()}.osr";
-            $content = $replayFile->get();
-
-            return response()->streamDownload(function () use ($replayFile, $content) {
-                echo $replayFile->headerChunk();
-                echo pack('i', strlen($content));
-                echo $content;
-                echo $replayFile->endChunk();
-            }, $filename, ['Content-Type' => 'application/octet-stream']);
+            $body = $replayFile->get();
         } catch (FileNotFoundException $e) {
             // missing from storage.
             log_error($e);
             abort(404);
         }
+
+        $file = $replayFile->headerChunk()
+            .pack('i', strlen($body))
+            .$body
+            .$replayFile->endChunk();
+
+        return response()->streamDownload(function () use ($file) {
+            echo $file;
+        }, $filename, ['Content-Type' => 'application/x-osu-replay']);
     }
 
     public function show($mode, $id)
@@ -62,19 +66,45 @@ class ScoresController extends Controller
             ->visibleUsers()
             ->findOrFail($id);
 
-        $scoreJson = json_item($score, 'Score', [
+        $userIncludes = array_map(function ($include) {
+            return "user.{$include}";
+        }, UserCompactTransformer::CARD_INCLUDES);
+
+        $scoreJson = json_item($score, 'Score', array_merge([
             'beatmap.max_combo',
             'beatmapset',
-            'rank_country',
             'rank_global',
-            'user.cover',
-            'user.country',
-        ]);
+        ], $userIncludes));
 
         if (is_json_request()) {
             return $scoreJson;
         }
 
         return ext_view('scores.show', compact('score', 'scoreJson'));
+    }
+
+    public function userRankLookup()
+    {
+        $params = get_params(request()->all(), null, [
+            'beatmapId:int',
+            'score:int',
+            'rulesetId:int',
+        ]);
+
+        foreach (['beatmapId', 'score', 'rulesetId'] as $key) {
+            if (!isset($params[$key])) {
+                abort(422, "required parameter '{$key}' is missing");
+            }
+        }
+
+        $score = ScoreBest
+            ::getClass($params['rulesetId'])
+            ::where([
+                'beatmap_id' => $params['beatmapId'],
+                'hidden' => false,
+                'score' => $params['score'],
+            ])->firstOrFail();
+
+        return response()->json($score->userRank(['cached' => false]) - 1);
     }
 }

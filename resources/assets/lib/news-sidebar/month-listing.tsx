@@ -4,6 +4,7 @@
 import NewsPostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
 import * as moment from 'moment';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 
 interface Props {
@@ -37,7 +38,7 @@ export default class MonthListing extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    if (osu.isMobile()) {
+    if (core.windowSize.isMobile) {
       this.state.expanded = false;
     } else {
       if (props.currentPost == null) {
@@ -65,7 +66,7 @@ export default class MonthListing extends React.Component<Props, State> {
   render() {
     return (
       <div className='news-sidebar-month'>
-        <button className='news-sidebar-month__toggle' type='button' onClick={this.toggleExpand}>
+        <button className='news-sidebar-month__toggle' onClick={this.toggleExpand} type='button'>
           {this.props.date.format(osu.trans('common.datetime.year_month_short.moment'))}
 
           <span className='news-sidebar-month__toggle-icon'>
@@ -86,7 +87,7 @@ export default class MonthListing extends React.Component<Props, State> {
     if (this.stateRecord != null) {
       this.stateRecord.dataset[this.stateRecordKey] = this.state.expanded ? '1' : '';
     }
-  }
+  };
 
   private renderPost = (post: NewsPostJson) => {
     let linkClass = 'news-sidebar-month__item';
@@ -98,16 +99,16 @@ export default class MonthListing extends React.Component<Props, State> {
     return (
       <li key={post.id}>
         <a
-          href={route('news.show', { news: post.slug })}
           className={linkClass}
+          href={route('news.show', { news: post.slug })}
         >
           {post.title}
         </a>
       </li>
     );
-  }
+  };
 
   private toggleExpand = () => {
     this.setState({ expanded: !this.state.expanded }, this.recordState);
-  }
+  };
 }

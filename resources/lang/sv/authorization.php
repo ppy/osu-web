@@ -7,7 +7,7 @@ return [
     'play_more' => 'Vad sägs om att spela lite osu! istället?',
     'require_login' => 'Var vänlig logga in för att fortsätta.',
     'require_verification' => 'Vänligen verifiera för att fortsätta.',
-    'restricted' => "Kan ej göra det när man är begränsad.",
+    'restricted' => "Kan ej göra det när du är begränsad.",
     'silenced' => "Kan ej göra det när man är tystad.",
     'unauthorized' => 'Åtkomst nekad.',
 
@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Du har uppnått din nomineringsgräns för idag, var god försök igen imorgon.',
-            'full_bn_required' => 'Du måste vara en fullständig väljare för att utföra denna kvalificerande nominering.',
-            'full_bn_required_hybrid' => 'Du måste vara en fullständig väljare för att nominera beatmap-set med mer än ett spelläge.',
             'incorrect_state' => 'Ett fel uppstod, försök att uppdatera sidan.',
             'owner' => "Kan ej nominera sin egna beatmap.",
             'set_metadata' => 'Du måste ange genren och språket innan du nominerar.',
@@ -60,7 +58,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => 'Du kan inte ändra metadata för en nominerad karta. Kontakta en BN eller NAT-medlem om du tror att det är felaktigt inställt.',
+            'nominated' => 'Du kan inte ändra metadata för en nominerad beatmap. Kontakta en BN eller NAT-medlem om du tror att det är felaktigt inställt.',
         ],
     ],
 
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Den kanalen är för närvarande modererad.',
         'no_access' => 'Du har ingen behörighet till denna kanalen.',
         'restricted' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
+        'silenced' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Du kan inte ändra din röst efter att röstperioden för den här tävlingen har avslutas.',
+
+        'entry' => [
+            'limit_reached' => 'Du har uppnått max antal bidrag i denna tävling',
+            'over' => 'Tack för era bidrag! Möjligheten att lägga till bidrag har stängt och röstning kommer öppnas snart.',
+        ],
     ],
 
     'forum' => [
@@ -91,14 +95,14 @@ return [
             'delete' => [
                 'only_last_post' => 'Endast sista inlägget kan raderas.',
                 'locked' => 'Kan ej radera ett inlägg på ett låst ämne.',
-                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'no_forum_access' => 'Åtkomst till begärt forum behövs.',
                 'not_owner' => 'Endast avsändaren kan radera inlägget.',
             ],
 
             'edit' => [
                 'deleted' => 'Kan ej redigera borttagna inlägg.',
-                'locked' => 'Inlägget är låst från redigering.',
-                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'locked' => 'Inlägget är låst för redigering.',
+                'no_forum_access' => 'Åtkomst till begärt forum behövs.',
                 'not_owner' => 'Endast avsändaren kan redigera inlägget.',
                 'topic_locked' => 'Kan ej redigera inlägg med ett låst ämne.',
             ],
@@ -113,24 +117,24 @@ return [
             'reply' => [
                 'double_post' => 'Vänligen redigera ditt senaste inlägg istället för att skicka ett inlägg till.',
                 'locked' => 'Kan ej svara på ett låst inlägg.',
-                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'no_forum_access' => 'Åtkomst till begärt forum behövs.',
                 'no_permission' => 'Saknar behörighet för att svara.',
 
                 'user' => [
                     'require_login' => 'Var vänlig logga in för att svara.',
-                    'restricted' => "Kan ej svara när man är begränsad.",
-                    'silenced' => "Kan ej svara när man är tystad.",
+                    'restricted' => "Kan ej svara när du är begränsad.",
+                    'silenced' => "Kan ej svara när du är tystad.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'no_forum_access' => 'Åtkomst till begärt forum behövs.',
                 'no_permission' => 'Saknar behörighet för att kunna skapa ny tråd.',
                 'forum_closed' => 'Forumet är stängd och kan inte skickas till.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'no_forum_access' => 'Åtkomst till begärt forum behövs.',
                 'over' => 'Röstningen är avslutad och kan inte röstas på längre.',
                 'play_more' => 'Du måste spela mer innan du röstar på forumet.',
                 'voted' => 'Ändra röst är ej tillåtet.',
@@ -138,7 +142,7 @@ return [
                 'user' => [
                     'require_login' => 'Var vänlig logga in för att kunna rösta.',
                     'restricted' => "Kan ej rösta när man är begränsad.",
-                    'silenced' => "Kan ej rösta när man är tystad.",
+                    'silenced' => "Kan ej rösta när du är tystad.",
                 ],
             ],
 
@@ -158,7 +162,7 @@ return [
         ],
 
         'view' => [
-            'admin_only' => 'Endast admin kan se detta forum',
+            'admin_only' => 'Endast administratörer kan se detta forum.',
         ],
     ],
 

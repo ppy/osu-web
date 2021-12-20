@@ -3,7 +3,7 @@
 
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 interface SuggestionJson {
   highlight: string;
@@ -32,6 +32,10 @@ export class WikiSearchController {
     return this.selectedItem == null ? this.query : this.selectedItem.title;
   }
 
+  constructor() {
+    makeObservable(this);
+  }
+
   @action
   cancel() {
     this.xhr?.abort();
@@ -55,7 +59,7 @@ export class WikiSearchController {
   @action
   selectIndex(index: number): void {
     if (index < -1) {
-     return this.selectIndex(this.suggestions.length - 1);
+      return this.selectIndex(this.suggestions.length - 1);
     }
 
     if (index >= this.suggestions.length) {
@@ -100,11 +104,11 @@ export class WikiSearchController {
   @action
   private fetchSuggestions() {
     this.xhr = $.getJSON(route('wiki-suggestions'), { query: this.query.trim() })
-    .done(action((response: SuggestionJson[]) => {
-      if (response != null) {
-        this.suggestions = observable(response);
-        this.shouldShowSuggestions = true;
-      }
-    }));
+      .done(action((response: SuggestionJson[]) => {
+        if (response != null) {
+          this.suggestions = observable(response);
+          this.shouldShowSuggestions = true;
+        }
+      }));
   }
 }

@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Regenerar',
-            'regenerating' => 'Regenerando...',
-            'remove' => 'Eliminar',
-            'removing' => 'Eliminando...',
-            'title' => 'Portadas del set de mapas',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+            'title' => '',
         ],
         'show' => [
-            'covers' => 'Administrar las portadas de los Beatmap',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'activar',
-                'activate_confirm' => '¿activar modding v2 para este beatmap?',
-                'active' => 'activo',
-                'inactive' => 'inactivo',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Eliminar',
+                'delete' => '',
 
-                'forum-name' => 'Foro #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Portada no definida',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Guardar',
-                    'update' => 'Actualizar',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Lista de portadas del foro',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Portada por defecto del tema ',
-                    'main' => 'Portada de foro',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,33 +50,24 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Visualizador del Registro',
+            'title' => '',
         ],
     ],
 
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'Set de mapas',
-                'forum' => 'Foro',
-                'general' => 'General',
-                'store' => 'Tienda',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Listado de pedidos',
+                'beatmapsets' => '',
+                'forum' => '',
+                'general' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Este usuario está actualmente restringido.',
-            'message' => '(solo los administradores pueden ver esto)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

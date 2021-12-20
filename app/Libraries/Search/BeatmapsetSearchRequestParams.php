@@ -5,9 +5,9 @@
 
 namespace App\Libraries\Search;
 
-use App\Exceptions\InvariantException;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Sort;
+use App\Libraries\Elasticsearch\Utils\SearchAfterParam;
 use App\Models\Beatmap;
 use App\Models\Genre;
 use App\Models\Language;
@@ -17,7 +17,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
     const AVAILABLE_STATUSES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'graveyard', 'mine'];
     const AVAILABLE_EXTRAS = ['video', 'storyboard'];
-    const AVAILABLE_GENERAL = ['recommended', 'converts'];
+    const AVAILABLE_GENERAL = ['recommended', 'converts', 'follows', 'featured_artists'];
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
     const AVAILABLE_RANKS = ['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'];
 
@@ -32,7 +32,26 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         '8' => 'loved',
     ];
 
+    const SORT_FIELD_MAP = [
+        'artist' => 'artist.raw',
+        'creator' => 'creator.raw',
+        'difficulty' => 'beatmaps.difficultyrating',
+        'favourites' => 'favourite_count',
+        'nominations' => 'nominations',
+        'plays' => 'play_count',
+        'ranked' => 'approved_date',
+        'rating' => 'rating',
+        'relevance' => '_score',
+        'title' => 'title.raw',
+        'updated' => 'last_update',
+    ];
+
     private $requestQuery;
+
+    /** @var string|null */
+    private $sortField;
+    /** @var string|null */
+    private $sortOrder;
 
     public function __construct(array $request, ?User $user = null)
     {
@@ -42,13 +61,14 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
 
         $this->user = $user;
-        $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
+        $this->page = get_int($request['page'] ?? null);
+        $this->from = $this->pageAsFrom($this->page);
         $this->requestQuery = $request['q'] ?? $request['query'] ?? null;
 
         $sort = $request['sort'] ?? null;
 
         if (priv_check_user($this->user, 'BeatmapsetAdvancedSearch')->can()) {
-            $this->queryString = es_query_escape_with_caveats($this->requestQuery);
+            $this->parseQuery();
             $status = presence($request['s'] ?? null);
             $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
 
@@ -66,13 +86,24 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
             $generals = explode('.', $request['c'] ?? null) ?? [];
             $this->includeConverts = in_array('converts', $generals, true);
+            $this->showFeaturedArtists = in_array('featured_artists', $generals, true);
+            $this->showFollows = in_array('follows', $generals, true);
             $this->showRecommended = in_array('recommended', $generals, true);
+
+            $includeNsfw = get_bool($request['nsfw'] ?? null);
+            if (!isset($includeNsfw) && $user !== null && $user->userProfileCustomization !== null) {
+                $includeNsfw = $user->userProfileCustomization->beatmapset_show_nsfw;
+            }
+
+            if (isset($includeNsfw)) {
+                $this->includeNsfw = $includeNsfw;
+            }
         } else {
             $sort = null;
         }
 
-        $this->parseSortOrder($sort);
-        $this->searchAfter = $this->getSearchAfter($request['cursor'] ?? null);
+        $this->parseSort($sort);
+        $this->searchAfter = SearchAfterParam::make($this, $request['cursor'] ?? null);
 
         // Supporter-only options.
         $this->rank = array_intersect(
@@ -91,9 +122,9 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $languages = Language::listing();
         $genres = Genre::listing();
 
-        $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
+        $modes = [['id' => null, 'name' => osu_trans('beatmaps.mode.any')]];
         foreach (Beatmap::MODES as $name => $id) {
-            $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
+            $modes[] = ['id' => $id, 'name' => osu_trans("beatmaps.mode.{$name}")];
         }
 
         $extras = [];
@@ -103,26 +134,38 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $statuses = [];
 
         foreach (static::AVAILABLE_EXTRAS as $id) {
-            $extras[] = ['id' => $id, 'name' => trans("beatmaps.extra.{$id}")];
+            $extras[] = ['id' => $id, 'name' => osu_trans("beatmaps.extra.{$id}")];
         }
 
         foreach (static::AVAILABLE_GENERAL as $id) {
-            $general[] = ['id' => $id, 'name' => trans("beatmaps.general.{$id}")];
+            $general[] = ['id' => $id, 'name' => osu_trans("beatmaps.general.{$id}")];
         }
 
         foreach (static::AVAILABLE_PLAYED as $id) {
-            $played[] = ['id' => $id, 'name' => trans("beatmaps.played.{$id}")];
+            $played[] = ['id' => $id, 'name' => osu_trans("beatmaps.played.{$id}")];
         }
 
         foreach (static::AVAILABLE_RANKS as $id) {
-            $ranks[] = ['id' => $id, 'name' => trans("beatmaps.rank.{$id}")];
+            $ranks[] = ['id' => $id, 'name' => osu_trans("beatmaps.rank.{$id}")];
         }
 
         foreach (static::AVAILABLE_STATUSES as $id) {
-            $statuses[] = ['id' => $id, 'name' => trans("beatmaps.status.{$id}")];
+            $statuses[] = ['id' => $id, 'name' => osu_trans("beatmaps.status.{$id}")];
         }
 
-        return compact('extras', 'general', 'genres', 'languages', 'modes', 'played', 'ranks', 'statuses');
+        $nsfw = [
+            ['id' => false, 'name' => osu_trans('beatmaps.nsfw.exclude')],
+            ['id' => true, 'name' => osu_trans('beatmaps.nsfw.include')],
+        ];
+
+        return compact('extras', 'general', 'genres', 'languages', 'modes', 'nsfw', 'played', 'ranks', 'statuses');
+    }
+
+    public function getSort(): ?string
+    {
+        if ($this->sortField !== null && $this->sortOrder !== null) {
+            return "{$this->sortField}_{$this->sortOrder}";
+        }
     }
 
     public function isLoginRequired(): bool
@@ -130,56 +173,76 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         return present($this->requestQuery);
     }
 
-    private function getDefaultSort(string $order): array
+    private function getDefaultSortField(): string
     {
-        if (present($this->queryString)) {
-            return [new Sort('_score', $order)];
+        if (present($this->queryString) || present($this->artist) || present($this->creator)) {
+            return 'relevance';
         }
 
         if ($this->status === 'qualified') {
-            return [
-                new Sort('queued_at', $order),
-                new Sort('approved_date', $order), // fallback
-            ];
+            return 'ranked';
         }
 
         if (in_array($this->status, ['pending', 'graveyard', 'mine'], true)) {
-            return [new Sort('last_update', $order)];
+            return 'updated';
         }
 
-        return [new Sort('approved_date', $order)];
+        return 'ranked';
     }
 
-    /**
-     * Extract search_after out of cursor param. Cursor values that are not part of the sort are ignored.
-     *
-     * The search_after value passed to elasticsearch needs to be the same length as the number of
-     * sorts given.
-     */
-    private function getSearchAfter($cursor): ?array
+    private function parseQuery(): void
     {
-        if (!is_array($cursor)) {
-            return null;
-        }
+        static $optionMap = [
+            'ar' => 'ar',
+            'artist' => 'artist',
+            'bpm' => 'bpm',
+            'created' => 'created',
+            'creator' => 'creator',
+            'cs' => 'cs',
+            'dr' => 'drain',
+            'featured_artist' => 'featuredArtist',
+            'keys' => 'keys',
+            'length' => 'hitLength',
+            'od' => 'accuracy',
+            'ranked' => 'ranked',
+            'stars' => 'difficultyRating',
+            'status' => 'statusRange',
+        ];
 
-        $searchAfter = [];
-        /** @var Sort $sort */
-        foreach ($this->sorts as $sort) {
-            $value = $cursor[$sort->field] ?? null;
-            if ($value === null) {
-                throw new InvariantException('Cursor parameters do not match sort parameters.');
+        $parsed = BeatmapsetQueryParser::parse($this->requestQuery);
+
+        $this->queryString = $parsed['keywords'];
+
+        foreach ($parsed['options'] as $optionKey => $optionValue) {
+            $propName = $optionMap[$optionKey] ?? null;
+
+            if ($propName !== null) {
+                $this->$propName = $optionValue;
             }
+        }
+    }
 
-            $searchAfter[] = $value;
+    private function parseSort(?string $value): void
+    {
+        $array = explode('_', $value);
+        $this->sortField = $array[0];
+        $this->sortOrder = $array[1] ?? null;
+
+        if (!array_key_exists($this->sortField, static::SORT_FIELD_MAP)) {
+            $this->sortField = $this->getDefaultSortField();
         }
 
-        return $searchAfter;
+        if (!in_array($this->sortOrder, ['asc', 'desc'], true)) {
+            $this->sortOrder = 'desc';
+        }
+
+        $this->setSorts();
     }
 
     /**
-     * Generate sort parameters for the elasticsearch query.
+     * Set sort parameters for the elasticsearch query.
      */
-    private function normalizeSort(Sort $sort): array
+    private function setSorts(): void
     {
         // additional options
         static $orderOptions = [
@@ -189,7 +252,8 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             ],
         ];
 
-        $newSort = [];
+        $sort = new Sort(static::SORT_FIELD_MAP[$this->sortField], $this->sortOrder);
+
         // assign sort modes if any.
         $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
 
@@ -215,54 +279,16 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $sort->extras = $options;
         }
 
-        $newSort[] = $sort;
+        $this->sorts = [$sort];
 
         // append/prepend extra sort orders.
         if ($sort->field === 'nominations') {
-            $newSort[] = new Sort('hype', $sort->order);
+            $this->sorts[] = new Sort('hype', $sort->order);
         } elseif ($sort->field === 'approved_date' && $this->status === 'qualified') {
-            array_unshift($newSort, new Sort('queued_at', $sort->order));
-        }
-
-        return $newSort;
-    }
-
-    private function parseSortOrder(?string $value)
-    {
-        $array = explode('_', $value);
-        $field = static::remapSortField($array[0]);
-        $order = $array[1] ?? null;
-
-        if (!in_array($order, ['asc', 'desc'], true)) {
-            $order = 'desc';
-        }
-
-        if (empty($field)) {
-            $this->sorts = $this->getDefaultSort($order);
-        } else {
-            $this->sorts = $this->normalizeSort(new Sort($field, $order));
+            array_unshift($this->sorts, new Sort('queued_at', $sort->order));
         }
 
         // generic tie-breaker.
-        $this->sorts[] = new Sort('_id', $order);
-    }
-
-    private static function remapSortField(?string $name)
-    {
-        static $fields = [
-            'artist' => 'artist.raw',
-            'creator' => 'creator.raw',
-            'difficulty' => 'beatmaps.difficultyrating',
-            'favourites' => 'favourite_count',
-            'nominations' => 'nominations',
-            'plays' => 'play_count',
-            'ranked' => 'approved_date',
-            'rating' => 'rating',
-            'relevance' => '_score',
-            'title' => 'title.raw',
-            'updated' => 'last_update',
-        ];
-
-        return $fields[$name] ?? null;
+        $this->sorts[] = new Sort('_id', $sort->order);
     }
 }

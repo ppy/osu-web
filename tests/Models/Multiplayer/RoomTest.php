@@ -10,14 +10,15 @@ use App\Models\Beatmap;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
+use Exception;
 use Tests\TestCase;
 
 class RoomTest extends TestCase
 {
     public function testStartGameWithBeatmap()
     {
-        $beatmap = factory(Beatmap::class)->create();
-        $user = factory(User::class)->create();
+        $beatmap = Beatmap::factory()->create();
+        $user = User::factory()->create();
 
         $params = [
             'duration' => 60,
@@ -36,8 +37,8 @@ class RoomTest extends TestCase
 
     public function testStartGameWithDeletedBeatmap()
     {
-        $beatmap = factory(Beatmap::class)->create(['deleted_at' => now()]);
-        $user = factory(User::class)->create();
+        $beatmap = Beatmap::factory()->create(['deleted_at' => now()]);
+        $user = User::factory()->create();
 
         $params = [
             'duration' => 60,
@@ -56,7 +57,7 @@ class RoomTest extends TestCase
 
     public function testRoomHasEnded()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $room = factory(Room::class)->states('ended')->create();
         $playlistItem = factory(PlaylistItem::class)->create([
             'room_id' => $room->getKey(),
@@ -68,19 +69,72 @@ class RoomTest extends TestCase
 
     public function testMaxAttemptsReached()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $room = factory(Room::class)->create(['max_attempts' => 2]);
-        $playlistItem = factory(PlaylistItem::class)->create([
+        $playlistItem1 = factory(PlaylistItem::class)->create([
+            'room_id' => $room->getKey(),
+        ]);
+        $playlistItem2 = factory(PlaylistItem::class)->create([
             'room_id' => $room->getKey(),
         ]);
 
-        $room->startPlay($user, $playlistItem);
+        $room->startPlay($user, $playlistItem1);
         $this->assertTrue(true);
 
-        $room->startPlay($user, $playlistItem);
+        $room->startPlay($user, $playlistItem2);
         $this->assertTrue(true);
 
         $this->expectException(InvariantException::class);
-        $room->startPlay($user, $playlistItem);
+        $room->startPlay($user, $playlistItem1);
+    }
+
+    public function testMaxAttemptsForItemReached()
+    {
+        $user = User::factory()->create();
+        $room = factory(Room::class)->create();
+        $playlistItem1 = factory(PlaylistItem::class)->create([
+            'room_id' => $room->getKey(),
+            'max_attempts' => 1,
+        ]);
+        $playlistItem2 = factory(PlaylistItem::class)->create([
+            'room_id' => $room->getKey(),
+            'max_attempts' => 1,
+        ]);
+
+        $initialCount = $room->scores()->count();
+        $room->startPlay($user, $playlistItem1);
+        $this->assertSame($initialCount + 1, $room->scores()->count());
+
+        $initialCount = $room->scores()->count();
+        try {
+            $room->startPlay($user, $playlistItem1);
+        } catch (Exception $ex) {
+            $this->assertTrue($ex instanceof InvariantException);
+        }
+        $this->assertSame($initialCount, $room->scores()->count());
+
+        $initialCount = $room->scores()->count();
+        $room->startPlay($user, $playlistItem2);
+        $this->assertSame($initialCount + 1, $room->scores()->count());
+    }
+
+    public function testCannotStartPlayedItem()
+    {
+        $beatmap = Beatmap::factory()->create();
+        $user = User::factory()->create();
+
+        $params = [
+            'name' => 'test',
+            'playlist' => [
+                [
+                    'beatmap_id' => $beatmap->getKey(),
+                    'ruleset_id' => $beatmap->playmode,
+                    'played_at' => time(),
+                ],
+            ],
+        ];
+
+        $this->expectException(InvariantException::class);
+        (new Room())->startGame($user, $params);
     }
 }

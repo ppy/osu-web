@@ -9,12 +9,13 @@ return [
         'title_compact' => 'danh sách theo dõi modding',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Xem beatmaps',
+            'unread' => 'Beatmaps với hoạt động mới',
         ],
 
         'table' => [
             'empty' => 'Chưa theo dõi cuộc thảo luận nào.',
+            'last_update' => 'Cập nhật cuối cùng',
             'open_issues' => 'Vấn đề đang mở',
             'state' => 'Trạng thái',
             'title' => 'Tiêu đề',

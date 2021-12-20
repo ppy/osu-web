@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Δεν ακολουθείτε καμία συζήτηση beatmap.',
+            'last_update' => '',
             'open_issues' => 'Ανοιχτά θέματα',
             'state' => 'Κατάσταση',
             'title' => 'Τίτλος',

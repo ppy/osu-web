@@ -21,23 +21,23 @@ export default class ItemCompact extends React.Component<Props> {
     return (
       <Item
         delete={this.handleDelete}
-        markRead={this.handleMarkAsRead}
         icons={nameToIconsCompact[this.props.item.name || '']}
         item={this.props.item}
+        markRead={this.handleMarkAsRead}
         message={formatMessage(this.props.item, true)}
         modifiers={['compact']}
         url={urlSingular(this.props.item)}
         withCategory={false}
-        withCoverImage={this.props.item.name === 'user_achievement_unlock' || this.props.item.name === 'user_beatmapset_new'}
+        withCoverImage={this.props.item.name === 'user_achievement_unlock' || this.props.item.category === 'user_beatmapset_new'}
       />
     );
   }
 
   private handleDelete = () => {
     this.props.stack.deleteItem(this.props.item);
-  }
+  };
 
   private handleMarkAsRead = () => {
     this.props.stack.markAsRead(this.props.item);
-  }
+  };
 }

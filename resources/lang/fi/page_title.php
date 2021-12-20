@@ -18,33 +18,40 @@ return [
             '400' => 'virheellinen pyyntö',
             '404' => 'puuttuu',
             '403' => 'kielletty',
-            '401' => '',
-            '401-verification' => '',
+            '401' => 'luvaton',
+            '401-verification' => 'tilin vahvistaminen',
             '405' => '',
-            '422' => '',
-            '500' => '',
-            '503' => '',
+            '422' => 'virheellinen pyyntö',
+            '429' => 'liian monta pyyntöä',
+            '500' => 'jotain hajosi',
+            '503' => 'huoltokatko',
         ],
     ],
     'forum' => [
-        '_' => '',
-        'topic_watches_controller' => [
+        '_' => 'foorumi',
+        'topic_logs_controller' => [
             'index' => '',
+        ],
+        'topic_watches_controller' => [
+            'index' => 'yleiskatsaus',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'yleiskatsaus',
+            'verify_link' => 'tilin vahvistaminen',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => '',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'viestit beatmap-keskustelussa',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'beatmap-keskustelut',
         ],
         'beatmap_packs_controller' => [
             '_' => '',
@@ -53,90 +60,101 @@ return [
             '_' => '',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'beatmap-historiikki',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'yleiskatsaus',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'beatmap-keskustelu',
+            'index' => 'beatmap-listaus',
+            'show' => 'beatmap-tiedot',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'muutosloki',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'chatti',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'kommentit',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'kilpailut',
+        ],
+        'follows_controller' => [
+            'index' => 'yleiskatsaus',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'yleiskatsaus',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'ryhmät',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'lataa',
+            'index' => 'yleiskatsaus',
+            'search' => 'haku',
+            'support_the_game' => 'tue peliä',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => '',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'suoralähetykset',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'ottelut',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'uutiset',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'ilmoitushistoria',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'salasanan uusiminen',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'tilastot',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'suorituskyky',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'kauppa',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'turnaukset',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'pelaajatiedot',
+            'disabled' => 'ilmoitus',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => '',
+            '_' => 'sijoitukset',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'valtuuta sovellus',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'kauppa',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'modaajatiedot',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'moninpelihistoriikki',
         ],
     ],
 ];

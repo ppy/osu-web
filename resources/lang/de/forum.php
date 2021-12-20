@@ -47,11 +47,12 @@ return [
         'confirm_restore' => 'Beitrag wirklich wiederherstellen?',
         'edited' => 'Zuletzt von :user :when bearbeitet, insgesamt :count_delimited Mal bearbeitet.',
         'posted_at' => 'erstellt :when',
+        'posted_by' => 'gepostet von :username',
 
         'actions' => [
             'destroy' => 'Beitrag löschen',
             'edit' => 'Beitrag bearbeiten',
-            'report' => '',
+            'report' => 'Beitrag melden',
             'restore' => 'Beitrag wiederherstellen',
         ],
 
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Thread wirklich löschen?',
+        'confirm_restore' => 'Thread wirklich wiederherstellen?',
         'deleted' => 'gelöschter thread',
         'go_to_latest' => 'letzten beitrag anschauen',
         'has_replied' => 'Du hast auf diesen Thread geantwortet',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'von :user',
         'started_by_verbose' => 'gestartet von :user',
+
+        'actions' => [
+            'destroy' => 'Thread löschen',
+            'restore' => 'Thread wiederherstellen',
+        ],
 
         'create' => [
             'close' => 'Schließen',
@@ -117,6 +125,55 @@ return [
             'last' => 'zum letzten beitrag',
             'next' => '10 beiträge überspringen',
             'previous' => '10 beiträge zurückgehen',
+        ],
+
+        'logs' => [
+            '_' => 'Thread-Protokolle',
+            'button' => 'Thread-Protokolle durchsuchen',
+
+            'columns' => [
+                'action' => 'Maßnahme',
+                'date' => 'Datum',
+                'user' => 'Benutzer',
+            ],
+
+            'data' => [
+                'add_tag' => 'tag ":tag" hinzugefügt',
+                'announcement' => 'thread angeheftet und als ankündigung markiert',
+                'edit_topic' => 'nach :title',
+                'fork' => 'von :topic',
+                'pin' => 'thread angeheftet',
+                'post_operation' => 'gepostet von :username',
+                'remove_tag' => 'tag ":tag" entfernt',
+                'source_forum_operation' => 'von :forum',
+                'unpin' => 'thread losgelöst',
+            ],
+
+            'no_results' => 'keine protokolle gefunden...',
+
+            'operations' => [
+                'delete_post' => 'Beitrag gelöscht',
+                'delete_topic' => 'Thread gelöscht',
+                'edit_topic' => 'Thread-Titel geändert',
+                'edit_poll' => 'Thread-Umfrage bearbeitet',
+                'fork' => 'Thread kopiert',
+                'issue_tag' => 'Tag erstellt',
+                'lock' => 'Thread gesperrt',
+                'merge' => 'Beiträge zu diesem Thread hinzugefügt',
+                'move' => 'Thread verschoben',
+                'pin' => 'Thread angeheftet',
+                'post_edited' => 'Beitrag bearbeitet',
+                'restore_post' => 'Beitrag wiederhergestellt',
+                'restore_topic' => 'Thread wiederhergestellt',
+                'split_destination' => 'Aufgeteilte Beiträge verschoben',
+                'split_source' => 'Beiträge aufgeteilt',
+                'topic_type' => 'Thread-Typ festgelegt',
+                'topic_type_changed' => 'Thread-Typ geändert',
+                'unlock' => 'Thread entsperrt',
+                'unpin' => 'Thread losgelöst',
+                'user_lock' => 'Eigenen Thread gesperrt',
+                'user_unlock' => 'Eigenen Thread entsperrt',
+            ],
         ],
 
         'post_edit' => [

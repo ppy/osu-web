@@ -20,10 +20,11 @@
     }
 
     $user = $post->userNormalized();
+    $hidden = $post->trashed() || ($options['postPosition'] === 1 && $post->topic->trashed());
 ?>
 <div
     {{-- js-forum-post is also used by js-forum-post-report for the postId and postUsername dataset --}}
-    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} forum-post"
+    class="js-forum-post {{ $hidden ? 'js-forum-post--hidden' : '' }} forum-post"
     data-post-id="{{ $post->getKey() }}"
     data-post-username="{{ $user->username }}"
     data-post-position="{{ $options["postPosition"] }}"
@@ -36,7 +37,7 @@
                 @if (isset($topic) && $topic->topic_poster === $post->poster_id)
                     <div class="forum-post__header-content-item">
                         <span class="forum-user-badge">
-                            {{ trans('forum.post.info.topic_starter') }}
+                            {{ osu_trans('forum.post.info.topic_starter') }}
                         </span>
                     </div>
                 @endif
@@ -85,7 +86,7 @@
         @if($post->post_edit_count > 0)
             <div class="forum-post__content forum-post__content--footer">
                 {!!
-                    trans_choice('forum.post.edited', $post->post_edit_count, [
+                    osu_trans_choice('forum.post.edited', $post->post_edit_count, [
                         'user' => link_to_user($post->lastEditorNormalized(), null, '', []),
                         'when' => timeago($post->post_edit_time),
                     ])

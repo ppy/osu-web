@@ -9,12 +9,13 @@ return [
         'title_compact' => 'modding követőlista',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Beatmapek nézve',
+            'unread' => 'Beatmapek új aktivitással',
         ],
 
         'table' => [
             'empty' => 'Nem követsz beatmap beszélgetéseket.',
+            'last_update' => 'Utolsó frissítés',
             'open_issues' => 'Nyitott problémák',
             'state' => 'Állapot',
             'title' => 'Cím',

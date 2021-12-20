@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => '신고',
+        'title' => ':username 님의 비트맵을 신고하실 건가요?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => '신고',
         'title' => ':username 님의 글을 신고하실 건가요?',
@@ -15,8 +20,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => '신고',
+        'title' => ':username 님의 글을 신고하실 건가요?',
     ],
 
     'scores' => [

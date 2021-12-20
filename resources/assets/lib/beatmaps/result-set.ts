@@ -3,7 +3,7 @@
 
 import { SearchResponse } from 'beatmaps/beatmapset-search';
 import SearchResults from 'beatmaps/search-results';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 export default class ResultSet implements SearchResults {
   static CACHE_DURATION_MS = 60000;
@@ -21,9 +21,15 @@ export default class ResultSet implements SearchResults {
 
   @computed
   get isExpired() {
-    if (this.fetchedAt == null) { return true; }
+    if (this.fetchedAt == null) {
+      return true;
+    }
 
     return new Date().getTime() - this.fetchedAt.getTime() > ResultSet.CACHE_DURATION_MS;
+  }
+
+  constructor() {
+    makeObservable(this);
   }
 
   @action

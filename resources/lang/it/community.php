@@ -24,7 +24,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Artisti in primo piano',
-                'description' => 'Con il tuo supporto possiamo raggiungere tanti altri fantastici artisti e avere la licenza su più musica da usare su osu!',
+                'description' => 'Con il tuo supporto possiamo raggiungere tanti altri fantastici artisti e ottenere la licenza per poter utilizzare molta più musica su osu!',
                 'link_text' => 'Visualizza l\'elenco attuale &raquo;',
             ],
             'ads' => [
@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Carica di più',
-                'description' => 'Slot addizionali per beatmap in attesa (per beatmap rankate) fino ad un massimo di 10.',
+                'description' => 'Spazi addizionali di beatmap in attesa (per ogni beatmap classificata) fino a un massimo di 10.',
             ],
 
             'early_access' => [
@@ -85,8 +85,8 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filtri per Beatmap',
-                'description' => 'I filtri per beatmap cercano tra mappe giocate e non giocate, o in base al rank ottenuto.',
+                'title' => 'Filtri Beatmap',
+                'description' => 'Filtra le ricerche beatmap per mappe giocate e non giocate, o per grado raggiunto (se disponibile).',
             ],
 
             'yellow_fellow' => [
@@ -116,7 +116,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Opzioni di Ordinamento',
-                'description' => 'La possibilità di vedere i rank per paese / amici / specifiche mod in gioco.',
+                'description' => 'La possibilità di vedere la classifica nazionale / amici / con mod specifiche di una beatmap in gioco.',
             ],
 
             'more_favourites' => [
@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Carica più Beatmap',
-                'description' => 'Il numero di beatmap non classificate che puoi avere allo stesso tempo è calcolato da un valore base sommato ad un bonus aggiuntivo per ogni beatmap classificata che possiedi (fino ad un limite).<br/><br/>Normalmente sarebbe :base più :bonus per ogni beatmap classificata (fino a :bonus_max). Con il supporter, questo aumenta a :supporter_base più :supporter_bonus per beatmap classificata (fino a :supporter_bonus_max).',
+                'description' => 'Il numero di beatmap in attesa di rank che puoi avere allo stesso tempo è calcolato da un valore base sommato ad un bonus aggiuntivo per ogni beatmap classificata che possiedi (fino ad un limite).<br/><br/>Normalmente sarebbe :base più :bonus per ogni beatmap classificata (fino a :bonus_max). Con il supporter, questo aumenta a :supporter_base più :supporter_bonus per beatmap classificata (fino a :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Classifiche con Amici',

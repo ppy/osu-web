@@ -22,12 +22,16 @@ return [
             '401-verification' => 'пацверджанне ўліковага запісу',
             '405' => 'не знойдзена',
             '422' => 'недапушчальны запыт',
+            '429' => 'занадта шмат запытаў',
             '500' => 'нешта зламалася',
             '503' => 'тэхнічныя працы',
         ],
     ],
     'forum' => [
         '_' => 'форум',
+        'topic_logs_controller' => [
+            'index' => 'статыстыка тэмы',
+        ],
         'topic_watches_controller' => [
             'index' => 'панэль кіравання',
         ],
@@ -37,8 +41,11 @@ return [
             'edit' => 'панэль кіравання',
             'verify_link' => 'пацверджанне ўліковага запісу',
         ],
+        'artist_tracks_controller' => [
+            '_' => 'ліцэнзаваныя мастакі',
+        ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'ліцэнзаваныя мастакі',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'допісы ў абмеркаваннях бітмап',
@@ -75,6 +82,9 @@ return [
         'contests_controller' => [
             '_' => 'конкурсы',
         ],
+        'follows_controller' => [
+            'index' => 'табліца',
+        ],
         'friends_controller' => [
             'index' => 'панэль кіравання',
         ],
@@ -110,10 +120,10 @@ return [
             '_' => 'рэйтынг',
         ],
         'scores_controller' => [
-            '_' => 'прадукцыйнасць',
+            '_' => 'па прадукцыйнасці',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'крама',
         ],
         'tournaments_controller' => [
             '_' => 'турніры',
@@ -123,20 +133,29 @@ return [
             'disabled' => 'звярніце ўвагу',
         ],
         'wiki_controller' => [
-            '_' => 'база ведаў',
+            '_' => 'вікі',
         ],
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => '',
+            '_' => 'рэйтынг
+',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'аўтарызацыя праграмы',
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'крама',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'інфармацыя пра модэра',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'мультыплэерная гісторыя',
         ],
     ],
 ];

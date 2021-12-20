@@ -2,14 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-status {
-  background-color: osu-hsla(@osu-colour-b4, 0.7);
+  background-color: hsla(var(--hsl-b4), 0.7);
   padding: 6px 15px;
-  border-radius: 1000px;
+  border-radius: 10000px;
   font-size: @font-size--normal;
   font-style: normal;
   font-weight: 600;
   text-transform: uppercase;
-  color: #fff;
+  color: hsl(var(--hsl-c1));
 
   .fade-element(@hover-transition-duration);
 
@@ -17,10 +17,35 @@
     background-color: @osu-colour-b3;
   }
 
+  &--list-view {
+    background-color: hsla(var(--hsl-b6), 0.5);
+    font-size: @font-size--small;
+    padding: 2px 8px;
+    margin-top: 2px;
+    width: max-content;
+  }
+
+  &--panel {
+    padding: 0 5px;
+    color: var(--colour);
+    background-color: var(--bg);
+    font-weight: 800;
+    line-height: 14px;
+  }
+
   &--show {
-    padding: 10px 35px;
-    font-size: @font-size--title-small;
-    align-self: flex-end;
-    margin-bottom: 10px;
+    padding: 0 35px;
+    font-size: inherit;
+    margin: 5px;
+    height: 100%;
+    .center-content();
+  }
+
+  &--show-icon {
+    font-size: inherit;
+    padding: 0;
+    margin: 5px;
+    .circle(@beatmap-picker-size);
+    .center-content();
   }
 }

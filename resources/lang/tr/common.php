@@ -53,6 +53,7 @@ return [
         'show_less' => 'daha az göster',
         'show_more' => 'daha fazla göster',
         'show_more_options' => 'daha fazla seçenek göster',
+        'submit' => 'Gönder',
         'unpin' => 'sabitlemeyi kaldır',
         'update' => 'Güncelle',
         'upload_image' => 'görsel yükle',
@@ -115,15 +116,15 @@ return [
     ],
 
     'pagination' => [
-        'previous' => 'geri',
-        'next' => 'ileri',
+        'previous' => 'önceki',
+        'next' => 'sonraki',
     ],
 
     'score_count' => [
         'count_100' => '100',
         'count_300' => '300',
         'count_50' => '50',
-        'count_geki' => 'MAX',
+        'count_geki' => '',
         'count_katu' => '200',
         'count_miss' => 'Miss',
     ],
@@ -133,10 +134,10 @@ return [
         'dd' => '%d gün',
         'h' => '%d saat',
         'hh' => '%d saat',
-        'M' => '%d ay',
         'm' => '%d dk',
-        'MM' => '%d ay',
         'mm' => '%d dk',
+        'month' => '%d ay',
+        'months' => '%d ay',
         'past' => '',
         's' => '%d sn',
         'y' => '%d yıl',
@@ -151,7 +152,7 @@ return [
     ],
 
     'title' => [
-        'notice' => 'Bildirim',
+        'notice' => 'BİLDİRİM',
     ],
 
     'wrong_user' => [

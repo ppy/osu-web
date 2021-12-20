@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Ανανέωση',
-            'regenerating' => 'Ανανεώνεται...',
-            'remove' => 'Αφαίρεση',
-            'removing' => 'Αφαίρεση...',
-            'title' => 'Εξώφυλλα Beatmapset',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+            'title' => '',
         ],
         'show' => [
-            'covers' => 'Διαχείριση εξωφύλλων Beatmapset',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'ενεργοποίηση',
-                'activate_confirm' => 'ενεργοποίηση modding v2 γι\' αυτό το beatmap;',
-                'active' => 'ενεργό',
-                'inactive' => 'ανενεργό',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Διαγραφή',
+                'delete' => '',
 
-                'forum-name' => 'Φόρουμ #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Δεν ορίστηκε εξώφυλλο',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Αποθήκευση',
-                    'update' => 'Ενημέρωση',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Λίστα Καλυμμάτων Φόρουμ',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Προεπιλεγμένο Κάλυμμα Θέματος',
-                    'main' => 'Κάλυμμα Φόρουμ',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,33 +50,24 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Προβολή Αρχείων',
+            'title' => '',
         ],
     ],
 
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'Beatmapsets',
-                'forum' => 'Φόρουμ',
-                'general' => 'Γενικά',
-                'store' => 'Κατάστημα',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Λίστα Παραγγελιών',
+                'beatmapsets' => '',
+                'forum' => '',
+                'general' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Αυτός ο χρήστης είναι προς το παρόν περιορισμένος.',
-            'message' => '(ορατό μόνο στους διαχειριστές)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

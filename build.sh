@@ -3,6 +3,8 @@
 set -u
 set -e
 
+export COMPOSER_ALLOW_SUPERUSER=1
+
 # The user when provisioning is different than the user running actual php workers (in production).
 if [ -z "${OSU_SKIP_CACHE_PERMISSION_OVERRIDE:-}" ]; then
     # Don't fail if permissions don't get set on all files.
@@ -13,16 +15,17 @@ if [ -z "${OSU_USE_SYSTEM_COMPOSER:-}" ]; then
   COMPOSER="php composer.phar"
 
   if [ -f composer.phar ]; then
-    php composer.phar self-update --1
+    php composer.phar self-update --2
   else
-    curl -sL https://getcomposer.org/composer-1.phar > composer.phar
+    curl -sL "https://getcomposer.org/download/latest-2.x/composer.phar" > composer.phar
   fi
 else
   COMPOSER="composer"
 fi
 
-# dummy user, no privilege github token to avoid github api limit
-${COMPOSER} config -g github-oauth.github.com 98cbc568911ef1e060a3a31623f2c80c1786d5ff
+if [ -n "${GITHUB_TOKEN:-}" ]; then
+  ${COMPOSER} config -g github-oauth.github.com "${GITHUB_TOKEN}"
+fi
 
 rm -f bootstrap/cache/*.php bootstrap/cache/*.json
 

@@ -6,7 +6,7 @@ x-env: &x-env
   DB_HOST: db
   ES_HOST: elasticsearch:9200
   ES_SCORES_HOST: elasticsearch:9200
-  GITHUB_TOKEN: "${GITHUB_TOKEN:-98cbc568911ef1e060a3a31623f2c80c1786d5ff}"
+  GITHUB_TOKEN: "${GITHUB_TOKEN}"
   NOTIFICATION_REDIS_HOST: redis
   REDIS_HOST: redis
   SESSION_DRIVER: redis

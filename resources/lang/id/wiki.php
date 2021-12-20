@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'Laman yang diminta tidak dapat ditemukan untuk bahasa yang dipilih saat ini.',
         'needs_cleanup_or_rewrite' => 'Laman ini tidak memenuhi standar osu! wiki dan perlu dibersihkan atau ditulis ulang. Apabila Anda berkenan, harap bantu kami untuk memperbarui artikel ini!',
         'search' => 'Cari laman yang ada untuk :link.',
+        'stub' => 'Artikel ini merupakan artikel rintisan (stub) yang sedang menunggu untuk dapat dikembangkan lebih lanjut. Informasi yang tertera pada artikel ini belum sepenuhnya lengkap.',
         'toc' => 'Konten',
 
         'edit' => [
@@ -20,7 +21,7 @@ return [
         ],
 
         'translation' => [
-            'legal' => 'Terjemahan ini diberikan semata-mata hanya untuk memudahkan pembaca. :default dari artikel ini merupakan satu-satunya versi yang mengikat secara hukum dari teks ini.',
+            'legal' => 'Terjemahan ini diberikan semata-mata hanya untuk memudahkan. :default dari artikel ini merupakan satu-satunya versi artikel yang mengikat secara hukum.',
             'outdated' => 'Laman ini mengandung terjemahan yang telah kedaluwarsa dari artikel aslinya. Harap periksa :default dari artikel ini untuk mendapatkan informasi yang paling akurat (dan apabila Anda berkenan, harap bantu kami untuk memperbarui artikel ini)!',
 
             'default' => 'Versi Bahasa Inggris',

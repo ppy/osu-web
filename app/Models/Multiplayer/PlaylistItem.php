@@ -10,6 +10,7 @@ use App\Libraries\Multiplayer\Mod;
 use App\Libraries\Multiplayer\Ruleset;
 use App\Models\Beatmap;
 use App\Models\Model;
+use App\Models\User;
 
 /**
  * @property json|null $allowed_mods
@@ -17,6 +18,7 @@ use App\Models\Model;
  * @property int $beatmap_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
+ * @property int $owner_id
  * @property int|null $playlist_order
  * @property json|null $required_mods
  * @property Room $room
@@ -24,6 +26,8 @@ use App\Models\Model;
  * @property int|null $ruleset_id
  * @property \Illuminate\Database\Eloquent\Collection $scores Score
  * @property \Carbon\Carbon|null $updated_at
+ * @property bool expired
+ * @property \Carbon\Carbon|null $played_at
  */
 class PlaylistItem extends Model
 {
@@ -48,25 +52,30 @@ class PlaylistItem extends Model
         }
     }
 
-    public static function fromJsonParams($json)
+    public static function fromJsonParams(User $owner, $json)
     {
         $obj = new self();
         foreach (['beatmap_id', 'ruleset_id'] as $field) {
-            $obj->$field = array_get($json, $field);
-            if (!present($obj->$field)) {
+            $value = get_int($json[$field] ?? null);
+            if ($value === null) {
                 throw new InvariantException("{$field} is required.");
             }
+            $obj->$field = $value;
         }
 
+        $obj->max_attempts = get_int($json['max_attempts'] ?? null);
+
         $obj->allowed_mods = Mod::parseInputArray(
-            array_get($json, 'allowed_mods') ?? [],
+            $json['allowed_mods'] ?? [],
             $obj->ruleset_id
         );
 
         $obj->required_mods = Mod::parseInputArray(
-            array_get($json, 'required_mods') ?? [],
+            $json['required_mods'] ?? [],
             $obj->ruleset_id
         );
+
+        $obj->owner_id = $owner->getKey();
 
         return $obj;
     }
@@ -99,6 +108,18 @@ class PlaylistItem extends Model
             ->orderBy('score_id', 'asc');
     }
 
+    private function assertValidMaxAttempts()
+    {
+        if ($this->max_attempts === null) {
+            return;
+        }
+
+        $maxAttemptsLimit = config('osu.multiplayer.max_attempts_limit');
+        if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit) {
+            throw new InvariantException("field 'max_attempts' must be between 1 and {$maxAttemptsLimit}");
+        }
+    }
+
     private function validateRuleset()
     {
         // osu beatmaps can be played in any mode, but non-osu maps can only be played in their specific modes
@@ -107,24 +128,26 @@ class PlaylistItem extends Model
         }
     }
 
-    private function validateModOverlaps()
+    private function assertValidMods()
     {
-        $dupeMods = array_intersect(
-            array_column($this->allowed_mods, 'acronym'),
-            array_column($this->required_mods, 'acronym')
-        );
+        $allowedModIds = array_column($this->allowed_mods, 'acronym');
+        $requiredModIds = array_column($this->required_mods, 'acronym');
 
+        $dupeMods = array_intersect($allowedModIds, $requiredModIds);
         if (count($dupeMods) > 0) {
             throw new InvariantException('mod cannot be listed as both allowed and required: '.implode(', ', $dupeMods));
         }
+
+        Mod::validateSelection($allowedModIds, $this->ruleset_id);
+        Mod::validateSelection($requiredModIds, $this->ruleset_id);
+        Mod::assertValidExclusivity($requiredModIds, $allowedModIds, $this->ruleset_id);
     }
 
     public function save(array $options = [])
     {
+        $this->assertValidMaxAttempts();
         $this->validateRuleset();
-        $this->validateModOverlaps();
-        Mod::validateSelection(array_column($this->allowed_mods, 'acronym'), $this->ruleset_id, true);
-        Mod::validateSelection(array_column($this->required_mods, 'acronym'), $this->ruleset_id);
+        $this->assertValidMods();
 
         return parent::save($options);
     }

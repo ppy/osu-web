@@ -9,24 +9,28 @@ return [
     'title_compact' => '聊天',
 
     'cannot_send' => [
-        'channel' => '现在无法向该频道发送消息，这可能是由于以下原因：',
-        'user' => '现在不能向该玩家发送消息，这可能是由于以下原因：',
+        'channel' => '现在你无法在此频道发送消息，这可能是由于以下原因：',
+        'user' => '现在你无法向此玩家发送消息，这可能是由于以下原因：',
         'reasons' => [
-            'blocked' => '你已被对方屏蔽',
-            'channel_moderated' => '该频道正在被管制中',
-            'friends_only' => '对方只接受来自好友的消息',
+            'blocked' => '你已被对方拉入黑名单',
+            'channel_moderated' => '此频道正在被管制中',
+            'friends_only' => '对方只接收好友的消息',
+            'not_enough_plays' => '你的游戏次数还不够',
+            'not_verified' => '你的会话未认证',
             'restricted' => '你正处于限制状态',
+            'silenced' => '你已被禁言',
             'target_restricted' => '对方正处于限制状态',
         ],
     ],
     'input' => [
         'disabled' => '无法发送消息……',
+        'disconnected' => '连接中断',
         'placeholder' => '输入消息……',
         'send' => '发送',
     ],
     'no-conversations' => [
         'howto' => "点击用户的个人资料/卡片上的信封图标以开始聊天",
-        'lazer' => '在 <a href=":link">osu!lazer</a> 中加入的频道将会被显示在这里。',
+        'lazer' => '在 <a href=":link">osu!lazer</a> 中加入的频道将在这里显示。',
         'title' => '暂无对话',
     ],
 ];

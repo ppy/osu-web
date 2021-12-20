@@ -9,6 +9,7 @@ use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserGroup;
 use App\Models\UserNotification;
 use App\Models\UserNotificationOption;
 use App\Traits\NotificationQueue;
@@ -77,31 +78,35 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     private static function applyDeliverySettings(array $userIds)
     {
-        static $defaults = ['mail' => true, 'push' => true];
-
         if (static::NOTIFICATION_OPTION_NAME !== null) {
-            // FIXME: filtering all the ids could get quite large?
-            $notificationOptions = UserNotificationOption
-                ::whereIn('user_id', $userIds)
-                ->where(['name' => static::NOTIFICATION_OPTION_NAME])
-                ->whereNotNull('details')
-                ->get()
-                ->keyBy('user_id');
-        } else {
-            $notificationOptions = [];
+            $notificationOptionsQuery = UserNotificationOption
+                ::where(['name' => static::NOTIFICATION_OPTION_NAME])
+                ->whereNotNull('details');
         }
 
         $deliverySettings = [];
-        foreach ($userIds as $userId) {
-            $details = $notificationOptions[$userId]->details ?? $defaults;
-            $delivery = 0;
-            foreach (UserNotification::DELIVERY_OFFSETS as $type => $_offset) {
-                if ($details[$type] ?? $defaults[$type]) {
-                    $delivery |= UserNotification::deliveryMask($type);
-                }
+
+        foreach (array_chunk($userIds, 10000) as $chunkedUserIds) {
+            if (isset($notificationOptionsQuery)) {
+                $notificationOptions = (clone $notificationOptionsQuery)
+                    ->whereIntegerInRaw('user_id', $chunkedUserIds)
+                    ->get()
+                    ->keyBy('user_id');
+            } else {
+                $notificationOptions = [];
             }
 
-            $deliverySettings[$userId] = $delivery;
+            foreach ($chunkedUserIds as $userId) {
+                $details = $notificationOptions[$userId]->details ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS;
+                $delivery = 0;
+                foreach (UserNotification::DELIVERY_OFFSETS as $type => $_offset) {
+                    if ($details[$type] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS[$type]) {
+                        $delivery |= UserNotification::deliveryMask($type);
+                    }
+                }
+
+                $deliverySettings[$userId] = $delivery;
+            }
         }
 
         return $deliverySettings;
@@ -109,10 +114,16 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     private static function excludeBotUserIds(array $userIds)
     {
-        // smaller return size from database compared to "group_id <> bot"
+        $botGroupId = app('groups')->byIdentifier('bot')->getKey();
+
+        $allBotUserIds = UserGroup
+            ::where('group_id', $botGroupId)
+            ->select('user_id');
+
+        // only consider users with bot as their primary group
         $botUserIds = User
-            ::whereIn('user_id', $userIds)
-            ->where('group_id', app('groups')->byIdentifier('bot')->getKey())
+            ::where('group_id', $botGroupId)
+            ->whereIn('user_id', $allBotUserIds)
             ->pluck('user_id')
             ->all();
 
@@ -171,16 +182,28 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
         $pushReceiverIds = [];
         $notification->getConnection()->transaction(function () use ($deliverySettings, $notification, &$pushReceiverIds) {
-            $timestamp = $this->getTimestamp();
+            $timestamp = (string) $this->getTimestamp();
+            $notificationId = $notification->getKey();
+            $tempUserNotification = new UserNotification();
 
+            $userNotifications = [];
             foreach ($deliverySettings as $userId => $delivery) {
-                $userNotification = $notification->userNotifications()->create([
-                    'delivery' => $delivery,
-                    'user_id' => $userId,
+                $userNotifications[] = [
                     'created_at' => $timestamp,
-                ]);
-                $userNotification->isPush() && $pushReceiverIds[] = $userId;
+                    'delivery' => $delivery,
+                    'notification_id' => $notificationId,
+                    'updated_at' => $timestamp,
+                    'user_id' => $userId,
+                ];
+                $tempUserNotification->delivery = $delivery;
+                $tempUserNotification->isPush() && $pushReceiverIds[] = $userId;
+
+                if (count($userNotifications) === 1000) {
+                    UserNotification::insert($userNotifications);
+                    $userNotifications = [];
+                }
             }
+            UserNotification::insert($userNotifications);
         });
 
         if (!empty($pushReceiverIds)) {

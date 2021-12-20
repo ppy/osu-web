@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Lager',
-    ],
-
     'cart' => [
         'checkout' => 'Gå til kassen',
         'info' => ':count_delimited ting i kurven ($:subtotal)|:count_delimited items i vogn ($:subtotal)',
@@ -69,11 +65,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Bestilling plassert den :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Vis faktura',
         'no_orders' => 'Ingen bestillinger å vise.',
+        'paid_on' => 'Bestilling plassert den :date',
         'resume' => 'Tilbake til kassen',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

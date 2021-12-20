@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Regenerera',
-            'regenerating' => 'Regenererar...',
-            'remove' => 'Ta bort',
-            'removing' => 'Tar bort...',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
             'title' => '',
         ],
         'show' => [
-            'covers' => 'Hantera Beatmapsetomslag',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'aktivera',
-                'activate_confirm' => 'aktivera modding v2 på denna beatmap?',
-                'active' => 'aktiv',
-                'inactive' => 'inaktiv',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Radera',
+                'delete' => '',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Inget omslag satt',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Spara',
-                    'update' => 'Uppdatera',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Forumomslagslista',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Ordinarie Ämne Omslag',
-                    'main' => 'Forumomslag',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,7 +50,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Logg',
+            'title' => '',
         ],
     ],
 
@@ -58,25 +58,16 @@ return [
         'root' => [
             'sections' => [
                 'beatmapsets' => '',
-                'forum' => 'Forum',
-                'general' => 'Allmänt',
-                'store' => 'Affär',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Orderlista',
+                'forum' => '',
+                'general' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Denna användare är för närvarande avstängd.',
-            'message' => '(endast administratörer kan se detta)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

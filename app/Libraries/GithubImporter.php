@@ -23,7 +23,7 @@ class GithubImporter
 
     public function import()
     {
-        if ($this->repository === OsuWiki::repository() && $this->isMasterPush()) {
+        if ($this->repository === OsuWiki::repository() && $this->isPushTo(OsuWiki::branch())) {
             OsuWiki::updateFromGithub($this->data);
         } elseif ($this->isMergedPullRequest()) {
             return ChangelogEntry::importFromGithub($this->data);
@@ -45,9 +45,9 @@ class GithubImporter
             starts_with($this->data['ref'], 'refs/tags/');
     }
 
-    public function isMasterPush()
+    public function isPushTo(string $branch): bool
     {
         return $this->eventType === 'push' &&
-            $this->data['ref'] === 'refs/heads/master';
+            $this->data['ref'] === 'refs/heads/'.$branch;
     }
 }

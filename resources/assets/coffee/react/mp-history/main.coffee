@@ -91,7 +91,7 @@ export class Main extends React.Component
     Timeout.clear @timeouts.autoload
     @setState loadingNext: true
 
-    $.ajax laroute.route('matches.history', match: @state.match.id),
+    $.ajax laroute.route('matches.show', match: @state.match.id),
       method: 'GET'
       dataType: 'JSON'
       data:
@@ -139,7 +139,7 @@ export class Main extends React.Component
 
     @setState loadingPrevious: true
 
-    $.ajax laroute.route('matches.history', match: @state.match.id),
+    $.ajax laroute.route('matches.show', match: @state.match.id),
       method: 'GET'
       dataType: 'JSON'
       data:

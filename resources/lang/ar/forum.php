@@ -47,11 +47,12 @@ return [
         'confirm_restore' => 'اتريد حقاََ اِسترجاع المنشور؟',
         'edited' => 'التعديل الأخير تم بواسطة :user :when، عُدِلَ ::count_delimited مرة في المجموع.|التعديل الأخير تم بواسطة :user:when, عُدِلَ ::count_delimited مرات في المجموع.',
         'posted_at' => 'نُشِر :when',
+        'posted_by' => 'منشور بواسطة :username',
 
         'actions' => [
             'destroy' => 'منشور محذوف',
             'edit' => 'تعديل المنشور',
-            'report' => '',
+            'report' => 'الإبلاغ عن المنشور',
             'restore' => 'اِستعادة المنشور',
         ],
 
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'حذف الموضوع حقاً؟',
+        'confirm_restore' => 'استعادة الموضوع حقاً؟',
         'deleted' => 'موضوع محذوف',
         'go_to_latest' => 'عرض اخر منشور',
         'has_replied' => 'لقد قمت بالرد على هذا الموضوع',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'إعادة',
         'started_by' => 'بواسطة :user',
         'started_by_verbose' => 'بدأت بواسطة :user',
+
+        'actions' => [
+            'destroy' => 'حذف الموضوع',
+            'restore' => 'استعادة الموضوع',
+        ],
 
         'create' => [
             'close' => 'إغلاق',
@@ -117,6 +125,55 @@ return [
             'last' => 'الذهاب إلى آخر منشور',
             'next' => 'تخطى الـ 10 منشورات القادمة',
             'previous' => 'عُد 10 منشورات للخلف',
+        ],
+
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => '',
+                'date' => '',
+                'user' => '',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
         ],
 
         'post_edit' => [

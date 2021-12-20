@@ -5,7 +5,7 @@
 
 return [
     'title_compact' => 'arkadaşlar',
-    'too_many' => 'Arkadaş sınırına ulaşıldı.',
+    'too_many' => 'Arkadaş sınırına ulaşıldı',
 
     'buttons' => [
         'add' => 'arkadaş ekle',

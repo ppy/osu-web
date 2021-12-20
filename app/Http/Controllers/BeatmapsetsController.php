@@ -60,7 +60,6 @@ class BeatmapsetsController extends Controller
             return $set;
         } else {
             $commentBundle = CommentBundle::forEmbed($beatmapset);
-            $hasDiscussion = $beatmapset->discussion_enabled;
 
             if (priv_check('BeatmapsetMetadataEdit', $beatmapset)->can()) {
                 $genres = Genre::listing();
@@ -76,7 +75,6 @@ class BeatmapsetsController extends Controller
                 'beatmapset',
                 'commentBundle',
                 'genres',
-                'hasDiscussion',
                 'languages',
                 'noindex',
                 'set'
@@ -166,7 +164,7 @@ class BeatmapsetsController extends Controller
             ->count();
 
         if ($recentlyDownloaded > Auth::user()->beatmapsetDownloadAllowance()) {
-            abort(403);
+            abort(429, osu_trans('beatmapsets.download.limit_exceeded'));
         }
 
         $noVideo = get_bool(Request::input('noVideo', false));
@@ -204,9 +202,11 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
+        $params = get_params(request()->all(), null, ['beatmap_ids:int[]'], ['null_missing' => true]);
+
         priv_check('BeatmapsetLove')->ensureCan();
 
-        $nomination = $beatmapset->love(Auth::user());
+        $nomination = $beatmapset->love(Auth::user(), $params['beatmap_ids']);
         if (!$nomination['result']) {
             return error_popup($nomination['message']);
         }
@@ -252,15 +252,17 @@ class BeatmapsetsController extends Controller
         $metadataParams = get_params($params, 'beatmapset', [
             'language_id:int',
             'genre_id:int',
+            'nsfw:bool',
         ]);
 
         if (count($metadataParams) > 0) {
             priv_check('BeatmapsetMetadataEdit', $beatmapset)->ensureCan();
 
-            $oldGenreId = $beatmapset->genre_id;
-            $oldLanguageId = $beatmapset->language_id;
+            DB::transaction(function () use ($beatmapset, $metadataParams) {
+                $oldGenreId = $beatmapset->genre_id;
+                $oldLanguageId = $beatmapset->language_id;
+                $oldNsfw = $beatmapset->nsfw;
 
-            DB::transaction(function () use ($beatmapset, $metadataParams, $oldGenreId, $oldLanguageId) {
                 $beatmapset->fill($metadataParams)->saveOrExplode();
 
                 if ($oldGenreId !== $beatmapset->genre_id) {
@@ -274,6 +276,13 @@ class BeatmapsetsController extends Controller
                     BeatmapsetEvent::log(BeatmapsetEvent::LANGUAGE_EDIT, Auth::user(), $beatmapset, [
                         'old' => Language::find($oldLanguageId)->name,
                         'new' => $beatmapset->language->name,
+                    ])->saveOrExplode();
+                }
+
+                if ($oldNsfw !== $beatmapset->nsfw) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::NSFW_TOGGLE, Auth::user(), $beatmapset, [
+                        'old' => $oldNsfw,
+                        'new' => $beatmapset->nsfw,
                     ])->saveOrExplode();
                 }
             });
@@ -298,6 +307,9 @@ class BeatmapsetsController extends Controller
                 'beatmaps.max_combo'
             ),
             'cursor' => $search->getSortCursor(),
+            'search' => [
+                'sort' => $search->getParams()->getSort(),
+            ],
             'recommended_difficulty' => $params->getRecommendedDifficulty(),
             'error' => search_error_message($search->getError()),
             'total' => $search->count(),
@@ -307,8 +319,8 @@ class BeatmapsetsController extends Controller
     private function showJson($beatmapset)
     {
         $beatmapset->load([
+            'beatmaps.baseDifficultyRatings',
             'beatmaps.baseMaxCombo',
-            'beatmaps.difficulty',
             'beatmaps.failtimes',
             'genre',
             'language',

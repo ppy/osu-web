@@ -80,6 +80,7 @@ return [
             'region' => env('S3_REGION'),
             'bucket' => env('S3_BUCKET'),
             'base_url' => env('S3_BASE_URL'),
+            'mini_url' => env('S3_MINI_URL') ?? env('S3_BASE_URL'),
         ],
 
         's3-avatar' => [
@@ -89,14 +90,6 @@ return [
             'region' => env('S3_AVATAR_REGION'),
             'bucket' => env('S3_AVATAR_BUCKET'),
             'base_url' => env('S3_AVATAR_BASE_URL'),
-        ],
-
-        's3-beatmap' => [
-            'driver' => 's3',
-            'key' => env('S3_BEATMAPSET_KEY'),
-            'secret' => env('S3_BEATMAPSET_SECRET'),
-            'region' => env('S3_BEATMAPSET_REGION'),
-            'bucket' => env('S3_BEATMAPSET_BUCKET'),
         ],
     ],
 

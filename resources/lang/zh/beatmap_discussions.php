@@ -17,13 +17,14 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => '删除',
+        'deleted_beatmap' => '已删除',
         'none_found' => '找不到符合条件的讨论内容',
         'title' => '谱面讨论',
 
         'form' => [
             '_' => '搜索',
             'deleted' => '包含已经删除的讨论',
+            'mode' => '谱面模式',
             'only_unresolved' => '只显示未解决的讨论',
             'types' => '评论类型',
             'username' => '用户名',
@@ -31,10 +32,10 @@ return [
             'beatmapset_status' => [
                 '_' => '谱面状态',
                 'all' => '所有',
-                'disqualified' => '已被Disqualified',
-                'never_qualified' => '从未被Qualified',
-                'qualified' => '已被Qualified',
-                'ranked' => '已被Ranked',
+                'disqualified' => '不合格',
+                'never_qualified' => '从未提名为合格',
+                'qualified' => '合格',
+                'ranked' => '上架',
             ],
 
             'user' => [
@@ -57,6 +58,13 @@ return [
         'unsaved' => '此审阅中有 :count',
     ],
 
+    'owner_editor' => [
+        'button' => '难度作者',
+        'reset_confirm' => '重置此难度的作者？',
+        'user' => '作者',
+        'version' => '难度',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => '登录以回复',
@@ -70,12 +78,13 @@ return [
         'go_to_child' => '查看讨论',
         'validation' => [
             'block_too_large' => '每块只能包含最多 :limit 个字符',
-            'external_references' => '审阅包含不属于此审阅的 issues 的引用',
+            'external_references' => '审阅包含不属于此审阅问题的引用',
             'invalid_block_type' => '板块类型无效',
             'invalid_document' => '审阅无效',
-            'minimum_issues' => '审阅时必须提出最少 :count 个 issue |审阅时必须提出最少 :count 个 issue',
+            'invalid_discussion_type' => '讨论类型无效',
+            'minimum_issues' => '审阅时必须指出最少 :count 个问题',
             'missing_text' => '该版块缺少文本。',
-            'too_many_blocks' => '审阅只能包含 :count 个段落或 issue|审阅最多只能包含 :count 个段落或 issue',
+            'too_many_blocks' => '审阅只能包含 :count 个段落或问题',
         ],
     ],
 

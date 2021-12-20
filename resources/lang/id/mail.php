@@ -5,105 +5,105 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Pemberitahuan bahwa ada pembaruan dalam beatmap ":title" sejak kunjungan terakhir kamu.',
+        'new' => 'Kami ingin memberitahukan bahwa beatmap ":title" telah diperbaharui sejak kunjungan terakhir Anda.',
         'subject' => 'Pembaruan baru untuk beatmap ":title"',
-        'unwatch' => 'Jika kamu tidak lagi ingin mengikuti informasi beatmap ini, kamu dapat mengklik tautan "Unwatch" yang dapat ditemukan di atas laman ini, atau dari laman daftar pengamatan modding:',
-        'visit' => 'Kunjungi laman diskusi di sini:',
+        'unwatch' => 'Apabila Anda tidak lagi ingin memantau beatmap ini, Anda dapat membatalkan pantauan Anda melalui tautan "Batalkan Pantauan" yang tertera di atas atau melalui laman Daftar Pantauan berikut:',
+        'visit' => 'Kunjungi laman diskusi beatmap ini di sini:',
     ],
 
     'common' => [
         'closing' => 'Salam,',
         'hello' => 'Hai :user,',
-        'report' => 'Harap balas email ini SEGERA jika kamu tidak tahu mengenai perubahan ini.',
+        'report' => 'Harap balas email ini DENGAN SEGERA apabila Anda tidak merasa melakukan tindakan ini.',
     ],
 
     'donation_thanks' => [
-        'benefit_more' => 'Banyak manfaat yang didapat untuk supporter baru akan muncul seiring waktu!',
-        'feedback' => "Jika kamu memiliki pertanyaan atau umpan balik, jangan ragu untuk membalas email ini; Aku akan menghubungimu secepat mungkin!",
-        'keep_free' => 'Terima kasih kepada orang-orang seperti kamu, osu! mampu menjaga game dan komunitasnya tetap berjalan lancar tanpa iklan atau memasang sistem pembayaran.',
-        'keep_running' => 'Dukunganmu membuat osu! berjalan sekitar :minutes! Ini mungkin seperti tidak banyak, tetapi nilai berapapun tetap berharga :).',
+        'benefit_more' => 'Di samping itu, para pemilik supporter tag juga akan mendapatkan berbagai manfaat baru seiring waktunya!',
+        'feedback' => "Apabila Anda memiliki pertanyaan atau saran lebih lanjut, jangan sungkan untuk membalas email ini; Saya akan menghubungi Anda kembali sesegera mungkin!",
+        'keep_free' => 'Berkat orang-orang seperti Anda, osu! dapat membangun lingkungan permainan yang independen tanpa iklan atau sistem pembayaran yang intrusif.',
+        'keep_running' => 'Dukungan Anda membuat osu! dapat berjalan sekitar :minutes! Angka ini mungkin sekilas tidak berarti banyak, namun dukungan sekecil apapun akan tetap berarti besar bagi kami :).',
         'subject' => 'Terima kasih, osu! mencintaimu',
         'translation' => 'Sebagai bahan rujukan, tersedia terjemahan dari komunitas di bawah ini:',
 
         'benefit' => [
-            'gift' => 'Pengguna yang dihadiahkan kini dapat secara bebas menggunakan osu!direct dan fitur-fitur lainnya yang dikhususkan untuk para pemilik supporter tag.',
+            'gift' => 'Para pengguna yang Anda hadiahkan kini dapat secara bebas menggunakan osu!direct dan fitur-fitur lainnya yang dikhususkan untuk para pemilik supporter tag.',
             'self' => 'Anda kini dapat secara bebas menggunakan osu!direct dan fitur-fitur lainnya yang dikhususkan untuk para pemilik supporter tag selama :duration.',
         ],
 
         'support' => [
-            '_' => 'Terima kasih banyak atas :support yang Anda berikan terhadap osu!.',
+            '_' => 'Terima kasih banyak atas :support yang telah Anda berikan untuk osu!.',
             'first' => 'dukungan',
-            'repeat' => 'dukungan yang berlanjut',
+            'repeat' => 'dukungan berkelanjutan',
         ],
     ],
 
     'forum_new_reply' => [
-        'new' => 'Kami ingin memberitahukan bahwa saat ini terdapat balasan baru pada ":title" sejak kunjungan terakhir Anda.',
-        'subject' => '[osu!] Balasan terbaru dari topik ":title"',
-        'unwatch' => 'Jika kamu tidak lagi ingin mengikuti informasi seputar thread forum ini, Anda dapat meng-klik link "Unsubscribe Topic" yang dapat ditemukan di atas halaman ini, atau melalui laman Langganan Forum berikut:',
+        'new' => 'Kami ingin menginformasikan bahwa saat ini terdapat balasan baru pada ":title" sejak kunjungan terakhir Anda.',
+        'subject' => '[osu!] Balasan baru pada topik ":title"',
+        'unwatch' => 'Jika Anda tidak lagi ingin memantau topik forum ini, Anda dapat membatalkan pantauan Anda melalui tautan "Batalkan Pantauan" yang tertera di atas atau melalui laman Daftar Pantauan berikut:',
         'visit' => 'Anda dapat segera melihat balasan terbaru melalui link berikut:',
     ],
 
     'password_reset' => [
-        'code' => 'Kode verifikasi kamu adalah:',
-        'requested' => 'Baik kamu atau seseorang yang berpura-pura menjadi kamu telah meminta pengaturan ulang kata sandi akun osu! kamu.',
+        'code' => 'Kode verifikasi Anda adalah:',
+        'requested' => 'Baik Anda atau seseorang yang berpura-pura menjadi diri Anda telah meminta agar kata sandi akun osu! milik Anda diatur ulang.',
         'subject' => 'Pemulihan akun osu!',
     ],
 
     'store_payment_completed' => [
-        'prepare_shipping' => 'Kami telah menerima pembayaranmu dan sedang mempersiapkan pesananmu untuk dikirim. Mungkin perlu beberapa hari bagi kami untuk mengirimkannya, tergantung pada jumlah pesanan. Kamu dapat mengikuti perkembangan pesanan Anda di sini, termasuk rincian nomor pelacakan yang ada:',
-        'processing' => 'Kami telah menerima pembayaranmu dan saat ini sedang diproses. Kamu dapat mengikuti perkembangan pesananmu di sini:',
-        'questions' => "Jika kamu memiliki pertanyaan, jangan ragu untuk membalas email ini.",
+        'prepare_shipping' => 'Kami telah menerima pembayaran Anda, dan saat ini kami tengah mempersiapkan pesanan Anda untuk dikirim. Apabila kami sedang menerima banyak pesanan, kami mungkin butuh waktu beberapa hari untuk dapat memproses pesanan-pesanan yang ada. Anda dapat mengikuti perkembangan pesanan Anda di sini, termasuk rincian-rincian pelacakan yang terkait:',
+        'processing' => 'Kami telah menerima pembayaran Anda, dan saat ini kami sedang memproses pesanan Anda lebih lanjut. Anda dapat mengikuti perkembangan pesanan Anda di sini:',
+        'questions' => "Apabila Anda memiliki pertanyaan-pertanyaan lebih lanjut, jangan sungkan untuk membalas email ini.",
         'shipping' => 'Pengiriman',
-        'subject' => 'Kami menerima pesanan osu!store Anda!',
-        'thank_you' => 'Terima kasih atas pemesananmu di osu!store!',
+        'subject' => 'Kami telah menerima pesanan osu!store Anda!',
+        'thank_you' => 'Terima kasih atas pemesanan osu!store Anda!',
         'total' => 'Total',
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => 'Orang yang memberimu tag ini memilih untuk tetap anonim, sehingga nama mereka tidak akan disebutkan di notifikasi ini.',
-        'anonymous_gift_maybe_not' => 'Tapi kamu mungkin sudah tahu siapa itu;).',
-        'duration' => 'Berkat mereka, kamu memiliki akses osu!direct dan manfaat eksklusif osu!supporter lainnya selama :duration.',
-        'features' => 'Kamu dapat mengetahui rincian lebih lanjut tentang fitur-fitur ini di sini:',
-        'gifted' => 'Seseorang baru saja memberimu osu!supporter tag!',
-        'subject' => 'Anda telah diberikan osu!supporter tag!',
+        'anonymous_gift' => 'Orang yang menghadiahkan Anda supporter tag ini memilih untuk tetap anonim, sehingga nama mereka tidak disebutkan pada notifikasi ini.',
+        'anonymous_gift_maybe_not' => 'Tetapi Anda mungkin sudah tahu siapa itu ;).',
+        'duration' => 'Berkat mereka, Anda kini dapat bebas mengakses osu!direct dan fitur-fitur osu!supporter eksklusif lainnya selama :duration.',
+        'features' => 'Anda dapat membaca rincian lebih lanjut mengenai fitur-fitur ini di sini:',
+        'gifted' => 'Seseorang baru saja menghadiahkan Anda osu!supporter tag!',
+        'subject' => 'Anda telah dihadiahkan osu!supporter tag!',
     ],
 
     'user_email_updated' => [
-        'changed_to' => 'Ini adalah email konfirmasi untuk memberi tahu kamu bahwa alamat email yang digunakan untuk akun osu! kamu telah dirubah menjadi ":email".',
-        'check' => 'Harap pastikan bahwa kamu menerima email ini di alamat email barumu untuk mencegah kehilangan akses pada akun osu! kamu di masa yang akan datang.',
-        'sent' => 'Demi alasan keamanan, email ini telah dikirim ke alamat email baru dan lama kamu.',
+        'changed_to' => 'Email ini merupakan bukti konfirmasi bahwa alamat email yang terhubung dengan akun osu! Anda telah diubah menjadi ":email".',
+        'check' => 'Harap pastikan bahwa Anda menerima email ini di alamat email yang baru agar Anda tidak kehilangan akses menuju akun osu! Anda di masa yang akan datang.',
+        'sent' => 'Demi alasan keamanan, email ini telah dikirim ke alamat email baru dan lama milik Anda.',
         'subject' => 'Konfirmasi perubahan email osu!',
     ],
 
     'user_force_reactivation' => [
-        'main' => 'Akun kamu diduga dalam bahaya, memiliki aktivitas mencurigakan baru-baru ini atau memiliki kata sandi yang SANGAT lemah. Akibatnya, kami memintamu untuk mengatur kata sandi baru. Pastikan untuk memilih kata sandi yang LEBIH AMAN.',
-        'perform_reset' => 'Kamu dapat melakukan pengaturan ulang melewati :url',
+        'main' => 'Akun Anda terindikasi berada dalam bahaya karena memiliki rekam jejak aktivitas yang mencurigakan baru-baru ini atau kata sandi yang SANGAT lemah. Oleh karenanya, kami meminta Anda untuk membuat kata sandi baru. Pastikan Anda memilih kata sandi yang LEBIH AMAN.',
+        'perform_reset' => 'Anda dapat melakukan pengaturan ulang pada :url',
         'reason' => 'Alasan:',
-        'subject' => 'Pengaktifan Ulang Akun osu! Dibutuhkan',
+        'subject' => 'Aktivasi Ulang Akun osu! Dibutuhkan',
     ],
 
     'user_notification_digest' => [
-        'new' => 'Kami ingin memberi tahu Anda bahwa saat ini terdapat perkembangan baru pada topik-topik yang telah Anda ikuti sebelumnya.',
+        'new' => 'Kami ingin menginformasikan bahwa saat ini terdapat perkembangan baru pada hal-hal yang Anda pantau.',
         'settings' => 'Ubah preferensi penerimaan notifikasi:',
-        'subject' => 'Notifikasi baru terkait osu!',
+        'subject' => 'Notifikasi osu! baru',
     ],
 
     'user_password_updated' => [
-        'confirmation' => 'Email ini hanya konfirmasi bahwa kata sandi akun osu! kamu telah diubah.',
+        'confirmation' => 'Email ini merupakan bukti konfirmasi bahwa kata sandi akun osu! Anda telah diubah.',
         'subject' => 'Konfirmasi perubahan kata sandi osu!',
     ],
 
     'user_verification' => [
-        'code' => 'Kode verifikasi kamu adalah:',
-        'code_hint' => 'Kamu dapat memasukkan kodenya dengan atau tanpa spasi.',
-        'link' => 'Atau, kamu juga dapat mengunjungi tautan di bawah ini untuk menyelesaikan proses verifikasi:',
-        'report' => 'Jika kamu tidak mengetahui aksi ini, harap SEGERA BALAS email ini karena akun kamu mungkin dalam bahaya.',
+        'code' => 'Kode verifikasi Anda adalah:',
+        'code_hint' => 'Anda dapat memasukkan kode tersebut baik dengan atau tanpa spasi.',
+        'link' => 'Di samping itu, Anda juga dapat mengunjungi tautan di bawah ini untuk menyelesaikan proses verifikasi:',
+        'report' => 'Apabila Anda tidak merasa melakukan sesuatu yang membutuhkan kode verifikasi dari kami, harap SEGERA BALAS email ini karena akun Anda mungkin sedang berada dalam bahaya.',
         'subject' => 'Verifikasi akun osu!',
 
         'action_from' => [
-            '_' => 'Terdapat aktivitas baru yang dilakukan pada akun kamu dari :country dan memerlukan verifikasi.',
-            'unknown_country' => 'negara tak diketahui',
+            '_' => 'Terdapat aktivitas baru dari :country pada akun Anda yang memerlukan verifikasi.',
+            'unknown_country' => 'negara yang tidak diketahui',
         ],
     ],
 ];

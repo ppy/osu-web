@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '비트맵 메타데이터 글을 삭제할 수 없습니다.',
             'beatmapset_post_no_edit' => '비트맵 메타데이터 글을 수정할 수 없습니다.',
+            'first_post_no_delete' => '시작 게시글은 삭제할 수 없습니다.',
+            'missing_topic' => '게시글에 주제가 없습니다.',
             'only_quote' => '답글에 인용만 포함하고 있습니다.',
 
             'attributes' => [
@@ -161,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '랭크된 비트맵은 신고할 수 없습니다.',
         'reason_not_valid' => ':reason 은(는) 이 신고 형식에 맞지 않습니다.',
         'self' => "자기 자신은 신고할 수 없습니다!",
     ],

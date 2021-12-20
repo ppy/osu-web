@@ -11,10 +11,13 @@
             maxlength="{{ $maxLength }}"
         @endif
         value="{{ Auth::user()->$field }}"
+        @if (Auth::user()->isSilenced())
+            disabled
+        @endif
     >
 
     <div class="account-edit-entry__label">
-        {{ trans("accounts.edit.profile.user.{$field}") }}
+        {{ osu_trans("accounts.edit.profile.user.{$field}") }}
     </div>
 
     @include('accounts._edit_entry_status')

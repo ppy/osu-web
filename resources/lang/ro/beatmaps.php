@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'refuză kudosu',
         'edit' => 'editează',
         'edited' => 'Ultima dată editat de :editor :update_time.',
+        'guest' => '',
         'kudosu_denied' => 'A refuzat să primească kudosu.',
         'message_placeholder_deleted_beatmap' => 'Această dificultate a fost ștearsă, deci e posibil să nu mai fie discutată.',
         'message_placeholder_locked' => 'Discuție pentru acest beatmap a fost dezactivată.',
@@ -182,13 +183,14 @@ return [
         'disqualify' => 'Descalificare',
         'incorrect_state' => 'S-a produs o eroare la efectuarea acestei acțiuni, încearcă să reîmprospătezi pagina.',
         'love' => 'Love',
+        'love_choose' => '',
         'love_confirm' => '\'Love\' acest beatmap?',
         'nominate' => 'Nominalizează',
         'nominate_confirm' => 'Nominalizezi acest beatmap?',
         'nominated_by' => 'nominalizat de :users',
         'not_enough_hype' => "Nu este suficient hype.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Șterge din iubit',
+        'remove_from_loved_prompt' => 'Motivul pentru ștergere din iubit:',
         'required_text' => 'Nominalizări: :current/:required',
         'reset_message_deleted' => 'șters',
         'title' => 'Statutul de nominalizare',
@@ -197,7 +199,7 @@ return [
         'rank_estimate' => [
             '_' => '',
             'queue' => '',
-            'soon' => '',
+            'soon' => 'curând',
         ],
 
         'reset_at' => [
@@ -220,14 +222,15 @@ return [
             'not-found' => 'niciun rezultat',
             'not-found-quote' => '... nup, nimic găsit.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'General',
-                'mode' => 'Mod',
-                'status' => 'Categorii',
                 'genre' => 'Gen',
                 'language' => 'Limbă',
-                'extra' => 'extra',
-                'rank' => 'Clasament atins',
+                'mode' => 'Mod',
+                'nsfw' => '',
                 'played' => 'Jucat',
+                'rank' => 'Clasament atins',
+                'status' => 'Categorii',
             ],
             'sorting' => [
                 'title' => 'Titlu',
@@ -248,11 +251,13 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Dificultatea recomandată',
         'converts' => 'Include beatmaps convertite',
+        'featured_artists' => '',
+        'follows' => '',
+        'recommended' => 'Dificultatea recomandată',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Toate',
         'any' => 'Oricare',
         'osu' => '',
         'taiko' => '',
@@ -307,11 +312,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => '',
@@ -330,6 +335,12 @@ return [
         'other' => 'Altul',
         'unspecified' => 'Nespecificat',
     ],
+
+    'nsfw' => [
+        'exclude' => 'Ascunde',
+        'include' => 'Arată',
+    ],
+
     'played' => [
         'any' => 'Oricare',
         'played' => 'Jucat',

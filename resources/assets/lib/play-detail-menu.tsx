@@ -3,11 +3,10 @@
 
 import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
-import { canBeReported, hasReplay, hasShow } from 'score-helper';
+import { canBeReported, hasReplay, hasShow } from 'utils/score-helper';
 
 interface Props {
   score: ScoreJson;
@@ -18,11 +17,11 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
     const { score } = this.props;
 
     const children = (dismiss: () => void) => (
-      <>
+      <div className='simple-menu'>
         {hasShow(score) && (
           <a
-            href={route('scores.show', { mode: score.mode, score: score.best_id })}
             className='simple-menu__item'
+            href={route('scores.show', { mode: score.mode, score: score.best_id })}
           >
             {osu.trans('users.show.extra.top_ranks.view_details')}
           </a>
@@ -41,14 +40,14 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
 
         {canBeReported(score) && (
           <ReportReportable
-            className='simple-menu__item'
             baseKey='scores'
+            className='simple-menu__item'
             reportableId={score.best_id?.toString() ?? ''}
             reportableType={`score_best_${score.mode}`}
             user={score.user}
           />
         )}
-      </>
+      </div>
     );
 
     return (

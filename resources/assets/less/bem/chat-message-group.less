@@ -5,31 +5,20 @@
   @top: chat-message-group;
 
   margin: 10px;
-  margin-left: 0px;
+  margin-left: 0;
   margin-right: 120px;
   color: white;
   display: flex;
 
   &--own {
     margin-left: 120px;
-    margin-right: 0px;
+    margin-right: 0;
     flex-direction: row-reverse;
-  }
-
-  &__sender {
-    width: 80px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    font-size: 10px;
-    color: white;
-    flex-shrink: 0;
   }
 
   &__avatar {
     width: 35px;
     height: 35px;
-    border-radius: 50%;
     margin-bottom: 5px;
   }
 
@@ -41,49 +30,24 @@
     overflow-x: auto;
   }
 
-  &__message {
-    margin: 5px;
-
-    &--sending {
-      opacity: 0.2;
-    }
-  }
-
-  &__message-content {
-    font-family: @font-content;
-    word-break: break-word;
-
-    &--action {
-      color: @osu-colour-l1;
-      font-style: italic;
-
-      &::before {
-        content: '* ';
-      }
-      &::after {
-        content: ' *';
-      }
-    }
-  }
-
-  &__message-entry {
+  &__sender {
+    width: 80px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    font-size: @font-size--small;
+    color: white;
+    flex-shrink: 0;
   }
 
-  &__message-status {
-    color: osu-hsla(@osu-colour-h1, 0.5);
-    margin-left: 10px;
-
-    &--errored {
-      color: red;
-    }
-  }
-
-  &__message-timestamp {
+  &__timestamp {
     font-family: @font-content;
     color: @osu-colour-f1;
-    font-size: 10px;
-    margin-top: 5px;
+    font-size: @font-size--small;
+    margin: 5px;
+  }
+
+  &__username {
+    max-width: 60px;
   }
 }

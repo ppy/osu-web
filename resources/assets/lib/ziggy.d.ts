@@ -3,15 +3,13 @@
 
 declare module 'ziggy' {
   interface ZiggyClass {
-    baseDomain: string;
-    basePort: number | false;
-    baseProtocol: string;
-    baseUrl: string;
+    port: number | null;
+    url: string;
   }
 
   export const Ziggy: ZiggyClass;
 }
 
 declare module 'ziggy-route' {
-  export default function route(name: string, params: any, absolute?: boolean, ziggy?: {}): any;
+  export default function route(name: string, params: any, absolute?: boolean, ziggy?: import('ziggy').ZiggyClass): string;
 }

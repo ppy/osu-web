@@ -15,8 +15,29 @@ return [
     'top' => 'Mest likt',
     'username' => 'Brukernavn',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Siste svar',
         'feature_votes' => 'Stjerneprioritet',
+        'new' => 'Siste svar',
+    ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
     ],
 ];

@@ -1,15 +1,19 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import CountryJson from 'interfaces/country-json';
 import GameMode from 'interfaces/game-mode';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Option, OptionRenderProps, SelectOptions } from 'select-options';
 import { Sort } from 'sort';
+import { currentUrlParams } from 'utils/turbolinks';
+import { updateQueryString } from 'utils/url';
 
 type RankingTypes = 'performance' | 'charts' | 'scores' | 'country';
 
 interface Props {
-  countries?: Required<Country>[];
+  countries?: Required<CountryJson>[];
   gameMode: GameMode;
   type: RankingTypes;
   variants?: string[];
@@ -18,9 +22,9 @@ interface Props {
 const allCountries = { id: null, text: osu.trans('rankings.countries.all') };
 
 export default class RankingFilter extends React.PureComponent<Props> {
-  private countriesSorted?: Required<Country>[];
+  private countriesSorted?: Required<CountryJson>[];
   private optionsCached?: Map<string | null, Option<string>>;
-  private prevCountries?: Required<Country>[];
+  private prevCountries?: Required<CountryJson>[];
 
   get countries() {
     if (this.props.countries == null) return [];
@@ -28,8 +32,8 @@ export default class RankingFilter extends React.PureComponent<Props> {
     if (this.countriesSorted == null) {
       this.countriesSorted = this.props.countries.sort((a, b) => {
         // prioritizes current user's country
-        if (currentUser?.country_code === a.code) return -1;
-        if (currentUser?.country_code === b.code) return 1;
+        if (core.currentUser?.country_code === a.code) return -1;
+        if (core.currentUser?.country_code === b.code) return 1;
 
         const priority = b.display - a.display;
 
@@ -43,15 +47,15 @@ export default class RankingFilter extends React.PureComponent<Props> {
   }
 
   get countryCode() {
-    return new URL(window.location.href).searchParams.get('country');
+    return currentUrlParams().get('country');
   }
 
   get currentVariant() {
-    return new URL(window.location.href).searchParams.get('variant');
+    return currentUrlParams().get('variant');
   }
 
   get filterMode() {
-    return new URL(window.location.href).searchParams.get('filter');
+    return currentUrlParams().get('filter');
   }
 
   get options() {
@@ -74,16 +78,27 @@ export default class RankingFilter extends React.PureComponent<Props> {
 
   // TODO: rename component prop to onChange
   handleCountryChange = (option: Option) => {
-    osu.navigate(osu.updateQueryString(null, { country: option.id, page: null }));
-  }
+    osu.navigate(updateQueryString(null, { country: option.id, page: null }));
+  };
 
   handleFilterChange = (event: React.MouseEvent<HTMLButtonElement>) => {
-    osu.navigate(osu.updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
-  }
+    osu.navigate(updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
+  };
+
+  handleRenderOption = (props: OptionRenderProps) => (
+    <a
+      key={props.option.id ?? ''}
+      className={props.cssClasses}
+      href={updateQueryString(null, { country: props.option.id, page: null })}
+      onClick={props.onClick}
+    >
+      {props.children}
+    </a>
+  );
 
   handleVariantChange = (event: React.MouseEvent<HTMLButtonElement>) => {
-    osu.navigate(osu.updateQueryString(null, { variant: event.currentTarget.dataset.value, page: null }));
-  }
+    osu.navigate(updateQueryString(null, { page: null, variant: event.currentTarget.dataset.value }));
+  };
 
   render() {
     // TODO: consider using memoize-one?
@@ -99,7 +114,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
           {this.renderCountries()}
         </div>
 
-        {currentUser.id != null && (
+        {core.currentUser != null && (
           <div className='ranking-filter__item'>
             <div className='ranking-filter__item--title'>
               {osu.trans('rankings.filter.title')}
@@ -137,22 +152,10 @@ export default class RankingFilter extends React.PureComponent<Props> {
           bn='ranking-select-options'
           onChange={this.handleCountryChange}
           options={[...this.options.values()]} // TODO: change to iterable
-          renderOption={this.renderOption}
+          renderOption={this.handleRenderOption}
           selected={this.selectedOption}
         />
       </>
-    );
-  }
-
-  renderOption(props: OptionRenderProps) {
-    return (
-      <a
-        children={props.children}
-        className={props.cssClasses}
-        href={osu.updateQueryString(null, { country: props.option.id, page: null })}
-        key={props.option.id ?? ''}
-        onClick={props.onClick}
-      />
     );
   }
 

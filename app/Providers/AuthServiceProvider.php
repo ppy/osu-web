@@ -56,9 +56,12 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Passport::tokensCan([
-            'friends.read' => trans('api.scopes.friends.read'),
-            'identify' => trans('api.scopes.identify'),
-            'public' => trans('api.scopes.public'),
+            'delegate' => osu_trans('api.scopes.delegate'),
+            'forum.write' => osu_trans('api.scopes.forum.write'),
+            'chat.write' => osu_trans('api.scopes.chat.write'),
+            'friends.read' => osu_trans('api.scopes.friends.read'),
+            'identify' => osu_trans('api.scopes.identify'),
+            'public' => osu_trans('api.scopes.public'),
         ]);
     }
 }

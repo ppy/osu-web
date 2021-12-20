@@ -27,7 +27,7 @@ return [
         'title' => '搜尋',
 
         'beatmapset' => [
-            'login_required' => '登入以搜索譜面',
+            'login_required' => '登入以搜尋圖譜',
             'more' => '搜尋到 :count 張圖譜',
             'more_simple' => '查看更多搜尋結果',
             'title' => '圖譜',
@@ -36,7 +36,7 @@ return [
         'forum_post' => [
             'all' => '所有論壇',
             'link' => '在論壇中搜尋',
-            'login_required' => '',
+            'login_required' => '登入以搜尋論壇',
             'more_simple' => '查看更多搜尋結果',
             'title' => '論壇',
 
@@ -76,8 +76,8 @@ return [
         'action' => '下載 osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
+            '_' => '如果您在啟動遊戲或註冊帳號時遇到問題，請:help_forum_link或:support_button。',
+            'help_forum_link' => '查看幫助論壇',
             'support_button' => '聯絡支援團隊',
         ],
 
@@ -131,16 +131,5 @@ return [
             'support' => '贊助 osu!',
             'store' => 'osu! 商店',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => '哇！',
-        'subtitle' => '看起來你玩得很開心！',
-        'body' => [
-            'part-1' => '你知道嗎？ osu! 是一款沒有廣告，完全依賴玩家贊助以維持開發及營運的遊戲。',
-            'part-2' => '如果你選擇給 osu! 捐贈，就可以解鎖額外的功能，例如<strong>遊戲內自動下載</strong>。',
-        ],
-        'find-out-more' => '點擊這裡以瞭解更多',
-        'download-starting' => "喔 ! 別擔心 - 下載已經開始了 ;)",
     ],
 ];

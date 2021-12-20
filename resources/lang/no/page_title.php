@@ -22,12 +22,16 @@ return [
             '401-verification' => 'kontobekreftelse',
             '405' => 'mangler',
             '422' => 'ugyldig forespørsel',
+            '429' => '',
             '500' => 'noe gikk i stykker',
             '503' => 'vedlikehold',
         ],
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'dashbord',
         ],
@@ -36,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'dashbord',
             'verify_link' => 'kontobekreftelse',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => 'utvalgte artister',
@@ -75,6 +82,9 @@ return [
         'contests_controller' => [
             '_' => 'konkurranser',
         ],
+        'follows_controller' => [
+            'index' => '',
+        ],
         'friends_controller' => [
             'index' => 'dashbord',
         ],
@@ -113,7 +123,7 @@ return [
             '_' => 'gjennomføring',
         ],
         'store_controller' => [
-            '_' => 'osu!butikken',
+            '_' => 'butikk',
         ],
         'tournaments_controller' => [
             '_' => 'turneringer',
@@ -123,7 +133,7 @@ return [
             'disabled' => 'varsel',
         ],
         'wiki_controller' => [
-            '_' => 'kunnskapsbase',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -131,12 +141,20 @@ return [
             '_' => 'rangering',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!butikken',
+        '_' => 'butikk',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder info',
+        ],
+        'multiplayer_controller' => [
+            '_' => '',
         ],
     ],
 ];

@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Perbarui',
-            'regenerating' => 'Memperbarui...',
-            'remove' => 'Hapus',
-            'removing' => 'Menghapus...',
-            'title' => 'Sampul beatmap',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+            'title' => '',
         ],
         'show' => [
-            'covers' => 'Kelola Sampul Beatmapset',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'aktifkan',
-                'activate_confirm' => 'aktifkan modding v2 untuk beatmap ini?',
-                'active' => 'aktif',
-                'inactive' => 'nonaktif',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Hapus',
+                'delete' => '',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Sampul belum diatur',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Simpan',
-                    'update' => 'Perbarui',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Daftar Sampul Forum',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Sampul Forum Standar',
-                    'main' => 'Sampul Forum',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,33 +50,24 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Pemantau Log',
+            'title' => '',
         ],
     ],
 
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'Set beatmap',
-                'forum' => 'Forum',
-                'general' => 'Umum',
-                'store' => 'Toko',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Daftar Pesanan',
+                'beatmapsets' => '',
+                'forum' => '',
+                'general' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Pengguna ini sedang dalam status dibatasi.',
-            'message' => '(hanya admin yang dapat melihat pesan ini)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

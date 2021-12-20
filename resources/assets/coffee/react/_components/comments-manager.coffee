@@ -4,6 +4,8 @@
 import { runInAction } from 'mobx'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
+import { parseJsonNullable, storeJson } from 'utils/json'
+import { nextVal } from 'utils/seq'
 
 uiState = core.dataStore.uiState
 
@@ -18,22 +20,21 @@ export class CommentsManager extends React.PureComponent
 
     if props.commentableType? && props.commentableId?
       # FIXME no initialization from component?
-      json = osu.parseJson("json-comments-#{props.commentableType}-#{props.commentableId}", true)
+      json = parseJsonNullable("json-comments-#{props.commentableType}-#{props.commentableId}", true)
       if json?
         core.dataStore.updateWithCommentBundleJson(json)
         uiState.initializeWithCommentBundleJson(json)
 
-      state = osu.parseJson @jsonStorageId()
+      state = parseJsonNullable(@jsonStorageId())
       uiState.importCommentsUIState(state) if state?
 
-    @id = "comments-#{osu.uuid()}"
+    @id = "comments-#{nextVal()}"
 
 
   componentDidMount: =>
     $.subscribe "comments:added.#{@id}", @handleCommentsAdded
     $.subscribe "comments:new.#{@id}", @handleCommentsNew
     $.subscribe "comments:sort.#{@id}", @updateSort
-    $.subscribe "comments:toggle-show-deleted.#{@id}", @toggleShowDeleted
     $.subscribe "comments:toggle-follow.#{@id}", @toggleFollow
     $.subscribe "comment:updated.#{@id}", @handleCommentUpdated
     $(document).on "turbolinks:before-cache.#{@id}", @saveState
@@ -41,6 +42,7 @@ export class CommentsManager extends React.PureComponent
 
   componentWillUnmount: =>
     $.unsubscribe ".#{@id}"
+    $(document).off ".#{@id}"
 
 
   render: =>
@@ -77,12 +79,7 @@ export class CommentsManager extends React.PureComponent
 
   saveState: =>
     if @props.commentableType? && @props.commentableId?
-      osu.storeJson @jsonStorageId(), uiState.exportCommentsUIState()
-
-
-  toggleShowDeleted: =>
-    runInAction () ->
-      uiState.comments.isShowDeleted = !uiState.comments.isShowDeleted
+      storeJson @jsonStorageId(), uiState.exportCommentsUIState()
 
 
   toggleFollow: =>
@@ -127,9 +124,7 @@ export class CommentsManager extends React.PureComponent
       data: params
       dataType: 'json'
     .done (data) =>
-      $.ajax laroute.route('account.options'),
-        method: 'PUT'
-        data: user_profile_customization: comments_sort: sort
+      core.userPreferences.set('comments_sort', sort)
 
       runInAction () ->
         core.dataStore.commentStore.flushStore()

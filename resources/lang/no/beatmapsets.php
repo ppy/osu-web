@@ -8,6 +8,15 @@ return [
         'disabled' => 'Dette beatmappet er for øyeblikket ikke tilgjengelig for nedlastning.',
         'parts-removed' => 'Deler av dette beatmappet har blitt fjernet etter forespørsel av skaperen eller en tredjepart rettighetshaver.',
         'more-info' => 'Klikk her for mer informasjon.',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Ro ned, spill mer.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
@@ -16,6 +25,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'last ned',
             'video' => 'last ned med video',
@@ -24,11 +35,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => 'Du har ikke tillatelse til å nominere for modus: :mode',
+        'full_bn_required' => '',
+        'too_many' => 'Nominasjonskravet er allerede oppfylt.',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => 'Nominer for hvilke moduser?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Eksplisitt',
+    ],
+
     'show' => [
         'discussion' => 'Diskusjon',
 
         'details' => [
+            'by_artist' => 'av :artist',
             'favourite' => 'Marker dette beatmapsettet som en favoritt',
+            'favourite_login' => '',
             'logged-out' => 'Du må logge inn før du kan laste ned beatmaps!',
             'mapped_by' => 'mappet av :mapper',
             'unfavourite' => 'Fjern dette beatmapsettet som en favoritt',
@@ -89,10 +120,24 @@ return [
             'genre' => 'Sjanger',
             'language' => 'Språk',
             'no_scores' => 'Data blir fortsatt kalkulert...',
+            'nsfw' => 'Eksplisitt innhold',
             'points-of-failure' => 'Feilpunkter',
             'source' => 'Kilde',
+            'storyboard' => '',
             'success-rate' => 'Suksessrate',
             'tags' => 'Stikkord',
+            'video' => '',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

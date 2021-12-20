@@ -1,52 +1,56 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { AccountStanding } from './account-standing'
-import { ExtraTab } from './extra-tab'
-import { Beatmaps } from './beatmaps'
-import { Header } from './header'
-import { Historical } from './historical'
-import { Kudosu } from './kudosu'
-import { Medals } from './medals'
-import { RecentActivity } from './recent-activity'
-import { TopRanks } from './top-ranks'
-import { UserPage } from './user-page'
-import { BlockButton } from 'block-button'
 import { NotificationBanner } from 'notification-banner'
+import core from 'osu-core-singleton'
+import AccountStanding from 'profile-page/account-standing'
+import Beatmapsets from 'profile-page/beatmapsets'
+import ExtraTab from 'profile-page/extra-tab'
+import Header from 'profile-page/header'
+import Historical from 'profile-page/historical'
+import Kudosu from 'profile-page/kudosu'
+import Medals from 'profile-page/medals'
+import RecentActivity from 'profile-page/recent-activity'
+import TopScores from 'profile-page/top-scores'
+import UserPage from 'profile-page/user-page'
 import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
-import * as BeatmapHelper from 'utils/beatmap-helper'
+import UserProfileContainer from 'user-profile-container'
+import { bottomPage } from 'utils/html'
+import { jsonClone } from 'utils/json'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+import { hasMoreCheck, appendItems } from 'utils/offset-paginator'
+import { pageChange } from 'utils/page-change'
+import { nextVal } from 'utils/seq'
+import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
+import { updateQueryString } from 'utils/url'
+
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
 pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollspy-offset")
 
-currentLocation = ->
-  "#{document.location.pathname}#{document.location.search}"
-
-
 export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "users-show-#{nextVal()}"
     @tabs = React.createRef()
     @pages = React.createRef()
     @state = JSON.parse(props.container.dataset.profilePageState ? null)
     @restoredState = @state?
 
     if !@restoredState
-      page = location.hash.slice(1)
+      page = currentUrl().hash.slice(1)
       @initialPage = page if page?
 
       @state =
-        currentMode: props.currentMode
         user: props.user
         userPage:
           html: props.userPage.html
           initialRaw: props.userPage.raw
           raw: props.userPage.raw
           editing: false
-          selection: [0, 0]
         profileOrder: props.user.profile_order[..]
         recentActivity: @props.extras.recentActivity
         scoresBest: @props.extras.scoresBest
@@ -54,28 +58,24 @@ export class Main extends React.PureComponent
         scoresRecent: @props.extras.scoresRecent
         beatmapPlaycounts: @props.extras.beatmapPlaycounts
         favouriteBeatmapsets: @props.extras.favouriteBeatmapsets
-        rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
+        rankedBeatmapsets: @props.extras.rankedBeatmapsets
         lovedBeatmapsets: @props.extras.lovedBeatmapsets
-        unrankedBeatmapsets: @props.extras.unrankedBeatmapsets
+        pendingBeatmapsets: @props.extras.pendingBeatmapsets
         graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
-        recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
         showMorePagination: {}
 
       for own elem, perPage of @props.perPage
         @state.showMorePagination[elem] ?= {}
-        @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
-
-        if @state.showMorePagination[elem].hasMore
-          @state[elem].pop()
+        @state.showMorePagination[elem].hasMore = hasMoreCheck(perPage, @state[elem])
 
 
   componentDidMount: =>
-    $.subscribe 'user:update.profilePage', @userUpdate
-    $.subscribe 'user:page:update.profilePage', @userPageUpdate
-    $.subscribe 'profile:showMore.profilePage', @showMore
-    $.subscribe 'profile:page:jump.profilePage', @pageJump
-    $(window).on 'scroll.profilePage', @pageScan
-    $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
+    $.subscribe "user:update.#{@eventId}", @userUpdate
+    $.subscribe "user:page:update.#{@eventId}", @userPageUpdate
+    $.subscribe "profile:showMore.#{@eventId}", @showMore
+    $.subscribe "profile:page:jump.#{@eventId}", @pageJump
+    $(window).on "scroll.#{@eventId}", @pageScan
+    $(document).on "turbolinks:before-cache.#{@eventId}", @saveStateToContainer
 
     $(@pages.current).sortable
       cursor: 'move'
@@ -101,17 +101,20 @@ export class Main extends React.PureComponent
       stop: =>
         @draggingTabTimeout = Timeout.set 500, => @draggingTab = false
 
-    osu.pageChange()
+    pageChange()
 
-    @modeScrollUrl = currentLocation()
+    @modeScrollUrl = currentUrlRelative()
 
     if !@restoredState
-      Timeout.set 0, => @pageJump null, @initialPage
+      core.reactTurbolinks.runAfterPageLoad @eventId, =>
+        # The scroll is a bit off on Firefox if not using timeout.
+        Timeout.set 0, => @pageJump(null, @initialPage)
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.profilePage'
-    $(window).off '.profilePage'
+    $.unsubscribe ".#{@eventId}"
+    $(window).off ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
     for sortable in [@pages, @tabs]
       $(sortable.current).sortable 'destroy'
@@ -131,64 +134,38 @@ export class Main extends React.PureComponent
     if @state.userPage.initialRaw.trim() == '' && !@props.withEdit
       _.pull profileOrder, 'me'
 
-    isBlocked = _.find(currentUser.blocks, target_id: @state.user.id)
+    el UserProfileContainer,
+      user: @state.user,
+      el Header,
+        user: @state.user
+        stats: @state.user.statistics
+        currentMode: @props.currentMode
+        withEdit: @props.withEdit
+        userAchievements: @props.userAchievements
 
-    div
-      className: 'osu-layout__no-scroll' if isBlocked && !@state.forceShow
-      if isBlocked
-        div className: 'osu-page',
-          el NotificationBanner,
-            type: 'warning'
-            title: osu.trans('users.blocks.banner_text')
-            message:
-              div className: 'grid-items grid-items--notification-banner-buttons',
-                div null,
-                  el BlockButton, userId: @props.user.id
-                div null,
-                  button
-                    type: 'button'
-                    className: 'textual-button'
-                    onClick: =>
-                      @setState forceShow: !@state.forceShow
-                    span {},
-                      i className: 'textual-button__icon fas fa-low-vision'
-                      " "
-                      if @state.forceShow
-                        osu.trans('users.blocks.hide_profile')
-                      else
-                        osu.trans('users.blocks.show_profile')
+      div
+        className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
+        if profileOrder.length > 1
+          div className: 'osu-page',
+            div
+              className: 'page-mode page-mode--profile-page-extra'
+              ref: @tabs
+              for m in profileOrder
+                a
+                  className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
+                  key: m
+                  'data-page-id': m
+                  onClick: @tabClick
+                  href: "##{m}"
+                  el ExtraTab,
+                    page: m
+                    currentPage: @state.currentPage
+                    currentMode: @props.currentMode
 
-      div className: "osu-layout osu-layout--full#{if isBlocked && !@state.forceShow then ' osu-layout--masked' else ''}",
-        el Header,
-          user: @state.user
-          stats: @state.user.statistics
-          currentMode: @state.currentMode
-          withEdit: @props.withEdit
-          userAchievements: @props.userAchievements
-
-        div
-          className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
-          if profileOrder.length > 1
-            div className: 'osu-page',
-              div
-                className: 'page-mode page-mode--profile-page-extra'
-                ref: @tabs
-                for m in profileOrder
-                  a
-                    className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
-                    key: m
-                    'data-page-id': m
-                    onClick: @tabClick
-                    href: "##{m}"
-                    el ExtraTab,
-                      page: m
-                      currentPage: @state.currentPage
-                      currentMode: @state.currentMode
-
-        div
-          className: 'user-profile-pages'
-          ref: @pages
-          @extraPage name for name in profileOrder
+      div
+        className: 'user-profile-pages'
+        ref: @pages
+        @extraPage name for name in profileOrder
 
 
   extraPage: (name) =>
@@ -225,42 +202,45 @@ export class Main extends React.PureComponent
 
       when 'kudosu'
         props:
-          user: @state.user
-          recentlyReceivedKudosu: @state.recentlyReceivedKudosu
-          pagination: @state.showMorePagination
+          userId: @state.user.id
+          initialKudosu: @props.extras.recentlyReceivedKudosu
+          expectedInitialCount: @props.perPage.recentlyReceivedKudosu
+          total: @state.user.kudosu.total
         component: Kudosu
 
+      # TODO: rename to top_scores (also in model's UserProfileCustomization and translations)
       when 'top_ranks'
         props:
           user: @state.user
           scoresBest: @state.scoresBest
           scoresFirsts: @state.scoresFirsts
-          currentMode: @state.currentMode
+          currentMode: @props.currentMode
           pagination: @state.showMorePagination
-        component: TopRanks
+          scoresNotice: @props.scoresNotice
+        component: TopScores
 
       when 'beatmaps'
         props:
           user: @state.user
           favouriteBeatmapsets: @state.favouriteBeatmapsets
-          rankedAndApprovedBeatmapsets: @state.rankedAndApprovedBeatmapsets
+          rankedBeatmapsets: @state.rankedBeatmapsets
           lovedBeatmapsets: @state.lovedBeatmapsets
-          unrankedBeatmapsets: @state.unrankedBeatmapsets
+          pendingBeatmapsets: @state.pendingBeatmapsets
           graveyardBeatmapsets: @state.graveyardBeatmapsets
           counts:
             favouriteBeatmapsets: @state.user.favourite_beatmapset_count
-            rankedAndApprovedBeatmapsets: @state.user.ranked_and_approved_beatmapset_count
+            rankedBeatmapsets: @state.user.ranked_beatmapset_count
             lovedBeatmapsets: @state.user.loved_beatmapset_count
-            unrankedBeatmapsets: @state.user.unranked_beatmapset_count
+            pendingBeatmapsets: @state.user.pending_beatmapset_count
             graveyardBeatmapsets: @state.user.graveyard_beatmapset_count
           pagination: @state.showMorePagination
-        component: Beatmaps
+        component: Beatmapsets
 
       when 'medals'
         props:
           achievements: @props.achievements
           userAchievements: @props.userAchievements
-          currentMode: @state.currentMode
+          currentMode: @props.currentMode
           user: @state.user
         component: Medals
 
@@ -269,7 +249,7 @@ export class Main extends React.PureComponent
           beatmapPlaycounts: @state.beatmapPlaycounts
           scoresRecent: @state.scoresRecent
           user: @state.user
-          currentMode: @state.currentMode
+          currentMode: @props.currentMode
           pagination: @state.showMorePagination
         component: Historical
 
@@ -287,19 +267,18 @@ export class Main extends React.PureComponent
     paginationState[name].loading = true
 
     @setState showMorePagination: paginationState, ->
-      $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
-        state = _.cloneDeep(@state[name]).concat(data)
-        hasMore = data.length > perPage
+      $.get updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
+        newPagination = jsonClone(@state.showMorePagination)
+        paginatorJson =
+          items: jsonClone @state[name]
+          pagination: newPagination[name]
+        appendItems(paginatorJson, data, perPage + 1)
 
-        state.pop() if hasMore
-
-        paginationState = _.cloneDeep @state.showMorePagination
-        paginationState[name].loading = false
-        paginationState[name].hasMore = hasMore
+        paginatorJson.pagination.loading = false
 
         @setState
-          "#{name}": state
-          showMorePagination: paginationState
+          "#{name}": paginatorJson.items
+          showMorePagination: newPagination
 
       .catch (error) =>
         osu.ajaxError error
@@ -332,7 +311,7 @@ export class Main extends React.PureComponent
     # otherwise the calculation needs another phase and gets a bit messy.
     offsetTop = target.offset().top - pagesOffset[0].getBoundingClientRect().height
 
-    $(window).stop().scrollTo window.stickyHeader.scrollOffset(offsetTop), 500,
+    $(window).stop().scrollTo core.stickyHeader.scrollOffset(offsetTop), 500,
       onAfter: =>
         # Manually set the mode to avoid confusion (wrong highlight).
         # Scrolling will obviously break it but that's unfortunate result
@@ -346,14 +325,14 @@ export class Main extends React.PureComponent
 
 
   pageScan: =>
-    return if @modeScrollUrl != currentLocation()
+    return if @modeScrollUrl != currentUrlRelative()
 
     return if @scrolling
     return if pages.length == 0
 
     anchorHeight = pagesOffset[0].getBoundingClientRect().height
 
-    if osu.bottomPage()
+    if bottomPage()
       @setCurrentPage null, _.last(pages).dataset.pageId
       return
 
@@ -396,7 +375,7 @@ export class Main extends React.PureComponent
 
     newOrder = $elems.sortable('toArray', attribute: 'data-page-id')
 
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     $elems.sortable('cancel')
 
@@ -416,7 +395,7 @@ export class Main extends React.PureComponent
 
         @setState profileOrder: @state.user.profile_order
 
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   userUpdate: (_e, user) =>
@@ -429,15 +408,6 @@ export class Main extends React.PureComponent
   userPageUpdate: (_e, newUserPage) =>
     currentUserPage = _.cloneDeep @state.userPage
     @setState userPage: _.extend(currentUserPage, newUserPage)
-
-
-  validMode: (mode) =>
-    modes = BeatmapHelper.modes
-
-    if _.includes(modes, mode)
-      mode
-    else
-      modes[0]
 
   isSortablePage: (page) ->
     _.includes @state.profileOrder, page

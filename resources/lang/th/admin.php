@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'สร้างใหม่',
-            'regenerating' => 'กำลังสร้างใหม่...',
-            'remove' => 'นำออก',
-            'removing' => 'กำลังนำออก...',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
             'title' => '',
         ],
         'show' => [
-            'covers' => 'จัดการ Beatmapset Covers',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'เปิดการใช้งาน',
-                'activate_confirm' => 'เปิดการใช้งาน modding v2 สำหรับ beatmap นี้หรือไม่?',
-                'active' => 'เปิดการใช้งาน',
-                'inactive' => 'ปิดการใช้งาน',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'ลบ',
+                'delete' => '',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'ไม่มี cover',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'บันทึก',
-                    'update' => 'อัพเดต',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'ฟอรั่มรายการ cover',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'หัวข้อ Cover เริ่มต้น',
-                    'main' => 'ฟอรั่ม Cover',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,7 +50,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'ดูบันทึกระบบ',
+            'title' => '',
         ],
     ],
 
@@ -58,25 +58,16 @@ return [
         'root' => [
             'sections' => [
                 'beatmapsets' => '',
-                'forum' => 'ฟอรั่ม',
-                'general' => 'ทั่วไป',
-                'store' => 'ร้านค้า',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'รายการสั่งซื้อ',
+                'forum' => '',
+                'general' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'ผู้ใช้งานคนนี้ ถูกจำกัดการใช้งาน',
-            'message' => '(แอดมินเท่านั้นที่สามารถเห็นได้)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

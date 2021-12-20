@@ -24,6 +24,12 @@
     background-color: transparent;
   }
 
+  &--inline {
+    display: inline-flex;
+    padding: 0 8px;
+    font-size: inherit;
+  }
+
   &--on {
     .default-text-shadow();
     color: #fff;
@@ -36,15 +42,16 @@
 
   &__hover {
     position: absolute;
-    right: 100%;
-    top: 0;
-    height: 100%;
+    left: 0;
+    bottom: 100%;
+    margin-bottom: 2px;
+    width: 100%;
     padding-right: 5px;
     display: flex;
-    align-items: center;
+    justify-content: center;
     color: @green;
     text-shadow: none;
-    font-size: @font-size--title-small-3;
+    font-size: @font-size--title-small;
     opacity: 0;
     will-change: opacity;
 

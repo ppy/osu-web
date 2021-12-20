@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved',
+        'beatmap_owner_change' => '難易度:beatmapの所有者が:new_userに変更されました。',
         'discussion_delete' => 'モデレーターが:discussionを削除しました。',
         'discussion_lock' => 'このビートマップに関するディスカッションは無効になっています。 （:text）',
         'discussion_post_delete' => 'モデレーターが:discussionから投稿を削除しました。',
@@ -16,7 +17,7 @@ return [
         'disqualify_legacy' => ':userによってDisqualifyされました。理由：:text。',
         'genre_edit' => 'ジャンルが :old から :new に変更されました。',
         'issue_reopen' => '解決済みの:discussionが再開されました。',
-        'issue_resolve' => ':discussionが解決しました。',
+        'issue_resolve' => '問題:discussionが解決しました。',
         'kudosu_allow' => ':discussionに対するkudosuの拒否は削除されました。',
         'kudosu_deny' => ':discussionはkudosuにより拒否されました。',
         'kudosu_gain' => ':userの:discussionがkudosuに十分な評価を得ました。',
@@ -25,10 +26,18 @@ return [
         'language_edit' => '言語が :old から :new に変更されました。',
         'love' => ':userがLovedに追加しました。',
         'nominate' => ':userがノミネートしました。',
+        'nominate_modes' => ':user(:modes)がノミネートしました。',
         'nomination_reset' => '新しい問題 :discussion (:text)によりノミネートがリセットされました。',
+        'nomination_reset_received' => ':user によるノミネーションが :source_user (:text) によってリセットされました',
+        'nomination_reset_received_profile' => 'ノミネーションが :user (:text) によってリセットされました',
         'qualify' => 'このビートマップは既に必要なノミネーション数に達しており、Qualifiedされています。',
         'rank' => 'Rankedされました。',
         'remove_from_loved' => ':userによってLovedから削除されました。(:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '露骨マークを削除しました',
+            'to_1' => '露骨であるとマークする',
+        ],
     ],
 
     'index' => [
@@ -48,6 +57,7 @@ return [
 
     'type' => [
         'approve' => '承認',
+        'beatmap_owner_change' => '難易度の所有者変更',
         'discussion_delete' => 'ディスカッションの削除',
         'discussion_post_delete' => 'ディスカッションの返信を削除',
         'discussion_post_restore' => 'ディスカッションの返信を復元',
@@ -65,6 +75,8 @@ return [
         'love' => 'Love',
         'nominate' => 'ノミネーション',
         'nomination_reset' => 'ノミネーションのリセット',
+        'nomination_reset_received' => 'ノミネーションリセットを受信しました',
+        'nsfw_toggle' => '露骨マーク',
         'qualify' => 'Qualification',
         'rank' => 'ランキング',
         'remove_from_loved' => 'Loved削除',

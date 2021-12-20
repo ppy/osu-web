@@ -1,14 +1,19 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { button, span } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
+
 export class BaseEntryList extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "contests-show-voting-#{nextVal()}"
     @state =
       waitingForResponse: false
       contest: @props.contest
       selected: @props.selected
+      showVotedOnly: false
       options:
         showPreview: @props.options.showPreview ? false
         showLink: @props.options.showLink ? false
@@ -39,8 +44,22 @@ export class BaseEntryList extends React.Component
       callback
 
   componentDidMount: ->
-    $.subscribe 'contest:vote:click.contest', @handleVoteClick
-    $.subscribe 'contest:vote:done.contest', @handleUpdate
+    $.subscribe "contest:vote:click.#{@eventId}", @handleVoteClick
+    $.subscribe "contest:vote:done.#{@eventId}", @handleUpdate
 
   componentWillUnmount: ->
-    $.unsubscribe '.contest'
+    $.unsubscribe ".#{@eventId}"
+
+
+  renderToggleShowVotedOnly: =>
+    button
+      type: 'button'
+      className: 'btn-osu-big btn-osu-big--contest-entries-toolbar'
+      onClick: @onToggleShowVotedOnlyClick
+      span className: 'btn-osu-big__icon-inline btn-osu-big__icon-inline--left',
+        span className: if @state.showVotedOnly then 'fas fa-check-square' else 'far fa-square'
+      osu.trans('contest.voting.show_voted_only')
+
+
+  onToggleShowVotedOnlyClick: =>
+    @setState showVotedOnly: !@state.showVotedOnly

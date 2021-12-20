@@ -5,11 +5,13 @@
 
 return [
     'all_read' => 'อ่านการแจ้งเตือนทั้งหมดแล้ว!',
-    'delete' => '',
+    'delete' => 'ลบ :type',
+    'loading' => 'กำลังโหลดการแจ้งเตือนที่ยังไม่ได้อ่าน...',
     'mark_read' => 'ล้าง :type',
     'none' => 'ไม่มีการแจ้งเตือนใดๆ',
     'see_all' => 'ดูการแจ้งเตือนทั้งหมด',
-    'see_channel' => '',
+    'see_channel' => 'ไปที่แชท',
+    'verifying' => 'โปรดยืนยันเซสชันเพื่อดูการแจ้งเตือน',
 
     'filters' => [
         '_' => 'ทั้งหมด',
@@ -24,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
+
+            'beatmap_owner_change' => [
+                '_' => 'ระดับความยากของแขก',
+                'beatmap_owner_change' => 'ตอนนี้คุณเป็นเจ้าของระดับความยาก ":beatmap" สําหรับบีทแมพ ":title"',
+                'beatmap_owner_change_compact' => 'ตอนนี้คุณเป็นเจ้าของระดับความยาก ":beatmap"',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'การสนทนาบีทแมพ',
@@ -133,6 +141,19 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'บีทแมพใหม่',
+
+                'user_beatmapset_new' => 'บีทแมพใหม่ ":title" โดย :username',
+                'user_beatmapset_new_compact' => 'บีทแมพใหม่ ":title"',
+                'user_beatmapset_new_group' => 'บีทแมพใหม่โดย :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'เหรียญตรา',
 
@@ -147,6 +168,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'ตอนนี้คุณเป็นแขกของบีทแมพ ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'การพูดคุยใน ":title:" ได้ถูกล็อก',
                 'beatmapset_discussion_post_new' => 'การพูดคุยใน ":title:" มีอัปเดตใหม่',
@@ -200,6 +225,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username ได้ปลดล็อกเหรียญตรา ":title"!',
                 'user_achievement_unlock_self' => 'คุณได้ปลดล็อกเหรียญตรา ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username ได้สร้างบีทแมพใหม่',
             ],
         ],
     ],

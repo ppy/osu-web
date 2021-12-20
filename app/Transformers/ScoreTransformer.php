@@ -26,12 +26,12 @@ class ScoreTransformer extends TransformerAbstract
     {
         $ret = [
             'id' => $score->score_id,
-            'best_id' => $score->best_id,
             'user_id' => $score->user_id,
             'accuracy' => $score->accuracy(),
             'mods' => $score->enabled_mods,
             'score' => $score->score,
             'max_combo' => $score->maxcombo,
+            'passed' => $score->pass,
             'perfect' => $score->perfect,
             'statistics' => [
                 'count_50' => $score->count50,
@@ -41,11 +41,20 @@ class ScoreTransformer extends TransformerAbstract
                 'count_katu' => $score->countkatu,
                 'count_miss' => $score->countmiss,
             ],
-            'pp' => $score instanceof ScoreBest ? $score->pp : optional($score->best)->pp,
             // ranks are hardcoded to "0" for game_scores atm (i.e. scores from a mp game), return null instead for now
             'rank' => $score->rank === '0' ? null : $score->rank,
             'created_at' => json_time($score->date),
         ];
+
+        $best = $score instanceof ScoreBest ? $score : $score->best;
+
+        if ($best === null) {
+            $ret['best_id'] = null;
+            $ret['pp'] = null;
+        } else {
+            $ret['best_id'] = $best->getKey();
+            $ret['pp'] = $best->pp;
+        }
 
         if ($score instanceof ScoreModel) {
             $ret['mode'] = $score->getMode();
@@ -100,16 +109,12 @@ class ScoreTransformer extends TransformerAbstract
 
     public function includeWeight($score)
     {
-        if (($score instanceof ScoreBest) === false) {
-            return;
-        }
-
-        return $this->item($score, function ($score) {
-            return [
+        if ($score instanceof ScoreBest && $score->weight !== null) {
+            return $this->primitive([
                 'percentage' => $score->weight * 100,
                 'pp' => $score->weightedPp(),
-            ];
-        });
+            ]);
+        }
     }
 
     public function includeUser($score)

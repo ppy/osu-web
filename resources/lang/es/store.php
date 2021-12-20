@@ -4,14 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Almacén',
-    ],
-
     'cart' => [
         'checkout' => 'Pagar',
         'info' => ':count_delimited producto en el carrito ($:subtotal)|:count_delimited productos en el carrito ($:subtotal)',
-        'more_goodies' => 'Quiero ver más productos antes de completar el pedido',
+        'more_goodies' => 'Deseo revisar más productos antes de completar la orden',
         'shipping_fees' => 'gastos de envío',
         'title' => 'Carrito de compras',
         'total' => 'total',
@@ -69,11 +65,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Pedido :date',
-
+        'cancel' => 'Cancelar la orden',
+        'cancel_confirm' => 'Esta orden será cancelada y no se aceptará el pago por ella. El proveedor de pagos podría no liberar inmediatamente los fondos reservados. ¿Está seguro?',
+        'cancel_not_allowed' => 'Esta orden no puede ser cancelada en este momento.',
         'invoice' => 'Ver factura',
-        'no_orders' => 'No hay ordenes para ver.',
+        'no_orders' => 'No hay órdenes para ver.',
+        'paid_on' => 'Orden realizada :date',
         'resume' => 'Reanudar pago',
+        'shopify_expired' => 'El enlace de pago de esta orden ha expirado.',
 
         'item' => [
             'display_name' => [
@@ -93,10 +92,10 @@ return [
         ],
 
         'status' => [
-            'cancelled' => 'Cancelado',
+            'cancelled' => 'Cancelada',
             'checkout' => 'Preparando',
-            'delivered' => 'Enviado',
-            'paid' => 'Pagado',
+            'delivered' => 'Enviada',
+            'paid' => 'Pagada',
             'processing' => 'Confirmación pendiente',
             'shipped' => 'En tránsito',
         ],

@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Onaylı.',
+        'beatmap_owner_change' => ':beatmap zorluğunun sahibi :new_user kullanıcısı ile değiştirildi.',
         'discussion_delete' => 'Moderatör :discussion tartışmasını sildi.',
         'discussion_lock' => 'Bu beatmap için tartışma sağlandı',
         'discussion_post_delete' => ':discussion tartışmasındaki gönderi Moderatör tarafından silindi.',
@@ -25,10 +26,18 @@ return [
         'language_edit' => 'Dil :old\'dan :new\'e değiştirildi.',
         'love' => ':user tarafından sevildi',
         'nominate' => ':user tarafından aday gösterildi.',
+        'nominate_modes' => ' :user (:modes) tarafından aday gösterildi.',
         'nomination_reset' => 'Yeni sorun :discussion (:text) bir adaylık sıfırlamasını tetikledi.',
+        'nomination_reset_received' => ':user tarafından gerçekleştirilen aday gösterme :source_user tarafından sıfırlandı (:text)',
+        'nomination_reset_received_profile' => 'Adaylık :user tarafından sıfırlandı (:text)',
         'qualify' => 'Bu beatmap gerekli aday gösterilme miktarına ulaştı ve nitelikli oldu.',
         'rank' => 'Dereceli.',
         'remove_from_loved' => ':user tarafından Sevilenlerden çıkarıldı (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => 'Müstehcen işareti kaldırıldı',
+            'to_1' => 'Müstehcen olarak işaretlendi',
+        ],
     ],
 
     'index' => [
@@ -48,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Onay',
+        'beatmap_owner_change' => 'Zorluk sahibi değiştirme',
         'discussion_delete' => 'Tartışma silindi',
         'discussion_post_delete' => 'Tartışma yanıtı silme',
         'discussion_post_restore' => 'Tartışma yanıtı geri getirme',
@@ -64,7 +74,9 @@ return [
         'language_edit' => 'Dil düzeni',
         'love' => 'Love',
         'nominate' => 'Adaylık',
-        'nomination_reset' => 'Adaylık Sıfırlama',
+        'nomination_reset' => 'Adaylık sıfırlama',
+        'nomination_reset_received' => 'Adaylık sıfırlaması alındı',
+        'nsfw_toggle' => 'Müstehcen işareti',
         'qualify' => 'Adaylık',
         'rank' => 'Sıralama',
         'remove_from_loved' => 'Sevilenlerden çıkarma',

@@ -19,7 +19,6 @@ return [
             'contest' => 'concorso',
             'contests' => 'concorsi',
             'root' => 'console',
-            'store_orders' => 'amministrazione del negozio',
         ],
 
         'artists' => [
@@ -47,6 +46,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => 'multigiocatore',
             'show' => 'info',
         ],
     ],
@@ -62,49 +62,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmap',
-            'artists' => 'artisti in primo piano',
-            'index' => 'lista',
-            'packs' => 'pacchetti',
         ],
         'community' => [
             '_' => 'comunità',
-            'chat' => 'chat',
-            'contests' => 'concorsi',
             'dev' => 'sviluppo',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'live',
-            'tournaments' => 'tornei',
         ],
         'help' => [
             '_' => 'aiuto',
-            'getAbuse' => '',
+            'getAbuse' => 'segnala un abuso',
             'getFaq' => 'domande frequenti',
             'getRules' => 'regole',
             'getSupport' => 'davvero, mi serve aiuto!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'home',
-            'changelog-index' => 'note di rilascio',
-            'getDownload' => 'download',
-            'news-index' => 'notizie',
-            'search' => 'cerca',
             'team' => 'team',
         ],
         'rankings' => [
             '_' => 'classifiche',
-            'charts' => 'spotlight',
-            'country' => 'paese',
-            'index' => 'performance',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multigiocatore',
-            'score' => 'punteggio',
         ],
         'store' => [
             '_' => 'negozio',
-            'cart-show' => 'carrello',
-            'getListing' => 'lista',
-            'orders-index' => 'cronologia ordini',
         ],
     ],
 
@@ -159,6 +138,10 @@ return [
             'error' => 'Parametro richiesta non valido',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Limite di richieste superato',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh no! Qualcosa si è rotto! ;_;',
             'description' => "Siamo notificati automaticamente per qualsiasi errore.",
@@ -171,8 +154,8 @@ return [
             'error' => 'Chiuso per manutenzione!',
             'description' => "La manutenzione normalmente richiede dai 5 secondi fino a 10 minuti. Se siamo chiusi per più tempo, controlla :link per ulteriori informazioni.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -204,8 +187,9 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Impostazioni',
+            'follows' => 'Iscrizioni',
             'friends' => 'Amici',
-            'logout' => 'Disconnettiti',
+            'logout' => 'Esci',
             'profile' => 'Profilo',
         ],
     ],

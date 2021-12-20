@@ -3,6 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
 use Illuminate\Support\HtmlString;
 
@@ -171,13 +172,33 @@ function captcha_triggered()
     return $triggered;
 }
 
-function class_with_modifiers(string $className, ?array $modifiers = null)
+function class_modifiers_each(array $modifiersArray, callable $callback)
+{
+    foreach ($modifiersArray as $modifiers) {
+        if (is_array($modifiers)) {
+            // either "$modifier => boolean" or "$i => $modifier|null"
+            foreach ($modifiers as $k => $v) {
+                if (is_bool($v)) {
+                    if ($v) {
+                        $callback($k);
+                    }
+                } elseif ($v !== null) {
+                    $callback($v);
+                }
+            }
+        } elseif (is_string($modifiers)) {
+            $callback($modifiers);
+        }
+    }
+}
+
+function class_with_modifiers(string $className, ...$modifiersArray)
 {
     $class = $className;
 
-    foreach ($modifiers ?? [] as $modifier) {
-        $class .= " {$className}--{$modifier}";
-    }
+    class_modifiers_each($modifiersArray, function ($m) use (&$class, $className) {
+        $class .= " {$className}--{$m}";
+    });
 
     return $class;
 }
@@ -234,18 +255,22 @@ function css_var_2x(string $key, string $url)
     return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}')");
 }
 
+function current_locale_meta(): LocaleMeta
+{
+    return locale_meta(app()->getLocale());
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $withClockwork = app('clockwork.support')->isEnabled();
 
     if ($withClockwork) {
-        $uid = uniqid($stat);
         // spaces used so clockwork doesn't run across the whole screen.
         $description = $stat
                        .' '.($tag['type'] ?? null)
                        .' '.($tag['index'] ?? null);
 
-        clock()->startEvent($uid, $description);
+        clock()->event($description)->start();
     }
 
     $start = microtime(true);
@@ -253,7 +278,7 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     $result = $callable();
 
     if ($withClockwork) {
-        clock()->endEvent($uid);
+        clock()->event($description)->end();
     }
 
     $duration = microtime(true) - $start;
@@ -279,78 +304,13 @@ function default_mode()
     return optional(auth()->user())->playmode ?? 'osu';
 }
 
-function es_query_and_words($words)
+function flag_url($countryCode)
 {
-    $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
+    $chars = str_split($countryCode);
+    $hexEmojiChars = array_map(fn ($chr) => dechex(mb_ord($chr) + 127397), $chars);
+    $baseFileName = implode('-', $hexEmojiChars);
 
-    if (empty($parts)) {
-        return;
-    }
-
-    $partsEscaped = [];
-
-    foreach ($parts as $part) {
-        $partsEscaped[] = str_replace('-', '%2D', urlencode(strtolower($part)));
-    }
-
-    return implode(' AND ', $partsEscaped);
-}
-
-/*
- * Remove some (but not all) elasticsearch reserved characters.
- * Those characters seem to be ignored anyway even escaped so might as well
- * just remove them. Note that double quotes are not escaped so they can be
- * used for "exact" match. As a result, this doesn't always produce
- * valid query. The execution must be wrapped within a try/catch.
- *
- * This also doesn't add keyword (OR/AND). Elasticsearch default is OR.
- *
- * Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
- */
-function es_query_escape_with_caveats($query)
-{
-    return str_replace(
-        ['+', '-', '=', '&&', '||', '>', '<', '!', '(', ')', '{', '}', '[', ']', '^', '~', '*', '?', ':', '\\', '/'],
-        [' ', ' ', ' ', '  ', '  ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '  ', ' '],
-        $query
-    );
-}
-
-/**
- * Takes an Elasticsearch resultset and retrieves the matching models from the database,
- *  returning them in the same order as the Elasticsearch results.
- *
- *
- * @param $results Elasticsesarch results.
- * @param $class Class name of the model.
- * @return array Records matching the Elasticsearch results.
- */
-function es_records($results, $class)
-{
-    $keyName = (new $class())->getKeyName();
-
-    $hits = $results['hits']['hits'];
-    $ids = [];
-    foreach ($hits as $hit) {
-        $ids[] = $hit['_id'];
-    }
-
-    $query = $class::whereIn($keyName, $ids);
-    $keyed = [];
-    foreach ($query->get() as $result) {
-        // save for lookup.
-        $keyed[$result->user_id] = $result;
-    }
-
-    // match records with elasticsearch results.
-    $records = [];
-    foreach ($ids as $id) {
-        if (isset($keyed[$id])) {
-            $records[] = $keyed[$id];
-        }
-    }
-
-    return $records;
+    return "/assets/images/flags/{$baseFileName}.svg";
 }
 
 function get_valid_locale($requestedLocale)
@@ -385,6 +345,11 @@ function img2x(array $attributes)
     return tag('img', $attributes);
 }
 
+function locale_meta(string $locale): LocaleMeta
+{
+    return LocaleMeta::find($locale);
+}
+
 function trim_unicode(?string $value)
 {
     return preg_replace('/(^\s+|\s+$)/u', '', $value);
@@ -407,33 +372,6 @@ function json_date(?DateTime $date): ?string
 function json_time(?DateTime $time): ?string
 {
     return $time === null ? null : $time->format(DateTime::ATOM);
-}
-
-function locale_flag($locale)
-{
-    return App\Libraries\LocaleMeta::flagFor($locale);
-}
-
-function locale_name($locale)
-{
-    return App\Libraries\LocaleMeta::nameFor($locale);
-}
-
-function locale_for_moment($locale)
-{
-    if ($locale === 'en') {
-        return 'en-gb';
-    }
-
-    if ($locale === 'zh') {
-        return 'zh-cn';
-    }
-
-    if ($locale === 'no') {
-        return 'nb';
-    }
-
-    return $locale;
 }
 
 function log_error($exception)
@@ -477,6 +415,20 @@ function markdown($input, $preset = 'default')
     return $converter[$preset]->load($input)->html();
 }
 
+function markdown_plain($input)
+{
+    static $converter;
+
+    if (!isset($converter)) {
+        $converter = new League\CommonMark\CommonMarkConverter([
+            'allow_unsafe_links' => false,
+            'html_input' => 'escape',
+        ]);
+    }
+
+    return $converter->convertToHtml($input)->getContent();
+}
+
 function max_offset($page, $limit)
 {
     $offset = ($page - 1) * $limit;
@@ -492,6 +444,38 @@ function mysql_escape_like($string)
 function oauth_token(): ?App\Models\OAuth\Token
 {
     return request()->attributes->get(App\Http\Middleware\AuthApi::REQUEST_OAUTH_TOKEN_KEY);
+}
+
+function osu_trans($key = null, $replace = [], $locale = null)
+{
+    $translator = app('translator');
+
+    if (is_null($key)) {
+        return $translator;
+    }
+
+    if (!trans_exists($key, $locale)) {
+        $locale = config('app.fallback_locale');
+    }
+
+    return $translator->get($key, $replace, $locale, false);
+}
+
+function osu_trans_choice($key, $number, array $replace = [], $locale = null)
+{
+    if (!trans_exists($key, $locale)) {
+        $locale = config('app.fallback_locale');
+    }
+
+    if (is_array($number) || $number instanceof Countable) {
+        $number = count($number);
+    }
+
+    if (!isset($replace['count_delimited'])) {
+        $replace['count_delimited'] = i18n_number_format($number, null, null, null, $locale);
+    }
+
+    return app('translator')->choice($key, $number, $replace, $locale);
 }
 
 function osu_url($key)
@@ -540,12 +524,12 @@ function product_quantity_options($product, $selected = null)
 
     $opts = [];
     for ($i = 1; $i <= $max; $i++) {
-        $opts[$i] = trans_choice('common.count.item', $i);
+        $opts[$i] = osu_trans_choice('common.count.item', $i);
     }
 
     // include selected value separately if it's out of range.
     if ($selected > $max) {
-        $opts[$selected] = trans_choice('common.count.item', $selected);
+        $opts[$selected] = osu_trans_choice('common.count.item', $selected);
     }
 
     return $opts;
@@ -592,9 +576,9 @@ function request_country($request = null)
 
 function require_login($text_key, $link_text_key)
 {
-    $title = trans('users.anonymous.login_link');
-    $link = Html::link('#', trans($link_text_key), ['class' => 'js-user-link', 'title' => $title]);
-    $text = trans($text_key, ['link' => $link]);
+    $title = osu_trans('users.anonymous.login_link');
+    $link = Html::link('#', osu_trans($link_text_key), ['class' => 'js-user-link', 'title' => $title]);
+    $text = osu_trans($text_key, ['link' => $link]);
 
     return $text;
 }
@@ -634,9 +618,9 @@ function to_sentence($array, $key = 'common.array_and')
         case 1:
             return (string) $array[0];
         case 2:
-            return implode(trans("{$key}.two_words_connector"), $array);
+            return implode(osu_trans("{$key}.two_words_connector"), $array);
         default:
-            return implode(trans("{$key}.words_connector"), array_slice($array, 0, -1)).trans("{$key}.last_word_connector").array_last($array);
+            return implode(osu_trans("{$key}.words_connector"), array_slice($array, 0, -1)).osu_trans("{$key}.last_word_connector").array_last($array);
     }
 }
 
@@ -777,7 +761,7 @@ function page_title()
 
     foreach ($keys as $key) {
         if (trans_exists($key, $checkLocale)) {
-            return trans($key);
+            return osu_trans($key);
         }
     }
 
@@ -793,7 +777,12 @@ function ujs_redirect($url, $status = 200)
             Request::session()->put('_turbolinks_location', $url);
         }
 
-        return redirect($url);
+        // because non-3xx redirects make no sense.
+        if ($status < 300 || $status > 399) {
+            $status = 302;
+        }
+
+        return redirect($url, $status);
     }
 }
 
@@ -803,9 +792,9 @@ function unzalgo(?string $text, int $level = 2)
     return preg_replace("/(\pM{{$level}})\pM+/u", '\1', $text);
 }
 
-function route_redirect($path, $target)
+function route_redirect($path, $target, string $method = 'get')
 {
-    return Route::get($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
+    return Route::$method($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
 }
 
 function timeago($date)
@@ -885,29 +874,29 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 
 function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
-    // FIXME: remove `rawurlencode` workaround when fixed upstream.
-    // Reference: https://github.com/laravel/framework/issues/26715
+    $path = $path === null ? 'Main_Page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));
+
     $params = [
-        'path' => $path === null ? 'Main_Page' : str_replace('%2F', '/', rawurlencode($path)),
+        'path' => 'WIKI_PATH',
         'locale' => $locale ?? App::getLocale(),
     ];
 
     if ($api ?? is_api_request()) {
-        return route('api.wiki.show', $params, $fullUrl);
-    }
-
-    if ($params['path'] === 'Sitemap') {
-        return route('wiki.sitemap', $params['locale'], $fullUrl);
-    }
-
-    if (starts_with("{$params['path']}/", 'Legal/')) {
-        $params['path'] = ltrim(substr($params['path'], strlen('Legal')), '/');
-        $route = 'legal';
+        $route = 'api.wiki.show';
     } else {
-        $route = 'wiki.show';
+        if ($path === 'Sitemap') {
+            return route('wiki.sitemap', $params['locale'], $fullUrl);
+        }
+
+        if (starts_with("{$path}/", 'Legal/')) {
+            $path = ltrim(substr($path, strlen('Legal')), '/');
+            $route = 'legal';
+        } else {
+            $route = 'wiki.show';
+        }
     }
 
-    return route($route, $params, $fullUrl);
+    return rtrim(str_replace($params['path'], $path, route($route, $params, $fullUrl)), '/');
 }
 
 function bbcode($text, $uid, $options = [])
@@ -927,6 +916,22 @@ function concat_path($paths)
 
 function proxy_media($url)
 {
+    if (!present($url)) {
+        return '';
+    }
+
+    $url = html_entity_decode_better($url);
+
+    if (config('osu.camo.key') === null) {
+        return $url;
+    }
+
+    $isProxied = starts_with($url, config('osu.camo.prefix'));
+
+    if ($isProxied) {
+        return $url;
+    }
+
     // turn relative urls into absolute urls
     if (!preg_match('/^https?\:\/\//', $url)) {
         // ensure url is relative to the site root
@@ -936,21 +941,11 @@ function proxy_media($url)
         $url = config('app.url').$url;
     }
 
-    $decoded = urldecode(html_entity_decode_better($url));
 
-    if (config('osu.camo.key') === null) {
-        return $decoded;
-    }
+    $hexUrl = bin2hex($url);
+    $secret = hash_hmac('sha1', $url, config('osu.camo.key'));
 
-    $isProxied = starts_with($decoded, config('osu.camo.prefix'));
-    if ($isProxied) {
-        return $decoded;
-    }
-
-    $url = bin2hex($decoded);
-    $secret = hash_hmac('sha1', $decoded, config('osu.camo.key'));
-
-    return config('osu.camo.prefix')."{$secret}/{$url}";
+    return config('osu.camo.prefix')."{$secret}/{$hexUrl}";
 }
 
 function lazy_load_image($url, $class = '', $alt = '')
@@ -967,44 +962,44 @@ function nav_links()
 
     $links['home'] = [
         '_' => route('home'),
-        'news-index' => route('news.index'),
-        'team' => wiki_url('Team'),
-        'changelog-index' => route('changelog.index'),
-        'getDownload' => route('download'),
-        'search' => route('search'),
+        'page_title.main.news_controller._' => route('news.index'),
+        'layout.menu.home.team' => wiki_url('Team'),
+        'page_title.main.changelog_controller._' => route('changelog.index'),
+        'page_title.main.home_controller.get_download' => route('download'),
+        'page_title.main.home_controller.search' => route('search'),
     ];
     $links['beatmaps'] = [
-        'index' => route('beatmapsets.index'),
-        'artists' => route('artists.index'),
-        'packs' => route('packs.index'),
+        'page_title.main.beatmapsets_controller.index' => route('beatmapsets.index'),
+        'page_title.main.artists_controller._' => route('artists.index'),
+        'page_title.main.beatmap_packs_controller._' => route('packs.index'),
     ];
     $links['rankings'] = [
-        'index' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
-        'charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
-        'score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
-        'country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
-        'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
-        'kudosu' => osu_url('rankings.kudosu'),
+        'rankings.type.performance' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
+        'rankings.type.charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
+        'rankings.type.score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
+        'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
+        'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
+        'layout.menu.rankings.kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['community'] = [
-        'forum-forums-index' => route('forum.forums.index'),
-        'chat' => route('chat.index'),
-        'contests' => route('contests.index'),
-        'tournaments' => route('tournaments.index'),
-        'getLive' => route('livestreams.index'),
-        'dev' => osu_url('dev'),
+        'page_title.forum._' => route('forum.forums.index'),
+        'page_title.main.chat_controller._' => route('chat.index'),
+        'page_title.main.contests_controller._' => route('contests.index'),
+        'page_title.main.tournaments_controller._' => route('tournaments.index'),
+        'page_title.main.livestreams_controller._' => route('livestreams.index'),
+        'layout.menu.community.dev' => osu_url('dev'),
     ];
     $links['store'] = [
-        'getListing' => action('StoreController@getListing'),
-        'cart-show' => route('store.cart.show'),
-        'orders-index' => route('store.orders.index'),
+        'layout.header.store.products' => route('store.products.index'),
+        'layout.header.store.cart' => route('store.cart.show'),
+        'layout.header.store.orders' => route('store.orders.index'),
     ];
     $links['help'] = [
-        'getWiki' => wiki_url('Main_Page'),
-        'getFaq' => wiki_url('FAQ'),
-        'getRules' => wiki_url('Rules'),
-        'getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
-        'getSupport' => wiki_url('Help_Centre'),
+        'page_title.main.wiki_controller._' => wiki_url('Main_Page'),
+        'layout.menu.help.getFaq' => wiki_url('FAQ'),
+        'layout.menu.help.getRules' => wiki_url('Rules'),
+        'layout.menu.help.getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
+        'layout.menu.help.getSupport' => wiki_url('Help_Centre'),
     ];
 
     return $links;
@@ -1088,10 +1083,10 @@ function display_regdate($user)
     $formattedDate = i18n_date($user->user_regdate, null, 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
-        return '<div title="'.$tooltipDate.'">'.trans('users.show.first_members').'</div>';
+        return '<div title="'.$tooltipDate.'">'.osu_trans('users.show.first_members').'</div>';
     }
 
-    return trans('users.show.joined_at', [
+    return osu_trans('users.show.joined_at', [
         'date' => "<strong title='{$tooltipDate}'>{$formattedDate}</strong>",
     ]);
 }
@@ -1105,7 +1100,7 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
     );
 
     if ($pattern !== null) {
-        $formatter->setPattern(trans("common.datetime.{$pattern}.php"));
+        $formatter->setPattern(osu_trans("common.datetime.{$pattern}.php"));
     }
 
     return $formatter->format($datetime);
@@ -1181,7 +1176,7 @@ function json_collection($model, $transformer, $includes = null)
 
 function json_item($model, $transformer, $includes = null)
 {
-    return json_collection([$model], $transformer, $includes)[0];
+    return json_collection([$model], $transformer, $includes)[0] ?? null;
 }
 
 function fast_imagesize($url)
@@ -1213,9 +1208,13 @@ function fast_imagesize($url)
     }
 }
 
-function get_arr($input, $callback)
+function get_arr($input, $callback = null)
 {
     if (is_array($input)) {
+        if ($callback === null) {
+            return $input;
+        }
+
         $result = [];
         foreach ($input as $value) {
             $casted = call_user_func($callback, $value);
@@ -1260,6 +1259,47 @@ function get_int($string)
     if (present($string) && is_scalar($string)) {
         return (int) $string;
     }
+}
+
+function get_length($string): ?array
+{
+    static $scales = [
+        'ms' => 0.001,
+        's' => 1,
+        'm' => 60,
+        'h' => 3600,
+    ];
+
+    $string = get_string($string);
+
+    if ($string === null) {
+        return null;
+    }
+
+    $scaleKey = substr($string, -2);
+
+    if (!isset($scales[$scaleKey])) {
+        $scaleKey = substr($scaleKey, -1);
+    }
+
+    if (!isset($scales[$scaleKey])) {
+        $scaleKey = 's';
+        $string .= $scaleKey;
+    }
+
+    $value = get_float(substr($string, 0, -strlen($scaleKey)));
+
+    if ($value === null) {
+        return null;
+    }
+
+    $scale = $scales[$scaleKey] ?? 1;
+    $value *= $scale;
+
+    return [
+        'scale' => $scale,
+        'value' => $value,
+    ];
 }
 
 function get_file($input)
@@ -1343,6 +1383,8 @@ function get_param_value($input, $type)
     switch ($type) {
         case 'any':
             return $input;
+        case 'array':
+            return get_arr($input);
         case 'bool':
             return get_bool($input);
         case 'int':
@@ -1351,6 +1393,8 @@ function get_param_value($input, $type)
             return get_file($input);
         case 'float':
             return get_float($input);
+        case 'length':
+            return get_length($input);
         case 'string':
             return get_string($input);
         case 'string_split':
@@ -1366,7 +1410,7 @@ function get_param_value($input, $type)
     }
 }
 
-function get_params($input, $namespace, $keys)
+function get_params($input, $namespace, $keys, $options = [])
 {
     if ($namespace !== null) {
         $input = array_get($input, $namespace);
@@ -1375,6 +1419,8 @@ function get_params($input, $namespace, $keys)
     $params = [];
 
     if (is_array($input) || ($input instanceof ArrayAccess)) {
+        $options['null_missing'] = $options['null_missing'] ?? false;
+
         foreach ($keys as $keyAndType) {
             $keyAndType = explode(':', $keyAndType);
 
@@ -1383,8 +1429,11 @@ function get_params($input, $namespace, $keys)
 
             if (array_has($input, $key)) {
                 $value = get_param_value(array_get($input, $key), $type);
-
                 array_set($params, $key, $value);
+            } else {
+                if ($options['null_missing']) {
+                    array_set($params, $key, null);
+                }
             }
         }
     }
@@ -1625,9 +1674,7 @@ function check_url(string $url): bool
 
 function mini_asset(string $url): string
 {
-    return present(config('osu.assets.mini_url'))
-        ? str_replace(config('osu.assets.base_url'), config('osu.assets.mini_url'), $url)
-        : $url;
+    return str_replace(config('filesystems.disks.s3.base_url'), config('filesystems.disks.s3.mini_url'), $url);
 }
 
 function section_to_hue_map($section): int
@@ -1666,9 +1713,9 @@ function search_error_message(?Exception $e): ?string
 
     $basename = snake_case(get_class_basename(get_class($e)));
     $key = "errors.search.${basename}";
-    $text = trans($key);
+    $text = osu_trans($key);
 
-    return $text === $key ? trans('errors.search.default') : $text;
+    return $text === $key ? osu_trans('errors.search.default') : $text;
 }
 
 /**
@@ -1682,21 +1729,5 @@ function search_error_message(?Exception $e): ?string
  */
 function unmix(string $resource)
 {
-    static $manifest;
-
-    if (!isset($manifest)) {
-        $manifestPath = public_path('assets/manifest.json');
-
-        if (!file_exists($manifestPath)) {
-            throw new Exception('The manifest does not exist.');
-        }
-
-        $manifest = json_decode(file_get_contents($manifestPath), true);
-    }
-
-    if (!isset($manifest[$resource])) {
-        throw new Exception("resource not defined: {$resource}.");
-    }
-
-    return new HtmlString($manifest[$resource]);
+    return app('assets-manifest')->src($resource);
 }

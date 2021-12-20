@@ -26,6 +26,10 @@ if [ ! -f .env ]; then
     genkey=1
 fi
 
+if [ -n "${GITHUB_TOKEN:-}" ]; then
+    _run composer config -g github-oauth.github.com "${GITHUB_TOKEN}"
+    grep ^GITHUB_TOKEN= .env || echo "GITHUB_TOKEN=${GITHUB_TOKEN}" >> .env
+fi
 _run composer install
 
 _run artisan dusk:chrome-driver
@@ -33,12 +37,6 @@ _run artisan dusk:chrome-driver
 if [ "$genkey" = 1 ]; then
     echo "Generating app key"
     _run artisan key:generate
-fi
-
-if [ ! -f .docker/.composer/auth.json ]; then
-    echo "Copying default composer auth file"
-    mkdir -p .docker/.composer
-    cp .docker/.composer-auth.json.example .docker/.composer/auth.json
 fi
 
 if [ ! -f .env.testing ]; then

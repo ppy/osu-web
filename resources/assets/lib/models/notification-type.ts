@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { NotificationTypeJson } from 'interfaces/notification-json';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import NotificationStack from 'models/notification-stack';
 import { NotificationContextData } from 'notifications-context';
 import { NotificationCursor } from 'notifications/notification-cursor';
@@ -52,12 +52,12 @@ export default class NotificationType implements NotificationReadable, Notificat
   }
 
   @computed get stackNotificationCount() {
-    return [...this.stacks.values()].reduce((acc, stack) => {
-      return acc + stack.total;
-    }, 0);
+    return [...this.stacks.values()].reduce((acc, stack) => acc + stack.total, 0);
   }
 
-  constructor(readonly name: string | null, readonly resolver: NotificationResolver) {}
+  constructor(readonly name: string | null, readonly resolver: NotificationResolver) {
+    makeObservable(this);
+  }
 
   static fromJson(json: NotificationTypeJson, resolver: NotificationResolver) {
     const obj = new NotificationType(json.name, resolver);
@@ -72,14 +72,14 @@ export default class NotificationType implements NotificationReadable, Notificat
 
   @action
   loadMore(context: NotificationContextData) {
-    if (this.cursor === null) { return; }
+    if (this.cursor === null) return;
 
     this.isLoading = true;
 
     this.resolver.loadMore(this.identity, context, this.cursor)
-    .always(action(() => {
-      this.isLoading = false;
-    }));
+      .always(action(() => {
+        this.isLoading = false;
+      }));
   }
 
   @action

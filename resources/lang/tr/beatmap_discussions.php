@@ -18,12 +18,13 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'silindi',
-        'none_found' => 'Kriterlere uyan bir tartışma sonucu bulunamadı.',
+        'none_found' => 'Arama kriterlerine uyan bir tartışma bulunamadı.',
         'title' => 'Beatmap Tartışmaları',
 
         'form' => [
             '_' => 'Ara',
-            'deleted' => 'Silinmiş tartışmaları içer',
+            'deleted' => 'Silinmiş tartışmaları dahil et',
+            'mode' => 'Beatmap modu',
             'only_unresolved' => 'Sadece çözülmemiş tartışmaları göster',
             'types' => 'Mesaj türü',
             'username' => 'Kullanıcı adı',
@@ -53,8 +54,15 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Bu gönderilerin hiçbiri sorunumla ilgili değil',
-        'notice' => ':timestamp (:existing_timestamp) civarında gönderilmiş mesajlar var. Göndermeden önce lütfen onlara bir göz atın.',
+        'notice' => ':timestamp (:existing_timestamps) civarında gönderilmiş mesajlar var. Göndermeden önce lütfen onlara bir göz atın.',
         'unsaved' => 'bu incelemede :count',
+    ],
+
+    'owner_editor' => [
+        'button' => 'Zorluk Sahibi',
+        'reset_confirm' => 'Bu zorluğun sahibi sıfırlansın mı?',
+        'user' => 'Sahip',
+        'version' => 'Zorluk',
     ],
 
     'reply' => [
@@ -73,6 +81,7 @@ return [
             'external_references' => 'incelemede, bu incelemeye ait olmayan sorunlara göndermeler mevcut',
             'invalid_block_type' => 'geçersiz blok türü',
             'invalid_document' => 'geçersiz inceleme',
+            'invalid_discussion_type' => 'geçersiz tartışma türü',
             'minimum_issues' => 'inceleme en az :count sorun içermelidir|inceleme en az :count sorun içermelidir',
             'missing_text' => 'blokta yazı eksik',
             'too_many_blocks' => 'incelemeler yalnızca :count paragraf/sorun içerebilir|incelemeler sadece en fazla :count paragraf/sorun içerebilir',

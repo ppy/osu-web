@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => '搜尋',
             'deleted' => '包含已經刪除的討論',
+            'mode' => '圖譜遊戲模式',
             'only_unresolved' => '只顯示未解決的討論',
             'types' => '訊息類別',
             'username' => '使用者名稱',
@@ -54,7 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => '在這個時間點上沒有相關的討論記錄。',
         'notice' => '在 :timestamp 附近（:existing_timestamps）有討論記錄，發表前請檢查。',
-        'unsaved' => '',
+        'unsaved' => '在此結算的:count',
+    ],
+
+    'owner_editor' => [
+        'button' => '難度作者',
+        'reset_confirm' => '要重設此難度的作者嗎？',
+        'user' => '作者',
+        'version' => '難度',
     ],
 
     'reply' => [
@@ -69,13 +77,14 @@ return [
         'go_to_parent' => '檢視其他人的評論',
         'go_to_child' => '查看討論',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'block_too_large' => '每個區塊最多只能有 :limit 個字元',
+            'external_references' => '評論有指向不屬於這個評論的議題',
+            'invalid_block_type' => '區塊類型無效',
+            'invalid_document' => '評論無效',
+            'invalid_discussion_type' => '討論類型不正確',
+            'minimum_issues' => '評論至少要有 :count 個議題|評論至少要有 :count 個議題',
+            'missing_text' => '區塊缺少文字',
+            'too_many_blocks' => '評論最多只能有 :count 個段落或議題|評論最多只能有 :count 個段落或議題',
         ],
     ],
 

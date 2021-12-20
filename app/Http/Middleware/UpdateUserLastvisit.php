@@ -32,9 +32,14 @@ class UpdateUserLastvisit
             }
 
             if (!$isInactive || $isVerified) {
-                $user->update([
-                    'user_lastvisit' => Carbon::createFromTime(null, null, 0),
-                ], ['skipValidations' => true]);
+                $recordedLastVisit = $user->user_lastvisit;
+                $currentLastVisit = now();
+
+                if ($currentLastVisit->diffInRealSeconds($recordedLastVisit) > 60) {
+                    $user->update([
+                        'user_lastvisit' => $currentLastVisit,
+                    ], ['skipValidations' => true]);
+                }
             }
 
             $this->recordSession($request);
@@ -46,7 +51,7 @@ class UpdateUserLastvisit
     private function recordSession($request)
     {
         // Add metadata to session to help user recognize this login location
-        $countryCode = presence(request_country($request)) ?? 'XX';
+        $countryCode = presence(request_country($request)) ?? Country::UNKNOWN;
         $request->session()->put('meta', [
             'agent' => $request->header('User-Agent'),
             'country' => [

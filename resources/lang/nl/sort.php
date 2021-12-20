@@ -15,8 +15,29 @@ return [
     'top' => 'Terug naar boven',
     'username' => 'Gebruikersnaam',
 
+    'artist_tracks' => [
+        'album' => 'Album',
+        'artist' => 'Artiest',
+        'bpm' => 'BPM',
+        'genre' => 'Genre',
+        'length' => 'Lengte',
+        'relevance' => 'Relevantie',
+        'title' => 'Titel',
+        'update' => 'Toevoegingsdatum',
+    ],
+
+    'forum_posts' => [
+        'created' => 'Post tijd',
+        'relevance' => 'Relevantie',
+    ],
+
     'forum_topics' => [
-        'new' => 'Laatste antwoord',
         'feature_votes' => 'Ster prioriteit',
+        'new' => 'Laatste antwoord',
+    ],
+
+    'users' => [
+        'relevance' => 'Relevantie',
+        'username' => 'Naam',
     ],
 ];

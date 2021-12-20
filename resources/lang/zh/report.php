@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => '举报',
+        'title' => '举报 :username 的谱面？',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => '举报',
         'title' => '举报 :username 的帖子？',
@@ -15,8 +20,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => '举报',
+        'title' => '举报 :username 的帖子？',
     ],
 
     'scores' => [

@@ -8,6 +8,11 @@
   @thickness: 0.1em;
   @label-size: 0.4em;
 
+  .over50() {
+    --circle-fill-transform: rotate(0.5turn);
+    --slice-clip: rect(auto, auto, auto, auto);
+  }
+
   font-size: @size;
   width: 1em;
   height: 1em;
@@ -17,18 +22,55 @@
 
   background-color: @osu-colour-b4;
   --circle-center-fill: @osu-colour-b6;
+  --circle-transform: rotate(0turn);
+  --circle-fill-transform: rotate(0turn);
+  --slice-clip: rect(0em, 1em, 1em, 0.5em);
+  --circle-border-colour: hsl(var(--hsl-h1));
+  --label-colour: hsl(var(--hsl-h1));
+
+  &--warn {
+    --circle-border-colour: hsl(var(--hsl-orange-2));
+    --label-colour: hsl(var(--hsl-orange-2));
+  }
+
+  &--over {
+    --circle-border-colour: hsl(var(--hsl-red-2));
+    --label-colour: hsl(var(--hsl-red-2));
+  }
 
   &--lighter {
     background-color: @osu-colour-b3;
     --circle-center-fill: @osu-colour-b5;
   }
 
-  &:after {
+  &--over50 {
+    .over50();
+  }
+
+  &--beatmapset-panel {
+    font-size: 50px; // circle size
+    pointer-events: none;
+    background-color: transparent;
+    --circle-center-fill: transparent;
+    --label-colour: transparent;
+    --circle-transform: rotate(calc(var(--progress) * 1turn));
+
+    [data-audio-over50="1"] & {
+      .over50();
+    }
+  }
+
+  &--gallery-contest {
+    --circle-border-colour: #fff;
+    --label-colour: #fff;
+  }
+
+  &::after {
     position: absolute;
     margin-top: @thickness;
     margin-left: @thickness;
     display: block;
-    content: " ";
+    content: '';
     border-radius: 50%;
     background-color: var(--circle-center-fill);
     width: 1em - (@thickness * 2);
@@ -43,36 +85,21 @@
     font-size: @label-size;
     text-align: center;
     white-space: nowrap;
-    color: @osu-colour-h1;
-
-    .@{_top}--warn & {
-      color: @osu-colour-orange-2;
-    }
-    .@{_top}--over & {
-      color: @osu-colour-red-2;
-    }
+    color: var(--label-colour);
   }
 
 
   &__circle {
     position: absolute;
-    border: @thickness solid @osu-colour-h1;
+    border: @thickness solid var(--circle-border-colour);
     width: 1em;
     height: 1em;
     clip: rect(0em, 0.5em, 1em, 0em);
     border-radius: 50%;
-
-    .@{_top}--warn & {
-      border-color: @osu-colour-orange-2;
-    }
-    .@{_top}--over & {
-      border-color: @osu-colour-red-2;
-    }
+    transform: var(--circle-transform);
 
     &--fill {
-      .@{_top}--over50 & {
-        transform: rotate(180deg);
-      }
+      transform: var(--circle-fill-transform);
     }
   }
 
@@ -80,10 +107,6 @@
     position: absolute;
     width: 1em;
     height: 1em;
-    clip: rect(0em, 1em, 1em, 0.5em);
-
-    .@{_top}--over50 & {
-      clip: rect(auto, auto, auto, auto);
-    }
+    clip: var(--slice-clip);
   }
 }

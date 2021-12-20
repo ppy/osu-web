@@ -7,13 +7,17 @@ import { Header } from './header'
 import { ModeSwitcher } from './mode-switcher'
 import { NewDiscussion } from './new-discussion'
 import { BackToTop } from 'back-to-top'
+import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
 import { div } from 'react-dom-factories'
 import NewReview from 'beatmap-discussions/new-review'
+import core from 'osu-core-singleton'
 import * as BeatmapHelper from 'utils/beatmap-helper'
+import { nextVal } from 'utils/seq'
+import { currentUrl } from 'utils/turbolinks'
 
 el = React.createElement
 
@@ -21,6 +25,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "beatmap-discussions-#{nextVal()}"
     @modeSwitcherRef = React.createRef()
     @newDiscussionRef = React.createRef()
 
@@ -32,7 +37,7 @@ export class Main extends React.PureComponent
     @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
     @restoredState = @state?
     # FIXME: update url handler to recognize this instead
-    @focusNewDiscussion = document.location.hash == '#new'
+    @focusNewDiscussion = currentUrl().hash == '#new'
 
     if @restoredState
       @state.readPostIds = new Set(@state.readPostIdsArray)
@@ -57,16 +62,16 @@ export class Main extends React.PureComponent
 
 
   componentDidMount: =>
-    $.subscribe 'playmode:set.beatmapDiscussions', @setCurrentPlaymode
+    $.subscribe "playmode:set.#{@eventId}", @setCurrentPlaymode
 
-    $.subscribe 'beatmapsetDiscussions:update.beatmapDiscussions', @update
-    $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
-    $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
-    $.subscribe 'beatmapDiscussionPost:toggleShowDeleted.beatmapDiscussions', @toggleShowDeleted
+    $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @update
+    $.subscribe "beatmapDiscussion:jump.#{@eventId}", @jumpTo
+    $.subscribe "beatmapDiscussionPost:markRead.#{@eventId}", @markPostRead
+    $.subscribe "beatmapDiscussionPost:toggleShowDeleted.#{@eventId}", @toggleShowDeleted
 
-    $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
-    $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
-    $(document).on 'turbolinks:before-cache.beatmapDiscussions', @saveStateToContainer
+    $(document).on "ajax:success.#{@eventId}", '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
+    $(document).on "click.#{@eventId}", '.js-beatmap-discussion--jump', @jumpToClick
+    $(document).on "turbolinks:before-cache.#{@eventId}", @saveStateToContainer
 
     @jumpToDiscussionByHash() if !@restoredState
     @timeouts.checkNew = Timeout.set @checkNewTimeoutDefault, @checkNew
@@ -88,8 +93,8 @@ export class Main extends React.PureComponent
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.beatmapDiscussions'
-    $(document).off '.beatmapDiscussions'
+    $.unsubscribe ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
     Timeout.clear(timeout) for _name, timeout of @timeouts
     xhr?.abort() for _name, xhr of @xhr
@@ -336,6 +341,7 @@ export class Main extends React.PureComponent
 
   discussionStarters: =>
     _ @discussions()
+      .filter (discussion) -> discussion.message_type != 'hype'
       .map 'user_id'
       .uniq()
       .map (user_id) => @users()[user_id]
@@ -350,10 +356,10 @@ export class Main extends React.PureComponent
   jumpToDiscussionByHash: =>
     target = BeatmapDiscussionHelper.urlParse(null, @state.beatmapset.discussions)
 
-    @jumpTo(null, id: target.discussionId) if target.discussionId?
+    @jumpTo(null, id: target.discussionId, postId: target.postId) if target.discussionId?
 
 
-  jumpTo: (_e, {id}) =>
+  jumpTo: (_e, {id, postId}) =>
     discussion = @discussions()[id]
 
     return if !discussion?
@@ -372,26 +378,28 @@ export class Main extends React.PureComponent
     newState.callback = =>
       $.publish 'beatmapset-discussions:highlight', discussionId: discussion.id
 
-      target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
+
+      attribute = if postId? then "data-post-id='#{postId}'" else "data-id='#{id}'"
+      target = $(".js-beatmap-discussion-jump[#{attribute}]")
 
       return if target.length == 0
 
       offsetTop = target.offset().top - @modeSwitcherRef.current.getBoundingClientRect().height
       offsetTop -= @newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
 
-      $(window).stop().scrollTo window.stickyHeader.scrollOffset(offsetTop), 500
+      $(window).stop().scrollTo core.stickyHeader.scrollOffset(offsetTop), 500
 
     @update null, newState
 
 
   jumpToClick: (e) =>
     url = e.currentTarget.getAttribute('href')
-    id = BeatmapDiscussionHelper.urlParse(url, @state.beatmapset.discussions).discussionId
+    { discussionId, postId } = BeatmapDiscussionHelper.urlParse(url, @state.beatmapset.discussions)
 
-    return if !id?
+    return if !discussionId?
 
     e.preventDefault()
-    @jumpTo null, {id}
+    @jumpTo null, { id: discussionId, postId }
 
 
   lastUpdate: =>
@@ -460,7 +468,7 @@ export class Main extends React.PureComponent
       newState.beatmapset.current_user_attributes.is_watching = watching
 
     if playmode?
-      beatmap = BeatmapHelper.findDefault items: @groupedBeatmaps()[playmode]
+      beatmap = BeatmapHelper.findDefault items: @groupedBeatmaps().get(playmode)
       beatmapId = beatmap?.id
 
     if beatmapId? && beatmapId != @currentBeatmap().id
@@ -506,8 +514,7 @@ export class Main extends React.PureComponent
   users: =>
     if !@cache.users?
       @cache.users = _.keyBy @state.beatmapset.related_users, 'id'
-      @cache.users[null] = @cache.users[undefined] =
-        username: osu.trans 'users.deleted'
+      @cache.users[null] = @cache.users[undefined] = deletedUser.toJson()
 
     @cache.users
 

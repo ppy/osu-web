@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Bunlar sizin takip ettiğiniz beatmap tartışmaları. Yeni bir gönderi veya güncelleme olduğunda bildirileceksiniz.',
-        'title_compact' => 'modlama izleme listesi',
+        'title_compact' => 'beatmap tartışma izleme listesi',
 
         'counts' => [
             'total' => 'İzlenen beatmapler',
@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Takip edilen beatmap tartışması yok.',
+            'last_update' => 'Son güncelleme',
             'open_issues' => 'Açık sorunlar',
             'state' => 'Durum',
             'title' => 'Başlık',

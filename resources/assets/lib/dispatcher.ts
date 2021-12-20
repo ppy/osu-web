@@ -6,19 +6,34 @@ import DispatchListener from './dispatch-listener';
 
 export default class Dispatcher {
   private listeners = new Set<DispatchListener>();
-  private trace: boolean = false;
+  private trace = false;
 
-  dispatch(action: DispatcherAction) {
-    if (this.trace) {
-      // tslint:disable-next-line: no-console
-      console.debug('Dispatcher::dispatch', action);
-    }
-    this.listeners.forEach((callback) => {
-      callback.handleDispatchAction(action);
-    });
+  get size() {
+    return this.listeners.size;
   }
 
-  register(callback: DispatchListener) {
-    this.listeners.add(callback);
+  clear() {
+    this.listeners.clear();
+  }
+
+  dispatch = (action: DispatcherAction) => {
+    if (this.trace) {
+      console.debug('Dispatcher::dispatch', action);
+    }
+    this.listeners.forEach((listener) => {
+      listener.handleDispatchAction(action);
+    });
+  };
+
+  has(listener: DispatchListener) {
+    return this.listeners.has(listener);
+  }
+
+  register(listener: DispatchListener) {
+    this.listeners.add(listener);
+  }
+
+  unregister(listener: DispatchListener) {
+    this.listeners.delete(listener);
   }
 }

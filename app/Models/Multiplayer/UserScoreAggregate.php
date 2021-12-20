@@ -6,6 +6,7 @@
 namespace App\Models\Multiplayer;
 
 use App\Models\Model;
+use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
 
 /**
@@ -17,6 +18,7 @@ use App\Models\User;
  * @property int $completed
  * @property \Carbon\Carbon $created_at
  * @property int $id
+ * @property bool $in_room
  * @property float|null $pp
  * @property int $room_id
  * @property int $total_score
@@ -25,6 +27,20 @@ use App\Models\User;
  */
 class UserScoreAggregate extends Model
 {
+    use WithDbCursorHelper;
+
+    const SORTS = [
+        'score_asc' => [
+            ['column' => 'total_score', 'order' => 'ASC'],
+            ['column' => 'last_score_id', 'order' => 'DESC'],
+        ],
+    ];
+
+    const DEFAULT_SORT = 'score_asc';
+
+    protected $casts = [
+        'in_room' => 'boolean',
+    ];
     protected $table = 'multiplayer_rooms_high';
 
     public $isNew = false;
@@ -35,6 +51,21 @@ class UserScoreAggregate extends Model
             'playlist_item_id' => $score->playlist_item_id,
             'user_id' => $score->user_id,
         ]);
+    }
+
+    public static function lookupOrDefault(User $user, Room $room): self
+    {
+        $obj = static::firstOrNew([
+            'user_id' => $user->getKey(),
+            'room_id' => $room->getKey(),
+        ]);
+
+        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
+            // init if required
+            $obj->$key = $obj->$key ?? 0;
+        }
+
+        return $obj;
     }
 
     public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, Score $score)
@@ -53,15 +84,7 @@ class UserScoreAggregate extends Model
 
     public static function new(User $user, Room $room): self
     {
-        $obj = static::firstOrNew([
-            'user_id' => $user->getKey(),
-            'room_id' => $room->getKey(),
-        ]);
-
-        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
-            // init if required
-            $obj->$key = $obj->$key ?? 0;
-        }
+        $obj = static::lookupOrDefault($user, $room);
 
         if (!$obj->exists) {
             $obj->isNew = true;
@@ -167,10 +190,7 @@ class UserScoreAggregate extends Model
         }
 
         $query = static::where('room_id', $this->room_id)->forRanking()
-            ->cursorWhere([
-                ['column' => 'total_score', 'order' => 'ASC', 'value' => $this->total_score],
-                ['column' => 'last_score_id', 'order' => 'DESC', 'value' => $this->last_score_id],
-            ]);
+            ->cursorSort('score_asc', $this);
 
         return 1 + $query->count();
     }

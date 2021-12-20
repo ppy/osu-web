@@ -6,7 +6,6 @@
 namespace Tests;
 
 use App\Http\Middleware\RequireScopes;
-use App\Models\OAuth\Token;
 use App\Models\User;
 use Illuminate\Routing\Route;
 use Laravel\Passport\Exceptions\MissingScopeException;
@@ -24,11 +23,7 @@ class RequireScopesTest extends TestCase
     public function testClientCredentials($scopes, $expectedException)
     {
         $this->setRequest(['public']);
-        $this->setUser(null, $scopes);
-
-        if ($expectedException !== null) {
-            $this->expectException($expectedException);
-        }
+        $this->setUser(null, ['public']);
 
         app(RequireScopes::class)->handle($this->request, $this->next);
         $this->assertTrue(oauth_token()->isClientCredentials());
@@ -43,17 +38,12 @@ class RequireScopesTest extends TestCase
         $this->assertNull(auth()->user());
     }
 
-    /**
-     * @dataProvider clientCredentialsTestWhenAllScopeRequiredDataProvider
-     */
-    public function testClientCredentialsWhenAllScopeRequired($scopes, $expectedException)
+    public function testClientCredentialsWhenAllScopeRequired()
     {
         $this->setRequest();
-        $this->setUser(null, $scopes);
+        $this->setUser(null, ['public']);
 
-        if ($expectedException !== null) {
-            $this->expectException($expectedException);
-        }
+        $this->expectException(MissingScopeException::class);
 
         app(RequireScopes::class)->handle($this->request, $this->next);
         $this->assertTrue(oauth_token()->isClientCredentials());
@@ -144,17 +134,13 @@ class RequireScopesTest extends TestCase
     public function userScopesTestDataProvider()
     {
         return [
-            'null is not a valid scope' => [null, null, MissingScopeException::class],
-            'No scopes' => [null, [], MissingScopeException::class],
             'All scopes' => [null, ['*'], null],
             'Has the required scope' => [['identify'], ['identify'], null],
             'Does not have the required scope' => [['identify'], ['somethingelse'], MissingScopeException::class],
             'Requires specific scope and all scope' => [['identify'], ['*'], null],
-            'Requires specific scope and no scope' => [['identify'], [], MissingScopeException::class],
             'Requires specific scope and multiple non-matching scopes' => [['identify'], ['somethingelse', 'alsonotright', 'nope'], MissingScopeException::class],
             'Requires specific scope and multiple scopes' => [['identify'], ['somethingelse', 'identify', 'nope'], null],
             'Blank require should deny regular scopes' => [null, ['identify'], MissingScopeException::class],
-
         ];
     }
 
@@ -187,17 +173,12 @@ class RequireScopesTest extends TestCase
         parent::setUp();
 
         // nearly all the tests in the class need a user, so might as well set it up here.
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
     }
 
-    protected function setUser(?User $user, ?array $scopes = null)
+    protected function setUser(?User $user, ?array $scopes = null, $client = null)
     {
-        $token = new Token([
-            'id' => 'notsaved',
-            'scopes' => $scopes,
-            'user_id' => optional($user)->getKey(),
-        ]);
-
+        $token = $this->createToken($user, $scopes, $client);
         $this->actAsUserWithToken($token);
     }
 }

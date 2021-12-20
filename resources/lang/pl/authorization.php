@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Osiągnięto dzienny limit nominacji, spróbuj ponownie jutro.',
-            'full_bn_required' => 'Musisz posiadać pełne uprawnienia nominatora, aby zakwalifikować tę beatmapę.',
-            'full_bn_required_hybrid' => 'Musisz posiadać pełne uprawnienia nominatora, aby nominować zestawy z beatmapami dla kilku trybów gry.',
             'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej czynności, spróbuj odświeżyć stronę.',
             'owner' => "Nie możesz nominować własnej beatmapy.",
             'set_metadata' => 'Musisz ustawić gatunek i język przed nominowaniem beatmapy.',
@@ -69,7 +67,8 @@ return [
         'friends_only' => 'Ten użytkownik blokuje wiadomości od osób spoza listy znajomych.',
         'moderated' => 'Ten kanał jest obecnie w trybie tylko dla moderatorów.',
         'no_access' => 'Nie masz dostępu do tego kanału.',
-        'restricted' => 'Nie możesz wysyłać wiadomości podczas uciszenia czy blokady konta.',
+        'restricted' => 'Nie możesz wysyłać wiadomości po tym, jak twoje konto zostało uciszone, ograniczone lub zablokowane.',
+        'silenced' => 'Nie możesz wysyłać wiadomości po tym, jak twoje konto zostało uciszone, ograniczone lub zablokowane.',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Nie możesz zmieniać swojego głosu po zakończeniu głosowania.',
+
+        'entry' => [
+            'limit_reached' => 'Osiągnięto limit zgłoszeń dla tego konkursu',
+            'over' => 'Dziękujemy za zgłoszenia! Przesyłanie prac zakończyło się i wkrótce rozpocznie się głosowanie.',
+        ],
     ],
 
     'forum' => [
@@ -119,7 +123,7 @@ return [
                 'user' => [
                     'require_login' => 'Zaloguj się, aby odpowiedzieć.',
                     'restricted' => "Nie możesz odpowiadać podczas blokady konta.",
-                    'silenced' => "Nie możesz odpowiadać podczas uciszenia.",
+                    'silenced' => "Nie możesz odpowiadać po tym, jak twoje konto zostało uciszone.",
                 ],
             ],
 
@@ -138,7 +142,7 @@ return [
                 'user' => [
                     'require_login' => 'Zaloguj się, aby zagłosować.',
                     'restricted' => "Nie możesz głosować podczas blokady konta.",
-                    'silenced' => "Nie możesz głosować podczas uciszenia.",
+                    'silenced' => "Nie możesz głosować po tym, jak twoje konto zostało uciszone.",
                 ],
             ],
 

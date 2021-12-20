@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Gendan opslag?',
         'edited' => 'Sidst redigeret af :user den :when, redigeret i alt :count gange.',
         'posted_at' => 'slået op på :when',
+        'posted_by' => 'Nyt oplsag af :username',
 
         'actions' => [
             'destroy' => 'Slet opslag',
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Slet opslag?',
+        'confirm_restore' => 'Gendan opslag?',
         'deleted' => 'slettede emne',
         'go_to_latest' => 'vis det seneste opslag',
         'has_replied' => '',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'af :user',
         'started_by_verbose' => 'startet af :user',
+
+        'actions' => [
+            'destroy' => 'Slet emne',
+            'restore' => 'Gendan emne',
+        ],
 
         'create' => [
             'close' => 'Luk',
@@ -117,6 +125,55 @@ return [
             'last' => 'gå til sidste opslag',
             'next' => 'spring over 10 opslag',
             'previous' => 'gå 10 opslag tilbage',
+        ],
+
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => '',
+                'date' => '',
+                'user' => '',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
         ],
 
         'post_edit' => [

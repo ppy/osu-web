@@ -6,13 +6,20 @@ import { classWithModifiers } from './utils/css';
 
 interface Props {
   current: number;
+  ignoreProgress: boolean;
   max: number;
-  onlyShowAsWarning?: boolean;
-  theme?: string;
+  onlyShowAsWarning: boolean;
+  theme: string;
   tooltip?: string;
 }
 
 export class CircularProgress extends React.PureComponent<Props, any> {
+  static defaultProps = {
+    ignoreProgress: false,
+    onlyShowAsWarning: false,
+    theme: '',
+  };
+
   bn = 'circular-progress';
 
   render() {
@@ -24,24 +31,23 @@ export class CircularProgress extends React.PureComponent<Props, any> {
       return null;
     }
 
+    const transform = this.props.ignoreProgress
+      ? undefined
+      : { transform: `rotate(${percentage}turn)` };
+
     return (
       <div
         className={classWithModifiers(bn, {
           over: percentage === 1,
           over50: percentage > 0.5,
           warn: percentage >= warnThreshold && percentage < 1,
-          [this.props.theme ?? '']: !!this.props.theme,
+          [this.props.theme]: osu.present(this.props.theme),
         })}
         title={this.props.tooltip || `${this.props.current} / ${this.props.max}`}
       >
         <div className={`${bn}__label`}>{this.props.max - this.props.current}</div>
         <div className={`${bn}__slice`}>
-          <div
-            className={`${bn}__circle`}
-            style={{
-              transform: `rotate(${percentage}turn)`,
-            }}
-          />
+          <div className={`${bn}__circle`} style={transform} />
           <div className={`${bn}__circle ${bn}__circle--fill`} />
         </div>
       </div>

@@ -6,10 +6,12 @@
 return [
     'all_read' => 'Kaikki ilmoitukset luettu!',
     'delete' => '',
+    'loading' => '',
     'mark_read' => '',
     'none' => '',
     'see_all' => '',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => '',
@@ -25,16 +27,22 @@ return [
         'beatmapset' => [
             '_' => 'Beatmappi',
 
-            'beatmapset_discussion' => [
+            'beatmap_owner_change' => [
                 '_' => '',
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_lock_compact' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_post_new_empty' => '',
-                'beatmapset_discussion_post_new_compact' => '',
-                'beatmapset_discussion_post_new_compact_empty' => '',
-                'beatmapset_discussion_review_new' => '',
-                'beatmapset_discussion_review_new_compact' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
+            'beatmapset_discussion' => [
+                '_' => 'Beatmap-keskustelut',
+                'beatmapset_discussion_lock' => 'Keskustelu beatmapissa ":title" on lukittu',
+                'beatmapset_discussion_lock_compact' => 'Keskustelu on lukittu',
+                'beatmapset_discussion_post_new' => 'Uusi viesti beatmapissa ":title" käyttäjältä :username: ":content"',
+                'beatmapset_discussion_post_new_empty' => 'Uusi viesti beatmapissa ":title" käyttäjältä :username',
+                'beatmapset_discussion_post_new_compact' => 'Uusi viesti käyttäjältä :username: ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Uusi viesti käyttäjältä :username',
+                'beatmapset_discussion_review_new' => 'Uusi arvostelu beatmapissa ":title" käyttäjältä :username sisältäen ongelmia: :problems, ehdotuksia: :suggestions, kehuja: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Uusi arvostelu käyttäjältä :username sisältäen ongelmia: :problems, ehdotuksia: :suggestions, kehuja: :praises',
                 'beatmapset_discussion_unlock' => '',
                 'beatmapset_discussion_unlock_compact' => '',
             ],
@@ -133,6 +141,19 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Mitalit',
 
@@ -140,13 +161,17 @@ return [
                 '_' => 'Uusi mitali',
                 'user_achievement_unlock' => '',
                 'user_achievement_unlock_compact' => '',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'Mitaleja saavutettu!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_post_new' => '',
@@ -174,19 +199,19 @@ return [
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Olet saanut uuden viestin käyttäjältä :username',
             ],
         ],
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Muutosloki ":title" on saanut uusia kommentteja',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Uutinen ":title" on saanut uusia kommentteja',
             ],
         ],
 
@@ -200,6 +225,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => '',
                 'user_achievement_unlock_self' => '',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

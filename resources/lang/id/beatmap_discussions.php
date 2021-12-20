@@ -6,7 +6,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Silakan masuk untuk menyunting.',
+            'null_user' => 'Anda harus masuk untuk dapat menyunting.',
             'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
             'wrong_user' => 'Hanya pembuat post yang diperbolehkan untuk menyunting post.',
         ],
@@ -17,14 +17,15 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => 'terhapus',
+        'deleted_beatmap' => 'telah dihapus',
         'none_found' => 'Tidak ada diskusi yang memenuhi kriteria pencarian.',
         'title' => 'Laman Diskusi Beatmap',
 
         'form' => [
             '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
-            'only_unresolved' => 'Hanya tampilkan diskusi yang belum selesai',
+            'mode' => 'Mode beatmap',
+            'only_unresolved' => 'Hanya tampilkan topik diskusi yang belum terjawab',
             'types' => 'Tipe pesan',
             'username' => 'Nama Pengguna',
 
@@ -52,9 +53,16 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Tidak ada postingan yang membahas masalah saya',
-        'notice' => 'Terdapat postingan pada :timestamp (:existing_timestamps). Silakan periksa sebelum memposting.',
+        'confirm' => 'Saya tidak menemukan adanya postingan yang membahas isu yang hendak saya angkat',
+        'notice' => 'Kami mendeteksi adanya postingan-postingan lain di sekitar :timestamp (:existing_timestamps). Harap periksa apakah isu yang hendak Anda angkat telah dibahas oleh pengguna lain sebelumnya.',
         'unsaved' => ':count pada kajian ini',
+    ],
+
+    'owner_editor' => [
+        'button' => 'Kepemilikan Tingkat Kesulitan',
+        'reset_confirm' => 'Atur ulang pemilik tingkat kesulitan ini?',
+        'user' => 'Pemilik',
+        'version' => 'Tingkat Kesulitan',
     ],
 
     'reply' => [
@@ -73,6 +81,7 @@ return [
             'external_references' => 'kajian ini mengandung satu atau lebih poin yang mengacu pada isu-isu yang tidak berasal dari beatmap ini',
             'invalid_block_type' => 'tipe blok tidak sah',
             'invalid_document' => 'kajian tidak sah',
+            'invalid_discussion_type' => 'tipe diskusi tidak valid',
             'minimum_issues' => 'kajian harus tersusun atas setidaknya :count isu|kajian harus tersusun atas setidaknya :count isu',
             'missing_text' => 'tidak terdapat tulisan pada blok',
             'too_many_blocks' => 'kajian hanya dapat tersusun sepanjang maksimal :count paragraf/isu|kajian hanya dapat tersusun sepanjang maksimal :count paragraf/isu',
@@ -82,7 +91,7 @@ return [
     'system' => [
         'resolved' => [
             'true' => 'Ditandai sebagai telah terjawab oleh :user',
-            'false' => 'Dibuka ulang oleh :user',
+            'false' => 'Dibuka kembali oleh :user',
         ],
     ],
 
@@ -93,6 +102,6 @@ return [
 
     'user_filter' => [
         'everyone' => 'Semua orang',
-        'label' => 'Filter berdasarkan pengguna',
+        'label' => 'Saring berdasarkan pengguna',
     ],
 ];

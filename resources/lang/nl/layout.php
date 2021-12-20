@@ -19,7 +19,6 @@ return [
             'contest' => 'competitie',
             'contests' => 'competities',
             'root' => 'console',
-            'store_orders' => 'winkel beheerder',
         ],
 
         'artists' => [
@@ -47,6 +46,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => 'multiplayer',
             'show' => 'info',
         ],
     ],
@@ -62,49 +62,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'aanbevolen artiesten',
-            'index' => 'index',
-            'packs' => 'pakketten',
         ],
         'community' => [
             '_' => 'community',
-            'chat' => 'chat',
-            'contests' => 'wedstrijden',
             'dev' => 'ontwikkeling',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'live',
-            'tournaments' => 'toernooien',
         ],
         'help' => [
             '_' => 'hulp',
-            'getAbuse' => '',
+            'getAbuse' => 'rapporteer misbruik',
             'getFaq' => 'faq',
             'getRules' => 'regels',
             'getSupport' => 'ondersteuning',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'start',
-            'changelog-index' => 'changelog',
-            'getDownload' => 'downloaden',
-            'news-index' => 'nieuws',
-            'search' => 'zoeken',
             'team' => 'team',
         ],
         'rankings' => [
             '_' => 'rankings',
-            'charts' => 'in de schijnwerpers',
-            'country' => 'land',
-            'index' => 'prestatie',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multiplayer',
-            'score' => 'score',
         ],
         'store' => [
             '_' => 'winkel',
-            'cart-show' => 'winkelwagen',
-            'getListing' => 'index',
-            'orders-index' => 'bestelgeschiedenis',
         ],
     ],
 
@@ -159,6 +138,10 @@ return [
             'error' => 'Ongeldige aanvraagparameter',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Snelheids limiet overschreden',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh nee! Iets brak! ;_;',
             'description' => "We worden automatisch op de hoogte gesteld van alle fouten.",
@@ -171,8 +154,8 @@ return [
             'error' => 'Offline voor onderhoud!',
             'description' => "Onderhoud duurt meestal ongeveer 5 seconden tot 10 minuten. Als we langer offline zijn, check :link voor meer informatie.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -183,7 +166,7 @@ return [
         'button' => 'inloggen / registreren',
 
         'login' => [
-            'forgot' => "Ik ben mij gegevens vergeten",
+            'forgot' => "Ik ben mijn inloggegevens vergeten",
             'password' => 'wachtwoord',
             'title' => 'Log In Om Verder Te Gaan',
             'username' => 'gebruikersnaam',
@@ -196,7 +179,7 @@ return [
 
         'register' => [
             'download' => 'Download',
-            'info' => 'Je hebt een account nodig, meneer. Waarom heeft u er niet al eentje?',
+            'info' => 'Download osu! om een account aan te maken!',
             'title' => "Heb je geen account?",
         ],
     ],
@@ -204,6 +187,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Instellingen',
+            'follows' => 'Volglijsten',
             'friends' => 'Vrienden',
             'logout' => 'Log Uit',
             'profile' => 'Mijn Profiel',

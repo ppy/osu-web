@@ -7,16 +7,18 @@ namespace Tests\Transformers;
 
 use App\Models\User;
 use App\Transformers\UserTransformer;
-use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class UserCompactTransformerTest extends TestCase
 {
-    public function testFriendsIsNotVisibleWithOAuth()
+    /**
+     * @dataProvider regularOAuthScopesDataProvider
+     */
+    public function testFriendsIsNotVisibleWithOAuth($scopes)
     {
-        $viewer = $this->createUserWithGroup([]);
+        $viewer = User::factory()->create();
 
-        $this->actAsScopedUser($viewer, Passport::scopes()->pluck('id')->all());
+        $this->actAsScopedUser($viewer, [$scopes]);
 
         $json = json_item($viewer, 'UserCompact', ['friends']);
         $this->assertArrayNotHasKey('friends', $json);
@@ -25,10 +27,10 @@ class UserCompactTransformerTest extends TestCase
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testGroupPermissionsUserSilenceShowExtendedInfo($groupIdentifier)
+    public function testGroupPermissionsUserSilenceShowExtendedInfo(?string $groupIdentifier)
     {
-        $viewer = $this->createUserWithGroup($groupIdentifier);
-        $user = factory(User::class)->states('restricted', 'silenced', 'with_note')->create();
+        $viewer = User::factory()->withGroup($groupIdentifier)->create();
+        $user = User::factory()->restricted()->silenced()->withNote()->create();
 
         $this->assertSame(3, $user->accountHistories()->count());
 
@@ -47,10 +49,10 @@ class UserCompactTransformerTest extends TestCase
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testGroupPermissionsWithOAuth($groupIdentifier)
+    public function testGroupPermissionsWithOAuth(?string $groupIdentifier)
     {
-        $viewer = $this->createUserWithGroup($groupIdentifier);
-        $user = factory(User::class)->states('silenced')->create();
+        $viewer = User::factory()->withGroup($groupIdentifier)->create();
+        $user = User::factory()->silenced()->create();
         $this->actAsScopedUser($viewer);
 
         $json = json_item($user, 'UserCompact', ['account_history.actor', 'account_history.supporting_url']);
@@ -63,10 +65,10 @@ class UserCompactTransformerTest extends TestCase
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testGroupPermissionsWithoutOAuth($groupIdentifier, $visible)
+    public function testGroupPermissionsWithoutOAuth(?string $groupIdentifier, bool $visible)
     {
-        $viewer = $this->createUserWithGroup($groupIdentifier);
-        $user = factory(User::class)->states('silenced')->create();
+        $viewer = User::factory()->withGroup($groupIdentifier)->create();
+        $user = User::factory()->silenced()->create();
         $this->actAsUser($viewer);
 
         $json = json_item($user, 'UserCompact', ['account_history.actor', 'account_history.supporting_url']);
@@ -86,7 +88,7 @@ class UserCompactTransformerTest extends TestCase
      */
     public function testPropertyIsNotVisibleWithOAuth(string $property)
     {
-        $viewer = $this->createUserWithGroup([]);
+        $viewer = User::factory()->create();
 
         $this->actAsScopedUser($viewer);
 
@@ -99,7 +101,7 @@ class UserCompactTransformerTest extends TestCase
      */
     public function testPropertyIsVisibleWithoutOAuth(string $property)
     {
-        $viewer = $this->createUserWithGroup([]);
+        $viewer = User::factory()->create();
 
         $this->actAsUser($viewer);
 
@@ -114,7 +116,6 @@ class UserCompactTransformerTest extends TestCase
             ['bng', false],
             ['gmt', false],
             ['nat', false],
-            [[], false],
             [null, false],
         ];
     }

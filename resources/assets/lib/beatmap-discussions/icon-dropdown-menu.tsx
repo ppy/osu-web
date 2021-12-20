@@ -2,8 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as _ from 'lodash';
-import { PopupMenuPersistent } from 'popup-menu-persistent';
+import { PopupMenu } from 'popup-menu';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import { SlateContext } from './slate-context';
 
 export interface MenuItem {
@@ -21,17 +22,17 @@ interface Props {
 
 export default class IconDropdownMenu extends React.Component<Props> {
   static contextType = SlateContext;
-  context!: React.ContextType<typeof SlateContext>;
+  declare context: React.ContextType<typeof SlateContext>;
 
   render(): React.ReactNode {
     return (
-      <PopupMenuPersistent customRender={this.renderButton}>
+      <PopupMenu customRender={this.renderButton} direction='right'>
         {() => (
           <div className='simple-menu simple-menu--popup-menu-compact'>
-            {this.props.menuOptions.map((item) => this.renderMenuItem(item))}
+            {this.props.menuOptions.map(this.renderMenuItem)}
           </div>
         )}
-      </PopupMenuPersistent>
+      </PopupMenu>
     );
   }
 
@@ -47,42 +48,32 @@ export default class IconDropdownMenu extends React.Component<Props> {
 
     return (
       <div
-        className={osu.classWithModifiers(bn, mods)}
-        contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-        onClick={toggle}
         ref={ref}
+        className={classWithModifiers(bn, mods)} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+        contentEditable={false}
+        onClick={toggle}
       >
         {selected.icon}
         {children}
       </div>
     );
-  }
+  };
 
-  renderMenuItem = (menuItem: MenuItem) => {
-    const baseClass = 'simple-menu__item';
-    const mods = [];
-    const iconClass = 'simple-menu__item-icon';
-
-    if (menuItem.id === this.props.selected) {
-      mods.push('active');
-    }
-
-    return (
-      <button
-        className={osu.classWithModifiers(baseClass, mods)}
-        key={menuItem.id}
-        data-id={menuItem.id}
-        onClick={this.select}
-      >
-        <div className={osu.classWithModifiers(iconClass, ['icon-dropdown-menu'])}>
-          {menuItem.icon}
-        </div>
-        <div className='simple-menu__label'>
-          {menuItem.label}
-        </div>
-      </button>
-    );
-  }
+  renderMenuItem = (menuItem: MenuItem) => (
+    <button
+      key={menuItem.id}
+      className={classWithModifiers('simple-menu__item', { active: menuItem.id === this.props.selected })}
+      data-id={menuItem.id}
+      onClick={this.select}
+    >
+      <div className={classWithModifiers('simple-menu__item-icon', 'icon-dropdown-menu')}>
+        {menuItem.icon}
+      </div>
+      <div className='simple-menu__label'>
+        {menuItem.label}
+      </div>
+    </button>
+  );
 
   select = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
@@ -94,5 +85,5 @@ export default class IconDropdownMenu extends React.Component<Props> {
     }
 
     this.props.onSelect(target.dataset.id ?? '');
-  }
+  };
 }

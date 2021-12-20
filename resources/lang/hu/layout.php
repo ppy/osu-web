@@ -15,11 +15,10 @@ return [
     'header' => [
         'admin' => [
             'beatmapset' => 'beatmapset',
-            'beatmapset_covers' => 'beatmapset események',
+            'beatmapset_covers' => 'beatmapset coverek',
             'contest' => 'verseny',
             'contests' => 'versenyek',
             'root' => 'konzol',
-            'store_orders' => 'admin bolt',
         ],
 
         'artists' => [
@@ -47,6 +46,7 @@ return [
 
         'users' => [
             'modding' => 'modolás',
+            'multiplayer' => 'többjátékos',
             'show' => 'információ',
         ],
     ],
@@ -62,49 +62,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmap-ek',
-            'artists' => 'kiemelt előadók',
-            'index' => 'lista',
-            'packs' => 'csomagok',
         ],
         'community' => [
             '_' => 'közösség',
-            'chat' => 'chat',
-            'contests' => 'versenyek',
             'dev' => 'fejlesztés',
-            'forum-forums-index' => 'fórumok',
-            'getLive' => 'élő',
-            'tournaments' => 'versenyek',
         ],
         'help' => [
             '_' => 'segítség',
-            'getAbuse' => '',
+            'getAbuse' => 'visszaélés jelentése',
             'getFaq' => 'gyik',
             'getRules' => 'szabályok',
             'getSupport' => 'nem, tényleg segítség kell!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'főoldal',
-            'changelog-index' => 'változtatások',
-            'getDownload' => 'letöltés',
-            'news-index' => 'újdonságok',
-            'search' => 'keresés',
             'team' => 'csapat',
         ],
         'rankings' => [
             '_' => 'rangsor',
-            'charts' => 'kiemeltek',
-            'country' => 'ország',
-            'index' => 'teljesítmény',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'többjátékos',
-            'score' => 'pontszám',
         ],
         'store' => [
             '_' => 'áruház',
-            'cart-show' => 'kosár',
-            'getListing' => 'lista',
-            'orders-index' => 'rendelési előzmények',
         ],
     ],
 
@@ -113,7 +92,7 @@ return [
             '_' => 'Általános',
             'home' => 'Főoldal',
             'changelog-index' => 'Változtatások',
-            'beatmaps' => 'Beatmap Lista',
+            'beatmaps' => 'Beatmap lista',
             'download' => 'osu! letöltése',
         ],
         'help' => [
@@ -157,6 +136,10 @@ return [
         ],
         '422' => [
             'error' => 'Érvénytelen lekérési paraméterek',
+            'description' => '',
+        ],
+        '429' => [
+            'error' => 'Ráta korlát túllépve',
             'description' => '',
         ],
         '500' => [
@@ -204,6 +187,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Beállítások',
+            'follows' => 'Figyelőlisták',
             'friends' => 'Barátok',
             'logout' => 'Kijelentkezés',
             'profile' => 'Profilom',

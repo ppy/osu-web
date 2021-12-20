@@ -29,12 +29,12 @@ return [
             ],
             'ads' => [
                 'title' => 'osu!\'nun kendi kendine devam etmesini sağlayın',
-                'description' => 'Sizin yardımlarınız oyunu bağımsız; tamamen reklamlardan, sponsorlardan barındırabilir.',
+                'description' => 'Sizin katkılarınız oyunun özgür, reklamlardan ve sponsorlardan tamamen bağımsız kalmasına yardımcı olur.',
             ],
             'tournaments' => [
                 'title' => 'Resmi Turnuvalar',
                 'description' => 'Oyuna yapacağınız bağışlar resmi osu! Dünya Kupası\'nı sürdürmek (ve ödülleri için) bizim için çok önemlidir.',
-                'link_text' => 'Turnuvaları Keşfet &raquo;',
+                'link_text' => 'Turnuvaları keşfet &raquo;',
             ],
             'bounty-program' => [
                 'title' => 'Açık Kaynak Ödül Programı',
@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Özelleştirme',
-                'description' => "Tamamen özelleştirilebilir bir kullanıcı sayfası ile profilinizi özelleştirin.",
+                'description' => "Kullanıcı profiliniz için özel bir kapak resmi yükleyerek veya tamamen kişiselleştirilebilir bir \"ben!\" kısmı oluşturarak dikkat çekin.",
             ],
 
             'beatmap_filters' => [
@@ -101,7 +101,7 @@ return [
 
             'change_username' => [
                 'title' => 'Kullanıcı Adı Değiştirme',
-                'description' => 'Ekstra ücret alınmadan kullanıcı adını değiştirebilme yetisi. (maksimum bir kere)',
+                'description' => 'Tek seferlik isim değiştirme hakkı ilk supporter satın alımınız ile birlikte ücretsiz verilir.',
             ],
 
             'skinnables' => [
@@ -111,7 +111,7 @@ return [
 
             'feature_votes' => [
                 'title' => 'Özellik Oyları',
-                'description' => 'Özellik istekleri için oylar. (Ayda 2 adet)',
+                'description' => 'Özellik talepleri için oylar. (Ayda 2 adet)',
             ],
 
             'sort_options' => [
@@ -140,7 +140,7 @@ return [
         'supporter_status' => [
             'contribution' => 'Desteğiniz için teşekkürler! Toplamda :tags farklı alımla :dollars yardımda bulundunuz!',
             'gifted' => ":giftedTags defa hediye olarak aldınız (toplam :giftedDollars hediye verdiniz), bu ne bonkörlük!",
-            'not_yet' => "Şimdilik supporter'ınız yok :(",
+            'not_yet' => "Henüz bir osu!supporter etiketiniz yok :(",
             'valid_until' => 'Şu anki osu!supporter etiketiniz :date tarihine kadar geçerli!',
             'was_valid_until' => 'osu!supporter etiketiniz :date tarihine kadar geçerliydi.',
         ],

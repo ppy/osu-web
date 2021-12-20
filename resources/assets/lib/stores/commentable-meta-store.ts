@@ -1,13 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DispatcherAction from 'actions/dispatcher-action';
-import { UserLogoutAction } from 'actions/user-login-actions';
 import { CommentableMetaJson } from 'interfaces/comment-json';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
 export default class CommentableMetaStore {
   @observable meta = observable.map<string | null, CommentableMetaJson>();
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   flushStore() {
@@ -20,12 +22,6 @@ export default class CommentableMetaStore {
     return obj != null ? obj : this.meta.get(null);
   }
 
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof UserLogoutAction) {
-      this.flushStore();
-    }
-  }
-
   @action
   initialize(meta: CommentableMetaJson[] | undefined | null) {
     this.flushStore();
@@ -34,9 +30,9 @@ export default class CommentableMetaStore {
 
   @action
   updateWithJson(data: CommentableMetaJson[] | undefined | null) {
-    if (data == null) { return; }
+    if (data == null) return;
     for (const json of data) {
-      const key = json.type != null && json.id != null ? `${json.type}-${json.id}` : null;
+      const key = 'id' in json ? `${json.type}-${json.id}` : null;
       this.meta.set(key, json);
     }
   }

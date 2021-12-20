@@ -4,13 +4,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => 'terhapus',
+    'deleted' => 'telah dihapus',
+    'deleted_by' => 'dihapus :timeago oleh :user',
+    'deleted_by_system' => 'sistem',
     'deleted_count' => ':count_delimited komentar yang dihapus|:count_delimited komentar yang dihapus',
     'edited' => 'disunting :timeago oleh :user',
     'pinned' => 'disematkan',
     'empty' => 'Belum ada komentar.',
     'load_replies' => 'muat lebih banyak balasan',
-    'replies_count' => ':count_delimited balasan',
+    'replies_count' => ':count_delimited balasan|:count_delimited balasan',
     'title' => 'Komentar',
 
     'commentable_name' => [
@@ -35,7 +37,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'komentar',
         'nav_title' => 'daftar',
+        'no_comments' => 'belum ada komentar...',
     ],
 
     'placeholder' => [

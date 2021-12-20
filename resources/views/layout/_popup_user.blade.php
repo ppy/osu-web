@@ -20,29 +20,29 @@
         class="simple-menu__item"
         href="{{ route('users.show', Auth::user()) }}"
     >
-        {{ trans('layout.popup_user.links.profile') }}
+        {{ osu_trans('layout.popup_user.links.profile') }}
     </a>
 
     <a class="simple-menu__item" href="{{ route('friends.index') }}">
-        {{ trans('layout.popup_user.links.friends') }}
+        {{ osu_trans('layout.popup_user.links.friends') }}
     </a>
 
     <a class="simple-menu__item" href="{{ route('follows.index', ['subtype' => App\Models\Follow::DEFAULT_SUBTYPE]) }}">
-        {{ trans('layout.popup_user.links.follows') }}
+        {{ osu_trans('layout.popup_user.links.follows') }}
     </a>
 
     <a class="simple-menu__item" href="{{ route('account.edit') }}">
-        {{ trans('layout.popup_user.links.account-edit') }}
+        {{ osu_trans('layout.popup_user.links.account-edit') }}
     </a>
 
     <button
         class="js-logout-link simple-menu__item"
         type="button"
         data-url="{{ route('logout') }}"
-        data-confirm="{{ trans('users.logout_confirm') }}"
+        data-confirm="{{ osu_trans('users.logout_confirm') }}"
         data-method="delete"
         data-remote="1"
     >
-        {{ trans('layout.popup_user.links.logout') }}
+        {{ osu_trans('layout.popup_user.links.logout') }}
     </button>
 </div>

@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Склад',
-    ],
-
     'cart' => [
         'checkout' => 'Перевірка',
         'info' => ':count_delimited товар в кошику ($:subtotal)|:count_delimited товару в кошику ($:subtotal)|:count_delimited товарів в кошику ($:subtotal)',
@@ -69,11 +65,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Замовлення розміщено :date',
-
+        'cancel' => 'Скасувати замовлення',
+        'cancel_confirm' => 'Це замовлення буде скасовано і оплата не буде прийнята за цей товар. Постачальник оплати не може негайно випустити зарезервовані кошти. Ви впевнені?',
+        'cancel_not_allowed' => 'Це замовлення не може бути скасоване в даний час.',
         'invoice' => 'Переглянути рахунок',
         'no_orders' => 'Ви нічого не замовляли.',
+        'paid_on' => 'Замовлення розміщено :date',
         'resume' => 'Продовжити покупку',
+        'shopify_expired' => 'Термін дії посилання для оформлення замовлення закінчився.',
 
         'item' => [
             'display_name' => [

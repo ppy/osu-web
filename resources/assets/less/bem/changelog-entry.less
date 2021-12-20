@@ -4,8 +4,12 @@
 .changelog-entry {
   display: flex;
   font-size: @font-size--title-small-3;
-  padding: 5px 0;
+  padding: 5px 0 5px 1em; // 1em to accomodate title-icon
   flex-direction: column;
+
+  @media @desktop {
+    padding-left: 0;
+  }
 
   &__icon {
     opacity: 0.5;
@@ -31,6 +35,12 @@
   &__title {
     &--major {
       color: @yellow;
+    }
+
+    code {
+      .default-border-radius();
+      background-color: @osu-colour-b5;
+      padding: 1px 4px;
     }
   }
 

@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! 비트맵',
         'osu' => 'osu! 프로필',
         'site' => '공식 웹사이트',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => '곡',
         'count' => ':count 곡',
-        'exclusive' => 'osu! 고유 곡',
+        'original' => 'osu! 오리지널',
+        'original_badge' => '오리지널',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => '길이',
         'bpm' => 'bpm',
         'genre' => '장르',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '트랙 검색',
+
+            'form' => [
+                'advanced' => '고급 검색',
+                'album' => '앨범',
+                'artist' => '아티스트',
+                'bpm_gte' => '최소 BPM',
+                'bpm_lte' => '최대 BPM',
+                'empty' => '검색 조건에 맞는 트랙을 찾을 수 없습니다.',
+                'genre' => '장르',
+                'genre_all' => '전체',
+                'length_gte' => '최소 길이',
+                'length_lte' => '최대 길이',
+            ],
+        ],
     ],
 ];

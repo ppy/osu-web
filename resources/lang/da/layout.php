@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Afspil næste sang automatisk',
     ],
 
     'defaults' => [
@@ -19,7 +19,6 @@ return [
             'contest' => 'konkurrence',
             'contests' => 'konkurrencer',
             'root' => 'konsol',
-            'store_orders' => 'butik admin',
         ],
 
         'artists' => [
@@ -47,6 +46,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => '',
             'show' => 'info',
         ],
     ],
@@ -62,49 +62,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'udvalgte kunstnere',
-            'index' => 'liste',
-            'packs' => 'pakker',
         ],
         'community' => [
             '_' => 'fællesskab',
-            'chat' => 'chat',
-            'contests' => 'konkurrencer',
             'dev' => 'udvikling',
-            'forum-forums-index' => 'forummer',
-            'getLive' => 'live',
-            'tournaments' => 'turneringer',
         ],
         'help' => [
             '_' => 'hjælp',
-            'getAbuse' => '',
+            'getAbuse' => 'anmeld misbrug',
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nej, jeg behøver virkelig noget hjælp!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'hjem',
-            'changelog-index' => 'ændringsoversigt',
-            'getDownload' => 'download',
-            'news-index' => 'nyheder',
-            'search' => 'søg',
             'team' => 'team',
         ],
         'rankings' => [
             '_' => 'rangering',
-            'charts' => 'spotlights',
-            'country' => 'land',
-            'index' => 'præstation',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
-            'score' => 'score',
         ],
         'store' => [
             '_' => 'butik',
-            'cart-show' => 'indkøbskurv',
-            'getListing' => 'katalog',
-            'orders-index' => 'ordrehistorik',
         ],
     ],
 
@@ -159,6 +138,10 @@ return [
             'error' => 'Ugyldige forespørgselsparametre',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Åh nej! Der er noget galt! ;_;',
             'description' => "Vi er blevet informeret om fejlen.",
@@ -171,8 +154,8 @@ return [
             'error' => 'Under Vedligeholdelse!',
             'description' => "Vedligeholdelse tager som regel mellem 5 sekunder og 10 minutter. Hvis siden er nede i længere tid, se :link for mere information.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -180,7 +163,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'log ind / Tilmeld',
 
         'login' => [
             'forgot' => "Jeg har glemt min login-info",
@@ -204,6 +187,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Indstillinger',
+            'follows' => 'Overvågningsliste',
             'friends' => 'Venner',
             'logout' => 'Log ud',
             'profile' => 'Min Profil',

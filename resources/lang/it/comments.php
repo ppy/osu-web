@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'eliminato',
+    'deleted_by' => 'eliminato :timeago da :user',
+    'deleted_by_system' => 'sistema',
     'deleted_count' => ':count_delimited commento eliminato|:count_delimited commenti eliminati',
     'edited' => 'modificato :timeago da :user',
     'pinned' => 'fissato',
@@ -22,7 +24,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Premi invio per :action. Usa shift+enter per andare a capo.',
+            '_' => 'Premi invio per :action. Usa shift+invio per andare a capo.',
             'edit' => 'salvare',
             'new' => 'postare',
             'reply' => 'rispondere',
@@ -35,7 +37,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'commenti',
         'nav_title' => 'lista',
+        'no_comments' => 'nessun commento trovato...',
     ],
 
     'placeholder' => [

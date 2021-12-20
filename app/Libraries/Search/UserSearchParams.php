@@ -9,23 +9,28 @@ use App\Libraries\Elasticsearch\SearchParams;
 
 class UserSearchParams extends SearchParams
 {
+    const VALID_SORT_FIELDS = ['relevance', 'username'];
+    const DEFAULT_SORT_FIELD = 'relevance';
+
     // all public because lazy.
 
     public $queryString = null;
     public $recentOnly = false;
 
+    public $sortField = 'relevance';
+    public $sortOrder = 'desc';
+
     /** {@inheritdoc} */
     public $size = 20;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getCacheKey(): string
+    public static function defaultSortOrder(string $field)
     {
-        $vars = get_object_vars($this);
-        ksort($vars);
-
-        return 'user-search:'.json_encode($vars);
+        switch ($field) {
+            case 'username':
+                return 'asc';
+            default:
+                return 'desc';
+        }
     }
 
     /**

@@ -22,12 +22,16 @@ return [
             '401-verification' => 'アカウント認証',
             '405' => '見つかりません',
             '422' => '無効なリクエスト',
+            '429' => 'リクエストが多すぎます',
             '500' => '予期せぬエラー',
             '503' => 'メンテナンス',
         ],
     ],
     'forum' => [
         '_' => 'フォーラム',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'ダッシュボード',
         ],
@@ -36,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'ダッシュボード',
             'verify_link' => 'アカウント認証',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => '注目アーティスト',
@@ -75,6 +82,9 @@ return [
         'contests_controller' => [
             '_' => 'コンテスト',
         ],
+        'follows_controller' => [
+            'index' => 'ダッシュボード',
+        ],
         'friends_controller' => [
             'index' => 'ダッシュボード',
         ],
@@ -113,7 +123,7 @@ return [
             '_' => 'パフォーマンス',
         ],
         'store_controller' => [
-            '_' => 'osu!ストア',
+            '_' => 'ストア',
         ],
         'tournaments_controller' => [
             '_' => 'トーナメント',
@@ -123,7 +133,7 @@ return [
             'disabled' => '通知',
         ],
         'wiki_controller' => [
-            '_' => 'ナレッジベース',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -131,12 +141,20 @@ return [
             '_' => 'ランキング',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!ストア',
+        '_' => 'ストア',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder情報',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'マルチプレイヤー履歴',
         ],
     ],
 ];

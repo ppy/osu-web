@@ -9,7 +9,7 @@ interface State {
   username: string;
 }
 
-export default class ForumPostReport extends React.Component<{}, State> {
+export default class ForumPostReport extends React.Component<Record<string, never>, State> {
   state = {
     postId: '',
     username: '',
@@ -40,11 +40,11 @@ export default class ForumPostReport extends React.Component<{}, State> {
   }
 
   private onClickReportButton = (e: JQuery.ClickEvent<Document>) => {
-    if (e.button !== 0) { return; }
+    if (e.button !== 0) return;
 
     const post = e.currentTarget.closest('.js-forum-post');
 
-    if (post == null) { return; }
+    if (post == null) return;
 
     const postId = post.dataset.postId;
     const username = post.dataset.postUsername;
@@ -58,5 +58,5 @@ export default class ForumPostReport extends React.Component<{}, State> {
         this.reportRef.current.showForm();
       }
     });
-  }
+  };
 }

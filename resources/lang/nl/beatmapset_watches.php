@@ -9,12 +9,13 @@ return [
         'title_compact' => 'modding volglijst',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Beatmaps gevolgd',
+            'unread' => 'Beatmaps met nieuwe activiteit',
         ],
 
         'table' => [
             'empty' => 'Geen map discussies aan het volgen.',
+            'last_update' => 'Laatste update',
             'open_issues' => 'Open problemen',
             'state' => 'Staat',
             'title' => 'Titel',

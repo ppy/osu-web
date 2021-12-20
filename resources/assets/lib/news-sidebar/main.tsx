@@ -42,9 +42,9 @@ export default function Main(props: Props) {
   return (
     <div className='sidebar'>
       <button
-        type='button'
         className='sidebar__mobile-toggle sidebar__mobile-toggle--mobile-only js-mobile-toggle'
         data-mobile-toggle-target='news-archive'
+        type='button'
       >
         <h2 className='sidebar__title'>
           {osu.trans('news.sidebar.archive')}
@@ -56,7 +56,7 @@ export default function Main(props: Props) {
       </button>
 
       <div className='sidebar__content hidden-xs js-mobile-toggle' data-mobile-toggle-id='news-archive'>
-        <Years years={props.data.years} currentYear={props.data.current_year} />
+        <Years currentYear={props.data.current_year} years={props.data.years} />
 
         {orderedPostDates.map((key) => {
           if (groupedPosts[key] == null || dateMap[key] == null) {
@@ -67,13 +67,13 @@ export default function Main(props: Props) {
           const initialExpand = first;
           first = false;
 
-          return <MonthListing
+          return (<MonthListing
+            key={key}
             currentPost={props.currentPost}
             date={date}
             initialExpand={initialExpand}
-            key={key}
             posts={groupedPosts[key]}
-          />;
+          />);
         })}
       </div>
     </div>

@@ -1,11 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+/* eslint-disable max-classes-per-file */
+
 import DispatcherAction from 'actions/dispatcher-action';
 import NotificationJson, { NotificationBundleJson } from 'interfaces/notification-json';
 import { fromJson, NotificationIdentity, NotificationIdentityJson } from 'notifications/notification-identity';
 
-// tslint:disable: max-classes-per-file
 export interface NotificationEventLogoutJson {
   event: 'logout';
 }
@@ -17,9 +18,9 @@ export interface NotificationEventNewJson {
 
 export interface NotificationEventDeleteJson {
   data: {
-    notifications: NotificationIdentityJson[],
-    read_count: number,
-    timestamp: string,
+    notifications: NotificationIdentityJson[];
+    read_count: number;
+    timestamp: string;
   };
   event: 'delete';
 }
@@ -30,9 +31,9 @@ export interface NotificationEventMoreLoadedContext {
 
 export interface NotificationEventReadJson {
   data: {
-    notifications: NotificationIdentityJson[],
-    read_count: number,
-    timestamp: string,
+    notifications: NotificationIdentityJson[];
+    read_count: number;
+    timestamp: string;
   };
   event: 'read';
 }

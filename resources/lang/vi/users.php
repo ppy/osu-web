@@ -34,28 +34,28 @@ return [
     'blocks' => [
         'banner_text' => 'Bạn đã chặn người dùng này.',
         'blocked_count' => 'người dùng đã bị chặn (:count)',
-        'hide_profile' => 'ẩn trang cá nhân',
+        'hide_profile' => 'Ẩn trang cá nhân',
         'not_blocked' => 'Người dùng này chưa bị chặn.',
-        'show_profile' => 'hiển thị trang cá nhân',
+        'show_profile' => 'Hiển thị trang cá nhân',
         'too_many' => 'Đã đạt giới hạn số người bị chặn.',
         'button' => [
-            'block' => 'chặn',
-            'unblock' => 'bỏ chặn',
+            'block' => 'Chặn',
+            'unblock' => 'Bỏ chặn',
         ],
     ],
 
     'card' => [
         'loading' => 'Đang tải...',
-        'send_message' => 'gửi tin nhắn',
+        'send_message' => 'Gửi tin nhắn',
     ],
 
     'disabled' => [
-        'title' => '',
+        'title' => 'Ôi không! Có vẻ tài khoản của bạn đã bị vô hiệu hóa.',
         'warning' => "",
 
         'if_mistake' => [
             '_' => '',
-            'email' => '',
+            'email' => 'email',
         ],
 
         'reasons' => [
@@ -64,19 +64,19 @@ return [
 
             'tos' => [
                 '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                'community_rules' => 'tiêu chuẩn cộng đồng',
+                'tos' => 'điều khoản dịch vụ',
             ],
         ],
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Thành viên theo chế độ chơi',
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Tài khoản của bạn đã không sử dụng trong một thời gian dài.",
         ],
     ],
 
@@ -84,11 +84,11 @@ return [
         '_' => 'Đăng nhập',
         'button' => 'Đăng nhập',
         'button_posting' => 'Đang đăng nhập...',
-        'email_login_disabled' => '',
+        'email_login_disabled' => 'Đăng nhập bằng email hiện đã bị vô hiệu. Vui lòng sử dụng tên người dùng để đăng nhập.',
         'failed' => 'Đăng nhập không chính xác',
         'forgot' => 'Quên mật khẩu?',
-        'info' => '',
-        'invalid_captcha' => '',
+        'info' => 'Vui lòng đăng nhập để tiếp tục',
+        'invalid_captcha' => 'Quá nhiều lần thử đăng nhập thất bại, vui lòng hoàn tất captcha và thử lại. (Làm mới trang nếu không thấy captcha)',
         'locked_ip' => 'Địa chỉ IP của bạn đã bị khóa. Vui lòng đợi một vài phút.',
         'password' => 'Mật khẩu',
         'register' => "Không có tài khoản osu!? Tạo một tài khoản mới",
@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Chơi xấu / Gian lận',
+            'multiple_accounts' => 'Sử dụng nhiều tài khoản',
             'insults' => 'Xúc phạm tôi / những người khác',
             'spam' => 'Spamming',
             'unwanted_content' => 'Có những nội dung không phù hợp',
@@ -154,6 +155,10 @@ return [
         'plays_with' => 'Chơi bằng :devices',
         'title' => "Trang cá nhân của :username",
 
+        'comments_count' => [
+            '_' => 'Đã đăng :link',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Đổi Ảnh Bìa Trang Cá Nhân',
@@ -169,7 +174,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Tải lên chỉ có sẵn cho :link',
-                        'link' => '',
+                        'link' => 'osu!supporter',
                     ],
                 ],
             ],
@@ -202,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmap Đang Chờ',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
                 ],
             ],
             'discussions' => [
@@ -284,7 +289,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
+                    '_' => 'Dựa trên bao nhiêu đóng góp mà người dùng cho việc điều phối beatmap. Xem :link để biết thêm thông tin.',
                     'link' => 'trang này',
                 ],
             ],
@@ -295,6 +300,9 @@ return [
                 'empty' => "Người dùng này chưa có huy chương nào cả. ;_;",
                 'recent' => 'Gần Nhất',
                 'title' => 'Huy Chương',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Bài viết',
@@ -308,7 +316,7 @@ return [
                 'download_replay' => 'Tải Xuống Replay',
                 'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
                 'pp_weight' => 'trọng số :percentage',
-                'view_details' => '',
+                'view_details' => 'Xem chi tiết',
                 'title' => 'Xếp Hạng',
 
                 'best' => [
@@ -349,12 +357,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Sở Thích',
             'location' => 'Vị Trí Hiện Tại',
             'occupation' => 'Nghề Nghiệp',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Website',
         ],
         'not_found' => [
@@ -371,8 +378,8 @@ return [
             'placeholder' => 'Nhập nội dung trang vào đây',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Bạn cần trở thành một :link để mở khoá tính năng này.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -399,11 +406,16 @@ return [
             'total_hits' => 'Tổng Lần Bấm',
             'total_score' => 'Tổng Điểm',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Beatmap Đang Chờ',
+            'ranked_beatmapset_count' => '',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

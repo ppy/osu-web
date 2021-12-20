@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Regenerer',
-            'regenerating' => 'Regenererer...',
-            'remove' => 'Fjern',
-            'removing' => 'Fjerner...',
-            'title' => 'Beatmapset covers',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+            'title' => '',
         ],
         'show' => [
-            'covers' => 'Administrer Beatmapset Covers',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'aktiver',
-                'activate_confirm' => 'aktiver modding v2 for denne beatmap?',
-                'active' => 'aktiv',
-                'inactive' => 'inaktiv',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Fjern',
+                'delete' => '',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Intet cover set',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Gem',
-                    'update' => 'Opdater',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Forum Covers Liste',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Standard Topic Cover',
-                    'main' => 'Forum Cover',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,33 +50,24 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Logbog',
+            'title' => '',
         ],
     ],
 
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'Beatmapset',
-                'forum' => 'Forum',
-                'general' => 'Generelt',
-                'store' => 'Butik',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Ordre Katalogisering',
+                'beatmapsets' => '',
+                'forum' => '',
+                'general' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Denne bruger er i øjeblikket begrænset.',
-            'message' => '(kun administratorer kan se dette)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

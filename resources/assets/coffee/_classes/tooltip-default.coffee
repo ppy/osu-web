@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @TooltipDefault
+class window.TooltipDefault
   constructor: ->
     $(document).on 'mouseover touchstart', '[title]:not(iframe)', @onMouseOver
     $(document).on 'mouseenter touchstart', '.u-ellipsis-overflow, .u-ellipsis-overflow-desktop, .u-ellipsis-pre-overflow', @autoAddTooltip
-    $(document).on 'turbolinks:before-cache', @rollback
+    $(document).on 'turbolinks:load', @rollback
 
 
   onMouseOver: (event) =>

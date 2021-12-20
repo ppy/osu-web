@@ -11,12 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'HÃY ĐỌC TRƯỚC KHI TẢI',
-            'instruction' => [
-                '_' => "Cài đặt: Mỗi khi bạn tải xuống một gói, giải nén file .rar vào thư mục Songs của osu!.
-                    Tất cả nhạc vẫn còn giữ ở dạng .zip và/hoặc .osz trong gói, nên osu! sẽ phải giải nén beatmap vào lần tới bạn vào Chế độ chơi (Play mode).
-                    :scary tự giải nén những file .zip/.osz, nếu không beatmap sẽ không hiển thị đúng trong osu! và sẽ không hoạt động đúng cách.",
-                'scary' => 'ĐỪNG',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Cũng lưu ý rằng nên :scary, vì những map cũ có chất lượng thấp hơn những map mới.',
                 'scary' => 'tải những gói từ mới nhất đến cũ nhất',
@@ -31,8 +26,8 @@ return [
             'not_cleared' => 'chưa chơi',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link liên kết không thể sử dụng để qua gói này.',
+            'link' => 'Mods làm giảm độ khó',
         ],
     ],
 

@@ -6,7 +6,7 @@
     <div class="search-result-entry">
         <div
             class="js-react--beatmapset-panel"
-            data-beatmapset-panel="{{ json_encode(['beatmap' => json_item($entry, 'Beatmapset', ['beatmaps'])]) }}"
+            data-beatmapset-panel="{{ json_encode(['beatmapset' => json_item($entry, 'Beatmapset', ['beatmaps'])]) }}"
         ></div>
     </div>
 @endforeach

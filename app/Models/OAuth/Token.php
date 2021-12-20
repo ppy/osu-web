@@ -6,17 +6,54 @@
 namespace App\Models\OAuth;
 
 use App\Events\UserSessionEvent;
+use App\Exceptions\InvalidScopeException;
+use App\Models\User;
+use Ds\Set;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token as PassportToken;
 
 class Token extends PassportToken
 {
+    // PassportToken doesn't have factory
+    use HasFactory;
+
     public $timestamps = true;
+
+    /**
+     * Whether the resource owner is delegated to the client's owner.
+     *
+     * @return bool
+     */
+    public function delegatesOwner(): bool
+    {
+        return in_array('delegate', $this->scopes, true);
+    }
+
+    /**
+     * Resource owner for the token.
+     *
+     * For client_credentials grants, this is the client that requested the token;
+     * otherwise, it is the user that authorized the token.
+     */
+    public function getResourceOwner(): ?User
+    {
+        if ($this->isClientCredentials() && $this->delegatesOwner()) {
+            return $this->client->user;
+        }
+
+        return $this->user;
+    }
 
     public function isClientCredentials()
     {
         // explicitly no user_id.
         return $this->user_id === null;
+    }
+
+    public function isOwnToken(): bool
+    {
+        return $this->client->user_id !== null && $this->client->user_id === $this->user_id;
     }
 
     public function refreshToken()
@@ -41,6 +78,82 @@ class Token extends PassportToken
         }
 
         return $saved;
+    }
+
+    public function scopeValidAt($query, $time)
+    {
+        return $query->where('revoked', false)->where('expires_at', '>', $time);
+    }
+
+    public function setScopesAttribute(?array $value)
+    {
+        if ($value !== null) {
+            sort($value);
+        }
+
+        $this->attributes['scopes'] = $this->castAttributeAsJson('scopes', $value);
+    }
+
+    public function validate()
+    {
+        static $scopesRequireDelegation;
+        $scopesRequireDelegation ??= new Set(['chat.write', 'delegate']);
+
+        if (empty($this->scopes)) {
+            throw new InvalidScopeException('Tokens without scopes are not valid.');
+        }
+
+        if ($this->client === null) {
+            throw new InvalidScopeException('The client is not authorized.', 'unauthorized_client');
+        }
+
+        $scopes = new Set($this->scopes);
+        // no silly scopes.
+        if ($scopes->contains('*') && $scopes->count() > 1) {
+            throw new InvalidScopeException('* is not valid with other scopes');
+        }
+
+        if ($this->isClientCredentials()) {
+            if ($scopes->contains('*')) {
+                throw new InvalidScopeException('* is not allowed with Client Credentials');
+            }
+
+            if ($this->delegatesOwner() && !$this->client->user->isBot()) {
+                throw new InvalidScopeException('Delegation with Client Credentials is only available to chat bots.');
+            }
+
+            if (!$scopes->intersect($scopesRequireDelegation)->isEmpty()) {
+                if (!$this->delegatesOwner()) {
+                    throw new InvalidScopeException('delegate scope is required.');
+                }
+
+                // delegation is only allowed if scopes given allow delegation.
+                if (!$scopes->diff($scopesRequireDelegation)->isEmpty()) {
+                    throw new InvalidScopeException('delegation is not supported for this combination of scopes.');
+                }
+            }
+        } else {
+            // delegation is only available for client_credentials.
+            if ($this->delegatesOwner()) {
+                throw new InvalidScopeException('delegate scope is only valid for client_credentials tokens.');
+            }
+
+            // only clients owned by bots are allowed to act on behalf of another user.
+            // the user's own client can send messages as themselves for authorization code flows.
+            if ($scopes->contains('chat.write') && !($this->isOwnToken() || $this->client->user->isBot())) {
+                throw new InvalidScopeException('This scope is only available for chat bots or your own clients.');
+            }
+        }
+
+        return true;
+    }
+
+    public function save(array $options = [])
+    {
+        // Forces error if passport tries to issue an invalid client_credentials token.
+        $this->validate();
+
+        return parent::save($options);
     }
 
     public function user()

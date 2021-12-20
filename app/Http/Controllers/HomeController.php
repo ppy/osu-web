@@ -28,6 +28,8 @@ class HomeController extends Controller
             ],
         ]);
 
+        $this->middleware('require-scopes:public', ['only' => 'search']);
+
         return parent::__construct();
     }
 
@@ -63,7 +65,7 @@ class HomeController extends Controller
         $news = NewsPost::default()->limit($newsLimit)->get();
 
         if (Auth::check()) {
-            $newBeatmapsets = Beatmapset::latestRankedOrApproved();
+            $newBeatmapsets = Beatmapset::latestRanked();
             $popularBeatmapsets = Beatmapset::popular()->get();
 
             return ext_view('home.user', compact(
@@ -81,11 +83,6 @@ class HomeController extends Controller
     public function messageUser($user)
     {
         return ujs_redirect(route('chat.index', ['sendto' => $user]));
-    }
-
-    public function osuSupportPopup()
-    {
-        return ext_view('objects._popup_support_osu');
     }
 
     public function quickSearch()
@@ -115,6 +112,33 @@ class HomeController extends Controller
         return $result;
     }
 
+    /**
+     * Search
+     *
+     * Searches users and wiki pages.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field     | Type                          | Description
+     * --------- | ----------------------------- | -----------
+     * user      | SearchResult&lt;UserCompact>? | For `all` or `user` mode. Only first 100 results are accessible
+     * wiki_page | SearchResult&lt;WikiPage>?    | For `all` or `wiki_page` mode
+     *
+     * #### SearchResult&lt;T>
+     *
+     * Field | Type   | Description
+     * ----- | ------ | -----------
+     * data  | T[]    | |
+     * total | number | |
+     *
+     * @queryParam mode Either `all`, `user`, or `wiki_page`. Default is `all`. Example: all
+     * @queryParam query Search keyword. Example: hello
+     * @queryParam page Search result page. Ignored for mode `all`. Example: 1
+     *
+     * @group Home
+     */
     public function search()
     {
         if (request('mode') === 'beatmapset') {
@@ -123,6 +147,10 @@ class HomeController extends Controller
 
         $allSearch = new AllSearch(request(), ['user' => Auth::user()]);
         $isSearchPage = true;
+
+        if (is_api_request()) {
+            return response()->json($allSearch->toJson());
+        }
 
         return ext_view('home.search', compact('allSearch', 'isSearchPage'));
     }

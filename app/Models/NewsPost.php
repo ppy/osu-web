@@ -7,14 +7,14 @@ namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Commentable;
-use App\Libraries\DbCursorHelper;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
-use App\Traits\CommentableDefaults;
+use App\Traits\Memoizes;
 use Carbon\Carbon;
 use Exception;
 
 /**
+ * @property string $commentable_identifier
  * @property Comment $comments
  * @property \Carbon\Carbon|null $created_at
  * @property string|null $hash
@@ -28,7 +28,7 @@ use Exception;
  */
 class NewsPost extends Model implements Commentable, Wiki\WikiObject
 {
-    use CommentableDefaults;
+    use Memoizes, Traits\CommentableDefaults, Traits\WithDbCursorHelper;
 
     // in minutes
     const CACHE_DURATION = 86400;
@@ -37,6 +37,10 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     const LANDING_LIMIT = 4;
 
     const SORTS = [
+        'published_asc' => [
+            ['column' => 'published_at', 'order' => 'ASC', 'type' => 'time'],
+            ['column' => 'id', 'order' => 'ASC'],
+        ],
         'published_desc' => [
             ['column' => 'published_at', 'order' => 'DESC', 'type' => 'time'],
             ['column' => 'id', 'order' => 'DESC'],
@@ -52,8 +56,6 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     protected $dates = [
         'published_at',
     ];
-
-    private $adjacent = [];
 
     public static function lookup($slug)
     {
@@ -71,13 +73,12 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
 
-        $cursorHelper = new DbCursorHelper(static::SORTS, static::DEFAULT_SORT);
-        $sort = $cursorHelper->getSort();
-        $cursorRaw = $params['cursor'] ?? null;
-        $cursor = $cursorHelper->prepare($cursorRaw);
-        $query->cursorSort($sort, $cursor);
+        $cursorHelper = static::makeDbCursorHelper();
+        $cursor = get_arr($params['cursor'] ?? null);
+        $query->cursorSort($cursorHelper, $cursor);
 
-        $query->year(get_int($params['year'] ?? null));
+        $year = get_int($params['year'] ?? null);
+        $query->year($year);
 
         $query->limit($limit);
 
@@ -85,8 +86,9 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
             'cursorHelper' => $cursorHelper,
             'query' => $query,
             'params' => [
-                'cursor' => $cursor === null ? null : $cursorRaw,
                 'limit' => $limit,
+                'sort' => $cursorHelper->getSortName(),
+                'year' => $year,
             ],
         ];
     }
@@ -224,7 +226,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public function editUrl()
     {
-        return 'https://github.com/'.OsuWiki::user().'/'.OsuWiki::repository().'/tree/master/news/'.$this->filename();
+        return 'https://github.com/'.OsuWiki::user().'/'.OsuWiki::repository().'/tree/'.OsuWiki::branch().'/news/'.$this->filename();
     }
 
     public function firstImage($absolute = false)
@@ -248,44 +250,16 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public function newer()
     {
-        if (!array_key_exists('newer', $this->adjacent)) {
-            $this->adjacent['newer'] = static
-                ::cursorWhere([
-                    [
-                        'column' => 'published_at',
-                        'order' => 'ASC',
-                        'value' => $this->published_at,
-                    ],
-                    [
-                        'column' => 'id',
-                        'order' => 'ASC',
-                        'value' => $this->getKey(),
-                    ],
-                ])->first() ?? null;
-        }
-
-        return $this->adjacent['newer'];
+        return $this->memoize(__FUNCTION__, function () {
+            return static::cursorSort('published_asc', $this)->first();
+        });
     }
 
     public function older()
     {
-        if (!array_key_exists('older', $this->adjacent)) {
-            $this->adjacent['older'] = static
-                ::cursorWhere([
-                    [
-                        'column' => 'published_at',
-                        'order' => 'DESC',
-                        'value' => $this->published_at,
-                    ],
-                    [
-                        'column' => 'id',
-                        'order' => 'DESC',
-                        'value' => $this->getKey(),
-                    ],
-                ])->first() ?? null;
-        }
-
-        return $this->adjacent['older'];
+        return $this->memoize(__FUNCTION__, function () {
+            return static::cursorSort('published_desc', $this)->first();
+        });
     }
 
     public function sync($force = false)
@@ -319,9 +293,10 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         $rawPage = $file->content();
 
-        $this->page = (new OsuMarkdown('news', [
-            'relative_url_root' => route('news.show', $this->slug),
-        ]))->load($rawPage)->toArray();
+        $this->page = (new OsuMarkdown(
+            'news',
+            osuExtensionConfig: ['relative_url_root' => route('news.show', $this->slug)]
+        ))->load($rawPage)->toArray();
 
         $this->version = static::pageVersion();
         $this->published_at = $this->pagePublishedAt();

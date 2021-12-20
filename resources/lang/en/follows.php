@@ -4,6 +4,17 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'comment' => [
+        'empty' => 'No comments watched.',
+        'page_title' => 'comment watchlist',
+        'title' => 'comment',
+
+        'table' => [
+            'latest_comment_empty' => 'no comments',
+            'latest_comment_value' => ':time by :username',
+        ],
+    ],
+
     'forum_topic' => [
         'title' => 'forum topic',
     ],
@@ -13,8 +24,12 @@ return [
     ],
 
     'mapping' => [
-        'to_0' => 'stop notifying me when this user uploads new beatmap',
-        'to_1' => 'notify me when this user uploads new beatmap',
+        'empty' => 'No mappers watched.',
+        'followers' => 'mapping subscribers',
+        'page_title' => 'mapper watchlist',
+        'title' => 'mapper',
+        'to_0' => 'stop notifying me when this user uploads a new beatmap',
+        'to_1' => 'notify me when this user uploads a new beatmap',
     ],
 
     'modding' => [

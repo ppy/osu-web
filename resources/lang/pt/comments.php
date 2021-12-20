@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'apagado',
+    'deleted_by' => 'apagado há :timeago por :user',
+    'deleted_by_system' => 'sistema',
     'deleted_count' => ':count_delimited eliminou o comentário|:count_delimited eliminou os comentários',
     'edited' => 'editado há :timeago por :user',
     'pinned' => 'afixado',
@@ -35,7 +37,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'comentários',
         'nav_title' => 'listagem',
+        'no_comments' => 'sem comentários',
     ],
 
     'placeholder' => [

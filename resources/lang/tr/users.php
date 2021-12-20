@@ -54,7 +54,7 @@ return [
         'warning' => "Bir kuralı ihlal etmeniz durumunda, genellikle herhangi bir af(veya itiraz) talebini dikkate almayacağımız bir aylık bekleme süresinin olduğunu unutmayın.  Bu süreden sonra, gerekli olması halinde bizimle iletişime geçmekte özgürsünüz. Bir hesabı devre dışı bıraktıktan sonra yeni hesap oluşturmanın <strong>bu bir aylık bekleme süresinin uzatılmasına</strong> neden olacağını lütfen unutmayın. Ayrıca <strong> oluşturduğunuz her hesap için kuralları daha fazla ihlal ettiğinizi </strong> unutmayın. Bu yolda gitmemenizi önemle tavsiye ederiz!",
 
         'if_mistake' => [
-            '_' => 'Eğer bunun bir hata olduğunu düşünüyorsanız, bizimle iletişime geçebilirsiniz(:email ile veya sayfanın sağ alt koşesinde bulunan ? tuşu ile.). Çok sağlam verilere dayandığından, eylemlerimize her zaman tam olarak güvendiğimizi lütfen unutmayın.  Kasıtlı olarak sahtekâr olduğunuzu düşünürsek, isteğinizi göz ardı etme hakkını saklı tutarız.',
+            '_' => 'Eğer bir yanlışlık olduğunu düşünüyorsanız, bizimle (:email adresi üzerinden veya bu sayfanın sağ-alt köşesinde bulunan "?" ikonuna tıklayarak) iletişime geçebilirsiniz. Çok sağlam verilere dayandığından, eylemlerimize her daim tamamen güvendiğimizi lütfen unutmayın. Bilerek bizimle dürüst olmadığınızı fark ettiğimizde talebinizi göz ardı etme hakkını saklı tutarız.',
             'email' => 'e-posta',
         ],
 
@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Kuraldışı oyun / Hile',
+            'multiple_accounts' => 'Birden fazla hesap kullanımı',
             'insults' => 'Bana / başkalarına hakaret',
             'spam' => 'Spam yapmak',
             'unwanted_content' => 'Uygunsuz içerik paylaşma',
@@ -154,6 +155,10 @@ return [
         'plays_with' => ':devices ile oynuyor',
         'title' => ":username kullanıcısının profili",
 
+        'comments_count' => [
+            '_' => ':link gönderdi',
+            'count' => ':count_delimited yorum|:count_delimited yorum',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',
@@ -202,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Dereceli & Onaylı Beatmapler',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beklemedeki Beatmapler',
+                ],
+                'ranked' => [
+                    'title' => 'Dereceli & Onaylı Beatmapler',
                 ],
             ],
             'discussions' => [
@@ -284,8 +289,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Beatmap yönetiminine kullanıcının ne kadar çok katkı yapmış olmuşluğuna dayanarak. Daha fazla bilgi için :link\'e bakınız.',
-                    'link' => 'bu sayfa',
+                    '_' => 'Kullanıcının beatmap modlamaya yaptığı katkının miktarına bağlıdır. Daha fazla bilgi için :link bakınız.',
+                    'link' => 'bu sayfaya',
                 ],
             ],
             'me' => [
@@ -295,6 +300,9 @@ return [
                 'empty' => "Bu kullanıcı daha hiç almamış. ;_;",
                 'recent' => 'En Son',
                 'title' => 'Madalyalar',
+            ],
+            'multiplayer' => [
+                'title' => 'Çok Oyunculu Oyunlar',
             ],
             'posts' => [
                 'title' => 'Gönderiler',
@@ -327,7 +335,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Hesap Durumu',
-                'bad_standing' => "<strong>:username'in</strong> hesabı iyi durumda değil :(",
+                'bad_standing' => "<strong>:username</strong> kullanıcısının hesabı iyi durumda değil :(",
                 'remaining_silence' => '<strong>:username</strong> :duration sonra konuşabilecek.',
 
                 'recent_infringements' => [
@@ -353,7 +361,6 @@ return [
             'interests' => 'İlgi Alanları',
             'location' => 'Mevcut Konum',
             'occupation' => 'Meslek',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Web sitesi',
         ],
@@ -399,11 +406,16 @@ return [
             'total_hits' => 'Toplam Vuruş',
             'total_score' => 'Toplam Skor',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
-            'loved_beatmapset_count' => 'Sevilen Beatmapler',
-            'unranked_beatmapset_count' => 'Onay Bekleyen Beatmapler',
             'graveyard_beatmapset_count' => 'Mezarlıktaki Beatmapler',
+            'loved_beatmapset_count' => 'Sevilen Beatmapler',
+            'pending_beatmapset_count' => 'Onay Bekleyen Beatmapler',
+            'ranked_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Şu anda susturulmuş durumdasınız.',
+        'message' => 'Bazı eylemler kullanım dışı olabilir.',
     ],
 
     'status' => [

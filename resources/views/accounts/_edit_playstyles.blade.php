@@ -5,7 +5,7 @@
 <div class="account-edit">
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
-            {{ trans('accounts.playstyles.title') }}
+            {{ osu_trans('accounts.playstyles.title') }}
         </h2>
     </div>
 
@@ -19,15 +19,18 @@
                     data-url="{{ route('account.options') }}"
                     data-field="user[osu_playstyle]"
                 >
+                    @php
+                        $userPlaystyles = new Ds\Set(auth()->user()->osu_playstyle ?? []);
+                    @endphp
                     @foreach (App\Models\User::PLAYSTYLES as $key => $_value)
                         <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
-                            @include('objects._switch', [
-                                'checked' => in_array($key, auth()->user()->osu_playstyle ?? [], true),
+                            @include('objects._switch', ['locals' => [
+                                'checked' => $userPlaystyles->contains($key),
                                 'value' => $key,
-                            ])
+                            ]])
 
                             <span class="account-edit-entry__checkbox-label">
-                                {{ trans("accounts.playstyles.{$key}") }}
+                                {{ osu_trans("accounts.playstyles.{$key}") }}
                             </span>
                         </label>
                     @endforeach

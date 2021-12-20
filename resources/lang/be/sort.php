@@ -15,8 +15,29 @@ return [
     'top' => 'Найлепшае',
     'username' => 'Імя карыстальніка',
 
+    'artist_tracks' => [
+        'album' => 'Альбом',
+        'artist' => 'Артыст',
+        'bpm' => 'УУХ (bpm)',
+        'genre' => 'Жанр',
+        'length' => 'Даўжыня',
+        'relevance' => 'Актуальнасць',
+        'title' => 'Назва',
+        'update' => 'Дата абнаўлення',
+    ],
+
+    'forum_posts' => [
+        'created' => 'Час публікацыі',
+        'relevance' => 'Рэлевантнасць',
+    ],
+
     'forum_topics' => [
-        'new' => 'Апошні адказ',
         'feature_votes' => 'Зорны прыярытэт',
+        'new' => 'Апошні адказ',
+    ],
+
+    'users' => [
+        'relevance' => 'Рэлевантнасці',
+        'username' => 'Назве',
     ],
 ];

@@ -15,6 +15,7 @@ use App\Models\Store\Product;
 use App\Models\Tournament;
 use App\Models\User;
 use Carbon\Carbon;
+use Database\Seeders\ModelSeeders\ProductSeeder;
 use Tests\TestCase;
 
 class BannerFulfillmentTest extends TestCase
@@ -28,8 +29,8 @@ class BannerFulfillmentTest extends TestCase
             preg_match('/.+\((?<country>.+)\)$/', $this->product->name, $matches);
             $country = Country::where('name', $matches['country'])->first();
         } else {
-            $country = factory(Country::class)->create();
-            (new \ProductSeeder())->seedBanners();
+            $country = Country::factory()->create();
+            (new ProductSeeder())->seedBanners();
             $product = Product::customClass('mwc7-supporter')->orderBy('product_id', 'desc')->first();
         }
 
@@ -94,12 +95,12 @@ class BannerFulfillmentTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create([
+        $this->user = User::factory()->create([
             'osu_featurevotes' => 0,
             'osu_subscriptionexpiry' => Carbon::now(),
         ]);
 
-        $this->order = factory(Order::class, 'paid')->create([
+        $this->order = factory(Order::class)->states('paid')->create([
             'user_id' => $this->user->user_id,
         ]);
 

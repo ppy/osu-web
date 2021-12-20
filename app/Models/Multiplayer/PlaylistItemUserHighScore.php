@@ -6,6 +6,7 @@
 namespace App\Models\Multiplayer;
 
 use App\Models\Model;
+use App\Models\Traits\WithDbCursorHelper;
 
 /**
  * Dumb persistence model for UserScoreAggregate.
@@ -24,6 +25,8 @@ use App\Models\Model;
  */
 class PlaylistItemUserHighScore extends Model
 {
+    use WithDbCursorHelper;
+
     const SORTS = [
         'score_desc' => [
             ['column' => 'total_score', 'order' => 'DESC'],

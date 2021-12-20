@@ -4,9 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use App\Models\Forum\AuthOption;
+use App\Models\Forum\Authorize;
 use App\Models\User;
 
-$factory->defineAs(App\Models\Forum\Forum::class, 'parent', function (Faker\Generator $faker) {
+$factory->define(App\Models\Forum\Forum::class, fn () => []);
+
+$factory->state(App\Models\Forum\Forum::class, 'parent', function (Faker\Generator $faker) {
     return [
         'forum_name' => $faker->catchPhrase,
         'forum_desc' => $faker->realtext(80),
@@ -16,7 +19,7 @@ $factory->defineAs(App\Models\Forum\Forum::class, 'parent', function (Faker\Gene
     ];
 });
 
-$factory->defineAs(App\Models\Forum\Forum::class, 'child', function (Faker\Generator $faker) {
+$factory->state(App\Models\Forum\Forum::class, 'child', function (Faker\Generator $faker) {
     return [
         'forum_name' => $faker->catchPhrase,
         'forum_desc' => $faker->realtext(80),
@@ -29,7 +32,7 @@ $factory->defineAs(App\Models\Forum\Forum::class, 'child', function (Faker\Gener
 $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker) {
     return [
         'topic_poster' => function (array &$self) {
-            $factoryUser = factory(User::class)->create();
+            $factoryUser = User::factory()->create();
             $self['topic_first_poster_name'] = $factoryUser->username;
 
             return $factoryUser->getKey();
@@ -44,7 +47,7 @@ $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker
 $factory->define(App\Models\Forum\Post::class, function (Faker\Generator $faker) {
     return [
         'poster_id' => function (array &$self) {
-            $factoryUser = factory(User::class)->create();
+            $factoryUser = User::factory()->create();
             $self['post_username'] = $factoryUser->username;
 
             return $factoryUser->getKey();
@@ -56,31 +59,27 @@ $factory->define(App\Models\Forum\Post::class, function (Faker\Generator $faker)
     ];
 });
 
-$factory->defineAs(AuthOption::class, 'post', function (Faker\Generator $faker) {
-    return [
-        'auth_option' => 'f_post',
-    ];
-});
+$factory->define(AuthOption::class, fn () => []);
 
-$factory->defineAs(AuthOption::class, 'reply', function (Faker\Generator $faker) {
-    return [
-        'auth_option' => 'f_reply',
-    ];
-});
+$factory->state(AuthOption::class, 'post', ['auth_option' => 'f_post']);
 
-$factory->defineAs(App\Models\Forum\Authorize::class, 'post', function (Faker\Generator $faker) {
+$factory->state(AuthOption::class, 'reply', ['auth_option' => 'f_reply']);
+
+$factory->define(Authorize::class, fn () => []);
+
+$factory->state(Authorize::class, 'post', function (Faker\Generator $faker) {
     return [
         'auth_option_id' => function () {
-            return AuthOption::where('auth_option', 'f_post')->first() ?? factory(AuthOption::class, 'post');
+            return AuthOption::where('auth_option', 'f_post')->first() ?? factory(AuthOption::class)->states('post');
         },
         'auth_setting' => 1,
     ];
 });
 
-$factory->defineAs(App\Models\Forum\Authorize::class, 'reply', function (Faker\Generator $faker) {
+$factory->state(Authorize::class, 'reply', function (Faker\Generator $faker) {
     return [
         'auth_option_id' => function () {
-            return AuthOption::where('auth_option', 'f_reply')->first() ?? factory(AuthOption::class, 'reply');
+            return AuthOption::where('auth_option', 'f_reply')->first() ?? factory(AuthOption::class)->states('reply');
         },
         'auth_setting' => 1,
     ];

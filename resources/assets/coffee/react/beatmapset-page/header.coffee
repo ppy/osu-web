@@ -1,15 +1,19 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapPicker } from './beatmap-picker'
 import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
-import { BigButton } from 'big-button'
+import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
+import BeatmapsetMenu from 'beatmapsets-show/beatmapset-menu'
+import BigButton from 'big-button'
 import { route } from 'laroute'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
-import { UserAvatar } from 'user-avatar'
+import UserAvatar from 'user-avatar'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { createClickCallback } from 'utils/html'
+import { beatmapDownloadDirect, wikiUrl } from 'utils/url'
 el = React.createElement
 
 export class Header extends React.Component
@@ -84,7 +88,7 @@ export class Header extends React.Component
         div className: 'beatmapset-header__box beatmapset-header__box--main',
           div className: 'beatmapset-header__beatmap-picker-box',
             el BeatmapPicker,
-              beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
+              beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
               currentBeatmap: @props.currentBeatmap
 
             span className: 'beatmapset-header__diff-name',
@@ -132,15 +136,24 @@ export class Header extends React.Component
                 div className: 'user-list-popup__remainder-count',
                   osu.transChoice 'common.count.plus_others', @props.favcount - @filteredFavourites.length
 
-          a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
-            href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
-            getTitle(@props.beatmapset)
+          span className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
+            a
+              className: 'beatmapset-header__details-text-link'
+              href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
+              getTitle(@props.beatmapset)
+            if @props.beatmapset.nsfw
+              span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
 
-          a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--artist'
-            href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
-            getArtist(@props.beatmapset)
+          span className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
+            a
+              className: 'beatmapset-header__details-text-link'
+              href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
+              getArtist(@props.beatmapset)
+            if @props.beatmapset.track_id?
+              a
+                className: 'beatmapset-badge beatmapset-badge--featured-artist'
+                href: laroute.route 'tracks.show', @props.beatmapset.track_id
+                osu.trans('beatmapsets.featured_artist_badge.label')
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 
@@ -151,35 +164,37 @@ export class Header extends React.Component
 
             if currentUser.id?
               el BigButton,
+                icon: favouriteButton.icon
+                modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
                 props:
                   onClick: @toggleFavourite
                   title: osu.trans "beatmapsets.show.details.#{favouriteButton.action}"
-                modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
-                icon: favouriteButton.icon
 
             @renderDownloadButtons()
 
             if @props.beatmapset.discussion_enabled
               el BigButton,
-                modifiers: ['beatmapset-header']
-                text:
-                  top: osu.trans 'beatmapsets.show.discussion'
+                href: laroute.route('beatmapsets.discussion', beatmapset: @props.beatmapset.id)
                 icon: 'far fa-comments'
-                props:
-                  href: laroute.route 'beatmapsets.discussion', beatmapset: @props.beatmapset.id
+                modifiers: 'beatmapset-header'
+                text: osu.trans 'beatmapsets.show.discussion'
             else if @props.beatmapset.legacy_thread_url
               el BigButton,
-                modifiers: ['beatmapset-header']
-                text:
-                  top: osu.trans 'beatmapsets.show.discussion'
+                href: @props.beatmapset.legacy_thread_url
                 icon: 'far fa-comments'
-                props:
-                  href: @props.beatmapset.legacy_thread_url
+                modifiers: 'beatmapset-header'
+                text: osu.trans('beatmapsets.show.discussion')
 
             @renderLoginButton()
 
+            if currentUser.id? && currentUser.id != @props.beatmapset.user_id && !@props.beatmapset.is_scoreable
+              div className: 'beatmapset-header__more',
+                div className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail',
+                  el BeatmapsetMenu,
+                    beatmapset: @props.beatmapset
+
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
-          div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
+          @renderStatusBar()
           el Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
@@ -190,7 +205,7 @@ export class Header extends React.Component
     return unless currentUser.id? && @hasAvailabilityInfo()
 
     href = if @props.beatmapset.availability.more_information == 'rule_violation'
-              "#{route('wiki.show', locale: currentLocale, path: 'Rules')}#beatmap-submission-rules"
+              "#{wikiUrl('Rules')}#beatmap-submission-rules"
             else
               @props.beatmapset.availability.more_information
 
@@ -237,7 +252,7 @@ export class Header extends React.Component
           osuDirect: true
           href:
             if currentUser.is_supporter
-              _exported.OsuUrlHelper.beatmapDownloadDirect @props.currentBeatmap.id
+              beatmapDownloadDirect @props.currentBeatmap.id
             else
               laroute.route 'support-the-game'
       ]
@@ -247,29 +262,37 @@ export class Header extends React.Component
     if !currentUser.id?
       el BigButton,
         extraClasses: ['js-user-link']
-        modifiers: ['beatmapset-header']
+        icon: 'fas fa-lock'
+        modifiers: 'beatmapset-header'
         text:
           top: osu.trans 'beatmapsets.show.details.login_required.top'
           bottom: osu.trans 'beatmapsets.show.details.login_required.bottom'
-        icon: 'fas fa-lock'
+
+
+  renderStatusBar: =>
+    div className: 'beatmapset-header__status',
+      if @props.beatmapset.storyboard
+        div
+          className: 'beatmapset-status beatmapset-status--show-icon'
+          title: osu.trans('beatmapsets.show.info.storyboard')
+          i className: 'fas fa-image'
+      div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
 
 
   downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
     el BigButton,
       key: key
-      modifiers: ['beatmapset-header']
+      href: href
+      icon: icon
+      modifiers: 'beatmapset-header'
+      props:
+        'data-turbolinks': 'false'
       text:
         top: osu.trans "beatmapsets.show.details.download.#{topTextKey}"
         bottom: if bottomTextKey? then osu.trans "beatmapsets.show.details.download.#{bottomTextKey}"
-      icon: icon
-      extraClasses: if !osuDirect then ['js-beatmapset-download-link']
-      props:
-        href: href
-        'data-turbolinks': 'false'
 
 
   toggleFavourite: (e) ->
-    if !currentUser.id?
-      userLogin.show e.target
-    else
-      $.publish 'beatmapset:favourite:toggle'
+    return if core.userLogin.showIfGuest(createClickCallback(e.target))
+
+    $.publish 'beatmapset:favourite:toggle'

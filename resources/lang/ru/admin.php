@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Восстановить',
-            'regenerating' => 'Восстановление...',
-            'remove' => 'Удалить',
-            'removing' => 'Удаление...',
-            'title' => 'Обложки наборов карт',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+            'title' => '',
         ],
         'show' => [
-            'covers' => 'Управление обложками набора карт',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Моддинг v2',
-                'activate' => 'включить',
-                'activate_confirm' => 'включить моддинг v2 для этой карты?',
-                'active' => 'включить',
-                'inactive' => 'выключить',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Удалить',
+                'delete' => '',
 
-                'forum-name' => 'Форум #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Нет обложки',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Сохранить',
-                    'update' => 'Обновить',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Список форумов',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Стандартная обложка темы',
-                    'main' => 'Обложка форума',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,33 +50,24 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Просмотр логов',
+            'title' => '',
         ],
     ],
 
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'Наборы карт',
-                'forum' => 'Форум',
-                'general' => 'Главная',
-                'store' => 'Магазин',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Список заказов',
+                'beatmapsets' => '',
+                'forum' => '',
+                'general' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'В данный момент пользователь ограничен.',
-            'message' => '(это могут видеть только админы)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

@@ -22,7 +22,7 @@ $factory->define(BeatmapDiscussionPost::class, function (Faker\Generator $faker)
     ];
 });
 
-$factory->defineAs(BeatmapDiscussionPost::class, 'timeline', function (Faker\Generator $faker) {
+$factory->state(BeatmapDiscussionPost::class, 'timeline', function (Faker\Generator $faker) {
     return [
         'message' => "00:00.000 {$faker->sentence(10)}",
     ];

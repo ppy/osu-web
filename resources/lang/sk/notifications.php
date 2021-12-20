@@ -6,10 +6,12 @@
 return [
     'all_read' => 'Všetky upozornenia prečítané!',
     'delete' => '',
+    'loading' => '',
     'mark_read' => '',
     'none' => '',
     'see_all' => '',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => '',
@@ -24,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => '',
+
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => '',
@@ -133,6 +141,19 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medaile',
 
@@ -147,6 +168,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_post_new' => '',
@@ -200,6 +225,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => '',
                 'user_achievement_unlock_self' => '',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

@@ -5,7 +5,7 @@
 
 return [
     'talking_in' => 'sprechen in :channel',
-    'talking_with' => 'sprechen mit :name',
+    'talking_with' => 'im gespräch mit :name',
     'title_compact' => 'chat',
 
     'cannot_send' => [
@@ -15,12 +15,16 @@ return [
             'blocked' => 'Du wurdest vom Empfänger blockiert',
             'channel_moderated' => 'Der Kanal wurde moderiert',
             'friends_only' => 'Der Empfänger akzeptiert nur Nachrichten von Personen in seiner Freundesliste',
+            'not_enough_plays' => 'Du hast das Spiel nicht genug gespielt',
+            'not_verified' => 'Deine Sitzung wurde noch nicht verifiziert',
             'restricted' => 'Du bist zurzeit eingeschränkt',
+            'silenced' => 'Du bist derzeit stumm',
             'target_restricted' => 'Der Empfänger ist zurzeit eingeschränkt',
         ],
     ],
     'input' => [
         'disabled' => 'Nachricht konnte nicht gesendet werden...',
+        'disconnected' => 'Verbindung getrennt',
         'placeholder' => 'Nachricht verfassen...',
         'send' => 'Senden',
     ],

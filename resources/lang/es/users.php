@@ -114,24 +114,25 @@ return [
     ],
     'logout_confirm' => '¿Seguro que desea cerrar la sesión? :(',
     'report' => [
-        'button_text' => 'Reportar',
-        'comments' => 'Comentarios Adicionales',
-        'placeholder' => 'Por favor proporcione cualquier información que usted cree que podría ser útil.',
-        'reason' => 'Razón',
-        'thanks' => '¡Gracias por tu informe!',
-        'title' => '¿Reportar :username?',
+        'button_text' => 'Denunciar',
+        'comments' => 'Comentarios adicionales',
+        'placeholder' => 'Por favor, proporcione cualquier información que crea que pueda ser útil.',
+        'reason' => 'Motivo',
+        'thanks' => '¡Gracias por su informe!',
+        'title' => '¿Denunciar a :username?',
 
         'actions' => [
-            'send' => 'Enviar Reporte',
+            'send' => 'Enviar denuncia',
             'cancel' => 'Cancelar',
         ],
 
         'options' => [
-            'cheating' => 'Jugador tramposo',
-            'insults' => 'Insulta a mí / otros',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Enlazando a contenido inapropiado',
-            'nonsense' => 'Incomprensible',
+            'cheating' => 'Juega sucio o hace trampa',
+            'multiple_accounts' => 'Utiliza múltiples cuentas',
+            'insults' => 'Insulta a mí o a otros',
+            'spam' => 'Envía mensajes spam',
+            'unwanted_content' => 'Enlaza contenido inapropiado',
+            'nonsense' => 'Sin sentido',
             'other' => 'Otros (indicar abajo)',
         ],
     ],
@@ -154,6 +155,10 @@ return [
         'plays_with' => 'Juega con :devices',
         'title' => "Perfil de :username",
 
+        'comments_count' => [
+            '_' => 'Publicó :link',
+            'count' => 'un comentario|:count_delimited comentarios',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambiar portada de perfil',
@@ -168,7 +173,7 @@ return [
                     'unsupported_format' => 'Formato no soportado.',
 
                     'restriction_info' => [
-                        '_' => 'Carga disponible solo para :link',
+                        '_' => 'Carga disponible sólo para :link',
                         'link' => 'osu!supporters',
                     ],
                 ],
@@ -202,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Mapas Amados',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Mapas Clasificados y Aprobados',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Mapas Pendientes',
+                ],
+                'ranked' => [
+                    'title' => 'Mapas Clasificados y Aprobados',
                 ],
             ],
             'discussions' => [
@@ -296,6 +301,9 @@ return [
                 'recent' => 'Más reciente',
                 'title' => 'Medallas',
             ],
+            'multiplayer' => [
+                'title' => 'Partidas multijugador',
+            ],
             'posts' => [
                 'title' => 'Publicaciones',
                 'title_longer' => 'Publicaciones recientes',
@@ -349,12 +357,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Intereses',
             'location' => 'Ubicación actual',
             'occupation' => 'Ocupación',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Sitio web',
         ],
         'not_found' => [
@@ -399,11 +406,16 @@ return [
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Mapas Clasificados y Aprobados',
-            'loved_beatmapset_count' => 'Mapas Amados',
-            'unranked_beatmapset_count' => 'Mapas Pendientes',
             'graveyard_beatmapset_count' => 'Mapas Abandonados',
+            'loved_beatmapset_count' => 'Mapas Amados',
+            'pending_beatmapset_count' => 'Mapas Pendientes',
+            'ranked_beatmapset_count' => 'Mapas Clasificados y Aprobados',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Actualmente está silenciado.',
+        'message' => 'Es posible que algunas acciones no estén disponibles.',
     ],
 
     'status' => [

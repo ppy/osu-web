@@ -5,11 +5,13 @@
 
 return [
     'all_read' => 'Összes értesítés elolvasva!',
-    'delete' => '',
-    'mark_read' => 'Típus törlése :type',
+    'delete' => ':type tisztítása',
+    'loading' => 'Olvasatlan értesítések betöltése...',
+    'mark_read' => ':type törlése',
     'none' => 'Nincsenek értesítések',
     'see_all' => 'összes értesítés megtekintése',
-    'see_channel' => '',
+    'see_channel' => 'menjen a csevegéshez',
+    'verifying' => 'Az értesítések megtekintéséhez hitelesítse a munkamenetet',
 
     'filters' => [
         '_' => 'összes',
@@ -18,12 +20,18 @@ return [
         'forum_topic' => 'fórum',
         'news_post' => 'újdonságok',
         'build' => 'verziók',
-        'channel' => 'chat',
+        'channel' => 'csevegés',
     ],
 
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
+
+            'beatmap_owner_change' => [
+                '_' => 'Vendég nehézség',
+                'beatmap_owner_change' => 'Mostantól tulajdonosa vagy a(z) ":title" beatmap ":beatmap" nehézségének',
+                'beatmap_owner_change_compact' => 'Mostantól ":beatmap" nehézség tulajdonosa vagy',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Beatmap megbeszélés',
@@ -31,7 +39,7 @@ return [
                 'beatmapset_discussion_lock_compact' => 'A megbeszélést lezárták',
                 'beatmapset_discussion_post_new' => 'Új poszt a ":title"-on :username:-tol ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Új poszt a ":title"-on :username:-tol',
-                'beatmapset_discussion_post_new_compact' => 'Új poszt :username által: ":content"',
+                'beatmapset_discussion_post_new_compact' => 'Új hozzászólás :username által: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Új poszt :username által',
                 'beatmapset_discussion_review_new' => 'Új hozzászolás problémákat tartalmazó tartalomról :username által, ezen a beatmapen: ":title"  
 :problems, javaslat :suggestions, dícséret: :praises',
@@ -41,7 +49,7 @@ return [
             ],
 
             'beatmapset_problem' => [
-                '_' => 'Rankedelési probléma a beatmapen',
+                '_' => 'Kvalifikált beatmap probléma',
                 'beatmapset_discussion_qualified_problem' => ':username által jelentve lett itt: ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => ':username által jelentve lett itt: ":title"',
                 'beatmapset_discussion_qualified_problem_compact' => ':username által jelentve lett ":content"',
@@ -52,18 +60,18 @@ return [
                 '_' => 'Beatmap állapota megváltozott',
                 'beatmapset_disqualify' => 'Ez a beatmap diszkvalifikálva lett: ":title"',
                 'beatmapset_disqualify_compact' => 'A beatmap diszkvalifikálva lett',
-                'beatmapset_love' => 'Ez a map kedvelt kategóriába lépett: ":title"',
-                'beatmapset_love_compact' => 'Ez a map kedvelt kategóriába lépett',
-                'beatmapset_nominate' => 'Ez a beatmap rankedelt lett: ":title"',
-                'beatmapset_nominate_compact' => 'A beatmap rankedelt lett',
-                'beatmapset_qualify' => '":title" elért annyi szavazatot hogy rankedelési státuszba lépett',
-                'beatmapset_qualify_compact' => 'A beatmap rankolási sorba lépett',
-                'beatmapset_rank' => ':title rankedelt lett',
-                'beatmapset_rank_compact' => 'A beatmap rankedelt lett',
-                'beatmapset_remove_from_loved' => 'Ez a map el lett távolítva a kedvelt kategóriából:title',
-                'beatmapset_remove_from_loved_compact' => 'Ez a beatmap el lett távolítva a kedvelt kategóriából',
-                'beatmapset_reset_nominations' => 'Rankolás elutasítva ezen: ":title"',
-                'beatmapset_reset_nominations_compact' => 'Rankolás elutasítva',
+                'beatmapset_love' => '":title" promotálva lett szeretetté',
+                'beatmapset_love_compact' => 'Beatmap promotálva szeretetté',
+                'beatmapset_nominate' => 'Nominálva lett ":title"',
+                'beatmapset_nominate_compact' => 'A beatmap nominált lett',
+                'beatmapset_qualify' => '":title" elért annyi nominálást, hogy rangsorolási sorba lépett',
+                'beatmapset_qualify_compact' => 'A beatmap rangsorolási sorba lépett',
+                'beatmapset_rank' => ':title rangsorolt lett',
+                'beatmapset_rank_compact' => 'A beatmap rangsorolt lett',
+                'beatmapset_remove_from_loved' => '":title" el lett távolítva Szeretettből',
+                'beatmapset_remove_from_loved_compact' => 'Ez a beatmap el lett távolítva a Szeretett kategóriából',
+                'beatmapset_reset_nominations' => '":title" nominálása vissza lett állítva',
+                'beatmapset_reset_nominations_compact' => 'Nominálás visszaállítva',
             ],
 
             'comment' => [
@@ -134,6 +142,19 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Új beatmap',
+
+                'user_beatmapset_new' => 'Új ":title" beatmap :username által',
+                'user_beatmapset_new_compact' => 'Új beatmap: ":title"',
+                'user_beatmapset_new_group' => 'Új beatmapek :username által',
+
+                'user_beatmapset_revive' => '":title" beatmap felélesztve :username által',
+                'user_beatmapset_revive_compact' => '":title" beatmap felélesztve',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medálok',
 
@@ -148,28 +169,32 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Mostantól vendégje vagy ":title" beatmapnek',
+            ],
+
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => 'A hozzászolás le lett tiltva ezen a beamapen::title',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => 'A hozzászolás elérhető lett ezen a beatmapen::title',
+                'beatmapset_discussion_lock' => 'A hozzászólás le lett tiltva ezen a beamapen: :title',
+                'beatmapset_discussion_post_new' => 'A hozzászólás frissült a következőn: :title',
+                'beatmapset_discussion_unlock' => 'A hozzászólás elérhető lett ezen a beatmapen: :title',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => 'Egy új probléma jelentve lett itt::title',
+                'beatmapset_discussion_qualified_problem' => 'Egy új probléma jelentve lett itt: :title',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '":title" dalt diszkvalifikálták',
-                'beatmapset_love' => '":title" dalt kedvelt kategóriába került',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '":title" elért annyi szavazatot hogy rankedelési státuszba lépett',
-                'beatmapset_rank' => ':title rankedelt lett',
-                'beatmapset_remove_from_loved' => 'Ez a map el lett távolítva a kedvelt kategóriából:title',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" diszkvalifikált lett',
+                'beatmapset_love' => '":title" promotálva lett szeretetté',
+                'beatmapset_nominate' => '":title" nominálva lett',
+                'beatmapset_qualify' => '":title" elért annyi nominációt hogy rangsorolási sorba került',
+                'beatmapset_rank' => ':title rangsorolt lett',
+                'beatmapset_remove_from_loved' => '":title" el lett távolítva Szeretettből',
+                'beatmapset_reset_nominations' => '":title" nominálása vissza lett állítva',
             ],
 
             'comment' => [
-                'comment_new' => ' Új kommentek jelentek meg ezen a beatmapen::title',
+                'comment_new' => ' Új kommentek jelentek meg ezen a beatmapen: :title',
             ],
         ],
 
@@ -201,6 +226,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username feloldott egy új medált! ":title"',
                 'user_achievement_unlock_self' => 'Feloldottál egy új medált! ":title"',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username új beatmapeket hozott létre',
             ],
         ],
     ],

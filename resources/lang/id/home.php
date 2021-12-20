@@ -6,7 +6,7 @@
 return [
     'landing' => [
         'download' => 'Unduh sekarang',
-        'online' => '<strong>:players</strong> saat ini terhubung dalam <strong>:games</strong> permainan',
+        'online' => '<strong>:players</strong> pemain saat ini terhubung di dalam <strong>:games</strong> ruang permainan',
         'peak' => 'Tercatat maksimal sebanyak :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
         'title' => 'selamat datang',
@@ -76,7 +76,7 @@ return [
         'action' => 'Unduh osu!',
 
         'help' => [
-            '_' => 'apabila Anda mengalami masalah dalam memulai permainan atau mendaftarkan akun, harap :help_forum_link atau :support_button.',
+            '_' => 'apabila Anda menemui suatu masalah di saat Anda hendak memulai permainan atau mendaftarkan akun, harap :help_forum_link atau :support_button.',
             'help_forum_link' => 'kunjungi sub-forum Help',
             'support_button' => 'hubungi layanan dukungan kami',
         ],
@@ -91,7 +91,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'buat akun',
-                'description' => 'ikuti petunjuk saat memulai permainan untuk masuk atau membuat akun baru',
+                'description' => 'ikuti petunjuk yang muncul di awal permainan untuk masuk atau membuat akun baru',
             ],
             'download' => [
                 'title' => 'unduh permainannya',
@@ -112,18 +112,18 @@ return [
         'title' => 'dasbor',
         'news' => [
             'title' => 'Berita',
-            'error' => 'Terjadi kesalahan dalam memuat berita. Coba untuk memuat ulang laman?...',
+            'error' => 'Terdapat kesalahan dalam memuat berita. Coba untuk memuat ulang laman?...',
         ],
         'header' => [
             'stats' => [
                 'friends' => 'Teman yang Online',
-                'games' => 'Permainan',
+                'games' => 'Ruang Permainan',
                 'online' => 'Pemain yang Online',
             ],
         ],
         'beatmaps' => [
             'new' => 'Beatmap Ranked Terbaru',
-            'popular' => 'Beatmap yang Sedang Populer',
+            'popular' => 'Beatmap Populer',
             'by_user' => 'oleh :user',
         ],
         'buttons' => [
@@ -131,16 +131,5 @@ return [
             'support' => 'Dukung osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Anda tampaknya sedang bersenang-senang! :D',
-        'body' => [
-            'part-1' => 'Tahukah Anda bahwa osu! beroperasi tanpa iklan, di mana biaya pengembangan dan operasionalnya bergantung sepenuhnya pada donasi sukarela dari para penggunanya?',
-            'part-2' => 'Apakah Anda juga tahu bahwa dengan mendukung osu! Anda juga akan mendapatkan berbagai fitur eksklusif seperti <strong>pengunduh beatmap otomatis di dalam aplikasi osu!</strong> yang akan secara otomatis mengunduh beatmap yang Anda belum miliki di saat sedang menonton pemain lain dan di dalam pertandingan multiplayer?',
-        ],
-        'find-out-more' => 'Klik di sini untuk mengetahui lebih lanjut!',
-        'download-starting' => "Oh, dan jangan khawatir - unduhan Anda sudah dimulai ;)",
     ],
 ];

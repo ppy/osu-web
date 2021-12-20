@@ -5,6 +5,7 @@
 
 namespace App\Models\Forum;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Jobs\EsIndexDocument;
 use App\Jobs\MarkNotificationsRead;
 use App\Libraries\BBCodeForDB;
@@ -13,8 +14,7 @@ use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\DeletedUser;
-use App\Models\Elasticsearch;
-use App\Models\Reportable;
+use App\Models\Traits;
 use App\Models\User;
 use App\Traits\Validatable;
 use Carbon\Carbon;
@@ -59,7 +59,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Post extends Model implements AfterCommit, Indexable
 {
-    use Elasticsearch\PostTrait, Reportable, SoftDeletes, Validatable;
+    use Traits\Es\ForumPostSearch, Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
+    use SoftDeletes {
+        restore as private origRestore;
+    }
+
+    const SORTS = [
+        'id_asc' => [
+            ['column' => 'post_id', 'columnInput' => 'id', 'order' => 'ASC'],
+        ],
+        'id_desc' => [
+            ['column' => 'post_id', 'columnInput' => 'id', 'order' => 'DESC'],
+        ],
+    ];
+
+    const DEFAULT_SORT = 'id_asc';
 
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
@@ -76,6 +90,33 @@ class Post extends Model implements AfterCommit, Indexable
     private $skipBeatmapPostRestrictions = false;
     private $skipBodyPresenceCheck = false;
 
+    public static function createNew($topic, $poster, $body, $isReply = true)
+    {
+        $post = (new static([
+            'post_text' => $body,
+            'post_username' => $poster->username,
+            'poster_id' => $poster->user_id,
+            'forum_id' => $topic->forum_id,
+            'topic_id' => $topic->getKey(),
+            'post_time' => now(),
+        ]))->setRelation('topic', $topic)
+        ->setRelation('forum', $topic->forum);
+
+        $post->getConnection()->transaction(function () use ($topic, $post, $isReply) {
+            $post->saveOrExplode();
+
+            $post->topic->postsAdded($isReply ? 1 : 0);
+            $post->forum->postsAdded(1);
+
+            if ($post->user !== null) {
+                $post->user->refreshForumCache($post->forum, 1);
+                $post->user->refresh();
+            }
+        });
+
+        return $post;
+    }
+
     public function forum()
     {
         return $this->belongsTo(Forum::class, 'forum_id', 'forum_id');
@@ -83,7 +124,7 @@ class Post extends Model implements AfterCommit, Indexable
 
     public function topic()
     {
-        return $this->belongsTo(Topic::class, 'topic_id', 'topic_id');
+        return $this->belongsTo(Topic::class, 'topic_id', 'topic_id')->withTrashed();
     }
 
     public function user()
@@ -234,6 +275,10 @@ class Post extends Model implements AfterCommit, Indexable
 
     public function delete()
     {
+        if ($this->trashed()) {
+            return true;
+        }
+
         $this->validationErrors()->reset();
 
         // don't forget to sync with views.forum.topics._posts
@@ -243,7 +288,59 @@ class Post extends Model implements AfterCommit, Indexable
             return false;
         }
 
-        return parent::delete();
+        if ($this->getKey() === $this->topic->topic_first_post_id) {
+            $this->validationErrors()->add('post_id', '.no_delete_first_post');
+
+            return false;
+        }
+
+        return $this->getConnection()->transaction(function () {
+            if (!parent::delete()) {
+                return false;
+            }
+
+            $this->topic->postsAdded(-1);
+            $this->forum->postsAdded(-1);
+
+            if ($this->user !== null) {
+                $this->user->refreshForumCache($this->forum, -1);
+                $this->user->refresh();
+            }
+
+            return true;
+        });
+    }
+
+    public function deleteOrExplode()
+    {
+        if (!$this->delete()) {
+            throw new ModelNotSavedException($this->validationErrors()->toSentence());
+        }
+
+        return true;
+    }
+
+    public function restore()
+    {
+        if (!$this->trashed()) {
+            return true;
+        }
+
+        return $this->getConnection()->transaction(function () {
+            if (!$this->origRestore()) {
+                return false;
+            }
+
+            $this->topic->postsAdded(1);
+            $this->forum->postsAdded(1);
+
+            if ($this->user !== null) {
+                $this->user->refreshForumCache($this->forum, 1);
+                $this->user->refresh();
+            }
+
+            return true;
+        });
     }
 
     public function isValid()
@@ -319,7 +416,9 @@ class Post extends Model implements AfterCommit, Indexable
 
     public function afterCommit()
     {
-        dispatch(new EsIndexDocument($this));
+        if ($this->exists) {
+            dispatch(new EsIndexDocument($this));
+        }
     }
 
     public function bodyHTML($options = [])
@@ -333,7 +432,7 @@ class Post extends Model implements AfterCommit, Indexable
             return;
         }
 
-        $topic = $this->topic()->withTrashed()->first();
+        $topic = $this->topic ?? $this->topic()->withTrashed()->first();
 
         if ($topic === null) {
             return;

@@ -24,13 +24,14 @@ return [
         'form' => [
             '_' => 'Αναζήτηση',
             'deleted' => 'Συμπεριλάμβανε διαγραμμένες συζητήσεις',
+            'mode' => '',
             'only_unresolved' => '',
             'types' => 'Τύποι μηνυμάτων',
             'username' => 'Όνομα χρήστη',
 
             'beatmapset_status' => [
                 '_' => '',
-                'all' => '',
+                'all' => 'Όλα',
                 'disqualified' => '',
                 'never_qualified' => '',
                 'qualified' => '',
@@ -57,6 +58,13 @@ return [
         'unsaved' => '',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Συνδεθείτε για να Aπαντήσετε',
@@ -67,12 +75,13 @@ return [
     'review' => [
         'block_count' => '',
         'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_child' => 'Προβολή Συζήτησης',
         'validation' => [
-            'block_too_large' => '',
+            'block_too_large' => 'κάθε block μπορεί να περιέχει μόνο έως :limit χαρακτήρες',
             'external_references' => '',
             'invalid_block_type' => '',
             'invalid_document' => '',
+            'invalid_discussion_type' => '',
             'minimum_issues' => '',
             'missing_text' => '',
             'too_many_blocks' => '',
@@ -87,8 +96,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'γενικά',
+        'general_all' => 'γενικά (όλα)',
     ],
 
     'user_filter' => [

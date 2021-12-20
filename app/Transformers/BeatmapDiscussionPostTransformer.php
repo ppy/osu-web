@@ -18,18 +18,16 @@ class BeatmapDiscussionPostTransformer extends TransformerAbstract
     public function transform(BeatmapDiscussionPost $post)
     {
         return [
-            'id' => $post->id,
-            'beatmap_discussion_id' => $post->beatmap_discussion_id,
-            'user_id' => $post->user_id,
-            'last_editor_id' => $post->last_editor_id,
-            'deleted_by_id' => $post->deleted_by_id,
-
-            'system' => $post->system,
-            'message' => $post->message,
-
+            'beatmapset_discussion_id' => $post->beatmap_discussion_id,
             'created_at' => json_time($post->created_at),
-            'updated_at' => json_time($post->updated_at),
             'deleted_at' => json_time($post->deleted_at),
+            'deleted_by_id' => $post->deleted_by_id,
+            'id' => $post->id,
+            'last_editor_id' => $post->last_editor_id,
+            'message' => $post->message,
+            'system' => $post->system,
+            'updated_at' => json_time($post->updated_at),
+            'user_id' => $post->user_id,
         ];
     }
 

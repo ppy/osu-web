@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'raderad',
+    'deleted_by' => 'raderad :timeago av :user',
+    'deleted_by_system' => 'system',
     'deleted_count' => ':count_delimited raderad kommentar|:count_delimited raderade kommentarer',
     'edited' => 'redigerad :timeago av :user',
     'pinned' => 'fäst',
@@ -35,7 +37,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'kommentarer',
         'nav_title' => 'listning',
+        'no_comments' => 'inga kommentarer hittades...',
     ],
 
     'placeholder' => [

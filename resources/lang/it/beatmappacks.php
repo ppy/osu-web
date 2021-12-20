@@ -11,13 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'LEGGI PRIMA DI SCARICARE',
-            'instruction' => [
-                '_' => "Installazione: Una volta scaricato il pacchetto desiderato, estrai il .rar nella cartella Songs di osu!.
-                    Tutte le canzoni saranno ancora .zip e/o .osz dentro il pacchetto, quindi osu! dovrà estrarre le beatmap la prossima volta che entri nella modalità Play.
-                    :scary estrarre gli zip/osz manualmente,
-                    altrimenti le beatmap non verrano visualizzate correttamente su osu! e non funzioneranno a dovere.",
-                'scary' => 'NON',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Nota inoltre che è altamente consigliato di :scary, dato che le mappe più vecchie sono di qualità molto inferiore rispetto a quelle più recenti.',
                 'scary' => 'scaricare i pacchetti dal più recente al più vecchio',
@@ -32,8 +26,8 @@ return [
             'not_cleared' => 'non completata',
         ],
         'no_diff_reduction' => [
-            '_' => ':link non può essere usato per completare questo pacchetto.',
-            'link' => 'Mod che riducono la difficoltà',
+            '_' => 'Le :link non possono essere utilizzate per completare questo pacchetto.',
+            'link' => 'mod che riducono la difficoltà',
         ],
     ],
 

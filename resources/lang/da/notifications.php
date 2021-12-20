@@ -5,11 +5,13 @@
 
 return [
     'all_read' => 'Alle notifikationer læst!',
-    'delete' => '',
+    'delete' => 'Slet :type',
+    'loading' => '',
     'mark_read' => 'Ryd :type',
     'none' => 'Ingen notifikationer',
     'see_all' => 'se alle notifikationer',
-    'see_channel' => '',
+    'see_channel' => 'gå til chat',
+    'verifying' => 'Bekræft venligst session for at se notifikationer',
 
     'filters' => [
         '_' => 'alle',
@@ -24,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
+
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => 'Du er nu ejer af sværhedsgraden ":beatmap" for beatmappet ":title"',
+                'beatmap_owner_change_compact' => 'Du er nu ejer af sværhedsgraden ":beatmap"',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Beatmap diskussion',
@@ -133,6 +141,19 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Nyt beatmap',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medaljer',
 
@@ -147,6 +168,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_post_new' => '',
@@ -192,14 +217,18 @@ return [
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Der er nye svar i ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username har oplåst en ny medalje, ":title"!',
+                'user_achievement_unlock_self' => 'Du har oplåst en ny medalje, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username har oprettet nye beatmaps',
             ],
         ],
     ],

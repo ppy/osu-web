@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'odmietnuť kudosu',
         'edit' => 'upraviť',
         'edited' => 'Naposledy upravené uživateľom :editor :update_time.',
+        'guest' => '',
         'kudosu_denied' => 'Odopretý od získania kudosu.',
         'message_placeholder_deleted_beatmap' => 'Táto obtiažnosť bola vymazaná, takže už nemôže byť diskutovaná.',
         'message_placeholder_locked' => 'Diskusia o tejto mape boli vypnuté.',
@@ -182,6 +183,7 @@ return [
         'disqualify' => 'Diskvalifikovať',
         'incorrect_state' => 'Chyba pri vykonávaní akcie, skúste obnoviť stránku.',
         'love' => 'Obľuba',
+        'love_choose' => '',
         'love_confirm' => 'Obľúbil si si túto beatmapu?',
         'nominate' => 'Nominovať',
         'nominate_confirm' => 'Nominovať túto beatmapu?',
@@ -220,14 +222,15 @@ return [
             'not-found' => 'bez výsledkov',
             'not-found-quote' => '... nič sa nenašlo.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Všeobecné',
-                'mode' => 'Mód',
-                'status' => 'Kategórie',
                 'genre' => 'Žáner',
                 'language' => 'Jazyk',
-                'extra' => 'extra',
-                'rank' => 'Dosiahnuté Hodnotenie',
+                'mode' => 'Mód',
+                'nsfw' => '',
                 'played' => 'Hrané',
+                'rank' => 'Dosiahnuté Hodnotenie',
+                'status' => 'Kategórie',
             ],
             'sorting' => [
                 'title' => 'Názov',
@@ -248,8 +251,10 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Odporúčaná obtiažnosť',
         'converts' => 'Zahrnúť konvertované beatmapy',
+        'featured_artists' => '',
+        'follows' => '',
+        'recommended' => 'Odporúčaná obtiažnosť',
     ],
     'mode' => [
         'all' => '',
@@ -307,7 +312,7 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
@@ -330,6 +335,12 @@ return [
         'other' => 'Ostatné',
         'unspecified' => '',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Akékoľvek',
         'played' => 'Hrané',

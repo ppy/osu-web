@@ -97,7 +97,7 @@ return [
         'username' => 'Nome de Usuário',
 
         'beta' => [
-            'main' => 'Acesso Beta está restrito apenas para usuários privilegiados.',
+            'main' => 'Acesso beta está restrito apenas para usuários privilegiados.',
             'small' => '(osu!supporters terão acesso em breve)',
         ],
     ],
@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Jogando sujo / Trapaceando',
+            'multiple_accounts' => 'Usando diversas contas',
             'insults' => 'Me insultando / outros',
             'spam' => 'Spam',
             'unwanted_content' => 'Enviando links com conteúdo inapropriado',
@@ -137,7 +138,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Sua conta foi restrita!',
-        'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em recorrer da sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
+        'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em recorrer contra sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
     ],
     'show' => [
         'age' => ':age anos',
@@ -154,6 +155,10 @@ return [
         'plays_with' => 'Joga com :devices',
         'title' => "Perfil de :username",
 
+        'comments_count' => [
+            '_' => 'Publicado :link',
+            'count' => ':count_delimited comentário|:count_delimited comentários',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar Capa de Perfil',
@@ -202,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Beatmaps Loved',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps Ranqueados & Aprovados',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmaps Pendentes',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmaps Ranqueados & Aprovados',
                 ],
             ],
             'discussions' => [
@@ -296,6 +301,10 @@ return [
                 'recent' => 'Recente',
                 'title' => 'Medalhas',
             ],
+            'multiplayer' => [
+                'title' => 'Jogos multijogador
+',
+            ],
             'posts' => [
                 'title' => 'Publicações',
                 'title_longer' => 'Publicações Recentes',
@@ -349,12 +358,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Interesses',
             'location' => 'Local Atual',
             'occupation' => 'Ocupação',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Website',
         ],
         'not_found' => [
@@ -399,11 +407,16 @@ return [
             'total_hits' => 'Acertos Totais',
             'total_score' => 'Pontuação Total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
-            'loved_beatmapset_count' => 'Beatmaps Loved',
-            'unranked_beatmapset_count' => 'Beatmaps Pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no Cemitério',
+            'loved_beatmapset_count' => 'Beatmaps Loved',
+            'pending_beatmapset_count' => 'Beatmaps Pendentes',
+            'ranked_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Você está silenciado no momento.',
+        'message' => 'Algumas ações podem estar indisponíveis.',
     ],
 
     'status' => [

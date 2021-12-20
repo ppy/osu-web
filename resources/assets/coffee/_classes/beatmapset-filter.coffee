@@ -1,29 +1,37 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+parseBool = (string) ->
+  switch string
+    when 'false' then false
+    when 'true' then true
+
+
 parseInt10 = (string) ->
   int = parseInt string, 10
 
   if _.isFinite(int) then int else null
 
 
-class @BeatmapsetFilter
+class window.BeatmapsetFilter
   @castFromString:
-    mode: parseInt10
     genre: parseInt10
     language: parseInt10
+    mode: parseInt10
+    nsfw: parseBool
 
 
   @charToKey:
     c: 'general'
-    m: 'mode'
-    s: 'status'
+    e: 'extra'
     g: 'genre'
     l: 'language'
-    e: 'extra'
-    r: 'rank'
+    m: 'mode'
+    nsfw: 'nsfw'
     played: 'played'
     q: 'query'
+    r: 'rank'
+    s: 'status'
     sort: 'sort'
 
 
@@ -73,14 +81,17 @@ class @BeatmapsetFilter
   @getDefault: (filters, key) =>
     return @defaults[key] if @defaults.hasOwnProperty(key)
 
-    if key == 'sort'
-      if filters.query?.trim().length > 0
-        'relevance_desc'
-      else
-        if filters.status in ['pending', 'graveyard', 'mine']
-          'updated_desc'
+    switch key
+      when 'nsfw'
+        osuCore.userPreferences.get('beatmapset_show_nsfw')
+      when 'sort'
+        if filters.query?.trim().length > 0
+          'relevance_desc'
         else
-          'ranked_desc'
+          if filters.status in ['pending', 'graveyard', 'mine']
+            'updated_desc'
+          else
+            'ranked_desc'
 
 
   @getDefaults: (filters) =>
@@ -92,12 +103,14 @@ class @BeatmapsetFilter
     ret
 
 
+  # TODO: look at combining with the one in beatmapset-search-filter.ts
   @keys: [
     'general'
     'extra'
     'genre'
     'language'
     'mode'
+    'nsfw'
     'played'
     'query'
     'rank'

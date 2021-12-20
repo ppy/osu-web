@@ -27,6 +27,7 @@ use Carbon\Carbon;
  * @property string $message
  * @property static $parent
  * @property int|null $parent_id
+ * @property bool $pinned
  * @property \Illuminate\Database\Eloquent\Collection $replies static
  * @property int $replies_count_cache
  * @property \Carbon\Carbon|null $updated_at
@@ -37,7 +38,7 @@ use Carbon\Carbon;
  */
 class Comment extends Model
 {
-    use Reportable, Validatable;
+    use Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 
     const COMMENTABLES = [
         MorphMap::MAP[Beatmapset::class],
@@ -48,8 +49,6 @@ class Comment extends Model
     // FIXME: decide on good number.
     // some people seem to put song lyrics in comment which inflated the size.
     const MESSAGE_LIMIT = 10000;
-
-    const DEFAULT_SORT = 'new';
 
     const SORTS = [
         'new' => [
@@ -66,6 +65,8 @@ class Comment extends Model
             ['column' => 'id', 'order' => 'DESC'],
         ],
     ];
+
+    const DEFAULT_SORT = 'new';
 
     protected $dates = ['deleted_at', 'edited_at'];
 

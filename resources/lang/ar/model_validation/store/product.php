@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'insufficient_stock' => 'لم تتبقى كمية كافية من هذا المنتج!',
-    'must_separate' => 'يجب فحص هذا العنصر بأنفراد عن العناصر الاخرى',
-    'not_available' => 'هذا المنتج غير متوفر.',
-    'too_many' => 'يمكنك شراء :count فقط من هذا المنتج لكل طلب.',
+    'insufficient_stock' => 'لم تتبقى كمية كافية من هذه السلعة!',
+    'must_separate' => 'يجب دفع هذه السلعة بانفراد عن السلع الأخرى',
+    'not_available' => 'هذه السلعة غير متوفره.',
+    'too_many' => 'يمكنك شراء :count فقط من هذه السلعة لكل طلب.',
 ];

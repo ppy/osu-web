@@ -4,7 +4,7 @@
 import HeaderV4 from 'header-v4';
 import HeaderLink from 'interfaces/header-link';
 import { route } from 'laroute';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Name as NotificationTypeName, typeNames } from 'models/notification-type';
 import Stack from 'notification-widget/stack';
@@ -15,12 +15,12 @@ import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
+import ShowMoreLink from 'show-more-link';
 
 @observer
 export class Main extends React.Component {
   static readonly contextType = NotificationContext;
-  context!: React.ContextType<typeof NotificationContext>;
+  declare context: React.ContextType<typeof NotificationContext>;
 
   private readonly controller: NotificationController;
 
@@ -34,10 +34,12 @@ export class Main extends React.Component {
     }));
   }
 
-  constructor(props: {}, context: NotificationContextData) {
+  constructor(props: Record<string, never>, context: NotificationContextData) {
     super(props);
 
     this.controller = new NotificationController(core.dataStore.notificationStore, context);
+
+    makeObservable(this);
   }
 
   render() {
@@ -98,22 +100,22 @@ export class Main extends React.Component {
 
   private handleDelete = () => {
     this.controller.type.delete();
-  }
+  };
 
   private handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
     const type = ((event.currentTarget as HTMLAnchorElement).dataset.type ?? null) as NotificationTypeName;
     this.controller.navigateTo(type);
-  }
+  };
 
   private handleMarkAsRead = () => {
     this.controller.markCurrentTypeAsRead();
-  }
+  };
 
   private handleShowMore = () => {
     this.controller.loadMore();
-  }
+  };
 
   private renderDeleteButton() {
     const type = this.controller.type;

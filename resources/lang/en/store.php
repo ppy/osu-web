@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Warehouse',
-    ],
-
     'cart' => [
         'checkout' => 'Checkout',
         'info' => ':count_delimited item in cart ($:subtotal)|:count_delimited items in cart ($:subtotal)',
@@ -69,11 +65,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Order placed :date',
-
+        'cancel' => 'Cancel Order',
+        'cancel_confirm' => 'This order will be cancelled and payment will not be accepted for it. The payment provider might not release any reserved funds immediately. Are you sure?',
+        'cancel_not_allowed' => 'This order cannot be cancelled at this time.',
         'invoice' => 'View Invoice',
         'no_orders' => 'No orders to view.',
+        'paid_on' => 'Order placed :date',
         'resume' => 'Resume Checkout',
+        'shopify_expired' => 'The checkout link for this order has expired.',
 
         'item' => [
             'display_name' => [

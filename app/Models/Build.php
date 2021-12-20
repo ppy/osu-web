@@ -6,7 +6,6 @@
 namespace App\Models;
 
 use App\Libraries\Commentable;
-use App\Traits\CommentableDefaults;
 use Carbon\Carbon;
 
 /**
@@ -15,6 +14,7 @@ use Carbon\Carbon;
  * @property int $build_id
  * @property \Illuminate\Database\Eloquent\Collection $changelogEntries ChangelogEntry
  * @property \Illuminate\Database\Eloquent\Collection $changelogs Changelog
+ * @property string $commentable_identifier
  * @property Comment $comments
  * @property \Carbon\Carbon $date
  * @property mixed|null $hash
@@ -28,7 +28,7 @@ use Carbon\Carbon;
  */
 class Build extends Model implements Commentable
 {
-    use CommentableDefaults;
+    use Traits\CommentableDefaults;
 
     public $timestamps = false;
 

@@ -11,13 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'LUE TÄMÄ ENNEN LATAAMISTA',
-            'instruction' => [
-                '_' => "Asennus: Kun paketti on ladattu, pura .rar tiedosto osu! Songs kansioon.
-                 Kappaleet ovat vielä .zip ja/tai .osz muodossa paketin sisällä, joten osu! purkaa beatmapit seuraavalla pelikerrallla.
-                 :scary pura .zip/.osz-tiedostoja itse,
-                 tai beatmapit eivät näy oikein pelissä eivätkä toimi kunnolla.",
-                'scary' => 'ÄLÄ',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Huomaa myös, että on erittäin suositeltavaa :scary, koska vanhemmat mapit ovat paljon huonompia kuin uudet.',
                 'scary' => 'ladata uusimpia kokoelmia vanhojen sijaan',
@@ -32,8 +26,8 @@ return [
             'not_cleared' => 'läpäisemätön',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link ei voi käyttää tämän paketin suorittamiseen.',
+            'link' => 'Vaikeusastetta vähentäviä modeja',
         ],
     ],
 

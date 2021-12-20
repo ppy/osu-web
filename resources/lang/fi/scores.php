@@ -5,20 +5,25 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username käynnissä :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'Luonut :artist ',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Esittäjänä',
+            'submitted_on' => 'Lähetetty',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Maan sijoitus',
+                'global' => 'Maailmanlaajuinen sijoitus',
             ],
         ],
+    ],
+
+    'status' => [
+        'non_best' => 'Vain parhaat henkilökohtaiset tulokset saa pp',
+        'processing' => 'Pisteitä lasketaan ja ne näytetään pian',
     ],
 ];

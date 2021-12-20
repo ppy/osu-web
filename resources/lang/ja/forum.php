@@ -47,11 +47,12 @@ return [
         'confirm_restore' => '投稿を本当に復元しますか？',
         'edited' => ':userが:whenに最終編集、合計:count_delimited回の編集',
         'posted_at' => '投稿日時 :when',
+        'posted_by' => ':username による投稿',
 
         'actions' => [
             'destroy' => '投稿を削除',
             'edit' => '投稿を編集',
-            'report' => '',
+            'report' => '投稿を報告',
             'restore' => '投稿を復元',
         ],
 
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'トピックを本当に削除しますか？',
+        'confirm_restore' => 'トピックを本当に復元しますか？',
         'deleted' => '削除されたトピック',
         'go_to_latest' => '最新の投稿を見る',
         'has_replied' => 'このトピックに返信しました',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'by :user',
         'started_by_verbose' => '開始したユーザー: :user',
+
+        'actions' => [
+            'destroy' => 'トピックを削除',
+            'restore' => 'トピックを復元',
+        ],
 
         'create' => [
             'close' => '閉じる',
@@ -119,6 +127,55 @@ return [
             'previous' => '投稿を10件戻る',
         ],
 
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => '',
+                'date' => '',
+                'user' => '',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'キャンセル',
             'post' => '保存',
@@ -127,7 +184,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'フォーラムサブスクリプション',
+            'title_compact' => 'フォーラムトピック ウォッチリスト',
 
             'box' => [
                 'total' => 'サブスクライブ中のトピック',

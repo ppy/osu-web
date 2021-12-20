@@ -22,6 +22,7 @@
   --font-default: @font-default;
   --font-default-vi: @font-default-vi;
   --font-default-zh: @font-default-zh;
+  --font-default-th: @font-default-th;
   --font-default-zh-tw: @font-default-zh-tw;
   --font-content: @font-content;
 
@@ -31,10 +32,34 @@
   --diff-insane: @diff-insane;
   --diff-expert: @diff-expert;
   --diff-expert-plus: @diff-expert-plus;
+
+  --beatmapset-status-colour-default: var(--hsl-b3);
+  --beatmapset-graveyard-bg: #000;
+  --beatmapset-graveyard-colour: hsl(var(--hsl-b1));
+  --beatmapset-wip-bg: hsl(var(--hsl-darkorange-1));
+  --beatmapset-wip-colour: hsl(var(--beatmapset-status-colour-default));
+  --beatmapset-pending-bg: hsl(var(--hsl-orange-1));
+  --beatmapset-pending-colour: hsl(var(--beatmapset-status-colour-default));
+  --beatmapset-qualified-bg: hsl(var(--hsl-blue-1));
+  --beatmapset-qualified-colour: hsl(var(--beatmapset-status-colour-default));
+  --beatmapset-approved-bg: hsl(var(--hsl-lime-1));
+  --beatmapset-approved-colour: hsl(var(--beatmapset-status-colour-default));
+  --beatmapset-ranked-bg: hsl(var(--hsl-lime-1));
+  --beatmapset-ranked-colour: hsl(var(--beatmapset-status-colour-default));
+  --beatmapset-loved-bg: hsl(var(--hsl-pink-1));
+  --beatmapset-loved-colour: hsl(var(--beatmapset-status-colour-default));
 }
 
 html, body {
   height: 100%;
+}
+
+html {
+  scroll-padding-top: @nav2-height--pinned;
+
+  @media @mobile {
+    scroll-padding-top: @navbar-height;
+  }
 }
 
 body {

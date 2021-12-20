@@ -8,6 +8,15 @@ return [
         'disabled' => 'Táto beatmapa momentálne nie je k dispozícii na stiahnutie.',
         'parts-removed' => 'Časti tejto mapy boli vymazané na žiadosť tvorca alebo vlastníka tretej strany.',
         'more-info' => 'Klikni sem pre viac informácií.',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
@@ -16,6 +25,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'stiahnúť',
             'video' => 'stiahnuť s videom',
@@ -24,11 +35,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Diskusia',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Pridať do mojich obľúbených',
+            'favourite_login' => '',
             'logged-out' => 'Pre sťahovanie beatmap sa najskôr musíš prihlásiť!',
             'mapped_by' => 'beatmapu vytvoril :mapper',
             'unfavourite' => 'Odobrať z mojich obľúbených',
@@ -89,10 +120,24 @@ return [
             'genre' => 'Žáner',
             'language' => 'Jazyk',
             'no_scores' => 'Vypočítavajú sa dáta...',
+            'nsfw' => '',
             'points-of-failure' => 'Body Neúspechu',
             'source' => 'Zdroj',
+            'storyboard' => '',
             'success-rate' => 'Úspešnosť',
             'tags' => 'Tagy',
+            'video' => '',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

@@ -19,7 +19,6 @@ return [
             'contest' => 'การแข่งขัน',
             'contests' => 'การแข่งขัน',
             'root' => 'แผงควบคุม',
-            'store_orders' => 'ผู้ดูแลระบบร้านค้า',
         ],
 
         'artists' => [
@@ -47,6 +46,7 @@ return [
 
         'users' => [
             'modding' => 'การวิจารณ์บีทแมพ',
+            'multiplayer' => 'โหมดผู้เล่นหลายคน',
             'show' => 'ข้อมูล',
         ],
     ],
@@ -62,50 +62,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'บีทแมพ',
-            'artists' => 'ศิลปินโดดเด่น',
-            'index' => 'รายการ',
-            'packs' => 'แพ็ค',
         ],
         'community' => [
             '_' => 'ชุมชน',
-            'chat' => 'แชท',
-            'contests' => 'การแข่งขัน',
             'dev' => 'การพัฒนา',
-            'forum-forums-index' => 'ฟอรั่ม',
-            'getLive' => 'การถ่ายทอดสด',
-            'tournaments' => '
-ทัวร์นาเมนต์',
         ],
         'help' => [
             '_' => 'ช่วยเหลือ',
-            'getAbuse' => '',
+            'getAbuse' => 'รายงานการละเมิด',
             'getFaq' => 'คำถามที่ถามบ่อย',
             'getRules' => 'กฏ',
             'getSupport' => 'ไม่ ฉันต้องการความช่วยเหลือ จริงๆ!',
-            'getWiki' => 'วิกิ',
         ],
         'home' => [
             '_' => 'หน้าแรก',
-            'changelog-index' => 'บันทึกการเปลี่ยนแปลง',
-            'getDownload' => 'ดาวน์โหลด',
-            'news-index' => 'ข่าวสาร',
-            'search' => 'ค้นหา',
             'team' => 'ทีม',
         ],
         'rankings' => [
             '_' => 'การจัดอันดับ',
-            'charts' => 'ชาร์ท',
-            'country' => 'ประเทศ',
-            'index' => 'ประสิทธิภาพ',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'โหมดผู้เล่นหลายคน',
-            'score' => 'คะแนน',
         ],
         'store' => [
             '_' => 'ร้านค้า',
-            'cart-show' => 'ตะกร้าสินค้า',
-            'getListing' => 'รายการ',
-            'orders-index' => 'ประวัติการสั่งซื้อ',
         ],
     ],
 
@@ -160,6 +138,10 @@ return [
             'error' => 'คำร้องขอมีลักษณะไม่ถูกต้อง',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'เกินขีดจำกัดการเข้าถึง',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'โอ ไม่! บางอย่างพัง! ;_;',
             'description' => "เราได้รับแจ้งโดยอัตโนมัติจากทุกข้อผิดพลาด",
@@ -172,8 +154,8 @@ return [
             'error' => 'ปิดปรับปรุง!',
             'description' => "การปิดปรับปรุงส่วนมากใช้เวลาจาก 5 วินาทีถึง 10 นาที ถ้าเราปิดนานกว่า ดู :link เพื่อรายละเอียด",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -205,6 +187,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'การตั้งค่า',
+            'follows' => 'รายการการเฝ้าดู',
             'friends' => 'เพื่อน',
             'logout' => 'ออกจากระบบ',
             'profile' => 'โปรไฟล์ของฉัน',

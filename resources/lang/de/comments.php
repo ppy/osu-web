@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'gelöscht',
+    'deleted_by' => 'gelöscht :timeago von :user',
+    'deleted_by_system' => 'system',
     'deleted_count' => ':count_delimited gelöschter Kommentar|:count_delimited gelöschte Kommentare',
     'edited' => 'bearbeitet :timeago von :user',
     'pinned' => 'angeheftet',
@@ -35,7 +37,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'kommentare',
         'nav_title' => 'liste',
+        'no_comments' => 'keine kommentare gefunden...',
     ],
 
     'placeholder' => [

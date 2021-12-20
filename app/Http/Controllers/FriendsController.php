@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Jobs\UpdateUserFollowerCountCache;
 use App\Models\User;
 use App\Models\UserRelation;
+use App\Transformers\UserCompactTransformer;
 use Auth;
 use Request;
 
@@ -31,23 +32,21 @@ class FriendsController extends Controller
 
     public function index()
     {
-        $currentUser = Auth::user();
-        $currentMode = studly_case($currentUser->playmode);
+        $currentUser = auth()->user();
+        $currentMode = default_mode();
 
         $friends = $currentUser
             ->friends()
-            ->with('statistics'.$currentMode)
+            ->with('statistics'.studly_case($currentMode))
             ->eagerloadForListing()
             ->orderBy('username', 'asc')
             ->get();
 
-        $usersJson = json_collection($friends, 'UserCompact', [
-            'cover',
-            'country',
-            'current_mode_rank',
-            'groups',
-            'support_level',
-        ]);
+        $usersJson = json_collection(
+            $friends,
+            (new UserCompactTransformer())->setMode($currentMode),
+            UserCompactTransformer::LIST_INCLUDES
+        );
 
         if (is_api_request()) {
             return $usersJson;
@@ -62,7 +61,7 @@ class FriendsController extends Controller
         $friends = $currentUser->friends(); // don't fetch (avoids potentially instantiating 500+ friend objects)
 
         if ($friends->count() >= $currentUser->maxFriends()) {
-            return error_popup(trans('friends.too_many'));
+            return error_popup(osu_trans('friends.too_many'));
         }
 
         $targetId = get_int(Request::input('target'));

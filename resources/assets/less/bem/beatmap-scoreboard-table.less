@@ -3,8 +3,8 @@
 
 .beatmap-scoreboard-table {
   @_top: beatmap-scoreboard-table;
-  @activated-row: ~'@{_top}__body-row--menu-active';
-  @passive-row: ~'@{_top}__body-row--highlightable';
+  @activated-row: ~"@{_top}__body-row--menu-active";
+  @passive-row: ~"@{_top}__body-row--highlightable";
 
   @handle: 16px;
   @row-height: 1.8em;
@@ -73,11 +73,11 @@
     }
 
     &--miss {
-      width: 70px;
+      width: 50px;
     }
 
     &--pp {
-      width: 30px;
+      width: 50px;
     }
 
     &--mods {
@@ -96,7 +96,8 @@
       --row-background-color: @osu-colour-b4;
     }
 
-    &:hover, &--menu-active {
+    &:hover,
+    &--menu-active {
       --zero-color: #fff;
     }
 

@@ -5,9 +5,9 @@
 
 return [
     'username_change' => [
-        'only_one' => 'perubahan nama pengguna yang diperbolehkan hanya 1 kali per pesanan.',
-        'insufficient_paid' => 'Biaya yang Anda bayarkan tidak mencukupi untuk menutupi biaya penggantian nama pengguna Anda (:expected > :actual)',
-        'reverting_username_mismatch' => 'Nama pengguna saat ini (:current) tidak sama dengan perubahan untuk diganti (:username)',
+        'only_one' => '',
+        'insufficient_paid' => '',
+        'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'Donasi Anda tidak mencukupi untuk menghadiahkan tag osu!supporter (:actual > :expected)',

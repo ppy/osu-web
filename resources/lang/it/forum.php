@@ -47,11 +47,12 @@ return [
         'confirm_restore' => 'Vuoi veramente ripristinare il post?',
         'edited' => 'Ultima modifica di :user :when, modificato :count_delimited volta in totale.|Ultima modifica di :user :when, modificato :count_delimited volte in totale.',
         'posted_at' => 'postato :when',
+        'posted_by' => 'postato da :username',
 
         'actions' => [
             'destroy' => 'Elimina post',
             'edit' => 'Modifica post',
-            'report' => '',
+            'report' => 'Segnala post',
             'restore' => 'Ripristina post',
         ],
 
@@ -74,8 +75,10 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Vuoi veramente eliminare il topic?',
+        'confirm_restore' => 'Vuoi veramente ripristinare il topic?',
         'deleted' => 'discussione eliminata',
-        'go_to_latest' => 'guarda gli ultimi post',
+        'go_to_latest' => 'guarda l\'ultimo post',
         'has_replied' => 'Hai risposto a questo topic',
         'in_forum' => 'in :forum',
         'latest_post' => ':when da :user',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'di :user',
         'started_by_verbose' => 'postato da :user',
+
+        'actions' => [
+            'destroy' => 'Elimina topic',
+            'restore' => 'Ripristina topic',
+        ],
 
         'create' => [
             'close' => 'Chiudi',
@@ -119,6 +127,55 @@ return [
             'previous' => 'vai indietro di 10 post',
         ],
 
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => '',
+                'date' => '',
+                'user' => '',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => 'da :topic',
+                'pin' => 'argomento fissato',
+                'post_operation' => 'postato da :username',
+                'remove_tag' => 'rimosso il tag ":tag"',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => 'Titolo dell\'argomento modificato',
+                'edit_poll' => '',
+                'fork' => 'Argomento copiato',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => 'Argomento spostato',
+                'pin' => 'Argomento fissato ',
+                'post_edited' => 'Post modificato',
+                'restore_post' => 'Post ripristinato',
+                'restore_topic' => 'Argomento ripristinato',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => 'Argomento sbloccato',
+                'unpin' => 'Argomento fissato rimosso',
+                'user_lock' => 'Argomento personale chiuso',
+                'user_unlock' => '',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Cancella',
             'post' => 'Salva',
@@ -127,7 +184,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'iscrizioni forum',
+            'title_compact' => 'topic del forum seguiti',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',
@@ -180,7 +237,7 @@ return [
                 'options_info' => 'Posiziona ogni opzione su una nuova linea. Puoi inserire fino a 10 opzioni.',
                 'title' => 'Domanda',
                 'vote_change' => 'Consenti di rivotare.',
-                'vote_change_info' => 'Se consentito, gli utenti possono cambiare il loro voto.',
+                'vote_change_info' => 'Se abilitato, gli utenti possono cambiare il loro voto.',
             ],
         ],
 
@@ -313,8 +370,8 @@ return [
             'to_not_watching' => 'Non preferito',
             'to_watching' => 'Preferito',
             'to_watching_mail' => 'Preferito con notifica',
-            'tooltip_mail_disable' => 'Le notifiche sono abilitate. Premi per disabilitarle',
-            'tooltip_mail_enable' => 'Le notifiche sono disabilitate. Premi per abilitarle',
+            'tooltip_mail_disable' => 'Notifica abilitata. Clicca per disattivarla',
+            'tooltip_mail_enable' => 'Notifica disabilitata. Clicca per attivarla',
         ],
     ],
 ];

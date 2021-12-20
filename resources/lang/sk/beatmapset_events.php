@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Schválené.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderátor vymazal diskusiu :discussion.',
         'discussion_lock' => 'Diskusia o tejto beatmape bola zakázaná. (:text)',
         'discussion_post_delete' => 'Moderátor vymazal príspevok z diskusie :discussion.',
@@ -25,10 +26,18 @@ return [
         'language_edit' => '',
         'love' => 'Obľúbené používateľom :user',
         'nominate' => 'Nominované užívateľom :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Nový problém :discussion (:text) spôsobil zresetovanie nominácie.',
+        'nomination_reset_received' => '',
+        'nomination_reset_received_profile' => '',
         'qualify' => 'Táto beatmapa dosiahla požadované číslo nominácii a bola kvalifikovaná.',
         'rank' => 'Ranked.',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -48,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Schválenie',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Odstránenie diskusie',
         'discussion_post_delete' => 'Odstránenie odpovedi diskusie',
         'discussion_post_restore' => 'Obnovenie odpovedi diskusie',
@@ -65,6 +75,8 @@ return [
         'love' => 'Obľuba',
         'nominate' => 'Nominácia',
         'nomination_reset' => 'Reštart nominácie',
+        'nomination_reset_received' => '',
+        'nsfw_toggle' => '',
         'qualify' => 'Kvalifikácia',
         'rank' => 'Hodnotenie',
         'remove_from_loved' => '',

@@ -3,27 +3,22 @@
 
 'use strict';
 
-//#region plugin imports
-const Autoprefixer = require('autoprefixer');
-const CopyPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SentryPlugin = require('webpack-sentry-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-
-//#endregion
-
-// #region non-plugin imports
-const dotenv = require('dotenv');
+// built-in imports
 const fs = require('fs');
 const path = require('path');
+
+const Autoprefixer = require('autoprefixer');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const dotenv = require('dotenv');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const webpack = require('webpack');
+const SentryPlugin = require('webpack-sentry-plugin');
 
-//#endregion
-
-//#region env
+// #region env
 const env = process.env.NODE_ENV || 'development';
 dotenv.config({ path: `.env.${env}` });
 dotenv.config();
@@ -36,9 +31,9 @@ const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
 const writeManifest = !(process.env.SKIP_MANIFEST === '1'
                         || process.env.SKIP_MANIFEST === 'true'
                         || process.env.SKIP_MANIFEST);
-//#endregion
+// #endregion
 
-//#region helpers
+// #region helpers
 // Most plugins should follow webpack's own interpolation format:
 // https://github.com/webpack/loader-utils#interpolatename
 function outputFilename(name, ext = '[ext]', hashType = 'contenthash:8') {
@@ -49,9 +44,9 @@ function resolvePath(...segments) {
   return path.resolve(__dirname, ...segments);
 }
 
-//#endregion
+// #endregion
 
-//#region Custom plugins
+// #region Custom plugins
 // Custom manifest dumper
 // Dumps a manifest file for hashless asset name lookups outside of webpack.
 // Uses asset name only unlike webpack-manifest-plugin which prefers chunk name first.
@@ -107,53 +102,32 @@ class Manifest {
   }
 }
 
-//#endregion
+// #endregion
 
-//#region entrypoints and output
+// #region entrypoints and output
 const entry = {
-  'app': [
-    './resources/assets/app.ts',
+  app: [
     './resources/assets/less/app.less',
   ],
 };
 
-const coffeeReactComponents = [
-  'artist-page',
-  'beatmap-discussions',
-  'beatmap-discussions-history',
-  'beatmapset-page',
-  'changelog-build',
-  'changelog-index',
-  'comments-index',
-  'comments-show',
-  'mp-history',
-  'modding-profile',
-  'profile-page',
-  'admin/contest',
-  'contest-entry',
-  'contest-voting',
-];
+const entrypointsPath = 'resources/assets/lib/entrypoints';
+const supportedExts = new Set(['.coffee', '.ts', '.tsx']);
+fs.readdirSync(resolvePath(entrypointsPath), { withFileTypes: true }).forEach((item) => {
+  if (item.isFile()) {
+    const filename = item.name;
+    const ext = path.extname(filename);
 
-const tsReactComponents = [
-  'account-edit',
-  'beatmaps',
-  'chat',
-  'friends-index',
-  'groups-show',
-  'news-index',
-  'news-show',
-  'notifications-index',
-  'scores-show',
-  'store-bootstrap',
-];
+    if (supportedExts.has(ext)) {
+      const entryName = path.basename(filename, ext);
 
-for (const name of coffeeReactComponents) {
-  entry[`react/${name}`] = [resolvePath(`resources/assets/coffee/react/${name}.coffee`)];
-}
-
-for (const name of tsReactComponents) {
-  entry[`react/${name}`] = [resolvePath(`resources/assets/lib/${name}.ts`)];
-}
+      if (entry[entryName] == null) {
+        entry[entryName] = [];
+      }
+      entry[entryName].push(resolvePath(entrypointsPath, filename));
+    }
+  }
+});
 
 const output = {
   filename: outputFilename('js/[name]', 'js'),
@@ -161,9 +135,9 @@ const output = {
   publicPath: '/assets/',
 };
 
-//#endregion
+// #endregion
 
-//#region plugin list
+// #region plugin list
 const plugins = [
   new webpack.ProvidePlugin({
     $: 'jquery',
@@ -190,6 +164,7 @@ const plugins = [
     patterns: [
       { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]') },
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
+      { from: 'node_modules/twemoji-emojis/vendor/svg/*-*.svg', to: 'images/flags/[name].[ext]' },
     ],
   }),
 ];
@@ -209,51 +184,28 @@ if (process.env.SENTRY_RELEASE === '1') {
   plugins.push(
     new SentryPlugin({
       apiKey: process.env.SENTRY_API_KEY,
-      organisation: process.env.SENTRY_ORG,
-      project: process.env.SENTRY_PROJ,
-
       deleteAfterCompile: true,
       exclude: /\.css(\.map)?$/,
-      filenameTransform: function(filename) {
+      filenameTransform(filename) {
         return path.join('~', filename);
       },
+      organisation: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJ,
       release: process.env.GIT_SHA,
     }),
   );
 }
 
-//#endregion
+// #endregion
 
-//#region Loader rules
+// #region Loader rules
 const rules = [
-  {
-    enforce: 'pre',
-    exclude: /(node_modules)/,
-    loader: 'import-glob-loader',
-    test: /\.(js|ts|coffee)$/,
-  },
   {
     exclude: /node_modules/,
     loader: 'ts-loader',
     test: /\.tsx?$/,
   },
   {
-    // loader for preexisting global coffeescript
-    exclude: [
-      resolvePath('resources/assets/coffee/react'),
-    ],
-    include: [
-      resolvePath('resources/assets/coffee'),
-    ],
-    test: /\.coffee$/,
-    use: ['imports-loader?jQuery=jquery,$=jquery,this=>window', 'coffee-loader'],
-  },
-  {
-    // loader for import-based coffeescript
-    include: [
-      resolvePath('resources/assets/coffee/react'),
-      resolvePath('resources/assets/lib'),
-    ],
     test: /\.coffee$/,
     use: ['coffee-loader'],
   },
@@ -301,30 +253,33 @@ const rules = [
   },
 ];
 
-//#endregion
+// #endregion
 
-//#region resolvers
+// #region resolvers
 const resolve = {
   alias: {
     '@fonts': path.resolve(__dirname, 'resources/assets/fonts'),
     '@images': path.resolve(__dirname, 'public/images'),
-    'layzr': resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
-    'ziggy': resolvePath('resources/assets/js/ziggy.js'),
-    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/js/route.js'),
+    layzr: resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
+    ziggy: resolvePath('resources/assets/js/ziggy.js'),
+    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/index.es.js'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
   modules: [
-    resolvePath('resources/assets/coffee'),
     resolvePath('resources/assets/lib'),
+
+    resolvePath('resources/assets/coffee'),
+    resolvePath('resources/assets/coffee/react'),
     resolvePath('resources/assets/coffee/react/_components'),
+
     resolvePath('node_modules'),
   ],
   plugins: [new TsconfigPathsPlugin()],
 };
 
-//#endregion
+// #endregion
 
-//#region optimization and chunk splitting settings
+// #region optimization and chunk splitting settings
 const cacheGroups = {
   commons: {
     chunks: 'initial',
@@ -337,10 +292,8 @@ const cacheGroups = {
     name: 'vendor',
     priority: -10,
     reuseExistingChunk: true,
-    test: (module, chunks) => {
-      // Doing it this way doesn't split the css imported via app.less from the main css bundle.
-      return module.resource && module.resource.includes(`${path.sep}node_modules${path.sep}`);
-    },
+    // Doing it this way doesn't split the css imported via app.less from the main css bundle.
+    test: (module) => module.resource && module.resource.includes(`${path.sep}node_modules${path.sep}`),
   },
 };
 
@@ -369,7 +322,7 @@ if (inProduction) {
   ];
 }
 
-//#endregion
+// #endregion
 
 module.exports = {
   devtool: 'source-map',

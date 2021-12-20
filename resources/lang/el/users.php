@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Παράτυπος τρόπος παιχνιδιού / Κλέψιμο',
+            'multiple_accounts' => '',
             'insults' => 'Προσβάλει εμένα / άλλους',
             'spam' => 'Spamming',
             'unwanted_content' => 'Δημοσίευση links με ακατάλληλο περιεχόμενο',
@@ -154,6 +155,10 @@ return [
         'plays_with' => 'Παίζει με :devices',
         'title' => "Το προφίλ του :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Αλλάξτε το Εξώφυλλο του Προφίλ σας',
@@ -202,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Εκκρεμή Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -296,6 +301,9 @@ return [
                 'recent' => 'Πρόσφατα',
                 'title' => 'Μετάλλια',
             ],
+            'multiplayer' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => '',
                 'title_longer' => '',
@@ -353,7 +361,6 @@ return [
             'interests' => 'Ενδιαφέροντα',
             'location' => 'Τρέχουσα Τοποθεσία',
             'occupation' => 'Ενασχόληση',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Ιστοσελίδα',
         ],
@@ -399,11 +406,16 @@ return [
             'total_hits' => 'Συνολικά Hits',
             'total_score' => 'Συνολική Βαθμολογία',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Äänestys tälle kilpailulle on päättynyt',
         'login_required' => 'Kirjaudu sisään äänestääksesi.',
+        'over' => 'Äänestys tälle kilpailulle on päättynyt',
+        'show_voted_only' => 'Näytä äänestetyt',
 
         'best_of' => [
             'none_played' => "Näyttäisi siltä, ettet ole pelannut tähän kilpailuun kelpuutettuja mappeja!",
@@ -26,14 +27,16 @@ return [
             'remove' => 'Poista ääni',
             'used_up' => 'Olet käyttänyt kaikki äänesi',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'ehdokas',
         'login_required' => 'Kirjaudu sisään osallistuaksesi kilpailuun.',
         'silenced_or_restricted' => 'Et voi osallistua kilpailuun jos olet rajoitetussa -tai mykistetyssä tilassa.',
         'preparation' => 'Valmistelemme tätä kilpailua. Odota rauhassa!',
-        'over' => 'Kiitos lähettämistänne töistä! Kilpailuun ei oteta enää ehdokkaita ja äänestys avataan pian.',
-        'limit_reached' => 'Olet saavuttanut kilpailuun lähetettävien töiden rajan',
         'drop_here' => 'Pudota työsi tähän',
         'download' => 'Lataa .osz-tiedosto',
         'wrong_type' => [
@@ -44,11 +47,11 @@ return [
         'too_big' => 'Tähän kilpailuun voi lähettää korkeintaan :limit työtä.',
     ],
     'beatmaps' => [
-        'download' => 'Lataa ehdokas',
+        'download' => 'Lataa beatmappi',
     ],
     'vote' => [
         'list' => 'äänet',
-        'count' => ':count ääni|:count ääntä',
+        'count' => ':count_delimited ääni|:count_delimited ääntä',
         'points' => ':count piste|:count pistettä',
     ],
     'dates' => [
@@ -56,7 +59,7 @@ return [
         'ended_no_date' => 'Päättyi',
 
         'starts' => [
-            '_' => 'Alkoi :date',
+            '_' => 'Alkaa :date',
             'soon' => 'pian™',
         ],
     ],

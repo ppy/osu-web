@@ -17,6 +17,10 @@
     font-weight: 100;
     justify-content: center;
     background: @osu-colour-b6;
+
+    &--blank {
+      background-color: transparent;
+    }
   }
 
   &__trophy {
@@ -69,7 +73,6 @@
 
   &__header-wrapper {
     display: flex;
-    justify-content: space-between;
     width: 100%;
   }
 
@@ -88,6 +91,11 @@
 
   &__header-title {
     padding-left: 10px;
+    margin-right: auto;
+  }
+
+  &__header-voted-toggle-button {
+    align-self: center;
   }
 
   &__header-votesummary {
@@ -130,5 +138,9 @@
   &__link {
     .link-white();
     .link-plain();
+
+    &--shadowed {
+      .default-text-shadow();
+    }
   }
 }

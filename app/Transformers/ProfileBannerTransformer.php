@@ -9,12 +9,8 @@ use App\Models\ProfileBanner;
 
 class ProfileBannerTransformer extends TransformerAbstract
 {
-    public function transform(?ProfileBanner $banner)
+    public function transform(ProfileBanner $banner)
     {
-        if ($banner === null) {
-            return [];
-        }
-
         return [
             'id' => $banner->getKey(),
             'tournament_id' => $banner->tournament_id,

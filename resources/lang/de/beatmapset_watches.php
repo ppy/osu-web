@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Du beobachtest keine Diskussionen.',
+            'last_update' => 'Letzte Aktualisierung',
             'open_issues' => 'Offene Vorschläge/Probleme',
             'state' => 'Status',
             'title' => 'Titel',

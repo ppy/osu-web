@@ -6,12 +6,13 @@
 return [
     'show' => [
         'fallback_translation' => 'Pyydettyä sivua ei ole vielä käännetty valitulle kielelle (:language). Näytetään englanninkielinen versio.',
-        'incomplete_or_outdated' => '',
-        'missing' => 'Pyydettyä sivua ":keyword" ei voitu löytää.',
+        'incomplete_or_outdated' => 'Tämän sivun sisältö on puutteellinen tai vanhentunut. Jos pystyt auttamaan, harkitse artikkelin päivitystä!',
+        'missing' => 'Pyydettyä sivua ":keyword" ei löytynyt.',
         'missing_title' => 'Ei löytynyt',
-        'missing_translation' => 'Pyydettyä sivua ei voitu löytää valitulle kielelle.',
-        'needs_cleanup_or_rewrite' => '',
+        'missing_translation' => 'Pyydettyä sivua ei löytynyt valitulle kielelle.',
+        'needs_cleanup_or_rewrite' => 'Tämä sivu ei vastaa laadultaan osu! wikin vaatimuksia ja on selkeytettävä tai uudelleenkirjoitettava. Jos sinulla on mahdollisuus auttaa, harkitse artikkelin päivittämistä!',
         'search' => 'Etsi olemassa olevilta sivuilta :link.',
+        'stub' => 'Tämä artikkeli on puutteellinen ja odottaa, että joku laajentaa sitä.',
         'toc' => 'Sisältö',
 
         'edit' => [

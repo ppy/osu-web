@@ -20,12 +20,12 @@ return [
             ],
             'infra' => [
                 'title' => 'Cơ sở hạ tầng máy chủ',
-                'description' => 'Đóng góp hướng tới máy chủ chạy trang web, dịch vụ nhiều người chơi, bảng xếp hạng trực tuyến, v.v.',
+                'description' => 'Phần đóng góp sẽ được sử dụng cho các máy chủ để chạy trang web, dịch vụ multiplayer, bảng xếp hạng trực tuyến, v.v.',
             ],
             'featured-artists' => [
                 'title' => 'Featured Artists',
                 'description' => 'Với sự hỗ trợ của bạn, chúng tôi có thể tiếp cận thêm nhiều nghệ sĩ tuyệt vời hơn nữa và cấp phép cho âm nhạc tuyệt vời hơn để dùng trong osu!',
-                'link_text' => '',
+                'link_text' => 'Xem danh sách hiện hành &raquo;',
             ],
             'ads' => [
                 'title' => 'Giữ osu! tự duy trì',
@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Xếp hạng bạn bè',
-                'description' => "",
+                'description' => "Xem cách bạn so tài với bạn bè của mình trên bảng xếp hạng của beatmap, cả trong trò chơi và trên trang web.",
             ],
 
             'country_ranking' => [
@@ -60,13 +60,13 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => '',
+                'title' => 'Lọc theo Mods',
                 'description' => 'Chỉ liên kết với những người chơi HDHR ư? Không vấn đề gì!',
             ],
 
             'auto_downloads' => [
                 'title' => 'Tải Tự Động',
-                'description' => 'Tự tải khi đang chơi multiplayer, theo dõi người chơi khác, hay chỉ nhấn link trong chat!',
+                'description' => 'Beatmap sẽ tự động tải khi đang chơi multiplayer, theo dõi người chơi khác, hoặc khi click vào link beatmap trong kênh chat!',
             ],
 
             'upload_more' => [
@@ -120,20 +120,20 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Thêm Yêu thích',
+                'description' => 'Lượng beatmap tối đa bạn có thể yêu thích được tăng từ :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Thêm bạn bè',
-                'description' => '',
+                'description' => 'Lượng bàn bè tối đa bạn có thể có được tăng từ :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Đăng tải Nhiều Beatmap hơn',
+                'description' => 'Số beatmap bạn sở hữu cùng lúc được tính từ một giá trị cơ sở cộng với lượng thưởng thêm ứng với mỗi beatmap được xếp hạng mà bạn đang có (tới một ngưỡng)<br/><br/>Thông thường nó là :base + :bonus với mỗi beatmap được xếp hạng (lên tới :bonus_max). Với việc làm người ủng hộ, nó sẽ tăng lên :supporter_base + :supporter_bonus với mỗi beatmap được xếp hạng (lên tới :supporter_bonus_max).',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Bảng xếp hạng Bạn bè',
+                'description' => 'Cạnh tranh với bạn bè của bạn và xem cách bạn xếp hạng so với họ!',
             ],
 
         ],

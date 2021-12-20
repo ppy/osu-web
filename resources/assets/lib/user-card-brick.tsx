@@ -4,44 +4,60 @@
 import UserJson from 'interfaces/user-json';
 import UserRelationJson from 'interfaces/user-relation-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ViewMode } from 'user-card';
 import UserCardTypeContext from 'user-card-type-context';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
   mode: ViewMode;
-  modifiers: string[];
+  modifiers?: Modifiers;
   user: UserJson;
 }
 
-export default class UserCardBrick extends React.PureComponent<Props> {
+@observer
+export default class UserCardBrick extends React.Component<Props> {
   static readonly contextType = UserCardTypeContext;
 
   static defaultProps = {
     mode: 'brick',
-    modifiers: [],
   };
 
-  context!: React.ContextType<typeof UserCardTypeContext>;
+  declare context: React.ContextType<typeof UserCardTypeContext>;
 
-  readonly eventId = `user-card-brick-${osu.uuid()}`;
+  @computed
+  private get friendModifier() {
+    if (core.currentUser?.friends == null) return;
 
-  componentDidMount() {
-    $.subscribe(`friendButton:refresh.${this.eventId}`, this.refresh);
+    const friendState = core.currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
+
+    if (friendState != null) {
+      if (friendState.mutual) return 'mutual';
+
+      if (!this.context.isFriendsPage) return 'friend';
+    }
   }
 
-  componentWillUnmount() {
-    $.unsubscribe(`.${this.eventId}`);
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
   }
 
   render() {
-    const modifiers = this.props.modifiers.concat(this.props.mode);
-    this.addFriendModifier(modifiers);
+    const blockClass = classWithModifiers(
+      'user-card-brick',
+      this.props.modifiers,
+      this.props.mode,
+      this.friendModifier,
+    );
 
     return (
       <a
-        className={`js-usercard ${osu.classWithModifiers('user-card-brick', modifiers)}`}
+        className={`js-usercard ${blockClass}`}
         data-user-id={this.props.user.id}
         href={route('users.show', { user: this.props.user.id })}
       >
@@ -56,29 +72,5 @@ export default class UserCardBrick extends React.PureComponent<Props> {
         </div>
       </a>
     );
-  }
-
-  private addFriendModifier = (modifiers: string[]) => {
-    let isFriend = false;
-    let isMutual = false;
-
-    if (currentUser.friends != null) {
-      const friendState = currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
-
-      if (friendState != null) {
-        isFriend = true;
-        isMutual = friendState.mutual;
-      }
-    }
-
-    if (isMutual) {
-      modifiers.push('mutual');
-    } else if (isFriend && !this.context.isFriendsPage) {
-      modifiers.push('friend');
-    }
-  }
-
-  private refresh = () => {
-    this.forceUpdate();
   }
 }

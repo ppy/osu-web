@@ -1,7 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @CurrentUserObserver
+import { pull } from 'lodash'
+import core from 'osu-core-singleton'
+
+class window.CurrentUserObserver
   constructor: ->
     @covers = document.getElementsByClassName('js-current-user-cover')
     @avatars = document.getElementsByClassName('js-current-user-avatar')
@@ -10,6 +13,7 @@ class @CurrentUserObserver
     $.subscribe 'user:update', @setData
     $(document).on 'turbolinks:load', @reinit
     $.subscribe 'osu:page:change', @throttledReinit
+    $.subscribe 'user:followUserMapping:update', @updateFollowUserMapping
 
 
   reinit: =>
@@ -29,7 +33,7 @@ class @CurrentUserObserver
   setCovers: (elements) =>
     elements ?= @covers
 
-    bgImage = osu.urlPresence(currentUser.cover_url) if currentUser.id?
+    bgImage = osu.urlPresence(currentUser.cover.url) if currentUser.id?
     for el in elements
       el.style.backgroundImage = bgImage
 
@@ -45,3 +49,14 @@ class @CurrentUserObserver
 
     Sentry.configureScope (scope) ->
       scope.setUser id: currentUser.id, username: currentUser.username
+
+
+  updateFollowUserMapping: (_e, data) =>
+    if data.following
+      currentUser.follow_user_mapping.push(data.userId)
+    else
+      pull(currentUser.follow_user_mapping, data.userId)
+
+    core.currentUser.follow_user_mapping = currentUser.follow_user_mapping
+
+    $.publish 'user:followUserMapping:refresh'

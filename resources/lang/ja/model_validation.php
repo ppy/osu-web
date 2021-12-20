@@ -11,7 +11,7 @@ return [
     'wrong_confirmation' => '認証が一致しません。',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'タイムスタンプは存在しますがビートマップが見つかりませんでした',
+        'beatmap_missing' => 'タイムスタンプは指定されていますが、ビートマップの難易度が不足しています。',
         'beatmapset_no_hype' => "このビートマップはHypeできません。",
         'hype_requires_null_beatmap' => 'Hypeは一般（全ての難易度）セクションで行ってください。',
         'invalid_beatmap_id' => '無効な難易度が指定されました。',
@@ -74,6 +74,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'ビートマップのメタデータ投稿を削除することは許可されていません。',
             'beatmapset_post_no_edit' => 'ビートマップのメタデータ投稿を編集することは許可されていません。',
+            'first_post_no_delete' => '最初の投稿は削除できません',
+            'missing_topic' => 'トピックがありません。',
             'only_quote' => 'あなたの返信には引用しかありません。',
 
             'attributes' => [
@@ -162,6 +164,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason はこのテレポートタイプでは無効です。',
         'self' => "自分自身を報告することはできません！",
     ],

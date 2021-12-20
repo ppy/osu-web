@@ -47,11 +47,12 @@ return [
         'confirm_restore' => 'ต้องการกู้คืนโพสต์จริงหรอ?',
         'edited' => 'แก้ไขล่าสุดโดย :user :when ถูกแก้ไขทั้งหมด :count ครั้ง',
         'posted_at' => 'โพสต์เมื่อ :when',
+        'posted_by' => 'โพสต์โดย :username',
 
         'actions' => [
             'destroy' => 'ลบโพสต์',
             'edit' => 'แก้ไขโพสต์',
-            'report' => '',
+            'report' => 'รายงานโพสต์',
             'restore' => 'กู้คืนโพสต์',
         ],
 
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'ต้องการลบโพสต์จริงหรอ?',
+        'confirm_restore' => 'ต้องการกู้คืนโพสต์จริงหรอ?',
         'deleted' => 'ลบกระทู้',
         'go_to_latest' => 'ดูโพสต์ล่าสุด',
         'has_replied' => 'คุณได้ตอบกลับการสนทนานี้',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'รี',
         'started_by' => 'โดย :user',
         'started_by_verbose' => 'เริ่มโดย :user',
+
+        'actions' => [
+            'destroy' => 'ลบหัวข้อ',
+            'restore' => 'กู้คือหัวข้อ',
+        ],
 
         'create' => [
             'close' => 'ปิด',
@@ -117,6 +125,55 @@ return [
             'last' => 'ไปที่โพสต์ล่าสุด',
             'next' => 'skip next 10 posts',
             'previous' => 'go back 10 posts',
+        ],
+
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => '',
+                'date' => '',
+                'user' => '',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
         ],
 
         'post_edit' => [

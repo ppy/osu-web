@@ -6,10 +6,12 @@
 return [
     'all_read' => 'Tüm bildirimler okundu!',
     'delete' => ':type sil',
-    'mark_read' => 'Temizle: :type',
+    'loading' => 'Okunmamış bildirimler yükleniyor...',
+    'mark_read' => ':type temizle',
     'none' => 'Bildirim yok',
     'see_all' => 'tüm bildirimleri gör',
     'see_channel' => 'sohbete git',
+    'verifying' => 'Bildirimleri görüntülemek için lütfen oturumunuzu doğrulayın',
 
     'filters' => [
         '_' => 'hepsi',
@@ -24,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
+
+            'beatmap_owner_change' => [
+                '_' => 'Konuk zorluk',
+                'beatmap_owner_change' => 'Artık ":title" beatmapindeki ":beatmap" zorluğunun sahibisiniz',
+                'beatmap_owner_change_compact' => 'Artık ":beatmap" zorluğunun sahibisiniz',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Beatmap tartışması',
@@ -61,8 +69,8 @@ return [
                 'beatmapset_rank_compact' => 'Beatmap dereceli oldu',
                 'beatmapset_remove_from_loved' => '":title" Sevilenlerden çıkarıldı',
                 'beatmapset_remove_from_loved_compact' => 'Beatmap Sevilenlerden çıkarıldı',
-                'beatmapset_reset_nominations' => '":title" setinin aday gösterimi sıfırlandı',
-                'beatmapset_reset_nominations_compact' => 'Aday gösterim sıfırlandı',
+                'beatmapset_reset_nominations' => '":title" setinin adaylığı sıfırlandı',
+                'beatmapset_reset_nominations_compact' => 'Adaylık sıfırlandı',
             ],
 
             'comment' => [
@@ -133,6 +141,19 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Yeni beatmap',
+
+                'user_beatmapset_new' => ':username tarafından yeni beatmap ":title"',
+                'user_beatmapset_new_compact' => 'Yeni beatmap ":title"',
+                'user_beatmapset_new_group' => ' :username tarafından yapılmış yeni beatmapler',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Madalyalar',
 
@@ -147,6 +168,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Artık ":title" beatmapinin bir konuğusunuz',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '":title" setinin tartışması kilitlendi',
                 'beatmapset_discussion_post_new' => '":title" setinin tartışmasında yeni güncellemeler mevcut',
@@ -164,7 +189,7 @@ return [
                 'beatmapset_qualify' => '":title" yeterli aday gösterimi aldı ve derecelendirme sırasına girdi',
                 'beatmapset_rank' => '":title" dereceli oldu',
                 'beatmapset_remove_from_loved' => '":title" Sevilenlerden çıkarıldı',
-                'beatmapset_reset_nominations' => '":title" setinin aday gösterimi sıfırlandı',
+                'beatmapset_reset_nominations' => '":title" setinin adaylığı sıfırlandı',
             ],
 
             'comment' => [
@@ -200,6 +225,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username yeni bir madalya açtı, ":title"!',
                 'user_achievement_unlock_self' => 'Yeni bir madalya açtınız, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username yeni beatmapler yaptı',
             ],
         ],
     ],

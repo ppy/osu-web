@@ -5,6 +5,8 @@
 
 namespace App\Libraries\Search;
 
+use App\Libraries\Elasticsearch\Sort;
+
 class ForumSearchRequestParams extends ForumSearchParams
 {
     public function __construct(array $request)
@@ -12,15 +14,45 @@ class ForumSearchRequestParams extends ForumSearchParams
         parent::__construct();
 
         $this->queryString = presence(trim($request['query'] ?? null));
-        $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
+        $this->page = get_int($request['page'] ?? null);
+        $this->from = $this->pageAsFrom($this->page);
         $this->includeSubforums = get_bool($request['forum_children'] ?? false);
         $this->username = presence(trim($request['username'] ?? null));
         $this->forumId = get_int($request['forum_id'] ?? null);
         $this->topicId = get_int($request['topic_id'] ?? null);
+        $this->parseSort(get_string($request['sort'] ?? null));
     }
 
     public function isLoginRequired(): bool
     {
         return true;
+    }
+
+    private function parseSort(?string $sortStr): void
+    {
+        $options = explode('_', $sortStr ?? '');
+        $field = $options[0];
+        $order = $options[1] ?? null;
+
+        if (!in_array($field, static::VALID_SORT_FIELDS, true)) {
+            $field = $this->queryString === null ? 'created' : 'relevance';
+        }
+
+        if (!in_array($order, ['asc', 'desc'], true)) {
+            $order = static::DEFAULT_SORT_ORDER;
+        }
+
+        switch ($field) {
+            case 'created':
+                // just post_id
+                break;
+            default:
+                $field = 'relevance';
+                $this->sorts[] = new Sort('_score', $order);
+        }
+
+        $this->sorts[] = new Sort('post_id', $order);
+        $this->sortField = $field;
+        $this->sortOrder = $order;
     }
 }

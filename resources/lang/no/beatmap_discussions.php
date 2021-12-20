@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Søk',
             'deleted' => 'Inkluder slettede diskusjoner',
+            'mode' => '',
             'only_unresolved' => 'Vis bare uløste tråder',
             'types' => 'Meldingstyper',
             'username' => 'Brukernavn',
@@ -57,6 +58,13 @@ return [
         'unsaved' => '',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Logg inn for å svare',
@@ -73,6 +81,7 @@ return [
             'external_references' => 'gjennomgangen inneholder referanser til saker som ikke tilhører denne gjennomgangen',
             'invalid_block_type' => 'ugyldig blokktype',
             'invalid_document' => 'ugyldig anmeldelse',
+            'invalid_discussion_type' => '',
             'minimum_issues' => 'anmeldelsen må minst inneholde et minimum av :count saker|anmeldelsen må minst inneholde et minimum av :count saker',
             'missing_text' => 'blokken mangler tekst',
             'too_many_blocks' => 'anmeldelser kan bare inneholde :count paragrafer/saker|anmeldelser kan bare inneholde opptill :count paragrafer/saker',

@@ -78,9 +78,9 @@ return [
         'action' => 'Download osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'hvis du har problemer med at starte spillet eller registrere dig for konto, :help_forum_link eller :support_button.',
+            'help_forum_link' => 'tjek hjælpeforum',
+            'support_button' => 'kontakt support',
         ],
 
         'os' => [
@@ -133,16 +133,5 @@ return [
             'support' => 'Støt osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Du ser ud til at have det sjovt! :D',
-        'body' => [
-            'part-1' => 'Vidste du, at osu! kører helt uden reklamer og er stærkt afhængigt af, at spillerne støtter spillets udvikling og omkostninger?',
-            'part-2' => 'Vidste du også, at du ved at støtte osu! får en stor håndfuld ekstra funktioner, såsom <strong>in-game downloading</strong> som kan udnyttes i multiplayer- og spectator-tilstand?',
-        ],
-        'find-out-more' => 'Klik her for at læse mere!',
-        'download-starting' => "Oh, og bare rolig - din download er allerede blevet startet for dig ;)",
     ],
 ];

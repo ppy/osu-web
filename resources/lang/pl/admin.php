@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Wygeneruj ponownie',
-            'regenerating' => 'Ponowne generowanie...',
-            'remove' => 'Usuń',
-            'removing' => 'Usuwanie...',
-            'title' => 'Tła zestawów beatmap',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+            'title' => '',
         ],
         'show' => [
-            'covers' => 'Zarządzaj tłami zestawu beatmap',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modowanie v2',
-                'activate' => 'aktywuj',
-                'activate_confirm' => 'aktywować modowanie v2 dla tej beatmapy?',
-                'active' => 'aktywne',
-                'inactive' => 'nieaktywne',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Usuń',
+                'delete' => '',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Nie ustawiono tła',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Zapisz',
-                    'update' => 'Zaktualizuj',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Lista teł forum',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Domyślne tło wątku',
-                    'main' => 'Tło forum',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,33 +50,24 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Podgląd logów',
+            'title' => '',
         ],
     ],
 
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'Zestawy beatmap',
-                'forum' => 'Forum',
-                'general' => 'Ogólne',
-                'store' => 'Sklep',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Lista zamówień',
+                'beatmapsets' => '',
+                'forum' => '',
+                'general' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Konto tego użytkownika jest obecnie zablokowane.',
-            'message' => '(tylko administratorzy widzą tę wiadomość)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

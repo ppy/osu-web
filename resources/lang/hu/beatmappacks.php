@@ -11,12 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'OLVASD EL LETÖLTÉS ELŐTT',
-            'instruction' => [
-                '_' => "Telepítés: Amint egy csomag letöltődött, csomagold ki a .rar fájlt az osu! Songs mappába.
-Mivel az összes szám .zip és/vagy .osz kiterjesztésű, ezért a következő Play módba lépéskor ezek a beatmapek ki lesznek csomagolva.
-:scary csomagold ki a .zip/.osz fájlokat saját magadtól, különben a beatmapek hibásan jelenhetnek meg és nem fognak megfelelően működni.",
-                'scary' => 'NE',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Valamint vedd figyelembe, hogy erősen javasolt a :scary, mivel a régebbi pályák minősége jóval alacsonyabb az újakéhoz képest.',
                 'scary' => 'legújabb csomagok letöltése',
@@ -31,8 +26,8 @@ Mivel az összes szám .zip és/vagy .osz kiterjesztésű, ezért a következő 
             'not_cleared' => 'nem játszott',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link nem használhatóak e csomag teljesítéséhez.',
+            'link' => 'Nehézséget csökkentő módok',
         ],
     ],
 

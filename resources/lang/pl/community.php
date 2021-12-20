@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Zwiększony limit przesyłanych beatmap',
-                'description' => 'Maksymalna liczba posiadanych beatmap nierankingowych jest obliczana na podstawie wartości bazowej, do której dolicza się premię za każdą rankingową beatmapę, jaką masz na koncie (do pewnej granicy).<br/><br/>Zazwyczaj jest to :base plus :bonus (maks. :bonus_max). Mając status donatora, ta wartość jest zwiększona do :supporter_base plus :supporter_bonus (maks. :supporter_bonus_max).',
+                'description' => 'Maksymalna liczba posiadanych beatmap nierankingowych jest obliczana na podstawie wartości bazowej, do której dolicza się premię za każdą rankingową beatmapę, jaką masz na koncie (do pewnej granicy).<br/><br/>Zazwyczaj jest to :base plus :bonus (maks. :bonus_max). Dla donatorów osu! ta wartość jest zwiększona do :supporter_base plus :supporter_bonus (maks. :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Rankingi znajomych',

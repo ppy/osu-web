@@ -1,25 +1,33 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @Forum
+import core from 'osu-core-singleton'
+import { bottomPage } from 'utils/html'
+import { hideLoadingOverlay } from 'utils/loading-overlay'
+
+replaceUrl = (url) ->
+  Turbolinks.controller.replaceHistory url
+
+# browsers have limit on replaceState calls
+debouncedReplaceUrl = _.debounce replaceUrl, 250
+
+class window.Forum
   boot: =>
-    @refreshCounter()
+    @refreshCounterPaused = true
     @refreshLoadMoreLinks()
 
-    # Scroll last because other actions may change page's height.
     @initialScrollTo()
 
 
   constructor: ->
     @_totalPostsDiv = document.getElementsByClassName('js-forum__total-count')
     @_deletedPostsDiv = document.getElementsByClassName('js-forum__deleted-count')
-    @_firstPostDiv = document.getElementsByClassName('js-forum__topic-first-post-id')
-    @_userCanModerateDiv = document.getElementsByClassName('js-forum__topic-user-can-moderate')
     @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
     @posts = document.getElementsByClassName('js-forum-post')
     @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
     @throttledBoot = _.throttle @boot, 100
+    @refreshCounterPaused = true
 
     @maxPosts = 250
 
@@ -32,10 +40,11 @@ class @Forum
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
     $(document).on 'keyup', @keyboardNavigation
     $(document).on 'click', '.js-forum-topic-moderate--toggle-deleted', @toggleDeleted
+    $(document).on 'turbolinks:before-cache', debouncedReplaceUrl.cancel
 
 
   userCanModerate: ->
-    @_userCanModerateDiv[0].getAttribute('data-user-can-moderate') == '1'
+    @topicMeta().userCanModerate == '1'
 
 
   postPosition: (el) =>
@@ -43,11 +52,15 @@ class @Forum
 
 
   firstPostId: ->
-    parseInt @_firstPostDiv[0].getAttribute('data-first-post-id'), 10
+    parseInt @topicMeta().firstPostId, 10
 
 
   postId: (el) ->
     parseInt el.getAttribute('data-post-id'), 10
+
+
+  topicMeta: ->
+    newBody.querySelector('.js-forum--topic-meta')?.dataset
 
 
   totalPosts: =>
@@ -85,7 +98,7 @@ class @Forum
     @currentPostPosition = @postPosition(currentPost)
 
     @setTotalPosts(@currentPostPosition) if @currentPostPosition > @totalPosts()
-    window.reloadUrl = @postUrlN @currentPostPosition
+    debouncedReplaceUrl @postUrlN(@currentPostPosition)
 
     @_postsCounter[0].textContent = osu.formatNumber @currentPostPosition
     @_postsProgress[0].style.width = "#{100 * @currentPostPosition / @totalPosts()}%"
@@ -94,21 +107,38 @@ class @Forum
   endPost: => @posts[@posts.length - 1]
 
 
-  firstPostLoaded: =>
-    @postId(@posts[0]) == @firstPostId()
+  startingPostLoaded: =>
+    morePrevious = document.querySelector('.js-forum__posts-show-more--previous')
+    startingPostLoaded = morePrevious.dataset.noMore == '1'
+
+    if !startingPostLoaded
+      # Less than or equal in case the first post id data is wrong due to the
+      # earlier version allowing deleting "first" post.
+      startingPostLoaded = @postId(@posts[0]) <= @firstPostId()
+      morePrevious.dataset.noMore = '1' if startingPostLoaded
+
+    startingPostLoaded
 
 
   lastPostLoaded: =>
-    @postPosition(@endPost()) == @totalPosts()
+    moreNext = document.querySelector('.js-forum__posts-show-more--next')
+    lastPostLoaded = moreNext.dataset.noMore == '1'
+
+    if !lastPostLoaded
+      # Greater than or equal to allow handling more posts than initially known
+      lastPostLoaded = @postPosition(@endPost()) >= @totalPosts()
+      moreNext.dataset.noMore = '1' if lastPostLoaded
+
+    lastPostLoaded
 
 
   refreshLoadMoreLinks: =>
     return unless @loadMoreLinks.length
 
-    firstPostLoaded = @firstPostLoaded()
+    startingPostLoaded = @startingPostLoaded()
 
-    $('.js-header--main').toggleClass 'hidden', !firstPostLoaded
-    $('.js-header--alt').toggleClass 'hidden', firstPostLoaded
+    $('.js-header--main').toggleClass 'hidden', !startingPostLoaded
+    $('.js-header--alt').toggleClass 'hidden', startingPostLoaded
 
     lastPostLoaded = @lastPostLoaded()
 
@@ -121,18 +151,25 @@ class @Forum
     if lastPostLoaded
       $(@endPost()).find('.js-post-delete-toggle').css(display: '')
 
+    for link in @loadMoreLinks
+      link.href = @moreMeta(link).url
+
 
   refreshCounter: =>
+    return if @refreshCounterPaused
+
     return if @_postsCounter.length == 0
 
     currentPost = null
 
-    if osu.bottomPage()
+    if bottomPage()
       currentPost = @posts[@posts.length - 1]
     else
+      scrollOffset = core.stickyHeader.scrollOffsetValue
+
       for post in @posts
         postTop = post.getBoundingClientRect().top
-        if Math.floor(window.stickyHeader.scrollOffset(postTop)) <= 0
+        if Math.floor(postTop - scrollOffset) <= 0
           currentPost = post
         else
           break
@@ -177,16 +214,25 @@ class @Forum
 
     return unless post
 
+    # Mainly for post located near the end as the page scroll may hit the end
+    # and thus cause the counter to show last post instead of the intended
+    # post. To be resumed after scrolling.
+    @refreshCounterPaused = true
     postTop = if @postPosition(post) == 1
                 0
               else
                 $(post).offset().top
 
-    postTop = window.stickyHeader.scrollOffset(postTop) if postTop != 0
+    $.publish 'sync-height:force'
+    postTop = core.stickyHeader.scrollOffset(postTop) if postTop != 0
 
     # using jquery smooth scrollTo will cause unwanted events to trigger on the way down.
     window.scrollTo window.pageXOffset, postTop
     @highlightPost post
+    @setCounter post
+    # allow scroll to finish before reenabling counter check
+    reenableRefreshCounter = => @refreshCounterPaused = false
+    setTimeout reenableRefreshCounter, 0
 
 
   highlightPost: (post) ->
@@ -197,23 +243,33 @@ class @Forum
   toggleDeleted: =>
     return if !@showDeleted()? # you don't see this option unless you're a moderator, anyway
 
-    $.ajax laroute.route('account.options'),
-      method: 'PUT'
-      data:
-        user_profile_customization:
-          forum_posts_show_deleted: !@showDeleted()
-    .done (user) =>
-      $.publish 'user:update', user
-      Turbolinks.visit @postUrlN(@currentPostPosition)
+    xhr = osuCore.userPreferences.set('forum_posts_show_deleted', !@showDeleted())
+
+    callback = => Turbolinks.visit @postUrlN(@currentPostPosition)
+
+    if xhr?
+      xhr.done callback
+    else
+      callback()
 
 
   initialScrollTo: =>
-    return if location.hash != '' ||
-      !window.postJumpTo? ||
-      window.postJumpTo == 0
+    topicMeta = @topicMeta()
 
-    @scrollTo window.postJumpTo
-    window.postJumpTo = 0
+    return if !topicMeta?
+
+    history.scrollRestoration = 'manual'
+    $(document).one 'turbolinks:before-cache', ->
+      history.scrollRestoration = 'auto'
+
+    shouldScroll = _exported.currentUrl().hash == '' && osu.present(topicMeta.postJumpTo)
+
+    if shouldScroll
+      @scrollTo parseInt(topicMeta.postJumpTo, 10)
+      topicMeta.postJumpTo = ''
+    else
+      @refreshCounterPaused = false
+      @refreshCounter()
 
 
   postUrlClick: (e) =>
@@ -224,43 +280,36 @@ class @Forum
 
 
   postUrlN: (postN) ->
-    "#{document.location.pathname}?n=#{postN}"
+    "#{_exported.currentUrl().pathname}?n=#{postN}"
 
 
   showMore: (e) =>
     e.preventDefault()
 
-    return if e.currentTarget.classList.contains('js-disabled')
+    link = e.currentTarget
 
-    $link = $(e.currentTarget)
-    mode = $link.data('mode')
+    return if link.classList.contains('js-disabled')
 
-    options =
-      start: null
-      end: null
-      skip_layout: 1
-      with_deleted: +@showDeleted()
+    link.classList.add 'js-disabled'
 
-    if mode == 'previous'
-      $refPost = $('.js-forum-post').first()
-      options['end'] = $refPost.data('post-id') - 1
-    else
-      $refPost = $('.js-forum-post').last()
-      options['start'] = $refPost.data('post-id') + 1
+    moreMeta = @moreMeta link
 
-    $link.addClass 'js-disabled'
-
-    $.get(window.canonicalUrl, options)
+    $.get(moreMeta.url)
     .done (data) =>
-      scrollReference = $refPost[0]
+      if !data?
+        link.dataset.noMore = '1'
+        @refreshLoadMoreLinks()
+        return
+
+      scrollReference = moreMeta.refPost
       scrollReferenceTop = scrollReference.getBoundingClientRect().top
 
-      if mode == 'previous'
-        $link.after data
+      if moreMeta.mode == 'previous'
+        link.insertAdjacentHTML 'afterend', data
         toRemoveStart = @maxPosts
         toRemoveEnd = @posts.length
       else
-        $link.before data
+        link.insertAdjacentHTML 'beforebegin', data
         toRemoveStart = 0
         toRemoveEnd = @posts.length - @maxPosts
 
@@ -279,18 +328,40 @@ class @Forum
       targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
       window.scrollTo x, targetDocumentScrollTop
 
-      osu.pageChange()
-      $link.attr 'data-failed', '0'
+      _exported.pageChange()
+      link.dataset.failed = '0'
 
     .always ->
-      $link.removeClass 'js-disabled'
-    .fail ->
-      $link.attr 'data-failed', '1'
+      link.classList.remove 'js-disabled'
+    .fail (xhr) =>
+      link.dataset.failed = '1'
+      osu.ajaxError xhr
 
 
   jumpToSubmit: (e) =>
     e.preventDefault()
-    LoadingOverlay.hide()
+    hideLoadingOverlay()
 
     if @jumpTo $(e.target).find('[name="n"]').val()
       $.publish 'forum:topic:jumpTo'
+
+  moreMeta: (link) =>
+    mode = link.dataset.mode
+
+    if mode == 'previous'
+      refPost = @posts[0]
+      sort = 'id_desc'
+    else
+      refPost = @endPost()
+      sort = 'id_asc'
+
+    query = $.param
+      skip_layout: 1
+      with_deleted: +@showDeleted()
+      sort: sort
+      cursor:
+        id: refPost.dataset.postId
+
+    url: "#{window.canonicalUrl}?#{query}"
+    refPost: refPost
+    mode: mode

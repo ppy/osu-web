@@ -5,17 +5,17 @@
 
 return [
     'edit' => [
-        'title_compact' => 'cài đặt',
+        'title_compact' => 'cài đặt tài khoản',
         'username' => 'tên người dùng',
 
         'avatar' => [
             'title' => 'Ảnh đại diện',
-            'rules' => 'Hãy chắc rằng ảnh đại diện của bạn tuân thủ :link.<br/>Điều này có nghĩa rằng ảnh phải <strong>phù hợp với mọi lứa tuổi</strong>. Ví dụ như không có nội dung khỏa thân, thô tục hoặc gợi tưởng.',
+            'rules' => 'Hãy chắc rằng ảnh đại diện của bạn tuân thủ :link.<br/>Điều này có nghĩa rằng ảnh phải <strong>phù hợp với mọi lứa tuổi</strong>. Ví dụ như không có nội dung khiêu gợi, thô tục hoặc gợi tưởng.',
             'rules_link' => 'những tiêu chuẩn cộng đồng',
         ],
 
         'email' => [
-            'current' => 'Email hiện tại',
+            'current' => 'email hiện tại',
             'new' => 'email mới',
             'new_confirmation' => 'xác nhận email',
             'title' => 'Email',
@@ -32,12 +32,11 @@ return [
             'title' => 'Trang cá nhân',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'vị trí hiện tại',
                 'user_interests' => 'sở thích',
-                'user_msnm' => 'skype',
                 'user_occ' => 'nghề nghiệp',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'trang web',
             ],
         ],
@@ -49,41 +48,43 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_discussion_qualified_problem' => 'nhận thông báo về vấn đề mới ở các beatmap đủ tiêu chuẩn của chế độ này',
         'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị disqualified',
-        'comment_reply' => '',
+        'comment_reply' => 'nhận thông báo khi có phản hồi đến bình luận của bạn',
         'title' => 'Thông báo',
         'topic_auto_subscribe' => 'tự động nhận thông báo cho các topic bạn tạo trong forum',
 
         'options' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'channel_message' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mail' => '',
-            'push' => '',
-            'user_achievement_unlock' => '',
+            '_' => 'phương thức giao hàng',
+            'beatmap_owner_change' => 'guest difficulty',
+            'beatmapset:modding' => 'sửa đổi beatmap',
+            'channel_message' => 'tin nhắn riêng tư',
+            'comment_new' => 'bình luận mới',
+            'forum_topic_reply' => 'trả lời chủ đề',
+            'mail' => 'thư',
+            'mapping' => 'người tạo beatmap',
+            'push' => 'push',
+            'user_achievement_unlock' => 'mở khoá huy chương',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
+        'authorized_clients' => 'client được cấp quyền',
         'own_clients' => 'client đã có',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'title' => '',
+        'beatmapset_show_nsfw' => 'ẩn cảnh báo nội dung không lành mạnh trong beatmap',
+        'beatmapset_title_show_original' => 'hiển thị metadata của beatmap ở ngôn ngữ gốc',
+        'title' => 'Tuỳ chọn',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'kiểu tải beatmap mặc định',
+            'all' => 'kèm video nếu có',
+            'direct' => 'mở trong osu!direct',
+            'no_video' => 'không kèm video',
         ],
-
-        'beatmapset_title_show_original' => 'hiển thị metadata của beatmap trong ngôn ngữ gốc',
     ],
 
     'playstyles' => [

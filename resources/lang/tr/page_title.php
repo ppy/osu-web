@@ -22,12 +22,16 @@ return [
             '401-verification' => 'hesap doğrulama',
             '405' => 'mevcut değil',
             '422' => 'geçersiz istek',
+            '429' => 'çok fazla istek',
             '500' => 'bir şeyler yanlış',
             '503' => 'bakım',
         ],
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'kontrol paneli',
         ],
@@ -36,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'kontrol paneli',
             'verify_link' => 'hesap doğrulama',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'featured artist\'ler',
         ],
         'artists_controller' => [
             '_' => 'featured artist\'ler',
@@ -60,7 +67,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap tartışma',
-            'index' => 'beatmap listesi',
+            'index' => 'beatmap kataloğu',
             'show' => 'beatmap bilgisi',
         ],
         'changelog_controller' => [
@@ -74,6 +81,9 @@ return [
         ],
         'contests_controller' => [
             '_' => 'yarışmalar',
+        ],
+        'follows_controller' => [
+            'index' => 'kontrol paneli',
         ],
         'friends_controller' => [
             'index' => 'kontrol paneli',
@@ -113,7 +123,7 @@ return [
             '_' => 'performans',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'mağaza',
         ],
         'tournaments_controller' => [
             '_' => 'turnuvalar',
@@ -123,7 +133,7 @@ return [
             'disabled' => 'bildirim',
         ],
         'wiki_controller' => [
-            '_' => 'bilgi bankası',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -131,12 +141,20 @@ return [
             '_' => 'sıralama',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'uygulamaya izin ver',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'mağaza',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder bilgisi',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'çok oyunculu geçmişi',
         ],
     ],
 ];

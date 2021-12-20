@@ -5,12 +5,12 @@
 
 return [
     'pinned_topics' => 'Chủ Đề Đã Ghim',
-    'slogan' => "Chơi một mình khá là nguy hiểm đấy.",
-    'subforums' => 'Subforums',
-    'title' => 'diễn đàn osu!',
+    'slogan' => "chơi một mình khá rất nguy hiểm đấy.",
+    'subforums' => 'Diễn đàn phụ',
+    'title' => 'Diễn đàn ',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Chỉnh sửa bìa',
 
         'create' => [
             '_' => 'Đặt ảnh bìa',
@@ -20,7 +20,7 @@ return [
 
         'destroy' => [
             '_' => 'Gỡ bỏ ảnh bìa',
-            'confirm' => 'Bạn chắc là mình muốn gỡ bỏ ảnh bìa?',
+            'confirm' => 'Bạn có chắc mình muốn gỡ bỏ ảnh bìa?',
         ],
     ],
 
@@ -28,7 +28,7 @@ return [
         'latest_post' => 'Bài viết mới nhất',
 
         'index' => [
-            'title' => '',
+            'title' => 'Diễn đàn Index',
         ],
 
         'topics' => [
@@ -45,39 +45,42 @@ return [
     'post' => [
         'confirm_destroy' => 'Bạn muốn xóa bài viết?',
         'confirm_restore' => 'Bạn muốn phục hồi bài viết?',
-        'edited' => 'Chỉnh sửa lần cuối bởi :user :when, đã chỉnh sửa tổng cộng :count lần.',
-        'posted_at' => 'đăng vào :when',
+        'edited' => 'Lần chỉnh sửa cuối cùng bởi :user :when, chỉnh sửa :count_delimited tổng thời gian.|Lần chỉnh sửa cuối cùng bởi :user :when, chỉnh sửa :count_delimited tổng thời gian.',
+        'posted_at' => 'đã đăng vào :when',
+        'posted_by' => 'đã đăng bởi :username',
 
         'actions' => [
             'destroy' => 'Xóa bài viết',
             'edit' => 'Chỉnh sửa bài viết',
-            'report' => '',
+            'report' => 'Báo cáo bài đăng',
             'restore' => 'Phục hồi bài viết',
         ],
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Có trả lời mới',
             ],
         ],
 
         'info' => [
-            'post_count' => ':count_delimited bài đăng',
-            'topic_starter' => 'Chủ đề mở đầu',
+            'post_count' => ':count_delimited bài đăng|:count_delimited bài đăng',
+            'topic_starter' => 'Người tạo topic',
         ],
     ],
 
     'search' => [
         'go_to_post' => 'Đi đến bài viết',
-        'post_number_input' => 'nhập số thứ tự',
-        'total_posts' => 'tổng cộng :posts_count bài viết',
+        'post_number_input' => 'nhập số bài viết',
+        'total_posts' => ':posts_count tổng bài viết',
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Bạn có muốn xóa bài viết này?',
+        'confirm_restore' => 'Bạn có muốn phục hồi bài viết này?',
         'deleted' => 'chủ đề đã xóa',
         'go_to_latest' => 'xem bài viết mới nhất',
         'has_replied' => 'Bạn đã trả lời topic này',
-        'in_forum' => '',
+        'in_forum' => 'trong :forum',
         'latest_post' => ':when bởi :user',
         'latest_reply_by' => 'trả lời cuối bởi :user',
         'new_topic' => 'Đăng một chủ đề mới',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'bởi :user',
         'started_by_verbose' => 'bắt đầu bởi :user',
+
+        'actions' => [
+            'destroy' => 'Xóa bài viết',
+            'restore' => 'Phục hồi bài viết',
+        ],
 
         'create' => [
             'close' => 'Đóng',
@@ -117,6 +125,55 @@ return [
             'last' => 'đi đến bài đăng cuối cùng',
             'next' => 'bỏ qua 10 bài đăng',
             'previous' => 'trở lại 10 bài đăng',
+        ],
+
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => 'Hành động',
+                'date' => 'Ngày',
+                'user' => 'Người dùng',
+            ],
+
+            'data' => [
+                'add_tag' => 'đã thêm nhãn ":tag"',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
         ],
 
         'post_edit' => [
@@ -289,7 +346,7 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
+                'edit' => 'Chỉnh sửa cuộc thăm dò ý kiến',
                 'edit_warning' => 'Chỉnh sửa cuộc thăm dò sẽ xóa bỏ các kết quả hiện tại!',
                 'vote' => 'Bỏ phiếu',
 

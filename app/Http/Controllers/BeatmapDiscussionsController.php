@@ -7,19 +7,21 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BeatmapsetDiscussionReview;
-use App\Models\Beatmap;
+use App\Libraries\BeatmapsetDiscussionsBundle;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
-use App\Models\User;
 use Auth;
-use Illuminate\Pagination\Paginator;
 use Request;
 
+/**
+ @group Beatmapset Discussions
+ */
 class BeatmapDiscussionsController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('require-scopes:public', ['only' => ['index']]);
 
         return parent::__construct();
     }
@@ -66,95 +68,53 @@ class BeatmapDiscussionsController extends Controller
         return $discussion->beatmapset->defaultDiscussionJson();
     }
 
+    /**
+     * Get Beatmapset Discussions
+     *
+     * Returns a list of beatmapset discussions.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * <aside class="warning">
+     *   The response of this endpoint is likely to change soon!
+     * </aside>
+     *
+     * Field                     | Type                                            | Description
+     * ------------------------- | ----------------------------------------------- | -----------------------------------------------------------------------
+     * beatmaps                  | [Beatmap](#beatmap)[]                           | List of beatmaps associated with the discussions returned.
+     * cursor                    | [Cursor](#cursor)                               | |
+     * discussions               | [BeatmapsetDiscussion](#beatmapsetdiscussion)[] | List of discussions according to `sort` order.
+     * included_discussions      | [BeatmapsetDiscussion](#beatmapsetdiscussion)[] | Additional discussions related to `discussions`.
+     * reviews_config.max_blocks | number                                          | Maximum number of blocks allowed in a review.
+     * users                     | [UserCompact](#usercompact)[]                   | List of users associated with the discussions returned.
+     *
+     * @queryParam beatmap_id `id` of the [Beatmap](#beatmap).
+     * @queryParam beatmapset_id `id` of the [Beatmapset](#beatmapset).
+     * @queryParam beatmapset_status One of `all`, `ranked`, `qualified`, `disqualified`, `never_qualified`. Defaults to `all`. TODO: better descriptions.
+     * @queryParam limit Maximum number of results.
+     * @queryParam message_types[] `suggestion`, `problem`, `mapper_note`, `praise`, `hype`, `review`. Blank defaults to all types. TODO: better descriptions.
+     * @queryParam only_unresolved `true` to show only unresolved issues; `false`, otherwise. Defaults to `false`.
+     * @queryParam page Search result page.
+     * @queryParam sort `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
+     * @queryParam user The `id` of the [User](#user).
+     * @queryParam with_deleted This param has no effect as api calls do not currently receive group permissions.
+     */
     public function index()
     {
-        $isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        $params = request()->all();
-        $params['is_moderator'] = $isModerator;
+        $bundle = new BeatmapsetDiscussionsBundle(request()->all());
 
-        if (!$isModerator) {
-            $params['with_deleted'] = false;
+        $json = $bundle->toArray();
+
+        if (is_api_request()) {
+            return $json;
         }
 
-        $search = BeatmapDiscussion::search($params);
+        $paginator = $bundle->getPaginator();
+        $search = $bundle->getSearchParams();
 
-        $query = $search['query']->with([
-            'beatmap',
-            'beatmapDiscussionVotes',
-            'beatmapset',
-            'startingPost',
-        ])->limit($search['params']['limit'] + 1);
-
-        $paginator = new Paginator(
-            $query->get(),
-            $search['params']['limit'],
-            $search['params']['page'],
-            [
-                'path' => Paginator::resolveCurrentPath(),
-                'query' => $search['params'],
-            ]
-        );
-
-        $discussions = $paginator->getCollection();
-
-        // TODO: remove this when reviews are released
-        $relatedDiscussions = [];
-        $relatedBeatmapsetIds = [];
-
-        $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))
-            ->with([
-                'beatmap',
-                'beatmapDiscussionVotes',
-                'beatmapset',
-                'startingPost',
-            ]);
-
-        if ($isModerator) {
-            $children->visibleWithTrashed();
-        } else {
-            $children->visible();
-        }
-
-        $relatedDiscussions = $children->get();
-
-        $userIds = [];
-        foreach ($discussions->merge($relatedDiscussions) as $discussion) {
-            $userIds[$discussion->user_id] = true;
-            $userIds[$discussion->startingPost->last_editor_id] = true;
-            $relatedBeatmapsetIds[$discussion->beatmapset_id] = true;
-        }
-
-        $users = User::whereIn('user_id', array_keys($userIds))
-            ->with('userGroups')
-            ->default()
-            ->get();
-
-        $relatedBeatmaps = Beatmap::whereIn('beatmapset_id', array_keys($relatedBeatmapsetIds))->get();
-
-        $jsonChunks = [
-            'discussions' => json_collection(
-                $discussions,
-                'BeatmapDiscussion',
-                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
-            ),
-            'related-beatmaps' => json_collection(
-                $relatedBeatmaps,
-                'Beatmap'
-            ),
-            'related-discussions' => json_collection(
-                $relatedDiscussions,
-                'BeatmapDiscussion',
-                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
-            ),
-            'reviews-config' => BeatmapsetDiscussionReview::config(),
-            'users' => json_collection(
-                $users,
-                'UserCompact',
-                ['groups']
-            ),
-        ];
-
-        return ext_view('beatmap_discussions.index', compact('jsonChunks', 'search', 'paginator'));
+        return ext_view('beatmap_discussions.index', compact('json', 'search', 'paginator'));
     }
 
     public function restore($id)
@@ -193,7 +153,7 @@ class BeatmapDiscussionsController extends Controller
             abort(404);
         }
 
-        return ujs_redirect(route('beatmapsets.discussion', $discussion->beatmapset).'#/'.$id);
+        return ujs_redirect(route('beatmapsets.discussion', $discussion->beatmapset).'#/'.$discussion->getKey());
     }
 
     public function vote($id)
@@ -212,7 +172,7 @@ class BeatmapDiscussionsController extends Controller
         if ($discussion->vote($params)) {
             return $discussion->beatmapset->defaultDiscussionJson();
         } else {
-            return error_popup(trans('beatmaps.discussion-votes.update.error'));
+            return error_popup(osu_trans('beatmaps.discussion-votes.update.error'));
         }
     }
 }

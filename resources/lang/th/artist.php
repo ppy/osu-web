@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'โปรไฟล์ osu!',
         'site' => 'เว็บไซต์อย่างเป็นทางการ',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'เพลง',
         'count' => ':count_delimited เพลง|:count_delimited เพลง',
-        'exclusive' => 'เฉพาะ osu!',
+        'original' => '',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'ระยะเวลา',
         'bpm' => 'bpm',
         'genre' => 'ประเภท',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => '현재 구독 중인 비트맵 토론이 없습니다.',
+            'last_update' => '마지막 업데이트',
             'open_issues' => '토론 중인 문제',
             'state' => '상태',
             'title' => '제목',

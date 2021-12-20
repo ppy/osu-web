@@ -5,7 +5,6 @@
 
 namespace App\Transformers\Multiplayer;
 
-use App\Libraries\DbCursorHelper;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Score;
 use App\Transformers\TransformerAbstract;
@@ -66,25 +65,18 @@ class ScoreTransformer extends TransformerAbstract
         $ret = [];
 
         foreach ($typeOptions as $type => $sortName) {
-            $cursorHelper = new DbCursorHelper(PlaylistItemUserHighScore::SORTS, $sortName);
-            $sort = $cursorHelper->getSort();
-            $cursor = $cursorHelper->prepareNext([$highScorePlaceholder]);
-            $highScores = PlaylistItemUserHighScore
-                ::cursorSort($sort, $cursor)
+            $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($sortName);
+            [$highScores, $hasMore] = PlaylistItemUserHighScore
+                ::cursorSort($cursorHelper, $highScorePlaceholder)
                 ->with(static::BASE_PRELOAD)
                 ->where('playlist_item_id', $score->playlist_item_id)
                 ->where('user_id', '<>', $score->user_id)
-                ->limit($limit + 1)
-                ->get();
-
-            $hasMore = count($highScores) === $limit + 1;
-            if ($hasMore) {
-                $highScores->pop();
-            }
+                ->limit($limit)
+                ->getWithHasMore();
 
             $ret[$type] = [
                 'scores' => json_collection($highScores->pluck('score'), new static(), static::BASE_INCLUDES),
-                'params' => ['sort' => $cursorHelper->getSortName()],
+                'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
                 'cursor' => $hasMore ? $cursorHelper->next($highScores) : null,
             ];
         }

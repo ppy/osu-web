@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => 'Nieprawidłowy adres URL lub nieprawidłowa metoda żądania.',
+    'no_restricted_access' => 'Nie możesz wykonać tej czynności podczas blokady konta.',
+    'supporter_only' => 'Potrzebujesz statusu donatora osu!, aby korzystać z tej funkcji.',
+    'unknown' => 'Wystąpił nieoczekiwany błąd.',
+
     'codes' => [
         'http-401' => 'Zaloguj się, aby kontynuować.',
         'http-403' => 'Odmowa dostępu.',
@@ -26,9 +31,4 @@ return [
         'default' => 'Nie udało się niczego znaleźć, spróbuj ponownie później.',
         'operation_timeout_exception' => 'Wyszukiwanie jest obecnie bardziej obciążone niż zwykle, spróbuj ponownie później.',
     ],
-
-    'logged_out' => 'Wylogowano. Zaloguj się i spróbuj ponownie.',
-    'supporter_only' => 'Potrzebujesz statusu donatora osu!, aby korzystać z tej funkcji.',
-    'no_restricted_access' => 'Nie możesz wykonać tej czynności podczas blokady konta.',
-    'unknown' => 'Wystąpił nieoczekiwany błąd.',
 ];

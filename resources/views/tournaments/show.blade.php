@@ -5,7 +5,7 @@
 @php
     $links = [
         [
-            'title' => trans('layout.header.tournaments.index'),
+            'title' => osu_trans('layout.header.tournaments.index'),
             'url' => route('tournaments.index'),
         ],
         [
@@ -30,7 +30,7 @@
         <div class="grid-items">
             <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
-                    {{ trans('tournament.show.period.start') }}
+                    {{ osu_trans('tournament.show.period.start') }}
                 </div>
                 <div class="counter-box__count">
                     {{ i18n_date($tournament->start_date) }}
@@ -38,7 +38,7 @@
             </div>
             <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
-                    {{ trans('tournament.show.period.end') }}
+                    {{ osu_trans('tournament.show.period.end') }}
                 </div>
                 <div class="counter-box__count">
                     {{ i18n_date($tournament->end_date) }}
@@ -65,17 +65,19 @@
 
                 <div class="tournament__description">
                     @if ($tournament->signup_open->isFuture())
-                        {{ trans('tournament.show.state.before_registration') }}
+                        {{ osu_trans('tournament.show.state.before_registration') }}
                     @elseif ($tournament->isRegistrationOpen())
                         {!! markdown($tournament->description) !!}
 
-                        {{ trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)]) }}.
+                        <div class="tournament__description-md-extra">
+                            {{ osu_trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)]) }}.
+                        </div>
                     @elseif ($tournament->start_date->isFuture())
-                        {{ trans('tournament.show.state.registration_closed') }}
+                        {{ osu_trans('tournament.show.state.registration_closed') }}
                     @elseif ($tournament->isTournamentRunning())
-                        {{ trans('tournament.show.state.running') }}
+                        {{ osu_trans('tournament.show.state.running') }}
                     @else
-                        {{ trans('tournament.show.state.ended') }}
+                        {{ osu_trans('tournament.show.state.ended') }}
                     @endif
                 </div>
             </div>
@@ -88,16 +90,16 @@
                 <div class="tournament__body">
                     @if (!Auth::user())
                         <div>{!!
-                            trans('tournament.show.login_to_register', [
-                                'login' => '<a href="#" class="js-user-link" title="'.trans("users.anonymous.login_link").'">'.trans("users.anonymous.login_text").'</a>'
+                            osu_trans('tournament.show.login_to_register', [
+                                'login' => '<a href="#" class="js-user-link" title="'.osu_trans("users.anonymous.login_link").'">'.osu_trans("users.anonymous.login_text").'</a>'
                             ])
                         !!}</div>
                     @else
                         @if($tournament->isValidRank(Auth::user()))
                             @if($tournament->isSignedUp(Auth::user()))
-                                <div>{!!trans('tournament.show.entered')!!}</div>
+                                <div>{!!osu_trans('tournament.show.entered')!!}</div>
                             @else
-                                <div>{{trans('tournament.show.not_yet_entered')}}</div>
+                                <div>{{osu_trans('tournament.show.not_yet_entered')}}</div>
                             @endif
                             @if($tournament->isSignedUp(Auth::user()))
                                 <a
@@ -106,7 +108,7 @@
                                     data-method="post"
                                     data-remote="1"
                                 >
-                                    {{trans('tournament.show.button.cancel')}}
+                                    {{osu_trans('tournament.show.button.cancel')}}
                                 </a>
                             @else
                                 <a
@@ -115,11 +117,11 @@
                                     data-method="post"
                                     data-remote="1"
                                 >
-                                    {{trans('tournament.show.button.register')}}
+                                    {{osu_trans('tournament.show.button.register')}}
                                 </a>
                             @endif
                         @else
-                            <div>{{trans('tournament.show.rank_too_low')}}</div>
+                            <div>{{osu_trans('tournament.show.rank_too_low')}}</div>
                         @endif
                     @endif
                 </div>

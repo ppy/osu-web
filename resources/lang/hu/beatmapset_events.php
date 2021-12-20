@@ -6,9 +6,10 @@
 return [
     'event' => [
         'approve' => 'Jóváhagyva.',
+        'beatmap_owner_change' => ':new_user lett az új tulajdonosa :beatmap nehézségnek.',
         'discussion_delete' => 'A moderátor kitörölte a :discussion megbeszélést.',
         'discussion_lock' => 'A beatmap megbeszélése meg lett tiltva. (:text)',
-        'discussion_post_delete' => 'A moderátor posztot törölt a :discussion megbeszélésből.',
+        'discussion_post_delete' => 'A moderátor hozzászólást törölt a :discussion megbeszélésből.',
         'discussion_post_restore' => 'A moderátor posztot állított vissza a :discussion megbeszélésben.',
         'discussion_restore' => 'A moderátor visszaállította a következő megbeszélést :discussion.',
         'discussion_unlock' => 'A beatmap megbeszélése engedélyezve lett.',
@@ -23,12 +24,20 @@ return [
         'kudosu_lost' => 'A :discussion megbeszélés :user által szavazatokat vesztett, így a megszerzett kudosu vissza lett vonva.',
         'kudosu_recalculate' => 'A :discussion megbeszélés kudosu értékei újra lettek kalkulálva.',
         'language_edit' => 'Nyelv megváltoztatva erről :old erre :new.',
-        'love' => 'Kedvelte :user',
+        'love' => 'Szeretett :user által.',
         'nominate' => 'Nominálva :user által.',
+        'nominate_modes' => 'Nominálva :user (:modes) által.',
         'nomination_reset' => 'Új probléma :discussion (:text) miatt a nominálás alaphelyzetbe állt.',
+        'nomination_reset_received' => ':user általi nominálás vissza lett állítva :source_user által (:text)',
+        'nomination_reset_received_profile' => 'Nominálás vissza lett állítva :user által (:text)',
         'qualify' => 'Ez a beatmap elérte az elegendő számú nominálást és kvalifikálva lett.',
         'rank' => 'Rangsorolt.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Eltávolítva szeretettek közül :user felhasználó által. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => 'Felnőtt tartalom törlése',
+            'to_1' => 'Felnőtt tartalomként jelölés',
+        ],
     ],
 
     'index' => [
@@ -48,6 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Jóváhagyás',
+        'beatmap_owner_change' => 'Nehézség tulajdonosának változása',
         'discussion_delete' => 'Megbeszélés törlése',
         'discussion_post_delete' => 'Megbeszélés válaszának törlése',
         'discussion_post_restore' => 'Megbeszélés válaszának visszaállítása',
@@ -65,8 +75,10 @@ return [
         'love' => 'Love',
         'nominate' => 'Nominálás',
         'nomination_reset' => 'Nominálás visszaállítás',
+        'nomination_reset_received' => 'Nominálás visszaállítása érkezett',
+        'nsfw_toggle' => 'Felnőtt tartalom jel',
         'qualify' => 'Kvalifikáció',
         'rank' => 'Rangsorolás',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Szeretett eltávolítás',
     ],
 ];

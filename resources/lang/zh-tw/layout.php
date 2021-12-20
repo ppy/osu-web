@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => '自動播放下一首曲目',
     ],
 
     'defaults' => [
@@ -19,7 +19,6 @@ return [
             'contest' => '比賽',
             'contests' => '競賽',
             'root' => '控制中心',
-            'store_orders' => '商店管理',
         ],
 
         'artists' => [
@@ -47,6 +46,7 @@ return [
 
         'users' => [
             'modding' => '摸圖',
+            'multiplayer' => '多人遊戲',
             'show' => '資訊',
         ],
     ],
@@ -62,49 +62,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => '圖譜',
-            'artists' => '精選藝術家',
-            'index' => '圖譜列表',
-            'packs' => '圖譜壓縮檔',
         ],
         'community' => [
             '_' => '社群',
-            'chat' => '聊天',
-            'contests' => '評選',
             'dev' => '開發',
-            'forum-forums-index' => '論壇',
-            'getLive' => '直播',
-            'tournaments' => '官方比賽',
         ],
         'help' => [
             '_' => '幫助',
-            'getAbuse' => '',
+            'getAbuse' => '檢舉違規行為',
             'getFaq' => '常見問題',
             'getRules' => '規則',
             'getSupport' => '支援服務',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => '首頁',
-            'changelog-index' => '更新日誌',
-            'getDownload' => '下載',
-            'news-index' => '新聞',
-            'search' => '搜尋',
             'team' => '團隊',
         ],
         'rankings' => [
             '_' => '排行榜',
-            'charts' => '月賽',
-            'country' => '國家',
-            'index' => '成績',
             'kudosu' => 'kudosu',
-            'multiplayer' => '多人遊戲',
-            'score' => '總分',
         ],
         'store' => [
             '_' => '商店',
-            'cart-show' => '購物車',
-            'getListing' => '商品列表',
-            'orders-index' => '訂單記錄',
         ],
     ],
 
@@ -136,7 +115,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => '請求參數無效',
             'description' => '',
         ],
         '404' => [
@@ -156,7 +135,11 @@ return [
             'description' => "很抱歉，您訪問的頁面不存在...請返回到上一個頁面",
         ],
         '422' => [
-            'error' => '',
+            'error' => '請求參數無效',
+            'description' => '',
+        ],
+        '429' => [
+            'error' => '已達速率限制',
             'description' => '',
         ],
         '500' => [
@@ -171,8 +154,8 @@ return [
             'error' => '啊...伺服器正在維護中',
             'description' => "每次維護需要5秒到10分鐘的時間。如果維護時間太長，查看 :link 以取得更多資訊。",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -180,7 +163,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => '登入/註冊',
 
         'login' => [
             'forgot' => "忘記登入資訊？",
@@ -196,7 +179,7 @@ return [
 
         'register' => [
             'download' => '下載',
-            'info' => '點擊下方的註冊按鈕以成為 osu! 大家庭中的一員！',
+            'info' => '立即下載 osu! 來創造您專屬的帳號!',
             'title' => "沒有帳號？",
         ],
     ],
@@ -204,6 +187,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
+            'follows' => '追蹤清單',
             'friends' => '好友',
             'logout' => '登出',
             'profile' => '我的資料',

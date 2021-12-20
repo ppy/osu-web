@@ -26,7 +26,7 @@ class BroadcastNotificationTest extends TestCase
 
     public function testNoNotificationForBotUser()
     {
-        $bot = $this->createUserWithGroup('bot', ['user_allow_pm' => true]);
+        $bot = User::factory()->withGroup('bot')->create(['user_allow_pm' => true]);
         $this->sender->markSessionVerified();
         $notificationsCount = Notification::count();
 
@@ -61,14 +61,14 @@ class BroadcastNotificationTest extends TestCase
      */
     public function testSendNotificationWithOptions($details)
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->notificationOptions()->create([
             'name' => UserNotificationOption::BEATMAPSET_MODDING,
             'details' => $details,
         ]);
 
-        $beatmapset = factory(Beatmapset::class)->states('with_discussion')->create([
-            'user_id' => $user->getKey(),
+        $beatmapset = Beatmapset::factory()->withDiscussion()->create([
+            'user_id' => $user,
         ]);
         $beatmapset->watches()->create([
             'last_read' => now()->subSecond(), // make sure last_read isn't the same second the test runs.
@@ -77,13 +77,13 @@ class BroadcastNotificationTest extends TestCase
 
         $this
             ->actingAsVerified($this->sender)
-            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($beatmapset, 'praise'))
+            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($beatmapset, 'praise'))
             ->assertStatus(200);
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
         $this->runFakeQueue();
 
-        if ($details['push'] ?? true) {
+        if ($details['push'] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS['push']) {
             Event::assertDispatched(NewPrivateNotificationEvent::class);
         } else {
             Event::assertNotDispatched(NewPrivateNotificationEvent::class);
@@ -94,7 +94,7 @@ class BroadcastNotificationTest extends TestCase
         $this->artisan('notifications:send-mail');
         $this->runFakeQueue();
 
-        if ($details['mail'] ?? true) {
+        if ($details['mail'] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS['mail']) {
             Mail::assertSent(UserNotificationDigest::class);
         } else {
             Mail::assertNotSent(UserNotificationDigest::class);
@@ -130,7 +130,7 @@ class BroadcastNotificationTest extends TestCase
     public function userNotificationDetailsDataProvider()
     {
         return [
-            [null], // for testing defaults to true.
+            [null], // for testing defaults.
             [['mail' => false, 'push' => false]],
             [['mail' => false, 'push' => true]],
             [['mail' => true, 'push' => true]],
@@ -146,6 +146,6 @@ class BroadcastNotificationTest extends TestCase
         Event::fake();
         Mail::fake();
 
-        $this->sender = factory(User::class)->create();
+        $this->sender = User::factory()->create();
     }
 }

@@ -1,13 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GroupJson from 'interfaces/group-json';
+import UserGroupJson from 'interfaces/user-group-json';
 import * as React from 'react';
 import UserGroupBadge from 'user-group-badge';
+import { Modifiers } from 'utils/css';
 
 interface Props {
-  groups?: GroupJson[];
-  modifiers?: string[];
+  groups?: UserGroupJson[];
+  modifiers?: Modifiers;
   short?: boolean;
   wrapper: string; // FIXME: temporary?
 }
@@ -29,7 +30,7 @@ export default function UserGroupBadges(props: Props) {
         mainGroupWasSet = true;
 
         return (
-          <span className={className} key={group.identifier}>
+          <span key={group.identifier} className={className}>
             <UserGroupBadge group={group} modifiers={modifiers} />
           </span>
         );

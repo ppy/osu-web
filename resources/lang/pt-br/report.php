@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Denunciar',
         'title' => 'Denunciar publicação de :username?',
@@ -15,8 +20,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Denunciar',
+        'title' => 'Denunciar publicação de :username?',
     ],
 
     'scores' => [

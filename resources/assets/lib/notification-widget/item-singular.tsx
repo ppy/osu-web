@@ -17,7 +17,9 @@ interface Props {
 export default class ItemSingular extends React.Component<Props> {
   render() {
     const item = this.props.stack.first;
-    if (item == null) { return null; }
+    if (item == null) {
+      return null;
+    }
 
     return (
       <Item
@@ -30,17 +32,17 @@ export default class ItemSingular extends React.Component<Props> {
         message={formatMessage(item)}
         modifiers={['one']}
         url={urlSingular(item)}
-        withCategory={true}
-        withCoverImage={true}
+        withCategory
+        withCoverImage
       />
     );
   }
 
   private handleDelete = () => {
     this.props.stack.deleteItem(this.props.stack.first);
-  }
+  };
 
   private handleMarkAsRead = () => {
     this.props.stack.markAsRead(this.props.stack.first);
-  }
+  };
 }

@@ -15,8 +15,29 @@ return [
     'top' => 'บนสุด',
     'username' => 'ชื่อผู้ใช้',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
+    'forum_posts' => [
+        'created' => 'เวลาการโพสต์',
+        'relevance' => 'ความเกี่ยวข้อง',
+    ],
+
     'forum_topics' => [
-        'new' => 'ตอบกลับครั้งล่าสุด',
         'feature_votes' => 'ลำดับความสำคัญ',
+        'new' => 'ตอบกลับครั้งล่าสุด',
+    ],
+
+    'users' => [
+        'relevance' => 'ความเกี่ยวข้อง',
+        'username' => 'ชื่อ',
     ],
 ];

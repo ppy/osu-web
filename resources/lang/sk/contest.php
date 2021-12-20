@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Hlasovanie pre túto súťaź bolo ukončené',
         'login_required' => 'Pre hlasovanie sa prosím prihlás.',
+        'over' => 'Hlasovanie pre túto súťaź bolo ukončené',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "Vypadá to, že nemáš zahratú žiadnu mapu, ktorá je kvalifikovaná pre túto súťaž!",
@@ -26,14 +27,16 @@ return [
             'remove' => '',
             'used_up' => '',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'vstup',
         'login_required' => 'Prosím, prihlás sa pre vstup do súťaźe.',
         'silenced_or_restricted' => 'Nemôžeš sa zúčastniť súťaže, keď je tvoj účet v obmedzenom režime alebo umlčaný.',
         'preparation' => 'Momentálne pripravujeme túto súťaž. Prosím čakaj trpezlivo!',
-        'over' => 'Díky za vaše vstupy! Podania boli uzavreté a hlasovanie sa čoskoro otvorí.',
-        'limit_reached' => 'Dosiahol si limit vstupov pre túto súťaž',
         'drop_here' => 'Tvoj vstup pretiahni sem',
         'download' => 'Stiahnuť .osz',
         'wrong_type' => [

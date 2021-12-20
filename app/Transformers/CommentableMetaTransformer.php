@@ -28,7 +28,7 @@ class CommentableMetaTransformer extends TransformerAbstract
             ];
         } else {
             return [
-                'title' => trans('comments.commentable_name._deleted'),
+                'title' => osu_trans('comments.commentable_name._deleted'),
             ];
         }
     }

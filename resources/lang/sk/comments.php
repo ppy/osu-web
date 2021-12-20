@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'vymazaný',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => '',
     'edited' => 'upravené :timeago používateľom :user',
     'pinned' => 'pripnuté',
@@ -35,7 +37,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => '',
         'nav_title' => '',
+        'no_comments' => '',
     ],
 
     'placeholder' => [

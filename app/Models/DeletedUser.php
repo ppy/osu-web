@@ -93,4 +93,9 @@ class DeletedUser extends User
 {
     public $user_avatar = null;
     public $username = '[deleted user]';
+
+    public function isDeleted()
+    {
+        return true;
+    }
 }

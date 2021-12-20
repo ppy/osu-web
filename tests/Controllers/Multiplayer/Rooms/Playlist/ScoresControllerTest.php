@@ -16,7 +16,7 @@ class ScoresControllerTest extends TestCase
     public function testShow()
     {
         $score = factory(Score::class)->create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actAsScopedUser($user, ['*']);
 
@@ -27,77 +27,79 @@ class ScoresControllerTest extends TestCase
         ]))->assertSuccessful();
     }
 
-    public function testStore()
+    /**
+     * @dataProvider dataProviderForTestStore
+     */
+    public function testStore($allowRanking, $hashParam, $status)
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $playlistItem = factory(PlaylistItem::class)->create();
-        $hash = md5('testversion');
-        factory(Build::class)->create(['hash' => hex2bin($hash), 'allow_ranking' => true]);
+        $build = Build::factory()->create(['allow_ranking' => $allowRanking]);
         $initialScoresCount = Score::count();
 
         $this->actAsScopedUser($user, ['*']);
 
+        $params = [];
+        if ($hashParam !== null) {
+            $params['version_hash'] = $hashParam ? bin2hex($build->hash) : md5('invalid_');
+        }
+
         $this->json('POST', route('api.rooms.playlist.scores.store', [
             'room' => $playlistItem->room_id,
             'playlist' => $playlistItem->getKey(),
-        ]), [
-            'version_hash' => $hash,
-        ])->assertSuccessful();
+        ]), $params)->assertStatus($status);
 
-        $this->assertSame($initialScoresCount + 1, Score::count());
+        $countDiff = ((string) $status)[0] === '2' ? 1 : 0;
+
+        $this->assertSame($initialScoresCount + $countDiff, Score::count());
     }
 
-    public function testStoreInvalidHash()
+    /**
+     * @dataProvider dataProviderForTestUpdate
+     */
+    public function testUpdate($bodyParams, $status)
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $playlistItem = factory(PlaylistItem::class)->create();
-        $initialScoresCount = Score::count();
+        $room = $playlistItem->room;
+        $build = Build::factory()->create(['allow_ranking' => true]);
+        $score = $room->startPlay($user, $playlistItem);
 
         $this->actAsScopedUser($user, ['*']);
 
-        $this->json('POST', route('api.rooms.playlist.scores.store', [
-            'room' => $playlistItem->room_id,
-            'playlist' => $playlistItem->getKey(),
-        ]), [
-            'version_hash' => md5('testversion'),
-        ])->assertStatus(404);
+        $url = route('api.rooms.playlist.scores.update', [
+            'room' => $room,
+            'playlist' => $playlistItem,
+            'score' => $score,
+        ]);
 
-        $this->assertSame($initialScoresCount, Score::count());
+        $this->json('PUT', $url, $bodyParams)->assertStatus($status);
     }
 
-    public function testStoreMissingHash()
+    public function dataProviderForTestStore()
     {
-        $user = factory(User::class)->create();
-        $playlistItem = factory(PlaylistItem::class)->create();
-        $initialScoresCount = Score::count();
-
-        $this->actAsScopedUser($user, ['*']);
-
-        $this->json('POST', route('api.rooms.playlist.scores.store', [
-            'room' => $playlistItem->room_id,
-            'playlist' => $playlistItem->getKey(),
-        ]))->assertStatus(422);
-
-        $this->assertSame($initialScoresCount, Score::count());
+        return [
+            'ok' => [true, true, 200],
+            'invalid hash' => [true, false, 422],
+            'missing hash' => [true, null, 422],
+            'no ranking build' => [false, true, 422],
+        ];
     }
 
-    public function testStoreNoRankingBuild()
+    public function dataProviderForTestUpdate()
     {
-        $user = factory(User::class)->create();
-        $playlistItem = factory(PlaylistItem::class)->create();
-        $hash = md5('testversion');
-        factory(Build::class)->create(['hash' => hex2bin($hash), 'allow_ranking' => false]);
-        $initialScoresCount = Score::count();
+        static $validBodyParams = [
+            'accuracy' => 1,
+            'max_combo' => 10,
+            'passed' => true,
+            'rank' => 'A',
+            'statistics' => ['Good' => 1],
+            'total_score' => 10,
+        ];
 
-        $this->actAsScopedUser($user, ['*']);
-
-        $this->json('POST', route('api.rooms.playlist.scores.store', [
-            'room' => $playlistItem->room_id,
-            'playlist' => $playlistItem->getKey(),
-        ]), [
-            'version_hash' => $hash,
-        ])->assertStatus(404);
-
-        $this->assertSame($initialScoresCount, Score::count());
+        return [
+            'ok' => [$validBodyParams, 200],
+            'empty params' => [[], 422],
+        ];
     }
 }

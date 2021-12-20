@@ -15,8 +15,29 @@ return [
     'top' => 'الأحدث',
     'username' => 'اسم المُستخدم',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
+    'forum_posts' => [
+        'created' => 'توقيت النشر',
+        'relevance' => 'الأهمية',
+    ],
+
     'forum_topics' => [
-        'new' => 'الرد الأخير',
         'feature_votes' => 'تفضيل النجمة',
+        'new' => 'الرد الأخير',
+    ],
+
+    'users' => [
+        'relevance' => 'الصِلة',
+        'username' => 'الإسم',
     ],
 ];

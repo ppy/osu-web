@@ -13,12 +13,17 @@ return [
 
         'player' => [
             'by' => 'Joué par',
-            'submitted_on' => 'Envoyé le',
+            'submitted_on' => 'Réalisé le',
 
             'rank' => [
                 'country' => 'Rang national',
                 'global' => 'Rang global',
             ],
         ],
+    ],
+
+    'status' => [
+        'non_best' => 'Seul vos meilleurs scores vous rapportent des pp',
+        'processing' => 'Ce score est toujours en cours de calcul et sera affiché bientôt',
     ],
 ];

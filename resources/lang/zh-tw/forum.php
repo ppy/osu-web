@@ -15,7 +15,7 @@ return [
         'create' => [
             '_' => '新增封面',
             'button' => '上傳圖片',
-            'info' => '圖片尺寸應為 :dimensions. 也可以將圖片拉到此處上傳.',
+            'info' => '圖片尺寸應為 :dimensions。你也可以將圖片拉到此處來上傳。',
         ],
 
         'destroy' => [
@@ -37,8 +37,8 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '將論壇標為已讀',
-        'forums' => '將論壇標為已讀',
+        'forum' => '將該板塊標記為已讀',
+        'forums' => '將該板塊標記為已讀',
         'busy' => '標記為已讀…',
     ],
 
@@ -47,11 +47,12 @@ return [
         'confirm_restore' => '恢復此回覆？',
         'edited' => '最後由 :user 於 :when 編輯，總共編輯了 :count 次。',
         'posted_at' => '發表於 :when',
+        'posted_by' => '由 :username 發布',
 
         'actions' => [
             'destroy' => '刪除回覆',
             'edit' => '編輯回覆',
-            'report' => '',
+            'report' => '檢舉貼文',
             'restore' => '恢復回覆',
         ],
 
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '確定要刪除這個主題嗎？',
+        'confirm_restore' => '確定要復原這個主題嗎？',
         'deleted' => '已刪除的主題',
         'go_to_latest' => '查看最後的貼文',
         'has_replied' => '您已回覆此主題',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => '發表人： :user',
         'started_by_verbose' => '由 :user 發起',
+
+        'actions' => [
+            'destroy' => '刪除主題',
+            'restore' => '復原主題',
+        ],
 
         'create' => [
             'close' => '關閉',
@@ -117,6 +125,55 @@ return [
             'last' => '跳至最後',
             'next' => '往後 10 篇',
             'previous' => '往前 10 篇',
+        ],
+
+        'logs' => [
+            '_' => '主題日誌',
+            'button' => '瀏覽主題日誌',
+
+            'columns' => [
+                'action' => '動作',
+                'date' => '日期',
+                'user' => '使用者',
+            ],
+
+            'data' => [
+                'add_tag' => '已加入「:tag」標籤',
+                'announcement' => '已置頂主題，並標記為公告',
+                'edit_topic' => '到 :title',
+                'fork' => '源自 :topic',
+                'pin' => '已置頂主題',
+                'post_operation' => '由 :username 發布',
+                'remove_tag' => '已移除「:tag」標籤',
+                'source_forum_operation' => '源自 :forum',
+                'unpin' => '已取消置頂主題',
+            ],
+
+            'no_results' => '找不到日誌……',
+
+            'operations' => [
+                'delete_post' => '已刪除貼文',
+                'delete_topic' => '已刪除主題',
+                'edit_topic' => '已變更主題標題',
+                'edit_poll' => '已編輯主題投票',
+                'fork' => '已複製主題',
+                'issue_tag' => '已打上標籤',
+                'lock' => '已鎖定主題',
+                'merge' => '已將貼文合併進這則主題',
+                'move' => '已移動主題',
+                'pin' => '已置頂主題',
+                'post_edited' => '已編輯貼文',
+                'restore_post' => '已回復貼文',
+                'restore_topic' => '已回復主題',
+                'split_destination' => '已移動分割的貼文',
+                'split_source' => '已分割貼文',
+                'topic_type' => '已設定主題類型',
+                'topic_type_changed' => '已變更主題類型',
+                'unlock' => '已解鎖主題',
+                'unpin' => '已取消置頂主題',
+                'user_lock' => '已鎖定自己的主題',
+                'user_unlock' => '已解鎖自己的主題',
+            ],
         ],
 
         'post_edit' => [

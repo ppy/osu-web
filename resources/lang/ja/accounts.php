@@ -32,12 +32,11 @@ return [
             'title' => 'プロフィール',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => '現在地',
                 'user_interests' => '趣味',
-                'user_msnm' => 'skype',
                 'user_occ' => '職業',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'ウェブサイト',
             ],
         ],
@@ -57,11 +56,13 @@ return [
 
         'options' => [
             '_' => '配送設定',
+            'beatmap_owner_change' => 'ゲスト難易度',
             'beatmapset:modding' => 'ビートマップmodding',
             'channel_message' => 'プライベートチャットメッセージ',
             'comment_new' => '新しいコメント',
             'forum_topic_reply' => 'トピックへの返信',
             'mail' => 'メール',
+            'mapping' => 'ビートマップマッパー',
             'push' => 'プッシュ通知',
             'user_achievement_unlock' => 'ユーザーメダルのアンロック',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'ビートマップ内の不適切なコンテンツの警告を非表示にする',
+        'beatmapset_title_show_original' => 'ビートマップのメタデータを元の言語で表示',
         'title' => 'オプション',
 
         'beatmapset_download' => [
             '_' => 'デフォルトのビートマップダウンロートタイプ',
             'all' => '可能であれば動画付き',
-            'no_video' => '動画なし',
             'direct' => 'osu!directで開く',
+            'no_video' => '動画なし',
         ],
-
-        'beatmapset_title_show_original' => 'ビートマップのメタデータを元の言語で表示',
     ],
 
     'playstyles' => [

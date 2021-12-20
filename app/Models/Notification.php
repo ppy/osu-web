@@ -18,7 +18,7 @@ use App\Models\Forum\Topic;
  * @property string $notifiable_type
  * @property int $notifiable_id
  * @property int $priority
- * @property User $source
+ * @property User|null $source
  * @property int|null $source_user_id
  * @property string $name
  * @property \Carbon\Carbon|null $updated_at
@@ -26,6 +26,7 @@ use App\Models\Forum\Topic;
  */
 class Notification extends Model
 {
+    const BEATMAP_OWNER_CHANGE = 'beatmap_owner_change';
     const BEATMAPSET_DISCUSSION_LOCK = 'beatmapset_discussion_lock';
     const BEATMAPSET_DISCUSSION_POST_NEW = 'beatmapset_discussion_post_new';
     const BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM = 'beatmapset_discussion_qualified_problem';
@@ -43,8 +44,10 @@ class Notification extends Model
     const FORUM_TOPIC_REPLY = 'forum_topic_reply';
     const USER_ACHIEVEMENT_UNLOCK = 'user_achievement_unlock';
     const USER_BEATMAPSET_NEW = 'user_beatmapset_new';
+    const USER_BEATMAPSET_REVIVE = 'user_beatmapset_revive';
 
     const NAME_TO_CATEGORY = [
+        self::BEATMAP_OWNER_CHANGE => 'beatmap_owner_change',
         self::BEATMAPSET_DISCUSSION_LOCK => 'beatmapset_discussion',
         self::BEATMAPSET_DISCUSSION_POST_NEW => 'beatmapset_discussion',
         self::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM => 'beatmapset_problem',
@@ -62,6 +65,7 @@ class Notification extends Model
         self::FORUM_TOPIC_REPLY => 'forum_topic_reply',
         self::USER_ACHIEVEMENT_UNLOCK => 'user_achievement_unlock',
         self::USER_BEATMAPSET_NEW => 'user_beatmapset_new',
+        self::USER_BEATMAPSET_REVIVE => 'user_beatmapset_new',
     ];
 
     const NOTIFIABLE_CLASSES = [

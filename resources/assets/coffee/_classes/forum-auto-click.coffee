@@ -1,41 +1,54 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @ForumAutoClick
+class window.ForumAutoClick
   constructor: ->
     @_triggerDistance = 1200
-    @nextLink = document.getElementsByClassName('js-forum__posts-show-more--next')
-    @previousLink = document.getElementsByClassName('js-forum__posts-show-more--previous')
     @throttledOnScroll = _.throttle @onScroll, 1000
 
-    $(window).on 'scroll', @throttledOnScroll
-    $(document).on 'turbolinks:load', @throttledOnScroll
-    $.subscribe 'osu:page:change', @throttledOnScroll
+    $(document).on 'turbolinks:load', @onLoad
 
 
   commonClick: (link) ->
-    # abort if link is invisible
-    if link.getBoundingClientRect().height == 0
-      return
+    # abort if no more posts to load
+    return if link.dataset.noMore == '1'
     # abort if link has previously failed loading
-    if link.getAttribute('data-failed') == '1'
-      return
+    return if link.dataset.failed == '1'
+    # abort if link is invisible
+    return if link.getBoundingClientRect().height == 0
+
     link.click()
 
+
   nextClick: =>
-    return if @nextLink.length == 0
+    return if !@nextLink?
     # abort if link is too far above the window
-    return if @nextLink[0].getBoundingClientRect().top > document.documentElement.clientHeight + @_triggerDistance
+    return if @nextLink.getBoundingClientRect().top > document.documentElement.clientHeight + @_triggerDistance
     # proceed to common link auto click function
-    @commonClick @nextLink[0]
+    @commonClick @nextLink
+
+
+  onLoad: =>
+    $.unsubscribe 'scroll', @throttledOnScroll
+    $(window).off 'osu:page:change', @throttledOnScroll
+
+    @nextLink = document.querySelector('.js-forum__posts-show-more--next')
+    @previousLink = document.querySelector('.js-forum__posts-show-more--previous')
+
+    if @nextLink? && @previousLink?
+      @throttledOnScroll()
+      $(window).on 'scroll', @throttledOnScroll
+      $.subscribe 'osu:page:change', @throttledOnScroll
+
 
   onScroll: =>
     @previousClick()
     @nextClick()
 
+
   previousClick: =>
-    return if @previousLink.length == 0
+    return if !@previousLink?
     # abort if link is too far above the window
-    return if @previousLink[0].getBoundingClientRect().top < -@_triggerDistance
+    return if @previousLink.getBoundingClientRect().top < -@_triggerDistance
     # proceed to common link auto click function
-    @commonClick @previousLink[0]
+    @commonClick @previousLink

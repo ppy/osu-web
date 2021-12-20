@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
-    'titlePrepend' => trans('beatmaps.discussions.show.title', [
+    'titlePrepend' => osu_trans('beatmaps.discussions.show.title', [
         'title' => $beatmapset->getDisplayTitle(auth()->user()),
         'mapper' => $beatmapset->user->username ?? '?',
     ]),
@@ -20,5 +20,6 @@
         {!! json_encode($initialData) !!}
     </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/beatmap-discussions.js'])
+    @include('beatmapsets._recommended_star_difficulty_all')
+    @include('layout._react_js', ['src' => 'js/beatmap-discussions.js'])
 @endsection

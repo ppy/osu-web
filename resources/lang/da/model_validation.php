@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Sletning af beatmap metadata opslag er ikke tilladt.',
             'beatmapset_post_no_edit' => 'Redigering af beatmap metadata opslag er ikke tilladt.',
+            'first_post_no_delete' => 'Kan ikke slette det startende opslag',
+            'missing_topic' => 'Indlæg mangler emne',
             'only_quote' => 'Dit svar indeholder kun et quotationstegn.',
 
             'attributes' => [
@@ -121,7 +123,7 @@ return [
     'user' => [
         'contains_username' => 'Adgangskoden må ikke indholde et brugernavn.',
         'email_already_used' => 'Email-adressen er allerede i brug.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'E-mail er ikke gyldig.',
         'invalid_country' => 'Landet er ikke i databasen.',
         'invalid_discord' => 'Ugyldigt Discord brugernavn.',
         'invalid_email' => "Dette ligner ikke en email-adresse...",
@@ -161,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason er ikke gyldt for denne type anmeldelse.',
         'self' => "Du kan ikke rapportere dig selv!",
     ],

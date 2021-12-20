@@ -3,13 +3,17 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 use App\Models\Chat\Channel;
-use App\Models\Match\Match;
+use App\Models\LegacyMatch\LegacyMatch;
 
 $factory->define(Channel::class, function (Faker\Generator $faker) {
     return [
         'name' => '#'.$faker->colorName,
         'description' => $faker->bs,
     ];
+});
+
+$factory->state(Channel::class, 'moderated', function (Faker\Generator $faker) {
+    return ['moderated' => true];
 });
 
 $factory->state(Channel::class, 'public', function (Faker\Generator $faker) {
@@ -25,7 +29,7 @@ $factory->state(Channel::class, 'pm', function (Faker\Generator $faker) {
 });
 
 $factory->state(Channel::class, 'tourney', function (Faker\Generator $faker) {
-    $match = factory(Match::class)->states('tourney')->create();
+    $match = factory(LegacyMatch::class)->states('tourney')->create();
 
     return [
         'name' => "#mp_{$match->match_id}",

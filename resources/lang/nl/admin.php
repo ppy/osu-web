@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Regenereer',
-            'regenerating' => 'Regenereren...',
-            'remove' => 'Verwijder',
-            'removing' => 'Verwijderen...',
-            'title' => 'Beatmapset covers',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+            'title' => '',
         ],
         'show' => [
-            'covers' => 'Beheer Beatmapset Covers',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'activeer',
-                'activate_confirm' => 'modding v2 activeren voor deze beatmap?',
-                'active' => 'actief',
-                'inactive' => 'inactief',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Verwijder',
+                'delete' => '',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Geen cover ingesteld',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Opslaan',
-                    'update' => 'Bijwerken',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Forumcovers Lijst',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Standaardonderwerp Cover',
-                    'main' => 'Forum Cover',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,33 +50,24 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Log Bekijken',
+            'title' => '',
         ],
     ],
 
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'Beatmapsets',
-                'forum' => 'Forum',
-                'general' => 'Algemeen',
-                'store' => 'Winkel',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Bestellingslijst',
+                'beatmapsets' => '',
+                'forum' => '',
+                'general' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Deze gebruiker is momenteel gerestricteerd.',
-            'message' => '(enkel administrators kunnen dit zien)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

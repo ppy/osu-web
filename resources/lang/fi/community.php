@@ -12,11 +12,11 @@ return [
             'instructions' => 'klikkaa sydäntä jatkaaksesi osu!kauppaan',
         ],
         'why-support' => [
-            'title' => 'Miksi minun pitäisi tukea osu!:a? Mihin rahat menevät?',
+            'title' => 'Miksi minun pitäisi tukea osu!\'a? Mihin rahat menevät?',
 
             'team' => [
                 'title' => 'Tue Tiimiä',
-                'description' => '',
+                'description' => 'Pieni tiimi huolehtii osu!\'n kehittämistä ja ylläpitoa. Tukesi auttaa heitä pysymään, siis... elossa.',
             ],
             'infra' => [
                 'title' => 'Palvelininfrastruktuuri',
@@ -25,21 +25,21 @@ return [
             'featured-artists' => [
                 'title' => 'Esittelyssä olevat Artistit',
                 'description' => 'Sinun tuella voimme lähestyä mahtavia artisteja vielä enemmän ja lisensoida lisää hienoa musiikkia käytettäväksi osu!:ssa',
-                'link_text' => '',
+                'link_text' => 'Näytä nykyinen lista &raquo;',
             ],
             'ads' => [
                 'title' => 'Pidä osu! itsekestävänä',
-                'description' => '',
+                'description' => 'Lahjoituksesi auttavat pitämään pelin itsenäisenä ja täysin vapaana mainoksista ja ulkopuolisista sponsoreista.',
             ],
             'tournaments' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Viralliset Turnaukset',
+                'description' => 'Auta osu! World Cup -turnausten ylläpidon (sekä palkintojen) rahoittamista.',
+                'link_text' => 'Selaa turnauksia &raquo;',
             ],
             'bounty-program' => [
                 'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'description' => 'Tue yhteisön osallistujia, jotka ovat antaneet aikaa ja vaivaa auttaa tekemään osu!\'a paremmaksi.',
+                'link_text' => 'Lue lisää &raquo;',
             ],
         ],
         'perks' => [
@@ -50,18 +50,18 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
-                'description' => "",
+                'title' => 'Kavereiden sijoitukset',
+                'description' => "Näe miten pärjäät ystäviesi vastaan beatmappien tulostaulukoissa, sekä pelissä että verkkosivulla.",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Maakohtaiset sijoitukset',
+                'description' => 'Valloita maasi ennen kuin valloitat maailman.',
             ],
 
             'mod_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Suodata Modien mukaan',
+                'description' => 'Viihdytkö vain HDHR-pelaajien kanssa? Ei hätää!',
             ],
 
             'auto_downloads' => [
@@ -80,7 +80,7 @@ return [
             ],
 
             'customisation' => [
-                'title' => 'Kustomointi',
+                'title' => 'Mukauttaminen',
                 'description' => "Tee profiilistasi omalaatuinen lisäämällä täysin muokattava käyttäjä-sivu.",
             ],
 
@@ -101,7 +101,7 @@ return [
 
             'change_username' => [
                 'title' => 'Vaihda käyttäjänimeä',
-                'description' => 'Voit vaihtaa käyttäjänimesi ilman ylimääräisiä kuluja. (vain kerran)',
+                'description' => 'Voit vaihtaa käyttäjänimesi ilman ylimääräisiä kuluja (vain kerran).',
             ],
 
             'skinnables' => [
@@ -120,20 +120,20 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Lisää suosikkeja',
+                'description' => 'Voit lisätä suosikkilistaan :normally beatmappeja, verrattuna :supporter beatmappeihin normaalitapauksessa',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Lisää kavereita',
+                'description' => 'Voit lisätä kaverilistaan :normally kavereita, verrattuna :supporter kavereihin normaalitapauksessa',
             ],
             'more_beatmaps' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Lataa Enemmän Beatmappeja',
+                'description' => 'Kuinka monta vireillä olevia beatmappeja sinulla voi olla kerralla, lasketaan yhteen perusarvosta ja lisäbonuksesta kullekin hyväksytyille beatmapeille, mitä sinulla on (tiettyyn rajaan asti).<br/><br/>Normaalitapauksessa tämä on :base plus :bonus per hyväksytty beatmappi (enintään :bonus_max). Jos olet osu!tukija, raja on :supporter_base plus :supporter_bonus per hyväksytty beatmappi (enintään :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'Kilpaile kaveriasi kanssa ja katso, miten sijoittaudut heitä vastaan!',
             ],
 
         ],

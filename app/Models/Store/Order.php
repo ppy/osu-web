@@ -5,26 +5,27 @@
 
 namespace App\Models\Store;
 
+use App\Exceptions\InvariantException;
 use App\Exceptions\OrderNotModifiableException;
 use App\Models\Country;
 use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Represents a Store Order.
  *
- * A user should only have 1 'active cart'.
- * The difference between the 'incart', 'processing' and 'checkout' statuses are:
- * - incart -> order is in cart and can be modified; adding a new item will add to the existing order.
- * - processing -> order is in cart and should not be modified.
- * - checkout -> cart is cleared; adding a new item should create a new cart.
- *
- * The contents of the cart should not be cleared until the payment request is
- *  successfully sent to the payment provider.
- * i.e. it should not be cleared immediately on checking out.
+ * Order states:
+ * - cancelled -> Order is cancelled.
+ * - incart -> Order is a cart and items can be modified. This is the only state which should allow items to be modified.
+ * - processing -> The checkout process for this Order has started.
+ * - checkout -> User-side of the payment approval process is complete; awaiting confirmation from payment processor.
+ * - paid -> Payment confirmed by payment processor.
+ * - shipped -> Physical order dispatched; not available in all cases.
+ * - delivered -> If we receive confirmation that the order was delivered; not available in all cases.
  *
  * @property Address $address
  * @property int|null $address_id
@@ -36,12 +37,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $provider
  * @property \Carbon\Carbon|null $paid_at
  * @property \Illuminate\Database\Eloquent\Collection $payments Payment
- * @property string|null $reference
+ * @property string|null $reference For paypal transactions, this is the resource Id of the paypal order; otherwise, it is the same as the transaction_id without the prefix.
  * @property \Carbon\Carbon|null $shipped_at
  * @property float|null $shipping
  * @property mixed $status
  * @property string|null $tracking_code
- * @property string|null $transaction_id
+ * @property string|null $transaction_id For paypal transactions, this value is based on the IPN or captured payment Id, not the order resource id.
  * @property \Carbon\Carbon|null $updated_at
  * @property User $user
  * @property int $user_id
@@ -60,7 +61,24 @@ class Order extends Model
     const PROVIDER_SHOPIFY = 'shopify';
     const PROVIDER_XSOLLA = 'xsolla';
 
-    const STATUS_HAS_INVOICE = ['processing', 'checkout', 'paid', 'shipped', 'cancelled', 'delivered'];
+    const STATUS_CANCELLED = 'cancelled';
+    const STATUS_DELIVERED = 'delivered';
+    const STATUS_INCART = 'incart';
+    const STATUS_PAID = 'paid';
+    const STATUS_PAYMENT_APPROVED = 'checkout';
+    const STATUS_PAYMENT_REQUESTED = 'processing';
+    const STATUS_SHIPPED = 'shipped';
+
+    const STATUS_CAN_CHECKOUT = [self::STATUS_INCART, self::STATUS_PAYMENT_REQUESTED];
+
+    const STATUS_HAS_INVOICE = [
+        self::STATUS_CANCELLED,
+        self::STATUS_DELIVERED,
+        self::STATUS_PAID,
+        self::STATUS_PAYMENT_APPROVED,
+        self::STATUS_PAYMENT_REQUESTED,
+        self::STATUS_SHIPPED,
+    ];
 
     protected $primaryKey = 'order_id';
 
@@ -69,11 +87,20 @@ class Order extends Model
     ];
 
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
-    public $macros = ['itemsQuantities'];
+    protected $macros = ['itemsQuantities'];
 
     protected static function splitTransactionId($value)
     {
         return explode('-', $value, 2);
+    }
+
+    public static function pendingForUser(?User $user): ?Builder
+    {
+        if ($user === null) {
+            return null;
+        }
+
+        return static::where('user_id', $user->getKey())->paymentRequested();
     }
 
     public function items()
@@ -96,14 +123,19 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeInCart($query)
+    public function scopeWhereCanCheckout($query)
     {
-        return $query->where('status', 'incart');
+        return $query->whereIn('status', [static::STATUS_INCART, static::STATUS_PAYMENT_REQUESTED]);
     }
 
-    public function scopeProcessing($query)
+    public function scopeInCart($query)
     {
-        return $query->where('status', 'processing');
+        return $query->where('status', static::STATUS_INCART);
+    }
+
+    public function scopePaymentRequested($query)
+    {
+        return $query->where('status', static::STATUS_PAYMENT_REQUESTED);
     }
 
     public function scopeStale($query)
@@ -114,11 +146,6 @@ class Order extends Model
     public function scopeWhereHasInvoice($query)
     {
         return $query->whereIn('status', static::STATUS_HAS_INVOICE);
-    }
-
-    public function scopeWithPayments($query)
-    {
-        return $query->with('payments');
     }
 
     public function scopeWhereOrderNumber($query, $orderNumber)
@@ -147,6 +174,11 @@ class Order extends Model
                 ->where('provider', $provider)
                 ->where('transaction_id', $transactionId)
                 ->where('cancelled', false));
+    }
+
+    public function scopeWithPayments($query)
+    {
+        return $query->with('payments');
     }
 
     public function trackingCodes()
@@ -186,19 +218,24 @@ class Order extends Model
         return static::splitTransactionId($this->transaction_id)[0];
     }
 
+    /**
+     * Payment status that appears on the invoice.
+     *
+     * @return string
+     */
     public function getPaymentStatusText()
     {
         switch ($this->status) {
-            case 'cancelled':
+            case static::STATUS_CANCELLED:
                 return 'Cancelled';
-            case 'checkout':
-            case 'processing':
-                return 'Awaiting Payment';
-            case 'incart':
+            case static::STATUS_PAYMENT_REQUESTED:
+            case static::STATUS_PAYMENT_APPROVED:
+                return 'Confirmation Pending';
+            case static::STATUS_INCART:
                 return '';
-            case 'paid':
-            case 'shipped':
-            case 'delivered':
+            case static::STATUS_PAID:
+            case static::STATUS_SHIPPED:
+            case static::STATUS_DELIVERED:
                 return 'Paid';
             default:
                 return 'Unknown';
@@ -207,6 +244,13 @@ class Order extends Model
 
     /**
      * Returns the reference id for the provider associated with this Order.
+     *
+     * For Paypal transactions, this is "paypal-{$capturedId}" where $capturedId is the IPN txn_id
+     * or captured Id of the payment item in the payment transaction (not the payment itself).
+     *
+     * For other payment providers, this value should be "{$provider}-{$reference}".
+     *
+     * In the case of failed or user-aborted payments, this should be "{$provider}-failed".
      *
      * @return string|null
      */
@@ -314,45 +358,75 @@ class Order extends Model
         });
     }
 
-    public function canCheckout()
+    public function canCheckout(): bool
     {
-        return in_array($this->status, ['incart', 'processing'], true);
+        return in_array($this->status, static::STATUS_CAN_CHECKOUT, true);
     }
 
-    public function hasInvoice()
+    public function canUserCancel(): bool
+    {
+        return $this->status === static::STATUS_PAYMENT_REQUESTED;
+    }
+
+    public function hasInvoice(): bool
     {
         return in_array($this->status, static::STATUS_HAS_INVOICE, true);
     }
 
-    public function isEmpty()
+    public function isCancelled(): bool
+    {
+        return $this->status === static::STATUS_CANCELLED;
+    }
+
+    public function isCart(): bool
+    {
+        return $this->status === static::STATUS_INCART;
+    }
+
+    public function isDelivered(): bool
+    {
+        return $this->status === static::STATUS_DELIVERED;
+    }
+
+    public function isEmpty(): bool
     {
         return !$this->items()->exists();
     }
 
-    public function isAwaitingPayment()
-    {
-        return in_array($this->status, ['processing', 'checkout'], true);
-    }
-
-    public function isModifiable()
+    public function isModifiable(): bool
     {
         // new cart is status = null
-        return in_array($this->status, ['incart', null], true);
+        return in_array($this->status, [static::STATUS_INCART, null], true);
     }
 
-    public function isProcessing()
+    public function isPendingPaymentCapture(): bool
     {
-        return $this->status === 'processing';
+        return in_array($this->status, [static::STATUS_PAYMENT_REQUESTED, static::STATUS_PAYMENT_APPROVED], true);
     }
 
-    public function isPaidOrDelivered()
+    public function isPaymentRequested(): bool
     {
-        return in_array($this->status, ['paid', 'delivered'], true);
+        return $this->status === static::STATUS_PAYMENT_REQUESTED;
     }
 
-    public function isPendingEcheck()
+    public function isPaid(): bool
+    {
+        return $this->status === static::STATUS_PAID;
+    }
+
+    public function isPaidOrDelivered(): bool
+    {
+        return in_array($this->status, [static::STATUS_PAID, static::STATUS_DELIVERED], true);
+    }
+
+    public function isPendingEcheck(): bool
     {
         return $this->tracking_code === static::PENDING_ECHECK;
+    }
+
+    public function isShipped(): bool
+    {
+        return $this->status === static::STATUS_SHIPPED;
     }
 
     public function isShopify(): bool
@@ -394,9 +468,25 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
-    public function cancel()
+    /**
+     * Marks the Order as cancelled. Does not do anything if already cancelled.
+     *
+     * @param User|null $user The User requesting to cancel the order, null for system.
+     * @return void
+     */
+    public function cancel(?User $user = null)
     {
-        $this->status = 'cancelled';
+        if ($this->isCancelled()) {
+            return;
+        }
+
+        // TODO: Payment processors should set a context variable flagging the user check to be skipped.
+        // This is currently only fine because the Orders controller requires auth.
+        if ($user !== null && $this->user_id === $user->getKey() && !$this->canUserCancel()) {
+            throw new InvariantException(osu_trans('store.order.cancel_not_allowed'));
+        }
+
+        $this->status = Order::STATUS_CANCELLED;
         $this->saveOrExplode();
     }
 
@@ -419,7 +509,7 @@ class Order extends Model
             $this->paid_at = Carbon::now();
         }
 
-        $this->status = $this->requiresShipping() ? 'paid' : 'delivered';
+        $this->status = $this->requiresShipping() ? static::STATUS_PAID : static::STATUS_DELIVERED;
         $this->saveOrExplode();
     }
 
@@ -445,7 +535,7 @@ class Order extends Model
 
             // TODO: better validation handling.
             if ($params['product'] === null) {
-                return trans('model_validation/store/product.not_available');
+                return osu_trans('model_validation/store/product.not_available');
             }
 
             $this->saveOrExplode();

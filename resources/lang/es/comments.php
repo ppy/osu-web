@@ -5,12 +5,14 @@
 
 return [
     'deleted' => 'eliminado',
+    'deleted_by' => 'eliminado :timeago por :user',
+    'deleted_by_system' => 'sistema',
     'deleted_count' => ':count_delimited comentario eliminado|:count_delimited comentarios eliminados',
     'edited' => 'editado :timeago por :user',
     'pinned' => 'anclado',
     'empty' => 'Aún no hay comentarios.',
     'load_replies' => 'cargar respuestas',
-    'replies_count' => ':count_delimited respuesta|:count_delimited respuestas',
+    'replies_count' => 'una respuesta|:count_delimited respuestas',
     'title' => 'Comentarios',
 
     'commentable_name' => [
@@ -35,7 +37,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'comentarios',
         'nav_title' => 'listado',
+        'no_comments' => 'no se encontraron comentarios...',
     ],
 
     'placeholder' => [

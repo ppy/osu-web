@@ -41,6 +41,6 @@ class SupporterGift extends Mailable implements ShouldQueue
     {
         return $this->text('emails.store.supporter_gift')
             ->with($this->params)
-            ->subject(trans('mail.supporter_gift.subject'));
+            ->subject(osu_trans('mail.supporter_gift.subject'));
     }
 }

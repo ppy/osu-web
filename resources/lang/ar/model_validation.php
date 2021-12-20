@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'غير مسموح بحذف منشور موارد الخريطة.',
             'beatmapset_post_no_edit' => 'غير مسموح بتعديل منشور موارد الخريطة.',
+            'first_post_no_delete' => 'لا يمكن حذف المنشور الأول',
+            'missing_topic' => 'المنشور يفتقد لـ موضوع',
             'only_quote' => 'الرد الخاص بك يحتوي على اقتباس فقط.',
 
             'attributes' => [
@@ -161,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason ليس مقبولا لنوع الأبلاغ هذا.',
         'self' => "لا يمكنك الإبلاغ عن نفسك!",
     ],

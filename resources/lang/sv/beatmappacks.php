@@ -11,13 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'LÄS DETTA INNAN NEDLADDNING',
-            'instruction' => [
-                '_' => "Installation: När en samling har laddats ner, extrahera .rar filen till din osu! Songs mapp.
-                    Alla låtar är fortfarande i .zip/.osz-samlingen, så osu! kommer behöva extrahera beatmapsen nästa gång du går in i spelläget.
-                    Extrahera :scary .zip/.osz själv,
-                    annars kommer beatmapsen visas inkorrekt i osu! och kommer inte fungera korrekt.",
-                'scary' => 'INTE',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Notera att det är som högst rekommenderat att :scary, eftersom de äldsta mapparna är av mycket lägre kvalité jämfört med de nyaste mapparna.',
                 'scary' => 'ladda ner samlingarna från nyaste till äldsta',
@@ -28,12 +22,12 @@ return [
     'show' => [
         'download' => 'Ladda ner',
         'item' => [
-            'cleared' => 'rensad',
-            'not_cleared' => 'ej rensad',
+            'cleared' => 'avklarad',
+            'not_cleared' => 'ej avklarad',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link kan inte användas för att avklara detta paket.',
+            'link' => 'Mods för minskad svårighetsgrad',
         ],
     ],
 

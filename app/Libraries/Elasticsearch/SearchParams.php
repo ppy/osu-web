@@ -19,6 +19,9 @@ abstract class SearchParams
     /** @var array|null */
     public $searchAfter = null;
 
+    /** @var int|null */
+    protected $page = null;
+
     public function __construct()
     {
     }
@@ -28,7 +31,23 @@ abstract class SearchParams
      *
      * @return string the cache key.
      */
-    abstract public function getCacheKey(): string;
+    public function getCacheKey(): string
+    {
+        return 'search:'.static::class.':'.json_encode($this->getCacheKeyVars());
+    }
+
+    /**
+     * Generate default array to be used as part of cache key.
+     *
+     * @return array the cache key vars.
+     */
+    public function getCacheKeyVars(): array
+    {
+        $vars = get_object_vars($this);
+        ksort($vars);
+
+        return $vars;
+    }
 
     /**
      * Checks if the current set of parameters is eligible for caching.
@@ -56,7 +75,18 @@ abstract class SearchParams
 
     public function shouldReturnEmptyResponse(): bool
     {
-        return $this->isLoginRequired() && !auth()->check();
+        return $this->isLoginRequired() && !auth()->check() && oauth_token() === null;
+    }
+
+    public function size(int $size): self
+    {
+        $this->size = $size;
+
+        if ($this->page !== null) {
+            $this->from = $this->pageAsFrom($this->page);
+        }
+
+        return $this;
     }
 
     /**

@@ -3,8 +3,8 @@
 
 import core from 'osu-core-singleton'
 import * as React from 'react'
-import { div, a, span, i } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import { div } from 'react-dom-factories'
+import ShowMoreLink from 'show-more-link'
 el = React.createElement
 
 export class Paginator extends React.PureComponent
@@ -13,33 +13,33 @@ export class Paginator extends React.PureComponent
 
     @throttledAutoPagerOnScroll = _.throttle(@autoPagerOnScroll, 500)
     @autoPagerTriggerDistance = 3000
-    @autoPagerTarget = React.createRef()
+    @lineRef = React.createRef()
 
 
   componentDidMount: =>
     Timeout.set 0, @throttledAutoPagerOnScroll
-    $(window).on 'scroll.paginator', @throttledAutoPagerOnScroll
+    $(window).on 'scroll', @throttledAutoPagerOnScroll
 
 
   componentWillUnmount: =>
-    $(window).off '.paginator'
-    $(document).off '.paginator'
+    $(window).off 'scroll', @throttledAutoPagerOnScroll
     @throttledAutoPagerOnScroll.cancel()
 
 
   render: =>
-    el ShowMoreLink,
-      loading: @props.loading
-      callback: @showMore
-      hasMore: @props.more
-      ref: @autoPagerTarget
-      modifiers: ['beatmapsets', 't-ddd']
+    el React.Fragment, null,
+      div ref: @lineRef
+      el ShowMoreLink,
+        loading: @props.loading
+        callback: @showMore
+        hasMore: @props.more
+        modifiers: ['beatmapsets', 't-ddd']
 
 
   autoPagerOnScroll: =>
-    return if @props.error? || !@props.more || @props.loading || !@autoPagerTarget.current?
+    return if @props.error? || !@props.more || @props.loading || !@lineRef.current?
 
-    currentTarget = @autoPagerTarget.current.getBoundingClientRect().top
+    currentTarget = @lineRef.current.getBoundingClientRect().top
     target = document.documentElement.clientHeight + @autoPagerTriggerDistance
 
     return if currentTarget > target

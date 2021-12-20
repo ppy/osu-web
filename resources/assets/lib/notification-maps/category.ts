@@ -24,6 +24,7 @@ export function categoryFromName(name: string) {
 }
 
 export const nameToCategory: CategoryMap = {
+  beatmap_owner_change: 'beatmap_owner_change',
   beatmapset_discussion_lock: 'beatmapset_discussion',
   beatmapset_discussion_post_new: 'beatmapset_discussion',
   beatmapset_discussion_qualified_problem: 'beatmapset_problem',
@@ -43,4 +44,5 @@ export const nameToCategory: CategoryMap = {
   legacy_pm: 'legacy_pm',
   user_achievement_unlock: 'user_achievement_unlock',
   user_beatmapset_new: 'user_beatmapset_new',
+  user_beatmapset_revive: 'user_beatmapset_new',
 };

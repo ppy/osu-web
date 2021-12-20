@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Buscar',
             'deleted' => 'Incluir discusiones eliminadas',
+            'mode' => 'Modo del mapa',
             'only_unresolved' => 'Mostrar sólo discusiones no resueltas',
             'types' => 'Tipos de mensaje',
             'username' => 'Nombre de usuario',
@@ -57,6 +58,13 @@ return [
         'unsaved' => ':count en esta revisión',
     ],
 
+    'owner_editor' => [
+        'button' => 'Dueño de la dificultad',
+        'reset_confirm' => '¿Restablecer dueño para esta dificultad?',
+        'user' => 'Dueño',
+        'version' => 'Dificultad',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Inicia sesión para responder',
@@ -73,6 +81,7 @@ return [
             'external_references' => 'la revisión contiene referencias a problemas que no pertenecen a esta revisión',
             'invalid_block_type' => 'tipo de bloque no válido',
             'invalid_document' => 'revisión no válida',
+            'invalid_discussion_type' => 'tipo de discusión no válida',
             'minimum_issues' => 'la revisión debe contener un mínimo de :count problema|la revisión debe contener un mínimo de :count problemas',
             'missing_text' => 'le falta texto al bloque',
             'too_many_blocks' => 'las revisiones sólo pueden contener :count párrafo/problema|las revisiones sólo pueden contener hasta :count párrafos/problemas',

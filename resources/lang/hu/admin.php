@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Újragenerálni',
-            'regenerating' => 'Újragenerálás...',
-            'remove' => 'Eltávolítás',
-            'removing' => 'Eltávolítás...',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
             'title' => '',
         ],
         'show' => [
-            'covers' => 'Beatmap fejlécek kezelése',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'aktiválás',
-                'activate_confirm' => 'aktiválod a modding v2-t erre a beatmap-re?',
-                'active' => 'aktív',
-                'inactive' => 'inaktív',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Törlés',
+                'delete' => '',
 
-                'forum-name' => 'Fórum #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Nincs fejléc beállítva',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Mentés',
-                    'update' => 'Frissítés',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Fórum fejléc lista',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Alapértelmezett téma fejléc',
-                    'main' => 'Fórum fejléc',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,7 +50,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Naplófájl-megjelenítő',
+            'title' => '',
         ],
     ],
 
@@ -58,25 +58,16 @@ return [
         'root' => [
             'sections' => [
                 'beatmapsets' => '',
-                'forum' => 'Fórum',
-                'general' => 'Általános',
-                'store' => 'Bolt',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Kosár',
+                'forum' => '',
+                'general' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Ez a felhasználó jelenleg fel van függesztve.',
-            'message' => '(ezt csak adminok láthatják)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

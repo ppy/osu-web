@@ -7,17 +7,18 @@ namespace App\Console\Commands;
 
 use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Elasticsearch\Indexing;
+use App\Models\ArtistTrack;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
-use App\Models\Forum\Topic;
 use App\Models\User;
 use Illuminate\Console\Command;
 
 class EsIndexDocuments extends Command
 {
     const ALLOWED_TYPES = [
+        'artist_tracks' => [ArtistTrack::class],
         'beatmapsets' => [Beatmapset::class],
-        'posts' => [Topic::class, Post::class],
+        'posts' => [Post::class],
         'users' => [User::class],
     ];
 
@@ -38,7 +39,6 @@ class EsIndexDocuments extends Command
     protected $cleanup;
     protected $inplace;
     protected $groups;
-    protected $suffix;
     protected $yes;
 
     /**
@@ -49,7 +49,6 @@ class EsIndexDocuments extends Command
     public function handle()
     {
         $this->readOptions();
-        $this->suffix = !$this->inplace ? '_'.time() : '';
 
         $oldIndices = [];
         foreach ($this->groups as $name) {
@@ -86,8 +85,6 @@ class EsIndexDocuments extends Command
 
     private function indexGroup($name)
     {
-        $indices = [];
-        $newIndices = [];
         $types = collect(static::ALLOWED_TYPES[$name]);
 
         $allSame = $types->every(function ($type) use ($types) {
@@ -102,7 +99,7 @@ class EsIndexDocuments extends Command
 
         $first = $types->first();
         $alias = $first::esIndexName();
-        $indexName = "{$first::esIndexName()}{$this->suffix}";
+        $indexName = $this->inplace ? $alias : $first::esTimestampedIndexName();
         $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
 
         foreach ($types as $type) {

@@ -3,64 +3,112 @@
 
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
 import ChatWorker from 'chat/chat-worker';
-import CurrentUser from 'interfaces/current-user';
-import UserJson from 'interfaces/user-json';
+import Captcha from 'core/captcha';
+import ClickMenu from 'core/click-menu';
+import Enchant from 'core/enchant';
+import ForumPoll from 'core/forum/forum-poll';
+import ForumPostEdit from 'core/forum/forum-post-edit';
+import ForumPostInput from 'core/forum/forum-post-input';
+import Localtime from 'core/localtime';
+import MobileToggle from 'core/mobile-toggle';
+import OsuAudio from 'core/osu-audio/main';
+import OsuLayzr from 'core/osu-layzr';
+import ReactTurbolinks from 'core/react-turbolinks';
+import StickyHeader from 'core/sticky-header';
+import Timeago from 'core/timeago';
+import TurbolinksReload from 'core/turbolinks-reload';
+import UserLogin from 'core/user/user-login';
+import UserLoginObserver from 'core/user/user-login-observer';
+import UserPreferences from 'core/user/user-preferences';
+import UserVerification from 'core/user/user-verification';
+import ReferenceLinkTooltip from 'core/wiki/reference-link-tooltip';
+import WindowFocusObserver from 'core/window-focus-observer';
+import WindowSize from 'core/window-size';
+import CurrentUserJson from 'interfaces/current-user-json';
+import { action, computed, makeObservable, observable } from 'mobx';
 import NotificationsWorker from 'notifications/worker';
 import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
-import UserLoginObserver from 'user-login-observer';
-import WindowFocusObserver from './window-focus-observer';
-
-declare global {
-  interface Window {
-    currentUser: CurrentUser;
-  }
-}
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
   beatmapsetSearchController: BeatmapsetSearchController;
-  chatWorker: ChatWorker;
+  readonly captcha = new Captcha();
+  readonly chatWorker = new ChatWorker();
+  readonly clickMenu = new ClickMenu();
+  @observable currentUser?: CurrentUserJson;
   dataStore: RootDataStore;
+  readonly enchant: Enchant;
+  readonly forumPoll = new ForumPoll();
+  readonly forumPostEdit = new ForumPostEdit();
+  readonly forumPostInput = new ForumPostInput();
+  readonly localtime = new Localtime();
+  readonly mobileToggle = new MobileToggle();
   notificationsWorker: NotificationsWorker;
+  readonly osuAudio: OsuAudio;
+  readonly osuLayzr = new OsuLayzr();
+  readonly reactTurbolinks: ReactTurbolinks;
+  readonly referenceLinkTooltip = new ReferenceLinkTooltip();
   socketWorker: SocketWorker;
+  readonly stickyHeader = new StickyHeader();
+  readonly timeago = new Timeago();
+  readonly turbolinksReload = new TurbolinksReload();
+  readonly userLogin: UserLogin;
   userLoginObserver: UserLoginObserver;
-  window: Window;
+  readonly userPreferences = new UserPreferences();
+  readonly userVerification = new UserVerification();
   windowFocusObserver: WindowFocusObserver;
+  readonly windowSize = new WindowSize();
 
-  constructor(window: Window) {
-    this.window = window;
+  @computed
+  get currentUserOrFail() {
+    if (this.currentUser == null) {
+      throw new Error('current user is null');
+    }
+
+    return this.currentUser;
+  }
+
+  constructor() {
+    // refresh current user on page reload (and initial page load)
+    $(document).on('turbolinks:load.osu-core', this.onPageLoad);
+    $.subscribe('user:update', this.onCurrentUserUpdate);
+
+    this.enchant = new Enchant(this.turbolinksReload);
+    this.osuAudio = new OsuAudio(this.userPreferences);
+    this.reactTurbolinks = new ReactTurbolinks(this.turbolinksReload);
+    this.userLogin = new UserLogin(this.captcha);
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.
     this.dataStore = new RootDataStore();
-    this.chatWorker = new ChatWorker(this.dataStore.channelStore);
-    this.userLoginObserver = new UserLoginObserver(this.window);
-    this.windowFocusObserver = new WindowFocusObserver(this.window);
+    this.userLoginObserver = new UserLoginObserver();
+    this.windowFocusObserver = new WindowFocusObserver();
 
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
 
     this.socketWorker = new SocketWorker();
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);
 
-    // script could load before currentUser is set, so wait until page loaded.
-    $(document).on('turbolinks:load.osu-core', () => {
-      if (window.currentUser != null) {
-        this.dataStore.userStore.getOrCreate(window.currentUser.id, window.currentUser);
-      }
-      $(document).off('turbolinks:load.osu-core');
-    });
-
-    $.subscribe('user:update', this.setUser);
-    $(() => this.socketWorker.setUserId(currentUser.id));
+    makeObservable(this);
   }
 
-  get currentUser() {
-    // FIXME: id is  not nullable but guest user does not have id.
-    return window.currentUser.id != null ? window.currentUser : null;
-  }
+  private onCurrentUserUpdate = (event: unknown, user: CurrentUserJson) => {
+    this.setCurrentUser(user);
+  };
 
-  private setUser = (event: JQuery.Event, user: UserJson) => {
-    this.dataStore.userStore.getOrCreate(user.id, user);
-    this.socketWorker.setUserId(user.id);
-  }
+  private onPageLoad = () => {
+    this.setCurrentUser(window.currentUser);
+  };
+
+  @action
+  private setCurrentUser = (userOrEmpty: typeof window.currentUser) => {
+    const user = userOrEmpty.id == null ? undefined : userOrEmpty;
+
+    if (user != null) {
+      this.dataStore.userStore.getOrCreate(user.id, user);
+    }
+    this.socketWorker.setUserId(user?.id ?? null);
+    this.currentUser = user;
+    this.userPreferences.setUser(this.currentUser);
+  };
 }

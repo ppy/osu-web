@@ -13,13 +13,11 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Non è possibile annullare l\'hyping.',
+            'is_hype' => 'Non è possibile rimuovere l\'Hype.',
             'has_reply' => 'Impossibile eliminare una discussione con risposte',
         ],
         'nominate' => [
-            'exhausted' => 'Hai raggiunto il limite di nomine per questa giornata, per favore riprova domani.',
-            'full_bn_required' => 'Devi essere un nominatore completo per eseguire questa nomina di qualifica.',
-            'full_bn_required_hybrid' => 'Devi essere un nominatore completo per nominare dei set di beatmap con più di una modalità di gioco.',
+            'exhausted' => 'Hai raggiunto il limite di nomine per oggi, per favore riprova domani.',
             'incorrect_state' => 'Errore nell\'eseguire questa azione, prova a ricaricare la pagina.',
             'owner' => "Non puoi nominare la tua beatmap.",
             'set_metadata' => 'Devi impostare il genere e la lingua prima di nominarla.',
@@ -36,7 +34,7 @@ return [
             'bot' => "Non puoi votare in una discussione creata da un bot",
             'limit_exceeded' => 'Per favore attendi un po\' prima di esprimere altri voti',
             'owner' => "Non puoi votare la tua discussione.",
-            'wrong_beatmapset_state' => 'Puoi votare solo su discussioni di beatmap in sospeso.',
+            'wrong_beatmapset_state' => 'Puoi votare solo su discussioni di beatmap in attesa.',
         ],
     ],
 
@@ -67,9 +65,10 @@ return [
     'chat' => [
         'blocked' => 'Non puoi inviare messaggi ad un utente che ti sta bloccando o che hai bloccato.',
         'friends_only' => 'L\'utente sta bloccando i messaggi da chi non è nella sua lista amici.',
-        'moderated' => 'Quel canale è attualmente moderato.',
+        'moderated' => 'Questo canale è attualmente moderato.',
         'no_access' => 'Non hai accesso a quel canale.',
         'restricted' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',
+        'silenced' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Non puoi cambiare il tuo voto quando il periodo di votazione per questo contest è finito.',
+
+        'entry' => [
+            'limit_reached' => 'Hai raggiunto il limite massimo di iscrizioni per questo contest',
+            'over' => 'Grazie per le tue iscrizioni! Le richieste sono terminate per questo contest e le votazioni avverranno presto.',
+        ],
     ],
 
     'forum' => [

@@ -5,13 +5,18 @@ import { Header } from './header'
 import { Hype } from './hype'
 import { Info } from './info'
 import { Scoreboard } from './scoreboard'
+import NsfwWarning from 'beatmapsets-show/nsfw-warning'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import HeaderV4 from 'header-v4'
-import { PlaymodeTabs } from 'playmode-tabs'
+import core from 'osu-core-singleton'
+import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
+import * as BeatmapsetPageHash from 'utils/beatmapset-page-hash'
+import { nextVal } from 'utils/seq'
+import { currentUrl } from 'utils/turbolinks'
 
 el = React.createElement
 
@@ -19,14 +24,17 @@ export class Main extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapsets-show-#{nextVal()}"
     @scoreboardXhr = null
     @favouriteXhr = null
 
     @state = JSON.parse(@props.container.dataset.state ? 'null')
     @restoredState = @state?
 
-    if !@restoredState
-      optionsHash = BeatmapsetPageHash.parse location.hash
+    if @restoredState
+      @state.beatmaps = new Map(@state.beatmapsArray)
+    else
+      optionsHash = BeatmapsetPageHash.parse currentUrl().hash
 
       beatmaps = _.concat props.beatmapset.beatmaps, props.beatmapset.converts
       beatmaps = BeatmapHelper.group beatmaps
@@ -37,7 +45,7 @@ export class Main extends React.Component
         mode: optionsHash.playmode
 
       # fall back to the first mode that has beatmaps in this mapset
-      currentBeatmap ?= BeatmapHelper.findDefault items: beatmaps[optionsHash.playmode]
+      currentBeatmap ?= BeatmapHelper.findDefault items: beatmaps.get(optionsHash.playmode)
       currentBeatmap ?= BeatmapHelper.findDefault group: beatmaps
 
       @state =
@@ -47,6 +55,7 @@ export class Main extends React.Component
         favcount: props.beatmapset.favourite_count
         hasFavourited: props.beatmapset.has_favourited
         loading: false
+        showingNsfwWarning: props.beatmapset.nsfw && !core.userPreferences.get('beatmapset_show_nsfw')
         currentScoreboardType: 'global'
         enabledMods: []
         scores: []
@@ -68,12 +77,9 @@ export class Main extends React.Component
   }) =>
     @scoreboardXhr?.abort()
 
-    @setState
-      currentScoreboardType: scoreboardType
-
-    if scoreboardType != 'global' && !currentUser.is_supporter
-      @setState scores: []
-      return
+    prevState =
+      currentScoreboardType: @state.currentScoreboardType
+      enabledMods: @state.enabledMods
 
     enabledMods = if resetMods
       []
@@ -84,6 +90,14 @@ export class Main extends React.Component
     else
       @state.enabledMods
 
+    @setState
+      currentScoreboardType: scoreboardType
+      enabledMods: enabledMods
+
+    if !@state.currentBeatmap.is_scoreable || (!currentUser.is_supporter && (scoreboardType != 'global' || enabledMods.length > 0))
+      @setState scores: []
+      return
+
     @scoresCache ?= {}
     cacheKey = "#{@state.currentBeatmap.id}-#{@state.currentBeatmap.mode}-#{_.sortBy enabledMods}-#{scoreboardType}"
 
@@ -92,7 +106,6 @@ export class Main extends React.Component
         scores: @scoresCache[cacheKey].scores
         userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
         userScorePosition: @scoresCache[cacheKey].userScorePosition
-        enabledMods: enabledMods
 
     if !forceReload && @scoresCache[cacheKey]?
       loadScore()
@@ -114,6 +127,8 @@ export class Main extends React.Component
       loadScore()
 
     .fail (xhr, status) =>
+      @setState(prevState)
+
       if status == 'abort'
         return
 
@@ -138,8 +153,9 @@ export class Main extends React.Component
   setCurrentPlaymode: (_e, {mode}) =>
     return if @state.currentBeatmap.mode == mode
 
-    @setCurrentBeatmap null,
-      beatmap: BeatmapHelper.findDefault items: @state.beatmaps[mode]
+    beatmap = BeatmapHelper.find id: @state.currentBeatmap.id, mode: mode, group: @state.beatmaps
+    beatmap ?= BeatmapHelper.findDefault items: @state.beatmaps.get(mode)
+    @setCurrentBeatmap null, { beatmap }
 
 
   setHoveredBeatmap: (_e, hoveredBeatmap) =>
@@ -166,13 +182,13 @@ export class Main extends React.Component
       osu.ajaxError xhr
 
   componentDidMount: ->
-    $.subscribe 'beatmapset:set.beatmapsetPage', @setBeatmapset
-    $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmap
-    $.subscribe 'playmode:set.beatmapsetPage', @setCurrentPlaymode
-    $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
-    $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
-    $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
-    $(document).on 'turbolinks:before-cache.beatmapsetPage', @saveStateToContainer
+    $.subscribe "beatmapset:set.#{@eventId}", @setBeatmapset
+    $.subscribe "beatmapset:beatmap:set.#{@eventId}", @setCurrentBeatmap
+    $.subscribe "playmode:set.#{@eventId}", @setCurrentPlaymode
+    $.subscribe "beatmapset:scoreboard:set.#{@eventId}", @setCurrentScoreboard
+    $.subscribe "beatmapset:hoveredbeatmap:set.#{@eventId}", @setHoveredBeatmap
+    $.subscribe "beatmapset:favourite:toggle.#{@eventId}", @toggleFavourite
+    $(document).on "turbolinks:before-cache.#{@eventId}", @saveStateToContainer
 
     @setHash()
 
@@ -181,7 +197,7 @@ export class Main extends React.Component
 
 
   componentWillUnmount: ->
-    $.unsubscribe '.beatmapsetPage'
+    $.unsubscribe ".#{@eventId}"
     @scoreboardXhr?.abort()
     @favouriteXhr?.abort()
 
@@ -189,6 +205,14 @@ export class Main extends React.Component
   render: ->
     div className: 'osu-layout osu-layout--full',
       @renderPageHeader()
+      if @state.showingNsfwWarning
+        el NsfwWarning, onClose: => @setState showingNsfwWarning: false
+      else
+        @renderPage()
+
+
+  renderPage: ->
+    el React.Fragment, null,
       div className: 'osu-layout__row osu-layout__row--page-compact',
         el Header,
           beatmapset: @state.beatmapset
@@ -228,16 +252,19 @@ export class Main extends React.Component
             commentableId: @state.beatmapset.id
 
 
-  renderPageHeader: =>
-    el HeaderV4,
-      theme: 'beatmapsets'
-      titleAppend: el PlaymodeTabs,
+  renderPageHeader: ->
+    unless @state.showingNsfwWarning
+      titleAppend = el PlaymodeTabs,
         beatmaps: @state.beatmaps
         currentMode: @state.currentBeatmap.mode
         hrefFunc: @tabHrefFunc
-        showCounts: true
+
+    el HeaderV4,
+      theme: 'beatmapsets'
+      titleAppend: titleAppend
 
   saveStateToContainer: =>
+    @state.beatmapsArray = Array.from(@state.beatmaps)
     @props.container.dataset.state = JSON.stringify(@state)
 
 

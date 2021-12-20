@@ -19,7 +19,6 @@ return [
             'contest' => 'コンテスト',
             'contests' => 'コンテスト',
             'root' => 'コンソール',
-            'store_orders' => 'ストア管理者',
         ],
 
         'artists' => [
@@ -47,6 +46,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => 'マルチプレイヤー',
             'show' => '詳細',
         ],
     ],
@@ -62,49 +62,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'ビートマップ',
-            'artists' => '注目アーティスト',
-            'index' => '一覧',
-            'packs' => 'パック',
         ],
         'community' => [
             '_' => 'コミュニティ',
-            'chat' => 'チャット',
-            'contests' => 'コンテスト',
             'dev' => '開発',
-            'forum-forums-index' => 'フォーラム',
-            'getLive' => '配信',
-            'tournaments' => 'トーナメント',
         ],
         'help' => [
             '_' => 'ヘルプ',
-            'getAbuse' => '',
+            'getAbuse' => '不正利用の報告',
             'getFaq' => 'FAQ',
             'getRules' => 'ルール',
             'getSupport' => 'サポートが必要です！',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'ホーム',
-            'changelog-index' => '更新履歴',
-            'getDownload' => 'ダウンロード',
-            'news-index' => 'お知らせ',
-            'search' => '検索',
             'team' => 'osu!team',
         ],
         'rankings' => [
             '_' => 'ランキング',
-            'charts' => 'スポットライト',
-            'country' => '国別',
-            'index' => 'パフォーマンス',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'マルチプレイヤー',
-            'score' => 'スコア',
         ],
         'store' => [
             '_' => 'ストア',
-            'cart-show' => 'カート',
-            'getListing' => '商品一覧',
-            'orders-index' => '注文履歴',
         ],
     ],
 
@@ -159,6 +138,10 @@ return [
             'error' => '無効な要求パラメーターです。',
             'description' => '',
         ],
+        '429' => [
+            'error' => '試行可能回数の上限に達しました。',
+            'description' => '',
+        ],
         '500' => [
             'error' => '予期せぬエラーが発生しました ;_;',
             'description' => "自動的にエラーは報告されます。",
@@ -171,8 +154,8 @@ return [
             'error' => 'メンテナンス中です！',
             'description' => "メンテナンスには通常5秒から10分かかります。もし長時間ダウンしている場合は:linkを参照してください。",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -180,7 +163,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => 'サインイン / 登録',
+        'button' => 'ログイン / 登録',
 
         'login' => [
             'forgot' => "ログイン情報を忘れた",
@@ -204,6 +187,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
+            'follows' => 'ウォッチリスト',
             'friends' => 'フレンド',
             'logout' => 'ログアウト',
             'profile' => 'プロフィール',

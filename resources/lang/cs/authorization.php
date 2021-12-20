@@ -18,11 +18,9 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dosáhl jsi dnešního limitu nominací, zkus to prosím zítra.',
-            'full_bn_required' => 'Musíte být plný nominátor, abyste mohl provést kvalifikační nominaci.',
-            'full_bn_required_hybrid' => 'Musíte být nominátor k nominaci setů map s více než jedním herním módem.',
             'incorrect_state' => 'Nastala chyba při provádění akce, zkuste stránku obnovit.',
             'owner' => "Nelze nominovat vlastní beatmapu.",
-            'set_metadata' => 'Před jmenováním musíte nastavit žánr a jazyk.',
+            'set_metadata' => 'Před nominováním musíte nastavit žánr a jazyk.',
         ],
         'resolve' => [
             'not_owner' => 'Pouze zakladatel vlákna a vlastník beatmapy může označit diskusi za vyřešenou.',
@@ -60,7 +58,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => 'Nemůžete změnit informace nominované mapy. Pokud si myslíte že je nastavena nesprávně, kontaktujte BN nebo NAT člena.',
+            'nominated' => 'Nemůžete změnit metadata nominované beatmapy. Pokud si myslíte, že jsou nastavena nesprávně, kontaktujte člena BN nebo NAT.',
         ],
     ],
 
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Tento kanál je právě moderován.',
         'no_access' => 'Nemáte přístup k tomu kanálu.',
         'restricted' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
+        'silenced' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Po skončení hlasovací doby pro tuto soutěž již nemůžeš změnit svůj hlas.',
+
+        'entry' => [
+            'limit_reached' => 'Dosáhl jsi limitu vstupů pro tuto soutěž',
+            'over' => 'Díky za vaše vstupy! Podání byla uzavřena a hlasování se brzy otevře.',
+        ],
     ],
 
     'forum' => [
@@ -125,7 +129,7 @@ return [
 
             'store' => [
                 'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
-                'no_permission' => 'Žádná oprávnění k vytvoření nového tématu.',
+                'no_permission' => 'Nemáte oprávnění na vytvoření nového tématu.',
                 'forum_closed' => 'Fórum je uzavřeno a další příspěvky se už nesmí přidávat.',
             ],
 

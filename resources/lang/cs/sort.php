@@ -6,8 +6,8 @@
 return [
     '_' => 'Seřadit podle',
 
-    'all' => '',
-    'friends' => '',
+    'all' => 'Vše',
+    'friends' => 'Přátelé',
     'last_visit' => 'Nedávno aktivní',
     'new' => 'Nedávné',
     'old' => 'Nejstarší',
@@ -15,8 +15,29 @@ return [
     'top' => 'Nejlepší',
     'username' => 'Uživatelské jméno',
 
+    'artist_tracks' => [
+        'album' => 'Album',
+        'artist' => 'Umělec',
+        'bpm' => 'BPM',
+        'genre' => 'Žánr',
+        'length' => 'Délka',
+        'relevance' => 'Relevance',
+        'title' => 'Název',
+        'update' => 'Aktualizace',
+    ],
+
+    'forum_posts' => [
+        'created' => 'Čas postnutí',
+        'relevance' => 'Relevance',
+    ],
+
     'forum_topics' => [
-        'new' => 'Poslední odpověď',
         'feature_votes' => 'Počet hvězd',
+        'new' => 'Poslední odpověď',
+    ],
+
+    'users' => [
+        'relevance' => 'Relevance',
+        'username' => 'Jméno',
     ],
 ];

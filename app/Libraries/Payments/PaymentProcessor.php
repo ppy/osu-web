@@ -13,6 +13,7 @@ use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
+use Datadog;
 use DB;
 use Exception;
 
@@ -131,20 +132,31 @@ abstract class PaymentProcessor implements \ArrayAccess
         $type = $this->getNotificationType();
         switch ($type) {
             case NotificationType::IGNORED:
-                return;
+                break;
             case NotificationType::PAYMENT:
-                return $this->apply();
+                $this->apply();
+                break;
             case NotificationType::PENDING:
-                return $this->pending();
+                $this->pending();
+                break;
             case NotificationType::REFUND:
-                return $this->cancel();
+                $this->cancel();
+                break;
             case NotificationType::REJECTED:
-                return $this->rejected();
+                $this->rejected();
+                break;
             case NotificationType::USER_SEARCH:
-                return $this->userSearch();
+                $this->userSearch();
+                break;
             default:
                 throw new UnsupportedNotificationTypeException($type);
         }
+
+        Datadog::increment(
+            config('datadog-helper.prefix_web').'.payment_processor.run',
+            1,
+            ['provider' => $this->getPaymentProvider(), 'type' => $type]
+        );
     }
 
     /**
@@ -209,44 +221,40 @@ abstract class PaymentProcessor implements \ArrayAccess
 
         DB::connection('mysql-store')->transaction(function () {
             try {
-                $order = $this->getOrder();
+                $order = $this->getOrder()->lockSelf();
                 $payment = $order->payments->where('cancelled', false)->first();
 
-                if ($order->status === 'cancelled') {
-                    if ($payment === null) {
-                        // payment not processed, manually cancelled - don't explode
-                        // notify and bail out.
-                        $this->dispatchErrorEvent(
-                            new Exception('Order already cancelled with no existing payment found.'),
-                            $order
-                        );
-
-                        return;
-                    }
-
-                    // check for pre-existing cancelled payment.
-                    // Paypal sends multiple notifications that we treat as a cancellation.
-                    // If the order is already cancelled and the payment cancelled, skip the rest.
-                    if ($order->payments->where('cancelled', true)->first() !== null) {
-                        $this->dispatchErrorEvent(
-                            new Exception('Order already cancelled.'),
-                            $order
-                        );
-                    }
-
-                    return;
+                if ($payment === null) {
+                    // payment not processed, manually cancelled.
+                    $this->dispatchErrorEvent(
+                        new Exception('Cancelling order with no existing payment found.'),
+                        $order
+                    );
                 }
 
-                $payment->cancel();
-                $order->cancel();
+                // check for pre-existing cancelled payment.
+                // Paypal sends multiple notifications that we treat as a cancellation.
+                if ($order->payments->where('cancelled', true)->first() !== null) {
+                    $this->dispatchErrorEvent(
+                        new Exception('Payment already cancelled.'),
+                        $order
+                    );
+                }
 
-                $eventName = "store.payments.cancelled.{$payment->provider}";
+                if ($payment !== null) {
+                    $payment->cancel();
+                    $eventName = "store.payments.cancelled.{$payment->provider}";
+                }
+
+                $order->cancel();
             } catch (Exception $exception) {
                 $this->dispatchErrorEvent($exception, $order);
                 throw $exception;
             }
 
-            event($eventName, new PaymentEvent($order));
+            if (isset($eventName)) {
+                event($eventName, new PaymentEvent($order));
+            }
         });
     }
 

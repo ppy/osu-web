@@ -6,6 +6,7 @@ interface IconsMap {
 }
 
 export const categoryToIcons: IconsMap = {
+  beatmap_owner_change: ['fas fa-drafting-compass', 'fas fa-user-friends'],
   beatmapset_discussion: ['fas fa-drafting-compass', 'fas fa-comment'],
   beatmapset_problem: ['fas fa-drafting-compass', 'fas fa-exclamation-circle'],
   beatmapset_state: ['fas fa-drafting-compass'],
@@ -18,6 +19,7 @@ export const categoryToIcons: IconsMap = {
 };
 
 export const nameToIcons: IconsMap = {
+  beatmap_owner_change: ['fas fa-drafting-compass', 'fas fa-user-friends'],
   beatmapset_discussion_lock: ['fas fa-drafting-compass', 'fas fa-lock'],
   beatmapset_discussion_post_new: ['fas fa-drafting-compass', 'fas fa-comment-medical'],
   beatmapset_discussion_qualified_problem: ['fas fa-drafting-compass', 'fas fa-exclamation-circle'],
@@ -36,9 +38,11 @@ export const nameToIcons: IconsMap = {
   legacy_pm: ['fas fa-envelope'],
   user_achievement_unlock: ['fas fa-trophy'],
   user_beatmapset_new: ['fas fa-music'],
+  user_beatmapset_revive: ['fas fa-drum'],
 };
 
 export const nameToIconsCompact: IconsMap = {
+  beatmap_owner_change: ['fas fa-user-edit'],
   beatmapset_discussion_lock: ['fas fa-lock'],
   beatmapset_discussion_post_new: ['fas fa-comment-medical'],
   beatmapset_discussion_qualified_problem: ['fas fa-exclamation-circle'],
@@ -56,4 +60,5 @@ export const nameToIconsCompact: IconsMap = {
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
   user_beatmapset_new: ['fas fa-music'],
+  user_beatmapset_revive: ['fas fa-drum'],
 };

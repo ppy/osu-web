@@ -12,17 +12,17 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> frissítette "<em>:beatmapset</em>" beatmap-jét',
     'beatmapset_upload' => '<strong><em>:user</em></strong> feltöltött egy új beatmap-et ":beatmapset"',
     'empty' => "Ez a felhasználó nem tett semmit jelentőset mostanában!",
-    'rank' => '<strong><em>:user</em></strong> #:rank helyet ért el <em>:beatmap</em> (:mode) beatmap-en',
-    'rank_lost' => '<strong><em>:user</em></strong> elvesztette az elsőhelyét <em>:beatmap</em> (:mode) beatmap-en',
+    'rank' => '<strong><em>:user</em></strong> :rank. helyezést ért el <em>:beatmap</em> (:mode) beatmapen',
+    'rank_lost' => '<strong><em>:user</em></strong> elvesztette az első helyezését <em>:beatmap</em> (:mode) beatmapen',
     'user_support_again' => '<strong>:user</strong> újra úgy döntött, hogy osu! támogató lesz - köszönjük a nagylelkűségedet!',
     'user_support_first' => '<strong>:user</strong> osu! támogató lett - köszönjük a nagylelkűségedet!',
     'user_support_gift' => '<strong>:user</strong> osu! támogatót kapott ajándékba!',
     'username_change' => '<strong>:previousUsername</strong> megváltoztatta a felhasználónevét és mostmár <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'jóváhagyott',
+        'loved' => 'szerettve',
+        'qualified' => 'kvalifikált',
+        'ranked' => 'rangsorolt',
     ],
 ];

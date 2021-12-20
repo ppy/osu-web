@@ -7,16 +7,11 @@ return [
     'index' => [
         'description' => '相同主題的圖譜合集壓縮檔',
         'nav_title' => '列表',
-        'title' => '圖譜壓縮檔',
+        'title' => '曲包',
 
         'blurb' => [
             'important' => '下載前必讀',
-            'instruction' => [
-                '_' => "安裝方式：當您下載好壓縮檔之後,請將壓縮檔 .rar 解壓到您 osu! 安裝目錄下的 Songs 資料夾內。
-                    解壓出來的圖譜檔案皆是 .zip 或 .osz 檔案, osu! 會在你下一次啟動時自動載入這些圖譜。
-                    因此請 :scary 自行解壓這些圖譜檔案，否則恐導致無法正常遊戲。",
-                'scary' => '不要',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => '強烈建議您 :scary，因為舊圖譜的品質可能不如現在。',
                 'scary' => '下載最新的圖譜壓縮檔',
@@ -31,8 +26,8 @@ return [
             'not_cleared' => '未玩',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => '使用:link將無法解鎖這個曲包的成就。',
+            'link' => '降低難度的 mod',
         ],
     ],
 

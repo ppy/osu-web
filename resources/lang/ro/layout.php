@@ -19,7 +19,6 @@ return [
             'contest' => 'concurs',
             'contests' => 'concursuri',
             'root' => 'consolă',
-            'store_orders' => 'magazin admin',
         ],
 
         'artists' => [
@@ -47,6 +46,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => '',
             'show' => 'info',
         ],
     ],
@@ -62,18 +62,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'featured artists',
-            'index' => 'listare',
-            'packs' => 'pachete',
         ],
         'community' => [
             '_' => 'comunitate',
-            'chat' => 'chat',
-            'contests' => 'concursuri',
             'dev' => 'dezvoltare',
-            'forum-forums-index' => 'forumuri',
-            'getLive' => 'în direct',
-            'tournaments' => 'turnee',
         ],
         'help' => [
             '_' => 'ajutor',
@@ -81,30 +73,17 @@ return [
             'getFaq' => 'întrebări frecvente',
             'getRules' => 'reguli',
             'getSupport' => 'nu, de fapt, am nevoie de ajutor!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'acasă',
-            'changelog-index' => 'jurnalul modificărilor',
-            'getDownload' => 'descarcă',
-            'news-index' => 'ştiri',
-            'search' => 'căutare',
             'team' => 'echipă',
         ],
         'rankings' => [
             '_' => 'clasamente',
-            'charts' => 'în lumina reflectoarelor',
-            'country' => 'țară',
-            'index' => 'performanță',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multiplayer',
-            'score' => 'scor',
         ],
         'store' => [
             '_' => 'magazin',
-            'cart-show' => 'coș',
-            'getListing' => 'listare',
-            'orders-index' => 'istoric comenzi',
         ],
     ],
 
@@ -159,6 +138,10 @@ return [
             'error' => 'Cerere în parametrii invalizi',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh nu! Ceva s-a rupt! ;_;',
             'description' => "Suntem informați automat de fiecare eroare.",
@@ -204,6 +187,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Setări',
+            'follows' => '',
             'friends' => 'Prieteni',
             'logout' => 'Deconectare',
             'profile' => 'Profilul meu',

@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Le votazioni per questo contest sono terminate',
         'login_required' => 'Per favore effettua il login per votare.',
+        'over' => 'Le votazioni per questo contest sono terminate',
+        'show_voted_only' => 'Mostra votati',
 
         'best_of' => [
             'none_played' => "Sembra che tu non abbia giocato nessuna beatmap che si qualifica per questo contest!",
@@ -26,14 +27,16 @@ return [
             'remove' => 'Rimuovi voto',
             'used_up' => 'Hai usato tutti i tuoi voti',
         ],
+
+        'progress' => [
+            '_' => ':used / :max voti utilizzati',
+        ],
     ],
     'entry' => [
         '_' => 'iscrizione',
         'login_required' => 'Per favore effettua il login per entrare nel contest.',
         'silenced_or_restricted' => 'Non puoi entrare nei contest se sei limitato o silenziato.',
         'preparation' => 'Attualmente stiamo preparando il contest. Per favore attendi con pazienza!',
-        'over' => 'Grazie per le tue iscrizioni! Le richieste sono terminate per questo contest e le votazioni avverranno presto.',
-        'limit_reached' => 'Hai raggiunto il limite massimo di iscrizioni per questo contest',
         'drop_here' => 'Trascina la tua iscrizione qui',
         'download' => 'Scarica .osz',
         'wrong_type' => [

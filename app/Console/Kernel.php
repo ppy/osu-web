@@ -16,8 +16,6 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\DisqusImport::class,
-
         Commands\EsCreateSearchBlacklist::class,
         Commands\EsIndexDocuments::class,
         Commands\EsIndexWiki::class,
@@ -27,6 +25,7 @@ class Kernel extends ConsoleKernel
 
         Commands\UserForumStatSyncCommand::class,
         Commands\BeatmapsetsHypeSyncCommand::class,
+        Commands\BeatmapsetNominationSyncCommand::class,
 
         Commands\StoreCleanupStaleOrders::class,
         Commands\StoreExpireProducts::class,
@@ -34,6 +33,9 @@ class Kernel extends ConsoleKernel
         // builds
         Commands\BuildsCreate::class,
         Commands\BuildsUpdatePropagationHistory::class,
+
+        // forum
+        Commands\ForumTopicCoversCleanup::class,
 
         // leaderboard recalculation
         Commands\RankingsRecalculateCountryStats::class,
@@ -61,6 +63,12 @@ class Kernel extends ConsoleKernel
 
         Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
+
+        Commands\UserNotificationsCleanup::class,
+        Commands\NotificationsCleanup::class,
+
+        Commands\ChatExpireAck::class,
+        Commands\ChatChannelSetLastMessageId::class,
     ];
 
     /**
@@ -81,7 +89,11 @@ class Kernel extends ConsoleKernel
         $schedule->command('builds:update-propagation-history')
             ->everyThirtyMinutes();
 
-        $schedule->command('rankings:recalculate-country')
+        $schedule->command('forum:topic-cover-cleanup --yes')
+            ->daily()
+            ->withoutOverlapping();
+
+        $schedule->command('rankings:recalculate-country-stats')
             ->cron('25 0,3,6,9,12,15,18,21 * * *');
 
         $schedule->command('modding:rank')
@@ -92,6 +104,18 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('notifications:send-mail')
             ->hourly()
+            ->withoutOverlapping();
+
+        $schedule->command('user-notifications:cleanup')
+            ->everyThirtyMinutes()
+            ->withoutOverlapping();
+
+        $schedule->command('notifications:cleanup')
+            ->cron('15,45 * * * *')
+            ->withoutOverlapping();
+
+        $schedule->command('chat:expire-ack')
+            ->everyFiveMinutes()
             ->withoutOverlapping();
     }
 

@@ -2,13 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { nextVal } from 'utils/seq';
 
 interface Props {
   pswp: any;
 }
 
 export default class GalleryContestVoteButton extends React.PureComponent<Props, any> {
-  private eventId = `gallery-contest-${osu.uuid()}`;
+  private eventId = `gallery-contest-${nextVal()}`;
   private mainRef = React.createRef<HTMLButtonElement>();
 
   constructor(props: Props) {
@@ -47,7 +48,8 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
       return;
     }
 
-    const id = this.props.pswp.currItem.element.dataset.buttonId;
+    // FIXME: possibly string | undefined
+    const id: string = this.props.pswp.currItem.element.dataset.buttonId;
 
     return document.querySelector(`.js-contest-vote-button[data-button-id='${id}']`) as HTMLElement;
   }
@@ -60,7 +62,7 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     }
 
     return {};
-  }
+  };
 
   private buttonTitle = () => {
     if (this.state.isLoading || this.state.button.votingOver) {
@@ -77,7 +79,7 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
 
     return osu.trans('contest.voting.button.add');
 
-  }
+  };
 
   private iconClass() {
     if (this.state.isLoading) {
@@ -87,20 +89,18 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     }
   }
 
-  private isDisabled = () => {
-    return this.state.isLoading ||
+  private isDisabled = () => this.state.isLoading ||
       this.state.button.votingOver ||
       (!this.state.button.isSelected && !this.state.button.hasVote);
-  }
 
   private loadingEnd = () => {
     this.setState({ isLoading: false });
     this.syncState();
-  }
+  };
 
   private loadingStart = () => {
     this.setState({ isLoading: true });
-  }
+  };
 
   private mainClass = () => {
     let ret = 'pswp__button pswp__button--contest-vote js-gallery-extra';
@@ -114,7 +114,7 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     }
 
     return ret;
-  }
+  };
 
   private resetTooltip = () => {
     const main = this.mainRef.current;
@@ -122,11 +122,11 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     if (main != null) {
       tooltipDefault.remove(main);
     }
-  }
+  };
 
   private syncState = () => {
     this.setState({ button: this.buttonState() });
-  }
+  };
 
   private vote = () => {
     if (this.isDisabled()) {
@@ -138,5 +138,5 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     if (button != null) {
       button.click();
     }
-  }
+  };
 }

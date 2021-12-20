@@ -1,28 +1,33 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BlockButton } from 'block-button';
+import BlockButton from 'components/block-button';
+import FriendButton from 'components/friend-button';
 import FlagCountry from 'flag-country';
 import FollowUserMappingButton from 'follow-user-mapping-button';
-import { FriendButton } from 'friend-button';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import core from 'osu-core-singleton';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
 import { Spinner } from 'spinner';
+import StringWithComponent from 'string-with-component';
 import { SupporterIcon } from 'supporter-icon';
+import TimeWithTooltip from 'time-with-tooltip';
 import UserCardBrick from 'user-card-brick';
 import UserGroupBadges from 'user-group-badges';
+import { classWithModifiers } from 'utils/css';
 
 export type ViewMode = 'brick' | 'card' | 'list';
+export const viewModes: ViewMode[] = ['card', 'list', 'brick'];
 
 interface Props {
   activated: boolean;
   mode: ViewMode;
   modifiers: string[];
-  user?: UserJson;
+  user?: UserJson | null;
 }
 
 interface State {
@@ -40,11 +45,12 @@ export class UserCard extends React.PureComponent<Props, State> {
   static userLoading: UserJson = {
     avatar_url: '',
     country_code: '',
-    cover: {},
+    cover: { custom_url: null, id: null, url: null },
     default_group: '',
     id: 0,
     is_active: false,
     is_bot: false,
+    is_deleted: false,
     is_online: false,
     is_supporter: false,
     last_visit: '',
@@ -53,14 +59,16 @@ export class UserCard extends React.PureComponent<Props, State> {
     username: osu.trans('users.card.loading'),
   };
 
-  readonly state: State = {
+  state: Readonly<State> = {
     avatarLoaded: false,
     backgroundLoaded: false,
   };
 
+  private url?: string;
+
   private get canMessage() {
     return !this.isSelf
-      && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
+      && _.find(core.currentUser?.blocks ?? [], { target_id: this.user.id }) == null;
   }
 
   private get isOnline() {
@@ -68,7 +76,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   private get isSelf() {
-    return currentUser.id === this.user.id;
+    return core.currentUser != null && core.currentUser.id === this.user.id;
   }
 
   private get isUserLoaded() {
@@ -79,17 +87,21 @@ export class UserCard extends React.PureComponent<Props, State> {
     return this.user.id === -1;
   }
 
+  private get isUserVisible() {
+    return this.isUserLoaded && !this.user.is_deleted;
+  }
+
   private get user() {
     return this.props.user || UserCard.userLoading;
   }
 
   onAvatarLoad = () => {
     this.setState({ avatarLoaded: true });
-  }
+  };
 
   onBackgroundLoad = () => {
     this.setState({ backgroundLoaded: true });
-  }
+  };
 
   render() {
     if (this.props.mode === 'brick') {
@@ -105,8 +117,10 @@ export class UserCard extends React.PureComponent<Props, State> {
     modifiers.push(this.props.activated ? 'active' : 'highlightable');
     modifiers.push(this.props.mode);
 
+    this.url = this.isUserVisible ? route('users.show', { user: this.user.id }) : undefined;
+
     return (
-      <div className={osu.classWithModifiers('user-card', modifiers)}>
+      <div className={classWithModifiers('user-card', modifiers)}>
         {this.renderBackground()}
 
         <div className='user-card__card'>
@@ -117,8 +131,8 @@ export class UserCard extends React.PureComponent<Props, State> {
             <div className='user-card__details'>
               {this.renderIcons()}
               <div className='user-card__username-row'>
-                <div className='user-card__username u-ellipsis-pre-overflow'>{this.user.username}</div>
-                <div className='user-card__group-badges'><UserGroupBadges groups={this.user.groups} short={true} wrapper='user-card__group-badge' /></div>
+                {this.renderUsername()}
+                <div className='user-card__group-badges'><UserGroupBadges groups={this.user.groups} short wrapper='user-card__group-badge' /></div>
               </div>
               {this.renderListModeIcons()}
             </div>
@@ -130,23 +144,22 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderAvatar() {
-    const modifiers = this.state.avatarLoaded ? ['loaded'] : [];
+    const modifiers = { loaded: this.state.avatarLoaded };
+    const hasAvatar = osu.present(this.user.avatar_url) && !this.isUserNotFound;
 
     return (
       <div className='user-card__avatar-space'>
-        <div className={osu.classWithModifiers('user-card__avatar-spinner', modifiers)}>
-          {!this.isUserNotFound ? <Spinner modifiers={modifiers} /> : null}
+        <div className={classWithModifiers('user-card__avatar-spinner', modifiers)}>
+          {hasAvatar && <Spinner modifiers={modifiers} />}
         </div>
-        {
-          this.isUserLoaded ? (
-            <img
-              className={osu.classWithModifiers('user-card__avatar', modifiers)}
-              onError={this.onAvatarLoad} // remove spinner if error
-              onLoad={this.onAvatarLoad}
-              src={this.user.avatar_url}
-            />
-          ) : null
-        }
+        {this.isUserLoaded && hasAvatar && (
+          <img
+            className={classWithModifiers('user-card__avatar', modifiers)}
+            onError={this.onAvatarLoad} // remove spinner if error
+            onLoad={this.onAvatarLoad}
+            src={this.user.avatar_url}
+          />
+        )}
       </div>
     );
   }
@@ -155,7 +168,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     let background: React.ReactNode;
     let backgroundLink: React.ReactNode;
 
-    const overlayCssClass = osu.classWithModifiers(
+    const overlayCssClass = classWithModifiers(
       'user-card__background-overlay',
       this.isOnline ? ['online'] : [],
     );
@@ -176,11 +189,11 @@ export class UserCard extends React.PureComponent<Props, State> {
       background = <div className={overlayCssClass} />;
     }
 
-    if (this.isUserLoaded) {
+    if (this.isUserVisible) {
       backgroundLink = (
         <a
-          href={route('users.show', { user: this.user.id })}
           className='user-card__background-container'
+          href={this.url}
         >
           {background}
         </a>
@@ -193,13 +206,15 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderIcons() {
-    if (!this.isUserLoaded) { return null; }
+    if (!this.isUserVisible) {
+      return null;
+    }
 
     return (
-      <div className='user-card__icons'>
+      <div className='user-card__icons user-card__icons--card'>
         <a
           className='user-card__icon user-card__icon--flag'
-          href={route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}
+          href={route('rankings', { country: this.user.country_code, mode: 'osu', type: 'performance' })}
         >
           <FlagCountry country={this.user.country} />
         </a>
@@ -208,15 +223,17 @@ export class UserCard extends React.PureComponent<Props, State> {
           <>
             {this.user.is_supporter && (
               <a className='user-card__icon' href={route('support-the-game')}>
-                <SupporterIcon modifiers={['user-card']}/>
+                <SupporterIcon modifiers={['user-card']} />
               </a>
             )}
             <div className='user-card__icon'>
-              <FriendButton userId={this.user.id} modifiers={['user-card']} />
+              <FriendButton modifiers='user-card' userId={this.user.id} />
             </div>
-            <div className='user-card__icon'>
-              <FollowUserMappingButton userId={this.user.id} modifiers={['user-card']} />
-            </div>
+            {!this.user.is_bot && (
+              <div className='user-card__icon'>
+                <FollowUserMappingButton modifiers={['user-card']} userId={this.user.id} />
+              </div>
+            )}
           </>
         )}
       </div>
@@ -224,7 +241,9 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderListModeIcons() {
-    if (this.props.mode !== 'list' || !this.isUserLoaded) { return null; }
+    if (this.props.mode !== 'list' || !this.isUserVisible) {
+      return null;
+    }
 
     return (
       <div className='user-card__icons'>
@@ -235,44 +254,47 @@ export class UserCard extends React.PureComponent<Props, State> {
         )}
 
         <div className='user-card__icon'>
-          <FriendButton userId={this.user.id} modifiers={['user-list']} />
+          <FriendButton modifiers='user-list' userId={this.user.id} />
         </div>
 
-        <div className='user-card__icon'>
-          <FollowUserMappingButton userId={this.user.id} modifiers={['user-list']} />
-        </div>
+        {!this.user.is_bot && (
+          <div className='user-card__icon'>
+            <FollowUserMappingButton modifiers={['user-list']} userId={this.user.id} />
+          </div>
+        )}
       </div>
     );
   }
 
   renderMenuButton() {
-    if (this.isSelf) { return null; }
+    if (this.isSelf) {
+      return null;
+    }
 
     const items = (dismiss: () => void) => (
-      <>
-        {
-          this.canMessage ? (
-            <a
-              className='simple-menu__item js-login-required--click'
-              href={route('messages.users.show', { user: this.user.id })}
-              onClick={dismiss}
-            >
-              <span className='fas fa-envelope' />
-              {` ${osu.trans('users.card.send_message')}`}
-            </a>
-          ) : null
-        }
+      <div className='simple-menu'>
+        {this.canMessage && (
+          <a
+            className='simple-menu__item js-login-required--click'
+            href={route('messages.users.show', { user: this.user.id })}
+            onClick={dismiss}
+          >
+            <span className='fas fa-envelope' />
+            {` ${osu.trans('users.card.send_message')}`}
+          </a>
+        )}
 
-        <BlockButton onClick={dismiss} modifiers={['inline']} userId={this.user.id} wrapperClass='simple-menu__item' />
+        <BlockButton modifiers='inline' onClick={dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
+
         <ReportReportable
           className='simple-menu__item'
-          icon={true}
+          icon
           onFormClose={dismiss}
           reportableId={this.user.id.toString()}
           reportableType='user'
           user={this.user}
         />
-      </>
+      </div>
     );
 
     return (
@@ -283,9 +305,10 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderStatusBar() {
-    if (!this.isUserLoaded) { return null; }
+    if (!this.isUserVisible) {
+      return null;
+    }
 
-    const lastSeen = (!this.isOnline && this.user.last_visit != null) ? osu.trans('users.show.lastvisit', { date: osu.timeago(this.user.last_visit) }) : '';
     const status = this.isOnline ? osu.trans('users.status.online') : osu.trans('users.status.offline');
 
     return (
@@ -293,10 +316,16 @@ export class UserCard extends React.PureComponent<Props, State> {
         <div className='user-card__status'>
           {this.renderStatusIcon()}
           <div className='user-card__status-messages'>
-            <span
-              className='user-card__status-message user-card__status-message--sub u-ellipsis-overflow'
-              dangerouslySetInnerHTML={{ __html: lastSeen }}
-            />
+            <span className='user-card__status-message user-card__status-message--sub u-ellipsis-overflow'>
+              {!this.isOnline && this.user.last_visit != null && (
+                <StringWithComponent
+                  mappings={{
+                    date: <TimeWithTooltip dateTime={this.user.last_visit} relative />,
+                  }}
+                  pattern={osu.trans('users.show.lastvisit')}
+                />
+              )}
+            </span>
             <span className='user-card__status-message u-ellipsis-overflow'>
               {status}
             </span>
@@ -310,12 +339,26 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderStatusIcon() {
-    if (!this.isUserLoaded) { return null; }
+    if (!this.isUserVisible) {
+      return null;
+    }
 
     return (
       <div className='user-card__status-icon-container'>
         <div className={`user-card__status-icon user-card__status-icon--${this.isOnline ? 'online' : 'offline'}`} />
       </div>
+    );
+  }
+
+  private renderUsername() {
+    const displayName = this.user.is_deleted ? osu.trans('users.deleted') : this.user.username;
+
+    return this.url == null ? (
+      <div className='user-card__username u-ellipsis-pre-overflow'>{displayName}</div>
+    ) : (
+      <a className='user-card__username u-ellipsis-pre-overflow' href={this.url}>
+        {displayName}
+      </a>
     );
   }
 }

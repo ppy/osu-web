@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BigButton } from 'big-button'
+import BigButton from 'big-button'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, p, span } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 el = React.createElement
 
 bn = 'beatmapset-hype'
@@ -25,9 +25,8 @@ export class Hype extends React.PureComponent
             className: "#{bn}__description-row #{bn}__description-row--action"
             el StringWithComponent,
               mappings:
-                ':link': a
+                link: a
                   href: @reportUrl()
-                  key: 'link'
                   osu.trans 'beatmapsets.show.hype.report.link'
               pattern:
                 if @userCanDisqualify()
@@ -60,20 +59,19 @@ export class Hype extends React.PureComponent
           className: "#{bn}__button"
           title: @props.beatmapset.current_user_attributes?.can_hype_reason
           el BigButton,
-            modifiers: ['full']
-            text: osu.trans('beatmaps.hype.button')
+            disabled:
+              if @props.currentUser.id?
+                !@props.beatmapset.current_user_attributes.can_hype
+              else
+                false
+            href: "#{route 'beatmapsets.discussion',
+              beatmapset: @props.beatmapset.id
+              beatmap: '-'
+              mode: 'generalAll'
+              filter: 'praises'}#new"
             icon: 'fas fa-bullhorn'
-            props:
-              href: "#{route 'beatmapsets.discussion',
-                beatmapset: @props.beatmapset.id
-                beatmap: '-'
-                mode: 'generalAll'
-                filter: 'praises'}#new"
-              disabled:
-                if @props.currentUser.id?
-                  !@props.beatmapset.current_user_attributes.can_hype
-                else
-                  false
+            modifiers: 'full'
+            text: osu.trans('beatmaps.hype.button')
 
         div
           className: "#{bn}__button"
@@ -93,11 +91,10 @@ export class Hype extends React.PureComponent
         icon: 'fas fa-exclamation-triangle'
 
     el BigButton,
-      text: buttonParams.text
+      href: @reportUrl()
       icon: buttonParams.icon
-      modifiers: ['full']
-      props:
-        href: @reportUrl()
+      modifiers: 'full'
+      text: buttonParams.text
 
 
   reportUrl: =>

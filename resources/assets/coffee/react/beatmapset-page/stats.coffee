@@ -2,13 +2,17 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, span, table, tbody, td, th, tr, i } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Stats extends React.Component
   constructor: (props) ->
     super props
+
+    @eventId = "beatmapsets-show-stats-#{nextVal()}"
 
 
   componentDidMount: =>
@@ -16,8 +20,8 @@ export class Stats extends React.Component
 
 
   componentWillUnmount: =>
-    $(window).off '.beatmapsetPageStats'
-    $.unsubscribe '.beatmapsetPageStats'
+    $(window).off ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
 
   componentDidUpdate: =>
@@ -43,6 +47,7 @@ export class Stats extends React.Component
         type: 'button'
         className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview js-audio--play js-audio--player"
         'data-audio-url': @props.beatmapset.preview_url
+        span className: 'play-button'
         div className: 'beatmapset-stats__elapsed-bar'
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
@@ -109,6 +114,7 @@ export class Stats extends React.Component
         modifiers: ['beatmapset-rating']
 
       @_ratingChart = new StackedBarChart @refs.chartArea, options
-      $(window).on 'resize.beatmapsetPageStats', @_ratingChart.resize
+      $(window).on "resize.#{@eventId}", @_ratingChart.resize
 
-    @_ratingChart.loadData rating: @props.beatmapset.ratings[1..]
+    core.reactTurbolinks.runAfterPageLoad @eventId, =>
+      @_ratingChart.loadData rating: @props.beatmapset.ratings[1..]

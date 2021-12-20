@@ -7,6 +7,7 @@ namespace Tests\Controllers\Chat\Channels;
 
 use App\Models\Chat;
 use App\Models\Chat\UserChannel;
+use App\Models\ChatFilter;
 use App\Models\User;
 use App\Models\UserRelation;
 use Faker;
@@ -158,6 +159,24 @@ class MessagesControllerTest extends TestCase
     //endregion
 
     //region POST /chat/channels/[channel_id]/messages - Send Message to Channel
+    public function testChannelSendFiltered()
+    {
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
+            'channel' => $this->publicChannel->getKey(),
+            'user' => $this->user->getKey(),
+        ]));
+
+        $filter = factory(ChatFilter::class)->create();
+
+        $this->json(
+            'POST',
+            route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->getKey()]),
+            ['message' => $filter->match],
+        )
+            ->assertJsonFragment(['content' => $filter->replacement]);
+    }
+
     public function testChannelSendWhenGuest() // fail
     {
         $this->json(
@@ -388,13 +407,13 @@ class MessagesControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         $minPlays = config('osu.user.min_plays_for_posting');
         $this->user->statisticsOsu()->create(['playcount' => $minPlays]);
 
-        $this->anotherUser = factory(User::class)->create();
-        $this->restrictedUser = factory(User::class)->states('restricted')->create();
-        $this->silencedUser = factory(User::class)->states('silenced')->create();
+        $this->anotherUser = User::factory()->create();
+        $this->restrictedUser = User::factory()->restricted()->create();
+        $this->silencedUser = User::factory()->silenced()->create();
         $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
         $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
         $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Hva med å spille litt osu! i stedet?',
     'require_login' => 'Vennligst logg inn for å fortsette.',
     'require_verification' => 'Vennligst verifiser deg for å fortsette.',
     'restricted' => "Kan ikke gjøre det mens kontoen din er begrenset.",
@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Du har nådd din nominasjons-grense for dagen, vennligst prøv igjen i morgen.',
-            'full_bn_required' => 'Du må være en full nominator for å kunne utføre denne kvalifiserende nominasjonen.',
-            'full_bn_required_hybrid' => 'Du må være en full nominator for å nominere beatmapsets med mer enn en spillmodus.',
             'incorrect_state' => 'Feil under utføringen av denne handlingen, prøv å oppdatere siden.',
             'owner' => "Du kan ikke nominere din egen beatmap.",
             'set_metadata' => 'Du må angi sjangeren og språk før du kan nominere.',
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Denne kanalen er for tiden moderert.',
         'no_access' => 'Du har ingen adgang til denne kanalen.',
         'restricted' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
+        'silenced' => '',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Du kan ikke endre stemmen din etter den stemmeberettigede perioden for denne konkurransen har avsluttet.',
+
+        'entry' => [
+            'limit_reached' => 'Du har nådd maks antall bidrag for denne konkurransen',
+            'over' => 'Takk for dine bidrag! Påmeldingen for denne konkurransen har stengt og avstemningen vil åpne snart.',
+        ],
     ],
 
     'forum' => [

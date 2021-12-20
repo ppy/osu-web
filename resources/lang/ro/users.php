@@ -88,7 +88,7 @@ return [
         'failed' => 'Conectare incorectă',
         'forgot' => 'Ți-ai uitat parola?',
         'info' => 'Pentru a continua, vă rugam să vă autentificaţi',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Prea multe încercări nereușite, vă rugăm să completați captcha și să încercați din nou. (Reîmprospăta pagina dacă captcha nu este vizibilă)',
         'locked_ip' => 'adresa ta IP este blocată. Te rugăm să aștepți câteva minute.',
         'password' => 'Parolă',
         'register' => "Nu ai un cont osu!? Fă-ți unul nou",
@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
+            'multiple_accounts' => '',
             'insults' => 'M-a insultat pe mine / pe alții',
             'spam' => 'Spam',
             'unwanted_content' => 'Partajarea unui conținut nepotrivit',
@@ -154,6 +155,10 @@ return [
         'plays_with' => 'Joacă cu :devices',
         'title' => "Profilul lui :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Schimbă coperta de profil',
@@ -202,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Beatmaps iubite',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps clasate & aprobate',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmaps în așteptare',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmaps clasate & aprobate',
                 ],
             ],
             'discussions' => [
@@ -296,6 +301,9 @@ return [
                 'recent' => 'Recente',
                 'title' => 'Medalii',
             ],
+            'multiplayer' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => 'Postări',
                 'title_longer' => 'Postări recente',
@@ -353,7 +361,6 @@ return [
             'interests' => 'Interese',
             'location' => 'Locația curentă',
             'occupation' => 'Ocupație',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Site web',
         ],
@@ -399,11 +406,16 @@ return [
             'total_hits' => 'Număr de clicuri',
             'total_score' => 'Scor total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmap-uri Clasate & Aprobate',
-            'loved_beatmapset_count' => 'Beatmap-uri iubite',
-            'unranked_beatmapset_count' => 'Beatmap-uri în așteptare',
             'graveyard_beatmapset_count' => 'Beatmap-uri Îngropate',
+            'loved_beatmapset_count' => 'Beatmap-uri iubite',
+            'pending_beatmapset_count' => 'Beatmap-uri în așteptare',
+            'ranked_beatmapset_count' => 'Beatmap-uri Clasate & Aprobate',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => 'Unele acțiuni pot fi indisponibile.',
     ],
 
     'status' => [

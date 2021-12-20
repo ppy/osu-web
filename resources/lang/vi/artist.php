@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! beatmaps',
         'osu' => 'trang cá nhân osu!',
         'site' => 'Website chính thức',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Bài hát',
         'count' => ':count bài hát',
-        'exclusive' => 'độc quyền cho osu!',
+        'original' => 'osu! original',
+        'original_badge' => 'GỐC',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'độ dài',
         'bpm' => 'bpm',
         'genre' => 'thể loại',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => 'Tìm kiếm nâng cao',
+                'album' => 'Album',
+                'artist' => 'Nghệ sĩ',
+                'bpm_gte' => 'BPM tối thiểu',
+                'bpm_lte' => 'BPM tối đa',
+                'empty' => '',
+                'genre' => 'Thể loại',
+                'genre_all' => 'Tất cả',
+                'length_gte' => 'Độ dài tối thiểu',
+                'length_lte' => 'Độ dài tối đa',
+            ],
+        ],
     ],
 ];

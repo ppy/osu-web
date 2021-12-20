@@ -4,20 +4,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Gudang',
-    ],
-
     'cart' => [
         'checkout' => 'Checkout',
-        'info' => ':count_delimited barang dalam keranjang ($:subtotal)',
-        'more_goodies' => 'Saya ingin melihat barang lain sebelum menyelesaikan pesanan',
+        'info' => ':count_delimited barang dalam keranjang ($:subtotal)|:count_delimited barang dalam keranjang ($:subtotal)',
+        'more_goodies' => 'Saya ingin melihat produk-produk lainnya sebelum merampungkan pesanan',
         'shipping_fees' => 'biaya pengiriman',
         'title' => 'Keranjang Belanja',
         'total' => 'total',
 
         'errors_no_checkout' => [
-            'line_1' => 'Aduh, ada masalah dengan pemesanan anda yang mencegah proses pembayaran!',
+            'line_1' => 'Uh-oh, terdapat masalah dengan keranjang Anda yang menghalangi kami untuk dapat memproses pemesanan lebih lanjut!',
             'line_2' => 'Hapus atau perbarui item-item di atas untuk melanjutkan.',
         ],
 
@@ -34,10 +30,10 @@ return [
         'cart_problems' => 'Aduh, ada masalah dengan pemesanan anda!',
         'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
         'declined' => 'Pembayaran dibatalkan.',
-        'delayed_shipping' => 'Kami saat ini sedang kebajiran pesanan! Anda dipersilakan untuk melakukan pemesanan, namun apabila Anda memesan sekarang Anda diharapkan untuk memberikan waktu **selama 1-2 minggu** tambahan bagi kami untuk dapat mulai memproses pesanan Anda selagi kami mengurus pesanan-pesanan yang sudah ada sebelumnya.',
+        'delayed_shipping' => 'Kami saat ini sedang kebanjiran pesanan! Apabila Anda memesan sekarang, harap beri kami tenggat waktu tambahan **selama 1-2 minggu** untuk dapat mulai memproses pesanan Anda mengingat kami masih harus mengurus pesanan-pesanan yang sudah terlebih dahulu masuk sebelumnya.',
         'old_cart' => 'Keranjang Anda nampaknya sudah kedaluwarsa dan telah dimuat ulang, silakan coba lagi.',
-        'pay' => 'Bayar lewat Paypal',
-        'title_compact' => 'selesaikan transaksi',
+        'pay' => 'Checkout melalui Paypal',
+        'title_compact' => 'checkout',
 
         'has_pending' => [
             '_' => 'Anda memiliki transaksi yang belum tuntas, klik :link untuk melihatnya.',
@@ -54,12 +50,12 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Karena Anda melakukan pembayaran via eCheck, mohon izinkan setidaknya 10 hari tambahan untuk masuk melalui PayPal!',
-        'title_compact' => 'faktur',
+        'title_compact' => 'invoice',
 
         'status' => [
             'processing' => [
-                'title' => 'Pembayaran Anda belum dikonfirmasi!',
-                'line_1' => 'Jika Anda telah membayar sebelumnya, kami memerlukan waktu untuk dapat mengkonfirmasi pembayaran Anda. Mohon refresh laman ini dalam beberapa menit!',
+                'title' => 'Pembayaran Anda belum terkonfirmasi!',
+                'line_1' => 'Apabila Anda sebelumnya benar-benar telah membayar sesuai dengan jumlah yang tertagih, ada kemungkinan sistem kami masih memproses dan mengonfirmasi pembayaran Anda tersebut. Mohon tunggu beberapa menit dan muat ulang halaman ini!',
                 'line_2' => [
                     '_' => 'Jika Anda mengalami masalah saat melakukan pembayaran, :link',
                     'link_text' => 'klik di sini untuk melanjutkan transaksi Anda',
@@ -69,11 +65,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Pemesanan dilangsukan pada :date',
-
+        'cancel' => 'Batalkan Pesanan',
+        'cancel_confirm' => 'Pesanan ini akan secara otomatis dibatalkan dan segala biaya yang telah Anda keluarkan tidak akan kami terima. Apakah Anda yakin?',
+        'cancel_not_allowed' => 'Pesanan ini tidak dapat dibatalkan pada saat ini.',
         'invoice' => 'Lihat Invoice',
         'no_orders' => 'Tidak ada pesanan yang tercatat.',
-        'resume' => 'Lanjutkan Proses Check-Out',
+        'paid_on' => 'Pemesanan dilangsungkan pada :date',
+        'resume' => 'Lanjutkan Proses Checkout',
+        'shopify_expired' => 'Tautan checkout untuk pesanan ini telah kadaluarsa.',
 
         'item' => [
             'display_name' => [
@@ -95,10 +94,10 @@ return [
         'status' => [
             'cancelled' => 'Dibatalkan',
             'checkout' => 'Pesanan Diproses',
-            'delivered' => 'Sampai Tujuan',
+            'delivered' => 'Terkirim',
             'paid' => 'Lunas',
             'processing' => 'Menunggu konfirmasi',
-            'shipped' => 'Dalam Perjalanan',
+            'shipped' => 'Terkirim',
         ],
     ],
 
@@ -106,7 +105,7 @@ return [
         'name' => 'Nama',
 
         'stock' => [
-            'out' => 'Stok untuk barang ini habis. Silahkan Periksa kembali nanti!',
+            'out' => 'Stok barang ini saat ini sedang tidak tersedia. Silahkan periksa kembali nanti!',
             'out_with_alternative' => 'Sayangnya stok untuk barang ini habis. Gunakan menu dropdown untuk memilih jenis yang lain atau silahkan periksa kembali nanti!',
         ],
 

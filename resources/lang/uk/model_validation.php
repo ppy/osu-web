@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Не можна видалити метадані карти.',
             'beatmapset_post_no_edit' => 'Не можна змінити метадані карти.',
+            'first_post_no_delete' => 'Неможливо видалити початкову публікацію',
+            'missing_topic' => 'В публікації відсутня тема',
             'only_quote' => 'Ваш відповідь містить тільки цитату.',
 
             'attributes' => [
@@ -121,7 +123,7 @@ return [
     'user' => [
         'contains_username' => 'Пароль не повинен містити нікнейм.',
         'email_already_used' => 'Дана адреса вже використовується.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'Дана е-адреса неприпустима.',
         'invalid_country' => 'Вашої країни немає в базі даних.',
         'invalid_discord' => 'Ім’я користувача Discord недійсне.',
         'invalid_email' => "Це не схоже на адресу електронної пошти.",
@@ -151,7 +153,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => 'Ви не можете змінити ім\'я, поки ваш аккаунт обмежено.',
+            'restricted' => 'Ви не можете змінити ім\'я, поки ваш акаунт обмежено.',
             'supporter_required' => [
                 '_' => 'Ви повинні :link для зміни ніку!',
                 'link_text' => 'підтримати osu!',
@@ -161,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => 'Рейтингові карти не можуть бути оскаржені ',
         'reason_not_valid' => ':reason неправильна для даного типу звіту.',
         'self' => "Ви не можете поскаржитися на себе!",
     ],

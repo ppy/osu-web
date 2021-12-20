@@ -15,8 +15,29 @@ return [
     'top' => 'Κορυφαία',
     'username' => '',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Τελευταία απάντηση',
         'feature_votes' => 'Βάσει αστεριών',
+        'new' => 'Τελευταία απάντηση',
+    ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
     ],
 ];

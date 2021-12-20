@@ -13,7 +13,16 @@ return [
     ],
 
     'scopes' => [
+        'bot' => 'Bir sohbet botu gibi davranır.',
         'identify' => 'Kim olduğunuzu ve herkese açık profilinizi görüntüleyebilir.',
+
+        'chat' => [
+            'write' => 'Sizin adınıza mesaj gönderebilir.',
+        ],
+
+        'forum' => [
+            'write' => 'Sizin adınıza forum konuları ve gönderileri oluşturabilir ve düzenleyebilir.',
+        ],
 
         'friends' => [
             'read' => 'Kimi takip ettiğinizi görebilir.',

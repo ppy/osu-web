@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Lager',
-    ],
-
     'cart' => [
         'checkout' => 'Til kassen',
         'info' => ':count_delimited vare i kurven ($:subtotal)|:count_delimited varer i kurven ($:subtotal)',
@@ -69,11 +65,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Ordre placeret :date',
-
+        'cancel' => 'Annuller ordre',
+        'cancel_confirm' => 'Denne ordre vil blive annulleret og betaling vil ikke blive accepteret for den. Betalingsudbyderen vil måske ikke frigive penge med det samme. Er du sikker?',
+        'cancel_not_allowed' => 'Denne ordre kan ikke annulleres på nuværende tidspunkt.',
         'invoice' => 'Vis faktura',
         'no_orders' => 'Ingen ordrer til at se.',
+        'paid_on' => 'Ordre placeret :date',
         'resume' => 'Fortsæt Til Kassen',
+        'shopify_expired' => 'Checkout linket for denne ordre er udløbet.',
 
         'item' => [
             'display_name' => [

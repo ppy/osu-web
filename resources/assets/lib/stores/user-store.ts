@@ -2,13 +2,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import { UserLogoutAction } from 'actions/user-login-actions';
+import { dispatchListener } from 'app-dispatcher';
+import MessageNewEvent from 'chat/message-new-event';
+import DispatchListener from 'dispatch-listener';
 import UserJson from 'interfaces/user-json';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import User from 'models/user';
 
-export default class UserStore {
+@dispatchListener
+export default class UserStore implements DispatchListener {
   @observable users = observable.map<number, User>();
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   flushStore() {
@@ -43,15 +50,15 @@ export default class UserStore {
     return user;
   }
 
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof UserLogoutAction) {
-      this.flushStore();
+  handleDispatchAction(event: DispatcherAction) {
+    if (event instanceof MessageNewEvent) {
+      this.updateWithJson(event.json.users);
     }
   }
 
   @action
   updateWithJson(data: UserJson[] | undefined | null) {
-    if (data == null) { return; }
+    if (data == null) return;
     for (const json of data) {
       const user = User.fromJson(json);
       this.users.set(user.id, user);

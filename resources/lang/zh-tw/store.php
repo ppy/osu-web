@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => '倉庫',
-    ],
-
     'cart' => [
         'checkout' => '結帳',
         'info' => '購物車裡有 :count_delimited 件商品（$:subtotal）|購物車裡有 :count_delimited 件商品（$:subtotal）',
@@ -54,7 +50,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => '由於您是用 eCheck 付款，請等待至多 10 天以使該支付通過 PayPal 完成！',
-        'title_compact' => '',
+        'title_compact' => '帳單',
 
         'status' => [
             'processing' => [
@@ -69,11 +65,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '下訂單 :date',
-
+        'cancel' => '取消訂單',
+        'cancel_confirm' => '此訂單將被取消且款項不會被收取。付款供應商可能不會立即退回任何預收款項。您確定嗎？',
+        'cancel_not_allowed' => '目前無法取消訂單。',
         'invoice' => '查看收據',
         'no_orders' => '沒有訂單',
+        'paid_on' => '下訂單 :date',
         'resume' => '繼續結賬',
+        'shopify_expired' => '此訂單的結帳網址已經過期。',
 
         'item' => [
             'display_name' => [

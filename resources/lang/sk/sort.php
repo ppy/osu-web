@@ -15,8 +15,29 @@ return [
     'top' => 'Najlepšie',
     'username' => 'Meno Uživateľa',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Posledná odpoveď',
         'feature_votes' => '',
+        'new' => 'Posledná odpoveď',
+    ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
     ],
 ];

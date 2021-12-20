@@ -7,6 +7,8 @@ import { NotificationContext } from 'notifications-context';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
+import TimeWithTooltip from 'time-with-tooltip';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   canMarkAsRead?: boolean;
@@ -19,7 +21,7 @@ interface Props {
   markRead?: () => void;
   message: string;
   modifiers: string[];
-  url: string;
+  url?: string;
   withCategory: boolean;
   withCoverImage: boolean;
 }
@@ -27,7 +29,7 @@ interface Props {
 @observer
 export default class Item extends React.Component<Props> {
   static contextType = NotificationContext;
-  context!: React.ContextType<typeof NotificationContext>;
+  declare context: React.ContextType<typeof NotificationContext>;
 
   private get canMarkAsRead() {
     return this.props.canMarkAsRead ?? this.props.item.canMarkRead;
@@ -58,16 +60,16 @@ export default class Item extends React.Component<Props> {
       modifiers.push('read');
     }
 
-    return `clickable-row ${osu.classWithModifiers('notification-popup-item', modifiers)}`;
+    return `clickable-row ${classWithModifiers('notification-popup-item', modifiers)}`;
   }
 
   private handleContainerClick = (event: React.SyntheticEvent) => {
-    if (osu.isClickable(event.target as HTMLElement)) { return; }
+    if (osu.isClickable(event.target as HTMLElement)) return;
 
     if (this.props.markRead != null) {
       this.props.markRead();
     }
-  }
+  };
 
   private renderCategory() {
     if (!this.props.withCategory) {
@@ -105,13 +107,11 @@ export default class Item extends React.Component<Props> {
       return null;
     }
 
-    return this.props.icons.map((icon) => {
-      return (
-        <div key={icon} className='notification-popup-item__cover-icon'>
-          <span className={icon} />
-        </div>
-      );
-    });
+    return this.props.icons.map((icon) => (
+      <div key={icon} className='notification-popup-item__cover-icon'>
+        <span className={icon} />
+      </div>
+    ));
   }
 
   private renderDeleteButton() {
@@ -153,9 +153,9 @@ export default class Item extends React.Component<Props> {
   private renderMessage() {
     return (
       <a
-        onClick={this.props.markRead}
-        href={this.props.url}
         className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'
+        href={this.props.url}
+        onClick={this.props.markRead}
       >
         {this.props.message}
       </a>
@@ -168,12 +168,9 @@ export default class Item extends React.Component<Props> {
     }
 
     return (
-      <div
-        className='notification-popup-item__row notification-popup-item__row--time'
-        dangerouslySetInnerHTML={{
-          __html: osu.timeago(this.props.item.createdAtJson),
-        }}
-      />
+      <div className='notification-popup-item__row notification-popup-item__row--time'>
+        <TimeWithTooltip dateTime={this.props.item.createdAtJson} relative />
+      </div>
     );
   }
 

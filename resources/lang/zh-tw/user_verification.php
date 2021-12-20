@@ -12,7 +12,7 @@ return [
 
         'info' => [
             'check_spam' => "如果找不到電子郵件，請檢查垃圾郵件箱。",
-            'recover' => "如果您無法登入電子郵件或忘記電子郵件, 請點選: 連結。",
+            'recover' => "如果您無法登入電子郵件或忘記電子郵件, 請點選 :link。",
             'recover_link' => '電子郵件復原點擊此處',
             'reissue' => '也可以 :reissue_link 或者 :logout_link.',
             'reissue_link' => '重發驗證碼',

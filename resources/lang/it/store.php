@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Magazzino',
-    ],
-
     'cart' => [
         'checkout' => 'Paga',
         'info' => ':count_delimited articolo nel carrello ($:subtotal)|:count_delimited articoli nel carrello ($:subtotal)',
@@ -40,7 +36,7 @@ return [
         'title_compact' => 'pagamento',
 
         'has_pending' => [
-            '_' => 'Hai pagamenti incompleti, clicca :link per vederli.',
+            '_' => 'Hai dei pagamenti incompleti, clicca :link per vederli.',
             'link_text' => 'qui',
         ],
 
@@ -69,11 +65,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Ordine effettuato :date',
-
+        'cancel' => 'Annulla Ordine',
+        'cancel_confirm' => 'Quest\'ordine verrà annullato insieme al suo pagamento. Il provider del pagamento potrebbe non rilasciare immediatamente i fondi riservati. Sei sicuro?',
+        'cancel_not_allowed' => 'Quest\'ordine non può essere annullato al momento.',
         'invoice' => 'Mostra Ricevuta',
         'no_orders' => 'Nessun ordine da visualizzare.',
-        'resume' => 'Riprendi il checkout',
+        'paid_on' => 'Ordine effettuato :date',
+        'resume' => 'Riprendi Pagamento',
+        'shopify_expired' => 'Il link del pagamento per quest\'ordine è scaduto.',
 
         'item' => [
             'display_name' => [

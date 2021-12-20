@@ -22,12 +22,16 @@ return [
             '401-verification' => '',
             '405' => 'chýbajúce',
             '422' => 'neplatná požiadavka',
+            '429' => '',
             '500' => '',
             '503' => '',
         ],
     ],
     'forum' => [
         '_' => 'fórum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => '',
         ],
@@ -36,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => '',
             'verify_link' => '',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => '',
@@ -75,6 +82,9 @@ return [
         'contests_controller' => [
             '_' => '',
         ],
+        'follows_controller' => [
+            'index' => '',
+        ],
         'friends_controller' => [
             'index' => 'nástenka',
         ],
@@ -107,13 +117,13 @@ return [
             '_' => '',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'rebríčky',
         ],
         'scores_controller' => [
             '_' => '',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'obchod',
         ],
         'tournaments_controller' => [
             '_' => '',
@@ -123,7 +133,7 @@ return [
             'disabled' => '',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -131,11 +141,19 @@ return [
             '_' => '',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
-        '_' => '',
+        '_' => 'obchod',
     ],
     'users' => [
         'modding_history_controller' => [
+            '_' => '',
+        ],
+        'multiplayer_controller' => [
             '_' => '',
         ],
     ],

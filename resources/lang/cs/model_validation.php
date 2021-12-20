@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Mazání metadat beatmapy není povoleno.',
             'beatmapset_post_no_edit' => 'Editace metadat beatmapy není povoleno.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Tvoje odpověď obsahuje jenom citát.',
 
             'attributes' => [
@@ -151,7 +153,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'Nemůžeš si změnit své uživatelské jméno, když jsi omezený.',
             'supporter_required' => [
                 '_' => 'Musíš mít :link na změnu jména!',
                 'link_text' => 'podpořit osu! nákupem supporter tagu!',
@@ -161,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => '',
         'self' => "Nemůžete nahlásit sám sebe!",
     ],

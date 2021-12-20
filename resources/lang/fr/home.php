@@ -7,24 +7,24 @@ return [
     'landing' => [
         'download' => 'Télécharger maintenant',
         'online' => '<strong>:players</strong> connectés en ce moment dans <strong>:games</strong> parties',
-        'peak' => 'Pic, :count joueurs connectés',
+        'peak' => 'Pic de joueurs connectés : :count ',
         'players' => '<strong>:count</strong> joueurs inscrits',
         'title' => 'bienvenue',
-        'see_more_news' => 'voir plus de nouvelles',
+        'see_more_news' => 'voir plus de news',
 
         'slogan' => [
             'main' => 'le meilleur jeu de rythme free-to-win',
-            'sub' => 'Le rythme est juste à un seul clic',
+            'sub' => 'rhythm is just a click away',
         ],
     ],
 
     'search' => [
         'advanced_link' => 'Recherche avancée',
         'button' => 'Rechercher',
-        'empty_result' => 'Aucun résultat !',
+        'empty_result' => 'Rien n\'a été trouvé !',
         'keyword_required' => 'Un mot clé de recherche est requis',
         'placeholder' => 'tapez pour rechercher',
-        'title' => 'Rechercher',
+        'title' => 'rechercher',
 
         'beatmapset' => [
             'login_required' => 'Connectez-vous pour rechercher des beatmaps',
@@ -36,7 +36,7 @@ return [
         'forum_post' => [
             'all' => 'Tous les forums',
             'link' => 'Rechercher sur le forum',
-            'login_required' => 'Connectez-vous pour rechercher dans le forum',
+            'login_required' => 'Connectez-vous pour rechercher sur le forum',
             'more_simple' => 'Voir plus de résultats de la recherche du forum',
             'title' => 'Forum',
 
@@ -78,7 +78,7 @@ return [
         'help' => [
             '_' => 'si vous avez des problèmes pour démarrer le jeu ou pour créer un compte, :help_forum_link ou :support_button.',
             'help_forum_link' => 'consultez le forum d\'aide',
-            'support_button' => 'contacter l\'assistance',
+            'support_button' => 'contacter le support',
         ],
 
         'os' => [
@@ -95,24 +95,24 @@ return [
             ],
             'download' => [
                 'title' => 'installer le jeu',
-                'description' => 'cliquez sur le bouton au-dessus pour télécharger l\'installateur, lancez-le ensuite !',
+                'description' => 'cliquez sur le bouton ci-dessus pour télécharger l\'installateur, lancez-le ensuite !',
             ],
             'beatmaps' => [
                 'title' => 'obtenir des beatmaps',
                 'description' => [
-                    '_' => ':browse dans la vaste librairie des beatmaps créées par la communauté et commencez à jouer !',
-                    'browse' => 'Naviguez',
+                    '_' => ':browse la vaste librairie des beatmaps créées par la communauté et commencez à jouer !',
+                    'browse' => 'parcourir',
                 ],
             ],
         ],
-        'video-guide' => 'Guide vidéo',
+        'video-guide' => 'guide vidéo',
     ],
 
     'user' => [
         'title' => 'tableau de bord',
         'news' => [
-            'title' => 'Nouvelles',
-            'error' => 'Erreur lors du chargement des nouvelles, essayez de recharger la page ?...',
+            'title' => 'News',
+            'error' => 'Erreur lors du chargement des news, essayez de recharger la page ?...',
         ],
         'header' => [
             'stats' => [
@@ -122,25 +122,14 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nouvelles beatmaps approuvées',
+            'new' => 'Nouvelles beatmaps classées',
             'popular' => 'Beatmaps populaires',
             'by_user' => 'par :user',
         ],
         'buttons' => [
             'download' => 'Télécharger osu!',
-            'support' => 'Supporter osu!',
+            'support' => 'Soutenir osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow !',
-        'subtitle' => 'Vous semblez passer un bon moment ! :D',
-        'body' => [
-            'part-1' => 'Saviez-vous que osu! fonctionne sans publicité et compte sur les joueurs pour supporter son développement et ses coûts ?',
-            'part-2' => 'Saviez-vous aussi que supporter osu! permet d\'obtenir une poignée de fonctions utiles, comme le <strong>téléchargement de beatmaps en jeu</strong> qui est automatique en mode spectateur et dans les parties multijoueur ?',
-        ],
-        'find-out-more' => 'Cliquez ici pour en savoir plus !',
-        'download-starting' => "Oh, et ne vous inquiétez pas - votre téléchargement a déjà commencé pour vous ;)",
     ],
 ];

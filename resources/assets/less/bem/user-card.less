@@ -4,15 +4,16 @@
 .user-card {
   @top: user-card;
   @avatar-border-radius: 6px;
-  @avatar-size: 60px;
-  @avatar-size--list: 40px;
   @background-color: @osu-colour-b4;
-  @background-overlay-fade--online: osu-hsla(@osu-colour-b5, 0.6);
-  @background-overlay-fade--offline: osu-hsla(@osu-colour-b5, 0.7);
+  @background-overlay-fade--online: hsla(var(--hsl-b5), 0.6);
+  @background-overlay-fade--offline: hsla(var(--hsl-b5), 0.7);
   @card-border-radius: 10px;
-  @card-item-spacing: 10px;
-  @flag-gutter: 6px;
   @fade-duration: 220ms;
+
+  --avatar-size: 60px;
+  --card-item-spacing: 10px;
+  --icon-gutter: 6px;
+  --status-icon-margin: 10px;
 
   display: inline-block;
   font-family: var(--font-default);
@@ -26,7 +27,15 @@
   overflow: hidden;
 
   &--list {
-    height: @avatar-size--list;
+    --avatar-size: 40px;
+
+    @media @narrow {
+      --card-item-spacing: 6px;
+      --icon-gutter: 4px;
+      --status-icon-margin: 0;
+    }
+
+    height: var(--avatar-size);
     border-radius: @avatar-border-radius;
   }
 
@@ -76,15 +85,10 @@
   }
 
   &__avatar-space {
-    width: @avatar-size;
-    height: @avatar-size;
+    width: var(--avatar-size);
+    height: var(--avatar-size);
     flex: none;
     position: relative;
-
-    .@{top}--list & {
-      width: @avatar-size--list;
-      height: @avatar-size--list;
-    }
   }
 
   &__avatar-spinner {
@@ -179,7 +183,7 @@
   }
 
   &__content {
-    padding: @card-item-spacing;
+    padding: var(--card-item-spacing);
 
     &--details {
       display: grid;
@@ -202,12 +206,12 @@
   &__details {
     display: grid;
     grid-template-rows: @user-card-icon-size 1fr;
-    margin-left: @card-item-spacing;
+    margin-left: var(--card-item-spacing);
 
     .@{top}--list & {
-      grid-gap: @card-item-spacing;
+      grid-gap: var(--card-item-spacing);
       grid-template-rows: unset;
-      grid-template-columns: repeat(3, min-content);
+      grid-template-columns: auto repeat(2, min-content);
     }
   }
 
@@ -230,7 +234,7 @@
     }
 
     & + & {
-      margin-left: @flag-gutter;
+      margin-left: var(--icon-gutter);
     }
 
     .user-cards--menu-active & {
@@ -275,7 +279,7 @@
         border-radius: 0 @card-border-radius @card-border-radius 0;
         background-color: transparent;
         width: 20px;
-        height: @avatar-size--list;
+        height: var(--avatar-size);
       }
     }
   }
@@ -283,6 +287,12 @@
   &__icons {
     display: flex;
     flex: none;
+
+    .@{top}--list &--card {
+      @media @narrow {
+        display: none;
+      }
+    }
 
     .@{top}--list & {
       align-items: center;
@@ -309,12 +319,12 @@
     .center-content();
     flex: none;
     // TODO: put in grid instead?
-    width: @avatar-size;
+    width: var(--avatar-size);
 
     .@{top}--list & {
       order: 1;
       width: unset;
-      margin: 0 10px;
+      margin: 0 var(--status-icon-margin);
     }
   }
 
@@ -331,7 +341,7 @@
   &__status-messages {
     display: flex;
     flex-direction: column;
-    margin-left: @card-item-spacing;
+    margin-left: var(--card-item-spacing);
 
     font-size: 14px;
     min-width: 0;
@@ -349,15 +359,13 @@
     display: flex;
     align-items: center;
 
-    height: @avatar-size;
+    height: var(--avatar-size);
     min-width: 0;
-
-    .@{top}--list & {
-      height: @avatar-size--list;
-    }
   }
 
   &__username {
+    .link-white();
+    .link-plain();
     pointer-events: auto;
   }
 

@@ -4,9 +4,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Báo cáo',
+        'title' => 'Báo cáo beatmap của :username?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Báo cáo',
-        'title' => 'Báo cáo bài viết của :username?',
+        'title' => 'Báo cáo bài đăng của :username?',
     ],
 
     'comment' => [
@@ -15,8 +20,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Báo cáo',
+        'title' => 'Báo cáo bài đăng của :username?',
     ],
 
     'scores' => [

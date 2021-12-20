@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Chơi bản nhạc tiếp theo tự động',
     ],
 
     'defaults' => [
@@ -18,8 +18,7 @@ return [
             'beatmapset_covers' => 'bìa beatmapset',
             'contest' => 'cuộc thi',
             'contests' => 'các cuộc thi',
-            'root' => '',
-            'store_orders' => '',
+            'root' => 'bảng điều khiển',
         ],
 
         'artists' => [
@@ -32,7 +31,7 @@ return [
 
         'help' => [
             'index' => 'mục lục',
-            'sitemap' => '',
+            'sitemap' => 'Sơ đồ trang web',
         ],
 
         'store' => [
@@ -47,64 +46,44 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => 'nhiều người',
             'show' => 'thông tin',
         ],
     ],
 
     'gallery' => [
         'close' => 'Đóng (Esc)',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'fullscreen' => 'Bật/tắt toàn màn hình',
+        'zoom' => 'Thu phóng',
+        'previous' => 'Trước (mũi tên trái)',
+        'next' => 'Tiếp theo (mũi tên phải)',
     ],
 
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'nghệ sĩ tiêu biểu',
-            'index' => 'danh sách',
-            'packs' => 'gói',
         ],
         'community' => [
             '_' => 'cộng đồng',
-            'chat' => 'chat',
-            'contests' => 'cuộc thi',
             'dev' => 'phát triển',
-            'forum-forums-index' => 'diễn đàn',
-            'getLive' => 'live stream',
-            'tournaments' => 'giải đấu',
         ],
         'help' => [
             '_' => 'trợ giúp',
-            'getAbuse' => '',
+            'getAbuse' => 'báo cáo lạm dụng',
             'getFaq' => 'faq',
             'getRules' => 'quy tắc',
             'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'trang chủ',
-            'changelog-index' => 'changelog',
-            'getDownload' => 'tải xuống',
-            'news-index' => 'tin tức',
-            'search' => 'tìm kiếm',
             'team' => 'team',
         ],
         'rankings' => [
             '_' => 'xếp hạng',
-            'charts' => 'tiêu điểm',
-            'country' => 'quốc gia',
-            'index' => 'performance',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
-            'score' => 'điểm',
         ],
         'store' => [
             '_' => 'cửa hàng',
-            'cart-show' => 'giỏ hàng',
-            'getListing' => 'danh sách',
-            'orders-index' => 'lịch sử đơn hàng',
         ],
     ],
 
@@ -136,7 +115,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Tham số yêu cầu không hợp lệ',
             'description' => '',
         ],
         '404' => [
@@ -156,7 +135,11 @@ return [
             'description' => "Xin lỗi, nhưng trang bạn yêu cầu không có ở đây!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Tham số yêu cầu không hợp lệ',
+            'description' => '',
+        ],
+        '429' => [
+            'error' => 'Vượt quá giới hạn truy cập',
             'description' => '',
         ],
         '500' => [
@@ -171,8 +154,8 @@ return [
             'error' => 'Đang bảo trì!',
             'description' => "Thông thường bảo trì sẽ tốn khoảng 5 giây đến 10 phút. Nếu chúng tôi vẫn chưa trở lại sau khoảng thời gian trên, truy cập :link để biết thêm thông tin.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -180,7 +163,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'đăng nhập / đăng kí',
 
         'login' => [
             'forgot' => "Quên mật khẩu",
@@ -204,7 +187,8 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Cài Đặt',
-            'friends' => 'Bạn Bè',
+            'follows' => 'Danh sách theo dõi',
+            'friends' => 'Bạn bè',
             'logout' => 'Đăng Xuất',
             'profile' => 'Trang Cá Nhân',
         ],

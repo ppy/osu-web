@@ -2,30 +2,34 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'header-v4';
-import { Img2x } from 'img2x';
-import { observer, Provider } from 'mobx-react';
+import Img2x from 'img2x';
+import { action, makeObservable, runInAction } from 'mobx';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
-import RootDataStore from 'stores/root-data-store';
-import ChatWorker from './chat-worker';
 import ConversationList from './conversation-list';
 import ConversationView from './conversation-view';
 import InputBox from './input-box';
 
-interface Props {
-  dataStore: RootDataStore;
-  worker: ChatWorker;
-}
-
 @observer
-export default class MainView extends React.Component<Props> {
+export default class MainView extends React.Component<Record<string, never>> {
+  constructor(props: Record<string, never>) {
+    super(props);
+
+    makeObservable(this);
+  }
+
+  @action
   componentDidMount() {
     $('html').addClass('osu-layout--mobile-app');
-    this.props.worker.startPolling();
+    core.dataStore.chatState.isChatMounted = true;
   }
 
   componentWillUnmount() {
     $('html').removeClass('osu-layout--mobile-app');
-    this.props.worker.stopPolling();
+    runInAction(() => {
+      core.dataStore.chatState.isChatMounted = false;
+    });
   }
 
   render(): React.ReactNode {
@@ -33,28 +37,26 @@ export default class MainView extends React.Component<Props> {
     return (
       <>
         <HeaderV4 theme='chat' />
-        <Provider dataStore={this.props.dataStore}>
-          {this.props.dataStore.channelStore.channels.size > 0 ? (
-            <div className='chat osu-page osu-page--chat'>
-              <div className='chat__sidebar'>
-                <ConversationList />
-              </div>
-              <div className='chat__conversation-area'>
-                <ConversationView />
-                <InputBox />
-              </div>
+        {core.dataStore.channelStore.channels.size > 0 ? (
+          <div className='chat osu-page osu-page--chat'>
+            <div className='chat__sidebar'>
+              <ConversationList />
             </div>
-          ) : (
-            <div className='chat osu-page osu-page--chat'>
-              <div className='chat__not-active'>
-                <Img2x src='/images/layout/chat/none-yet.png' alt='Art by Badou_Rammsteiner' title='Art by Badou_Rammsteiner' />
-                <div className='chat__title'>{osu.trans('chat.no-conversations.title')}</div>
-                <div className='chat__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
-                <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', {link: lazerLink})}} />
-              </div>
+            <div className='chat__conversation-area'>
+              <ConversationView />
+              <InputBox />
             </div>
-          )}
-        </Provider>
+          </div>
+        ) : (
+          <div className='chat osu-page osu-page--chat'>
+            <div className='chat__not-active'>
+              <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />
+              <div className='chat__title'>{osu.trans('chat.no-conversations.title')}</div>
+              <div className='chat__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
+              <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', {link: lazerLink})}} />
+            </div>
+          </div>
+        )}
       </>
     );
   }

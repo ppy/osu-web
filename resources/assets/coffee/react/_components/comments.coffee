@@ -11,6 +11,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, h2, span } from 'react-dom-factories'
 import { Spinner } from 'spinner'
+import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
 
@@ -24,9 +25,7 @@ export class Comments extends React.PureComponent
       comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
       pinnedComments = uiState.comments.pinnedCommentIds.map (id) -> store.comments.get(id)
 
-      div className: osu.classWithModifiers('comments', @props.modifiers),
-        div className: 'u-has-anchor u-has-anchor--no-event',
-          div(className: 'fragment-target', id: 'comments')
+      div className: classWithModifiers('comments', @props.modifiers), id: 'comments',
         h2 className: 'comments__title',
           osu.trans('comments.title')
           span className: 'comments__count', osu.formatNumber(uiState.comments.total)
@@ -45,7 +44,7 @@ export class Comments extends React.PureComponent
         div className: 'comments__items comments__items--toolbar',
           el CommentsSort,
             modifiers: @props.modifiers
-          div className: osu.classWithModifiers('sort', @props.modifiers),
+          div className: classWithModifiers('sort', @props.modifiers),
             div className: 'sort__items',
               @renderFollowToggle()
               @renderShowDeletedToggle()
@@ -54,7 +53,7 @@ export class Comments extends React.PureComponent
           div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
             @renderComments comments, false
 
-            el DeletedCommentsCount, { comments, showDeleted: uiState.comments.isShowDeleted, modifiers: ['top'] }
+            el DeletedCommentsCount, { comments, modifiers: ['top'] }
 
             el CommentShowMore,
               commentableType: @props.commentableType
@@ -70,14 +69,13 @@ export class Comments extends React.PureComponent
 
 
   renderComment: (comment, pinned = false) =>
-    return null if comment.isDeleted && !uiState.comments.isShowDeleted
+    return null if comment.isDeleted && !core.userPreferences.get('comments_show_deleted')
 
     el Comment,
       key: comment.id
       comment: comment
       depth: 0
       modifiers: @props.modifiers
-      showDeleted: uiState.comments.isShowDeleted
       expandReplies: if pinned then false else null
 
 
@@ -91,7 +89,7 @@ export class Comments extends React.PureComponent
       className: 'sort__item sort__item--button'
       onClick: @toggleShowDeleted
       span className: 'sort__item-icon',
-        span className: if uiState.comments.isShowDeleted then 'fas fa-check-square' else 'far fa-square'
+        span className: if core.userPreferences.get('comments_show_deleted') then 'fas fa-check-square' else 'far fa-square'
       osu.trans('common.buttons.show_deleted')
 
 
@@ -119,7 +117,7 @@ export class Comments extends React.PureComponent
 
 
   toggleShowDeleted: ->
-    $.publish 'comments:toggle-show-deleted'
+    core.userPreferences.set('comments_show_deleted', !core.userPreferences.get('comments_show_deleted'))
 
 
   toggleFollow: ->

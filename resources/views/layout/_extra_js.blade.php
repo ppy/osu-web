@@ -3,5 +3,5 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <script>
-    turbolinksReload.load('{{ unmix($src) }}')
+    osuCore.turbolinksReload.load('{{ unmix($src) }}')
 </script>

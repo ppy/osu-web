@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Η διαγραφή του post για τα μεταδεδομένα το beatmap δεν είναι επιτρεπτή.',
             'beatmapset_post_no_edit' => 'Η επεξεργασία του post για τα μεταδεδομένα το beatmap δεν είναι επιτρεπτή.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Η απάντησή σας περιέχει μόνο μία αναφορά.',
 
             'attributes' => [
@@ -161,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => '',
         'self' => "Δεν μπορείτε να αποκλέισετε τον εαυτό σας!",
     ],

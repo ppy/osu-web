@@ -4,13 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Kho hàng',
-    ],
-
     'cart' => [
         'checkout' => 'Thanh Toán',
-        'info' => '',
+        'info' => ':count_delimited sản phẩm trong giỏ ($:subtotal)|:count_delimited sản phẩm trong giỏ ($:subtotal)',
         'more_goodies' => 'Tôi muốn xem thêm nhiều mặt hàng nữa trước khi hoàn thành đơn hàng',
         'shipping_fees' => 'phí vận chuyển',
         'title' => 'Giỏ Hàng',
@@ -37,7 +33,7 @@ return [
         'delayed_shipping' => 'Hiện tại chúng tôi đang có một lượng đơn hàng rất lớn! Bạn vẫn có thể thoải mái đặt hàng, nhưng vui lòng đợi **thêm 1-2 tuần** trong khi chúng tôi bắt kịp với những đơn hàng hiện tại.',
         'old_cart' => 'Giỏ hàng của bạn đã hết hạn và đã được nạp lại, vui lòng thử lại sau.',
         'pay' => 'Thanh toán với Paypal',
-        'title_compact' => '',
+        'title_compact' => 'thanh toán',
 
         'has_pending' => [
             '_' => 'Bạn có thanh toán chưa hoàn thành, nhấp vào :link để xem.',
@@ -54,7 +50,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Vì bạn thanh toán bằng eCheck, hãy chờ thêm tối đa 10 ngày để thanh toán qua khỏi PayPal!',
-        'title_compact' => '',
+        'title_compact' => 'hóa đơn',
 
         'status' => [
             'processing' => [
@@ -69,11 +65,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Đã đặt hàng :date',
-
+        'cancel' => 'Huỷ đơn hàng',
+        'cancel_confirm' => 'Đơn hàng này sẽ bị hủy và giao dịch sẽ không được chấp nhận. Nhà cung cấp dịch vụ thanh toán có thể sẽ không hoàn tiền ngay. Bạn có chắc không?',
+        'cancel_not_allowed' => 'Đơn hàng không thể bị hủy lúc này.',
         'invoice' => 'Xem Hóa Đơn',
         'no_orders' => 'Không có đơn đặt hàng.',
+        'paid_on' => 'Đã đặt hàng :date',
         'resume' => 'Tiếp Tục Thanh Toán',
+        'shopify_expired' => 'Link thanh toán cho đơn hàng này đã hết hạn.',
 
         'item' => [
             'display_name' => [

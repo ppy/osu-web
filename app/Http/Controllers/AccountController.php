@@ -14,6 +14,7 @@ use App\Mail\UserPasswordUpdated;
 use App\Models\OAuth\Client;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotificationOption;
+use App\Transformers\CurrentUserTransformer;
 use Auth;
 use DB;
 use Mail;
@@ -29,7 +30,7 @@ class AccountController extends Controller
 
         $this->middleware(function ($request, $next) {
             if (Auth::check() && Auth::user()->isSilenced()) {
-                return abort(403);
+                return abort(403, osu_trans('authorization.silenced'));
             }
 
             return $next($request);
@@ -63,30 +64,34 @@ class AccountController extends Controller
 
     public function avatar()
     {
+        $user = auth()->user();
+
         try {
-            Auth::user()->setAvatar(Request::file('avatar_file'));
+            $user->setAvatar(Request::file('avatar_file'));
         } catch (ImageProcessorException $e) {
             return error_popup($e->getMessage());
         }
 
-        return Auth::user()->defaultJson();
+        return json_item($user, new CurrentUserTransformer());
     }
 
     public function cover()
     {
-        if (Request::hasFile('cover_file') && !Auth::user()->osu_subscriber) {
-            return error_popup(trans('errors.supporter_only'));
+        $user = auth()->user();
+
+        if (Request::hasFile('cover_file') && !$user->osu_subscriber) {
+            return error_popup(osu_trans('errors.supporter_only'));
         }
 
         try {
-            Auth::user()
+            $user
                 ->profileCustomization()
                 ->setCover(Request::input('cover_id'), Request::file('cover_file'));
         } catch (ImageProcessorException $e) {
             return error_popup($e->getMessage());
         }
 
-        return Auth::user()->defaultJson();
+        return json_item($user, new CurrentUserTransformer());
     }
 
     public function edit()
@@ -125,7 +130,6 @@ class AccountController extends Controller
         $params = get_params(request()->all(), 'user', [
             'user_from:string',
             'user_interests:string',
-            'user_msnm:string',
             'user_occ:string',
             'user_sig:string',
             'user_twitter:string',
@@ -139,7 +143,7 @@ class AccountController extends Controller
             return $this->errorResponse($user, $e);
         }
 
-        return $user->defaultJson();
+        return json_item($user, new CurrentUserTransformer());
     }
 
     public function updateEmail()
@@ -207,8 +211,11 @@ class AccountController extends Controller
             'audio_autoplay:bool',
             'audio_muted:bool',
             'audio_volume:float',
+            'beatmapset_card_size:string',
             'beatmapset_download:string',
+            'beatmapset_show_nsfw:bool',
             'beatmapset_title_show_original:bool',
+            'comments_show_deleted:bool',
             'comments_sort:string',
             'extras_order:string[]',
             'forum_posts_show_deleted:bool',
@@ -230,7 +237,7 @@ class AccountController extends Controller
             return $this->errorResponse($user, $e);
         }
 
-        return $user->defaultJson();
+        return json_item($user, new CurrentUserTransformer());
     }
 
     public function updatePassword()
@@ -242,6 +249,10 @@ class AccountController extends Controller
             if (present($user->user_email)) {
                 Mail::to($user)->send(new UserPasswordUpdated($user));
             }
+
+            $user->resetSessions();
+            $this->login($user);
+            UserVerification::fromCurrentRequest()->markVerified();
 
             return response([], 204);
         } else {

@@ -13,7 +13,16 @@ return [
     ],
 
     'scopes' => [
+        'bot' => 'Csevegőrobotként működjön.',
         'identify' => 'Azonosíthat téged és olvashat a nyilvános profilodból.',
+
+        'chat' => [
+            'write' => 'Küldjön üzeneteket az Ön nevében.',
+        ],
+
+        'forum' => [
+            'write' => 'Csak a saját nevedben hozz létre és szerkessz fórum hozzászólásokat.',
+        ],
 
         'friends' => [
             'read' => 'Lásd, hogy kit követsz.',

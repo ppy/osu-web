@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - ¡El ritmo está a solo un *clic* de distancia! Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
+        'page_description' => 'osu! - ¡El ritmo está a un solo *clic* de distancia! Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
     ],
 
     'header' => [
@@ -19,7 +19,6 @@ return [
             'contest' => 'concurso',
             'contests' => 'concursos',
             'root' => 'consola',
-            'store_orders' => 'administrador de tienda',
         ],
 
         'artists' => [
@@ -47,13 +46,14 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'multiplayer' => 'multijugador',
             'show' => 'información',
         ],
     ],
 
     'gallery' => [
         'close' => 'Cerrar (Esc)',
-        'fullscreen' => 'Activar/Desactivar pantalla completa',
+        'fullscreen' => 'Activar o desactivar pantalla completa',
         'zoom' => 'Zoom Acercar/Alejar',
         'previous' => 'Anterior (flecha izquierda)',
         'next' => 'Siguiente (flecha derecha)',
@@ -62,49 +62,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'mapas',
-            'artists' => 'artistas destacados',
-            'index' => 'listado',
-            'packs' => 'paquetes',
         ],
         'community' => [
             '_' => 'comunidad',
-            'chat' => 'chat',
-            'contests' => 'concursos',
             'dev' => 'desarrollo',
-            'forum-forums-index' => 'foros',
-            'getLive' => 'en vivo',
-            'tournaments' => 'torneos',
         ],
         'help' => [
             '_' => 'ayuda',
-            'getAbuse' => '',
+            'getAbuse' => 'notificar abuso',
             'getFaq' => 'preguntas frecuentes',
             'getRules' => 'reglas',
             'getSupport' => 'no, en serio, ¡necesito ayuda!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'inicio',
-            'changelog-index' => 'listado de cambios',
-            'getDownload' => 'descargar',
-            'news-index' => 'novedades',
-            'search' => 'buscar',
             'team' => 'equipo',
         ],
         'rankings' => [
             '_' => 'clasificaciones',
-            'charts' => 'destacados',
-            'country' => 'país',
-            'index' => 'rendimiento',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multijugador',
-            'score' => 'puntuación',
         ],
         'store' => [
             '_' => 'tienda',
-            'cart-show' => 'carrito',
-            'getListing' => 'listado',
-            'orders-index' => 'historial de pedidos',
         ],
     ],
 
@@ -121,7 +100,7 @@ return [
             'faq' => 'Preguntas frecuentes',
             'forum' => 'Foros de la comunidad',
             'livestreams' => 'Transmisiones en vivo',
-            'report' => 'Reportar un error',
+            'report' => 'Informar de un problema',
             'wiki' => 'Wiki',
         ],
         'legal' => [
@@ -159,6 +138,10 @@ return [
             'error' => 'Parámetro de solicitud no válido',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Se ha superado el límite de frecuencia',
+            'description' => '',
+        ],
         '500' => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
             'description' => "Somos notificados automáticamente de cada error.",
@@ -171,8 +154,8 @@ return [
             'error' => '¡Fuera de servicio por mantenimiento!',
             'description' => "El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si continúa pasado ese tiempo, ve :link para más información.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -204,6 +187,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Configuración',
+            'follows' => 'Listas de seguimiento',
             'friends' => 'Amigos',
             'logout' => 'Cerrar sesión',
             'profile' => 'Mi perfil',

@@ -4,12 +4,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '通知は全て既読です！',
-    'delete' => '',
+    'all_read' => '通知を全て既読にする！',
+    'delete' => ':type を削除',
+    'loading' => '未読通知を読み込み中...',
     'mark_read' => '消去 :type',
     'none' => '通知なし',
     'see_all' => 'すべての通知を見る',
-    'see_channel' => '',
+    'see_channel' => 'チャットに行く',
+    'verifying' => '通知を表示するには、セッションを確認してください。',
 
     'filters' => [
         '_' => '全て',
@@ -24,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'ビートマップ',
+
+            'beatmap_owner_change' => [
+                '_' => 'ゲスト難易度',
+                'beatmap_owner_change' => 'ビートマップ":title"の難易度":beatmap"の所有者になりました',
+                'beatmap_owner_change_compact' => '難易度":beatmap”の所有者になりました',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'ビートマップディスカッション',
@@ -133,6 +141,19 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '新しいビートマップ',
+
+                'user_beatmapset_new' => ':username による新しいビートマップ「:title」',
+                'user_beatmapset_new_compact' => '新しいビートマップ「:title」',
+                'user_beatmapset_new_group' => ':username の新しいビートマップ',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'メダル',
 
@@ -147,6 +168,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'ビートマップ":title"のゲストになりました',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'ディスカッション「:title」はロックされています',
                 'beatmapset_discussion_post_new' => 'ディスカッション「:title」に新しい更新があります',
@@ -200,6 +225,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':usernameが新しいメダル「:title」をアンロックしました！',
                 'user_achievement_unlock_self' => '新しいメダル「:title」をアンロックしました！',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':usernameがビートマップを作成しました',
             ],
         ],
     ],

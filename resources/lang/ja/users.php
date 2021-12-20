@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'ゲームモードによるメンバー',
     ],
 
     'force_reactivation' => [
@@ -89,7 +89,7 @@ return [
         'forgot' => 'パスワードを忘れましたか？',
         'info' => 'ログインして続行してください',
         'invalid_captcha' => 'Captcha が無効です。ページを更新して再度お試し下さい。',
-        'locked_ip' => 'あなたのIPアドレスはロックされています。数分後もう一度お試しください。',
+        'locked_ip' => 'あなたのIPアドレスは規制されています。数分後もう一度お試しください。',
         'password' => 'パスワード',
         'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
         'remember' => 'ログイン状態を保持する',
@@ -127,7 +127,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => '不正行為/チート',
+            'cheating' => 'チート',
+            'multiple_accounts' => '複数のアカウントを管理する',
             'insults' => 'あなた/他の人への侮辱',
             'spam' => 'スパム',
             'unwanted_content' => '不適切なコンテンツへのリンク',
@@ -154,6 +155,10 @@ return [
         'plays_with' => '使用デバイス :devices',
         'title' => ":usernameのプロフィール",
 
+        'comments_count' => [
+            '_' => '投稿 :link',
+            'count' => ':count_delimited コメント',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'カバー画像の変更',
@@ -176,7 +181,7 @@ return [
 
             'default_playmode' => [
                 'is_default_tooltip' => 'メインのゲームモード',
-                'set' => ':modeをメインのゲームモードに設定しました',
+                'set' => ':modeをメインのゲームモードに設定する',
             ],
         ],
 
@@ -202,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Lovedされたビートマップ',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approvedのビートマップ',
+                'pending' => [
+                    'title' => 'Pendingビートマップ',
                 ],
-                'unranked' => [
-                    'title' => '保留中のビートマップ',
+                'ranked' => [
+                    'title' => 'Ranked & Approvedのビートマップ',
                 ],
             ],
             'discussions' => [
@@ -296,6 +301,9 @@ return [
                 'recent' => '最新',
                 'title' => 'メダル',
             ],
+            'multiplayer' => [
+                'title' => 'マルチプレイ ゲーム',
+            ],
             'posts' => [
                 'title' => '投稿',
                 'title_longer' => '最近の投稿',
@@ -349,12 +357,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => '趣味',
             'location' => '現在地',
             'occupation' => '職業',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'ウェブサイト',
         ],
         'not_found' => [
@@ -399,11 +406,16 @@ return [
             'total_hits' => '合計ヒット数',
             'total_score' => '合計スコア',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approvedのビートマップ',
-            'loved_beatmapset_count' => 'Lovedされたビートマップ',
-            'unranked_beatmapset_count' => '保留中のビートマップ',
             'graveyard_beatmapset_count' => 'Graveyardのビートマップ',
+            'loved_beatmapset_count' => 'Lovedされたビートマップ',
+            'pending_beatmapset_count' => 'Pendingビートマップ',
+            'ranked_beatmapset_count' => 'Ranked & Approvedのビートマップ',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'あなたは現在サイレンス中です。',
+        'message' => 'いくつかのアクションが利用できない可能性があります。',
     ],
 
     'status' => [

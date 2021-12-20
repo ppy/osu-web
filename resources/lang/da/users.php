@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Medlemmer efter spiltilstand',
     ],
 
     'force_reactivation' => [
@@ -88,7 +88,7 @@ return [
         'failed' => 'Ugyldigt login',
         'forgot' => 'Glemt din adgangskode?',
         'info' => 'Log ind for at fortsætte',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'For mange mislykkede loginforsøg. Udfyld venligst captcha og prøv igen. (Opdater side, hvis captcha ikke er synlig)',
         'locked_ip' => 'din IP-adresse er låst. Vent venligst et par minutter.',
         'password' => 'Adgangskode',
         'register' => "Har du ikke en osu! konto? Opret en ny én!",
@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Uærligt spil / Snyd',
+            'multiple_accounts' => '',
             'insults' => 'Fornærmede mig / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Sender links med upassende indhold',
@@ -154,6 +155,10 @@ return [
         'plays_with' => 'Spiller med :devices',
         'title' => ":username´s profil",
 
+        'comments_count' => [
+            '_' => 'Slået op :link',
+            'count' => ':count_delimited kommentar|:count_delimited kommentarer',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Skift Coverbillede',
@@ -202,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Elskede beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Godkendte Beatmaps',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Afventende Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Godkendte Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -296,6 +301,9 @@ return [
                 'recent' => 'Seneste',
                 'title' => 'Medaljer',
             ],
+            'multiplayer' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => 'Opslag',
                 'title_longer' => 'Seneste Opslag',
@@ -308,7 +316,7 @@ return [
                 'download_replay' => 'Download Replay',
                 'not_ranked' => 'Kun rangerede beatmaps giver pp.',
                 'pp_weight' => 'vejede: :percentage',
-                'view_details' => '',
+                'view_details' => 'Vis detaljer',
                 'title' => 'Ranks',
 
                 'best' => [
@@ -353,8 +361,7 @@ return [
             'interests' => 'Interesser',
             'location' => 'Nuværende Position',
             'occupation' => 'Stilling',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Hjemmeside',
         ],
         'not_found' => [
@@ -399,11 +406,16 @@ return [
             'total_hits' => 'Totale Hits',
             'total_score' => 'Total Score',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Godkendte Beatmaps',
-            'loved_beatmapset_count' => 'Elskede Beatmaps',
-            'unranked_beatmapset_count' => 'Afventende Beatmaps',
             'graveyard_beatmapset_count' => 'Beatmaps på Kirkegården',
+            'loved_beatmapset_count' => 'Elskede Beatmaps',
+            'pending_beatmapset_count' => 'Afventende Beatmaps',
+            'ranked_beatmapset_count' => 'Ranked & Godkendte Beatmaps',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Du er i øjeblikket gjort tavs.',
+        'message' => 'Nogle handlinger kan være utilgængelige.',
     ],
 
     'status' => [

@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'locație curentă',
                 'user_interests' => 'interese',
-                'user_msnm' => '',
                 'user_occ' => 'ocupație',
                 'user_twitter' => '',
                 'user_website' => 'site web',
@@ -57,11 +56,13 @@ return [
 
         'options' => [
             '_' => 'opțiuni de livrare',
+            'beatmap_owner_change' => 'dificultatea oaspeţilor',
             'beatmapset:modding' => 'modatul de beatmap',
             'channel_message' => 'mesaje chat private',
             'comment_new' => 'comentarii noi',
             'forum_topic_reply' => 'răspuns topic',
             'mail' => 'mail',
+            'mapping' => 'cartografiere beatmap',
             'push' => 'push',
             'user_achievement_unlock' => 'medalie de utilizator deblocată',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'ascunde avertismente pentru conținut explicit în beatmaps',
+        'beatmapset_title_show_original' => 'arată metadatele beatmap în limba originală',
         'title' => 'Opțiuni',
 
         'beatmapset_download' => [
             '_' => 'tip implicit de descărcare de beatmap',
             'all' => 'cu video dacă e disponibil',
-            'no_video' => 'fără video',
             'direct' => 'deschis în osu!direct',
+            'no_video' => 'fără video',
         ],
-
-        'beatmapset_title_show_original' => 'arată metadatele beatmap în limba originală',
     ],
 
     'playstyles' => [

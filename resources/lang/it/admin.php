@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Rigenera',
-            'regenerating' => 'Rigenerando...',
-            'remove' => 'Rimuovi',
-            'removing' => 'Rimuovendo...',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
             'title' => '',
         ],
         'show' => [
             'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'attivare',
-                'activate_confirm' => 'attivare il modding v2 per questa mappa?',
-                'active' => 'attivo',
-                'inactive' => 'inattivo',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Elimina',
+                'delete' => '',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Nessuna cover impostata',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Salva',
-                    'update' => 'Aggiorna',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Lista cover del forum',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Cover di default del topic',
-                    'main' => 'Cover del forum',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,7 +50,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Visualizzatore Log',
+            'title' => '',
         ],
     ],
 
@@ -58,25 +58,16 @@ return [
         'root' => [
             'sections' => [
                 'beatmapsets' => '',
-                'forum' => 'Forum',
-                'general' => 'Generale',
-                'store' => 'Negozio',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Elenco degli Ordini',
+                'forum' => '',
+                'general' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Questo utente è attualmente ristretto.',
-            'message' => '(solo gli amministratori possono vedere questo)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

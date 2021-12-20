@@ -4,13 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Varasto',
-    ],
-
     'cart' => [
         'checkout' => 'Kassa',
-        'info' => '',
+        'info' => ':count_delimited tuote ostoskorissa ($:subtotal)|:count_delimited tuotteet ostoskorissa ($:subtotal)',
         'more_goodies' => 'Tarkastelisin vielä muita tuotteita ennen tilauksen tekemistä',
         'shipping_fees' => 'toimituskulut',
         'title' => 'Ostoskori',
@@ -37,7 +33,7 @@ return [
         'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
         'old_cart' => 'Korisi näyttää olevan vanhentunut ja on ladattu uudestaan, yritä uudelleen.',
         'pay' => 'Maksa Paypalilla',
-        'title_compact' => '',
+        'title_compact' => 'kassa',
 
         'has_pending' => [
             '_' => 'Sinulla on keskeneräisiä ostoksia, klikkaa :link nähdäksesi ne.',
@@ -54,7 +50,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Koska maksusi oli eCheck, anna maksimissaan 10 päivää että maksu pääsee PayPalin läpi!',
-        'title_compact' => '',
+        'title_compact' => 'lasku',
 
         'status' => [
             'processing' => [
@@ -69,11 +65,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Tilaus laitettu :date',
-
+        'cancel' => 'Peruuta tilaus',
+        'cancel_confirm' => 'Tämä tilaus peruutetaan ja maksua ei hyväksytä siitä. Maksupalveluntarjoaja ei ehkä vapauta varattuja varoja välittömästi. Oletko varma?',
+        'cancel_not_allowed' => 'Tätä tilausta ei voi peruuttaa tällä hetkellä.',
         'invoice' => 'Näytä lasku',
         'no_orders' => 'Ei tilauksia katsottavissa.',
+        'paid_on' => 'Tilaus laitettu :date',
         'resume' => 'Jatka Kassalle',
+        'shopify_expired' => 'Tämän tilauksen kassalinkki on vanhentunut.',
 
         'item' => [
             'display_name' => [

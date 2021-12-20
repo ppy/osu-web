@@ -6,8 +6,8 @@
 return [
     '_' => 'Sorter efter',
 
-    'all' => '',
-    'friends' => '',
+    'all' => 'Alle',
+    'friends' => 'Venner',
     'last_visit' => 'Senest aktive',
     'new' => 'Seneste',
     'old' => 'Gammel',
@@ -15,8 +15,29 @@ return [
     'top' => 'Top',
     'username' => 'Brugernavn',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
+    'forum_posts' => [
+        'created' => 'Oprettelsestid',
+        'relevance' => 'Relevans',
+    ],
+
     'forum_topics' => [
-        'new' => 'Seneste svar',
         'feature_votes' => 'Stjerne prioritet',
+        'new' => 'Seneste svar',
+    ],
+
+    'users' => [
+        'relevance' => 'Relevans',
+        'username' => 'Navn',
     ],
 ];

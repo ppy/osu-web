@@ -7,12 +7,12 @@ import { CommentsManager } from 'comments-manager';
 import NewsPostJson from 'interfaces/news-post-json';
 import NewsSidebarMetaJson from 'interfaces/news-sidebar-meta-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import PostItem from 'news-index/post-item';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   container: HTMLElement;
@@ -20,14 +20,14 @@ interface Props {
   sidebarMeta: NewsSidebarMetaJson;
 }
 
-function NavPost({ post, subtitle, modifiers }: { modifiers: string[]; post?: NewsPostJson; subtitle: string; }) {
+function NavPost({ post, subtitle, modifiers }: { modifiers: string[]; post?: NewsPostJson; subtitle: string }) {
   if (post == null) {
     return null;
   }
 
   return (
     <a
-      className={osu.classWithModifiers('page-nav-fancy', modifiers)}
+      className={classWithModifiers('page-nav-fancy', modifiers)}
       href={route('news.show', { news: post.slug })}
       style={{ backgroundImage: osu.urlPresence(post.first_image) }}
     >
@@ -53,29 +53,29 @@ export default class Main extends React.Component<Props> {
     return (
       <>
         <NewsHeader
-          section='show'
           post={this.props.post}
+          section='show'
           title={osu.trans('news.show.title.info')}
         />
 
         <div className='osu-page osu-page--wiki'>
           <div className='wiki-page'>
             <div className='wiki-page__toc'>
-              <NewsSidebar data={this.props.sidebarMeta} currentPost={this.props.post} />
+              <NewsSidebar currentPost={this.props.post} data={this.props.sidebarMeta} />
             </div>
 
             <div className='wiki-page__content'>
               <div className='news-show'>
-                <PostItem post={this.props.post} modifiers={['show']} />
+                <PostItem modifiers={['show']} post={this.props.post} />
 
                 <div className='news-show__info'>
-                    <h1 className='news-show__title'>{this.props.post.title}</h1>
-                    <p className='news-show__author'>
-                      <StringWithComponent
-                        pattern={osu.trans('news.show.by')}
-                        mappings={{ ':user': <strong key='author'>{this.props.post.author}</strong> }}
-                      />
-                    </p>
+                  <h1 className='news-show__title'>{this.props.post.title}</h1>
+                  <p className='news-show__author'>
+                    <StringWithComponent
+                      mappings={{ user: <strong>{this.props.post.author}</strong> }}
+                      pattern={osu.trans('news.show.by')}
+                    />
+                  </p>
                 </div>
 
                 <div className='js-audio--group' dangerouslySetInnerHTML={{ __html: content }} />
@@ -88,8 +88,8 @@ export default class Main extends React.Component<Props> {
           </div>
 
           <CommentsManager
-            commentableType='news_post'
             commentableId={this.props.post.id}
+            commentableType='news_post'
             component={Comments}
             componentProps={{
               modifiers: ['changelog'],
@@ -114,8 +114,8 @@ export default class Main extends React.Component<Props> {
                 'data-method': 'put',
                 'data-reload-on-success': 1,
                 'data-remote': true,
-                'data-url': route('news.update', {news: this.props.post.id}),
-                'type': 'button',
+                'data-url': route('news.update', { news: this.props.post.id }),
+                type: 'button',
               },
               text: osu.trans('news.update.button'),
             },
@@ -135,15 +135,26 @@ export default class Main extends React.Component<Props> {
     const contentHTML = document.createElement('div');
     contentHTML.innerHTML = content;
 
-    const firstImage = contentHTML.querySelector('img');
-    if (firstImage != null && firstImage.parentElement != null) {
-      firstImage.parentElement.remove();
+    const firstImageUrl = this.props.post.first_image;
+
+    if (firstImageUrl != null) {
+      const firstImage = contentHTML.querySelector(`img[src="${CSS.escape(firstImageUrl)}"]`);
+
+      if (firstImage != null) {
+        const firstImageParent = firstImage.parentElement;
+
+        if (firstImageParent?.children.length === 1) {
+          firstImageParent.remove();
+        } else {
+          firstImage.remove();
+        }
+      }
     }
 
     content = contentHTML.innerHTML;
 
     return { content };
-  }
+  };
 
   private renderNav = () => {
     if (this.props.post.navigation == null) {
@@ -155,9 +166,9 @@ export default class Main extends React.Component<Props> {
 
     return (
       <>
-        <NavPost post={newerPost} modifiers={['next']} subtitle={osu.trans('news.show.nav.newer')} />
-        <NavPost post={olderPost} modifiers={['prev']} subtitle={osu.trans('news.show.nav.older')} />
+        <NavPost modifiers={['next']} post={newerPost} subtitle={osu.trans('news.show.nav.newer')} />
+        <NavPost modifiers={['prev']} post={olderPost} subtitle={osu.trans('news.show.nav.older')} />
       </>
     );
-  }
+  };
 }

@@ -32,9 +32,9 @@ return [
     ],
 
     'support' => [
-        'heading' => 'Ti è piaciuto questo aggiornamento?',
+        'heading' => 'Ti piace questo aggiornamento?',
         'text_1' => 'Sostieni gli sviluppi futuri di osu! e :link oggi!',
         'text_1_link' => 'diventa un osu!supporter',
-        'text_2' => 'Non solo aiuterai a velocizzare lo sviluppo, ma riceverai anche nuove funzionalità e opzioni!',
+        'text_2' => 'Non solo aiuterai a velocizzare lo sviluppo, ma riceverai anche funzionalità e personalizzazioni extra!',
     ],
 ];

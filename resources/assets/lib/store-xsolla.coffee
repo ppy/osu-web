@@ -2,6 +2,8 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
+import core from 'osu-core-singleton'
+import { showLoadingOverlay } from 'utils/loading-overlay'
 
 export class StoreXsolla
   @promiseInit: (orderNumber) ->
@@ -15,9 +17,7 @@ export class StoreXsolla
 
 
   @fetchScript: ->
-    new Promise (resolve, reject) ->
-      loading = window.turbolinksReload.load 'https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js', resolve
-      resolve() unless loading
+    core.turbolinksReload.load('https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js') ? Promise.resolve()
 
 
   @fetchToken: (orderNumber) ->
@@ -44,6 +44,6 @@ export class StoreXsolla
 
     XPayStationWidget.on XPayStationWidget.eventTypes.CLOSE, ->
       if done
-        LoadingOverlay.show()
-        LoadingOverlay.show.flush()
+        showLoadingOverlay()
+        showLoadingOverlay.flush()
         window.location = route('payments.xsolla.completed', 'foreignInvoice': orderNumber)

@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BigButton } from 'big-button';
-import { action } from 'mobx';
+import BigButton from 'big-button';
+import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Modal } from 'modal';
 import { ClientDetails } from 'oauth/client-details';
@@ -16,16 +16,22 @@ const uiState = core.dataStore.uiState;
 
 @observer
 export class OwnClients extends React.Component {
+  constructor(props: Record<string, never>) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   @action
   handleModalClose = () => {
     uiState.account.client = null;
     uiState.account.newClientVisible = false;
-  }
+  };
 
   @action
   handleNewClientClicked = () => {
     uiState.account.newClientVisible = true;
-  }
+  };
 
   render() {
     return (
@@ -33,10 +39,10 @@ export class OwnClients extends React.Component {
         <div className='oauth-clients'>
           {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
         </div>
-        <div id='new-oauth-application' className='fragment-target' />
         <BigButton
-          icon={'fas fa-plus'}
+          icon='fas fa-plus'
           props={{
+            id: 'new-oauth-application',
             onClick: this.handleNewClientClicked,
           }}
           text={osu.trans('oauth.own_clients.new')}
@@ -48,13 +54,11 @@ export class OwnClients extends React.Component {
   }
 
   renderClients() {
-    return [...store.clients.values()].map((client) => {
-      return (
-        <div className='oauth-clients__client' key={client.id}>
-          <OwnClient client={client} />
-        </div>
-      );
-    });
+    return [...store.clients.values()].map((client) => (
+      <div key={client.id} className='oauth-clients__client'>
+        <OwnClient client={client} />
+      </div>
+    ));
   }
 
   renderEmpty() {
@@ -72,7 +76,7 @@ export class OwnClients extends React.Component {
     }
 
     return (
-      <Modal visible={true} onClose={this.handleModalClose}>
+      <Modal onClose={this.handleModalClose} visible>
         {component}
       </Modal>
     );

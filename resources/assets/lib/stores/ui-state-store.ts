@@ -3,7 +3,7 @@
 
 import { CommentBundleJson } from 'interfaces/comment-json';
 import { Dictionary, orderBy } from 'lodash';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { Comment, CommentSort } from 'models/comment';
 import { OwnClient } from 'models/oauth/own-client';
 import CommentStore from 'stores/comment-store';
@@ -17,7 +17,6 @@ interface AccountUIState {
 interface CommentsUIState {
   currentSort: CommentSort;
   hasMoreComments: Dictionary<boolean>;
-  isShowDeleted: boolean;
   loadingFollow: boolean | null;
   loadingSort: CommentSort | null;
   pinnedCommentIds: number[];
@@ -30,7 +29,6 @@ interface CommentsUIState {
 const defaultCommentsUIState: CommentsUIState = {
   currentSort: 'new',
   hasMoreComments: {},
-  isShowDeleted: false,
   loadingFollow: null,
   loadingSort: null,
   pinnedCommentIds: [],
@@ -53,6 +51,7 @@ export default class UIStateStore {
   private orderedCommentsByParentId: Dictionary<Comment[]> = {};
 
   constructor(protected commentStore: CommentStore) {
+    makeObservable(this);
   }
 
   exportCommentsUIState() {
@@ -94,6 +93,11 @@ export default class UIStateStore {
   }
 
   @action
+  updateFromCommentUpdated(commentBundle: CommentBundleJson) {
+    this.updatePinnedCommentIds(commentBundle);
+  }
+
+  @action
   updateFromCommentsAdded(commentBundle: CommentBundleJson) {
     this.comments.hasMoreComments[commentBundle.has_more_id] = commentBundle.has_more;
     if (commentBundle.top_level_count && commentBundle.total) {
@@ -128,11 +132,6 @@ export default class UIStateStore {
       this.populateOrderedCommentsForParentId(parentId);
       this.orderedCommentsByParentId[parentId].unshift(comment);
     }
-  }
-
-  @action
-  updateFromCommentUpdated(commentBundle: CommentBundleJson) {
-    this.updatePinnedCommentIds(commentBundle);
   }
 
   private orderComments(comments: Comment[]) {

@@ -12,16 +12,17 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'дазволіць кудосу',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Старонка бітмапы',
         'delete' => 'выдаліць',
         'deleted' => 'Выдалена :editor а :delete_time.',
         'deny_kudosu' => 'забараніць кудосу',
         'edit' => 'рэдагаваць',
         'edited' => 'Апошняе рэдагаванне :editor а :update_time.',
+        'guest' => 'Cкладанасць госця :user',
         'kudosu_denied' => 'Адмоўлена ў атрыманні кудосу.',
         'message_placeholder_deleted_beatmap' => 'Гэтая цяжкасць была выдалена і абмяркоўваць у ёй больш нельга.',
         'message_placeholder_locked' => 'Абмеркаванні для гэтай бітмапы былі адключаныя.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_silenced' => "Нельга размясціць дыскусію ў адключаным рэжыме.",
         'message_type_select' => 'Выбраць тып каментарыя',
         'reply_notice' => 'Каб адказаць, націсніце «Enter».',
         'reply_placeholder' => 'Напішыце свой адказ тут',
@@ -61,7 +62,7 @@ return [
         'message_placeholder' => [
             'general' => 'Каб апублікаваць у агульных, напішыце тут (:version)',
             'generalAll' => 'Каб апублікаваць у агульных, напішыце тут (Усе цяжкасці)',
-            'review' => '',
+            'review' => 'Націсніце тут, каб апублікаваць агляд',
             'timeline' => 'Каб размясціць у шкале часу, напішыце тут (:version)',
         ],
 
@@ -79,7 +80,7 @@ return [
         'mode' => [
             'events' => 'Гісторыя',
             'general' => 'Агульнае :scope',
-            'reviews' => '',
+            'reviews' => 'Водгукі',
             'timeline' => 'Шкала часу',
             'scopes' => [
                 'general' => 'Гэтая цяжкасць',
@@ -96,22 +97,22 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => 'Новы водгук',
             'embed' => [
-                'delete' => '',
-                'missing' => '',
-                'unlink' => '',
-                'unsaved' => '',
+                'delete' => 'Выдаліць',
+                'missing' => '[ДЫСКУСІЯ ВЫДАЛЕНА]',
+                'unlink' => 'Выдаліць праблему',
+                'unsaved' => 'Незахавана',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => 'Паведамленні ў раздзеле "Усе цяжкасці" не могуць быць адзначаны часам.',
+                    'diff' => 'Калі гэты :type пачынаецца з пазнакі часу, яна будзе паказана ў часовай шкале.',
                 ],
             ],
             'insert-block' => [
-                'paragraph' => '',
-                'praise' => '',
-                'problem' => '',
-                'suggestion' => '',
+                'paragraph' => 'уставіць абзац',
+                'praise' => 'уставіць пахвалу',
+                'problem' => 'уставіць праблему',
+                'suggestion' => 'ўставіць прапанову',
             ],
         ],
 
@@ -145,12 +146,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Галасоў "супраць" яшчэ няма',
+                'up' => 'Галасоў "за" яшчэ няма',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Апошнія галасы супраць',
+                'up' => 'Апошнія галасы за',
             ],
         ],
     ],
@@ -182,22 +183,23 @@ return [
         'disqualify' => 'Дыскваліфікаваць',
         'incorrect_state' => 'Узнікла невядомая памылка, паспрабуйце перазагрузіць старонку.',
         'love' => 'Любімае',
+        'love_choose' => 'Выберыце цяжкасць для прысваення статусу любімага',
         'love_confirm' => 'Адзначыць гэту бітмапу як любімую?',
         'nominate' => 'Намінаваць',
         'nominate_confirm' => 'Намінаваць гэту бітмапу?',
         'nominated_by' => 'намінавана :users',
-        'not_enough_hype' => "",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'not_enough_hype' => "Не хапае шуміхі.",
+        'remove_from_loved' => 'Выдаліць з любімых',
+        'remove_from_loved_prompt' => 'Прычына выдалення з любімых:',
         'required_text' => 'Намінацыі: :current/:required',
         'reset_message_deleted' => 'выдалена',
         'title' => 'Стан намінацыі',
         'unresolved_issues' => 'Усё яшчэ ёсць нявырашаныя праблемы, якія трэбы вырашыць у першую чаргу.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Гэтая карта cможа маць рэйтынг :date, калі праблем не знойдзена. Гэта #:position у :queue.',
+            'queue' => 'чаргу ў рэйтынг',
+            'soon' => 'хутка',
         ],
 
         'reset_at' => [
@@ -220,14 +222,15 @@ return [
             'not-found' => 'няма вынікаў',
             'not-found-quote' => '... няма, нічога не знойдзена.',
             'filters' => [
+                'extra' => 'дадаткова',
                 'general' => 'Агульнае',
-                'mode' => 'Рэжым',
-                'status' => 'Катэгорыі',
                 'genre' => 'Жанр',
                 'language' => 'Мова',
-                'extra' => 'дадаткова',
-                'rank' => 'Рэйтынг',
+                'mode' => 'Рэжым',
+                'nsfw' => 'Непрыстойны змест',
                 'played' => 'Згуляна',
+                'rank' => 'Рэйтынг',
+                'status' => 'Катэгорыі',
             ],
             'sorting' => [
                 'title' => 'Назва',
@@ -248,11 +251,13 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Рэкамендавана цяжкасць',
         'converts' => 'Уключыць канвертаваныя бітмапы',
+        'featured_artists' => 'Ліцэнзаваныя мастакі',
+        'follows' => 'Падпісаныя маперы',
+        'recommended' => 'Рэкамендавана цяжкасць',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Усе',
         'any' => 'Усе',
         'osu' => '',
         'taiko' => '',
@@ -282,10 +287,10 @@ return [
         'novelty' => 'Новый',
         'hip-hop' => 'Хіп-хоп',
         'electronic' => 'Электронная музыка',
-        'metal' => '',
-        'classical' => '',
-        'folk' => '',
-        'jazz' => '',
+        'metal' => 'Метал',
+        'classical' => 'Класічная',
+        'folk' => 'Фолк',
+        'jazz' => 'Джаз',
     ],
     'mods' => [
         '4K' => '',
@@ -307,14 +312,14 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
         'V2' => '',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Любая',
         'english' => 'Англійская',
         'chinese' => 'Кітайская',
         'french' => 'Французская',
@@ -324,12 +329,19 @@ return [
         'korean' => 'Карэйская',
         'spanish' => 'Іспанская',
         'swedish' => 'Шведская',
-        'russian' => '',
-        'polish' => '',
+        'russian' => 'Руская
+',
+        'polish' => 'Польская',
         'instrumental' => 'Інструментал',
         'other' => 'Іншае',
-        'unspecified' => '',
+        'unspecified' => 'Не вызначана',
     ],
+
+    'nsfw' => [
+        'exclude' => 'Схаваць',
+        'include' => 'Паказаць',
+    ],
+
     'played' => [
         'any' => 'Усе',
         'played' => 'Згуляна',
@@ -356,9 +368,9 @@ return [
     ],
     'variant' => [
         'mania' => [
-            '4k' => '',
-            '7k' => '',
-            'all' => '',
+            '4k' => '4К',
+            '7k' => '7К',
+            'all' => 'Усе',
         ],
     ],
 ];

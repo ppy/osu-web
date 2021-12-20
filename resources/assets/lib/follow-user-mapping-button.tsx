@@ -2,18 +2,24 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
-import { without } from 'lodash';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
+import { onErrorWithClick } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { nextVal } from 'utils/seq';
 
 interface Props {
+  alwaysVisible?: boolean;
+  followers?: number;
   modifiers?: Modifiers;
+  showFollowerCounter?: boolean;
   userId: number;
 }
 
 interface State {
-  follow: boolean;
+  followersWithoutSelf: number;
+  following: boolean;
   loading: boolean;
 }
 
@@ -21,20 +27,26 @@ const bn = 'user-action-button';
 
 export default class FollowUserMappingButton extends React.Component<Props, State> {
   private buttonRef = React.createRef<HTMLButtonElement>();
-  private eventId = `follow-user-mapping-button-${osu.uuid()}`;
+  private eventId = `follow-user-mapping-button-${nextVal()}`;
   private xhr?: JQueryXHR;
 
   constructor(props: Props) {
     super(props);
 
+    const following = core.currentUser?.follow_user_mapping.includes(this.props.userId) ?? false;
+    let followersWithoutSelf = this.props.followers ?? 0;
+
+    if (following !== false) followersWithoutSelf -= 1;
+
     this.state = {
-      follow: currentUser.follow_user_mapping?.includes(this.props.userId) ?? false,
+      followersWithoutSelf,
+      following,
       loading: false,
     };
   }
 
   componentDidMount() {
-    $.subscribe(`followUserMapping:refresh.${this.eventId}`, this.refresh);
+    $.subscribe(`user:followUserMapping:refresh.${this.eventId}`, this.refresh);
   }
 
   componentWillUnmount() {
@@ -43,27 +55,41 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
   }
 
   render() {
-    if (currentUser.id == null || currentUser.id === this.props.userId) {
+    const canToggle = !(core.currentUser == null || core.currentUser.id === this.props.userId);
+
+    if (!canToggle && !this.props.alwaysVisible) {
       return null;
     }
 
-    const title = osu.trans(`follows.mapping.${this.state.follow ? 'to_0' : 'to_1'}`);
+    const title = canToggle
+      ? osu.trans(`follows.mapping.${this.state.following ? 'to_0' : 'to_1'}`)
+      : osu.trans('follows.mapping.followers');
 
-    let blockClass = classWithModifiers(bn, this.props.modifiers);
-    blockClass += classWithModifiers(bn, { friend: this.state.follow }, true);
+    const blockClass = classWithModifiers(
+      bn,
+      this.props.modifiers,
+      { friend: this.state.following },
+    );
+
+    const disabled = this.state.loading || !canToggle;
 
     return (
       <div title={title}>
         <button
-          className={blockClass}
-          disabled={this.state.loading}
-          onClick={this.onClick}
           ref={this.buttonRef}
+          className={blockClass}
+          disabled={disabled}
+          onClick={this.onClick}
         >
           {this.renderIcon()}
+          {this.renderCounter()}
         </button>
       </div>
     );
+  }
+
+  private followers() {
+    return this.state.followersWithoutSelf + (this.state.following ? 1 : 0);
   }
 
   private onClick = () => {
@@ -78,7 +104,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
         },
       };
 
-      if (this.state.follow) {
+      if (this.state.following) {
         params.type = 'DELETE';
         params.url = route('follows.destroy');
       } else {
@@ -88,31 +114,42 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
 
       this.xhr = $.ajax(params)
         .done(this.updateData)
-        .fail(osu.emitAjaxError(this.buttonRef.current))
+        .fail(onErrorWithClick(this.buttonRef.current))
         .always(() => this.setState({ loading: false }));
     });
-  }
+  };
 
   private refresh = () => {
     this.setState({
-      follow: currentUser.follow_user_mapping.includes(this.props.userId),
+      following: core.currentUser?.follow_user_mapping.includes(this.props.userId) ?? false,
     });
+  };
+
+  private renderCounter() {
+    if (this.props.showFollowerCounter == null || this.props.followers == null) {
+      return;
+    }
+
+    return(
+      <span className={`${bn}__counter`}>
+        {osu.formatNumber(this.followers())}
+      </span>
+    );
   }
 
   private renderIcon() {
-    return (this.state.loading
+    const icon = this.state.loading
       ? <Spinner />
-      : <i className='fas fa-bell' />
+      : <i className='fas fa-bell' />;
+
+    return(
+      <span className={`${bn}__icon-container`}>
+        {icon}
+      </span>
     );
   }
 
   private updateData = () => {
-    if (this.state.follow) {
-      currentUser.follow_user_mapping = without(currentUser.follow_user_mapping, this.props.userId);
-    } else {
-      currentUser.follow_user_mapping = currentUser.follow_user_mapping.concat(this.props.userId);
-    }
-
-    $.publish('followUserMapping:refresh');
-  }
+    $.publish('user:followUserMapping:update', { following: !this.state.following, userId: this.props.userId });
+  };
 }
