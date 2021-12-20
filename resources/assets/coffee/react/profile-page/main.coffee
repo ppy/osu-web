@@ -1,15 +1,15 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Header } from './header'
-import { Historical } from './historical'
-import { Medals } from './medals'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
 import AccountStanding from 'profile-page/account-standing'
 import Beatmapsets from 'profile-page/beatmapsets'
 import ExtraTab from 'profile-page/extra-tab'
+import Header from 'profile-page/header'
+import Historical from 'profile-page/historical'
 import Kudosu from 'profile-page/kudosu'
+import Medals from 'profile-page/medals'
 import RecentActivity from 'profile-page/recent-activity'
 import TopScores from 'profile-page/top-scores'
 import UserPage from 'profile-page/user-page'
@@ -17,7 +17,9 @@ import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
 import { bottomPage } from 'utils/html'
+import { jsonClone } from 'utils/json'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+import { hasMoreCheck, appendItems } from 'utils/offset-paginator'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
@@ -60,15 +62,11 @@ export class Main extends React.PureComponent
         lovedBeatmapsets: @props.extras.lovedBeatmapsets
         pendingBeatmapsets: @props.extras.pendingBeatmapsets
         graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
-        recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
         showMorePagination: {}
 
       for own elem, perPage of @props.perPage
         @state.showMorePagination[elem] ?= {}
-        @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
-
-        if @state.showMorePagination[elem].hasMore
-          @state[elem].pop()
+        @state.showMorePagination[elem].hasMore = hasMoreCheck(perPage, @state[elem])
 
 
   componentDidMount: =>
@@ -204,9 +202,10 @@ export class Main extends React.PureComponent
 
       when 'kudosu'
         props:
-          user: @state.user
-          recentlyReceivedKudosu: @state.recentlyReceivedKudosu
-          pagination: @state.showMorePagination
+          userId: @state.user.id
+          initialKudosu: @props.extras.recentlyReceivedKudosu
+          expectedInitialCount: @props.perPage.recentlyReceivedKudosu
+          total: @state.user.kudosu.total
         component: Kudosu
 
       # TODO: rename to top_scores (also in model's UserProfileCustomization and translations)
@@ -269,18 +268,17 @@ export class Main extends React.PureComponent
 
     @setState showMorePagination: paginationState, ->
       $.get updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
-        state = _.cloneDeep(@state[name]).concat(data)
-        hasMore = data.length > perPage
+        newPagination = jsonClone(@state.showMorePagination)
+        paginatorJson =
+          items: jsonClone @state[name]
+          pagination: newPagination[name]
+        appendItems(paginatorJson, data, perPage + 1)
 
-        state.pop() if hasMore
-
-        paginationState = _.cloneDeep @state.showMorePagination
-        paginationState[name].loading = false
-        paginationState[name].hasMore = hasMore
+        paginatorJson.pagination.loading = false
 
         @setState
-          "#{name}": state
-          showMorePagination: paginationState
+          "#{name}": paginatorJson.items
+          showMorePagination: newPagination
 
       .catch (error) =>
         osu.ajaxError error

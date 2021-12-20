@@ -17,5 +17,5 @@
         {!! json_encode($json) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/react/chat.js'])
+    @include('layout._react_js', ['src' => 'js/chat.js'])
 @endsection

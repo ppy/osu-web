@@ -35,7 +35,10 @@ declare module 'modal' {
     onClose?: () => void;
     visible: boolean;
   }
-  class Modal extends React.PureComponent<Props> {}
+
+  class Modal extends React.PureComponent<Props> {
+    static isOpen(): boolean;
+  }
 }
 
 declare module 'notification-banner' {

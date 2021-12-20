@@ -11,13 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'LISEZ CECI AVANT DE TÉLÉCHARGER',
-            'instruction' => [
-                '_' => "Installation : Une fois le beatmap pack téléchargé, extraire le .rar dans le dossier Songs d'osu!.
-                    Toutes les musiques sont encore en .zip et/ou en .osz dans la collection, osu! s'occupera d'extraire tout seul les beatmaps la prochaine fois que vous jouerez.
-                    :scary extraire les zip/osz par vous-même,
-                    ou les beatmaps ne vont pas s'afficher correctement et osu! va mal fonctionner.",
-                'scary' => 'Ne PAS',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Notez aussi qu\'il est recommandé de :scary, car les anciennes beatmaps sont de moins bonne qualité que les nouvelles beatmaps.',
                 'scary' => 'télécharger les collections de la plus récente à la plus ancienne',

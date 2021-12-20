@@ -24,7 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'incapacitado de enviar mensagem...',
-        'disconnected' => '',
+        'disconnected' => 'Desligado',
         'placeholder' => 'escrever mensagem...',
         'send' => 'Enviar',
     ],

@@ -71,6 +71,7 @@ class ChatController extends Controller
      *       "channel_id": 1234,
      *       "current_user_attributes": {
      *         "can_message": true,
+     *         "can_message_error": null,
      *         "last_read_id": 9150005005
      *       },
      *       "name": "peppy",
@@ -178,6 +179,7 @@ class ChatController extends Controller
      *       "channel_id": 5,
      *       "current_user_attributes": {
      *         "can_message": true,
+     *         "can_message_error": null,
      *         "last_read_id": 9150005005
      *       },
      *       "name": "#osu",
@@ -190,6 +192,7 @@ class ChatController extends Controller
      *       "channel_id": 12345,
      *       "current_user_attributes": {
      *         "can_message": true,
+     *         "can_message_error": null,
      *         "last_read_id": 9150001235
      *       },
      *       "type": "PM",

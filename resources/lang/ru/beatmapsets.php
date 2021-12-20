@@ -159,7 +159,7 @@ return [
                 'rank' => 'Место',
                 'score_total' => 'Всего очков',
                 'score' => 'Очки',
-                'time' => 'Время',
+                'time' => 'Дата',
             ],
 
             'no_scores' => [
