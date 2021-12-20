@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => 'Tiêu điểm',
         'country' => 'Quốc gia',
-        'multiplayer' => '',
+        'multiplayer' => 'nhiều người chơi',
         'performance' => 'Performance',
         'score' => 'Điểm',
     ],

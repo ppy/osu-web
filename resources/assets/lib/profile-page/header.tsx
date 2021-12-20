@@ -4,6 +4,7 @@
 import HeaderV4 from 'header-v4';
 import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
+import { isModalShowing } from 'modal-helper';
 import Badges from 'profile-page/badges';
 import CoverSelector from 'profile-page/cover-selector';
 import Detail from 'profile-page/detail';
@@ -151,8 +152,7 @@ export default class Header extends React.Component<Props> {
   }
 
   private readonly tryCloseCoverSelector = () => {
-    if ($('#overlay').is(':visible')) return;
-    if (document.body.classList.contains('modal-open')) return;
+    if (isModalShowing()) return;
 
     this.closeCoverSelector();
   };

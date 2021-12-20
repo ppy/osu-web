@@ -3,6 +3,9 @@
 
 .bbcode-editor {
   @_top: bbcode-editor;
+  @buttons-margin: 5px;
+  @content-padding: 10px;
+  @editor-padding: 15px;
 
   .fancy-scrollbar();
   flex: 1;
@@ -13,18 +16,17 @@
 
   &--create {
     .default-gutter-v2();
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: @editor-padding;
+    padding-bottom: $padding-top;
     background-color: @osu-colour-b2;
   }
 
   &--beatmapset-description-editor {
     .default-gutter-v2();
-    padding-top: 15px;
+    padding-top: @editor-padding;
     padding-bottom: $padding-top;
     background-color: hsl(var(--hsl-b2));
     border-radius: @border-radius-large;
-    max-height: 80vh;
   }
 
   &--profile-page {
@@ -58,10 +60,15 @@
       opacity: 0.5;
       pointer-events: none;
     }
+
+    .@{_top}--beatmapset-description-editor & {
+      // approximation of 80vh - 3 lines of button bars and editor padding
+      max-height: calc(80vh - 2 * @editor-padding - 2 * @content-padding - 3 * (1em + 2 * @buttons-margin));
+    }
   }
 
   &__button {
-    margin: 5px;
+    margin: @buttons-margin;
 
     &--deactivate {
       display: none;
@@ -86,7 +93,7 @@
   }
 
   &__buttons {
-    margin: 5px;
+    margin: @buttons-margin;
     display: flex;
 
     &--actions {
@@ -104,7 +111,7 @@
   }
 
   &__buttons-bar {
-    margin: auto -5px -5px;
+    margin: auto -@buttons-margin -@buttons-margin;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -117,7 +124,7 @@
   &__content {
     background-color: @osu-colour-b4;
     border-radius: @border-radius-large;
-    padding: 10px;
+    padding: @content-padding;
     flex: 1;
     display: flex;
     flex-direction: column;
