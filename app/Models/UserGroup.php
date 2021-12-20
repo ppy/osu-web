@@ -36,8 +36,7 @@ class UserGroup extends Model
 
     public function getGroupAttribute(): Group
     {
-        // Assumes that `group_id` refers to an existing group that is present
-        // in `app('groups')` cache
+        // `group_id` attribute should always be valid or otherwise this will throw error (as it tries to return null).
         return app('groups')->byId($this->group_id);
     }
 
