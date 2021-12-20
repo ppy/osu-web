@@ -69,8 +69,8 @@ return [
                 'beatmapset_rank_compact' => 'La beatmap è stata classificata',
                 'beatmapset_remove_from_loved' => '":title" è stato rimossa da Loved',
                 'beatmapset_remove_from_loved_compact' => 'La beatmap è stata rimossa dalle amate',
-                'beatmapset_reset_nominations' => 'La nomina di ":title" è stata reimpostata',
-                'beatmapset_reset_nominations_compact' => 'La nomina è stata reimpostata',
+                'beatmapset_reset_nominations' => 'La nomina di ":title" è stata resettata',
+                'beatmapset_reset_nominations_compact' => 'La nomina è stata resettata',
             ],
 
             'comment' => [
@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'Nuova beatmap ":title" di :username',
                 'user_beatmapset_new_compact' => 'Nuova beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nuove beatmap di :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

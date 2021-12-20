@@ -8,7 +8,7 @@
 # 3. in the function, check if second parameter (first one is unused event
 #    object) is the correct target
 # 4. stick if matches, unstick otherwise
-class @StickyFooter
+class window.StickyFooter
   constructor: ->
     @stickMarker = document.getElementsByClassName('js-sticky-footer')
     @permanentFixedFooter = document.getElementsByClassName('js-permanent-fixed-footer')

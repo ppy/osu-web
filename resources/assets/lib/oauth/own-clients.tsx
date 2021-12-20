@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BigButton } from 'big-button';
-import { action } from 'mobx';
+import BigButton from 'big-button';
+import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Modal } from 'modal';
 import { ClientDetails } from 'oauth/client-details';
@@ -16,6 +16,12 @@ const uiState = core.dataStore.uiState;
 
 @observer
 export class OwnClients extends React.Component {
+  constructor(props: Record<string, never>) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   @action
   handleModalClose = () => {
     uiState.account.client = null;
@@ -33,10 +39,10 @@ export class OwnClients extends React.Component {
         <div className='oauth-clients'>
           {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
         </div>
-        <div className='fragment-target' id='new-oauth-application' />
         <BigButton
-          icon={'fas fa-plus'}
+          icon='fas fa-plus'
           props={{
+            id: 'new-oauth-application',
             onClick: this.handleNewClientClicked,
           }}
           text={osu.trans('oauth.own_clients.new')}

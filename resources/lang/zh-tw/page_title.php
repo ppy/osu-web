@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => '論壇',
+        'topic_logs_controller' => [
+            'index' => '主題日誌',
+        ],
         'topic_watches_controller' => [
             'index' => '主頁',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => '主頁',
             'verify_link' => '帳戶驗證',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '精選藝術家',
         ],
         'artists_controller' => [
             '_' => '精選藝術家',
@@ -111,13 +117,13 @@ return [
             '_' => '重置密碼',
         ],
         'ranking_controller' => [
-            '_' => '排名',
+            '_' => '排行榜',
         ],
         'scores_controller' => [
             '_' => '成績',
         ],
         'store_controller' => [
-            '_' => 'osu!商店',
+            '_' => '商店',
         ],
         'tournaments_controller' => [
             '_' => '官方比賽',
@@ -127,7 +133,7 @@ return [
             'disabled' => '通知',
         ],
         'wiki_controller' => [
-            '_' => '知識庫',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -135,12 +141,20 @@ return [
             '_' => '排名',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '授權應用程式',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!商店',
+        '_' => '商店',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => '摸圖者資訊',
+        ],
+        'multiplayer_controller' => [
+            '_' => '多人遊戲遊玩紀錄',
         ],
     ],
 ];

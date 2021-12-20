@@ -4,9 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
-    'no_restricted_access' => 'Du kan inte utföra denna återgärd medans ditt konto är begränsad.',
-    'supporter_only' => 'Du måste vara en supporter för att använda denna funktion.',
+    'missing_route' => 'Ogiltig url eller felaktig metod av begäran.',
+    'no_restricted_access' => 'Du kan inte utföra denna åtgärd medan ditt konto är begränsat.',
+    'supporter_only' => 'Du måste vara en osu!supporter för att använda denna funktion.',
     'unknown' => 'Okänt fel uppstod.',
 
     'codes' => [
@@ -22,13 +22,13 @@ return [
     ],
     'beatmaps' => [
         'invalid_mode' => 'Ogiltigt läge specificerat.',
-        'standard_converts_only' => 'Inga poäng är tillgängliga enligt begärt läge på denna beatmap svårighetsgrad.',
+        'standard_converts_only' => 'Inga rekord finns tillgängliga för det begärda läget på denna svårighetsgrad.',
     ],
     'checkout' => [
-        'generic' => 'Ett fel inträffade när du förberedde din transaktion.',
+        'generic' => 'Ett fel inträffade när din transaktion förbereddes.',
     ],
     'search' => [
         'default' => 'Kunde inte få några resultat, försök igen senare.',
-        'operation_timeout_exception' => 'Sökning är för närvarande mer aktiv än vanligt, försök igen senare.',
+        'operation_timeout_exception' => 'Sökfunktionen är för närvarande mer upptagen än vanligt, försök igen senare.',
     ],
 ];

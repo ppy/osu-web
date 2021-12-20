@@ -127,6 +127,55 @@ return [
             'previous' => 'cofnij się o 10 postów',
         ],
 
+        'logs' => [
+            '_' => 'Dzienniki zdarzeń wątków',
+            'button' => 'Przeglądaj dzienniki zdarzeń wątków',
+
+            'columns' => [
+                'action' => 'Zdarzenie',
+                'date' => 'Data',
+                'user' => 'Użytkownik',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => 'przypięto wątek i oznaczono jako ogłoszenie',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => 'odpięto wątek',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Anuluj',
             'post' => 'Zapisz',

@@ -6,8 +6,8 @@
 return [
     'beatmapset_update_notice' => [
         'new' => 'Juste pour vous informer qu\'il y a eu une mise à jour dans la beatmap ":title" depuis votre dernière visite.',
-        'subject' => 'Nouvelle mise à jour pour la beatmap ":title"',
-        'unwatch' => 'Si vous ne souhaitez plus suivre cette beatmap, vous pouvez soit cliquer sur le lien "Ne plus suivre" trouvé dans la page ci-dessus, soit sur la page de la liste de suivi de modding :',
+        'subject' => 'Nouvelle mise à jour de la beatmap ":title"',
+        'unwatch' => 'Si vous ne souhaitez plus suivre cette beatmap, vous pouvez soit cliquer sur le lien "Ne plus suivre" trouvé sur la page ci-dessus, soit sur la page de la liste de suivi de modding :',
         'visit' => 'Visitez la page de discussion ici :',
     ],
 
@@ -20,13 +20,13 @@ return [
     'donation_thanks' => [
         'benefit_more' => 'De nouveaux avantages pour les supporters apparaîtront au fil du temps !',
         'feedback' => "Si vous avez des questions ou des commentaires, n'hésitez pas à répondre à ce mail ; je vous répondrai dès que possible !",
-        'keep_free' => 'C\'est grâce à des gens comme vous que osu! est capable de maintenir le jeu et la communauté sans aucune publicité ni paiement forcé.',
-        'keep_running' => 'Votre support garde osu! en fonctionnement pour environ :minutes ! Cela ne semble pas beaucoup, mais tout s\'accumule :).',
+        'keep_free' => 'C\'est grâce à des gens comme vous qu\'osu! est capable de maintenir le jeu et la communauté sans aucune publicité ni paiement forcé.',
+        'keep_running' => 'Votre soutien nous permet de faire fonctionner osu! pendant environ :minutes de plus ! Cela peut vous paraître peu, mais tout s\'accumule :).',
         'subject' => 'Merci, osu! vous <3',
-        'translation' => 'Une traduction fournie par l\'utilisateur à des fins informatives :',
+        'translation' => 'Traduction fournie par la communauté à des fins informatives :',
 
         'benefit' => [
-            'gift' => 'Votre/vos bénéficiaire(s) aura/auront désormais accès à osu!direct et bien d\'autres bénéfices de supporter.',
+            'gift' => 'La/les personne(s) qui ont reçu votre osu!supporter en cadeau vont pouvoir bénéficier du osu!direct et bien d\'autres encore.',
             'self' => 'Vous aurez maintenant accès à osu!direct et à de nombreux autres avantages pour :duration.',
         ],
 
@@ -51,9 +51,9 @@ return [
     ],
 
     'store_payment_completed' => [
-        'prepare_shipping' => 'Nous avons reçu votre paiement et préparons votre commande pour l\'expédition. Il peut nous prendre quelques jours pour l\'expédition, selon la quantité de commandes. Vous pouvez suivre la progression de votre commande ici, y compris les détails de suivi lorsque disponible :',
+        'prepare_shipping' => 'Nous avons reçu votre paiement et préparons votre commande pour l\'expédition. Cela peut nous prendre plusieurs jours selon le nombre de produits dans votre commande. Vous pouvez suivre la progression de votre commande ici, y compris les détails de suivi lorsque disponible :',
         'processing' => 'Nous avons reçu votre paiement et sommes en train de traiter votre commande. Vous pouvez suivre l\'avancement de votre commande ici :',
-        'questions' => "Si vous avez des questions, n'hésitez pas à répondre à ce courriel.",
+        'questions' => "Si vous avez des questions, n'hésitez pas à répondre à ce mail.",
         'shipping' => 'Livraison',
         'subject' => 'Nous avons bien reçu votre commande osu!store !',
         'thank_you' => 'Merci pour votre commande sur le osu!store !',
@@ -61,9 +61,9 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => 'La personne qui vous a donné ce tag peut choisir de rester anonyme, donc elle n\'a pas été mentionnée dans cette notification.',
+        'anonymous_gift' => 'La personne qui vous a offert ce tag peut choisir de rester anonyme, donc elle n\'a pas été mentionnée dans cette notification.',
         'anonymous_gift_maybe_not' => 'Mais vous savez probablement déjà qui c\'est ;).',
-        'duration' => 'Grâce à eux, vous avez accès à osu!direct et d\'autres avantages osu!supporter pour les prochains :duration.',
+        'duration' => 'Grâce à cette personne, vous pouvez utiliser osu!direct et d\'autres avantages osu!supporter pour les prochains :duration.',
         'features' => 'Vous trouverez plus de détails sur ces fonctionnalités ici :',
         'gifted' => 'Quelqu\'un vient de vous offrir un tag osu!supporter !',
         'subject' => 'On vous a offert un tag osu!supporter !',
@@ -90,8 +90,8 @@ return [
     ],
 
     'user_password_updated' => [
-        'confirmation' => 'Ceci est juste une confirmation que votre mot de passe osu! a été changé.',
-        'subject' => 'confirmation du changement de mot de passe d\'osu!',
+        'confirmation' => 'Ceci est une confirmation que votre mot de passe osu! a été changé.',
+        'subject' => 'confirmation du changement de mot de passe osu!',
     ],
 
     'user_verification' => [

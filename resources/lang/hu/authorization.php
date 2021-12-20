@@ -23,7 +23,7 @@ return [
             'set_metadata' => 'Mielőtt kijelölné, a műfajt és a nyelvet meg kell adnod',
         ],
         'resolve' => [
-            'not_owner' => 'Csak a poszt szerzője és a beatmap készítője tudja megoldottnak jelölni az adott problémát.',
+            'not_owner' => 'Csak a gondolatmenet kezdője és a beatmap tulajdonosa tudja megoldottnak jelölni az adott problémát.',
         ],
 
         'store' => [
@@ -40,9 +40,9 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Csak a saját posztjaidat tudod törölni.',
+            'not_owner' => 'Csak a saját hozzászólásaidat tudod törölni.',
             'resolved' => 'Nem törölhetsz bejegyzést egy megbeszélt témában.',
-            'system_generated' => 'Az automatikusan generált posztok nem törölhetőek.',
+            'system_generated' => 'Az automatikusan létrehozott hozzászólások nem törölhetőek.',
         ],
 
         'edit' => [
@@ -58,7 +58,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => 'Nem változtathatod meg egy map metaadatait. Ha úgy gondolod valami nincs rendben, lépj kapcsolatba egy BN vagy egy NAT taggal.',
+            'nominated' => 'Nem változtathatod meg egy nominált map metaadatait. Ha úgy gondolod valami nincs rendben, lépj kapcsolatba egy BN vagy egy NAT taggal.',
         ],
     ],
 

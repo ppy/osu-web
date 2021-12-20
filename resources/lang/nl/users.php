@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Valsspelen',
+            'multiple_accounts' => 'Meerdere accounts gebruiken',
             'insults' => 'Beledigen van mij / anderen',
             'spam' => 'Spammen',
             'unwanted_content' => 'Linken van ongepaste inhoud',
@@ -155,8 +156,8 @@ return [
         'title' => "Profiel van :username",
 
         'comments_count' => [
-            '_' => 'Geplaatst op :link',
-            'count' => ':count_delimited commentaar::count_delimited reacties',
+            '_' => 'Heeft :link gepost',
+            'count' => ':count_delimited reactie|:count_delimited reacties',
         ],
         'edit' => [
             'cover' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "Deze gebruiker heeft er nog geen ;_;",
                 'recent' => 'Recent',
                 'title' => 'Medailles',
+            ],
+            'multiplayer' => [
+                'title' => 'Multiplayer Spellen',
             ],
             'posts' => [
                 'title' => 'Berichten',

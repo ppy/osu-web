@@ -4,7 +4,7 @@
 import { BeatmapsetSearch } from 'beatmaps/beatmapset-search';
 import ChatStateStore from 'chat/chat-state-store';
 import { CommentBundleJson } from 'interfaces/comment-json';
-import { action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import { BeatmapsetStore } from './beatmapset-store';
 import ChannelStore from './channel-store';
 import ClientStore from './client-store';
@@ -21,8 +21,8 @@ export default class RootDataStore {
   channelStore: ChannelStore;
   chatState: ChatStateStore;
   clientStore: ClientStore;
-  commentableMetaStore: CommentableMetaStore;
   commentStore: CommentStore;
+  commentableMetaStore: CommentableMetaStore;
   notificationStore: NotificationStore;
   ownClientStore: OwnClientStore;
   uiState: UIStateStore;
@@ -38,9 +38,11 @@ export default class RootDataStore {
     this.notificationStore = new NotificationStore();
     this.ownClientStore = new OwnClientStore();
     this.userStore = new UserStore();
-    this.channelStore = new ChannelStore(this.userStore);
+    this.channelStore = new ChannelStore();
     this.chatState = new ChatStateStore(this.channelStore);
     this.uiState = new UIStateStore(this.commentStore);
+
+    makeObservable(this);
   }
 
   @action

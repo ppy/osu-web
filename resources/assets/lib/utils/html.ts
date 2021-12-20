@@ -1,6 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+export function bottomPage() {
+  return bottomPageDistance() === 0;
+}
+
+export function bottomPageDistance() {
+  const page = document.documentElement;
+
+  return page.scrollHeight - page.scrollTop - page.clientHeight;
+}
+
 export function createClickCallback(target: unknown) {
   if (target instanceof HTMLElement) {
     // plain javascript here doesn't trigger submit events
@@ -40,10 +50,22 @@ export function formatNumberSuffixed(num?: number, precision?: number, options?:
   return `${format(num / Math.pow(k, i))}${suffixes[i]}`;
 }
 
+export function htmlElementOrNull(thing: unknown) {
+  if (thing instanceof HTMLElement) {
+    return thing;
+  }
+
+  return null;
+}
+
 export const transparentGif = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 export function make2x(url?: string) {
   if (url == null) return;
 
   return url.replace(/(\.[^.]+)$/, '@2x$1');
+}
+
+export function stripTags(str: string) {
+  return str.replace(/<[^>]*>/g, '');
 }

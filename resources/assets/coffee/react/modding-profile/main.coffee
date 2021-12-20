@@ -2,36 +2,37 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { Events } from './events'
-import { ExtraTab } from '../profile-page/extra-tab'
 import { Discussions } from './discussions'
 import { Header } from './header'
-import { Kudosu } from '../profile-page/kudosu'
+import { Posts } from './posts'
+import Kudosu from 'profile-page/kudosu'
 import { Votes } from './votes'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
-import { BlockButton } from 'block-button'
 import { deletedUser } from 'models/user'
 import { NotificationBanner } from 'notification-banner'
-import { Posts } from "./posts"
+import core from 'osu-core-singleton'
+import ExtraTab from 'profile-page/extra-tab'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
+import { bottomPage } from 'utils/html'
 import { pageChange } from 'utils/page-change'
+import { nextVal } from 'utils/seq'
+import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
+import { updateQueryString } from 'utils/url'
 
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
 pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollspy-offset")
 
-currentLocation = ->
-  "#{document.location.pathname}#{document.location.search}"
-
-
 export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "users-modding-history-index-#{nextVal()}"
     @cache = {}
     @tabs = React.createRef()
     @pages = React.createRef()
@@ -39,7 +40,7 @@ export class Main extends React.PureComponent
     @restoredState = @state?
 
     if !@restoredState
-      page = location.hash.slice(1)
+      page = currentUrl().hash.slice(1)
       @initialPage = page if page?
 
       @state =
@@ -51,40 +52,29 @@ export class Main extends React.PureComponent
         posts: props.posts
         votes: props.votes
         profileOrder: ['events', 'discussions', 'posts', 'votes', 'kudosu']
-        rankedBeatmapsets: @props.extras.rankedBeatmapsets
-        lovedBeatmapsets: @props.extras.lovedBeatmapsets
-        pendingBeatmapsets: @props.extras.pendingBeatmapsets
-        graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
-        recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
-        showMorePagination: {}
-
-      for own elem, perPage of @props.perPage
-        @state.showMorePagination[elem] ?= {}
-        @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
-
-        if @state.showMorePagination[elem].hasMore
-          @state[elem].pop()
 
 
   componentDidMount: =>
-    $.subscribe 'user:update.profilePage', @userUpdate
-    $.subscribe 'profile:showMore.moddingProfilePage', @showMore
-    $.subscribe 'profile:page:jump.moddingProfilePage', @pageJump
-    $.subscribe 'beatmapsetDiscussions:update.moddingProfilePage', @discussionUpdate
-    $(document).on 'ajax:success.moddingProfilePage', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
-    $(window).on 'scroll.moddingProfilePage', @pageScan
+    $.subscribe "user:update.#{@eventId}", @userUpdate
+    $.subscribe "profile:page:jump.#{@eventId}", @pageJump
+    $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @discussionUpdate
+    $(document).on "ajax:success.#{@eventId}", '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
+    $(window).on "scroll.#{@eventId}", @pageScan
 
     pageChange()
 
-    @modeScrollUrl = currentLocation()
+    @modeScrollUrl = currentUrlRelative()
 
     if !@restoredState
-      Timeout.set 0, => @pageJump null, @initialPage
+      core.reactTurbolinks.runAfterPageLoad @eventId, =>
+        # The scroll is a bit off on Firefox if not using timeout.
+        Timeout.set 0, => @pageJump(null, @initialPage)
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.moddingProfilePage'
-    $(window).off '.moddingProfilePage'
+    $.unsubscribe ".#{@eventId}"
+    $(window).off ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
@@ -220,9 +210,10 @@ export class Main extends React.PureComponent
 
       when 'kudosu'
         props:
-          user: @state.user
-          recentlyReceivedKudosu: @state.recentlyReceivedKudosu
-          pagination: @state.showMorePagination
+          expectedInitialCount: @props.perPage.recentlyReceivedKudosu
+          initialKudosu: @props.extras.recentlyReceivedKudosu
+          total: @state.user.kudosu.total
+          userId: @state.user.id
         component: Kudosu
 
       when 'posts'
@@ -238,29 +229,6 @@ export class Main extends React.PureComponent
           user: @state.user
           users: @users()
         component: Votes
-
-
-  showMore: (e, {name, url, perPage = 50}) =>
-    offset = @state[name].length
-
-    paginationState = _.cloneDeep @state.showMorePagination
-    paginationState[name] ?= {}
-    paginationState[name].loading = true
-
-    @setState showMorePagination: paginationState, ->
-      $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
-        state = _.cloneDeep(@state[name]).concat(data)
-        hasMore = data.length > perPage
-
-        state.pop() if hasMore
-
-        paginationState = _.cloneDeep @state.showMorePagination
-        paginationState[name].loading = false
-        paginationState[name].hasMore = hasMore
-
-        @setState
-          "#{name}": state
-          showMorePagination: paginationState
 
 
   pageJump: (_e, page) =>
@@ -284,7 +252,7 @@ export class Main extends React.PureComponent
     # otherwise the calculation needs another phase and gets a bit messy.
     offsetTop = target.offset().top - pagesOffset[0].getBoundingClientRect().height
 
-    $(window).stop().scrollTo window.stickyHeader.scrollOffset(offsetTop), 500,
+    $(window).stop().scrollTo core.stickyHeader.scrollOffset(offsetTop), 500,
       onAfter: =>
         # Manually set the mode to avoid confusion (wrong highlight).
         # Scrolling will obviously break it but that's unfortunate result
@@ -298,14 +266,14 @@ export class Main extends React.PureComponent
 
 
   pageScan: =>
-    return if @modeScrollUrl != currentLocation()
+    return if @modeScrollUrl != currentUrlRelative()
 
     return if @scrolling
     return if pages.length == 0
 
     anchorHeight = pagesOffset[0].getBoundingClientRect().height
 
-    if osu.bottomPage()
+    if bottomPage()
       @setCurrentPage null, _.last(pages).dataset.pageId
       return
 

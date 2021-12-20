@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'dashboard',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'dashboard',
             'verify_link' => 'verifica account',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'artisti in primo piano',
         ],
         'artists_controller' => [
             '_' => 'artisti in primo piano',
@@ -62,7 +68,7 @@ return [
         'beatmapsets_controller' => [
             'discussion' => 'discussione beatmap',
             'index' => 'lista beatmap',
-            'show' => 'info beatmap',
+            'show' => 'informazioni beatmap',
         ],
         'changelog_controller' => [
             '_' => 'note di rilascio',
@@ -96,7 +102,7 @@ return [
             '_' => 'informazioni',
         ],
         'livestreams_controller' => [
-            '_' => 'trasmissioni in diretta',
+            '_' => 'live streaming',
         ],
         'matches_controller' => [
             '_' => 'partite',
@@ -108,10 +114,10 @@ return [
             '_' => 'cronologia notifiche',
         ],
         'password_reset_controller' => [
-            '_' => 'reimpostazione password',
+            '_' => 'reset password',
         ],
         'ranking_controller' => [
-            '_' => 'classifica',
+            '_' => 'classifiche',
         ],
         'scores_controller' => [
             '_' => 'performance',
@@ -123,16 +129,21 @@ return [
             '_' => 'tornei',
         ],
         'users_controller' => [
-            '_' => 'info giocatore',
+            '_' => 'informazioni giocatore',
             'disabled' => 'avviso',
         ],
         'wiki_controller' => [
-            '_' => 'base delle conoscenze',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'classifica',
+            '_' => 'classifiche',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autorizza app',
         ],
     ],
     'store' => [
@@ -140,7 +151,10 @@ return [
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'info modder',
+            '_' => 'informazioni modder',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'cronologia multigiocatore',
         ],
     ],
 ];

@@ -3,27 +3,31 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-$factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
-    return [
-        'user_id' => function () {
-            return factory(App\Models\User::class)->create()->user_id;
-        },
-        'message' => function () use ($faker) {
-            return $faker->paragraph();
-        },
-        'commentable_type' => function () {
-            return 'build'; // TODO: add support for more types
-        },
-        'commentable_id' => function () {
-            return factory(App\Models\Build::class)->create()->build_id;
-        },
-        'created_at' => now(),
-        'updated_at' => now(),
-    ];
-});
+namespace Database\Factories;
 
-$factory->state(App\Models\Comment::class, 'deleted', function () {
-    return [
-        'deleted_at' => now(),
-    ];
-});
+use App\Libraries\MorphMap;
+use App\Models\Comment;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class CommentFactory extends Factory
+{
+    protected $model = Comment::class;
+
+    public function definition(): array
+    {
+        return [
+            'commentable_type' => fn () => $this->faker->randomElement(Comment::COMMENTABLES),
+            'message' => fn () => $this->faker->paragraph(),
+            'user_id' => User::factory(),
+
+            // depends on commentable_type
+            'commentable_id' => fn (array $attr) => MorphMap::getClass($attr['commentable_type'])::factory(),
+        ];
+    }
+
+    public function deleted(): static
+    {
+        return $this->state(['deleted_at' => now()]);
+    }
+}

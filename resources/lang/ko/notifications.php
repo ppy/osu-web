@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => ':username 님의 새로운 비트맵 ":title"',
                 'user_beatmapset_new_compact' => '새 비트맵 ":title"',
                 'user_beatmapset_new_group' => ':username 님의 새 비트맵',
+
+                'user_beatmapset_revive' => '비트맵 ":title" 이(가) :username 님에게 리뷰 받음',
+                'user_beatmapset_revive_compact' => '비트맵 ":title" 이(가) 리뷰 받음',
             ],
         ],
 

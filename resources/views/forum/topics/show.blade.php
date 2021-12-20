@@ -30,8 +30,12 @@
     ])
 
     <div class="js-react--forum-post-report hidden"></div>
-    <div class="js-forum__topic-user-can-moderate hidden" data-user-can-moderate="{{ $userCanModerate }}"></div>
-    <div class="js-forum__topic-first-post-id hidden" data-first-post-id="{{ $topic->topic_first_post_id }}"></div>
+    <div
+        class="hidden js-forum--topic-meta"
+        data-user-can-moderate="{{ $userCanModerate }}"
+        data-first-post-id="{{ $topic->topic_first_post_id }}"
+        data-post-jump-to="{{ $jumpTo }}"
+    ></div>
 
     <div class="js-sticky-header"></div>
 
@@ -57,7 +61,7 @@
                         @endif
                     </div>
                     <div class="forum-topic-title__post-time">
-                        {!! trans("forum.post.posted_at", ["when" => timeago($topic->topic_time)]) !!}
+                        {!! osu_trans("forum.post.posted_at", ["when" => timeago($topic->topic_time)]) !!}
                     </div>
                 </div>
 
@@ -80,7 +84,7 @@
                                 type="button"
                                 class="btn-osu-big btn-osu-big--forum-secondary js-forum-topic-title--cancel"
                             >
-                                {{ trans('common.buttons.cancel') }}
+                                {{ osu_trans('common.buttons.cancel') }}
                             </button>
                         </div>
 
@@ -89,7 +93,7 @@
                                 type="button"
                                 class="btn-osu-big btn-osu-big--forum-primary js-forum-topic-title--save"
                             >
-                                {{ trans('common.buttons.save') }}
+                                {{ osu_trans('common.buttons.save') }}
                             </button>
                         </div>
 
@@ -98,7 +102,7 @@
                                 type="button"
                                 class="btn-osu-big btn-osu-big--forum-secondary js-forum-topic-title--edit-start"
                             >
-                                {{ trans('forum.topics.edit_title.start') }}
+                                {{ osu_trans('forum.topics.edit_title.start') }}
                             </button>
                         </div>
                     @endif
@@ -152,12 +156,4 @@
     @parent
 
     @include('forum.topics._nav')
-@endsection
-
-@section('script')
-    @parent
-
-    <script data-turbolinks-eval="always">
-        window.postJumpTo = {{ $jumpTo }};
-    </script>
 @endsection

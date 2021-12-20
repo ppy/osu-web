@@ -5,28 +5,24 @@ import FollowToggle from 'follow-toggle';
 import FollowsSubtypes from 'follows-subtypes';
 import HeaderV4 from 'header-v4';
 import homeLinks from 'home-links';
+import CurrentUserJson from 'interfaces/current-user-json';
 import FollowCommentJson from 'interfaces/follow-comment-json';
-import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 
 interface Props {
   follows: FollowCommentJson[];
-  user: UserJson;
+  user: CurrentUserJson;
 }
 
 export default class Main extends React.PureComponent<Props> {
-  static defaultProps = {
-    user: currentUser,
-  };
-
   render() {
     return (
       <div className='osu-layout osu-layout--full'>
         <HeaderV4
-          backgroundImage={this.props.user.cover?.url}
+          backgroundImage={this.props.user.cover.url}
           links={homeLinks('follows.index')}
           theme='settings'
         />
@@ -61,9 +57,10 @@ export default class Main extends React.PureComponent<Props> {
         </td>
 
         <td className='follows-table__data'>
-          <a href={follow.commentable_meta.url}>
-            {follow.commentable_meta.title}
-          </a>
+          {'url' in follow.commentable_meta
+            ? <a href={follow.commentable_meta.url}>{follow.commentable_meta.title}</a>
+            : <span>{follow.commentable_meta.title}</span>
+          }
         </td>
 
         <td className='follows-table__data'>
@@ -71,8 +68,8 @@ export default class Main extends React.PureComponent<Props> {
             <a href={route('comments.show', { comment: follow.latest_comment.id })}>
               <StringWithComponent
                 mappings={{
-                  ':time': <TimeWithTooltip key='time' dateTime={follow.latest_comment.created_at} relative />,
-                  ':username': follow.latest_comment.user?.username ?? '???',
+                  time: <TimeWithTooltip dateTime={follow.latest_comment.created_at} relative />,
+                  username: follow.latest_comment.user?.username ?? '???',
                 }}
                 pattern={osu.trans('follows.comment.table.latest_comment_value')}
               />

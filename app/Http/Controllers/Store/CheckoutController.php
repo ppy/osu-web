@@ -67,7 +67,7 @@ class CheckoutController extends Controller
         if (!empty($validationErrors)) {
             return $this->setAndRedirectCheckoutError(
                 $order,
-                trans('store.checkout.cart_problems'),
+                osu_trans('store.checkout.cart_problems'),
                 $validationErrors
             );
         }
@@ -105,7 +105,7 @@ class CheckoutController extends Controller
     {
         return Auth::user()
             ->orders()
-            ->whereIn('status', ['incart', 'processing'])
+            ->whereCanCheckout()
             ->with('items.product')
             ->find($id);
     }

@@ -24,12 +24,13 @@ return [
     ],
     'input' => [
         'disabled' => 'impossible d’envoyer le message...',
+        'disconnected' => 'Déconnecté',
         'placeholder' => 'saisissez le message...',
         'send' => 'Envoyer',
     ],
     'no-conversations' => [
-        'howto' => "Démarrer des conversations depuis un profil utilisateur ou un popup carte utilisateur.",
-        'lazer' => 'Les canaux publics que vous rejoignez via <a href=":link">osu!lazer</a> seront aussi visibles ici.',
+        'howto' => "Commencez à discuter depuis un profil utilisateur ou un popup de carte utilisateur.",
+        'lazer' => 'Les salons de discussion que vous rejoignez via <a href=":link">osu!lazer</a> seront aussi visibles ici.',
         'title' => 'aucune conversation',
     ],
 ];

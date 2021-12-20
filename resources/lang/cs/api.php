@@ -21,11 +21,11 @@ return [
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Vytvořte a upravujte témata fóra a příspěvky vaším jménem.',
         ],
 
         'friends' => [
-            'read' => 'Koukněte se, koho sledujete.',
+            'read' => 'Vidět, koho sledujete.',
         ],
 
         'public' => 'Číst veřejná data vaším jménem.',

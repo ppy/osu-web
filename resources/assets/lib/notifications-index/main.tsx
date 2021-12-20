@@ -4,7 +4,7 @@
 import HeaderV4 from 'header-v4';
 import HeaderLink from 'interfaces/header-link';
 import { route } from 'laroute';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Name as NotificationTypeName, typeNames } from 'models/notification-type';
 import Stack from 'notification-widget/stack';
@@ -38,6 +38,8 @@ export class Main extends React.Component {
     super(props);
 
     this.controller = new NotificationController(core.dataStore.notificationStore, context);
+
+    makeObservable(this);
   }
 
   render() {

@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'excluído',
+    'deleted_by' => 'excluído há :timeago por :user',
+    'deleted_by_system' => 'sistema',
     'deleted_count' => ':count_delimited comentário excluído|:count_delimited comentários excluídos',
     'edited' => 'editado por :user :timeago',
     'pinned' => 'fixado',

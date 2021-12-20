@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Несумленная гульня / Чыты',
+            'multiple_accounts' => 'Выкарыстанне некалькіх уліковых запісаў',
             'insults' => 'Абраза мяне / іншых',
             'spam' => 'Спам',
             'unwanted_content' => 'Неадпаведна звязанае змесціва',
@@ -210,7 +211,7 @@ return [
                     'title' => 'Чаканыя бітмапы',
                 ],
                 'ranked' => [
-                    'title' => 'Рэйтынгавыя і ўсхваліныя бітмапы',
+                    'title' => 'Ранкаваныя бітмапы',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "Гэты карыстальнік яшчэ нічога не атрымаў. ;_;",
                 'recent' => 'Апошнія',
                 'title' => 'Медалі',
+            ],
+            'multiplayer' => [
+                'title' => 'Мультыплэерныя гульні',
             ],
             'posts' => [
                 'title' => 'Паведамленні',
@@ -404,8 +408,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Закінутыя бітмапы',
             'loved_beatmapset_count' => 'Любімыя бітмапы',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Бітмапы у чаканні',
+            'ranked_beatmapset_count' => 'Ранкаваныя бітмапы',
         ],
     ],
 

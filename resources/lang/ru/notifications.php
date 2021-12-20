@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'Новая карта ":title" от :username',
                 'user_beatmapset_new_compact' => 'Новая карта ":title"',
                 'user_beatmapset_new_group' => 'Новые карты от :username',
+
+                'user_beatmapset_revive' => 'Карта ":title" была воскрешена :username',
+                'user_beatmapset_revive_compact' => 'Карта ":title" воскрешена',
             ],
         ],
 

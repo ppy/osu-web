@@ -30,10 +30,11 @@ interface State {
 }
 
 const availableOptions: Dictionary<string[]> = {
+  beatmapset: ['UnwantedContent', 'Other'],
   beatmapset_discussion_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
   comment: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
   forum_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
-  scores: ['Cheating', 'Other'],
+  scores: ['Cheating', 'MultipleAccounts', 'Other'],
 };
 
 export class ReportReportable extends React.PureComponent<Props, State> {

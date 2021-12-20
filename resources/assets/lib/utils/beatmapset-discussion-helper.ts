@@ -3,16 +3,25 @@
 
 import guestGroup from 'beatmap-discussions/guest-group';
 import mapperGroup from 'beatmap-discussions/mapper-group';
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
-import { AnchorHTMLAttributes } from 'react';
+import { currentUrl } from 'utils/turbolinks';
+import { linkHtml, urlRegex } from 'utils/url';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJson;
   discussion: BeatmapsetDiscussionJson;
   user?: UserJson;
+}
+
+interface PropsFromHrefValue {
+  [key: string]: string | undefined;
+  children: string;
+  className?: string;
+  rel: 'nofollow noreferrer';
+  target?: '_blank';
 }
 
 export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: BadgeGroupParams) {
@@ -33,22 +42,18 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
 
 export function discussionLinkify(text: string) {
   // text should be pre-escaped.
-  return text.replace(osu.urlRegex, (match, url) => {
-    const props = propsFromHref(url);
-    // React types it as ReactNode but is can be a string.
-    const displayUrl = typeof props.children === 'string' ? props.children : url;
-    const classNames = props.className?.split(' ');
-    props.children = null;
-    props.className = undefined;
-
-    return osu.link(url, displayUrl, { classNames, props, unescape: true });
+  return text.replace(urlRegex, (match, url: string) => {
+    const { children, ...props } = propsFromHref(url);
+    // React types it as ReactNode but it can be a string.
+    const displayUrl = typeof children === 'string' ? children : url;
+    return linkHtml(url, displayUrl, { props, unescape: true });
   });
 }
 
 export function propsFromHref(href: string) {
-  const current = BeatmapDiscussionHelper.urlParse(window.location.href);
+  const current = BeatmapDiscussionHelper.urlParse(currentUrl().href);
 
-  const props: AnchorHTMLAttributes<HTMLAnchorElement> = {
+  const props: PropsFromHrefValue = {
     children: href,
     rel: 'nofollow noreferrer',
     target: '_blank',
@@ -65,7 +70,7 @@ export function propsFromHref(href: string) {
     // ignore error
   }
 
-  if (targetUrl != null && targetUrl.host === window.location.host) {
+  if (targetUrl != null && targetUrl.host === currentUrl().host) {
     const target = BeatmapDiscussionHelper.urlParse(targetUrl.href, null, { forceDiscussionId: true });
     if (target?.discussionId != null && target.beatmapsetId != null) {
       const hash = [target.discussionId, target.postId].filter(Number.isFinite).join('/');

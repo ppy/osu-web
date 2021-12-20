@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Depozit',
-    ],
-
     'cart' => [
         'checkout' => 'Plată',
         'info' => ':count_delimited obiect în coș ($:subtotal)|:count_delimited obiecte în coș ($:subtotal)',
@@ -69,14 +65,14 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel' => 'Anulează comanda',
+        'cancel_confirm' => 'Această comandă va fi anulată și plata nu va fi acceptată pentru ea. Este posibil ca furnizorul de plăți să nu elibereze imediat niciun fond rezervat. Ești sigur?',
+        'cancel_not_allowed' => 'Aceasta comanda nu poate fi anulata in acest moment.',
         'invoice' => 'Vezi factura',
         'no_orders' => 'Nu sunt comenzi pentru vizualizare.',
         'paid_on' => 'Comandă plasată pe :date',
         'resume' => 'Reia finalizarea comenzii',
-        'shopify_expired' => '',
+        'shopify_expired' => 'Link-ul de finalizare a comenzii a expirat.',
 
         'item' => [
             'display_name' => [

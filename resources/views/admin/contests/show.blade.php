@@ -2,7 +2,7 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('master', ['titlePrepend' => trans('layout.header.admin.contest').' / '.$contest->name])
+@extends('master', ['titlePrepend' => osu_trans('layout.header.admin.contest').' / '.$contest->name])
 
 @section('content')
     @include('objects.css-override', ['mapping' => [
@@ -37,8 +37,9 @@
             </div>
             <div class="col-md-4 text-right">
                 {!! Form::open([
+                    'data-loading-overlay' => '0',
+                    'method' => 'POST',
                     'route' => ['admin.contests.get-zip', $contest->id],
-                    'method' => 'POST'
                 ]) !!}
                     <button class="btn-osu-big">
                         <i class="fas fa-fw fa-file-archive"></i>
@@ -76,5 +77,5 @@
     {!! json_encode($entries) !!}
   </script>
 
-  @include('layout._extra_js', ['src' => 'js/react/admin/contest.js'])
+  @include('layout._react_js', ['src' => 'js/admin-contest.js'])
 @stop

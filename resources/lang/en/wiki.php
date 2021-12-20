@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'Requested page could not be found for currently selected language.',
         'needs_cleanup_or_rewrite' => 'This page does not meet the standards of the osu! wiki and needs to be cleaned up or rewritten. If you are able to help out, please consider updating the article!',
         'search' => 'Search existing pages for :link.',
+        'stub' => 'This article is incomplete and waiting on someone to expand it.',
         'toc' => 'Contents',
 
         'edit' => [

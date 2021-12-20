@@ -4,6 +4,7 @@
 import GameMode from './game-mode';
 
 export default interface BeatmapJson {
+  beatmapset_id: number;
   deleted_at: string | null;
   difficulty_rating: number;
   id: number;

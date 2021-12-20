@@ -3,22 +3,27 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $sitemapUrl = route('wiki.sitemap', ['locale' => $locale]);
+    $urlFn = fn (string $locale): string => route('wiki.sitemap', compact('locale'));
+    $sitemapUrl = $urlFn($locale);
+    $availableLocales = new Ds\Set(config('app.available_locales'));
 @endphp
 
-@extends('master', [
-    'titlePrepend' => trans('layout.header.help.sitemap'),
+@extends('wiki.layout', [
+    'availableLocales' => $availableLocales,
+    'canonicalUrl' => $sitemapUrl,
+    'titlePrepend' => osu_trans('layout.header.help.sitemap'),
+    'urlFn' => $urlFn,
 ])
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
         'links' => [
             [
-                'title' => trans('layout.header.help.index'),
+                'title' => osu_trans('layout.header.help.index'),
                 'url' => wiki_url('Main_Page'),
             ],
             [
-                'title' => trans('layout.header.help.sitemap'),
+                'title' => osu_trans('layout.header.help.sitemap'),
                 'url' => $sitemapUrl,
             ],
         ],
@@ -36,7 +41,7 @@
                             data-remote="true"
                             data-url="{{ $sitemapUrl }}"
                             data-method="PUT"
-                            title="{{ trans('wiki.show.edit.refresh') }}"
+                            title="{{ osu_trans('wiki.show.edit.refresh') }}"
                         >
                             <i class="fas fa-sync"></i>
                         </button>
@@ -45,9 +50,8 @@
 
                 <div class="header-buttons__item">
                     @include('wiki._locale_menu', [
-                        'contentLocale' => $locale,
+                        'availableLocales' => $availableLocales,
                         'displayLocale' => $locale,
-                        'otherLocales' => config('app.available_locales'),
                         'path' => 'Sitemap',
                     ])
                 </div>
@@ -56,7 +60,7 @@
     @endcomponent
 
     <div class="osu-page osu-page--generic">
-        <h1>{{ trans('layout.header.help.sitemap') }}</h1>
+        <h1>{{ osu_trans('layout.header.help.sitemap') }}</h1>
         <div class="osu-md">
             @include('wiki._sitemap_section', $sitemap)
         </div>

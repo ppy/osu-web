@@ -25,18 +25,18 @@ export class SearchPanel extends React.Component
     @contentPortal.id = 'search-panel-content-portal'
 
     @prevText = null
-    @breadcrumbsElement = window.stickyHeader.breadcrumbsElement()
-    @contentElement = window.stickyHeader.contentElement()
+    @breadcrumbsElement = core.stickyHeader.breadcrumbsElement
+    @contentElement = core.stickyHeader.contentElement
 
 
   componentDidMount: =>
-    $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
+    $(document).on 'sticky-header:sticking', @setHeaderPinned
     @mountPortal @breadcrumbsPortal, @breadcrumbsElement
     @mountPortal @contentPortal, @contentElement
 
 
   componentWillUnmount: =>
-    $(document).off '.search-panel'
+    $(document).off 'sticky-header:sticking', @setHeaderPinned
     @unmountPortal @breadcrumbsPortal, @breadcrumbsElement
     @unmountPortal @contentPortal, @contentElement
 
@@ -231,7 +231,7 @@ export class SearchPanel extends React.Component
 
   mountPortal: (portal, root) ->
     # clean up any existing element when navigating backwards.
-    existingElement = document.getElementById(portal.id)
+    existingElement = newBody.querySelector("##{portal.id}")
     existingElement?.remove()
 
     root?.appendChild portal

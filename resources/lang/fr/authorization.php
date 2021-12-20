@@ -6,9 +6,9 @@
 return [
     'play_more' => 'Que diriez-vous de jouer un peu d\'osu! à la place ?',
     'require_login' => 'Merci de vous connecter pour continuer.',
-    'require_verification' => 'Veuillez vous vérifier pour continuer.',
-    'restricted' => "Action impossible quand votre compte est restreint.",
-    'silenced' => "Action impossible quand votre compte est réduit au silence.",
+    'require_verification' => 'Veuillez vous authentifier pour continuer.',
+    'restricted' => "Vous ne pouvez pas effectuer cette action lorsque votre compte est restreint.",
+    'silenced' => "Vous ne pouvez pas effectuer cette action lorsque vous êtes réduit au silence.",
     'unauthorized' => 'Accès refusé.',
 
     'beatmap_discussion' => [
@@ -23,7 +23,7 @@ return [
             'set_metadata' => 'Veuillez définir le genre et la langue de cette musique avant de nominer cette beatmap.',
         ],
         'resolve' => [
-            'not_owner' => 'Seuls l\'auteur du post d\'origine de la discussion et le créateur de la beatmap peuvent voir ce sujet.',
+            'not_owner' => 'Seuls l\'auteur du post et le créateur de la beatmap peuvent résoudre ce sujet.',
         ],
 
         'store' => [
@@ -33,7 +33,7 @@ return [
         'vote' => [
             'bot' => "Vous ne pouvez pas voter sur une discussion créée par un bot",
             'limit_exceeded' => 'Veuillez attendre un peu avant d\'envoyer de nouveaux votes',
-            'owner' => "Vous ne pouvez pas voter pour votre propre discussion.",
+            'owner' => "Vous ne pouvez pas voter dans votre propre sondage.",
             'wrong_beatmapset_state' => 'Vous ne pouvez voter que sur les discussions des beatmaps en attente.',
         ],
     ],
@@ -52,21 +52,21 @@ return [
         ],
 
         'store' => [
-            'beatmapset_locked' => 'Cette beatmap est verrouillée pour la discussion.',
+            'beatmapset_locked' => 'La discussion de cette beatmap a été bloquée.',
         ],
     ],
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => 'Vous ne pouvez pas modifier les métadonnées d\'une map nominée. Contactez un membre du BN ou du NAT si vous pensez qu\'elles sont mal définies.',
+            'nominated' => 'Vous ne pouvez pas modifier les métadonnées d\'une beatmap nominée. Contactez un Beatmap Nominator ou un membre de la NAT si vous pensez qu\'elles sont mal définies.',
         ],
     ],
 
     'chat' => [
         'blocked' => 'Vous ne pouvez pas envoyer un message à un utilisateur qui vous a bloqué ou que vous avez bloqué.',
         'friends_only' => 'Cet utilisateur bloque les messages des personnes qui ne sont pas dans sa liste d’amis.',
-        'moderated' => 'Ce canal est actuellement modéré.',
-        'no_access' => 'Vous n’avez pas accès à ce canal.',
+        'moderated' => 'Ce salon est actuellement restreint par un modérateur.',
+        'no_access' => 'Vous n’avez pas accès à ce salon.',
         'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
         'silenced' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
     ],
@@ -78,10 +78,10 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => 'Vous ne pouvez pas changer votre vote une fois la période de vote terminée.',
+        'voting_over' => 'Vous ne pouvez plus modifier votre vote une fois la période de vote passée.',
 
         'entry' => [
-            'limit_reached' => 'Vous avez atteint la limite d\'entrée pour ce concours',
+            'limit_reached' => 'Vous avez atteint la limite d\'entrées pour ce concours',
             'over' => 'Merci pour vos inscriptions ! Les soumissions sont fermées pour ce concours et le vote va bientôt ouvrir.',
         ],
     ],
@@ -93,7 +93,7 @@ return [
 
         'post' => [
             'delete' => [
-                'only_last_post' => 'Seul le dernier post peut être supprimé.',
+                'only_last_post' => 'Seul le dernier message peut être supprimé.',
                 'locked' => 'Impossible de supprimer un message sur un sujet verrouillé.',
                 'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
                 'not_owner' => 'Seul l\'auteur de ce post peut le supprimer.',
@@ -101,7 +101,7 @@ return [
 
             'edit' => [
                 'deleted' => 'Impossible de modifier un post supprimé.',
-                'locked' => 'Ce post est verrouillé à l\'édition.',
+                'locked' => 'Ce post ne peut pas être édité.',
                 'no_forum_access' => 'L\'accès au forum demandé est requis.',
                 'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
                 'topic_locked' => 'Impossible d\'éditer un post sur un sujet verrouillé.',
@@ -109,7 +109,7 @@ return [
 
             'store' => [
                 'play_more' => 'Essayez de jouer au jeu avant de poster sur les forums ! Si vous rencontrez des problèmes pour jouer, essayez de poster sur le forum Aide et Support.',
-                'too_many_help_posts' => "Vous devez jouer davantage avant de pouvoir créer de nouveaux messages. Si vous rencontrez encore des difficultés pour jouer, envoyez un email à support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Vous devez jouer davantage avant de pouvoir créer de nouveaux posts. Si vous rencontrez toujours des difficultés pour jouer, envoyez un email à support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -121,7 +121,7 @@ return [
                 'no_permission' => 'Vous n\'êtes pas autorisé à répondre.',
 
                 'user' => [
-                    'require_login' => 'Merci de vous connecter pour répondre.',
+                    'require_login' => 'Veuillez vous connecter pour répondre.',
                     'restricted' => "Impossible de répondre : votre compte est restreint.",
                     'silenced' => "Impossible de répondre : votre compte est réduit au silence.",
                 ],
@@ -135,9 +135,9 @@ return [
 
             'vote' => [
                 'no_forum_access' => 'L\'accès au forum demandé est requis.',
-                'over' => 'Le vote est fini et vous ne pouvez plus voter.',
+                'over' => 'La période de vote est terminée et vous ne pouvez plus voter.',
                 'play_more' => 'Vous devez jouer plus avant de voter sur le forum.',
-                'voted' => 'Le changement de vote n\'est pas permis.',
+                'voted' => 'Le changement de vote n\'est pas autorisé.',
 
                 'user' => [
                     'require_login' => 'Connectez-vous pour voter.',
@@ -169,9 +169,9 @@ return [
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'La page de l\'utilisateur est verrouillée.',
+                'locked' => 'La page utilisateur est verrouillée.',
                 'not_owner' => 'Vous ne pouvez éditer que votre propre page, pas celle d\'autres utilisateurs.',
-                'require_supporter_tag' => 'le tag osu!supporter est requis.',
+                'require_supporter_tag' => 'vous devez être un osu!supporter.',
             ],
         ],
     ],

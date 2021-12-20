@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @TooltipBeatmap
+class window.TooltipBeatmap
   tmpl: _.template '<div class="tooltip-beatmap__text tooltip-beatmap__text--title"><%- beatmapTitle %></div>' +
       '<div class="tooltip-beatmap__text" style="--diff: var(--diff-<%- difficulty %>)"><%- stars %> <i class="fas fa-star" aria-hidden="true"></i></div>'
 

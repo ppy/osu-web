@@ -12,7 +12,10 @@ import { a, button, div, span, textarea } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
 import ShowMoreLink from 'show-more-link'
 import { Spinner } from 'spinner'
+import StringWithComponent from 'string-with-component'
+import TimeWithTooltip from 'time-with-tooltip'
 import UserAvatar from 'user-avatar'
+import { UserLink } from 'user-link'
 import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
 import { createClickCallback, formatNumberSuffixed } from 'utils/html'
@@ -72,12 +75,12 @@ export class Comment extends React.PureComponent
 
 
   componentDidMount: =>
-    @setState lines: estimateMinLines(@props.comment.messageHtml)
+    @setState lines: estimateMinLines(@props.comment.messageHtml ? '')
 
 
   componentDidUpdate: (prevProps) =>
     if prevProps.comment.messageHtml != @props.comment.messageHtml
-      @setState lines: estimateMinLines(@props.comment.messageHtml)
+      @setState lines: estimateMinLines(@props.comment.messageHtml ? '')
 
 
   render: =>
@@ -103,14 +106,14 @@ export class Comment extends React.PureComponent
       repliesClass += ' comment__replies--hidden' if !@state.expandReplies
 
       div
-        className: osu.classWithModifiers 'comment', modifiers
+        className: classWithModifiers 'comment', modifiers
 
         @renderRepliesToggle()
         @renderCommentableMeta(meta)
         @renderToolbar()
 
         div
-          className: osu.classWithModifiers('comment__main', mainModifiers)
+          className: classWithModifiers('comment__main', mainModifiers)
           style:
             '--line-height': if @state.lines? then "#{@state.lines.lineHeight}px" else undefined
             '--clip-lines': CLIP_LINES
@@ -165,7 +168,7 @@ export class Comment extends React.PureComponent
 
               div
                 className: 'comment__row-item comment__row-item--info'
-                dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.createdAt)
+                el TimeWithTooltip, dateTime: @props.comment.createdAt, relative: true
 
               @renderPermalink()
               @renderReplyButton()
@@ -175,6 +178,7 @@ export class Comment extends React.PureComponent
               @renderPin()
               @renderReport()
               @renderEditedBy()
+              @renderDeletedBy()
               @renderRepliesText()
 
             @renderReplyBox()
@@ -218,6 +222,23 @@ export class Comment extends React.PureComponent
           osu.trans('common.buttons.delete')
 
 
+  renderDeletedBy: =>
+    if @props.comment.isDeleted && @props.comment.canModerate
+      div className: 'comment__row-item comment__row-item--info',
+        el StringWithComponent,
+          mappings:
+            timeago:
+              el TimeWithTooltip,
+                dateTime: @props.comment.deletedAt
+                relative: true
+            user:
+              if @props.comment.deletedById?
+                el UserLink, user: (userStore.get(@props.comment.deletedById) ? deletedUser)
+              else
+                osu.trans('comments.deleted_by_system')
+          pattern: osu.trans('comments.deleted_by')
+
+
   renderPin: =>
     if @props.comment.canPin
       div className: 'comment__row-item',
@@ -243,18 +264,15 @@ export class Comment extends React.PureComponent
       editor = userStore.get(@props.comment.editedById)
       div
         className: 'comment__row-item comment__row-item--info'
-        dangerouslySetInnerHTML:
-          __html: osu.trans 'comments.edited',
-            timeago: osu.timeago(@props.comment.editedAt)
-            user:
-              if editor.id?
-                osu.link(laroute.route('users.show', user: editor.id), editor.username)
-              else
-                _.escape editor.username
+        el StringWithComponent,
+          mappings:
+            timeago: el(TimeWithTooltip, dateTime: @props.comment.editedAt, relative: true)
+            user: el UserLink, user: editor
+          pattern: osu.trans('comments.edited')
 
 
   renderOwnerBadge: (meta) =>
-    return null unless @props.comment.userId == meta.owner_id
+    return null unless meta.owner_id? && @props.comment.userId == meta.owner_id
 
     div className: 'comment__row-item',
       div className: 'comment__owner-badge', meta.owner_title
@@ -379,13 +397,12 @@ export class Comment extends React.PureComponent
   renderVoteButton: (inline = false) =>
     hasVoted = @hasVoted()
 
-    className = classWithModifiers 'comment-vote', @props.modifiers
-    className += classWithModifiers 'comment-vote',
+    className = classWithModifiers 'comment-vote',
+      @props.modifiers
       disabled: !@props.comment.canVote
       inline: inline
       on: hasVoted
       posting: @state.postingVote
-      true
 
     hover = div className: 'comment-vote__hover', '+1' if !inline && !hasVoted
 

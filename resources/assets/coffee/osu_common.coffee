@@ -1,34 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-@osu =
+window.osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
-  urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig
-
-  bottomPage: ->
-    osu.bottomPageDistance() == 0
-
-
-  bottomPageDistance: ->
-    body = document.documentElement ? document.body.parent ? document.body
-    (body.scrollHeight - body.scrollTop) - body.clientHeight
-
-
-  classWithModifiers: (className, modifiers) ->
-    ret = className
-
-    if modifiers?
-      ret += " #{className}--#{modifier}" for modifier in modifiers when modifier?
-
-    ret
-
 
   currentUserIsFriendsWith: (user_id) ->
     _.find currentUser.friends, target_id: user_id
-
-
-  diffColour: (difficultyRating) ->
-    '--diff': "var(--diff-#{difficultyRating ? 'default'})"
 
 
   groupColour: (group) ->
@@ -36,10 +13,11 @@
 
 
   setHash: (newHash) ->
-    newUrl = location.href.replace /#.*/, ''
+    currentUrl = _exported.currentUrl().href
+    newUrl = currentUrl.replace /#.*/, ''
     newUrl += newHash
 
-    return if newUrl == location.href
+    return if newUrl == currentUrl
 
     history.replaceState history.state, null, newUrl
 
@@ -54,34 +32,6 @@
   emitAjaxError: (element = document.body) =>
     (xhr, status, error) =>
       $(element).trigger 'ajax:error', [xhr, status, error]
-
-
-  parseJson: (id, remove = false) ->
-    element = document.getElementById(id)
-    return unless element?
-
-    json = JSON.parse element.text
-    element.remove() if remove
-
-    json
-
-
-  storeJson: (id, object) ->
-    json = JSON.stringify object
-    element = document.getElementById(id)
-
-    if !element?
-      element = document.createElement 'script'
-      element.id = id
-      element.type = 'application/json'
-      document.body.appendChild element
-
-    element.text = json
-
-
-  # make a clone of json-like object (object with simple values)
-  jsonClone: (object) ->
-    JSON.parse JSON.stringify(object ? null)
 
 
   isInputElement: (el) ->
@@ -106,34 +56,6 @@
     el.style.fontSize = '16px'
     el.focus()
     el.style.fontSize = prevSize
-
-
-  link: (url, text, options = {}) ->
-    if options.unescape
-      url = _.unescape(url)
-      text = _.unescape(text)
-
-    el = document.createElement('a')
-    el.setAttribute 'href', url
-    el.setAttribute 'data-remote', true if options.isRemote
-    el.className = options.classNames.join(' ') if options.classNames
-    el.textContent = text
-    if options.props
-      _.each options.props, (val, prop) ->
-        el.setAttribute prop, val if val?
-    el.outerHTML
-
-
-  linkify: (text, newWindow = false) ->
-    text.replace(osu.urlRegex, "<a href=\"$1\" rel=\"nofollow noreferrer\"#{if newWindow then ' target=\"_blank\"' else ''}>$2</a>")
-
-
-  timeago: (time) ->
-    el = document.createElement('time')
-    el.classList.add 'js-timeago'
-    el.setAttribute 'datetime', time
-    el.textContent = time
-    el.outerHTML
 
 
   formatBytes: (bytes, decimals=2) ->
@@ -162,15 +84,7 @@
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
 
-    url =
-      if !_.isEmpty window.reloadUrl
-        window.reloadUrl
-      else
-        location.href
-
-    window.reloadUrl = null
-
-    osu.navigate url, keepScroll, action: 'replace'
+    osu.navigate _exported.currentUrl().href, keepScroll, action: 'replace'
 
 
   urlPresence: (url) ->
@@ -286,17 +200,6 @@
 
   uuid: ->
     Turbolinks.uuid() # no point rolling our own
-
-
-  updateQueryString: (url, params) ->
-    urlObj = new URL(url ? window.location.href, document.location.origin)
-    for own key, value of params
-      if value?
-        urlObj.searchParams.set(key, value)
-      else
-        urlObj.searchParams.delete(key)
-
-    return urlObj.href
 
 
   xhrErrorMessage: (xhr) ->

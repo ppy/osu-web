@@ -12,7 +12,11 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Hidasta vähän, pelaa enemmän.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
@@ -105,9 +109,9 @@ return [
             ],
 
             'report' => [
-                '_' => '',
+                '_' => 'Jos löydät jonkun ongelman tämän beatmapin kanssa, olmoita siitä :link hälyttääksesi tiimiä.',
                 'button' => 'Ilmoita Ongelma',
-                'link' => '',
+                'link' => 'täällä',
             ],
         ],
 

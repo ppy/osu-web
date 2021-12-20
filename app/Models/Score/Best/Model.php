@@ -8,11 +8,11 @@ namespace App\Models\Score\Best;
 use App\Libraries\ReplayFile;
 use App\Models\Beatmap;
 use App\Models\BeatmapModeStats;
+use App\Models\Country;
 use App\Models\ReplayViewCount;
-use App\Models\Reportable;
 use App\Models\Score\Model as BaseModel;
+use App\Models\Traits;
 use App\Models\User;
-use App\Traits\WithDbCursorHelper;
 use Datadog;
 use DB;
 use Exception;
@@ -23,10 +23,10 @@ use GuzzleHttp\Client;
  */
 abstract class Model extends BaseModel
 {
-    use Reportable, WithDbCursorHelper;
+    use Traits\Reportable, Traits\WithDbCursorHelper;
 
     public $position = null;
-    public $weight = null;
+    public ?float $weight = null;
 
     protected $macros = [
         'accurateRankCounts',
@@ -71,9 +71,9 @@ abstract class Model extends BaseModel
         return null;
     }
 
-    public function weightedPp()
+    public function weightedPp(): ?float
     {
-        return $this->weight * $this->pp;
+        return $this->weight === null ? null : $this->weight * $this->pp;
     }
 
     public function macroForListing()
@@ -303,7 +303,7 @@ abstract class Model extends BaseModel
     {
         switch ($type) {
             case 'country':
-                $countryAcronym = $options['countryAcronym'] ?? $options['user']->country_acronym ?? 'XX';
+                $countryAcronym = $options['countryAcronym'] ?? $options['user']->country_acronym ?? Country::UNKNOWN;
 
                 return $query->fromCountry($countryAcronym);
             case 'friend':
@@ -324,6 +324,36 @@ abstract class Model extends BaseModel
         return $query->whereIn('user_id', $userIds);
     }
 
+    /**
+     * Override parent scope with a noop as only passed scores go in here.
+     * And the `pass` column doesn't exist.
+     */
+    public function scopeIncludeFails($query, bool $include)
+    {
+        return $query;
+    }
+
+    public function getPassAttribute(): bool
+    {
+        return true;
+    }
+
+    public function isPersonalBest(): bool
+    {
+        return !static
+            ::where([
+                'user_id' => $this->user_id,
+                'beatmap_id' => $this->beatmap_id,
+            ])->where(function ($q) {
+                return $q
+                    ->where('score', '>', $this->score)
+                    ->orWhere(function ($qq) {
+                        return $qq->where('score', $this->score)
+                            ->where($this->getKeyName(), '<', $this->getKey());
+                    });
+            })->exists();
+    }
+
     public function replayViewCount()
     {
         $class = ReplayViewCount::class.'\\'.get_class_basename(static::class);
@@ -336,20 +366,39 @@ abstract class Model extends BaseModel
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * This doesn't delete the score in elasticsearch.
+     */
     public function delete()
     {
         $result = $this->getConnection()->transaction(function () {
-            $stats = optional($this->user)->statistics($this->gameModeString());
+            $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
 
-            if ($stats !== null) {
-                $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
+            if ($statsColumn !== null && $this->isPersonalBest()) {
+                $userStats = $this->user?->statistics($this->gameModeString());
 
-                if ($statsColumn !== null) {
-                    $stats->decrement($statsColumn);
+                if ($userStats !== null) {
+                    $userStats->decrement($statsColumn);
+
+                    $nextBest = static::where([
+                        'beatmap_id' => $this->beatmap_id,
+                        'user_id' => $this->user_id,
+                    ])->where($this->getKeyName(), '<>', $this->getKey())
+                    ->orderBy('score', 'DESC')
+                    ->orderBy($this->getKeyName(), 'ASC')
+                    ->first();
+
+                    if ($nextBest !== null) {
+                        $nextBestStatsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$nextBest->rank] ?? null;
+
+                        if ($nextBestStatsColumn !== null) {
+                            $userStats->increment($nextBestStatsColumn);
+                        }
+                    }
                 }
             }
 
-            optional($this->replayViewCount)->delete();
+            $this->replayViewCount?->delete();
 
             return parent::delete();
         });

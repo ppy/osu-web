@@ -5,13 +5,12 @@
 @extends('master')
 
 @section('content')
-    <div class="js-react--news-index osu-layout osu-layout--full"></div>
-
-    <script id="json-index" type="application/json">
-        {!! json_encode($postsJson) !!}
-    </script>
+    <div
+        class="js-react--news-index osu-layout osu-layout--full"
+        data-props="{{ json_encode(['data' => $postsJson]) }}"
+    ></div>
 
     <div class="js-news-sidebar-record"></div>
 
-    @include('layout._extra_js', ['src' => 'js/react/news-index.js'])
+    @include('layout._react_js', ['src' => 'js/news-index.js'])
 @endsection

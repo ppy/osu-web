@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => '잠시 멈추시고, 좀 더 플레이해보세요.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '공식 아티스트',
+    ],
+
     'index' => [
         'title' => '비트맵 목록',
         'guest_title' => '비트맵',
@@ -26,7 +30,7 @@ return [
         'download' => [
             'all' => '다운로드',
             'video' => '영상 포함된 것으로 받기',
-            'no_video' => '영상 없는 것으로 받기',
+            'no_video' => '영상이 없는 것으로 받기',
             'direct' => 'osu!direct에서 열기',
         ],
     ],
@@ -53,13 +57,13 @@ return [
         'discussion' => '토론',
 
         'details' => [
-            'by_artist' => ':artist 님이 만듦',
+            'by_artist' => 'by :artist',
             'favourite' => '즐겨찾기',
             'favourite_login' => '로그인하여 이 비트맵을 즐겨찾기 하세요.',
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
-            'mapped_by' => ':mapper님의 맵',
+            'mapped_by' => ':mapper 님의 맵',
             'unfavourite' => '즐겨찾기 해제',
-            'updated_timeago' => ':timeago에 마지막으로 수정됨',
+            'updated_timeago' => ':timeago에 마지막으로 수정',
 
             'download' => [
                 '_' => '다운로드',
@@ -75,16 +79,16 @@ return [
         ],
 
         'details_date' => [
-            'approved' => ':timeago 전 approved 됨',
-            'loved' => ':timeago 전 loved 됨',
-            'qualified' => ':timeago 전 qualified 됨',
-            'ranked' => ':timeago ranked 됨',
-            'submitted' => ':timeago 제출됨',
-            'updated' => ':timeago 마지막으로 수정됨',
+            'approved' => ':timeago에 approved 됨',
+            'loved' => ':timeago에 loved 됨',
+            'qualified' => ':timeago에 qualified 됨',
+            'ranked' => ':timeago에 ranked 됨',
+            'submitted' => ':timeago에 제출됨',
+            'updated' => ':timeago에 마지막으로 수정',
         ],
 
         'favourites' => [
-            'limit_reached' => '즐겨찾기 한 비트맵이 너무 많습니다! 계속하기 전에 즐겨찾기 수를 줄여주세요.',
+            'limit_reached' => '즐겨찾기 한 비트맵이 너무 많아요. 추가하기 전에 즐겨찾기 한 곡들의 수를 줄여주세요.',
         ],
 
         'hype' => [
@@ -194,7 +198,7 @@ return [
             'loved' => 'Loved',
             'qualified' => 'Qualified',
             'wip' => '제작 중',
-            'pending' => 'Pending',
+            'pending' => '보류 중',
             'graveyard' => '무덤에 감',
         ],
     ],

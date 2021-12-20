@@ -15,7 +15,7 @@
         {{ $state ? 'btn-circle--activated' : '' }}
     "
     data-topic-id="{{ $topic->topic_id }}"
-    title="{{ trans('forum.topics.issue_tag_'.$issueTag.'.to_'.(int) !$state) }}"
+    title="{{ osu_trans('forum.topics.issue_tag_'.$issueTag.'.to_'.(int) !$state) }}"
     data-url="{{ route('forum.topics.issue-tag', [
         $topic,
         'state' => !$state,

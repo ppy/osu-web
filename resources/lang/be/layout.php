@@ -19,7 +19,6 @@ return [
             'contest' => 'конкурс',
             'contests' => 'конкурсы',
             'root' => 'кансоль',
-            'store_orders' => 'адміністратар крамы',
         ],
 
         'artists' => [
@@ -47,6 +46,7 @@ return [
 
         'users' => [
             'modding' => 'модынг',
+            'multiplayer' => 'мультыплэер',
             'show' => 'інфармацыя',
         ],
     ],
@@ -62,18 +62,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'бітмапы',
-            'artists' => 'featured artists',
-            'index' => 'спіс',
-            'packs' => 'пакеты',
         ],
         'community' => [
             '_' => 'супольнасць',
-            'chat' => 'чат',
-            'contests' => 'конкурсы',
             'dev' => 'распрацоўка',
-            'forum-forums-index' => 'форумы',
-            'getLive' => 'жывыя трансляцыі',
-            'tournaments' => 'турніры',
         ],
         'help' => [
             '_' => 'дапамога',
@@ -81,30 +73,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'правілы',
             'getSupport' => 'ды не ж, мне праўда патрэбна дапамога!',
-            'getWiki' => 'вікі',
         ],
         'home' => [
             '_' => 'галоўная',
-            'changelog-index' => 'спic змен',
-            'getDownload' => 'спампаваць',
-            'news-index' => 'навіны',
-            'search' => 'пошук',
             'team' => 'каманда',
         ],
         'rankings' => [
             '_' => 'рэйтынг',
-            'charts' => 'па графіках',
-            'country' => 'па краінах',
-            'index' => 'прадукцыйнасць',
-            'kudosu' => 'кудосу',
-            'multiplayer' => 'мультыплэер',
-            'score' => 'па ачках',
+            'kudosu' => 'па кудосу',
         ],
         'store' => [
             '_' => 'крама',
-            'cart-show' => 'кошык',
-            'getListing' => 'спіс',
-            'orders-index' => 'сартаванне гісторыі',
         ],
     ],
 
@@ -112,7 +91,7 @@ return [
         'general' => [
             '_' => 'Агульнае',
             'home' => 'Галоўная',
-            'changelog-index' => 'Спic змен',
+            'changelog-index' => 'Гісторыя змен',
             'beatmaps' => 'Спіс бітмап',
             'download' => 'Спампаваць osu!',
         ],
@@ -208,7 +187,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Налады',
-            'follows' => 'Спіс праглядаў',
+            'follows' => 'Падпіскі',
             'friends' => 'Сябры',
             'logout' => 'Выйсці',
             'profile' => 'Мой профіль',

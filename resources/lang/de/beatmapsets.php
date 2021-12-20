@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Nur langsam, spiel mehr.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Featured Artist',
+    ],
+
     'index' => [
         'title' => 'Beatmaps: Liste',
         'guest_title' => 'Beatmaps',
@@ -88,7 +92,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Wenn du es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
+            'action' => 'Wenn es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
 
             'current' => [
                 '_' => 'Die Map ist zurzeit :status.',

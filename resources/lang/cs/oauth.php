@@ -14,19 +14,19 @@ return [
 
     'authorized_clients' => [
         'confirm_revoke' => '',
-        'scopes_title' => '',
+        'scopes_title' => 'Tato aplikace může:',
         'owned_by' => 'Vlastní :user',
-        'none' => '',
+        'none' => 'Žádní klienti',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Zrušit přístup',
+            'true' => 'Přístup byl zrušen',
         ],
     ],
 
     'client' => [
         'id' => 'ID klienta',
-        'name' => '',
+        'name' => 'Název aplikace',
         'redirect' => '',
         'reset' => '',
         'reset_failed' => '',
@@ -48,10 +48,10 @@ return [
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
+        'confirm_delete' => 'Opravdu chcete odebrat tohoto klienta?',
         'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'new' => 'Nová OAuth aplikace',
+        'none' => 'Žádní klienti',
 
         'revoked' => [
             'false' => 'Smazat',

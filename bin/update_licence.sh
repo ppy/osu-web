@@ -206,6 +206,7 @@ _fix "${licence_old_blade}" "${licence_new_blade}" '*.blade.php' resources/views
 
 _fix "${licence_old_c}" "${licence_new_c}" '*.less' resources/assets/
 
+_fix "${licence_old_c}" "${licence_new_c}" '*.ts' tests/
 _fix "${licence_old_c}" "${licence_new_c}" '*.ts' resources/assets/
 _fix "${licence_old_c}" "${licence_new_c}" '*.tsx' resources/assets/
 _fix "${licence_old_c}" "${licence_new_c}" '*.js' resources/assets/

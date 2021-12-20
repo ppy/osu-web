@@ -2,8 +2,13 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $currentLocaleMeta = current_locale_meta();
+    $navLinks = nav_links();
+@endphp
+
 @extends('master', [
-    'titleOverride' => trans('home.landing.title'),
+    'titleOverride' => osu_trans('home.landing.title'),
     'blank' => 'true',
     'bodyAdditionalClasses' => 'osu-layout--body-landing'
 ])
@@ -16,12 +21,12 @@
         <!-- Desktop Navigation -->
         <div class="landing-nav hidden-xs">
             <div class="landing-nav__section">
-                @foreach (nav_links() as $section => $links)
+                @foreach ($navLinks as $section => $links)
                     <a
-                        href="{{ $links['_'] ?? array_values($links)[0] }}"
+                        href="{{ array_first($links) }}"
                         class="landing-nav__link {{ ($section == "home") ? "landing-nav__link--bold" : "" }}"
                     >
-                        {{ trans("layout.menu.$section._") }}
+                        {{ osu_trans("layout.menu.$section._") }}
                     </a>
                 @endforeach
 
@@ -29,11 +34,11 @@
                     <span class="landing-nav__link js-menu" data-menu-target="landing--locale">
                         <span class="landing-nav__locale-flag">
                             @include('objects._flag_country', [
-                                'countryCode' => locale_flag(App::getLocale()),
+                                'countryCode' => $currentLocaleMeta->flag(),
                             ])
                         </span>
 
-                        {{ locale_name(App::getLocale()) }}
+                        {{ $currentLocaleMeta->name() }}
                     </span>
 
                     <div
@@ -42,10 +47,13 @@
                         data-visibility="hidden"
                     >
                         @foreach (config('app.available_locales') as $locale)
+                            @php
+                                $localeMeta = locale_meta($locale);
+                            @endphp
                             <button
                                 type="button"
                                 class="landing-nav__locale-button"
-                                @if ($locale !== App::getLocale())
+                                @if ($localeMeta !== $currentLocaleMeta)
                                     data-url="{{ route('set-locale', ['locale' => $locale]) }}"
                                     data-remote="1"
                                     data-method="POST"
@@ -58,11 +66,11 @@
 
                                     <span class="landing-nav__locale-flag">
                                         @include('objects._flag_country', [
-                                            'countryCode' => locale_flag($locale),
+                                            'countryCode' => $localeMeta->flag(),
                                         ])
                                     </span>
 
-                                    {{ locale_name($locale) }}
+                                    {{ $localeMeta->name() }}
                                 </span>
                             </button>
                         @endforeach
@@ -76,7 +84,7 @@
                     class="landing-nav__link js-nav-toggle js-click-menu js-user-login--menu"
                     data-click-menu-target="nav2-login-box"
                 >
-                    {{ trans("users.login._") }}
+                    {{ osu_trans("users.login._") }}
                 </a>
             </div>
         </div>
@@ -89,20 +97,18 @@
     <div class="osu-page">
         <div class="landing-hero">
             <div class="landing-hero__bg-container">
-                <div class="landing-hero__bg-inner-container js-scale" data-scale="ws">
-                    {{--
-                        playsinline is for iphone autoplay
-                        reference: https://webkit.org/blog/6784/new-video-policies-for-ios/
-                    --}}
-                    <video
-                        class="landing-hero__bg js-autoplay"
-                        autoplay
-                        loop
-                        muted
-                        playsinline
-                        src="{{ config('osu.landing.video_url') }}"
-                    ></video>
-                </div>
+                {{--
+                    playsinline is for iphone autoplay
+                    reference: https://webkit.org/blog/6784/new-video-policies-for-ios/
+                --}}
+                <video
+                    class="landing-hero__bg"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    src="{{ config('osu.landing.video_url') }}"
+                ></video>
             </div>
 
             <div class="landing-hero__pippi">
@@ -110,8 +116,8 @@
             </div>
 
             <div class="landing-hero__info">
-                {!! trans("home.landing.players", ['count' => i18n_number_format($stats->totalUsers)]) !!},
-                {!! trans("home.landing.online", [
+                {!! osu_trans("home.landing.players", ['count' => i18n_number_format($stats->totalUsers)]) !!},
+                {!! osu_trans("home.landing.online", [
                     'players' => i18n_number_format($stats->currentOnline),
                     'games' => i18n_number_format($stats->currentGames)]
                 ) !!}
@@ -126,11 +132,11 @@
 
                 <div class="landing-hero__slogan">
                     <h1 class="landing-hero__slogan-main">
-                        {{ trans('home.landing.slogan.main') }}
+                        {{ osu_trans('home.landing.slogan.main') }}
                     </h1>
 
                     <h2 class="landing-hero__slogan-sub">
-                        {{ trans('home.landing.slogan.sub') }}
+                        {{ osu_trans('home.landing.slogan.sub') }}
                     </h2>
                 </div>
 
@@ -140,7 +146,7 @@
                             <span class="btn-osu-big__content">
                                 <span class="btn-osu-big__left">
                                     <span class="btn-osu-big__text-top">
-                                        {{ trans("home.landing.download") }}
+                                        {{ osu_trans("home.landing.download") }}
                                     </span>
                                 </span>
 
@@ -171,10 +177,10 @@
                     <div class="osu-layout__col osu-layout__col--sm-4">
                         <ul class="landing-sitemap__list">
                             <li class="landing-sitemap__item">
-                                <div class="landing-sitemap__header">{{ trans("layout.footer.$section._") }}</div>
+                                <div class="landing-sitemap__header">{{ osu_trans("layout.footer.$section._") }}</div>
                             </li>
                             @foreach ($links as $action => $link)
-                                <li class="landing-sitemap__item"><a href="{{ $link }}" class="landing-sitemap__link">{{ trans("layout.footer.$section.$action") }}</a></li>
+                                <li class="landing-sitemap__item"><a href="{{ $link }}" class="landing-sitemap__link">{{ osu_trans("layout.footer.$section.$action") }}</a></li>
                             @endforeach
                         </ul>
                     </div>

@@ -36,17 +36,6 @@ class UserSearchParams extends SearchParams
     /**
      * {@inheritdoc}
      */
-    public function getCacheKey(): string
-    {
-        $vars = get_object_vars($this);
-        ksort($vars);
-
-        return 'user-search:'.json_encode($vars);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function isCacheable(): bool
     {
         return false;

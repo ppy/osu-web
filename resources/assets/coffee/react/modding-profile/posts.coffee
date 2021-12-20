@@ -3,7 +3,6 @@
 
 import * as React from 'react'
 import { div, h2, a, img, span } from 'react-dom-factories'
-import { ValueDisplay } from 'value-display'
 import { Post } from "../beatmap-discussions/post"
 
 el = React.createElement
@@ -38,7 +37,9 @@ export class Posts extends React.Component
                 div className: "modding-profile-list__timestamp hidden-xs",
                   div className: "beatmap-discussion-timestamp",
                     div className: "beatmap-discussion-timestamp__icons-container",
-                      span className: "fas fa-reply"
+                      span
+                        className: 'fas fa-reply'
+                        title: osu.trans 'common.buttons.reply'
 
                 div className: discussionClasses,
                   div className: "beatmap-discussion__discussion",

@@ -56,7 +56,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         // can not vote ranked maps
         $this->beatmapset->update(['approved' => Beatmapset::STATES['ranked']]);
-        $moreUser = factory(User::class)->create();
+        $moreUser = User::factory()->create();
 
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore($this->discussion);
@@ -257,18 +257,17 @@ class BeatmapDiscussionsControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->mapper = factory(User::class)->create();
-        $this->user = factory(User::class)->create();
-        $this->anotherUser = factory(User::class)->create();
-        $this->bngUser = factory(User::class)->create();
-        $this->bngUser->addToGroup(app('groups')->byIdentifier('bng'));
-        $this->beatmapset = factory(Beatmapset::class)->create([
-            'user_id' => $this->mapper->user_id,
+        $this->mapper = User::factory()->create();
+        $this->user = User::factory()->create();
+        $this->anotherUser = User::factory()->create();
+        $this->bngUser = User::factory()->withGroup('bng')->create();
+        $this->beatmapset = Beatmapset::factory()->create([
+            'user_id' => $this->mapper,
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
-            'user_id' => $this->mapper->user_id,
+        $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make([
+            'user_id' => $this->mapper,
         ]));
         $this->discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $this->beatmapset->getKey(),

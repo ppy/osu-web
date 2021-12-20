@@ -8,6 +8,7 @@ namespace App\Models;
 use App\Exceptions\InvariantException;
 use App\Exceptions\ScoreRetrievalException;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -90,7 +91,16 @@ class Beatmap extends Model
 
     public static function modeStr($int)
     {
-        return array_search_null($int, static::MODES);
+        static $lookupMap;
+
+        $lookupMap ??= array_flip(static::MODES);
+
+        return $lookupMap[$int] ?? null;
+    }
+
+    public function scopeBaseDifficultyRatings()
+    {
+        return $this->difficulty()->where('mods', 0);
     }
 
     public function baseMaxCombo()
@@ -131,9 +141,12 @@ class Beatmap extends Model
     public function getDifficultyratingAttribute($value)
     {
         if ($this->convert) {
-            $difficulty = $this->difficulty->where('mode', $this->playmode)->where('mods', 0)->first();
-
-            $value = optional($difficulty)->diff_unified ?? 0;
+            $value = (
+                $this->relationLoaded('baseDifficultyRatings')
+                    ? $this->baseDifficultyRatings
+                    : $this->baseDifficultyRatings()
+            )->firstWhere('mode', $this->playmode)
+            ?->diff_unified ?? 0;
         }
 
         return round($value, 2);
@@ -150,7 +163,7 @@ class Beatmap extends Model
          * Matches client implementation.
          * all round()s here use PHP_ROUND_HALF_EVEN to match C# default Math.Round.
          * References:
-         * - (implmentation) https://github.com/ppy/osu/blob/c9276ce2b8b2eb728b1e5fc74f5f7ef81b0c6e09/osu.Game.Rulesets.Mania/Beatmaps/ManiaBeatmapConverter.cs#L36
+         * - (implementation) https://github.com/ppy/osu/blob/6bbc23c831cd73bf126b31edb0bb4fa729f947d1/osu.Game.Rulesets.Mania/Beatmaps/ManiaBeatmapConverter.cs#L40
          * - (rounding) https://msdn.microsoft.com/en-us/library/wyk4d9cy(v=vs.110).aspx
          */
         if ($this->mode === 'mania') {
@@ -166,7 +179,7 @@ class Beatmap extends Model
                 if ($percentSliderOrSpinner < 0.2) {
                     return 7;
                 } elseif ($percentSliderOrSpinner < 0.3 || $roundedValue >= 5) {
-                    return $accuracy > 5 ? 7 : 5;
+                    return $accuracy > 5 ? 7 : 6;
                 } elseif ($percentSliderOrSpinner > 0.6) {
                     return $accuracy > 4 ? 5 : 4;
                 } else {
@@ -198,6 +211,11 @@ class Beatmap extends Model
         return $query
             ->orderBy('playmode', 'ASC')
             ->orderBy('difficultyrating', 'ASC');
+    }
+
+    public function scopeIncreasesStatistics(Builder $query): Builder
+    {
+        return $query->whereHas('beatmapset', fn ($q) => $q->withTrashed(false));
     }
 
     public function scopeScoreable($query)
@@ -310,11 +328,11 @@ class Beatmap extends Model
         $mode ?? ($mode = $this->mode);
 
         if (!static::isModeValid($mode)) {
-            throw new ScoreRetrievalException(trans('errors.beatmaps.invalid_mode'));
+            throw new ScoreRetrievalException(osu_trans('errors.beatmaps.invalid_mode'));
         }
 
         if ($this->mode !== 'osu' && $this->mode !== $mode) {
-            throw new ScoreRetrievalException(trans('errors.beatmaps.standard_converts_only'));
+            throw new ScoreRetrievalException(osu_trans('errors.beatmaps.standard_converts_only'));
         }
 
         $mode = studly_case($mode);

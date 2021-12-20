@@ -7,7 +7,6 @@ namespace App\Models;
 
 use App\Libraries\MorphMap;
 use App\Traits\Validatable;
-use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 
 /**
@@ -28,6 +27,7 @@ use Carbon\Carbon;
  * @property string $message
  * @property static $parent
  * @property int|null $parent_id
+ * @property bool $pinned
  * @property \Illuminate\Database\Eloquent\Collection $replies static
  * @property int $replies_count_cache
  * @property \Carbon\Carbon|null $updated_at
@@ -38,7 +38,7 @@ use Carbon\Carbon;
  */
 class Comment extends Model
 {
-    use Reportable, Validatable, WithDbCursorHelper;
+    use Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 
     const COMMENTABLES = [
         MorphMap::MAP[Beatmapset::class],

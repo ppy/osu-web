@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => 'topic logs',
+        ],
         'topic_watches_controller' => [
             'index' => 'dashboard',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'dashboard',
             'verify_link' => 'account verification',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'featured artists',
         ],
         'artists_controller' => [
             '_' => 'featured artists',
@@ -111,13 +117,13 @@ return [
             '_' => 'password reset',
         ],
         'ranking_controller' => [
-            '_' => 'ranking',
+            '_' => 'rankings',
         ],
         'scores_controller' => [
             '_' => 'performance',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'store',
         ],
         'tournaments_controller' => [
             '_' => 'tournaments',
@@ -127,20 +133,28 @@ return [
             'disabled' => 'notice',
         ],
         'wiki_controller' => [
-            '_' => 'knowledge base',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'ranking',
+            '_' => 'rankings',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'authorize app',
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'store',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder info',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'multiplayer history',
         ],
     ],
 ];

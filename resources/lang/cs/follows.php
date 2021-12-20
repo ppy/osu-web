@@ -5,13 +5,13 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'Nesledujete žádné komentáře.',
+        'page_title' => 'sledované komentáře',
+        'title' => 'komentáře',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'žádné komentáře',
+            'latest_comment_value' => ':time od :username',
         ],
     ],
 
@@ -20,19 +20,19 @@ return [
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'sledované položky',
     ],
 
     'mapping' => [
-        'empty' => '',
+        'empty' => 'Nesledujete žádné autory map.',
         'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'page_title' => 'sledovaní autoři map',
+        'title' => 'autoři map',
+        'to_0' => 'přestaň mě upozorňovat, když tento uživatel nahraje novou beatmapu',
+        'to_1' => 'upozorni mě, když tento uživatel nahraje novou beatmapu',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'diskuze beatmap',
     ],
 ];

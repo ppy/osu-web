@@ -28,9 +28,9 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Gast moeilijkheidsgraad',
+                'beatmap_owner_change' => 'Je hebt nu de moeilijkheid ":beatmap" voor beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Je bent nu eigenaar van de moeilijkheidsgraad ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -137,7 +137,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited ongelezen bericht.|:count_delimited berichten.',
+                'legacy_pm' => ':count_delimited ongelezen bericht|:count_delimited berichten',
             ],
         ],
 
@@ -148,6 +148,11 @@ return [
                 'user_beatmapset_new' => 'Nieuwe beatmap ":title" door :username',
                 'user_beatmapset_new_compact' => 'Nieuwe beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nieuwe beatmaps door :username',
+
+                'user_beatmapset_revive' => '
+Beatmap ":title" vernieuwd door :username',
+                'user_beatmapset_revive_compact' => '
+Beatmap ":title" vernieuwd',
             ],
         ],
 
@@ -166,7 +171,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Je bent nu gast van beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [

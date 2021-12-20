@@ -19,12 +19,19 @@
     .badge.badge-scope-oauth {
         background: #3a87ad;
     }
+    .badge.badge-user {
+        background: #ad2a66;
+    }
     .content table tr:nth-child(2n+1) > td {
         background: rgba(0, 0, 0, 0.02);
     }
     .content table td {
         padding-top: 5px;
         padding-bottom: 5px;
+    }
+    .logo {
+        max-width: 70%;
+        margin: auto;
     }
 </style>
 

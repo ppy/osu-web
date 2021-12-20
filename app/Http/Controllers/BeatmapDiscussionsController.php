@@ -153,7 +153,7 @@ class BeatmapDiscussionsController extends Controller
             abort(404);
         }
 
-        return ujs_redirect(route('beatmapsets.discussion', $discussion->beatmapset).'#/'.$id);
+        return ujs_redirect(route('beatmapsets.discussion', $discussion->beatmapset).'#/'.$discussion->getKey());
     }
 
     public function vote($id)
@@ -172,7 +172,7 @@ class BeatmapDiscussionsController extends Controller
         if ($discussion->vote($params)) {
             return $discussion->beatmapset->defaultDiscussionJson();
         } else {
-            return error_popup(trans('beatmaps.discussion-votes.update.error'));
+            return error_popup(osu_trans('beatmaps.discussion-votes.update.error'));
         }
     }
 }

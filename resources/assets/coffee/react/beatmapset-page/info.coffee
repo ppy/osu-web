@@ -2,16 +2,19 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import BbcodeEditor from 'bbcode-editor'
+import MetadataEditor from 'beatmapsets-show/metadata-editor'
 import { Modal } from 'modal'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
-import MetadataEditor from 'beatmapsets-show/metadata-editor'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Info extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapsets-show-info-#{nextVal()}"
     @overlayRef = React.createRef()
     @chartAreaRef = React.createRef()
 
@@ -30,7 +33,8 @@ export class Info extends React.Component
 
 
   componentWillUnmount: =>
-    $(window).off '.beatmapsetPageInfo'
+    $(window).off ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
 
   toggleEditingDescription: =>
@@ -92,10 +96,11 @@ export class Info extends React.Component
         modifiers: ['beatmap-success-rate']
 
       @_failurePointsChart = new StackedBarChart @chartAreaRef.current, options
-      $(window).on 'resize.beatmapsetPageInfo', @_failurePointsChart.resize
+      $(window).on "resize.#{@eventId}", @_failurePointsChart.resize
 
-    @_failurePointsChart.loadData @props.beatmap.failtimes
-    @_failurePointsChart.reattach @chartAreaRef.current
+    core.reactTurbolinks.runAfterPageLoad @eventId, =>
+      @_failurePointsChart.loadData @props.beatmap.failtimes
+      @_failurePointsChart.reattach @chartAreaRef.current
 
 
   renderEditMetadataButton: =>
@@ -165,6 +170,7 @@ export class Info extends React.Component
               osu.trans 'beatmapsets.show.info.source'
 
             a
+              className: 'beatmapset-info__link'
               href: laroute.route('beatmapsets.index', q: @props.beatmapset.source)
               @props.beatmapset.source
 
@@ -173,6 +179,7 @@ export class Info extends React.Component
             h3 className: 'beatmapset-info__header',
               osu.trans 'beatmapsets.show.info.genre'
             a
+              className: 'beatmapset-info__link'
               href: laroute.route('beatmapsets.index', g: @props.beatmapset.genre.id)
               @props.beatmapset.genre.name
 
@@ -180,6 +187,7 @@ export class Info extends React.Component
             h3 className: 'beatmapset-info__header',
               osu.trans 'beatmapsets.show.info.language'
             a
+              className: 'beatmapset-info__link'
               href: laroute.route('beatmapsets.index', l: @props.beatmapset.language.id)
               @props.beatmapset.language.name
 
@@ -194,6 +202,7 @@ export class Info extends React.Component
                 [
                   a
                     key: tag
+                    className: 'beatmapset-info__link'
                     href: laroute.route('beatmapsets.index', q: tag)
                     tag
                   span key: "#{tag}-space", ' '

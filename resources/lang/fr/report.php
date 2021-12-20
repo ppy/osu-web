@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Signaler',
+        'title' => 'Signaler la beatmap de :username ?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Signaler',
         'title' => 'Signaler le message de :username ?',
@@ -16,7 +21,7 @@ return [
 
     'forum_post' => [
         'button' => 'Signaler',
-        'title' => 'Signaler la publication de :username ?',
+        'title' => 'Signaler le post de :username ?',
     ],
 
     'scores' => [

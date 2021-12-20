@@ -6,11 +6,11 @@
 return [
     'all_read' => 'Všechna oznámení přečtena!',
     'delete' => '',
-    'loading' => '',
+    'loading' => 'Načítání nepřečtených oznámení...',
     'mark_read' => '',
     'none' => 'Žádná oznámení',
-    'see_all' => '',
-    'see_channel' => '',
+    'see_all' => 'zobrazit všechna oznámení',
+    'see_channel' => 'přejít na chat',
     'verifying' => '',
 
     'filters' => [
@@ -137,7 +137,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => '',
+                'legacy_pm' => ':count_delimited nepřečtená zpráva|:count_delimited nepřečtené zprávy|:count_delimited nepřečtených zpráv',
             ],
         ],
 
@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => '',
                 'user_beatmapset_new_compact' => '',
                 'user_beatmapset_new_group' => '',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 
@@ -196,7 +199,7 @@ return [
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Obdrželi jste novou zprávu od :username',
             ],
         ],
 
@@ -220,12 +223,12 @@ return [
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username odemkl novou medaili, ":title"!',
+                'user_achievement_unlock_self' => 'Odemkli jste novou medaili, ":title"!',
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username vytvořil nové beatmapy',
             ],
         ],
     ],

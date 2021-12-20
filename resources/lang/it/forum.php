@@ -127,6 +127,55 @@ return [
             'previous' => 'vai indietro di 10 post',
         ],
 
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => '',
+                'date' => '',
+                'user' => '',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => 'da :topic',
+                'pin' => 'argomento fissato',
+                'post_operation' => 'postato da :username',
+                'remove_tag' => 'rimosso il tag ":tag"',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => 'Titolo dell\'argomento modificato',
+                'edit_poll' => '',
+                'fork' => 'Argomento copiato',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => 'Argomento spostato',
+                'pin' => 'Argomento fissato ',
+                'post_edited' => 'Post modificato',
+                'restore_post' => 'Post ripristinato',
+                'restore_topic' => 'Argomento ripristinato',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => 'Argomento sbloccato',
+                'unpin' => 'Argomento fissato rimosso',
+                'user_lock' => 'Argomento personale chiuso',
+                'user_unlock' => '',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Cancella',
             'post' => 'Salva',
@@ -321,8 +370,8 @@ return [
             'to_not_watching' => 'Non preferito',
             'to_watching' => 'Preferito',
             'to_watching_mail' => 'Preferito con notifica',
-            'tooltip_mail_disable' => 'Le notifiche sono abilitate. Premi per disabilitarle',
-            'tooltip_mail_enable' => 'Le notifiche sono disabilitate. Premi per abilitarle',
+            'tooltip_mail_disable' => 'Notifica abilitata. Clicca per disattivarla',
+            'tooltip_mail_enable' => 'Notifica disabilitata. Clicca per attivarla',
         ],
     ],
 ];

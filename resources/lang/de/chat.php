@@ -5,7 +5,7 @@
 
 return [
     'talking_in' => 'sprechen in :channel',
-    'talking_with' => 'sprechen mit :name',
+    'talking_with' => 'im gespräch mit :name',
     'title_compact' => 'chat',
 
     'cannot_send' => [
@@ -24,6 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'Nachricht konnte nicht gesendet werden...',
+        'disconnected' => 'Verbindung getrennt',
         'placeholder' => 'Nachricht verfassen...',
         'send' => 'Senden',
     ],

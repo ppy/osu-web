@@ -32,7 +32,7 @@ class ScoresController extends Controller
             ->firstOrFail();
 
         if (!is_api_request() && !from_app_url()) {
-            return ujs_redirect(route('scores.show', ['score' => $id, 'mode' => $mode]));
+            return ujs_redirect(route('scores.show', ['score' => $score->getKey(), 'mode' => $mode]));
         }
 
         $replayFile = $score->replayFile();
@@ -42,19 +42,21 @@ class ScoresController extends Controller
 
         try {
             $filename = "replay-{$mode}_{$score->beatmap_id}_{$score->getKey()}.osr";
-            $content = $replayFile->get();
-
-            return response()->streamDownload(function () use ($replayFile, $content) {
-                echo $replayFile->headerChunk();
-                echo pack('i', strlen($content));
-                echo $content;
-                echo $replayFile->endChunk();
-            }, $filename, ['Content-Type' => 'application/x-osu-replay']);
+            $body = $replayFile->get();
         } catch (FileNotFoundException $e) {
             // missing from storage.
             log_error($e);
             abort(404);
         }
+
+        $file = $replayFile->headerChunk()
+            .pack('i', strlen($body))
+            .$body
+            .$replayFile->endChunk();
+
+        return response()->streamDownload(function () use ($file) {
+            echo $file;
+        }, $filename, ['Content-Type' => 'application/x-osu-replay']);
     }
 
     public function show($mode, $id)
@@ -71,7 +73,6 @@ class ScoresController extends Controller
         $scoreJson = json_item($score, 'Score', array_merge([
             'beatmap.max_combo',
             'beatmapset',
-            'rank_country',
             'rank_global',
         ], $userIncludes));
 

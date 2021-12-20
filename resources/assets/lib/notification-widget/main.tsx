@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Name, typeNames } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
@@ -12,6 +12,7 @@ import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
+import { classWithModifiers } from 'utils/css';
 import Stack from './stack';
 
 interface Link {
@@ -51,8 +52,13 @@ export default class Main extends React.Component<Props, State> {
     return this.typeNames.map((type) => ({ title: osu.trans(`notifications.filters.${type ?? '_'}`), type }));
   }
 
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   static getDerivedStateFromError(error: Error) {
-    // eslint-disable-next-line no-console
     console.error(error);
     return { hasError: true };
   }
@@ -107,7 +113,7 @@ export default class Main extends React.Component<Props, State> {
     return (
       <button
         key={link.title}
-        className={osu.classWithModifiers('notification-popup__filter', modifiers)}
+        className={classWithModifiers('notification-popup__filter', modifiers)}
         onClick={this.handleFilterClick}
         {...data}
       >

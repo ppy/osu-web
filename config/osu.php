@@ -1,5 +1,10 @@
 <?php
 
+$profileScoresNotice = presence(env('USER_PROFILE_SCORES_NOTICE'));
+if ($profileScoresNotice !== null) {
+    $profileScoresNotice = markdown_plain($profileScoresNotice);
+}
+
 // osu config~
 return [
     'achievement' => [
@@ -111,6 +116,7 @@ return [
     'git-sha' => presence(env('GIT_SHA'))
         ?? (file_exists(__DIR__.'/../version') ? trim(file_get_contents(__DIR__.'/../version')) : null)
         ?? 'unknown-version',
+    'is_development_deploy' => get_bool(env('IS_DEVELOPMENT_DEPLOY')) ?? true,
     'landing' => [
         'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),
     ],
@@ -133,6 +139,9 @@ return [
     'oauth' => [
         'retain_expired_tokens_days' => abs(get_int(env('OAUTH_RETAIN_EXPIRED_TOKENS_DAYS'))) ?? 30,
         'max_user_clients' => get_int(env('OAUTH_MAX_USER_CLIENTS')) ?? 1,
+    ],
+    'octane' => [
+        'local_cache_reset_requests' => get_int(env('OCTANE_LOCAL_CACHE_RESET_REQUESTS')) ?? 100,
     ],
     'pagination' => [
         'max_count' => get_int(env('PAGINATION_MAX_COUNT')) ?? 10000,
@@ -162,12 +171,7 @@ return [
         'ends_at' => env('SEASONAL_ENDS_AT'),
     ],
 
-    'support' => [
-        'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
-    ],
     'store' => [
-        'delayed_shipping_order_threshold' => env('DELAYED_SHIPPING_ORDER_THRESHOLD', 100),
-        'delayed_shipping_order_message' => env('DELAYED_SHIPPING_ORDER_MESSAGE'),
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
@@ -212,18 +216,23 @@ return [
     ],
     'user' => [
         'allow_email_login' => get_bool(env('USER_ALLOW_EMAIL_LOGIN')) ?? true,
-        'allow_registration' => get_bool(env('ALLOW_REGISTRATION', false)),
+        'allow_registration' => get_bool(env('ALLOW_REGISTRATION')) ?? true,
         'allowed_rename_groups' => explode(' ', env('USER_ALLOWED_RENAME_GROUPS', 'default')),
+        'bypass_verification' => get_bool(env('USER_BYPASS_VERIFICATION')) ?? false,
         'inactive_days_verification' => get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180,
         'min_plays_for_posting' => get_int(env('USER_MIN_PLAYS_FOR_POSTING')) ?? 10,
         'min_plays_allow_verified_bypass' => get_bool(env('USER_MIN_PLAYS_ALLOW_VERIFIED_BYPASS')) ?? true,
         'post_action_verification' => get_bool(env('USER_POST_ACTION_VERIFICATION')) ?? true,
+        'profile_scores_notice' => $profileScoresNotice,
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
         'max_friends' => 250,
         'max_friends_supporter' => 500,
         'max_login_attempts' => get_int(env('USER_MAX_LOGIN_ATTEMPTS')) ?? 10,
+        'max_multiplayer_duration' => get_int(env('USER_MAX_MULTIPLAYER_DURATION')) ?? 14,
+        // see https://github.com/ppy/osu/pull/16024/files#diff-d5f8d0eb0eac5cfd6d2f486d34c4168e036b83b622c7a3c5bfce5205d67bf52bR327-R330
+        'max_multiplayer_duration_supporter' => get_int(env('USER_MAX_MULTIPLAYER_DURATION_SUPPORTER')) ?? 63,
         'max_multiplayer_rooms' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS')) ?? 1,
         'max_multiplayer_rooms_supporter' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS_SUPPORTER')) ?? 5,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),

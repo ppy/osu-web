@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'foro',
+        'topic_logs_controller' => [
+            'index' => 'registros de temas',
+        ],
         'topic_watches_controller' => [
             'index' => 'panel',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'panel',
             'verify_link' => 'verificación de la cuenta',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'artistas destacados',
         ],
         'artists_controller' => [
             '_' => 'artistas destacados',
@@ -111,13 +117,13 @@ return [
             '_' => 'restablecimiento de contraseña',
         ],
         'ranking_controller' => [
-            '_' => 'clasificación',
+            '_' => 'clasificaciones',
         ],
         'scores_controller' => [
             '_' => 'rendimiento',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'tienda',
         ],
         'tournaments_controller' => [
             '_' => 'torneos',
@@ -127,7 +133,7 @@ return [
             'disabled' => 'aviso',
         ],
         'wiki_controller' => [
-            '_' => 'base de conocimientos',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -135,12 +141,20 @@ return [
             '_' => 'clasificación',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autorizar aplicación',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'tienda',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'información del modder',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'historial de multijugador',
         ],
     ],
 ];

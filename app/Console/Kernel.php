@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
 
         Commands\UserForumStatSyncCommand::class,
         Commands\BeatmapsetsHypeSyncCommand::class,
+        Commands\BeatmapsetNominationSyncCommand::class,
 
         Commands\StoreCleanupStaleOrders::class,
         Commands\StoreExpireProducts::class,
@@ -66,6 +67,7 @@ class Kernel extends ConsoleKernel
         Commands\UserNotificationsCleanup::class,
         Commands\NotificationsCleanup::class,
 
+        Commands\ChatExpireAck::class,
         Commands\ChatChannelSetLastMessageId::class,
     ];
 
@@ -110,6 +112,10 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('notifications:cleanup')
             ->cron('15,45 * * * *')
+            ->withoutOverlapping();
+
+        $schedule->command('chat:expire-ack')
+            ->everyFiveMinutes()
             ->withoutOverlapping();
     }
 

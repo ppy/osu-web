@@ -112,12 +112,12 @@ return [
         'title' => 'dasbor',
         'news' => [
             'title' => 'Berita',
-            'error' => 'Terjadi kesalahan dalam memuat berita. Coba untuk memuat ulang laman?...',
+            'error' => 'Terdapat kesalahan dalam memuat berita. Coba untuk memuat ulang laman?...',
         ],
         'header' => [
             'stats' => [
                 'friends' => 'Teman yang Online',
-                'games' => 'Permainan',
+                'games' => 'Ruang Permainan',
                 'online' => 'Pemain yang Online',
             ],
         ],
@@ -131,16 +131,5 @@ return [
             'support' => 'Dukung osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Anda tampaknya sedang bersenang-senang! :D',
-        'body' => [
-            'part-1' => 'Tahukah Anda bahwa osu! beroperasi tanpa iklan, di mana biaya pengembangan dan operasionalnya bergantung sepenuhnya pada donasi sukarela dari para penggunanya?',
-            'part-2' => 'Apakah Anda juga tahu bahwa dengan mendukung osu! Anda juga akan mendapatkan berbagai fitur eksklusif seperti <strong>pengunduh beatmap otomatis di dalam aplikasi osu!</strong> yang akan secara otomatis mengunduh beatmap yang Anda belum miliki di saat sedang menonton pemain lain dan di dalam pertandingan multiplayer?',
-        ],
-        'find-out-more' => 'Klik di sini untuk mengetahui lebih lanjut!',
-        'download-starting' => "Oh, dan jangan khawatir - unduhan Anda sudah dimulai ;)",
     ],
 ];

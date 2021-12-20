@@ -4,6 +4,7 @@
 import GalleryContest from 'gallery-contest'
 import PhotoSwipe from 'photoswipe'
 import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default'
+import { fadeIn, fadeOut } from 'utils/fade'
 
 export default class Gallery
   constructor: ->
@@ -100,7 +101,7 @@ export default class Gallery
     for pair in _.zip($links, $previews)
       if index == pair[0].dataset.index
         pair[0].classList.add 'js-gallery-thumbnail--active'
-        Fade.in pair[1]
+        fadeIn pair[1]
       else
         pair[0].classList.remove 'js-gallery-thumbnail--active'
-        Fade.out pair[1]
+        fadeOut pair[1]

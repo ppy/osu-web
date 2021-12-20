@@ -5,7 +5,7 @@
             "GET",
             "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\API\\BeatmapsController@lookup",
+        "controller": "App\\Http\\Controllers\\BeatmapsController@lookup",
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
@@ -52,6 +52,19 @@
         "methods": [
             "POST"
         ],
+        "controller": "App\\Http\\Controllers\\Solo\\ScoreTokensController@store",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "auth"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/beatmaps/{beatmap}/solo/scores/{token}",
+        "methods": [
+            "PUT"
+        ],
         "controller": "App\\Http\\Controllers\\Solo\\ScoresController@store",
         "middlewares": [
             "throttle:1200,1,api:",
@@ -61,18 +74,20 @@
         "scopes": []
     },
     {
-        "uri": "api/v2/beatmaps/{beatmap}/solo/scores/{score}",
+        "uri": "api/v2/beatmaps",
         "methods": [
-            "PATCH",
-            "PUT"
+            "GET",
+            "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\Solo\\ScoresController@update",
+        "controller": "App\\Http\\Controllers\\BeatmapsController@index",
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
-            "auth"
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/beatmaps/{beatmap}",
@@ -80,7 +95,7 @@
             "GET",
             "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\API\\BeatmapsController@show",
+        "controller": "App\\Http\\Controllers\\BeatmapsController@show",
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
@@ -915,12 +930,9 @@
         "controller": "App\\Http\\Controllers\\NewsController@index",
         "middlewares": [
             "throttle:1200,1,api:",
-            "require-scopes",
-            "require-scopes:public"
+            "require-scopes"
         ],
-        "scopes": [
-            "public"
-        ]
+        "scopes": []
     },
     {
         "uri": "api/v2/news/{news}",
@@ -931,12 +943,9 @@
         "controller": "App\\Http\\Controllers\\NewsController@show",
         "middlewares": [
             "throttle:1200,1,api:",
-            "require-scopes",
-            "require-scopes:public"
+            "require-scopes"
         ],
-        "scopes": [
-            "public"
-        ]
+        "scopes": []
     },
     {
         "uri": "api/v2/notifications",

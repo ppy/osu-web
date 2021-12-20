@@ -55,7 +55,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Dieser Beitrag wird den generellen Beatmapdiskussionen hinzugefügt. Um diese Beatmap zu modden, beginne die Nachricht mit einer Timestamp (z.B. 00:12:345).',
+            'in_general' => 'Dieser Beitrag wird den generellen Beatmapdiskussionen hinzugefügt. Um diese Beatmap zu modden, beginne die Nachricht mit einem Zeitstempel (z.B. 00:12:345).',
             'in_timeline' => 'Um an mehreren Zeitpunkten zu modden, musst du mehrere Beiträge erstellen (ein Beitrag pro Timestamp).',
         ],
 
@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Disqualifizieren',
         'incorrect_state' => 'Ein Fehler ist aufgetreten, versuche die Seite zu aktualisieren.',
         'love' => 'Liebe',
+        'love_choose' => 'Schwierigkeitsstufe für Loved wählen',
         'love_confirm' => 'Liebst du diese Beatmap?',
         'nominate' => 'Nominieren',
         'nominate_confirm' => 'Diese Beatmap nominieren?',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Konvertierte Beatmaps miteinbeziehen',
+        'featured_artists' => 'Featured Artists',
         'follows' => 'Abonnierte Mapper',
         'recommended' => 'Empfohlene Schwierigkeit',
     ],

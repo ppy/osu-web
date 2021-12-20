@@ -2,10 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
+import { UserLoginAction } from 'actions/user-login-actions';
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import Notification from 'models/notification';
 import { NotificationEventDelete, NotificationEventRead } from 'notifications/notification-events';
 import { NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
@@ -19,6 +19,10 @@ export default class NotificationStore implements DispatchListener {
   @observable notifications = new Map<number, Notification>();
   readonly stacks = new NotificationStackStore(this);
   readonly unreadStacks = new WidgetNotificationStackStore(this);
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   add(notification: Notification) {
@@ -40,7 +44,7 @@ export default class NotificationStore implements DispatchListener {
       this.handleNotificationEventDelete(dispatched);
     } else if (dispatched instanceof NotificationEventRead) {
       this.handleNotificationEventRead(dispatched);
-    } else if (dispatched instanceof UserLoginAction || dispatched instanceof UserLogoutAction) {
+    } else if (dispatched instanceof UserLoginAction) {
       this.flushStore();
     }
   }
@@ -72,7 +76,7 @@ export default class NotificationStore implements DispatchListener {
           this.eachByStack(identity, callback);
           break;
 
-        case 'notification':
+        case 'notification': {
           if (identity.id == null) return;
           const notification = this.get(identity.id);
 
@@ -80,6 +84,7 @@ export default class NotificationStore implements DispatchListener {
             callback(notification);
           }
           break;
+        }
       }
     }
   }

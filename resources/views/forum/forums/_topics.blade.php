@@ -4,7 +4,7 @@
 --}}
 @if (count($topics) === 0)
     <li class="forum-topic-entry">
-        {{ trans('forum.forums.topics.empty') }}
+        {{ osu_trans('forum.forums.topics.empty') }}
     </li>
 @else
     @foreach($topics as $topic)

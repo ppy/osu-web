@@ -2,15 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
-import { forEach } from 'lodash';
-import { action, computed, observable, observe } from 'mobx';
-import SocketMessageEvent from 'socket-message-event';
+import { action, computed, makeObservable, observable, observe } from 'mobx';
+import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
 import SocketWorker from 'socket-worker';
+import RetryDelay from 'utils/retry-delay';
 import {
   NotificationEventDelete,
   NotificationEventDeleteJson,
@@ -25,11 +24,11 @@ interface NotificationBootJson extends NotificationBundleJson {
   notification_endpoint: string;
 }
 
-const isNotificationEventDeleteJson = (arg: any): arg is NotificationEventDeleteJson => arg.event === 'delete';
+const isNotificationEventDeleteJson = (arg: SocketEventData): arg is NotificationEventDeleteJson => arg.event === 'delete';
 
-const isNotificationEventNewJson = (arg: any): arg is NotificationEventNewJson => arg.event === 'new';
+const isNotificationEventNewJson = (arg: SocketEventData): arg is NotificationEventNewJson => arg.event === 'new';
 
-const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson => arg.event === 'read';
+const isNotificationEventReadJson = (arg: SocketEventData): arg is NotificationEventReadJson => arg.event === 'read';
 
 /**
  * Handles initial notifications bootstrapping and parsing of web socket messages into notification events.
@@ -37,8 +36,8 @@ const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson
 @dispatchListener
 export default class Worker implements DispatchListener {
   @observable waitingVerification = false;
-
   @observable private firstLoadedAt?: Date;
+  private retryDelay = new RetryDelay();
   private timeout: Partial<Record<string, number>> = {};
   private xhr: Partial<Record<string, JQueryXHR>> = {};
   private xhrLoadingState: Partial<Record<string, boolean>> = {};
@@ -58,13 +57,11 @@ export default class Worker implements DispatchListener {
     $.subscribe('user-verification:success.notifications-worker', () => {
       this.loadMore();
     });
+
+    makeObservable(this);
   }
 
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof UserLogoutAction) {
-      this.destroy();
-    }
-
     if (!(event instanceof SocketMessageEvent)) return;
 
     const message = event.message;
@@ -86,12 +83,7 @@ export default class Worker implements DispatchListener {
   }
 
   private delayedRetryInitialLoadMore() {
-    this.timeout.loadMore = window.setTimeout(this.loadMore, 10000);
-  }
-
-  private destroy() {
-    forEach(this.xhr, (xhr) => xhr?.abort());
-    forEach(this.timeout, (timeout) => window.clearTimeout(timeout));
+    this.timeout.loadMore = window.setTimeout(this.loadMore, this.retryDelay.get());
   }
 
   @action
@@ -114,17 +106,22 @@ export default class Worker implements DispatchListener {
     this.xhr.loadMore = $.ajax({ dataType: 'json', url: route('notifications.index', { unread: 1 }) })
       .always(() => {
         this.xhrLoadingState.loadMore = false;
-      }).done((data: NotificationBootJson) => {
+      }).done(action((data: NotificationBootJson) => {
         this.waitingVerification = false;
         this.loadBundle(data);
-      })
-      .fail((xhr) => {
+        this.retryDelay.reset();
+      }))
+      .fail(action((xhr: JQuery.jqXHR) => {
         if (xhr.responseJSON != null && xhr.responseJSON.error === 'verification') {
           this.waitingVerification = true;
 
           return;
         }
+        // Non-verification 401 error means user has been logged out. Don't retry.
+        if (xhr.status === 401) {
+          return;
+        }
         this.delayedRetryInitialLoadMore();
-      });
+      }));
   };
 }

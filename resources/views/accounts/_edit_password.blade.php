@@ -7,11 +7,11 @@
     'method' => 'PUT',
     'data-remote' => true,
     'data-skip-ajax-error-popup' => '1',
-    'class' => 'js-form-clear js-form-error js-account-edit account-edit'
+    'class' => 'js-form-clear js-form-error js-account-edit js-password-update account-edit'
 ]) !!}
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
-            {{ trans('accounts.edit.password.title') }}
+            {{ osu_trans('accounts.edit.password.title') }}
         </h2>
     </div>
 
@@ -26,7 +26,7 @@
                 >
 
                 <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.password.current') }}
+                    {{ osu_trans('accounts.edit.password.current') }}
                 </div>
 
                 <div class="account-edit-entry__error js-form-error--error"></div>
@@ -43,7 +43,7 @@
                 >
 
                 <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.password.new') }}
+                    {{ osu_trans('accounts.edit.password.new') }}
                 </div>
 
                 <div class="account-edit-entry__error js-form-error--error"></div>
@@ -58,7 +58,7 @@
                 >
 
                 <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.password.new_confirmation') }}
+                    {{ osu_trans('accounts.edit.password.new_confirmation') }}
                 </div>
 
                 <div class="account-edit-entry__error js-form-error--error"></div>
@@ -67,10 +67,10 @@
 
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
-                <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ trans('common.buttons.saving') }}">
+                <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ osu_trans('common.buttons.saving') }}">
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">
-                            {{ trans('accounts.update_password.update') }}
+                            {{ osu_trans('accounts.update_password.update') }}
                         </div>
 
                         <div class="btn-osu-big__icon">

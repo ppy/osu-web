@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'Одобрена.',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Власника складності :beatmap змінено на :new_user.',
         'discussion_delete' => 'Модератор видалив відгук в :discussion.',
         'discussion_lock' => 'Обговорення цієї карти було відключено. (:text)',
         'discussion_post_delete' => 'Модератор вилучив публікацію з відгуку :discussion.',
@@ -28,6 +28,8 @@ return [
         'nominate' => 'Номіновано :user.',
         'nominate_modes' => 'Номінована від :user (:modes)',
         'nomination_reset' => 'Через нову проблему в :discussion (:text) статус номінації був скинутий.',
+        'nomination_reset_received' => 'Число :user було скинуто на :source_user (:text)',
+        'nomination_reset_received_profile' => 'Номінація була скинута :user (:text) ',
         'qualify' => 'Ця карта була номінована достатню кількість разів для кваліфікації.',
         'rank' => 'Рейтинговий.',
         'remove_from_loved' => 'Вилучено з категорії Loved користувачем :user. (:text)',
@@ -55,7 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Одобрено',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Змінення власника складності',
         'discussion_delete' => 'Видалення дискусії',
         'discussion_post_delete' => 'Видалення відповідей в дискусії',
         'discussion_post_restore' => 'Відновлення відповідей в дискусії',
@@ -73,6 +75,7 @@ return [
         'love' => 'Любов',
         'nominate' => 'Номінація',
         'nomination_reset' => 'Скинути номінацію',
+        'nomination_reset_received' => 'Запрос на обнулення номінації був відправлений',
         'nsfw_toggle' => 'Явна позначка',
         'qualify' => 'Кваліфікація',
         'rank' => 'Рейтинг',

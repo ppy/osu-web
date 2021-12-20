@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import { isFormatActive, toggleFormat } from './editor-helpers';
 import { SlateContext } from './slate-context';
 
@@ -18,11 +19,11 @@ export const EditorToolbarButton = (props: Props) => {
 
   return (
     <button
-      className={osu.classWithModifiers('beatmap-discussion-editor-toolbar__button', [isFormatActive(context, props.format) ? 'active' : ''])}
+      className={classWithModifiers('beatmap-discussion-editor-toolbar__button', [isFormatActive(context, props.format) ? 'active' : ''])}
       // we use onMouseDown instead of onClick here so the popup remains visible after clicking
       onMouseDown={handleClick}
     >
-      <i className={`fas fa-${props.format}`}/>
+      <i className={`fas fa-${props.format}`} />
     </button>
   );
 };

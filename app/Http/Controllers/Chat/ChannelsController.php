@@ -59,8 +59,11 @@ class ChannelsController extends Controller
      *
      * @response {
      *   "channel_id": 5,
+     *   "current_user_attributes": {
+     *     "can_message": true,
+     *     "can_message_error": null
+     *   },
      *   "description": "The official osu! channel (english only).",
-     *   "first_message_id": 1,
      *   "icon": "https://a.ppy.sh/2?1519081077.png",
      *   "last_message_id": 1029,
      *   "moderated": false,
@@ -80,11 +83,9 @@ class ChannelsController extends Controller
             abort(403);
         }
 
-        if (!$channel->hasUser($user)) {
-            $channel->addUser($user);
-        }
+        $channel->addUser(Auth::user());
 
-        return json_item($channel, ChannelTransformer::forUser($user), ['first_message_id', 'last_message_id', 'users']);
+        return json_item($channel, ChannelTransformer::forUser($user), ChannelTransformer::LISTING_INCLUDES);
     }
 
     /**
@@ -138,12 +139,14 @@ class ChannelsController extends Controller
      * @response {
      *   "channel": {
      *     "channel_id": 1337,
+     *     "current_user_attributes": {
+     *       "can_message": true,
+     *       "can_message_error": null
+     *     },
      *     "name": "test channel",
      *     "description": "wheeeee",
      *     "icon": "/images/layout/avatar-guest@2x.png",
      *     "type": "PM",
-     *     "first_message_id": 10,
-     *     "last_read_id": 9150005005,
      *     "last_message_id": 9150005005,
      *     "moderated": false,
      *     "users": [
@@ -186,7 +189,7 @@ class ChannelsController extends Controller
         priv_check('ChatChannelRead', $channel)->ensureCan();
 
         return [
-            'channel' => json_item($channel, ChannelTransformer::forUser(auth()->user()), ['first_message_id', 'last_message_id', 'users']),
+            'channel' => json_item($channel, ChannelTransformer::forUser(auth()->user()), ChannelTransformer::LISTING_INCLUDES),
             // TODO: probably going to need a better way to list/fetch/update users on larger channels without sending user on every message.
             'users' => json_collection($channel->visibleUsers(), 'UserCompact'),
         ];
@@ -229,7 +232,7 @@ class ChannelsController extends Controller
     public function store()
     {
         $params = get_params(request()->all(), null, [
-            'target_id:number',
+            'target_id:int',
             'type:string',
         ], ['null_missing' => true]);
 
@@ -239,7 +242,7 @@ class ChannelsController extends Controller
         if ($params['type'] === Channel::TYPES['pm']) {
             $target = User::findOrFail($params['target_id']);
 
-            priv_check('ChatStart', $target)->ensureCan();
+            priv_check('ChatPmStart', $target)->ensureCan();
 
             $channel = Channel::findPM($sender, $target) ?? new Channel();
 

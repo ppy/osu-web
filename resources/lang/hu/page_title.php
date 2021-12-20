@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'fórum',
+        'topic_logs_controller' => [
+            'index' => 'téma napló',
+        ],
         'topic_watches_controller' => [
             'index' => 'írányítópult',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'irányítópult',
             'verify_link' => 'Fiók hitelesítése',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'kiemelt előadók',
         ],
         'artists_controller' => [
             '_' => 'kiemelt előadók',
@@ -61,14 +67,14 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap beszélgetések',
-            'index' => 'beatmapes listák',
+            'index' => 'beatmap lista',
             'show' => 'beatmap információk',
         ],
         'changelog_controller' => [
             '_' => 'változási napló',
         ],
         'chat_controller' => [
-            '_' => 'chat',
+            '_' => 'csevegés',
         ],
         'comments_controller' => [
             '_' => 'hozzászolások',
@@ -111,13 +117,13 @@ return [
             '_' => 'jelszó visszaállítása',
         ],
         'ranking_controller' => [
-            '_' => 'rangsorolás',
+            '_' => 'rangsor',
         ],
         'scores_controller' => [
             '_' => 'teljesítmény',
         ],
         'store_controller' => [
-            '_' => 'osu!bolt',
+            '_' => 'áruház',
         ],
         'tournaments_controller' => [
             '_' => 'bajnokságok',
@@ -127,7 +133,7 @@ return [
             'disabled' => 'értesítés',
         ],
         'wiki_controller' => [
-            '_' => 'tudásbázis',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -135,12 +141,20 @@ return [
             '_' => 'rangsorolás',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'alkalmazás engedélyezése',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!bolt',
+        '_' => 'áruház',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modding információ',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'többjátékos történelem',
         ],
     ],
 ];

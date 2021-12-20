@@ -6,7 +6,7 @@
 return [
     'talking_in' => ':channel-ben beszélés',
     'talking_with' => ':name-el beszélés',
-    'title_compact' => 'chat',
+    'title_compact' => 'csevegés',
 
     'cannot_send' => [
         'channel' => 'Nem üzenhetsz ebbe a csatornába jelenleg. Ez emiatt az okok miatt lehet:',
@@ -24,6 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'üzenet küldése sikertelen...',
+        'disconnected' => 'Lecsatlakozva',
         'placeholder' => 'üzenet írása...',
         'send' => 'Küldés',
     ],

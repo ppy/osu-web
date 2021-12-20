@@ -40,7 +40,7 @@ class TestCase extends BaseTestCase
 
         foreach (Passport::scopes()->pluck('id') as $scope) {
             // just skip over any scopes that require special conditions for now.
-            if (in_array($scope, ['bot', 'chat.write'], true)) {
+            if (in_array($scope, ['chat.write', 'delegate'], true)) {
                 continue;
             }
 
@@ -82,9 +82,7 @@ class TestCase extends BaseTestCase
      */
     protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null, $driver = null)
     {
-        if ($client === null) {
-            $client = factory(Client::class)->create();
-        }
+        $client ??= Client::factory()->create();
 
         // create valid token
         $token = $this->createToken($user, $scopes, $client);
@@ -208,9 +206,7 @@ class TestCase extends BaseTestCase
      */
     protected function createToken(?User $user, ?array $scopes = null, ?Client $client = null)
     {
-        if ($client === null) {
-            $client = factory(Client::class)->create();
-        }
+        $client ??= Client::factory()->create();
 
         $token = $client->tokens()->create([
             'expires_at' => now()->addDays(1),
@@ -221,33 +217,6 @@ class TestCase extends BaseTestCase
         ]);
 
         return $token;
-    }
-
-    /**
-     * @param array|string $groupIdentifier
-     */
-    protected function createUserWithGroup($groupIdentifier, array $attributes = []): User
-    {
-        return factory(User::class)->states($groupIdentifier)->create($attributes);
-    }
-
-    protected function createUserWithGroupPlaymodes(string $groupIdentifier, array $playmodes = [], array $attributes = []): User
-    {
-        $user = $this->createUserWithGroup($groupIdentifier, $attributes);
-        $group = app('groups')->byIdentifier($groupIdentifier);
-
-        if (!$group->has_playmodes) {
-            $group->update(['has_playmodes' => true]);
-
-            // TODO: This shouldn't have to be called here, since it's already
-            // called by `Group::afterCommit`, but `Group::afterCommit` isn't
-            // running in tests when creating/saving `Group`s.
-            app('groups')->resetCache();
-        }
-
-        $user->findUserGroup($group, true)->update(['playmodes' => $playmodes]);
-
-        return $user;
     }
 
     protected function fileList($path, $suffix)
@@ -296,7 +265,7 @@ class TestCase extends BaseTestCase
 
     protected function normalizeHTML($html)
     {
-        return str_replace('<br />', "<br />\n", str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html))));
+        return str_replace('<br />', "<br />\n", str_replace("\n", '', preg_replace('/>\s*</s', '><', trim($html))));
     }
 
     protected function runFakeQueue()

@@ -6,6 +6,7 @@
 namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
+use App\Libraries\AssetsManifest;
 use App\Libraries\ChatFilters;
 use App\Libraries\Groups;
 use App\Libraries\MorphMap;
@@ -17,11 +18,23 @@ use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Octane\Contracts\DispatchesTasks;
+use Laravel\Octane\SequentialTaskDispatcher;
+use Laravel\Octane\Swoole\SwooleTaskDispatcher;
 use Queue;
+use Swoole\Http\Server;
 use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
+    const SINGLETONS = [
+        'OsuAuthorize' => OsuAuthorize::class,
+        'assets-manifest' => AssetsManifest::class,
+        'chat-filters' => ChatFilters::class,
+        'groups' => Groups::class,
+        'route-section' => RouteSection::class,
+    ];
+
     /**
      * Bootstrap any application services.
      *
@@ -36,6 +49,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Queue::after(function (JobProcessed $event) {
+            app('OsuAuthorize')->resetCache();
+            app('groups')->incrementResetTicker();
+            app('chat-filters')->incrementResetTicker();
+
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.queue.run',
                 1,
@@ -67,13 +84,9 @@ class AppServiceProvider extends ServiceProvider
             'App\Services\Registrar'
         );
 
-        $this->app->singleton('chat-filters', function () {
-            return new ChatFilters();
-        });
-
-        $this->app->singleton('groups', function () {
-            return new Groups();
-        });
+        foreach (static::SINGLETONS as $name => $class) {
+            $this->app->singleton($name, fn () => new $class());
+        }
 
         $this->app->singleton('hash', function ($app) {
             return new OsuHashManager($app);
@@ -81,14 +94,6 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('hash.driver', function ($app) {
             return $app['hash']->driver();
-        });
-
-        $this->app->singleton('OsuAuthorize', function () {
-            return new OsuAuthorize();
-        });
-
-        $this->app->singleton('route-section', function () {
-            return new RouteSection();
         });
 
         $this->app->singleton('cookie', function ($app) {
@@ -101,6 +106,12 @@ class AppServiceProvider extends ServiceProvider
                 $config['same_site'] ?? null
             );
         });
+
+        // pre-bind to avoid SwooleHttpTaskDispatcher and fallback when not running in a swoole context.
+        $this->app->bind(
+            DispatchesTasks::class,
+            fn ($app) => $app->bound(Server::class) ? new SwooleTaskDispatcher() : new SequentialTaskDispatcher()
+        );
 
         // This is needed for testing with Dusk.
         if ($this->app->environment('testing')) {

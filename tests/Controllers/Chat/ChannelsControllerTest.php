@@ -98,7 +98,7 @@ class ChannelsControllerTest extends TestCase
      */
     public function testChannelJoin($type, $success)
     {
-        $channel = factory(Channel::class)->state($type)->create();
+        $channel = factory(Channel::class)->states($type)->create();
         $status = $success ? 200 : 403;
 
         $this->actAsScopedUser($this->user, ['*']);
@@ -228,6 +228,7 @@ class ChannelsControllerTest extends TestCase
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
+            ->assertJsonPath('0.current_user_attributes.last_read_id', $this->publicMessage->message_id)
             ->assertJsonFragment([
                 'channel_id' => $this->publicChannel->channel_id,
                 'last_read_id' => $this->publicMessage->message_id,
@@ -258,6 +259,7 @@ class ChannelsControllerTest extends TestCase
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
+            ->assertJsonPath('0.current_user_attributes.last_read_id', $newerPublicMessage->message_id)
             ->assertJsonFragment([
                 'channel_id' => $this->publicChannel->channel_id,
                 'last_read_id' => $newerPublicMessage->message_id,
@@ -277,6 +279,7 @@ class ChannelsControllerTest extends TestCase
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
+            ->assertJsonPath('0.current_user_attributes.last_read_id', $newerPublicMessage->message_id)
             ->assertJsonFragment([
                 'channel_id' => $this->publicChannel->channel_id,
                 'last_read_id' => $newerPublicMessage->message_id,
@@ -290,7 +293,7 @@ class ChannelsControllerTest extends TestCase
      */
     public function testChannelLeave($type, $success)
     {
-        $channel = factory(Channel::class)->state($type)->create();
+        $channel = factory(Channel::class)->states($type)->create();
         $channel->addUser($this->user);
         $status = $success ? 204 : 403;
 
@@ -326,7 +329,7 @@ class ChannelsControllerTest extends TestCase
      */
     public function testChannelLeaveWhenNotJoined($type, $success)
     {
-        $channel = factory(Channel::class)->state($type)->create();
+        $channel = factory(Channel::class)->states($type)->create();
         $status = $success ? 204 : 403;
 
         $this->actAsScopedUser($this->user, ['*']);
@@ -369,8 +372,8 @@ class ChannelsControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
-        $this->anotherUser = factory(User::class)->create();
+        $this->user = User::factory()->create();
+        $this->anotherUser = User::factory()->create();
         $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
         $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
         $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();

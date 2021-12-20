@@ -44,8 +44,6 @@ class NotifyForumUpdateMail implements ShouldQueue
             ->get()
             ->keyBy('user_id');
 
-        app('OsuAuthorize')->cacheReset();
-
         foreach ($watches as $watch) {
             $user = $watch->user;
 

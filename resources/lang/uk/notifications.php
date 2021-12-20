@@ -28,9 +28,9 @@ return [
             '_' => 'Карта',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Гостьова складність',
+                'beatmap_owner_change' => 'Тепер ви власник складності ":beatmap" для карти ":title"',
+                'beatmap_owner_change_compact' => 'Тепер ви власник складності ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'Нова бітмапа ":title" від :username',
                 'user_beatmapset_new_compact' => 'Нова бітмапа ":title"',
                 'user_beatmapset_new_group' => 'Нова бітмапа від :username',
+
+                'user_beatmapset_revive' => 'Мапа ":title" була відновлена :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" відновлена',
             ],
         ],
 
@@ -166,7 +169,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Ви тепер гість на карті ":title"',
             ],
 
             'beatmapset_discussion' => [

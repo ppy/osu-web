@@ -11,13 +11,13 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\Elasticsearch\Indexable;
+use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
 use App\Traits\Memoizes;
-use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
@@ -32,6 +32,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Request;
 
 /**
@@ -147,7 +148,7 @@ use Request;
  * @property string $user_post_sortby_dir
  * @property string $user_post_sortby_type
  * @property int $user_posts
- * @property int $user_rank
+ * @property int|null $user_rank
  * @property \Carbon\Carbon $user_regdate
  * @property mixed $user_sig
  * @property string $user_sig_bbcode_bitfield
@@ -171,8 +172,7 @@ use Request;
  */
 class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable
 {
-    use Elasticsearch\UserTrait, Store\UserTrait;
-    use Authenticatable, HasApiTokens, Memoizes, Reportable, UserAvatar, UserScoreable, Validatable;
+    use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserAvatar, Traits\UserScoreable, Traits\UserStore, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -755,6 +755,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->attributes['osu_subscriptionexpiry'] = optional($value)->startOfDay();
     }
 
+    public function getUserRankAttribute($value)
+    {
+        return $value === 0 ? null : $value;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Permission Checker Functions
@@ -949,15 +954,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     }
 
 
-    public function findUserGroup($group, $activeOnly)
+    public function findUserGroup($group, bool $activeOnly): ?UserGroup
     {
-        $groupId = $group->getKey();
+        $byGroupId = $this->memoize(__FUNCTION__.':byGroupId', fn () => $this->userGroups->keyBy('group_id'));
 
-        foreach ($this->userGroups as $userGroup) {
-            if ($userGroup->group_id === $groupId) {
-                return $activeOnly && $userGroup->user_pending ? null : $userGroup;
-            }
+        $userGroup = $byGroupId->get($group->getKey());
+
+        if ($userGroup === null || ($activeOnly && $userGroup->user_pending)) {
+            return null;
         }
+
+        return $userGroup;
     }
 
     /**
@@ -1062,7 +1069,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function beatmapsetNominations()
     {
-        return $this->hasMany(BeatmapsetEvent::class)->where('type', BeatmapsetEvent::NOMINATE);
+        return $this->hasMany(BeatmapsetNomination::class);
     }
 
     public function beatmapsetNominationsToday()
@@ -1318,12 +1325,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function maxBlocks()
     {
-        return ceil($this->maxFriends() / 10);
+        return (int)ceil($this->maxFriends() / 5);
     }
 
     public function maxFriends()
     {
         return $this->isSupporter() ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
+    }
+
+    public function maxMultiplayerDuration()
+    {
+        return $this->isSupporter() ? config('osu.user.max_multiplayer_duration_supporter') : config('osu.user.max_multiplayer_duration');
     }
 
     public function maxMultiplayerRooms()
@@ -1568,6 +1580,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         });
     }
 
+    public function authHash(): string
+    {
+        return hash('sha256', $this->user_email).':'.hash('sha256', $this->user_password);
+    }
+
+    public function resetSessions(): void
+    {
+        SessionStore::destroy($this->getKey());
+        $this->tokens()->with('refreshToken')->get()->each->revokeRecursive();
+    }
+
     public function title(): ?string
     {
         return optional($this->rank)->rank_title;
@@ -1624,20 +1647,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function notificationCount()
     {
         return $this->user_unread_privmsg;
-    }
-
-    // TODO: we should rename this to currentUserJson or something.
-    public function defaultJson()
-    {
-        return json_item($this, 'User', [
-            'blocks',
-            'follow_user_mapping',
-            'friends',
-            'groups',
-            'is_admin',
-            'unread_pm_count',
-            'user_preferences',
-        ]);
     }
 
     public function supportLength()
@@ -1822,7 +1831,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         if (LoginAttempt::isLocked($ip)) {
             DatadogLoginAttempt::log('locked_ip');
 
-            return trans('users.login.locked_ip');
+            return osu_trans('users.login.locked_ip');
         }
 
         $authError = null;
@@ -1846,7 +1855,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         if ($authError !== null) {
             LoginAttempt::logAttempt($ip, $user, 'fail', $password);
 
-            return trans('users.login.failed');
+            return osu_trans('users.login.failed');
         }
 
         LoginAttempt::logLoggedIn($ip, $user);
@@ -1867,14 +1876,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $query->first();
     }
 
-    public static function findForPassport($username)
+    public static function findAndValidateForPassport($username, $password)
     {
-        return static::findForLogin($username);
-    }
+        $user = static::findForLogin($username);
+        $authError = static::attemptLogin($user, $password);
 
-    public function validateForPassportPasswordGrant($password)
-    {
-        return static::attemptLogin($this, $password) === null;
+        if ($authError === null) {
+            return $user;
+        }
+
+        throw OAuthServerException::invalidGrant($authError);
     }
 
     public function playCount()
@@ -1893,27 +1904,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             }
 
             return $unionQuery->get()->sum('playcount');
-        });
-    }
-
-    public function lastPlayed()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            $unionQuery = null;
-
-            foreach (Beatmap::MODES as $key => $_value) {
-                $query = $this->statistics($key, true)->select('last_played');
-
-                if ($unionQuery === null) {
-                    $unionQuery = $query;
-                } else {
-                    $unionQuery->unionAll($query);
-                }
-            }
-
-            $lastPlayed = $unionQuery->get()->max('last_played') ?? 0;
-
-            return Carbon::parse($lastPlayed);
         });
     }
 
@@ -2055,12 +2045,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             $this->isValidEmail();
         }
 
-        if ($this->isDirty('country_acronym') && present($this->country_acronym)) {
-            if (($country = Country::find($this->country_acronym)) !== null) {
-                // ensure matching case
-                $this->country_acronym = $country->getKey();
+        if ($this->isDirty('country_acronym')) {
+            if (present($this->country_acronym)) {
+                if (($country = Country::find($this->country_acronym)) !== null) {
+                    // ensure matching case
+                    $this->country_acronym = $country->getKey();
+                } else {
+                    $this->validationErrors()->add('country', '.invalid_country');
+                }
             } else {
-                $this->validationErrors()->add('country', '.invalid_country');
+                $this->country_acronym = Country::UNKNOWN;
             }
         }
 

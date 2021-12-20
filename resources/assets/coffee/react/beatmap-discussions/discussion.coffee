@@ -5,12 +5,14 @@ import { NewReply } from './new-reply'
 import { Post } from './post'
 import { SystemPost } from './system-post'
 import { UserCard } from './user-card'
+import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
 import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 
 el = React.createElement
 
@@ -225,7 +227,7 @@ export class Discussion extends React.PureComponent
 
 
   doVote: (e) =>
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @voteXhr?.abort()
 
@@ -240,7 +242,7 @@ export class Discussion extends React.PureComponent
 
     .fail osu.ajaxError
 
-    .always LoadingOverlay.hide
+    .always hideLoadingOverlay
 
 
   emitSetHighlight: (e) =>
@@ -317,11 +319,15 @@ export class Discussion extends React.PureComponent
           div className: "#{tbn}__icon",
             span
               className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{_.kebabCase(@props.discussion.message_type)}"
-              i className: BeatmapDiscussionHelper.messageType.icon[_.camelCase(@props.discussion.message_type)]
+              i
+                className: discussionTypeIcons[@props.discussion.message_type]
+                title: osu.trans "beatmaps.discussions.message_type.#{@props.discussion.message_type}"
 
           if @props.discussion.resolved
             div className: "#{tbn}__icon #{tbn}__icon--resolved",
-              i className: 'far fa-check-circle'
+              i
+                className: 'far fa-check-circle'
+                title: osu.trans 'beatmaps.discussions.resolved'
 
         div className: "#{tbn}__text",
           BeatmapDiscussionHelper.formatTimestamp @props.discussion.timestamp

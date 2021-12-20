@@ -2,24 +2,24 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('master', ['titlePrepend' => trans('accounts.edit.title_compact')])
+@extends('master', ['titlePrepend' => osu_trans('accounts.edit.title_compact')])
 
 @section('content')
     @if (Auth::user()->isSilenced() && !Auth::user()->isRestricted())
         @include('objects._notification_banner', [
             'type' => 'alert',
-            'title' => trans('users.silenced_banner.title'),
-            'message' => trans('users.silenced_banner.message'),
+            'title' => osu_trans('users.silenced_banner.title'),
+            'message' => osu_trans('users.silenced_banner.message'),
         ])
     @endif
 
     @include('home._user_header_default', ['themeOverride' => 'settings'])
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         <div class="account-edit account-edit--first">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
-                    {{ trans('accounts.edit.profile.title') }}
+                    {{ osu_trans('accounts.edit.profile.title') }}
                 </h2>
             </div>
 
@@ -27,7 +27,7 @@
                 <div class="account-edit__input-group">
                     <div class="account-edit-entry account-edit-entry--read-only">
                         <div class="account-edit-entry__label">
-                            {{ trans('accounts.edit.username') }}
+                            {{ osu_trans('accounts.edit.username') }}
                         </div>
                         <div class="account-edit-entry__input">
                             {{ Auth::user()->username }}
@@ -37,7 +37,7 @@
                             <a class="btn-osu-big btn-osu-big--account-edit" href="{{route('store.products.show', 'username-change')}}">
                                 <div class="btn-osu-big__content">
                                     <div class="btn-osu-big__left">
-                                        {{ trans('common.buttons.change') }}
+                                        {{ osu_trans('common.buttons.change') }}
                                     </div>
 
                                     <div class="btn-osu-big__icon">
@@ -62,12 +62,11 @@
         </div>
     </div>
 
-    <div class="osu-page u-has-anchor">
-        <div id="avatar" class="fragment-target">{{-- anchor won't offset properly if included in the flex container below --}}</div>
+    <div class="osu-page" id="avatar">
         <div class="account-edit">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
-                    {{ trans('accounts.edit.avatar.title') }}
+                    {{ osu_trans('accounts.edit.avatar.title') }}
                 </h2>
             </div>
 
@@ -79,7 +78,7 @@
 
                             <div class="account-edit-entry__drop-overlay">
                                 <span>
-                                {{ trans('common.dropzone.target') }}
+                                {{ osu_trans('common.dropzone.target') }}
                                 </span>
                             </div>
 
@@ -96,7 +95,7 @@
                         >
                             <div class="btn-osu-big__content">
                                 <div class="btn-osu-big__left">
-                                    {{ trans('common.buttons.upload_image') }}
+                                    {{ osu_trans('common.buttons.upload_image') }}
                                 </div>
 
                                 <div class="btn-osu-big__icon">
@@ -116,10 +115,10 @@
                         </label>
 
                         <div class="account-edit-entry__rules">
-                            {!! trans('accounts.edit.avatar.rules', [
+                            {!! osu_trans('accounts.edit.avatar.rules', [
                                 'link' => link_to(
                                     wiki_url('Rules'),
-                                    trans('accounts.edit.avatar.rules_link')
+                                    osu_trans('accounts.edit.avatar.rules_link')
                                 )
                             ]) !!}
                         </div>
@@ -129,41 +128,39 @@
         </div>
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_signature')
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_playstyles')
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_privacy')
     </div>
 
-    <div class="osu-page u-has-anchor">
-        <div id="notifications" class="fragment-target"></div>
+    <div class="osu-page" id="notifications">
         @include('accounts._edit_notifications')
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_options')
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_password')
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_email')
     </div>
 
-    <div class="osu-page u-has-anchor">
+    <div class="osu-page">
         @include('accounts._edit_sessions')
     </div>
 
-    <div class="osu-page u-has-anchor">
-        <div id="oauth" class="fragment-target"></div>
+    <div class="osu-page" id="oauth">
         @include('accounts._edit_oauth')
     </div>
 @endsection
@@ -177,5 +174,5 @@
     {!! json_encode($ownClients) !!}
   </script>
 
-  @include('layout._extra_js', ['src' => 'js/react/account-edit.js'])
+  @include('layout._react_js', ['src' => 'js/account-edit.js'])
 @endsection

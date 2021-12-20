@@ -14,7 +14,7 @@
     <button
         class="{{ $class }} avatar--guest"
         data-click-menu-target="nav2-login-box"
-        title="{{ trans('users.anonymous.login_link') }}"
+        title="{{ osu_trans('users.anonymous.login_link') }}"
     ></button>
 @else
     <a
