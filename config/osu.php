@@ -230,6 +230,9 @@ return [
         'max_friends' => 250,
         'max_friends_supporter' => 500,
         'max_login_attempts' => get_int(env('USER_MAX_LOGIN_ATTEMPTS')) ?? 10,
+        'max_multiplayer_duration' => get_int(env('USER_MAX_MULTIPLAYER_DURATION')) ?? 14,
+        // see https://github.com/ppy/osu/pull/16024/files#diff-d5f8d0eb0eac5cfd6d2f486d34c4168e036b83b622c7a3c5bfce5205d67bf52bR327-R330
+        'max_multiplayer_duration_supporter' => get_int(env('USER_MAX_MULTIPLAYER_DURATION_SUPPORTER')) ?? 63,
         'max_multiplayer_rooms' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS')) ?? 1,
         'max_multiplayer_rooms_supporter' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS_SUPPORTER')) ?? 5,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
