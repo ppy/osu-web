@@ -478,6 +478,10 @@ class Room extends Model
             throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
         }
 
+        if ($this->starts_at->addDays($this->host->maxMultiplayerDuration())->lt($this->ends_at)) {
+            throw new InvariantException(osu_trans('multiplayer.room.errors.duration_too_long'));
+        }
+
         if ($this->max_attempts !== null) {
             $maxAttemptsLimit = config('osu.multiplayer.max_attempts_limit');
             if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit) {
