@@ -212,10 +212,11 @@ export default class Controller {
 
     switch (section) {
       case 'beatmapPlaycounts':
-        this.xhr[section] = apiShowMore({
-          items: this.state.extras[section],
-          pagination: this.state.pagination[section],
-        }, 'users.beatmapsets', { ...baseParams, type: 'most_played' });
+        this.xhr[section] = apiShowMore(
+          this.paginatorJson(section),
+          'users.beatmapsets',
+          { ...baseParams, type: 'most_played' },
+        );
         break;
 
       case 'favouriteBeatmapsets':
@@ -223,33 +224,36 @@ export default class Controller {
       case 'lovedBeatmapsets':
       case 'pendingBeatmapsets':
       case 'rankedBeatmapsets':
-        this.xhr[section] = apiShowMore({
-          items: this.state.extras[section],
-          pagination: this.state.pagination[section],
-        }, 'users.beatmapsets', { ...baseParams, type: sectionToUrlType[section] });
+        this.xhr[section] = apiShowMore(
+          this.paginatorJson(section),
+          'users.beatmapsets',
+          { ...baseParams, type: sectionToUrlType[section] },
+        );
         break;
 
       case 'recentActivity':
-        this.xhr[section] = apiShowMore({
-          items: this.state.extras[section],
-          pagination: this.state.pagination[section],
-        }, 'users.recent-activity', baseParams);
+        this.xhr[section] = apiShowMore(
+          this.paginatorJson(section),
+          'users.recent-activity',
+          baseParams,
+        );
         break;
 
       case 'recentlyReceivedKudosu':
-        this.xhr[section] = apiShowMoreRecentlyReceivedKudosu({
-          items: this.state.extras[section],
-          pagination: this.state.pagination[section],
-        }, baseParams.user);
+        this.xhr[section] = apiShowMoreRecentlyReceivedKudosu(
+          this.paginatorJson(section),
+          baseParams.user,
+        );
         break;
 
       case 'scoresBest':
       case 'scoresFirsts':
       case 'scoresRecent':
-        this.xhr[section] = apiShowMore({
-          items: this.state.extras[section],
-          pagination: this.state.pagination[section],
-        }, 'users.scores', { ...baseParams, mode: this.currentMode, type: sectionToUrlType[section] });
+        this.xhr[section] = apiShowMore(
+          this.paginatorJson(section),
+          'users.scores',
+          { ...baseParams, mode: this.currentMode, type: sectionToUrlType[section] },
+        );
         break;
 
       default:
@@ -274,6 +278,13 @@ export default class Controller {
   @action
   setDisplayCoverUrl(url: string | null) {
     this.displayCoverUrl = url ?? this.state.user.cover.url;
+  }
+
+  private paginatorJson<T extends ProfilePageSection>(section: T) {
+    return {
+      items: this.state.extras[section],
+      pagination: this.state.pagination[section],
+    };
   }
 
   private readonly saveState = () => {
