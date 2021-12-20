@@ -45,11 +45,10 @@ class ScorePinsController extends Controller
 
             $displayOrder = ($user->scorePins()->where('score_type', $score->getMorphClass())->min('display_order') ?? 2500) - 100;
 
-            $pin = (new ScorePin(['display_order' => $displayOrder]))
+            (new ScorePin(['display_order' => $displayOrder]))
                 ->user()->associate($user)
-                ->score()->associate($score);
-
-            $pin->saveOrExplode();
+                ->score()->associate($score)
+                ->saveOrExplode();
         }
 
         app('score-pins')->reset();
