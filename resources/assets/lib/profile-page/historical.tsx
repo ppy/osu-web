@@ -66,9 +66,7 @@ function dataPadder(padded: ChartData[], entry: ChartData) {
   return padded;
 }
 
-function updateTicks(chart: LineChart<Date>, data?: ChartData[]) {
-  data ??= chart.data;
-
+function updateTicks(chart: LineChart<Date>, data: ChartData[]) {
   if (core.windowSize.isDesktop) {
     chart.options.ticksX = undefined;
 
@@ -107,12 +105,6 @@ export default class Historical extends React.Component<ExtraPageProps> {
   componentDidMount() {
     $(window).on(`resize.${this.id}`, this.resizeCharts);
     disposeOnUnmount(this, autorun(this.updateCharts));
-
-    disposeOnUnmount(this, autorun(() => {
-      Object.values(this.charts).forEach((chart) => {
-        updateTicks(chart);
-      });
-    }));
   }
 
   componentWillUnmount() {
@@ -252,6 +244,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
     const definedChart = chart;
 
     core.reactTurbolinks.runAfterPageLoad(this.id, () => {
+      updateTicks(definedChart, data);
       definedChart.loadData(data);
     });
   };
