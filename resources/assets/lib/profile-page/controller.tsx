@@ -267,7 +267,7 @@ export default class Controller {
 
   @action
   setCover(cover: UserCoverJson) {
-    this.state.user.cover = cover;
+    core.currentUserOrFail.cover = this.state.user.cover = cover;
     this.setDisplayCoverUrl(null);
   }
 
