@@ -1048,6 +1048,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $this->beatmapsetNominations()->current()->exists();
     }
 
+    /**
+     * This will cause additional query if `difficulty_names` column is blank.
+     */
     public function playmodes()
     {
         $rawPlaymodes = present($this->difficulty_names)
