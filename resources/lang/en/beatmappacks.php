@@ -11,9 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'READ THIS BEFORE DOWNLOADING',
-            'instruction' => [
-                '_' => 'Installation: Once a pack has been downloaded, extract the contents of the pack into your osu! Songs directory and osu! will do the rest.',
-            ],
+            'install_instruction' => 'Installation: Once a pack has been downloaded, extract the contents of the pack into your osu! Songs directory and osu! will do the rest.',
             'note' => [
                 '_' => 'Also note that it is highly recommended to :scary, since older maps are generally of much lower quality than more recent maps.',
                 'scary' => 'download the packs from latest to earliest',

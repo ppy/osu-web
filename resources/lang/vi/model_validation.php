@@ -73,7 +73,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Không cho phép xóa beatmap metadata.',
             'beatmapset_post_no_edit' => 'Không cho phép chỉnh sửa beatmap metadata.',
-            'first_post_no_delete' => '',
+            'first_post_no_delete' => 'Không thể xóa bài đăng mở đầu',
             'missing_topic' => '',
             'only_quote' => 'Câu trả lời của bạn chỉ có một trích dẫn.',
 
@@ -111,11 +111,11 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => 'Xin vui lòng nhập một URL hợp lệ.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Tên ứng dụng',
+                'redirect' => 'URL gọi lại ứng dụng',
             ],
         ],
     ],
@@ -123,11 +123,11 @@ return [
     'user' => [
         'contains_username' => 'Mật khẩu không thể chứa tên tài khoản.',
         'email_already_used' => 'Địa chỉ email đã được sử dụng.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'Địa chỉ email không được phép.',
         'invalid_country' => 'Quốc gia không có trong cơ sở dữ liệu.',
         'invalid_discord' => 'Tên người dùng Discord không hợp lệ.',
         'invalid_email' => "Dường như đây không phải là địa chỉ email hợp lệ.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Tên người dùng Twitter không hợp lệ.',
         'too_short' => 'Mật khẩu mới quá ngắn.',
         'unknown_duplicate' => 'Tên người dùng hoặc email đã được sử dụng.',
         'username_available_in' => 'Tên người dùng này sẽ có sẵn để sử dụng trong :duration.',
