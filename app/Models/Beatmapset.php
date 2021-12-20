@@ -1049,7 +1049,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     }
 
     /**
-     * This will cause additional query if `difficulty_names` column is blank.
+     * This will cause additional query if `difficulty_names` column is blank and beatmaps relation isn't preloaded.
      */
     public function playmodes()
     {
