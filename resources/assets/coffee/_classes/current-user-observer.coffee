@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { pull } from 'lodash'
+import { reaction } from 'mobx'
 import core from 'osu-core-singleton'
 
 class window.CurrentUserObserver
@@ -15,10 +16,13 @@ class window.CurrentUserObserver
     $.subscribe 'osu:page:change', @throttledReinit
     $.subscribe 'user:followUserMapping:update', @updateFollowUserMapping
 
+    # one time setup to monitor cover url variable. No disposer because nothing destroys this object.
+    $ =>
+      reaction((=> core.currentUser.cover.url), @setCovers)
+
 
   reinit: =>
     @setAvatars()
-    @setCovers()
     @setSentryUser()
 
 
@@ -30,11 +34,9 @@ class window.CurrentUserObserver
       el.style.backgroundImage = bgImage
 
 
-  setCovers: (elements) =>
-    elements ?= @covers
-
-    bgImage = osu.urlPresence(currentUser.cover.url) if currentUser.id?
-    for el in elements
+  setCovers: =>
+    bgImage = osu.urlPresence(core.currentUser.cover.url) if core.currentUser?
+    for el in @covers
       el.style.backgroundImage = bgImage
 
 
