@@ -57,11 +57,6 @@ class Chat
 
         $channel = (new Channel())->getConnection()->transaction(function () use ($sender, $params, $users) {
             $channel = Channel::createAnnouncement($users, $params['channel']);
-
-            foreach ($users as $user) {
-                event(new ChatChannelEvent($channel, $user, 'join'));
-            }
-
             static::sendMessage($sender, $channel, $params['message'], false);
 
             return $channel;

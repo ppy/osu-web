@@ -90,6 +90,11 @@ class Channel extends Model
                 $userChannel->setRelation('channel', $channel);
                 $userChannel->channel->setUserChannel($userChannel);
             }
+
+            foreach ($users as $user) {
+                // TODO: update after #8447
+                event(new ChatChannelEvent($channel, $user, 'join'));
+            }
         });
 
         return $channel;
