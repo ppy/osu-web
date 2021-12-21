@@ -326,12 +326,15 @@ export default class Main extends React.Component<Props> {
     $target.sortable('cancel');
 
     this.controller.apiSetExtraPageOrder(newOrder)
-      .always(hideLoadingOverlay)
       .fail(action((xhr: JQuery.jqXHR, status: string) => {
         error(xhr, status);
 
         this.controller.state.user.profile_order = origOrder;
-      }));
+      }))
+      .always(() => {
+        hideLoadingOverlay();
+        this.pageScan();
+      })
 
   };
 }
