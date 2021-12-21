@@ -16,14 +16,14 @@ return [
     'username' => 'Tên người chơi',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Album',
+        'artist' => 'Nghệ sĩ',
+        'bpm' => 'BPM',
+        'genre' => 'Thể loại',
+        'length' => 'Độ dài',
+        'relevance' => 'Mức độ liên quan',
+        'title' => 'Tiêu đề',
+        'update' => 'Cập nhật',
     ],
 
     'forum_posts' => [

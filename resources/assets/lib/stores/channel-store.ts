@@ -11,12 +11,12 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import { markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
 import MessageNewEvent from 'chat/message-new-event';
 import DispatchListener from 'dispatch-listener';
-import ChannelJson, { SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
+import ChannelJson, { filterSupportedChannelTypes, SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { groupBy, maxBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
-import Channel, { supportedTypeLookup } from 'models/chat/channel';
+import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 
@@ -157,7 +157,7 @@ export default class ChannelStore implements DispatchListener {
   markAsRead(channelId: number) {
     const channel = this.get(channelId);
 
-    if (channel == null || !channel.isUnread) {
+    if (channel == null || !channel.isUnread || !channel.uiState.autoScroll) {
       return;
     }
 
@@ -219,10 +219,8 @@ export default class ChannelStore implements DispatchListener {
 
   @action
   updateWithPresence(presence: ChannelJson[]) {
-    presence.forEach((json) => {
-      if (supportedTypeLookup.has(json.type)) {
-        this.getOrCreate(json.channel_id).updatePresence(json);
-      }
+    filterSupportedChannelTypes(presence).forEach((json) => {
+      this.getOrCreate(json.channel_id).updateWithJson(json);
     });
 
     // remove parted channels

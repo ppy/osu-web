@@ -51,7 +51,7 @@ class ChannelTest extends TestCase
         $otherUser = User::factory()->create();
         $channel = $this->createChannel([$user, $otherUser], 'moderated', 'pm');
 
-        $this->assertSame($canMessage, $channel->canMessage($user));
+        $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
     /**
@@ -62,7 +62,7 @@ class ChannelTest extends TestCase
         $user = User::factory()->withGroup($group)->create();
         $channel = $this->createChannel([$user], 'moderated', 'public');
 
-        $this->assertSame($canMessage, $channel->canMessage($user));
+        $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
     /**
@@ -87,7 +87,7 @@ class ChannelTest extends TestCase
 
         // this assertion to make sure the correct block direction is being tested.
         $this->assertTrue($user->hasBlocked($otherUser));
-        $this->assertSame($canMessage, $channel->canMessage($user));
+        $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
     /**
@@ -112,7 +112,7 @@ class ChannelTest extends TestCase
 
         // this assertion to make sure the correct block direction is being tested.
         $this->assertTrue($otherUser->hasBlocked($user));
-        $this->assertSame($canMessage, $channel->canMessage($user));
+        $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
     /**
@@ -126,7 +126,7 @@ class ChannelTest extends TestCase
 
         app('OsuAuthorize')->resetCache();
 
-        $this->assertSame($canMessage, $channel->canMessage($user));
+        $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
     public function testCreateAnnouncement()

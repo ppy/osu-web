@@ -11,7 +11,7 @@ return [
 
     'top-headers' => [
         'headline' => 'Siaran Langsung',
-        'description' => 'Daftar siaran langsung yang tertera di bawah ini diperbaharui setiap lima menit sekali mengikuti direktori twitch.tv yang tersedia. Jangan ragu untuk menyiarkan dirimu ke mata dunia! Untuk informasi lebih lanjut seputar cara menyiarkan osu! secara langsung, harap kunjungi :link.',
+        'description' => 'Daftar siaran langsung yang tertera di bawah ini diperbaharui setiap lima menit sekali mengikuti direktori twitch.tv yang tersedia. Jangan sungkan untuk mulai menyiarkan dirimu ke mata dunia! Untuk informasi lebih lanjut seputar cara menyiarkan osu! secara langsung, harap kunjungi :link.',
 
         'link' => 'laman wiki berikut',
     ],

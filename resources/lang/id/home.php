@@ -117,7 +117,7 @@ return [
         'header' => [
             'stats' => [
                 'friends' => 'Teman yang Online',
-                'games' => 'Permainan',
+                'games' => 'Ruang Permainan',
                 'online' => 'Pemain yang Online',
             ],
         ],

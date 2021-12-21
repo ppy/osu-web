@@ -14,5 +14,5 @@
         {!! json_encode($eventsJson) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/react/mp-history.js'])
+    @include('layout._react_js', ['src' => 'js/mp-history.js'])
 @endsection
