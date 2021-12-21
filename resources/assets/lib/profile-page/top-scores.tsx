@@ -69,17 +69,16 @@ export default class TopScores extends React.Component<ExtraPageProps> {
   };
 
   private renderScores(section: SectionMap) {
-    const pagination = this.props.controller.state.pagination[section.key];
-    const scores = this.props.controller.state.extras[section.key];
+    const paginator = this.props.controller.paginatorJson(section.key);
 
-    if (Array.isArray(scores)) {
+    if (Array.isArray(paginator.items)) {
       return (
         <div className='profile-extra-entries'>
-          <PlayDetailList scores={scores} />
+          <PlayDetailList scores={paginator.items} />
 
           <div className='profile-extra-entries__item'>
             <ShowMoreLink
-              {...pagination}
+              {...paginator.pagination}
               callback={this.onShowMore}
               data={section.key}
               modifiers='profile-page'
@@ -89,6 +88,6 @@ export default class TopScores extends React.Component<ExtraPageProps> {
       );
     }
 
-    return <p>{scores.error}</p>;
+    return <p>{paginator.items.error}</p>;
   }
 }

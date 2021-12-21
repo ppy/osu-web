@@ -269,6 +269,13 @@ export default class Controller {
     this.debouncedSetDisplayCoverUrl.cancel();
   }
 
+  paginatorJson<T extends ProfilePageSection>(section: T) {
+    return {
+      items: this.state.extras[section],
+      pagination: this.state.pagination[section],
+    };
+  }
+
   @action
   setCover(cover: UserCoverJson) {
     core.currentUserOrFail.cover = this.state.user.cover = cover;
@@ -278,13 +285,6 @@ export default class Controller {
   @action
   setDisplayCoverUrl(url: string | null) {
     this.displayCoverUrl = url ?? this.state.user.cover.url;
-  }
-
-  private paginatorJson<T extends ProfilePageSection>(section: T) {
-    return {
-      items: this.state.extras[section],
-      pagination: this.state.pagination[section],
-    };
   }
 
   private readonly saveState = () => {
