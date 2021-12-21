@@ -334,7 +334,7 @@ export default class Main extends React.Component<Props> {
       .always(() => {
         hideLoadingOverlay();
         this.pageScan();
-      })
+      });
 
   };
 }
