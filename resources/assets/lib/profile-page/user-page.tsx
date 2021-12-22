@@ -2,38 +2,37 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
+import { action, computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
-import ExtraHeader from 'profile-page/extra-header';
-import UserPageEditor from 'profile-page/user-page-editor';
 import * as React from 'react';
 import StringWithComponent from 'string-with-component';
+import ExtraHeader from './extra-header';
 import ExtraPageProps from './extra-page-props';
+import UserPageEditor from './user-page-editor';
 
-export interface UserPageData {
-  editing: boolean;
-  html: string;
-  initialRaw: string;
-  raw: string;
-}
-
-interface Props extends ExtraPageProps {
-  userPage: UserPageData;
-}
-
-export default class UserPage extends React.Component<Props> {
+@observer
+export default class UserPage extends React.Component<ExtraPageProps> {
+  @computed
   private get canEdit() {
-    return this.props.withEdit || (core.currentUser != null && (core.currentUser.is_moderator || core.currentUser.is_admin));
+    return this.props.controller.withEdit || (core.currentUser != null && (core.currentUser.is_moderator || core.currentUser.is_admin));
+  }
+
+  constructor(props: ExtraPageProps) {
+    super(props);
+
+    makeObservable(this);
   }
 
   render() {
-    const isBlank = !osu.present(this.props.userPage.initialRaw);
+    const isBlank = !osu.present(this.props.controller.state.user.page.raw);
     const canEdit = this.canEdit;
 
     return (
       <div className='page-extra page-extra--userpage'>
-        <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
+        <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
 
-        {!this.props.userPage.editing && canEdit && !isBlank && (
+        {!this.props.controller.state.editingUserPage && canEdit && !isBlank && (
           <div className='page-extra__actions'>
             <button
               className='btn-circle btn-circle--page-toggle'
@@ -46,11 +45,11 @@ export default class UserPage extends React.Component<Props> {
           </div>
         )}
 
-        {this.props.userPage.editing ? (
-          <UserPageEditor user={this.props.user} userPage={this.props.userPage} />
+        {this.props.controller.state.editingUserPage ? (
+          <UserPageEditor controller={this.props.controller} />
         ) : (
           <div className='page-extra__content-overflow-wrapper-outer u-fancy-scrollbar'>
-            {this.props.withEdit && isBlank ? (
+            {this.props.controller.withEdit && isBlank ? (
               this.renderPageNew()
             ) : (
               <div className='page-extra__content-overflow-wrapper-inner'>
@@ -63,8 +62,9 @@ export default class UserPage extends React.Component<Props> {
     );
   }
 
+  @action
   private readonly editStart = () => {
-    $.publish('user:page:update', { editing: true });
+    this.props.controller.state.editingUserPage = true;
   };
 
   private renderPageNew() {
@@ -73,7 +73,7 @@ export default class UserPage extends React.Component<Props> {
         <p className='profile-extra-user-page__new-content'>
           <button
             className='btn-osu-big btn-osu-big--user-page-edit'
-            disabled={!this.props.user.has_supported}
+            disabled={!this.props.controller.state.user.has_supported}
             onClick={this.editStart}
             type='button'
           >
@@ -90,7 +90,7 @@ export default class UserPage extends React.Component<Props> {
           dangerouslySetInnerHTML={{ __html: osu.trans('users.show.page.description') }}
         />
 
-        {!this.props.user.has_supported && (
+        {!this.props.controller.state.user.has_supported && (
           <p className='profile-extra-user-page__new-content'>
             <StringWithComponent
               mappings={{
@@ -116,7 +116,7 @@ export default class UserPage extends React.Component<Props> {
     return (
       <div
         className='js-audio--group'
-        dangerouslySetInnerHTML={{ __html: this.props.userPage.html }}
+        dangerouslySetInnerHTML={{ __html: this.props.controller.state.user.page.html }}
       />
     );
   }

@@ -1,13 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserCoverJson from 'interfaces/user-cover-json';
 import { times } from 'lodash';
 import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { nextVal } from 'utils/seq';
+import Controller from './controller';
 import CoverSelection from './cover-selection';
 import CoverUploader from './cover-uploader';
 
@@ -17,8 +17,7 @@ type DropOverlayVisibility = 'hidden' | undefined;
 const coverIndexes = times(8, (i) => (i + 1).toString());
 
 interface Props {
-  canUpload: boolean;
-  cover: UserCoverJson;
+  controller: Controller;
 }
 
 @observer
@@ -53,7 +52,8 @@ export default class CoverSelector extends React.Component<Props> {
           {coverIndexes.map((i) =>
             (<div key={i} className='profile-cover-change-popup__selection'>
               <CoverSelection
-                isSelected={this.props.cover.id === i}
+                controller={this.props.controller}
+                isSelected={this.props.controller.state.user.cover.id === i}
                 name={i}
                 thumbUrl={`/images/headers/profile-covers/c${i}t.jpg`}
                 url={`/images/headers/profile-covers/c${i}.jpg`}
@@ -66,11 +66,10 @@ export default class CoverSelector extends React.Component<Props> {
         </div>
         <CoverUploader
           ref={this.uploaderRef}
-          canUpload={this.props.canUpload}
-          cover={this.props.cover}
+          controller={this.props.controller}
           dropzoneRef={this.dropzoneRef}
         />
-        {this.props.canUpload &&
+        {this.props.controller.canUploadCover &&
           <div
             className={classWithModifiers('profile-cover-change-popup__drop-overlay', this.dropOverlayState)}
             data-visibility={this.dropOverlayVisibility}
