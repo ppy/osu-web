@@ -8,6 +8,7 @@ namespace App\Models\Chat;
 use App\Events\ChatChannelEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
+use App\Jobs\Notifications\ChannelAnnouncement;
 use App\Jobs\Notifications\ChannelMessage;
 use App\Libraries\AuthorizationResult;
 use App\Libraries\Chat\MessageTask;
@@ -449,13 +450,15 @@ class Channel extends Model
                 $userChannel->markAsRead($message->message_id);
             }
 
-            if ($this->isPM() || $this->isAnnouncement()) {
+            if ($this->isPM()) {
                 if ($this->unhide()) {
                     // assume a join event has to be sent if any channels need to need to be unhidden.
                     event(new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'));
                 }
 
                 (new ChannelMessage($message, $sender))->dispatch();
+            } elseif ($this->isAnnouncement()) {
+                (new ChannelAnnouncement($message, $sender))->dispatch();
             }
 
             $message->getConnection()->transaction(fn () => MessageTask::dispatch($message));
