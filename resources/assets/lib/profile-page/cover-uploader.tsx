@@ -104,7 +104,7 @@ export default class CoverUploader extends React.Component<Props> {
 
     $uploadButton.fileupload({
       always: action(() => {
-        this.props.controller.isUpdatingCover = true;
+        this.props.controller.isUpdatingCover = false;
       }),
       dataType: 'json',
       done: action((e: unknown, data: { result: UserExtendedJson }) => {

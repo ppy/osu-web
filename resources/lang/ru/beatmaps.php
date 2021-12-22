@@ -83,7 +83,7 @@ return [
             'reviews' => 'Отзывы',
             'timeline' => 'Временная шкала',
             'scopes' => [
-                'general' => 'эта сложность',
+                'general' => 'Эта сложность',
                 'generalAll' => 'все сложности',
             ],
         ],

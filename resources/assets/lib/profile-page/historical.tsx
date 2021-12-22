@@ -66,9 +66,7 @@ function dataPadder(padded: ChartData[], entry: ChartData) {
   return padded;
 }
 
-function updateTicks(chart: LineChart<Date>, data?: ChartData[]) {
-  data ??= chart.data;
-
+function updateTicks(chart: LineChart<Date>, data: ChartData[]) {
   if (core.windowSize.isDesktop) {
     chart.options.ticksX = undefined;
 
@@ -107,12 +105,6 @@ export default class Historical extends React.Component<ExtraPageProps> {
   componentDidMount() {
     $(window).on(`resize.${this.id}`, this.resizeCharts);
     disposeOnUnmount(this, autorun(this.updateCharts));
-
-    disposeOnUnmount(this, autorun(() => {
-      Object.values(this.charts).forEach((chart) => {
-        updateTicks(chart);
-      });
-    }));
   }
 
   componentWillUnmount() {
@@ -238,9 +230,9 @@ export default class Historical extends React.Component<ExtraPageProps> {
       const options = makeOptionsDate({
         circleLine: true,
         curve: curveLinear,
-        formatX: (d: Date) => moment(d).format(osu.trans('common.datetime.year_month_short.moment')),
+        formatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month_short.moment')),
         formatY: (d: number) => osu.formatNumber(d),
-        infoBoxFormatX: (d: Date) => moment(d).format(osu.trans('common.datetime.year_month.moment')),
+        infoBoxFormatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month.moment')),
         infoBoxFormatY: (d: number) => `<strong>${osu.trans(`users.show.extra.historical.${attribute}.count_label`)}</strong> ${escape(osu.formatNumber(d))}`,
         marginRight: 60, // more spacing for x axis label
         modifiers: 'profile-page',
@@ -252,6 +244,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
     const definedChart = chart;
 
     core.reactTurbolinks.runAfterPageLoad(this.id, () => {
+      updateTicks(definedChart, data);
       definedChart.loadData(data);
     });
   };

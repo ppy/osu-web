@@ -202,7 +202,7 @@ return [
                     'title' => '收藏的谱面',
                 ],
                 'graveyard' => [
-                    'title' => '坟场里的谱面',
+                    'title' => '已停更的谱面',
                 ],
                 'loved' => [
                     'title' => 'Loved 的谱面',

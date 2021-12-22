@@ -11,10 +11,7 @@ import ExtraPageProps from './extra-page-props';
 export default class Kudosu extends React.Component<ExtraPageProps> {
   @computed
   get paginatorJson() {
-    return {
-      items: this.props.controller.state.extras.recentlyReceivedKudosu,
-      pagination: this.props.controller.state.pagination.recentlyReceivedKudosu,
-    };
+    return this.props.controller.paginatorJson('recentlyReceivedKudosu');
   }
 
   constructor(props: ExtraPageProps) {
