@@ -1,8 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import CurrentUserJson from 'interfaces/current-user-json';
-import GameMode, { gameModes } from 'interfaces/game-mode';
+import { gameModes } from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -10,20 +9,17 @@ import * as React from 'react';
 import StringWithComponent from 'string-with-component';
 import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
-import { ProfilePageUserJson } from './extra-page-props';
+import Controller from './controller';
 
 const bn = 'game-mode';
 
 interface Props {
-  currentMode: GameMode;
-  user: ProfilePageUserJson;
-  withEdit: boolean;
+  controller: Controller;
 }
 
 @observer
 export default class GameModeSwitcher extends React.Component<Props> {
   @observable private settingDefault = false;
-  private xhr?: JQuery.jqXHR<CurrentUserJson>;
 
   constructor(props: Props) {
     super(props);
@@ -31,12 +27,8 @@ export default class GameModeSwitcher extends React.Component<Props> {
     makeObservable(this);
   }
 
-  componentWillUnmount() {
-    this.xhr?.abort();
-  }
-
   render() {
-    if (this.props.user.is_bot) {
+    if (this.props.controller.state.user.is_bot) {
       return null;
     }
 
@@ -47,11 +39,11 @@ export default class GameModeSwitcher extends React.Component<Props> {
           {gameModes.map((mode) => (
             <li key={mode} className={`${bn}__item`}>
               <a
-                className={classWithModifiers('game-mode-link', { active: mode === this.props.currentMode })}
-                href={route('users.show', { mode, user: this.props.user.id })}
+                className={classWithModifiers('game-mode-link', { active: mode === this.props.controller.currentMode })}
+                href={route('users.show', { mode, user: this.props.controller.state.user.id })}
               >
                 {osu.trans(`beatmaps.mode.${mode}`)}
-                {this.props.user.playmode === mode &&
+                {this.props.controller.state.user.playmode === mode &&
                   <span
                     className='game-mode-link__icon'
                     title={osu.trans('users.show.edit.default_playmode.is_default_tooltip')}
@@ -69,7 +61,7 @@ export default class GameModeSwitcher extends React.Component<Props> {
   }
 
   private renderSetDefault() {
-    if (!this.props.withEdit || this.props.user.playmode === this.props.currentMode) {
+    if (!this.props.controller.withEdit || this.props.controller.state.user.playmode === this.props.controller.currentMode) {
       return null;
     }
 
@@ -83,7 +75,7 @@ export default class GameModeSwitcher extends React.Component<Props> {
         >
           <StringWithComponent
             mappings={{
-              mode: <strong>{osu.trans(`beatmaps.mode.${this.props.currentMode}`)}</strong>,
+              mode: <strong>{osu.trans(`beatmaps.mode.${this.props.controller.currentMode}`)}</strong>,
             }}
             pattern={osu.trans('users.show.edit.default_playmode.set')}
           />
@@ -92,21 +84,13 @@ export default class GameModeSwitcher extends React.Component<Props> {
     );
   }
 
+  @action
   private readonly setDefault = () => {
     this.settingDefault = true;
 
-    this.xhr =
-      $.ajax(route('account.options'), {
-        data: {
-          user: {
-            playmode: this.props.currentMode,
-          },
-        },
-        method: 'PUT',
-      }).always(action(() => {
+    this.props.controller.apiSetDefaultGameMode()
+      .always(action(() => {
         this.settingDefault = false;
-      })).done((data) => {
-        $.publish('user:update', data);
-      }).fail(onErrorWithCallback(this.setDefault));
+      })).fail(onErrorWithCallback(this.setDefault));
   };
 }

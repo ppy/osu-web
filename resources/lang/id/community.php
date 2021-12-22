@@ -15,8 +15,8 @@ return [
             'title' => 'Mengapa saya harus mendukung osu!? Ke mana saja uangnya akan disalurkan?',
 
             'team' => [
-                'title' => 'Dukung Tim Kami',
-                'description' => 'osu! senantiasa dikembangkan dan dikelola oleh sebuah tim yang berukuran kecil. Dukunganmu akan sangat membantu... keberlangsungan hidup mereka.',
+                'title' => 'Upah Tim Kami',
+                'description' => 'osu! dikembangkan dan dikelola oleh sebuah tim yang berukuran kecil. Dukunganmu akan sangat membantu... keberlangsungan hidup mereka.',
             ],
             'infra' => [
                 'title' => 'Prasarana Server',
@@ -29,12 +29,12 @@ return [
             ],
             'ads' => [
                 'title' => 'Bantu osu! Untuk Tetap Mandiri',
-                'description' => 'Kontribusimu memungkinkan osu! untuk dapat sepenuhnya berfungsi secara independen tanpa bergantung pada iklan-iklan maupun sponsor-sponsor dari luar.',
+                'description' => 'Kontribusimu memungkinkan osu! untuk dapat sepenuhnya berdiri secara independen tanpa harus bergantung pada iklan-iklan maupun sponsor-sponsor dari luar.',
             ],
             'tournaments' => [
-                'title' => 'Turnamen Resmi',
-                'description' => 'Dukungan yang kamu berikan akan sebagian digunakan untuk memenuhi biaya operasional (dan menambah pundi-pundi hadiah) turnamen osu! World Cup.',
-                'link_text' => 'Jelajahi turnamen &raquo;',
+                'title' => 'Pendanaan Turnamen',
+                'description' => 'Dukungan yang kamu berikan akan digunakan untuk memenuhi biaya operasional (serta menambah pundi-pundi hadiah) turnamen-turnamen World Cup resmi yang kami selenggarakan.',
+                'link_text' => 'Jelajahi turnamen-turnamen resmi kami &raquo;',
             ],
             'bounty-program' => [
                 'title' => 'Program Open Source Bounty',
@@ -65,7 +65,7 @@ return [
             ],
 
             'auto_downloads' => [
-                'title' => 'Unduh Otomatis',
+                'title' => 'Unduhan Otomatis',
                 'description' => 'osu! akan secara otomatis mengunduh beatmap-beatmap yang tidak kamu miliki pada saat kamu bermain multiplayer, menonton orang lain, atau mengklik tautan dalam chat!',
             ],
 
@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Kustomisasi',
-                'description' => "Buat laman profilmu lebih menarik dengan tambahan gambar latar dan kolom \"saya!\" yang dapat kamu isi dengan hal apapun yang kamu kehendaki.",
+                'description' => "Buat laman profilmu lebih menarik dengan tambahan gambar latar dan kolom \"saya!\" yang dapat kamu isi sesuka hatimu.",
             ],
 
             'beatmap_filters' => [
@@ -139,7 +139,7 @@ return [
         ],
         'supporter_status' => [
             'contribution' => 'Terima kasih atas dukunganmu! Kamu telah membeli supporter tag sebanyak :tags kali dengan total kontribusi senilai :dollars!',
-            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags supporter tag (yang bernilai :giftedDollars) kepada pemain lain. Terima kasih atas kemurahan hatimu!",
+            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags supporter tag (yang bernilai :giftedDollars) kepada para pemain lainnya. Terima kasih atas kemurahan hatimu!",
             'not_yet' => "Kamu belum pernah memiliki supporter tag :(",
             'valid_until' => 'Supporter tag yang kamu miliki saat ini berlaku hingga :date!',
             'was_valid_until' => 'Masa berlaku supporter tag milikmu telah berakhir pada :date.',

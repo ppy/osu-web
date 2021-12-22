@@ -30,7 +30,7 @@ return [
         'download' => [
             'all' => '다운로드',
             'video' => '영상 포함된 것으로 받기',
-            'no_video' => '영상 없는 것으로 받기',
+            'no_video' => '영상이 없는 것으로 받기',
             'direct' => 'osu!direct에서 열기',
         ],
     ],

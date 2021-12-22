@@ -24,7 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => 'üzenet küldése sikertelen...',
-        'disconnected' => '',
+        'disconnected' => 'Lecsatlakozva',
         'placeholder' => 'üzenet írása...',
         'send' => 'Küldés',
     ],

@@ -5,6 +5,8 @@
 
 namespace Tests\Browser;
 
+use App\Models\Chat\Channel;
+use App\Models\Chat\UserChannel;
 use App\Models\Country;
 use App\Models\Multiplayer\Room;
 use DB;
@@ -150,8 +152,8 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factories for /community/chat/*
-        self::$scaffolding['channel'] = factory(\App\Models\Chat\Channel::class)->states('public')->create();
-        self::$scaffolding['user_channel'] = factory(\App\Models\Chat\UserChannel::class)->create([
+        self::$scaffolding['channel'] = Channel::factory()->type('public')->create();
+        self::$scaffolding['user_channel'] = UserChannel::factory()->create([
             'channel_id' => self::$scaffolding['channel']->getKey(),
             'user_id' => self::$scaffolding['user']->getKey(),
         ]);

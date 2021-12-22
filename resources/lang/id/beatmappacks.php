@@ -11,13 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'BACA INI SEBELUM MENGUNDUH',
-            'instruction' => [
-                '_' => "Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak berkas .rar yang Anda peroleh ke dalam folder Songs pada direktori osu! Anda.
-                    Di dalam paket tersebut, Anda akan menemui berkas-berkas beatmap yang tersaji dalam format .zip dan/atau .osz. osu! akan kemudian memproses beatmap-beatmap yang ada dengan sendirinya ketika Anda masuk ke dalam mode Play.
-                    :scary ekstrak .zip/.osz yang ada lebih lanjut,
-                    karena ada kemungkinan beatmap-beatmap yang bersangkutan nantinya akan rusak dan tidak dapat dimuat oleh osu! sebagaimana semestinya.",
-                'scary' => 'JANGAN',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Di samping itu, Anda juga sangat disarankan untuk :scary mengingat pada umumnya map-map keluaran terdahulu memiliki kualitas yang jauh lebih rendah dibanding map-map keluaran terbaru.',
                 'scary' => 'mengunduh paket dari yang terbaru ke yang paling lama',

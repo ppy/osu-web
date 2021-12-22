@@ -524,12 +524,26 @@
   dependencies:
     "@types/jquery" "*"
 
+"@types/jquery.scrollto@^1.4.29":
+  version "1.4.29"
+  resolved "https://registry.yarnpkg.com/@types/jquery.scrollto/-/jquery.scrollto-1.4.29.tgz#a3cdbe757249c08740dc4c36d83bf3c041e315cc"
+  integrity sha512-4AGdSgD6BDFcz53My+gtmsqbQFl72V7bc5YqhUw9jZTpx1w9ZiQqdvFyRU/DXSuBDG+pif8FL3geaKM7ZDGngw==
+  dependencies:
+    "@types/jquery" "*"
+
 "@types/jquery@*", "@types/jquery@^3.3.0":
   version "3.5.5"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.5.5.tgz#2c63f47c9c8d96693d272f5453602afd8338c903"
   integrity sha512-6RXU9Xzpc6vxNrS6FPPapN1SxSHgQ336WC6Jj/N8q30OiaBZ00l1GBgeP7usjVZPivSkGUfL1z/WW6TX989M+w==
   dependencies:
     "@types/sizzle" "*"
+
+"@types/jqueryui@^1.12.16":
+  version "1.12.16"
+  resolved "https://registry.yarnpkg.com/@types/jqueryui/-/jqueryui-1.12.16.tgz#9e319f7db39490db950cba77fe83887e0ad3e1d9"
+  integrity sha512-6huAQDpNlso9ayaUT9amBOA3kj02OCeUWs+UvDmbaJmwkHSg/HLsQOoap/D5uveN9ePwl72N45Bl+Frp5xyG1Q==
+  dependencies:
+    "@types/jquery" "*"
 
 "@types/js-cookie@^2.2.6":
   version "2.2.6"
