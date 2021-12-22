@@ -11,7 +11,7 @@ use App\Transformers\UserCompactTransformer;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class ChatMessageEvent implements ShouldBroadcastNow
+class ChatMessageEvent extends BroadcastableEventBase implements ShouldBroadcastNow
 {
     public function __construct(public Message $message)
     {
