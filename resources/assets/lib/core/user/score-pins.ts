@@ -14,7 +14,7 @@ export default class ScorePins {
   }
 
   apiPin(score: ScoreJson, toPin: boolean): JQuery.jqXHR<void> {
-    const pin = score.current_user_attributes?.pin;
+    const pin = score.current_user_attributes.pin;
     if (pin == null) {
       throw new Error("can't pin score without current user attributes");
     }
@@ -34,7 +34,7 @@ export default class ScorePins {
   }
 
   isPinned(score: ScoreJson) {
-    const pin = score.current_user_attributes?.pin;
+    const pin = score.current_user_attributes.pin;
 
     if (pin == null) {
       return false;
@@ -53,7 +53,7 @@ export default class ScorePins {
 
   @action
   markPinned(score: ScoreJson, isPinned: boolean) {
-    const pin = score.current_user_attributes?.pin;
+    const pin = score.current_user_attributes.pin;
     if (pin == null) return;
 
     const mapKey = this.mapKey(pin);
@@ -65,7 +65,7 @@ export default class ScorePins {
     this.pins.set(mapKey, isPinned);
   }
 
-  private mapKey(pin: Required<ScoreJson>['current_user_attributes']['pin']) {
+  private mapKey(pin: Required<ScoreJson['current_user_attributes']>['pin']) {
     return `${pin.score_type}:${pin.score_id}`;
   }
 }

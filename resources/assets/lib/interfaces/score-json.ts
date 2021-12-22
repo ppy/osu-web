@@ -13,8 +13,8 @@ export default interface ScoreJson {
   beatmapset?: BeatmapsetJson;
   best_id: number | null;
   created_at: string;
-  current_user_attributes?: {
-    pin: {
+  current_user_attributes: {
+    pin?: {
       is_pinned: boolean;
       score_id: number;
       score_type: `score_best_${GameMode}`;
