@@ -5,7 +5,6 @@
 
 namespace App\Libraries;
 
-use App\Events\ChatChannelEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
