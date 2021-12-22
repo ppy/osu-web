@@ -61,13 +61,4 @@ class ScorePin extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    public function mode()
-    {
-        if ($this->score_type === null) {
-            return null;
-        }
-
-        return MorphMap::getClass($this->score_type)::getMode();
-    }
 }
