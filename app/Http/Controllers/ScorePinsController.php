@@ -19,9 +19,7 @@ class ScorePinsController extends Controller
 
     public function destroy()
     {
-        $params = $this->getScoreParams();
-
-        auth()->user()->scorePins()->where($params)->delete();
+        auth()->user()->scorePins()->where($this->getScoreParams())->delete();
 
         return response()->noContent();
     }
