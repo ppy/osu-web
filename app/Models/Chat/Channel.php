@@ -449,7 +449,7 @@ class Channel extends Model
 
         MessageTask::dispatch($message);
 
-        if ($this->isPM()) {
+        if ($this->isPM() || $this->isAnnouncement()) {
             if ($this->unhide()) {
                 // assume a join event has to be sent if any channels need to need to be unhidden.
                 event(new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'));
