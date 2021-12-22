@@ -51,8 +51,6 @@ class ScorePinsController extends Controller
                 ->saveOrExplode();
         }
 
-        app('score-pins')->reset();
-
         return response()->noContent();
     }
 
