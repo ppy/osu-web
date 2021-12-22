@@ -26,7 +26,7 @@ class CurrentUserAttributesTransformer extends TransformerAbstract
         ];
     }
 
-    private function isOwnScore(LegacyMatch\Score|ScoreModel $score)
+    private function isOwnScore(LegacyMatch\Score|ScoreModel $score): bool
     {
         return $score->user_id === auth()->user()?->getKey();
     }
