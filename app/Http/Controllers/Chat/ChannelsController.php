@@ -219,11 +219,11 @@ class ChannelsController extends Controller
      * Note that in the case of `PM`s, if there's no existing PM channel, most of the fields will be blank.
      * In that case, [send a message](#create-new-pm) instead to create the channel.
      *
-     * @bodyParam channel object channel details; required if `type` is `ANNOUNCE`.
-     * @bodyParam message string message to send with the announcement; required if `type` is `ANNOUNCE`.
-     * @bodyParam target_id integer target user id; required if `type` is `PM`; ignored, otherwise.
-     * @bodyParam target_ids integer[] target user ids; required if `type` is `PM`; ignored, otherwise.
-     * @bodyParam type string required channel type (currently only supports `PM` and `ANNOUNCE`)
+     * @bodyParam channel object channel details; required if `type` is `ANNOUNCE`. No-example
+     * @bodyParam message string message to send with the announcement; required if `type` is `ANNOUNCE`. No-example
+     * @bodyParam target_id integer target user id; required if `type` is `PM`; ignored, otherwise. Example: 2
+     * @bodyParam target_ids integer[] target user ids; required if `type` is `PM`; ignored, otherwise. No-example
+     * @bodyParam type string required channel type (currently only supports `PM` and `ANNOUNCE`) Example: PM
      *
      * @response {
      *   "channel_id": 1,
