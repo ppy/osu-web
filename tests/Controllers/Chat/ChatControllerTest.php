@@ -5,7 +5,8 @@
 
 namespace Tests\Controllers\Chat;
 
-use App\Models\Chat;
+use App\Models\Chat\Channel;
+use App\Models\Chat\Message;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserRelation;
@@ -266,7 +267,7 @@ class ChatControllerTest extends TestCase
 
     public function testChatPresence() // success
     {
-        $publicChannel = factory(Chat\Channel::class)->states('public')->create();
+        $publicChannel = Channel::factory()->type('public')->create();
 
         // join the channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -419,8 +420,8 @@ class ChatControllerTest extends TestCase
 
     public function testChatUpdatesWithNoNewMessages() // success
     {
-        $publicChannel = factory(Chat\Channel::class)->states('public')->create();
-        $publicMessage = factory(Chat\Message::class)->create(['channel_id' => $publicChannel->channel_id]);
+        $publicChannel = Channel::factory()->type('public')->create();
+        $publicMessage = Message::factory()->create(['channel_id' => $publicChannel->channel_id]);
 
         // join the channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -436,8 +437,8 @@ class ChatControllerTest extends TestCase
 
     public function testChatUpdates() // success
     {
-        $publicChannel = factory(Chat\Channel::class)->states('public')->create();
-        $publicMessage = factory(Chat\Message::class)->create(['channel_id' => $publicChannel->channel_id]);
+        $publicChannel = Channel::factory()->type('public')->create();
+        $publicMessage = Message::factory()->create(['channel_id' => $publicChannel->channel_id]);
 
         // join channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -469,7 +470,7 @@ class ChatControllerTest extends TestCase
         $channelId = $presenceData['new_channel_id'];
 
         // create reply
-        $publicMessage = factory(Chat\Message::class)->create([
+        $publicMessage = Message::factory()->create([
             'user_id' => $this->anotherUser->user_id,
             'channel_id' => $channelId,
         ]);

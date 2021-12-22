@@ -5,8 +5,8 @@
 
 namespace Tests\Controllers\Chat;
 
-use App\Models\Chat;
 use App\Models\Chat\Channel;
+use App\Models\Chat\Message;
 use App\Models\Multiplayer\Score;
 use App\Models\User;
 use Faker;
@@ -98,7 +98,7 @@ class ChannelsControllerTest extends TestCase
      */
     public function testChannelJoin($type, $success)
     {
-        $channel = factory(Channel::class)->states($type)->create();
+        $channel = Channel::factory()->type($type)->create();
         $status = $success ? 200 : 403;
 
         $this->actAsScopedUser($this->user, ['*']);
@@ -237,7 +237,7 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelMarkAsReadBackwards() // success (with no change)
     {
-        $newerPublicMessage = factory(Chat\Message::class)->create(['channel_id' => $this->publicChannel->channel_id]);
+        $newerPublicMessage = Message::factory()->create(['channel_id' => $this->publicChannel->channel_id]);
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
@@ -293,7 +293,7 @@ class ChannelsControllerTest extends TestCase
      */
     public function testChannelLeave($type, $success)
     {
-        $channel = factory(Channel::class)->states($type)->create();
+        $channel = Channel::factory()->type($type)->create();
         $channel->addUser($this->user);
         $status = $success ? 204 : 403;
 
@@ -329,7 +329,7 @@ class ChannelsControllerTest extends TestCase
      */
     public function testChannelLeaveWhenNotJoined($type, $success)
     {
-        $channel = factory(Channel::class)->states($type)->create();
+        $channel = Channel::factory()->type($type)->create();
         $status = $success ? 204 : 403;
 
         $this->actAsScopedUser($this->user, ['*']);
@@ -374,10 +374,10 @@ class ChannelsControllerTest extends TestCase
 
         $this->user = User::factory()->create();
         $this->anotherUser = User::factory()->create();
-        $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
-        $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
-        $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();
-        $this->publicMessage = factory(Chat\Message::class)->create(['channel_id' => $this->publicChannel->channel_id]);
-        $this->tourneyChannel = factory(Chat\Channel::class)->states('tourney')->create();
+        $this->publicChannel = Channel::factory()->type('public')->create();
+        $this->privateChannel = Channel::factory()->type('private')->create();
+        $this->pmChannel = Channel::factory()->type('pm')->create();
+        $this->publicMessage = Message::factory()->create(['channel_id' => $this->publicChannel->channel_id]);
+        $this->tourneyChannel = Channel::factory()->type('tourney')->create();
     }
 }

@@ -49,7 +49,7 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $otherUser = User::factory()->create();
-        $channel = $this->createChannel([$user, $otherUser], 'moderated', 'pm');
+        $channel = $this->createChannel([$user, $otherUser], 'pm', 'moderated');
 
         $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
@@ -60,7 +60,7 @@ class ChannelTest extends TestCase
     public function testChannelCanMessageModeratedPublicChannel(?string $group, bool $canMessage)
     {
         $user = User::factory()->withGroup($group)->create();
-        $channel = $this->createChannel([$user], 'moderated', 'public');
+        $channel = $this->createChannel([$user], 'public', 'moderated');
 
         $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
@@ -194,9 +194,15 @@ class ChannelTest extends TestCase
         ];
     }
 
-    private function createChannel(array $users, ...$types): Channel
+    private function createChannel(array $users, string $type, bool $moderated = false): Channel
     {
-        $channel = factory(Channel::class)->states($types)->create();
+        $channel = Channel::factory()->type($type);
+        if ($moderated) {
+            $channel = $channel->moderated();
+        }
+
+        $channel = $channel->create();
+
         foreach ($users as $user) {
             $channel->addUser($user);
         }
