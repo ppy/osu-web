@@ -7,16 +7,33 @@ declare(strict_types=1);
 
 namespace Tests\Models\Chat;
 
+use App\Events\ChatChannelEvent;
+use App\Jobs\Notifications\ChannelMessage;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use App\Models\UserRelation;
+use Event;
 use Illuminate\Filesystem\Filesystem;
+use Queue;
 use SplFileInfo;
 use Storage;
 use Tests\TestCase;
 
 class ChannelTest extends TestCase
 {
+    public function testAnnouncementSendMessage()
+    {
+        Queue::fake();
+
+        $user = User::factory()->withGroup('announce')->create();
+        $otherUser = User::factory()->create();
+        $channel = $this->createChannel([$user, $otherUser], 'announce');
+
+        $channel->receiveMessage($user, 'test');
+
+        Queue::assertPushed(ChannelMessage::class);
+    }
+
     public function testPublicChannelDoesNotShowUsers()
     {
         $user = User::factory()->create();
@@ -133,6 +150,8 @@ class ChannelTest extends TestCase
 
     public function testCreateAnnouncement()
     {
+        Event::fake(ChatChannelEvent::class);
+
         $users = User::factory()->count(2)->create();
 
         $channel = Channel::createAnnouncement($users, ['description' => 'channel', 'name' => 'the best']);
@@ -142,6 +161,9 @@ class ChannelTest extends TestCase
         $this->assertEmpty($users->diff($channel->users()), 'created channel has too many users.');
         $this->assertEmpty($channel->users()->diff($users), 'created channel is missing users.');
         $this->assertSame(Channel::TYPES['announce'], $channel->type);
+
+        Event::assertDispatched(ChatChannelEvent::class, fn (ChatChannelEvent $event) => $event->action === 'join');
+        Event::assertDispatchedTimes(ChatChannelEvent::class, 2);
     }
 
     public function testPmChannelIcon()
