@@ -8,7 +8,7 @@ declare(strict_types=1);
 namespace Tests\Models\Chat;
 
 use App\Events\ChatChannelEvent;
-use App\Jobs\Notifications\ChannelMessage;
+use App\Jobs\Notifications\ChannelAnnouncement;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use App\Models\UserRelation;
@@ -31,7 +31,7 @@ class ChannelTest extends TestCase
 
         $channel->receiveMessage($user, 'test');
 
-        Queue::assertPushed(ChannelMessage::class);
+        Queue::assertPushed(ChannelAnnouncement::class);
     }
 
     public function testPublicChannelDoesNotShowUsers()
