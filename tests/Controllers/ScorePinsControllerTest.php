@@ -41,7 +41,7 @@ class ScorePinsControllerTest extends TestCase
 
         $this
             ->delete(route('score-pins.destroy', $this->makeParams($pin->score)))
-            ->assertStatus(404);
+            ->assertSuccessful();
 
         $this->assertSame(ScorePin::count(), $initialPinCount);
     }
