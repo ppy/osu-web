@@ -10,6 +10,9 @@ namespace App\Models;
 use App\Libraries\MorphMap;
 use App\Models\Score\Best as ScoreBest;
 use Ds\Set;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * @property \Carbon\Carbon|null $created_at
@@ -35,7 +38,7 @@ class ScorePin extends Model
         return $lookup->contains($type);
     }
 
-    public function scopeForMode($query, string|Score\Best\Model $modeOrScore)
+    public function scopeForMode($query, string|Score\Best\Model $modeOrScore): Builder
     {
         if (is_string($modeOrScore)) {
             $class = Score\Best\Model::getClassByString($modeOrScore);
@@ -47,17 +50,17 @@ class ScorePin extends Model
         return $query->where('score_type', $instance->getMorphClass());
     }
 
-    public function scopeWithVisibleScore($query)
+    public function scopeWithVisibleScore($query): Builder
     {
         return $query->whereHas('score', fn ($q) => $q->visibleUsers());
     }
 
-    public function score()
+    public function score(): MorphTo
     {
         return $this->morphTo();
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
