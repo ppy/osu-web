@@ -21,7 +21,7 @@ class ScorePinsController extends Controller
     {
         $params = $this->getScoreParams();
 
-        auth()->user()->scorePins()->where($params)->first()?->delete();
+        auth()->user()->scorePins()->where($params)->delete();
 
         return response()->noContent();
     }
