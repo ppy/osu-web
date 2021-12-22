@@ -16,7 +16,7 @@ class CurrentUserAttributesTransformer extends TransformerAbstract
     public function transform(ScoreModel $score): array
     {
         return [
-            'pin' => $score instanceof ScoreBest && $this->shouldReturn($score)
+            'pin' => $score instanceof ScoreBest && $this->isOwnScore($score)
                 ? [
                     'is_pinned' => app('score-pins')->isPinned($score),
                     'score_id' => $score->getKey(),
@@ -25,7 +25,7 @@ class CurrentUserAttributesTransformer extends TransformerAbstract
         ];
     }
 
-    private function shouldReturn(ScoreModel $score)
+    private function isOwnScore(ScoreModel $score)
     {
         return $score->user_id === auth()->user()?->getKey();
     }
