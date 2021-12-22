@@ -49,7 +49,7 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $otherUser = User::factory()->create();
-        $channel = $this->createChannel([$user, $otherUser], 'pm', 'moderated');
+        $channel = $this->createChannel([$user, $otherUser], 'pm', true);
 
         $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
@@ -60,7 +60,7 @@ class ChannelTest extends TestCase
     public function testChannelCanMessageModeratedPublicChannel(?string $group, bool $canMessage)
     {
         $user = User::factory()->withGroup($group)->create();
-        $channel = $this->createChannel([$user], 'public', 'moderated');
+        $channel = $this->createChannel([$user], 'public', true);
 
         $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
