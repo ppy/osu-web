@@ -11,8 +11,6 @@ use App\Models\User;
 
 class ChannelAnnouncement extends BroadcastNotificationBase
 {
-    const NOTIFICATION_OPTION_NAME = Notification::CHANNEL_ANNOUNCEMENT;
-
     protected $message;
 
     public static function getBaseKey(Notification $notification): string
