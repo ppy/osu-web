@@ -207,6 +207,7 @@ class ChannelsController extends Controller
      * Create Channel
      *
      * TODO: description needs fixing.
+     *
      * This endpoint creates a new channel if doesn't exist and joins it.
      * Currently only for rejoining existing PM channels which the user has left.
      *
