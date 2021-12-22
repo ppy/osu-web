@@ -7,13 +7,14 @@ declare(strict_types=1);
 
 namespace App\Transformers\Score;
 
+use App\Models\LegacyMatch;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
 use App\Transformers\TransformerAbstract;
 
 class CurrentUserAttributesTransformer extends TransformerAbstract
 {
-    public function transform(ScoreModel $score): array
+    public function transform(LegacyMatch\Score|ScoreModel $score): array
     {
         return [
             'pin' => $score instanceof ScoreBest && $this->isOwnScore($score)
@@ -25,7 +26,7 @@ class CurrentUserAttributesTransformer extends TransformerAbstract
         ];
     }
 
-    private function isOwnScore(ScoreModel $score)
+    private function isOwnScore(LegacyMatch\Score|ScoreModel $score)
     {
         return $score->user_id === auth()->user()?->getKey();
     }

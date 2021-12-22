@@ -9,6 +9,7 @@ namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\DeletedUser;
+use App\Models\LegacyMatch;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
 
@@ -83,7 +84,7 @@ class ScoreTransformer extends TransformerAbstract
         return $ret;
     }
 
-    public function includeCurrentUserAttributes(ScoreModel $score)
+    public function includeCurrentUserAttributes(LegacyMatch\Score|ScoreModel $score)
     {
         return $this->item($score, new Score\CurrentUserAttributesTransformer());
     }
