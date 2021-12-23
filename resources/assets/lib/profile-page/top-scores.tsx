@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { observer } from 'mobx-react';
-import PlayDetailList from 'play-detail-list';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import ExtraPageProps, { TopScoreSection } from './extra-page-props';
+import PlayDetailList from './play-detail-list';
 
 interface SectionMap {
   count: 'scores_best_count' | 'scores_first_count';

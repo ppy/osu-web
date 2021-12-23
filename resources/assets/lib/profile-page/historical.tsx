@@ -8,7 +8,6 @@ import { autorun, computed, makeObservable } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
-import PlayDetailList from 'play-detail-list';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { nextVal } from 'utils/seq';
@@ -16,6 +15,7 @@ import { switchNever } from 'utils/switch-never';
 import BeatmapPlaycount from './beatmap-playcount';
 import ExtraHeader from './extra-header';
 import ExtraPageProps, { HistoricalSection } from './extra-page-props';
+import PlayDetailList from './play-detail-list';
 
 const chartSections = ['monthly_playcounts', 'replays_watched_counts'] as const;
 type ChartSection = typeof chartSections[number];

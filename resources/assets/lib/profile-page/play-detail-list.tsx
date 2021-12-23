@@ -3,10 +3,10 @@
 
 import ScoreJson from 'interfaces/score-json';
 import { observer } from 'mobx-react';
-import PlayDetail from 'play-detail';
 import * as React from 'react';
 import { ContainerContext, KeyContext } from 'stateful-activation-context';
 import { classWithModifiers } from 'utils/css';
+import PlayDetail from './play-detail';
 
 interface Props {
   scores: ScoreJson[];
