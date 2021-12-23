@@ -12,19 +12,22 @@ import { supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
+import core from 'osu-core-singleton';
 import ChannelStore from 'stores/channel-store';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
-import { getUpdates } from './chat-api';
+import { getUpdates, joinChannel } from './chat-api';
 import PingService from './ping-service';
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
+  @observable displayJoinDialog = false;
   @observable isChatMounted = false;
   @observable isReady = false;
   @observable selectedBoxed = observable.box(0);
   skipRefresh = false;
   @observable private isConnected = false;
+  private joiningChannelId?: number;
   private lastHistoryId: number | null = null;
   private pingService: PingService;
   private selectedIndex = 0;
@@ -103,6 +106,17 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
+  joinChannel(channelId: number) {
+    if (this.displayJoinDialog) {
+      if (this.joiningChannelId != null) return;
+
+      this.joiningChannelId = channelId;
+    }
+
+    joinChannel(channelId, core.currentUserOrFail.id);
+  }
+
+  @action
   selectChannel(channelId: number) {
     if (this.selected === channelId) return;
 
@@ -146,6 +160,11 @@ export default class ChatStateStore implements DispatchListener {
   @action
   private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
     this.channelStore.getOrCreate(event.json.channel_id).updateWithJson(event.json);
+
+    if (this.joiningChannelId === event.json.channel_id) {
+      this.displayJoinDialog = false;
+      this.joiningChannelId = undefined;
+    }
   }
 
   @action
