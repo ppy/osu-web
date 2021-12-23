@@ -26,7 +26,7 @@ export default class ConversationList extends React.Component {
   }
 
   private renderChannels(channels: Channel[]) {
-    return channels.map((conversation) => <ConversationListItem key={conversation.channelId} channelId={conversation.channelId} />);
+    return channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />);
   }
 
   private renderSeparator() {

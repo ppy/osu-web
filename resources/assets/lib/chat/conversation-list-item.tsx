@@ -3,32 +3,26 @@
 
 import UserAvatar from 'components/user-avatar';
 import { observer } from 'mobx-react';
+import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import RootDataStore from 'stores/root-data-store';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  channelId: number;
-  dataStore?: RootDataStore;
+  channel: Channel;
 }
 
 @observer
 export default class ConversationListItem extends React.Component<Props> {
-  render(): React.ReactNode {
+  render() {
     const uiState = core.dataStore.chatState;
-    const conversation = core.dataStore.channelStore.get(this.props.channelId);
     const baseClassName = 'chat-conversation-list-item';
 
-    if (!conversation) {
-      return;
-    }
-
-    const selected = this.props.channelId === uiState.selected;
+    const selected = this.props.channel.channelId === uiState.selected;
 
     return (
       <div className={classWithModifiers(baseClassName, { selected })}>
-        {conversation.isUnread && !selected
+        {this.props.channel.isUnread && !selected
           ? <div className={`${baseClassName}__unread-indicator`} />
           : null}
 
@@ -38,9 +32,9 @@ export default class ConversationListItem extends React.Component<Props> {
 
         <button className={`${baseClassName}__tile`} onClick={this.switch}>
           <div className={`${baseClassName}__avatar`}>
-            <UserAvatar modifiers='full-circle' user={{ avatar_url: conversation.icon }} />
+            <UserAvatar modifiers='full-circle' user={{ avatar_url: this.props.channel.icon }} />
           </div>
-          <div className={`${baseClassName}__name`}>{conversation.name}</div>
+          <div className={`${baseClassName}__name`}>{this.props.channel.name}</div>
           <div className={`${baseClassName}__chevron`}>
             <i className='fas fa-chevron-right' />
           </div>
@@ -50,10 +44,10 @@ export default class ConversationListItem extends React.Component<Props> {
   }
 
   private part = () => {
-    core.dataStore.channelStore.partChannel(this.props.channelId);
+    core.dataStore.channelStore.partChannel(this.props.channel.channelId);
   };
 
   private switch = () => {
-    core.dataStore.chatState.selectChannel(this.props.channelId);
+    core.dataStore.chatState.selectChannel(this.props.channel.channelId);
   };
 }
