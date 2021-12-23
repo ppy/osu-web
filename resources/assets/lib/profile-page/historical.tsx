@@ -154,16 +154,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
           </>
         }
 
-        <h3 className='title title--page-extra-small'>
-          {osu.trans('users.show.extra.historical.recent_plays.title')}
-          <span className='title__count'>
-            {osu.formatNumber(this.props.controller.state.user.scores_recent_count)}
-          </span>
-        </h3>
-
-        {this.props.controller.state.extras.scoresRecent.length > 0 &&
-          <PlayDetailList controller={this.props.controller} section='scoresRecent' />
-        }
+        <PlayDetailList controller={this.props.controller} section='scoresRecent' />
 
         {this.hasSection('replays_watched_counts') &&
           <>

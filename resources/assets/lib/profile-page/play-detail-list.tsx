@@ -12,9 +12,26 @@ import Controller from './controller';
 import { TopScoreSection } from './extra-page-props';
 import PlayDetail from './play-detail';
 
+type ScoreSections = TopScoreSection | 'scoresRecent';
+
+const sectionMaps = {
+  scoresBest: {
+    count: 'scores_best_count',
+    translationKey: 'top_ranks.best',
+  },
+  scoresFirsts: {
+    count: 'scores_first_count',
+    translationKey: 'top_ranks.first',
+  },
+  scoresRecent: {
+    count: 'scores_recent_count',
+    translationKey: 'historical.recent_plays',
+  },
+} as const;
+
 interface Props {
   controller: Controller;
-  section: TopScoreSection | 'scoresRecent';
+  section: ScoreSections;
 }
 
 interface State {
@@ -51,8 +68,17 @@ export default class PlayDetailList extends React.Component<Props, State> {
       return <p>{this.paginatorJson.items.error}</p>;
     }
 
+    const { count, translationKey } = sectionMaps[this.props.section];
+
     return (
       <>
+        <h3 className='title title--page-extra-small'>
+          {osu.trans(`users.show.extra.${translationKey}.title`)}
+          <span className='title__count'>
+            {osu.formatNumber(this.props.controller.state.user[count])}
+          </span>
+        </h3>
+
         <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
           <div className={classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })}>
             {(this.uniqueItems).map((score) => (
