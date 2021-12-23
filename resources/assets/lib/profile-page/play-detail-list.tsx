@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
 import ScoreJson from 'interfaces/score-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -72,12 +73,10 @@ export default class PlayDetailList extends React.Component<Props, State> {
 
     return (
       <>
-        <h3 className='title title--page-extra-small'>
-          {osu.trans(`users.show.extra.${translationKey}.title`)}
-          <span className='title__count'>
-            {osu.formatNumber(this.props.controller.state.user[count])}
-          </span>
-        </h3>
+        <ProfilePageExtraSectionTitle
+          count={this.props.controller.state.user[count]}
+          titleKey={`users.show.extra.${translationKey}.title`}
+        />
 
         <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
           <div className={classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })}>
