@@ -67,7 +67,14 @@ export default class AddChannelButton extends React.Component {
   }
 
   private renderChannel = (channel: ChannelJson) => (
-    <div key={channel.channel_id} data-id={channel.channel_id} onClick={this.handleChannelClick}>{channel.name}</div>
+    <button
+      key={channel.channel_id}
+      className='chat-join-channel__channel'
+      data-id={channel.channel_id}
+      onClick={this.handleChannelClick}
+    >
+      {channel.name}
+    </button>
   );
 
   private renderModal() {
@@ -75,10 +82,17 @@ export default class AddChannelButton extends React.Component {
 
     return (
       <Modal onClose={this.handleModalClose} visible>
-        <div className='add-channel-list'>
-          {this.isLoading ? <Spinner /> : (
-            this.channels?.map(this.renderChannel)
-          )}
+        <div className='chat-join-channel'>
+          <select className='chat-join-channel__selector'>
+            <option>Join channel</option>
+            <option>Message user</option>
+            <option>New announcement</option>
+          </select>
+          <div className='chat-join-channel__list'>
+            {this.isLoading ? <Spinner /> : (
+              this.channels?.map(this.renderChannel)
+            )}
+          </div>
         </div>
       </Modal>
     );
