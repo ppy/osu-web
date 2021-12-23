@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import AddChannelButton from './add-channel-button';
 import ConversationListItem from './conversation-list-item';
 
 @observer
@@ -19,6 +20,7 @@ export default class ConversationList extends React.Component {
             {this.renderSeparator()}
           </React.Fragment>
         ))}
+        <AddChannelButton />
       </div>
     );
   }
