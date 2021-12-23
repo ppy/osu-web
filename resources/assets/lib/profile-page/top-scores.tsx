@@ -4,7 +4,6 @@
 import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
-import ShowMoreLink from 'show-more-link';
 import ExtraPageProps, { TopScoreSection } from './extra-page-props';
 import PlayDetailList from './play-detail-list';
 
@@ -57,37 +56,10 @@ export default class TopScores extends React.Component<ExtraPageProps> {
               </span>
             </h3>
 
-            {this.renderScores(section)}
+            <PlayDetailList controller={this.props.controller} section={section.key} />
           </div>
         ))}
       </div>
     );
-  }
-
-  private readonly onShowMore = (section: TopScoreSection) => {
-    this.props.controller.apiShowMore(section);
-  };
-
-  private renderScores(section: SectionMap) {
-    const paginator = this.props.controller.paginatorJson(section.key);
-
-    if (Array.isArray(paginator.items)) {
-      return (
-        <div className='profile-extra-entries'>
-          <PlayDetailList scores={paginator.items} />
-
-          <div className='profile-extra-entries__item'>
-            <ShowMoreLink
-              {...paginator.pagination}
-              callback={this.onShowMore}
-              data={section.key}
-              modifiers='profile-page'
-            />
-          </div>
-        </div>
-      );
-    }
-
-    return <p>{paginator.items.error}</p>;
   }
 }

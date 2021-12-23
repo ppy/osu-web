@@ -162,16 +162,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
         </h3>
 
         {this.props.controller.state.extras.scoresRecent.length > 0 &&
-          <>
-            <PlayDetailList scores={this.props.controller.state.extras.scoresRecent} />
-
-            <ShowMoreLink
-              {...this.props.controller.state.pagination.scoresRecent}
-              callback={this.onShowMore}
-              data={'scoresRecent' as const}
-              modifiers='profile-page'
-            />
-          </>
+          <PlayDetailList controller={this.props.controller} section='scoresRecent' />
         }
 
         {this.hasSection('replays_watched_counts') &&
