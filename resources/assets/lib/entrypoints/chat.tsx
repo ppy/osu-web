@@ -18,7 +18,7 @@ interface ChatInitialJson {
 }
 
 interface SendToJson {
-  can_message: boolean;
+  can_message_error: string | null;
   channel_id: number | null;
   target: UserJson;
 }
@@ -48,7 +48,7 @@ core.reactTurbolinks.register('chat', action(() => {
       initialChannel = channel.channelId;
     } else if (!target.is(core.currentUser)) {
       channel = Channel.newPM(target, sendTo.channel_id);
-      channel.canMessage = sendTo.can_message; // TODO: move can_message to a user prop?
+      channel.canMessageError = sendTo.can_message_error; // TODO: move can_message to a user prop?
       dataStore.channelStore.channels.set(channel.channelId, channel);
       initialChannel = channel.channelId;
     }

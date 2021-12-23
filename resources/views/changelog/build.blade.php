@@ -25,5 +25,5 @@
         {!! json_encode($commentBundle->toArray()) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/react/changelog-build.js'])
+    @include('layout._react_js', ['src' => 'js/changelog-build.js'])
 @endsection

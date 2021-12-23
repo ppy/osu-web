@@ -11,10 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'IZLASIET PIRMS LEJUPLĀDĒJIET',
-            'instruction' => [
-                '_' => "Uzstādīšana: Līdz ko fails tiks lejuplādēts, atvērsiet .rar failu iekš jūsu osu! Dziesmu sadaļā.                     Visas dziesmas joprojām ir .zip un/vai .osz formātā, tādēļ osu! būs nepieciešams atvērt bītmapes nākamajā reizē, kad tiks palaista spēle.                     :scary izvelc.zip/.osz failus pats                   , vai arī bītmapes var rādīties kļūdainas un var nefunkcionēt pareizi.",
-                'scary' => 'Nekādā gadījumā',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Ir vērts atcerēties :scary, jo vecās mapes ir daudz zemākas kvalitātes kā lielākā daļa jauno mapju.',
                 'scary' => 'lejuplādēt pakas secībā no jaunākajām līdz vecākajām',

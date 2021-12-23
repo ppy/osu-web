@@ -9,7 +9,6 @@ import * as React from 'react';
 import UserAvatar from 'user-avatar';
 import { UserLink } from 'user-link';
 import { classWithModifiers } from 'utils/css';
-import MessageErrorBoundary from './message-error-boundary';
 import MessageItem from './message-item';
 
 interface Props {
@@ -35,7 +34,7 @@ export default class MessageGroup extends React.Component<Props> {
               <UserAvatar modifiers='full-circle' user={{ avatar_url: sender.avatarUrl }} />
             </div>
           </UserLink>
-          <div className='u-ellipsis-overflow' style={{maxWidth: '60px'}}>
+          <div className='chat-message-group__username u-ellipsis-overflow'>
             {sender.username}
           </div>
         </div>
@@ -45,21 +44,24 @@ export default class MessageGroup extends React.Component<Props> {
               return;
             }
 
+            const timestamp = moment(message.timestamp).format('LT');
             const showTimestamp: boolean =
               // show timestamp if this is the last message in the group
               (key === messages.length - 1) ||
               // or if the next message has a different displayed timestamp
-              (moment(message.timestamp).format('LT') !== moment(messages[key + 1].timestamp).format('LT'));
+              (timestamp !== moment(messages[key + 1].timestamp).format('LT'));
 
             return (
-              <MessageErrorBoundary key={message.uuid}>
-                <MessageItem message={message} showTimestamp={showTimestamp} />
-              </MessageErrorBoundary>
+              <React.Fragment key={message.uuid}>
+                <MessageItem message={message} />
+                {showTimestamp && (
+                  <div className='chat-message-group__timestamp'>{timestamp}</div>
+                )}
+              </React.Fragment>
             );
           })}
         </div>
       </div>
     );
-
   }
 }

@@ -2,11 +2,22 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserExtendedJson from 'interfaces/user-extended-json';
+import Controller from './controller';
 
-export type BeatmapsetSection = 'favouriteBeatmapsets' | 'rankedBeatmapsets' | 'lovedBeatmapsets' | 'pendingBeatmapsets' | 'graveyardBeatmapsets';
+export const beatmapsetSections = [
+  'favouriteBeatmapsets',
+  'rankedBeatmapsets',
+  'lovedBeatmapsets',
+  'pendingBeatmapsets',
+  'graveyardBeatmapsets',
+] as const;
+export type BeatmapsetSection = typeof beatmapsetSections[number];
 
 export const topScoreSections = ['scoresBest', 'scoresFirsts'] as const;
 export type TopScoreSection = typeof topScoreSections[number];
+
+const historicalSections = ['beatmapPlaycounts', 'scoresRecent'] as const;
+export type HistoricalSection = typeof historicalSections[number];
 
 type ProfilePageIncludes =
   'account_history'
@@ -36,15 +47,10 @@ type ProfilePageIncludes =
 
 export type ProfilePageUserJson = UserExtendedJson & Required<Pick<UserExtendedJson, ProfilePageIncludes>>;
 
-interface Pagination {
-  hasMore: boolean;
-  loading: boolean;
-}
-
-export type ProfilePagePaginationData = Record<BeatmapsetSection | TopScoreSection | 'recentlyReceivedKudosu', Pagination>;
+export const profilePageSections = [...beatmapsetSections, ...topScoreSections, ...historicalSections, 'recentActivity', 'recentlyReceivedKudosu'] as const;
+export type ProfilePageSection = typeof profilePageSections[number];
 
 export default interface ExtraPageProps {
+  controller: Controller;
   name: string;
-  user: ProfilePageUserJson;
-  withEdit: boolean;
 }

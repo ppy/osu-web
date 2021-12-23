@@ -24,7 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => '메시지를 보낼 수 없습니다...',
-        'disconnected' => '',
+        'disconnected' => '연결 끊김',
         'placeholder' => '메시지를 입력하세요...',
         'send' => '전송',
     ],

@@ -4,7 +4,9 @@
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { parseJson } from 'utils/json'
-import { Main } from './mp-history/main'
+import { Main } from 'beatmap-discussions/main'
 
-core.reactTurbolinks.register 'mp-history', ->
-  createElement(Main, events: parseJson('json-events'))
+core.reactTurbolinks.register 'beatmap-discussions', (container) ->
+  createElement Main,
+    initial: parseJson 'json-beatmapset-discussion'
+    container: container

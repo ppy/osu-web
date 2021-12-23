@@ -589,18 +589,16 @@ class UsersController extends Controller
                 $extras[$page] = $this->getExtra($user, $page, ['mode' => $currentMode], $n + 1);
             }
 
-            $jsonChunks = [
+            $initialData = [
                 'achievements' => $achievements,
-                'currentMode' => $currentMode,
+                'current_mode' => $currentMode,
                 'extras' => $extras,
-                'perPage' => $perPage,
+                'per_page' => $perPage,
+                'scores_notice' => config('osu.user.profile_scores_notice'),
                 'user' => $userArray,
             ];
 
-            return ext_view('users.show', compact(
-                'user',
-                'jsonChunks'
-            ));
+            return ext_view('users.show', compact('initialData', 'user'));
         }
     }
 

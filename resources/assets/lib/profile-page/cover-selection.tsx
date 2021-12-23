@@ -1,14 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { route } from 'laroute';
+import { observer } from 'mobx-react';
 import * as React from 'react';
-import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import Controller from './controller';
 
 const bn = 'profile-cover-selection';
 
 interface Props {
+  controller: Controller;
   isSelected: boolean;
   modifiers?: Modifiers;
   name: string;
@@ -16,6 +17,7 @@ interface Props {
   url: string | null;
 }
 
+@observer
 export default class CoverSelection extends React.PureComponent<Props> {
   render() {
     return (
@@ -40,28 +42,17 @@ export default class CoverSelection extends React.PureComponent<Props> {
   private readonly onClick = () => {
     if (this.props.url == null) return;
 
-    $.publish('user:cover:upload:state', [true]);
-
-    $.ajax(route('account.cover'), {
-      data: {
-        cover_id: this.props.name,
-      },
-      dataType: 'json',
-      method: 'post',
-    }).always(() => {
-      $.publish('user:cover:upload:state', [false]);
-    }).done((userData) => {
-      $.publish('user:update', userData);
-    }).fail(onErrorWithCallback(this.onClick));
+    this.props.controller.apiSetCover(this.props.name);
   };
 
   private readonly onMouseEnter = () => {
     if (this.props.url == null) return;
 
-    $.publish('user:cover:set', this.props.url);
+    this.props.controller.debouncedSetDisplayCoverUrl(this.props.url);
+    this.props.controller.debouncedSetDisplayCoverUrl.flush();
   };
 
   private readonly onMouseLeave = () => {
-    $.publish('user:cover:reset');
+    this.props.controller.debouncedSetDisplayCoverUrl(null);
   };
 }

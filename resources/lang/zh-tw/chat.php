@@ -24,7 +24,7 @@ return [
     ],
     'input' => [
         'disabled' => '無法傳送訊息...',
-        'disconnected' => '',
+        'disconnected' => '斷線',
         'placeholder' => '輸入訊息...',
         'send' => '發送',
     ],
