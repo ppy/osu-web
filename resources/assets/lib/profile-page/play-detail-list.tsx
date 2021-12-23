@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
-import ScoreJson from 'interfaces/score-json';
-import { action, computed, makeObservable, observable } from 'mobx';
-import { observer } from 'mobx-react';
+import ScoreJson, { ScoreCurrentUserPinJson } from 'interfaces/score-json';
+import { action, autorun, computed, makeObservable, observable } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { ContainerContext, KeyContext } from 'stateful-activation-context';
@@ -46,10 +46,16 @@ interface State {
 @observer
 export default class PlayDetailList extends React.Component<Props, State> {
   @observable activeKey: number | null = null;
+  private listRef = React.createRef<HTMLDivElement>();
 
   @computed
   private get paginatorJson() {
     return this.props.controller.paginatorJson(this.props.section);
+  }
+
+  @computed
+  private get withPinSortable() {
+    return this.props.section === 'scoresPinned' && this.props.controller.withEdit;
   }
 
   @computed
@@ -68,6 +74,31 @@ export default class PlayDetailList extends React.Component<Props, State> {
     makeObservable(this);
   }
 
+  componentDidMount() {
+    disposeOnUnmount(this, autorun(() => {
+      const list = this.listRef.current;
+      const enablePinSortable = this.withPinSortable;
+
+      if (list != null) {
+        const $list = $(list);
+
+        if (enablePinSortable) {
+          $list.sortable({
+            cursor: 'move',
+            handle: '.js-score-pin-sortable-handle',
+            items: '.js-score-pin-sortable',
+            scrollSpeed: 10,
+            update: this.onUpdatePinOrder,
+          });
+        } else {
+          if ($list.sortable('instance') != null) {
+            $list.sortable('destroy');
+          }
+        }
+      }
+    }));
+  }
+
   render() {
     if (!Array.isArray(this.paginatorJson.items)) {
       return <p>{this.paginatorJson.items.error}</p>;
@@ -83,10 +114,14 @@ export default class PlayDetailList extends React.Component<Props, State> {
         />
 
         <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
-          <div className={classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })}>
+          <div ref={this.listRef} className={classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })}>
             {(this.uniqueItems).map((score) => (
               <KeyContext.Provider key={score.id} value={score.id}>
-                <PlayDetail activated={this.activeKey === score.id} score={score} />
+                <PlayDetail
+                  activated={this.activeKey === score.id}
+                  score={score}
+                  showPinSortableHandle={this.withPinSortable}
+                />
               </KeyContext.Provider>
             ))}
           </div>
@@ -109,5 +144,26 @@ export default class PlayDetailList extends React.Component<Props, State> {
 
   private onShowMore = () => {
     this.props.controller.apiShowMore(this.props.section);
+  };
+
+  private onUpdatePinOrder = (event: Event, ui: JQueryUI.SortableUIParams) => {
+    if (!Array.isArray(this.paginatorJson.items)) {
+      throw new Error('trying to update pin order with missing data');
+    }
+
+    const target = event.target;
+
+    if (target == null) return;
+
+    const $target = $(target);
+    const newOrder = $target.sortable('toArray', { attribute: 'data-score-pin' }).map((jsonString) => JSON.parse(jsonString) as ScoreCurrentUserPinJson);
+
+    const reordered = JSON.parse(ui.item.attr('data-score-pin') ?? '') as ScoreCurrentUserPinJson;
+    const currentIndex = this.paginatorJson.items.findIndex((item) => item.id === reordered.score_id);
+    const newIndex = newOrder.findIndex((item) => item.score_id === reordered.score_id);
+
+    if (currentIndex !== newIndex) {
+      this.props.controller.apiReorderScorePin(currentIndex, newIndex);
+    }
   };
 }

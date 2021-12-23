@@ -17,6 +17,7 @@ const bn = 'play-detail';
 interface Props {
   activated: boolean;
   score: ScoreJson;
+  showPinSortableHandle?: boolean;
 }
 
 interface State {
@@ -35,10 +36,17 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
     const blockClass = classWithModifiers(
       bn,
       this.props.activated ? 'active' : 'highlightable',
+      {
+        'pin-sortable': this.props.showPinSortableHandle,
+      },
     );
 
+    const pinData = this.props.showPinSortableHandle ? this.props.score.current_user_attributes.pin : null;
+    const additionalAttributes = { 'data-score-pin': JSON.stringify(pinData) };
+
     return (
-      <div className={blockClass}>
+      <div className={`${blockClass} js-score-pin-sortable`} {...additionalAttributes}>
+        {this.renderPinSortableHandle()}
         <div className={`${bn}__group ${bn}__group--top`}>
           <div className={`${bn}__icon ${bn}__icon--main`}>
             <div className={`score-rank score-rank--full score-rank--${score.rank}`} />
@@ -114,6 +122,16 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
             {hasMenu(score) && <PlayDetailMenu score={score} />}
           </div>
         </div>
+      </div>
+    );
+  }
+
+  private renderPinSortableHandle() {
+    if (!this.props.showPinSortableHandle) return;
+
+    return (
+      <div className='js-score-pin-sortable-handle hidden-xs sortable-handle sortable-handle--score-pin'>
+        <span className='fas fa-bars' />
       </div>
     );
   }

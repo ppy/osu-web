@@ -5,14 +5,15 @@ import AchievementJson from 'interfaces/achievement-json';
 import CurrentUserJson from 'interfaces/current-user-json';
 import GameMode from 'interfaces/game-mode';
 import ExtrasJson from 'interfaces/profile-page/extras-json';
-import ScoreJson from 'interfaces/score-json';
+import ScoreJson, { ScoreCurrentUserPinJson } from 'interfaces/score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
 import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import { debounce, keyBy, pullAt } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import core from 'osu-core-singleton';
-import { onErrorWithCallback } from 'utils/ajax';
+import { error, onErrorWithCallback } from 'utils/ajax';
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { apiShowMore, apiShowMoreRecentlyReceivedKudosu, hasMoreCheck, OffsetPaginationJson } from 'utils/offset-paginator';
 import { switchNever } from 'utils/switch-never';
 import { ProfilePageSection, profilePageSections, ProfilePageUserJson } from './extra-page-props';
@@ -49,6 +50,13 @@ interface InitialData {
 }
 
 export type Page = ProfileExtraPage | 'main';
+
+interface ScorePinReorderParams {
+  order1_score_id?: ScoreCurrentUserPinJson['score_id'];
+  order3_score_id?: ScoreCurrentUserPinJson['score_id'];
+  score_id: ScoreCurrentUserPinJson['score_id'];
+  score_type: ScoreCurrentUserPinJson['score_type'];
+}
 
 interface State {
   currentPage: Page;
@@ -121,6 +129,50 @@ export default class Controller {
     $.subscribe('score:pin', this.onScorePinUpdate);
 
     makeObservable(this);
+  }
+
+  @action
+  apiReorderScorePin(currentIndex: number, newIndex: number) {
+    const origItems = this.state.extras.scoresPinned.slice();
+    const items = this.state.extras.scoresPinned;
+    const adjacentScoreId = items[newIndex]?.id;
+    if (adjacentScoreId == null) {
+      throw new Error('invalid newIndex specified');
+    }
+
+    // fetch item to be moved and update internal state
+    const target = items.splice(currentIndex, 1)[0];
+
+    if (target == null) {
+      throw new Error('invalid currentIndex specified');
+    }
+    if (target.current_user_attributes.pin == null) {
+      throw new Error('score is missing current user pin attribute');
+    }
+    items.splice(newIndex, 0, target);
+    this.saveState();
+
+    const params: ScorePinReorderParams = {
+      score_id: target.current_user_attributes.pin.score_id,
+      score_type: target.current_user_attributes.pin.score_type,
+    };
+    if (currentIndex > newIndex) {
+      // target will be above existing item at index
+      params.order3_score_id = adjacentScoreId;
+    } else {
+      // target will be below existing item at index
+      params.order1_score_id = adjacentScoreId;
+    }
+
+    showLoadingOverlay();
+    $.ajax(route('score-pins.reorder'), {
+      data: params,
+      dataType: 'json',
+      method: 'PUT',
+    }).fail(action((xhr: JQuery.jqXHR, status: string) => {
+      error(xhr, status);
+      this.state.extras.scoresPinned = origItems;
+    })).always(hideLoadingOverlay);
   }
 
   @action

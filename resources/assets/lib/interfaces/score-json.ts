@@ -7,6 +7,12 @@ import GameMode from './game-mode';
 import Rank from './rank';
 import UserJson from './user-json';
 
+export interface ScoreCurrentUserPinJson {
+  is_pinned: boolean;
+  score_id: number;
+  score_type: `score_best_${GameMode}`;
+}
+
 export default interface ScoreJson {
   accuracy: number;
   beatmap?: BeatmapExtendedJson;
@@ -14,11 +20,7 @@ export default interface ScoreJson {
   best_id: number | null;
   created_at: string;
   current_user_attributes: {
-    pin?: {
-      is_pinned: boolean;
-      score_id: number;
-      score_type: `score_best_${GameMode}`;
-    };
+    pin?: ScoreCurrentUserPinJson;
   };
   id: number;
   max_combo: number;
