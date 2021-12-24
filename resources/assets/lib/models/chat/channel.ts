@@ -243,6 +243,8 @@ export default class Channel {
       this.canMessageError = json.current_user_attributes.can_message_error;
       this.setLastReadId(json.current_user_attributes.last_read_id);
     }
+
+    return this;
   }
 
   @action

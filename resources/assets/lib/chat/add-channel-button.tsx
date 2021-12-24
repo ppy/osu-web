@@ -5,10 +5,12 @@ import ChannelJson from 'interfaces/chat/channel-json';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { Modal } from 'modal';
+import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { getPublicChannels } from './chat-api';
+import ConversationListItem from './conversation-list-item';
 
 @observer
 export default class AddChannelButton extends React.Component {
@@ -37,10 +39,8 @@ export default class AddChannelButton extends React.Component {
   }
 
   @action
-  private handleChannelClick = (e: React.SyntheticEvent<HTMLElement>) => {
-    const channelId = parseInt(e.currentTarget.dataset.id ?? '', 10);
-
-    core.dataStore.chatState.joinChannel(channelId);
+  private handleChannelClick = (channel: Channel) => {
+    core.dataStore.chatState.joinChannel(channel.channelId);
   };
 
   @action
@@ -66,16 +66,10 @@ export default class AddChannelButton extends React.Component {
     });
   }
 
-  private renderChannel = (channel: ChannelJson) => (
-    <button
-      key={channel.channel_id}
-      className='chat-join-channel__channel'
-      data-id={channel.channel_id}
-      onClick={this.handleChannelClick}
-    >
-      {channel.name}
-    </button>
-  );
+  private renderChannel = (json: ChannelJson) => {
+    const channel = new Channel(json.channel_id).updateWithJson(json);
+    return <ConversationListItem key={channel.channelId} channel={channel} onClick={this.handleChannelClick} />;
+  };
 
   private renderModal() {
     if (!core.dataStore.chatState.displayJoinDialog) return null;

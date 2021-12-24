@@ -10,6 +10,7 @@ import { classWithModifiers } from 'utils/css';
 
 interface Props {
   channel: Channel;
+  onClick?: (channel: Channel) => void;
 }
 
 @observer
@@ -48,6 +49,10 @@ export default class ConversationListItem extends React.Component<Props> {
   };
 
   private switch = () => {
+    if (this.props.onClick) {
+      return this.props.onClick(this.props.channel);
+    }
+
     core.dataStore.chatState.selectChannel(this.props.channel.channelId);
   };
 }
