@@ -83,7 +83,7 @@ export default class AddChannelButton extends React.Component {
             <option>Message user</option>
             <option>New announcement</option>
           </select>
-          <div className='chat-join-channel__list'>
+          <div className='chat-conversation-list chat-conversation-list--join-channel'>
             {this.isLoading ? <Spinner /> : (
               this.channels?.map(this.renderChannel)
             )}

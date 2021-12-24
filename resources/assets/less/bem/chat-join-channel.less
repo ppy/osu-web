@@ -14,29 +14,6 @@
     max-height: calc(50% - 40px);
   }
 
-  &__channel {
-    .reset-input();
-    .default-border-radius();
-
-    padding: 15px 0;
-    text-align: left;
-
-    &:hover {
-      background: linear-gradient(to right, @osu-colour-b5 10px, @osu-colour-b3 33%, @osu-colour-b3 100%);
-    }
-  }
-
-  &__list {
-    overflow-y: auto;
-    padding-top: 10px;
-    padding-bottom: $padding-top;
-
-    @media @desktop {
-      padding-top: 25px;
-      padding-bottom: $padding-top;
-    }
-  }
-
   &__selector {
     .reset-input();
     padding: 5px calc(20px + 1em) 5px 5px;
