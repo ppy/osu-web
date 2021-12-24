@@ -81,8 +81,7 @@ export default class ChannelStore implements DispatchListener {
 
   @action
   addNewConversation(json: ChannelJson, message: MessageJson) {
-    const channel = this.getOrCreate(json.channel_id);
-    channel.updateWithJson(json);
+    const channel = this.getOrCreate(json);
     // TODO: need to handle user
     channel.addMessages([Message.fromJson(message)]);
 
@@ -117,7 +116,8 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  getOrCreate(channelId: number): Channel {
+  getOrCreate(json: ChannelJson): Channel {
+    const channelId = json.channel_id;
     let channel = this.channels.get(channelId);
 
     if (!channel) {
@@ -125,7 +125,7 @@ export default class ChannelStore implements DispatchListener {
       this.channels.set(channelId, channel);
     }
 
-    return channel;
+    return channel.updateWithJson(json);
   }
 
   handleDispatchAction(event: DispatcherAction) {
@@ -216,7 +216,7 @@ export default class ChannelStore implements DispatchListener {
   @action
   updateWithPresence(presence: ChannelJson[]) {
     filterSupportedChannelTypes(presence).forEach((json) => {
-      this.getOrCreate(json.channel_id).updateWithJson(json);
+      this.getOrCreate(json);
     });
 
     // remove parted channels
