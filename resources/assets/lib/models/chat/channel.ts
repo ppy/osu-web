@@ -289,6 +289,11 @@ export default class Channel {
           this.firstMessageId = this.minMessageId;
           return;
         }
+
+        // move client-side read marker to the end if joining a public channel.
+        if (this.supportedType === 'PUBLIC' && this.lastReadId == null) {
+          this.markAsRead();
+        }
       });
     } catch {
       runInAction(() => this.loadingMessages = false);
