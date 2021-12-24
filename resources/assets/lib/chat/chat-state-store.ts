@@ -162,6 +162,7 @@ export default class ChatStateStore implements DispatchListener {
     this.channelStore.getOrCreate(event.json.channel_id).updateWithJson(event.json);
 
     if (this.joiningChannelId === event.json.channel_id) {
+      this.selectChannel(this.joiningChannelId);
       this.displayJoinDialog = false;
       this.joiningChannelId = undefined;
     }
