@@ -25,7 +25,7 @@ return [
 
     'mapping' => [
         'empty' => 'Nenhum mapper encontrado.',
-        'followers' => 'seguidores do mapeamento',
+        'followers' => 'seguidores do mapping',
         'page_title' => 'observações do mapper',
         'title' => 'mapper',
         'to_0' => 'parar de me notificar quando este usuário criar um novo beatmap',
