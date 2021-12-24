@@ -26,7 +26,7 @@ export default class ConversationListItem extends React.Component<Props> {
     const selected = this.props.showIndicators && this.props.channel.channelId === core.dataStore.chatState.selected;
 
     return (
-      <div className={classWithModifiers(className, { selected })}>
+      <div className={classWithModifiers(className, { listing: !this.props.showIndicators, selected })}>
         {this.props.channel.isUnread && !selected
           ? <div className={`${className}__unread-indicator`} />
           : null}

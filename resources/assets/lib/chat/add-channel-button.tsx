@@ -26,12 +26,13 @@ export default class AddChannelButton extends React.Component {
   render() {
     return (
       <div className='chat-conversation-list-item'>
-        <button className={'chat-conversation-list-item__tile'} onClick={this.handleModalOpen}>
-          <div className={'chat-conversation-list-item__avatar'} />
-          <div className={'chat-conversation-list-item__name'}>Join Channel</div>
-          <div className={'chat-conversation-list-item__chevron'}>
-            <i className='fas fa-chevron-right' />
+        <button className='chat-conversation-list-item__tile' onClick={this.handleModalOpen}>
+          <div className='chat-conversation-list-item__avatar'>
+            <span className='avatar avatar--join-channel'>
+              <span className='fas fa-plus' />
+            </span>
           </div>
+          <div className='chat-conversation-list-item__name'>Join Channel</div>
         </button>
         {this.renderModal()}
       </div>
