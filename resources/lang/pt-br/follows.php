@@ -24,10 +24,10 @@ return [
     ],
 
     'mapping' => [
-        'empty' => 'Nenhum mapeador encontrado.',
+        'empty' => 'Nenhum mapper encontrado.',
         'followers' => 'seguidores do mapeamento',
-        'page_title' => 'observações do mapeador',
-        'title' => 'mapeador',
+        'page_title' => 'observações do mapper',
+        'title' => 'mapper',
         'to_0' => 'parar de me notificar quando este usuário criar um novo beatmap',
         'to_1' => 'notificar-me quando esse usuário criar um novo beatmap',
     ],
