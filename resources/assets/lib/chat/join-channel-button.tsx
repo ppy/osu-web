@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ChannelJson from 'interfaces/chat/channel-json';
-import { action, makeObservable, observable, runInAction } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Modal } from 'modal';
 import Channel from 'models/chat/channel';
@@ -15,7 +15,6 @@ import ConversationListItem from './conversation-list-item';
 @observer
 export default class JoinChannelButton extends React.Component {
   @observable private channels?: ChannelJson[];
-  @observable private isLoading = false;
 
   constructor(props: Record<string, never>) {
     super(props);
@@ -59,12 +58,7 @@ export default class JoinChannelButton extends React.Component {
   private async loadChannels() {
     if (this.channels != null) return;
 
-    this.isLoading = true;
     this.channels = await getPublicChannels();
-
-    runInAction(() => {
-      this.isLoading = false;
-    });
   }
 
   private renderChannel = (json: ChannelJson) => {
@@ -82,8 +76,8 @@ export default class JoinChannelButton extends React.Component {
             {osu.trans('chat.channels.join')}
           </div>
           <div className='chat-conversation-list chat-conversation-list--join-channel'>
-            {this.isLoading ? <div className='chat-join-channel__spinner'><Spinner /></div> : (
-              this.channels?.map(this.renderChannel)
+            {this.channels == null ? <div className='chat-join-channel__spinner'><Spinner /></div> : (
+              this.channels.map(this.renderChannel)
             )}
           </div>
         </div>
