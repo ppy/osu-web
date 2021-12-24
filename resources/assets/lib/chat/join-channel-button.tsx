@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ChannelJson from 'interfaces/chat/channel-json';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Modal } from 'modal';
 import Channel from 'models/chat/channel';
@@ -15,6 +15,17 @@ import ConversationListItem from './conversation-list-item';
 @observer
 export default class JoinChannelButton extends React.Component {
   @observable private channels?: ChannelJson[];
+
+  @computed
+  get joinableChannels() {
+    const channelIds = new Set(core.dataStore.channelStore.groupedChannels.PUBLIC.map((channel) => channel.channelId));
+
+    return this.channels == null
+      ? []
+      : this.channels
+        .filter((channel) => !channelIds.has(channel.channel_id))
+        .sort((a, b) => a.name.localeCompare(b.name));
+  }
 
   constructor(props: Record<string, never>) {
     super(props);
@@ -76,10 +87,12 @@ export default class JoinChannelButton extends React.Component {
             {osu.trans('chat.channels.join')}
           </div>
           <div className='chat-conversation-list chat-conversation-list--join-channel'>
+            {/* TODO: empty list */}
             {this.channels == null ? <div className='chat-join-channel__spinner'><Spinner /></div> : (
-              this.channels.map(this.renderChannel)
+              this.joinableChannels.map(this.renderChannel)
             )}
           </div>
+          {/* TODO: close button */}
         </div>
       </Modal>
     );
