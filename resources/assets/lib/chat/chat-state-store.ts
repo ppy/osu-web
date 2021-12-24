@@ -145,7 +145,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
-    this.channelStore.getOrCreate(event.json.channel_id).updateWithJson(event.json);
+    this.channelStore.getOrCreate(event.json);
   }
 
   @action
