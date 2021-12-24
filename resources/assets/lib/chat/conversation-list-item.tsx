@@ -11,34 +11,43 @@ import { classWithModifiers } from 'utils/css';
 interface Props {
   channel: Channel;
   onClick?: (channel: Channel) => void;
+  showIndicators: boolean;
 }
+
+const className = 'chat-conversation-list-item';
 
 @observer
 export default class ConversationListItem extends React.Component<Props> {
-  render() {
-    const uiState = core.dataStore.chatState;
-    const baseClassName = 'chat-conversation-list-item';
+  static readonly defaultProps = {
+    showIndicators: true,
+  };
 
-    const selected = this.props.channel.channelId === uiState.selected;
+  render() {
+    const selected = this.props.showIndicators && this.props.channel.channelId === core.dataStore.chatState.selected;
 
     return (
-      <div className={classWithModifiers(baseClassName, { selected })}>
+      <div className={classWithModifiers(className, { selected })}>
         {this.props.channel.isUnread && !selected
-          ? <div className={`${baseClassName}__unread-indicator`} />
+          ? <div className={`${className}__unread-indicator`} />
           : null}
 
-        <button className={`${baseClassName}__close-button`} onClick={this.part}>
-          <i className='fas fa-times' />
-        </button>
+        {this.props.showIndicators && (
+          <button className={`${className}__close-button`} onClick={this.part}>
+            <i className='fas fa-times' />
+          </button>
+        )}
 
-        <button className={`${baseClassName}__tile`} onClick={this.switch}>
-          <div className={`${baseClassName}__avatar`}>
+        <button className={`${className}__tile`} onClick={this.switch}>
+          <div className={`${className}__avatar`}>
             <UserAvatar modifiers='full-circle' user={{ avatar_url: this.props.channel.icon }} />
           </div>
-          <div className={`${baseClassName}__name`}>{this.props.channel.name}</div>
-          <div className={`${baseClassName}__chevron`}>
-            <i className='fas fa-chevron-right' />
-          </div>
+          <div className={`${className}__name`}>{this.props.channel.name}</div>
+
+          {this.props.showIndicators && (
+            <div className={`${className}__chevron`}>
+              <i className='fas fa-chevron-right' />
+            </div>
+          )}
         </button>
       </div>
     );

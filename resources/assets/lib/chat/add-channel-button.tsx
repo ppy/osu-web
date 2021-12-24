@@ -68,7 +68,7 @@ export default class AddChannelButton extends React.Component {
 
   private renderChannel = (json: ChannelJson) => {
     const channel = new Channel(json.channel_id).updateWithJson(json);
-    return <ConversationListItem key={channel.channelId} channel={channel} onClick={this.handleChannelClick} />;
+    return <ConversationListItem key={channel.channelId} channel={channel} onClick={this.handleChannelClick} showIndicators={false} />;
   };
 
   private renderModal() {
