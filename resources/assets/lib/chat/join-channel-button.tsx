@@ -13,7 +13,7 @@ import { getPublicChannels } from './chat-api';
 import ConversationListItem from './conversation-list-item';
 
 @observer
-export default class AddChannelButton extends React.Component {
+export default class JoinChannelButton extends React.Component {
   @observable private channels?: ChannelJson[];
   @observable private isLoading = false;
 
@@ -32,7 +32,7 @@ export default class AddChannelButton extends React.Component {
               <span className='fas fa-plus' />
             </span>
           </div>
-          <div className='chat-conversation-list-item__name'>Join Channel</div>
+          <div className='chat-conversation-list-item__name'>{osu.trans('chat.channels.join')}</div>
         </button>
         {this.renderModal()}
       </div>
@@ -78,13 +78,11 @@ export default class AddChannelButton extends React.Component {
     return (
       <Modal onClose={this.handleModalClose} visible>
         <div className='chat-join-channel'>
-          <select className='chat-join-channel__selector'>
-            <option>Join channel</option>
-            <option>Message user</option>
-            <option>New announcement</option>
-          </select>
+          <div className='chat-join-channel__title'>
+            {osu.trans('chat.channels.join')}
+          </div>
           <div className='chat-conversation-list chat-conversation-list--join-channel'>
-            {this.isLoading ? <Spinner /> : (
+            {this.isLoading ? <div className='chat-join-channel__spinner'><Spinner /></div> : (
               this.channels?.map(this.renderChannel)
             )}
           </div>

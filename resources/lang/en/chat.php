@@ -13,6 +13,10 @@ return [
         'user' => 'You cannot message this user at this time.',
     ],
 
+    'channels' => [
+        'join' => 'join channel',
+    ],
+
     'input' => [
         'disabled' => 'unable to send message...',
         'disconnected' => 'Disconnected',
