@@ -26,7 +26,7 @@ const sectionMaps = {
   },
   scoresPinned: {
     count: 'scores_pinned_count',
-    translationKey: 'pinned',
+    translationKey: 'top_ranks.pinned',
   },
   scoresRecent: {
     count: 'scores_recent_count',
