@@ -22,12 +22,14 @@ return [
             'target_restricted' => 'Der Empfänger ist zurzeit eingeschränkt',
         ],
     ],
+
     'input' => [
         'disabled' => 'Nachricht konnte nicht gesendet werden...',
         'disconnected' => 'Verbindung getrennt',
         'placeholder' => 'Nachricht verfassen...',
         'send' => 'Senden',
     ],
+
     'no-conversations' => [
         'howto' => "Starte eine Unterhaltung von einem User-Profil oder einem Usercard-Popup.",
         'lazer' => 'Öffentliche Kanäle, die du mit <a href=":link">osu!lazer</a> beitrittst, werden auch hier angezeigt.',

@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited người_chơi|:count_delimited người chơi',
         'time_left' => ':time thời gian còn lại',
 
+        'errors' => [
+            'duration_too_long' => '',
+        ],
+
         'status' => [
             'active' => 'đang Hoạt Động',
             'ended' => 'đã dừng',

@@ -22,12 +22,14 @@ return [
             'target_restricted' => 'Il destinatario è attualmente limitato',
         ],
     ],
+
     'input' => [
         'disabled' => 'impossibile messaggiare...',
         'disconnected' => 'Disconnesso',
         'placeholder' => 'scrivi un messaggio...',
         'send' => 'Invia',
     ],
+
     'no-conversations' => [
         'howto' => "Inizia le conversazioni dal profilo di un utente o dal popup della sua carta utente.",
         'lazer' => 'I canali pubblici in cui entri attraverso <a href=":link">osu!lazer</a> saranno visibili anche qui.',

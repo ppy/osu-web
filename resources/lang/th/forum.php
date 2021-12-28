@@ -133,19 +133,19 @@ return [
 
             'columns' => [
                 'action' => '',
-                'date' => '',
-                'user' => '',
+                'date' => 'วันที่',
+                'user' => 'ผู้ใช้',
             ],
 
             'data' => [
-                'add_tag' => '',
+                'add_tag' => 'เพิ่มแท็ก ":tag" แล้ว',
                 'announcement' => '',
                 'edit_topic' => '',
                 'fork' => '',
                 'pin' => '',
-                'post_operation' => '',
-                'remove_tag' => '',
-                'source_forum_operation' => '',
+                'post_operation' => 'โพสต์โดย :username',
+                'remove_tag' => 'ลบแท็ก ":tag" แล้ว',
+                'source_forum_operation' => 'จาก :forum',
                 'unpin' => '',
             ],
 

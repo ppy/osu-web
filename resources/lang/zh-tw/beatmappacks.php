@@ -11,7 +11,7 @@ return [
 
         'blurb' => [
             'important' => '下載前必讀',
-            'install_instruction' => '',
+            'install_instruction' => '如何安裝：下載完成後，請將圖譜包解壓縮到 osu! 的 Songs 資料夾。osu! 會處理後續流程。',
             'note' => [
                 '_' => '強烈建議您 :scary，因為舊圖譜的品質可能不如現在。',
                 'scary' => '下載最新的圖譜壓縮檔',
