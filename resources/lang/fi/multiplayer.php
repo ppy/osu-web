@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited pelaaja|:count_delimited pelaajaa',
         'time_left' => ':time jäljellä',
 
+        'errors' => [
+            'duration_too_long' => '',
+        ],
+
         'status' => [
             'active' => 'aktiivinen',
             'ended' => 'päättynyt',

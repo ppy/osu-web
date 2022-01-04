@@ -11,7 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'VOR DEM HERUNTERLADEN BITTE LESEN',
-            'install_instruction' => '',
+            'install_instruction' => 'Installation: Sobald ein Paket heruntergeladen wurde, entpacke den Inhalt des Pakets in dein osu! Songs-Verzeichnis und osu! wird den Rest erledigen.',
             'note' => [
                 '_' => 'Außerdem ist es sehr empfehlenswert, :scary, weil die älteren Beatmaps qualitativ wesentlich schlechter sind als aktuellere Beatmaps.',
                 'scary' => 'die neuesten Pakete zuerst herunterzuladen',

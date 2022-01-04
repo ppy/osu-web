@@ -22,12 +22,14 @@ return [
             'target_restricted' => '对方正处于限制状态',
         ],
     ],
+
     'input' => [
         'disabled' => '无法发送消息……',
         'disconnected' => '连接中断',
         'placeholder' => '输入消息……',
         'send' => '发送',
     ],
+
     'no-conversations' => [
         'howto' => "点击用户的个人资料/卡片上的信封图标以开始聊天",
         'lazer' => '在 <a href=":link">osu!lazer</a> 中加入的频道将在这里显示。',
