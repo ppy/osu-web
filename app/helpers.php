@@ -263,7 +263,7 @@ function current_locale_meta(): LocaleMeta
 function cursor_decode($cursorString): ?array
 {
     if (is_string($cursorString) && present($cursorString)) {
-        $cursor = json_decode(base64_decode(strtr($cursorString, '-_', '+/')), true);
+        $cursor = json_decode(base64_decode(strtr($cursorString, '-_', '+/'), true), true);
 
         if (is_array($cursor)) {
             return $cursor;
