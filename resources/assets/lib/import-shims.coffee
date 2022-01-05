@@ -8,7 +8,6 @@ import Gallery from 'gallery'
 import * as laroute from 'laroute'
 import Promise from 'promise-polyfill'
 import { StoreCheckout } from 'store-checkout'
-import { fileuploadFailCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade'
@@ -33,7 +32,6 @@ window._exported = {
   classWithModifiers
   currentUrl
   discussionLinkify
-  fileuploadFailCallback
   make2x
   pageChange
   pageChangeImmediate
