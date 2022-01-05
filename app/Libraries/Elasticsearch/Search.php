@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
+use App\Exceptions\InvalidCursorException;
 use Datadog;
 use Elasticsearch\Client;
 use Elasticsearch\Common\Exceptions\Curl\OperationTimeoutException;
@@ -310,8 +311,15 @@ abstract class Search extends HasSearch implements Queryable
                 $this->getDatadogTags()
             );
         } catch (ElasticsearchException $e) {
-            $this->error = $e;
-            $this->handleError($e, $operation);
+            $err = json_decode($e->getMessage(), true);
+
+            // handle cursor parsing error differently
+            if (is_array($err) && str_starts_with($err['error']['caused_by']['reason'] ?? '', 'Failed to parse search_after value for field ')) {
+                $this->error = new InvalidCursorException();
+            } else {
+                $this->error = $e;
+                $this->handleError($e, $operation);
+            }
         }
     }
 }
