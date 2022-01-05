@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { fadeOut } from 'utils/fade'
+
 class window.TwitchPlayer
   constructor: (@turbolinksReload) ->
     @playerDivs = document.getElementsByClassName('js-twitch-player')
@@ -44,4 +46,4 @@ class window.TwitchPlayer
     return unless div.classList.contains 'hidden'
 
     div.classList.remove 'hidden'
-    Fade.out @noCookieDiv(div.id)
+    fadeOut @noCookieDiv(div.id)

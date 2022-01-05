@@ -11,7 +11,6 @@ import { StoreCheckout } from 'store-checkout'
 import { fileuploadFailCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
-import { fadeIn, fadeOut, fadeToggle } from 'utils/fade'
 import { make2x } from 'utils/html'
 import { jsonClone, parseJson, parseJsonNullable, storeJson } from 'utils/json'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
@@ -21,11 +20,6 @@ import { currentUrl } from 'utils/turbolinks'
 window.Promise ?= Promise
 
 window.Blackout = Blackout
-
-window.Fade =
-  in: fadeIn
-  out: fadeOut
-  toggle: fadeToggle
 
 window.gallery ?= new Gallery
 
