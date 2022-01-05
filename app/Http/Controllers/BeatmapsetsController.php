@@ -300,20 +300,19 @@ class BeatmapsetsController extends Controller
             return $search->records();
         }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
 
-        return [
+        return array_merge([
             'beatmapsets' => json_collection(
                 $records,
                 new BeatmapsetTransformer(),
                 'beatmaps.max_combo'
             ),
-            'cursor' => $search->getSortCursor(),
             'search' => [
                 'sort' => $search->getParams()->getSort(),
             ],
             'recommended_difficulty' => $params->getRecommendedDifficulty(),
             'error' => search_error_message($search->getError()),
             'total' => $search->count(),
-        ];
+        ], cursor_for_response($search->getSortCursor()));
     }
 
     private function showJson($beatmapset)
