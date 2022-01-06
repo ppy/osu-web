@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { fadeToggle } from 'utils/fade'
+
 class window.Nav2
   constructor: (@clickMenu) ->
     @menuBg = document.getElementsByClassName('js-nav2--menu-bg')
@@ -89,4 +91,4 @@ class window.Nav2
   showMenuBg: (_e, currentMenu) =>
     shown = _.startsWith(currentMenu, 'nav2-menu-popup-')
 
-    Fade.toggle @menuBg[0], shown
+    fadeToggle @menuBg[0], shown

@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { fadeIn, fadeOut } from 'utils/fade'
+
 class window.ChangelogChart
   constructor: (area) ->
     @options =
@@ -123,11 +125,11 @@ class window.ChangelogChart
 
 
   showTooltip: =>
-    Fade.in @tooltipContainer.node()
+    fadeIn @tooltipContainer.node()
 
 
   hideTooltip: =>
-    Fade.out @tooltipContainer.node()
+    fadeOut @tooltipContainer.node()
 
 
   moveTooltip: (event) =>
