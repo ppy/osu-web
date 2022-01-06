@@ -17,19 +17,6 @@ export class Scoreboard extends React.PureComponent
   MANIA_KEY_MODS = ['4K', '5K', '6K', '7K', '8K', '9K']
   MANIA_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', 'MR']
 
-  # FIXME: update to use utils/score's modeAttributesMap
-  hitTypeMapping: =>
-    # mapping of [displayed text, internal name] for each mode
-    switch @props.beatmap.mode
-      when 'osu'
-        [['300', '300'], ['100', '100'], ['50', '50']]
-      when 'taiko'
-        [['great', '300'], ['good', '100']]
-      when 'fruits'
-        [['fruits', '300'], ['ticks', '100'], ['drp miss', 'katu']]
-      when 'mania'
-        [['max', 'geki'], ['300', '300'], ['200', 'katu'], ['100', '100'], ['50', '50']]
-
   constructor: (props) ->
     super props
 
@@ -94,7 +81,6 @@ export class Scoreboard extends React.PureComponent
             el ScoreboardTable,
               beatmap: @props.beatmap
               scores: @props.scores
-              hitTypeMapping: @hitTypeMapping()
               scoreboardType: @props.type
 
         else if !@props.isScoreable
