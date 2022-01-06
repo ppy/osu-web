@@ -8,11 +8,9 @@ import Gallery from 'gallery'
 import * as laroute from 'laroute'
 import Promise from 'promise-polyfill'
 import { StoreCheckout } from 'store-checkout'
-import { classWithModifiers } from 'utils/css'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade'
-import { make2x } from 'utils/html'
-import { jsonClone, parseJson, parseJsonNullable, storeJson } from 'utils/json'
+import { parseJson, parseJsonNullable } from 'utils/json'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
 import { currentUrl } from 'utils/turbolinks'
 
@@ -29,10 +27,8 @@ window.Fade =
 window.gallery ?= new Gallery
 
 window._exported = {
-  classWithModifiers
   currentUrl
   discussionLinkify
-  make2x
   pageChange
   pageChangeImmediate
   parseJson
