@@ -18,7 +18,7 @@ class window.CurrentUserObserver
 
     # one time setup to monitor cover url variable. No disposer because nothing destroys this object.
     $ =>
-      reaction((=> core.currentUser.cover.url), @setCovers)
+      reaction((=> core.currentUser?.cover.url), @setCovers)
 
 
   reinit: =>
