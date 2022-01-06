@@ -105,10 +105,10 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
               />
             ) : (
               <span title={osu.trans('users.show.extra.top_ranks.not_ranked')}>
-                {(beatmap.status === "loved") ? (
+                {(beatmap.status === 'loved') ? (
                   <span className='fas fa-heart'/>
                 ) : (
-                  -
+                  '-'
                 )}
               </span>
             )}
