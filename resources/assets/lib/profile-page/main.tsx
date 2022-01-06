@@ -34,7 +34,7 @@ interface Props {
 @observer
 export default class Main extends React.Component<Props> {
   private readonly controller: Controller;
-  private readonly disposers: (() => void)[] = [];
+  private readonly disposers = new Set<(() => void) | undefined>();
   private draggingTab = false;
   private readonly eventId = `users-show-${nextVal()}`;
   private readonly extraPages: Record<ProfileExtraPage, React.RefObject<HTMLDivElement>> = {
@@ -132,17 +132,14 @@ export default class Main extends React.Component<Props> {
       ? null
       : validPage(currentUrl().hash.slice(1));
 
-    const disposer = core.reactTurbolinks.runAfterPageLoad(() => {
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
       if (page == null) {
         this.pageScan();
       } else {
         // The scroll is a bit off on Firefox if not using timeout.
         this.timeouts.initialPageJump = window.setTimeout(() => this.pageJump(page));
       }
-    });
-    if (disposer != null) {
-      this.disposers.push(disposer);
-    }
+    }));
   }
 
   componentWillUnmount() {
@@ -158,7 +155,7 @@ export default class Main extends React.Component<Props> {
 
     $(window).stop();
     this.controller.destroy();
-    this.disposers.forEach((disposer) => disposer());
+    this.disposers.forEach((disposer) => disposer?.());
   }
 
   render() {

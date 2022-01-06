@@ -83,7 +83,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
     replays_watched_counts: React.createRef<HTMLDivElement>(),
   };
   private readonly charts: Partial<Record<ChartSection, LineChart<Date>>> = {};
-  private readonly disposers: (() => void)[] = [];
+  private readonly disposers = new Set<(() => void) | undefined>();
 
   @computed
   private get monthlyPlaycountsData() {
@@ -103,12 +103,12 @@ export default class Historical extends React.Component<ExtraPageProps> {
 
   componentDidMount() {
     $(window).on('resize', this.resizeCharts);
-    this.disposers.push(() => $(window).off('resize', this.resizeCharts));
+    this.disposers.add(() => $(window).off('resize', this.resizeCharts));
     disposeOnUnmount(this, autorun(this.updateCharts));
   }
 
   componentWillUnmount() {
-    this.disposers.forEach((disposer) => disposer());
+    this.disposers.forEach((disposer) => disposer?.());
   }
 
   render() {
@@ -242,13 +242,10 @@ export default class Historical extends React.Component<ExtraPageProps> {
 
     const definedChart = chart;
 
-    const disposer = core.reactTurbolinks.runAfterPageLoad(() => {
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
       updateTicks(definedChart, data);
       definedChart.loadData(data);
-    });
-    if (disposer != null) {
-      this.disposers.push(disposer);
-    }
+    }));
   };
 
   private readonly updateCharts = () => {

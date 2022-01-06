@@ -32,7 +32,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @disposers = []
+    @disposers = new Set
     @eventId = "users-modding-history-index-#{nextVal()}"
     @cache = {}
     @tabs = React.createRef()
@@ -67,10 +67,10 @@ export class Main extends React.PureComponent
     @modeScrollUrl = currentUrlRelative()
 
     if !@restoredState
-      disposer = core.reactTurbolinks.runAfterPageLoad =>
+      @disposers.add(core.reactTurbolinks.runAfterPageLoad =>
         # The scroll is a bit off on Firefox if not using timeout.
         Timeout.set 0, => @pageJump(null, @initialPage)
-      @disposers.push(disposer) if disposer?
+      )
 
 
   componentWillUnmount: =>
@@ -80,7 +80,7 @@ export class Main extends React.PureComponent
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
-    disposer() for disposer in @disposers
+    @disposers.forEach (disposer) => disposer?()
 
 
   discussionUpdate: (_e, options) =>

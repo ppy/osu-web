@@ -12,7 +12,7 @@ export class Stats extends React.Component
   constructor: (props) ->
     super props
 
-    @disposers = []
+    @disposers = new Set
 
 
   componentDidMount: =>
@@ -20,7 +20,7 @@ export class Stats extends React.Component
 
 
   componentWillUnmount: =>
-    disposer() for disposer in @disposers
+    @disposers.forEach (disposer) => disposer?()
 
 
   componentDidUpdate: =>
@@ -114,9 +114,9 @@ export class Stats extends React.Component
 
       ratingChart = new StackedBarChart @refs.chartArea, options
       $(window).on 'resize', ratingChart.resize
-      @disposers.push(=> $(window).off 'resize', ratingChart.resize)
+      @disposers.add(=> $(window).off 'resize', ratingChart.resize)
       @_ratingChart = ratingChart
 
-    disposer = core.reactTurbolinks.runAfterPageLoad =>
+    @disposers.add(core.reactTurbolinks.runAfterPageLoad =>
       @_ratingChart.loadData rating: @props.beatmapset.ratings[1..]
-    @disposers.push(disposer) if disposer?
+    )

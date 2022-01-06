@@ -13,7 +13,7 @@ export class Info extends React.Component
   constructor: (props) ->
     super props
 
-    @disposers = []
+    @disposers = new Set
     @overlayRef = React.createRef()
     @chartAreaRef = React.createRef()
 
@@ -32,7 +32,7 @@ export class Info extends React.Component
 
 
   componentWillUnmount: =>
-    disposer() for disposer in @disposers
+    @disposers.forEach (disposer) => disposer?()
 
 
   toggleEditingDescription: =>
@@ -96,12 +96,12 @@ export class Info extends React.Component
       failurePointsChart = new StackedBarChart @chartAreaRef.current, options
       @_failurePointsChart = failurePointsChart
       $(window).on 'resize', failurePointsChart.resize
-      @disposers.push(=> $(window).off 'resize', failurePointsChart.resize)
+      @disposers.add(=> $(window).off 'resize', failurePointsChart.resize)
 
-    disposer = core.reactTurbolinks.runAfterPageLoad =>
+    @disposers.add(core.reactTurbolinks.runAfterPageLoad =>
       @_failurePointsChart.loadData @props.beatmap.failtimes
       @_failurePointsChart.reattach @chartAreaRef.current
-    @disposers.push(disposer) if disposer?
+    )
 
 
   renderEditMetadataButton: =>

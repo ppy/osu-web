@@ -37,7 +37,7 @@ function formatY(d: number) {
 }
 
 export default class RankChart extends React.Component<Props> {
-  private readonly disposers: (() => void)[] = [];
+  private readonly disposers = new Set<(() => void) | undefined>();
   private rankChart?: LineChart<number>;
   private readonly rankChartArea = React.createRef<HTMLDivElement>();
 
@@ -69,14 +69,11 @@ export default class RankChart extends React.Component<Props> {
     if (this.rankChart == null) {
       const rankChart = new LineChart(this.rankChartArea.current, options);
       $(window).on('resize', rankChart.resize);
-      this.disposers.push(() => $(window).off('resize', rankChart.resize));
+      this.disposers.add(() => $(window).off('resize', rankChart.resize));
       this.rankChart = rankChart;
     }
 
-    const disposer = core.reactTurbolinks.runAfterPageLoad(this.loadRankChart);
-    if (disposer != null) {
-      this.disposers.push(disposer);
-    }
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(this.loadRankChart));
   }
 
   componentDidUpdate() {
@@ -84,7 +81,7 @@ export default class RankChart extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    this.disposers.forEach((disposer) => disposer());
+    this.disposers.forEach((disposer) => disposer?.());
   }
 
   render() {

@@ -29,7 +29,7 @@ const blankSnapshot = (): Snapshot => ({ chatHeight: 0, chatTop: 0 });
 export default class ConversationView extends React.Component<Props> {
   private chatViewRef = React.createRef<HTMLDivElement>();
   private didSwitchChannel = true;
-  private disposers: (() => void)[] = [];
+  private disposers = new Set<(() => void) | undefined>();
   private firstMessage?: Message;
   private unreadMarkerRef = React.createRef<HTMLDivElement>();
 
@@ -120,7 +120,7 @@ export default class ConversationView extends React.Component<Props> {
 
     const throttledHandleOnScroll = throttle(this.handleOnScroll, 1000);
     $(window).on('scroll', throttledHandleOnScroll);
-    this.disposers.push(() => $(window).off('scroll', throttledHandleOnScroll));
+    this.disposers.add(() => $(window).off('scroll', throttledHandleOnScroll));
   }
 
   @action
@@ -135,7 +135,7 @@ export default class ConversationView extends React.Component<Props> {
     if (this.didSwitchChannel) {
       // This can happen after a turbolinks navigation,
       // so we have to wait for the elements to be on the current document before scrolling.
-      const disposer = core.reactTurbolinks.runAfterPageLoad(action(() => {
+      this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => {
         if (this.unreadMarkerRef.current) {
           this.scrollToUnread();
         } else {
@@ -147,10 +147,7 @@ export default class ConversationView extends React.Component<Props> {
         }
 
         this.didSwitchChannel = false;
-      }));
-      if (disposer != null) {
-        this.disposers.push(disposer);
-      }
+      })));
     } else {
       snapshot = snapshot ?? blankSnapshot();
       const prepending = this.firstMessage !== this.currentChannel.firstMessage;
@@ -169,7 +166,7 @@ export default class ConversationView extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    this.disposers.forEach((disposer) => disposer());
+    this.disposers.forEach((disposer) => disposer?.());
   }
 
   getSnapshotBeforeUpdate() {
