@@ -3,7 +3,6 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
-import Blackout from 'blackout'
 import Gallery from 'gallery'
 import * as laroute from 'laroute'
 import Promise from 'promise-polyfill'
@@ -15,8 +14,6 @@ import { currentUrl } from 'utils/turbolinks'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
-
-window.Blackout = Blackout
 
 window.gallery ?= new Gallery
 
