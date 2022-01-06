@@ -17,15 +17,15 @@ type ScoreSections = TopScoreSection | 'scoresRecent';
 
 const sectionMaps = {
   scoresBest: {
-    count: 'scores_best_count',
+    countKey: 'scores_best_count',
     translationKey: 'top_ranks.best',
   },
   scoresFirsts: {
-    count: 'scores_first_count',
+    countKey: 'scores_first_count',
     translationKey: 'top_ranks.first',
   },
   scoresRecent: {
-    count: 'scores_recent_count',
+    countKey: 'scores_recent_count',
     translationKey: 'historical.recent_plays',
   },
 } as const;
@@ -65,12 +65,12 @@ export default class PlayDetailList extends React.Component<Props> {
       return <p>{this.paginatorJson.items.error}</p>;
     }
 
-    const { count, translationKey } = sectionMaps[this.props.section];
+    const { countKey, translationKey } = sectionMaps[this.props.section];
 
     return (
       <>
         <ProfilePageExtraSectionTitle
-          count={this.props.controller.state.user[count]}
+          count={this.props.controller.state.user[countKey]}
           titleKey={`users.show.extra.${translationKey}.title`}
         />
 
