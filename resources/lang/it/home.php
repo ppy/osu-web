@@ -14,7 +14,7 @@ return [
 
         'slogan' => [
             'main' => 'il miglior gioco di ritmo free-to-win',
-            'sub' => 'il ritmo è solo ad un click di distanza',
+            'sub' => 'il ritmo è solo a un click di distanza',
         ],
     ],
 

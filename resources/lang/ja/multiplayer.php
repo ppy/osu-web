@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited プレイヤー',
         'time_left' => '残り :time',
 
+        'errors' => [
+            'duration_too_long' => '',
+        ],
+
         'status' => [
             'active' => 'アクティブ',
             'ended' => '終了済み',

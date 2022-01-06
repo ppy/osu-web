@@ -68,7 +68,7 @@ return [
         'beatmapsets_controller' => [
             'discussion' => 'обговорення біткарти',
             'index' => 'бібліотека біткарт',
-            'show' => 'інформація о біткарті',
+            'show' => 'інформація про біткарту',
         ],
         'changelog_controller' => [
             '_' => 'історія змін',

@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited гравець|:count_delimited гравців',
         'time_left' => ':time залишилось',
 
+        'errors' => [
+            'duration_too_long' => '',
+        ],
+
         'status' => [
             'active' => 'активний',
             'ended' => 'закінчино ',

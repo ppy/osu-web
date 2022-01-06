@@ -80,7 +80,7 @@ return [
             ],
 
             'customisation' => [
-                'title' => 'Kustomisasi',
+                'title' => 'Kustomisasi Profil',
                 'description' => "Buat laman profilmu lebih menarik dengan tambahan gambar latar dan kolom \"saya!\" yang dapat kamu isi sesuka hatimu.",
             ],
 
