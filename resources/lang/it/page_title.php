@@ -102,7 +102,7 @@ return [
             '_' => 'informazioni',
         ],
         'livestreams_controller' => [
-            '_' => 'trasmissioni in diretta',
+            '_' => 'live streaming',
         ],
         'matches_controller' => [
             '_' => 'partite',

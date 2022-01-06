@@ -3,66 +3,63 @@
 
 import BbcodeEditor from 'bbcode-editor';
 import { OnChangeProps } from 'bbcode-editor';
-import UserJson from 'interfaces/user-json';
-import { route } from 'laroute';
+import { action, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
-import { onErrorWithClick } from 'utils/ajax';
+import { onErrorWithCallback } from 'utils/ajax';
 import { showLoadingOverlay, hideLoadingOverlay } from 'utils/loading-overlay';
-import { UserPageData } from './user-page';
+import Controller from './controller';
 
 interface Props {
-  user: UserJson;
-  userPage: UserPageData;
+  controller: Controller;
 }
 
-export default class UserPageEditor extends React.PureComponent<Props> {
+@observer
+export default class UserPageEditor extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   render() {
     return (
       <BbcodeEditor
         modifiers='profile-page'
         onChange={this.onChange}
         placeholder={osu.trans('users.show.page.placeholder')}
-        rawValue={this.props.userPage.raw}
+        rawValue={this.props.controller.state.user.page.raw}
       />
     );
   }
 
+  @action
   private readonly cancel = () => {
-    $.publish('user:page:update', { editing: false });
+    this.props.controller.state.editingUserPage = false;
   };
 
-  private readonly onChange = ({ event, type, value }: OnChangeProps) => {
+  private readonly onChange = ({ type, value }: OnChangeProps) => {
     switch (type) {
       case 'cancel':
         this.cancel();
         break;
       case 'save':
-        this.save({event, value});
+        this.save({ value });
         break;
     }
   };
 
-  private readonly save = ({ event, value }: { event: React.SyntheticEvent | undefined; value: string | undefined }) => {
-    if (value === this.props.userPage.raw) {
+  private readonly save = ({ value }: { value: string | undefined }) => {
+    if (value === this.props.controller.state.user.page.raw) {
       return this.cancel();
     }
 
     showLoadingOverlay();
 
-    $.ajax(route('users.page', { user: this.props.user.id }), {
-      data: {
-        body: value,
-      },
-      dataType: 'json',
-      method: 'PUT',
-    }).done((data: { html: string }) => {
-      $.publish('user:page:update', {
-        editing: false,
-        html: data.html,
-        initialRaw: value,
-        raw: value,
-      });
-    }).fail(onErrorWithClick(event?.target))
+    this.props.controller.apiSetUserPage(value ?? '')
+      .done(action(() => {
+        this.props.controller.state.editingUserPage = false;
+      })).fail(onErrorWithCallback(() => this.save({ value })))
       .always(hideLoadingOverlay);
   };
 }

@@ -29,8 +29,8 @@ return [
 
     'songs' => [
         '_' => 'Пісні',
-        'count' => ':count|пісня:count пісні',
-        'original' => 'osu! оригінал',
+        'count' => ':count_delimited пісня|:count_delimited пісні',
+        'original' => 'виключно для osu! ',
         'original_badge' => 'ОРИГІНАЛ',
     ],
 
@@ -49,9 +49,9 @@ return [
                 'advanced' => 'Розширений пошук ',
                 'album' => 'Альбом ',
                 'artist' => 'Артист ',
-                'bpm_gte' => 'BPM Мінімум ',
-                'bpm_lte' => 'BPM Максимум',
-                'empty' => 'Немає жодного треку в заданому критерію. ',
+                'bpm_gte' => 'Мінімальний BPM',
+                'bpm_lte' => 'Максимальний BPM',
+                'empty' => 'Не знайдено жодного треку, що відповідає критеріям пошуку.',
                 'genre' => 'Жанр ',
                 'genre_all' => 'Всі ',
                 'length_gte' => 'Мінімальна довжина ',

@@ -22,11 +22,14 @@ return [
             'target_restricted' => '',
         ],
     ],
+
     'input' => [
         'disabled' => '',
+        'disconnected' => '',
         'placeholder' => '',
         'send' => '',
     ],
+
     'no-conversations' => [
         'howto' => "",
         'lazer' => '',

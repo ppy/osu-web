@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { getMessages } from 'chat/chat-api';
-import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
+import ChannelJson, { ChannelType, SupportedChannelType, supportedTypeLookup } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { minBy, sortBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
@@ -13,7 +13,7 @@ import Message from './message';
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
 
-  @observable canMessage = true;
+  @observable canMessageError: string | null = null;
   @observable channelId: number;
   @observable description?: string;
   @observable firstMessageId = -1;
@@ -25,11 +25,20 @@ export default class Channel {
   @observable name = '';
   needsRefresh = true;
   @observable newPmChannel = false;
-  @observable type: ChannelType = 'NEW';
+  @observable type: ChannelType = 'TEMPORARY'; // TODO: look at making this support channels only
+  @observable uiState = {
+    autoScroll: true,
+    scrollY: 0,
+  };
   @observable users: number[] = [];
 
   @observable private messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
+
+  @computed
+  get canMessage() {
+    return this.canMessageError == null;
+  }
 
   @computed
   get firstMessage() {
@@ -93,8 +102,8 @@ export default class Channel {
   }
 
   @computed
-  get transient() {
-    return this.type === 'NEW';
+  get supportedType() {
+    return supportedTypeLookup.has(this.type) ? this.type as SupportedChannelType : null;
   }
 
   constructor(channelId: number) {
@@ -214,15 +223,6 @@ export default class Channel {
   }
 
   @action
-  updatePresence = (json: ChannelJson) => {
-    this.updateWithJson(json);
-
-    if (json.current_user_attributes != null) {
-      this.setLastReadId(json.current_user_attributes.last_read_id);
-    }
-  };
-
-  @action
   updateWithJson(json: ChannelJson) {
     this.name = json.name;
     this.description = json.description;
@@ -233,7 +233,8 @@ export default class Channel {
     this.serverLastMessageId = json.last_message_id;
 
     if (json.current_user_attributes != null) {
-      this.canMessage = json.current_user_attributes.can_message;
+      this.canMessageError = json.current_user_attributes.can_message_error;
+      this.setLastReadId(json.current_user_attributes.last_read_id);
     }
   }
 

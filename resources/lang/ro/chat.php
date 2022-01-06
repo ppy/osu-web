@@ -22,11 +22,14 @@ return [
             'target_restricted' => 'Destinatarul este restricționat în prezent',
         ],
     ],
+
     'input' => [
         'disabled' => 'nu poți trimite mesaje...',
+        'disconnected' => '',
         'placeholder' => 'scrie un mesaj...',
         'send' => 'Trimite',
     ],
+
     'no-conversations' => [
         'howto' => "Începe conversații din profilul unui utilizator sau dintr-un pop-up de pe cartea de utilizator.",
         'lazer' => 'Canalele publice în care te alături prin intermediul <a href=":link">osu!lazer</a> vor fi vizibile aici.',

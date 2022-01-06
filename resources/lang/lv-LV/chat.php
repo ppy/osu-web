@@ -22,11 +22,14 @@ return [
             'target_restricted' => '',
         ],
     ],
+
     'input' => [
         'disabled' => 'neizdevās nosūtīt ziņu...',
+        'disconnected' => '',
         'placeholder' => 'rakstīt ziņu...',
         'send' => 'Sūtīt',
     ],
+
     'no-conversations' => [
         'howto' => "",
         'lazer' => '',

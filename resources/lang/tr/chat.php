@@ -22,11 +22,14 @@ return [
             'target_restricted' => 'Alıcı şu anda kısıtlı durumda',
         ],
     ],
+
     'input' => [
         'disabled' => 'mesaj gönderilemiyor...',
+        'disconnected' => 'Bağlantı kesildi',
         'placeholder' => 'mesaj yaz...',
         'send' => 'Gönder',
     ],
+
     'no-conversations' => [
         'howto' => "Kullanıcının profilinden veya kullanıcı kartı popup'ından konuşma başlatın.",
         'lazer' => '<a href=":link">osu!lazer</a> aracılığıyla katıldığınız herkese açık kanallar burada da görünür olacak.',

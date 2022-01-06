@@ -38,7 +38,7 @@ class ChatController extends Controller
             $channel?->addUser($user);
 
             $sendToJson = [
-                'can_message' => $channel?->canMessage($user) ?? priv_check('ChatPmStart', $targetUser),
+                'can_message_error' => ($channel?->checkCanMessage($user) ?? priv_check('ChatPmStart', $targetUser))->message(),
                 'channel_id' => $channel?->getKey(),
                 'target' => json_item($targetUser, 'UserCompact'),
             ];
@@ -50,11 +50,7 @@ class ChatController extends Controller
         ];
 
         if (isset($sendToJson)) {
-            $json['send_to'] = [
-                'can_message' => $channel?->canMessage($user) ?? priv_check('ChatPmStart', $targetUser),
-                'channel_id' => $channel?->getKey(),
-                'target' => json_item($targetUser, 'UserCompact'),
-            ];
+            $json['send_to'] = $sendToJson;
         }
 
         return ext_view('chat.index', compact('json'));

@@ -9,7 +9,7 @@ export default interface AchievementJson {
   icon_url: string;
   id: number;
   instructions: string | null;
-  mode: GameMode;
+  mode: GameMode | null;
   name: string;
   ordering: number;
   slug: string;

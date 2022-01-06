@@ -22,11 +22,14 @@ return [
             'target_restricted' => 'Príjemca je momentálne obmedzený',
         ],
     ],
+
     'input' => [
         'disabled' => 'nedá sa poslať správa...',
+        'disconnected' => '',
         'placeholder' => 'napíšte správu...',
         'send' => 'Odoslať',
     ],
+
     'no-conversations' => [
         'howto' => "Začnite konverzáciu z profilu užívateľa alebo z popup karty užívateľa.",
         'lazer' => 'Verejné kanály na ktoré sa pripojíte cez <a href=":link">osu!lazer</a> budú viditeľné aj tu.',

@@ -2,35 +2,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { ChatMessageSendAction } from 'actions/chat-message-send-action';
-import DispatcherAction from 'actions/dispatcher-action';
-import { WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatch, dispatcher } from 'app-dispatcher';
+import { dispatch } from 'app-dispatcher';
 import BigButton from 'big-button';
-import DispatchListener from 'dispatch-listener';
 import { trim } from 'lodash';
-import { computed, makeObservable, observe } from 'mobx';
-import { disposeOnUnmount, inject, observer } from 'mobx-react';
+import { action, autorun, computed, makeObservable, observe } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
+import { isModalShowing } from 'modal-helper';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
-import RootDataStore from 'stores/root-data-store';
 import { classWithModifiers } from 'utils/css';
 
-interface Props {
-  dataStore?: RootDataStore;
-}
+type Props = Record<string, never>;
 
-@inject('dataStore')
 @observer
-export default class InputBox extends React.Component<Props> implements DispatchListener {
-  readonly dataStore: RootDataStore = this.props.dataStore!;
-
+export default class InputBox extends React.Component<Props> {
   private inputBoxRef = React.createRef<HTMLTextAreaElement>();
 
   @computed
   get currentChannel() {
-    return this.dataStore.chatState.selectedChannel;
+    return core.dataStore.chatState.selectedChannel;
   }
 
   @computed
@@ -40,19 +32,26 @@ export default class InputBox extends React.Component<Props> implements Dispatch
 
   @computed
   get sendDisabled() {
-    return this.inputDisabled || !this.dataStore.chatState.isReady;
+    return this.inputDisabled || !core.dataStore.chatState.isReady;
   }
 
   constructor(props: Props) {
     super(props);
 
-    dispatcher.register(this);
-
     makeObservable(this);
 
     disposeOnUnmount(
       this,
-      observe(this.dataStore.chatState.selectedBoxed, (change) => {
+      autorun(() => {
+        if (core.windowFocusObserver.hasFocus) {
+          this.focusInput();
+        }
+      }),
+    );
+
+    disposeOnUnmount(
+      this,
+      observe(core.dataStore.chatState.selectedBoxed, (change) => {
         if (change.newValue !== change.oldValue && core.windowSize.isDesktop) {
           this.focusInput();
         }
@@ -79,11 +78,9 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     this.focusInput();
   }
 
-  componentWillUnmount() {
-    dispatcher.unregister(this);
-  }
-
   focusInput() {
+    if (isModalShowing()) return;
+
     if (this.inputBoxRef.current) {
       this.inputBoxRef.current.focus();
     }
@@ -94,16 +91,10 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     this.currentChannel?.setInputText(message);
   };
 
-  handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof WindowFocusAction) {
-      this.focusInput();
-    }
-  }
-
   render(): React.ReactNode {
     const channel = this.currentChannel;
-    const buttonIcon = this.dataStore.chatState.isReady ? 'fas fa-reply' : 'fas fa-times';
-    const buttonText = osu.trans(this.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
+    const buttonIcon = core.dataStore.chatState.isReady ? 'fas fa-reply' : 'fas fa-times';
+    const buttonText = osu.trans(core.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
 
     return (
       <div className='chat-input'>
@@ -133,6 +124,8 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     );
   }
 
+  // TODO: move to channel?
+  @action
   sendMessage(messageText?: string) {
     if (!messageText || !osu.present(trim(messageText))) {
       return;
@@ -158,12 +151,16 @@ export default class InputBox extends React.Component<Props> implements Dispatch
 
     const message = new Message();
     message.senderId = core.currentUserOrFail.id;
-    message.channelId = this.dataStore.chatState.selected;
+    message.channelId = core.dataStore.chatState.selected;
     message.content = messageText;
 
     // Technically we don't need to check command here, but doing so in case we add more commands
     if (isCommand && command === 'me') {
       message.isAction = true;
+    }
+
+    if (this.currentChannel != null) {
+      this.currentChannel.uiState.autoScroll = true;
     }
 
     dispatch(new ChatMessageSendAction(message));

@@ -65,22 +65,22 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count badge|:count badges',
-        'days' => ':count dag|:count dagen',
+        'badges' => ':count_delimited badge|:count_delimited badges',
+        'days' => ':count_delimited dag|:count_delimited dagen',
         'hour_short_unit' => 'uur|uur',
-        'hours' => ':count uur|:count uren',
-        'item' => ':count stuk|:count stuks',
+        'hours' => ':count_delimited uur|:count_delimited uren',
+        'item' => ':count_delimited stuk|:count_delimited stuks',
         'minute_short_unit' => 'minuut|minuten',
         'minutes' => ':count_delimited minuut|:count_delimited minuten',
-        'months' => ':count maand|:count maanden',
-        'notifications' => ':count_delimited melding:count_delimited meldingen',
+        'months' => ':count_delimited maand|:count_delimited maanden',
+        'notifications' => ':count_delimited melding|:count_delimited meldingen',
         'plus_others' => '+ :count_delimited andere!|+ :count_delimited anderen!',
         'post' => ':count_delimited bericht|:count_delimited berichten',
         'second_short_unit' => 'second|seconden',
-        'star_priority' => ':count_delimited ster prioriteit|:count_delimited ster prioriteiten',
+        'star_priority' => ':count_delimited sterprioriteit|:count_delimited sterprioriteiten',
         'update' => ':count_delimited update|:count_delimited updates',
         'view' => ':count_delimited weergave|:count_delimited weergaven',
-        'years' => ':count jaar|:count jaar',
+        'years' => ':count_delimited jaar|:count_delimited jaar',
     ],
 
     'countdown' => [
@@ -145,8 +145,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count dag geleden|:count dagen geleden',
-        'hours_ago' => ':count uur geleden|:count uur geleden',
+        'days_ago' => ':count_delimited dag geleden|:count_delimited dagen geleden',
+        'hours_ago' => ':count_delimited uur geleden|:count_delimited uur geleden',
         'now' => 'nu',
         'remaining' => 'Resterende Tijd',
     ],

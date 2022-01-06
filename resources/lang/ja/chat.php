@@ -22,11 +22,14 @@ return [
             'target_restricted' => '受信者は現在制限されています',
         ],
     ],
+
     'input' => [
         'disabled' => 'メッセージの送信ができません...',
+        'disconnected' => '',
         'placeholder' => 'メッセージを入力...',
         'send' => '送信',
     ],
+
     'no-conversations' => [
         'howto' => "ユーザープロフィールまたはユーザーカードのポップアップから会話を開始します。",
         'lazer' => 'あなたが<a href=":link">osu!lazer</a>で参加している公開チャンネルもここに表示されます。',

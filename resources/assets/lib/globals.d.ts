@@ -31,12 +31,6 @@ declare const Lang: LangClass;
 declare const fallbackLocale: string;
 declare const currentLocale: string;
 
-declare class LineChart {
-  loadData: (data: { x: number; y: number }[]) => void;
-  resize: () => void;
-  constructor(area: HTMLElement, options: Record<string, unknown>);
-}
-
 // Global object types
 interface Comment {
   id: number;
@@ -78,7 +72,6 @@ interface OsuCommon {
   isClickable: (el: HTMLElement) => boolean;
   navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
   popup: (message: string, type: string) => void;
-  popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
   present: (str?: string | null) => boolean;
   promisify: (xhr: JQuery.jqXHR) => Promise<any>;

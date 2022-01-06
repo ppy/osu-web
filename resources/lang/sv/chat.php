@@ -22,11 +22,14 @@ return [
             'target_restricted' => 'Mottagaren är för närvarande begränsad',
         ],
     ],
+
     'input' => [
         'disabled' => 'kan inte skicka meddelande...',
+        'disconnected' => '',
         'placeholder' => 'skriv ett meddelande...',
         'send' => 'Skicka',
     ],
+
     'no-conversations' => [
         'howto' => "Starta konversationer från en användares profil eller en usercard popup.",
         'lazer' => 'Offentliga kanaler du går med i via <a href=":link">osu!lazer</a> kommer också att synas här.',

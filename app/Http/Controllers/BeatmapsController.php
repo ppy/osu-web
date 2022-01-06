@@ -63,8 +63,7 @@ class BeatmapsController extends Controller
                 ::whereIn('beatmap_id', $ids)
                 ->whereHas('beatmapset')
                 ->with([
-                    // to preload #playmodes which is used to generate nomination data
-                    'beatmapset.beatmaps' => fn ($q) => $q->select('beatmapset_id', 'playmode'),
+                    'beatmapset',
                     'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
                     'failtimes',
                 ])->withMaxCombo()
@@ -106,7 +105,7 @@ class BeatmapsController extends Controller
         foreach ($params as $key => $value) {
             $beatmap = Beatmap::whereHas('beatmapset')->firstWhere($keyMap[$key], $value);
 
-            if ($beatmap === null) {
+            if ($beatmap !== null) {
                 break;
             }
         }

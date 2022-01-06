@@ -5,13 +5,12 @@ import { CommentsManager } from 'comments-manager'
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { parseJson } from 'utils/json'
-import { Main } from './comments-index/main'
+import { Main } from 'comments-show/main'
 
-core.reactTurbolinks.register 'comments-index', ->
-  commentBundle = parseJson('json-index')
+core.reactTurbolinks.register 'comments-show', ->
+  commentBundle = parseJson('json-show')
   core.dataStore.updateWithCommentBundleJson(commentBundle)
   core.dataStore.uiState.initializeWithCommentBundleJson(commentBundle)
 
   createElement CommentsManager,
     component: Main
-    user: commentBundle.user

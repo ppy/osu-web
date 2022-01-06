@@ -2,39 +2,31 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import EventJson from 'interfaces/event-json';
-import UserJson from 'interfaces/user-json';
-import { route } from 'laroute';
 import { snakeCase } from 'lodash';
+import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import StringWithComponent from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { stripTags } from 'utils/html';
+import ExtraPageProps from './extra-page-props';
 import parseEvent from './parse-event';
 
-interface Props {
-  name: string;
-  pagination: {
-    recentActivity: {
-      hasMore: boolean;
-      loading: boolean;
-    };
-  };
-  recentActivity: EventJson[];
-  user: UserJson;
-  withEdit: boolean;
-}
-
-export default class RecentActivity extends React.PureComponent<Props> {
+@observer
+export default class RecentActivity extends React.PureComponent<ExtraPageProps> {
   render() {
     return (
       <div className='page-extra'>
-        <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
-        {this.props.recentActivity.length > 0 ? this.renderEntries() : this.renderEmpty()}
+        <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
+        {this.props.controller.state.extras.recentActivity.length > 0 ? this.renderEntries() : this.renderEmpty()}
       </div>
     );
   }
+
+  private readonly onShowMore = () => {
+    this.props.controller.apiShowMore('recentActivity');
+  };
 
   private renderEmpty() {
     return <p className='profile-extra-entries'>{osu.trans('events.empty')}</p>;
@@ -43,16 +35,11 @@ export default class RecentActivity extends React.PureComponent<Props> {
   private renderEntries() {
     return (
       <ul className='profile-extra-entries'>
-        {this.props.recentActivity.map(this.renderEntry)}
+        {this.props.controller.state.extras.recentActivity.map(this.renderEntry)}
         <li className='profile-extra-entries__item'>
           <ShowMoreLink
-            data={{
-              name: 'recentActivity',
-              url: route('users.recent-activity', { user: this.props.user.id }),
-            }}
-            event='profile:showMore'
-            hasMore={this.props.pagination.recentActivity.hasMore}
-            loading={this.props.pagination.recentActivity.loading}
+            {...this.props.controller.state.pagination.recentActivity}
+            callback={this.onShowMore}
             modifiers='profile-page'
           />
         </li>

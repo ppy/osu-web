@@ -147,7 +147,7 @@ return [
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
         'joined_at' => '注册时间：:date',
-        'lastvisit' => '上次登录：:date',
+        'lastvisit' => '最后活跃：:date',
         'lastvisit_online' => '当前在线',
         'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
         'origin_country' => '来自 :country',
@@ -202,7 +202,7 @@ return [
                     'title' => '收藏的谱面',
                 ],
                 'graveyard' => [
-                    'title' => '坟场里的谱面',
+                    'title' => '已停更的谱面',
                 ],
                 'loved' => [
                     'title' => 'Loved 的谱面',

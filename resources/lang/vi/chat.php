@@ -22,11 +22,14 @@ return [
             'target_restricted' => 'Người nhận đang bị hạn chế',
         ],
     ],
+
     'input' => [
         'disabled' => 'không thể gửi tin nhắn...',
+        'disconnected' => 'Đã ngắt kết nối',
         'placeholder' => 'soạn tin nhắn...',
         'send' => 'Gửi',
     ],
+
     'no-conversations' => [
         'howto' => "Bắt đầu cuộc trò chuyện từ trang cá nhân hoặc usercard của họ.",
         'lazer' => 'Những kênh công khai bạn tham gia qua <a href=":link">osu!lazer</a> cũng sẽ hiển thị tại đây.',

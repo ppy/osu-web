@@ -22,11 +22,14 @@ return [
             'target_restricted' => 'Vastaanottaja on rajoitetussa tilassa',
         ],
     ],
+
     'input' => [
         'disabled' => 'viestiä ei voida lähettää...',
+        'disconnected' => '',
         'placeholder' => 'kirjoita viesti...',
         'send' => 'Lähetä',
     ],
+
     'no-conversations' => [
         'howto' => "Aloita keskusteluja käyttäjän profiilista tai käyttäjäkortti-ikkunasta.",
         'lazer' => 'Julkiset kanavat joihin olet liittynyt <a href=":link">osu!lazerilla</a> näkyvät myös täällä.',

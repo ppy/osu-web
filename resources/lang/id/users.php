@@ -233,7 +233,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'jumlah dimainkan',
-                    'title' => 'Beatmap yang Paling Banyak Dimainkan',
+                    'title' => 'Beatmap yang Paling Sering Dimainkan',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'akurasi: :percentage',
@@ -302,7 +302,7 @@ return [
                 'title' => 'Medali',
             ],
             'multiplayer' => [
-                'title' => 'Pertandingan-Pertandingan Multiplayer',
+                'title' => 'Riwayat Pertandingan Multiplayer',
             ],
             'posts' => [
                 'title' => 'Posting',

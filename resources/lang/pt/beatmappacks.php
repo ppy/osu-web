@@ -11,13 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'LÊ ISTO ANTES DE TRANSFERIR',
-            'instruction' => [
-                '_' => "Instalação: Uma vez transferido um pacote, extrai o .rar para o teu diretório de Canções do osu!.
-                    Todas as canções estão no formato .ZIP e/ou .OSZ dentro do pacote, portanto o osu! precisará de extrair, por si próprio, os beatmaps da próxima vez que fores para o modo Jogar.
-                    :scary extraias os ZIPs/OSZs por ti próprio,
-                    ou os beatmaps vão apresentar-se de forma incorreta no osu! e não funcionarão corretamente.",
-                'scary' => 'NÃO',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Toma nota de que também é altamente recomendado :scary, já que os mapas mais velhos são de menor qualidade do que os mapas mais recentes.',
                 'scary' => 'transferir os pacotes do mais velho para o mais novo',

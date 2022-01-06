@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited spelare|:count_delimited spelare',
         'time_left' => ':time kvar',
 
+        'errors' => [
+            'duration_too_long' => '',
+        ],
+
         'status' => [
             'active' => 'aktiv',
             'ended' => 'avslutad',

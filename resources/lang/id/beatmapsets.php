@@ -92,7 +92,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Apabila Anda menyukai beatmap ini, berikanlah hype Anda untuk mendorong beatmap ini agar dapat selangkah lebih dekat menuju status <strong>Ranked</strong>.',
+            'action' => 'Apabila Anda menyukai beatmap ini, berikanlah hype Anda agar beatmap ini dapat selangkah lebih dekat menuju status <strong>Ranked</strong>.',
 
             'current' => [
                 '_' => 'Beatmap ini sedang berstatus :status.',
@@ -182,7 +182,7 @@ return [
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
             'stars' => 'Star Difficulty',
-            'total_length' => 'Durasi',
+            'total_length' => 'Durasi Total (Durasi Bersih: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Jumlah Circle',
             'count_sliders' => 'Jumlah Slider',

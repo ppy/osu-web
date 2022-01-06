@@ -22,11 +22,14 @@ return [
             'target_restricted' => 'Šiuo metu žaidėjas yra apribotas',
         ],
     ],
+
     'input' => [
         'disabled' => 'žinutės išsiųsti nepavyko...',
+        'disconnected' => '',
         'placeholder' => 'rašyk čia...',
         'send' => 'Siųsti',
     ],
+
     'no-conversations' => [
         'howto' => "",
         'lazer' => '',

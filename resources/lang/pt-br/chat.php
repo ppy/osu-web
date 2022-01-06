@@ -22,11 +22,14 @@ return [
             'target_restricted' => 'O destinatário está atualmente em estado restrito',
         ],
     ],
+
     'input' => [
         'disabled' => 'incapaz de enviar mensagem...',
+        'disconnected' => '',
         'placeholder' => 'escrever uma mensagem...',
         'send' => 'Enviar',
     ],
+
     'no-conversations' => [
         'howto' => "Comece uma conversa através do perfil ou pelo cartão do usuário.",
         'lazer' => 'Canais públicos que você entrar via <a href=":link">osu!lazer</a> também serão visíveis aqui.',

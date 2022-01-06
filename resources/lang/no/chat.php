@@ -22,11 +22,14 @@ return [
             'target_restricted' => 'Mottakeren er i begrenset modus',
         ],
     ],
+
     'input' => [
         'disabled' => 'kan ikke sende melding...',
+        'disconnected' => '',
         'placeholder' => 'skriv melding...',
         'send' => 'Send',
     ],
+
     'no-conversations' => [
         'howto' => "Start samtaler gjennom en brukers profil eller deres brukerkort.",
         'lazer' => 'Offentlige kanaler som du deltar i via <a href=":link">osu!lazer</a> vil også bli synlig her.',

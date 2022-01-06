@@ -11,16 +11,10 @@ return [
 
         'blurb' => [
             'important' => 'BACA INI SEBELUM MENGUNDUH',
-            'instruction' => [
-                '_' => "Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak berkas .rar yang Anda peroleh ke dalam folder Songs pada direktori osu! Anda.
-                    Di dalam paket tersebut, Anda akan menemui berkas-berkas beatmap yang tersaji dalam format .zip dan/atau .osz. osu! akan kemudian memproses beatmap-beatmap yang ada dengan sendirinya ketika Anda masuk ke dalam mode Play.
-                    :scary ekstrak .zip/.osz yang ada lebih lanjut,
-                    karena ada kemungkinan beatmap-beatmap yang bersangkutan nantinya akan rusak dan tidak dapat dimuat oleh osu! sebagaimana semestinya.",
-                'scary' => 'JANGAN',
-            ],
+            'install_instruction' => 'Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak berkas. rar yang Anda peroleh ke dalam folder Songs yang ada pada direktori osu! Anda.',
             'note' => [
-                '_' => 'Di samping itu, Anda juga sangat disarankan untuk :scary mengingat pada umumnya map-map keluaran terdahulu memiliki kualitas yang jauh lebih rendah dibanding map-map keluaran terbaru.',
-                'scary' => 'mengunduh paket dari yang terbaru ke yang paling lama',
+                '_' => 'Kami menyarankan Anda untuk :scary karena pada umumnya map-map keluaran terdahulu memiliki kualitas yang jauh lebih rendah dibanding map-map modern.',
+                'scary' => 'mengunduh paket-paket beatmap yang ada mulai dari yang paling baru hingga yang paling awal',
             ],
         ],
     ],
@@ -32,7 +26,7 @@ return [
             'not_cleared' => 'belum dimainkan',
         ],
         'no_diff_reduction' => [
-            '_' => 'Anda tidak boleh menggunakan :link untuk dapat membuka medali yang terhubung dengan paket beatmap ini.',
+            '_' => 'Anda tidak boleh menggunakan :link untuk membuka medali yang terhubung dengan paket beatmap ini.',
             'link' => 'mod-mod yang mempermudah permainan (EZ, NF, atau HT)',
         ],
     ],
@@ -45,7 +39,7 @@ return [
     ],
 
     'require_login' => [
-        '_' => 'Anda harus :link untuk mengunduh',
+        '_' => 'Anda harus :link untuk dapat mengunduh',
         'link_text' => 'masuk',
     ],
 ];

@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Thành viên theo chế độ chơi',
     ],
 
     'force_reactivation' => [
@@ -157,7 +157,7 @@ return [
 
         'comments_count' => [
             '_' => 'Đã đăng :link',
-            'count' => '',
+            'count' => ':count_delimited bình luận|:count_delimited bình luận',
         ],
         'edit' => [
             'cover' => [
@@ -208,7 +208,7 @@ return [
                     'title' => 'Loved Beatmaps',
                 ],
                 'pending' => [
-                    'title' => 'Beatmap Đang Chờ (:count)',
+                    'title' => 'Beatmap Đang Chờ',
                 ],
                 'ranked' => [
                     'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
@@ -289,7 +289,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
+                    '_' => 'Dựa trên bao nhiêu đóng góp mà người dùng cho việc điều phối beatmap. Xem :link để biết thêm thông tin.',
                     'link' => 'trang này',
                 ],
             ],
@@ -331,7 +331,7 @@ return [
                 'received' => '',
                 'title' => '',
                 'title_longer' => '',
-                'vote_count' => '',
+                'vote_count' => ':count_delimited bình chọn|:count_delimited bình chọn',
             ],
             'account_standing' => [
                 'title' => 'Trạng Thái Tài Khoản',
@@ -408,7 +408,7 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => '',
             'loved_beatmapset_count' => '',
-            'pending_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Beatmap Đang Chờ',
             'ranked_beatmapset_count' => '',
         ],
     ],

@@ -1333,6 +1333,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->isSupporter() ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
     }
 
+    public function maxMultiplayerDuration()
+    {
+        return $this->isSupporter() ? config('osu.user.max_multiplayer_duration_supporter') : config('osu.user.max_multiplayer_duration');
+    }
+
     public function maxMultiplayerRooms()
     {
         return $this->isSupporter() ? config('osu.user.max_multiplayer_rooms_supporter') : config('osu.user.max_multiplayer_rooms');
@@ -2040,12 +2045,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             $this->isValidEmail();
         }
 
-        if ($this->isDirty('country_acronym') && present($this->country_acronym)) {
-            if (($country = Country::find($this->country_acronym)) !== null) {
-                // ensure matching case
-                $this->country_acronym = $country->getKey();
+        if ($this->isDirty('country_acronym')) {
+            if (present($this->country_acronym)) {
+                if (($country = Country::find($this->country_acronym)) !== null) {
+                    // ensure matching case
+                    $this->country_acronym = $country->getKey();
+                } else {
+                    $this->validationErrors()->add('country', '.invalid_country');
+                }
             } else {
-                $this->validationErrors()->add('country', '.invalid_country');
+                $this->country_acronym = Country::UNKNOWN;
             }
         }
 

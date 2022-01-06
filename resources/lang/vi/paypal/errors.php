@@ -6,8 +6,8 @@
 return [
     'instrument_declined' => 'Paypal từ chối phương thức thanh toán này.',
     'invalid_resource_id' => 'Không tìm thấy thông tin thanh toán nào.',
-    'invalid_token' => '',
+    'invalid_token' => 'Đã có sự cố khi hoàn thành giao dịch của bạn. ',
     'old_format' => '',
-    'resource_not_found' => '',
+    'resource_not_found' => 'Không tìm thấy thông tin thanh toán.',
     'unknown' => "Thanh toán đã bị từ chối, nhưng chúng tôi không chắc tại sao.",
 ];

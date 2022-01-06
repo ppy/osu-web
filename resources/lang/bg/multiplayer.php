@@ -9,9 +9,13 @@ return [
     'room' => [
         'hosted_by' => 'домакин е :user',
         'invalid_password' => 'Грешна парола за стая',
-        'map_count' => ':count_delimited Бийтмап|:count_delimited Бийтмапа',
-        'player_count' => ':count_delimited играч|:count_delimited играчи',
+        'map_count' => ':count_delimited бийтмап|:count_delimited бийтмапа',
+        'player_count' => ':count_delimited играч|:count_delimited играча',
         'time_left' => ':time остава',
+
+        'errors' => [
+            'duration_too_long' => '',
+        ],
 
         'status' => [
             'active' => 'активна',

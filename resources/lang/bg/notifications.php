@@ -19,7 +19,7 @@ return [
         'beatmapset' => 'бийтмапове',
         'forum_topic' => 'форум',
         'news_post' => 'новини',
-        'build' => 'версии',
+        'build' => 'промени',
         'channel' => 'чат',
     ],
 
@@ -149,8 +149,8 @@ return [
                 'user_beatmapset_new_compact' => 'Нов бийтмап ":title"',
                 'user_beatmapset_new_group' => 'Нов бийтмап от :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Бийтмапът ":title" е съживен от :username',
+                'user_beatmapset_revive_compact' => 'Бийтмапът ":title" е съживен',
             ],
         ],
 

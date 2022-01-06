@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Models\Chat;
 
 use App\Models\Chat\Channel;
@@ -49,9 +51,9 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $otherUser = User::factory()->create();
-        $channel = $this->createChannel([$user, $otherUser], 'moderated', 'pm');
+        $channel = $this->createChannel([$user, $otherUser], 'pm', true);
 
-        $this->assertSame($canMessage, $channel->canMessage($user));
+        $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
     /**
@@ -60,9 +62,9 @@ class ChannelTest extends TestCase
     public function testChannelCanMessageModeratedPublicChannel(?string $group, bool $canMessage)
     {
         $user = User::factory()->withGroup($group)->create();
-        $channel = $this->createChannel([$user], 'moderated', 'public');
+        $channel = $this->createChannel([$user], 'public', true);
 
-        $this->assertSame($canMessage, $channel->canMessage($user));
+        $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
     /**
@@ -87,7 +89,7 @@ class ChannelTest extends TestCase
 
         // this assertion to make sure the correct block direction is being tested.
         $this->assertTrue($user->hasBlocked($otherUser));
-        $this->assertSame($canMessage, $channel->canMessage($user));
+        $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
     /**
@@ -112,7 +114,7 @@ class ChannelTest extends TestCase
 
         // this assertion to make sure the correct block direction is being tested.
         $this->assertTrue($otherUser->hasBlocked($user));
-        $this->assertSame($canMessage, $channel->canMessage($user));
+        $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
     /**
@@ -126,7 +128,7 @@ class ChannelTest extends TestCase
 
         app('OsuAuthorize')->resetCache();
 
-        $this->assertSame($canMessage, $channel->canMessage($user));
+        $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
     public function testPmChannelIcon()
@@ -194,9 +196,15 @@ class ChannelTest extends TestCase
         ];
     }
 
-    private function createChannel(array $users, ...$types): Channel
+    private function createChannel(array $users, string $type, bool $moderated = false): Channel
     {
-        $channel = factory(Channel::class)->states($types)->create();
+        $channel = Channel::factory()->type($type);
+        if ($moderated) {
+            $channel = $channel->moderated();
+        }
+
+        $channel = $channel->create();
+
         foreach ($users as $user) {
             $channel->addUser($user);
         }

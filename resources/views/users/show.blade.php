@@ -10,27 +10,14 @@
 @section('content')
     @include('users._restricted_banner', compact('user'))
 
-    <div class="js-react--profile-page osu-layout osu-layout--full"></div>
+    <div
+        class="js-react--profile-page osu-layout osu-layout--full"
+        data-initial-data="{{ json_encode($initialData) }}"
+    ></div>
 @endsection
 
 @section ("script")
     @parent
 
-    <script data-turbolinks-eval="always">
-        var postEditorToolbar = {!! json_encode(['html' => view('forum._post_toolbar')->render()]) !!};
-    </script>
-
-    @foreach ($jsonChunks as $name => $data)
-        <script id="json-{{$name}}" type="application/json">
-            {!! json_encode($data) !!}
-        </script>
-    @endforeach
-
-    @if (($scoresNotice = config('osu.user.profile_scores_notice')) !== null)
-        <script id="json-scores-notice" type="application/json">
-            {!! json_encode($scoresNotice) !!}
-        </script>
-    @endif
-
-    @include('layout._react_js', ['src' => 'js/react/profile-page.js'])
+    @include('layout._react_js', ['src' => 'js/profile-page.js'])
 @endsection
