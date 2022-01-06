@@ -35,12 +35,8 @@ interface Props {
   section: ScoreSections;
 }
 
-interface State {
-  activeKey: number | null;
-}
-
 @observer
-export default class PlayDetailList extends React.Component<Props, State> {
+export default class PlayDetailList extends React.Component<Props> {
   @observable activeKey: number | null = null;
 
   @computed
