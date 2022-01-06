@@ -8,7 +8,6 @@ import Gallery from 'gallery'
 import * as laroute from 'laroute'
 import Promise from 'promise-polyfill'
 import { StoreCheckout } from 'store-checkout'
-import { fileuploadFailCallback } from 'utils/ajax'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade'
 import { parseJson, parseJsonNullable } from 'utils/json'
@@ -30,7 +29,6 @@ window.gallery ?= new Gallery
 window._exported = {
   currentUrl
   discussionLinkify
-  fileuploadFailCallback
   pageChange
   pageChangeImmediate
   parseJson
