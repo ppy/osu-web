@@ -182,7 +182,7 @@ return [
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
             'stars' => 'Star Difficulty',
-            'total_length' => 'Durasi',
+            'total_length' => 'Durasi Total (Durasi Bersih: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Jumlah Circle',
             'count_sliders' => 'Jumlah Slider',

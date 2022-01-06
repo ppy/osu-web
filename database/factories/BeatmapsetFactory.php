@@ -21,7 +21,7 @@ class BeatmapsetFactory extends Factory
         return [
             'creator' => fn () => $this->faker->userName(),
             'artist' => fn () => $this->faker->name(),
-            'title' => fn () => $this->faker->sentence(rand(0, 5)),
+            'title' => fn () => substr($this->faker->sentence(rand(0, 5)), 0, 80),
             'discussion_enabled' => true,
             'source' => fn () => $this->faker->domainWord(),
             'tags' => fn () => $this->faker->domainWord(),

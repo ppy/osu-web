@@ -37,7 +37,7 @@ class VerifyUserAlways extends VerifyUser
         if (session()->get('requires_verification') !== $isRequired) {
             session()->put('requires_verification', $isRequired);
             session()->save();
-            event(UserSessionEvent::newVerificationRequirementChange($user->getKey(), $isRequired));
+            UserSessionEvent::newVerificationRequirementChange($user->getKey(), $isRequired)->broadcast();
         }
 
         return $isRequired;

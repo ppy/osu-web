@@ -4,14 +4,18 @@
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 
-export type ProfileExtraPage =
-  'beatmaps'
-  | 'historical'
-  | 'kudosu'
-  | 'me'
-  | 'medals'
-  | 'recent_activity'
-  | 'top_ranks';
+export const profileExtraPages = [
+  'beatmaps',
+  'historical',
+  'kudosu',
+  'me',
+  'medals',
+  'recent_activity',
+  'top_ranks',
+  'account_standing',
+] as const;
+
+export type ProfileExtraPage = typeof profileExtraPages[number];
 
 type UserExtendedDefaultIncludes =
   'country'

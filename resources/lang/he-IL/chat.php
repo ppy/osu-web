@@ -22,12 +22,14 @@ return [
             'target_restricted' => 'הנמען כרגע מוגבל',
         ],
     ],
+
     'input' => [
         'disabled' => 'אין אפשרות לשלוח את ההודעה...',
         'disconnected' => '',
         'placeholder' => 'הקלד הודעה...',
         'send' => 'שלח',
     ],
+
     'no-conversations' => [
         'howto' => "התחל שיחות מפרופיל של משתמש או כרטיס משתמש קופץ.",
         'lazer' => 'ערוצים ציבוריים שאתה מצטרף אליהם דרך <a href=":link">osu!lazer</a> יהיו כאן.',

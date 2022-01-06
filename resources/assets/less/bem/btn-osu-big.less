@@ -149,9 +149,6 @@
     .default-box-shadow();
     .default-border-radius();
     .center-content();
-    background-image: url("~@images/backgrounds/button.svg");
-    background-size: 150%;
-    background-position: 50% 50%;
     transition: background-position 120ms;
 
     flex: none;
@@ -160,12 +157,8 @@
     margin-bottom: 20px;
 
     flex-direction: column;
-    --bg: hsl(var(--hsl-blue-3));
-    --hover-bg: hsl(var(--hsl-blue-3));
-
-    .link-hover({
-      background-position: calc(50% - 20px) 50%;
-    });
+    --bg: hsl(var(--hsl-blue-3)) center/150% url("~@images/backgrounds/button.svg");
+    --hover-bg: hsl(var(--hsl-blue-3)) calc(50% - 20px) 50%/150% url("~@images/backgrounds/button.svg");
   }
 
   &--fileupload {

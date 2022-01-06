@@ -22,12 +22,14 @@ return [
             'target_restricted' => 'Ang inyong tinatanggap mo ay kasalukuyang naka-restrict na',
         ],
     ],
+
     'input' => [
         'disabled' => 'hindi maipadala ang mensahe...',
         'disconnected' => '',
         'placeholder' => 'gumawa ng mensahe...',
         'send' => 'Ipadala',
     ],
+
     'no-conversations' => [
         'howto' => "Simulan ang pakikipag-usap galing sa isang user profile o kaya naman sa isang popup sa usercard.",
         'lazer' => 'Ang mga tsanel na pwedeng salihan sa <a href=":link">osu!lazer</a> ay makikita din dito.',

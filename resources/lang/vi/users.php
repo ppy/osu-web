@@ -157,7 +157,7 @@ return [
 
         'comments_count' => [
             '_' => 'Đã đăng :link',
-            'count' => '',
+            'count' => ':count_delimited bình luận|:count_delimited bình luận',
         ],
         'edit' => [
             'cover' => [
@@ -331,7 +331,7 @@ return [
                 'received' => '',
                 'title' => '',
                 'title_longer' => '',
-                'vote_count' => '',
+                'vote_count' => ':count_delimited bình chọn|:count_delimited bình chọn',
             ],
             'account_standing' => [
                 'title' => 'Trạng Thái Tài Khoản',

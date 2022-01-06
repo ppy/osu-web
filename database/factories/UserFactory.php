@@ -78,6 +78,11 @@ class UserFactory extends Factory
         return $this->has(UserAccountHistory::factory()->silence(), 'accountHistories');
     }
 
+    public function supporter()
+    {
+        return $this->state(['osu_subscriber' => true, 'osu_subscriptionexpiry' => now()->addMonthNoOverflow(1)]);
+    }
+
     public function withGroup(?string $groupIdentifier, ?array $playmodes = null)
     {
         if ($groupIdentifier === null) {

@@ -3,27 +3,48 @@
 
 import LineChart, { makeOptionsDate } from 'charts/line-chart';
 import { curveLinear } from 'd3';
-import BeatmapPlaycountJson from 'interfaces/beatmap-playcount-json';
-import GameMode from 'interfaces/game-mode';
-import ScoreJson from 'interfaces/score-json';
-import { route } from 'laroute';
 import { escape, sortBy, times } from 'lodash';
+import { autorun, computed, makeObservable } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import PlayDetailList from 'play-detail-list';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
+import { switchNever } from 'utils/switch-never';
 import BeatmapPlaycount from './beatmap-playcount';
 import ExtraHeader from './extra-header';
-import ExtraPageProps, { ProfilePagePaginationData } from './extra-page-props';
+import ExtraPageProps, { HistoricalSection } from './extra-page-props';
 
-const chartSections =['monthly_playcounts', 'replays_watched_counts'] as const;
+const chartSections = ['monthly_playcounts', 'replays_watched_counts'] as const;
 type ChartSection = typeof chartSections[number];
 
 // conveniently both charts share same interface
+interface RawChartData {
+  count: number;
+  start_date: string;
+}
+
 interface ChartData {
   x: Date;
   y: number;
+}
+
+function convertUserDataForChart(rawData: RawChartData[]): ChartData[] {
+  const data = sortBy(rawData, 'start_date')
+    .map((count) => ({
+      x: new Date(count.start_date),
+      y: count.count,
+    })).reduce(dataPadder, []);
+
+  if (data.length === 1) {
+    data.unshift({
+      x: moment(data[0].x).subtract(1, 'month').toDate(),
+      y: 0,
+    });
+  }
+
+  return data;
 }
 
 function dataPadder(padded: ChartData[], entry: ChartData) {
@@ -44,10 +65,7 @@ function dataPadder(padded: ChartData[], entry: ChartData) {
   return padded;
 }
 
-// TODO: convert to reaction when converting component to observer
-function updateTicks(chart: LineChart<Date>, data?: ChartData[]) {
-  data ??= chart.data;
-
+function updateTicks(chart: LineChart<Date>, data: ChartData[]) {
   if (core.windowSize.isDesktop) {
     chart.options.ticksX = undefined;
 
@@ -58,14 +76,8 @@ function updateTicks(chart: LineChart<Date>, data?: ChartData[]) {
   }
 }
 
-interface Props extends ExtraPageProps {
-  beatmapPlaycounts: BeatmapPlaycountJson[];
-  currentMode: GameMode;
-  pagination: ProfilePagePaginationData;
-  scoresRecent: ScoreJson[];
-}
-
-export default class Historical extends React.PureComponent<Props> {
+@observer
+export default class Historical extends React.Component<ExtraPageProps> {
   private readonly chartRefs = {
     monthly_playcounts: React.createRef<HTMLDivElement>(),
     replays_watched_counts: React.createRef<HTMLDivElement>(),
@@ -73,14 +85,26 @@ export default class Historical extends React.PureComponent<Props> {
   private readonly charts: Partial<Record<ChartSection, LineChart<Date>>> = {};
   private readonly disposers: (() => void)[] = [];
 
+  @computed
+  private get monthlyPlaycountsData() {
+    return convertUserDataForChart(this.props.controller.state.user.monthly_playcounts);
+  }
+
+  @computed
+  private get replaysWatchedCountsData() {
+    return convertUserDataForChart(this.props.controller.state.user.replays_watched_counts);
+  }
+
+  constructor(props: ExtraPageProps) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   componentDidMount() {
     $(window).on('resize', this.resizeCharts);
     this.disposers.push(() => $(window).off('resize', this.resizeCharts));
-    this.updateCharts();
-  }
-
-  componentDidUpdate() {
-    this.updateCharts();
+    disposeOnUnmount(this, autorun(this.updateCharts));
   }
 
   componentWillUnmount() {
@@ -90,7 +114,7 @@ export default class Historical extends React.PureComponent<Props> {
   render() {
     return (
       <div className='page-extra'>
-        <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
+        <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
 
         {this.hasSection('monthly_playcounts') &&
           <>
@@ -107,27 +131,23 @@ export default class Historical extends React.PureComponent<Props> {
         <h3 className='title title--page-extra-small'>
           {osu.trans('users.show.extra.historical.most_played.title')}
           <span className='title__count'>
-            {osu.formatNumber(this.props.user.beatmap_playcounts_count)}
+            {osu.formatNumber(this.props.controller.state.user.beatmap_playcounts_count)}
           </span>
         </h3>
 
-        {this.props.beatmapPlaycounts.length > 0 &&
+        {this.props.controller.state.extras.beatmapPlaycounts.length > 0 &&
           <>
-            {this.props.beatmapPlaycounts.map((playcount) => (
+            {this.props.controller.state.extras.beatmapPlaycounts.map((playcount) => (
               <BeatmapPlaycount
                 key={playcount.beatmap_id}
-                currentMode={this.props.currentMode}
+                currentMode={this.props.controller.currentMode}
                 playcount={playcount}
               />
             ))}
             <ShowMoreLink
-              data={{
-                name: 'beatmapPlaycounts',
-                url: route('users.beatmapsets', { type: 'most_played', user: this.props.user.id }),
-              }}
-              event='profile:showMore'
-              hasMore={this.props.pagination.beatmapPlaycounts.hasMore}
-              loading={this.props.pagination.beatmapPlaycounts.loading}
+              {...this.props.controller.state.pagination.beatmapPlaycounts}
+              callback={this.onShowMore}
+              data={'beatmapPlaycounts' as const}
               modifiers='profile-page'
             />
           </>
@@ -136,22 +156,18 @@ export default class Historical extends React.PureComponent<Props> {
         <h3 className='title title--page-extra-small'>
           {osu.trans('users.show.extra.historical.recent_plays.title')}
           <span className='title__count'>
-            {osu.formatNumber(this.props.user.scores_recent_count)}
+            {osu.formatNumber(this.props.controller.state.user.scores_recent_count)}
           </span>
         </h3>
 
-        {this.props.scoresRecent.length > 0 &&
+        {this.props.controller.state.extras.scoresRecent.length > 0 &&
           <>
-            <PlayDetailList scores={this.props.scoresRecent} />
+            <PlayDetailList scores={this.props.controller.state.extras.scoresRecent} />
 
             <ShowMoreLink
-              data={{
-                name: 'scoresRecent',
-                url: route('users.scores', { mode: this.props.currentMode, type: 'recent', user: this.props.user.id }),
-              }}
-              event='profile:showMore'
-              hasMore={this.props.pagination.scoresRecent.hasMore}
-              loading={this.props.pagination.scoresRecent.loading}
+              {...this.props.controller.state.pagination.scoresRecent}
+              callback={this.onShowMore}
+              data={'scoresRecent' as const}
               modifiers='profile-page'
             />
           </>
@@ -173,20 +189,21 @@ export default class Historical extends React.PureComponent<Props> {
   }
 
   private hasSection(attribute: ChartSection) {
-    return this.props.user[attribute].length > 0;
+    return this.props.controller.state.user[attribute].length > 0;
   }
+
+  private readonly onShowMore = (section: HistoricalSection) => {
+    this.props.controller.apiShowMore(section);
+  };
 
   private readonly resizeCharts = () => {
     Object.values(this.charts).forEach((chart) => {
-      updateTicks(chart);
       chart.resize();
     });
   };
 
   private readonly updateChart = (attribute: ChartSection) => {
-    const rawData = this.props.user[attribute];
-
-    if (rawData.length === 0) return;
+    if (!this.hasSection(attribute)) return;
 
     const area = this.chartRefs[attribute].current;
 
@@ -194,17 +211,17 @@ export default class Historical extends React.PureComponent<Props> {
       throw new Error("chart can't be updated before the component is mounted");
     }
 
-    const data = sortBy(rawData, 'start_date')
-      .map((count) => ({
-        x: new Date(count.start_date),
-        y: count.count,
-      })).reduce(dataPadder, []);
-
-    if (data.length === 1) {
-      data.unshift({
-        x: moment(data[0].x).subtract(1, 'month').toDate(),
-        y: 0,
-      });
+    let data: ChartData[];
+    switch (attribute) {
+      case 'monthly_playcounts':
+        data = this.monthlyPlaycountsData;
+        break;
+      case 'replays_watched_counts':
+        data = this.replaysWatchedCountsData;
+        break;
+      default:
+        switchNever(attribute);
+        throw new Error('unsupported chart section');
     }
 
     let chart = this.charts[attribute];
@@ -234,7 +251,7 @@ export default class Historical extends React.PureComponent<Props> {
     }
   };
 
-  private updateCharts() {
+  private readonly updateCharts = () => {
     chartSections.forEach(this.updateChart);
-  }
+  };
 }

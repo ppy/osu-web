@@ -5,15 +5,15 @@ import { Events } from './events'
 import { Discussions } from './discussions'
 import { Header } from './header'
 import { Posts } from './posts'
-import Kudosu from 'profile-page/kudosu'
 import { Votes } from './votes'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
 import { deletedUser } from 'models/user'
+import Kudosu from 'modding-profile/kudosu'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
-import ExtraTab from 'profile-page/extra-tab'
+import ProfilePageExtraTab from 'components/profile-page-extra-tab'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
@@ -168,10 +168,9 @@ export class Main extends React.PureComponent
                       'data-page-id': m
                       onClick: @tabClick
                       href: "##{m}"
-                      el ExtraTab,
+                      el ProfilePageExtraTab,
                         page: m
                         currentPage: @state.currentPage
-                        currentMode: @state.currentMode
 
             div
               className: 'user-profile-pages'
