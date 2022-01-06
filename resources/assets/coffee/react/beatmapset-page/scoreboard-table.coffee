@@ -42,8 +42,7 @@ export class ScoreboardTable extends React.PureComponent
               th className: "#{bn}__header #{bn}__header--player", osu.trans('beatmapsets.show.scoreboard.headers.player')
               th className: "#{bn}__header #{bn}__header--maxcombo", osu.trans('beatmapsets.show.scoreboard.headers.combo')
               for stat in modeAttributesMap[@props.beatmap.mode]
-                th key: stat.attribute, className: "#{bn}__header #{bn}__header--hitstat", stat.label
-              th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
+                th key: stat.attribute, className: "#{bn}__header #{bn}__header--hitstat #{bn}__header--hitstat-#{stat.attribute}", stat.label
               if showPp
                 th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
               th className: "#{bn}__header #{bn}__header--time", osu.trans('beatmapsets.show.scoreboard.headers.time')

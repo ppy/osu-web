@@ -81,10 +81,6 @@ export class ScoreboardTableRow extends React.PureComponent
           modifiers: 'zero' if score.statistics[stat.attribute] == 0
           osu.formatNumber(score.statistics[stat.attribute])
 
-      el @tdLink,
-        modifiers: ['zero'] if score.statistics.count_miss == 0
-        osu.formatNumber(score.statistics.count_miss)
-
       if @props.showPp
         el @tdLink,
           {}
