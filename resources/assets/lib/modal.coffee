@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import Blackout from 'blackout'
 import { createRef, PureComponent } from 'react'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import { createPortal } from 'react-dom'
+import { blackoutToggle } from 'utils/blackout'
 
 export class Modal extends PureComponent
   @isOpen: ->
@@ -18,7 +18,7 @@ export class Modal extends PureComponent
 
   close: ->
     document.body.classList.remove 'js-react-modal---is-open'
-    Blackout.toggle(false, 0.5)
+    blackoutToggle(false, 0.5)
 
 
   componentDidMount: =>
@@ -68,7 +68,7 @@ export class Modal extends PureComponent
   open: ->
     # TODO: move to global react state or something
     document.body.classList.add 'js-react-modal---is-open'
-    Blackout.toggle(true, 0.5)
+    blackoutToggle(true, 0.5)
 
 
   render: =>

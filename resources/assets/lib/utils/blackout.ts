@@ -1,21 +1,21 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { fadeToggle } from 'utils/fade';
+import { fadeToggle } from './fade';
 
-const Blackout = {
-  hide: () => Blackout.toggle(false),
+export function blackoutHide() {
+  blackoutToggle(false);
+}
 
-  show: () => Blackout.toggle(true),
+export function blackoutShow() {
+  blackoutToggle(true);
+}
 
-  toggle: (state: boolean, opacity?: number) => {
-    const el = document.querySelector('.js-blackout');
+export function blackoutToggle(state: boolean, opacity?: number) {
+  const el = document.querySelector('.js-blackout');
 
-    if (el instanceof HTMLElement) {
-      el.style.opacity = !state || opacity == null ? '' : String(opacity);
-      fadeToggle(el, state);
-    }
-  },
-};
-
-export default Blackout;
+  if (el instanceof HTMLElement) {
+    el.style.opacity = !state || opacity == null ? '' : String(opacity);
+    fadeToggle(el, state);
+  }
+}
