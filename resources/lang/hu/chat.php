@@ -22,12 +22,14 @@ return [
             'target_restricted' => 'A címzett jelenleg korlátozva van',
         ],
     ],
+
     'input' => [
         'disabled' => 'üzenet küldése sikertelen...',
-        'disconnected' => '',
+        'disconnected' => 'Lecsatlakozva',
         'placeholder' => 'üzenet írása...',
         'send' => 'Küldés',
     ],
+
     'no-conversations' => [
         'howto' => "Beszélgetés indítása egy felhasználó profiljából vagy egy felugró felhasználókártyából.",
         'lazer' => 'Az <a href=":link">osu!lazer</a>-en keresztül csatlakozott nyilvános csatornák itt is láthatóak lesznek.',

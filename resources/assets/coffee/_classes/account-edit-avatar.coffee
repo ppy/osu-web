@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { fileuploadFailCallback } from 'utils/ajax'
+
 class window.AccountEditAvatar
   constructor: ->
     $(document).on 'turbolinks:load', @initialize
@@ -37,7 +39,7 @@ class window.AccountEditAvatar
       done: (_e, data) =>
         $.publish 'user:update', data.result
 
-      fail: _exported.fileuploadFailCallback
+      fail: fileuploadFailCallback
 
       complete: =>
         @main[0].classList.remove 'js-account-edit-avatar--saving'

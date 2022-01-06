@@ -7,7 +7,7 @@ return [
     'beatmapset_update_notice' => [
         'new' => 'Kami ingin memberitahukan bahwa beatmap ":title" telah diperbaharui sejak kunjungan terakhir Anda.',
         'subject' => 'Pembaruan baru untuk beatmap ":title"',
-        'unwatch' => 'Apabila Anda tidak lagi ingin memantau beatmap ini, Anda dapat membatalkan pantauan Anda melalui tautan "Batalkan Pantauan" yang tertera di atas atau melalui laman Daftar Pantauan berikut:',
+        'unwatch' => 'Apabila Anda tidak lagi ingin memantau beatmap ini, Anda dapat melepas pemantauan Anda melalui tautan "Lepas Pantauan" yang tertera di atas atau melalui laman Daftar Pantauan berikut:',
         'visit' => 'Kunjungi laman diskusi beatmap ini di sini:',
     ],
 
@@ -19,8 +19,8 @@ return [
 
     'donation_thanks' => [
         'benefit_more' => 'Di samping itu, para pemilik supporter tag juga akan mendapatkan berbagai manfaat baru seiring waktunya!',
-        'feedback' => "Jika Anda memiliki pertanyaan atau saran, jangan sungkan untuk membalas email ini; Saya akan menghubungi Anda kembali sesegera mungkin!",
-        'keep_free' => 'Berkat orang-orang seperti Anda, osu! dapat membangun lingkungan permainan dan komunitas yang independen tanpa iklan atau sistem pembayaran yang intrusif.',
+        'feedback' => "Apabila Anda memiliki pertanyaan atau saran lebih lanjut, jangan sungkan untuk membalas email ini; Saya akan menghubungi Anda kembali sesegera mungkin!",
+        'keep_free' => 'Berkat orang-orang seperti Anda, osu! dapat membangun lingkungan permainan yang independen tanpa iklan atau sistem pembayaran yang intrusif.',
         'keep_running' => 'Dukungan Anda membuat osu! dapat berjalan sekitar :minutes! Angka ini mungkin sekilas tidak berarti banyak, namun dukungan sekecil apapun akan tetap berarti besar bagi kami :).',
         'subject' => 'Terima kasih, osu! mencintaimu',
         'translation' => 'Sebagai bahan rujukan, tersedia terjemahan dari komunitas di bawah ini:',
@@ -40,7 +40,7 @@ return [
     'forum_new_reply' => [
         'new' => 'Kami ingin menginformasikan bahwa saat ini terdapat balasan baru pada ":title" sejak kunjungan terakhir Anda.',
         'subject' => '[osu!] Balasan baru pada topik ":title"',
-        'unwatch' => 'Jika Anda tidak lagi ingin memantau topik forum ini, Anda dapat membatalkan pantauan Anda melalui tautan "Batalkan Pantauan" yang tertera di atas atau melalui laman Daftar Pantauan berikut:',
+        'unwatch' => 'Apabila Anda tidak lagi ingin memantau topik forum ini, Anda dapat melepas pemantauan Anda melalui tautan "Lepas Pantauan" yang tertera di atas atau melalui laman Daftar Pantauan berikut:',
         'visit' => 'Anda dapat segera melihat balasan terbaru melalui link berikut:',
     ],
 

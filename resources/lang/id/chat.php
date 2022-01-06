@@ -22,12 +22,14 @@ return [
             'target_restricted' => 'Penerima pesan yang Anda tuju saat ini sedang di-restrict',
         ],
     ],
+
     'input' => [
         'disabled' => 'gagal mengirim pesan...',
-        'disconnected' => '',
+        'disconnected' => 'Terputus',
         'placeholder' => 'ketikkan pesan...',
         'send' => 'Kirim',
     ],
+
     'no-conversations' => [
         'howto' => "Mulailah suatu percakapan dengan meng-klik tombol yang tersedia pada halaman profil atau kartu pop-up pengguna.",
         'lazer' => 'Kanal-kanal percakapan yang Anda buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',

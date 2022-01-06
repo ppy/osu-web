@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ScoreJson from 'interfaces/score-json';
+import { observer } from 'mobx-react';
 import PlayDetail from 'play-detail';
 import * as React from 'react';
 import { ContainerContext, KeyContext } from 'stateful-activation-context';
@@ -15,7 +16,8 @@ interface State {
   activeKey: number | null;
 }
 
-export default class PlayDetailList extends React.PureComponent<Props, State> {
+@observer
+export default class PlayDetailList extends React.Component<Props, State> {
   state: Readonly<State> = {
     activeKey: null,
   };

@@ -3,6 +3,7 @@
 
 import * as React from 'react'
 import { div, form, input, label, span } from 'react-dom-factories'
+import { fileuploadFailCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
 import { nextVal } from 'utils/seq'
 el = React.createElement
@@ -83,7 +84,7 @@ export class Uploader extends React.Component
       done: (_e, data) ->
         $.publish 'contest:entries:update', data: data.result
 
-      fail: _exported.fileuploadFailCallback
+      fail: fileuploadFailCallback
 
   componentWillUnmount: =>
     $.unsubscribe ".#{@eventId}"

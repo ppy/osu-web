@@ -22,12 +22,14 @@ return [
             'target_restricted' => '상대방의 계정이 제한되어 있습니다',
         ],
     ],
+
     'input' => [
         'disabled' => '메시지를 보낼 수 없습니다...',
-        'disconnected' => '',
+        'disconnected' => '연결 끊김',
         'placeholder' => '메시지를 입력하세요...',
         'send' => '전송',
     ],
+
     'no-conversations' => [
         'howto' => "유저의 프로필 혹은 유저 카드 팝업에서 대화를 시작할 수 있습니다.",
         'lazer' => '<a href=":link">osu!lazer</a>에서 참가하는 공개 채널이 여기서도 보입니다.',

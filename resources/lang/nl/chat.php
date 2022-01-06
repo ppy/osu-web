@@ -22,12 +22,14 @@ return [
             'target_restricted' => 'De ontvanger is momenteel gerestrict',
         ],
     ],
+
     'input' => [
         'disabled' => 'niet in staat om bericht te verzenden...',
-        'disconnected' => '',
+        'disconnected' => 'Verbinding verbroken',
         'placeholder' => 'stuur een bericht...',
         'send' => 'Stuur',
     ],
+
     'no-conversations' => [
         'howto' => "Start gesprekken vanuit het profiel van een gebruiker of een pop-up usercard.",
         'lazer' => 'Publieke kanalen die je kan joinen via <a href=":link">osu!lazer</a> zullen hier ook zichtbaar zijn.',
