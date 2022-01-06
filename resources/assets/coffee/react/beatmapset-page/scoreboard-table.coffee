@@ -7,6 +7,7 @@ import { a, div, table, tr, th, thead, tbody } from 'react-dom-factories'
 import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
 import { shouldShowPp } from 'utils/beatmap-helper'
 import { classWithModifiers } from 'utils/css'
+import { modeAttributesMap } from 'utils/score-helper'
 
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
@@ -40,8 +41,8 @@ export class ScoreboardTable extends React.PureComponent
               th className: "#{bn}__header #{bn}__header--flag", ''
               th className: "#{bn}__header #{bn}__header--player", osu.trans('beatmapsets.show.scoreboard.headers.player')
               th className: "#{bn}__header #{bn}__header--maxcombo", osu.trans('beatmapsets.show.scoreboard.headers.combo')
-              for stat in @props.hitTypeMapping
-                th key: stat[0], className: "#{bn}__header #{bn}__header--hitstat", stat[0]
+              for stat in modeAttributesMap[@props.beatmap.mode]
+                th key: stat.attribute, className: "#{bn}__header #{bn}__header--hitstat", stat.label
               th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
               if showPp
                 th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
@@ -58,7 +59,6 @@ export class ScoreboardTable extends React.PureComponent
                   activated: @state.activeKey == index
                   beatmap: @props.beatmap
                   showPp: showPp
-                  hitTypeMapping: @props.hitTypeMapping
                   index: index
                   score: score
                   scoreboardType: @props.scoreboardType
