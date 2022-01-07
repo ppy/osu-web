@@ -268,7 +268,6 @@ abstract class Search extends HasSearch implements Queryable
         $tags = $this->getDatadogTags();
         $tags['class'] = get_class($e);
 
-        // Skip Sentry reporting for query timeout errors and silenced exceptions.
         if (!($e instanceof OperationTimeoutException || $e instanceof SilencedException)) {
             app('sentry')->captureException($e);
         }
