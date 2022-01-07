@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title'
 import * as React from 'react'
 import { a, div, h1, h2, span } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
@@ -17,11 +18,9 @@ export class Votes extends React.Component
 
       for direction in ['received', 'given']
         el React.Fragment, key: direction,
-          h2
-            className: 'title title--page-extra-small'
-            osu.trans("users.show.extra.votes.#{direction}")
-            if @props.votes[direction].length == 0
-              span className: 'title__count', osu.formatNumber(0)
+          el ProfilePageExtraSectionTitle,
+            count: if @props.votes[direction].length == 0 then 0 else null
+            titleKey: "users.show.extra.votes.#{direction}"
 
           if @props.votes[direction].length > 0
             div
