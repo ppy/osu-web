@@ -11,7 +11,7 @@ import { a, div, span, tr, td } from 'react-dom-factories'
 import ScoreboardTime from 'scoreboard-time'
 import PpValue from 'scores/pp-value'
 import { classWithModifiers } from 'utils/css'
-import { hasMenu } from 'utils/score-helper'
+import { hasMenu, modeAttributesMap } from 'utils/score-helper'
 
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
@@ -75,15 +75,11 @@ export class ScoreboardTableRow extends React.PureComponent
         modifiers: ['perfect'] if score.max_combo == @props.beatmap.max_combo
         "#{osu.formatNumber(score.max_combo)}x"
 
-      for stat in @props.hitTypeMapping
+      for stat in modeAttributesMap[@props.beatmap.mode]
         el @tdLink,
-          key: stat[0]
-          modifiers: ['zero'] if score.statistics["count_#{stat[1]}"] == 0
-          osu.formatNumber(score.statistics["count_#{stat[1]}"])
-
-      el @tdLink,
-        modifiers: ['zero'] if score.statistics.count_miss == 0
-        osu.formatNumber(score.statistics.count_miss)
+          key: stat.attribute
+          modifiers: 'zero' if score.statistics[stat.attribute] == 0
+          osu.formatNumber(score.statistics[stat.attribute])
 
       if @props.showPp
         el @tdLink,

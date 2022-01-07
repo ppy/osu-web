@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { currentUrl } from 'utils/turbolinks'
 import { isHTML, isInternal } from 'utils/url'
 
 # Anchor navigation with turbolinks. Works around [1].
@@ -38,7 +39,7 @@ Turbolinks.HttpRequest::requestLoaded = ->
 
 # may or may not actually work
 Turbolinks.Controller::advanceHistory = (url) ->
-  return if url == _exported.currentUrl().href
+  return if url == currentUrl().href
 
   snapshot = @view.getSnapshot()
   location = @lastRenderedLocation
@@ -49,7 +50,7 @@ Turbolinks.Controller::advanceHistory = (url) ->
 
 # @lastRenderedLocation must be updated so the most recent url will be used for @cache
 Turbolinks.Controller::replaceHistory = (url) ->
-  return if url == _exported.currentUrl().href
+  return if url == currentUrl().href
 
   history.replaceState history.state, '', url
   @lastRenderedLocation = Turbolinks.Location.wrap(url)
