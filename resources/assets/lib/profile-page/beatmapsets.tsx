@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetPanel from 'beatmapset-panel';
+import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
@@ -58,10 +59,10 @@ export default class Beatmapsets extends React.PureComponent<ExtraPageProps> {
 
     return (
       <React.Fragment key={section.key}>
-        <h3 className='title title--page-extra-small'>
-          {osu.trans(`users.show.extra.beatmaps.${section.translationKey}.title`)}
-          <span className='title__count'>{osu.formatNumber(count)}</span>
-        </h3>
+        <ProfilePageExtraSectionTitle
+          count={count}
+          titleKey={`users.show.extra.beatmaps.${section.translationKey}.title`}
+        />
 
         {beatmapsets.length > 0 && (
           <div className='osu-layout__col-container osu-layout__col-container--with-gutter js-audio--group'>

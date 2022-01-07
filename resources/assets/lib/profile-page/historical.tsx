@@ -2,13 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import LineChart, { makeOptionsDate } from 'charts/line-chart';
+import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
 import { curveLinear } from 'd3';
 import { escape, sortBy, times } from 'lodash';
 import { autorun, computed, makeObservable } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
-import PlayDetailList from 'play-detail-list';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { nextVal } from 'utils/seq';
@@ -16,6 +16,7 @@ import { switchNever } from 'utils/switch-never';
 import BeatmapPlaycount from './beatmap-playcount';
 import ExtraHeader from './extra-header';
 import ExtraPageProps, { HistoricalSection } from './extra-page-props';
+import PlayDetailList from './play-detail-list';
 
 const chartSections = ['monthly_playcounts', 'replays_watched_counts'] as const;
 type ChartSection = typeof chartSections[number];
@@ -119,9 +120,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
 
         {this.hasSection('monthly_playcounts') &&
           <>
-            <h3 className='title title--page-extra-small'>
-              {osu.trans('users.show.extra.historical.monthly_playcounts.title')}
-            </h3>
+            <ProfilePageExtraSectionTitle titleKey='users.show.extra.historical.monthly_playcounts.title' />
 
             <div className='page-extra__chart'>
               <div ref={this.chartRefs.monthly_playcounts} />
@@ -129,12 +128,10 @@ export default class Historical extends React.Component<ExtraPageProps> {
           </>
         }
 
-        <h3 className='title title--page-extra-small'>
-          {osu.trans('users.show.extra.historical.most_played.title')}
-          <span className='title__count'>
-            {osu.formatNumber(this.props.controller.state.user.beatmap_playcounts_count)}
-          </span>
-        </h3>
+        <ProfilePageExtraSectionTitle
+          count={this.props.controller.state.user.beatmap_playcounts_count}
+          titleKey='users.show.extra.historical.most_played.title'
+        />
 
         {this.props.controller.state.extras.beatmapPlaycounts.length > 0 &&
           <>
@@ -154,31 +151,11 @@ export default class Historical extends React.Component<ExtraPageProps> {
           </>
         }
 
-        <h3 className='title title--page-extra-small'>
-          {osu.trans('users.show.extra.historical.recent_plays.title')}
-          <span className='title__count'>
-            {osu.formatNumber(this.props.controller.state.user.scores_recent_count)}
-          </span>
-        </h3>
-
-        {this.props.controller.state.extras.scoresRecent.length > 0 &&
-          <>
-            <PlayDetailList scores={this.props.controller.state.extras.scoresRecent} />
-
-            <ShowMoreLink
-              {...this.props.controller.state.pagination.scoresRecent}
-              callback={this.onShowMore}
-              data={'scoresRecent' as const}
-              modifiers='profile-page'
-            />
-          </>
-        }
+        <PlayDetailList controller={this.props.controller} section='scoresRecent' />
 
         {this.hasSection('replays_watched_counts') &&
           <>
-            <h3 className='title title--page-extra-small'>
-              {osu.trans('users.show.extra.historical.replays_watched_counts.title')}
-            </h3>
+            <ProfilePageExtraSectionTitle titleKey='users.show.extra.historical.replays_watched_counts.title' />
 
             <div className='page-extra__chart'>
               <div ref={this.chartRefs.replays_watched_counts} />

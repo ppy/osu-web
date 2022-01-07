@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
 import UserAccountHistoryJson from 'interfaces/user-account-history-json';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
@@ -115,9 +116,7 @@ export default class AccountStanding extends React.Component<ExtraPageProps> {
           </div>
         )}
 
-        <h3 className='title title--page-extra-small'>
-          {osu.trans('users.show.extra.account_standing.recent_infringements.title')}
-        </h3>
+        <ProfilePageExtraSectionTitle titleKey='users.show.extra.account_standing.recent_infringements.title' />
 
         <div className={bn}>
           <table className={`${bn}__table`}>

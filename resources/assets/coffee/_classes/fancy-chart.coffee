@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { fadeIn, fadeOut } from 'utils/fade'
+
 class window.FancyChart
   constructor: (area, @options = {}) ->
     @options.scales ?= {}
@@ -163,7 +165,7 @@ class window.FancyChart
 
 
   hoverEnd: =>
-    Fade.out @svgHoverMark.node()
+    fadeOut @svgHoverMark.node()
     $.publish "fancy-chart:hover-#{@options.hoverId}:end"
 
 
@@ -176,7 +178,7 @@ class window.FancyChart
 
     return unless i?
 
-    Fade.in @svgHoverMark.node()
+    fadeIn @svgHoverMark.node()
     Timeout.clear @_hoverTimeout
     @_hoverTimeout = Timeout.set 3000, @hoverEnd
 
