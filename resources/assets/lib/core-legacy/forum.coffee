@@ -69,15 +69,6 @@ export default class Forum
     parseInt @_totalPostsDiv[0].dataset.total, 10
 
 
-  # null if option not available (not moderator), false/true accordingly otherwise
-  showDeleted: =>
-    toggle = document.querySelector('.js-forum-topic-moderate--toggle-deleted')
-
-    return unless toggle?
-
-    toggle.dataset.showDeleted == '1'
-
-
   setTotalPosts: (n) =>
     $(@_totalPostsDiv)
       .text osu.formatNumber(n)
@@ -151,9 +142,6 @@ export default class Forum
 
     if lastPostLoaded
       $(@endPost()).find('.js-post-delete-toggle').css(display: '')
-
-    for link in @loadMoreLinks
-      link.href = @moreMeta(link).url
 
 
   refreshCounter: =>
@@ -242,9 +230,7 @@ export default class Forum
 
 
   toggleDeleted: =>
-    return if !@showDeleted()? # you don't see this option unless you're a moderator, anyway
-
-    xhr = osuCore.userPreferences.set('forum_posts_show_deleted', !@showDeleted())
+    xhr = osuCore.userPreferences.set('forum_posts_show_deleted', !osuCore.userPreferences.get('forum_posts_show_deleted'))
 
     callback = => Turbolinks.visit @postUrlN(@currentPostPosition)
 
@@ -293,24 +279,26 @@ export default class Forum
 
     link.classList.add 'js-disabled'
 
-    moreMeta = @moreMeta link
+    mode = link.dataset.mode
+    refPost = if mode == 'previous' then @posts[0] else @endPost()
 
-    $.get(moreMeta.url)
+    $.get(link.href)
     .done (data) =>
       if !data?
         link.dataset.noMore = '1'
         @refreshLoadMoreLinks()
         return
 
-      scrollReference = moreMeta.refPost
+      link.href = data.next_url
+      scrollReference = refPost
       scrollReferenceTop = scrollReference.getBoundingClientRect().top
 
-      if moreMeta.mode == 'previous'
-        link.insertAdjacentHTML 'afterend', data
+      if mode == 'previous'
+        link.insertAdjacentHTML 'afterend', data.content
         toRemoveStart = @maxPosts
         toRemoveEnd = @posts.length
       else
-        link.insertAdjacentHTML 'beforebegin', data
+        link.insertAdjacentHTML 'beforebegin', data.content
         toRemoveStart = 0
         toRemoveEnd = @posts.length - @maxPosts
 
@@ -345,24 +333,3 @@ export default class Forum
 
     if @jumpTo $(e.target).find('[name="n"]').val()
       $.publish 'forum:topic:jumpTo'
-
-  moreMeta: (link) =>
-    mode = link.dataset.mode
-
-    if mode == 'previous'
-      refPost = @posts[0]
-      sort = 'id_desc'
-    else
-      refPost = @endPost()
-      sort = 'id_asc'
-
-    query = $.param
-      skip_layout: 1
-      with_deleted: +@showDeleted()
-      sort: sort
-      cursor:
-        id: refPost.dataset.postId
-
-    url: "#{window.canonicalUrl}?#{query}"
-    refPost: refPost
-    mode: mode
