@@ -13,6 +13,7 @@ class ArtistTracksController extends Controller
     public function reindexAll()
     {
         Artisan::call('es:index-documents', [
+            '--cleanup' => get_bool(request('cleanup')) ?? true,
             '--inplace' => get_bool(request('inplace')) ?? true,
             '--types' => 'artist_tracks',
             '--yes' => true,
