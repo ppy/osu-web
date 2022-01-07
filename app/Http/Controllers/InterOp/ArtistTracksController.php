@@ -12,9 +12,14 @@ class ArtistTracksController extends Controller
 {
     public function reindexAll()
     {
+        $params = get_params(request()->all(), null, [
+            'cleanup:bool',
+            'inplace:bool',
+        ]);
+
         Artisan::call('es:index-documents', [
-            '--cleanup' => get_bool(request('cleanup')) ?? true,
-            '--inplace' => get_bool(request('inplace')) ?? true,
+            '--cleanup' => $params['cleanup'] ?? true,
+            '--inplace' => $params['inplace'] ?? true,
             '--types' => 'artist_tracks',
             '--yes' => true,
         ]);
