@@ -13,6 +13,7 @@ export const beatmapsetSections = [
 ] as const;
 export type BeatmapsetSection = typeof beatmapsetSections[number];
 
+// sorted by display order in the page
 export const topScoreSections = ['scoresBest', 'scoresFirsts'] as const;
 export type TopScoreSection = typeof topScoreSections[number];
 

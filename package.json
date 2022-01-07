@@ -38,7 +38,6 @@
     "mobx-react": "^7.2.0",
     "moment": "^2.11.1",
     "photoswipe": "^4.1.1",
-    "promise-polyfill": "^8.1.0",
     "prop-types": "^15.6.0",
     "qtip2": "https://github.com/notbakaneko/qTip2.git#cd5f038667d2b23a44f4274c46de01834d704ce6",
     "react": "^16.8.4",

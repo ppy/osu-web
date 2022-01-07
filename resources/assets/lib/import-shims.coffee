@@ -5,20 +5,14 @@
 
 import Gallery from 'gallery'
 import * as laroute from 'laroute'
-import Promise from 'promise-polyfill'
 import { StoreCheckout } from 'store-checkout'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { parseJson, parseJsonNullable } from 'utils/json'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
-import { currentUrl } from 'utils/turbolinks'
-
-# polyfill non-Edge IE
-window.Promise ?= Promise
 
 window.gallery ?= new Gallery
 
 window._exported = {
-  currentUrl
   discussionLinkify
   pageChange
   pageChangeImmediate
