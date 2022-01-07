@@ -262,21 +262,19 @@ abstract class Search extends HasSearch implements Queryable
         $err = json_decode($e->getMessage(), true);
 
         if (is_array($err) && str_starts_with($err['error']['caused_by']['reason'] ?? '', 'Failed to parse search_after value for field ')) {
-            $exception = new InvalidCursorException();
+            $e = new InvalidCursorException();
         }
 
-        $exception ??= $e;
-
         $tags = $this->getDatadogTags();
-        $tags['class'] = get_class($exception);
+        $tags['class'] = get_class($e);
 
         // Printing the entire exception to log makes the breadcrumb too large to be sent to Sentry (16kb limit)
         // so we're only printing the message.
-        Log::error("{$tags['type']} {$tags['index']} {$operation}, {$tags['class']}: {$exception->getMessage()}");
+        Log::error("{$tags['type']} {$tags['index']} {$operation}, {$tags['class']}: {$e->getMessage()}");
 
         // Skip Sentry reporting for query timeout errors and silenced exceptions.
-        if (!($exception instanceof OperationTimeoutException || $exception instanceof SilencedException)) {
-            app('sentry')->captureException($exception);
+        if (!($e instanceof OperationTimeoutException || $e instanceof SilencedException)) {
+            app('sentry')->captureException($e);
         }
 
         Datadog::increment(
@@ -285,7 +283,7 @@ abstract class Search extends HasSearch implements Queryable
             $tags
         );
 
-        return $exception;
+        return $e;
     }
 
     private function isSearchWindowExceeded()
