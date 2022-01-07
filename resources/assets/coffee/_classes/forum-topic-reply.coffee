@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { currentUrl } from 'utils/turbolinks'
+
 class window.ForumTopicReply
   constructor: ({ @bbcodePreview, @forum, @stickyFooter }) ->
     @container = document.getElementsByClassName('js-forum-topic-reply--container')
@@ -38,15 +40,15 @@ class window.ForumTopicReply
 
 
   deleteState: (key) =>
-    localStorage.removeItem "forum-topic-reply--#{_exported.currentUrl().pathname}--#{key}"
+    localStorage.removeItem "forum-topic-reply--#{currentUrl().pathname}--#{key}"
 
 
   getState: (key) =>
-    localStorage.getItem "forum-topic-reply--#{_exported.currentUrl().pathname}--#{key}"
+    localStorage.getItem "forum-topic-reply--#{currentUrl().pathname}--#{key}"
 
 
   setState: (key, value) =>
-    localStorage.setItem "forum-topic-reply--#{_exported.currentUrl().pathname}--#{key}", value
+    localStorage.setItem "forum-topic-reply--#{currentUrl().pathname}--#{key}", value
 
 
   activate: =>

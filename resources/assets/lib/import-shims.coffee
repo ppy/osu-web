@@ -10,14 +10,12 @@ import { StoreCheckout } from 'store-checkout'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { parseJson, parseJsonNullable } from 'utils/json'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
-import { currentUrl } from 'utils/turbolinks'
 
 window.Blackout = Blackout
 
 window.gallery ?= new Gallery
 
 window._exported = {
-  currentUrl
   discussionLinkify
   pageChange
   pageChangeImmediate
