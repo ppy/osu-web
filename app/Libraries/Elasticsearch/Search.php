@@ -11,7 +11,6 @@ use Datadog;
 use Elasticsearch\Client;
 use Elasticsearch\Common\Exceptions\Curl\OperationTimeoutException;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
-use Log;
 
 abstract class Search extends HasSearch implements Queryable
 {
