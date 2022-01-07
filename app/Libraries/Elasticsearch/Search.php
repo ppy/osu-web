@@ -6,6 +6,7 @@
 namespace App\Libraries\Elasticsearch;
 
 use App\Exceptions\InvalidCursorException;
+use App\Exceptions\SilencedException;
 use Datadog;
 use Elasticsearch\Client;
 use Elasticsearch\Common\Exceptions\Curl\OperationTimeoutException;
@@ -258,14 +259,22 @@ abstract class Search extends HasSearch implements Queryable
 
     private function handleError(ElasticsearchException $e, string $operation)
     {
+        $err = json_decode($e->getMessage(), true);
+
+        if (is_array($err) && str_starts_with($err['error']['caused_by']['reason'] ?? '', 'Failed to parse search_after value for field ')) {
+            $exception = new InvalidCursorException();
+        }
+
+        $exception ??= $e;
+
         $tags = $this->getDatadogTags();
-        $tags['class'] = get_class($e);
+        $tags['class'] = get_class($exception);
 
         // Only report non query timeout errors to Sentry.
         // Printing the entire exception to log makes the breadcrumb too large to be sent to Sentry (16kb limit)
         // so we're only printing the message.
-        Log::error("{$tags['type']} {$tags['index']} {$operation}, {$tags['class']}: {$e->getMessage()}");
-        if (!($e instanceof OperationTimeoutException)) {
+        Log::error("{$tags['type']} {$tags['index']} {$operation}, {$tags['class']}: {$exception->getMessage()}");
+        if (!($exception instanceof OperationTimeoutException || $exception instanceof SilencedException)) {
             app('sentry')->captureException($e);
         }
 
@@ -274,6 +283,8 @@ abstract class Search extends HasSearch implements Queryable
             1,
             $tags
         );
+
+        return $exception;
     }
 
     private function isSearchWindowExceeded()
@@ -311,15 +322,7 @@ abstract class Search extends HasSearch implements Queryable
                 $this->getDatadogTags()
             );
         } catch (ElasticsearchException $e) {
-            $err = json_decode($e->getMessage(), true);
-
-            // handle cursor parsing error differently
-            if (is_array($err) && str_starts_with($err['error']['caused_by']['reason'] ?? '', 'Failed to parse search_after value for field ')) {
-                $this->error = new InvalidCursorException();
-            } else {
-                $this->error = $e;
-                $this->handleError($e, $operation);
-            }
+            $this->error = $this->handleError($e, $operation);
         }
     }
 }
