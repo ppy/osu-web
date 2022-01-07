@@ -3,15 +3,12 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
-import Blackout from 'blackout'
 import Gallery from 'gallery'
 import * as laroute from 'laroute'
 import { StoreCheckout } from 'store-checkout'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { parseJson, parseJsonNullable } from 'utils/json'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
-
-window.Blackout = Blackout
 
 window.gallery ?= new Gallery
 
