@@ -270,10 +270,11 @@ abstract class Search extends HasSearch implements Queryable
         $tags = $this->getDatadogTags();
         $tags['class'] = get_class($exception);
 
-        // Only report non query timeout errors to Sentry.
         // Printing the entire exception to log makes the breadcrumb too large to be sent to Sentry (16kb limit)
         // so we're only printing the message.
         Log::error("{$tags['type']} {$tags['index']} {$operation}, {$tags['class']}: {$exception->getMessage()}");
+
+        // Skip Sentry reporting for query timeout errors and silenced exceptions.
         if (!($exception instanceof OperationTimeoutException || $exception instanceof SilencedException)) {
             app('sentry')->captureException($e);
         }
