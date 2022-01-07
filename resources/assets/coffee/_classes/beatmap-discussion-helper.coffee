@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { currentUrl } from 'utils/turbolinks'
 import { openBeatmapEditor, linkHtml } from 'utils/url'
 
 class window.BeatmapDiscussionHelper
@@ -199,7 +200,7 @@ class window.BeatmapDiscussionHelper
   @urlParse: (urlString, discussions, options = {}) =>
     options.forceDiscussionId ?= false
 
-    url = new URL(urlString ? _exported.currentUrl().href)
+    url = new URL(urlString ? currentUrl().href)
     [__, pathBeatmapsets, beatmapsetId, pathDiscussions, beatmapId, mode, filter] = url.pathname.split /\/+/
 
     return if pathBeatmapsets != 'beatmapsets' || pathDiscussions != 'discussion'
