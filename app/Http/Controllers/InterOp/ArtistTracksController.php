@@ -17,7 +17,7 @@ class ArtistTracksController extends Controller
             'inplace:bool',
         ]);
 
-        Artisan::call('es:index-documents', [
+        Artisan::queue('es:index-documents', [
             '--cleanup' => $params['cleanup'] ?? true,
             '--inplace' => $params['inplace'] ?? true,
             '--types' => 'artist_tracks',
