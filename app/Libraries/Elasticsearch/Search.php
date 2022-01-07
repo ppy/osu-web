@@ -276,7 +276,7 @@ abstract class Search extends HasSearch implements Queryable
 
         // Skip Sentry reporting for query timeout errors and silenced exceptions.
         if (!($exception instanceof OperationTimeoutException || $exception instanceof SilencedException)) {
-            app('sentry')->captureException($e);
+            app('sentry')->captureException($exception);
         }
 
         Datadog::increment(
