@@ -50,17 +50,17 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => 'Peringkat Teman',
+                'title' => 'Papan Peringkat Teman',
                 'description' => "Lihat bagaimana kemampuanmu dibandingkan dengan teman-temanmu di papan peringkat beatmap, baik dalam game maupun di situs web.",
             ],
 
             'country_ranking' => [
-                'title' => 'Peringkat Negara',
+                'title' => 'Papan Peringkat Negara',
                 'description' => 'Taklukkan negaramu sebelum kamu menaklukkan dunia.',
             ],
 
             'mod_filtering' => [
-                'title' => 'Filter Berdasarkan Mod',
+                'title' => 'Papan Peringkat Mod',
                 'description' => 'Ingin mencari tahu siapa-siapa saja yang memainkan suatu map dengan HDHR? Tidak masalah!',
             ],
 
@@ -85,7 +85,7 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filter Beatmap',
+                'title' => 'Opsi Pencarian Beatmap Tambahan',
                 'description' => 'Filter pencarian beatmap berdasarkan map yang belum dan sudah dimainkan juga peringkat yang dicapai (jika ada).',
             ],
 
@@ -95,7 +95,7 @@ return [
             ],
 
             'speedy_downloads' => [
-                'title' => 'Unduh Lebih Cepat',
+                'title' => 'Unduhan Yang Cepat',
                 'description' => 'Pembatasan jumlah unduhan yang lebih lengang, terutama saat menggunakan osu!direct.',
             ],
 
@@ -138,8 +138,8 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukunganmu! Kamu telah membeli supporter tag sebanyak :tags kali dengan total kontribusi senilai :dollars!',
-            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags supporter tag (yang bernilai :giftedDollars) kepada para pemain lainnya. Terima kasih atas kemurahan hatimu!",
+            'contribution' => 'Terima kasih atas dukunganmu! Kamu telah membeli :tags supporter tag dengan total kontribusi senilai :dollars!',
+            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags di antaranya (:giftedDollars) kepada para pemain lainnya. Terima kasih atas kemurahan hatimu!",
             'not_yet' => "Kamu belum pernah memiliki supporter tag :(",
             'valid_until' => 'Supporter tag yang kamu miliki saat ini berlaku hingga :date!',
             'was_valid_until' => 'Masa berlaku supporter tag milikmu telah berakhir pada :date.',
