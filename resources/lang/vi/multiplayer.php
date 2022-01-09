@@ -14,7 +14,7 @@ return [
         'time_left' => ':time thời gian còn lại',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Thời lượng quá dài. ',
         ],
 
         'status' => [

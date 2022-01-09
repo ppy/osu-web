@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Hasil pencarian tidak dapat ditampilkan pada saat ini. Mohon coba lagi nanti.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'Aktivitas pencarian saat ini lebih sibuk dari biasanya. Mohon coba lagi nanti.',
     ],
 ];

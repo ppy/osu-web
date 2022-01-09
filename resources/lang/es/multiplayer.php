@@ -14,7 +14,7 @@ return [
         'time_left' => 'quedan :time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'La duración es demasiado larga.',
         ],
 
         'status' => [

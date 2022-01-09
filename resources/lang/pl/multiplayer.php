@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Brak rozegranych gier w trybie wieloosobowym!',
+    'empty' => 'Brak rozegranych gier wieloosobowych osu!(lazer)!',
 
     'room' => [
         'hosted_by' => 'utworzona przez :user',
@@ -14,7 +14,7 @@ return [
         'time_left' => 'pozostało :time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Czas trwania jest zbyt długi.',
         ],
 
         'status' => [
