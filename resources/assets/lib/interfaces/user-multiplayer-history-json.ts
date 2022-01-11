@@ -5,6 +5,10 @@ import BeatmapJson from './beatmap-json';
 import BeatmapsetJson from './beatmapset-json';
 import RoomJson from './room-json';
 
+export interface UserMultiplayerHistoryIndexJson {
+  any: UserMultiplayerHistoryJson;
+}
+
 export default interface UserMultiplayerHistoryJson {
   beatmaps: BeatmapJson[];
   beatmapsets: BeatmapsetJson[];

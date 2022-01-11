@@ -4,8 +4,8 @@
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import RoomJson from 'interfaces/room-json';
-import UserMultiplayerHistoryJson from 'interfaces/user-multiplayer-history-json';
-import { observable } from 'mobx';
+import UserMultiplayerHistoryJson, { UserMultiplayerHistoryIndexJson } from 'interfaces/user-multiplayer-history-json';
+import { action, observable } from 'mobx';
 import * as React from 'react';
 
 interface Props {
@@ -13,6 +13,16 @@ interface Props {
   beatmapsets: Map<number, BeatmapsetJson>;
   cursor: unknown;
   rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[];
+}
+
+export class Stores {
+  @observable
+  any = makeStore();
+
+  @action
+  updateWithJson(json: UserMultiplayerHistoryIndexJson) {
+    updateStore(this.any, json.any);
+  }
 }
 
 export function makeStore(): Props {
