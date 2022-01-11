@@ -37,4 +37,14 @@ abstract class BeatmapsetDiscussionsBundleBase
 
         return $this->paginator;
     }
+
+    protected function getCursor()
+    {
+        $paginator = $this->getPaginator();
+        return $paginator->hasMorePages() ? [
+            // TODO: move to non-offset
+            'page' => $paginator->currentPage() + 1,
+            'limit' => $paginator->perPage(),
+        ] : null;
+    }
 }

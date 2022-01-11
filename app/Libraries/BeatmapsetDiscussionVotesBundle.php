@@ -24,6 +24,7 @@ class BeatmapsetDiscussionVotesBundle extends BeatmapsetDiscussionsBundleBase
     public function toArray()
     {
         return [
+            'cursor' => $this->getCursor(),
             'discussions' => json_collection($this->getDiscussions(), new BeatmapDiscussionTransformer()),
             'users' => json_collection($this->getUsers(), new UserCompactTransformer(), ['groups']),
             'votes' => json_collection($this->getVotes(), new BeatmapDiscussionVoteTransformer()),
