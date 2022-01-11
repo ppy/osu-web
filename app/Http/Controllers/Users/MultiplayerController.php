@@ -20,10 +20,6 @@ class MultiplayerController extends Controller
     {
         $request = request();
         $user = FindForProfilePage::find($request->route('user'));
-        $params = get_params($request->all(), null, [
-            'cursor:any',
-            'limit:int',
-        ], ['null_missing' => true]);
 
         $jsonUser = json_item(
             $user,
@@ -31,21 +27,27 @@ class MultiplayerController extends Controller
             UserTransformer::PROFILE_HEADER_INCLUDES,
         );
 
-        $json = $this->getJson($user, $params);
+        $params = get_params($request->all(), null, [
+            'category:string',
+            'cursor:any',
+            'limit:int',
+        ], ['null_missing' => true]);
 
-        if (is_json_request()) {
-            return $json;
+        if (!is_json_request()) {
+            $json = $this->getJson($user, $params, 'any');
+
+            return ext_view('users.multiplayer.index', compact('json', 'jsonUser', 'user'));
         }
 
-        return ext_view('users.multiplayer.index', compact('json', 'jsonUser', 'user'));
+        return $this->getJson($user, $params, $params['category']);
     }
 
-    private function getJson(User $user, array $params)
+    private function getJson(User $user, array $params, ?string $category)
     {
         $limit = clamp(get_int($params['limit']) ?? 50, 1, 50);
 
         $search = Room::search([
-            'category' => 'any',
+            'category' => $category,
             'cursor' => $params['cursor'],
             'user' => $user,
             'limit' => $limit,
