@@ -7,14 +7,13 @@ import { Modal } from 'modal'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
-import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Info extends React.Component
   constructor: (props) ->
     super props
 
-    @eventId = "beatmapsets-show-info-#{nextVal()}"
+    @disposers = new Set
     @overlayRef = React.createRef()
     @chartAreaRef = React.createRef()
 
@@ -33,8 +32,7 @@ export class Info extends React.Component
 
 
   componentWillUnmount: =>
-    $(window).off ".#{@eventId}"
-    $(document).off ".#{@eventId}"
+    @disposers.forEach (disposer) => disposer?()
 
 
   toggleEditingDescription: =>
@@ -95,12 +93,15 @@ export class Info extends React.Component
           y: d3.scaleLinear()
         modifiers: ['beatmap-success-rate']
 
-      @_failurePointsChart = new StackedBarChart @chartAreaRef.current, options
-      $(window).on "resize.#{@eventId}", @_failurePointsChart.resize
+      failurePointsChart = new StackedBarChart @chartAreaRef.current, options
+      @_failurePointsChart = failurePointsChart
+      $(window).on 'resize', failurePointsChart.resize
+      @disposers.add(=> $(window).off 'resize', failurePointsChart.resize)
 
-    core.reactTurbolinks.runAfterPageLoad @eventId, =>
+    @disposers.add(core.reactTurbolinks.runAfterPageLoad =>
       @_failurePointsChart.loadData @props.beatmap.failtimes
       @_failurePointsChart.reattach @chartAreaRef.current
+    )
 
 
   renderEditMetadataButton: =>
