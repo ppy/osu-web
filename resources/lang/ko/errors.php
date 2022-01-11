@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => '결과를 불러오지 못했습니다. 나중에 다시 시도해주세요.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => '검색 기능의 사용량이 평소보다 많습니다, 잠시 후 다시 시도해 주세요.',
     ],
 ];

@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Ничего не найдено, попробуйте позже.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'Поиск сейчас перегружен, попробуйте позже.',
     ],
 ];

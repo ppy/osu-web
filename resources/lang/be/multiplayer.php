@@ -14,7 +14,7 @@ return [
         'time_left' => ':time засталася',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Вельмі вялікая працягласць.',
         ],
 
         'status' => [

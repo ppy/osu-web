@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Negalėjome rasti rezultatų, prašome bandyti vėliau.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => '',
     ],
 ];

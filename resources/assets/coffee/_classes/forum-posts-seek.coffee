@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { fadeIn, fadeOut } from 'utils/fade'
+
 class window.ForumPostsSeek
   constructor: (@forum) ->
     @tooltip = document.getElementsByClassName('js-forum-posts-seek--tooltip')
@@ -19,7 +21,7 @@ class window.ForumPostsSeek
   hideTooltip: =>
     return if @tooltip.length == 0
 
-    Fade.out @tooltip[0]
+    fadeOut @tooltip[0]
 
 
   move: (e) =>
@@ -28,7 +30,7 @@ class window.ForumPostsSeek
 
     @setPostPosition(e.clientX)
 
-    Fade.in @tooltip[0]
+    fadeIn @tooltip[0]
 
     Timeout.clear @_autohide
     @_autohide = Timeout.set 1000, @hideTooltip

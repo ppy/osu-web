@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => '',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => '',
     ],
 ];

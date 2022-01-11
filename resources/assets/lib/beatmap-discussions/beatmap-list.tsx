@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Blackout from 'blackout';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
+import { blackoutToggle } from 'utils/blackout';
 import { classWithModifiers } from 'utils/css';
 import { nextVal } from 'utils/seq';
 import BeatmapListItem from './beatmap-list-item';
@@ -104,7 +104,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   };
 
   private syncBlackout = () => {
-    Blackout.toggle(this.state.showingSelector, 0.5);
+    blackoutToggle(this.state.showingSelector, 0.5);
   };
 
   private toggleSelector = (e: React.MouseEvent<HTMLElement>) => {
