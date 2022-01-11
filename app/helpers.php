@@ -874,7 +874,7 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 
 function wiki_image_url(string $path, bool $fullUrl = true)
 {
-    static $placeholder = ':WIKI_IMAGE:';
+    static $placeholder = '_WIKI_IMAGE_';
 
     return str_replace($placeholder, $path, route('wiki.image', ['path' => $placeholder], $fullUrl));
 }
