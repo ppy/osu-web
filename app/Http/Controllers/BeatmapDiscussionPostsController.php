@@ -57,12 +57,12 @@ class BeatmapDiscussionPostsController extends Controller
      *   The response of this endpoint is likely to change soon!
      * </aside>
      *
-     * Field       | Type                                                    | Description
-     * ----------- | ------------------------------------------------------- | -----------
-     * beatmapsets | [BeatmapsetCompact](#beatmapsetcompact)                 | |
-     * cursor      | [Cursor](#cursor)                                       | |
-     * posts       | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[] | |
-     * users       | [UserCompact](#usercompact)                             | |
+     * Field         | Type                                                    | Description
+     * ------------- | ------------------------------------------------------- | -----------
+     * beatmapsets   | [BeatmapsetCompact](#beatmapsetcompact)                 | |
+     * cursor_string | string?                                                 | |
+     * posts         | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[] | |
+     * users         | [UserCompact](#usercompact)                             | |
      *
      * @queryParam beatmapset_discussion_id `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
      * @queryParam limit Maximum number of results.
