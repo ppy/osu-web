@@ -60,7 +60,6 @@ class BeatmapDiscussionPostsController extends Controller
      * Field       | Type                                                    | Description
      * ----------- | ------------------------------------------------------- | -----------
      * beatmapsets | [BeatmapsetCompact](#beatmapsetcompact)                 | |
-     * cursor      | [Cursor](#cursor)                                       | |
      * posts       | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[] | |
      * users       | [UserCompact](#usercompact)                             | |
      *

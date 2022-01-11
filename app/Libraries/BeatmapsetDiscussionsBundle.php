@@ -40,7 +40,6 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
 
         return [
             'beatmaps' => json_collection($this->getBeatmaps(), new BeatmapTransformer()),
-            'cursor' => $this->getCursor(),
             'discussions' => json_collection($this->getDiscussions(), new BeatmapDiscussionTransformer(), $discussionIncludes),
             'included_discussions' => json_collection($this->getRelatedDiscussions(), new BeatmapDiscussionTransformer(), $discussionIncludes),
             'reviews_config' => BeatmapsetDiscussionReview::config(),

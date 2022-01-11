@@ -84,7 +84,6 @@ class BeatmapDiscussionsController extends Controller
      * Field                     | Type                                            | Description
      * ------------------------- | ----------------------------------------------- | -----------------------------------------------------------------------
      * beatmaps                  | [Beatmap](#beatmap)[]                           | List of beatmaps associated with the discussions returned.
-     * cursor                    | [Cursor](#cursor)                               | |
      * discussions               | [BeatmapsetDiscussion](#beatmapsetdiscussion)[] | List of discussions according to `sort` order.
      * included_discussions      | [BeatmapsetDiscussion](#beatmapsetdiscussion)[] | Additional discussions related to `discussions`.
      * reviews_config.max_blocks | number                                          | Maximum number of blocks allowed in a review.
