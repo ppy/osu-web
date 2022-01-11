@@ -8,6 +8,7 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Libraries\User\FindForProfilePage;
 use App\Models\Multiplayer\Room;
+use App\Models\User;
 use App\Transformers\BeatmapCompactTransformer;
 use App\Transformers\BeatmapsetCompactTransformer;
 use App\Transformers\Multiplayer\RoomTransformer;
@@ -19,11 +20,33 @@ class MultiplayerController extends Controller
     {
         $request = request();
         $user = FindForProfilePage::find($request->route('user'));
-        $params = $request->all();
-        $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+        $params = get_params($request->all(), null, [
+            'cursor:any',
+            'limit:int',
+        ], ['null_missing' => true]);
+
+        $jsonUser = json_item(
+            $user,
+            (new UserTransformer())->setMode($user->playmode),
+            UserTransformer::PROFILE_HEADER_INCLUDES,
+        );
+
+        $json = $this->getJson($user, $params);
+
+        if (is_json_request()) {
+            return $json;
+        }
+
+        return ext_view('users.multiplayer.index', compact('json', 'jsonUser', 'user'));
+    }
+
+    private function getJson(User $user, array $params)
+    {
+        $limit = clamp(get_int($params['limit']) ?? 50, 1, 50);
 
         $search = Room::search([
-            'cursor' => $params['cursor'] ?? null,
+            'category' => 'any',
+            'cursor' => $params['cursor'],
             'user' => $user,
             'limit' => $limit,
             'mode' => 'participated',
@@ -34,24 +57,12 @@ class MultiplayerController extends Controller
         $beatmaps = $rooms->pluck('playlist')->flatten(1)->pluck('beatmap')->unique()->values();
         $beatmapsets = $beatmaps->pluck('beatmapset')->unique()->values();
 
-        $jsonUser = json_item(
-            $user,
-            (new UserTransformer())->setMode($user->playmode),
-            UserTransformer::PROFILE_HEADER_INCLUDES,
-        );
-
-        $json = [
+        return [
             'beatmaps' => json_collection($beatmaps, new BeatmapCompactTransformer()),
             'beatmapsets' => json_collection($beatmapsets, new BeatmapsetCompactTransformer()),
             'cursor' => $hasMore ? $search['cursorHelper']->next($rooms) : null,
             'rooms' => json_collection($rooms, new RoomTransformer(), ['host', 'playlist']),
             'search' => $search['search'],
         ];
-
-        if (is_json_request()) {
-            return $json;
-        }
-
-        return ext_view('users.multiplayer.index', compact('json', 'jsonUser', 'user'));
     }
 }
