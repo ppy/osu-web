@@ -8,6 +8,7 @@ RUN add-apt-repository ppa:ondrej/php
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     build-essential \
+    chromium-browser \
     composer \
     curl \
     git \
@@ -39,10 +40,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
 RUN npm install -g yarn
 
 RUN curl -L "https://getcomposer.org/download/latest-2.x/composer.phar" > /usr/local/bin/composer && chmod 755 /usr/local/bin/composer
-
-RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y ./google-chrome-stable_current_amd64.deb && \
-    rm google-chrome-stable_current_amd64.deb
 
 WORKDIR /app
 
