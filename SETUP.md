@@ -7,11 +7,11 @@ There are a few different options to get started:
 ### Install prerequisites
 
 - MySQL 8.0+
-- PHP 7.2+ (with curl, gd, intl, json, mbstring, mcrypt, mysql, xml and zip extensions)
+- PHP 8.0+ (with curl, gd, intl, json, mbstring, mcrypt, mysql, xml and zip extensions)
 - nginx (or other webserver)
-- Node.js 8 or 9 (and a modern version of npm)
-- elasticsearch 5+
-- redis (not required, but you may want to use for caching and laravel's job-queue)
+- Node.js 16
+- elasticsearch 6+
+- redis
 
 ### Clone the git repository
 
