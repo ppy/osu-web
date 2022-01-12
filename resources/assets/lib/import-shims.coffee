@@ -3,13 +3,9 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
-import Gallery from 'gallery'
 import * as laroute from 'laroute'
-import { StoreCheckout } from 'store-checkout'
 import { parseJson, parseJsonNullable } from 'utils/json'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
-
-window.gallery ?= new Gallery
 
 window._exported = {
   pageChange
@@ -20,5 +16,3 @@ window._exported = {
 
 # FIXME: remove once everything imports instead of using global
 window.laroute ?= laroute
-
-window.StoreCheckout = StoreCheckout
