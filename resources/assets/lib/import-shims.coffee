@@ -3,12 +3,9 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
-import { parseJson, parseJsonNullable } from 'utils/json'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
 
 window._exported = {
   pageChange
   pageChangeImmediate
-  parseJson
-  parseJsonNullable
 }
