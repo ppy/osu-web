@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import Mod from 'components/mod';
 import ScoreJson from 'interfaces/score-json';
-import Mod from 'mod';
 import * as moment from 'moment';
 import * as React from 'react';
 

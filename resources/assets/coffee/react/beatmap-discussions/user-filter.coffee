@@ -2,9 +2,10 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import mapperGroup from 'beatmap-discussions/mapper-group'
+import { SelectOptions } from 'components/select-options'
 import * as React from 'react'
 import { a } from 'react-dom-factories'
-import { SelectOptions } from 'select-options'
+
 el = React.createElement
 
 allUsers =

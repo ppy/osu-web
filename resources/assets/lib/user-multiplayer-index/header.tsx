@@ -1,14 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import HeaderV4 from 'header-v4';
+import HeaderV4 from 'components/header-v4';
+import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import Badges from 'profile-page/badges';
 import Detail from 'profile-page/detail';
 import HeaderInfo from 'profile-page/header-info';
 import headerLinks from 'profile-page/header-links';
 import Links from 'profile-page/links';
-import ProfileTournamentBanner from 'profile-tournament-banner';
 import * as React from 'react';
 
 interface Props {

@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { Discussion } from './discussion'
-import { IconExpand } from 'icon-expand'
+import { IconExpand } from 'components/icon-expand'
 import * as React from 'react'
 import { a, button, div, i, p, span } from 'react-dom-factories'
 import { jsonClone } from 'utils/json'

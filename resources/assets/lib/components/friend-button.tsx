@@ -7,9 +7,9 @@ import { observable, computed, action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { Spinner } from 'spinner';
 import { onErrorWithCallback } from 'utils/ajax';
 import { Modifiers, classWithModifiers } from 'utils/css';
+import { Spinner } from './spinner';
 
 const bn = 'user-action-button';
 

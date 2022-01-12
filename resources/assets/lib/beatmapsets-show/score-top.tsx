@@ -1,18 +1,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import FlagCountry from 'flag-country';
+import FlagCountry from 'components/flag-country';
+import Mod from 'components/mod';
+import ScoreboardTime from 'components/scoreboard-time';
+import StringWithComponent from 'components/string-with-component';
+import TimeWithTooltip from 'components/time-with-tooltip';
+import UserAvatar from 'components/user-avatar';
+import { UserLink } from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
 import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
-import Mod from 'mod';
 import * as React from 'react';
-import ScoreboardTime from 'scoreboard-time';
 import PpValue from 'scores/pp-value';
-import StringWithComponent from 'string-with-component';
-import TimeWithTooltip from 'time-with-tooltip';
-import UserAvatar from 'user-avatar';
-import { UserLink } from 'user-link';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { modeAttributesMap } from 'utils/score-helper';

@@ -1,13 +1,13 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Event } from './event'
-import { Game } from './game'
+import ShowMoreLink from 'components/show-more-link'
 import * as React from 'react'
 import { button, div, h3 } from 'react-dom-factories'
-import ShowMoreLink from 'show-more-link'
 import { classWithModifiers } from 'utils/css'
 import { bottomPageDistance } from 'utils/html'
+import { Event } from './event'
+import { Game } from './game'
 
 el = React.createElement
 

@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BackToTop } from 'back-to-top'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import NewReview from 'beatmap-discussions/new-review'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
+import { BackToTop } from 'components/back-to-top'
 import { route } from 'laroute'
 import { deletedUser } from 'models/user'
 import core from 'osu-core-singleton'

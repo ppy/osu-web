@@ -1,8 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DifficultyBadge from 'difficulty-badge';
-import Img2x from 'img2x';
+import DifficultyBadge from 'components/difficulty-badge';
+import Img2x from 'components/img2x';
+import StringWithComponent from 'components/string-with-component';
+import { UserLink } from 'components/user-link';
 import RoomJson from 'interfaces/room-json';
 import { route } from 'laroute';
 import { maxBy, minBy } from 'lodash';
@@ -10,8 +12,6 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
-import { UserLink } from 'user-link';
 import UserMultiplayerHistoryContext from 'user-multiplayer-history-context';
 import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';

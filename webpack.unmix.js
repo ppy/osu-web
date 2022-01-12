@@ -270,7 +270,6 @@ const resolve = {
 
     resolvePath('resources/assets/coffee'),
     resolvePath('resources/assets/coffee/react'),
-    resolvePath('resources/assets/coffee/react/_components'),
 
     resolvePath('node_modules'),
   ],

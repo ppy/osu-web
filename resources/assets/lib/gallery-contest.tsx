@@ -4,8 +4,8 @@
 import * as React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { nextVal } from 'utils/seq';
-import GalleryContestVoteButton from './gallery-contest-vote-button';
-import GalleryContestVoteProgress from './gallery-contest-vote-progress';
+import GalleryContestVoteButton from './components/gallery-contest-vote-button';
+import GalleryContestVoteProgress from './components/gallery-contest-vote-progress';
 
 export default class GalleryContest {
   private eventId: string;
