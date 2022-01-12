@@ -2,8 +2,8 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'flag-country'
-import { round } from 'lodash'
 import { route } from 'laroute'
+import { round } from 'lodash'
 import Mod from 'mod'
 import { PlayDetailMenu } from 'play-detail-menu'
 import * as React from 'react'
@@ -49,7 +49,7 @@ export class ScoreboardTableRow extends React.PureComponent
         if score.user.country_code
           a
             className: "#{bn}__cell-content"
-            href: laroute.route 'rankings',
+            href: route 'rankings',
               mode: @props.beatmap.mode
               country: score.user.country_code
               type: 'performance'
@@ -64,7 +64,7 @@ export class ScoreboardTableRow extends React.PureComponent
           a
             className: "#{bn}__cell-content #{bn}__cell-content--user-link js-usercard"
             'data-user-id': score.user.id
-            href: laroute.route 'users.show', user: score.user.id, mode: @props.beatmap.mode
+            href: route 'users.show', user: score.user.id, mode: @props.beatmap.mode
             score.user.username
 
           a

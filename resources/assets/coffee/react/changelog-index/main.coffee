@@ -4,10 +4,12 @@
 import { Build } from 'build'
 import { ChangelogHeaderStreams } from 'changelog-header-streams'
 import HeaderV4 from 'header-v4'
+import { route } from 'laroute'
 import * as React from 'react'
 import { button, div, h1, p, span } from 'react-dom-factories'
 import ShowMoreLink from 'show-more-link'
 import { jsonClone } from 'utils/json'
+
 el = React.createElement
 
 groupChangelogBuilds = (builds) ->
@@ -65,7 +67,7 @@ export class Main extends React.PureComponent
     [
       {
         title: osu.trans 'layout.header.changelog.index'
-        url: laroute.route('changelog.index')
+        url: route('changelog.index')
       }
     ]
 
@@ -77,7 +79,7 @@ export class Main extends React.PureComponent
     search.max_id = _.last(@state.builds).id - 1
     @setState loading: true
 
-    $.get laroute.route('changelog.index'), search
+    $.get route('changelog.index'), search
     .done (data) =>
       @setState @newStateFromData(data)
     .always =>

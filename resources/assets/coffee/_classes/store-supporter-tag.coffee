@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
+
 class window.StoreSupporterTag
   RESOLUTION: 8
   MIN_VALUE: 4
@@ -79,7 +81,7 @@ class window.StoreSupporterTag
         username: username
       dataType: 'json',
       type: 'POST'
-      url: laroute.route('users.check-username-exists')
+      url: route('users.check-username-exists')
     .done (data) =>
       @user = data
 

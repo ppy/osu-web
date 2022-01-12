@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { currentUrl } from 'utils/turbolinks'
 import { openBeatmapEditor, linkHtml } from 'utils/url'
@@ -183,7 +184,7 @@ class window.BeatmapDiscussionHelper
         params.beatmap = discussionState.beatmapId
         params.mode = discussionState.mode
 
-    url = new URL(laroute.route('beatmapsets.discussion', params))
+    url = new URL(route('beatmapsets.discussion', params))
     if discussionId?
       url.hash = "/#{discussionId}"
       url.hash += "/#{post.id}" if post?

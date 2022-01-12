@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
+
 preventUsernameSubmission = ->
   StoreCart.setEnabled(false)
   $('#username-check-price').text ''
@@ -9,7 +11,7 @@ checkUsernameValidity = ->
   $status = $('#username-check-status')
   requestedUsername = $('.js-username-change-input').val()
 
-  $.post laroute.route('users.check-username-availability'), username: requestedUsername
+  $.post route('users.check-username-availability'), username: requestedUsername
   .done (data) ->
     return unless data.username == $('.js-username-change-input').val()
 

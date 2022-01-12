@@ -1,10 +1,12 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Voter } from './voter'
+import { route } from 'laroute'
 import * as React from 'react'
 import { a,i,div,span } from 'react-dom-factories'
 import TrackPreview from 'track-preview'
+import { Voter } from './voter'
+
 el = React.createElement
 
 export class Entry extends React.Component
@@ -42,7 +44,7 @@ export class Entry extends React.Component
           el TrackPreview, track: @props.entry
       if @props.options.showLink && @props.entry.preview
         if @props.contest.best_of
-          a href: laroute.route('beatmapsets.show', beatmapset: @props.entry.preview), className: 'contest-voting-list__icon contest-voting-list__icon--best-of', style: { background: "url(https://b.ppy.sh/thumb/#{@props.entry.preview}.jpg)" },
+          a href: route('beatmapsets.show', beatmapset: @props.entry.preview), className: 'contest-voting-list__icon contest-voting-list__icon--best-of', style: { background: "url(https://b.ppy.sh/thumb/#{@props.entry.preview}.jpg)" },
             span className: 'contest-voting-list__link contest-voting-list__link--shadowed',
               i className: "fal fa-fw fa-lg fa-#{@props.contest.link_icon}"
         else
@@ -60,7 +62,7 @@ export class Entry extends React.Component
           a
             className: 'contest-voting-list__entrant js-usercard',
             'data-user-id': @props.entry.results.user_id,
-            href: laroute.route('users.show', user: @props.entry.results.user_id),
+            href: route('users.show', user: @props.entry.results.user_id),
               @props.entry.results.username
       else
         div className: 'contest-voting-list__title u-ellipsis-overflow', entry_title
