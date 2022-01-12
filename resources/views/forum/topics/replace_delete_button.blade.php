@@ -30,7 +30,7 @@ Timeout.set(0, function () {
                 'type' => $type,
             ])->render()) !!});
         @endforeach
-        _exported.pageChange();
+        window.forum.throttledBoot();
     @endif
 
     window.forum.setTotalPosts(window.forum.totalPosts() + {{ $countDifference }});
