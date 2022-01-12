@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'big-button'
+import { route } from 'laroute'
 import * as React from 'react'
 import { a, button, div, h1, h2, p } from 'react-dom-factories'
 el = React.createElement
@@ -35,7 +36,7 @@ export class Subscribe extends React.PureComponent
   toggleWatch: =>
     @setState loading: true
 
-    @xhr = $.ajax laroute.route('beatmapsets.watches.update', watch: @props.beatmapset.id),
+    @xhr = $.ajax route('beatmapsets.watches.update', watch: @props.beatmapset.id),
       type: if @isWatching() then 'DELETE' else 'PUT'
       dataType: 'json'
     .done (data) =>

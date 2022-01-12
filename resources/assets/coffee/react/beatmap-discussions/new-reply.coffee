@@ -1,8 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { MessageLengthCounter } from './message-length-counter'
 import BigButton from 'big-button'
+import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -10,6 +10,7 @@ import { button, div, form, input, label, span, i } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
 import { createClickCallback } from 'utils/html'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+import { MessageLengthCounter } from './message-length-counter'
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -164,7 +165,7 @@ export class NewReply extends React.PureComponent
                when 'reply_reopen' then false
                else null
 
-    @postXhr = $.ajax laroute.route('beatmapsets.discussions.posts.store'),
+    @postXhr = $.ajax route('beatmapsets.discussions.posts.store'),
       method: 'POST'
       data:
         beatmap_discussion_id: @props.discussion.id

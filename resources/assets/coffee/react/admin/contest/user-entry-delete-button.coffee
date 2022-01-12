@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
 import * as React from 'react'
 import { br, tr, td, button, a, img, dl, dt, dd, i } from 'react-dom-factories'
 el = React.createElement
@@ -17,7 +18,7 @@ export class UserEntryDeleteButton extends React.Component
       params.method = 'POST'
       destroyOrRestore = 'restore'
 
-    $.ajax laroute.route("admin.user-contest-entries.#{destroyOrRestore}", user_contest_entry: @props.entry.id), params
+    $.ajax route("admin.user-contest-entries.#{destroyOrRestore}", user_contest_entry: @props.entry.id), params
       .done (data) =>
         $.publish "admin:contest:entries:#{destroyOrRestore}", entry: @props.entry.id
       .fail osu.ajaxError

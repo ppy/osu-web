@@ -1,10 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { UserEntryDeleteButton } from './user-entry-delete-button'
+import { route } from 'laroute'
 import * as React from 'react'
 import { tr, td, a, div } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
+import { UserEntryDeleteButton } from './user-entry-delete-button'
 el = React.createElement
 
 export class UserEntry extends React.Component
@@ -19,7 +20,7 @@ export class UserEntry extends React.Component
       td className: 'osu-table__cell admin-contest-entry__column',
         a
           className: 'admin-contest-entry__user-link'
-          href: laroute.route('users.show', user: @props.entry.user.id),
+          href: route('users.show', user: @props.entry.user.id),
           div className: 'admin-contest-entry__avatar',
             el UserAvatar, user: @props.entry.user, modifiers: ['full-rounded']
           @props.entry.user.username
