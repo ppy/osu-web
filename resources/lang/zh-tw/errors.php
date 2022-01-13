@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => '無法獲得任何結果，請稍後再試。',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => '搜索目前比平常更繁忙，稍後再試。',
     ],
 ];

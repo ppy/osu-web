@@ -14,7 +14,7 @@ return [
         'time_left' => '剩下 :time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => '持續時間過長。',
         ],
 
         'status' => [

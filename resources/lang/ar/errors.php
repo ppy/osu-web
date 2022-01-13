@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'لم نمتكن من جلب اي نتائج, حاول مجددا لاحقا.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'حاليا البحث مشغول اكثر من العادة, حاول مجددا لاحقا.',
     ],
 ];
