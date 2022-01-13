@@ -73,7 +73,9 @@ At this point you should be able to access the site via whatever webserver you c
   - To run artisan commands, run using `docker-compose run --rm php artisan`.
 
 ---
-**Note**
+**Notes**
+
+### Windows
 
 On Windows, the files inside Linux system can be found in Explorer from `\\wsl$` location.
 
@@ -85,6 +87,10 @@ Due to difference in file permission and line endings, adjustments on git may be
 git config core.eol lf
 git config core.filemode false
 ```
+
+### ARM-bsed CPUs
+
+Tests that require the use of ChromeDriver (both Karma and Dusk tests) will not work inside Docker when running on ARM-based CPUs (e.g. Macs running Apple Silicon). In this scenario, these tests should be run outside of a container.
 
 ---
 
