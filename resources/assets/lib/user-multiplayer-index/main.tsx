@@ -13,7 +13,7 @@ interface Props {
   user: UserExtendedJson;
 }
 
-function renderHistory(props: Props, type: 'any' | 'realtime') {
+function renderHistory(props: Props, type: 'playlists' | 'realtime') {
   return (
     <div className='user-profile-pages__item'>
       <div className='page-extra'>
@@ -31,7 +31,7 @@ export default function Main(props: Props) {
     <UserProfileContainer user={props.user}>
       <Header user={props.user} />
       <div className='user-profile-pages'>
-        {renderHistory(props, 'any')}
+        {renderHistory(props, 'playlists')}
         {renderHistory(props, 'realtime')}
       </div>
     </UserProfileContainer>

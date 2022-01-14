@@ -102,9 +102,11 @@ class Room extends Model
         $user = $params['user'];
         $sort = $params['sort'] ?? null;
 
-        $category = presence(get_string($params['category'] ?? null)) ?? 'any';
+        $category = presence(get_string($params['category'] ?? null)) ?? 'playlists';
         switch ($category) {
+            // TODO: check if lazer uses any at all?
             case 'any':
+            case 'playlists':
                 $query->where('type', static::PLAYLIST_TYPE);
                 break;
             case 'realtime':
