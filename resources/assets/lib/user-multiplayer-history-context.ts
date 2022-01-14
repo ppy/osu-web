@@ -18,10 +18,12 @@ interface Props {
 export class Stores {
   @observable
   any = makeStore();
+  realtime = makeStore();
 
   @action
   updateWithJson(json: UserMultiplayerHistoryIndexJson) {
     updateStore(this.any, json.any);
+    updateStore(this.realtime, json.realtime);
   }
 }
 

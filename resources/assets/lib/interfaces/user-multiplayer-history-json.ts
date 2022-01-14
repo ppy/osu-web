@@ -5,9 +5,8 @@ import BeatmapJson from './beatmap-json';
 import BeatmapsetJson from './beatmapset-json';
 import RoomJson from './room-json';
 
-export interface UserMultiplayerHistoryIndexJson {
-  any: UserMultiplayerHistoryJson;
-}
+// TODO: change to RoomType?
+export type UserMultiplayerHistoryIndexJson = Record<'any' | 'realtime', UserMultiplayerHistoryJson>;
 
 export default interface UserMultiplayerHistoryJson {
   beatmaps: BeatmapJson[];

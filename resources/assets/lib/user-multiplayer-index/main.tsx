@@ -13,19 +13,26 @@ interface Props {
   user: UserExtendedJson;
 }
 
+function renderHistory(props: Props, type: 'any' | 'realtime') {
+  return (
+    <div className='user-profile-pages__item'>
+      <div className='page-extra'>
+        <h2 className='title title--page-extra'>{osu.trans(`users.show.extra.multiplayer.${type}.title`)}</h2>
+        <UserMultiplayerHistoryContext.Provider value={props.stores[type]}>
+          <MultiplayerHistory user={props.user} />
+        </UserMultiplayerHistoryContext.Provider>
+      </div>
+    </div>
+  );
+}
+
 export default function Main(props: Props) {
   return (
     <UserProfileContainer user={props.user}>
       <Header user={props.user} />
       <div className='user-profile-pages'>
-        <div className='user-profile-pages__item'>
-          <div className='page-extra'>
-            <h2 className='title title--page-extra'>{osu.trans('users.show.extra.multiplayer.title')}</h2>
-            <UserMultiplayerHistoryContext.Provider value={props.stores.any}>
-              <MultiplayerHistory user={props.user} />
-            </UserMultiplayerHistoryContext.Provider>
-          </div>
-        </div>
+        {renderHistory(props, 'any')}
+        {renderHistory(props, 'realtime')}
       </div>
     </UserProfileContainer>
   );
