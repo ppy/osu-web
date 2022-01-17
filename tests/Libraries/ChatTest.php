@@ -56,7 +56,7 @@ class ChatTest extends TestCase
     }
 
     /**
-     * @dataProvider groupsDataProvider
+     * @dataProvider sendPmFriendsOnlyGroupsDataProvider
      */
     public function testSendPMFriendsOnly(?string $groupIdentifier, $successful)
     {
@@ -86,6 +86,34 @@ class ChatTest extends TestCase
             );
         }
     }
+
+    /**
+     * @dataProvider sendPmSenderFriendsOnlyGroupsDataProvider
+     */
+    public function testSendPmSenderFriendsOnly(?string $groupIdentifier)
+    {
+        $sender = User::factory()->withGroup($groupIdentifier)->create(['pm_friends_only' => true]);
+        $sender->markSessionVerified();
+        $target = User::factory()->create(['pm_friends_only' => false]);
+
+        $initialChannelsCount = Channel::count();
+        $initialMessagesCount = Message::count();
+
+        try {
+            Chat::sendPrivateMessage($sender, $target, 'test message', false);
+        } catch (Exception $e) {
+            $savedException = $e;
+        }
+
+        $this->assertNull(Channel::findPM($sender, $target));
+        $this->assertSame($initialChannelsCount, Channel::count());
+        $this->assertSame($initialMessagesCount, Message::count());
+        $this->assertSame(
+            osu_trans('authorization.chat.receive_friends_only'),
+            $savedException->getMessage()
+        );
+    }
+
 
     public function testSendPMTooLongNotCreatingNewChannel()
     {
@@ -129,7 +157,7 @@ class ChatTest extends TestCase
         $this->assertSame($initialMessagesCount + 1, Message::count());
     }
 
-    public function groupsDataProvider()
+    public function sendPmFriendsOnlyGroupsDataProvider()
     {
         return [
             ['admin', true],
@@ -138,6 +166,18 @@ class ChatTest extends TestCase
             ['gmt', true],
             ['nat', true],
             [null, false],
+        ];
+    }
+
+    public function sendPmSenderFriendsOnlyGroupsDataProvider()
+    {
+        return [
+            // admin skip because OsuAuthorize skips the check when admin.
+            ['bng'],
+            ['bot'],
+            ['gmt'],
+            ['nat'],
+            [null],
         ];
     }
 
