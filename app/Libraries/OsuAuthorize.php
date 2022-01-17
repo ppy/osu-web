@@ -847,14 +847,6 @@ class OsuAuthorize
             $this->ensureHasPlayed($user);
         }
 
-        if ($user->isModerator()) {
-            return 'ok';
-        }
-
-        if ($channel->moderated) {
-            return $prefix.'moderated';
-        }
-
         if ($channel->isPM()) {
             $target = $channel->pmTargetFor($user);
             if ($target === null) {
@@ -867,6 +859,14 @@ class OsuAuthorize
             }
         } else if (!$channel->exists) {
             return $prefix.'no_channel';
+        }
+
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        if ($channel->moderated) {
+            return $prefix.'moderated';
         }
 
         // TODO: add actual permission checks for bancho multiplayer games?
@@ -896,6 +896,10 @@ class OsuAuthorize
             $this->ensureHasPlayed($user);
         }
 
+        if ($user->pm_friends_only && !$user->hasFriended($target)) {
+            return $prefix.'receive_friends_only';
+        }
+
         if ($user->isModerator() || $user->isBot()) {
             return 'ok';
         }
@@ -906,10 +910,6 @@ class OsuAuthorize
 
         if ($target->pm_friends_only && !$target->hasFriended($user)) {
             return $prefix.'friends_only';
-        }
-
-        if ($user->pm_friends_only && !$user->hasFriended($target)) {
-            return $prefix.'receive_friends_only';
         }
 
         return 'ok';
