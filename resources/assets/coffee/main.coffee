@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import Gallery from 'gallery'
+import { StoreCheckout } from 'store-checkout'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 
 window.polyfills ?= new Polyfills
@@ -50,6 +52,7 @@ window.forumAutoClick ?= new ForumAutoClick
 window.forumCover ?= new ForumCover
 window.forumTopicTitle ?= new ForumTopicTitle
 window.forumTopicWatchAjax ?= new ForumTopicWatchAjax
+window.gallery ?= new Gallery
 window.globalDrag ?= new GlobalDrag
 window.landingGraph ?= new LandingGraph
 window.menu ?= new Menu
