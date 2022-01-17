@@ -908,6 +908,10 @@ class OsuAuthorize
             return $prefix.'friends_only';
         }
 
+        if ($user->pm_friends_only && !$user->hasFriended($target)) {
+            return $prefix.'receive_friends_only';
+        }
+
         return 'ok';
     }
 
