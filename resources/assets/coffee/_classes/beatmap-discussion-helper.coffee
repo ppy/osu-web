@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { currentUrl } from 'utils/turbolinks'
 import { openBeatmapEditor, linkHtml } from 'utils/url'
 
@@ -39,7 +40,7 @@ class window.BeatmapDiscussionHelper
     blockName = 'beatmapset-discussion-message'
     text = _.escape text
     text = text.trim()
-    text = _exported.discussionLinkify text
+    text = discussionLinkify text
     text = @linkTimestamp text, ['beatmap-discussion-timestamp-decoration']
 
     if options.newlines ? true
