@@ -81,7 +81,7 @@ class ChatTest extends TestCase
             $this->assertSame($initialChannelsCount, Channel::count());
             $this->assertSame($initialMessagesCount, Message::count());
             $this->assertSame(
-                'User is blocking messages from people not on their friends list.',
+                osu_trans('authorization.chat.friends_only'),
                 $savedException->getMessage()
             );
         }
@@ -135,7 +135,7 @@ class ChatTest extends TestCase
         $this->assertSame($initialChannelsCount, Channel::count());
         $this->assertSame($initialMessagesCount, Message::count());
         $this->assertSame(
-            'The message you are trying to send is too long.',
+            osu_trans('api.error.chat.too_long'),
             $savedException->getMessage()
         );
     }
