@@ -3,6 +3,7 @@
 
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
+import FriendUpdated from 'actions/friend-updated';
 import SocketMessageSendAction from 'actions/socket-message-send-action';
 import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
@@ -14,7 +15,7 @@ import Channel from 'models/chat/channel';
 import ChannelStore from 'stores/channel-store';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
-import { getUpdates } from './chat-api';
+import { getChannel, getUpdates } from './chat-api';
 import PingService from './ping-service';
 
 @dispatchListener
@@ -94,6 +95,8 @@ export default class ChatStateStore implements DispatchListener {
       this.handleChatChannelPartEvent(event);
     } else if (event instanceof ChatNewConversationAdded) {
       this.handleChatNewConversationAdded(event);
+    } else if (event instanceof FriendUpdated) {
+      this.handleFriendUpdated(event);
     } else if (event instanceof SocketStateChangedAction) {
       this.handleSocketStateChanged(event);
     }
@@ -155,6 +158,19 @@ export default class ChatStateStore implements DispatchListener {
     // TODO: currently only the current window triggers the action, but this should be updated
     // to ignore unfocused windows once new conversation added messages start getting triggered over the websocket.
     this.selectChannel(event.channelId);
+  }
+
+  @action
+  private handleFriendUpdated(event: FriendUpdated) {
+    if (!this.isChatMounted) return;
+
+    // TODO: update other tabs...somehow
+    const channel = this.channelStore.groupedChannels.PM.find((value) => value.pmTarget === event.userId);
+    if (channel != null) {
+      getChannel(channel?.channelId).done((response) => {
+        channel.updateWithJson(response.channel);
+      });
+    }
   }
 
   @action
