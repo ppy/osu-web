@@ -11,7 +11,6 @@ import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
-import { nextVal } from 'utils/seq';
 import { switchNever } from 'utils/switch-never';
 import BeatmapPlaycount from './beatmap-playcount';
 import ExtraHeader from './extra-header';
@@ -52,11 +51,12 @@ function convertUserDataForChart(rawData: RawChartData[]): ChartData[] {
 function dataPadder(padded: ChartData[], entry: ChartData) {
   if (padded.length > 0) {
     const lastEntry = padded[padded.length - 1];
-    const missingMonths = moment(entry.x).diff(moment(lastEntry.x), 'months') - 1;
+    // use UTC to prevent wrong month calculation on timezone with DST
+    const missingMonths = moment.utc(entry.x).diff(moment.utc(lastEntry.x), 'months') - 1;
 
     times(missingMonths, (i) => {
       padded.push({
-        x: moment(lastEntry.x).add(i + 1, 'months').toDate(),
+        x: moment.utc(lastEntry.x).add(i + 1, 'months').toDate(),
         y: 0,
       });
     });
@@ -85,7 +85,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
     replays_watched_counts: React.createRef<HTMLDivElement>(),
   };
   private readonly charts: Partial<Record<ChartSection, LineChart<Date>>> = {};
-  private readonly id = `users-show-historical-${nextVal()}`;
+  private readonly disposers = new Set<(() => void) | undefined>();
 
   @computed
   private get monthlyPlaycountsData() {
@@ -104,13 +104,13 @@ export default class Historical extends React.Component<ExtraPageProps> {
   }
 
   componentDidMount() {
-    $(window).on(`resize.${this.id}`, this.resizeCharts);
+    $(window).on('resize', this.resizeCharts);
+    this.disposers.add(() => $(window).off('resize', this.resizeCharts));
     disposeOnUnmount(this, autorun(this.updateCharts));
   }
 
   componentWillUnmount() {
-    $(window).off(`.${this.id}`);
-    $(document).off(`.${this.id}`);
+    this.disposers.forEach((disposer) => disposer?.());
   }
 
   render() {
@@ -220,10 +220,10 @@ export default class Historical extends React.Component<ExtraPageProps> {
 
     const definedChart = chart;
 
-    core.reactTurbolinks.runAfterPageLoad(this.id, () => {
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
       updateTicks(definedChart, data);
       definedChart.loadData(data);
-    });
+    }));
   };
 
   private readonly updateCharts = () => {

@@ -2,9 +2,11 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'flag-country'
+import { route } from 'laroute'
 import  Mod from 'mod'
 import * as React from 'react'
 import { div, span, a } from 'react-dom-factories'
+
 el = React.createElement
 
 export class Score extends React.Component
@@ -25,14 +27,14 @@ export class Score extends React.Component
           div className: 'mp-history-player-score__username-box',
             a
               className: 'mp-history-player-score__username',
-              href: laroute.route 'users.show', user: user.id
+              href: route 'users.show', user: user.id
               user.username
 
             if !@props.score.match.pass
               span className: 'mp-history-player-score__failed', osu.trans 'matches.match.failed'
 
           a
-            href: laroute.route 'rankings',
+            href: route 'rankings',
               mode: @props.mode
               country: user.country?.code
               type: 'performance'

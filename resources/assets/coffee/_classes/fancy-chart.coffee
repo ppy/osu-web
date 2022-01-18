@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { fadeIn, fadeOut } from 'utils/fade'
+import { parseJsonNullable } from 'utils/json'
 
 class window.FancyChart
   constructor: (area, @options = {}) ->
@@ -48,7 +49,7 @@ class window.FancyChart
       .attr 'data-visibility', 'hidden'
       .attr 'r', 2
 
-    data = _exported.parseJsonNullable area.dataset.src
+    data = parseJsonNullable area.dataset.src
     @loadData data
 
 

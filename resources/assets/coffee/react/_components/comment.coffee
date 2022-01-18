@@ -5,6 +5,7 @@ import ClickToCopy from 'click-to-copy'
 import { CommentEditor } from 'comment-editor'
 import { CommentShowMore } from 'comment-show-more'
 import DeletedCommentsCount from 'deleted-comments-count'
+import { route } from 'laroute'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -283,7 +284,7 @@ export class Comment extends React.PureComponent
       span
         className: 'comment__action comment__action--permalink'
         el ClickToCopy,
-          value: laroute.route('comments.show', comment: @props.comment.id)
+          value: route('comments.show', comment: @props.comment.id)
           label: osu.trans 'common.buttons.permalink'
           valueAsUrl: true
 
@@ -373,7 +374,7 @@ export class Comment extends React.PureComponent
       a
         className: 'comment__avatar js-usercard'
         'data-user-id': user.id
-        href: laroute.route('users.show', user: user.id)
+        href: route('users.show', user: user.id)
         el UserAvatar, user: user, modifiers: ['full-circle']
     else
       span
@@ -385,7 +386,7 @@ export class Comment extends React.PureComponent
     if user.id?
       a
         'data-user-id': user.id
-        href: laroute.route('users.show', user: user.id)
+        href: route('users.show', user: user.id)
         className: 'js-usercard comment__row-item'
         user.username
     else
@@ -463,7 +464,7 @@ export class Comment extends React.PureComponent
     return unless confirm(osu.trans('common.confirmation'))
 
     @xhr.delete?.abort()
-    @xhr.delete = $.ajax laroute.route('comments.destroy', comment: @props.comment.id),
+    @xhr.delete = $.ajax route('comments.destroy', comment: @props.comment.id),
       method: 'DELETE'
     .done (data) =>
       $.publish 'comment:updated', data
@@ -477,7 +478,7 @@ export class Comment extends React.PureComponent
     return unless @props.comment.canPin
 
     @xhr.pin?.abort()
-    @xhr.pin = $.ajax laroute.route('comments.pin', comment: @props.comment.id),
+    @xhr.pin = $.ajax route('comments.pin', comment: @props.comment.id),
       method: if @props.comment.pinned then 'DELETE' else 'POST'
     .done (data) =>
       $.publish 'comment:updated', data
@@ -513,7 +514,7 @@ export class Comment extends React.PureComponent
 
     if @props.linkParent
       component = a
-      props.href = laroute.route('comments.show', comment: parent.id)
+      props.href = route('comments.show', comment: parent.id)
       props.className = 'comment__link'
     else
       component = span
@@ -537,7 +538,7 @@ export class Comment extends React.PureComponent
 
   restore: =>
     @xhr.restore?.abort()
-    @xhr.restore = $.ajax laroute.route('comments.restore', comment: @props.comment.id),
+    @xhr.restore = $.ajax route('comments.restore', comment: @props.comment.id),
       method: 'POST'
     .done (data) =>
       $.publish 'comment:updated', data
@@ -566,7 +567,7 @@ export class Comment extends React.PureComponent
       storeMethod = 'addUserVote'
 
     @xhr.vote?.abort()
-    @xhr.vote = $.ajax laroute.route('comments.vote', comment: @props.comment.id),
+    @xhr.vote = $.ajax route('comments.vote', comment: @props.comment.id),
       method: method
     .always =>
       @setState postingVote: false

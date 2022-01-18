@@ -1,14 +1,16 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { ScoreboardTab } from './scoreboard-tab'
-import { ScoreboardTable } from './scoreboard-table'
-import ScoreboardMod from 'beatmapsets-show/scoreboard-mod'
+import { route } from 'laroute'
 import ScoreTop from 'beatmapsets-show/score-top'
+import ScoreboardMod from 'beatmapsets-show/scoreboard-mod'
 import * as React from 'react'
 import { div, h2, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
 import { nextVal } from 'utils/seq'
+import { ScoreboardTab } from './scoreboard-tab'
+import { ScoreboardTable } from './scoreboard-table'
+
 el = React.createElement
 
 export class Scoreboard extends React.PureComponent
@@ -102,7 +104,7 @@ export class Scoreboard extends React.PureComponent
             p
               className: 'beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'
               dangerouslySetInnerHTML:
-                __html: osu.trans 'beatmapsets.show.scoreboard.supporter-link', link: laroute.route 'support-the-game'
+                __html: osu.trans 'beatmapsets.show.scoreboard.supporter-link', link: route 'support-the-game'
 
   scoreItem: ({score, rank, itemClass, modifiers}) ->
     el ScoreTop,
