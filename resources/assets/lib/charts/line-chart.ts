@@ -15,7 +15,7 @@ import {
   ScaleContinuousNumeric,
   scaleLinear,
   ScaleTime,
-  scaleTime,
+  scaleUtc,
   select,
   Selection,
 } from 'd3';
@@ -54,7 +54,7 @@ function defaultFormatter(d: Date | number) {
 export function makeOptionsDate(options: Partial<Options<Date>>): Options<Date> {
   return {
     ...makeSharedDefaultOptions(options),
-    scaleX: options.scaleX ?? scaleTime(),
+    scaleX: options.scaleX ?? scaleUtc(),
   };
 }
 export function makeOptionsNumber(options: Partial<Options<number>>): Options<number> {
