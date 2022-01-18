@@ -11,6 +11,7 @@ import UserAvatar from 'user-avatar'
 import { createClickCallback } from 'utils/html'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { MessageLengthCounter } from './message-length-counter'
+
 el = React.createElement
 
 bn = 'beatmap-discussion-post'

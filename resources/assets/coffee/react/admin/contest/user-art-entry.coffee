@@ -6,6 +6,7 @@ import * as React from 'react'
 import { br, tr, td, a, img, dl, dt, dd, div } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
 import { UserEntryDeleteButton } from './user-entry-delete-button'
+
 el = React.createElement
 
 export class UserArtEntry extends React.Component

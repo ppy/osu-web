@@ -15,6 +15,7 @@ import { nominationsCount } from 'utils/beatmapset-helper'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { linkHtml } from 'utils/url'
 import { MessageLengthCounter } from './message-length-counter'
+
 el = React.createElement
 
 bn = 'beatmap-discussion-new'

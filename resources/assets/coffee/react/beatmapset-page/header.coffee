@@ -14,6 +14,7 @@ import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { createClickCallback } from 'utils/html'
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url'
 import { Stats } from './stats'
+
 el = React.createElement
 
 export class Header extends React.Component

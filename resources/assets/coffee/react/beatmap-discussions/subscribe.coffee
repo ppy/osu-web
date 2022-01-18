@@ -5,6 +5,7 @@ import BigButton from 'big-button'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, button, div, h1, h2, p } from 'react-dom-factories'
+
 el = React.createElement
 
 export class Subscribe extends React.PureComponent

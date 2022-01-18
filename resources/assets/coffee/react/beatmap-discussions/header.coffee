@@ -19,6 +19,7 @@ import { showVisual } from 'utils/beatmapset-helper'
 import { Nominations } from './nominations'
 import { Subscribe } from './subscribe'
 import { UserFilter } from './user-filter'
+
 el = React.createElement
 
 export class Header extends React.PureComponent
