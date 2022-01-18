@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { fileuploadFailCallback } from 'utils/ajax'
+
 class window.ForumCover
   constructor: ->
     @header = document.getElementsByClassName('js-forum-cover--header')
@@ -64,7 +66,7 @@ class window.ForumCover
       done: (_e, data) =>
         @update(data.result)
 
-      fail: _exported.fileuploadFailCallback
+      fail: fileuploadFailCallback
 
       complete: (_e, data) =>
         @uploadButton[0].dataset.state = ''

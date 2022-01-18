@@ -27,7 +27,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Ngày kết thúc',
-        'map_count' => 'Số lần chơi',
+        'map_count' => 'Số Lần Chơi',
         'participants' => 'Người tham gia',
         'start_date' => 'Ngày bắt đầu',
     ],

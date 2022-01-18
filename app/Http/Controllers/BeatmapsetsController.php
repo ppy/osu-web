@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\Handler as ExceptionsHandler;
 use App\Jobs\BeatmapsetDelete;
 use App\Libraries\BeatmapsetDiscussionReview;
 use App\Libraries\CommentBundle;
@@ -43,7 +44,7 @@ class BeatmapsetsController extends Controller
 
     public function index()
     {
-        $beatmaps = $this->getSearchResponse();
+        $beatmaps = $this->getSearchResponse()['content'];
 
         $filters = BeatmapsetSearchRequestParams::getAvailableFilters();
 
@@ -86,7 +87,7 @@ class BeatmapsetsController extends Controller
     {
         $response = $this->getSearchResponse();
 
-        return response($response, is_null($response['error']) ? 200 : 504);
+        return response($response['content'], $response['status']);
     }
 
     public function discussion($id)
@@ -300,19 +301,24 @@ class BeatmapsetsController extends Controller
             return $search->records();
         }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
 
+        $error = $search->getError();
+
         return [
-            'beatmapsets' => json_collection(
-                $records,
-                new BeatmapsetTransformer(),
-                'beatmaps.max_combo'
-            ),
-            'cursor' => $search->getSortCursor(),
-            'search' => [
-                'sort' => $search->getParams()->getSort(),
+            'content' => [
+                'beatmapsets' => json_collection(
+                    $records,
+                    new BeatmapsetTransformer(),
+                    'beatmaps.max_combo'
+                ),
+                'cursor' => $search->getSortCursor(),
+                'search' => [
+                    'sort' => $search->getParams()->getSort(),
+                ],
+                'recommended_difficulty' => $params->getRecommendedDifficulty(),
+                'error' => search_error_message($error),
+                'total' => $search->count(),
             ],
-            'recommended_difficulty' => $params->getRecommendedDifficulty(),
-            'error' => search_error_message($search->getError()),
-            'total' => $search->count(),
+            'status' => $error === null ? 200 : ExceptionsHandler::statusCode($error),
         ];
     }
 

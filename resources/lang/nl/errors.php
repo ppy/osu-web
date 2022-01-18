@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Kan geen resultaten krijgen, probeer het later opnieuw.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'Zoeken is momenteel drukker dan gebruikelijk, probeer het later opnieuw.',
     ],
 ];

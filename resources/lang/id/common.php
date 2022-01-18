@@ -59,7 +59,7 @@ return [
         'upload_image' => 'unggah gambar',
 
         'watch' => [
-            'to_0' => 'Batalkan Pantauan',
+            'to_0' => 'Lepas Pantauan',
             'to_1' => 'Pantau',
         ],
     ],

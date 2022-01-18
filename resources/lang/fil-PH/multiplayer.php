@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited player|:count_delimited players',
         'time_left' => ':time natira',
 
+        'errors' => [
+            'duration_too_long' => 'Masyadong matagal.',
+        ],
+
         'status' => [
             'active' => 'aktibo',
             'ended' => 'natapos na',

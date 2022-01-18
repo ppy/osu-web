@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Không có kết quả, vui lòng thử lại sau.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'Hệ thống tìm kiếm đang quá tải, vui lòng thử lại sau.',
     ],
 ];

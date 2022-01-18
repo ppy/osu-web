@@ -16,11 +16,11 @@ return [
     'username' => 'ชื่อผู้ใช้',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
+        'album' => 'อัลบั้ม',
+        'artist' => 'ศิลปิน',
         'bpm' => '',
         'genre' => '',
-        'length' => '',
+        'length' => 'ความยาว',
         'relevance' => '',
         'title' => '',
         'update' => '',

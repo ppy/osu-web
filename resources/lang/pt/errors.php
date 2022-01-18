@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Não foi possível obter nenhuns resultados, tenta outra vez mais tarde.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'De momento, a pesquisa está mais ocupada que o habitual, tenta outra vez mais tarde.',
     ],
 ];
