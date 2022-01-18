@@ -14,7 +14,7 @@ export const beatmapsetSections = [
 export type BeatmapsetSection = typeof beatmapsetSections[number];
 
 // sorted by display order in the page
-export const topScoreSections = ['scoresBest', 'scoresFirsts', 'scoresPinned'] as const;
+export const topScoreSections = ['scoresPinned', 'scoresBest', 'scoresFirsts'] as const;
 export type TopScoreSection = typeof topScoreSections[number];
 
 const historicalSections = ['beatmapPlaycounts', 'scoresRecent'] as const;
