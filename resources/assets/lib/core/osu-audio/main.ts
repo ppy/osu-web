@@ -433,8 +433,8 @@ export default class Main {
     this.state = state;
     this.syncState();
 
+    window.clearTimeout(this.hideMainPlayerTimeout);
     if (this.state === 'playing' || this.state === 'loading') {
-      window.clearTimeout(this.hideMainPlayerTimeout);
       if (this.mainPlayer != null) {
         this.mainPlayer.dataset.audioVisible = '1';
       }
