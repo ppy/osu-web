@@ -101,6 +101,7 @@ export default class Main {
 
   constructor(private userPreferences: UserPreferences) {
     this.audio.volume = 0;
+    this.audio.addEventListener('pause', this.onPause);
     this.audio.addEventListener('playing', this.onPlaying);
     this.audio.addEventListener('ended', this.onEnded);
     this.audio.addEventListener('timeupdate', this.onTimeupdate);
@@ -277,6 +278,10 @@ export default class Main {
     }
   };
 
+  private onPause = () => {
+    this.setState('paused');
+  };
+
   private onPlaying = () => {
     this.setTimeFormat();
     this.durationFormatted = format(this.audio.duration, this.timeFormat);
@@ -335,11 +340,6 @@ export default class Main {
       initialEvent: e,
       moveCallback: this.onVolumeChangeMove,
     });
-  };
-
-  private pause = () => {
-    this.audio.pause();
-    this.setState('paused');
   };
 
   private reattachPagePlayer = (elems?: Element[]) => {
@@ -468,7 +468,8 @@ export default class Main {
     this.audio.pause();
     this.currentSlider?.end();
     this.audio.currentTime = 0;
-    this.pause();
+    // manually trigger otherwise the player will have been changed when the event triggers
+    this.onPause();
   };
 
   private syncProgress = () => {
@@ -527,7 +528,7 @@ export default class Main {
     if (this.audio.paused) {
       void this.audio.play();
     } else {
-      this.pause();
+      this.audio.pause();
     }
   };
 
