@@ -5,19 +5,11 @@ import { currentUrl } from 'utils/turbolinks';
 import { Ziggy } from 'ziggy';
 import ziggyRoute from 'ziggy-route';
 
-interface Attributes {
-  [key: string]: string | number | null | undefined;
-}
-
 // ensure correct url
 const siteUrl = currentUrl();
 Ziggy.port = +siteUrl.port || null; // either port number or null if empty (converted to 0)
 Ziggy.url = siteUrl.origin;
 
-export function route(name: string, params?: Attributes | null, absolute?: boolean) {
-  if (params == null) {
-    params = {};
-  }
-
-  return ziggyRoute(name, params, absolute, Ziggy).toString();
+export function route(name: string, params?: Partial<Record<string, string | number | null>> | null, absolute?: boolean) {
+  return ziggyRoute(name, params ?? {}, absolute, Ziggy).toString();
 }
