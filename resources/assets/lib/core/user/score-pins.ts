@@ -23,10 +23,13 @@ export default class ScorePins {
       data: pin,
       dataType: 'json',
       method: toPin ? 'POST' : 'DELETE',
-    }).done(action(() => {
+    // Use setTimeout to allow cleanup process to do their thing in `.done` callback
+    // before announcing the score pin state has changed. Mainly relevant for
+    // components which is gone after score is unpinned.
+    }).done(() => window.setTimeout(action(() => {
       this.markPinned(score, toPin);
       $.publish('score:pin', [toPin, score]);
-    }));
+    })));
   }
 
   canBePinned(score: ScoreJson) {
