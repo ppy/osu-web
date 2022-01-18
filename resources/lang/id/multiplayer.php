@@ -14,7 +14,7 @@ return [
         'time_left' => 'sisa waktu :time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Durasi pertandingan terlalu lama.',
         ],
 
         'status' => [

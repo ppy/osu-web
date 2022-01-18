@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Hindi makakuha ng resulta, subukan muli mamaya.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'Mas abala kaysa dati, subukan muli mamaya.',
     ],
 ];

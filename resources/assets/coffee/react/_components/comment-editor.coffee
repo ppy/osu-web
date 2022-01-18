@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'big-button'
+import { route } from 'laroute'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, span } from 'react-dom-factories'
@@ -147,7 +148,7 @@ export class CommentEditor extends React.PureComponent
 
     switch @mode()
       when 'reply', 'new'
-        url = laroute.route 'comments.store'
+        url = route 'comments.store'
         method = 'POST'
         data.comment.commentable_type = @props.commentableType
         data.comment.commentable_id = @props.commentableId
@@ -157,7 +158,7 @@ export class CommentEditor extends React.PureComponent
           @setState message: ''
           $.publish 'comments:new', data
       when 'edit'
-        url = laroute.route 'comments.update', comment: @props.id
+        url = route 'comments.update', comment: @props.id
         method = 'PUT'
 
         onDone = (data) ->

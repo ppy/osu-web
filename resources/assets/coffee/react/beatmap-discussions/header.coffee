@@ -1,14 +1,13 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import BigButton from 'big-button'
-import { Nominations } from './nominations'
-import { Subscribe } from './subscribe'
-import { UserFilter } from './user-filter'
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
+import Chart from 'beatmap-discussions/chart'
 import BeatmapList from 'beatmap-discussions/beatmap-list'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
+import BigButton from 'big-button'
 import HeaderV4 from 'header-v4'
+import { route } from 'laroute'
 import { deletedUser } from 'models/user'
 import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
@@ -17,7 +16,10 @@ import StringWithComponent from 'string-with-component'
 import { UserLink } from 'user-link'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { showVisual } from 'utils/beatmapset-helper'
-import Chart from 'beatmap-discussions/chart'
+import { Nominations } from './nominations'
+import { Subscribe } from './subscribe'
+import { UserFilter } from './user-filter'
+
 el = React.createElement
 
 export class Header extends React.PureComponent
@@ -54,7 +56,7 @@ export class Header extends React.PureComponent
 
         div className: "#{bn}__details",
           el BigButton,
-            href: laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id)
+            href: route('beatmapsets.show', beatmapset: @props.beatmapset.id)
             icon: 'fas fa-info'
             modifiers: 'full'
             text: osu.trans('beatmaps.discussions.beatmap_information')
@@ -82,7 +84,7 @@ export class Header extends React.PureComponent
 
         a
           className: "#{bn}__title-container"
-          href: laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id)
+          href: route('beatmapsets.show', beatmapset: @props.beatmapset.id)
           h1
             className: "#{bn}__title"
             getTitle(@props.beatmapset)
@@ -94,7 +96,7 @@ export class Header extends React.PureComponent
             if @props.beatmapset.track_id?
               a
                 className: 'beatmapset-badge beatmapset-badge--featured-artist'
-                href: laroute.route 'tracks.show', @props.beatmapset.track_id
+                href: route 'tracks.show', @props.beatmapset.track_id
                 osu.trans('beatmapsets.featured_artist_badge.label')
 
         div

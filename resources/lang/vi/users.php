@@ -138,7 +138,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Tài khoản của bạn đã bị hạn chế!',
-        'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình từ động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
+        'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình tự động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
     ],
     'show' => [
         'age' => ':age tuổi',
