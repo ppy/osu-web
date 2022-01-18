@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
+import { pageChange } from 'utils/page-change'
 
 class window.PostPreview
   constructor: ->
@@ -37,4 +38,4 @@ class window.PostPreview
       $preview.html data
       $preview.attr 'data-raw', body
       $previewBox.removeClass 'hidden'
-      _exported.pageChange()
+      pageChange()
