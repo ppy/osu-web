@@ -2,8 +2,10 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import DiscussionEvents from 'beatmap-discussions/events'
+import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
+
 el = React.createElement
 
 export class Events extends React.Component
@@ -22,5 +24,5 @@ export class Events extends React.Component
 
             a
               className: 'modding-profile-list__show-more'
-              href: laroute.route('beatmapsets.events.index', user: @props.user.id),
+              href: route('beatmapsets.events.index', user: @props.user.id),
               osu.trans('users.show.extra.events.show_more')

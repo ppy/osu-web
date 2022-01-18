@@ -3,7 +3,6 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
-import * as laroute from 'laroute'
 import { parseJson, parseJsonNullable } from 'utils/json'
 import { pageChange, pageChangeImmediate } from 'utils/page-change'
 
@@ -13,6 +12,3 @@ window._exported = {
   parseJson
   parseJsonNullable
 }
-
-# FIXME: remove once everything imports instead of using global
-window.laroute ?= laroute

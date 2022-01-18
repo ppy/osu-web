@@ -5,6 +5,7 @@ import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
 import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-modal'
 import { Nominator } from 'beatmap-discussions/nominator'
 import BigButton from 'big-button'
+import { route } from 'laroute'
 import { Modal } from 'modal'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
@@ -131,12 +132,12 @@ export class Nominations extends React.PureComponent
     @xhr.delete?.abort()
 
     user = @props.beatmapset.user_id
-    url = laroute.route('beatmapsets.destroy', beatmapset: @props.beatmapset.id)
+    url = route('beatmapsets.destroy', beatmapset: @props.beatmapset.id)
     params = method: 'DELETE'
 
     @xhr.delete = $.ajax(url, params)
       .done ->
-        Turbolinks.visit laroute.route('users.show', { user })
+        Turbolinks.visit route('users.show', { user })
       .fail osu.ajaxError
       .always hideLoadingOverlay
 
@@ -148,7 +149,7 @@ export class Nominations extends React.PureComponent
 
     @xhr.discussionLock?.abort()
 
-    url = laroute.route('beatmapsets.discussion-lock', beatmapset: @props.beatmapset.id)
+    url = route('beatmapsets.discussion-lock', beatmapset: @props.beatmapset.id)
     params =
       method: 'POST'
       data: { reason }
@@ -167,7 +168,7 @@ export class Nominations extends React.PureComponent
 
     @xhr.discussionLock?.abort()
 
-    url = laroute.route('beatmapsets.discussion-unlock', beatmapset: @props.beatmapset.id)
+    url = route('beatmapsets.discussion-unlock', beatmapset: @props.beatmapset.id)
     params = method: 'POST'
 
     @xhr.discussionLock = $.ajax(url, params)
@@ -186,7 +187,7 @@ export class Nominations extends React.PureComponent
 
     @xhr.removeFromLoved?.abort()
 
-    url = laroute.route('beatmapsets.remove-from-loved', beatmapset: @props.beatmapset.id)
+    url = route('beatmapsets.remove-from-loved', beatmapset: @props.beatmapset.id)
     params =
       method: 'DELETE'
       data: { reason }
@@ -398,7 +399,7 @@ export class Nominations extends React.PureComponent
     div dangerouslySetInnerHTML:
       __html: osu.trans 'beatmaps.nominations.nominated_by',
         users: osu.transArray nominators.map (user) ->
-            linkHtml laroute.route('users.show', user: user.id), user.username,
+            linkHtml route('users.show', user: user.id), user.username,
               classNames: ['js-usercard']
               props:
                 'data-user-id': user.id
