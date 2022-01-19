@@ -20,6 +20,18 @@ class MultiplayerController extends Controller
     {
         $request = request();
         $user = FindForProfilePage::find($request->route('user'));
+        $category = $request->route()->getName() === 'users.playlists.index' ? 'playlists' : 'realtime';
+
+        $params = get_params($request->all(), null, [
+            'cursor:any',
+            'limit:int',
+        ], ['null_missing' => true]);
+
+        $json = $this->getJson($user, $params, $category);
+
+        if (is_json_request()) {
+            return $json;
+        }
 
         $jsonUser = json_item(
             $user,
@@ -27,25 +39,10 @@ class MultiplayerController extends Controller
             UserTransformer::PROFILE_HEADER_INCLUDES,
         );
 
-        $params = get_params($request->all(), null, [
-            'category:string',
-            'cursor:any',
-            'limit:int',
-        ], ['null_missing' => true]);
-
-        if (!is_json_request()) {
-            $json = [
-                'playlists' => $this->getJson($user, $params, 'playlists'),
-                'realtime' => $this->getJson($user, $params, 'realtime'),
-            ];
-
-            return ext_view('users.multiplayer.index', compact('json', 'jsonUser', 'user'));
-        }
-
-        return $this->getJson($user, $params, $params['category']);
+        return ext_view('users.multiplayer.index', compact('json', 'jsonUser', 'user'));
     }
 
-    private function getJson(User $user, array $params, ?string $category)
+    private function getJson(User $user, array $params, string $category)
     {
         $limit = clamp(get_int($params['limit']) ?? 50, 1, 50);
 
@@ -65,6 +62,7 @@ class MultiplayerController extends Controller
         return [
             'beatmaps' => json_collection($beatmaps, new BeatmapCompactTransformer()),
             'beatmapsets' => json_collection($beatmapsets, new BeatmapsetCompactTransformer()),
+            'category' => $category,
             'cursor' => $hasMore ? $search['cursorHelper']->next($rooms) : null,
             'rooms' => json_collection($rooms, new RoomTransformer(), ['host', 'playlist']),
             'search' => $search['search'],

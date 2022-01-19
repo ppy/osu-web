@@ -11,6 +11,7 @@ export type UserMultiplayerHistoryIndexJson = Record<'playlists' | 'realtime', U
 export default interface UserMultiplayerHistoryJson {
   beatmaps: BeatmapJson[];
   beatmapsets: BeatmapsetJson[];
+  category: 'playlists' | 'realtime';
   cursor: unknown;
   rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[];
 }

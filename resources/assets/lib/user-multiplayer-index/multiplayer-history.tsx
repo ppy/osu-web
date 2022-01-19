@@ -8,11 +8,10 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
-import UserMultiplayerHistoryContext, { updateStore } from 'user-multiplayer-history-context';
+import UserMultiplayerHistoryContext from 'user-multiplayer-history-context';
 import Room from 'user-multiplayer-index/room';
 
 interface Props {
-  type: 'playlists' | 'realtime';
   user: UserJson;
 }
 
@@ -58,10 +57,10 @@ export default class MultiplayerHistory extends React.Component<Props> {
     if (this.loading) return;
 
     this.loading = true;
-    const url = route('users.multiplayer.index', { user: this.props.user.id });
-    void $.getJSON(url, { category: this.props.type, cursor: this.context.cursor })
+    const url = route(`users.${this.context.category}.index`, { user: this.props.user.id });
+    void $.getJSON(url, { cursor: this.context.cursor })
       .done(action((response: UserMultiplayerHistoryJson) => {
-        updateStore(this.context, response);
+        this.context.updateWithJson(response);
       })).always(action(() => {
         this.loading = false;
       }));

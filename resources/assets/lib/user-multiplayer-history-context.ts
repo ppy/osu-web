@@ -1,58 +1,57 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+/* eslint-disable max-classes-per-file */
+
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import RoomJson from 'interfaces/room-json';
 import UserMultiplayerHistoryJson, { UserMultiplayerHistoryIndexJson } from 'interfaces/user-multiplayer-history-json';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import * as React from 'react';
 
-interface Props {
-  beatmaps: Map<number, BeatmapJson>;
-  beatmapsets: Map<number, BeatmapsetJson>;
-  cursor: unknown;
-  rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[];
+export class Store {
+  @observable beatmaps = new Map<number, BeatmapJson>();
+  @observable beatmapsets = new Map<number, BeatmapsetJson>();
+  @observable category: 'playlists' | 'realtime' = 'realtime';
+  @observable cursor: unknown = null;
+  @observable rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[] = [];
+
+  constructor() {
+    makeObservable(this);
+  }
+
+  @action
+  updateWithJson(json: UserMultiplayerHistoryJson) {
+    for (const room of json.rooms) {
+      this.rooms.push(room);
+    }
+
+    for (const beatmap of json.beatmaps) {
+      this.beatmaps.set(beatmap.id, beatmap);
+    }
+
+    for (const beatmapset of json.beatmapsets) {
+      this.beatmapsets.set(beatmapset.id, beatmapset);
+    }
+
+    this.category = json.category;
+    this.cursor = json.cursor;
+  }
 }
 
 export class Stores {
-  @observable
-  playlists = makeStore();
-  realtime = makeStore();
+  @observable playlists = new Store();
+  @observable realtime = new Store();
 
   @action
   updateWithJson(json: UserMultiplayerHistoryIndexJson) {
-    updateStore(this.playlists, json.playlists);
-    updateStore(this.realtime, json.realtime);
+    this.playlists.updateWithJson(json.playlists);
+    this.realtime.updateWithJson(json.realtime);
   }
 }
 
-export function makeStore(): Props {
-  return observable({
-    beatmaps: new Map<number, BeatmapJson>(),
-    beatmapsets: new Map<number, BeatmapsetJson>(),
-    cursor: null,
-    rooms: [],
-  });
-}
-
-export function updateStore(store: Props, json: UserMultiplayerHistoryJson) {
-  for (const room of json.rooms) {
-    store.rooms.push(room);
-  }
-
-  for (const beatmap of json.beatmaps) {
-    store.beatmaps.set(beatmap.id, beatmap);
-  }
-
-  for (const beatmapset of json.beatmapsets) {
-    store.beatmapsets.set(beatmapset.id, beatmapset);
-  }
-
-  store.cursor = json.cursor;
-}
-
-const defaultValue = makeStore();
+const defaultValue = new Store();
 const UserMultiplayerHistoryContext = React.createContext(defaultValue);
 
 export default UserMultiplayerHistoryContext;
