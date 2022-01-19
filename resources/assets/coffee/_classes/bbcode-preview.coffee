@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
+import { pageChange } from 'utils/page-change'
 
 class window.BbcodePreview
   constructor: ->
@@ -37,7 +38,7 @@ class window.BbcodePreview
       $body.attr('data-last-text', text)
 
       $preview.html(data)
-      _exported.pageChange()
+      pageChange()
       @showPreview(e)
 
     .fail osu.emitAjaxError(target)
@@ -45,12 +46,12 @@ class window.BbcodePreview
 
   showPreview: (e) =>
     $(e.target).parents('.js-bbcode-preview--form').attr('data-state', 'preview')
-    _exported.pageChange() # sync height of reply box
+    pageChange() # sync height of reply box
 
 
   hidePreview: (e) =>
     $form = $(e.target).parents('.js-bbcode-preview--form')
     $form.attr('data-state', 'write')
-    _exported.pageChange() # sync height of reply box
+    pageChange() # sync height of reply box
 
     $form.find('.js-bbcode-preview--body').focus()
