@@ -269,6 +269,7 @@ Route::group(['middleware' => ['web']], function () {
             // TODO: combine categories?
             Route::resource('realtime', 'MultiplayerController', ['only' => 'index']);
             Route::resource('playlists', 'MultiplayerController', ['only' => 'index']);
+            route_redirect('multiplayer', 'users.realtime.index');
 
             Route::group(['as' => 'modding.', 'prefix' => 'modding'], function () {
                 Route::get('/', 'ModdingHistoryController@index')->name('index');

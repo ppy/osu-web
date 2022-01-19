@@ -21,7 +21,7 @@ export default function Main(props: Props) {
       <div className='user-profile-pages'>
         <div className='user-profile-pages__item'>
           <div className='page-extra'>
-            <h2 className='title title--page-extra'>{osu.trans(`users.show.extra.multiplayer.${context.category}.title`)}</h2>
+            <h2 className='title title--page-extra'>{osu.trans(`users.show.extra.${context.category}.title`)}</h2>
             <MultiplayerHistory user={props.user} />
           </div>
         </div>
