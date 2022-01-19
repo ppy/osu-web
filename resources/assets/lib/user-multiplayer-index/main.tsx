@@ -3,26 +3,25 @@
 
 import UserExtendedJson from 'interfaces/user-extended-json';
 import * as React from 'react';
-import UserMultiplayerHistoryContext from 'user-multiplayer-history-context';
 import Header from 'user-multiplayer-index/header';
 import MultiplayerHistory from 'user-multiplayer-index/multiplayer-history';
 import UserProfileContainer from 'user-profile-container';
+import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {
+  store: MultiplayerHistoryStore;
   user: UserExtendedJson;
 }
 
 export default function Main(props: Props) {
-  const context = React.useContext(UserMultiplayerHistoryContext);
-
   return (
     <UserProfileContainer user={props.user}>
-      <Header user={props.user} />
+      <Header category={props.store.category} user={props.user} />
       <div className='user-profile-pages'>
         <div className='user-profile-pages__item'>
           <div className='page-extra'>
-            <h2 className='title title--page-extra'>{osu.trans(`users.show.extra.${context.category}.title`)}</h2>
-            <MultiplayerHistory user={props.user} />
+            <h2 className='title title--page-extra'>{osu.trans(`users.show.extra.${props.store.category}.title`)}</h2>
+            <MultiplayerHistory store={props.store} user={props.user} />
           </div>
         </div>
 

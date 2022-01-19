@@ -6,9 +6,8 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import RoomJson from 'interfaces/room-json';
 import UserMultiplayerHistoryJson, { MultiplayerType } from 'interfaces/user-multiplayer-history-json';
 import { action, makeObservable, observable } from 'mobx';
-import * as React from 'react';
 
-export class Store {
+export default class MultiplayerHistoryStore {
   @observable beatmaps = new Map<number, BeatmapJson>();
   @observable beatmapsets = new Map<number, BeatmapsetJson>();
   @observable category: MultiplayerType = 'realtime';
@@ -37,8 +36,3 @@ export class Store {
     this.cursor = json.cursor;
   }
 }
-
-const defaultValue = new Store();
-const UserMultiplayerHistoryContext = React.createContext(defaultValue);
-
-export default UserMultiplayerHistoryContext;
