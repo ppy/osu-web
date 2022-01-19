@@ -35,7 +35,7 @@ class MultiplayerController extends Controller
 
         if (!is_json_request()) {
             $json = [
-                'any' => $this->getJson($user, $params, 'any'),
+                'playlists' => $this->getJson($user, $params, 'playlists'),
                 'realtime' => $this->getJson($user, $params, 'realtime'),
             ];
 

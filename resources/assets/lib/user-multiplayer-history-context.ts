@@ -22,7 +22,7 @@ export class Stores {
 
   @action
   updateWithJson(json: UserMultiplayerHistoryIndexJson) {
-    updateStore(this.playlists, json.any);
+    updateStore(this.playlists, json.playlists);
     updateStore(this.realtime, json.realtime);
   }
 }
