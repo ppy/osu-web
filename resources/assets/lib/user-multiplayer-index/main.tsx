@@ -19,7 +19,7 @@ function renderHistory(props: Props, type: 'playlists' | 'realtime') {
       <div className='page-extra'>
         <h2 className='title title--page-extra'>{osu.trans(`users.show.extra.multiplayer.${type}.title`)}</h2>
         <UserMultiplayerHistoryContext.Provider value={props.stores[type]}>
-          <MultiplayerHistory user={props.user} />
+          <MultiplayerHistory type={type} user={props.user} />
         </UserMultiplayerHistoryContext.Provider>
       </div>
     </div>

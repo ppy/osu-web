@@ -12,6 +12,7 @@ import UserMultiplayerHistoryContext, { updateStore } from 'user-multiplayer-his
 import Room from 'user-multiplayer-index/room';
 
 interface Props {
+  type: 'playlists' | 'realtime';
   user: UserJson;
 }
 
@@ -58,7 +59,7 @@ export default class MultiplayerHistory extends React.Component<Props> {
 
     this.loading = true;
     const url = route('users.multiplayer.index', { user: this.props.user.id });
-    void $.getJSON(url, { cursor: this.context.cursor })
+    void $.getJSON(url, { category: this.props.type, cursor: this.context.cursor })
       .done(action((response: UserMultiplayerHistoryJson) => {
         updateStore(this.context, response);
       })).always(action(() => {
