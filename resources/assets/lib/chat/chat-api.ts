@@ -13,7 +13,7 @@ import core from 'osu-core-singleton';
 
 interface GetChannelResponse {
   channel: ChannelJson;
-  users: UserJson;
+  users: UserJson[];
 }
 
 interface GetMessagesResponse {
