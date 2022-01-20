@@ -1,23 +1,24 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { BackToTop } from 'back-to-top'
+import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
+import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import NewReview from 'beatmap-discussions/new-review'
+import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
+import { route } from 'laroute'
+import { deletedUser } from 'models/user'
+import core from 'osu-core-singleton'
+import * as React from 'react'
+import { div } from 'react-dom-factories'
+import * as BeatmapHelper from 'utils/beatmap-helper'
+import { nextVal } from 'utils/seq'
+import { currentUrl } from 'utils/turbolinks'
 import { Discussions } from './discussions'
 import { Events } from './events'
 import { Header } from './header'
 import { ModeSwitcher } from './mode-switcher'
 import { NewDiscussion } from './new-discussion'
-import { BackToTop } from 'back-to-top'
-import { deletedUser } from 'models/user'
-import * as React from 'react'
-import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
-import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
-import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
-import { div } from 'react-dom-factories'
-import NewReview from 'beatmap-discussions/new-review'
-import core from 'osu-core-singleton'
-import * as BeatmapHelper from 'utils/beatmap-helper'
-import { nextVal } from 'utils/seq'
-import { currentUrl } from 'utils/turbolinks'
 
 el = React.createElement
 
@@ -200,7 +201,7 @@ export class Main extends React.PureComponent
     Timeout.clear @timeouts.checkNew
     @xhr.checkNew?.abort()
 
-    @xhr.checkNew = $.get laroute.route('beatmapsets.discussion', beatmapset: @state.beatmapset.id),
+    @xhr.checkNew = $.get route('beatmapsets.discussion', beatmapset: @state.beatmapset.id),
       format: 'json'
       last_updated: @lastUpdate()?.unix()
     .done (data, _textStatus, xhr) =>

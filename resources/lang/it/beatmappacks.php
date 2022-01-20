@@ -11,7 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'LEGGI PRIMA DI SCARICARE',
-            'install_instruction' => '',
+            'install_instruction' => 'Installazione: Una volta che un pacchetto è stato scaricato, estrai il contenuto del pacchetto nella cartella contenente i brani di osu!, lui penserà al resto.',
             'note' => [
                 '_' => 'Nota inoltre che è altamente consigliato di :scary, dato che le mappe più vecchie sono di qualità molto inferiore rispetto a quelle più recenti.',
                 'scary' => 'scaricare i pacchetti dal più recente al più vecchio',

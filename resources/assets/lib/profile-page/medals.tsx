@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
 import AchievementJson from 'interfaces/achievement-json';
 import UserAchievementJson from 'interfaces/user-achievement-json';
 import { keyBy } from 'lodash';
@@ -91,9 +92,8 @@ export default class Medals extends React.Component<ExtraPageProps> {
 
         {this.recentUserAchievements.length > 0 &&
           <div className='page-extra__recent-medals-box'>
-            <div className='title title--page-extra-small'>
-              {osu.trans('users.show.extra.medals.recent')}
-            </div>
+            <ProfilePageExtraSectionTitle titleKey='users.show.extra.medals.recent' />
+
             <div className='page-extra__recent-medals'>
               {this.recentUserAchievements.map((ua) => (
                 <div key={ua.achievement.id} className='page-extra__recent-medal'>

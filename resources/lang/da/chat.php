@@ -22,12 +22,14 @@ return [
             'target_restricted' => 'Modtageren er i øjeblikket begrænset',
         ],
     ],
+
     'input' => [
         'disabled' => 'kunne ikke sende besked...',
         'disconnected' => '',
         'placeholder' => 'skriv Besked...',
         'send' => 'Send',
     ],
+
     'no-conversations' => [
         'howto' => "Start samtaler fra en brugers profil eller et brugerkort-popup.",
         'lazer' => 'Offentlige kanaler du joiner via <a href=":link">osu!lazer</a> vil også vises her.',

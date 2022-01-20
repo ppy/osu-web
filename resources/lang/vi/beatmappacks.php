@@ -11,7 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'HÃY ĐỌC TRƯỚC KHI TẢI',
-            'install_instruction' => '',
+            'install_instruction' => 'Cài đặt: Một khi gói đã được tải xuống, hãy giải nén nội dung của gói vào thư mục Songs trong osu! của bạn và osu! sẽ lo nốt phần còn lại.',
             'note' => [
                 '_' => 'Cũng lưu ý rằng nên :scary, vì những map cũ có chất lượng thấp hơn những map mới.',
                 'scary' => 'tải những gói từ mới nhất đến cũ nhất',

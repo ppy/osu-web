@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Kunne ikke hente noen treff. Prøv igjen senere.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'Søkefunksjonen ser ikke ut til å fungere akkurat nå. Prøv igjen senere.',
     ],
 ];

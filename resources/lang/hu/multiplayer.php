@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited játékos|:count_delimited játékosok',
         'time_left' => ':time van hátra',
 
+        'errors' => [
+            'duration_too_long' => '',
+        ],
+
         'status' => [
             'active' => 'aktív',
             'ended' => 'befejezve',

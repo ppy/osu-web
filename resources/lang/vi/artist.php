@@ -43,7 +43,7 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'tìm nhạc',
 
             'form' => [
                 'advanced' => 'Tìm kiếm nâng cao',
@@ -51,7 +51,7 @@ return [
                 'artist' => 'Nghệ sĩ',
                 'bpm_gte' => 'BPM tối thiểu',
                 'bpm_lte' => 'BPM tối đa',
-                'empty' => '',
+                'empty' => 'Không có bài hát khớp với bộ lọc tìm kiếm.',
                 'genre' => 'Thể loại',
                 'genre_all' => 'Tất cả',
                 'length_gte' => 'Độ dài tối thiểu',

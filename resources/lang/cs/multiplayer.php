@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited hráč|:count_delimited hráči|:count_delimited hráčů',
         'time_left' => ':time zbývá',
 
+        'errors' => [
+            'duration_too_long' => '',
+        ],
+
         'status' => [
             'active' => 'aktivní',
             'ended' => '',

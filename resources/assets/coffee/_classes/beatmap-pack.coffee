@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
+
 class window.BeatmapPack
   @initialize: ->
     new BeatmapPack(elem) for elem in document.querySelectorAll('.js-beatmap-pack')
@@ -57,7 +59,7 @@ class window.BeatmapPack
 
   # TODO: move out.
   getBeatmapPackItem: (packId) ->
-    $.get laroute.route('packs.raw', pack: packId)
+    $.get route('packs.raw', pack: packId)
 
   slideDown: =>
     @packBody.style.height = ''

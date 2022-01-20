@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited oyuncu|:count_delimited oyuncu',
         'time_left' => 'kalan süre: :time',
 
+        'errors' => [
+            'duration_too_long' => '',
+        ],
+
         'status' => [
             'active' => 'aktif',
             'ended' => 'sona erdi',

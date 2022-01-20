@@ -21,11 +21,7 @@ import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 
 function alphabeticalSort(a: Channel, b: Channel) {
-  if (a.name === b.name) {
-    return 0;
-  }
-
-  return a.name > b.name ? -1 : 1;
+  return a.name.localeCompare(b.name);
 }
 
 function makeEmptyGroupedChannels() {

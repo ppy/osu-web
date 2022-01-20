@@ -15,7 +15,7 @@ import UserAvatar from 'user-avatar';
 import { UserLink } from 'user-link';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
-import { modeAttributesMap } from 'utils/score';
+import { modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;

@@ -8,7 +8,7 @@ return [
         '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => 'forum của admin',
+        '_' => 'admin của forum',
     ],
     'admin_store' => [
         '_' => 'quản trị viên',
