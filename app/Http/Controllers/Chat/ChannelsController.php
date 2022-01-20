@@ -220,6 +220,8 @@ class ChannelsController extends Controller
      * In that case, [send a message](#create-new-pm) instead to create the channel.
      *
      * @bodyParam channel object channel details; required if `type` is `ANNOUNCE`. No-example
+     * @bodyParam channel.name string required the channel name. No-example
+     * @bodyParam channel.description string required the channel description. No-example
      * @bodyParam message string message to send with the announcement; required if `type` is `ANNOUNCE`. No-example
      * @bodyParam target_id integer target user id; required if `type` is `PM`; ignored, otherwise. Example: 2
      * @bodyParam target_ids integer[] target user ids; required if `type` is `PM`; ignored, otherwise. No-example
