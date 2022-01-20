@@ -34,7 +34,7 @@ class Chat
         priv_check_user($sender, 'ChatAnnounce')->ensureCan();
 
         $params = get_params($rawParams, null, [
-            'channel:any',
+            'channel:array',
             'message:string',
             'target_ids:int[]',
         ], ['null_missing' => true]);
