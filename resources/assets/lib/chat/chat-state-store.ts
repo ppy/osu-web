@@ -164,7 +164,7 @@ export default class ChatStateStore implements DispatchListener {
   private handleFriendUpdated(event: FriendUpdated) {
     if (!this.isChatMounted) return;
 
-    // TODO: update other tabs...somehow
+    // FIXME: friend list update isn't propagated to other tabs without a full refresh, yet.
     const channel = this.channelStore.groupedChannels.PM.find((value) => value.pmTarget === event.userId);
     channel?.refresh();
   }
