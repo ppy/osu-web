@@ -453,7 +453,7 @@ class Channel extends Model
             if ($this->isPM()) {
                 if ($this->unhide()) {
                     // assume a join event has to be sent if any channels need to need to be unhidden.
-                    event(new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'));
+                    (new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'))->broadcast();
                 }
 
                 (new ChannelMessage($message, $sender))->dispatch();
