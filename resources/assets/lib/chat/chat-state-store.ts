@@ -15,7 +15,7 @@ import Channel from 'models/chat/channel';
 import ChannelStore from 'stores/channel-store';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
-import { getChannel, getUpdates } from './chat-api';
+import { getUpdates } from './chat-api';
 import PingService from './ping-service';
 
 @dispatchListener
@@ -166,11 +166,7 @@ export default class ChatStateStore implements DispatchListener {
 
     // TODO: update other tabs...somehow
     const channel = this.channelStore.groupedChannels.PM.find((value) => value.pmTarget === event.userId);
-    if (channel != null) {
-      getChannel(channel?.channelId).done((response) => {
-        channel.updateWithJson(response.channel);
-      });
-    }
+    channel?.refresh();
   }
 
   @action
