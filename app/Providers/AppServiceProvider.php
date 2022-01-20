@@ -7,6 +7,7 @@ namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
 use App\Libraries\AssetsManifest;
+use App\Libraries\BroadcastsPendingForTests;
 use App\Libraries\ChatFilters;
 use App\Libraries\Groups;
 use App\Libraries\MorphMap;
@@ -113,9 +114,12 @@ class AppServiceProvider extends ServiceProvider
             fn ($app) => $app->bound(Server::class) ? new SwooleTaskDispatcher() : new SequentialTaskDispatcher()
         );
 
-        // This is needed for testing with Dusk.
         if ($this->app->environment('testing')) {
+            // This is needed for testing with Dusk.
             $this->app->register('\App\Providers\AdditionalDuskServiceProvider');
+
+            // This is for testing after commit broadcastable events.
+            $this->app->singleton(BroadcastsPendingForTests::class, fn () => new BroadcastsPendingForTests());
         }
     }
 }
