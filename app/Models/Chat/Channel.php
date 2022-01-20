@@ -93,8 +93,7 @@ class Channel extends Model
             }
 
             foreach ($users as $user) {
-                // TODO: update after #8447
-                event(new ChatChannelEvent($channel, $user, 'join'));
+                (new ChatChannelEvent($channel, $user, 'join'))->broadcast(true);
             }
         });
 
