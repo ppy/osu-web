@@ -43,6 +43,9 @@ interface Props {
 @observer
 export default class PlayDetailList extends React.Component<Props> {
   @observable activeKey: number | null = null;
+  private readonly containerContextValue: {
+    activeKeyDidChange: (key: number | null) => void;
+  };
 
   @computed
   private get paginatorJson() {
@@ -63,6 +66,9 @@ export default class PlayDetailList extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
+
+    // Do this after makeObservable call to make sure it's the decorated version of the function.
+    this.containerContextValue = { activeKeyDidChange: this.activeKeyDidChange };
   }
 
   render() {
@@ -80,7 +86,7 @@ export default class PlayDetailList extends React.Component<Props> {
           titleKey={`users.show.extra.${sectionMap.translationKey}.title`}
         />
 
-        <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
+        <ContainerContext.Provider value={this.containerContextValue}>
           <div className={classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })}>
             {(this.uniqueItems).map((score) => (
               <KeyContext.Provider key={score.id} value={score.id}>
