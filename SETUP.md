@@ -42,7 +42,7 @@ Consult the [laravel documentation](https://laravel.com/docs/6.x/installation#we
 
 ```bash
 # this script assumes you can connect passwordless as root
-$ ./bin/db_setup.sh
+$ mysql -u root < ./docker/development/db_setup.sql
 ```
 
 ### Install packages and build assets
