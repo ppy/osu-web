@@ -116,6 +116,9 @@ window.osu =
     $alert = $('.popup-clone').clone()
 
     closeAlert = -> $alert.click()
+    
+    # https://getbootstrap.com/docs/4.0/components/alerts/#methods
+    disposeAlertWithFadeOut = -> $alert.fadeOut().alert('close')
 
     # handle types of alerts by changing the colour
     $alert
@@ -131,7 +134,7 @@ window.osu =
         .one('click.close-alert', closeAlert)
         .fadeIn()
     else
-      Timeout.set 5000, closeAlert
+      Timeout.set 5000, -> disposeAlertWithFadeOut
 
     document.activeElement.blur?()
     $alert.appendTo($popup).fadeIn()
