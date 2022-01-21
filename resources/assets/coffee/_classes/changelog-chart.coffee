@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { fadeIn, fadeOut } from 'utils/fade'
+import { parseJson } from 'utils/json'
 
 class window.ChangelogChart
   constructor: (area) ->
@@ -59,7 +60,7 @@ class window.ChangelogChart
 
 
   loadData: ->
-    @config = _exported.parseJson 'json-chart-config'
+    @config = parseJson 'json-chart-config'
 
     {data, hasData} = @normalizeData @config.build_history
 

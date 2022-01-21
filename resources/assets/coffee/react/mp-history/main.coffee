@@ -1,10 +1,12 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Content } from './content'
 import HeaderV4 from 'header-v4'
+import { route } from 'laroute'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
+import { Content } from './content'
+
 el = React.createElement
 
 export class Main extends React.Component
@@ -91,7 +93,7 @@ export class Main extends React.Component
     Timeout.clear @timeouts.autoload
     @setState loadingNext: true
 
-    $.ajax laroute.route('matches.show', match: @state.match.id),
+    $.ajax route('matches.show', match: @state.match.id),
       method: 'GET'
       dataType: 'JSON'
       data:
@@ -139,7 +141,7 @@ export class Main extends React.Component
 
     @setState loadingPrevious: true
 
-    $.ajax laroute.route('matches.show', match: @state.match.id),
+    $.ajax route('matches.show', match: @state.match.id),
       method: 'GET'
       dataType: 'JSON'
       data:
