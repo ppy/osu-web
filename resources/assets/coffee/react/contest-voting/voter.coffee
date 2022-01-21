@@ -1,10 +1,12 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div,a,i } from 'react-dom-factories'
 import { createClickCallback } from 'utils/html'
+
 el = React.createElement
 
 export class Voter extends React.Component
@@ -16,7 +18,7 @@ export class Voter extends React.Component
       method: 'PUT'
       dataType: 'json'
 
-    $.ajax laroute.route('contest-entries.vote', contest_entry: @props.entry.id), params
+    $.ajax route('contest-entries.vote', contest_entry: @props.entry.id), params
 
     .done (response) =>
       $.publish 'contest:vote:done', response: response

@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Nu s-au putut obține rezultate, încearcă mai târziu.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'Căutarea este mai ocupată decât de obicei, încearcă mai târziu.',
     ],
 ];

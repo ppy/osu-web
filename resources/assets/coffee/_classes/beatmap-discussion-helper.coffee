@@ -1,6 +1,9 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
+import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
+import { currentUrl } from 'utils/turbolinks'
 import { openBeatmapEditor, linkHtml } from 'utils/url'
 
 class window.BeatmapDiscussionHelper
@@ -38,7 +41,7 @@ class window.BeatmapDiscussionHelper
     blockName = 'beatmapset-discussion-message'
     text = _.escape text
     text = text.trim()
-    text = _exported.discussionLinkify text
+    text = discussionLinkify text
     text = @linkTimestamp text, ['beatmap-discussion-timestamp-decoration']
 
     if options.newlines ? true
@@ -181,7 +184,7 @@ class window.BeatmapDiscussionHelper
         params.beatmap = discussionState.beatmapId
         params.mode = discussionState.mode
 
-    url = new URL(laroute.route('beatmapsets.discussion', params))
+    url = new URL(route('beatmapsets.discussion', params))
     if discussionId?
       url.hash = "/#{discussionId}"
       url.hash += "/#{post.id}" if post?
@@ -199,7 +202,7 @@ class window.BeatmapDiscussionHelper
   @urlParse: (urlString, discussions, options = {}) =>
     options.forceDiscussionId ?= false
 
-    url = new URL(urlString ? _exported.currentUrl().href)
+    url = new URL(urlString ? currentUrl().href)
     [__, pathBeatmapsets, beatmapsetId, pathDiscussions, beatmapId, mode, filter] = url.pathname.split /\/+/
 
     return if pathBeatmapsets != 'beatmapsets' || pathDiscussions != 'discussion'

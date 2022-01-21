@@ -530,6 +530,8 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 
     Route::group(['namespace' => 'InterOp'], function () {
+        Route::post('artist-tracks/reindex-all', 'ArtistTracksController@reindexAll');
+
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::group(['prefix' => '{beatmapset}'], function () {
                 Route::post('broadcast-new', 'BeatmapsetsController@broadcastNew')->name('broadcast-new');

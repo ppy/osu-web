@@ -13,7 +13,7 @@ export default class ScorePins {
     makeObservable(this);
   }
 
-  apiPin(score: ScoreJson, toPin: boolean): JQuery.jqXHR<void> {
+  apiPin(score: ScoreJson, toPin: boolean) {
     const pin = score.current_user_attributes.pin;
     if (pin == null) {
       throw new Error("can't pin score without current user attributes");
@@ -26,7 +26,7 @@ export default class ScorePins {
     }).done(action(() => {
       this.markPinned(score, toPin);
       $.publish('score:pin', [toPin, score]);
-    }));
+    })) as JQuery.jqXHR<void>;
   }
 
   canBePinned(score: ScoreJson) {

@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu! บีทแมพ',
         'osu' => 'โปรไฟล์ osu!',
         'site' => 'เว็บไซต์อย่างเป็นทางการ',
     ],
@@ -30,8 +30,8 @@ return [
     'songs' => [
         '_' => 'เพลง',
         'count' => ':count_delimited เพลง|:count_delimited เพลง',
-        'original' => '',
-        'original_badge' => '',
+        'original' => 'osu! ออริจินัล',
+        'original_badge' => 'ออริจินัล',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'ค้นหาแทร็ก',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'การค้นหาขั้นสูง',
+                'album' => 'อัลบั้ม',
+                'artist' => 'ศิลปิน',
+                'bpm_gte' => 'BPM ต่ำสุด',
+                'bpm_lte' => 'BPM สูงสุด',
+                'empty' => 'ไม่พบแทร็กที่ตรงกับเกณฑ์การค้นหา',
+                'genre' => 'ประเภท',
+                'genre_all' => 'ทั้งหมด',
+                'length_gte' => 'ความยาวต่ำสุด',
+                'length_lte' => 'ความยาวสูงสุด',
             ],
         ],
     ],

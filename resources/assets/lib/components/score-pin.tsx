@@ -16,6 +16,11 @@ interface Props {
 
 @observer
 export default class ScorePin extends React.Component<Props> {
+  private onUpdateCallbacks: {
+    done: Props['onUpdate'];
+    fail: ReturnType<typeof onErrorWithCallback>;
+  } | null = null;
+
   @computed
   private get isPinned() {
     return core.scorePins.isPinned(this.props.score);
@@ -34,6 +39,10 @@ export default class ScorePin extends React.Component<Props> {
     makeObservable(this);
   }
 
+  componentWillUnmount() {
+    this.onUpdateCallbacks = null;
+  }
+
   render() {
     return (
       <button className={this.props.className} onClick={this.onClick} type='button'>
@@ -44,11 +53,15 @@ export default class ScorePin extends React.Component<Props> {
 
   private readonly onClick = () => {
     const targetState = this.isPinned ? '0' : '1';
+    this.onUpdateCallbacks = {
+      done: this.props.onUpdate,
+      fail: onErrorWithCallback(this.onClick),
+    };
 
     core.scorePins.apiPin(this.props.score, !this.isPinned)
       .done(() => {
         osu.popup(osu.trans(`users.show.extra.top_ranks.pin.to_${targetState}_done`), 'info');
-        this.props.onUpdate?.();
-      }).fail(onErrorWithCallback(this.onClick));
+        this.onUpdateCallbacks?.done?.();
+      }).fail((xhr, status) => this.onUpdateCallbacks?.fail(xhr, status));
   };
 }

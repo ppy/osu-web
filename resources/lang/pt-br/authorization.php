@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Apenas o criador do beatmap ou nominator/membros QAT podem publicar notas do mapeador.',
+            'mapper_note_wrong_user' => 'Apenas o criador do beatmap ou nominator/membros QAT podem publicar notas do mapper.',
         ],
 
         'vote' => [

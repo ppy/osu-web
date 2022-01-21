@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited명의 플레이어',
         'time_left' => ':time 남음',
 
+        'errors' => [
+            'duration_too_long' => '기간이 너무 깁니다.',
+        ],
+
         'status' => [
             'active' => '진행 중',
             'ended' => '종료됨',

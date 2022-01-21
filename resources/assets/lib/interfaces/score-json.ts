@@ -13,6 +13,8 @@ export interface ScoreCurrentUserPinJson {
   score_type: `score_best_${GameMode}`;
 }
 
+export type ScoreStatisticsAttribute = 'count_50' | 'count_100' | 'count_300' | 'count_geki' | 'count_katu' | 'count_miss';
+
 export default interface ScoreJson {
   accuracy: number;
   beatmap?: BeatmapExtendedJson;
@@ -34,14 +36,7 @@ export default interface ScoreJson {
   rank_global?: number;
   replay: boolean;
   score: number;
-  statistics: {
-    count_100: number;
-    count_300: number;
-    count_50: number;
-    count_geki: number;
-    count_katu: number;
-    count_miss: number;
-  };
+  statistics: Record<ScoreStatisticsAttribute, number>;
   user: UserJson;
   user_id: number;
   weight?: {

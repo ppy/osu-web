@@ -848,14 +848,6 @@ class OsuAuthorize
             $this->ensureHasPlayed($user);
         }
 
-        if ($user->isModerator()) {
-            return 'ok';
-        }
-
-        if ($channel->moderated) {
-            return $prefix.'moderated';
-        }
-
         if ($channel->isPM()) {
             $target = $channel->pmTargetFor($user);
             if ($target === null) {
@@ -868,6 +860,14 @@ class OsuAuthorize
             }
         } else if (!$channel->exists) {
             return $prefix.'no_channel';
+        }
+
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        if ($channel->moderated) {
+            return $prefix.'moderated';
         }
 
         // TODO: add actual permission checks for bancho multiplayer games?
@@ -895,6 +895,10 @@ class OsuAuthorize
 
         if (!config('osu.user.min_plays_allow_verified_bypass')) {
             $this->ensureHasPlayed($user);
+        }
+
+        if ($user->pm_friends_only && !$user->hasFriended($target)) {
+            return $prefix.'receive_friends_only';
         }
 
         if ($user->isModerator() || $user->isBot()) {
@@ -1284,6 +1288,8 @@ class OsuAuthorize
             return $prefix.'locked';
         }
 
+        // This check is assumed to be the last one when checking for
+        // button display in forum.topics._posts view.
         if ($post->getKey() !== $post->topic->topic_last_post_id) {
             return $prefix.'only_last_post';
         }

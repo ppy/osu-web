@@ -17,7 +17,7 @@ class AddBuildIdToSoloScoreTokens extends Migration
     public function up()
     {
         Schema::table('solo_score_tokens', function (Blueprint $table) {
-            $table->unsignedMediumInteger('build_id')->null(true)->after('ruleset_id');
+            $table->unsignedMediumInteger('build_id')->nullable()->after('ruleset_id');
         });
     }
 

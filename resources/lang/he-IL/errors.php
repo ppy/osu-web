@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'לא נמצאו תוצאות, נסה שוב מאוחר יותר.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'החיפוש עמוס יותר מאשר מבדרך כלל, נסה שוב מאוחר יותר.',
     ],
 ];

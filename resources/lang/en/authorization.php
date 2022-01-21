@@ -67,6 +67,7 @@ return [
         'friends_only' => 'User is blocking messages from people not on their friends list.',
         'moderated' => 'This channel is currently moderated.',
         'no_access' => 'You do not have access to that channel.',
+        'receive_friends_only' => 'The user may not be able to reply because you are only accepting messages from people on your friends list.',
         'restricted' => 'You cannot send messages while silenced, restricted or banned.',
         'silenced' => 'You cannot send messages while silenced, restricted or banned.',
     ],

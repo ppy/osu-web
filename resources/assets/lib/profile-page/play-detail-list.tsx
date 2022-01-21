@@ -17,19 +17,20 @@ type ScoreSections = TopScoreSection | 'scoresRecent';
 
 const sectionMaps = {
   scoresBest: {
-    count: 'scores_best_count',
+    countKey: 'scores_best_count',
+    showPpWeight: true,
     translationKey: 'top_ranks.best',
   },
   scoresFirsts: {
-    count: 'scores_first_count',
+    countKey: 'scores_first_count',
     translationKey: 'top_ranks.first',
   },
   scoresPinned: {
-    count: 'scores_pinned_count',
+    countKey: 'scores_pinned_count',
     translationKey: 'top_ranks.pinned',
   },
   scoresRecent: {
-    count: 'scores_recent_count',
+    countKey: 'scores_recent_count',
     translationKey: 'historical.recent_plays',
   },
 } as const;
@@ -39,14 +40,13 @@ interface Props {
   section: ScoreSections;
 }
 
-interface State {
-  activeKey: number | null;
-}
-
 @observer
-export default class PlayDetailList extends React.Component<Props, State> {
+export default class PlayDetailList extends React.Component<Props> {
   @observable activeKey: number | null = null;
-  private listRef = React.createRef<HTMLDivElement>();
+  private readonly containerContextValue: {
+    activeKeyDidChange: (key: number | null) => void;
+  };
+  private readonly listRef = React.createRef<HTMLDivElement>();
 
   @computed
   private get paginatorJson() {
@@ -72,6 +72,9 @@ export default class PlayDetailList extends React.Component<Props, State> {
     super(props);
 
     makeObservable(this);
+
+    // Do this after makeObservable call to make sure it's the decorated version of the function.
+    this.containerContextValue = { activeKeyDidChange: this.activeKeyDidChange };
   }
 
   componentDidMount() {
@@ -104,16 +107,17 @@ export default class PlayDetailList extends React.Component<Props, State> {
       return <p>{this.paginatorJson.items.error}</p>;
     }
 
-    const { count, translationKey } = sectionMaps[this.props.section];
+    const sectionMap = sectionMaps[this.props.section];
+    const showPpWeight = 'showPpWeight' in sectionMap && sectionMap.showPpWeight;
 
     return (
       <>
         <ProfilePageExtraSectionTitle
-          count={this.props.controller.state.user[count]}
-          titleKey={`users.show.extra.${translationKey}.title`}
+          count={this.props.controller.state.user[sectionMap.countKey]}
+          titleKey={`users.show.extra.${sectionMap.translationKey}.title`}
         />
 
-        <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
+        <ContainerContext.Provider value={this.containerContextValue}>
           <div ref={this.listRef} className={classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })}>
             {(this.uniqueItems).map((score) => (
               <KeyContext.Provider key={score.id} value={score.id}>
@@ -121,6 +125,7 @@ export default class PlayDetailList extends React.Component<Props, State> {
                   activated={this.activeKey === score.id}
                   score={score}
                   showPinSortableHandle={this.withPinSortable}
+                  showPpWeight={showPpWeight}
                 />
               </KeyContext.Provider>
             ))}

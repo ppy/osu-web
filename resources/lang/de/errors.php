@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Keine Ergebnisse gefunden, versuche es später erneut.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'Die Suche ist derzeit höher ausgelastet als normal, versuche es später erneut.',
     ],
 ];

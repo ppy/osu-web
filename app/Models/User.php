@@ -183,6 +183,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     protected $visible = ['user_id', 'username', 'username_clean', 'user_rank', 'osu_playstyle', 'user_colour'];
 
+    protected $attributes = [
+        'user_allow_pm' => true,
+    ];
+
     protected $casts = [
         'osu_subscriber' => 'boolean',
         'user_allow_pm' => 'boolean',

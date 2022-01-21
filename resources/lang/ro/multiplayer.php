@@ -13,6 +13,10 @@ return [
         'player_count' => '',
         'time_left' => '',
 
+        'errors' => [
+            'duration_too_long' => '',
+        ],
+
         'status' => [
             'active' => 'activ',
             'ended' => 'terminat',

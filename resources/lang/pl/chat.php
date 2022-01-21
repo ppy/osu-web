@@ -22,12 +22,14 @@ return [
             'target_restricted' => 'Konto tego użytkownika jest obecnie zablokowane',
         ],
     ],
+
     'input' => [
         'disabled' => 'nie udało się wysłać wiadomości...',
-        'disconnected' => '',
+        'disconnected' => 'Rozłączono',
         'placeholder' => 'napisz wiadomość...',
         'send' => 'Wyślij',
     ],
+
     'no-conversations' => [
         'howto' => "Rozpocznij konwersację poprzez profil lub kartę użytkownika.",
         'lazer' => 'Publiczne kanały, do których dołączysz poprzez <a href=":link">osu!lazer</a>, także będą tutaj widoczne.',

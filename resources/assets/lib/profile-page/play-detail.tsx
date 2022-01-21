@@ -18,6 +18,7 @@ interface Props {
   activated: boolean;
   score: ScoreJson;
   showPinSortableHandle?: boolean;
+  showPpWeight?: boolean;
 }
 
 interface State {
@@ -43,6 +44,8 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
 
     const pinData = this.props.showPinSortableHandle ? this.props.score.current_user_attributes.pin : null;
     const additionalAttributes = { 'data-score-pin': JSON.stringify(pinData) };
+
+    const scoreWeight = this.props.showPpWeight ? score.weight : null;
 
     return (
       <div className={`${blockClass} js-score-pin-sortable`} {...additionalAttributes}>
@@ -84,17 +87,17 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
                 <span className={`${bn}__accuracy`}>
                   {osu.formatNumber(score.accuracy * 100, 2)}%
                 </span>
-                {score.weight != null && (
+                {scoreWeight != null && (
                   <span className={`${bn}__weighted-pp`}>
-                    {score.pp != null && `${osu.formatNumber(Math.round(score.weight.pp))}pp`}
+                    {score.pp != null && `${osu.formatNumber(Math.round(scoreWeight.pp))}pp`}
                   </span>
                 )}
               </div>
 
-              {score.weight != null && (
+              {scoreWeight != null && (
                 <div className={`${bn}__pp-weight`}>
                   {osu.trans('users.show.extra.top_ranks.pp_weight', {
-                    percentage: `${osu.formatNumber(Math.round(score.weight.percentage))}%`,
+                    percentage: `${osu.formatNumber(Math.round(scoreWeight.percentage))}%`,
                   })}
                 </div>
               )}
@@ -113,7 +116,11 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
               />
             ) : (
               <span title={osu.trans('users.show.extra.top_ranks.not_ranked')}>
-                -
+                {(beatmap.status === 'loved') ? (
+                  <span className='fas fa-heart'/>
+                ) : (
+                  '-'
+                )}
               </span>
             )}
           </div>

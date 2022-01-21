@@ -348,6 +348,7 @@ export default class Controller {
 
   private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: ScoreJson) => {
     const arrayIndex = this.state.extras.scoresPinned.findIndex((s) => s.id === score.id);
+    this.state.user.scores_pinned_count += isPinned ? 1 : -1;
 
     if (isPinned) {
       if (arrayIndex === -1) {

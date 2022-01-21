@@ -11,7 +11,7 @@ return [
 
         'blurb' => [
             'important' => '下载前必读',
-            'install_instruction' => '',
+            'install_instruction' => '导入：当谱面合集包下载完成后，把它解压至 Songs 文件夹内即可。osu! 会完成接下来的工作。',
             'note' => [
                 '_' => '强烈建议 :scary，因为旧谱面的质量可能不如新谱面。',
                 'scary' => '下载最新的曲包',
