@@ -77,6 +77,7 @@ class UserCompactTransformer extends TransformerAbstract
         'replays_watched_counts',
         'scores_best_count',
         'scores_first_count',
+        'scores_pinned_count',
         'scores_recent_count',
         'statistics',
         'statistics_rulesets',
@@ -358,6 +359,11 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeScoresFirstCount(User $user)
     {
         return $this->primitive($user->scoresFirst($this->mode, true)->visibleUsers()->count());
+    }
+
+    public function includeScoresPinnedCount(User $user)
+    {
+        return $this->primitive($user->scorePins()->forMode($this->mode)->withVisibleScore()->count());
     }
 
     public function includeScoresRecentCount(User $user)
