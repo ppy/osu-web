@@ -22,6 +22,7 @@ use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
 use App\Transformers\CurrentUserTransformer;
+use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
@@ -412,6 +413,7 @@ class UsersController extends Controller
         static $mapping = [
             'best' => 'scoresBest',
             'firsts' => 'scoresFirsts',
+            'pinned' => 'scoresPinned',
             'recent' => 'scoresRecent',
         ];
 
@@ -419,7 +421,7 @@ class UsersController extends Controller
 
         $perPage = $this->perPage;
 
-        if ($type === 'firsts') {
+        if ($type === 'firsts' || $type === 'pinned') {
             // Override per page restriction in parsePaginationParams to allow infinite paging
             $perPage = $this->sanitizedLimitParam();
         }
@@ -530,6 +532,7 @@ class UsersController extends Controller
             'replays_watched_counts',
             'scores_best_count',
             'scores_first_count',
+            'scores_pinned_count',
             'scores_recent_count',
             'statistics',
             'statistics.country_rank',
@@ -568,6 +571,7 @@ class UsersController extends Controller
             $perPage = [
                 'scoresBest' => 5,
                 'scoresFirsts' => 5,
+                'scoresPinned' => 5,
                 'scoresRecent' => 5,
 
                 'beatmapPlaycounts' => 5,
@@ -716,29 +720,44 @@ class UsersController extends Controller
 
                 // Score
                 case 'scoresBest':
-                    $transformer = 'Score';
-                    $includes = ['beatmap', 'beatmapset', 'weight', 'user'];
-                    $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
+                    $transformer = new ScoreTransformer();
+                    $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
+                    $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                     break;
                 case 'scoresFirsts':
-                    $transformer = 'Score';
-                    $includes = ['beatmap', 'beatmapset', 'user'];
+                    $transformer = new ScoreTransformer();
+                    $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                     $query = $user->scoresFirst($options['mode'], true)
                         ->visibleUsers()
                         ->reorderBy('score_id', 'desc')
-                        ->with('beatmap', 'beatmap.beatmapset', 'user');
+                        ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                    break;
+                case 'scoresPinned':
+                    $transformer = new ScoreTransformer();
+                    $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
+                    $query = $user
+                        ->scorePins()
+                        ->forMode($options['mode'])
+                        ->withVisibleScore()
+                        ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
+                        ->reorderBy('display_order', 'asc');
+                    $collectionFn = fn ($pins) => $pins->map->score;
                     break;
                 case 'scoresRecent':
-                    $transformer = 'Score';
-                    $includes = ['beatmap', 'beatmapset', 'user'];
+                    $transformer = new ScoreTransformer();
+                    $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                     $query = $user->scores($options['mode'], true)
                         ->includeFails($options['includeFails'] ?? false)
-                        ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
+                        ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
                     break;
             }
 
             if (!isset($collection)) {
                 $collection = $query->limit($perPage)->offset($offset)->get();
+
+                if (isset($collectionFn)) {
+                    $collection = $collectionFn($collection);
+                }
             }
 
             return json_collection($collection, $transformer, $includes ?? []);

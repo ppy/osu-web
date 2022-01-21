@@ -5,10 +5,11 @@ import AchievementJson from 'interfaces/achievement-json';
 import CurrentUserJson from 'interfaces/current-user-json';
 import GameMode from 'interfaces/game-mode';
 import ExtrasJson from 'interfaces/profile-page/extras-json';
+import ScoreJson from 'interfaces/score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
 import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-json';
 import { route } from 'laroute';
-import { debounce, keyBy } from 'lodash';
+import { debounce, keyBy, pullAt } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import core from 'osu-core-singleton';
 import { onErrorWithCallback } from 'utils/ajax';
@@ -24,6 +25,7 @@ const sectionToUrlType = {
   rankedBeatmapsets: 'ranked',
   scoresBest: 'best',
   scoresFirsts: 'firsts',
+  scoresPinned: 'pinned',
   scoresRecent: 'recent',
 };
 
@@ -98,6 +100,7 @@ export default class Controller {
           recentlyReceivedKudosu: {},
           scoresBest: {},
           scoresFirsts: {},
+          scoresPinned: {},
           scoresRecent: {},
         },
         user: initialData.user,
@@ -114,6 +117,8 @@ export default class Controller {
     this.currentMode = initialData.current_mode;
     this.scoresNotice = initialData.scores_notice;
     this.displayCoverUrl = this.state.user.cover.url;
+
+    $.subscribe('score:pin', this.onScorePinUpdate);
 
     makeObservable(this);
   }
@@ -248,6 +253,7 @@ export default class Controller {
 
       case 'scoresBest':
       case 'scoresFirsts':
+      case 'scoresPinned':
       case 'scoresRecent':
         this.xhr[section] = apiShowMore(
           this.paginatorJson(section),
@@ -267,6 +273,7 @@ export default class Controller {
   destroy() {
     Object.values(this.xhr).forEach((xhr) => xhr?.abort());
     this.debouncedSetDisplayCoverUrl.cancel();
+    $.unsubscribe('score:pin', this.onScorePinUpdate);
   }
 
   paginatorJson<T extends ProfilePageSection>(section: T) {
@@ -286,6 +293,23 @@ export default class Controller {
   setDisplayCoverUrl(url: string | null) {
     this.displayCoverUrl = url ?? this.state.user.cover.url;
   }
+
+  private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: ScoreJson) => {
+    const arrayIndex = this.state.extras.scoresPinned.findIndex((s) => s.id === score.id);
+    this.state.user.scores_pinned_count += isPinned ? 1 : -1;
+
+    if (isPinned) {
+      if (arrayIndex === -1) {
+        this.state.extras.scoresPinned.unshift(score);
+      }
+    } else {
+      if (arrayIndex !== -1) {
+        pullAt(this.state.extras.scoresPinned, arrayIndex);
+      }
+    }
+
+    this.saveState();
+  };
 
   private readonly saveState = () => {
     this.container.dataset.savedState = JSON.stringify(this.state);

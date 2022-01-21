@@ -14,6 +14,7 @@ use App\Libraries\OsuAuthorize;
 use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
 use App\Libraries\RouteSection;
+use App\Libraries\User\ScorePins;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         'chat-filters' => ChatFilters::class,
         'groups' => Groups::class,
         'route-section' => RouteSection::class,
+        'score-pins' => ScorePins::class,
     ];
 
     /**
