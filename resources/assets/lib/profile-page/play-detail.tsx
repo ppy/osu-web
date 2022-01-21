@@ -17,6 +17,7 @@ const bn = 'play-detail';
 interface Props {
   activated: boolean;
   score: ScoreJson;
+  showPpWeight?: boolean;
 }
 
 interface State {
@@ -36,6 +37,8 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
       bn,
       this.props.activated ? 'active' : 'highlightable',
     );
+
+    const scoreWeight = this.props.showPpWeight ? score.weight : null;
 
     return (
       <div className={blockClass}>
@@ -76,17 +79,17 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
                 <span className={`${bn}__accuracy`}>
                   {osu.formatNumber(score.accuracy * 100, 2)}%
                 </span>
-                {score.weight != null && (
+                {scoreWeight != null && (
                   <span className={`${bn}__weighted-pp`}>
-                    {score.pp != null && `${osu.formatNumber(Math.round(score.weight.pp))}pp`}
+                    {score.pp != null && `${osu.formatNumber(Math.round(scoreWeight.pp))}pp`}
                   </span>
                 )}
               </div>
 
-              {score.weight != null && (
+              {scoreWeight != null && (
                 <div className={`${bn}__pp-weight`}>
                   {osu.trans('users.show.extra.top_ranks.pp_weight', {
-                    percentage: `${osu.formatNumber(Math.round(score.weight.percentage))}%`,
+                    percentage: `${osu.formatNumber(Math.round(scoreWeight.percentage))}%`,
                   })}
                 </div>
               )}

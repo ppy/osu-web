@@ -18,6 +18,7 @@ type ScoreSections = TopScoreSection | 'scoresRecent';
 const sectionMaps = {
   scoresBest: {
     countKey: 'scores_best_count',
+    showPpWeight: true,
     translationKey: 'top_ranks.best',
   },
   scoresFirsts: {
@@ -69,20 +70,25 @@ export default class PlayDetailList extends React.Component<Props> {
       return <p>{this.paginatorJson.items.error}</p>;
     }
 
-    const { countKey, translationKey } = sectionMaps[this.props.section];
+    const sectionMap = sectionMaps[this.props.section];
+    const showPpWeight = 'showPpWeight' in sectionMap && sectionMap.showPpWeight;
 
     return (
       <>
         <ProfilePageExtraSectionTitle
-          count={this.props.controller.state.user[countKey]}
-          titleKey={`users.show.extra.${translationKey}.title`}
+          count={this.props.controller.state.user[sectionMap.countKey]}
+          titleKey={`users.show.extra.${sectionMap.translationKey}.title`}
         />
 
         <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
           <div className={classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })}>
             {(this.uniqueItems).map((score) => (
               <KeyContext.Provider key={score.id} value={score.id}>
-                <PlayDetail activated={this.activeKey === score.id} score={score} />
+                <PlayDetail
+                  activated={this.activeKey === score.id}
+                  score={score}
+                  showPpWeight={showPpWeight}
+                />
               </KeyContext.Provider>
             ))}
           </div>
