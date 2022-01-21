@@ -118,7 +118,7 @@ export default class PlayDetailList extends React.Component<Props> {
         />
 
         <ContainerContext.Provider value={this.containerContextValue}>
-          <div ref={this.listRef} className={classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })}>
+          <div ref={this.listRef} className={`${classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })} u-relative`}>
             {(this.uniqueItems).map((score) => (
               <KeyContext.Provider key={score.id} value={score.id}>
                 <PlayDetail
