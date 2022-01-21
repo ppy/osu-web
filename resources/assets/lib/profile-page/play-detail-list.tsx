@@ -18,11 +18,16 @@ type ScoreSections = TopScoreSection | 'scoresRecent';
 const sectionMaps = {
   scoresBest: {
     countKey: 'scores_best_count',
+    showPpWeight: true,
     translationKey: 'top_ranks.best',
   },
   scoresFirsts: {
     countKey: 'scores_first_count',
     translationKey: 'top_ranks.first',
+  },
+  scoresPinned: {
+    countKey: 'scores_pinned_count',
+    translationKey: 'top_ranks.pinned',
   },
   scoresRecent: {
     countKey: 'scores_recent_count',
@@ -38,6 +43,9 @@ interface Props {
 @observer
 export default class PlayDetailList extends React.Component<Props> {
   @observable activeKey: number | null = null;
+  private readonly containerContextValue: {
+    activeKeyDidChange: (key: number | null) => void;
+  };
 
   @computed
   private get paginatorJson() {
@@ -58,6 +66,9 @@ export default class PlayDetailList extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
+
+    // Do this after makeObservable call to make sure it's the decorated version of the function.
+    this.containerContextValue = { activeKeyDidChange: this.activeKeyDidChange };
   }
 
   render() {
@@ -65,20 +76,25 @@ export default class PlayDetailList extends React.Component<Props> {
       return <p>{this.paginatorJson.items.error}</p>;
     }
 
-    const { countKey, translationKey } = sectionMaps[this.props.section];
+    const sectionMap = sectionMaps[this.props.section];
+    const showPpWeight = 'showPpWeight' in sectionMap && sectionMap.showPpWeight;
 
     return (
       <>
         <ProfilePageExtraSectionTitle
-          count={this.props.controller.state.user[countKey]}
-          titleKey={`users.show.extra.${translationKey}.title`}
+          count={this.props.controller.state.user[sectionMap.countKey]}
+          titleKey={`users.show.extra.${sectionMap.translationKey}.title`}
         />
 
-        <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
+        <ContainerContext.Provider value={this.containerContextValue}>
           <div className={classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })}>
             {(this.uniqueItems).map((score) => (
               <KeyContext.Provider key={score.id} value={score.id}>
-                <PlayDetail activated={this.activeKey === score.id} score={score} />
+                <PlayDetail
+                  activated={this.activeKey === score.id}
+                  score={score}
+                  showPpWeight={showPpWeight}
+                />
               </KeyContext.Provider>
             ))}
           </div>

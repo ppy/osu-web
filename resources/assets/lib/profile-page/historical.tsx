@@ -51,11 +51,12 @@ function convertUserDataForChart(rawData: RawChartData[]): ChartData[] {
 function dataPadder(padded: ChartData[], entry: ChartData) {
   if (padded.length > 0) {
     const lastEntry = padded[padded.length - 1];
-    const missingMonths = moment(entry.x).diff(moment(lastEntry.x), 'months') - 1;
+    // use UTC to prevent wrong month calculation on timezone with DST
+    const missingMonths = moment.utc(entry.x).diff(moment.utc(lastEntry.x), 'months') - 1;
 
     times(missingMonths, (i) => {
       padded.push({
-        x: moment(lastEntry.x).add(i + 1, 'months').toDate(),
+        x: moment.utc(lastEntry.x).add(i + 1, 'months').toDate(),
         y: 0,
       });
     });

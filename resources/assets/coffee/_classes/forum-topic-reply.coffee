@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { pageChange } from 'utils/page-change'
 import { currentUrl } from 'utils/turbolinks'
 
 class window.ForumTopicReply
@@ -112,7 +113,7 @@ class window.ForumTopicReply
     else
       @forum.setTotalPosts(@forum.totalPosts() + 1)
       @forum.endPost().insertAdjacentHTML 'afterend', data
-      _exported.pageChange()
+      pageChange()
 
       @forum.endPost().scrollIntoView()
 
@@ -168,4 +169,4 @@ class window.ForumTopicReply
     target.insertBefore(box, target.firstChild)
 
     $input.focus() if inputFocused
-    _exported.pageChange() # sync reply box height
+    pageChange() # sync reply box height

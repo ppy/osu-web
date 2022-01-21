@@ -142,7 +142,6 @@ const plugins = [
   new webpack.ProvidePlugin({
     $: 'jquery',
     _: 'lodash',
-    Cookies: 'js-cookie',
     d3: 'd3', // TODO: d3 is fat and probably should have it's own chunk
     jQuery: 'jquery',
     moment: 'moment',

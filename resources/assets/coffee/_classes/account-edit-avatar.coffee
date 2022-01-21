@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
 import { fileuploadFailCallback } from 'utils/ajax'
 
 class window.AccountEditAvatar
@@ -28,7 +29,7 @@ class window.AccountEditAvatar
     @$main = $(@main)
 
     @$button().fileupload
-      url: laroute.route('account.avatar')
+      url: route('account.avatar')
       dataType: 'json'
       dropZone: @$main
 

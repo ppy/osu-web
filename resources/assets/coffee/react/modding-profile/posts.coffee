@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img, span } from 'react-dom-factories'
 import { Post } from "../beatmap-discussions/post"
@@ -62,6 +63,6 @@ export class Posts extends React.Component
             a
               key: 'show-more'
               className: 'modding-profile-list__show-more'
-              href: laroute.route('users.modding.posts', {user: @props.user.id}),
+              href: route('users.modding.posts', {user: @props.user.id}),
               osu.trans('users.show.extra.posts.show_more')
           ]

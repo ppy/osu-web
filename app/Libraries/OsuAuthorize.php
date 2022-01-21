@@ -24,6 +24,7 @@ use App\Models\Language;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
+use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\User;
 use App\Models\UserContestEntry;
 use Carbon\Carbon;
@@ -1287,6 +1288,8 @@ class OsuAuthorize
             return $prefix.'locked';
         }
 
+        // This check is assumed to be the last one when checking for
+        // button display in forum.topics._posts view.
         if ($post->getKey() !== $post->topic->topic_last_post_id) {
             return $prefix.'only_last_post';
         }
@@ -1723,6 +1726,32 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @param \App\Models\Score\Best\Model|null $user
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkScorePin(?User $user, ScoreBest $best): string
+    {
+        $prefix = 'score.pin.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($best->user_id !== $user->getKey()) {
+            return $prefix.'not_owner';
+        }
+
+        $pinned = $user->scorePins()->forMode($best)->withVisibleScore()->count();
+
+        if ($pinned >= $user->maxScorePins()) {
+            return $prefix.'too_many';
+        }
 
         return 'ok';
     }

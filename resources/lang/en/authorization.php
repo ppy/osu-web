@@ -167,6 +167,13 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'not_owner' => 'Only score owner can pin score.',
+            'too_many' => 'Pinned too many scores.',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [

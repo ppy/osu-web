@@ -1020,6 +1020,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(UserReport::class, 'reporter_id');
     }
 
+    public function scorePins()
+    {
+        return $this->hasMany(ScorePin::class);
+    }
+
     public function userGroups()
     {
         return $this->hasMany(UserGroup::class);
@@ -1345,6 +1350,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function maxMultiplayerRooms()
     {
         return $this->isSupporter() ? config('osu.user.max_multiplayer_rooms_supporter') : config('osu.user.max_multiplayer_rooms');
+    }
+
+    public function maxScorePins()
+    {
+        return $this->isSupporter() ? config('osu.user.max_score_pins_supporter') : config('osu.user.max_score_pins');
     }
 
     public function beatmapsetDownloadAllowance()

@@ -1,11 +1,13 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
 import * as React from 'react'
 import { div, form, input, label, span } from 'react-dom-factories'
 import { fileuploadFailCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
 import { nextVal } from 'utils/seq'
+
 el = React.createElement
 
 export class Uploader extends React.Component
@@ -55,7 +57,7 @@ export class Uploader extends React.Component
     $.subscribe "dragendGlobal.#{@eventId}", => @setOverlay('hidden')
 
     $uploadButton.fileupload
-      url: laroute.route 'contest-entries.store'
+      url: route 'contest-entries.store'
       dataType: 'json'
       dropZone: $dropzone
       sequentialUploads: true
