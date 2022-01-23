@@ -117,7 +117,7 @@ window.osu =
 
     closeAlert = -> $alert.click()
     
-    # https://getbootstrap.com/docs/4.0/components/alerts/#methods
+    # https://getbootstrap.com/docs/3.4/javascript/#alerts
     disposeAlertWithFadeOut = -> $alert.fadeOut().alert('close')
 
     # handle types of alerts by changing the colour
