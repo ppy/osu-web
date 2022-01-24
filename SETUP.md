@@ -88,7 +88,7 @@ git config core.eol lf
 git config core.filemode false
 ```
 
-### ARM-bsed CPUs
+### ARM-based CPUs
 
 Tests that require the use of ChromeDriver (both Karma and Dusk tests) will not work inside Docker when running on ARM-based CPUs (e.g. Macs running Apple Silicon). In this scenario, these tests should be run outside of a container.
 
