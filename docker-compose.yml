@@ -92,6 +92,7 @@ services:
     environment:
       action.auto_create_index: "false"
       discovery.type: single-node
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m" # less OOM on default settings.
 
   nginx:
     image: nginx:latest
