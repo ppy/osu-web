@@ -58,7 +58,7 @@ class ScorePinsController extends Controller
 
         $order2 = ($order1 + $order3) / 2;
 
-        if ($order3 - $order1 < 0.001) {
+        if ($order3 - $order1 < 0.1) {
             dispatch(new RenumberUserScorePins($target->user_id, $target->score_type));
         }
 
