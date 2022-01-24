@@ -154,11 +154,12 @@ return [
                 'combo' => '最大连击',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => '玩家',
                 'pp' => '',
                 'rank' => '排名',
-                'score_total' => '得分',
                 'score' => '得分',
+                'score_total' => '得分',
                 'time' => '达成时间',
             ],
 

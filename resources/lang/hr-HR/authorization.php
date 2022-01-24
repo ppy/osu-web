@@ -67,6 +67,7 @@ return [
         'friends_only' => '',
         'moderated' => '',
         'no_access' => '',
+        'receive_friends_only' => '',
         'restricted' => '',
         'silenced' => '',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => '',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

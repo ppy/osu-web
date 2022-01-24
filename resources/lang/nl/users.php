@@ -325,6 +325,15 @@ return [
                 'first' => [
                     'title' => 'Eerste Ranks',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => 'Gegeven stemmen (de afgelopen 3 maanden)',

@@ -154,11 +154,12 @@ return [
                 'combo' => 'Pinakamahabang Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Manlalaro',
                 'pp' => '',
                 'rank' => 'Rank',
-                'score_total' => 'Kabuuang Puntos',
                 'score' => 'Puntos',
+                'score_total' => 'Kabuuang Puntos',
                 'time' => 'Oras',
             ],
 
