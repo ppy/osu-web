@@ -98,7 +98,7 @@ class ScorePinsController extends Controller
 
     private function getScoreParams(array $form)
     {
-        return get_params($form ?? [], null, [
+        return get_params($form, null, [
             'score_type:string',
             'score_id:int',
         ], ['null_missing' => true]);
