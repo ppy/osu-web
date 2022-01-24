@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\RenumberUserScorePins;
 use App\Models\ScorePin;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
