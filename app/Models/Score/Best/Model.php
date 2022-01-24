@@ -408,6 +408,11 @@ abstract class Model extends BaseModel
         return $result;
     }
 
+    public function getBestAttribute()
+    {
+        return $this;
+    }
+
     public function getBestIdAttribute()
     {
         return $this->getKey();

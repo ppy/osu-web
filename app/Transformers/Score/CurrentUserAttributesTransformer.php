@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace App\Transformers\Score;
 
 use App\Models\LegacyMatch;
-use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
 use App\Transformers\TransformerAbstract;
 
@@ -16,7 +15,7 @@ class CurrentUserAttributesTransformer extends TransformerAbstract
 {
     public function transform(LegacyMatch\Score|ScoreModel $score): array
     {
-        $best = $score instanceof ScoreBest ? $score : $score->best;
+        $best = $score->best;
 
         return [
             'pin' => $best !== null && $this->isOwnScore($best)
