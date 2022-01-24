@@ -4,12 +4,11 @@
 import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
-import OsuCore from 'osu-core';
 
 export default class ScorePins {
   @observable pins = new Map<string, boolean>();
 
-  constructor(private core: OsuCore) {
+  constructor() {
     makeObservable(this);
   }
 
@@ -30,7 +29,7 @@ export default class ScorePins {
   }
 
   canBePinned(score: ScoreJson) {
-    return this.core.currentUser != null && score.user_id === this.core.currentUser.id;
+    return score.current_user_attributes.pin != null;
   }
 
   isPinned(score: ScoreJson) {
