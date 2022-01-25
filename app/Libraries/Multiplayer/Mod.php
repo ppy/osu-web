@@ -186,6 +186,8 @@ class Mod
         ],
         self::FLASHLIGHT => [
             'follow_delay' => 'float',
+            'size_multiplier' => 'float',
+            'combo_based_size' => 'bool',
         ],
         self::OSU_GROW => [
             'start_scale' => 'float',
