@@ -75,6 +75,23 @@ At this point you should be able to access the site via whatever webserver you c
 ---
 **Notes**
 
+The `elasticsearch` and `db` containers store their data to volumes, the containers will use data on these volumes if they already exist.
+
+### Elasticsearch
+
+Existing Elasticsearch indices will be upgraded to new versions on start. Indices from a newer version cannot be used by older versions and downgrades are not supported.
+
+If you need to use a previous version of elasticsearch, e.g. to run `osu-elastic-indexer`, you can specify a previous version in a `docker-compose.override.yml` file:
+
+    services:
+      elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.23
+
+Note that older versions of Elasticsearch do not work on ARM-based CPUs.
+
+`osu-elastic-indexer` currently cannot update indices using Elasticsearch 7; existing records can still be queried normally.
+
+
 ### Windows
 
 On Windows, the files inside Linux system can be found in Explorer from `\\wsl$` location.
@@ -91,6 +108,8 @@ git config core.filemode false
 ### ARM-based CPUs
 
 Tests that require the use of ChromeDriver (both Karma and Dusk tests) will not work inside Docker when running on ARM-based CPUs (e.g. Macs running Apple Silicon). In this scenario, these tests should be run outside of a container.
+
+Custom configurations to run the tests within the container are currently not supported.
 
 ---
 
