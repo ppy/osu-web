@@ -11,16 +11,6 @@ return [
     'cannot_send' => [
         'channel' => 'Você não pode conversar neste canal no momento. Isso pode ter ocorrido pelos seguintes motivos:',
         'user' => 'Você não pode conversar com este usuário no momento. Isso pode ter ocorrido pelos seguintes motivos:',
-        'reasons' => [
-            'blocked' => 'Você foi bloqueado pelo destinatário',
-            'channel_moderated' => 'Este canal está sendo moderado',
-            'friends_only' => 'O destinatário apenas aceita mensagens de pessoas em sua lista de amigos',
-            'not_enough_plays' => 'Você não jogou o suficiente',
-            'not_verified' => 'Sua sessão não foi verificada',
-            'restricted' => 'Você está atualmente em estado restrito',
-            'silenced' => 'Você está silenciado no momento',
-            'target_restricted' => 'O destinatário está atualmente em estado restrito',
-        ],
     ],
 
     'input' => [

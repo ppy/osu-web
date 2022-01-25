@@ -24,7 +24,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist',
-                'description' => 'Berkat dukunganmu, kami dapat melisensi berbagai lagu karya musisi-musisi berbakat dari seluruh belahan dunia untuk dapat dipergunakan secara legal di dalam lingkungan osu!.',
+                'description' => 'Berkat dukunganmu, kami dapat melisensi berbagai lagu karya musisi-musisi berbakat untuk dapat dipergunakan secara legal di dalam lingkungan osu!.',
                 'link_text' => 'Lihat daftar Featured Artist saat ini &raquo;',
             ],
             'ads' => [
@@ -96,7 +96,7 @@ return [
 
             'speedy_downloads' => [
                 'title' => 'Unduhan Yang Cepat',
-                'description' => 'Pembatasan jumlah unduhan yang lebih lengang, terutama saat menggunakan osu!direct.',
+                'description' => 'Nikmati batas unduhan yang lebih lengang, terutama saat menggunakan osu!direct.',
             ],
 
             'change_username' => [

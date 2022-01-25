@@ -6,7 +6,7 @@
 return [
     'missing_route' => 'Неверный url или неправильный метод запроса.',
     'no_restricted_access' => 'Вы не можете использовать данную функцию пока ваши права ограничены.',
-    'supporter_only' => 'Вы должны иметь osu!supporter для использования этой возможности.',
+    'supporter_only' => 'Вы должны иметь тег osu!supporter для использования этой возможности.',
     'unknown' => 'Возникла неизвестная ошибка.',
 
     'codes' => [
@@ -29,7 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Ничего не найдено, попробуйте позже.',
-        'invalid_cursor_exception' => '',
+        'invalid_cursor_exception' => 'Задан неверный параметр курсора.',
         'operation_timeout_exception' => 'Поиск сейчас перегружен, попробуйте позже.',
     ],
 ];

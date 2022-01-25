@@ -67,6 +67,7 @@ return [
         'friends_only' => '用戶阻止了來自非好友的訊息。',
         'moderated' => '該頻道目前正在被管制中。',
         'no_access' => '你沒有權限訪問該頻道。',
+        'receive_friends_only' => '',
         'restricted' => '你不能在帳戶被禁言、限制或封鎖的時候發送訊息。',
         'silenced' => '你不能在帳戶被禁言、限制或封鎖的時候傳送訊息。',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => '該討論區僅限管理員查看。',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

@@ -154,11 +154,12 @@ return [
                 'combo' => 'Kombo Maks',
                 'miss' => 'Miss',
                 'mods' => 'Mod',
+                'pin' => '',
                 'player' => 'Pemain',
                 'pp' => '',
                 'rank' => 'Peringkat',
-                'score_total' => 'Jumlah Skor',
                 'score' => 'Skor',
+                'score_total' => 'Jumlah Skor',
                 'time' => 'Waktu',
             ],
 

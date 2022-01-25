@@ -29,7 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Không có kết quả, vui lòng thử lại sau.',
-        'invalid_cursor_exception' => '',
+        'invalid_cursor_exception' => 'Tham số con trỏ được chỉ định là không hợp lệ.',
         'operation_timeout_exception' => 'Hệ thống tìm kiếm đang quá tải, vui lòng thử lại sau.',
     ],
 ];

@@ -11,16 +11,6 @@ return [
     'cannot_send' => [
         'channel' => 'Nemůžeme poslat vaši zprávu do tohoto kanálu. Tohle může být zapříčiněno jakýmkoliv z těchto důvodů:',
         'user' => 'Nemůžeme poslat vaši zprávu tomuhle uživateli. Tohle může být zapříčiněno jakýmkoliv z těchto důvodů:',
-        'reasons' => [
-            'blocked' => 'Byl jste zablokován příjemcem',
-            'channel_moderated' => 'Tento kanál je právě moderován',
-            'friends_only' => 'Příjemce může přijímat zprávy pouze od lidí na jeho seznamu přátel',
-            'not_enough_plays' => '',
-            'not_verified' => '',
-            'restricted' => 'Váš účet je teď omezen',
-            'silenced' => '',
-            'target_restricted' => 'Účet příjemce je právě omezen',
-        ],
     ],
 
     'input' => [
