@@ -34,7 +34,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
       throw new Error('score json is missing beatmap or beatmapset details');
     }
 
-    const blockClass = classWithModifiers(
+    let blockClass = classWithModifiers(
       bn,
       this.props.activated ? 'active' : 'highlightable',
       {
@@ -42,13 +42,18 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
       },
     );
 
-    const pinData = this.props.showPinSortableHandle ? this.props.score.current_user_attributes.pin : null;
-    const additionalAttributes = { 'data-score-pin': JSON.stringify(pinData) };
+    const additionalAttributes: Partial<Record<`data-${string}`, string>> = {};
+
+    if (this.props.showPinSortableHandle) {
+      const pinData = this.props.score.current_user_attributes.pin;
+      additionalAttributes['data-score-pin'] = JSON.stringify(pinData);
+      blockClass += ' js-score-pin-sortable';
+    }
 
     const scoreWeight = this.props.showPpWeight ? score.weight : null;
 
     return (
-      <div className={`${blockClass} js-score-pin-sortable`} {...additionalAttributes}>
+      <div className={blockClass} {...additionalAttributes}>
         {this.renderPinSortableHandle()}
         <div className={`${bn}__group ${bn}__group--top`}>
           <div className={`${bn}__icon ${bn}__icon--main`}>
