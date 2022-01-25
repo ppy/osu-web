@@ -97,6 +97,16 @@ Note that older versions of Elasticsearch do not work on ARM-based CPUs.
 
 `osu-elastic-indexer` currently cannot update indices using Elasticsearch 7; existing records can still be queried normally.
 
+### Mysql
+
+The Mysql images provided by Docker and Mysql have different uids for the `mysql` user, if you are getting permission errors when starting the `db` container like
+
+    mysqld: File './binlog.index' not found (OS errno 13 - Permission denied)
+
+update the ownership of the mysql data files:
+
+    docker compose run --rm db sh -c 'chown -R mysql:mysql /var/lib/mysql'
+
 
 ### Windows
 
