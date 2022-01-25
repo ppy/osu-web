@@ -81,11 +81,17 @@ The `elasticsearch` and `db` containers store their data to volumes, the contain
 
 Existing Elasticsearch indices will be upgraded to new versions on start. Indices from a newer version cannot be used by older versions and downgrades are not supported.
 
-If you need to use a previous version of elasticsearch, e.g. to run `osu-elastic-indexer`, you can specify a previous version in a `docker-compose.override.yml` file:
+If you need to use a previous version of elasticsearch, e.g. to run `osu-elastic-indexer`, you can specify a previous version in a `docker-compose.override.yml` file (`volumes` and `environment` must be specified, as well, not just `image`):
 
     services:
       elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.23
+        volumes:
+          - elasticsearch:/usr/share/elasticsearch/data
+        environment:
+          action.auto_create_index: "false"
+          discovery.type: single-node
+          ES_JAVA_OPTS: "-Xms512m -Xmx512m"
 
 Note that older versions of Elasticsearch do not work on ARM-based CPUs.
 
