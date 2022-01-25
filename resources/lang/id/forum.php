@@ -15,7 +15,7 @@ return [
         'create' => [
             '_' => 'Pasang gambar sampul',
             'button' => 'Unggah gambar sampul',
-            'info' => 'Ukuran gambar yang optimal adalah :dimensions. Anda juga dapat meletakkan gambar di sini untuk mengunggah.',
+            'info' => 'Ukuran gambar sampul yang disarankan adalah :dimensions. Anda juga dapat meletakkan gambar Anda di sini untuk mengunggahnya.',
         ],
 
         'destroy' => [

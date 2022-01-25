@@ -67,6 +67,7 @@ return [
         'friends_only' => 'Người dùng này đang chặn tin nhắn từ những người không trong danh sách bạn của họ.',
         'moderated' => 'Kênh hiện đang được kiểm duyệt.',
         'no_access' => 'Bạn không có quyền truy cập vào kênh này.',
+        'receive_friends_only' => '',
         'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
         'silenced' => 'Bạn không thể gửi tin nhắn khi bị tắt tiếng, bị hạn chế hoặc bị cấm.',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => 'Chỉ có admin mới có thể xem diễn đàn này.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

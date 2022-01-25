@@ -67,6 +67,7 @@ return [
         'friends_only' => 'Ang user na ito ay nagbo-block ng mga messages mula sa mga user na hindi parte ng kanyang friend list.',
         'moderated' => 'Kasalukuyang naka-moderate ang channel na ito.',
         'no_access' => 'Wala kang access sa channel na iyon.',
+        'receive_friends_only' => '',
         'restricted' => 'Hindi ka maaaring maka-send ng mga mensahe habang naka-silence, restricted o banned.',
         'silenced' => 'Hindi ka maaaring maka-send ng mga mensahe habang naka-silence, restricted o banned.',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => 'Ang admin lamang ang pwedeng tumingin ng forum na ito.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

@@ -62,7 +62,8 @@ class ScoreTransformer extends TransformerAbstract
             'created_at' => json_time($score->date),
         ];
 
-        $best = $score instanceof ScoreBest ? $score : $score->best;
+        // this `best` relation is also used by `current_user_attributes` include.
+        $best = $score->best;
 
         if ($best === null) {
             $ret['best_id'] = null;
@@ -75,11 +76,7 @@ class ScoreTransformer extends TransformerAbstract
         if ($score instanceof ScoreModel) {
             $ret['mode'] = $score->getMode();
             $ret['mode_int'] = Beatmap::modeInt($score->getMode());
-            $ret['replay'] = $score->best->replay ?? false;
-        }
-
-        if ($score instanceof ScoreBest) {
-            $ret['replay'] = $score->replay;
+            $ret['replay'] = $best->replay ?? false;
         }
 
         return $ret;

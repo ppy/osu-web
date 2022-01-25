@@ -220,7 +220,7 @@ return [
             'options' => 'Pilihan Pencarian Lebih Lanjut',
             'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan osu!supporter tag yang aktif',
             'not-found' => 'tidak ada hasil',
-            'not-found-quote' => '... tidak, tidak ditemukan apa pun.',
+            'not-found-quote' => '... tidak, tidak apa hasil apapun yang ditemukan.',
             'filters' => [
                 'extra' => 'Konten Ekstra',
                 'general' => 'Umum',

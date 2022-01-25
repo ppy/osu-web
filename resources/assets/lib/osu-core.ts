@@ -50,7 +50,7 @@ export default class OsuCore {
   readonly osuLayzr = new OsuLayzr();
   readonly reactTurbolinks: ReactTurbolinks;
   readonly referenceLinkTooltip = new ReferenceLinkTooltip();
-  readonly scorePins = new ScorePins(this);
+  readonly scorePins = new ScorePins();
   socketWorker: SocketWorker;
   readonly stickyHeader = new StickyHeader();
   readonly timeago = new Timeago();
