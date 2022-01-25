@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
 import Mod from 'mod'
 import * as React from 'react'
 import { div, a, span, h1, h2 } from 'react-dom-factories'
@@ -19,7 +20,7 @@ export class GameHeader extends React.Component
 
     a
       className: 'mp-history-game__header'
-      href: (laroute.route 'beatmaps.show', beatmap: @props.beatmap.id) if @props.beatmap.id
+      href: (route 'beatmaps.show', beatmap: @props.beatmap.id) if @props.beatmap.id
       style:
         backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover)
 

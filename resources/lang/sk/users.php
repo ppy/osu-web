@@ -325,6 +325,15 @@ return [
                 'first' => [
                     'title' => 'Umiestnenie na prvom mieste',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => 'Počet hlasov (posledné 3 mesiace)',

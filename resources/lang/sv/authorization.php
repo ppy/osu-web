@@ -67,6 +67,7 @@ return [
         'friends_only' => 'Användaren blockerar meddelanden från personer som inte finns på sin vänlista.',
         'moderated' => 'Den kanalen är för närvarande modererad.',
         'no_access' => 'Du har ingen behörighet till denna kanalen.',
+        'receive_friends_only' => '',
         'restricted' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
         'silenced' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => 'Endast administratörer kan se detta forum.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

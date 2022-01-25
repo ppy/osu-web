@@ -11,16 +11,6 @@ return [
     'cannot_send' => [
         'channel' => 'Şu anda bu kanala mesaj yazamazsınız. Şunlardan herhangi birisi buna sebep olabilir:',
         'user' => 'Şu anda bu kişiye mesaj yazamazsınız. Şunlardan herhangi birisi buna sebep olabilir:',
-        'reasons' => [
-            'blocked' => 'Alıcı tarafından engellisiniz',
-            'channel_moderated' => 'Bu kanal şu anda modere edilmekte',
-            'friends_only' => 'Alıcı sadece arkadaş listesindeki kişilerden gelen mesajları kabul ediyor',
-            'not_enough_plays' => 'Oyunu yeterince oynamadınız',
-            'not_verified' => 'Oturumunuz doğrulanmadı',
-            'restricted' => 'Şu anda hesabınız kısıtlı durumda',
-            'silenced' => 'Şu anda susturulmuş durumdasınız',
-            'target_restricted' => 'Alıcı şu anda kısıtlı durumda',
-        ],
     ],
 
     'input' => [

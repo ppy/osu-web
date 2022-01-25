@@ -154,11 +154,12 @@ return [
                 'combo' => 'Maks Kombo',
                 'miss' => 'Bom',
                 'mods' => 'Modifikasjoner',
+                'pin' => '',
                 'player' => 'Spiller',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Total Poengsum',
                 'score' => 'Poengsum',
+                'score_total' => 'Total Poengsum',
                 'time' => 'Tid',
             ],
 

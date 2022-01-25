@@ -13,7 +13,6 @@ import ShowMoreLink from 'show-more-link';
 import { Spinner } from 'spinner';
 import StringWithComponent from 'string-with-component';
 import UserAvatar from 'user-avatar';
-import { nextVal } from 'utils/seq';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
@@ -30,8 +29,8 @@ const blankSnapshot = (): Snapshot => ({ chatHeight: 0, chatTop: 0 });
 export default class ConversationView extends React.Component<Props> {
   private chatViewRef = React.createRef<HTMLDivElement>();
   private didSwitchChannel = true;
+  private disposers = new Set<(() => void) | undefined>();
   private firstMessage?: Message;
-  private readonly id = `conversation-view-${nextVal()}`;
   private unreadMarkerRef = React.createRef<HTMLDivElement>();
 
   @computed
@@ -118,7 +117,10 @@ export default class ConversationView extends React.Component<Props> {
 
   componentDidMount() {
     this.componentDidUpdate();
-    $(window).on(`scroll.${this.id}`, throttle(this.handleOnScroll, 1000));
+
+    const throttledHandleOnScroll = throttle(this.handleOnScroll, 1000);
+    $(window).on('scroll', throttledHandleOnScroll);
+    this.disposers.add(() => $(window).off('scroll', throttledHandleOnScroll));
   }
 
   @action
@@ -133,7 +135,7 @@ export default class ConversationView extends React.Component<Props> {
     if (this.didSwitchChannel) {
       // This can happen after a turbolinks navigation,
       // so we have to wait for the elements to be on the current document before scrolling.
-      core.reactTurbolinks.runAfterPageLoad(this.id, action(() => {
+      this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => {
         if (this.unreadMarkerRef.current) {
           this.scrollToUnread();
         } else {
@@ -145,7 +147,7 @@ export default class ConversationView extends React.Component<Props> {
         }
 
         this.didSwitchChannel = false;
-      }));
+      })));
     } else {
       snapshot = snapshot ?? blankSnapshot();
       const prepending = this.firstMessage !== this.currentChannel.firstMessage;
@@ -164,8 +166,7 @@ export default class ConversationView extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    $(window).off(`.${this.id}`);
-    $(document).off(`.${this.id}`); // for runAfterPageLoad.
+    this.disposers.forEach((disposer) => disposer?.());
   }
 
   getSnapshotBeforeUpdate() {

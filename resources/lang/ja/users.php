@@ -325,6 +325,15 @@ return [
                 'first' => [
                     'title' => '1位の記録',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => '与えた投票（３ヶ月）',

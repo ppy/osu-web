@@ -325,6 +325,15 @@ return [
                 'first' => [
                     'title' => 'Pierwsze miejsca',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => 'Oddane głosy (ostatnie 3 miesiące)',

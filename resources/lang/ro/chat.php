@@ -11,16 +11,6 @@ return [
     'cannot_send' => [
         'channel' => 'Nu poți trimite mesaje în acest canal chiar acum. Acest lucru poate fi din cauza următoarelor motive:',
         'user' => 'Nu poți trimite mesaje acestui utilizator chiar acum. Acest lucru poate fi din cauza următoarelor motive:',
-        'reasons' => [
-            'blocked' => 'Ai fost blocat de către destinatar',
-            'channel_moderated' => 'Acest canal a fost moderat',
-            'friends_only' => 'Destinatarul acceptă mesaje doar de la persoane din lista lui de prieteni',
-            'not_enough_plays' => 'Nu ai jucat jocul destul',
-            'not_verified' => 'Sesiunea dvs. nu a fost verificată',
-            'restricted' => 'Ești restricționat în prezent',
-            'silenced' => 'Ești momentan mut',
-            'target_restricted' => 'Destinatarul este restricționat în prezent',
-        ],
     ],
 
     'input' => [

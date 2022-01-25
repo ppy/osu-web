@@ -5,7 +5,7 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Kami ingin memberitahukan bahwa beatmap ":title" telah diperbaharui sejak kunjungan terakhir Anda.',
+        'new' => 'Kami ingin memberitahukan bahwa beatmap ":title" telah diperbarui sejak kunjungan terakhir Anda.',
         'subject' => 'Pembaruan baru untuk beatmap ":title"',
         'unwatch' => 'Apabila Anda tidak lagi ingin memantau beatmap ini, Anda dapat melepas pemantauan Anda melalui tautan "Lepas Pantauan" yang tertera di atas atau melalui laman Daftar Pantauan berikut:',
         'visit' => 'Kunjungi laman diskusi beatmap ini di sini:',
