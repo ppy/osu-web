@@ -106,6 +106,7 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::delete('score-pins', 'ScorePinsController@destroy')->name('score-pins.destroy');
+    Route::put('score-pins', 'ScorePinsController@reorder')->name('score-pins.reorder');
     Route::resource('score-pins', 'ScorePinsController', ['only' => ['store']]);
 
     Route::resource('client-verifications', 'ClientVerificationsController', ['only' => ['create', 'store']]);
