@@ -75,6 +75,8 @@ At this point you should be able to access the site via whatever webserver you c
 ---
 **Notes**
 
+Newer versions of docker can use `docker compose` instead of `docker-compose`
+
 The `elasticsearch` and `db` containers store their data to volumes, the containers will use data on these volumes if they already exist.
 
 ### Elasticsearch
@@ -105,7 +107,7 @@ The Mysql images provided by Docker and Mysql have different uids for the `mysql
 
 update the ownership of the mysql data files:
 
-    docker compose run --rm db sh -c 'chown -R mysql:mysql /var/lib/mysql'
+    docker-compose run --rm db sh -c 'chown -R mysql:mysql /var/lib/mysql'
 
 
 ### Windows
@@ -131,7 +133,7 @@ Dusk tests can make use of an external Chrome driver instance by setting the fol
 
 e.g. If Docker Desktop and the default networking are used and `chromedriver` is running on the host:
 
-    docker compose run --rm -e DUSK_WEBDRIVER_URL=host.docker.internal:9515 APP_URL=http://127.0.0.1:8080 php test browser
+    docker-compose run --rm -e DUSK_WEBDRIVER_URL=host.docker.internal:9515 APP_URL=http://127.0.0.1:8080 php test browser
 
 The host `chromedriver` will need to allow connections from the container:
 
