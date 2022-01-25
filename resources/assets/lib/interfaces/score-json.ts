@@ -7,6 +7,12 @@ import GameMode from './game-mode';
 import Rank from './rank';
 import UserJson from './user-json';
 
+export interface ScoreCurrentUserPinJson {
+  is_pinned: boolean;
+  score_id: number;
+  score_type: `score_best_${GameMode}`;
+}
+
 export type ScoreStatisticsAttribute = 'count_50' | 'count_100' | 'count_300' | 'count_geki' | 'count_katu' | 'count_miss';
 
 export default interface ScoreJson {
@@ -16,11 +22,7 @@ export default interface ScoreJson {
   best_id: number | null;
   created_at: string;
   current_user_attributes: {
-    pin?: {
-      is_pinned: boolean;
-      score_id: number;
-      score_type: `score_best_${GameMode}`;
-    };
+    pin?: ScoreCurrentUserPinJson;
   };
   id: number;
   max_combo: number;
