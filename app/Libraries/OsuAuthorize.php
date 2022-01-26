@@ -1181,6 +1181,8 @@ class OsuAuthorize
      */
     public function checkCommentPin(?User $user, Comment $comment): string
     {
+        $this->ensureLoggedIn($user);
+
         if (!$comment->commentable instanceof Beatmapset) {
             return 'unauthorized';
         }
@@ -1193,10 +1195,12 @@ class OsuAuthorize
             return 'ok';
         }
 
-        $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($comment->commentable->user_id === $user->getKey()) {
+        if (
+            $comment->user_id === $user->getKey() &&
+            $comment->commentable->user_id === $user->getKey()
+        ) {
             return 'ok';
         }
 

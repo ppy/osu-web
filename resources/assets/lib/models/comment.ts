@@ -78,16 +78,24 @@ export class Comment {
       return true;
     }
 
-    if (!this.pinned && core.dataStore.uiState.comments.pinnedCommentIds.length > 0) {
+    if (
+      this.commentableType !== 'beatmapset' ||
+      (!this.pinned && core.dataStore.uiState.comments.pinnedCommentIds.length > 0)
+    ) {
+      return false;
+    }
+
+    if (this.canModerate) {
+      return true;
+    }
+
+    if (!this.isOwner) {
       return false;
     }
 
     const meta = core.dataStore.commentableMetaStore.get(this.commentableType, this.commentableId);
-    const beatmapsetOwnerId = meta != null && 'type' in meta && meta.type === 'beatmapset'
-      ? meta.owner_id
-      : undefined;
 
-    return beatmapsetOwnerId != null && (this.canModerate || beatmapsetOwnerId === core.currentUser.id);
+    return meta != null && 'owner_id' in meta && meta.owner_id === core.currentUser.id;
   }
 
   @computed
