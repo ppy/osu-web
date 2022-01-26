@@ -3,10 +3,10 @@
 
 import HeaderLink from 'interfaces/header-link';
 import UserExtendedJson from 'interfaces/user-extended-json';
-import { MultiplayerType } from 'interfaces/user-multiplayer-history-json';
+import { MultiplayerTypeGroup } from 'interfaces/user-multiplayer-history-json';
 import { route } from 'laroute';
 
-type LinkMode = 'modding' | 'show' | MultiplayerType;
+type LinkMode = 'modding' | 'show' | MultiplayerTypeGroup;
 
 const nonBotModes: LinkMode[] = ['modding', 'playlists', 'realtime'];
 

@@ -4,15 +4,15 @@
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import RoomJson from 'interfaces/room-json';
-import UserMultiplayerHistoryJson, { MultiplayerType } from 'interfaces/user-multiplayer-history-json';
+import UserMultiplayerHistoryJson, { MultiplayerTypeGroup } from 'interfaces/user-multiplayer-history-json';
 import { action, makeObservable, observable } from 'mobx';
 
 export default class MultiplayerHistoryStore {
   @observable beatmaps = new Map<number, BeatmapJson>();
   @observable beatmapsets = new Map<number, BeatmapsetJson>();
-  @observable category: MultiplayerType = 'realtime';
   @observable cursor: unknown = null;
   @observable rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[] = [];
+  @observable typeGroup: MultiplayerTypeGroup = 'realtime';
 
   constructor() {
     makeObservable(this);
@@ -32,7 +32,7 @@ export default class MultiplayerHistoryStore {
       this.beatmapsets.set(beatmapset.id, beatmapset);
     }
 
-    this.category = json.category;
+    this.typeGroup = json.type_group;
     this.cursor = json.cursor;
   }
 }

@@ -16,11 +16,11 @@ interface Props {
 export default function Main(props: Props) {
   return (
     <UserProfileContainer user={props.user}>
-      <Header category={props.store.category} user={props.user} />
+      <Header category={props.store.typeGroup} user={props.user} />
       <div className='user-profile-pages'>
         <div className='user-profile-pages__item'>
           <div className='page-extra'>
-            <h2 className='title title--page-extra'>{osu.trans(`users.show.extra.${props.store.category}.title`)}</h2>
+            <h2 className='title title--page-extra'>{osu.trans(`users.show.extra.${props.store.typeGroup}.title`)}</h2>
             <MultiplayerHistory store={props.store} user={props.user} />
           </div>
         </div>

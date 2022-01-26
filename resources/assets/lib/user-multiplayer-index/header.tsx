@@ -3,7 +3,7 @@
 
 import HeaderV4 from 'header-v4';
 import UserExtendedJson from 'interfaces/user-extended-json';
-import { MultiplayerType } from 'interfaces/user-multiplayer-history-json';
+import { MultiplayerTypeGroup } from 'interfaces/user-multiplayer-history-json';
 import Badges from 'profile-page/badges';
 import Detail from 'profile-page/detail';
 import HeaderInfo from 'profile-page/header-info';
@@ -13,7 +13,7 @@ import ProfileTournamentBanner from 'profile-tournament-banner';
 import * as React from 'react';
 
 interface Props {
-  category: MultiplayerType;
+  category: MultiplayerTypeGroup;
   user: UserExtendedJson;
 }
 

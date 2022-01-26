@@ -20,14 +20,14 @@ class MultiplayerController extends Controller
     {
         $request = request();
         $user = FindForProfilePage::find($request->route('user'));
-        $category = $request->route()->getName() === 'users.playlists.index' ? 'playlists' : 'realtime';
+        $typeGroup = $request->route()->getName() === 'users.playlists.index' ? 'playlists' : 'realtime';
 
         $params = get_params($request->all(), null, [
             'cursor:any',
             'limit:int',
         ], ['null_missing' => true]);
 
-        $json = $this->getJson($user, $params, $category);
+        $json = $this->getJson($user, $params, $typeGroup);
 
         if (is_json_request()) {
             return $json;
@@ -42,17 +42,17 @@ class MultiplayerController extends Controller
         return ext_view('users.multiplayer.index', compact('json', 'jsonUser', 'user'));
     }
 
-    private function getJson(User $user, array $params, string $category)
+    private function getJson(User $user, array $params, string $typeGroup)
     {
         $limit = clamp(get_int($params['limit']) ?? 50, 1, 50);
 
         $search = Room::search([
-            'category' => $category,
             'cursor' => $params['cursor'],
             'user' => $user,
             'limit' => $limit,
             'mode' => 'participated',
             'sort' => 'ended',
+            'type_group' => $typeGroup,
         ]);
 
         [$rooms, $hasMore] = $search['query']->with(['host', 'playlist.beatmap.beatmapset'])->getWithHasMore();
@@ -62,10 +62,10 @@ class MultiplayerController extends Controller
         return [
             'beatmaps' => json_collection($beatmaps, new BeatmapCompactTransformer()),
             'beatmapsets' => json_collection($beatmapsets, new BeatmapsetCompactTransformer()),
-            'category' => $category,
             'cursor' => $hasMore ? $search['cursorHelper']->next($rooms) : null,
             'rooms' => json_collection($rooms, new RoomTransformer(), ['host', 'playlist']),
             'search' => $search['search'],
+            'type_group' => $typeGroup,
         ];
     }
 }

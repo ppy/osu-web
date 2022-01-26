@@ -102,8 +102,8 @@ class Room extends Model
         $user = $params['user'];
         $sort = $params['sort'] ?? null;
 
-        $category = presence(get_string($params['category'] ?? null)) ?? 'playlists';
-        switch ($category) {
+        $typeGroup = presence(get_string($params['category'] ?? $params['type_group'] ?? null)) ?? 'playlists';
+        switch ($typeGroup) {
             // TODO: check if lazer uses any at all?
             case 'any':
             case 'playlists':
@@ -113,9 +113,11 @@ class Room extends Model
                 $query->whereIn('type', static::REALTIME_TYPES);
                 break;
             default:
+                // basically spotlight / normal
+                // TODO: param check?
                 $query->where([
                     'type' => static::PLAYLIST_TYPE,
-                    'category' => $category,
+                    'category' => $typeGroup,
                 ]);
         }
 
