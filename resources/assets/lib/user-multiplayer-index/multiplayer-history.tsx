@@ -55,7 +55,7 @@ export default class MultiplayerHistory extends React.Component<Props> {
     if (this.loading) return;
 
     this.loading = true;
-    const url = route(`users.${this.props.store.typeGroup}.index`, { user: this.props.user.id });
+    const url = route('users.multiplayer.index', { typeGroup: this.props.store.typeGroup, user: this.props.user.id });
     void $.getJSON(url, { cursor: this.props.store.cursor })
       .done(action((response: UserMultiplayerHistoryJson) => {
         this.props.store.updateWithJson(response);
