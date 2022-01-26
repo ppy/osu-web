@@ -54,6 +54,8 @@ class Room extends Model
 
     const DEFAULT_SORT = 'created';
 
+    const CATEGORIES = ['normal', 'spotlight'];
+
     const PLAYLIST_TYPE = 'playlists';
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
     const REALTIME_TYPES = ['head_to_head', 'team_versus'];
@@ -94,34 +96,43 @@ class Room extends Model
         }
     }
 
-    public static function search($params)
+    public static function search(array $params)
     {
+        $params = get_params($params, null, [
+            'category',
+            'cursor:array',
+            'limit:int',
+            'mode',
+            'sort',
+            'type_group',
+            'user:any',
+        ], ['null_missing' => true]);
+
+        $user = $params['user'];
+        $sort = $params['sort'];
+        $category = $params['category'];
+        if ($category === 'realtime') {
+            // support old query string format
+            $typeGroup = 'realtime';
+        } else {
+            $typeGroup = $params['type_group'] ?? 'playlists';
+        }
+
         $query = static::query();
 
-        $mode = presence(get_string($params['mode'] ?? null));
-        $user = $params['user'];
-        $sort = $params['sort'] ?? null;
-
-        $typeGroup = presence(get_string($params['category'] ?? $params['type_group'] ?? null)) ?? 'playlists';
         switch ($typeGroup) {
-            // TODO: check if lazer uses any at all?
-            case 'any':
-            case 'playlists':
-                $query->where('type', static::PLAYLIST_TYPE);
-                break;
             case 'realtime':
                 $query->whereIn('type', static::REALTIME_TYPES);
                 break;
             default:
-                // basically spotlight / normal
-                // TODO: param check?
-                $query->where([
-                    'type' => static::PLAYLIST_TYPE,
-                    'category' => $typeGroup,
-                ]);
+                // TODO: param checks
+                $query->where('type', static::PLAYLIST_TYPE);
+                if (in_array($category, static::CATEGORIES, true)) {
+                    $query->where('category', $category);
+                }
         }
 
-        switch ($mode) {
+        switch ($params['mode']) {
             case 'ended':
                 $query->ended();
                 $sort ??= 'ended';
@@ -137,9 +148,9 @@ class Room extends Model
         }
 
         $cursorHelper = static::makeDbCursorHelper($sort);
-        $query->cursorSort($cursorHelper, get_arr($params['cursor'] ?? null));
+        $query->cursorSort($cursorHelper, $params['cursor']);
 
-        $limit = clamp(get_int($params['limit'] ?? 250), 1, 250);
+        $limit = clamp($params['limit'] ?? 250, 1, 250);
         $query->limit($limit);
 
         return [
