@@ -27,7 +27,7 @@ class MultiplayerController extends Controller
         }
 
         $params = get_params(request()->all(), null, [
-            'cursor:any',
+            'cursor:array',
             'limit:int',
         ], ['null_missing' => true]);
 
@@ -48,7 +48,7 @@ class MultiplayerController extends Controller
 
     private function getJson(User $user, array $params, string $typeGroup)
     {
-        $limit = clamp(get_int($params['limit']) ?? 50, 1, 50);
+        $limit = clamp($params['limit'] ?? 50, 1, 50);
 
         $search = Room::search([
             'cursor' => $params['cursor'],
