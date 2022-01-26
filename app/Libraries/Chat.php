@@ -43,7 +43,7 @@ class Chat
             throw new InvariantException('missing target_ids parameter');
         }
 
-        if (!isset($rawParams['channel'])) {
+        if (!isset($params['channel'])) {
             throw new InvariantException('missing channel parameter');
         }
 
