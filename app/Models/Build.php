@@ -6,7 +6,6 @@
 namespace App\Models;
 
 use App\Libraries\Commentable;
-use App\Traits\CommentableDefaults;
 use Carbon\Carbon;
 
 /**
@@ -29,7 +28,7 @@ use Carbon\Carbon;
  */
 class Build extends Model implements Commentable
 {
-    use CommentableDefaults;
+    use Traits\CommentableDefaults;
 
     public $timestamps = false;
 

@@ -240,7 +240,7 @@ return [
                 'updated' => 'Aktualizováno',
                 'ranked' => 'Hodnocené',
                 'rating' => 'Hodnocení',
-                'plays' => 'Zahraní',
+                'plays' => 'Zahrání',
                 'relevance' => 'Relevance',
                 'nominations' => 'Nominace',
             ],
@@ -252,7 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Zahrň překonvertované beatmapy',
-        'featured_artists' => '',
+        'featured_artists' => 'Featured artists',
         'follows' => 'Odebíraní autoři map',
         'recommended' => 'Doporučená obtížnost',
     ],

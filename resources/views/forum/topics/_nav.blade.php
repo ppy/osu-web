@@ -16,6 +16,7 @@
         @endif
 
         @include('forum.topics._moderate_toggle_deleted')
+        @include('forum.topics._moderate_logs', compact('topic'))
     @endif
 @endsection
 

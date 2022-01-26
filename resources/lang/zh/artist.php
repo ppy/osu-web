@@ -31,6 +31,7 @@ return [
         '_' => '单曲',
         'count' => ':count_delimited 首音乐',
         'original' => 'osu! 原创',
+        'original_badge' => '原创',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => '长度',
         'bpm' => 'BPM',
         'genre' => '流派',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '曲目搜索',
+
+            'form' => [
+                'advanced' => '高级搜索',
+                'album' => '专辑',
+                'artist' => '艺术家',
+                'bpm_gte' => '最低 BPM',
+                'bpm_lte' => '最高 BPM',
+                'empty' => '未找到符合条件的曲目。',
+                'genre' => '风格',
+                'genre_all' => '全部',
+                'length_gte' => '时长下限',
+                'length_lte' => '时长上限',
+            ],
+        ],
     ],
 ];

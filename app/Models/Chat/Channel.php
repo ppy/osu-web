@@ -5,13 +5,18 @@
 
 namespace App\Models\Chat;
 
+use App\Events\ChatChannelEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
+use App\Jobs\Notifications\ChannelAnnouncement;
 use App\Jobs\Notifications\ChannelMessage;
+use App\Libraries\AuthorizationResult;
+use App\Libraries\Chat\MessageTask;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
 use App\Traits\Memoizes;
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
 use Illuminate\Support\Collection;
@@ -32,9 +37,9 @@ use LaravelRedis as Redis;
  */
 class Channel extends Model
 {
-    use Memoizes;
+    use Memoizes, Validatable;
 
-    const PRELOADED_USERS_KEY = 'preloadedUsers';
+    const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
 
     protected $primaryKey = 'channel_id';
 
@@ -50,6 +55,7 @@ class Channel extends Model
     private array $preloadedUserChannels = [];
 
     const TYPES = [
+        'announce' => 'ANNOUNCE',
         'public' => 'PUBLIC',
         'private' => 'PRIVATE',
         'multiplayer' => 'MULTIPLAYER',
@@ -58,6 +64,41 @@ class Channel extends Model
         'pm' => 'PM',
         'group' => 'GROUP',
     ];
+
+    /**
+     * Creates a chat broadcast Channel and associated UserChannels.
+     *
+     * @param Collection $users
+     * @param array $rawParams
+     * @return Channel
+     */
+    public static function createAnnouncement(Collection $users, array $rawParams): self
+    {
+        $params = get_params($rawParams, null, [
+            'description:string',
+            'name:string',
+        ], ['null_missing' => true]);
+
+        $params['moderated'] = true;
+        $params['type'] = static::TYPES['announce'];
+
+        $channel = new static($params);
+        $channel->getConnection()->transaction(function () use ($channel, $users) {
+            $channel->saveOrExplode();
+            $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
+            foreach ($userChannels as $userChannel) {
+                // preset to avoid extra queries during permission check.
+                $userChannel->setRelation('channel', $channel);
+                $userChannel->channel->setUserChannel($userChannel);
+            }
+
+            foreach ($users as $user) {
+                (new ChatChannelEvent($channel, $user, 'join'))->broadcast(true);
+            }
+        });
+
+        return $channel;
+    }
 
     public static function createMultiplayer(Room $room)
     {
@@ -81,10 +122,10 @@ class Channel extends Model
         ]);
 
         $channel->getConnection()->transaction(function () use ($channel, $user1, $user2) {
-            $channel->save();
+            $channel->saveOrExplode();
             $channel->addUser($user1);
             $channel->addUser($user2);
-            $channel->pmUsers = collect([$user1, $user2]);
+            $channel->setPmUsers([$user1, $user2]);
         });
 
         return $channel;
@@ -96,11 +137,14 @@ class Channel extends Model
 
         $channel = static::where('name', $channelName)->first();
 
-        if ($channel !== null) {
-            $channel->pmUsers = collect([$user1, $user2]);
-        }
+        $channel?->setPmUsers([$user1, $user2]);
 
         return $channel;
+    }
+
+    public static function getAckKey(int $channelId)
+    {
+        return "chat:channel:{$channelId}";
     }
 
     /**
@@ -117,13 +161,20 @@ class Channel extends Model
         return '#pm_'.implode('-', $userIds);
     }
 
+    public function activeUserIds()
+    {
+        return $this->isPublic()
+            ? Redis::zrangebyscore(static::getAckKey($this->getKey()), now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
+            : $this->userIds();
+    }
+
     /**
-     * This check is for whether the user can enter into the input box for the channel,
+     * This check is used for whether the user can enter into the input box for the channel,
      * not if a message is actually allowed to be sent.
      */
-    public function canMessage(User $user): bool
+    public function checkCanMessage(User $user): AuthorizationResult
     {
-        return priv_check_user($user, 'ChatChannelCanMessage', $this)->can();
+        return priv_check_user($user, 'ChatChannelCanMessage', $this);
     }
 
     public function displayIconFor(?User $user): ?string
@@ -138,6 +189,16 @@ class Channel extends Model
         }
 
         return $this->pmTargetFor($user)?->username;
+    }
+
+    public function setDescriptionAttribute(?string $value)
+    {
+        $this->attributes['description'] = $value !== null ? trim($value) : null;
+    }
+
+    public function setNameAttribute(?string $value)
+    {
+        $this->attributes['name'] = presence(trim($value));
     }
 
     public function isVisibleFor(User $user): bool
@@ -206,10 +267,8 @@ class Channel extends Model
     public function users()
     {
         return $this->memoize(__FUNCTION__, function () {
-            // use lookup table if it exists
-            $usersMap = request()->attributes->get(static::PRELOADED_USERS_KEY);
-            if ($usersMap !== null) {
-                return collect(array_map(fn ($id) => $usersMap->get($id, null), $this->userIds()));
+            if ($this->isPM() && isset($this->pmUsers)) {
+                return $this->pmUsers;
             }
 
             // This isn't a has-many-through because the relationship is cross-database.
@@ -241,6 +300,11 @@ class Channel extends Model
         return $allowed_groups === null ? [] : array_map('intval', explode(',', $allowed_groups));
     }
 
+    public function isAnnouncement()
+    {
+        return $this->type === static::TYPES['announce'];
+    }
+
     public function isMultiplayer()
     {
         return $this->type === static::TYPES['multiplayer'];
@@ -268,7 +332,7 @@ class Channel extends Model
 
     public function isBanchoMultiplayerChat()
     {
-        return $this->type === static::TYPES['temporary'] && starts_with($this->name, '#mp_');
+        return $this->type === static::TYPES['temporary'] && starts_with($this->name, ['#mp_', '#spect_']);
     }
 
     public function getMatchIdAttribute()
@@ -277,6 +341,21 @@ class Channel extends Model
         if ($this->isBanchoMultiplayerChat()) {
             return intval(str_replace('#mp_', '', $this->name));
         }
+    }
+
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
+
+        if ($this->name === null) {
+            $this->validationErrors()->add('name', 'required');
+        }
+
+        if ($this->description === null) {
+            $this->validationErrors()->add('description', 'required');
+        }
+
+        return $this->validationErrors()->isEmpty();
     }
 
     public function getRoomIdAttribute()
@@ -301,13 +380,11 @@ class Channel extends Model
         $userId = $user->getKey();
 
         return $this->memoize(__FUNCTION__.':'.$userId, function () use ($userId) {
-            $users = $this->pmUsers ?? $this->users();
-
-            return $users->firstWhere('user_id', '<>', $userId);
+            return $this->users()->firstWhere('user_id', '<>', $userId);
         });
     }
 
-    public function receiveMessage(User $sender, ?string $content, bool $isAction = false)
+    public function receiveMessage(User $sender, ?string $content, bool $isAction = false, ?string $uuid = null)
     {
         $content = str_replace(["\r", "\n"], ' ', trim($content));
 
@@ -358,22 +435,33 @@ class Channel extends Model
             'timestamp' => $now,
         ]);
 
-        $message->sender()->associate($sender);
-        $message->channel()->associate($this);
-        $message->save();
+        $message->sender()->associate($sender)->channel()->associate($this)
+            ->uuid = $uuid; // relay any message uuid back.
 
-        $this->update(['last_message_id' => $message->getKey()]);
+        $message->getConnection()->transaction(function () use ($message, $sender) {
+            $message->save();
 
-        $userChannel = $this->userChannelFor($sender);
+            $this->update(['last_message_id' => $message->getKey()]);
 
-        if ($userChannel) {
-            $userChannel->markAsRead($message->message_id);
-        }
+            $userChannel = $this->userChannelFor($sender);
 
-        if ($this->isPM()) {
-            $this->unhide();
-            (new ChannelMessage($message, $sender))->dispatch();
-        }
+            if ($userChannel) {
+                $userChannel->markAsRead($message->message_id);
+            }
+
+            if ($this->isPM()) {
+                if ($this->unhide()) {
+                    // assume a join event has to be sent if any channels need to need to be unhidden.
+                    (new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'))->broadcast();
+                }
+
+                (new ChannelMessage($message, $sender))->dispatch();
+            } elseif ($this->isAnnouncement()) {
+                (new ChannelAnnouncement($message, $sender))->dispatch();
+            }
+
+            $message->getConnection()->transaction(fn () => MessageTask::dispatch($message));
+        });
 
         Datadog::increment('chat.channel.send', 1, ['target' => $this->type]);
 
@@ -385,7 +473,10 @@ class Channel extends Model
         $userChannel = $this->userChannelFor($user);
 
         if ($userChannel) {
+            // already in channel, just broadcast event.
             if (!$userChannel->isHidden()) {
+                (new ChatChannelEvent($this, $user, 'join'))->broadcast(true);
+
                 return;
             }
 
@@ -397,6 +488,8 @@ class Channel extends Model
             $userChannel->save();
             $this->resetMemoized();
         }
+
+        (new ChatChannelEvent($this, $user, 'join'))->broadcast(true);
 
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
     }
@@ -419,6 +512,8 @@ class Channel extends Model
             $userChannel->delete();
         }
 
+        (new ChatChannelEvent($this, $user, 'part'))->broadcast(true);
+
         Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
     }
 
@@ -431,6 +526,16 @@ class Channel extends Model
         ])->exists();
     }
 
+    public function save(array $options = [])
+    {
+        return $this->isValid() && parent::save($options);
+    }
+
+    public function setPmUsers(array $users)
+    {
+        $this->pmUsers = collect($users);
+    }
+
     public function setUserChannel(UserChannel $userChannel)
     {
         if ($userChannel->channel_id !== $this->getKey()) {
@@ -440,13 +545,18 @@ class Channel extends Model
         $this->preloadedUserChannels[$userChannel->user_id] = $userChannel;
     }
 
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'chat.channel';
+    }
+
     private function unhide()
     {
         if (!$this->isPM()) {
             return;
         }
 
-        UserChannel::where([
+        return UserChannel::where([
             'channel_id' => $this->channel_id,
             'hidden' => true,
         ])->update([

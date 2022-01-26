@@ -150,6 +150,9 @@ return [
                 'user_beatmapset_new' => ':username 上传了新谱面 “:title”',
                 'user_beatmapset_new_compact' => '新谱面 “:title”',
                 'user_beatmapset_new_group' => ':username 的新谱面',
+
+                'user_beatmapset_revive' => '谱面 ":title" 已由 :username 恢复',
+                'user_beatmapset_revive_compact' => '谱面 ":title" 已恢复',
             ],
         ],
 

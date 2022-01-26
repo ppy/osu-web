@@ -85,11 +85,6 @@ class HomeController extends Controller
         return ujs_redirect(route('chat.index', ['sendto' => $user]));
     }
 
-    public function osuSupportPopup()
-    {
-        return ext_view('objects._popup_support_osu');
-    }
-
     public function quickSearch()
     {
         $quickSearch = new QuickSearch(request(), ['user' => auth()->user()]);

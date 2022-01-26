@@ -4,34 +4,35 @@
 import UserJson from 'interfaces/user-json';
 import UserRelationJson from 'interfaces/user-relation-json';
 import { route } from 'laroute';
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ViewMode } from 'user-card';
 import UserCardTypeContext from 'user-card-type-context';
-import { classWithModifiers } from 'utils/css';
-import { nextVal } from 'utils/seq';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
   mode: ViewMode;
-  modifiers: string[];
+  modifiers?: Modifiers;
   user: UserJson;
 }
 
-export default class UserCardBrick extends React.PureComponent<Props> {
+@observer
+export default class UserCardBrick extends React.Component<Props> {
   static readonly contextType = UserCardTypeContext;
 
   static defaultProps = {
     mode: 'brick',
-    modifiers: [],
   };
 
   declare context: React.ContextType<typeof UserCardTypeContext>;
 
-  private readonly eventId = `user-card-brick-${nextVal()}`;
-
+  @computed
   private get friendModifier() {
-    if (currentUser.friends == null) return;
+    if (core.currentUser?.friends == null) return;
 
-    const friendState = currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
+    const friendState = core.currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
 
     if (friendState != null) {
       if (friendState.mutual) return 'mutual';
@@ -40,12 +41,10 @@ export default class UserCardBrick extends React.PureComponent<Props> {
     }
   }
 
-  componentDidMount() {
-    $.subscribe(`friendButton:refresh.${this.eventId}`, this.refresh);
-  }
+  constructor(props: Props) {
+    super(props);
 
-  componentWillUnmount() {
-    $.unsubscribe(`.${this.eventId}`);
+    makeObservable(this);
   }
 
   render() {
@@ -74,8 +73,4 @@ export default class UserCardBrick extends React.PureComponent<Props> {
       </a>
     );
   }
-
-  private refresh = () => {
-    this.forceUpdate();
-  };
 }

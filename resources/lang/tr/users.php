@@ -325,6 +325,15 @@ return [
                 'first' => [
                     'title' => 'Birincilikler',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => 'Verilen Oylar (son 3 ayda)',

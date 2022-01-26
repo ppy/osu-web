@@ -11,13 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'PREČÍTAJTE SI PRED SŤAHOVANÍM',
-            'instruction' => [
-                '_' => "Inštalácia: Akonáhle je balík stiahnutý, rozbaľte .rar súbor do priečinku s osu! skladbami.
-Skladby vnútri balíka sú stále v .zip a/alebo .osz formáte, takže osu! si bude musieť beatmapy rozbaliť, keď nabudúce začnete hrať.
-:scary extrahujte .zip/.osz súbory sami,
-lebo sa budú beatmapy v osu! zobrazovať nesprávne a nebudú poriadne fungovať.",
-                'scary' => 'NE',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Taktiež je veľmi odporúčané :scary, keďže staré mapy sú oveľa menej kvalitné v porovnaní s tými nedávnymi.',
                 'scary' => 'sťahovať balíky od najnovších po najstaršie',

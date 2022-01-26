@@ -6,6 +6,7 @@
 namespace Tests;
 
 use App\Http\Middleware\AuthApi;
+use App\Libraries\BroadcastsPendingForTests;
 use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
 use App\Models\User;
@@ -69,6 +70,8 @@ class TestCase extends BaseTestCase
                 $connection->disconnect();
             }
         });
+
+        app(BroadcastsPendingForTests::class)->reset();
     }
 
     /**
@@ -82,9 +85,7 @@ class TestCase extends BaseTestCase
      */
     protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null, $driver = null)
     {
-        if ($client === null) {
-            $client = factory(Client::class)->create();
-        }
+        $client ??= Client::factory()->create();
 
         // create valid token
         $token = $this->createToken($user, $scopes, $client);
@@ -208,9 +209,7 @@ class TestCase extends BaseTestCase
      */
     protected function createToken(?User $user, ?array $scopes = null, ?Client $client = null)
     {
-        if ($client === null) {
-            $client = factory(Client::class)->create();
-        }
+        $client ??= Client::factory()->create();
 
         $token = $client->tokens()->create([
             'expires_at' => now()->addDays(1),

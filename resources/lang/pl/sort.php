@@ -15,6 +15,17 @@ return [
     'top' => 'Najwyżej oceniane',
     'username' => 'Nazwa użytkownika',
 
+    'artist_tracks' => [
+        'album' => 'Album',
+        'artist' => 'Artysta',
+        'bpm' => 'BPM',
+        'genre' => 'Gatunek',
+        'length' => 'Długość',
+        'relevance' => 'Trafność',
+        'title' => 'Tytuł',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => 'Czas publikacji',
         'relevance' => 'Trafność',

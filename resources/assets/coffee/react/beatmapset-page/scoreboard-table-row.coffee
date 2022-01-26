@@ -2,8 +2,8 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'flag-country'
-import { round } from 'lodash'
 import { route } from 'laroute'
+import { round } from 'lodash'
 import Mod from 'mod'
 import { PlayDetailMenu } from 'play-detail-menu'
 import * as React from 'react'
@@ -11,7 +11,7 @@ import { a, div, span, tr, td } from 'react-dom-factories'
 import ScoreboardTime from 'scoreboard-time'
 import PpValue from 'scores/pp-value'
 import { classWithModifiers } from 'utils/css'
-import { hasMenu } from 'utils/score-helper'
+import { hasMenu, modeAttributesMap } from 'utils/score-helper'
 
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
@@ -49,7 +49,7 @@ export class ScoreboardTableRow extends React.PureComponent
         if score.user.country_code
           a
             className: "#{bn}__cell-content"
-            href: laroute.route 'rankings',
+            href: route 'rankings',
               mode: @props.beatmap.mode
               country: score.user.country_code
               type: 'performance'
@@ -64,7 +64,7 @@ export class ScoreboardTableRow extends React.PureComponent
           a
             className: "#{bn}__cell-content #{bn}__cell-content--user-link js-usercard"
             'data-user-id': score.user.id
-            href: laroute.route 'users.show', user: score.user.id, mode: @props.beatmap.mode
+            href: route 'users.show', user: score.user.id, mode: @props.beatmap.mode
             score.user.username
 
           a
@@ -75,15 +75,11 @@ export class ScoreboardTableRow extends React.PureComponent
         modifiers: ['perfect'] if score.max_combo == @props.beatmap.max_combo
         "#{osu.formatNumber(score.max_combo)}x"
 
-      for stat in @props.hitTypeMapping
+      for stat in modeAttributesMap[@props.beatmap.mode]
         el @tdLink,
-          key: stat[0]
-          modifiers: ['zero'] if score.statistics["count_#{stat[1]}"] == 0
-          osu.formatNumber(score.statistics["count_#{stat[1]}"])
-
-      el @tdLink,
-        modifiers: ['zero'] if score.statistics.count_miss == 0
-        osu.formatNumber(score.statistics.count_miss)
+          key: stat.attribute
+          modifiers: 'zero' if score.statistics[stat.attribute] == 0
+          osu.formatNumber(score.statistics[stat.attribute])
 
       if @props.showPp
         el @tdLink,

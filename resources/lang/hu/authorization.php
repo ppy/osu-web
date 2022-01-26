@@ -23,7 +23,7 @@ return [
             'set_metadata' => 'Mielőtt kijelölné, a műfajt és a nyelvet meg kell adnod',
         ],
         'resolve' => [
-            'not_owner' => 'Csak a poszt szerzője és a beatmap készítője tudja megoldottnak jelölni az adott problémát.',
+            'not_owner' => 'Csak a gondolatmenet kezdője és a beatmap tulajdonosa tudja megoldottnak jelölni az adott problémát.',
         ],
 
         'store' => [
@@ -40,9 +40,9 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Csak a saját posztjaidat tudod törölni.',
+            'not_owner' => 'Csak a saját hozzászólásaidat tudod törölni.',
             'resolved' => 'Nem törölhetsz bejegyzést egy megbeszélt témában.',
-            'system_generated' => 'Az automatikusan generált posztok nem törölhetőek.',
+            'system_generated' => 'Az automatikusan létrehozott hozzászólások nem törölhetőek.',
         ],
 
         'edit' => [
@@ -67,6 +67,7 @@ return [
         'friends_only' => 'A felhasználó letiltotta a baráti listáján nem szereplő emberek üzeneteinek fogadását.',
         'moderated' => 'A csatorna jelenleg moderálva van.',
         'no_access' => 'Nincs hozzáférésed a csatornához.',
+        'receive_friends_only' => '',
         'restricted' => 'Nem küldhetsz üzeneteket némított, felfüggesztett vagy kitiltott állapotban.',
         'silenced' => 'Némítva, felfüggesztve vagy kitiltva nem küldhetsz üzeneteket.',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => 'Csak admin láthatja ezt a fórumot.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

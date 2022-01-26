@@ -4,6 +4,7 @@
 import Captcha from 'core/captcha';
 import UserJson from 'interfaces/user-json';
 import * as Cookies from 'js-cookie';
+import core from 'osu-core-singleton';
 import { createClickCallback } from 'utils/html';
 
 declare global {
@@ -30,7 +31,7 @@ export default class UserLogin {
       .on('input', '.js-login-form-input', this.clearError)
       .on('click', '.js-user-link', this.showOnClick)
       .on('click', '.js-login-required--click', this.showToContinue)
-      .on('ajax:before', '.js-login-required--click', () => currentUser.id != null)
+      .on('ajax:before', '.js-login-required--click', () => core.currentUser != null)
       .on('ajax:error', this.onError)
       .on('turbolinks:load', this.showOnLoad);
     $.subscribe('nav:popup:hidden', this.reset);
@@ -46,7 +47,7 @@ export default class UserLogin {
   };
 
   showIfGuest = (callback?: () => void) => {
-    if (currentUser.id != null) {
+    if (core.currentUser != null) {
       return false;
     }
 
@@ -60,7 +61,7 @@ export default class UserLogin {
       return false;
     }
 
-    if (currentUser.id != null) {
+    if (core.currentUser != null) {
       // broken page state
       osu.reloadPage();
     } else {
@@ -140,7 +141,7 @@ export default class UserLogin {
   };
 
   private showToContinue = (e: JQuery.ClickEvent) => {
-    if (currentUser.id != null) {
+    if (core.currentUser != null) {
       return;
     }
 

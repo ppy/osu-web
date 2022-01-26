@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'форум',
+        'topic_logs_controller' => [
+            'index' => 'дневници',
+        ],
         'topic_watches_controller' => [
             'index' => 'главно табло',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'главно табло',
             'verify_link' => 'потвърждаване на профил',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'представени автори',
         ],
         'artists_controller' => [
             '_' => 'представени автори',

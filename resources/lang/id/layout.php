@@ -69,7 +69,7 @@ return [
         ],
         'help' => [
             '_' => 'bantuan',
-            'getAbuse' => 'laporkan penyalahgunaan',
+            'getAbuse' => 'laporkan tindak pelecehan',
             'getFaq' => 'faq',
             'getRules' => 'peraturan',
             'getSupport' => 'beneran, saya butuh bantuan!',
@@ -119,19 +119,19 @@ return [
             'description' => '',
         ],
         '404' => [
-            'error' => 'Laman Hilang',
+            'error' => 'Laman Tidak Ditemukan',
             'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
         ],
         '403' => [
-            'error' => "Anda seharusnya tidak di sini.",
+            'error' => "Anda tidak seharusnya berada di sini.",
             'description' => 'Anda dapat mencoba untuk kembali ke halaman sebelumnya.',
         ],
         '401' => [
-            'error' => "Anda seharusnya tidak di sini.",
+            'error' => "Anda tidak seharusnya berada di sini.",
             'description' => 'Anda dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin coba untuk masuk terlebih dahulu.',
         ],
         '405' => [
-            'error' => 'Laman Hilang',
+            'error' => 'Laman Tidak Ditemukan',
             'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
         ],
         '422' => [

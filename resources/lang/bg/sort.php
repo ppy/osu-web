@@ -15,6 +15,17 @@ return [
     'top' => 'Водещи',
     'username' => 'Потребителско име',
 
+    'artist_tracks' => [
+        'album' => 'Албум',
+        'artist' => 'Автор',
+        'bpm' => 'BPM',
+        'genre' => 'Жанр',
+        'length' => 'Продължителност',
+        'relevance' => 'Уместност',
+        'title' => 'Заглавие',
+        'update' => 'Обновен',
+    ],
+
     'forum_posts' => [
         'created' => 'Дата',
         'relevance' => 'Уместност',

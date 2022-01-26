@@ -11,6 +11,7 @@ use League\CommonMark\Extension\CommonMark\Node\Block as ExtensionBlock;
 use League\CommonMark\Extension\CommonMark\Node\Inline as ExtensionInline;
 use League\CommonMark\Extension\ExtensionInterface;
 use League\CommonMark\Extension\Footnote;
+use League\CommonMark\Extension\Strikethrough\Strikethrough;
 use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Node\Block;
 use League\CommonMark\Node\Inline;
@@ -49,6 +50,7 @@ class Extension implements ExtensionInterface
             Footnote\Node\FootnoteRef::class => new Renderers\NoopRenderer(),
             Inline\Newline::class => new Renderers\NewlineRenderer(),
             Inline\Text::class => new Renderers\InlineRenderer(),
+            Strikethrough::class => new Renderers\InlineRenderer(),
             StyleBlock::class => new Renderers\BlockRenderer(),
             TableExtension\Table::class => new Renderers\TableRenderer(),
             TableExtension\TableCaption::class => new Renderers\NoopRenderer(),

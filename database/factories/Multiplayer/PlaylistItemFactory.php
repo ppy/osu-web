@@ -16,5 +16,8 @@ $factory->define(App\Models\Multiplayer\PlaylistItem::class, function (Faker\Gen
         },
         'allowed_mods' => [],
         'required_mods' => [],
+        'owner_id' => function () {
+            return App\Models\User::factory()->create()->getKey();
+        },
     ];
 });

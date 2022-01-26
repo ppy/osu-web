@@ -28,6 +28,7 @@ class Mod
     const RANDOM = 'RD';
     const MIRROR = 'MR';
     const MUTED = 'MU';
+    const NO_SCOPE = 'NS';
 
     // osu-specific
     const OSU_AUTOPILOT = 'AP';
@@ -43,7 +44,6 @@ class Mod
     const OSU_CLASSIC = 'CL';
     const OSU_BARRELROLL = 'BR';
     const OSU_APPROACH_DIFFERENT = 'AD';
-    const OSU_NO_SCOPE = 'NS';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -186,6 +186,8 @@ class Mod
         ],
         self::FLASHLIGHT => [
             'follow_delay' => 'float',
+            'size_multiplier' => 'float',
+            'combo_based_size' => 'bool',
         ],
         self::OSU_GROW => [
             'start_scale' => 'float',
@@ -229,8 +231,11 @@ class Mod
         self::PERFECT => [
             'restart' => 'bool',
         ],
-        self::OSU_NO_SCOPE => [
+        self::NO_SCOPE => [
             'hidden_combo_count' => 'int',
+        ],
+        self::HIDDEN => [
+            'only_fade_approach_circles' => 'bool',
         ],
     ];
 
@@ -305,7 +310,7 @@ class Mod
                         self::RANDOM,
                         self::OSU_APPROACH_DIFFERENT,
                         self::MIRROR,
-                        self::OSU_NO_SCOPE,
+                        self::NO_SCOPE,
                     ]
                 ),
 
@@ -322,6 +327,7 @@ class Mod
                     [
                         self::CATCH_FLOATINGFRUIT,
                         self::MIRROR,
+                        self::NO_SCOPE,
                     ]
                 ),
 

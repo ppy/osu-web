@@ -5,13 +5,17 @@ import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
 import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-modal'
 import { Nominator } from 'beatmap-discussions/nominator'
 import BigButton from 'big-button'
+import { route } from 'laroute'
 import { Modal } from 'modal'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 import StringWithComponent from 'string-with-component'
+import TimeWithTooltip from 'time-with-tooltip'
+import { UserLink } from 'user-link'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
-import { wikiUrl } from 'utils/url'
+import { linkHtml, wikiUrl } from 'utils/url'
 
 el = React.createElement
 
@@ -123,19 +127,19 @@ export class Nominations extends React.PureComponent
 
     return unless confirm(message)
 
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @xhr.delete?.abort()
 
     user = @props.beatmapset.user_id
-    url = laroute.route('beatmapsets.destroy', beatmapset: @props.beatmapset.id)
+    url = route('beatmapsets.destroy', beatmapset: @props.beatmapset.id)
     params = method: 'DELETE'
 
     @xhr.delete = $.ajax(url, params)
       .done ->
-        Turbolinks.visit laroute.route('users.show', { user })
+        Turbolinks.visit route('users.show', { user })
       .fail osu.ajaxError
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   discussionLock: =>
@@ -145,7 +149,7 @@ export class Nominations extends React.PureComponent
 
     @xhr.discussionLock?.abort()
 
-    url = laroute.route('beatmapsets.discussion-lock', beatmapset: @props.beatmapset.id)
+    url = route('beatmapsets.discussion-lock', beatmapset: @props.beatmapset.id)
     params =
       method: 'POST'
       data: { reason }
@@ -154,24 +158,24 @@ export class Nominations extends React.PureComponent
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   discussionUnlock: =>
     return unless confirm(osu.trans('beatmaps.discussions.lock.prompt.unlock'))
 
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @xhr.discussionLock?.abort()
 
-    url = laroute.route('beatmapsets.discussion-unlock', beatmapset: @props.beatmapset.id)
+    url = route('beatmapsets.discussion-unlock', beatmapset: @props.beatmapset.id)
     params = method: 'POST'
 
     @xhr.discussionLock = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   removeFromLoved: =>
@@ -179,11 +183,11 @@ export class Nominations extends React.PureComponent
 
     return unless reason?
 
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @xhr.removeFromLoved?.abort()
 
-    url = laroute.route('beatmapsets.remove-from-loved', beatmapset: @props.beatmapset.id)
+    url = route('beatmapsets.remove-from-loved', beatmapset: @props.beatmapset.id)
     params =
       method: 'DELETE'
       data: { reason }
@@ -192,7 +196,7 @@ export class Nominations extends React.PureComponent
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   focusHypeInput: =>
@@ -241,10 +245,13 @@ export class Nominations extends React.PureComponent
     discussion = @props.discussions[event.comment.beatmap_discussion_id]
 
     if discussion?
-      url = BeatmapDiscussionHelper.url discussion: discussion
+      link = a
+        className: 'js-beatmap-discussion--jump'
+        href: BeatmapDiscussionHelper.url(discussion: discussion)
+        "##{discussion.id}"
 
-      link = osu.link url, "##{discussion.id}", classNames: ['js-beatmap-discussion--jump']
-      message = BeatmapDiscussionHelper.previewMessage(discussion.posts[0].message)
+      message = span dangerouslySetInnerHTML:
+        __html: BeatmapDiscussionHelper.previewMessage(discussion.posts[0].message)
     else
       link = "##{event.comment.beatmap_discussion_id}"
       message = osu.trans('beatmaps.nominations.reset_message_deleted')
@@ -256,23 +263,28 @@ export class Nominations extends React.PureComponent
     if event.type == 'disqualify' && typeof event.comment != 'object'
       reason =
         if event.comment?
-          BeatmapDiscussionHelper.format event.comment,
-            newlines: false
-            modifiers: ['white']
+          span dangerouslySetInnerHTML:
+            __html: BeatmapDiscussionHelper.format event.comment,
+              modifiers: ['white']
+              newlines: false
         else
           osu.trans('beatmaps.nominations.disqualified_no_reason')
 
-      return osu.trans 'beatmaps.nominations.disqualified_at',
-        time_ago: osu.timeago(event.created_at)
-        reason: reason
+      return el StringWithComponent,
+        mappings:
+          reason: reason
+          time_ago: el(TimeWithTooltip, dateTime: event.created_at, relative: true)
+        pattern: osu.trans 'beatmaps.nominations.disqualified_at'
 
     parsedEvent = @parseEventData(event)
 
-    osu.trans "beatmaps.nominations.reset_at.#{event.type}",
-      time_ago: osu.timeago(event.created_at)
-      discussion: parsedEvent.link
-      message: parsedEvent.message
-      user: osu.link laroute.route('users.show', user: parsedEvent.user.id), parsedEvent.user.username
+    el StringWithComponent,
+      mappings:
+        discussion: parsedEvent.link
+        message: parsedEvent.message
+        time_ago: el(TimeWithTooltip, dateTime: event.created_at, relative: true)
+        user: el(UserLink, user: parsedEvent.user)
+      pattern: osu.trans "beatmaps.nominations.reset_at.#{event.type}"
 
 
   userCanDisqualify: =>
@@ -359,8 +371,7 @@ export class Nominations extends React.PureComponent
 
     return null unless showHype && !mapIsQualified && disqualification?
 
-    div dangerouslySetInnerHTML:
-      __html: @resetReason(disqualification)
+    div null, @resetReason(disqualification)
 
 
   nominationResetMessage: =>
@@ -370,8 +381,7 @@ export class Nominations extends React.PureComponent
 
     return null unless showHype && !mapIsQualified && nominationReset?
 
-    div dangerouslySetInnerHTML:
-      __html: @resetReason(nominationReset)
+    div null, @resetReason(nominationReset)
 
 
   nominatorsList: =>
@@ -389,7 +399,7 @@ export class Nominations extends React.PureComponent
     div dangerouslySetInnerHTML:
       __html: osu.trans 'beatmaps.nominations.nominated_by',
         users: osu.transArray nominators.map (user) ->
-            osu.link laroute.route('users.show', user: user.id), user.username,
+            linkHtml route('users.show', user: user.id), user.username,
               classNames: ['js-usercard']
               props:
                 'data-user-id': user.id

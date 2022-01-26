@@ -29,8 +29,9 @@ return [
 
     'songs' => [
         '_' => 'Skladby',
-        'count' => ':count_delimited skladba|:count_delimited skladeb',
-        'original' => '',
+        'count' => ':count_delimited skladba|:count_delimited skladby|:count_delimited skladeb',
+        'original' => 'osu! originál',
+        'original_badge' => 'ORIGINÁL',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => 'délka',
         'bpm' => 'bpm',
         'genre' => 'žánr',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'hledání skladeb',
+
+            'form' => [
+                'advanced' => 'Pokročilé vyhledávání',
+                'album' => 'Album',
+                'artist' => 'Umělec',
+                'bpm_gte' => 'Minimální BPM',
+                'bpm_lte' => 'Maximální BPM',
+                'empty' => 'Nebyly nalezeny žádné skladby odpovídající kritériím vyhledávání.',
+                'genre' => 'Žánr',
+                'genre_all' => 'Vše',
+                'length_gte' => 'Minimální délka',
+                'length_lte' => 'Maximální délka',
+            ],
+        ],
     ],
 ];

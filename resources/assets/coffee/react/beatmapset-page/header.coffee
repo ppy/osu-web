@@ -1,7 +1,6 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
 import BeatmapsetMenu from 'beatmapsets-show/beatmapset-menu'
@@ -14,6 +13,8 @@ import UserAvatar from 'user-avatar'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { createClickCallback } from 'utils/html'
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url'
+import { Stats } from './stats'
+
 el = React.createElement
 
 export class Header extends React.Component
@@ -127,7 +128,7 @@ export class Header extends React.Component
                 display: 'none'
               @filteredFavourites.map (user) ->
                 a
-                  href: laroute.route('users.show', user: user.id)
+                  href: route('users.show', user: user.id)
                   className: 'js-usercard user-list-popup__user'
                   key: user.id
                   'data-user-id': user.id
@@ -139,7 +140,7 @@ export class Header extends React.Component
           span className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
             a
               className: 'beatmapset-header__details-text-link'
-              href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
+              href: route 'beatmapsets.index', q: getTitle(@props.beatmapset)
               getTitle(@props.beatmapset)
             if @props.beatmapset.nsfw
               span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
@@ -147,12 +148,12 @@ export class Header extends React.Component
           span className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
             a
               className: 'beatmapset-header__details-text-link'
-              href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
+              href: route 'beatmapsets.index', q: getArtist(@props.beatmapset)
               getArtist(@props.beatmapset)
             if @props.beatmapset.track_id?
               a
                 className: 'beatmapset-badge beatmapset-badge--featured-artist'
-                href: laroute.route 'tracks.show', @props.beatmapset.track_id
+                href: route 'tracks.show', @props.beatmapset.track_id
                 osu.trans('beatmapsets.featured_artist_badge.label')
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
@@ -174,7 +175,7 @@ export class Header extends React.Component
 
             if @props.beatmapset.discussion_enabled
               el BigButton,
-                href: laroute.route('beatmapsets.discussion', beatmapset: @props.beatmapset.id)
+                href: route('beatmapsets.discussion', beatmapset: @props.beatmapset.id)
                 icon: 'far fa-comments'
                 modifiers: 'beatmapset-header'
                 text: osu.trans 'beatmapsets.show.discussion'
@@ -233,18 +234,18 @@ export class Header extends React.Component
           [
             @downloadButton
               key: 'video'
-              href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id
+              href: route 'beatmapsets.download', beatmapset: @props.beatmapset.id
               bottomTextKey: 'video'
 
             @downloadButton
               key: 'no-video'
-              href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id, noVideo: 1
+              href: route 'beatmapsets.download', beatmapset: @props.beatmapset.id, noVideo: 1
               bottomTextKey: 'no-video'
           ]
         else
           @downloadButton
             key: 'default'
-            href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id
+            href: route 'beatmapsets.download', beatmapset: @props.beatmapset.id
 
         @downloadButton
           key: 'direct'
@@ -254,7 +255,7 @@ export class Header extends React.Component
             if currentUser.is_supporter
               beatmapDownloadDirect @props.currentBeatmap.id
             else
-              laroute.route 'support-the-game'
+              route 'support-the-game'
       ]
 
 
@@ -282,7 +283,6 @@ export class Header extends React.Component
   downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
     el BigButton,
       key: key
-      extraClasses: if !osuDirect then ['js-beatmapset-download-link']
       href: href
       icon: icon
       modifiers: 'beatmapset-header'

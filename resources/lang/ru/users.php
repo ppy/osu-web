@@ -174,7 +174,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Загрузка доступна только :link',
-                        'link' => 'приобретшим тег osu!supporter',
+                        'link' => 'с тегом osu!supporter',
                     ],
                 ],
             ],
@@ -208,7 +208,7 @@ return [
                     'title' => 'Любимые карты',
                 ],
                 'pending' => [
-                    'title' => 'Ожидающие',
+                    'title' => 'На рассмотрении',
                 ],
                 'ranked' => [
                     'title' => 'Рейтинговые и одобренные карты',
@@ -325,6 +325,15 @@ return [
                 'first' => [
                     'title' => 'Первые места',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => 'Отданные голоса (за 3 месяца)',
@@ -336,7 +345,7 @@ return [
             'account_standing' => [
                 'title' => 'Нарушения',
                 'bad_standing' => "с аккаунтом <strong>:username</strong> не всё хорошо :(",
-                'remaining_silence' => 'пользователю <strong>:username</strong> можно будет говорить через :duration.',
+                'remaining_silence' => ':username сможет говорить снова через :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Недавние нарушения',

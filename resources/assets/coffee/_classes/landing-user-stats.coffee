@@ -1,7 +1,9 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @LandingUserStats
+import { parseJson } from 'utils/json'
+
+class window.LandingUserStats
   constructor: ->
     # Define constants
     @margin =
@@ -64,7 +66,7 @@ class @LandingUserStats
 
 
   loadData: =>
-    @data = _exported.parseJson('json-stats')
+    @data = parseJson('json-stats')
 
     return if _.isEmpty(@data)
 

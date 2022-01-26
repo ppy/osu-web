@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'פורום',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'לוח בקרה',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'לוח בקרה',
             'verify_link' => 'אימות חשבון',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => 'אמנים מומלצים',

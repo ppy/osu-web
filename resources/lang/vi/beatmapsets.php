@@ -8,7 +8,7 @@ return [
         'disabled' => 'Hiện tại beatmap này không có sẵn để tải xuống.',
         'parts-removed' => 'Một phần của beatmap này đã bị xóa bỏ theo yêu cầu của người tạo lập hoặc bên người có quyền bên thứ ba.',
         'more-info' => 'Nhấp vào đây để biết thêm thông tin.',
-        'rule_violation' => 'Một số nội dung có trong bản đồ này đã bị xóa sau khi bị đánh giá là không phù hợp để sử dụng trong osu!.',
+        'rule_violation' => 'Một số nội dung có trong map này đã bị xóa sau khi bị đánh giá là không phù hợp để sử dụng trong osu!.',
     ],
 
     'download' => [
@@ -36,7 +36,7 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Bản đồ nhịp kết hợp yêu cầu bạn chọn ít nhất một chế độ chơi để đề cử.',
+        'hybrid_requires_modes' => 'Bạn cần chọn ít nhất một chế độ chơi trong beatmap có nhiều chế độ để đề cử.',
         'incorrect_mode' => 'Bạn không có sự cho phép để đề cử cho chế độ: :mode',
         'full_bn_required' => 'Bạn phải là người được đề cử đầy đủ để thực hiện đề cử đủ điều kiện này.',
         'too_many' => 'Yêu cầu đề cử đã được đáp ứng.',
@@ -50,7 +50,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => 'Minh bạch',
+        'label' => '18+',
     ],
 
     'show' => [
@@ -80,7 +80,7 @@ return [
 
         'details_date' => [
             'approved' => 'được chấp nhận :timeago',
-            'loved' => 'được yêu thích :timeago',
+            'loved' => 'loved :timeago',
             'qualified' => 'đủ tiêu chuẩn :timeago',
             'ranked' => 'được xếp hạng :timeago',
             'submitted' => 'được đăng :timeago',
@@ -88,7 +88,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Bạn có quá nhiều beatmap yêu thích! Hãy hũy yêu thích vài beatmap và thử lại sau.',
+            'limit_reached' => 'Bạn có quá nhiều beatmap yêu thích! Hãy hủy yêu thích vài beatmap và thử lại sau.',
         ],
 
         'hype' => [
@@ -109,7 +109,7 @@ return [
             ],
 
             'report' => [
-                '_' => 'Nếu bạn tìm thấy vấn đề với bản đồ này, vui lòng báo cáo nó :link để cảnh báo cho nhóm.',
+                '_' => 'Nếu bạn tìm thấy vấn đề với beatmap này, vui lòng báo cáo nó tại :link để cảnh báo cho chúng tôi.',
                 'button' => 'Báo cáo vấn đề',
                 'link' => 'đây',
             ],
@@ -120,7 +120,7 @@ return [
             'genre' => 'Thể Loại',
             'language' => 'Ngôn Ngữ',
             'no_scores' => 'Vẫn đang tính toán dữ liệu...',
-            'nsfw' => 'Nội dung thô tục',
+            'nsfw' => 'Nội dung không lành mạnh',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',
             'source' => 'Nguồn',
             'storyboard' => 'Beatmap này chứa storyboard',
@@ -130,8 +130,8 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Beatmap này chứa nội dung thô tục, xúc phạm, hoặc đáng lo ngại. Bạn có muốn xem nó không?',
-            'title' => 'Nội dung thô tục',
+            'details' => 'Beatmap này chứa nội dung không lành mạn, phản cảm, hoặc đáng lo ngại. Bạn có muốn xem nó không?',
+            'title' => 'Nội dung không lành mạnh',
 
             'buttons' => [
                 'disable' => 'Ẩn thông báo',
@@ -154,11 +154,12 @@ return [
                 'combo' => 'Combo Tối Đa',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Người Chơi',
                 'pp' => '',
                 'rank' => 'Xếp Hạng',
-                'score_total' => 'Tổng Điểm',
                 'score' => 'Điểm',
+                'score_total' => 'Tổng Điểm',
                 'time' => 'Thời gian',
             ],
 

@@ -154,11 +154,12 @@ return [
                 'combo' => '',
                 'miss' => 'Netrāpījumi',
                 'mods' => 'Modifikācijas',
+                'pin' => '',
                 'player' => 'Spēlētājs',
                 'pp' => '',
                 'rank' => 'Rangs',
-                'score_total' => 'Kopējais punktu skaits',
                 'score' => 'Rezultāts',
+                'score_total' => 'Kopējais punktu skaits',
                 'time' => '',
             ],
 

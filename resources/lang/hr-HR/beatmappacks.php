@@ -11,10 +11,7 @@ return [
 
         'blurb' => [
             'important' => '',
-            'instruction' => [
-                '_' => "",
-                'scary' => '',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => '',
                 'scary' => '',

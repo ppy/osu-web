@@ -60,14 +60,14 @@ _test() {
 
     case "$command" in
         browser) _rexec php /app/artisan dusk --verbose "$@";;
-        js) _rexec yarnpkg karma start --single-run --browsers ChromeHeadless "$@";;
+        js) _rexec yarn karma start --single-run --browsers ChromeHeadless "$@";;
         phpunit) _rexec ./bin/phpunit.sh "$@";;
     esac
 }
 
 _watch() {
-    _run yarnpkg --network-timeout 100000
-    _rexec yarnpkg watch
+    _run yarn --network-timeout 100000
+    _rexec yarn watch
 }
 
 case "$command" in

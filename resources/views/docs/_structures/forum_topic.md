@@ -3,7 +3,7 @@
 Field         | Type
 --------------|-----
 created_at    | [Timestamp](#timestamp)
-deleted_at    | [Timestamp](#timestamp)
+deleted_at    | [Timestamp](#timestamp)?
 first_post_id | number
 forum_id      | number
 id            | number

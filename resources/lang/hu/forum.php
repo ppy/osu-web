@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => 'Legújabb Poszt',
+        'latest_post' => 'Legújabb hozzászólás',
 
         'index' => [
             'title' => 'Fórum Index',
@@ -43,17 +43,17 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Biztosan törlöd a posztot?',
-        'confirm_restore' => 'Biztosan visszaállítod a posztot?',
+        'confirm_destroy' => 'Biztosan törlöd a hozzászólást?',
+        'confirm_restore' => 'Biztosan visszaállítod a hozzászólást?',
         'edited' => 'Utoljára módosítva :user által :when, módosítva :count alkalommal.',
-        'posted_at' => 'posztolva :when',
-        'posted_by' => 'posztolva :username által',
+        'posted_at' => 'hozzászólva :when',
+        'posted_by' => 'hozzászólva :username által',
 
         'actions' => [
-            'destroy' => 'Poszt törlése',
-            'edit' => 'Poszt szerkesztése',
-            'report' => 'Poszt jelentése',
-            'restore' => 'Poszt visszaállítása',
+            'destroy' => 'Hozzászólás törlése',
+            'edit' => 'Hozzászólás szerkesztése',
+            'report' => 'Hozzászólás jelentése',
+            'restore' => 'Hozzászólás visszaállítása',
         ],
 
         'create' => [
@@ -63,14 +63,14 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count_delimited poszt|-:count_delimited poszt',
+            'post_count' => ':count_delimited hozzászólás|:count_delimited hozzászólás',
             'topic_starter' => 'Beszélgetés indítok',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Ugrás a poszthoz',
-        'post_number_input' => 'írd be a poszt számát',
+        'go_to_post' => 'Ugrás a hozzászóláshoz',
+        'post_number_input' => 'írd be a hozzászólás számát',
         'total_posts' => ':posts_count posztok száma',
     ],
 
@@ -78,14 +78,14 @@ return [
         'confirm_destroy' => 'Biztosan törlöd a témát?',
         'confirm_restore' => 'Biztosan visszaállítod a témát?',
         'deleted' => 'törölt téma',
-        'go_to_latest' => 'utolsó poszt megtekintése',
+        'go_to_latest' => 'utolsó hozzászólás megtekintése',
         'has_replied' => 'Feliratkoztál erre a témára',
         'in_forum' => 'ide :forum',
         'latest_post' => ':when :user által',
         'latest_reply_by' => 'legutóbbi hozzászólás: :user',
         'new_topic' => 'Új téma',
         'new_topic_login' => 'Jelentkezz be új téma nyitásához',
-        'post_reply' => 'Poszt',
+        'post_reply' => 'Hozzászólás',
         'reply_box_placeholder' => 'Ide írj a válaszoláshoz',
         'reply_title_prefix' => 'Válasz',
         'started_by' => ':user által',
@@ -105,7 +105,7 @@ return [
             'submit' => 'Küldés',
 
             'necropost' => [
-                'default' => 'Ez a téma már inaktív egy ideje. Megfelelő indok hiányában ne posztolj ide.',
+                'default' => 'Ez a téma már inaktív egy ideje. Megfelelő indok hiányában ne szólj hozzá.',
 
                 'new_topic' => [
                     '_' => "Ez a téma már inaktív egy ideje. Ha nincs konkrét okod ide posztolni, kérlek :create helyette.",
@@ -125,6 +125,55 @@ return [
             'last' => 'ugrás az utolsó poszthoz',
             'next' => '10 poszt átugrása',
             'previous' => 'visszalépni 10 posztot',
+        ],
+
+        'logs' => [
+            '_' => 'Téma napló',
+            'button' => 'Téma napló böngészése',
+
+            'columns' => [
+                'action' => 'Művelet',
+                'date' => 'Dátum',
+                'user' => 'Felhasználó',
+            ],
+
+            'data' => [
+                'add_tag' => '":tag" címke hozzáadva',
+                'announcement' => 'téma kitűzve és hirdetményként jelölve',
+                'edit_topic' => 'erre: :title',
+                'fork' => 'erről: :topic',
+                'pin' => 'téma kitűzve',
+                'post_operation' => 'posztolva :username által',
+                'remove_tag' => '":tag" címke eltávolítva',
+                'source_forum_operation' => 'innen: :forum',
+                'unpin' => 'téma kitűzetlennítve',
+            ],
+
+            'no_results' => 'nem található napló...',
+
+            'operations' => [
+                'delete_post' => 'Hozzászólás törölve',
+                'delete_topic' => 'Téma törölve',
+                'edit_topic' => 'Téma címe változtatva',
+                'edit_poll' => 'Téma szavazás szerkesztve',
+                'fork' => 'Téma másolva',
+                'issue_tag' => 'Címe kiadva',
+                'lock' => 'Téma lezárva',
+                'merge' => 'Hozzászólások össze lettek fűzve ebbe a témába',
+                'move' => 'Téma áthelyezve',
+                'pin' => 'Téma kitűzve',
+                'post_edited' => 'Hozzászólás szerkesztve',
+                'restore_post' => 'Hozzászólás visszaállítva',
+                'restore_topic' => 'Téma visszaállítva',
+                'split_destination' => 'Szétválasztott hozzászólások áthelyezve',
+                'split_source' => 'Hozzászólások szétválasztva',
+                'topic_type' => 'Téma típus beállítása',
+                'topic_type_changed' => 'Téma típus megváltoztattva',
+                'unlock' => 'Téma feloldva',
+                'unpin' => 'Téma kitűzetlennítve',
+                'user_lock' => 'Saját téma lezárva',
+                'user_unlock' => 'Saját téma feloldva',
+            ],
         ],
 
         'post_edit' => [

@@ -9,9 +9,9 @@ use App\Casts\PresentString;
 use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\Model;
+use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
 use App\Traits\Memoizes;
-use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Collection;
@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $starts_at
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
+ * @property string $type
+ * @property string $queue_mode
  */
 class Room extends Model
 {
@@ -55,6 +57,10 @@ class Room extends Model
     const PLAYLIST_TYPE = 'playlists';
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
     const REALTIME_TYPES = ['head_to_head', 'team_versus'];
+
+    const PLAYLIST_QUEUE_MODE = 'host_only';
+    const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
+    const REALTIME_QUEUE_MODES = [ 'host_only', 'all_players', 'all_players_round_robin' ];
 
     protected $casts = [
         'password' => PresentString::class,
@@ -312,9 +318,9 @@ class Room extends Model
             ->all();
     }
 
-    public function startGame(User $owner, array $rawParams)
+    public function startGame(User $host, array $rawParams)
     {
-        priv_check_user($owner, 'MultiplayerRoomCreate')->ensureCan();
+        priv_check_user($host, 'MultiplayerRoomCreate')->ensureCan();
 
         $params = get_params($rawParams, null, [
             'category',
@@ -325,6 +331,7 @@ class Room extends Model
             'password',
             'playlist:array',
             'type',
+            'queue_mode',
         ], ['null_missing' => true]);
 
         $this->fill([
@@ -332,21 +339,26 @@ class Room extends Model
             'name' => $params['name'],
             'starts_at' => now(),
             'type' => $params['type'],
-            'user_id' => $owner->getKey(),
+            'queue_mode' => $params['queue_mode'],
+            'user_id' => $host->getKey(),
         ]);
 
-        $this->setRelation('user', $owner);
+        $this->setRelation('host', $host);
 
         // TODO: remove category params support (and forcing default type) once client sends type parameter
         if ($this->isRealtime() || $params['category'] === 'realtime') {
             if (!in_array($this->type, static::REALTIME_TYPES, true)) {
                 $this->type = static::REALTIME_DEFAULT_TYPE;
             }
+            if (!in_array($this->queue_mode, static::REALTIME_QUEUE_MODES, true)) {
+                $this->queue_mode = static::REALTIME_DEFAULT_QUEUE_MODE;
+            }
             // only for realtime rooms for now
             $this->password = $params['password'];
             $this->ends_at = now()->addSeconds(30);
         } else {
             $this->type = static::PLAYLIST_TYPE;
+            $this->queue_mode = static::PLAYLIST_QUEUE_MODE;
             if ($params['ends_at'] !== null) {
                 $this->ends_at = $params['ends_at'];
             } elseif ($params['duration'] !== null) {
@@ -362,7 +374,7 @@ class Room extends Model
 
         $playlistItems = [];
         foreach ($params['playlist'] as $item) {
-            $playlistItems[] = PlaylistItem::fromJsonParams($item);
+            $playlistItems[] = PlaylistItem::fromJsonParams($host, $item);
         }
 
         $playlistItemsCount = count($playlistItems);
@@ -377,11 +389,11 @@ class Room extends Model
 
         PlaylistItem::assertBeatmapsExist($playlistItems);
 
-        $this->getConnection()->transaction(function () use ($owner, $playlistItems) {
+        $this->getConnection()->transaction(function () use ($host, $playlistItems) {
             $this->save(); // need to persist to get primary key for channel name.
 
             $channel = Channel::createMultiplayer($this);
-            $channel->addUser($owner);
+            $channel->addUser($host);
 
             $this->update(['channel_id' => $channel->channel_id]);
 
@@ -428,16 +440,16 @@ class Room extends Model
         return $this->userHighScores()->forRanking()->with('user.country');
     }
 
-    private function assertUserRoomAllowance()
+    private function assertHostRoomAllowance()
     {
-        $query = static::active()->startedBy($this->user);
+        $query = static::active()->startedBy($this->host);
 
         if ($this->isRealtime()) {
             $query->whereIn('type', static::REALTIME_TYPES);
             $max = 1;
         } else {
             $query->where('type', static::PLAYLIST_TYPE);
-            $max = $this->user->maxMultiplayerRooms();
+            $max = $this->host->maxMultiplayerRooms();
         }
 
         if ($query->count() >= $max) {
@@ -454,7 +466,7 @@ class Room extends Model
 
     private function assertValidStartGame()
     {
-        $this->assertUserRoomAllowance();
+        $this->assertHostRoomAllowance();
 
         foreach (['ends_at', 'name'] as $field) {
             if (!present($this->$field)) {
@@ -464,6 +476,10 @@ class Room extends Model
 
         if (!$this->isRealtime() && $this->starts_at->addMinutes(30)->gt($this->ends_at)) {
             throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
+        }
+
+        if ($this->starts_at->addDays($this->host->maxMultiplayerDuration())->lt($this->ends_at)) {
+            throw new InvariantException(osu_trans('multiplayer.room.errors.duration_too_long'));
         }
 
         if ($this->max_attempts !== null) {
@@ -498,6 +514,10 @@ class Room extends Model
 
         if ($playlistItem->expired) {
             throw new InvariantException('Cannot play an expired playlist item.');
+        }
+
+        if ($playlistItem->played_at !== null) {
+            throw new InvariantException('Cannot play a playlist item that has already been played.');
         }
     }
 }

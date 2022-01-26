@@ -25,4 +25,12 @@ class CountryFactory extends Factory
             'usercount' => rand(10000, 600000),
         ];
     }
+
+    public function fallback(): static
+    {
+        return $this->state([
+            'acronym' => Country::UNKNOWN,
+            'name' => '',
+        ]);
+    }
 }

@@ -1,18 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-@osu =
+import { currentUrl } from 'utils/turbolinks'
+
+window.osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
-  urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig
-
-  bottomPage: ->
-    osu.bottomPageDistance() == 0
-
-
-  bottomPageDistance: ->
-    body = document.documentElement ? document.body.parent ? document.body
-    (body.scrollHeight - body.scrollTop) - body.clientHeight
-
 
   currentUserIsFriendsWith: (user_id) ->
     _.find currentUser.friends, target_id: user_id
@@ -23,11 +15,11 @@
 
 
   setHash: (newHash) ->
-    currentUrl = _exported.currentUrl().href
-    newUrl = currentUrl.replace /#.*/, ''
+    currUrl = currentUrl().href
+    newUrl = currUrl.replace /#.*/, ''
     newUrl += newHash
 
-    return if newUrl == currentUrl
+    return if newUrl == currUrl
 
     history.replaceState history.state, null, newUrl
 
@@ -68,34 +60,6 @@
     el.style.fontSize = prevSize
 
 
-  link: (url, text, options = {}) ->
-    if options.unescape
-      url = _.unescape(url)
-      text = _.unescape(text)
-
-    el = document.createElement('a')
-    el.setAttribute 'href', url
-    el.setAttribute 'data-remote', true if options.isRemote
-    el.className = options.classNames.join(' ') if options.classNames
-    el.textContent = text
-    if options.props
-      _.each options.props, (val, prop) ->
-        el.setAttribute prop, val if val?
-    el.outerHTML
-
-
-  linkify: (text, newWindow = false) ->
-    text.replace(osu.urlRegex, "<a href=\"$1\" rel=\"nofollow noreferrer\"#{if newWindow then ' target=\"_blank\"' else ''}>$2</a>")
-
-
-  timeago: (time) ->
-    el = document.createElement('time')
-    el.classList.add 'js-timeago'
-    el.setAttribute 'datetime', time
-    el.textContent = time
-    el.outerHTML
-
-
   formatBytes: (bytes, decimals=2) ->
     suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
     k = 1000
@@ -122,7 +86,7 @@
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
 
-    osu.navigate _exported.currentUrl().href, keepScroll, action: 'replace'
+    osu.navigate currentUrl().href, keepScroll, action: 'replace'
 
 
   urlPresence: (url) ->
@@ -238,18 +202,6 @@
 
   uuid: ->
     Turbolinks.uuid() # no point rolling our own
-
-
-  updateQueryString: (url, params) ->
-    docUrl = _exported.currentUrl()
-    urlObj = new URL(url ? docUrl.href, docUrl.origin)
-    for own key, value of params
-      if value?
-        urlObj.searchParams.set(key, value)
-      else
-        urlObj.searchParams.delete(key)
-
-    return urlObj.href
 
 
   xhrErrorMessage: (xhr) ->

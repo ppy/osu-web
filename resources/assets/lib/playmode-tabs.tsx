@@ -50,7 +50,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
   }
 
   private count = (mode: GameMode) => {
-    if (this.props.counts?.[mode] != null) {
+    if (this.props.counts != null) {
       return this.props.counts[mode];
     }
 

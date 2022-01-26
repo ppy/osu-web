@@ -77,6 +77,7 @@ class ArtistTrackSearch extends RecordSearch
         static $filters = [
             'bpm' => ['field' => 'bpm', 'type' => 'range'],
             'length' => ['field' => 'length', 'type' => 'range'],
+            'genre' => ['field' => 'genre.raw', 'type' => 'term'],
         ];
 
         foreach ($filters as $prop => $options) {
@@ -91,7 +92,6 @@ class ArtistTrackSearch extends RecordSearch
         static $filters = [
             'album' => ['fields' => ['album', 'album_romanized']],
             'artist' => ['fields' => ['artist']],
-            'genre' => ['fields' => ['genre']],
         ];
 
         foreach ($filters as $prop => $filter) {

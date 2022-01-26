@@ -11,22 +11,15 @@ return [
     'cannot_send' => [
         'channel' => 'Nie możesz wysłać wiadomości na ten kanał z jednego z następujących powodów:',
         'user' => 'Nie możesz wysłać wiadomości do tego użytkownika z jednego z następujących powodów:',
-        'reasons' => [
-            'blocked' => 'Ten użytkownik zablokował cię',
-            'channel_moderated' => 'Ten kanał jest w trybie tylko dla moderatorów',
-            'friends_only' => 'Ten użytkownik nie przyjmuje wiadomości od osób spoza listy znajomych',
-            'not_enough_plays' => 'Nie zarejestrowano wystarczającego czasu spędzonego w grze.',
-            'not_verified' => 'Twoja sesja nie została zweryfikowana',
-            'restricted' => 'Twoje konto zostało zablokowane',
-            'silenced' => 'Twoje konto jest obecnie uciszone',
-            'target_restricted' => 'Konto tego użytkownika jest obecnie zablokowane',
-        ],
     ],
+
     'input' => [
         'disabled' => 'nie udało się wysłać wiadomości...',
+        'disconnected' => 'Rozłączono',
         'placeholder' => 'napisz wiadomość...',
         'send' => 'Wyślij',
     ],
+
     'no-conversations' => [
         'howto' => "Rozpocznij konwersację poprzez profil lub kartę użytkownika.",
         'lazer' => 'Publiczne kanały, do których dołączysz poprzez <a href=":link">osu!lazer</a>, także będą tutaj widoczne.',

@@ -30,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Bài hát',
         'count' => ':count bài hát',
-        'original' => 'osu! nguyên bản',
+        'original' => 'osu! original',
+        'original_badge' => 'GỐC',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => 'độ dài',
         'bpm' => 'bpm',
         'genre' => 'thể loại',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'tìm nhạc',
+
+            'form' => [
+                'advanced' => 'Tìm kiếm nâng cao',
+                'album' => 'Album',
+                'artist' => 'Nghệ sĩ',
+                'bpm_gte' => 'BPM tối thiểu',
+                'bpm_lte' => 'BPM tối đa',
+                'empty' => 'Không có bài hát khớp với bộ lọc tìm kiếm.',
+                'genre' => 'Thể loại',
+                'genre_all' => 'Tất cả',
+                'length_gte' => 'Độ dài tối thiểu',
+                'length_lte' => 'Độ dài tối đa',
+            ],
+        ],
     ],
 ];

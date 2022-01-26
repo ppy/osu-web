@@ -23,12 +23,10 @@ declare const Turbolinks: import('turbolinks').default;
 // our helpers
 declare const tooltipDefault: TooltipDefault;
 declare const osu: OsuCommon;
-declare const currentUser: import('interfaces/current-user').default;
 
 // external (to typescript) classes
 declare const BeatmapsetFilter: import('interfaces/beatmapset-filter-class').default;
 declare const BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
-declare const LoadingOverlay: any;
 declare const Lang: LangClass;
 declare const fallbackLocale: string;
 declare const currentLocale: string;
@@ -72,32 +70,19 @@ interface OsuCommon {
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
-  link: (url: string, text: string, options?: OsuLinkOptions) => string;
-  linkify: (text: string, newWindow?: boolean) => string;
   navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
   popup: (message: string, type: string) => void;
-  popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
   present: (str?: string | null) => boolean;
   promisify: (xhr: JQuery.jqXHR) => Promise<any>;
   reloadPage: () => void;
-  timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
   transArray: (array: any[], key?: string) => string;
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
   transExists: (key: string, locale?: string) => boolean;
-  updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
   urlPresence: (url?: string | null) => string;
-  urlRegex: RegExp;
   uuid: () => string;
   xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
-}
-
-interface OsuLinkOptions {
-  classNames?: string[];
-  isRemote?: boolean;
-  props?: Partial<Record<string, any>>;
-  unescape?: boolean;
 }
 
 interface ChangelogBuild {
@@ -105,19 +90,6 @@ interface ChangelogBuild {
     name: string;
   };
   version: string;
-}
-
-// FIXME: make importable
-interface Country {
-  code: string;
-  display?: number;
-  name: string;
-}
-
-interface Cover {
-  custom_url: string | null;
-  id: string | null;
-  url: string | null;
 }
 
 interface BeatmapFailTimesArray {
@@ -143,12 +115,6 @@ interface BeatmapsetDiscussionJson {
 // TODO: incomplete
 interface BeatmapsetDiscussionPostJson {
   message: string;
-}
-
-interface LangClass {
-  _getPluralForm: (count: number, locale: string) => number;
-  _origGetPluralForm: (count: number, locale: string) => number;
-  has(key: string): boolean;
 }
 
 interface TooltipDefault {

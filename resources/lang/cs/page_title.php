@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'fórum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'nástěnka',
         ],
@@ -38,8 +41,11 @@ return [
             'edit' => 'nástěnka',
             'verify_link' => 'ověření účtu',
         ],
+        'artist_tracks_controller' => [
+            '_' => 'featured artists',
+        ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'featured artists',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => '',
@@ -137,7 +143,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autorizovat aplikaci',
         ],
     ],
     'store' => [

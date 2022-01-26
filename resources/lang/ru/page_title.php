@@ -29,14 +29,20 @@ return [
     ],
     'forum' => [
         '_' => 'форум',
+        'topic_logs_controller' => [
+            'index' => 'статистика темы',
+        ],
         'topic_watches_controller' => [
             'index' => 'инфопанель',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'инфопанель',
+            'edit' => 'главная страница',
             'verify_link' => 'верификация аккаунта',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'избранные исполнители',
         ],
         'artists_controller' => [
             '_' => 'избранные исполнители',
@@ -57,8 +63,7 @@ return [
             '_' => 'история карты',
         ],
         'beatmapset_watches_controller' => [
-            'index' => 'главная страница
-',
+            'index' => 'главная страница',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'обсуждение карты',
@@ -81,7 +86,7 @@ return [
             'index' => 'главная страница',
         ],
         'friends_controller' => [
-            'index' => 'инфопанель',
+            'index' => 'главная страница',
         ],
         'groups_controller' => [
             'show' => 'группы',

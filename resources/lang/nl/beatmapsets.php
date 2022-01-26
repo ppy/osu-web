@@ -146,7 +146,7 @@ return [
             'friend' => 'Vriendenranking',
             'global' => 'Globale Ranking',
             'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
-            'supporter-only' => 'Je moet supporter zijn om land- en vriendenrankings te zien!',
+            'supporter-only' => 'Je moet een osu!supporter zijn om toegang te krijgen tot land- en vriendenrankings, net als mod-specifieke ranglijsten!',
             'title' => 'Scorebord',
 
             'headers' => [
@@ -154,16 +154,17 @@ return [
                 'combo' => 'Max. Combo',
                 'miss' => 'Mis',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Speler',
                 'pp' => '',
                 'rank' => 'Rank',
-                'score_total' => 'Totale Score',
                 'score' => 'Score',
+                'score_total' => 'Totale Score',
                 'time' => 'Datum',
             ],
 
             'no_scores' => [
-                'country' => 'Niemand uit jouw land heeft nog een score behaald op deze map!',
+                'country' => 'Er heeft nog niemand uit jouw land een score behaald op deze map!',
                 'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
                 'global' => 'Nog geen scores. Probeer er een paar te halen?',
                 'loading' => 'Scoren aan het laden...',

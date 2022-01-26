@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => '论坛',
+        'topic_logs_controller' => [
+            'index' => '主题记录',
+        ],
         'topic_watches_controller' => [
             'index' => '主页',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => '主页',
             'verify_link' => '账户验证',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '精选艺术家',
         ],
         'artists_controller' => [
             '_' => '精选艺术家',

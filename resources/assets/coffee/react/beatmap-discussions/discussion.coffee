@@ -1,17 +1,19 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { NewReply } from './new-reply'
-import { Post } from './post'
-import { SystemPost } from './system-post'
-import { UserCard } from './user-card'
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
+import { route } from 'laroute'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
 import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+import { NewReply } from './new-reply'
+import { Post } from './post'
+import { SystemPost } from './system-post'
+import { UserCard } from './user-card'
 
 el = React.createElement
 
@@ -29,7 +31,7 @@ VoterList = ({type, discussion, users}) =>
           ':'
         discussion.votes['voters'][type].map (userId) =>
           a
-            href: laroute.route('users.show', user: userId)
+            href: route('users.show', user: userId)
             className: 'js-usercard user-list-popup__user'
             key: userId
             'data-user-id': userId
@@ -226,11 +228,11 @@ export class Discussion extends React.PureComponent
 
 
   doVote: (e) =>
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @voteXhr?.abort()
 
-    @voteXhr = $.ajax laroute.route('beatmapsets.discussions.vote', discussion: @props.discussion.id),
+    @voteXhr = $.ajax route('beatmapsets.discussions.vote', discussion: @props.discussion.id),
       method: 'PUT',
       data:
         beatmap_discussion_vote:
@@ -241,7 +243,7 @@ export class Discussion extends React.PureComponent
 
     .fail osu.ajaxError
 
-    .always LoadingOverlay.hide
+    .always hideLoadingOverlay
 
 
   emitSetHighlight: (e) =>

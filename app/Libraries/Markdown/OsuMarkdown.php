@@ -18,6 +18,7 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\DefaultAttributes\DefaultAttributesExtension;
 use League\CommonMark\Extension\Footnote\FootnoteExtension;
+use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
 use League\CommonMark\Extension\Table\Table;
 use League\CommonMark\Extension\Table\TableCell;
 use League\CommonMark\Extension\Table\TableExtension;
@@ -151,16 +152,20 @@ class OsuMarkdown
             try {
                 $header = Yaml::parse($matches['header']);
             } catch (YamlParseException $_e) {
-                $header = [];
+                // ignores error
+            }
+
+            if (!is_array($header ?? null)) {
+                $header = null;
             }
 
             $document = $matches['document'];
-        } else {
-            $header = [];
-            $document = $input;
         }
 
-        return compact('header', 'document');
+        return [
+            'document' => $document ?? $input,
+            'header' => $header ?? [],
+        ];
     }
 
     public function __construct(
@@ -299,6 +304,7 @@ class OsuMarkdown
         $environment->addExtension(new CommonMarkCoreExtension());
         $environment->addExtension(new AutolinkExtension());
         $environment->addExtension(new TableExtension());
+        $environment->addExtension(new StrikethroughExtension());
 
         if ($this->osuMarkdownConfig['parse_attribute_id']) {
             $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());

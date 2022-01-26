@@ -1,20 +1,25 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { MessageLengthCounter } from './message-length-counter'
-import { UserCard } from './user-card'
+import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
+import Editor from 'beatmap-discussions/editor'
 import { ReviewPost } from 'beatmap-discussions/review-post'
 import BigButton from 'big-button'
 import ClickToCopy from 'click-to-copy'
+import { route } from 'laroute'
+import { deletedUser } from 'models/user'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { a, button, div, span } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
-import Editor from 'beatmap-discussions/editor'
-import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
-import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
+import StringWithComponent from 'string-with-component'
+import TimeWithTooltip from 'time-with-tooltip'
+import { UserLink } from 'user-link'
 import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
+import { MessageLengthCounter } from './message-length-counter'
+import { UserCard } from './user-card'
 
 el = React.createElement
 
@@ -180,28 +185,27 @@ export class Post extends React.PureComponent
       div className: "#{bn}__info-container",
         span
           className: "#{bn}__info"
-          dangerouslySetInnerHTML:
-            __html: osu.timeago(@props.post.created_at)
+          el TimeWithTooltip, dateTime: @props.post.created_at, relative: true
 
         if deleteModel.deleted_at?
           span
             className: "#{bn}__info #{bn}__info--edited"
-            dangerouslySetInnerHTML:
-              __html: osu.trans 'beatmaps.discussions.deleted',
-                editor: osu.link laroute.route('users.show', user: deleteModel.deleted_by_id),
-                  @props.users[deleteModel.deleted_by_id]?.username
-                  classNames: ["#{bn}__info-user"]
-                delete_time: osu.timeago deleteModel.deleted_at
+            el StringWithComponent,
+              mappings:
+                editor: el UserLink,
+                  className: "#{bn}__info-user"
+                  user: @props.users[deleteModel.deleted_by_id] ? deletedUser
+                delete_time: el(TimeWithTooltip, dateTime: deleteModel.deleted_at, relative: true)
+              pattern: osu.trans 'beatmaps.discussions.deleted'
 
         if @props.post.updated_at != @props.post.created_at && @props.lastEditor?
           span
             className: "#{bn}__info #{bn}__info--edited"
-            dangerouslySetInnerHTML:
-              __html: osu.trans 'beatmaps.discussions.edited',
-                editor: osu.link laroute.route('users.show', user: @props.lastEditor.id),
-                  @props.lastEditor.username
-                  classNames: ["#{bn}__info-user"]
-                update_time: osu.timeago @props.post.updated_at
+            el StringWithComponent,
+              mappings:
+                editor: el(UserLink, className: "#{bn}__info-user", user: @props.lastEditor)
+                update_time: el(TimeWithTooltip, dateTime: @props.post.updated_at, relative: true)
+              pattern: osu.trans 'beatmaps.discussions.edited'
 
         if @props.type == 'discussion' && @props.discussion.kudosu_denied
           span
@@ -228,7 +232,7 @@ export class Post extends React.PureComponent
           if !deleteModel.deleted_at? && @props.canBeDeleted
             a
               className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-              href: laroute.route("#{controller}.destroy", "#{key}": deleteModel.id)
+              href: route("#{controller}.destroy", "#{key}": deleteModel.id)
               'data-remote': true
               'data-method': 'DELETE'
               'data-confirm': osu.trans('common.confirmation')
@@ -237,7 +241,7 @@ export class Post extends React.PureComponent
           if deleteModel.deleted_at? && @props.canBeRestored
             a
               className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-              href: laroute.route("#{controller}.restore", "#{key}": deleteModel.id)
+              href: route("#{controller}.restore", "#{key}": deleteModel.id)
               'data-remote': true
               'data-method': 'POST'
               'data-confirm': osu.trans('common.confirmation')
@@ -247,7 +251,7 @@ export class Post extends React.PureComponent
             if @props.discussion.can_grant_kudosu
               a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route('beatmapsets.discussions.deny-kudosu', discussion: @props.discussion.id)
+                href: route('beatmapsets.discussions.deny-kudosu', discussion: @props.discussion.id)
                 'data-remote': true
                 'data-method': 'POST'
                 'data-confirm': osu.trans('common.confirmation')
@@ -255,7 +259,7 @@ export class Post extends React.PureComponent
             else if @props.discussion.kudosu_denied
               a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route('beatmapsets.discussions.allow-kudosu', discussion: @props.discussion.id)
+                href: route('beatmapsets.discussions.allow-kudosu', discussion: @props.discussion.id)
                 'data-remote': true
                 'data-method': 'POST'
                 'data-confirm': osu.trans('common.confirmation')
@@ -306,7 +310,7 @@ export class Post extends React.PureComponent
     @setState posting: true
 
     @xhr.updatePost?.abort()
-    @xhr.updatePost = $.ajax laroute.route('beatmapsets.discussions.posts.update', post: @props.post.id),
+    @xhr.updatePost = $.ajax route('beatmapsets.discussions.posts.update', post: @props.post.id),
       method: 'PUT'
       data:
         beatmap_discussion_post:

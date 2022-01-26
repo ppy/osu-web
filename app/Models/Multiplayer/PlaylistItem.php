@@ -10,6 +10,7 @@ use App\Libraries\Multiplayer\Mod;
 use App\Libraries\Multiplayer\Ruleset;
 use App\Models\Beatmap;
 use App\Models\Model;
+use App\Models\User;
 
 /**
  * @property json|null $allowed_mods
@@ -17,6 +18,7 @@ use App\Models\Model;
  * @property int $beatmap_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
+ * @property int $owner_id
  * @property int|null $playlist_order
  * @property json|null $required_mods
  * @property Room $room
@@ -25,6 +27,7 @@ use App\Models\Model;
  * @property \Illuminate\Database\Eloquent\Collection $scores Score
  * @property \Carbon\Carbon|null $updated_at
  * @property bool expired
+ * @property \Carbon\Carbon|null $played_at
  */
 class PlaylistItem extends Model
 {
@@ -49,7 +52,7 @@ class PlaylistItem extends Model
         }
     }
 
-    public static function fromJsonParams($json)
+    public static function fromJsonParams(User $owner, $json)
     {
         $obj = new self();
         foreach (['beatmap_id', 'ruleset_id'] as $field) {
@@ -71,6 +74,8 @@ class PlaylistItem extends Model
             $json['required_mods'] ?? [],
             $obj->ruleset_id
         );
+
+        $obj->owner_id = $owner->getKey();
 
         return $obj;
     }

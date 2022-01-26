@@ -1,14 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Header } from './header'
-import { Hype } from './hype'
-import { Info } from './info'
-import { Scoreboard } from './scoreboard'
 import NsfwWarning from 'beatmapsets-show/nsfw-warning'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import HeaderV4 from 'header-v4'
+import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
@@ -17,6 +14,10 @@ import * as BeatmapHelper from 'utils/beatmap-helper'
 import * as BeatmapsetPageHash from 'utils/beatmapset-page-hash'
 import { nextVal } from 'utils/seq'
 import { currentUrl } from 'utils/turbolinks'
+import { Header } from './header'
+import { Hype } from './hype'
+import { Info } from './info'
+import { Scoreboard } from './scoreboard'
 
 el = React.createElement
 
@@ -114,7 +115,7 @@ export class Main extends React.Component
     $.publish 'beatmapset:scoreboard:loading', true
     @setState loading: true
 
-    @scoreboardXhr = $.ajax (laroute.route 'beatmaps.scores', beatmap: @state.currentBeatmap.id),
+    @scoreboardXhr = $.ajax (route 'beatmaps.scores', beatmap: @state.currentBeatmap.id),
       method: 'GET'
       dataType: 'JSON'
       data:
@@ -164,7 +165,7 @@ export class Main extends React.Component
 
   toggleFavourite: =>
     @favouriteXhr = $.ajax
-      url: laroute.route('beatmapsets.favourites.store', beatmapset: @state.beatmapset.id)
+      url: route('beatmapsets.favourites.store', beatmapset: @state.beatmapset.id)
       method: 'post'
       dataType: 'json'
       data:

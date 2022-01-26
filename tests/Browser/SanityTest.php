@@ -5,6 +5,8 @@
 
 namespace Tests\Browser;
 
+use App\Models\Chat\Channel;
+use App\Models\Chat\UserChannel;
 use App\Models\Country;
 use App\Models\Multiplayer\Room;
 use DB;
@@ -150,8 +152,8 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factories for /community/chat/*
-        self::$scaffolding['channel'] = factory(\App\Models\Chat\Channel::class)->states('public')->create();
-        self::$scaffolding['user_channel'] = factory(\App\Models\Chat\UserChannel::class)->create([
+        self::$scaffolding['channel'] = Channel::factory()->type('public')->create();
+        self::$scaffolding['user_channel'] = UserChannel::factory()->create([
             'channel_id' => self::$scaffolding['channel']->getKey(),
             'user_id' => self::$scaffolding['user']->getKey(),
         ]);
@@ -172,9 +174,10 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['group'] = factory(\App\Models\Group::class)->create();
 
         // factory for comments
-        self::$scaffolding['comment'] = factory(\App\Models\Comment::class)->create([
-            'user_id' => self::$scaffolding['user']->user_id,
+        self::$scaffolding['comment'] = \App\Models\Comment::factory()->create([
             'commentable_id' => self::$scaffolding['build'],
+            'commentable_type' => 'build',
+            'user_id' => self::$scaffolding['user'],
         ]);
 
         // factory for matches
@@ -424,7 +427,7 @@ class SanityTest extends DuskTestCase
 
     private function checkAdminPermission(Browser $browser, LaravelRoute $route)
     {
-        $adminRestricted = [];
+        $adminRestricted = ['forum.topics.logs.index'];
 
         if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted, true)) {
             // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)
@@ -451,7 +454,9 @@ class SanityTest extends DuskTestCase
     {
         $verificationExpected = [
             'account.edit',
+            'chat.index',
             'client-verifications.create',
+            'messages.users.show',
             'store.checkout.show',
             'store.invoice.show',
             'store.orders.index',

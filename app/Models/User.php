@@ -11,13 +11,13 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\Elasticsearch\Indexable;
+use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
 use App\Traits\Memoizes;
-use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
@@ -172,8 +172,7 @@ use Request;
  */
 class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable
 {
-    use Elasticsearch\UserTrait, Store\UserTrait;
-    use Authenticatable, HasApiTokens, Memoizes, Reportable, UserAvatar, UserScoreable, Validatable;
+    use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserAvatar, Traits\UserScoreable, Traits\UserStore, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -183,6 +182,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public $timestamps = false;
 
     protected $visible = ['user_id', 'username', 'username_clean', 'user_rank', 'osu_playstyle', 'user_colour'];
+
+    protected $attributes = [
+        'user_allow_pm' => true,
+    ];
 
     protected $casts = [
         'osu_subscriber' => 'boolean',
@@ -795,6 +798,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->isGroup(app('groups')->byIdentifier('admin'));
     }
 
+    public function isChatAnnouncer()
+    {
+        return $this->findUserGroup(app('groups')->byIdentifier('announce'), true) !== null;
+    }
+
     public function isGMT()
     {
         return $this->isGroup(app('groups')->byIdentifier('gmt'));
@@ -1015,6 +1023,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function reportsMade()
     {
         return $this->hasMany(UserReport::class, 'reporter_id');
+    }
+
+    public function scorePins()
+    {
+        return $this->hasMany(ScorePin::class);
     }
 
     public function userGroups()
@@ -1334,9 +1347,19 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->isSupporter() ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
     }
 
+    public function maxMultiplayerDuration()
+    {
+        return $this->isSupporter() ? config('osu.user.max_multiplayer_duration_supporter') : config('osu.user.max_multiplayer_duration');
+    }
+
     public function maxMultiplayerRooms()
     {
         return $this->isSupporter() ? config('osu.user.max_multiplayer_rooms_supporter') : config('osu.user.max_multiplayer_rooms');
+    }
+
+    public function maxScorePins()
+    {
+        return $this->isSupporter() ? config('osu.user.max_score_pins_supporter') : config('osu.user.max_score_pins');
     }
 
     public function beatmapsetDownloadAllowance()
@@ -1576,6 +1599,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         });
     }
 
+    public function authHash(): string
+    {
+        return hash('sha256', $this->user_email).':'.hash('sha256', $this->user_password);
+    }
+
+    public function resetSessions(): void
+    {
+        SessionStore::destroy($this->getKey());
+        $this->tokens()->with('refreshToken')->get()->each->revokeRecursive();
+    }
+
     public function title(): ?string
     {
         return optional($this->rank)->rank_title;
@@ -1632,20 +1666,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function notificationCount()
     {
         return $this->user_unread_privmsg;
-    }
-
-    // TODO: we should rename this to currentUserJson or something.
-    public function defaultJson()
-    {
-        return json_item($this, 'User', [
-            'blocks',
-            'follow_user_mapping',
-            'friends',
-            'groups',
-            'is_admin',
-            'unread_pm_count',
-            'user_preferences',
-        ]);
     }
 
     public function supportLength()
@@ -1906,27 +1926,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         });
     }
 
-    public function lastPlayed()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            $unionQuery = null;
-
-            foreach (Beatmap::MODES as $key => $_value) {
-                $query = $this->statistics($key, true)->select('last_played');
-
-                if ($unionQuery === null) {
-                    $unionQuery = $query;
-                } else {
-                    $unionQuery->unionAll($query);
-                }
-            }
-
-            $lastPlayed = $unionQuery->get()->max('last_played') ?? 0;
-
-            return Carbon::parse($lastPlayed);
-        });
-    }
-
     /**
      * User's previous usernames
      *
@@ -2065,12 +2064,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             $this->isValidEmail();
         }
 
-        if ($this->isDirty('country_acronym') && present($this->country_acronym)) {
-            if (($country = Country::find($this->country_acronym)) !== null) {
-                // ensure matching case
-                $this->country_acronym = $country->getKey();
+        if ($this->isDirty('country_acronym')) {
+            if (present($this->country_acronym)) {
+                if (($country = Country::find($this->country_acronym)) !== null) {
+                    // ensure matching case
+                    $this->country_acronym = $country->getKey();
+                } else {
+                    $this->validationErrors()->add('country', '.invalid_country');
+                }
             } else {
-                $this->validationErrors()->add('country', '.invalid_country');
+                $this->country_acronym = Country::UNKNOWN;
             }
         }
 

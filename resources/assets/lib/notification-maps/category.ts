@@ -37,6 +37,7 @@ export const nameToCategory: CategoryMap = {
   beatmapset_rank: 'beatmapset_state',
   beatmapset_remove_from_loved: 'beatmapset_state',
   beatmapset_reset_nominations: 'beatmapset_state',
+  channel_announcement: 'announcement',
   channel_message: 'channel',
   comment_new: 'comment',
   comment_reply: 'comment',
@@ -44,4 +45,5 @@ export const nameToCategory: CategoryMap = {
   legacy_pm: 'legacy_pm',
   user_achievement_unlock: 'user_achievement_unlock',
   user_beatmapset_new: 'user_beatmapset_new',
+  user_beatmapset_revive: 'user_beatmapset_new',
 };

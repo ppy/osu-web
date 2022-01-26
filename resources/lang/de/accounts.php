@@ -80,7 +80,7 @@ return [
         'title' => 'Optionen',
 
         'beatmapset_download' => [
-            '_' => 'Bevorzugter Betmap-Download Typ',
+            '_' => 'bevorzugter beatmap-download typ',
             'all' => 'mit Video, falls verfügbar',
             'direct' => 'in osu!direct öffnen',
             'no_video' => 'ohne video',

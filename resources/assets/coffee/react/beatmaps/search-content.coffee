@@ -1,19 +1,20 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Paginator } from './paginator'
-import { SearchPanel } from './search-panel'
-import { SearchSort } from './search-sort'
 import BeatmapsetCardSizeSelector from 'beatmaps/beatmapset-card-size-selector'
 import VirtualListMeta from 'beatmaps/virtual-list-meta'
 import BeatmapsetPanel, { beatmapsetCardSizes } from 'beatmapset-panel'
 import Img2x from 'img2x'
+import { route } from 'laroute'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, div, p } from 'react-dom-factories'
 import VirtualList from 'react-virtual-list'
 import { showVisual } from 'utils/beatmapset-helper'
+import { Paginator } from './paginator'
+import { SearchPanel } from './search-panel'
+import { SearchSort } from './search-sort'
 
 el = React.createElement
 
@@ -109,7 +110,7 @@ export class SearchContent extends React.Component
 
 
 renderLinkToSupporterTag = (filterText) ->
-  url = laroute.route('store.products.show', product: 'supporter-tag')
+  url = route('store.products.show', product: 'supporter-tag')
   link = "<a href=\"#{url}\">#{osu.trans 'beatmaps.listing.search.supporter_filter_quote.link_text'}</a>"
 
   p

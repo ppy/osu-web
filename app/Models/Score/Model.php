@@ -9,8 +9,8 @@ use App\Exceptions\ClassNotFoundException;
 use App\Libraries\ModsHelper;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
+use App\Models\Traits\Scoreable;
 use App\Models\User;
-use App\Traits\Scoreable;
 
 /**
  * @property Beatmap $beatmap
@@ -120,11 +120,6 @@ abstract class Model extends BaseModel
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function getBestIdAttribute()
-    {
-        return $this->high_score_id;
     }
 
     public function url()

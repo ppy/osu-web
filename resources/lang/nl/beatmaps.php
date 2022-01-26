@@ -22,7 +22,7 @@ return [
         'kudosu_denied' => 'Verkrijgen van kudosu ontkend.',
         'message_placeholder_deleted_beatmap' => 'Deze moeilijkheidsgraad is verwijderd en mag niet meer besproken worden.',
         'message_placeholder_locked' => 'Discussie voor deze beatmap is uitgeschakeld.',
-        'message_placeholder_silenced' => "Kan discussie niet plaatsen als je je misdragen hebt.",
+        'message_placeholder_silenced' => "Kan discussie niet plaatsen als je account niet in goede staat is.",
         'message_type_select' => 'Selecteer Commentaartype',
         'reply_notice' => 'Druk op enter om te antwoorden.',
         'reply_placeholder' => 'Type hier je reactie',
@@ -222,7 +222,7 @@ return [
             'not-found' => 'geen resultaten',
             'not-found-quote' => '... nope, niets gevonden.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Algemeen',
                 'genre' => 'Genre',
                 'language' => 'Taal',
@@ -362,7 +362,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => 'Speelaantal :count',
+        'playcount' => 'Speelaantal: :count',
         'favourites' => 'Favorieten: :count',
     ],
     'variant' => [

@@ -87,6 +87,10 @@
     "optimize-autoloader": true,
     "platform": {
       "php": "8.0.0"
+    },
+    "allow-plugins": {
+      "composer/package-versions-deprecated": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
     }
   },
   "extra": {

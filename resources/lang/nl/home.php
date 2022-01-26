@@ -132,15 +132,4 @@ return [
             'store' => 'osu!store',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Jij lijkt plezier te hebben! :D',
-        'body' => [
-            'part-1' => 'Wist je dat osu! geen advertenties toont, en afhangt van spelers voor de ontwikkelings- en onderhoudskosten?',
-            'part-2' => 'Wist je dat je door osu! te helpen ook een hoop handige features krijgt, waaronder <strong>in-game downloads</strong> die automatisch starten tijdens spectator en multiplayer games?',
-        ],
-        'find-out-more' => 'Klik hier voor meer!',
-        'download-starting' => "Oh, en maak je geen zorgen - je download is al gestart :)",
-    ],
 ];

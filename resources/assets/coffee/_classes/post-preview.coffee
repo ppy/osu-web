@@ -1,7 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @PostPreview
+import { route } from 'laroute'
+import { pageChange } from 'utils/page-change'
+
+class window.PostPreview
   constructor: ->
     @debouncedLoadPreview = _.debounce @loadPreview, 500
 
@@ -30,9 +33,9 @@ class @PostPreview
       $previewBox.removeClass 'hidden'
       return
 
-    preview._xhr = $.post(laroute.route('bbcode-preview'), text: body)
+    preview._xhr = $.post(route('bbcode-preview'), text: body)
     .done (data) =>
       $preview.html data
       $preview.attr 'data-raw', body
       $previewBox.removeClass 'hidden'
-      _exported.pageChange()
+      pageChange()

@@ -60,6 +60,10 @@ class TopicPoll
                 $this->validationErrors()->add('title', 'required');
             }
 
+            if (mb_strlen($this->params['title']) > 255) {
+                $this->validationErrors()->add('title', 'too_long', ['limit' => 255]);
+            }
+
             if (count($this->params['options']) > count(array_unique($this->params['options']))) {
                 $this->validationErrors()->add('options', '.duplicate_options');
             }

@@ -5,12 +5,10 @@ import * as d3 from 'd3';
 import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import GameMode from 'interfaces/game-mode';
+import GameMode, { gameModes } from 'interfaces/game-mode';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
 import { parseJsonNullable } from 'utils/json';
-
-export const modes: GameMode[] = ['osu', 'taiko', 'fruits', 'mania'];
 
 function isVisibleBeatmap(beatmap: BeatmapJson) {
   if (isBeatmapExtendedJson(beatmap)) {
@@ -21,9 +19,9 @@ function isVisibleBeatmap(beatmap: BeatmapJson) {
 }
 
 const difficultyColourSpectrum = d3.scaleLinear<string>()
-  .domain([1.5, 2, 2.5, 3.25, 4.5, 6, 7, 8])
+  .domain([0.1, 1.25, 2, 2.5, 3.3, 4.2, 4.9, 5.8, 6.7, 7.7, 9])
   .clamp(true)
-  .range(['#4FC0FF', '#4FFFD5', '#7CFF4F', '#F6F05C', '#FF8068', '#FF3C71', '#6563DE', '#18158E'])
+  .range(['#4290FB', '#4FC0FF', '#4FFFD5', '#7CFF4F', '#F6F05C', '#FF8068', '#FF4E6F', '#C645B8', '#6563DE', '#18158E', '#000000'])
   .interpolate(d3.interpolateRgb.gamma(2.2));
 
 interface FindDefaultParams<T> {
@@ -36,7 +34,7 @@ export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>)
   if (params.items != null) {
     let currentDiffDelta: number;
     let currentItem: T | null = null;
-    const targetDiff = userRecommendedDifficulty(params.mode ?? modes[0]);
+    const targetDiff = userRecommendedDifficulty(params.mode ?? gameModes[0]);
 
     params.items.forEach((item) => {
       const diffDelta = Math.abs(item.difficulty_rating - targetDiff);
@@ -90,9 +88,10 @@ export function getDiffRating(rating: number) {
   return 'expert-plus';
 }
 
-export function getDiffColour(rating?: number | null) {
-  rating ??= 0;
-  return rating >= 8 ? '#000000' : difficultyColourSpectrum(rating);
+export function getDiffColour(rating: number) {
+  if (rating < 0.1) return '#AAAAAA';
+  if (rating >= 9) return '#000000';
+  return difficultyColourSpectrum(rating);
 }
 
 // TODO: should make a Beatmapset proxy object or something
@@ -116,7 +115,7 @@ export function group<T extends BeatmapJson>(beatmaps?: T[] | null): Map<GameMod
   const grouped = _.groupBy(beatmaps ?? [], 'mode');
   const ret = new Map<GameMode, T[]>();
 
-  modes.forEach((mode) => {
+  gameModes.forEach((mode) => {
     ret.set(mode, sort(grouped[mode] ?? []));
   });
 
@@ -144,12 +143,12 @@ export function sortWithMode<T extends BeatmapJson>(beatmaps: T[]): T[] {
 }
 
 function userModes() {
-  const currentMode: GameMode | undefined = currentUser.playmode;
-  if (currentMode == null || !modes.includes(currentMode)) {
-    return modes;
+  const currentMode = core.currentUser?.playmode;
+  if (currentMode == null || !gameModes.includes(currentMode)) {
+    return gameModes;
   }
 
-  const ret = _.without(modes, currentMode);
+  const ret = _.without(gameModes, currentMode);
   ret.unshift(currentMode);
 
   return ret;

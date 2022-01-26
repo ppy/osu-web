@@ -10,9 +10,9 @@ use App\Exceptions\InvalidScopeException;
 use App\Models\OAuth\Client;
 use App\Models\OAuth\Token;
 use App\Models\User;
+use Database\Factories\OAuth\RefreshTokenFactory;
 use Illuminate\Support\Facades\Event;
 use Laravel\Passport\Passport;
-use Laravel\Passport\RefreshToken;
 use Tests\TestCase;
 
 class TokenTest extends TestCase
@@ -20,7 +20,7 @@ class TokenTest extends TestCase
     public function testAuthCodeChatWriteAllowsSelf()
     {
         $user = User::factory()->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $user]);
 
         $token = $this->createToken($user, ['chat.write'], $client);
         $this->actAsUserWithToken($token);
@@ -35,7 +35,7 @@ class TokenTest extends TestCase
     public function testAuthCodeChatWriteRequiresBotGroup(?string $group, ?string $expectedException)
     {
         $user = User::factory()->withGroup($group)->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $user]);
         $tokenUser = User::factory()->create();
 
         if ($expectedException !== null) {
@@ -50,7 +50,7 @@ class TokenTest extends TestCase
     public function testClientCredentialsRequiredForDelegation()
     {
         $user = User::factory()->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $user]);
 
         $this->expectException(InvalidScopeException::class);
         $this->createToken($user, ['delegate'], $client);
@@ -59,7 +59,7 @@ class TokenTest extends TestCase
     public function testClientCredentialResourceOwnerBot()
     {
         $user = User::factory()->withGroup('bot')->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $user]);
         $token = $this->createToken(null, ['delegate'], $client);
 
         $this->actAsUserWithToken($token);
@@ -72,7 +72,7 @@ class TokenTest extends TestCase
     public function testClientCredentialResourceOwnerPublic()
     {
         $user = User::factory()->withGroup('bot')->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $user]);
         $token = $this->createToken(null, ['public'], $client);
 
         $this->actAsUserWithToken($token);
@@ -88,7 +88,7 @@ class TokenTest extends TestCase
     public function testDelegationNotAllowedScopes(array $scopes)
     {
         $user = User::factory()->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $user]);
 
         $this->expectException(InvalidScopeException::class);
         $this->createToken(null, $scopes, $client);
@@ -100,7 +100,7 @@ class TokenTest extends TestCase
     public function testDelegationRequiredScopes(array $scopes, ?string $expectedException)
     {
         $user = User::factory()->withGroup('bot')->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $user]);
 
         if ($expectedException !== null) {
             $this->expectException($expectedException);
@@ -117,7 +117,7 @@ class TokenTest extends TestCase
     public function testDelegationRequiresChatBot(?string $group, ?string $expectedException)
     {
         $user = User::factory()->withGroup($group)->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $user]);
         $tokenUser = User::factory()->create();
 
         if ($expectedException !== null) {
@@ -137,7 +137,7 @@ class TokenTest extends TestCase
     public function testScopes($scopes, $expectedException)
     {
         $user = User::factory()->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $user]);
 
         if ($expectedException !== null) {
             $this->expectException($expectedException);
@@ -164,7 +164,7 @@ class TokenTest extends TestCase
     public function testScopesClientCredentials($scopes, $expectedException)
     {
         $user = User::factory()->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $user]);
 
         if ($expectedException !== null) {
             $this->expectException($expectedException);
@@ -179,7 +179,7 @@ class TokenTest extends TestCase
     {
         Event::fake();
 
-        $refreshToken = factory(RefreshToken::class)->create();
+        $refreshToken = (new RefreshTokenFactory())->create();
         $token = $refreshToken->accessToken;
 
         $this->assertFalse($refreshToken->revoked);
@@ -189,7 +189,7 @@ class TokenTest extends TestCase
 
         $this->assertTrue($refreshToken->fresh()->revoked);
         $this->assertTrue($token->fresh()->revoked);
-        Event::assertDispatched(UserSessionEvent::class);
+        Event::assertDispatched(UserSessionEvent::class, fn (UserSessionEvent $event) => $event->action === 'logout');
     }
 
     public function authCodeChatWriteRequiresBotGroupDataProvider()

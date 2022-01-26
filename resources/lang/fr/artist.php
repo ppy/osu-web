@@ -13,12 +13,12 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Télécharger une beatmap vide de cette musique',
+        'download' => 'Télécharger une beatmap type de cette musique',
         'download-na' => 'La beatmap type n\'est pas encore disponible',
     ],
 
     'index' => [
-        'description' => 'Les artistes plébiscités sont des artistes avec qui nous collaborons pour apporter des musiques nouvelles et originales à osu!. Ces artistes et une sélection de leurs pistes ont été sélectionné à la main par l\'équipe d\'osu puisqu\'elles ont été considérées comme extraordinaires et appropriées pour le mapping. Quelques un de ces artistes ont également créé des pistes exclusivement pour osu!.<br><br>Toutes les pistes de cette section ont des fichiers .osz pré-timé fournis et sont officiellement autorisés à l\'usage pour osu! ainsi que tout contenu relatif à osu!.',
+        'description' => 'Les featured artists sont des artistes avec qui nous collaborons pour apporter des musiques nouvelles et originales à osu!. Ces artistes ainsi qu\'une sélection de leurs musiques ont été sélectionnés par l\'équipe d\'osu! pour leur qualité et leur potentiel pour le mapping. Quelques-uns de ces artistes ont également créé des musiques exclusivement pour osu!.<br><br>Toutes les musiques de cette section sont fournies avec des fichiers .osz pré-timés et peuvent officiellement être utilisées sur osu! ainsi que tout contenu relatif à osu!.',
     ],
 
     'links' => [
@@ -31,6 +31,7 @@ return [
         '_' => 'Titres',
         'count' => ':count titre|:count titres',
         'original' => 'osu! original',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => 'durée',
         'bpm' => 'bpm',
         'genre' => 'genre',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'recherche de musiques',
+
+            'form' => [
+                'advanced' => 'Recherche Avancée',
+                'album' => 'Album',
+                'artist' => 'Artiste',
+                'bpm_gte' => 'BPM Minimum',
+                'bpm_lte' => 'BPM Maximum',
+                'empty' => 'Aucune musique correspondant aux critères de recherche n\'a été trouvée.',
+                'genre' => 'Genre',
+                'genre_all' => 'Tout',
+                'length_gte' => 'Durée minimale',
+                'length_lte' => 'Durée maximale',
+            ],
+        ],
     ],
 ];

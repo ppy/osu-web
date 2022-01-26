@@ -6,6 +6,7 @@ import core from 'osu-core-singleton';
 import Shopify from 'shopify-buy';
 import { toShopifyVariantGid } from 'shopify-gid';
 import { createClickCallback } from 'utils/html';
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 
 declare global {
   interface Window {
@@ -52,7 +53,7 @@ export class Store {
       try {
         await this.beginShopifyCheckout(orderId);
       } catch (error) {
-        LoadingOverlay.hide();
+        hideLoadingOverlay();
         core.userVerification.showOnError(error, createClickCallback(event.target));
       }
 
@@ -63,8 +64,8 @@ export class Store {
   }
 
   async beginShopifyCheckout(orderId: string) {
-    LoadingOverlay.show();
-    LoadingOverlay.show.flush();
+    showLoadingOverlay();
+    showLoadingOverlay.flush();
 
     let checkout: any;
     try {
@@ -75,7 +76,7 @@ export class Store {
         lineItems: this.collectShopifyItems(),
       });
     } catch (error) {
-      LoadingOverlay.hide();
+      hideLoadingOverlay();
       osu.popup(osu.trans('errors.checkout.generic'), 'danger');
       return;
     }
@@ -108,15 +109,15 @@ export class Store {
   }
 
   async resumeShopifyCheckout(checkoutId: string) {
-    LoadingOverlay.show();
-    LoadingOverlay.show.flush();
+    showLoadingOverlay();
+    showLoadingOverlay.flush();
 
     const checkout = await client.checkout.fetch(checkoutId);
     if (checkout != null) {
       window.location.href = checkout.webUrl;
     } else {
       osu.popup(osu.trans('store.order.shopify_expired'), 'info');
-      LoadingOverlay.hide();
+      hideLoadingOverlay();
     }
   }
 

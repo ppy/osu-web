@@ -197,7 +197,7 @@ return [
         'unresolved_issues' => 'Terdapat satu atau lebih masalah yang belum terjawab dan harus ditangani terlebih dahulu.',
 
         'rank_estimate' => [
-            '_' => 'Map ini akan berstatus Ranked pada :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue.',
+            '_' => 'Map ini akan berstatus Ranked pada :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue yang ada.',
             'queue' => 'antrian ranking',
             'soon' => 'segera',
         ],
@@ -220,7 +220,7 @@ return [
             'options' => 'Pilihan Pencarian Lebih Lanjut',
             'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan osu!supporter tag yang aktif',
             'not-found' => 'tidak ada hasil',
-            'not-found-quote' => '... tidak, tidak ditemukan apa pun.',
+            'not-found-quote' => '... tidak, tidak apa hasil apapun yang ditemukan.',
             'filters' => [
                 'extra' => 'Konten Ekstra',
                 'general' => 'Umum',
@@ -237,7 +237,7 @@ return [
                 'artist' => 'Artis',
                 'difficulty' => 'Tingkat Kesulitan',
                 'favourites' => 'Jumlah Favorit',
-                'updated' => 'Tanggal Pembaruan Terakhir',
+                'updated' => 'Tanggal Pembaruan',
                 'ranked' => 'Tanggal Ranked',
                 'rating' => 'Nilai Pengguna',
                 'plays' => 'Jumlah Permainan',
