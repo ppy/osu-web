@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import * as clipboard from 'clipboard-polyfill';
 import * as React from 'react';
 
 interface Props {
@@ -34,7 +33,7 @@ export default class ClickToCopy extends React.Component<Props> {
     }
 
     // copy url to clipboard
-    clipboard.writeText(this.props.value);
+    navigator.clipboard.writeText(this.props.value);
 
     // change tooltip text to provide feedback
     this.api.set('content.text', osu.trans('common.buttons.click_to_copy_copied'));

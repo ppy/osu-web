@@ -22,7 +22,6 @@
     "@types/timeago": "^1.6.0",
     "blueimp-file-upload": "^9.11.2",
     "bootstrap": "^3.3.6",
-    "clipboard-polyfill": "^2.3.0",
     "d3": "^7.1.1",
     "inter-ui": "^3.9.0",
     "is-hotkey": "^0.1.6",
