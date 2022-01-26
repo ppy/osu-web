@@ -16,17 +16,17 @@ use App\Transformers\UserTransformer;
 
 class MultiplayerController extends Controller
 {
-    public function index()
-    {
-        $request = request();
-        $user = FindForProfilePage::find($request->route('user'));
-        $typeGroup = $request->route()->parameter('typeGroup');
+    const TYPE_GROUPS = ['playlists', 'realtime'];
 
-        if (!in_array($typeGroup, ['playlists', 'realtime'], true)) {
-            return ujs_redirect(route('users.multiplayer.index', ['typeGroup' => 'realtime', 'user' => $user]));
+    public function index($userId, $typeGroup)
+    {
+        $user = FindForProfilePage::find($userId);
+
+        if (!in_array($typeGroup, static::TYPE_GROUPS, true)) {
+            return ujs_redirect(route('users.multiplayer.index', ['typeGroup' => 'realtime', 'user' => $userId]));
         }
 
-        $params = get_params($request->all(), null, [
+        $params = get_params(request()->all(), null, [
             'cursor:any',
             'limit:int',
         ], ['null_missing' => true]);
