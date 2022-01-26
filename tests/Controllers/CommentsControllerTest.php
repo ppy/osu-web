@@ -22,10 +22,13 @@ class CommentsControllerTest extends TestCase
     /**
      * @dataProvider pinPermissionsDataProvider
      */
-    public function testPin(?string $groupIdentifier, bool $onBeatmapset, bool $asBeatmapsetOwner, bool $withPinned, bool $expectAllowed): void
+    public function testPin(?string $groupIdentifier, bool $onBeatmapset, bool $asBeatmapsetOwner, bool $asCommentOwner, bool $withPinned, bool $expectAllowed): void
     {
-        $comment = Comment::factory()->create(['commentable_type' => $onBeatmapset ? 'beatmapset' : 'build']);
         $user = User::factory()->withGroup($groupIdentifier)->create();
+        $comment = Comment::factory()->create([
+            'commentable_type' => $onBeatmapset ? 'beatmapset' : 'build',
+            'user_id' => $asCommentOwner ? $user->getKey() : User::factory(),
+        ]);
 
         if ($asBeatmapsetOwner) {
             $comment->commentable->update(['user_id' => $user->getKey()]);
@@ -185,30 +188,49 @@ class CommentsControllerTest extends TestCase
      * - User's group identifier
      * - Whether the commentable is a beatmapset
      * - Whether the user is the beatmapset's creator
+     * - Whether the user is the comment's creator
      * - Whether the commentable already has a pinned comment
      * - Whether pinning should be allowed
      */
     public function pinPermissionsDataProvider(): array
     {
         return [
-            ['admin', true,  true,  true,  true],
-            ['admin', true,  true,  false, true],
-            ['admin', true,  false, true,  true],
-            ['admin', true,  false, false, true],
-            ['admin', false, false, true,  true],
-            ['admin', false, false, false, true],
-            ['gmt',   true,  true,  true,  false],
-            ['gmt',   true,  true,  false, true],
-            ['gmt',   true,  false, true,  false],
-            ['gmt',   true,  false, false, true],
-            ['gmt',   false, false, true,  false],
-            ['gmt',   false, false, false, false],
-            [null,    true,  true,  true,  false],
-            [null,    true,  true,  false, true],
-            [null,    true,  false, true,  false],
-            [null,    true,  false, false, false],
-            [null,    false, false, true,  false],
-            [null,    false, false, false, false],
+            ['admin', true,  true,  true,  true,  true],
+            ['admin', true,  true,  true,  false, true],
+            ['admin', true,  true,  false, true,  true],
+            ['admin', true,  true,  false, false, true],
+            ['admin', true,  false, true,  true,  true],
+            ['admin', true,  false, true,  false, true],
+            ['admin', true,  false, false, true,  true],
+            ['admin', true,  false, false, false, true],
+            ['admin', false, false, true,  true,  true],
+            ['admin', false, false, true,  false, true],
+            ['admin', false, false, false, true,  true],
+            ['admin', false, false, false, false, true],
+            ['gmt',   true,  true,  true,  true,  false],
+            ['gmt',   true,  true,  true,  false, true],
+            ['gmt',   true,  true,  false, true,  false],
+            ['gmt',   true,  true,  false, false, true],
+            ['gmt',   true,  false, true,  true,  false],
+            ['gmt',   true,  false, true,  false, true],
+            ['gmt',   true,  false, false, true,  false],
+            ['gmt',   true,  false, false, false, true],
+            ['gmt',   false, false, true,  true,  false],
+            ['gmt',   false, false, true,  false, false],
+            ['gmt',   false, false, false, true,  false],
+            ['gmt',   false, false, false, false, false],
+            [null,    true,  true,  true,  true,  false],
+            [null,    true,  true,  true,  false, true],
+            [null,    true,  true,  false, true,  false],
+            [null,    true,  true,  false, false, false],
+            [null,    true,  false, true,  true,  false],
+            [null,    true,  false, true,  false, false],
+            [null,    true,  false, false, true,  false],
+            [null,    true,  false, false, false, false],
+            [null,    false, false, true,  true,  false],
+            [null,    false, false, true,  false, false],
+            [null,    false, false, false, true,  false],
+            [null,    false, false, false, false, false],
         ];
     }
 
