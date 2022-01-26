@@ -21,7 +21,7 @@ class MultiplayerController extends Controller
         $user = FindForProfilePage::find($userId);
 
         if (!array_key_exists($typeGroup, Room::TYPE_GROUPS)) {
-            return ujs_redirect(route('users.multiplayer.index', ['typeGroup' => 'realtime', 'user' => $userId]));
+            return ujs_redirect(route('users.multiplayer.index', ['typeGroup' => 'playlists', 'user' => $userId]));
         }
 
         $params = get_params(request()->all(), null, [
