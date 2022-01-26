@@ -16,13 +16,11 @@ use App\Transformers\UserTransformer;
 
 class MultiplayerController extends Controller
 {
-    const TYPE_GROUPS = ['playlists', 'realtime'];
-
     public function index($userId, $typeGroup)
     {
         $user = FindForProfilePage::find($userId);
 
-        if (!in_array($typeGroup, static::TYPE_GROUPS, true)) {
+        if (!in_array($typeGroup, Room::TYPE_GROUPS, true)) {
             return ujs_redirect(route('users.multiplayer.index', ['typeGroup' => 'realtime', 'user' => $userId]));
         }
 
