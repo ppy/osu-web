@@ -6,6 +6,7 @@
 namespace Tests;
 
 use App\Http\Middleware\AuthApi;
+use App\Libraries\BroadcastsPendingForTests;
 use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
 use App\Models\User;
@@ -69,6 +70,8 @@ class TestCase extends BaseTestCase
                 $connection->disconnect();
             }
         });
+
+        app(BroadcastsPendingForTests::class)->reset();
     }
 
     /**
