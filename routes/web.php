@@ -266,10 +266,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('card', 'UsersController@card')->name('card');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
-            // TODO: combine categories?
-            Route::resource('realtime', 'MultiplayerController', ['only' => 'index']);
-            Route::resource('playlists', 'MultiplayerController', ['only' => 'index']);
-            route_redirect('multiplayer', 'users.realtime.index');
+            Route::resource('{typeGroup}', 'MultiplayerController', ['only' => 'index'])->where(['typeGroup' => 'multiplayer|playlists|realtime'])->names('multiplayer');
 
             Route::group(['as' => 'modding.', 'prefix' => 'modding'], function () {
                 Route::get('/', 'ModdingHistoryController@index')->name('index');

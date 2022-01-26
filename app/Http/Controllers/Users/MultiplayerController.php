@@ -20,7 +20,11 @@ class MultiplayerController extends Controller
     {
         $request = request();
         $user = FindForProfilePage::find($request->route('user'));
-        $typeGroup = $request->route()->getName() === 'users.playlists.index' ? 'playlists' : 'realtime';
+        $typeGroup = $request->route()->parameter('typeGroup');
+
+        if (!in_array($typeGroup, ['playlists', 'realtime'], true)) {
+            return ujs_redirect(route('users.multiplayer.index', ['typeGroup' => 'realtime', 'user' => $user]));
+        }
 
         $params = get_params($request->all(), null, [
             'cursor:any',

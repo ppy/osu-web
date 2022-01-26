@@ -10,20 +10,27 @@ type LinkMode = 'modding' | 'show' | MultiplayerTypeGroup;
 
 const nonBotModes: LinkMode[] = ['modding', 'playlists', 'realtime'];
 
+const url = {
+  modding: (userId: number) => route('users.modding.index', { user: userId }),
+  playlists: (userId: number) => route('users.multiplayer.index', { typeGroup: 'playlists', user: userId }),
+  realtime: (userId: number) => route('users.multiplayer.index', { typeGroup: 'realtime', user: userId }),
+  show: (userId: number) => route('users.show', { user: userId }),
+};
+
+function link(mode: LinkMode, active: boolean, userId: number) {
+  return {
+    active,
+    title: osu.trans(`layout.header.users.${mode}`),
+    url: url[mode](userId),
+  };
+}
+
 export default function headerLinks(user: UserExtendedJson, active: LinkMode) {
-  const links: HeaderLink[] = [{
-    active: active === 'show',
-    title: osu.trans('layout.header.users.show'),
-    url: route('users.show', { user: user.id }),
-  }];
+  const links: HeaderLink[] = [link('show', active === 'show', user.id)];
 
   if (!user.is_bot) {
     nonBotModes.forEach((mode) => {
-      links.push({
-        active: active === mode,
-        title: osu.trans(`layout.header.users.${mode}`),
-        url: route(`users.${mode}.index`, { user: user.id }),
-      });
+      links.push(link(mode, active === mode, user.id));
     });
   }
 

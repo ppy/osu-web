@@ -16,7 +16,7 @@ interface Props {
 export default function Main(props: Props) {
   return (
     <UserProfileContainer user={props.user}>
-      <Header category={props.store.typeGroup} user={props.user} />
+      <Header typeGroup={props.store.typeGroup} user={props.user} />
       <div className='user-profile-pages'>
         <div className='user-profile-pages__item'>
           <div className='page-extra'>
