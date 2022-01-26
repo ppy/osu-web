@@ -13,7 +13,7 @@ import ProfileTournamentBanner from 'profile-tournament-banner';
 import * as React from 'react';
 
 interface Props {
-  category: MultiplayerTypeGroup;
+  typeGroup: MultiplayerTypeGroup;
   user: UserExtendedJson;
 }
 
@@ -24,7 +24,7 @@ export default class Header extends React.Component<Props> {
         <HeaderV4
           backgroundImage={this.props.user.cover.url}
           contentPrepend={<ProfileTournamentBanner banner={this.props.user.active_tournament_banner} />}
-          links={headerLinks(this.props.user, this.props.category)}
+          links={headerLinks(this.props.user, this.props.typeGroup)}
           theme='users'
         />
         <div className='osu-page osu-page--users'>
