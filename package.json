@@ -60,7 +60,6 @@
     "typescript": "^4.4.2",
     "unified": "^8.4.2",
     "unist-util-visit": "^2.0.1",
-    "url-polyfill": "^1.1.6",
     "watchpack": "^1.6.0",
     "webpack": "^4.44.1",
     "webpack-sentry-plugin": "^2.0.2"

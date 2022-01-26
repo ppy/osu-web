@@ -8949,11 +8949,6 @@ url-parse-lax@^3.0.0:
   dependencies:
     prepend-http "^2.0.0"
 
-url-polyfill@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/url-polyfill/-/url-polyfill-1.1.6.tgz#ec186280992adbe59b63f0a33e2a312be1bc14b4"
-  integrity sha512-HquaE7fhLz3U26KfjwWecxUMBxbeQtflhKVpituElJHVwzY4MqxUhH4t2/fKwbQebfvAk8ti+Sd7bjIdzqoRMA==
-
 url-to-options@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/url-to-options/-/url-to-options-1.0.1.tgz#1505a03a289a48cbd7a434efbaeec5055f5633a9"
