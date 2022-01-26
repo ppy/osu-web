@@ -302,7 +302,7 @@ return [
                 'title' => 'Medals',
             ],
             'playlists' => [
-                'title' => 'Online Playlist Games',
+                'title' => 'Playlist Games',
             ],
             'posts' => [
                 'title' => 'Posts',
