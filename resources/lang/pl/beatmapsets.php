@@ -154,11 +154,12 @@ return [
                 'combo' => 'Combo',
                 'miss' => 'Pudła',
                 'mods' => 'Modyfikatory',
+                'pin' => '',
                 'player' => 'Gracz',
                 'pp' => '',
                 'rank' => 'Pozycja',
-                'score_total' => 'Wynik',
                 'score' => 'Wynik',
+                'score_total' => 'Wynik',
                 'time' => 'Data',
             ],
 

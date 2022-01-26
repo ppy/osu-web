@@ -235,6 +235,8 @@ return [
         'max_multiplayer_duration_supporter' => get_int(env('USER_MAX_MULTIPLAYER_DURATION_SUPPORTER')) ?? 63,
         'max_multiplayer_rooms' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS')) ?? 1,
         'max_multiplayer_rooms_supporter' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS_SUPPORTER')) ?? 5,
+        'max_score_pins' => get_int(env('USER_MAX_SCORE_PINS')) ?? 10,
+        'max_score_pins_supporter' => get_int(env('USER_MAX_SCORE_PINS_SUPPORTER')) ?? 50,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
         'password_reset' => [
             'expires_hour' => 2,

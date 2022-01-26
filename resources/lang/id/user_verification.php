@@ -11,7 +11,7 @@ return [
         'issuing' => 'Meminta kode baru...',
 
         'info' => [
-            'check_spam' => "Pastikan untuk memeriksa folder spam Anda jika Anda tidak dapat menemukan emailnya.",
+            'check_spam' => "Pastikan untuk memeriksa folder spam apabila Anda tidak menemukan email yang dimaksud.",
             'recover' => "Jika Anda tidak dapat mengakses email Anda atau tidak ingat alamat email yang Anda gunakan untuk mendaftarkan akun osu! Anda, silahkan ikuti :link.",
             'recover_link' => 'proses pemulihan email di sini',
             'reissue' => 'Anda juga dapat :reissue_link atau :logout_link.',

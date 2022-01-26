@@ -154,11 +154,12 @@ return [
                 'combo' => 'Högsta kombo',
                 'miss' => 'Missar',
                 'mods' => 'Tillägg',
+                'pin' => '',
                 'player' => 'Spelare',
                 'pp' => '',
                 'rank' => 'Rank',
-                'score_total' => 'Total poäng',
                 'score' => 'Poäng',
+                'score_total' => 'Total poäng',
                 'time' => 'Tid',
             ],
 

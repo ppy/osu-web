@@ -5,7 +5,7 @@
 
 return [
     'invalid' => ':attribute yang ditentukan tidak valid.',
-    'not_negative' => ':attribute tidak bisa negatif.',
+    'not_negative' => ':attribute tidak dapat bernilai negatif.',
     'required' => ':attribute diwajibkan.',
     'too_long' => ':attribute melebihi batas maksimum - hanya bisa hingga :limit karakter.',
     'wrong_confirmation' => 'Konfirmasi tidak cocok.',
@@ -48,8 +48,8 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => 'Anda tidak dapat membalas komentar yang sudah dihapus sebelumnya.',
-        'top_only' => 'Tidak diperbolehkan menyemat balasan komentar.',
+        'deleted_parent' => 'Anda tidak dapat membalas komentar yang telah dihapus.',
+        'top_only' => 'Komentar balasan tidak dapat disematkan.',
 
         'attributes' => [
             'message' => 'Isi pesan',
@@ -134,10 +134,10 @@ return [
         'username_available_soon' => 'Nama pengguna ini dapat digunakan sekarang!',
         'username_invalid_characters' => 'Nama pengguna yang diminta mengandung karakter yang tidak valid.',
         'username_in_use' => 'Nama pengguna sudah digunakan!',
-        'username_locked' => 'Nama pengguna sudah digunakan!', // TODO: language for this should be slightly different.
+        'username_locked' => 'Nama pengguna ini telah digunakan!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Mohon gunakan garis bawah atau spasi, jangan keduanya!',
         'username_no_spaces' => "Nama pengguna tidak dapat dimulai atau diakhiri dengan spasi!",
-        'username_not_allowed' => 'Pilihan nama pengguna ini tidak diizinkan.',
+        'username_not_allowed' => 'Nama pengguna ini tidak diizinkan.',
         'username_too_short' => 'Nama pengguna yang diminta terlalu pendek.',
         'username_too_long' => 'Nama pengguna yang diminta terlalu panjang.',
         'weak' => 'Kata sandi ini berada dalam daftar hitam.',
@@ -155,7 +155,7 @@ return [
         'change_username' => [
             'restricted' => 'Anda tidak dapat mengganti nama pengguna ketika akun Anda sedang di-restrict.',
             'supporter_required' => [
-                '_' => 'Anda harus menjadi :link untuk mengubah nama Anda!',
+                '_' => 'Anda harus memiliki :link untuk dapat mengubah nama pengguna Anda!',
                 'link_text' => 'osu!supporter',
             ],
             'username_is_same' => 'Ini nama penggunamu yang sekarang, bodoh!',

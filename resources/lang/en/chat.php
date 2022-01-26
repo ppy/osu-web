@@ -11,16 +11,6 @@ return [
     'cannot_send' => [
         'channel' => 'You cannot message this channel at this time.',
         'user' => 'You cannot message this user at this time.',
-        'reasons' => [
-            'blocked' => 'You were blocked by the recipient',
-            'channel_moderated' => 'The channel has been moderated',
-            'friends_only' => 'The recipient only accepts messages from people on their friends list',
-            'not_enough_plays' => 'You have not played the game enough',
-            'not_verified' => 'Your session has not been verified',
-            'restricted' => 'You are currently restricted',
-            'silenced' => 'You are currently silenced',
-            'target_restricted' => 'The recipient is currently restricted',
-        ],
     ],
 
     'input' => [

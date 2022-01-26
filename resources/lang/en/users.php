@@ -325,6 +325,15 @@ return [
                 'first' => [
                     'title' => 'First Place Ranks',
                 ],
+                'pin' => [
+                    'to_0' => 'Unpin',
+                    'to_0_done' => 'Unpinned score',
+                    'to_1' => 'Pin',
+                    'to_1_done' => 'Pinned score',
+                ],
+                'pinned' => [
+                    'title' => 'Pinned Scores',
+                ],
             ],
             'votes' => [
                 'given' => 'Votes Given (last 3 months)',
