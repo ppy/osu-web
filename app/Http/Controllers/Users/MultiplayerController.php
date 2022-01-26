@@ -20,7 +20,7 @@ class MultiplayerController extends Controller
     {
         $user = FindForProfilePage::find($userId);
 
-        if (!in_array($typeGroup, Room::TYPE_GROUPS, true)) {
+        if (!array_key_exists($typeGroup, Room::TYPE_GROUPS)) {
             return ujs_redirect(route('users.multiplayer.index', ['typeGroup' => 'realtime', 'user' => $userId]));
         }
 

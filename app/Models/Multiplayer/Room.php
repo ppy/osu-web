@@ -55,7 +55,10 @@ class Room extends Model
     const DEFAULT_SORT = 'created';
 
     const CATEGORIES = ['normal', 'spotlight'];
-    const TYPE_GROUPS = ['playlists', 'realtime'];
+    const TYPE_GROUPS = [
+        'playlists' => [self::PLAYLIST_TYPE],
+        'realtime' => self::REALTIME_TYPES,
+    ];
 
     const PLAYLIST_TYPE = 'playlists';
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
@@ -121,18 +124,11 @@ class Room extends Model
             $category = null;
         }
 
-        if (!in_array($typeGroup, static::TYPE_GROUPS, true)) {
+        if (!array_key_exists($typeGroup, static::TYPE_GROUPS)) {
             $typeGroup = 'playlists';
         }
 
-        $query = static::query();
-        switch ($typeGroup) {
-            case 'realtime':
-                $query->whereIn('type', static::REALTIME_TYPES);
-                break;
-            default:
-                $query->where('type', static::PLAYLIST_TYPE);
-        }
+        $query = static::whereIn('type', static::TYPE_GROUPS[$typeGroup]);
 
         if (in_array($category, static::CATEGORIES, true)) {
             $query->where('category', $category);
