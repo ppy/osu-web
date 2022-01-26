@@ -5,7 +5,7 @@
 
 return [
     'event' => [
-        'approve' => 'Одобрена.',
+        'approve' => 'Карта получила категорию Одобрена.',
         'beatmap_owner_change' => 'Владелец сложности :beatmap изменен на :new_user.',
         'discussion_delete' => 'Модератор удалил отзыв :discussion.',
         'discussion_lock' => 'Обсуждение для этой карты было отключено. (:text)',
@@ -24,19 +24,19 @@ return [
         'kudosu_lost' => 'Отзыв :discussion от :user потерял голоса и присуждённые кудосу были удалены.',
         'kudosu_recalculate' => 'Кудосу за отзыв :discussion были пересчитаны.',
         'language_edit' => 'Язык изменен с :old на :new.',
-        'love' => 'Карта получила статус Любимая. (:user)',
+        'love' => 'Карта получила категорию Любимая. (:user)',
         'nominate' => 'Номинирована :user.',
         'nominate_modes' => 'Карта была номинирована :user. (:modes)',
         'nomination_reset' => 'Из-за новой проблемы в :discussion статус номинации был сброшен.',
         'nomination_reset_received' => 'Номинация пользователя :user была сброшена :source_user (:text)',
         'nomination_reset_received_profile' => 'Номинация была сброшена :user (:text)',
         'qualify' => 'Эта карта была номинирована достаточное количество раз для квалификации.',
-        'rank' => 'Рейтинговая.',
+        'rank' => 'Карта получила категорию Рейтинговая.',
         'remove_from_loved' => ':user удалил карту из Любимых (:text)',
 
         'nsfw_toggle' => [
             'to_0' => 'Удалить отметку 18+',
-            'to_1' => 'Помечено как откровенное',
+            'to_1' => ':user поставил отметку 18+',
         ],
     ],
 

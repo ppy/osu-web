@@ -4,6 +4,7 @@
 import core from 'osu-core-singleton'
 import { bottomPage } from 'utils/html'
 import { hideLoadingOverlay } from 'utils/loading-overlay'
+import { pageChange } from 'utils/page-change'
 import { currentUrl } from 'utils/turbolinks'
 
 replaceUrl = (url) ->
@@ -329,7 +330,7 @@ class window.Forum
       targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
       window.scrollTo x, targetDocumentScrollTop
 
-      _exported.pageChange()
+      pageChange()
       link.dataset.failed = '0'
 
     .always ->

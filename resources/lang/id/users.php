@@ -167,7 +167,7 @@ return [
                     'broken_file' => 'Gagal memproses gambar. Mohon periksa kembali gambar yang diunggah dan coba lagi.',
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
-                    'dropzone_info' => 'Anda juga dapat meletakkan gambar Anda di sini untuk mengunggah.',
+                    'dropzone_info' => 'Anda juga dapat meletakkan gambar Anda di sini untuk mengunggahnya',
                     'size_info' => 'Ukuran gambar sampul yang disarankan adalah 2400x640',
                     'too_large' => 'Berkas yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
@@ -251,11 +251,11 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Pengguna ini belum tercatat pernah menerima kudosu! sebelumnya.",
+                    'empty' => "Pengguna ini belum pernah menerima kudosu! sebelumnya.",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Menerima :amount atas pembatalan penolakan kudosu di post modding :post',
+                            'give' => 'Memperoleh :amount atas dibatalkannya penganuliran kudosu pada topik diskusi :post',
                         ],
 
                         'deny_kudosu' => [
@@ -263,28 +263,28 @@ return [
                         ],
 
                         'delete' => [
-                            'reset' => 'Kehilangan :amount atas penghapusan post di post modding :post',
+                            'reset' => 'Kehilangan :amount atas penghapusan topik diskusi :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Menerima :amount atas pengembalian post di post modding :post',
+                            'give' => 'Memperoleh :amount atas dipulihkannya topik diskusi :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Mendapatkan :amount dari suara yang diperoleh pada topik diskusi :post',
+                            'give' => 'Memperoleh :amount dari suara yang didapat pada topik diskusi :post',
                             'reset' => 'Kehilangan :amount dari suara yang hilang pada topik diskusi :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Menerima :amount atas penilaian ulang suara di post modding :post',
-                            'reset' => 'Kehilangan :amount atas penilaian ulang suara di post modding :post',
+                            'give' => 'Memperoleh :amount atas penghitungan ulang suara pada topik diskusi :post',
+                            'reset' => 'Kehilangan :amount atas penghitungan ulang suara pada topik diskusi :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Menerima :amount dari :giver untuk posting di :post',
-                        'reset' => 'Kudosu disetel ulang oleh :giver untuk posting di :post',
-                        'revoke' => 'Kudosu ditolak oleh :giver untuk posting di :post',
+                        'give' => 'Memperoleh :amount dari :giver untuk mod yang diberikan pada beatmap :post',
+                        'reset' => 'Kudosu untuk mod yang diberikan pada beatmap :post diatur ulang oleh :giver ',
+                        'revoke' => 'Kudosu untuk mod yang diberikan pada beatmap :post ditolak oleh :giver ',
                     ],
                 ],
 
@@ -324,6 +324,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Peringkat Pertama',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
