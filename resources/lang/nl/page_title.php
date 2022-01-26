@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => 'onderwerp logs',
+        ],
         'topic_watches_controller' => [
             'index' => 'dashboard',
         ],
@@ -39,7 +42,7 @@ return [
             'verify_link' => 'account verificatie',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'aanbevolen artiesten  ',
         ],
         'artists_controller' => [
             '_' => 'aanbevolen artiesten',

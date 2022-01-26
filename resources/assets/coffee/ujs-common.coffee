@@ -1,9 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+
 $(document).on 'ajax:before', ->
-  LoadingOverlay.show()
-  $(document).one 'ajax:complete.ujsHideLoadingOverlay', LoadingOverlay.hide
+  showLoadingOverlay()
+  $(document).one 'ajax:complete.ujsHideLoadingOverlay', hideLoadingOverlay
 
 
 $(document).on 'ajax:success', (event, data) ->

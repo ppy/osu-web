@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'Bagong beatmap ":title" ni :username',
                 'user_beatmapset_new_compact' => 'Bagong beatmap ":title"',
                 'user_beatmapset_new_group' => 'Mga bagong beatmap ni :username',
+
+                'user_beatmapset_revive' => 'Beatmap ":title" ay binuhay ni :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" ay binuhay',
             ],
         ],
 

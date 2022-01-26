@@ -13,8 +13,8 @@ return [
         'edit' => 'Modifier la couverture',
 
         'create' => [
-            '_' => 'Définir l\'image de couverture',
-            'button' => 'Télécharger la couverture',
+            '_' => 'Définir une image de couverture',
+            'button' => 'Uploader une image',
             'info' => 'La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi faire glisser l\'image ici pour l\'uploader',
         ],
 
@@ -124,7 +124,56 @@ return [
             'first' => 'aller au premier post',
             'last' => 'aller au dernier post',
             'next' => 'sauter les 10 prochains messages',
-            'previous' => 'retournez 10 postes en arrière',
+            'previous' => 'retournez 10 posts en arrière',
+        ],
+
+        'logs' => [
+            '_' => 'Historique du sujet',
+            'button' => 'Parcourir l\'historique du sujet',
+
+            'columns' => [
+                'action' => 'Action',
+                'date' => 'Date',
+                'user' => 'Utilisateur',
+            ],
+
+            'data' => [
+                'add_tag' => 'a ajouté le tag ":tag"',
+                'announcement' => 'a épinglé le sujet et l’a marqué comme annonce',
+                'edit_topic' => 'à :title',
+                'fork' => 'de :topic',
+                'pin' => 'sujet épinglé',
+                'post_operation' => 'posté par :username',
+                'remove_tag' => 'tag ":tag" supprimé',
+                'source_forum_operation' => 'de :forum',
+                'unpin' => 'sujet désépinglé',
+            ],
+
+            'no_results' => 'aucun historique trouvé...',
+
+            'operations' => [
+                'delete_post' => 'Post supprimé',
+                'delete_topic' => 'Sujet supprimé',
+                'edit_topic' => 'Titre du sujet modifié',
+                'edit_poll' => 'Sondage de sujet édité',
+                'fork' => 'Sujet copié',
+                'issue_tag' => 'Tag attribué',
+                'lock' => 'Sujet verrouillé',
+                'merge' => 'Posts fusionnés dans ce sujet',
+                'move' => 'Sujet déplacé',
+                'pin' => 'Sujet épinglé',
+                'post_edited' => 'Post édité',
+                'restore_post' => 'Post restauré',
+                'restore_topic' => 'Sujet restauré',
+                'split_destination' => 'Posts séparés déplacés',
+                'split_source' => 'Posts séparés',
+                'topic_type' => 'Type de sujet défini',
+                'topic_type_changed' => 'Titre du sujet modifié',
+                'unlock' => 'Sujet déverrouillé',
+                'unpin' => 'Sujet désépinglé',
+                'user_lock' => 'A verrouillé son propre sujet',
+                'user_unlock' => 'A déverrouillé son propre sujet',
+            ],
         ],
 
         'post_edit' => [
@@ -183,8 +232,8 @@ return [
                 'length_days_suffix' => 'jours',
                 'length_info' => 'Laissez vide pour un sondage sans fin',
                 'max_options' => 'Réponses par utilisateur',
-                'max_options_info' => 'Il s\'agit du nombre d\'options que chaque utilisateur peut sélectionner lors du vote.',
-                'options' => 'Options',
+                'max_options_info' => 'C\'est le nombre de réponses qu\'un utilisateur peut choisir.',
+                'options' => 'Réponses',
                 'options_info' => 'Entrez chaque réponse sur une nouvelle ligne. Vous pouvez entrer jusqu\'à 10 réponses.',
                 'title' => 'Question',
                 'vote_change' => 'Autoriser le changement de vote.',

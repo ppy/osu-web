@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BlockButton } from 'block-button';
+import BlockButton from 'components/block-button';
 import UserJson from 'interfaces/user-json';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { NotificationBanner } from 'notification-banner';
 import * as React from 'react';
@@ -26,6 +26,12 @@ export default class UserProfileContainer extends React.Component<Props, State> 
   @computed
   get isBlocked() {
     return isBlocked(this.props.user);
+  }
+
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
   }
 
   render() {

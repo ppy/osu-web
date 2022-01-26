@@ -152,16 +152,20 @@ class OsuMarkdown
             try {
                 $header = Yaml::parse($matches['header']);
             } catch (YamlParseException $_e) {
-                $header = [];
+                // ignores error
+            }
+
+            if (!is_array($header ?? null)) {
+                $header = null;
             }
 
             $document = $matches['document'];
-        } else {
-            $header = [];
-            $document = $input;
         }
 
-        return compact('header', 'document');
+        return [
+            'document' => $document ?? $input,
+            'header' => $header ?? [],
+        ];
     }
 
     public function __construct(

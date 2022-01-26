@@ -11,12 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'PŘEČTĚTE SI PŘED STAŽENÍM',
-            'instruction' => [
-                '_' => "Instalace: Po stažení balíčku musíš extrahovat soubor s příponou .rar do tvé složky s beatmapami. Všechny písničky v balíčku jsou stále ve formátu .zip a/nebo .osz, takže si je bude muset osu! extrahovat samo po vstupu do Selection menu.
-                    :scary extrahovat soubory typu .zip nebo .osz sami,
-                    nebo se beatmapy nezobrazí správně a nebudou fungovat.",
-                'scary' => 'NESMÍTE',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Dále doporučujeme, abyste si :scary, jelikož starší mapy bývají horší kvality než ty novější.',
                 'scary' => 'stahovali balíčky od nejnovějšího po nejstarší',

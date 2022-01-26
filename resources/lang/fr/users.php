@@ -7,7 +7,7 @@ return [
     'deleted' => '[utilisateur supprimé]',
 
     'beatmapset_activities' => [
-        'title' => "Historique du modding de :user",
+        'title' => "Historique de modding de :user",
         'title_compact' => 'Modding',
 
         'discussions' => [
@@ -63,7 +63,7 @@ return [
             'opening' => 'Il y a plusieurs raisons qui peuvent conduire à la désactivation de votre compte :',
 
             'tos' => [
-                '_' => 'Vous avez enfreint une ou plusieurs de nos :community_rules ou des :tos.',
+                '_' => 'Vous avez enfreint une ou plusieurs de nos :community_rules ou les :tos.',
                 'community_rules' => 'règles de la communauté',
                 'tos' => 'conditions générales d\'utilisation',
             ],
@@ -98,7 +98,7 @@ return [
 
         'beta' => [
             'main' => 'L\'accès à la version bêta est actuellement réservé aux utilisateurs privilégiés.',
-            'small' => '(les osu!supporter l\'obtiendront bientôt)',
+            'small' => '(les osu!supporters l\'obtiendront bientôt)',
         ],
     ],
 
@@ -166,7 +166,7 @@ return [
                 'upload' => [
                     'broken_file' => 'Impossible de traiter l\'image. Vérifiez l\'image uploadée et réessayez.',
                     'button' => 'Mettre en ligne une image',
-                    'dropzone' => 'Déplacez ici pour mettre en ligne',
+                    'dropzone' => 'Déplacez ici pour uploader',
                     'dropzone_info' => 'Vous pouvez aussi déplacer l\'image ici pour la mettre en ligne',
                     'size_info' => 'La taille de la bannière devrait être de 2400x640',
                     'too_large' => 'Le fichier est trop volumineux.',
@@ -325,6 +325,15 @@ return [
                 'first' => [
                     'title' => 'Premières places',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => 'Votes donnés (3 derniers mois)',
@@ -348,7 +357,7 @@ return [
                     'actor' => 'par :username',
 
                     'actions' => [
-                        'restriction' => 'Bannir',
+                        'restriction' => 'Restriction',
                         'silence' => 'Silence',
                         'note' => 'Note',
                     ],

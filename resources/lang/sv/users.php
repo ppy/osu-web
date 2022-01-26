@@ -325,6 +325,15 @@ return [
                 'first' => [
                     'title' => 'Förstaplats-ranker',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => 'Röster Givna (senaste 3 månaderna)',

@@ -67,6 +67,7 @@ return [
         'friends_only' => 'Utilizatorul blochează mesajele de la oameni care nu sunt pe lista lor de prieteni.',
         'moderated' => 'Canalul este moderat în prezent.',
         'no_access' => 'Nu ai acces la acest canal.',
+        'receive_friends_only' => '',
         'restricted' => 'Nu poți trimite mesaje cât timp ești amuțit, restricționat sau interzis.',
         'silenced' => '',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => 'Numai administratorul poate vizualiza acest forum.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

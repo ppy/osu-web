@@ -5,8 +5,8 @@ import FollowToggle from 'follow-toggle';
 import FollowsSubtypes from 'follows-subtypes';
 import HeaderV4 from 'header-v4';
 import homeLinks from 'home-links';
+import CurrentUserJson from 'interfaces/current-user-json';
 import FollowCommentJson from 'interfaces/follow-comment-json';
-import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import StringWithComponent from 'string-with-component';
@@ -14,19 +14,15 @@ import TimeWithTooltip from 'time-with-tooltip';
 
 interface Props {
   follows: FollowCommentJson[];
-  user: UserJson;
+  user: CurrentUserJson;
 }
 
 export default class Main extends React.PureComponent<Props> {
-  static defaultProps = {
-    user: currentUser,
-  };
-
   render() {
     return (
       <div className='osu-layout osu-layout--full'>
         <HeaderV4
-          backgroundImage={this.props.user.cover?.url}
+          backgroundImage={this.props.user.cover.url}
           links={homeLinks('follows.index')}
           theme='settings'
         />

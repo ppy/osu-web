@@ -12,7 +12,7 @@ export class Stats extends React.Component
   constructor: (props) ->
     super props
 
-    @eventId = "beatmapsets-show-stats-#{nextVal()}"
+    @disposers = new Set
 
 
   componentDidMount: =>
@@ -20,8 +20,7 @@ export class Stats extends React.Component
 
 
   componentWillUnmount: =>
-    $(window).off ".#{@eventId}"
-    $(document).off ".#{@eventId}"
+    @disposers.forEach (disposer) => disposer?()
 
 
   componentDidUpdate: =>
@@ -113,8 +112,11 @@ export class Stats extends React.Component
           y: d3.scaleLinear()
         modifiers: ['beatmapset-rating']
 
-      @_ratingChart = new StackedBarChart @refs.chartArea, options
-      $(window).on "resize.#{@eventId}", @_ratingChart.resize
+      ratingChart = new StackedBarChart @refs.chartArea, options
+      $(window).on 'resize', ratingChart.resize
+      @disposers.add(=> $(window).off 'resize', ratingChart.resize)
+      @_ratingChart = ratingChart
 
-    core.reactTurbolinks.runAfterPageLoad @eventId, =>
+    @disposers.add(core.reactTurbolinks.runAfterPageLoad =>
       @_ratingChart.loadData rating: @props.beatmapset.ratings[1..]
+    )

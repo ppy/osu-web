@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'ไม่สามารถแสดงผลลัพธ์ใด ๆได้ ลองอีกครั้งในภายหลัง',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'การค้นหายุ่งกว่าปกติ โปรดลองอีกครั้งในภายหลัง',
     ],
 ];

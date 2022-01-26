@@ -16,14 +16,14 @@ return [
     'username' => 'Nama Pengguna',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Album',
+        'artist' => 'Artis',
+        'bpm' => 'BPM',
+        'genre' => 'Aliran',
+        'length' => 'Durasi',
+        'relevance' => 'Relevansi',
+        'title' => 'Judul',
+        'update' => 'Tanggal Pembaruan',
     ],
 
     'forum_posts' => [

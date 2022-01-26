@@ -18,9 +18,9 @@ return [
     ],
 
     'type' => [
-        'charts' => '季赛',
+        'charts' => '聚光灯',
         'country' => '国家或地区',
-        'multiplayer' => '月赛',
+        'multiplayer' => '多人游戏',
         'performance' => '表现',
         'score' => '总分',
     ],

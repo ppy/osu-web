@@ -16,14 +16,14 @@ return [
     'username' => 'Käyttäjänimi',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Albumi',
+        'artist' => 'Artisti',
+        'bpm' => 'BPM',
+        'genre' => 'Lajityyppi',
+        'length' => 'Pituus',
+        'relevance' => 'Osuvuus',
+        'title' => 'Nimi',
+        'update' => 'Päivitä',
     ],
 
     'forum_posts' => [

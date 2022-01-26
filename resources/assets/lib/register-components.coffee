@@ -3,13 +3,12 @@
 
 import Events from 'beatmap-discussions/events'
 import BeatmapsetPanel from 'beatmapset-panel'
-import { BlockButton } from 'block-button'
 import ChatIcon from 'chat-icon'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
+import BlockButton from 'components/block-button'
 import { CountdownTimer } from 'countdown-timer'
 import ForumPostReport from 'forum-post-report'
-import { FriendButton } from 'friend-button'
 import { LandingNews } from 'landing-news'
 import { keyBy } from 'lodash'
 import { observable } from 'mobx'
@@ -37,16 +36,9 @@ import { parseJson, parseJsonNullable } from 'utils/json'
 core.reactTurbolinks.register 'countdownTimer', (container) ->
   createElement CountdownTimer, deadline: container.dataset.deadline
 
-# Globally init friend buttons
-core.reactTurbolinks.register 'friendButton', (container) ->
-  createElement FriendButton,
-    container: container
-    userId: parseInt(container.dataset.target)
-
 # Globally init block buttons
 core.reactTurbolinks.register 'blockButton', (container) ->
   createElement BlockButton,
-    container: container
     userId: parseInt(container.dataset.target)
 
 core.reactTurbolinks.register 'beatmap-discussion-events', (container) ->

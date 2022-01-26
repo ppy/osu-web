@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'pinned_topics' => 'Připnuté témata',
+    'pinned_topics' => 'Připnutá témata',
     'slogan' => "je nebezpečné hrát sám.",
     'subforums' => 'Subfóra',
     'title' => 'osu! fóra',
@@ -47,7 +47,7 @@ return [
         'confirm_restore' => 'Opravdu chcete příspěvek obnovit?',
         'edited' => 'Naposledy upravil :user :when, upraveno celkem :count_delimited krát.',
         'posted_at' => 'publikováno :when',
-        'posted_by' => '',
+        'posted_by' => 'příspěvek přidal :username',
 
         'actions' => [
             'destroy' => 'Odstranit příspěvek',
@@ -64,7 +64,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited příspěvek|:count_delimited příspěvky|:count_delimited příspěvků',
-            'topic_starter' => '',
+            'topic_starter' => 'Autor tématu',
         ],
     ],
 
@@ -125,6 +125,55 @@ return [
             'last' => 'přejít na poslední příspěvek',
             'next' => 'přeskočit 10 příspěvků',
             'previous' => 'vrátit se o 10 příspěvků',
+        ],
+
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => 'Akce',
+                'date' => 'Datum',
+                'user' => 'Uživatel',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => 'z :topic',
+                'pin' => '',
+                'post_operation' => 'příspěvek přidal :username',
+                'remove_tag' => '',
+                'source_forum_operation' => 'z :forum',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => 'Smazaný příspěvek',
+                'delete_topic' => 'Smazané téma',
+                'edit_topic' => 'Změněný titulek tématu',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => 'Upravený příspěvek',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
         ],
 
         'post_edit' => [

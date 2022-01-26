@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import FriendButton from 'components/friend-button';
 import FollowUserMappingButton from 'follow-user-mapping-button';
-import { FriendButton } from 'friend-button';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
@@ -25,7 +25,6 @@ export default class DetailBarButtons extends React.Component<Props> {
             alwaysVisible
             followers={this.props.user.follower_count}
             modifiers='profile-page'
-            showFollowerCounter
             userId={this.props.user.id}
           />
         </div>

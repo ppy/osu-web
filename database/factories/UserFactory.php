@@ -42,9 +42,9 @@ class UserFactory extends Factory
         $countryAcronym = fn () => Country::inRandomOrder()->first() ?? Country::factory()->create();
 
         return [
-            'username' => fn () => substr(str_replace('.', ' ', $this->faker->userName()), 0, 15),
+            'username' => fn () => substr(str_replace('.', ' ', $this->faker->unique()->userName()), 0, 15),
             'user_password' => static::defaultPasswordHash(),
-            'user_email' => fn () => $this->faker->safeEmail(),
+            'user_email' => fn () => $this->faker->unique()->safeEmail(),
             'group_id' => fn () => app('groups')->byIdentifier('default'),
             'user_lastvisit' => time(),
             'user_posts' => rand(1, 500),
@@ -58,10 +58,10 @@ class UserFactory extends Factory
             'user_website' => 'http://www.google.com/',
             'user_twitter' => 'ppy',
             'user_permissions' => '',
-            'user_interests' => fn () => substr($this->faker->bs(), 30),
-            'user_occ' => fn () => substr($this->faker->catchPhrase(), 30),
+            'user_interests' => fn () => mb_substr($this->faker->bs(), 0, 30),
+            'user_occ' => fn () => mb_substr($this->faker->catchPhrase(), 0, 30),
             'user_sig' => fn () => $this->faker->realText(155),
-            'user_from' => fn () => substr($this->faker->country(), 30),
+            'user_from' => fn () => mb_substr($this->faker->country(), 0, 30),
             'user_regdate' => fn () => $this->faker->dateTimeBetween('-6 years'),
         ];
     }
@@ -76,6 +76,11 @@ class UserFactory extends Factory
     public function silenced()
     {
         return $this->has(UserAccountHistory::factory()->silence(), 'accountHistories');
+    }
+
+    public function supporter()
+    {
+        return $this->state(['osu_subscriber' => true, 'osu_subscriptionexpiry' => now()->addMonthNoOverflow(1)]);
     }
 
     public function withGroup(?string $groupIdentifier, ?array $playmodes = null)

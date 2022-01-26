@@ -3,6 +3,7 @@
 
 import HeaderV4 from 'header-v4';
 import homeLinks from 'home-links';
+import CurrentUserJson from 'interfaces/current-user-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import UserCardTypeContext from 'user-card-type-context';
@@ -10,19 +11,15 @@ import { UserList } from 'user-list';
 
 interface Props {
   friends: UserJson[];
-  user: UserJson;
+  user: CurrentUserJson;
 }
 
 export class Main extends React.PureComponent<Props> {
-  static defaultProps = {
-    user: currentUser,
-  };
-
   render() {
     return (
       <div className='osu-layout osu-layout--full'>
         <HeaderV4
-          backgroundImage={this.props.user.cover?.url}
+          backgroundImage={this.props.user.cover.url}
           links={homeLinks('friends.index')}
           theme='friends'
         />

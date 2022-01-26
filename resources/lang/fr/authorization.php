@@ -67,6 +67,7 @@ return [
         'friends_only' => 'Cet utilisateur bloque les messages des personnes qui ne sont pas dans sa liste d’amis.',
         'moderated' => 'Ce salon est actuellement restreint par un modérateur.',
         'no_access' => 'Vous n’avez pas accès à ce salon.',
+        'receive_friends_only' => '',
         'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
         'silenced' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
     ],
@@ -93,7 +94,7 @@ return [
 
         'post' => [
             'delete' => [
-                'only_last_post' => 'Seul le dernier post peut être supprimé.',
+                'only_last_post' => 'Seul le dernier message peut être supprimé.',
                 'locked' => 'Impossible de supprimer un message sur un sujet verrouillé.',
                 'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
                 'not_owner' => 'Seul l\'auteur de ce post peut le supprimer.',
@@ -166,12 +167,19 @@ return [
         ],
     ],
 
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'La page de l\'utilisateur est verrouillée.',
+                'locked' => 'La page utilisateur est verrouillée.',
                 'not_owner' => 'Vous ne pouvez éditer que votre propre page, pas celle d\'autres utilisateurs.',
-                'require_supporter_tag' => 'le tag osu!supporter est requis.',
+                'require_supporter_tag' => 'vous devez être un osu!supporter.',
             ],
         ],
     ],

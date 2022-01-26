@@ -2,25 +2,26 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { Events } from './events'
-import { ExtraTab } from '../profile-page/extra-tab'
 import { Discussions } from './discussions'
 import { Header } from './header'
-import Kudosu from 'profile-page/kudosu'
+import { Posts } from './posts'
 import { Votes } from './votes'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
-import { BlockButton } from 'block-button'
 import { deletedUser } from 'models/user'
+import Kudosu from 'modding-profile/kudosu'
 import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
-import { Posts } from "./posts"
+import ProfilePageExtraTab from 'components/profile-page-extra-tab'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
+import { bottomPage } from 'utils/html'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
+import { updateQueryString } from 'utils/url'
 
 el = React.createElement
 
@@ -31,6 +32,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @disposers = new Set
     @eventId = "users-modding-history-index-#{nextVal()}"
     @cache = {}
     @tabs = React.createRef()
@@ -51,24 +53,10 @@ export class Main extends React.PureComponent
         posts: props.posts
         votes: props.votes
         profileOrder: ['events', 'discussions', 'posts', 'votes', 'kudosu']
-        rankedBeatmapsets: @props.extras.rankedBeatmapsets
-        lovedBeatmapsets: @props.extras.lovedBeatmapsets
-        pendingBeatmapsets: @props.extras.pendingBeatmapsets
-        graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
-        recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
-        showMorePagination: {}
-
-      for own elem, perPage of @props.perPage
-        @state.showMorePagination[elem] ?= {}
-        @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
-
-        if @state.showMorePagination[elem].hasMore
-          @state[elem].pop()
 
 
   componentDidMount: =>
     $.subscribe "user:update.#{@eventId}", @userUpdate
-    $.subscribe "profile:showMore.#{@eventId}", @showMore
     $.subscribe "profile:page:jump.#{@eventId}", @pageJump
     $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @discussionUpdate
     $(document).on "ajax:success.#{@eventId}", '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
@@ -79,9 +67,10 @@ export class Main extends React.PureComponent
     @modeScrollUrl = currentUrlRelative()
 
     if !@restoredState
-      core.reactTurbolinks.runAfterPageLoad @eventId, =>
+      @disposers.add(core.reactTurbolinks.runAfterPageLoad =>
         # The scroll is a bit off on Firefox if not using timeout.
         Timeout.set 0, => @pageJump(null, @initialPage)
+      )
 
 
   componentWillUnmount: =>
@@ -91,6 +80,7 @@ export class Main extends React.PureComponent
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
+    @disposers.forEach (disposer) => disposer?()
 
 
   discussionUpdate: (_e, options) =>
@@ -178,10 +168,9 @@ export class Main extends React.PureComponent
                       'data-page-id': m
                       onClick: @tabClick
                       href: "##{m}"
-                      el ExtraTab,
+                      el ProfilePageExtraTab,
                         page: m
                         currentPage: @state.currentPage
-                        currentMode: @state.currentMode
 
             div
               className: 'user-profile-pages'
@@ -223,9 +212,10 @@ export class Main extends React.PureComponent
 
       when 'kudosu'
         props:
-          user: @state.user
-          recentlyReceivedKudosu: @state.recentlyReceivedKudosu
-          pagination: @state.showMorePagination
+          expectedInitialCount: @props.perPage.recentlyReceivedKudosu
+          initialKudosu: @props.extras.recentlyReceivedKudosu
+          total: @state.user.kudosu.total
+          userId: @state.user.id
         component: Kudosu
 
       when 'posts'
@@ -241,29 +231,6 @@ export class Main extends React.PureComponent
           user: @state.user
           users: @users()
         component: Votes
-
-
-  showMore: (e, {name, url, perPage = 50}) =>
-    offset = @state[name].length
-
-    paginationState = _.cloneDeep @state.showMorePagination
-    paginationState[name] ?= {}
-    paginationState[name].loading = true
-
-    @setState showMorePagination: paginationState, ->
-      $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
-        state = _.cloneDeep(@state[name]).concat(data)
-        hasMore = data.length > perPage
-
-        state.pop() if hasMore
-
-        paginationState = _.cloneDeep @state.showMorePagination
-        paginationState[name].loading = false
-        paginationState[name].hasMore = hasMore
-
-        @setState
-          "#{name}": state
-          showMorePagination: paginationState
 
 
   pageJump: (_e, page) =>
@@ -287,7 +254,7 @@ export class Main extends React.PureComponent
     # otherwise the calculation needs another phase and gets a bit messy.
     offsetTop = target.offset().top - pagesOffset[0].getBoundingClientRect().height
 
-    $(window).stop().scrollTo window.stickyHeader.scrollOffset(offsetTop), 500,
+    $(window).stop().scrollTo core.stickyHeader.scrollOffset(offsetTop), 500,
       onAfter: =>
         # Manually set the mode to avoid confusion (wrong highlight).
         # Scrolling will obviously break it but that's unfortunate result
@@ -308,7 +275,7 @@ export class Main extends React.PureComponent
 
     anchorHeight = pagesOffset[0].getBoundingClientRect().height
 
-    if osu.bottomPage()
+    if bottomPage()
       @setCurrentPage null, _.last(pages).dataset.pageId
       return
 

@@ -27,7 +27,7 @@ return [
     'client' => [
         'id' => 'ID Klien',
         'name' => 'Nama Aplikasi',
-        'redirect' => 'Application Callback URL',
+        'redirect' => 'URL Callback Aplikasi',
         'reset' => 'Atur ulang client secret',
         'reset_failed' => 'Pengaturan ulang client secret gagal',
         'secret' => 'Client Secret',
@@ -42,16 +42,16 @@ return [
         'header' => 'Daftarkan aplikasi OAuth baru',
         'register' => 'Daftarkan aplikasi',
         'terms_of_use' => [
-            '_' => 'Dengan menggunakan API kami Anda menyetujui :link berikut.',
+            '_' => 'Dengan menggunakan API kami, Anda menyetujui :link berikut.',
             'link' => 'Ketentuan Penggunaan',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => 'Apakah anda yakin untuk menghapus klien ini?',
-        'confirm_reset' => 'Apakah Anda yakin untuk mengatur ulang client secret? Aksi ini akan mencabut izin akses dari token-token yang telah diotorisir sebelumnya.',
-        'new' => 'Buat aplikasi OAuth baru',
-        'none' => 'Tidak ada klien',
+        'confirm_delete' => 'Apakah Anda yakin untuk menghapus klien ini?',
+        'confirm_reset' => 'Apakah Anda yakin untuk mengatur ulang client secret? Tindakan ini akan menganulir izin akses token-token yang telah diotorisir sebelumnya.',
+        'new' => 'Buat Aplikasi OAuth Baru',
+        'none' => 'Tidak Ada Klien',
 
         'revoked' => [
             'false' => 'Hapus',

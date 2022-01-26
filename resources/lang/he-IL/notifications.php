@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'מפה חדשה ":title" מאת :username',
                 'user_beatmapset_new_compact' => 'מפה חדשה ":title"',
                 'user_beatmapset_new_group' => 'מפות חדשות מאת :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

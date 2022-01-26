@@ -325,6 +325,15 @@ return [
                 'first' => [
                     'title' => 'Nangungunang Ranggo',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => 'Ibinigay na mga Boto (sa huling 3 buwan)',

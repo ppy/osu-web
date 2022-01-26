@@ -9,24 +9,17 @@ return [
     'title_compact' => 'chat',
 
     'cannot_send' => [
-        'channel' => 'Al momento non puoi inviare messaggi in questo canale. Ciò può essere dovuto a uno dei seguenti motivi:',
-        'user' => 'Al momento non puoi inviare messaggi a questo utente. Ciò può essere dovuto ad uno dei seguenti motivi:',
-        'reasons' => [
-            'blocked' => 'Sei stato bloccato dal destinatario',
-            'channel_moderated' => 'Questo canale è stato moderato',
-            'friends_only' => 'Il destinatario accetta messaggi solamente da utenti nella sua lista amici',
-            'not_enough_plays' => 'Non hai giocato abbastanza',
-            'not_verified' => 'La tua sessione non è stata verificata',
-            'restricted' => 'Sei attualmente limitato',
-            'silenced' => 'Sei attualmente silenziato',
-            'target_restricted' => 'Il destinatario è attualmente limitato',
-        ],
+        'channel' => 'Al momento non puoi inviare messaggi in questo canale.',
+        'user' => 'Al momento non puoi inviare messaggi a questo utente.',
     ],
+
     'input' => [
         'disabled' => 'impossibile messaggiare...',
+        'disconnected' => 'Disconnesso',
         'placeholder' => 'scrivi un messaggio...',
         'send' => 'Invia',
     ],
+
     'no-conversations' => [
         'howto' => "Inizia le conversazioni dal profilo di un utente o dal popup della sua carta utente.",
         'lazer' => 'I canali pubblici in cui entri attraverso <a href=":link">osu!lazer</a> saranno visibili anche qui.',

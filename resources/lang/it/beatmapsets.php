@@ -58,11 +58,11 @@ return [
 
         'details' => [
             'by_artist' => 'di :artist',
-            'favourite' => 'Mi piace questo beatmapset',
+            'favourite' => 'Mi piace questa beatmap',
             'favourite_login' => 'Accedi per aggiungere questa beatmap ai preferiti',
             'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'mapped_by' => 'mappata da :mapper',
-            'unfavourite' => 'Non mi piace questo beatmapset',
+            'unfavourite' => 'Non mi piace questa beatmap',
             'updated_timeago' => 'ultimo aggiornamento :timeago',
 
             'download' => [
@@ -154,11 +154,12 @@ return [
                 'combo' => 'Combo Massima',
                 'miss' => 'Miss',
                 'mods' => 'Mod',
+                'pin' => '',
                 'player' => 'Giocatore',
                 'pp' => '',
                 'rank' => 'Posto',
-                'score_total' => 'Punteggio Totale',
                 'score' => 'Punteggio',
+                'score_total' => 'Punteggio Totale',
                 'time' => 'Tempo',
             ],
 
@@ -198,7 +199,7 @@ return [
             'loved' => 'Amata',
             'qualified' => 'Qualificata',
             'wip' => 'WIP',
-            'pending' => 'In attesa',
+            'pending' => 'In Attesa',
             'graveyard' => 'Abbandonata',
         ],
     ],

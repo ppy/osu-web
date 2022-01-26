@@ -1,6 +1,9 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { fadeIn, fadeOut } from 'utils/fade'
+import { parseJsonNullable } from 'utils/json'
+
 class window.FancyChart
   constructor: (area, @options = {}) ->
     @options.scales ?= {}
@@ -46,7 +49,7 @@ class window.FancyChart
       .attr 'data-visibility', 'hidden'
       .attr 'r', 2
 
-    data = _exported.parseJsonNullable area.dataset.src
+    data = parseJsonNullable area.dataset.src
     @loadData data
 
 
@@ -163,20 +166,20 @@ class window.FancyChart
 
 
   hoverEnd: =>
-    Fade.out @svgHoverMark.node()
+    fadeOut @svgHoverMark.node()
     $.publish "fancy-chart:hover-#{@options.hoverId}:end"
 
 
-  hoverRefresh: =>
+  hoverRefresh: (event) =>
     return if !@options.hoverId?
     return if !@data[0]?
 
-    x = @options.scales.x.invert(d3.mouse(@svgHoverArea.node())[0] - @margins.left)
+    x = @options.scales.x.invert(d3.pointer(event)[0] - @margins.left)
     i = @lookupIndexFromX x
 
     return unless i?
 
-    Fade.in @svgHoverMark.node()
+    fadeIn @svgHoverMark.node()
     Timeout.clear @_hoverTimeout
     @_hoverTimeout = Timeout.set 3000, @hoverEnd
 

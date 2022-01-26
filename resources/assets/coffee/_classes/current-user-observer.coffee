@@ -1,6 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { pull } from 'lodash'
+import { reaction } from 'mobx'
+import core from 'osu-core-singleton'
+
 class window.CurrentUserObserver
   constructor: ->
     @covers = document.getElementsByClassName('js-current-user-cover')
@@ -12,10 +16,13 @@ class window.CurrentUserObserver
     $.subscribe 'osu:page:change', @throttledReinit
     $.subscribe 'user:followUserMapping:update', @updateFollowUserMapping
 
+    # one time setup to monitor cover url variable. No disposer because nothing destroys this object.
+    $ =>
+      reaction((=> core.currentUser?.cover.url), @setCovers)
+
 
   reinit: =>
     @setAvatars()
-    @setCovers()
     @setSentryUser()
 
 
@@ -27,11 +34,9 @@ class window.CurrentUserObserver
       el.style.backgroundImage = bgImage
 
 
-  setCovers: (elements) =>
-    elements ?= @covers
-
-    bgImage = osu.urlPresence(currentUser.cover.url) if currentUser.id?
-    for el in elements
+  setCovers: =>
+    bgImage = osu.urlPresence(core.currentUser.cover.url) if core.currentUser?
+    for el in @covers
       el.style.backgroundImage = bgImage
 
 
@@ -50,8 +55,10 @@ class window.CurrentUserObserver
 
   updateFollowUserMapping: (_e, data) =>
     if data.following
-      currentUser.follow_user_mapping = currentUser.follow_user_mapping.concat(data.userId)
+      currentUser.follow_user_mapping.push(data.userId)
     else
-      currentUser.follow_user_mapping = _.without(currentUser.follow_user_mapping, data.userId)
+      pull(currentUser.follow_user_mapping, data.userId)
+
+    core.currentUser.follow_user_mapping = currentUser.follow_user_mapping
 
     $.publish 'user:followUserMapping:refresh'

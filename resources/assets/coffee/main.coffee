@@ -1,6 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import Gallery from 'gallery'
+import { StoreCheckout } from 'store-checkout'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+
 window.polyfills ?= new Polyfills
 
 Turbolinks.start()
@@ -17,11 +21,11 @@ jQuery.timeago.inWords = (distanceMillis) ->
 
 # loading animation overlay
 # fired from turbolinks
-$(document).on 'turbolinks:request-start', LoadingOverlay.show
-$(document).on 'turbolinks:request-end', LoadingOverlay.hide
+$(document).on 'turbolinks:request-start', showLoadingOverlay
+$(document).on 'turbolinks:request-end', hideLoadingOverlay
 # form submission is not covered by turbolinks
 $(document).on 'submit', 'form', (e) ->
-  LoadingOverlay.show() if e.currentTarget.dataset.loadingOverlay != '0'
+  showLoadingOverlay() if e.currentTarget.dataset.loadingOverlay != '0'
 
 $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()
@@ -31,7 +35,6 @@ $(document).on 'turbolinks:load', ->
 # ensure currentUser is updated early enough.
 window.currentUserObserver ?= new CurrentUserObserver
 window.syncHeight ?= new SyncHeight
-window.stickyHeader ?= new StickyHeader
 
 window.accountEdit ?= new AccountEdit
 window.accountEditAvatar ?= new AccountEditAvatar
@@ -49,6 +52,7 @@ window.forumAutoClick ?= new ForumAutoClick
 window.forumCover ?= new ForumCover
 window.forumTopicTitle ?= new ForumTopicTitle
 window.forumTopicWatchAjax ?= new ForumTopicWatchAjax
+window.gallery ?= new Gallery
 window.globalDrag ?= new GlobalDrag
 window.landingGraph ?= new LandingGraph
 window.menu ?= new Menu

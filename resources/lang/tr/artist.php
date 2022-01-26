@@ -31,7 +31,7 @@ return [
         '_' => 'Şarkılar',
         'count' => ':count_delimited şarkı|:count_delimited şarkı',
         'original' => 'osu! orijinal',
-        'original_badge' => '',
+        'original_badge' => 'ORJİNAL',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'parça arama',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
+                'advanced' => 'Gelişmiş Arama',
+                'album' => 'Albüm',
+                'artist' => 'Sanatçı',
                 'bpm_gte' => '',
                 'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'empty' => 'Arama kriterine uyan parça bulunamadı.',
+                'genre' => 'Tür',
+                'genre_all' => 'Tümü',
+                'length_gte' => 'Minimum Uzunluk',
+                'length_lte' => 'Maksimum Uzunluk',
             ],
         ],
     ],

@@ -25,7 +25,7 @@ return [
             '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
             'mode' => 'Mode beatmap',
-            'only_unresolved' => 'Hanya tampilkan diskusi yang belum selesai',
+            'only_unresolved' => 'Hanya tampilkan topik diskusi yang belum terjawab',
             'types' => 'Tipe pesan',
             'username' => 'Nama Pengguna',
 
@@ -91,7 +91,7 @@ return [
     'system' => [
         'resolved' => [
             'true' => 'Ditandai sebagai telah terjawab oleh :user',
-            'false' => 'Dibuka ulang oleh :user',
+            'false' => 'Dibuka kembali oleh :user',
         ],
     ],
 

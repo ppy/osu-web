@@ -16,19 +16,19 @@ return [
     'username' => 'Имени пользователя',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Альбому',
+        'artist' => 'Исполнителю',
+        'bpm' => 'BPM',
+        'genre' => 'Жанру',
+        'length' => 'Длительности',
+        'relevance' => 'Релевантности',
+        'title' => 'Названию',
+        'update' => 'Дате обновления',
     ],
 
     'forum_posts' => [
-        'created' => 'Время публикации',
-        'relevance' => 'Релевантность',
+        'created' => 'Времени публикации',
+        'relevance' => 'Релевантности',
     ],
 
     'forum_topics' => [
@@ -37,7 +37,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => 'Релевантность',
-        'username' => 'Имя',
+        'relevance' => 'Релевантности',
+        'username' => 'Имени',
     ],
 ];

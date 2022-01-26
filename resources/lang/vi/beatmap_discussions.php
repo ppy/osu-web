@@ -6,7 +6,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Bạn cần phải đăng nhập để chỉnh sửa nó',
+            'null_user' => 'Cần phải đăng nhập để chỉnh sửa.',
             'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo bởi hệ thống.',
             'wrong_user' => 'Chỉ chủ bài đăng mới được chỉnh sửa.',
         ],
@@ -32,7 +32,7 @@ return [
             'beatmapset_status' => [
                 '_' => 'Tình trạng Beatmap',
                 'all' => 'Tất cả',
-                'disqualified' => 'Bị Loại',
+                'disqualified' => 'Disqualified ',
                 'never_qualified' => 'Chưa bao giờ Đủ Điều Kiện',
                 'qualified' => 'Đủ Điều Kiện',
                 'ranked' => 'Xếp Hạng',

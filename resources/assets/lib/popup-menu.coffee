@@ -6,7 +6,7 @@ import { createPortal } from 'react-dom'
 import * as React from 'react'
 import { button, div, i } from 'react-dom-factories'
 import { TooltipContext } from 'tooltip-context'
-import { Modal } from 'modal'
+import { isModalShowing } from 'modal-helper'
 import { nextVal } from 'utils/seq'
 
 export class PopupMenu extends PureComponent
@@ -15,6 +15,7 @@ export class PopupMenu extends PureComponent
   @defaultProps =
     children: (_dismiss) ->
       # empty function
+    direction: 'left'
 
 
   constructor: (props) ->
@@ -49,7 +50,7 @@ export class PopupMenu extends PureComponent
     left = scrollX + buttonRect.right
     # shift the menu right if it clips out of the window;
     # menuRect.x doesn't update until after layout is finished so the known position of buttonRect is used instead.
-    if buttonRect.x - menuRect.width < 0
+    if @props.direction == 'right' || buttonRect.x - menuRect.width < 0
       left += menuRect.width - buttonRect.width
 
     @portal.style.display = 'block'
@@ -72,20 +73,20 @@ export class PopupMenu extends PureComponent
       @resize()
       @tooltipElement().qtip 'option', 'hide.event', false
 
-      $(document).on "click.#{@uuid} keydown.#{@uuid}", @hide
+      $(document).on "click.#{@eventId} keydown.#{@eventId}", @hide
       @props.onShow?()
 
     else
       @removePortal()
       @tooltipElement().qtip 'option', 'hide.event', @tooltipHideEvent
 
-      $(document).off "click.#{@uuid} keydown.#{@uuid}", @hide
+      $(document).off "click.#{@eventId} keydown.#{@eventId}", @hide
       @props.onHide?()
 
 
   componentWillUnmount: =>
-    $(document).off ".#{@uuid}"
-    $(window).off ".#{@uuid}"
+    $(document).off ".#{@eventId}"
+    $(window).off ".#{@eventId}"
 
 
   dismiss: =>
@@ -93,7 +94,7 @@ export class PopupMenu extends PureComponent
 
 
   hide: (e) =>
-    return if !@state.active || Modal.isOpen() || osu.popupShowing()
+    return if !@state.active || isModalShowing()
 
     event = e.originalEvent
     return if !event? # originalEvent gets eaten by error popup?
@@ -126,7 +127,7 @@ export class PopupMenu extends PureComponent
     @portal ?= document.createElement('div')
 
     if @props.customRender
-      @props.customRender createPortal(@props.children(@dismiss), @portal), @button, @toggle
+      @props.customRender createPortal(@renderMenu(), @portal), @button, @toggle
     else
       div
         className: 'popup-menu'

@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited ผู้เล่น|:count_delimited ผู้เล่น',
         'time_left' => 'เหลืออีก :time',
 
+        'errors' => [
+            'duration_too_long' => '',
+        ],
+
         'status' => [
             'active' => 'เปิด',
             'ended' => 'จบแล้ว',

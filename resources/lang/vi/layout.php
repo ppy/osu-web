@@ -61,7 +61,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'beatmaps',
+            '_' => 'beatmap',
         ],
         'community' => [
             '_' => 'cộng đồng',
@@ -76,7 +76,7 @@ return [
         ],
         'home' => [
             '_' => 'trang chủ',
-            'team' => 'team',
+            'team' => 'đội',
         ],
         'rankings' => [
             '_' => 'xếp hạng',

@@ -47,7 +47,7 @@ return [
         'save' => 'Simpan',
         'saving' => 'Menyimpan...',
         'search' => 'Cari',
-        'see_more' => 'perlihatkan lebih banyak',
+        'see_more' => 'tampilkan lebih banyak',
         'show' => 'tampilkan',
         'show_deleted' => 'Tampilkan yang telah dihapus',
         'show_less' => 'tampilkan lebih sedikit',
@@ -59,7 +59,7 @@ return [
         'upload_image' => 'unggah gambar',
 
         'watch' => [
-            'to_0' => 'Batalkan Pantauan',
+            'to_0' => 'Lepas Pantauan',
             'to_1' => 'Pantau',
         ],
     ],

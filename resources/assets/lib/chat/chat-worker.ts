@@ -2,91 +2,38 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatchListener } from 'app-dispatcher';
+import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
-import { maxBy } from 'lodash';
-import { transaction } from 'mobx';
-import ChannelStore from 'stores/channel-store';
-import RetryDelay from 'utils/retry-delay';
-import ChatAPI from './chat-api';
+import { isChannelEvent } from 'interfaces/chat/channel-event-json';
+import { isMessageNewEvent } from 'interfaces/chat/messages-new-event-json';
+import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
+import ChannelJoinEvent from './channel-join-event';
+import ChannelPartEvent from './channel-part-event';
+import MessageNewEvent from './message-new-event';
+
+function newDispatchActionFromJson(json: SocketEventData) {
+  if (isMessageNewEvent(json)) {
+    return new MessageNewEvent(json.data);
+  } else if (isChannelEvent(json)) {
+    switch (json.event) {
+      case 'chat.channel.join': {
+        return new ChannelJoinEvent(json.data);
+      }
+      case 'chat.channel.part':
+        return new ChannelPartEvent(json.data.channel_id);
+    }
+  }
+}
 
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
-  private api = new ChatAPI();
-  private lastHistoryId: number | null = null;
-  private pollTime = 1000;
-  private pollTimeIdle = 5000;
-  private pollingEnabled = true;
-  private retryDelay = new RetryDelay();
-  private updateTimerId?: number;
-  private updateXHR = false;
-  private windowIsActive = true;
+  handleDispatchAction(event: DispatcherAction) {
+    if (!(event instanceof SocketMessageEvent)) return;
 
-  constructor(private channelStore: ChannelStore) {
-  }
+    const dispatchAction = newDispatchActionFromJson(event.message);
 
-  handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof WindowFocusAction) {
-      this.windowIsActive = true;
-    } else if (action instanceof WindowBlurAction) {
-      this.windowIsActive = false;
-    }
-  }
-
-  pollForUpdates = () => {
-    if (this.updateXHR) {
-      return;
-    }
-
-    this.updateXHR = true;
-
-    this.api.getUpdates(this.channelStore.lastPolledMessageId, this.lastHistoryId)
-      .then((updateJson) => {
-        this.retryDelay.reset();
-        this.updateXHR = false;
-        if (this.pollingEnabled) {
-          this.updateTimerId = window.setTimeout(this.pollForUpdates, this.pollingTime());
-        }
-
-        if (!updateJson) {
-          return;
-        }
-
-        transaction(() => {
-          const newHistoryId = maxBy(updateJson.silences, 'id')?.id;
-
-          if (newHistoryId != null) {
-            this.lastHistoryId = newHistoryId;
-          }
-
-          this.channelStore.updateWithJson(updateJson);
-        });
-      })
-      .catch(() => {
-        // silently ignore errors and continue polling
-        this.updateXHR = false;
-        if (this.pollingEnabled) {
-          this.updateTimerId = window.setTimeout(this.pollForUpdates, this.retryDelay.get());
-        }
-      });
-  };
-
-  pollingTime(): number {
-    return this.windowIsActive ? this.pollTime : this.pollTimeIdle;
-  }
-
-  startPolling() {
-    if (!this.updateTimerId) {
-      this.updateTimerId = window.setTimeout(this.pollForUpdates, this.pollingTime());
-    }
-  }
-
-  stopPolling() {
-    if (this.updateTimerId) {
-      window.clearTimeout(this.updateTimerId);
-      this.updateTimerId = undefined;
-      this.updateXHR = false;
+    if (dispatchAction != null) {
+      dispatch(dispatchAction);
     }
   }
 }

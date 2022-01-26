@@ -1,9 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { MessageLengthCounter } from './message-length-counter'
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
 import BigButton from 'big-button'
+import { route } from 'laroute'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
@@ -11,6 +12,10 @@ import StringWithComponent from 'string-with-component'
 import TimeWithTooltip from 'time-with-tooltip'
 import UserAvatar from 'user-avatar'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+import { linkHtml } from 'utils/url'
+import { MessageLengthCounter } from './message-length-counter'
+
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -174,7 +179,7 @@ export class NewDiscussion extends React.PureComponent
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @timestamp()
           timestamps =
             for discussion in @nearbyDiscussions()
-              osu.link BeatmapDiscussionHelper.url(discussion: discussion),
+              linkHtml BeatmapDiscussionHelper.url(discussion: discussion),
                 BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
                 classNames: ['js-beatmap-discussion--jump']
           timestampsString = osu.transArray(timestamps)
@@ -207,7 +212,7 @@ export class NewDiscussion extends React.PureComponent
 
   cssTop: (sticky) =>
     return if !sticky || !@props.stickTo?.current?
-    window.stickyHeader.headerHeight() + @props.stickTo.current.getBoundingClientRect().height
+    core.stickyHeader.headerHeight + @props.stickTo.current.getBoundingClientRect().height
 
 
   handleKeyDownCallback: (type, event) =>
@@ -264,7 +269,7 @@ export class NewDiscussion extends React.PureComponent
       return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))
 
     @postXhr?.abort()
-    LoadingOverlay.show()
+    showLoadingOverlay()
     @setState posting: type
 
     data =
@@ -276,7 +281,7 @@ export class NewDiscussion extends React.PureComponent
       beatmap_discussion_post:
         message: @state.message
 
-    @postXhr = $.ajax laroute.route('beatmapsets.discussions.posts.store'),
+    @postXhr = $.ajax route('beatmapsets.discussions.posts.store'),
       method: 'POST'
       data: data
 
@@ -291,7 +296,7 @@ export class NewDiscussion extends React.PureComponent
     .fail osu.ajaxError
 
     .always =>
-      LoadingOverlay.hide()
+      hideLoadingOverlay()
       @setState posting: null
 
 

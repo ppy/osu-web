@@ -7,9 +7,9 @@ import { classWithModifiers, Modifiers } from 'utils/css';
 
 const bn = 'show-more-link';
 
-interface Props {
-  callback?: () => void;
-  data?: unknown;
+interface Props<T> {
+  callback?: (data?: T) => void;
+  data?: T;
   direction?: string;
   event?: string;
   hasMore: boolean;
@@ -20,7 +20,7 @@ interface Props {
   url?: string;
 }
 
-export default class ShowMoreLink extends React.PureComponent<Props> {
+export default class ShowMoreLink<T> extends React.PureComponent<Props<T>> {
   static defaultProps = {
     hasMore: false,
     loading: false,
@@ -40,18 +40,11 @@ export default class ShowMoreLink extends React.PureComponent<Props> {
       return <span data-disabled='1' {...sharedProps} />;
     }
 
-    let onClick = this.props.callback;
-
-    if (onClick == null && this.props.url == null && this.props.event != null) {
-      const event = this.props.event;
-      onClick = () => $.publish(event, this.props.data);
-    }
-
     if (this.props.url == null) {
-      return <button onClick={onClick} type='button' {...sharedProps} />;
+      return <button onClick={this.onClick} type='button' {...sharedProps} />;
     }
 
-    return <a href={this.props.url} onClick={onClick} {...sharedProps} />;
+    return <a href={this.props.url} onClick={this.onClick} {...sharedProps} />;
   }
 
   private children() {
@@ -79,4 +72,14 @@ export default class ShowMoreLink extends React.PureComponent<Props> {
       </>
     );
   }
+
+  private readonly onClick = () => {
+    if (this.props.callback == null) {
+      if (this.props.url == null && this.props.event != null) {
+        $.publish(this.props.event, this.props.data);
+      }
+    } else {
+      this.props.callback(this.props.data);
+    }
+  };
 }

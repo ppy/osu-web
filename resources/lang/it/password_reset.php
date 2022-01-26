@@ -30,12 +30,12 @@ return [
     'started' => [
         'password' => 'Nuova password',
         'password_confirmation' => 'Conferma password',
-        'title' => 'Resettando password per l\'account <strong>:username</strong>.',
+        'title' => 'Reimpostazione della password per l\'account <strong>:username</strong>.',
         'verification_key' => 'Codice verifica',
     ],
 
     'starting' => [
-        'username' => 'Inserisci indirizzo email o nome utente',
+        'username' => 'Inserisci l\'indirizzo email o il nome utente',
 
         'support' => [
             '_' => 'Hai bisogno di ulteriore assistenza? Contattaci col nostro :button.',

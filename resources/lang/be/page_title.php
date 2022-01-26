@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'форум',
+        'topic_logs_controller' => [
+            'index' => 'статыстыка тэмы',
+        ],
         'topic_watches_controller' => [
             'index' => 'панэль кіравання',
         ],
@@ -39,7 +42,7 @@ return [
             'verify_link' => 'пацверджанне ўліковага запісу',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'ліцэнзаваныя мастакі',
         ],
         'artists_controller' => [
             '_' => 'ліцэнзаваныя мастакі',

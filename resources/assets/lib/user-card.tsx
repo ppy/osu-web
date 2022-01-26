@@ -1,13 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BlockButton } from 'block-button';
+import BlockButton from 'components/block-button';
+import FriendButton from 'components/friend-button';
 import FlagCountry from 'flag-country';
 import FollowUserMappingButton from 'follow-user-mapping-button';
-import { FriendButton } from 'friend-button';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import core from 'osu-core-singleton';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
@@ -67,7 +68,7 @@ export class UserCard extends React.PureComponent<Props, State> {
 
   private get canMessage() {
     return !this.isSelf
-      && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
+      && _.find(core.currentUser?.blocks ?? [], { target_id: this.user.id }) == null;
   }
 
   private get isOnline() {
@@ -75,7 +76,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   private get isSelf() {
-    return currentUser.id === this.user.id;
+    return core.currentUser != null && core.currentUser.id === this.user.id;
   }
 
   private get isUserLoaded() {
@@ -226,7 +227,7 @@ export class UserCard extends React.PureComponent<Props, State> {
               </a>
             )}
             <div className='user-card__icon'>
-              <FriendButton modifiers={['user-card']} userId={this.user.id} />
+              <FriendButton modifiers='user-card' userId={this.user.id} />
             </div>
             {!this.user.is_bot && (
               <div className='user-card__icon'>
@@ -253,7 +254,7 @@ export class UserCard extends React.PureComponent<Props, State> {
         )}
 
         <div className='user-card__icon'>
-          <FriendButton modifiers={['user-list']} userId={this.user.id} />
+          <FriendButton modifiers='user-list' userId={this.user.id} />
         </div>
 
         {!this.user.is_bot && (

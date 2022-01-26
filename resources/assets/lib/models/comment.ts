@@ -65,16 +65,16 @@ export class Comment {
 
   @computed
   get canModerate() {
-    return currentUser.is_admin || currentUser.is_moderator;
+    return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator);
   }
 
   @computed
   get canPin() {
-    if (this.parentId != null && !this.pinned) {
+    if (core.currentUser == null || (this.parentId != null && !this.pinned)) {
       return false;
     }
 
-    if (currentUser.is_admin) {
+    if (core.currentUser.is_admin) {
       return true;
     }
 
@@ -87,12 +87,12 @@ export class Comment {
       ? meta.owner_id
       : undefined;
 
-    return beatmapsetOwnerId != null && (this.canModerate || beatmapsetOwnerId === currentUser.id);
+    return beatmapsetOwnerId != null && (this.canModerate || beatmapsetOwnerId === core.currentUser.id);
   }
 
   @computed
   get canReport() {
-    return currentUser.id != null && this.userId !== currentUser.id;
+    return core.currentUser != null && this.userId !== core.currentUser.id;
   }
 
   @computed
@@ -117,6 +117,6 @@ export class Comment {
 
   @computed
   get isOwner() {
-    return currentUser.id != null && this.userId === currentUser.id;
+    return core.currentUser != null && this.userId === core.currentUser.id;
   }
 }

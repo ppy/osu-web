@@ -117,33 +117,38 @@ abstract class Model extends BaseModel
     public function __construct($attributes = [], $zeroInsteadOfNull = true)
     {
         if ($zeroInsteadOfNull) {
-            $this->level = 1;
+            // these are still missing last_update and last_played but they're not user visible anywhere
+            $attributes = array_merge([
+                'accuracy' => 0,
+                'accuracy_count' => 0,
+                'accuracy_new' => 0,
+                'accuracy_total' => 0,
+                'country_acronym' => '',
+                'level' => 1,
+                'max_combo' => 0,
+                'playcount' => 0,
+                'rank' => 0,
+                'rank_score' => 0,
+                'rank_score_index' => 0,
+                'ranked_score' => 0,
+                'replay_popularity' => 0,
+                'total_score' => 0,
+                'total_seconds_played' => 0,
 
-            $this->rank_score_index = 0;
-            $this->ranked_score = 0;
+                'count300' => 0,
+                'count100' => 0,
+                'count50' => 0,
+                'countMiss' => 0,
 
-            $this->accuracy_new = 0;
-            $this->playcount = 0;
-            $this->total_score = 0;
-            $this->max_combo = 0;
+                'fail_count' => 0,
+                'exit_count' => 0,
 
-            $this->count300 = 0;
-            $this->count100 = 0;
-            $this->count50 = 0;
-
-            $this->replay_popularity = 0;
-
-            $this->x_rank_count = 0;
-            $this->xh_rank_count = 0;
-            $this->s_rank_count = 0;
-            $this->sh_rank_count = 0;
-            $this->a_rank_count = 0;
-
-            $this->accuracy_total = 0;
-            $this->accuracy_count = 0;
-            $this->accuracy = 0;
-            $this->rank = 0;
-            $this->rank_score = 0;
+                'x_rank_count' => 0,
+                'xh_rank_count' => 0,
+                's_rank_count' => 0,
+                'sh_rank_count' => 0,
+                'a_rank_count' => 0,
+            ], $attributes);
         }
 
         return parent::__construct($attributes);

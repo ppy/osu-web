@@ -42,7 +42,7 @@ return [
         'reply' => 'Rispondi',
         'reply_reopen' => 'Rispondi e Riapri',
         'reply_resolve' => 'Rispondi e Risolvi',
-        'reset' => 'Resetta',
+        'reset' => 'Reimposta',
         'restore' => 'Ripristina',
         'save' => 'Salva',
         'saving' => 'Salvataggio in corso...',

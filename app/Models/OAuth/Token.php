@@ -74,7 +74,7 @@ class Token extends PassportToken
         $saved = parent::revoke();
 
         if ($saved && $this->user_id !== null) {
-            event(UserSessionEvent::newLogout($this->user_id, ["oauth:{$this->getKey()}"]));
+            UserSessionEvent::newLogout($this->user_id, ["oauth:{$this->getKey()}"])->broadcast();
         }
 
         return $saved;

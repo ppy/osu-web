@@ -5,6 +5,7 @@ import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
 import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-modal'
 import { Nominator } from 'beatmap-discussions/nominator'
 import BigButton from 'big-button'
+import { route } from 'laroute'
 import { Modal } from 'modal'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
@@ -12,8 +13,9 @@ import StringWithComponent from 'string-with-component'
 import TimeWithTooltip from 'time-with-tooltip'
 import { UserLink } from 'user-link'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
-import { wikiUrl } from 'utils/url'
+import { linkHtml, wikiUrl } from 'utils/url'
 
 el = React.createElement
 
@@ -125,19 +127,19 @@ export class Nominations extends React.PureComponent
 
     return unless confirm(message)
 
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @xhr.delete?.abort()
 
     user = @props.beatmapset.user_id
-    url = laroute.route('beatmapsets.destroy', beatmapset: @props.beatmapset.id)
+    url = route('beatmapsets.destroy', beatmapset: @props.beatmapset.id)
     params = method: 'DELETE'
 
     @xhr.delete = $.ajax(url, params)
       .done ->
-        Turbolinks.visit laroute.route('users.show', { user })
+        Turbolinks.visit route('users.show', { user })
       .fail osu.ajaxError
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   discussionLock: =>
@@ -147,7 +149,7 @@ export class Nominations extends React.PureComponent
 
     @xhr.discussionLock?.abort()
 
-    url = laroute.route('beatmapsets.discussion-lock', beatmapset: @props.beatmapset.id)
+    url = route('beatmapsets.discussion-lock', beatmapset: @props.beatmapset.id)
     params =
       method: 'POST'
       data: { reason }
@@ -156,24 +158,24 @@ export class Nominations extends React.PureComponent
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   discussionUnlock: =>
     return unless confirm(osu.trans('beatmaps.discussions.lock.prompt.unlock'))
 
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @xhr.discussionLock?.abort()
 
-    url = laroute.route('beatmapsets.discussion-unlock', beatmapset: @props.beatmapset.id)
+    url = route('beatmapsets.discussion-unlock', beatmapset: @props.beatmapset.id)
     params = method: 'POST'
 
     @xhr.discussionLock = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   removeFromLoved: =>
@@ -181,11 +183,11 @@ export class Nominations extends React.PureComponent
 
     return unless reason?
 
-    LoadingOverlay.show()
+    showLoadingOverlay()
 
     @xhr.removeFromLoved?.abort()
 
-    url = laroute.route('beatmapsets.remove-from-loved', beatmapset: @props.beatmapset.id)
+    url = route('beatmapsets.remove-from-loved', beatmapset: @props.beatmapset.id)
     params =
       method: 'DELETE'
       data: { reason }
@@ -194,7 +196,7 @@ export class Nominations extends React.PureComponent
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
-      .always LoadingOverlay.hide
+      .always hideLoadingOverlay
 
 
   focusHypeInput: =>
@@ -397,7 +399,7 @@ export class Nominations extends React.PureComponent
     div dangerouslySetInnerHTML:
       __html: osu.trans 'beatmaps.nominations.nominated_by',
         users: osu.transArray nominators.map (user) ->
-            osu.link laroute.route('users.show', user: user.id), user.username,
+            linkHtml route('users.show', user: user.id), user.username,
               classNames: ['js-usercard']
               props:
                 'data-user-id': user.id
