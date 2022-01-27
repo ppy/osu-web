@@ -833,6 +833,25 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkChatAnnounce(?User $user): string
+    {
+        $prefix = 'chat.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user, $prefix);
+
+        if ($user->isModerator() || $user->isChatAnnouncer()) {
+            return 'ok';
+        }
+
+        return $prefix.'annnonce_only';
+    }
+
+    /**
+     * @param User|null $user
      * @param Channel $channel
      * @return string
      * @throws AuthorizationCheckException
@@ -840,6 +859,12 @@ class OsuAuthorize
     public function checkChatChannelCanMessage(?User $user, Channel $channel): string
     {
         $prefix = 'chat.';
+
+        if ($channel->isAnnouncement()) {
+            $chatBroadcastPermission = $this->doCheckUser($user, 'ChatAnnounce');
+
+            return $chatBroadcastPermission->can() ? 'ok' : $chatBroadcastPermission->rawMessage();
+        }
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
