@@ -33,12 +33,7 @@ class MessageTransformer extends TransformerAbstract
         }
 
         if ($message->channel->isAnnouncement()) {
-            try {
-                $response['content_html'] = markdown_chat($message->content);
-            } catch (Throwable $e) {
-                // TODO: set error in response?
-                \Log::debug($e->getMessage());
-            }
+            $response['content_html'] = markdown_chat($message->content);
         }
 
         return $response;
