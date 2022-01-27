@@ -9,7 +9,6 @@ use App\Models\Chat\Message;
 use App\Models\DeletedUser;
 use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
-use Throwable;
 
 class MessageTransformer extends TransformerAbstract
 {
