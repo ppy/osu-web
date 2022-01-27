@@ -564,34 +564,35 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         $this->getConnection()->transaction(function () use ($actor, $group, $userGroup) {
+            if (!$userGroup->user_pending) {
+                UserGroupEvent::logUserRemove($actor, $this, $group);
+            }
+
             $userGroup->delete();
 
             if ($this->group_id === $group->getKey()) {
                 $this->setDefaultGroup(app('groups')->byIdentifier('default'));
             }
-
-            $this->unsetRelation('userGroups');
-            $this->resetMemoized();
-
-            if (!$userGroup->user_pending) {
-                UserGroupEvent::logUserRemove($actor, $this, $group);
-            }
         });
+
+        $this->unsetRelation('userGroups');
+        $this->resetMemoized();
     }
 
     public function setDefaultGroup(Group $group, ?self $actor = null): void
     {
-        if ($this->findUserGroup($group, true) === null) {
-            $this->addToGroup($group, null, $actor);
-        }
-
         $this->getConnection()->transaction(function () use ($actor, $group) {
+            if ($this->findUserGroup($group, true) === null) {
+                $this->addToGroup($group, null, $actor);
+            }
+
+            UserGroupEvent::logUserSetDefault($actor, $this, $group);
+
             $this->update([
                 'group_id' => $group->getKey(),
                 'user_colour' => $group->group_colour,
                 'user_rank' => $group->group_rank,
             ]);
-            UserGroupEvent::logUserSetDefault($actor, $this, $group);
         });
     }
 
