@@ -67,6 +67,7 @@ return [
         'friends_only' => 'Kullanıcı arkadaş listesinde bulunmayan kişilerden gelen mesajları engelliyor.',
         'moderated' => 'O kanal şu anda modere ediliyor.',
         'no_access' => 'Bu kanala erişiminiz yok.',
+        'receive_friends_only' => '',
         'restricted' => 'Susturulmuş, kısıtlanmış ya da banlanmış iken mesaj gönderemezsiniz.',
         'silenced' => 'Susturulmuşken, kısıtlıyken veya banlıyken mesaj gönderemezsiniz.',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => 'Yalnızca yönetici bu forumu görüntüleyebilir.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

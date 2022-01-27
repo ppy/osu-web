@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Brak rozegranych gier w trybie wieloosobowym!',
+    'empty' => 'Brak rozegranych gier wieloosobowych osu!(lazer)!',
 
     'room' => [
         'hosted_by' => 'utworzona przez :user',
@@ -12,6 +12,10 @@ return [
         'map_count' => ':count_delimited beatmapa|:count_delimited beatmapy|:count_delimited beatmap',
         'player_count' => ':count_delimited gracz|:count_delimited gracze|:count_delimited graczy',
         'time_left' => 'pozostało :time',
+
+        'errors' => [
+            'duration_too_long' => 'Czas trwania jest zbyt długi.',
+        ],
 
         'status' => [
             'active' => 'aktywna',

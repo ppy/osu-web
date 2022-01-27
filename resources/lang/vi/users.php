@@ -138,7 +138,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Tài khoản của bạn đã bị hạn chế!',
-        'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình từ động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
+        'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình tự động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
     ],
     'show' => [
         'age' => ':age tuổi',
@@ -157,7 +157,7 @@ return [
 
         'comments_count' => [
             '_' => 'Đã đăng :link',
-            'count' => '',
+            'count' => ':count_delimited bình luận|:count_delimited bình luận',
         ],
         'edit' => [
             'cover' => [
@@ -302,7 +302,7 @@ return [
                 'title' => 'Huy Chương',
             ],
             'multiplayer' => [
-                'title' => '',
+                'title' => 'Màn chơi nhiều người chơi',
             ],
             'posts' => [
                 'title' => 'Bài viết',
@@ -325,13 +325,22 @@ return [
                 'first' => [
                     'title' => 'Xếp Hạng Nhất',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => '',
                 'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'title' => 'Phiếu',
+                'title_longer' => 'Phiếu gần đây',
+                'vote_count' => ':count_delimited bình chọn|:count_delimited bình chọn',
             ],
             'account_standing' => [
                 'title' => 'Trạng Thái Tài Khoản',
@@ -406,16 +415,16 @@ return [
             'total_hits' => 'Tổng Lần Bấm',
             'total_score' => 'Tổng Điểm',
             // modding stats
-            'graveyard_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => 'Các beatmap bị đắp mộ',
+            'loved_beatmapset_count' => 'Các beatmap được yêu thích',
             'pending_beatmapset_count' => 'Beatmap Đang Chờ',
-            'ranked_beatmapset_count' => '',
+            'ranked_beatmapset_count' => 'Các beatmap được xếp hạng',
         ],
     ],
 
     'silenced_banner' => [
         'title' => '',
-        'message' => '',
+        'message' => 'Một vài hành động có thể sẽ không thực hiện được.',
     ],
 
     'status' => [
@@ -431,8 +440,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
-        'card' => '',
-        'list' => '',
+        'brick' => 'Xem kiểu gạch',
+        'card' => 'Xem kiểu thẻ',
+        'list' => 'Xem kiểu danh sách',
     ],
 ];

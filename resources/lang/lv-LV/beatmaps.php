@@ -237,7 +237,7 @@ return [
                 'title' => 'Nosaukums',
                 'artist' => 'Izpildītājs',
                 'difficulty' => 'Sarežģītība',
-                'favourites' => '',
+                'favourites' => 'Iemīļotākās',
                 'updated' => 'Atjaunināt',
                 'ranked' => '',
                 'rating' => 'Reitingi',

@@ -5,7 +5,6 @@
 
 namespace App\Libraries;
 
-use App\Events\ChatChannelEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
@@ -35,7 +34,7 @@ class Chat
         priv_check_user($sender, 'ChatAnnounce')->ensureCan();
 
         $params = get_params($rawParams, null, [
-            'channel:any',
+            'channel:array',
             'message:string',
             'target_ids:int[]',
         ], ['null_missing' => true]);
@@ -44,7 +43,7 @@ class Chat
             throw new InvariantException('missing target_ids parameter');
         }
 
-        if (!isset($rawParams['channel'])) {
+        if (!isset($params['channel'])) {
             throw new InvariantException('missing channel parameter');
         }
 
@@ -57,11 +56,6 @@ class Chat
 
         $channel = (new Channel())->getConnection()->transaction(function () use ($sender, $params, $users) {
             $channel = Channel::createAnnouncement($users, $params['channel']);
-
-            foreach ($users as $user) {
-                event(new ChatChannelEvent($channel, $user, 'join'));
-            }
-
             static::sendMessage($sender, $channel, $params['message'], false);
 
             return $channel;

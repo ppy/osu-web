@@ -8,7 +8,7 @@ import PpValue from 'scores/pp-value';
 import { UserCard } from 'user-card';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
-import { modeAttributesMap } from 'utils/score';
+import { modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;

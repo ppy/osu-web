@@ -122,11 +122,6 @@ abstract class Model extends BaseModel
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function getBestIdAttribute()
-    {
-        return $this->high_score_id;
-    }
-
     public function url()
     {
         return route('scores.show', ['mode' => static::getMode(), 'score' => $this->getKey()]);

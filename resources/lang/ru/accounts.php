@@ -69,7 +69,8 @@ return [
     ],
 
     'oauth' => [
-        'authorized_clients' => 'имеющие доступ',
+        'authorized_clients' => 'подключенные приложения
+',
         'own_clients' => 'мои приложения',
         'title' => 'OAuth',
     ],

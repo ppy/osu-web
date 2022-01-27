@@ -105,6 +105,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('{score}', 'ScoresController@show')->name('show');
     });
 
+    Route::delete('score-pins', 'ScorePinsController@destroy')->name('score-pins.destroy');
+    Route::put('score-pins', 'ScorePinsController@reorder')->name('score-pins.reorder');
+    Route::resource('score-pins', 'ScorePinsController', ['only' => ['store']]);
+
     Route::resource('client-verifications', 'ClientVerificationsController', ['only' => ['create', 'store']]);
 
     Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
@@ -526,6 +530,8 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 
     Route::group(['namespace' => 'InterOp'], function () {
+        Route::post('artist-tracks/reindex-all', 'ArtistTracksController@reindexAll');
+
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::group(['prefix' => '{beatmapset}'], function () {
                 Route::post('broadcast-new', 'BeatmapsetsController@broadcastNew')->name('broadcast-new');

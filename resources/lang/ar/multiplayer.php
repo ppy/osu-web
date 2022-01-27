@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited لاعب|:count_delimited لاعبين',
         'time_left' => 'تبقى:time',
 
+        'errors' => [
+            'duration_too_long' => '',
+        ],
+
         'status' => [
             'active' => 'نشط',
             'ended' => 'انتهت',

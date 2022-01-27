@@ -67,6 +67,7 @@ return [
         'friends_only' => 'Uživatel blokuje zprávy od lidí, kteří nejsou v jeho listu přátel.',
         'moderated' => 'Tento kanál je právě moderován.',
         'no_access' => 'Nemáte přístup k tomu kanálu.',
+        'receive_friends_only' => '',
         'restricted' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
         'silenced' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => 'Pouze admin může zobrazit toto fórum.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

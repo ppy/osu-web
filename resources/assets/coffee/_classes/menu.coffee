@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { fadeIn, fadeOut } from 'utils/fade'
+
 class window.Menu
   constructor: ->
     @menuTimeout = 150
@@ -105,10 +107,10 @@ class window.Menu
       menuId = menu.getAttribute('data-menu-id')
 
       if currentTree.indexOf(menuId) == -1
-        Fade.out menu
+        fadeOut menu
         @$menuLink(menuId).removeClass('js-menu--active')
       else
-        Fade.in menu
+        fadeIn menu
         @$menuLink(menuId).addClass('js-menu--active')
         $(menu).trigger 'menu:showing'
 

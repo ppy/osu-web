@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited 位玩家',
         'time_left' => '剩余 :time',
 
+        'errors' => [
+            'duration_too_long' => '持续时间过长。',
+        ],
+
         'status' => [
             'active' => '开放',
             'ended' => '已结束',

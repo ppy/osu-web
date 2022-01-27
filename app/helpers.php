@@ -891,6 +891,13 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
+function wiki_image_url(string $path, bool $fullUrl = true)
+{
+    static $placeholder = '_WIKI_IMAGE_';
+
+    return str_replace($placeholder, $path, route('wiki.image', ['path' => $placeholder], $fullUrl));
+}
+
 function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
     $path = $path === null ? 'Main_Page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));

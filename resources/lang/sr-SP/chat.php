@@ -11,23 +11,15 @@ return [
     'cannot_send' => [
         'channel' => '',
         'user' => '',
-        'reasons' => [
-            'blocked' => '',
-            'channel_moderated' => '',
-            'friends_only' => '',
-            'not_enough_plays' => '',
-            'not_verified' => '',
-            'restricted' => '',
-            'silenced' => '',
-            'target_restricted' => '',
-        ],
     ],
+
     'input' => [
         'disabled' => '',
         'disconnected' => '',
         'placeholder' => '',
         'send' => '',
     ],
+
     'no-conversations' => [
         'howto' => "",
         'lazer' => '',

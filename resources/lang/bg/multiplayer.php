@@ -13,6 +13,10 @@ return [
         'player_count' => ':count_delimited играч|:count_delimited играча',
         'time_left' => ':time остава',
 
+        'errors' => [
+            'duration_too_long' => 'Прекалено голяма продължителност.',
+        ],
+
         'status' => [
             'active' => 'активна',
             'ended' => 'завърши',
