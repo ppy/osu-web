@@ -270,7 +270,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('card', 'UsersController@card')->name('card');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
-            Route::resource('multiplayer', 'MultiplayerController', ['only' => 'index']);
+            Route::resource('{typeGroup}', 'MultiplayerController', ['only' => 'index'])->where(['typeGroup' => 'multiplayer|playlists|realtime'])->names('multiplayer');
 
             Route::group(['as' => 'modding.', 'prefix' => 'modding'], function () {
                 Route::get('/', 'ModdingHistoryController@index')->name('index');
