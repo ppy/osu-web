@@ -230,22 +230,6 @@ class TestCase extends BaseTestCase
         }, glob("{$path}/*{$suffix}"));
     }
 
-    protected function getGroupWithPlaymodes(string $identifier): Group
-    {
-        $group = app('groups')->byIdentifier($identifier);
-
-        if (!$group->has_playmodes) {
-            $group->update(['has_playmodes' => true]);
-
-            // TODO: This shouldn't have to be called here, since it's already
-            // called by `Group::afterCommit`, but `Group::afterCommit` isn't
-            // running in tests when creating/saving `Group`s.
-            app('groups')->resetCache();
-        }
-
-        return $group;
-    }
-
     protected function makeBeatmapsetDiscussionPostParams(Beatmapset $beatmapset, string $messageType)
     {
         return [

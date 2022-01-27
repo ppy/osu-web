@@ -65,7 +65,7 @@ class UserGroupsControllerTest extends TestCase
     public function testUserGroupAddWhenHasSamePlaymodes()
     {
         $playmodes = ['osu'];
-        $user = $this->createUserWithGroupPlaymodes('nat', $playmodes);
+        $user = User::factory()->withGroup('nat', $playmodes)->create();
         $group = app('groups')->byIdentifier('nat');
         $userAddPlaymodesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_PLAYMODES, $user, $group);
         $url = route('interop.user-group.update', [
@@ -89,7 +89,7 @@ class UserGroupsControllerTest extends TestCase
     public function testUserGroupChangePlaymodes()
     {
         $playmodes = ['fruits', 'mania'];
-        $user = $this->createUserWithGroupPlaymodes('nat', ['osu', 'taiko']);
+        $user = User::factory()->withGroup('nat', ['osu', 'taiko'])->create();
         $group = app('groups')->byIdentifier('nat');
         $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
         $userAddPlaymodesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_PLAYMODES, $user, $group);
@@ -211,7 +211,7 @@ class UserGroupsControllerTest extends TestCase
     public function testUserGroupSetDefaultLeavesPlaymodesUnchanged()
     {
         $playmodes = ['osu'];
-        $user = $this->createUserWithGroupPlaymodes('nat', $playmodes, ['group_id' => app('groups')->byIdentifier('default')->getKey()]);
+        $user = User::factory()->withGroup('nat', $playmodes)->create(['group_id' => app('groups')->byIdentifier('default')->getKey()]);
         $group = app('groups')->byIdentifier('nat');
         $url = route('interop.user-group.set-default', [
             'group_id' => $group->getKey(),
@@ -265,8 +265,9 @@ class UserGroupsControllerTest extends TestCase
 
     public function testInvalidPlaymodes()
     {
-        $user = factory(User::class)->create();
-        $group = $this->getGroupWithPlaymodes('nat');
+        $user = User::factory()->create();
+        $group = app('groups')->byIdentifier('nat');
+        $group->update(['has_playmodes' => true]);
         $url = route('interop.user-group.update', [
             'group' => $group->getKey(),
             'playmodes' => ['osu', 'invalid_playmode'],
@@ -282,7 +283,7 @@ class UserGroupsControllerTest extends TestCase
 
     public function testPlaymodesWithoutGroupPlaymodesSet()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $group = app('groups')->byIdentifier('gmt');
         $url = route('interop.user-group.update', [
             'group' => $group->getKey(),
