@@ -11,16 +11,6 @@ return [
     'cannot_send' => [
         'channel' => 'Du kan ikke skrive i denne kanal på nuværende tidspunkt. Dette kan være pga. en af disse grunde:',
         'user' => 'Du kan ikke skrive til denne person på nuværende tidspunkt. Dette kan være pga. en af disse grunde:',
-        'reasons' => [
-            'blocked' => 'Du er blevet blokeret af modtageren',
-            'channel_moderated' => 'Chatten er blevet sat til moderated',
-            'friends_only' => 'Modtageren accepterer kun meddelelser fra personer på deres venneliste',
-            'not_enough_plays' => '',
-            'not_verified' => '',
-            'restricted' => 'Du er i øjeblikket begrænset',
-            'silenced' => 'Du er i øjeblikket gjort tavs',
-            'target_restricted' => 'Modtageren er i øjeblikket begrænset',
-        ],
     ],
 
     'input' => [

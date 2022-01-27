@@ -67,6 +67,7 @@ return [
         'friends_only' => '用户拒收了来自陌生人的消息。',
         'moderated' => '该频道现在正在被管制中。',
         'no_access' => '你没有权限访问该频道。',
+        'receive_friends_only' => '',
         'restricted' => '账户被禁言、受限或封禁期间不能发消息。',
         'silenced' => '账户被禁言、受限或封禁期间不能发消息。',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => '该板块仅限管理员查看。',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

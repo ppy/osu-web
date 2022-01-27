@@ -24,6 +24,7 @@ use App\Models\Language;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
+use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\User;
 use App\Models\UserContestEntry;
 use Carbon\Carbon;
@@ -832,6 +833,25 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkChatAnnounce(?User $user): string
+    {
+        $prefix = 'chat.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user, $prefix);
+
+        if ($user->isModerator() || $user->isChatAnnouncer()) {
+            return 'ok';
+        }
+
+        return $prefix.'annnonce_only';
+    }
+
+    /**
+     * @param User|null $user
      * @param Channel $channel
      * @return string
      * @throws AuthorizationCheckException
@@ -840,19 +860,17 @@ class OsuAuthorize
     {
         $prefix = 'chat.';
 
+        if ($channel->isAnnouncement()) {
+            $chatBroadcastPermission = $this->doCheckUser($user, 'ChatAnnounce');
+
+            return $chatBroadcastPermission->can() ? 'ok' : $chatBroadcastPermission->rawMessage();
+        }
+
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
         if (!config('osu.user.min_plays_allow_verified_bypass')) {
             $this->ensureHasPlayed($user);
-        }
-
-        if ($user->isModerator()) {
-            return 'ok';
-        }
-
-        if ($channel->moderated) {
-            return $prefix.'moderated';
         }
 
         if ($channel->isPM()) {
@@ -867,6 +885,14 @@ class OsuAuthorize
             }
         } else if (!$channel->exists) {
             return $prefix.'no_channel';
+        }
+
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        if ($channel->moderated) {
+            return $prefix.'moderated';
         }
 
         // TODO: add actual permission checks for bancho multiplayer games?
@@ -894,6 +920,10 @@ class OsuAuthorize
 
         if (!config('osu.user.min_plays_allow_verified_bypass')) {
             $this->ensureHasPlayed($user);
+        }
+
+        if ($user->pm_friends_only && !$user->hasFriended($target)) {
+            return $prefix.'receive_friends_only';
         }
 
         if ($user->isModerator() || $user->isBot()) {
@@ -1721,6 +1751,32 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @param \App\Models\Score\Best\Model|null $user
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkScorePin(?User $user, ScoreBest $best): string
+    {
+        $prefix = 'score.pin.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($best->user_id !== $user->getKey()) {
+            return $prefix.'not_owner';
+        }
+
+        $pinned = $user->scorePins()->forMode($best)->withVisibleScore()->count();
+
+        if ($pinned >= $user->maxScorePins()) {
+            return $prefix.'too_many';
+        }
 
         return 'ok';
     }

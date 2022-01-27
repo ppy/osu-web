@@ -67,6 +67,7 @@ return [
         'friends_only' => '해당 유저는 친구가 아닌 유저의 메시지를 차단한 상태입니다.',
         'moderated' => '채널은 현재 관리 중입니다.',
         'no_access' => '해당 채널에 대한 접근 권한이 없습니다.',
+        'receive_friends_only' => '',
         'restricted' => '침묵, 제한, 차단 상태에서는 메시지를 전송할 수 없습니다.',
         'silenced' => '침묵, 제한, 차단 상태에서는 메시지를 전송할 수 없습니다.',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => '관리자만 열람이 가능한 포럼입니다.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

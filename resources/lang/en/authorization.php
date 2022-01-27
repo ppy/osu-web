@@ -63,10 +63,12 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => 'This channel is for announcements only.',
         'blocked' => 'Cannot message a user that is blocking you or that you have blocked.',
         'friends_only' => 'User is blocking messages from people not on their friends list.',
         'moderated' => 'This channel is currently moderated.',
         'no_access' => 'You do not have access to that channel.',
+        'receive_friends_only' => 'The user may not be able to reply because you are only accepting messages from people on your friends list.',
         'restricted' => 'You cannot send messages while silenced, restricted or banned.',
         'silenced' => 'You cannot send messages while silenced, restricted or banned.',
     ],
@@ -163,6 +165,13 @@ return [
 
         'view' => [
             'admin_only' => 'Only admin can view this forum.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => 'Only score owner can pin score.',
+            'too_many' => 'Pinned too many scores.',
         ],
     ],
 

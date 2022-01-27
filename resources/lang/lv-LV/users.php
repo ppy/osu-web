@@ -325,6 +325,15 @@ return [
                 'first' => [
                     'title' => 'Pirmās Vietas Ranki',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => 'Dotās balsis (beidzamos 3 mēnešus)',

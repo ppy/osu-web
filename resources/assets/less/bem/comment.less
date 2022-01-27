@@ -197,7 +197,7 @@
   }
 
   &__row {
-    margin: -2px -5px;
+    gap: 4px;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
@@ -206,6 +206,8 @@
     &--footer {
       color: @osu-colour-f1;
       font-size: @font-size--normal;
+      column-gap: 10px;
+
       a {
         color: @osu-colour-f1;
         .link-hover({ color: white });
@@ -218,8 +220,6 @@
   }
 
   &__row-item {
-    margin: 2px 5px;
-
     &--info {
       font-weight: normal;
     }
@@ -239,6 +239,7 @@
     .reset-input();
     width: max-content;
     color: @osu-colour-l2;
+    padding: 5px 0;
 
     .link-hover({
       color: @osu-colour-l1;

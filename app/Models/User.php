@@ -183,6 +183,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     protected $visible = ['user_id', 'username', 'username_clean', 'user_rank', 'osu_playstyle', 'user_colour'];
 
+    protected $attributes = [
+        'user_allow_pm' => true,
+    ];
+
     protected $casts = [
         'osu_subscriber' => 'boolean',
         'user_allow_pm' => 'boolean',
@@ -794,6 +798,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->isGroup(app('groups')->byIdentifier('admin'));
     }
 
+    public function isChatAnnouncer()
+    {
+        return $this->findUserGroup(app('groups')->byIdentifier('announce'), true) !== null;
+    }
+
     public function isGMT()
     {
         return $this->isGroup(app('groups')->byIdentifier('gmt'));
@@ -1014,6 +1023,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function reportsMade()
     {
         return $this->hasMany(UserReport::class, 'reporter_id');
+    }
+
+    public function scorePins()
+    {
+        return $this->hasMany(ScorePin::class);
     }
 
     public function userGroups()
@@ -1341,6 +1355,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function maxMultiplayerRooms()
     {
         return $this->isSupporter() ? config('osu.user.max_multiplayer_rooms_supporter') : config('osu.user.max_multiplayer_rooms');
+    }
+
+    public function maxScorePins()
+    {
+        return $this->isSupporter() ? config('osu.user.max_score_pins_supporter') : config('osu.user.max_score_pins');
     }
 
     public function beatmapsetDownloadAllowance()

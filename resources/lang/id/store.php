@@ -127,7 +127,7 @@ return [
     ],
 
     'username_change' => [
-        'check' => 'Masukkan nama pengguna untuk memeriksa ketersediaan!',
+        'check' => 'Masukkan nama pengguna untuk memeriksa ketersediaannya!',
         'checking' => 'Memeriksa ketersediaan :username...',
         'require_login' => [
             '_' => 'Anda harus :link untuk mengubah nama Anda!',
