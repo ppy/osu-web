@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Markdown;
 
+use App\Libraries\Markdown\CustomContainerInline\Extension as CustomContainerInlineExtension;
 use App\Traits\Memoizes;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
@@ -305,6 +306,7 @@ class OsuMarkdown
         $environment->addExtension(new AutolinkExtension());
         $environment->addExtension(new TableExtension());
         $environment->addExtension(new StrikethroughExtension());
+        $environment->addExtension(new CustomContainerInlineExtension());
 
         if ($this->osuMarkdownConfig['parse_attribute_id']) {
             $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());
