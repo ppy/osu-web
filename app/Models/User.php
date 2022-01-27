@@ -516,21 +516,29 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         $activeUserGroup = $this->findUserGroup($group, true);
 
-        if (
-            $activeUserGroup !== null &&
-            (new Set($playmodes))->xor(new Set($activeUserGroup->playmodes ?? []))->isEmpty()
-        ) {
-            return;
-        }
-
-        $this->getConnection()->transaction(function () use ($actor, $group, $playmodes, $activeUserGroup) {
-            if ($activeUserGroup === null) {
+        if ($activeUserGroup === null) {
+            $this->getConnection()->transaction(function () use ($actor, $group, $playmodes) {
                 UserGroupEvent::logUserAdd($actor, $this, $group, $playmodes);
-            } else {
-                $previousPlaymodes = $activeUserGroup->playmodes ?? [];
-                $playmodesAdded = array_values(array_diff($playmodes, $previousPlaymodes));
-                $playmodesRemoved = array_values(array_diff($previousPlaymodes, $playmodes));
 
+                $this
+                    ->userGroups()
+                    ->firstOrNew(['group_id' => $group->getKey()])
+                    ->fill([
+                        'playmodes' => $playmodes,
+                        'user_pending' => false,
+                    ])
+                    ->save();
+            });
+        } else {
+            $previousPlaymodes = $activeUserGroup->playmodes ?? [];
+            $playmodesAdded = array_values(array_diff($playmodes, $previousPlaymodes));
+            $playmodesRemoved = array_values(array_diff($previousPlaymodes, $playmodes));
+
+            if ($playmodesAdded === [] && $playmodesRemoved === []) {
+                return;
+            }
+
+            $this->getConnection()->transaction(function () use ($activeUserGroup, $actor, $group, $playmodes, $playmodesAdded, $playmodesRemoved) {
                 if ($playmodesAdded !== []) {
                     UserGroupEvent::logUserAddPlaymodes($actor, $this, $group, $playmodesAdded);
                 }
@@ -538,20 +546,13 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 if ($playmodesRemoved !== []) {
                     UserGroupEvent::logUserRemovePlaymodes($actor, $this, $group, $playmodesRemoved);
                 }
-            }
 
-            ($activeUserGroup ??
-                $this->userGroups()->firstOrNew(['group_id' => $group->getKey()])
-            )
-                ->fill([
-                    'playmodes' => $playmodes,
-                    'user_pending' => false,
-                ])
-                ->save();
+                $activeUserGroup->update(['playmodes' => $playmodes]);
+            });
+        }
 
-            $this->unsetRelation('userGroups');
-            $this->resetMemoized();
-        });
+        $this->unsetRelation('userGroups');
+        $this->resetMemoized();
     }
 
     public function removeFromGroup(Group $group, ?self $actor = null): void
