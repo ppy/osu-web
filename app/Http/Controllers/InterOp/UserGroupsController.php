@@ -44,9 +44,7 @@ class UserGroupsController extends Controller
             ['group' => get_int(request()->input('group_id'))],
             request()->route()->parameters(),
         );
-
-        $group = app('groups')->byId($params['group'] ?? null);
-        abort_if($group === null, 404, 'Group not found');
+        $group = app('groups')->byIdOrFail($params['group'] ?? null);
 
         return [
             User::findOrFail($params['user'] ?? null),
