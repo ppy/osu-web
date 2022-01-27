@@ -29,12 +29,6 @@ class ChatMarkdownTest extends TestCase
 
     private function loadOutputTest(string $name, string $path)
     {
-        $mdFilePath = "{$path}/{$name}.md";
-        $htmlFilePath = "{$path}/{$name}.html";
-
-        return [
-            file_get_contents($mdFilePath),
-            file_get_contents($htmlFilePath),
-        ];
+        return array_map(fn ($ext) => file_get_contents("{$path}/{$name}.{$ext}"), ['md', 'html']);
     }
 }
