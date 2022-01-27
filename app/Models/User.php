@@ -580,7 +580,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function setDefaultGroup(Group $group, ?self $actor = null): void
     {
-        if (!$this->isGroup($group)) {
+        if ($this->findUserGroup($group, true) === null) {
             $this->addToGroup($group, null, $actor);
         }
 
