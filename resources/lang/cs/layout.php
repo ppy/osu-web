@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Rytmus je jen o klkání! Spolu s Ouendan/EBA, Taikem, originálními herními módy a plně funkčním level editorem.',
+        'page_description' => 'osu! - Rytmus je na dosah jen jednoho *kliknutí*! Spolu s Ouendan/EBA, Taikem, originálními herními módy a také plně funkčním level editorem.',
     ],
 
     'header' => [
@@ -19,7 +19,6 @@ return [
             'contest' => 'soutěž',
             'contests' => 'soutěže',
             'root' => 'konzole',
-            'store_orders' => '',
         ],
 
         'artists' => [
@@ -27,7 +26,7 @@ return [
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'výpis',
         ],
 
         'help' => [
@@ -47,6 +46,7 @@ return [
 
         'users' => [
             'modding' => 'módování',
+            'multiplayer' => '',
             'show' => 'informace',
         ],
     ],
@@ -62,49 +62,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmapy',
-            'artists' => 'featured artists',
-            'index' => 'výpis',
-            'packs' => 'balíčky',
         ],
         'community' => [
             '_' => 'komunita',
-            'chat' => 'chat',
-            'contests' => 'soutěže',
             'dev' => 'vývoj',
-            'forum-forums-index' => 'fórum',
-            'getLive' => 'živě',
-            'tournaments' => 'turnaje',
         ],
         'help' => [
             '_' => 'nápověda',
-            'getAbuse' => '',
+            'getAbuse' => 'nahlásit zneužití',
             'getFaq' => 'časté dotazy',
             'getRules' => 'pravidla',
             'getSupport' => 'ne, vážně, potřebuji pomoc!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'domů',
-            'changelog-index' => 'seznam změn',
-            'getDownload' => 'stáhnout',
-            'news-index' => 'novinky',
-            'search' => 'hledat',
             'team' => 'tým',
         ],
         'rankings' => [
             '_' => 'žebříček',
-            'charts' => 'výběr',
-            'country' => 'země',
-            'index' => 'výkon',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
-            'score' => 'skóre',
         ],
         'store' => [
             '_' => 'obchod',
-            'cart-show' => 'košík',
-            'getListing' => 'zboží',
-            'orders-index' => 'historie objednávek',
         ],
     ],
 
@@ -118,7 +97,7 @@ return [
         ],
         'help' => [
             '_' => 'Nápověda & Komunita',
-            'faq' => 'Často kladené dotazy',
+            'faq' => 'Často kladené otázky',
             'forum' => 'Komunitní fóra',
             'livestreams' => 'Živá vysílání',
             'report' => 'Náhlasit chybu',

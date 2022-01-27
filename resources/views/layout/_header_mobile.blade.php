@@ -62,7 +62,7 @@
                         </span>
 
                         <span class="u-ellipsis-overflow">
-                            {{ trans('layout.popup_login.button') }}
+                            {{ osu_trans('layout.popup_login.button') }}
                         </span>
                     </button>
                 @endif

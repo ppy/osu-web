@@ -3,9 +3,11 @@
 
 import FollowJson from 'interfaces/follow-json';
 import { route } from 'laroute';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { nextVal } from 'utils/seq';
 
 interface Props {
   follow: FollowJson;
@@ -25,7 +27,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
 
   state: State;
 
-  private eventId = `follow-toggle-${osu.uuid()}`;
+  private eventId = `follow-toggle-${nextVal()}`;
   private toggleXhr: null | JQueryXHR = null;
 
   constructor(props: Props) {
@@ -95,7 +97,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
   private refresh = () => {
     if (this.props.follow.subtype === 'mapping') {
       this.setState({
-        following: currentUser.follow_user_mapping.includes(this.props.follow.notifiable_id),
+        following: core.currentUser != null && core.currentUser.follow_user_mapping.includes(this.props.follow.notifiable_id),
       });
     }
   };

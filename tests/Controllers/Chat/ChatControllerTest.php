@@ -3,9 +3,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Controllers\Chat;
 
-use App\Models\Chat;
+use App\Models\Chat\Channel;
+use App\Models\Chat\Message;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserRelation;
@@ -47,7 +50,7 @@ class ChatControllerTest extends TestCase
      */
     public function testCreatePmWithClientCredentials($scopes, $expectedStatus)
     {
-        $client = factory(Client::class)->create(['user_id' => $this->user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $this->user]);
         $this->actAsScopedUser(null, $scopes, $client);
         $this->json(
             'POST',
@@ -64,7 +67,7 @@ class ChatControllerTest extends TestCase
      */
     public function testCreatePmWithClientCredentialsBotGroup($scopes, $expectedStatus)
     {
-        $client = factory(Client::class)->create(['user_id' => $this->user->getKey()]);
+        $client = Client::factory()->create(['user_id' => $this->user]);
         $this->user->update(['group_id' => app('groups')->byIdentifier('bot')->getKey()]);
         $this->actAsScopedUser(null, $scopes, $client);
         $this->json(
@@ -90,7 +93,6 @@ class ChatControllerTest extends TestCase
         )->assertStatus(200);
 
         // should return existing conversation and not error
-        app('OsuAuthorize')->cacheReset();
         $this->json(
             'POST',
             route('api.chat.new'),
@@ -116,7 +118,6 @@ class ChatControllerTest extends TestCase
         $channelId = $request->json('new_channel_id');
         $request->assertSuccessful();
 
-        app('OsuAuthorize')->cacheReset();
         $this->json(
             'DELETE',
             route('api.chat.channels.part', [
@@ -125,7 +126,6 @@ class ChatControllerTest extends TestCase
             ])
         )->assertSuccessful();
 
-        app('OsuAuthorize')->cacheReset();
         $this->json(
             'POST',
             route('api.chat.new'),
@@ -168,7 +168,7 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenRestricted() // fail
     {
-        $restrictedUser = factory(User::class)->states('restricted')->create();
+        $restrictedUser = User::factory()->restricted()->create();
 
         $this->actAsScopedUser($restrictedUser, ['*']);
         $this->json(
@@ -183,7 +183,7 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenSilenced() // fail
     {
-        $silencedUser = factory(User::class)->states('silenced')->create();
+        $silencedUser = User::factory()->silenced()->create();
 
         $this->actAsScopedUser($silencedUser, ['*']);
         $this->json(
@@ -198,7 +198,7 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenTargetRestricted() // fail
     {
-        $restrictedUser = factory(User::class)->states('restricted')->create();
+        $restrictedUser = User::factory()->restricted()->create();
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json(
@@ -226,7 +226,7 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenFriendsOnlyAndNotFriended() // fail
     {
-        $privateUser = factory(User::class)->create(['pm_friends_only' => true]);
+        $privateUser = User::factory()->create(['pm_friends_only' => true]);
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json(
@@ -241,7 +241,7 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenFriendsOnlyAndFriended() // success
     {
-        $privateUser = factory(User::class)->create(['pm_friends_only' => true]);
+        $privateUser = User::factory()->create(['pm_friends_only' => true]);
         factory(UserRelation::class)->states('friend')->create([
             'user_id' => $privateUser->user_id,
             'zebra_id' => $this->user->user_id,
@@ -269,7 +269,7 @@ class ChatControllerTest extends TestCase
 
     public function testChatPresence() // success
     {
-        $publicChannel = factory(Chat\Channel::class)->states('public')->create();
+        $publicChannel = Channel::factory()->type('public')->create();
 
         // join the channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -305,7 +305,6 @@ class ChatControllerTest extends TestCase
         ]);
 
         // ensure conversation with $this->anotherUser isn't visible
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonMissing(['users' => [
@@ -343,7 +342,6 @@ class ChatControllerTest extends TestCase
         $this->anotherUser->update(['user_warnings' => 1]);
 
         // ensure conversation with $this->anotherUser isn't visible
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonMissing(['users' => [
@@ -355,7 +353,6 @@ class ChatControllerTest extends TestCase
         $this->anotherUser->update(['user_warnings' => 0]);
 
         // ensure conversation with $this->anotherUser is visible again
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment(['users' => [
@@ -381,7 +378,6 @@ class ChatControllerTest extends TestCase
         $channelId = $presenceData['new_channel_id'];
 
         // leave PM with $this->anotherUser
-        app('OsuAuthorize')->cacheReset();
         $this->json('DELETE', route('api.chat.channels.part', [
             'channel' => $channelId,
             'user' => $this->user->user_id,
@@ -389,7 +385,6 @@ class ChatControllerTest extends TestCase
             ->assertStatus(204);
 
         // ensure conversation with $this->anotherUser isn't visible
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonMissing(['users' => [
@@ -398,7 +393,6 @@ class ChatControllerTest extends TestCase
             ]]);
 
         // reopen PM with $this->anotherUser
-        app('OsuAuthorize')->cacheReset();
         $this->json(
             'POST',
             route('api.chat.new'),
@@ -409,7 +403,6 @@ class ChatControllerTest extends TestCase
         )->assertStatus(200);
 
         // ensure conversation with $this->anotherUser is visible again
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment(['users' => [
@@ -429,8 +422,8 @@ class ChatControllerTest extends TestCase
 
     public function testChatUpdatesWithNoNewMessages() // success
     {
-        $publicChannel = factory(Chat\Channel::class)->states('public')->create();
-        $publicMessage = factory(Chat\Message::class)->create(['channel_id' => $publicChannel->channel_id]);
+        $publicChannel = Channel::factory()->type('public')->create();
+        $publicMessage = Message::factory()->create(['channel_id' => $publicChannel->channel_id]);
 
         // join the channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -440,15 +433,14 @@ class ChatControllerTest extends TestCase
         ]))
             ->assertSuccessful();
 
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.updates'), ['since' => $publicMessage->message_id])
             ->assertStatus(204);
     }
 
     public function testChatUpdates() // success
     {
-        $publicChannel = factory(Chat\Channel::class)->states('public')->create();
-        $publicMessage = factory(Chat\Message::class)->create(['channel_id' => $publicChannel->channel_id]);
+        $publicChannel = Channel::factory()->type('public')->create();
+        $publicMessage = Message::factory()->create(['channel_id' => $publicChannel->channel_id]);
 
         // join channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -458,7 +450,6 @@ class ChatControllerTest extends TestCase
         ]))
             ->assertSuccessful();
 
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.updates'), ['since' => 0])
             ->assertStatus(200)
             ->assertJsonFragment(['content' => $publicMessage->content]);
@@ -481,13 +472,12 @@ class ChatControllerTest extends TestCase
         $channelId = $presenceData['new_channel_id'];
 
         // create reply
-        $publicMessage = factory(Chat\Message::class)->create([
+        $publicMessage = Message::factory()->create([
             'user_id' => $this->anotherUser->user_id,
             'channel_id' => $channelId,
         ]);
 
         // ensure reply is visible
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.updates'), ['since' => 0])
             ->assertStatus(200)
             ->assertJsonFragment(['content' => $publicMessage->content]);
@@ -496,7 +486,6 @@ class ChatControllerTest extends TestCase
         $this->anotherUser->update(['user_warnings' => 1]);
 
         // ensure reply is no longer visible
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.updates'), ['since' => 0])
             ->assertStatus(204);
     }
@@ -523,7 +512,7 @@ class ChatControllerTest extends TestCase
     public function createPmWithClientCredentialsBotGroupDataProvider()
     {
         return [
-            [['bot', 'chat.write'], 200],
+            [['chat.write', 'delegate'], 200],
             [['public'], 403],
         ];
     }
@@ -549,10 +538,10 @@ class ChatControllerTest extends TestCase
             }
         }
 
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         $minPlays = config('osu.user.min_plays_for_posting');
         $this->user->statisticsOsu()->create(['playcount' => $minPlays]);
 
-        $this->anotherUser = factory(User::class)->create();
+        $this->anotherUser = User::factory()->create();
     }
 }

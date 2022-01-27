@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => 'dzienniki zdarzeń wątków',
+        ],
         'topic_watches_controller' => [
             'index' => 'strona główna',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'strona główna',
             'verify_link' => 'weryfikacja konta',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'wyróżnieni artyści',
         ],
         'artists_controller' => [
             '_' => 'wyróżnieni artyści',
@@ -111,13 +117,13 @@ return [
             '_' => 'resetowanie hasła',
         ],
         'ranking_controller' => [
-            '_' => 'ranking',
+            '_' => 'rankingi',
         ],
         'scores_controller' => [
             '_' => 'wynik',
         ],
         'store_controller' => [
-            '_' => 'sklep osu!',
+            '_' => 'sklep',
         ],
         'tournaments_controller' => [
             '_' => 'turnieje',
@@ -127,20 +133,28 @@ return [
             'disabled' => 'powiadomienie',
         ],
         'wiki_controller' => [
-            '_' => 'baza wiedzy',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'ranking',
+            '_' => 'rankingi',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autoryzuj aplikację',
         ],
     ],
     'store' => [
-        '_' => 'sklep osu!',
+        '_' => 'sklep',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'informacje o modowaniu',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'historia gier w trybie wieloosobowym',
         ],
     ],
 ];

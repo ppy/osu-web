@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'تَمهل, ألعب أكثر.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'قائمة الخرائط',
         'guest_title' => 'الخرائط',
@@ -150,11 +154,12 @@ return [
                 'combo' => 'اقصى مجموع',
                 'miss' => 'اِخفاق',
                 'mods' => 'المودات',
+                'pin' => '',
                 'player' => 'اللاعب',
                 'pp' => '',
                 'rank' => 'المرتبه',
-                'score_total' => 'مجموع النقاط',
                 'score' => 'المجموع',
+                'score_total' => 'مجموع النقاط',
                 'time' => 'الوقت',
             ],
 

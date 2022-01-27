@@ -5,6 +5,8 @@ import { Discussion } from './discussion'
 import { IconExpand } from 'icon-expand'
 import * as React from 'react'
 import { a, button, div, i, p, span } from 'react-dom-factories'
+import { jsonClone } from 'utils/json'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 bn = 'beatmap-discussions'
@@ -40,7 +42,7 @@ export class Discussions extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "beatmapset-discussions-#{osu.uuid()}"
+    @eventId = "beatmapset-discussions-#{nextVal()}"
 
     @state =
       discussionCollapses: {}
@@ -194,7 +196,7 @@ export class Discussions extends React.PureComponent
 
     return if targetPreset == @currentSort()
 
-    sort = osu.jsonClone @state.sort
+    sort = jsonClone @state.sort
     sort[@props.mode] = targetPreset
 
     @setState {sort}

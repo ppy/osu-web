@@ -19,7 +19,13 @@ export class Main extends React.PureComponent<Props> {
         <HeaderV4 theme='friends' />
 
         <div className='osu-page osu-page--users'>
-          <UserList playmodeFilter={this.props.group.has_playmodes} title={this.props.group.name} users={this.props.users} />
+          <UserList
+            descriptionHtml={this.props.group.description?.html}
+            playmodeFilter={this.props.group.has_playmodes}
+            playmodeFilterGroupId={this.props.group.id}
+            title={this.props.group.name}
+            users={this.props.users}
+          />
         </div>
       </div>
     );

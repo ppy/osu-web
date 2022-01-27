@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
+            'multiple_accounts' => 'Verwendet mehrere Konten',
             'insults' => 'Beleidigt mich / andere',
             'spam' => 'Spamming',
             'unwanted_content' => 'Verlinkt unangemessene Inhalte',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Ausstehende Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -227,7 +228,7 @@ return [
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
-                    'title' => 'Play-Verlauf',
+                    'title' => 'Spielverlauf',
                     'count_label' => 'Spiele',
                 ],
                 'most_played' => [
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Neueste',
                 'title' => 'Medaillen',
             ],
+            'multiplayer' => [
+                'title' => 'Mehrspielerspiele',
+            ],
             'posts' => [
                 'title' => 'Beiträge',
                 'title_longer' => 'Neueste Beiträge',
@@ -320,6 +324,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Erster Platz',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -374,7 +387,7 @@ return [
             'placeholder' => 'Seiteninhalt hier eingeben',
 
             'restriction_info' => [
-                '_' => 'Sie müssen ein :link sein, um diese Funktion freizuschalten.',
+                '_' => 'Du musst ein :link sein, um diese Funktion freizuschalten.',
                 'link' => 'osu!supporter',
             ],
         ],
@@ -402,10 +415,10 @@ return [
             'total_hits' => 'Anzahl Treffer',
             'total_score' => 'Gesamtpunktzahl',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
-            'loved_beatmapset_count' => 'Loved Beatmaps',
-            'unranked_beatmapset_count' => 'Ausstehende Beatmaps',
             'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'pending_beatmapset_count' => 'Ausstehende Beatmaps',
+            'ranked_beatmapset_count' => 'Ranked & Approved Beatmaps',
         ],
     ],
 

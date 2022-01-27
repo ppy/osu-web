@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Yavaş ol, daha çok oyna.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
+    ],
+
     'index' => [
         'title' => 'Beatmap Kataloğu',
         'guest_title' => 'Beatmapler',
@@ -34,7 +38,7 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Karma bir beatmap seti, adaylık için en az bir oyun modu seçmenizi gerektirir.',
         'incorrect_mode' => ':mode modunu aday göstermek için izniniz yok.',
-        'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için tam aday gösterici olmanız gerekmektedir.',
+        'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için asil aday gösterici olmanız gerekmektedir.',
         'too_many' => 'Adaylık şartı zaten yerine getirildi.',
 
         'dialog' => [
@@ -150,11 +154,12 @@ return [
                 'combo' => 'Maks Kombo',
                 'miss' => 'Iska',
                 'mods' => 'Modlar',
+                'pin' => '',
                 'player' => 'Oyuncu',
                 'pp' => '',
                 'rank' => 'Sıralama',
-                'score_total' => 'Toplam Skor',
                 'score' => 'Skor',
+                'score_total' => 'Toplam Skor',
                 'time' => 'Zaman',
             ],
 

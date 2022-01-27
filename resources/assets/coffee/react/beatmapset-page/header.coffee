@@ -1,10 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
-import { BigButton } from 'big-button'
+import BeatmapsetMenu from 'beatmapsets-show/beatmapset-menu'
+import BigButton from 'big-button'
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -12,6 +12,9 @@ import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { createClickCallback } from 'utils/html'
+import { beatmapDownloadDirect, wikiUrl } from 'utils/url'
+import { Stats } from './stats'
+
 el = React.createElement
 
 export class Header extends React.Component
@@ -125,7 +128,7 @@ export class Header extends React.Component
                 display: 'none'
               @filteredFavourites.map (user) ->
                 a
-                  href: laroute.route('users.show', user: user.id)
+                  href: route('users.show', user: user.id)
                   className: 'js-usercard user-list-popup__user'
                   key: user.id
                   'data-user-id': user.id
@@ -137,16 +140,21 @@ export class Header extends React.Component
           span className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
             a
               className: 'beatmapset-header__details-text-link'
-              href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
+              href: route 'beatmapsets.index', q: getTitle(@props.beatmapset)
               getTitle(@props.beatmapset)
             if @props.beatmapset.nsfw
-              span className: 'nsfw-badge', osu.trans('beatmapsets.nsfw_badge.label')
+              span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
 
           span className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
             a
               className: 'beatmapset-header__details-text-link'
-              href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
+              href: route 'beatmapsets.index', q: getArtist(@props.beatmapset)
               getArtist(@props.beatmapset)
+            if @props.beatmapset.track_id?
+              a
+                className: 'beatmapset-badge beatmapset-badge--featured-artist'
+                href: route 'tracks.show', @props.beatmapset.track_id
+                osu.trans('beatmapsets.featured_artist_badge.label')
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 
@@ -157,32 +165,34 @@ export class Header extends React.Component
 
             if currentUser.id?
               el BigButton,
+                icon: favouriteButton.icon
+                modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
                 props:
                   onClick: @toggleFavourite
                   title: osu.trans "beatmapsets.show.details.#{favouriteButton.action}"
-                modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
-                icon: favouriteButton.icon
 
             @renderDownloadButtons()
 
             if @props.beatmapset.discussion_enabled
               el BigButton,
-                modifiers: ['beatmapset-header']
-                text:
-                  top: osu.trans 'beatmapsets.show.discussion'
+                href: route('beatmapsets.discussion', beatmapset: @props.beatmapset.id)
                 icon: 'far fa-comments'
-                props:
-                  href: laroute.route 'beatmapsets.discussion', beatmapset: @props.beatmapset.id
+                modifiers: 'beatmapset-header'
+                text: osu.trans 'beatmapsets.show.discussion'
             else if @props.beatmapset.legacy_thread_url
               el BigButton,
-                modifiers: ['beatmapset-header']
-                text:
-                  top: osu.trans 'beatmapsets.show.discussion'
+                href: @props.beatmapset.legacy_thread_url
                 icon: 'far fa-comments'
-                props:
-                  href: @props.beatmapset.legacy_thread_url
+                modifiers: 'beatmapset-header'
+                text: osu.trans('beatmapsets.show.discussion')
 
             @renderLoginButton()
+
+            if currentUser.id? && currentUser.id != @props.beatmapset.user_id && !@props.beatmapset.is_scoreable
+              div className: 'beatmapset-header__more',
+                div className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail',
+                  el BeatmapsetMenu,
+                    beatmapset: @props.beatmapset
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           @renderStatusBar()
@@ -196,7 +206,7 @@ export class Header extends React.Component
     return unless currentUser.id? && @hasAvailabilityInfo()
 
     href = if @props.beatmapset.availability.more_information == 'rule_violation'
-              "#{route('wiki.show', locale: currentLocale, path: 'Rules')}#beatmap-submission-rules"
+              "#{wikiUrl('Rules')}#beatmap-submission-rules"
             else
               @props.beatmapset.availability.more_information
 
@@ -224,18 +234,18 @@ export class Header extends React.Component
           [
             @downloadButton
               key: 'video'
-              href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id
+              href: route 'beatmapsets.download', beatmapset: @props.beatmapset.id
               bottomTextKey: 'video'
 
             @downloadButton
               key: 'no-video'
-              href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id, noVideo: 1
+              href: route 'beatmapsets.download', beatmapset: @props.beatmapset.id, noVideo: 1
               bottomTextKey: 'no-video'
           ]
         else
           @downloadButton
             key: 'default'
-            href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id
+            href: route 'beatmapsets.download', beatmapset: @props.beatmapset.id
 
         @downloadButton
           key: 'direct'
@@ -243,9 +253,9 @@ export class Header extends React.Component
           osuDirect: true
           href:
             if currentUser.is_supporter
-              _exported.OsuUrlHelper.beatmapDownloadDirect @props.currentBeatmap.id
+              beatmapDownloadDirect @props.currentBeatmap.id
             else
-              laroute.route 'support-the-game'
+              route 'support-the-game'
       ]
 
 
@@ -253,11 +263,11 @@ export class Header extends React.Component
     if !currentUser.id?
       el BigButton,
         extraClasses: ['js-user-link']
-        modifiers: ['beatmapset-header']
+        icon: 'fas fa-lock'
+        modifiers: 'beatmapset-header'
         text:
           top: osu.trans 'beatmapsets.show.details.login_required.top'
           bottom: osu.trans 'beatmapsets.show.details.login_required.bottom'
-        icon: 'fas fa-lock'
 
 
   renderStatusBar: =>
@@ -273,15 +283,14 @@ export class Header extends React.Component
   downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
     el BigButton,
       key: key
-      modifiers: ['beatmapset-header']
+      href: href
+      icon: icon
+      modifiers: 'beatmapset-header'
+      props:
+        'data-turbolinks': 'false'
       text:
         top: osu.trans "beatmapsets.show.details.download.#{topTextKey}"
         bottom: if bottomTextKey? then osu.trans "beatmapsets.show.details.download.#{bottomTextKey}"
-      icon: icon
-      extraClasses: if !osuDirect then ['js-beatmapset-download-link']
-      props:
-        href: href
-        'data-turbolinks': 'false'
 
 
   toggleFavourite: (e) ->

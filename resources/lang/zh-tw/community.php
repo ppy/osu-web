@@ -7,16 +7,16 @@ return [
     'support' => [
         'convinced' => [
             'title' => '可以可以，買買買！',
-            'support' => '支持 osu!',
+            'support' => '贊助 osu!',
             'gift' => '或者以禮物方式贈送給其它玩家',
             'instructions' => '點擊愛心前往 osu! 商店',
         ],
         'why-support' => [
-            'title' => '我為什麼要支持 osu! ？錢都花到哪兒了？',
+            'title' => '我為什麼要贊助 osu! ？錢都花到哪兒了？',
 
             'team' => [
-                'title' => '支持團隊',
-                'description' => 'Osu! 是由一小群團隊進行開發和營運。您的贊助可以幫助團隊活久一點。',
+                'title' => '資助團隊',
+                'description' => 'osu! 是由一個小團隊進行開發和營運。您的贊助可以幫助團隊...你知道的，維持生計。',
             ],
             'infra' => [
                 'title' => '伺服器基礎設施',
@@ -128,8 +128,8 @@ return [
                 'description' => '你的好友上限將從 :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '上載更多圖譜',
-                'description' => '',
+                'title' => '上傳更多圖譜',
+                'description' => '你能擁有的待處理圖譜數量上限是基本上限加上額外上限，額外上限取決於你已進榜的圖譜數量（有最大值）。<br/><br/>通常基本上限為 :base，每進榜一張圖譜獲得 :bonus 額外上限（最大值為 :bonus_max）。若你是贊助者，基本上限增加至 :supporter_base，每進榜一張圖譜獲得 :supporter_bonus 額外上限（最大值為 :supporter_bonus_max）。',
             ],
             'friend_filtering' => [
                 'title' => '好友排行榜',

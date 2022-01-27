@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 
-class @InputHandler
+class window.InputHandler
   @CANCEL = 'cancel'
   @SUBMIT = 'submit'
 

@@ -27,6 +27,10 @@ return [
             'remove' => 'Supprimer le vote',
             'used_up' => 'Vous avez utilisé tous vos votes',
         ],
+
+        'progress' => [
+            '_' => ':used / :max votes utilisés',
+        ],
     ],
     'entry' => [
         '_' => 'inscription',
@@ -61,7 +65,7 @@ return [
     ],
     'states' => [
         'entry' => 'Entrée ouverte',
-        'voting' => 'Vote démarré',
+        'voting' => 'En cours de vote',
         'results' => 'Résultats tombés',
     ],
 ];

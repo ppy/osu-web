@@ -3,23 +3,39 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\DeletedUser;
+use App\Models\LegacyMatch;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
+use League\Fractal\Resource\Item;
 
 class ScoreTransformer extends TransformerAbstract
 {
+    const USER_PROFILE_INCLUDES = ['beatmap', 'beatmapset', 'user'];
+    const USER_PROFILE_INCLUDES_PRELOAD = [
+        'beatmap',
+        'beatmap.beatmapset',
+        'user',
+    ];
+
     protected $availableIncludes = [
         'beatmap',
         'beatmapset',
+        'current_user_attributes',
         'rank_country',
         'rank_global',
         'weight',
         'user',
         'match',
+    ];
+
+    protected $defaultIncludes = [
+        'current_user_attributes',
     ];
 
     public function transform($score)
@@ -31,6 +47,7 @@ class ScoreTransformer extends TransformerAbstract
             'mods' => $score->enabled_mods,
             'score' => $score->score,
             'max_combo' => $score->maxcombo,
+            'passed' => $score->pass,
             'perfect' => $score->perfect,
             'statistics' => [
                 'count_50' => $score->count50,
@@ -45,7 +62,8 @@ class ScoreTransformer extends TransformerAbstract
             'created_at' => json_time($score->date),
         ];
 
-        $best = $score instanceof ScoreBest ? $score : $score->best;
+        // this `best` relation is also used by `current_user_attributes` include.
+        $best = $score->best;
 
         if ($best === null) {
             $ret['best_id'] = null;
@@ -58,14 +76,15 @@ class ScoreTransformer extends TransformerAbstract
         if ($score instanceof ScoreModel) {
             $ret['mode'] = $score->getMode();
             $ret['mode_int'] = Beatmap::modeInt($score->getMode());
-            $ret['replay'] = $score->best->replay ?? false;
-        }
-
-        if ($score instanceof ScoreBest) {
-            $ret['replay'] = $score->replay;
+            $ret['replay'] = $best->replay ?? false;
         }
 
         return $ret;
+    }
+
+    public function includeCurrentUserAttributes(LegacyMatch\Score|ScoreModel $score): Item
+    {
+        return $this->item($score, new Score\CurrentUserAttributesTransformer());
     }
 
     public function includeMatch($score)
@@ -108,16 +127,12 @@ class ScoreTransformer extends TransformerAbstract
 
     public function includeWeight($score)
     {
-        if (($score instanceof ScoreBest) === false) {
-            return;
-        }
-
-        return $this->item($score, function ($score) {
-            return [
+        if ($score instanceof ScoreBest && $score->weight !== null) {
+            return $this->primitive([
                 'percentage' => $score->weight * 100,
                 'pp' => $score->weightedPp(),
-            ];
-        });
+            ]);
+        }
     }
 
     public function includeUser($score)

@@ -7,29 +7,20 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\ModdingHistoryEventsBundle;
+use App\Libraries\User\FindForProfilePage;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
-use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ModdingHistoryController extends Controller
 {
-    protected $isModerator;
-    protected $isKudosuModerator;
     protected $searchParams;
     protected $user;
 
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $userId = request()->route('user');
-            $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
-            $this->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
-            $this->user = User::lookupWithHistory($userId, null, true);
-
-            if ($this->user === null || $this->user->isBot() || !priv_check('UserShow', $this->user)->can()) {
-                return ext_view('users.show_not_found', null, null, 404);
-            }
+            $this->user = FindForProfilePage::find($request->route('user'));
 
             $userId = $this->user->getKey();
             $this->searchParams = array_merge(request()->query(), [
@@ -37,17 +28,10 @@ class ModdingHistoryController extends Controller
                 'user' => $userId,
             ]);
 
-            if ((string) $this->user->user_id !== (string) $userId) {
-                return ujs_redirect(route(
-                    $request->route()->getName(),
-                    $this->searchParams
-                ));
-            }
-
             // This bit isn't needed when ModdingHistoryEventsBundle is used.
-            $this->searchParams['is_moderator'] = $this->isModerator;
-            $this->searchParams['is_kudosu_moderator'] = $this->isKudosuModerator;
-            if (!$this->isModerator) {
+            $this->searchParams['is_moderator'] = priv_check('BeatmapDiscussionModerate')->can();
+            $this->searchParams['is_kudosu_moderator'] = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
+            if (!$this->searchParams['is_moderator']) {
                 $this->searchParams['with_deleted'] = false;
             }
 

@@ -1,13 +1,16 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { ScoreTop } from './score-top'
-import { ScoreboardTab } from './scoreboard-tab'
-import { ScoreboardTable } from './scoreboard-table'
+import { route } from 'laroute'
+import ScoreTop from 'beatmapsets-show/score-top'
 import ScoreboardMod from 'beatmapsets-show/scoreboard-mod'
 import * as React from 'react'
 import { div, h2, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { nextVal } from 'utils/seq'
+import { ScoreboardTab } from './scoreboard-tab'
+import { ScoreboardTable } from './scoreboard-table'
+
 el = React.createElement
 
 export class Scoreboard extends React.PureComponent
@@ -16,22 +19,10 @@ export class Scoreboard extends React.PureComponent
   MANIA_KEY_MODS = ['4K', '5K', '6K', '7K', '8K', '9K']
   MANIA_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', 'MR']
 
-  # FIXME: update to use utils/score's modeAttributesMap
-  hitTypeMapping: =>
-    # mapping of [displayed text, internal name] for each mode
-    switch @props.beatmap.mode
-      when 'osu'
-        [['300', '300'], ['100', '100'], ['50', '50']]
-      when 'taiko'
-        [['great', '300'], ['good', '100']]
-      when 'fruits'
-        [['fruits', '300'], ['ticks', '100'], ['drp miss', 'katu']]
-      when 'mania'
-        [['max', 'geki'], ['300', '300'], ['200', 'katu'], ['100', '100'], ['50', '50']]
-
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapsets-show-scoreboard-#{nextVal()}"
     @state =
       loading: false
 
@@ -39,10 +30,10 @@ export class Scoreboard extends React.PureComponent
     @setState loading: isLoading
 
   componentDidMount: ->
-    $.subscribe 'beatmapset:scoreboard:loading.beatmapsetPageScoreboard', @setLoading
+    $.subscribe "beatmapset:scoreboard:loading.#{@eventId}", @setLoading
 
   componentWillUnmount: ->
-    $.unsubscribe '.beatmapsetPageScoreboard'
+    $.unsubscribe ".#{@eventId}"
 
   render: ->
     userScoreFound = false
@@ -69,7 +60,7 @@ export class Scoreboard extends React.PureComponent
             type: type
             active: @props.type == type
 
-      if currentUser.is_supporter && @props.isScoreable
+      if @props.isScoreable
         div
           className: classWithModifiers('beatmapset-scoreboard__mods', initial: @props.enabledMods.length == 0)
           for mod in mods
@@ -92,7 +83,6 @@ export class Scoreboard extends React.PureComponent
             el ScoreboardTable,
               beatmap: @props.beatmap
               scores: @props.scores
-              hitTypeMapping: @hitTypeMapping()
               scoreboardType: @props.type
 
         else if !@props.isScoreable
@@ -100,7 +90,7 @@ export class Scoreboard extends React.PureComponent
             className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'
             osu.trans 'beatmapsets.show.scoreboard.no_scores.unranked'
 
-        else if currentUser.is_supporter || @props.type == 'global'
+        else if currentUser.is_supporter || (@props.type == 'global' && @props.enabledMods.length == 0)
           translationKey = if @state.loading then 'loading' else @props.type
 
           p
@@ -114,7 +104,7 @@ export class Scoreboard extends React.PureComponent
             p
               className: 'beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'
               dangerouslySetInnerHTML:
-                __html: osu.trans 'beatmapsets.show.scoreboard.supporter-link', link: laroute.route 'support-the-game'
+                __html: osu.trans 'beatmapsets.show.scoreboard.supporter-link', link: route 'support-the-game'
 
   scoreItem: ({score, rank, itemClass, modifiers}) ->
     el ScoreTop,
@@ -123,4 +113,3 @@ export class Scoreboard extends React.PureComponent
       position: rank
       beatmap: @props.beatmap
       modifiers: modifiers
-      hitTypeMapping: @hitTypeMapping()

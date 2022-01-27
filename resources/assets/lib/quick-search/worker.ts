@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 export type Section = 'user' | 'user_others' | 'beatmapset' | 'beatmapset_others' | 'others';
 const SECTIONS: Section[] = [
@@ -44,14 +44,17 @@ interface SearchResultUser extends SearchResultSummary {
 const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
 export default class Worker {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   debouncedSearch = debounce(this.search, 500);
   @observable query = '';
-  @observable searching = false;
   @observable searchResult: SearchResult | null = null;
+  @observable searching = false;
   @observable selected: SelectedItem | null = null;
 
   private xhr: JQueryXHR | null = null;
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action cycleSelectedItem(direction: number) {
     let newSelected: SelectedItem | null;
@@ -103,21 +106,24 @@ export default class Worker {
     }
 
     switch (SECTIONS[this.selected.section]) {
-      case 'user':
+      case 'user': {
         const userId = searchResult.user.users[this.selected.index]?.id;
         return userId ? route('users.show', { user: userId }) : undefined;
+      }
       case 'user_others':
         return route('search', { mode: 'user', query: this.query });
-      case 'beatmapset':
+      case 'beatmapset': {
         const id = searchResult.beatmapset.beatmapsets[this.selected.index]?.id;
         return id ? route('beatmapsets.show', { beatmapset: id }) : undefined;
+      }
       case 'beatmapset_others':
         return route('search', { mode: 'beatmapset', query: this.query });
-      case 'others':
+      case 'others': {
         const others = otherModes.filter((mode) => searchResult[mode].total > 0);
         const selectedMode = others[this.selected.index];
 
         return route('search', { mode: selectedMode, query: this.query });
+      }
     }
   }
 

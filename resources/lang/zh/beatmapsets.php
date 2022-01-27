@@ -6,13 +6,17 @@
 return [
     'availability' => [
         'disabled' => '该谱面现在无法下载。',
-        'parts-removed' => '应 歌曲作者/第三方版权持有者 的要求，这张谱面已经下架。',
+        'parts-removed' => '应歌曲作者或第三方版权持有者的要求，这张谱面已无法下载。',
         'more-info' => '点击这里查看更多信息。',
-        'rule_violation' => '谱面中不适合 osu! 的内容已在审核后被移除。',
+        'rule_violation' => '已在审核后移除了谱面中不适合于 osu! 展示的内容。',
     ],
 
     'download' => [
         'limit_exceeded' => '慢一点，打几张图再回来吧。',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '精选艺术家',
     ],
 
     'index' => [
@@ -32,16 +36,16 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '有多于一个模式的谱面需要选择至少一个要提名的游戏模式。',
-        'incorrect_mode' => '你没有权限为该模式提名：:mode',
-        'full_bn_required' => '你必须是正式提名人才能进行此提名。',
+        'hybrid_requires_modes' => '您需要在多模式谱面中选择至少一个游戏模式并提名。',
+        'incorrect_mode' => '您没有提名 :mode 模式的权限。',
+        'full_bn_required' => '您必须成为正式审核团队成员才能提名这张谱面。',
         'too_many' => '提名需求已达标。',
 
         'dialog' => [
-            'confirmation' => '你确定要提名这张谱面吗？',
+            'confirmation' => '您确定要提名这张谱面吗？',
             'header' => '提名谱面',
-            'hybrid_warning' => '注意：你只能提名一次，所以请确保你的提名包含所有你想要提名的游戏模式。',
-            'which_modes' => '你要提名哪种模式？',
+            'hybrid_warning' => '注意：您只能提名一次，所以请确保提名包含所有您想要提名的游戏模式。',
+            'which_modes' => '您要提名哪种模式？',
         ],
     ],
 
@@ -53,11 +57,11 @@ return [
         'discussion' => '讨论',
 
         'details' => [
-            'by_artist' => '作者：:artist',
+            'by_artist' => '曲师：:artist',
             'favourite' => '收藏这张谱面',
             'favourite_login' => '登录以收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
-            'mapped_by' => '作图者: :mapper',
+            'mapped_by' => '谱师：:mapper',
             'unfavourite' => '取消收藏',
             'updated_timeago' => '上次更新于 :timeago',
 
@@ -75,10 +79,10 @@ return [
         ],
 
         'details_date' => [
-            'approved' => 'approved 于 :timeago',
-            'loved' => 'loved 于 :timeago',
-            'qualified' => 'qualified 于 :timeago',
-            'ranked' => 'ranked 于 :timeago',
+            'approved' => '于 :timeago Approved',
+            'loved' => '于 :timeago Loved',
+            'qualified' => '于 :timeago Qualified ',
+            'ranked' => '于 :timeago Ranked',
             'submitted' => '提交于 :timeago',
             'updated' => '上次更新于 :timeago',
         ],
@@ -101,11 +105,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '如果你认为此谱面有问题，可以取消提名：:link',
+                '_' => '如果你认为此谱面有问题，可以按下 :link 取消提名。',
             ],
 
             'report' => [
-                '_' => '如果您发现此谱面有问题，请在 :link 通知审核团。',
+                '_' => '如果您发现此谱面有问题，请前往 :link 通知审核团队。',
                 'button' => '报告问题',
                 'link' => '这里',
             ],
@@ -126,7 +130,7 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '此谱面包含少儿不宜的、具有冒犯性的或令人不安的内容。您仍然想查看它吗？',
+            'details' => '此谱面包含少儿不宜、冒犯性或令人不安的内容。您仍然想查看它吗？',
             'title' => '少儿不宜内容',
 
             'buttons' => [
@@ -149,12 +153,13 @@ return [
                 'accuracy' => '准确率',
                 'combo' => '最大连击',
                 'miss' => 'Miss',
-                'mods' => 'Mod',
+                'mods' => 'Mods',
+                'pin' => '',
                 'player' => '玩家',
                 'pp' => '',
                 'rank' => '排名',
-                'score_total' => '得分',
                 'score' => '得分',
+                'score_total' => '得分',
                 'time' => '达成时间',
             ],
 
@@ -175,10 +180,10 @@ return [
             'cs' => '圆圈大小',
             'cs-mania' => '键位数量',
             'drain' => '掉血速度',
-            'accuracy' => '准确率',
+            'accuracy' => '准度要求',
             'ar' => '缩圈速度',
             'stars' => '难度星级',
-            'total_length' => '长度',
+            'total_length' => '长度（游玩长度：:hit_length）',
             'bpm' => 'BPM',
             'count_circles' => '圆圈总数',
             'count_sliders' => '滑条总数',

@@ -31,4 +31,4 @@ channel_id | number                       | `channel_id` of where the message wa
 timestamp  | string                       | when the message was sent, ISO-8601
 content    | string                       | message content
 is_action  | boolean                      | was this an action? i.e. `/me dances`
-sender     | [UserCompact](#usercompact)  | embeded UserCompact object to save additional api lookups
+sender     | [UserCompact](#usercompact)  | embedded UserCompact object to save additional api lookups

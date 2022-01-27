@@ -19,7 +19,7 @@ class ForumForumsControllerTest extends TestCase
 
     public function testShow()
     {
-        $forum = factory(Forum\Forum::class, 'parent')->create();
+        $forum = factory(Forum\Forum::class)->states('parent')->create();
 
         $this
             ->get(route('forum.forums.show', $forum->forum_id))

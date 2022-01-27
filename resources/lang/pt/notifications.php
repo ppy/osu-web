@@ -28,9 +28,9 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Dificuldade de convidado',
+                'beatmap_owner_change' => 'És agora o dono da dificuldade ":beatmap" para o mapa ":title"',
+                'beatmap_owner_change_compact' => 'És agora o dono da dificuldade ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => 'Novo beatmap ":title" por :username',
                 'user_beatmapset_new_compact' => 'Novo beatmap ":title"',
                 'user_beatmapset_new_group' => 'Novos beatmaps por :username',
+
+                'user_beatmapset_revive' => 'O beatmap ":title", foi restaurado por :username',
+                'user_beatmapset_revive_compact' => 'O beatmap ":title", foi restaurado',
             ],
         ],
 
@@ -166,7 +169,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'És agora convidado do mapa ":title"',
             ],
 
             'beatmapset_discussion' => [

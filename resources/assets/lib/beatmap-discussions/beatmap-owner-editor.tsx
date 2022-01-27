@@ -5,7 +5,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { Spinner } from 'spinner';
@@ -40,6 +40,8 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
     this.inputUsername = props.user.username;
     this.inputUser = props.user;
+
+    makeObservable(this);
   }
 
   componentDidUpdate() {

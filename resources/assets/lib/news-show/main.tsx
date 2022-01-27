@@ -7,12 +7,12 @@ import { CommentsManager } from 'comments-manager';
 import NewsPostJson from 'interfaces/news-post-json';
 import NewsSidebarMetaJson from 'interfaces/news-sidebar-meta-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import PostItem from 'news-index/post-item';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
+import StringWithComponent from 'string-with-component';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   container: HTMLElement;
@@ -27,7 +27,7 @@ function NavPost({ post, subtitle, modifiers }: { modifiers: string[]; post?: Ne
 
   return (
     <a
-      className={osu.classWithModifiers('page-nav-fancy', modifiers)}
+      className={classWithModifiers('page-nav-fancy', modifiers)}
       href={route('news.show', { news: post.slug })}
       style={{ backgroundImage: osu.urlPresence(post.first_image) }}
     >
@@ -72,7 +72,7 @@ export default class Main extends React.Component<Props> {
                   <h1 className='news-show__title'>{this.props.post.title}</h1>
                   <p className='news-show__author'>
                     <StringWithComponent
-                      mappings={{ ':user': <strong key='author'>{this.props.post.author}</strong> }}
+                      mappings={{ user: <strong>{this.props.post.author}</strong> }}
                       pattern={osu.trans('news.show.by')}
                     />
                   </p>
@@ -114,8 +114,8 @@ export default class Main extends React.Component<Props> {
                 'data-method': 'put',
                 'data-reload-on-success': 1,
                 'data-remote': true,
-                'data-url': route('news.update', {news: this.props.post.id}),
-                'type': 'button',
+                'data-url': route('news.update', { news: this.props.post.id }),
+                type: 'button',
               },
               text: osu.trans('news.update.button'),
             },

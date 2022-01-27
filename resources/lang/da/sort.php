@@ -15,6 +15,17 @@ return [
     'top' => 'Top',
     'username' => 'Brugernavn',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => 'Oprettelsestid',
         'relevance' => 'Relevans',

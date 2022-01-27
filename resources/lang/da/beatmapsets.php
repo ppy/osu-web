@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => '',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmap-Liste',
         'guest_title' => 'Beatmaps',
@@ -150,11 +154,12 @@ return [
                 'combo' => 'Maks Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Spiller',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Total Score',
                 'score' => 'Score',
+                'score_total' => 'Total Score',
                 'time' => 'Tid',
             ],
 

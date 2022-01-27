@@ -5,13 +5,13 @@
 
 return [
     'all_read' => 'Усе апавяшчэнні прачытаныя!',
-    'delete' => '',
-    'loading' => '',
+    'delete' => 'Выдаліць :type',
+    'loading' => 'Загрузка непрачытаных апавяшчэнняў...',
     'mark_read' => 'Ачысціць :type',
     'none' => 'Няма апавяшчэнняў',
     'see_all' => 'гл. усе апавяшчэнні',
-    'see_channel' => '',
-    'verifying' => '',
+    'see_channel' => 'схадзіць у чат',
+    'verifying' => 'Калі ласка, пацвердзіце сеанс для прагляду апавяшчэнняў',
 
     'filters' => [
         '_' => 'усе',
@@ -28,9 +28,9 @@ return [
             '_' => 'Бітмапа',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Гасцявая цяжкасць',
+                'beatmap_owner_change' => 'Цяпер вы ўладальнік цяжкасці ":beatmap" на бітмапе ":title"',
+                'beatmap_owner_change_compact' => 'Цяпер вы ўладальнік цяжкасці ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -67,8 +67,8 @@ return [
                 'beatmapset_qualify_compact' => 'Бітмапа далучылася да чаргі рэйтынгу',
                 'beatmapset_rank' => '":title" была ранкавана',
                 'beatmapset_rank_compact' => 'Бітмапа была ранкавана',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" была выдаленая з Любімых',
+                'beatmapset_remove_from_loved_compact' => 'Бітмапа была выдаленая з Любімых',
                 'beatmapset_reset_nominations' => 'Праблема, якую размясціў :username выклікала скід намінацыі бітмапы ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Намінацыя была скінута',
             ],
@@ -78,8 +78,8 @@ return [
 
                 'comment_new' => ':username пракаментаваў ":content" у ":title"',
                 'comment_new_compact' => ':username пракаментаваў ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username адказаў ":content" ў ":title"',
+                'comment_reply_compact' => ':username адказаў ":content"',
             ],
         ],
 
@@ -97,15 +97,15 @@ return [
         ],
 
         'build' => [
-            '_' => 'Спic змен',
+            '_' => 'Гісторыя змен',
 
             'comment' => [
                 '_' => 'Новы каментарый',
 
                 'comment_new' => ':username пракаментаваў ":content" у ":title"',
                 'comment_new_compact' => ':username пракаментаваў ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username адказаў ":content" ў ":title"',
+                'comment_reply_compact' => ':username адказаў ":content"',
             ],
         ],
 
@@ -117,8 +117,8 @@ return [
 
                 'comment_new' => ':username пракаментаваў ":content" у ":title"',
                 'comment_new_compact' => ':username пракаментаваў ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username адказаў ":content" ў ":title"',
+                'comment_reply_compact' => ':username адказаў ":content"',
             ],
         ],
 
@@ -143,11 +143,14 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Новая бітмапа',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Новая бітмапа ":title" ад :username',
+                'user_beatmapset_new_compact' => 'Новая бітмапа ":title"',
+                'user_beatmapset_new_group' => 'Новая бітмапа ад :username',
+
+                'user_beatmapset_revive' => 'Бітмапа ":title" адноўлена :username',
+                'user_beatmapset_revive_compact' => 'Бітмапа ":title" адноўлена',
             ],
         ],
 
@@ -158,7 +161,7 @@ return [
                 '_' => 'Новая медаль',
                 'user_achievement_unlock' => 'Адкрыта ":title"!',
                 'user_achievement_unlock_compact' => 'Адкрыта ":title"!',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'Медалі разблакаваны!',
             ],
         ],
     ],
@@ -166,66 +169,66 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Цяпер вы госць бітмапы ":title"',
             ],
 
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'Дыскусія пра ":title" была зачынена',
+                'beatmapset_discussion_post_new' => 'Дыскусія пра ":title" мае новыя абнаўленні',
+                'beatmapset_discussion_unlock' => 'Дыскусія пра ":title" была разблакавана',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Была выяўлена новая праблема на ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" была дыскваліфікавана',
+                'beatmapset_love' => '":title" была павышана да Любімых',
+                'beatmapset_nominate' => '":title" была намінавана',
+                'beatmapset_qualify' => '":title" набраў дастатковую колькасць намінацый і ўвайшоў у чаргу рэйтынгу',
+                'beatmapset_rank' => '":title" была ранкавана',
+                'beatmapset_remove_from_loved' => '":title" была выдаленая з Любімых',
+                'beatmapset_reset_nominations' => 'Намінацыя ":title" была скідана',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Бітмапа ":title" мае новыя каментарыі',
             ],
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Вы атрымалі новае паведамленне ад :username',
             ],
         ],
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Гісторыя зменаў ":title" мае новыя каментарыі',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Навіны ":title" маюць новыя каментарыі',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Ёсць новыя адказы ў ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username разблакаваў нову медаль, ":title"!',
+                'user_achievement_unlock_self' => 'Вы разблакавалі нову медаль, ":title"!',
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username стварыў новыя бітмапы',
             ],
         ],
     ],

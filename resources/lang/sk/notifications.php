@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => '',
                 'user_beatmapset_new_compact' => '',
                 'user_beatmapset_new_group' => '',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

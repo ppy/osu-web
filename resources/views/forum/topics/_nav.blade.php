@@ -16,6 +16,7 @@
         @endif
 
         @include('forum.topics._moderate_toggle_deleted')
+        @include('forum.topics._moderate_logs', compact('topic'))
     @endif
 @endsection
 
@@ -78,7 +79,7 @@
                 href="{{ route('search', ['mode' => 'forum_post', 'topic_id' => $topic->getKey()]) }}"
                 class="btn-circle btn-circle--topic-nav"
                 data-tooltip-float="fixed"
-                title="{{ trans('forum.topics.actions.search') }}"
+                title="{{ osu_trans('forum.topics.actions.search') }}"
             >
                 <span class="btn-circle__content">
                     <i class="fas fa-search"></i>
@@ -92,7 +93,7 @@
                 class="js-forum-posts-seek--jump btn-circle btn-circle--topic-nav"
                 data-jump-target="first"
                 data-tooltip-float="fixed"
-                title="{{ trans('forum.topic.jump.first') }}"
+                title="{{ osu_trans('forum.topic.jump.first') }}"
             >
                 <span class="btn-circle__content">
                     <i class="fas fa-angle-double-left"></i>
@@ -104,7 +105,7 @@
                 class="js-forum-posts-seek--jump btn-circle btn-circle--topic-nav"
                 data-jump-target="previous"
                 data-tooltip-float="fixed"
-                title="{{ trans('forum.topic.jump.previous') }}"
+                title="{{ osu_trans('forum.topic.jump.previous') }}"
             >
                 <span class="btn-circle__content">
                     <i class="fas fa-angle-left"></i>
@@ -148,7 +149,7 @@
                 <div
                     class="js-forum-topic-post-jump--cover forum-topic-nav__counter-cover"
                     data-tooltip-float="fixed"
-                    title="{{ trans('forum.topic.jump.enter') }}"
+                    title="{{ osu_trans('forum.topic.jump.enter') }}"
                 ></div>
             </div>
 
@@ -157,7 +158,7 @@
                 class="js-forum-posts-seek--jump btn-circle btn-circle--topic-nav"
                 data-jump-target="next"
                 data-tooltip-float="fixed"
-                title="{{ trans('forum.topic.jump.next') }}"
+                title="{{ osu_trans('forum.topic.jump.next') }}"
             >
                 <span class="btn-circle__content">
                     <i class="fas fa-angle-right"></i>
@@ -169,7 +170,7 @@
                 class="js-forum-posts-seek--jump btn-circle btn-circle--topic-nav"
                 data-jump-target="last"
                 data-tooltip-float="fixed"
-                title="{{ trans('forum.topic.jump.last') }}"
+                title="{{ osu_trans('forum.topic.jump.last') }}"
             >
                 <span class="btn-circle__content">
                     <i class="fas fa-angle-double-right"></i>
@@ -186,7 +187,7 @@
                 <div
                     class="btn-circle btn-circle--topic-nav btn-circle--blank"
                     data-tooltip-float="fixed"
-                    title="{{ trans('forum.topics.lock.is_locked') }}"
+                    title="{{ osu_trans('forum.topics.lock.is_locked') }}"
                 >
                     <span class="btn-circle__content">
                         <i class="fas fa-lock"></i>
@@ -199,7 +200,7 @@
                         type="button"
                         class="btn-circle btn-circle--topic-nav js-forum-topic-reply--toggle"
                         data-tooltip-float="fixed"
-                        title="{{ trans('forum.topics.actions.reply') }}"
+                        title="{{ osu_trans('forum.topics.actions.reply') }}"
                     >
                         <span class="btn-circle__content">
                             <i class="fas fa-reply"></i>
@@ -210,7 +211,7 @@
                         type="button"
                         class="btn-circle btn-circle--topic-nav js-user-link"
                         data-tooltip-float="fixed"
-                        title="{{ trans('forum.topics.actions.login_reply') }}"
+                        title="{{ osu_trans('forum.topics.actions.login_reply') }}"
                     >
                         <span class="btn-circle__content">
                             <i class="fas fa-reply"></i>
@@ -225,7 +226,7 @@
                 href="{{ route('search', ['mode' => 'forum_post', 'topic_id' => $topic->getKey()]) }}"
                 class="btn-circle btn-circle--topic-nav"
                 data-tooltip-float="fixed"
-                title="{{ trans('forum.topics.actions.search') }}"
+                title="{{ osu_trans('forum.topics.actions.search') }}"
             >
                 <span class="btn-circle__content">
                     <i class="fas fa-search"></i>
@@ -240,7 +241,7 @@
                     <span class="btn-osu-big__content">
                         <span class="btn-osu-big__left">
                             <span class="btn-osu-big__text-top">
-                                {{ trans('forum.topics.actions.reply') }}
+                                {{ osu_trans('forum.topics.actions.reply') }}
                             </span>
                         </span>
 
@@ -261,7 +262,7 @@
 
                         <span class="btn-osu-big__left">
                             <span class="btn-osu-big__text-top">
-                                {{ trans('forum.topics.actions.login_reply') }}
+                                {{ osu_trans('forum.topics.actions.login_reply') }}
                             </span>
                         </span>
                     </span>

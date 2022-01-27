@@ -129,6 +129,7 @@ return [
 
         'options' => [
             'cheating' => 'เล่นผิดกติกา / โกง',
+            'multiple_accounts' => 'การใช้หลายบัญชี',
             'insults' => 'ดูหมิ่น เหยียดหยามตนเอง / ผู้อื่น',
             'spam' => 'สแปม',
             'unwanted_content' => 'ส่งลิงก์ที่มีเนื้อหาที่ไม่เหมาะสม',
@@ -207,11 +208,11 @@ return [
                 'loved' => [
                     'title' => 'บีทแมพที่ Loved',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'บีทแมพที่กำลังทำ',
+                ],
+                'ranked' => [
+                    'title' => 'บีทแมพที่จัดอันดับแล้ว',
                 ],
             ],
             'discussions' => [
@@ -301,6 +302,9 @@ return [
                 'recent' => 'ล่าสุด',
                 'title' => 'เหรียญตรา',
             ],
+            'multiplayer' => [
+                'title' => 'เกมผู้เล่นหลายคน',
+            ],
             'posts' => [
                 'title' => 'โพสต์',
                 'title_longer' => 'โพสต์ล่าสุด',
@@ -321,6 +325,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'First Place Ranks',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -364,8 +377,8 @@ return [
         'not_found' => [
             'reason_1' => 'ผู้ใช้นั้นอาจเปลี่ยนชื่อ',
             'reason_2' => 'ชื่อผู้ใช้อาจไม่สามารถเข้าถึงได้ชั่วคราวเนื่องจากปัญหาเกี่ยวกับความปลอดภัยหรือ abuse',
-            'reason_3' => 'โปรตรวจสอบว่ามีข้อผิดพลาดหรือไม่!',
-            'reason_header' => 'ขอเหตุผลสักสองสามข้อ สำหรับสิ่งที่เกิดขึ้น:',
+            'reason_3' => 'คุณอาจสะกดผิด!',
+            'reason_header' => 'สิ่งนี้เกิดจากเหตุผลบางข้อ:',
             'title' => 'ไม่พบผู้ใช้นี้',
         ],
         'page' => [
@@ -403,10 +416,10 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'คะแนนรวมทั้งหมด',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
-            'loved_beatmapset_count' => 'บีทแมพที่ Loved',
-            'unranked_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
+            'loved_beatmapset_count' => 'บีทแมพที่ Loved',
+            'pending_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
+            'ranked_beatmapset_count' => 'บีทแมพที่จัดอันดับแล้ว',
         ],
     ],
 

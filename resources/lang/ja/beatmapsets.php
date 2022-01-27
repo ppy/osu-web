@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'スピードを落として、もっと遊ぼう。',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '注目アーティスト',
+    ],
+
     'index' => [
         'title' => 'ビートマップリスト',
         'guest_title' => 'ビートマップ',
@@ -150,11 +154,12 @@ return [
                 'combo' => '最大コンボ',
                 'miss' => 'ミス',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'プレイヤー',
                 'pp' => '',
                 'rank' => '順位',
-                'score_total' => '合計スコア',
                 'score' => 'スコア',
+                'score_total' => '合計スコア',
                 'time' => '時間',
             ],
 

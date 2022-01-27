@@ -6,7 +6,7 @@
 namespace App\Models\LegacyMatch;
 
 use App\Models\Beatmap;
-use App\Traits\Scoreable;
+use App\Models\Traits\Scoreable;
 
 /**
  * @property int $count100
@@ -34,6 +34,9 @@ class Score extends Model
         getEnabledModsAttribute as private _getEnabledMods;
     }
 
+    protected $casts = [
+        'pass' => 'bool',
+    ];
     protected $table = 'game_scores';
     protected $primaryKeys = ['game_id', 'slot'];
     protected $hidden = ['frame', 'game_id'];

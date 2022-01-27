@@ -1,24 +1,35 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ScorePin from 'components/score-pin';
 import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
-import { canBeReported, hasReplay, hasShow } from 'score-helper';
+import { canBeReported, hasReplay, hasShow } from 'utils/score-helper';
 
 interface Props {
   score: ScoreJson;
 }
 
-export class PlayDetailMenu extends React.PureComponent<Props> {
+@observer
+export class PlayDetailMenu extends React.Component<Props> {
   render() {
     const { score } = this.props;
 
     const children = (dismiss: () => void) => (
-      <>
+      <div className='simple-menu'>
+        {core.scorePins.canBePinned(score) && (
+          <ScorePin
+            className='simple-menu__item'
+            onUpdate={dismiss}
+            score={score}
+          />
+        )}
+
         {hasShow(score) && (
           <a
             className='simple-menu__item'
@@ -48,7 +59,7 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
             user={score.user}
           />
         )}
-      </>
+      </div>
     );
 
     return (

@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Abranda, joga mais.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Artista destacado',
+    ],
+
     'index' => [
         'title' => 'Listagem de beatmaps',
         'guest_title' => 'Beatmaps',
@@ -150,11 +154,12 @@ return [
                 'combo' => 'Combo máximo',
                 'miss' => 'Erros',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Jogador',
                 'pp' => '',
                 'rank' => 'Posição',
-                'score_total' => 'Pontuação total',
                 'score' => 'Pontuação',
+                'score_total' => 'Pontuação total',
                 'time' => 'Tempo',
             ],
 

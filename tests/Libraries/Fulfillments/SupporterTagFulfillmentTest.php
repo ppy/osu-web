@@ -38,7 +38,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $today = Carbon::today();
 
         $donor = $this->user;
-        $giftee = factory(User::class)->create([
+        $giftee = User::factory()->create([
             'osu_featurevotes' => 0,
             'osu_subscriptionexpiry' => $today->copy(),
             'user_sig' => '',
@@ -72,8 +72,8 @@ class SupporterTagFulfillmentTest extends TestCase
         $today = Carbon::today();
 
         $donor = $this->user;
-        $giftee1 = factory(User::class)->create(['user_sig' => '']); // prevent factory from generating user_sig
-        $giftee2 = factory(User::class)->create(['user_sig' => '']);
+        $giftee1 = User::factory()->create(['user_sig' => '']); // prevent factory from generating user_sig
+        $giftee2 = User::factory()->create(['user_sig' => '']);
 
         $this->createDonationOrderItem($this->order, $giftee1, false, false);
         $this->createDonationOrderItem($this->order, $giftee1, false, false);
@@ -240,12 +240,12 @@ class SupporterTagFulfillmentTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create([
+        $this->user = User::factory()->create([
             'osu_featurevotes' => 0,
             'osu_subscriptionexpiry' => Carbon::today(),
         ]);
 
-        $this->order = factory(Order::class, 'paid')->create([
+        $this->order = factory(Order::class)->states('paid')->create([
             'user_id' => $this->user->user_id,
         ]);
     }
@@ -279,7 +279,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
     private function createOrderItem($user, $duration, $amount)
     {
-        return factory(OrderItem::class, 'supporter_tag')->create([
+        return factory(OrderItem::class)->states('supporter_tag')->create([
             'order_id' => $this->order->order_id,
             'cost' => $amount,
             'extra_data' => [

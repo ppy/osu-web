@@ -62,7 +62,7 @@ return [
         'message_placeholder' => [
             'general' => '在此處輸入以發佈至整體 (:version)',
             'generalAll' => '在此處輸入以發佈至整體 (所有難度)',
-            'review' => '',
+            'review' => '在此處輸入以發佈評論',
             'timeline' => '在此處輸入以發佈至時間軸 (:version)',
         ],
 
@@ -97,20 +97,20 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => '新評論',
             'embed' => [
                 'delete' => '刪除',
-                'missing' => '',
+                'missing' => '[該討論已移除]',
                 'unlink' => '取消連結',
                 'unsaved' => '尚未儲存',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => '發佈於「所有難度」的無法進行時間戳記',
+                    'diff' => '如果這個 :type 開頭是時間戳，時間戳會在「時間軸」下顯示。',
                 ],
             ],
             'insert-block' => [
                 'paragraph' => '插入段落',
-                'praise' => '',
+                'praise' => '插入表揚',
                 'problem' => '插入問題',
                 'suggestion' => '插入建議',
             ],
@@ -183,21 +183,22 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => '操作發生錯誤，請重新載入頁面。',
         'love' => '喜歡',
+        'love_choose' => '選擇 Loved 圖譜的難度',
         'love_confirm' => '喜歡這張圖譜嗎？',
         'nominate' => '提名',
         'nominate_confirm' => '確定要提名這張圖譜？',
         'nominated_by' => '被 :users 提名',
         'not_enough_hype' => "沒有足夠的推薦。",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => '從 Loved 中移除',
+        'remove_from_loved_prompt' => '從 Loved 中移除的原因：',
         'required_text' => '提名數: :current/:required',
         'reset_message_deleted' => '已刪除',
         'title' => '提名狀態',
         'unresolved_issues' => '仍然有需解決的問題 。',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
+            '_' => '若沒找到問題，該圖譜將於 :date 進榜。位於 :queue 中的 #:position。',
+            'queue' => 'ranking 列隊',
             'soon' => '不久後',
         ],
 
@@ -226,7 +227,7 @@ return [
                 'genre' => '曲風',
                 'language' => '語言',
                 'mode' => '模式',
-                'nsfw' => '',
+                'nsfw' => '成人內容',
                 'played' => '玩過',
                 'rank' => '成績',
                 'status' => '分類',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => '包括轉換圖譜',
+        'featured_artists' => '精選藝術家',
         'follows' => '訂閱的作圖者',
         'recommended' => '推薦難度',
     ],
@@ -310,11 +312,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'RX' => 'Relax',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => '所有',

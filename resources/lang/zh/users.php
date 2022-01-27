@@ -50,8 +50,8 @@ return [
     ],
 
     'disabled' => [
-        'title' => '哎呀！看起来您的帐户已被禁用。',
-        'warning' => "如果您违反了规则，我们原则上在一个月的期限以内不会考虑解禁您的帐户。在此之后，您如果需要，可以随时联系我们。请注意，在一个帐户被封后创建新帐户会<strong>使您的封禁期限被延长</strong>。您更需要注意<strong>您每创建一个新帐户都会更严重地违反规则</strong>。我们强烈建议您不要误入歧途。",
+        'title' => '哎呀！看起来您的账户已被禁用。',
+        'warning' => "如果您违反了规则，原则上在一个月的期限以内我们不会考虑解禁您的账户。在此之后，您如果需要，可以随时联系我们。请注意，在一个账户被封后创建新账户会<strong>使您的封禁期限被延长</strong>。您更需要注意<strong>您每创建一个新账户都会更严重地违反规则</strong>。我们强烈建议您不要误入歧途。",
 
         'if_mistake' => [
             '_' => '如果你觉得我们误封了你的账号，你可以通过电子邮件（:email）或者点击本页面右下方的问号来联系我们。一般来说，我们犯错的几率是很低的。我们只以可靠的数据为参考进行这一类的操作。如果你执意违反规则，我们保留拒绝你的请求的权利。',
@@ -59,11 +59,11 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => '我们认为你的帐户已被盗用。在确认身份期间，该帐户会被暂时停用。',
+            'compromised' => '我们认为你的账户已被盗用。在确认身份期间，账户被暂时停用。',
             'opening' => '您的账户可能由于这几种原因被禁用：',
 
             'tos' => [
-                '_' => '您已经违反了一条或多条 :community_rules 或是 :tos',
+                '_' => '您已经违反了一条或多条 :community_rules 或是 :tos。',
                 'community_rules' => '社区规则',
                 'tos' => '服务条款',
             ],
@@ -84,21 +84,21 @@ return [
         '_' => '登录',
         'button' => '登录',
         'button_posting' => '登录中...',
-        'email_login_disabled' => '当前不可以使用电子邮件登陆。请使用您的用户名。',
+        'email_login_disabled' => '当前不可以使用电子邮件登录。请使用您的用户名。',
         'failed' => '登录失败',
         'forgot' => '忘记密码？',
         'info' => '请登录以继续',
         'invalid_captcha' => '验证码无效，请刷新页面后重试。',
-        'locked_ip' => 'IP 已被锁定，请稍等几分钟',
+        'locked_ip' => 'IP 已被锁定，请稍等几分钟。',
         'password' => '密码',
         'register' => "没有 osu! 账户？现在就注册一个！",
-        'remember' => '记住此电脑',
+        'remember' => '在这台电脑上记住我',
         'title' => '登录以继续',
         'username' => '用户名',
 
         'beta' => [
             'main' => 'Beta 仅限于特定用户访问',
-            'small' => '（在不久后将对 osu!支持者 开放）',
+            'small' => '（在不久后将对 osu! 支持者开放）',
         ],
     ],
 
@@ -127,7 +127,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => '违规 / 作弊',
+            'cheating' => '作弊',
+            'multiple_accounts' => '使用多账号（开小号）',
             'insults' => '侮辱 我/其他人',
             'spam' => '刷屏/垃圾广告',
             'unwanted_content' => '发布包含不当内容的链接',
@@ -144,14 +145,14 @@ return [
         'change_avatar' => '更换头像！',
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
-        'is_supporter' => 'osu!supporter',
+        'is_supporter' => 'osu! 支持者',
         'joined_at' => '注册时间：:date',
-        'lastvisit' => '上次登录：:date',
+        'lastvisit' => '最后活跃：:date',
         'lastvisit_online' => '当前在线',
         'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
         'origin_country' => '来自 :country',
         'previous_usernames' => '曾用名',
-        'plays_with' => '惯用 :devices',
+        'plays_with' => '用 :devices 游玩',
         'title' => ":username 的个人资料",
 
         'comments_count' => [
@@ -163,11 +164,11 @@ return [
                 'button' => '更换个人资料头图',
                 'defaults_info' => '在将来会有更多头图可用',
                 'upload' => [
-                    'broken_file' => '上传失败.请检查上传的图片然后重试.',
+                    'broken_file' => '上传失败。请检查上传的图片然后重试。',
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'size_info' => '图片大小最好是 2400x620 像素',
+                    'size_info' => '图片尺寸最好是 2400x620 像素',
                     'too_large' => '上传的图片过大。',
                     'unsupported_format' => '不支持的格式。',
 
@@ -194,23 +195,23 @@ return [
                 'title' => '成就',
             ],
             'beatmaps' => [
-                'by_artist' => 'by :artist',
+                'by_artist' => '曲师：:artist',
                 'title' => '谱面',
 
                 'favourite' => [
                     'title' => '收藏的谱面',
                 ],
                 'graveyard' => [
-                    'title' => '坟场里的谱面',
+                    'title' => '已停更的谱面',
                 ],
                 'loved' => [
                     'title' => 'Loved 的谱面',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved 的谱面',
+                'pending' => [
+                    'title' => 'Pending 谱面',
                 ],
-                'unranked' => [
-                    'title' => 'Pending 的谱面',
+                'ranked' => [
+                    'title' => 'Ranked 谱面',
                 ],
             ],
             'discussions' => [
@@ -232,7 +233,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => '游玩次数',
-                    'title' => '玩得最多的谱面',
+                    'title' => '最多游玩的谱面',
                 ],
                 'recent_plays' => [
                     'accuracy' => '准确率：:percentage',
@@ -254,7 +255,7 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '因讨论帖 :post 的 kudosu 移除操作的撤销而获得 :amount',
+                            'give' => '因移除讨论帖 :post 内送出的 kudosu 而获得 :amount kudosu',
                         ],
 
                         'deny_kudosu' => [
@@ -300,6 +301,9 @@ return [
                 'recent' => '最近取得',
                 'title' => '成就',
             ],
+            'multiplayer' => [
+                'title' => '多人游戏',
+            ],
             'posts' => [
                 'title' => '回复',
                 'title_longer' => '最近回复',
@@ -321,17 +325,26 @@ return [
                 'first' => [
                     'title' => '第一名',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
-                'given' => '给予投票（最近三个月）',
-                'received' => '所得投票（最近三个月）',
+                'given' => '最近三个月的给予投票',
+                'received' => '最近三个月所得投票',
                 'title' => '投票',
                 'title_longer' => '最近投票',
                 'vote_count' => ':count_delimited 票',
             ],
             'account_standing' => [
-                'title' => '帐号状态',
-                'bad_standing' => "<strong>:username</strong> 的帐号存在不良记录 :(",
+                'title' => '账号状态',
+                'bad_standing' => "<strong>:username</strong> 的账号存在不良记录 :(",
                 'remaining_silence' => '<strong>:username</strong> 的禁言将在 :duration 解除',
 
                 'recent_infringements' => [
@@ -341,7 +354,7 @@ return [
                     'length' => '时长',
                     'length_permanent' => '永久',
                     'description' => '原因',
-                    'actor' => '裁决者： :username',
+                    'actor' => '执行人： :username',
 
                     'actions' => [
                         'restriction' => '封禁',
@@ -362,7 +375,7 @@ return [
         ],
         'not_found' => [
             'reason_1' => '他可能换了用户名。',
-            'reason_2' => '该帐号由于安全或滥用问题暂时不可用。',
+            'reason_2' => '该账号由于安全或滥用问题暂时不可用。',
             'reason_3' => '你可能输错用户名了！',
             'reason_header' => '可能是由于以下原因：',
             'title' => '找不到指定的用户',
@@ -375,7 +388,7 @@ return [
 
             'restriction_info' => [
                 '_' => '你需要成为 :link 才能使用此功能。',
-                'link' => 'osu!支持者',
+                'link' => 'osu! 支持者',
             ],
         ],
         'post_count' => [
@@ -402,10 +415,10 @@ return [
             'total_hits' => '总命中次数',
             'total_score' => '总分',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved 的谱面',
-            'loved_beatmapset_count' => 'Loved 的谱面',
-            'unranked_beatmapset_count' => 'Pending 的谱面',
             'graveyard_beatmapset_count' => '坟场里的谱面',
+            'loved_beatmapset_count' => 'Loved 的谱面',
+            'pending_beatmapset_count' => 'Pending 的谱面',
+            'ranked_beatmapset_count' => 'Ranked 的谱面',
         ],
     ],
 

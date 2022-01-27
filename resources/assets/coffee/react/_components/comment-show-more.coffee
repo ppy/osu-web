@@ -1,11 +1,13 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, span } from 'react-dom-factories'
 import ShowMoreLink from 'show-more-link'
 import { Spinner } from 'spinner'
+import { classWithModifiers } from 'utils/css'
 
 
 el = React.createElement
@@ -33,7 +35,7 @@ export class CommentShowMore extends React.PureComponent
     return null if @props.comments.length >= @props.total
     return null unless (uiState.comments.hasMoreComments[@props.parent?.id ? null] ? true)
 
-    blockClass = osu.classWithModifiers bn, @props.modifiers
+    blockClass = classWithModifiers bn, @props.modifiers
 
     if 'top' in @props.modifiers
       remaining = @props.total - @props.comments.length
@@ -76,7 +78,7 @@ export class CommentShowMore extends React.PureComponent
         created_at: lastComment.createdAt
         votes_count: lastComment.votesCount
 
-    @xhr = $.ajax laroute.route('comments.index'),
+    @xhr = $.ajax route('comments.index'),
       data: params
       dataType: 'json'
     .done (data) =>

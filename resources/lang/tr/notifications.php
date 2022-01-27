@@ -69,8 +69,8 @@ return [
                 'beatmapset_rank_compact' => 'Beatmap dereceli oldu',
                 'beatmapset_remove_from_loved' => '":title" Sevilenlerden çıkarıldı',
                 'beatmapset_remove_from_loved_compact' => 'Beatmap Sevilenlerden çıkarıldı',
-                'beatmapset_reset_nominations' => '":title" setinin aday gösterimi sıfırlandı',
-                'beatmapset_reset_nominations_compact' => 'Aday gösterim sıfırlandı',
+                'beatmapset_reset_nominations' => '":title" setinin adaylığı sıfırlandı',
+                'beatmapset_reset_nominations_compact' => 'Adaylık sıfırlandı',
             ],
 
             'comment' => [
@@ -148,6 +148,9 @@ return [
                 'user_beatmapset_new' => ':username tarafından yeni beatmap ":title"',
                 'user_beatmapset_new_compact' => 'Yeni beatmap ":title"',
                 'user_beatmapset_new_group' => ' :username tarafından yapılmış yeni beatmapler',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 
@@ -186,7 +189,7 @@ return [
                 'beatmapset_qualify' => '":title" yeterli aday gösterimi aldı ve derecelendirme sırasına girdi',
                 'beatmapset_rank' => '":title" dereceli oldu',
                 'beatmapset_remove_from_loved' => '":title" Sevilenlerden çıkarıldı',
-                'beatmapset_reset_nominations' => '":title" setinin aday gösterimi sıfırlandı',
+                'beatmapset_reset_nominations' => '":title" setinin adaylığı sıfırlandı',
             ],
 
             'comment' => [

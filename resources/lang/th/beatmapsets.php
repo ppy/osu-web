@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'ช้าลงหน่อย เล่นมากขึ้น',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'รายการ Beatmap',
         'guest_title' => 'บีทแมพ',
@@ -150,11 +154,12 @@ return [
                 'combo' => 'คอมโบสูงสุด',
                 'miss' => 'Miss',
                 'mods' => 'ม็อด',
+                'pin' => '',
                 'player' => 'ผู้เล่น',
                 'pp' => '',
                 'rank' => 'อันดับ',
-                'score_total' => 'คะแนนรวม',
                 'score' => 'คะแนน',
+                'score_total' => 'คะแนนรวม',
                 'time' => 'เวลา',
             ],
 

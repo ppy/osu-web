@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Oszukiwanie',
+            'multiple_accounts' => 'Korzystanie z wielu kont',
             'insults' => 'Obrażanie mnie lub innych',
             'spam' => 'Spamowanie',
             'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Rankingowe i zatwierdzone beatmapy',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Oczekujące beatmapy',
+                ],
+                'ranked' => [
+                    'title' => 'Rankingowe beatmapy',
                 ],
             ],
             'discussions' => [
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Ostatnie',
                 'title' => 'Medale',
             ],
+            'multiplayer' => [
+                'title' => 'Gry w trybie wieloosobowym',
+            ],
             'posts' => [
                 'title' => 'Posty',
                 'title_longer' => 'Ostatnie posty',
@@ -321,6 +325,15 @@ return [
                 'first' => [
                     'title' => 'Pierwsze miejsca',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => 'Oddane głosy (ostatnie 3 miesiące)',
@@ -331,8 +344,8 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Stan konta',
-                'bad_standing' => "Konto użytkownika <strong>:username</strong> nie jest w dobrym stanie :(",
-                'remaining_silence' => 'Użytkownik <strong>:username</strong> będzie mógł pisać na czacie :duration.',
+                'bad_standing' => "Konto użytkownika :username nie jest w dobrym stanie :(",
+                'remaining_silence' => 'Użytkownik :username będzie mógł pisać na czacie :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Ostatnie przewinienia',
@@ -402,10 +415,10 @@ return [
             'total_hits' => 'Łączna liczba uderzeń',
             'total_score' => 'Łączny wynik',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rankingowe i zatwierdzone beatmapy',
-            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
-            'unranked_beatmapset_count' => 'Oczekujące beatmapy',
             'graveyard_beatmapset_count' => 'Porzucone beatmapy',
+            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
+            'pending_beatmapset_count' => 'Oczekujące beatmapy',
+            'ranked_beatmapset_count' => 'Rankingowe beatmapy',
         ],
     ],
 

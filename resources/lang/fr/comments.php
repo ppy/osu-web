@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'supprimé',
+    'deleted_by' => 'supprimé :timeago par :user',
+    'deleted_by_system' => 'système',
     'deleted_count' => ':count_delimited commentaire supprimé|:count_delimited commentaires supprimés',
     'edited' => 'édité par :user il y a :timeago',
     'pinned' => 'épinglé',
@@ -22,7 +24,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Appuyez sur entrée pour :action. Utilisez shift+entrée pour une nouvelle ligne.',
+            '_' => 'Appuyez sur Entrée pour :action. Appuyez sur Shift+Entrée pour passer à la ligne.',
             'edit' => 'sauvegarder',
             'new' => 'post',
             'reply' => 'répondre',

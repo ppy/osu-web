@@ -1,10 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Voter } from './voter'
+import { route } from 'laroute'
 import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { Voter } from './voter'
 
 el = React.createElement
 bn = 'contest-art-entry'
@@ -88,7 +89,7 @@ export class ArtEntry extends React.Component
               a
                 className: "#{bn}__entrant js-usercard",
                 'data-user-id': @props.entry.results.user_id,
-                href: laroute.route('users.show', user: @props.entry.results.user_id),
+                href: route('users.show', user: @props.entry.results.user_id),
                   @props.entry.results.username
             else
               span className: "#{bn}__entrant", @props.entry.results.actual_name

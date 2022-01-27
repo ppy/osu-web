@@ -19,7 +19,7 @@ return [
             '404' => 'не знайдено',
             '403' => 'доступ заборонено',
             '401' => 'ви не авторизовані',
-            '401-verification' => 'підтвердження аккаунта',
+            '401-verification' => 'підтвердження акаунта',
             '405' => 'не знайдено',
             '422' => 'невірний запит',
             '429' => 'занадто багато запитів',
@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'форум',
+        'topic_logs_controller' => [
+            'index' => 'журнал тем',
+        ],
         'topic_watches_controller' => [
             'index' => 'головна',
         ],
@@ -36,7 +39,10 @@ return [
     'main' => [
         'account_controller' => [
             'edit' => 'головна',
-            'verify_link' => 'підтвердження аккаунта',
+            'verify_link' => 'підтвердження акаунта',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'вибрані виконавці',
         ],
         'artists_controller' => [
             '_' => 'вибрані виконавці',
@@ -62,7 +68,7 @@ return [
         'beatmapsets_controller' => [
             'discussion' => 'обговорення біткарти',
             'index' => 'бібліотека біткарт',
-            'show' => 'інформація о біткарті',
+            'show' => 'інформація про біткарту',
         ],
         'changelog_controller' => [
             '_' => 'історія змін',
@@ -111,13 +117,13 @@ return [
             '_' => 'відновлення паролю',
         ],
         'ranking_controller' => [
-            '_' => 'рейтинг',
+            '_' => 'рейтинги',
         ],
         'scores_controller' => [
             '_' => 'продуктивність',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'крамниця',
         ],
         'tournaments_controller' => [
             '_' => 'турніри',
@@ -127,7 +133,7 @@ return [
             'disabled' => 'увага',
         ],
         'wiki_controller' => [
-            '_' => 'база знань',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -135,12 +141,20 @@ return [
             '_' => 'рейтинг',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'авторизація додатку',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'крамниця',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'інформація про модера',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'історія мультиплеєру',
         ],
     ],
 ];

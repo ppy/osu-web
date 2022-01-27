@@ -127,6 +127,56 @@ return [
             'previous' => 'cofnij się o 10 postów',
         ],
 
+        'logs' => [
+            '_' => 'Dzienniki zdarzeń wątków',
+            'button' => 'Przeglądaj dzienniki zdarzeń wątków',
+
+            'columns' => [
+                'action' => 'Zdarzenie',
+                'date' => 'Data',
+                'user' => 'Użytkownik',
+            ],
+
+            'data' => [
+                'add_tag' => 'dodano tag ":tag"',
+                'announcement' => 'przypięto wątek i oznaczono jako ogłoszenie',
+                'edit_topic' => 'do :title',
+                'fork' => 'od :topic',
+                'pin' => 'przypięty temat',
+                'post_operation' => 'opublikował :username',
+                'remove_tag' => 'usunięto ":tag" tag',
+                'source_forum_operation' => 'od :forum',
+                'unpin' => 'odpięto wątek',
+            ],
+
+            'no_results' => 'nie znaleziono logów...',
+
+            'operations' => [
+                'delete_post' => 'Usunięty post',
+                'delete_topic' => 'Usunięty temat',
+                'edit_topic' => 'Zmieniono tytuł tematu',
+                'edit_poll' => 'Edytowana ankieta tematu',
+                'fork' => 'Skopiowano temat',
+                'issue_tag' => 'Wydany tag
+',
+                'lock' => 'Zablokowany temat',
+                'merge' => '',
+                'move' => 'Przeniesiony temat',
+                'pin' => 'Przypięty temat',
+                'post_edited' => 'Edytowany post',
+                'restore_post' => 'Przywrócony post',
+                'restore_topic' => 'Przywrócony temat',
+                'split_destination' => 'Przeniesione dzielone posty',
+                'split_source' => 'Podziel posty',
+                'topic_type' => 'Ustaw typ tematu',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Anuluj',
             'post' => 'Zapisz',

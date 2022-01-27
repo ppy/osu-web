@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Slow down, play more.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
+    ],
+
     'index' => [
         'title' => 'Beatmaps Listing',
         'guest_title' => 'Beatmaps',
@@ -142,7 +146,7 @@ return [
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
-            'supporter-only' => 'You need to be an osu!supporter to access the friend and country rankings!',
+            'supporter-only' => 'You need to be an osu!supporter to access the friend, country, or mod-specific rankings!',
             'title' => 'Scoreboard',
 
             'headers' => [
@@ -150,17 +154,18 @@ return [
                 'combo' => 'Max Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => 'Pin',
                 'player' => 'Player',
                 'pp' => 'pp',
                 'rank' => 'Rank',
-                'score_total' => 'Total Score',
                 'score' => 'Score',
+                'score_total' => 'Total Score',
                 'time' => 'Time',
             ],
 
             'no_scores' => [
                 'country' => 'No one from your country has set a score on this map yet!',
-                'friend' => 'None of your friends has set a score on this map yet!',
+                'friend' => 'None of your friends have set a score on this map yet!',
                 'global' => 'No scores yet. Maybe you should try setting some?',
                 'loading' => 'Loading scores...',
                 'unranked' => 'Unranked beatmap.',
@@ -177,7 +182,7 @@ return [
             'drain' => 'HP Drain',
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
+            'stars' => 'Star Rating',
             'total_length' => 'Length (Drain length: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Circle Count',

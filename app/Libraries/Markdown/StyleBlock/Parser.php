@@ -5,25 +5,44 @@
 
 namespace App\Libraries\Markdown\StyleBlock;
 
-use League\CommonMark\Block\Parser\BlockParserInterface;
-use League\CommonMark\ContextInterface;
-use League\CommonMark\Cursor;
+use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Parser\Block\AbstractBlockContinueParser;
+use League\CommonMark\Parser\Block\BlockContinue;
+use League\CommonMark\Parser\Block\BlockContinueParserInterface;
+use League\CommonMark\Parser\Cursor;
 
-class Parser implements BlockParserInterface
+class Parser extends AbstractBlockContinueParser
 {
-    public function parse(ContextInterface $context, Cursor $cursor): bool
+    private Element $block;
+
+    public function __construct(string $className)
     {
-        if (!starts_with($cursor->getRemainder(), '{{{')) {
-            return false;
+        $this->block = new Element($className);
+    }
+
+    public function getBlock(): AbstractBlock
+    {
+        return $this->block;
+    }
+
+    public function isContainer(): bool
+    {
+        return true;
+    }
+
+    public function canContain(AbstractBlock $childBlock): bool
+    {
+        return true;
+    }
+
+    public function tryContinue(Cursor $cursor, BlockContinueParserInterface $activeBlockParser): ?BlockContinue
+    {
+        $currentLine = $cursor->getLine();
+
+        if ($currentLine === ':::') {
+            return BlockContinue::finished();
         }
 
-        $cursor->advanceBy(3);
-
-        $class = mb_strtolower(str_replace(' ', '-', trim($cursor->getRemainder())));
-
-        $cursor->advanceToEnd();
-        $context->addBlock(new Element($class));
-
-        return true;
+        return BlockContinue::at($cursor);
     }
 }

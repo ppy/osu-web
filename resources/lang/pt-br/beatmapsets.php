@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Vá devagar, jogue mais.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Lista de Beatmaps',
         'guest_title' => 'Beatmaps',
@@ -150,11 +154,12 @@ return [
                 'combo' => 'Combo Máximo',
                 'miss' => 'Erros',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Jogador',
                 'pp' => '',
                 'rank' => 'Rank',
-                'score_total' => 'Pontuação Total',
                 'score' => 'Pontuação',
+                'score_total' => 'Pontuação Total',
                 'time' => 'Tempo',
             ],
 

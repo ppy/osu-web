@@ -2,9 +2,11 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
 import { Discussion } from "../beatmap-discussions/discussion"
+
 el = React.createElement
 
 export class Discussions extends React.Component
@@ -40,5 +42,5 @@ export class Discussions extends React.Component
                     preview: true
               a
                 className: 'modding-profile-list__show-more'
-                href: laroute.route('beatmapsets.discussions.index', {user: @props.user.id}),
+                href: route('beatmapsets.discussions.index', {user: @props.user.id}),
                 osu.trans('users.show.extra.discussions.show_more')

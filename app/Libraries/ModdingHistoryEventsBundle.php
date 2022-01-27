@@ -139,25 +139,18 @@ class ModdingHistoryEventsBundle
                         'recentlyReceivedKudosu' => static::KUDOSU_PER_PAGE,
                     ];
 
-                    $transformer = new UserTransformer();
-                    $transformer->mode = $this->user->playmode;
                     $array['user'] = json_item(
                         $this->user,
-                        $transformer,
+                        (new UserTransformer())->setMode($this->user->playmode),
                         [
-                            'active_tournament_banner',
-                            'badges',
-                            'follower_count',
+                            ...UserTransformer::PROFILE_HEADER_INCLUDES,
                             'graveyard_beatmapset_count',
-                            'groups',
                             'loved_beatmapset_count',
-                            'previous_usernames',
-                            'ranked_and_approved_beatmapset_count',
+                            'pending_beatmapset_count',
+                            'ranked_beatmapset_count',
                             'statistics',
                             'statistics.country_rank',
                             'statistics.rank',
-                            'support_level',
-                            'unranked_beatmapset_count',
                         ]
                     );
                 }

@@ -27,20 +27,24 @@
     $links = [
         [
             'active' => $currentNav === 'products' || $currentNav === 'product',
-            'title' => trans('layout.header.store.products'),
+            'title' => osu_trans('layout.header.store.products'),
             'url' => route('store.products.index'),
         ],
         [
             'active' => $currentNav === 'cart',
-            'title' => trans('layout.header.store.cart'),
+            'title' => osu_trans('layout.header.store.cart'),
             'url' => route('store.cart.show'),
         ],
         [
             'active' => $currentNav === 'orders' || $currentNav === 'order',
-            'title' => trans('layout.header.store.orders'),
+            'title' => osu_trans('layout.header.store.orders'),
             'url' => route('store.orders.index'),
         ],
     ];
+
+    $showPendingCheckout = $currentNav !== 'cart'
+        && App\Models\Store\Order::pendingForUser(auth()->user())?->exists()
+        ?? false;
 @endphp
 
 @component('layout._page_header_v4', ['params' => [
@@ -50,7 +54,7 @@
     @slot('titleAppend')
         <div class="store-xsolla">
             <div class="store-xsolla__text">
-                {!! trans('store.xsolla.distributor') !!}
+                {!! osu_trans('store.xsolla.distributor') !!}
             </div>
             <div class="store-xsolla__icon"></div>
         </div>
@@ -61,7 +65,7 @@
             <a href="{{ route('store.cart.show') }}" class="btn-osu-big btn-osu-big--store-cart">
                 <span class="btn-osu-big__content">
                     <span class="btn-osu-big__left">
-                        {{ trans_choice('store.cart.info', $cart->getItemCount(), ['subtotal' => $cart->getSubtotal()]) }}
+                        {{ osu_trans_choice('store.cart.info', $cart->getItemCount(), ['subtotal' => $cart->getSubtotal()]) }}
                     </span>
 
                     <span class="btn-osu-big__icon">
@@ -77,7 +81,7 @@
     @if (config('osu.store.notice') !== null)
         <div class="store-notice store-notice--important">
             <h2 class="store-notice__title">
-                {{ trans('common.title.notice') }}
+                {{ osu_trans('common.title.notice') }}
             </h2>
 
             {!! markdown(config('osu.store.notice')) !!}
@@ -86,16 +90,16 @@
 
     {{-- TODO: make nicer --}}
     {{-- Show message if there is a pending checkout and not currently on a checkout page --}}
-    @if(isset($pendingCheckout) && optional(request()->route())->getName() !== 'store.checkout.show')
+    @if($showPendingCheckout)
         @php
             $pendingCheckoutLink = Html::link(
                 route('store.orders.index', ['type' => 'processing']),
-                trans('store.checkout.has_pending.link_text')
+                osu_trans('store.checkout.has_pending.link_text')
             )
         @endphp
         <div class="store-notice">
             <span>
-                {!! trans('store.checkout.has_pending._', ['link' => $pendingCheckoutLink]) !!}
+                {!! osu_trans('store.checkout.has_pending._', ['link' => $pendingCheckoutLink]) !!}
             </span>
         </div>
     @endif

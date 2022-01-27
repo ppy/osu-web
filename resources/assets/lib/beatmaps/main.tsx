@@ -5,11 +5,12 @@ import { BackToTop } from 'back-to-top';
 import AvailableFilters from 'beatmaps/available-filters';
 import HeaderV4 from 'header-v4';
 import { isEqual } from 'lodash';
-import { IValueDidChange, observe } from 'mobx';
+import { reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { SearchContent } from 'react/beatmaps/search-content';
+import { nextVal } from 'utils/seq';
 import { SearchStatus } from './beatmapset-search-controller';
 
 const controller = core.beatmapsetSearchController;
@@ -23,21 +24,23 @@ export class Main extends React.Component<Props> {
   readonly backToTop = React.createRef<BackToTop>();
   readonly backToTopAnchor = React.createRef<HTMLElement>();
 
+  private readonly eventId = `beatmapsets-index-${nextVal()}`;
+
   constructor(props: Props) {
     super(props);
 
-    disposeOnUnmount(this, observe(controller, 'searchStatus', this.searchStatusErrorHandler));
+    disposeOnUnmount(this, reaction(() => controller.searchStatus, this.searchStatusErrorHandler));
   }
 
   componentDidMount() {
-    disposeOnUnmount(this, observe(controller, 'searchStatus', this.scrollPositionHandler));
-    $(document).on('turbolinks:before-visit.beatmaps-main', () => {
+    disposeOnUnmount(this, reaction(() => controller.searchStatus, this.scrollPositionHandler));
+    $(document).on(`turbolinks:before-visit.${this.eventId}`, () => {
       controller.cancel();
     });
   }
 
   componentWillUnmount() {
-    $(document).off('.beatmaps-main');
+    $(document).off(`.${this.eventId}`);
     controller.cancel();
   }
 
@@ -54,11 +57,11 @@ export class Main extends React.Component<Props> {
     );
   }
 
-  private scrollPositionHandler = (change: IValueDidChange<SearchStatus>) => {
-    if (change.newValue.restore) return;
-    if (isEqual(change.oldValue, change.newValue)) return;
+  private scrollPositionHandler = (value: SearchStatus, oldValue: SearchStatus) => {
+    if (value.restore) return;
+    if (isEqual(oldValue, value)) return;
 
-    if (change.newValue.state === 'completed' && change.newValue.from === 0) {
+    if (value.state === 'completed' && value.from === 0) {
       if (this.backToTopAnchor.current) {
         const cutoff = this.backToTopAnchor.current.getBoundingClientRect().top;
         if (cutoff < 0) {
@@ -67,14 +70,14 @@ export class Main extends React.Component<Props> {
       }
     }
 
-    if (change.newValue.state === 'searching' && this.backToTop.current) {
+    if (value.state === 'searching' && this.backToTop.current) {
       this.backToTop.current.reset();
     }
   };
 
-  private searchStatusErrorHandler = (change: IValueDidChange<SearchStatus>) => {
-    if (change.newValue.error != null) {
-      osu.ajaxError(change.newValue.error);
+  private searchStatusErrorHandler = (value: SearchStatus) => {
+    if (value.error != null) {
+      osu.ajaxError(value.error);
     }
   };
 }

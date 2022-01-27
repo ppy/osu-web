@@ -22,7 +22,7 @@ class Store extends \Illuminate\Session\Store
         }
 
         $keys = static::keys($userId);
-        event(UserSessionEvent::newLogout($userId, $keys));
+        UserSessionEvent::newLogout($userId, $keys)->broadcast();
         Redis::del(array_merge([static::listKey($userId)], $keys));
     }
 
@@ -86,7 +86,7 @@ class Store extends \Illuminate\Session\Store
             $userId = static::parseKey($key)['userId'];
         }
 
-        event(UserSessionEvent::newLogout($userId, [$key]));
+        UserSessionEvent::newLogout($userId, [$key])->broadcast();
         Redis::srem(static::listKey($userId), $key);
         Redis::del($key);
     }
@@ -245,8 +245,8 @@ class Store extends \Illuminate\Session\Store
     {
         $isGuest = $this->isGuestSession();
 
-        if ($isGuest && $this->handler instanceof CacheBasedSessionHandler) {
-            $this->handler->setMinutes(120);
+        if ($this->handler instanceof CacheBasedSessionHandler) {
+            $this->handler->setMinutes($isGuest ? 120 : config('session.lifetime'));
         }
 
         // Overriden to track user sessions in Redis

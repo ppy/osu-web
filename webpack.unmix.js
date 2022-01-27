@@ -7,23 +7,16 @@
 const fs = require('fs');
 const path = require('path');
 
-// #region plugin imports
 const Autoprefixer = require('autoprefixer');
-const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SentryPlugin = require('webpack-sentry-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-
-// #endregion
-
-// #region non-plugin imports
 const dotenv = require('dotenv');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const webpack = require('webpack');
-
-// #endregion
+const SentryPlugin = require('webpack-sentry-plugin');
 
 // #region env
 const env = process.env.NODE_ENV || 'development';
@@ -114,57 +107,27 @@ class Manifest {
 // #region entrypoints and output
 const entry = {
   app: [
-    './resources/assets/app.ts',
     './resources/assets/less/app.less',
   ],
 };
 
-const coffeeReactComponents = [
-  'artist-page',
-  'beatmap-discussions',
-  'beatmap-discussions-history',
-  'beatmapset-page',
-  'changelog-build',
-  'changelog-index',
-  'comments-index',
-  'comments-show',
-  'mp-history',
-  'modding-profile',
-  'profile-page',
-  'admin/contest',
-  'contest-entry',
-  'contest-voting',
-];
+const entrypointsPath = 'resources/assets/lib/entrypoints';
+const supportedExts = new Set(['.coffee', '.ts', '.tsx']);
+fs.readdirSync(resolvePath(entrypointsPath), { withFileTypes: true }).forEach((item) => {
+  if (item.isFile()) {
+    const filename = item.name;
+    const ext = path.extname(filename);
 
-const tsReactComponents = [
-  'account-edit',
-  'beatmaps',
-  'chat',
-  'follows-comment',
-  'follows-mapping',
-  'friends-index',
-  'groups-show',
-  'news-index',
-  'news-show',
-  'notifications-index',
-  'scores-show',
-];
+    if (supportedExts.has(ext)) {
+      const entryName = path.basename(filename, ext);
 
-const extraTs = [
-  'store-bootstrap',
-];
-
-for (const name of coffeeReactComponents) {
-  entry[`react/${name}`] = [resolvePath(`resources/assets/coffee/react/${name}.coffee`)];
-}
-
-for (const name of tsReactComponents) {
-  entry[`react/${name}`] = [resolvePath(`resources/assets/lib/${name}.tsx`)];
-}
-
-for (const name of extraTs) {
-  entry[`react/${name}`] = [resolvePath(`resources/assets/lib/${name}.ts`)];
-}
+      if (entry[entryName] == null) {
+        entry[entryName] = [];
+      }
+      entry[entryName].push(resolvePath(entrypointsPath, filename));
+    }
+  }
+});
 
 const output = {
   filename: outputFilename('js/[name]', 'js'),
@@ -179,7 +142,6 @@ const plugins = [
   new webpack.ProvidePlugin({
     $: 'jquery',
     _: 'lodash',
-    Cookies: 'js-cookie',
     d3: 'd3', // TODO: d3 is fat and probably should have it's own chunk
     jQuery: 'jquery',
     moment: 'moment',
@@ -201,6 +163,7 @@ const plugins = [
     patterns: [
       { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]') },
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
+      { from: 'node_modules/twemoji-emojis/vendor/svg/*-*.svg', to: 'images/flags/[name].[ext]' },
     ],
   }),
 ];
@@ -237,33 +200,11 @@ if (process.env.SENTRY_RELEASE === '1') {
 // #region Loader rules
 const rules = [
   {
-    enforce: 'pre',
-    exclude: /(node_modules)/,
-    loader: 'import-glob-loader',
-    test: /\.(js|ts|coffee)$/,
-  },
-  {
     exclude: /node_modules/,
     loader: 'ts-loader',
     test: /\.tsx?$/,
   },
   {
-    // loader for preexisting global coffeescript
-    exclude: [
-      resolvePath('resources/assets/coffee/react'),
-    ],
-    include: [
-      resolvePath('resources/assets/coffee'),
-    ],
-    test: /\.coffee$/,
-    use: ['imports-loader?jQuery=jquery,$=jquery,this=>window', 'coffee-loader'],
-  },
-  {
-    // loader for import-based coffeescript
-    include: [
-      resolvePath('resources/assets/coffee/react'),
-      resolvePath('resources/assets/lib'),
-    ],
     test: /\.coffee$/,
     use: ['coffee-loader'],
   },
@@ -318,15 +259,18 @@ const resolve = {
   alias: {
     '@fonts': path.resolve(__dirname, 'resources/assets/fonts'),
     '@images': path.resolve(__dirname, 'public/images'),
-    'layzr': resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
-    'ziggy': resolvePath('resources/assets/js/ziggy.js'),
-    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist'),
+    layzr: resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
+    ziggy: resolvePath('resources/assets/js/ziggy.js'),
+    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/index.es.js'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
   modules: [
-    resolvePath('resources/assets/coffee'),
     resolvePath('resources/assets/lib'),
+
+    resolvePath('resources/assets/coffee'),
+    resolvePath('resources/assets/coffee/react'),
     resolvePath('resources/assets/coffee/react/_components'),
+
     resolvePath('node_modules'),
   ],
   plugins: [new TsconfigPathsPlugin()],

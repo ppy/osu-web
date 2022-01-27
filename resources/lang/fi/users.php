@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Väärin pelaaminen / Huijaaminen',
+            'multiple_accounts' => 'Käyttää useita tilejä',
             'insults' => 'Haukkuu minua / muita',
             'spam' => 'Spämmii',
             'unwanted_content' => 'Sopimattoman sisällön jakaminen',
@@ -156,7 +157,7 @@ return [
 
         'comments_count' => [
             '_' => 'Julkaistu :link',
-            'count' => ':count_delimited kommentti|:count_delimited kommentteja',
+            'count' => ':count_delimited kommentti|:count_delimited kommenttia',
         ],
         'edit' => [
             'cover' => [
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Rakastetut beatmapit',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Hyväksytyt & Vahvistetut Beatmapit',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Vireillä olevat Beatmapit',
+                ],
+                'ranked' => [
+                    'title' => 'Hyväksytyt & Vahvistetut Beatmapit',
                 ],
             ],
             'discussions' => [
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Viimeisin',
                 'title' => 'Mitalit',
             ],
+            'multiplayer' => [
+                'title' => 'Moninpelejä',
+            ],
             'posts' => [
                 'title' => 'Julkaisut',
                 'title_longer' => 'Viimeisimmät julkaisut',
@@ -320,6 +324,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Kärkisijat',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -402,10 +415,10 @@ return [
             'total_hits' => 'Osumat',
             'total_score' => 'Kokonaispisteet',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Hyväksytyt & Vahvistetut Beatmapit',
-            'loved_beatmapset_count' => 'Rakastetut Beatmapit',
-            'unranked_beatmapset_count' => 'Tulossa olevat Beatmapit',
             'graveyard_beatmapset_count' => 'Kuopatut Beatmapit',
+            'loved_beatmapset_count' => 'Rakastetut Beatmapit',
+            'pending_beatmapset_count' => 'Tulossa olevat Beatmapit',
+            'ranked_beatmapset_count' => 'Hyväksytyt & Vahvistetut Beatmapit',
         ],
     ],
 
@@ -428,7 +441,7 @@ return [
 
     'view_mode' => [
         'brick' => 'Tiilinäkymä',
-        'card' => 'Kortin näkymä',
+        'card' => 'Korttinäkymä',
         'list' => 'Luettelonäkymä',
     ],
 ];

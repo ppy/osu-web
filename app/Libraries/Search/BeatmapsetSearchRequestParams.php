@@ -5,9 +5,9 @@
 
 namespace App\Libraries\Search;
 
-use App\Exceptions\InvariantException;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Sort;
+use App\Libraries\Elasticsearch\Utils\SearchAfterParam;
 use App\Models\Beatmap;
 use App\Models\Genre;
 use App\Models\Language;
@@ -17,7 +17,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
     const AVAILABLE_STATUSES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'graveyard', 'mine'];
     const AVAILABLE_EXTRAS = ['video', 'storyboard'];
-    const AVAILABLE_GENERAL = ['recommended', 'converts', 'follows'];
+    const AVAILABLE_GENERAL = ['recommended', 'converts', 'follows', 'featured_artists'];
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
     const AVAILABLE_RANKS = ['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'];
 
@@ -86,6 +86,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
             $generals = explode('.', $request['c'] ?? null) ?? [];
             $this->includeConverts = in_array('converts', $generals, true);
+            $this->showFeaturedArtists = in_array('featured_artists', $generals, true);
             $this->showFollows = in_array('follows', $generals, true);
             $this->showRecommended = in_array('recommended', $generals, true);
 
@@ -102,7 +103,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         $this->parseSort($sort);
-        $this->searchAfter = $this->getSearchAfter($request['cursor'] ?? null);
+        $this->searchAfter = SearchAfterParam::make($this, $request['cursor'] ?? null);
 
         // Supporter-only options.
         $this->rank = array_intersect(
@@ -121,9 +122,9 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $languages = Language::listing();
         $genres = Genre::listing();
 
-        $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
+        $modes = [['id' => null, 'name' => osu_trans('beatmaps.mode.any')]];
         foreach (Beatmap::MODES as $name => $id) {
-            $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
+            $modes[] = ['id' => $id, 'name' => osu_trans("beatmaps.mode.{$name}")];
         }
 
         $extras = [];
@@ -133,28 +134,28 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $statuses = [];
 
         foreach (static::AVAILABLE_EXTRAS as $id) {
-            $extras[] = ['id' => $id, 'name' => trans("beatmaps.extra.{$id}")];
+            $extras[] = ['id' => $id, 'name' => osu_trans("beatmaps.extra.{$id}")];
         }
 
         foreach (static::AVAILABLE_GENERAL as $id) {
-            $general[] = ['id' => $id, 'name' => trans("beatmaps.general.{$id}")];
+            $general[] = ['id' => $id, 'name' => osu_trans("beatmaps.general.{$id}")];
         }
 
         foreach (static::AVAILABLE_PLAYED as $id) {
-            $played[] = ['id' => $id, 'name' => trans("beatmaps.played.{$id}")];
+            $played[] = ['id' => $id, 'name' => osu_trans("beatmaps.played.{$id}")];
         }
 
         foreach (static::AVAILABLE_RANKS as $id) {
-            $ranks[] = ['id' => $id, 'name' => trans("beatmaps.rank.{$id}")];
+            $ranks[] = ['id' => $id, 'name' => osu_trans("beatmaps.rank.{$id}")];
         }
 
         foreach (static::AVAILABLE_STATUSES as $id) {
-            $statuses[] = ['id' => $id, 'name' => trans("beatmaps.status.{$id}")];
+            $statuses[] = ['id' => $id, 'name' => osu_trans("beatmaps.status.{$id}")];
         }
 
         $nsfw = [
-            ['id' => false, 'name' => trans('beatmaps.nsfw.exclude')],
-            ['id' => true, 'name' => trans('beatmaps.nsfw.include')],
+            ['id' => false, 'name' => osu_trans('beatmaps.nsfw.exclude')],
+            ['id' => true, 'name' => osu_trans('beatmaps.nsfw.include')],
         ];
 
         return compact('extras', 'general', 'genres', 'languages', 'modes', 'nsfw', 'played', 'ranks', 'statuses');
@@ -189,32 +190,6 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         return 'ranked';
     }
 
-    /**
-     * Extract search_after out of cursor param. Cursor values that are not part of the sort are ignored.
-     *
-     * The search_after value passed to elasticsearch needs to be the same length as the number of
-     * sorts given.
-     */
-    private function getSearchAfter($cursor): ?array
-    {
-        if (!is_array($cursor)) {
-            return null;
-        }
-
-        $searchAfter = [];
-        /** @var Sort $sort */
-        foreach ($this->sorts as $sort) {
-            $value = $cursor[$sort->field] ?? null;
-            if ($value === null) {
-                throw new InvariantException('Cursor parameters do not match sort parameters.');
-            }
-
-            $searchAfter[] = $value;
-        }
-
-        return $searchAfter;
-    }
-
     private function parseQuery(): void
     {
         static $optionMap = [
@@ -225,8 +200,10 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'creator' => 'creator',
             'cs' => 'cs',
             'dr' => 'drain',
+            'featured_artist' => 'featuredArtist',
             'keys' => 'keys',
             'length' => 'hitLength',
+            'od' => 'accuracy',
             'ranked' => 'ranked',
             'stars' => 'difficultyRating',
             'status' => 'statusRange',

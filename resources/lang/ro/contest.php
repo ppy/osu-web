@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => 'Te rugăm să te autentifici pentru a vota.',
         'over' => 'Votarea pentru acest concurs s-a încheiat',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Afișare voturi',
 
         'best_of' => [
             'none_played' => "Nu pare să fi jucat niciun beatmap care se califică pentru acest concurs!",
@@ -26,6 +26,10 @@ return [
             'add' => 'Votează',
             'remove' => 'Retrage votul',
             'used_up' => 'Ți-ai folosit toate voturile',
+        ],
+
+        'progress' => [
+            '_' => '',
         ],
     ],
     'entry' => [

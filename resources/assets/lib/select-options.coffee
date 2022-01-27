@@ -4,6 +4,7 @@
 import * as React from 'react'
 import { a, i, div } from 'react-dom-factories'
 import { createRef, PureComponent } from 'react'
+import { blackoutToggle } from 'utils/blackout'
 
 export class SelectOptions extends PureComponent
   constructor: (props) ->
@@ -21,7 +22,7 @@ export class SelectOptions extends PureComponent
 
 
   componentDidUpdate: (_prevProps, prevState) =>
-    Blackout.toggle(@state.showingSelector, 0.5) if @hasBlackout && prevState.showingSelector != @state.showingSelector
+    blackoutToggle(@state.showingSelector, 0.5) if @hasBlackout && prevState.showingSelector != @state.showingSelector
 
 
   componentWillUnmount: ->

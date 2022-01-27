@@ -3,13 +3,15 @@
 
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
-import * as _ from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Sort } from 'sort';
 import { ViewMode, viewModes } from 'user-card';
 import { UserCards } from 'user-cards';
+import { classWithModifiers } from 'utils/css';
+import { currentUrlParams } from 'utils/turbolinks';
+import { updateQueryString } from 'utils/url';
 
 export type Filter = 'all' | 'online' | 'offline';
 type PlayModeFilter = 'all' | GameMode;
@@ -20,7 +22,9 @@ const playModes: PlayModeFilter[] = ['all', 'osu', 'taiko', 'fruits', 'mania'];
 const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 
 interface Props {
+  descriptionHtml?: string;
   playmodeFilter?: boolean;
+  playmodeFilterGroupId?: number;
   title?: string;
   users: UserJson[];
 }
@@ -49,21 +53,17 @@ export class UserList extends React.PureComponent<Props> {
   };
 
   private get filterFromUrl() {
-    const url = new URL(location.href);
-
     return this.getAllowedQueryStringValue(
       filters,
-      url.searchParams.get('filter'),
+      currentUrlParams().get('filter'),
       core.userPreferences.get('user_list_filter'),
     );
   }
 
   private get playmodeFromUrl() {
-    const url = new URL(location.href);
-
     return this.getAllowedQueryStringValue(
       playModes,
-      url.searchParams.get('mode'),
+      currentUrlParams().get('mode'),
       'all',
     );
   }
@@ -94,28 +94,24 @@ export class UserList extends React.PureComponent<Props> {
   }
 
   private get sortFromUrl() {
-    const url = new URL(location.href);
-
     return this.getAllowedQueryStringValue(
       sortModes,
-      url.searchParams.get('sort'),
+      currentUrlParams().get('sort'),
       core.userPreferences.get('user_list_sort'),
     );
   }
 
   private get viewFromUrl() {
-    const url = new URL(location.href);
-
     return this.getAllowedQueryStringValue(
       viewModes,
-      url.searchParams.get('view'),
+      currentUrlParams().get('view'),
       core.userPreferences.get('user_list_view'),
     );
   }
 
   handleSortChange = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
-    const url = osu.updateQueryString(null, { sort: value });
+    const url = updateQueryString(null, { sort: value });
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ sortMode: value }, () => {
@@ -125,7 +121,7 @@ export class UserList extends React.PureComponent<Props> {
 
   onViewSelected = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
-    const url = osu.updateQueryString(null, { view: value });
+    const url = updateQueryString(null, { view: value });
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ viewMode: value }, () => {
@@ -136,7 +132,7 @@ export class UserList extends React.PureComponent<Props> {
   optionSelected = (event: React.SyntheticEvent) => {
     event.preventDefault();
     const key = (event.currentTarget as HTMLElement).dataset.key;
-    const url = osu.updateQueryString(null, { filter: key });
+    const url = updateQueryString(null, { filter: key });
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ filter: key }, () => {
@@ -146,7 +142,7 @@ export class UserList extends React.PureComponent<Props> {
 
   playmodeSelected = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
-    const url = osu.updateQueryString(null, { mode: value });
+    const url = updateQueryString(null, { mode: value });
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ playMode: value });
@@ -160,6 +156,10 @@ export class UserList extends React.PureComponent<Props> {
         <div className='user-list'>
           {this.props.title != null && (
             <h1 className='user-list__title'>{this.props.title}</h1>
+          )}
+
+          {this.props.descriptionHtml != null && (
+            <div dangerouslySetInnerHTML={{ __html: this.props.descriptionHtml }} className='user-list__description' />
           )}
 
           <div className='user-list__toolbar'>
@@ -185,7 +185,7 @@ export class UserList extends React.PureComponent<Props> {
   renderOption(key: string, text: string | number, active = false) {
     // FIXME: change all the names
     const modifiers = active ? ['active'] : [];
-    let className = osu.classWithModifiers('update-streams-v2__item', modifiers);
+    let className = classWithModifiers('update-streams-v2__item', modifiers);
     className += ` t-changelog-stream--${key}`;
 
     return (
@@ -193,7 +193,7 @@ export class UserList extends React.PureComponent<Props> {
         key={key}
         className={className}
         data-key={key}
-        href={osu.updateQueryString(null, { filter: key })}
+        href={updateQueryString(null, { filter: key })}
         onClick={this.optionSelected}
       >
         <div className='update-streams-v2__bar u-changelog-stream--bg' />
@@ -230,7 +230,7 @@ export class UserList extends React.PureComponent<Props> {
     return (
       <div className='user-list__view-modes'>
         <button
-          className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'card' ? ['active'] : [])}
+          className={classWithModifiers('user-list__view-mode', this.state.viewMode === 'card' ? ['active'] : [])}
           data-value='card'
           onClick={this.onViewSelected}
           title={osu.trans('users.view_mode.card')}
@@ -238,7 +238,7 @@ export class UserList extends React.PureComponent<Props> {
           <span className='fas fa-square' />
         </button>
         <button
-          className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'list' ? ['active'] : [])}
+          className={classWithModifiers('user-list__view-mode', this.state.viewMode === 'list' ? ['active'] : [])}
           data-value='list'
           onClick={this.onViewSelected}
           title={osu.trans('users.view_mode.list')}
@@ -246,7 +246,7 @@ export class UserList extends React.PureComponent<Props> {
           <span className='fas fa-bars' />
         </button>
         <button
-          className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'brick' ? ['active'] : [])}
+          className={classWithModifiers('user-list__view-mode', this.state.viewMode === 'brick' ? ['active'] : [])}
           data-value='brick'
           onClick={this.onViewSelected}
           title={osu.trans('users.view_mode.brick')}
@@ -274,10 +274,16 @@ export class UserList extends React.PureComponent<Props> {
   private getFilteredUsers(filter: Filter) {
     // TODO: should be cached or something
     let users = this.props.users.slice();
-    if (this.props.playmodeFilter && this.state.playMode !== 'all') {
+    const playmode = this.state.playMode;
+    if (this.props.playmodeFilter && playmode !== 'all') {
       users = users.filter((user) => {
         if (user.groups && user.groups.length > 0) {
-          return user.groups.some((group) => group.playmodes && (group.playmodes as PlayModeFilter[]).includes(this.state.playMode));
+          if (this.props.playmodeFilterGroupId != null) {
+            const filterGroup = user.groups.find((group) => group.id === this.props.playmodeFilterGroupId);
+            return filterGroup?.playmodes?.includes(playmode);
+          }
+
+          return user.groups.some((group) => group.playmodes?.includes(playmode));
         } else {
           return false;
         }
@@ -298,7 +304,7 @@ export class UserList extends React.PureComponent<Props> {
     const playmodeButtons = playModes.map((mode) => (
       <button
         key={mode}
-        className={osu.classWithModifiers('user-list__view-mode', this.state.playMode === mode ? ['active'] : [])}
+        className={classWithModifiers('user-list__view-mode', this.state.playMode === mode ? ['active'] : [])}
         data-value={mode}
         onClick={this.playmodeSelected}
         title={osu.trans(`beatmaps.mode.${mode}`)}
@@ -306,7 +312,7 @@ export class UserList extends React.PureComponent<Props> {
         {mode === 'all' ?
           <span>{osu.trans('beatmaps.mode.all')}</span>
           :
-          <span className={`fal fa-extra-mode-${mode}`}/>
+          <span className={`fal fa-extra-mode-${mode}`} />
         }
       </button>
     ));

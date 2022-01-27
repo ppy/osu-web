@@ -1,15 +1,20 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
 import * as React from 'react'
 import { div, form, input, label, span } from 'react-dom-factories'
+import { fileuploadFailCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
+import { nextVal } from 'utils/seq'
+
 el = React.createElement
 
 export class Uploader extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "contests-show-enter-uploader-#{nextVal()}"
     @dropzoneRef = React.createRef()
     @uploadContainerRef = React.createRef()
 
@@ -48,11 +53,11 @@ export class Uploader extends React.Component
 
     $(@uploadContainerRef.current).append($uploadButton)
 
-    $.subscribe 'dragenterGlobal.contest-upload', => @setOverlay('active')
-    $.subscribe 'dragendGlobal.contest-upload', => @setOverlay('hidden')
+    $.subscribe "dragenterGlobal.#{@eventId}", => @setOverlay('active')
+    $.subscribe "dragendGlobal.#{@eventId}", => @setOverlay('hidden')
 
     $uploadButton.fileupload
-      url: laroute.route 'contest-entries.store'
+      url: route 'contest-entries.store'
       dataType: 'json'
       dropZone: $dropzone
       sequentialUploads: true
@@ -81,10 +86,10 @@ export class Uploader extends React.Component
       done: (_e, data) ->
         $.publish 'contest:entries:update', data: data.result
 
-      fail: _exported.fileuploadFailCallback
+      fail: fileuploadFailCallback
 
   componentWillUnmount: =>
-    $.unsubscribe '.contest-upload'
+    $.unsubscribe ".#{@eventId}"
 
     @$uploadButton()
       .fileupload 'destroy'

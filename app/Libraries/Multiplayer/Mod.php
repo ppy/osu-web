@@ -26,6 +26,9 @@ class Mod
     const WIND_UP = 'WU';
     const WIND_DOWN = 'WD';
     const RANDOM = 'RD';
+    const MIRROR = 'MR';
+    const MUTED = 'MU';
+    const NO_SCOPE = 'NS';
 
     // osu-specific
     const OSU_AUTOPILOT = 'AP';
@@ -40,6 +43,7 @@ class Mod
     const OSU_TRACEABLE = 'TC';
     const OSU_CLASSIC = 'CL';
     const OSU_BARRELROLL = 'BR';
+    const OSU_APPROACH_DIFFERENT = 'AD';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -54,7 +58,6 @@ class Mod
     const MANIA_KEY10 = '10K';
     const MANIA_DUALSTAGES = 'DS';
     const MANIA_FADEIN = 'FI';
-    const MANIA_MIRROR = 'MR';
     const MANIA_INVERT = 'IN';
     const MANIA_CONSTANTSPEED = 'CS';
 
@@ -86,6 +89,7 @@ class Mod
         self::SUDDENDEATH,
         self::WIND_DOWN,
         self::WIND_UP,
+        self::MUTED,
     ];
 
     // Defines mutual-exclusivity for groups of mods, i.e. only one mod within each group can be active at a time
@@ -153,6 +157,7 @@ class Mod
             'approach_rate' => 'float',
             'extended_limits' => 'bool',
             'scroll_speed' => 'float',
+            'hard_rock_offsets' => 'bool',
         ],
         self::DOUBLETIME => [
             'speed_change' => 'float',
@@ -181,6 +186,8 @@ class Mod
         ],
         self::FLASHLIGHT => [
             'follow_delay' => 'float',
+            'size_multiplier' => 'float',
+            'combo_based_size' => 'bool',
         ],
         self::OSU_GROW => [
             'start_scale' => 'float',
@@ -201,6 +208,34 @@ class Mod
         ],
         self::RANDOM => [
             'seed' => 'int',
+        ],
+        self::OSU_APPROACH_DIFFERENT => [
+            'scale' => 'float',
+            'style' => 'int',
+        ],
+        self::OSU_TARGET => [
+            'seed' => 'int',
+        ],
+        self::MIRROR => [
+            'reflection' => 'int',
+        ],
+        self::MUTED => [
+            'enable_metronome' => 'bool',
+            'mute_combo_count' => 'int',
+            'inverse_muting' => 'bool',
+            'affects_hit_sounds' => 'bool',
+        ],
+        self::SUDDENDEATH => [
+            'restart' => 'bool',
+        ],
+        self::PERFECT => [
+            'restart' => 'bool',
+        ],
+        self::NO_SCOPE => [
+            'hidden_combo_count' => 'int',
+        ],
+        self::HIDDEN => [
+            'only_fade_approach_circles' => 'bool',
         ],
     ];
 
@@ -273,6 +308,9 @@ class Mod
                         self::OSU_CLASSIC,
                         self::OSU_BARRELROLL,
                         self::RANDOM,
+                        self::OSU_APPROACH_DIFFERENT,
+                        self::MIRROR,
+                        self::NO_SCOPE,
                     ]
                 ),
 
@@ -288,6 +326,8 @@ class Mod
                     self::SCORABLE_COMMON,
                     [
                         self::CATCH_FLOATINGFRUIT,
+                        self::MIRROR,
+                        self::NO_SCOPE,
                     ]
                 ),
 
@@ -306,7 +346,7 @@ class Mod
                         self::MANIA_KEY10,
                         self::MANIA_DUALSTAGES,
                         self::MANIA_FADEIN,
-                        self::MANIA_MIRROR,
+                        self::MIRROR,
                         self::MANIA_INVERT,
                         self::MANIA_CONSTANTSPEED,
                         self::RANDOM,
@@ -324,7 +364,64 @@ class Mod
 
         if (!$value) {
             $value = [
-                Ruleset::OSU => self::EXCLUSIVITY_COMMON,
+                Ruleset::OSU => array_merge(
+                    self::EXCLUSIVITY_COMMON,
+                    [
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_DEFLATE,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::HIDDEN,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_SPININ,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_TARGET,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_DEFLATE,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::HIDDEN,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_SPININ,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_TARGET,
+                        ],
+                        [
+                            self::OSU_SPININ,
+                            self::OSU_DEFLATE,
+                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_SPININ,
+                            self::HIDDEN,
+                        ],
+                        [
+                            self::HARDROCK,
+                            self::MIRROR,
+                        ],
+                    ]
+                ),
                 Ruleset::TAIKO => array_merge(
                     self::EXCLUSIVITY_COMMON,
                     [

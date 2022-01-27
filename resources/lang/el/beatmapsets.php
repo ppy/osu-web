@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => '',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Λίστα Beatmaps',
         'guest_title' => 'Beatmaps',
@@ -150,11 +154,12 @@ return [
                 'combo' => 'Μέγιστο Combo',
                 'miss' => 'Αστοχίες',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Παίκτης',
                 'pp' => '',
                 'rank' => 'Κατάταξη',
-                'score_total' => 'Συνολικό Σκορ',
                 'score' => 'Σκορ',
+                'score_total' => 'Συνολικό Σκορ',
                 'time' => '',
             ],
 

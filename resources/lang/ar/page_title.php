@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'المنتدى',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'لوحة التحكم',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'لوحة التحكم',
             'verify_link' => 'التحقق من الحساب',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => 'الفنانين المميزين',
@@ -111,13 +117,13 @@ return [
             '_' => 'إعادة تعيين كلمة المرور',
         ],
         'ranking_controller' => [
-            '_' => 'التصنيف',
+            '_' => 'الترتيب',
         ],
         'scores_controller' => [
             '_' => 'الأداء',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'المتجر',
         ],
         'tournaments_controller' => [
             '_' => 'البطولات',
@@ -127,7 +133,7 @@ return [
             'disabled' => 'ملحوظة',
         ],
         'wiki_controller' => [
-            '_' => 'قاعدة المعارف',
+            '_' => 'ويكي',
         ],
     ],
     'multiplayer' => [
@@ -135,12 +141,20 @@ return [
             '_' => 'التصنيف',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'المتجر',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'معلومات المُعَدِل',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'تاريخ المباريات الجماعية ',
         ],
     ],
 ];

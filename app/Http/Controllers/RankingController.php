@@ -20,6 +20,7 @@ class RankingController extends Controller
 {
     private $country;
     private $countryStats;
+    private array $defaultViewVars;
     private $params;
     private $friendsOnly;
 
@@ -52,9 +53,11 @@ class RankingController extends Controller
             $this->friendsOnly = auth()->check() && $this->params['filter'] === 'friends';
             $this->setVariantParam();
 
-            view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
-            view()->share('spotlight', null); // so variable capture in selector function doesn't die when spotlight is null.
-            view()->share($this->params); // won't set null values
+            $this->defaultViewVars = array_merge([
+                'hasPager' => !in_array($type, static::SPOTLIGHT_TYPES, true),
+                // so variable capture in selector function doesn't die when spotlight is null.
+                'spotlight' => null,
+            ], $this->params);
 
             if ($mode === null) {
                 return ujs_redirect(route('rankings', ['mode' => default_mode(), 'type' => 'performance']));
@@ -85,7 +88,10 @@ class RankingController extends Controller
                 $this->country = $this->countryStats->country;
             }
 
-            view()->share('country', $this->country);
+            $this->defaultViewVars['country'] = $this->country;
+            if ($type === 'performance') {
+                $this->defaultViewVars['countries'] = json_collection($this->getCountries($mode), 'Country', ['display']);
+            }
 
             return $next($request);
         });
@@ -207,9 +213,7 @@ class RankingController extends Controller
             ])]
         );
 
-        $countries = json_collection($this->getCountries($mode), 'Country', ['display']);
-
-        return ext_view("rankings.{$type}", compact('countries', 'scores'));
+        return ext_view("rankings.{$type}", array_merge($this->defaultViewVars, compact('scores')));
     }
 
     public function spotlight($mode)
@@ -264,7 +268,13 @@ class RankingController extends Controller
 
         return ext_view(
             'rankings.charts',
-            compact('scores', 'scoreCount', 'selectOptions', 'spotlight', 'beatmapsets')
+            array_merge($this->defaultViewVars, compact(
+                'beatmapsets',
+                'scoreCount',
+                'scores',
+                'selectOptions',
+                'spotlight',
+            ))
         );
     }
 

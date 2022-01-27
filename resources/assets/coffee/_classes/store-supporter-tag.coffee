@@ -1,7 +1,9 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @StoreSupporterTag
+import { route } from 'laroute'
+
+class window.StoreSupporterTag
   RESOLUTION: 8
   MIN_VALUE: 4
   MAX_VALUE: 52
@@ -24,15 +26,13 @@ class @StoreSupporterTag
     @usernameInput = @el.querySelector('.js-username-input')
 
     @reactElement = @el.querySelector('.js-react--user-card-store')
-    if !@reactElement.dataset.user?
+    @user = JSON.parse(@reactElement.dataset.user)
+    if !@user?
       @user = currentUser
       @reactElement.dataset.user = JSON.stringify(@user)
-    else
-      @user = JSON.parse(@reactElement.dataset.user)
 
-    $(document).on 'turbolinks:before-cache.store-supporter-tag', =>
+    $(document).one 'turbolinks:before-cache', =>
       @reactElement.dataset.user = JSON.stringify(@user)
-      $(document).off '.store-supporter-tag'
 
     @cost = @calculate(@initializeSlider().slider('value'))
     @initializeSliderPresets()
@@ -81,7 +81,7 @@ class @StoreSupporterTag
         username: username
       dataType: 'json',
       type: 'POST'
-      url: laroute.route('users.check-username-exists')
+      url: route('users.check-username-exists')
     .done (data) =>
       @user = data
 

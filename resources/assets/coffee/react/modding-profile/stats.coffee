@@ -8,9 +8,9 @@ el = React.createElement
 
 export class Stats extends React.PureComponent
   entries = [
-    'ranked_and_approved_beatmapset_count'
+    'ranked_beatmapset_count'
     'loved_beatmapset_count'
-    'unranked_beatmapset_count'
+    'pending_beatmapset_count'
     'graveyard_beatmapset_count'
   ]
 

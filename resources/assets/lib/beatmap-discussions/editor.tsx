@@ -1,12 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import { CircularProgress } from 'circular-progress';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { createEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
@@ -14,6 +15,7 @@ import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, with
 import { Spinner } from 'spinner';
 import { sortWithMode } from 'utils/beatmap-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
+import { classWithModifiers } from 'utils/css';
 import { DraftsContext } from './drafts-context';
 import EditorDiscussionComponent from './editor-discussion-component';
 import {
@@ -33,13 +35,13 @@ import { SlateContext } from './slate-context';
 
 interface CacheInterface {
   draftEmbeds?: SlateElement[];
-  sortedBeatmaps?: BeatmapJsonExtended[];
+  sortedBeatmaps?: BeatmapExtendedJson[];
 }
 
 interface Props {
-  beatmaps: Partial<Record<number, BeatmapJsonExtended>>;
+  beatmaps: Partial<Record<number, BeatmapExtendedJson>>;
   beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJsonExtended;
+  currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: BeatmapsetDiscussionJson[];
   discussion?: BeatmapsetDiscussionJson;
   discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
@@ -69,7 +71,7 @@ export default class Editor extends React.Component<Props, State> {
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
   declare context: React.ContextType<typeof ReviewEditorConfigContext>;
-  emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
+  emptyDocTemplate = [{ children: [{ text: '' }], type: 'paragraph' }];
   insertMenuRef: React.RefObject<EditorInsertionMenu>;
   localStorageKey: string;
   scrollContainerRef: React.RefObject<HTMLDivElement>;
@@ -97,7 +99,6 @@ export default class Editor extends React.Component<Props, State> {
         try {
           initialValue = JSON.parse(saved);
         } catch (error) {
-          // eslint-disable-next-line no-console
           console.error('invalid json in localStorage, ignoring');
           localStorage.removeItem(this.localStorageKey);
         }
@@ -132,7 +133,7 @@ export default class Editor extends React.Component<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
+  componentDidUpdate(prevProps: Readonly<Props>): void {
     if (this.props.document !== prevProps.document) {
       const newValue = this.valueFromProps();
 
@@ -164,7 +165,6 @@ export default class Editor extends React.Component<Props, State> {
     const regex = RegExp(BeatmapDiscussionHelper.TIMESTAMP_REGEX, 'g');
     let match;
 
-    // tslint:disable-next-line no-conditional-assignment
     while ((match = regex.exec(node.text)) !== null) {
       ranges.push({
         anchor: { offset: match.index, path },
@@ -182,7 +182,7 @@ export default class Editor extends React.Component<Props, State> {
    * @param beatmap
    * @returns boolean
    */
-  isCurrentBeatmap = (beatmap?: BeatmapJsonExtended): beatmap is BeatmapJsonExtended => (
+  isCurrentBeatmap = (beatmap?: BeatmapExtendedJson): beatmap is BeatmapExtendedJson => (
     beatmap != null && beatmap.beatmapset_id === this.props.beatmapset.id
   );
 
@@ -239,17 +239,17 @@ export default class Editor extends React.Component<Props, State> {
 
   post = () => {
     if (this.showConfirmationIfRequired()) {
-      this.setState({posting: true}, () => {
-        this.xhr = $.ajax(route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
-          data: {document: this.serialize()},
+      this.setState({ posting: true }, () => {
+        this.xhr = $.ajax(route('beatmapsets.discussion.review', { beatmapset: this.props.beatmapset.id }), {
+          data: { document: this.serialize() },
           method: 'POST',
         })
           .done((data) => {
-            $.publish('beatmapsetDiscussions:update', {beatmapset: data});
+            $.publish('beatmapsetDiscussions:update', { beatmapset: data });
             this.resetInput();
           })
           .fail(osu.ajaxError)
-          .always(() => this.setState({posting: false}));
+          .always(() => this.setState({ posting: false }));
       });
     }
   };
@@ -264,7 +264,7 @@ export default class Editor extends React.Component<Props, State> {
     this.updateDrafts();
 
     return (
-      <div className={osu.classWithModifiers(editorClass, modifiers)}>
+      <div className={classWithModifiers(editorClass, modifiers)}>
         <div className={`${editorClass}__content`}>
           <SlateContext.Provider value={this.slateEditor}>
             <Slate
@@ -291,7 +291,7 @@ export default class Editor extends React.Component<Props, State> {
                   {this.renderBlockCount('lighter')}
                 </div>
               }
-              { !this.props.editMode &&
+              {!this.props.editMode &&
                 <div className={`${editorClass}__button-bar`}>
                   <button
                     className='btn-osu-big btn-osu-big--forum-secondary'
@@ -397,9 +397,9 @@ export default class Editor extends React.Component<Props, State> {
 
   showConfirmationIfRequired = () => {
     const docContainsProblem = slateDocumentContainsNewProblem(this.state.value);
-    const canDisqualify = currentUser.is_admin || currentUser.is_moderator || currentUser.is_full_bn;
+    const canDisqualify = core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator || core.currentUser.is_full_bn);
     const willDisqualify = this.props.beatmapset.status === 'qualified' && docContainsProblem;
-    const canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng;
+    const canReset = core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_nat || core.currentUser.is_bng);
     const willReset =
       this.props.beatmapset.status === 'pending' &&
       this.props.beatmapset.nominations && nominationsCount(this.props.beatmapset.nominations, 'current') > 0 &&
@@ -467,7 +467,7 @@ export default class Editor extends React.Component<Props, State> {
           if (node.beatmapId != null) {
             const beatmap = typeof node.beatmapId === 'number' ? this.props.beatmaps[node.beatmapId] : undefined;
             if (beatmap == null || beatmap.deleted_at != null) {
-              Transforms.setNodes(editor, {beatmapId: undefined}, {at: path});
+              Transforms.setNodes(editor, { beatmapId: undefined }, { at: path });
             }
           }
         }

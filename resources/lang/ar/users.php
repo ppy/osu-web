@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'لعب مؤذي/ غش',
+            'multiple_accounts' => 'استخدام حسابات متعددة',
             'insults' => 'اهانتي / اهانة الاخرين',
             'spam' => 'سبام',
             'unwanted_content' => 'ربط عن محتوى غير لائق',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'الخرائط المُحَبَبة',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'الخرائط المصفوفة والمقبولة',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'الخرائط المعلقة',
+                ],
+                'ranked' => [
+                    'title' => 'الخرائط المصفوفة والمقبولة',
                 ],
             ],
             'discussions' => [
@@ -300,6 +301,9 @@ return [
                 'recent' => 'الأخير',
                 'title' => 'الاوسمة',
             ],
+            'multiplayer' => [
+                'title' => 'المباريات الجماعية',
+            ],
             'posts' => [
                 'title' => 'المنشورات',
                 'title_longer' => 'المنشورات الحديثة',
@@ -320,6 +324,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'المراكز الاولى',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -402,10 +415,10 @@ return [
             'total_hits' => 'مجموع التصويبات',
             'total_score' => 'مجموع النقاط',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'الخرائط المصفوفة والمقبولة',
-            'loved_beatmapset_count' => 'الخرائط المُحَبَبة',
-            'unranked_beatmapset_count' => 'الخرائط المعلقة',
             'graveyard_beatmapset_count' => 'الخرائط المقبورة',
+            'loved_beatmapset_count' => 'الخرائط المُحَبَبة',
+            'pending_beatmapset_count' => 'الخرائط المعلقة',
+            'ranked_beatmapset_count' => 'الخرائط المصفوفة والمقبولة',
         ],
     ],
 

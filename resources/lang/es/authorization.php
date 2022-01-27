@@ -67,6 +67,7 @@ return [
         'friends_only' => 'Este usuario está bloqueando los mensajes de personas que no están en su lista de amigos.',
         'moderated' => 'Ese canal está actualmente siendo moderado.',
         'no_access' => 'No tienes acceso a ese canal.',
+        'receive_friends_only' => '',
         'restricted' => 'No puede enviar mensajes mientras esté silenciado, restringido o baneado.',
         'silenced' => 'No puede enviar mensajes mientras esté silenciado, restringido o baneado.',
     ],
@@ -153,7 +154,7 @@ return [
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Portada especificada inválida.',
+                'uneditable' => 'Portada especificada no válida.',
                 'not_owner' => 'Solo el dueño puede editar la portada.',
             ],
             'store' => [
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => 'Solo los administradores pueden ver este foro.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

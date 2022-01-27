@@ -1,14 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import GameMode from 'interfaces/game-mode';
 import { sumBy } from 'lodash';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  beatmaps: Map<GameMode, BeatmapJsonExtended[]>;
+  beatmaps: Map<GameMode, BeatmapExtendedJson[]>;
   counts?: Partial<Record<GameMode, number>>;
   currentMode: GameMode;
   hrefFunc?: (mode: GameMode) => string;
@@ -50,7 +50,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
   }
 
   private count = (mode: GameMode) => {
-    if (this.props.counts?.[mode] != null) {
+    if (this.props.counts != null) {
       return this.props.counts[mode];
     }
 

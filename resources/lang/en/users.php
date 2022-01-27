@@ -89,7 +89,7 @@ return [
         'forgot' => 'Forgotten your password?',
         'info' => 'Please sign in to continue',
         'invalid_captcha' => 'Too many failed login attempts, please complete the captcha and try again. (Refresh page if captcha is not visible)',
-        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
+        'locked_ip' => 'Your IP address is locked. Please wait a few minutes.',
         'password' => 'Password',
         'register' => "Don't have an osu! account? Make a new one",
         'remember' => 'Remember this computer',
@@ -127,7 +127,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Foul play / Cheating',
+            'cheating' => 'Cheating',
+            'multiple_accounts' => 'Using multiple accounts',
             'insults' => 'Insulting me / others',
             'spam' => 'Spamming',
             'unwanted_content' => 'Linking inappropriate content',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Pending Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Latest',
                 'title' => 'Medals',
             ],
+            'multiplayer' => [
+                'title' => 'Multiplayer Games',
+            ],
             'posts' => [
                 'title' => 'Posts',
                 'title_longer' => 'Recent Posts',
@@ -321,6 +325,15 @@ return [
                 'first' => [
                     'title' => 'First Place Ranks',
                 ],
+                'pin' => [
+                    'to_0' => 'Unpin',
+                    'to_0_done' => 'Unpinned score',
+                    'to_1' => 'Pin',
+                    'to_1_done' => 'Pinned score',
+                ],
+                'pinned' => [
+                    'title' => 'Pinned Scores',
+                ],
             ],
             'votes' => [
                 'given' => 'Votes Given (last 3 months)',
@@ -331,8 +344,8 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Account Standing',
-                'bad_standing' => "<strong>:username's</strong> account is not in a good standing :(",
-                'remaining_silence' => '<strong>:username</strong> will be able to speak again :duration.',
+                'bad_standing' => ":username's account is not in a good standing :(",
+                'remaining_silence' => ':username will be able to speak again :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Recent Infringements',
@@ -402,10 +415,10 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
-            'loved_beatmapset_count' => 'Loved Beatmaps',
-            'unranked_beatmapset_count' => 'Pending Beatmaps',
             'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'pending_beatmapset_count' => 'Pending Beatmaps',
+            'ranked_beatmapset_count' => 'Ranked Beatmaps',
         ],
     ],
 

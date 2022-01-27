@@ -89,7 +89,7 @@ return [
         'forgot' => 'パスワードを忘れましたか？',
         'info' => 'ログインして続行してください',
         'invalid_captcha' => 'Captcha が無効です。ページを更新して再度お試し下さい。',
-        'locked_ip' => 'あなたのIPアドレスはロックされています。数分後もう一度お試しください。',
+        'locked_ip' => 'あなたのIPアドレスは規制されています。数分後もう一度お試しください。',
         'password' => 'パスワード',
         'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
         'remember' => 'ログイン状態を保持する',
@@ -127,7 +127,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => '不正行為/チート',
+            'cheating' => 'チート',
+            'multiple_accounts' => '複数のアカウントを管理する',
             'insults' => 'あなた/他の人への侮辱',
             'spam' => 'スパム',
             'unwanted_content' => '不適切なコンテンツへのリンク',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Lovedされたビートマップ',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approvedのビートマップ',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Pendingビートマップ',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Approvedのビートマップ',
                 ],
             ],
             'discussions' => [
@@ -300,6 +301,9 @@ return [
                 'recent' => '最新',
                 'title' => 'メダル',
             ],
+            'multiplayer' => [
+                'title' => 'マルチプレイ ゲーム',
+            ],
             'posts' => [
                 'title' => '投稿',
                 'title_longer' => '最近の投稿',
@@ -320,6 +324,15 @@ return [
                 ],
                 'first' => [
                     'title' => '1位の記録',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -402,10 +415,10 @@ return [
             'total_hits' => '合計ヒット数',
             'total_score' => '合計スコア',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approvedのビートマップ',
-            'loved_beatmapset_count' => 'Lovedされたビートマップ',
-            'unranked_beatmapset_count' => 'Pendingビートマップ',
             'graveyard_beatmapset_count' => 'Graveyardのビートマップ',
+            'loved_beatmapset_count' => 'Lovedされたビートマップ',
+            'pending_beatmapset_count' => 'Pendingビートマップ',
+            'ranked_beatmapset_count' => 'Ranked & Approvedのビートマップ',
         ],
     ],
 

@@ -37,7 +37,7 @@ class ForumNewReply extends Mailable implements ShouldQueue
     {
         return $this
             ->text('emails.forum.new_reply')
-            ->subject(trans('mail.forum_new_reply.subject', [
+            ->subject(osu_trans('mail.forum_new_reply.subject', [
                 'title' => $this->topic->topic_title,
             ]));
     }

@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'видалено',
+    'deleted_by' => 'видалено :user :timeago',
+    'deleted_by_system' => 'система',
     'deleted_count' => ':count_delimited коментар видалено|:count_delimited коментарів видалено',
     'edited' => ':user відредагував :timeago',
     'pinned' => 'закріплено',
@@ -22,10 +24,10 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Натисніть Enter для :action. Використовуйте Shift + Enter для переходу на новий рядок.',
-            'edit' => 'збереження',
-            'new' => 'відправки',
-            'reply' => 'відповідь',
+            '_' => 'Натисніть Enter щоб :action. Використовуйте Shift + Enter для переходу на новий рядок.',
+            'edit' => 'зберегти',
+            'new' => 'відправити',
+            'reply' => 'відповісти',
         ],
     ],
 

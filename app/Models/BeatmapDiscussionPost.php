@@ -9,6 +9,7 @@ use App\Exceptions\ModelNotSavedException;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
+use Ds\Set;
 
 /**
  * @property BeatmapDiscussion $beatmapDiscussion
@@ -26,7 +27,7 @@ use DB;
  */
 class BeatmapDiscussionPost extends Model
 {
-    use Validatable, Reportable;
+    use Traits\Reportable, Validatable;
 
     const MESSAGE_LIMIT_TIMELINE = 750;
 
@@ -62,17 +63,15 @@ class BeatmapDiscussionPost extends Model
             }
         }
 
-        // only find replies (i.e. exclude discussion starting-posts)
-        $query->whereExists(function ($postQuery) {
-            $table = (new self())->getTable();
+        $types = (new Set(get_arr($rawParams['types'] ?? null, 'get_string') ?? []))
+            ->intersect(new Set(['first', 'reply', 'system']));
 
-            $postQuery->selectRaw(1)
-                ->from(DB::raw("{$table} d"))
-                ->whereRaw('beatmap_discussion_id = beatmap_discussion_posts.beatmap_discussion_id')
-                ->whereRaw("d.id < {$table}.id");
-        });
+        if ($types->isEmpty()) {
+            $types->add('reply');
+        }
 
-        $query->where('system', 0);
+        $query->byTypes($types);
+        $params['types'] = $types->toArray();
 
         if (isset($rawParams['sort'])) {
             $sort = explode('_', strtolower($rawParams['sort']));
@@ -86,8 +85,8 @@ class BeatmapDiscussionPost extends Model
             }
         }
 
-        $sortField ?? ($sortField = 'id');
-        $sortOrder ?? ($sortOrder = 'desc');
+        $sortField ??= 'id';
+        $sortOrder ??= 'desc';
 
         $params['sort'] = "{$sortField}_{$sortOrder}";
         $query->orderBy($sortField, $sortOrder);
@@ -364,6 +363,43 @@ class BeatmapDiscussionPost extends Model
         return static::parseTimestamp($this->message);
     }
 
+    public function scopeByTypes($query, Set $types)
+    {
+        $query->where(function ($q) use ($types) {
+            if ($types->contains('system')) {
+                $q->where('system', true);
+            }
+
+            $firstOrReplyCount = $types->intersect(new Set(['first', 'reply']))->count();
+            if ($firstOrReplyCount > 0) {
+                $q->orWhere(function ($replyQuery) use ($firstOrReplyCount, $types) {
+                    $replyQuery->where('system', false);
+
+                    if ($firstOrReplyCount === 1) {
+                        $replyQuery->where(fn ($q) => $q->firstFilter($types->contains('first')));
+                    }
+
+                    return $replyQuery;
+                });
+            }
+
+            return $q;
+        });
+    }
+
+    public function scopeFirstFilter($query, $isFirst = true)
+    {
+        $table = $this->getTable();
+
+        $condition = $isFirst ? 'whereNotExists' : 'whereExists';
+
+        return $query->$condition(fn ($q) => $q
+            ->selectRaw(1)
+            ->from(DB::raw("{$table} d"))
+            ->whereRaw("d.beatmap_discussion_id = {$table}.beatmap_discussion_id")
+            ->whereRaw("d.id < {$table}.id"));
+    }
+
     public function scopeWithoutTrashed($query)
     {
         $query->whereNull('deleted_at');
@@ -382,7 +418,7 @@ class BeatmapDiscussionPost extends Model
 
     public function url()
     {
-        return $this->beatmapDiscussion->url();
+        return route('beatmapsets.discussions.posts.show', $this->getKey());
     }
 
     protected function newReportableExtraParams(): array

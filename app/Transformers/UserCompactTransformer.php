@@ -24,7 +24,24 @@ class UserCompactTransformer extends TransformerAbstract
         'userProfileCustomization',
     ];
 
-    public $mode;
+    const LIST_INCLUDES = [
+        ...self::CARD_INCLUDES,
+        'statistics',
+        'support_level',
+    ];
+
+    const PROFILE_HEADER_INCLUDES = [
+        'active_tournament_banner',
+        'badges',
+        'comments_count',
+        'follower_count',
+        'groups',
+        'mapping_follower_count',
+        'previous_usernames',
+        'support_level',
+    ];
+
+    protected string $mode;
 
     protected $availableIncludes = [
         'account_history',
@@ -32,6 +49,7 @@ class UserCompactTransformer extends TransformerAbstract
         'badges',
         'beatmap_playcounts_count',
         'blocks',
+        'comments_count',
         'country',
         'cover',
         'favourite_beatmapset_count',
@@ -53,16 +71,17 @@ class UserCompactTransformer extends TransformerAbstract
         'mapping_follower_count',
         'monthly_playcounts',
         'page',
+        'pending_beatmapset_count',
         'previous_usernames',
-        'ranked_and_approved_beatmapset_count',
+        'ranked_beatmapset_count',
         'replays_watched_counts',
         'scores_best_count',
         'scores_first_count',
+        'scores_pinned_count',
         'scores_recent_count',
         'statistics',
         'statistics_rulesets',
         'support_level',
-        'unranked_beatmapset_count',
         'unread_pm_count',
         'user_achievements',
         'user_preferences',
@@ -70,6 +89,10 @@ class UserCompactTransformer extends TransformerAbstract
         // TODO: should be alphabetically ordered but lazer relies on being after statistics. can revert to alphabetical after 2020-05-01
         'rankHistory',
         'rank_history',
+
+        // TODO: deprecated
+        'ranked_and_approved_beatmapset_count',
+        'unranked_beatmapset_count',
     ];
 
     protected $permissions = [
@@ -81,7 +104,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_limited_bn' => 'IsNotOAuth',
         'is_moderator' => 'IsNotOAuth',
         'is_nat' => 'IsNotOAuth',
-        'is_restricted' => 'IsNotOAuth',
+        'is_restricted' => 'UserShowRestrictedStatus',
         'is_silenced' => 'IsNotOAuth',
     ];
 
@@ -152,6 +175,11 @@ class UserCompactTransformer extends TransformerAbstract
         );
     }
 
+    public function includeCommentsCount(User $user)
+    {
+        return $this->primitive($user->comments()->withoutTrashed()->count());
+    }
+
     public function includeCountry(User $user)
     {
         return $user->country === null
@@ -175,14 +203,6 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->profileBeatmapsetsFavourite()->count());
     }
 
-    public function includeFriends(User $user)
-    {
-        return $this->collection(
-            $user->relations()->friends()->withMutual()->get(),
-            new UserRelationTransformer()
-        );
-    }
-
     public function includeFollowUserMapping(User $user)
     {
         return $this->primitive(
@@ -196,6 +216,14 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeFollowerCount(User $user)
     {
         return $this->primitive($user->followerCount());
+    }
+
+    public function includeFriends(User $user)
+    {
+        return $this->collection(
+            $user->relations()->friends()->withMutual()->get(),
+            new UserRelationTransformer()
+        );
     }
 
     public function includeGraveyardBeatmapsetCount(User $user)
@@ -273,16 +301,19 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includePage(User $user)
     {
-        return $this->item($user, function ($user) {
-            if ($user->userPage !== null) {
-                return [
-                    'html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']]),
+        return $this->primitive(
+            $user->userPage === null
+                ? ['html' => '', 'raw' => '']
+                : [
+                    'html' => $user->userPage->bodyHTML(['modifiers' => ['profile-page']]),
                     'raw' => $user->userPage->bodyRaw,
-                ];
-            } else {
-                return ['html' => '', 'raw' => ''];
-            }
-        });
+                ]
+        );
+    }
+
+    public function includePendingBeatmapsetCount(User $user)
+    {
+        return $this->primitive($user->profileBeatmapsetsPending()->count());
     }
 
     public function includePreviousUsernames(User $user)
@@ -290,20 +321,26 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->previousUsernames()->unique()->values()->toArray());
     }
 
-    public function includeRankedAndApprovedBeatmapsetCount(User $user)
-    {
-        return $this->primitive($user->profileBeatmapsetsRankedAndApproved()->count());
-    }
-
     public function includeRankHistory(User $user)
     {
         $rankHistoryData = $user->rankHistories()
             ->where('mode', Beatmap::modeInt($this->mode))
-            ->first();
+            ->first()
+            ?->setRelation('user', $user);
 
         return $rankHistoryData === null
             ? $this->primitive(null)
             : $this->item($rankHistoryData, new RankHistoryTransformer());
+    }
+
+    public function includeRankedAndApprovedBeatmapsetCount(User $user)
+    {
+        return $this->includeRankedBeatmapsetCount($user);
+    }
+
+    public function includeRankedBeatmapsetCount(User $user)
+    {
+        return $this->primitive($user->profileBeatmapsetsRanked()->count());
     }
 
     public function includeReplaysWatchedCounts(User $user)
@@ -322,6 +359,11 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeScoresFirstCount(User $user)
     {
         return $this->primitive($user->scoresFirst($this->mode, true)->visibleUsers()->count());
+    }
+
+    public function includeScoresPinnedCount(User $user)
+    {
+        return $this->primitive($user->scorePins()->forMode($this->mode)->withVisibleScore()->count());
     }
 
     public function includeScoresRecentCount(User $user)
@@ -348,7 +390,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeUnrankedBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsUnranked()->count());
+        return $this->includePendingBeatmapsetCount($user);
     }
 
     public function includeUnreadPmCount(User $user)
@@ -383,6 +425,13 @@ class UserCompactTransformer extends TransformerAbstract
             'user_list_sort',
             'user_list_view',
         ]));
+    }
+
+    public function setMode(string $mode)
+    {
+        $this->mode = $mode;
+
+        return $this;
     }
 
     protected function userProfileCustomization(User $user): UserProfileCustomization

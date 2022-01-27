@@ -7,22 +7,24 @@ return [
     'button' => [
         'cancel' => 'Batal',
         'resend' => 'Kirim ulang email verifikasi',
-        'set' => 'Atur Kata Sandi',
+        'set' => 'Atur kata sandi',
         'start' => 'Mulai',
     ],
 
     'error' => [
         'contact_support' => 'Harap hubungi layanan dukungan untuk dapat memulihkan akun.',
+        'expired' => 'Masa berlaku kode verifikasi telah berakhir.',
+        'invalid' => 'Terdapat kesalahan dalam proses pengecekan kode verifikasi.',
         'is_privileged' => 'Harap hubungi admin yang memiliki akses perizinan tingkat tinggi untuk dapat memulihkan akun.',
         'missing_key' => 'Wajib.',
-        'too_many_tries' => 'Terlalu banyak percobaan gagal.',
+        'too_many_tries' => 'Terlalu banyak percobaan yang gagal.',
         'user_not_found' => 'Pengguna yang diminta tidak ditemukan.',
         'wrong_key' => 'Kode salah.',
     ],
 
     'notice' => [
         'sent' => 'Periksa email Anda untuk kode verifikasi.',
-        'saved' => 'Kata sandi baru disimpan',
+        'saved' => 'Kata sandi baru berhasil disimpan!',
     ],
 
     'started' => [
@@ -36,7 +38,7 @@ return [
         'username' => 'Masukkan alamat email atau nama pengguna',
 
         'support' => [
-            '_' => 'Membutuhkan bantuan tambahan? Hubungi kami dengan menghubungi :button berikut.',
+            '_' => 'Butuh bantuan lebih lanjut? Hubungi :button kami.',
             'button' => 'layanan dukungan',
         ],
     ],

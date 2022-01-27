@@ -27,12 +27,16 @@ return [
             'remove' => 'Hapus pilihan',
             'used_up' => 'Anda telah mempergunakan seluruh hak suara yang Anda miliki',
         ],
+
+        'progress' => [
+            '_' => ':used / :max suara telah dipergunakan',
+        ],
     ],
     'entry' => [
         '_' => 'entri',
         'login_required' => 'Silakan masuk untuk mengikuti kontes.',
         'silenced_or_restricted' => 'Anda tidak dapat mengikuti kontes ketika akun Anda sedang di-restrict atau di-silence.',
-        'preparation' => 'Kami sedang mempersiapkan kontes ini. Harap tunggu dengan sabar!',
+        'preparation' => 'Kami sedang mempersiapkan kontes ini. Harap bersabar!',
         'drop_here' => 'Letakkan entri Anda di sini',
         'download' => 'Unduh .osz',
         'wrong_type' => [

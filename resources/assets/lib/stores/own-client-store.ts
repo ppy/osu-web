@@ -2,17 +2,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
+import { UserLoginAction } from 'actions/user-login-actions';
 import { OwnClientJson } from 'interfaces/own-client-json';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { OwnClient as Client } from 'models/oauth/own-client';
 
 export default class OwnClientStore {
   @observable clients = new Map<number, Client>();
 
+  constructor() {
+    makeObservable(this);
+  }
+
   handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof UserLoginAction
-      || dispatchedAction instanceof UserLogoutAction) {
+    if (dispatchedAction instanceof UserLoginAction) {
       this.flushStore();
     }
   }

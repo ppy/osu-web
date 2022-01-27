@@ -2,7 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { CommentJson } from 'interfaces/comment-json';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
+import core from 'osu-core-singleton';
 
 export type CommentSort = 'new' | 'old' | 'top';
 
@@ -11,17 +12,18 @@ export class Comment {
   commentableType: string; // TODO: type?
   createdAt: string;
   deletedAt: string | null;
+  deletedById?: number | null;
   editedAt: string | null;
   editedById: number | null;
   id: number;
   legacyName: string | null;
-  message: string;
-  messageHtml: string;
+  message?: string;
+  messageHtml?: string;
   parentId: number | null;
   pinned: boolean;
   repliesCount: number;
   updatedAt: string;
-  userId: number;
+  userId: number | null;
   votesCount: number;
 
   constructor(json: CommentJson) {
@@ -29,6 +31,7 @@ export class Comment {
     this.commentableType = json.commentable_type;
     this.createdAt = json.created_at;
     this.deletedAt = json.deleted_at;
+    this.deletedById = json.deleted_by_id;
     this.editedAt = json.edited_at;
     this.editedById = json.edited_by_id;
     this.id = json.id;
@@ -41,6 +44,8 @@ export class Comment {
     this.updatedAt = json.updated_at;
     this.userId = json.user_id;
     this.votesCount = json.votes_count;
+
+    makeObservable(this);
   }
 
   @computed
@@ -60,17 +65,17 @@ export class Comment {
 
   @computed
   get canModerate() {
-    return currentUser.is_admin || currentUser.is_moderator;
+    return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator);
   }
 
   @computed
   get canPin() {
-    return currentUser.is_admin && (this.parentId == null || this.pinned);
+    return core.currentUser?.is_admin && (this.parentId == null || this.pinned);
   }
 
   @computed
   get canReport() {
-    return currentUser.id != null && this.userId !== currentUser.id;
+    return core.currentUser != null && this.userId !== core.currentUser.id;
   }
 
   @computed
@@ -95,6 +100,6 @@ export class Comment {
 
   @computed
   get isOwner() {
-    return currentUser.id != null && this.userId === currentUser.id;
+    return core.currentUser != null && this.userId === core.currentUser.id;
   }
 }

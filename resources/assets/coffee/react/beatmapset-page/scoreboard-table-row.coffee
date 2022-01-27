@@ -2,15 +2,17 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'flag-country'
-import { round } from 'lodash'
 import { route } from 'laroute'
+import { round } from 'lodash'
 import Mod from 'mod'
 import { PlayDetailMenu } from 'play-detail-menu'
 import * as React from 'react'
 import { a, div, span, tr, td } from 'react-dom-factories'
-import { hasMenu } from 'score-helper'
 import ScoreboardTime from 'scoreboard-time'
 import PpValue from 'scores/pp-value'
+import { classWithModifiers } from 'utils/css'
+import { hasMenu, modeAttributesMap } from 'utils/score-helper'
+
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
@@ -25,7 +27,7 @@ export class ScoreboardTableRow extends React.PureComponent
     cell = "#{bn}__cell"
 
     tr
-      className: "#{osu.classWithModifiers("#{bn}__body-row", classMods)}",
+      className: "#{classWithModifiers("#{bn}__body-row", classMods)}",
 
       el @tdLink,
         modifiers: ['rank']
@@ -47,7 +49,7 @@ export class ScoreboardTableRow extends React.PureComponent
         if score.user.country_code
           a
             className: "#{bn}__cell-content"
-            href: laroute.route 'rankings',
+            href: route 'rankings',
               mode: @props.beatmap.mode
               country: score.user.country_code
               type: 'performance'
@@ -62,7 +64,7 @@ export class ScoreboardTableRow extends React.PureComponent
           a
             className: "#{bn}__cell-content #{bn}__cell-content--user-link js-usercard"
             'data-user-id': score.user.id
-            href: laroute.route 'users.show', user: score.user.id, mode: @props.beatmap.mode
+            href: route 'users.show', user: score.user.id, mode: @props.beatmap.mode
             score.user.username
 
           a
@@ -73,15 +75,11 @@ export class ScoreboardTableRow extends React.PureComponent
         modifiers: ['perfect'] if score.max_combo == @props.beatmap.max_combo
         "#{osu.formatNumber(score.max_combo)}x"
 
-      for stat in @props.hitTypeMapping
+      for stat in modeAttributesMap[@props.beatmap.mode]
         el @tdLink,
-          key: stat[0]
-          modifiers: ['zero'] if score.statistics["count_#{stat[1]}"] == 0
-          osu.formatNumber(score.statistics["count_#{stat[1]}"])
-
-      el @tdLink,
-        modifiers: ['zero'] if score.statistics.count_miss == 0
-        osu.formatNumber(score.statistics.count_miss)
+          key: stat.attribute
+          modifiers: 'zero' if score.statistics[stat.attribute] == 0
+          osu.formatNumber(score.statistics[stat.attribute])
 
       if @props.showPp
         el @tdLink,
@@ -108,6 +106,6 @@ export class ScoreboardTableRow extends React.PureComponent
     td
       className: "#{bn}__cell"
       a
-        className: osu.classWithModifiers("#{bn}__cell-content", props.modifiers)
+        className: classWithModifiers("#{bn}__cell-content", props.modifiers)
         href: props.href ? route('scores.show', mode: @props.score.mode, score: @props.score.best_id)
         props.children

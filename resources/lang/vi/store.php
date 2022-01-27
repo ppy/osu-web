@@ -4,13 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Kho hàng',
-    ],
-
     'cart' => [
         'checkout' => 'Thanh Toán',
-        'info' => ':count_delimited isản phẩm trong giỏ ($:subtotal)|:count_delimited sản phẩm trong giỏ ($:subtotal)',
+        'info' => ':count_delimited sản phẩm trong giỏ ($:subtotal)|:count_delimited sản phẩm trong giỏ ($:subtotal)',
         'more_goodies' => 'Tôi muốn xem thêm nhiều mặt hàng nữa trước khi hoàn thành đơn hàng',
         'shipping_fees' => 'phí vận chuyển',
         'title' => 'Giỏ Hàng',
@@ -54,7 +50,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Vì bạn thanh toán bằng eCheck, hãy chờ thêm tối đa 10 ngày để thanh toán qua khỏi PayPal!',
-        'title_compact' => '',
+        'title_compact' => 'hóa đơn',
 
         'status' => [
             'processing' => [
@@ -110,7 +106,7 @@ return [
 
         'stock' => [
             'out' => 'Mặt hàng này hiện đang hết hàng. Kiểm tra lại sau!',
-            'out_with_alternative' => 'Rất tiếc, sản phẩm này đã hết hàng. Sử dụng dropdown menu để chọn loại khác hoặc kiểm tra lại sau!',
+            'out_with_alternative' => 'Rất tiếc, sản phẩm này đã hết hàng. Sử dụng bảng chọn thả xuống để chọn loại khác hoặc kiểm tra lại sau!',
         ],
 
         'add_to_cart' => 'Thêm Vào Giỏ Hàng',

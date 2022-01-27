@@ -32,7 +32,7 @@ class BlocksController extends Controller
         $currentUser = Auth::user();
 
         if ($currentUser->blocks()->count() >= $currentUser->maxBlocks()) {
-            return error_popup(trans('users.blocks.too_many'));
+            return error_popup(osu_trans('users.blocks.too_many'));
         }
 
         $targetId = get_int(Request::input('target'));
@@ -78,7 +78,7 @@ class BlocksController extends Controller
             ->first();
 
         if (!$block) {
-            abort(404, trans('users.blocks.not_blocked'));
+            abort(404, osu_trans('users.blocks.not_blocked'));
         }
 
         $user->blocks()->detach($block);

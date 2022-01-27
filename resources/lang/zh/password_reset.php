@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => '请联系支持团队以找回账户',
+        'expired' => '验证码已过期。',
+        'invalid' => '发送验证码时出现意外错误。',
         'is_privileged' => '联系 peppy（笑）',
         'missing_key' => '必填',
         'too_many_tries' => '重试次数过多',
@@ -28,7 +30,7 @@ return [
     'started' => [
         'password' => '新密码',
         'password_confirmation' => '确认新密码',
-        'title' => '为 <strong>:username</strong> 重置密码',
+        'title' => '重置 <strong>:username</strong> 的密码',
         'verification_key' => '验证码',
     ],
 

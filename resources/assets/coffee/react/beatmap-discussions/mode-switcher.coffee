@@ -4,7 +4,7 @@
 import { snakeCase, size } from 'lodash'
 import * as React from 'react'
 import { a, div, li, span, ul } from 'react-dom-factories'
-import { StringWithComponent } from 'string-with-component'
+import StringWithComponent from 'string-with-component'
 el = React.createElement
 
 export class ModeSwitcher extends React.PureComponent
@@ -15,13 +15,11 @@ export class ModeSwitcher extends React.PureComponent
 
     @scrollerRef = React.createRef()
 
+  componentDidMount: =>
+    @scrollModeSwitcher()
 
   componentDidUpdate: =>
-    return if !@scrollerRef.current?
-
-    # on mobile, ModeSwitcher becomes horizontally scrollable - scrollTo ensures that the selected tab is made visible
-    $(@scrollerRef.current).scrollTo(".#{@selectedClassName}", 0, {over: {left: -1}})
-
+    @scrollModeSwitcher()
 
   render: =>
     modes = ['reviews', 'generalAll', 'general', 'timeline', 'events']
@@ -58,20 +56,18 @@ export class ModeSwitcher extends React.PureComponent
                       el StringWithComponent,
                         pattern: osu.trans('beatmaps.discussions.mode.general'),
                         mappings:
-                          ':scope':
+                          scope:
                             span
                               className: 'page-mode-link__subtitle'
-                              key: 'scope'
                               "(#{@props.currentBeatmap.version})"
 
                     else if mode == 'generalAll'
                       el StringWithComponent,
                         pattern: osu.trans('beatmaps.discussions.mode.general'),
                         mappings:
-                          ':scope':
+                          scope:
                             span
                               className: 'page-mode-link__subtitle'
-                              key: 'scope'
                               "(#{osu.trans('beatmaps.discussions.mode.scopes.generalAll')})"
 
                     else
@@ -83,6 +79,11 @@ export class ModeSwitcher extends React.PureComponent
                   span className: 'page-mode-link__stripe'
     ]
 
+  scrollModeSwitcher: =>
+    return if !@scrollerRef.current?
+
+    # on mobile, ModeSwitcher becomes horizontally scrollable - scrollTo ensures that the selected tab is made visible
+    $(@scrollerRef.current).scrollTo(".#{@selectedClassName}", 0, {over: {left: -1}})
 
   switch: (e) =>
     e.preventDefault()

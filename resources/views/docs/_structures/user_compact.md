@@ -29,53 +29,47 @@ is_online       | boolean                   | is the user currently online? (eit
 is_supporter    | boolean                   | does this user have supporter?
 last_visit      | [Timestamp](#timestamp)?  | last access time. `null` if the user hides online presence
 pm_friends_only | boolean                   | whether or not the user allows PM from other than friends
-profile_colour  | string                    | colour of username/profile highlight, hex code (e.g. `#333333`)
+profile_colour  | string?                   | colour of username/profile highlight, hex code (e.g. `#333333`)
 username        | string                    | user's display name
+
+<div id="usercompact-optionalattributes" data-unique="usercompact-optionalattributes"></div>
 
 ### Optional attributes
 
 Following are attributes which may be additionally included in the response. Relevant endpoints should list them if applicable.
 
-Field                                | Type
--------------------------------------|------------------------------------------------------------------
-account_history                      | [UserAccountHistory](#usercompact-useraccounthistory)[]
-active_tournament_banner             | [UserCompact.ProfileBanner](#usercompact-profilebanner)?
-badges                               | [UserBadge](#usercompact-userbadge)[]
-beatmap_playcounts_count             | number
-blocks                               | |
-country                              | |
-cover                                | |
-favourite_beatmapset_count           | number
-follower_count                       | number
-friends                              | |
-graveyard_beatmapset_count           | number
-groups                               | [UserGroup](#usergroup)[]
-is_admin                             | boolean
-is_bng                               | boolean
-is_full_bn                           | boolean
-is_gmt                               | boolean
-is_limited_bn                        | boolean
-is_moderator                         | boolean
-is_nat                               | boolean
-is_restricted                        | boolean
-is_silenced                          | boolean
-loved_beatmapset_count               | number
-monthly_playcounts                   | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
-page                                 | |
-previous_usernames                   | |
-ranked_and_approved_beatmapset_count | |
-replays_watched_counts               | |
-scores_best_count                    | number
-scores_first_count                   | number
-scores_recent_count                  | number
-statistics                           | |
-statistics_rulesets                  | UserStatisticsRulesets
-support_level                        | |
-unranked_beatmapset_count            | |
-unread_pm_count                      | |
-user_achievements                    | |
-user_preferences                     | |
-rank_history                         | |
+Field                      | Type
+---------------------------|-----
+account_history            | [UserAccountHistory](#usercompact-useraccounthistory)[]
+active_tournament_banner   | [UserCompact.ProfileBanner](#usercompact-profilebanner)?
+badges                     | [UserBadge](#usercompact-userbadge)[]
+beatmap_playcounts_count   | number
+blocks                     | |
+country                    | |
+cover                      | |
+favourite_beatmapset_count | number
+follower_count             | number
+friends                    | |
+graveyard_beatmapset_count | number
+groups                     | [UserGroup](#usergroup)[]
+is_restricted              | boolean?
+loved_beatmapset_count     | number
+monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
+page                       | |
+pending_beatmapset_count   | |
+previous_usernames         | |
+rank_history               | |
+ranked_beatmapset_count    | |
+replays_watched_counts     | |
+scores_best_count          | number
+scores_first_count         | number
+scores_recent_count        | number
+statistics                 | |
+statistics_rulesets        | UserStatisticsRulesets
+support_level              | |
+unread_pm_count            | |
+user_achievements          | |
+user_preferences           | |
 
 <div id="usercompact-profilebanner" data-unique="usercompact-profilebanner"></div>
 
@@ -94,9 +88,10 @@ image         | string      | |
 Field       | Type      | Description
 ------------|-----------|------------
 description | string?   | |
-type        | string    | `note`, `restriction`, or `silence`.
-timestamp   | Timestamp | |
+id          | number    | |
 length      | number    | In seconds.
+timestamp   | Timestamp | |
+type        | string    | `note`, `restriction`, or `silence`.
 
 <div id="usercompact-userbadge" data-unique="usercompact-userbadge"></div>
 

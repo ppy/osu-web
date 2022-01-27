@@ -65,7 +65,7 @@ class HomeController extends Controller
         $news = NewsPost::default()->limit($newsLimit)->get();
 
         if (Auth::check()) {
-            $newBeatmapsets = Beatmapset::latestRankedOrApproved();
+            $newBeatmapsets = Beatmapset::latestRanked();
             $popularBeatmapsets = Beatmapset::popular()->get();
 
             return ext_view('home.user', compact(
@@ -83,11 +83,6 @@ class HomeController extends Controller
     public function messageUser($user)
     {
         return ujs_redirect(route('chat.index', ['sendto' => $user]));
-    }
-
-    public function osuSupportPopup()
-    {
-        return ext_view('objects._popup_support_osu');
     }
 
     public function quickSearch()

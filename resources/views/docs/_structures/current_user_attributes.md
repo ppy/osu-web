@@ -13,3 +13,12 @@ can_reopen          | Can reopen the discussion.
 can_moderate_kudosu | Can allow or deny kudosu.
 can_resolve         | Can resolve the discussion.
 vote_score          | Current vote given to the discussion.
+
+
+### ChatChannelUserAttributes
+
+Name              | Type    | Description
+----------------- | ------- | --------------
+can_message       | boolean | Can send messages to this channel.
+can_message_error | string? | Reason messages cannot be sent to this channel
+last_read_id      | number  | `message_id` of last message read.

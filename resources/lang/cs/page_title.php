@@ -19,27 +19,33 @@ return [
             '404' => 'chybějící',
             '403' => 'zakázano',
             '401' => 'neoprávněný',
-            '401-verification' => '',
+            '401-verification' => 'ověření účtu',
             '405' => 'chybějící',
-            '422' => '',
-            '429' => '',
-            '500' => '',
-            '503' => '',
+            '422' => 'neplatný požadavek',
+            '429' => 'příliš mnoho požadavků',
+            '500' => 'něco se pokazilo',
+            '503' => 'údržba',
         ],
     ],
     'forum' => [
         '_' => 'fórum',
-        'topic_watches_controller' => [
+        'topic_logs_controller' => [
             'index' => '',
+        ],
+        'topic_watches_controller' => [
+            'index' => 'nástěnka',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'nástěnka',
+            'verify_link' => 'ověření účtu',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'featured artists',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'featured artists',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => '',
@@ -48,7 +54,7 @@ return [
             '_' => '',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'balíčky beatmap',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => '',
@@ -57,89 +63,97 @@ return [
             '_' => '',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'nástěnka',
         ],
         'beatmapsets_controller' => [
             'discussion' => '',
-            'index' => '',
+            'index' => 'seznam beatmap',
             'show' => '',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'seznam změn',
         ],
         'chat_controller' => [
             '_' => '',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'komentáře',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'soutěže',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => 'nástěnka',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'nástěnka',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'skupiny',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
+            'get_download' => 'ke stažení',
+            'index' => 'nástěnka',
+            'search' => 'hledat',
+            'support_the_game' => 'podpoř hru',
             'testflight' => '',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'informace',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'živá vysílání',
         ],
         'matches_controller' => [
             '_' => '',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'novinky',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'historie oznámení',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'obnova hesla',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'žebříček',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'výkon',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'obchod',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'turnaje',
         ],
         'users_controller' => [
-            '_' => '',
+            '_' => 'informace o hráči',
             'disabled' => 'oznámení',
         ],
         'wiki_controller' => [
-            '_' => 'nápověda',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => '',
+            '_' => 'žebříček',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autorizovat aplikaci',
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'obchod',
     ],
     'users' => [
         'modding_history_controller' => [
+            '_' => '',
+        ],
+        'multiplayer_controller' => [
             '_' => '',
         ],
     ],

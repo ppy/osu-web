@@ -11,7 +11,7 @@ return [
         'avatar' => [
             'title' => 'Аватар',
             'rules' => 'Калі ласка, упэўніцеся, што ваш аватар прытрымліваецца :link.<br/>Гэта значыць, што ён павінен <strong>падыходзіць для любога ўзросту</strong>. То-бок: ніякай галізны, лаянкі або задзірлівага змесціва.',
-            'rules_link' => 'правілы супольнасці',
+            'rules_link' => 'правіл супольнасці',
         ],
 
         'email' => [
@@ -56,13 +56,13 @@ return [
 
         'options' => [
             '_' => 'спосабы дастаўкі',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'гасцявая складанасць',
             'beatmapset:modding' => 'модынг бітмап',
             'channel_message' => 'асабістыя паведамленні',
             'comment_new' => 'новыя каментарыі',
             'forum_topic_reply' => 'адказы да тэмы',
             'mail' => 'пошта',
-            'mapping' => '',
+            'mapping' => 'стваральнік бiтмапы',
             'push' => 'push',
             'user_achievement_unlock' => 'адкрыццё медаля',
         ],
@@ -75,7 +75,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'схаваць папярэджанні аб відавочным змесце ў бітмапах',
         'beatmapset_title_show_original' => 'паказаць метададзеныя карты на зыходнай мове',
         'title' => 'Налады',
 

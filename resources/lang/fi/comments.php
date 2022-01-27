@@ -5,8 +5,10 @@
 
 return [
     'deleted' => 'poistettu',
-    'deleted_count' => ':count_delimited poistettu kommentti|:count_delimited poistettuja kommentteja',
-    'edited' => ':user muokkasi :timeago sitten',
+    'deleted_by' => ':user poisti tämän viestin :timeago sitten',
+    'deleted_by_system' => 'järjestelmä',
+    'deleted_count' => ':count_delimited poistettu kommentti|:count_delimited poistettua kommenttia',
+    'edited' => ':user muokkasi tämän viestin :timeago sitten',
     'pinned' => 'kiinnitetty',
     'empty' => 'Ei vielä kommentteja.',
     'load_replies' => 'lataa vastauksia',
@@ -22,15 +24,15 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Paina enter-näppäintä tehdäksesi :action. Paina shift- ja enter-näppäimiä tehdäksesi uuden rivin.',
-            'edit' => 'tallenna',
-            'new' => 'lähetä',
-            'reply' => 'vastaa',
+            '_' => 'Paina enter-näppäintä :action. Paina shift- ja enter-näppäimiä tehdäksesi uuden rivin.',
+            'edit' => 'tallentaaksesi',
+            'new' => 'lähettääksesi',
+            'reply' => 'vastataksesi',
         ],
     ],
 
     'guest_button' => [
-        'new' => 'Kirjaudu sisään tehdäksesi kommentti',
+        'new' => 'Kirjaudu sisään kommentoidaksesi',
         'reply' => 'Kirjaudu sisään vastataksesi',
     ],
 

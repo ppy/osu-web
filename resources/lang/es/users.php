@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Juega sucio o hace trampa',
+            'multiple_accounts' => 'Utiliza múltiples cuentas',
             'insults' => 'Insulta a mí o a otros',
             'spam' => 'Envía mensajes spam',
             'unwanted_content' => 'Enlaza contenido inapropiado',
@@ -156,7 +157,7 @@ return [
 
         'comments_count' => [
             '_' => 'Publicó :link',
-            'count' => ':count_delimited comentario|:count_delimited comentarios',
+            'count' => 'un comentario|:count_delimited comentarios',
         ],
         'edit' => [
             'cover' => [
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Mapas Amados',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Mapas Clasificados y Aprobados',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Mapas Pendientes',
+                ],
+                'ranked' => [
+                    'title' => 'Mapas Clasificados y Aprobados',
                 ],
             ],
             'discussions' => [
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Más reciente',
                 'title' => 'Medallas',
             ],
+            'multiplayer' => [
+                'title' => 'Partidas multijugador',
+            ],
             'posts' => [
                 'title' => 'Publicaciones',
                 'title_longer' => 'Publicaciones recientes',
@@ -320,6 +324,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Primeros lugares',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -402,10 +415,10 @@ return [
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Mapas Clasificados y Aprobados',
-            'loved_beatmapset_count' => 'Mapas Amados',
-            'unranked_beatmapset_count' => 'Mapas Pendientes',
             'graveyard_beatmapset_count' => 'Mapas Abandonados',
+            'loved_beatmapset_count' => 'Mapas Amados',
+            'pending_beatmapset_count' => 'Mapas Pendientes',
+            'ranked_beatmapset_count' => 'Mapas Clasificados y Aprobados',
         ],
     ],
 

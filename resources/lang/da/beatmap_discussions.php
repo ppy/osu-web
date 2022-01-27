@@ -61,8 +61,8 @@ return [
     'owner_editor' => [
         'button' => '',
         'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'user' => 'Ejer',
+        'version' => 'Sværhedsgrad',
     ],
 
     'reply' => [
@@ -81,6 +81,7 @@ return [
             'external_references' => '',
             'invalid_block_type' => 'ugyldig block type',
             'invalid_document' => 'ugyldig vurdering',
+            'invalid_discussion_type' => '',
             'minimum_issues' => 'vurdering skal som minimum indeholde :count fejl|vurdering skal som minimum indholde :count fejl',
             'missing_text' => 'block mangler tekst',
             'too_many_blocks' => 'vurderinger må kun indeholde :count afsnit/problem|vurderinger må kun indeholde op til :count afsnit/problemer',

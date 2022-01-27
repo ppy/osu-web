@@ -22,13 +22,16 @@ return [
             '401-verification' => 'verificare cont',
             '405' => 'lipsește',
             '422' => 'cerere invalidă',
-            '429' => '',
+            '429' => 'prea multe cereri',
             '500' => 'ceva s-a stricat',
             '503' => 'mentenanță',
         ],
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'tablou de bord',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'tablou de bord',
             'verify_link' => 'verificare cont',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => 'featured artists',
@@ -111,13 +117,13 @@ return [
             '_' => 'resetează parola',
         ],
         'ranking_controller' => [
-            '_' => 'clasament',
+            '_' => 'clasamente',
         ],
         'scores_controller' => [
             '_' => 'performanță',
         ],
         'store_controller' => [
-            '_' => 'osu!magazin',
+            '_' => 'magazin',
         ],
         'tournaments_controller' => [
             '_' => 'turnee',
@@ -127,7 +133,7 @@ return [
             'disabled' => 'observație',
         ],
         'wiki_controller' => [
-            '_' => 'bază de cunoștințe',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -135,12 +141,20 @@ return [
             '_' => 'clasament',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!magazin',
+        '_' => 'magazin',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'info modder',
+        ],
+        'multiplayer_controller' => [
+            '_' => '',
         ],
     ],
 ];

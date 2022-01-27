@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'حُذفت',
+    'deleted_by' => 'تم الحذف :timeago بواسطة :user',
+    'deleted_by_system' => 'النظام',
     'deleted_count' => ':count تعليق محذوف|:count تعليقان محذوفان|:count تعليقات محذوفه|:count تعليق محذوف',
     'edited' => 'تم التعديل :timeago بواسطة :user',
     'pinned' => 'مُثَبَت',

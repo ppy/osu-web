@@ -1,7 +1,12 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @BeatmapDiscussionHelper
+import { route } from 'laroute'
+import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
+import { currentUrl } from 'utils/turbolinks'
+import { openBeatmapEditor, linkHtml } from 'utils/url'
+
+class window.BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
   @DEFAULT_MODE: 'timeline'
   @DEFAULT_FILTER: 'total'
@@ -36,7 +41,7 @@ class @BeatmapDiscussionHelper
     blockName = 'beatmapset-discussion-message'
     text = _.escape text
     text = text.trim()
-    text = _exported.discussionLinkify text
+    text = discussionLinkify text
     text = @linkTimestamp text, ['beatmap-discussion-timestamp-decoration']
 
     if options.newlines ? true
@@ -70,17 +75,7 @@ class @BeatmapDiscussionHelper
   @linkTimestamp: (text, classNames = []) =>
     text
       .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_match, text, m, s, ms, range) =>
-        osu.link(_exported.OsuUrlHelper.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
-
-
-  @messageType:
-    icon:
-      hype: 'fas fa-bullhorn'
-      mapperNote: 'far fa-sticky-note'
-      praise: 'fas fa-heart'
-      problem: 'fas fa-exclamation-circle'
-      review: 'fas fa-tasks'
-      suggestion: 'far fa-circle'
+        linkHtml(openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
 
 
   @nearbyDiscussions: (discussions, timestamp) =>
@@ -154,6 +149,7 @@ class @BeatmapDiscussionHelper
       discussionId
       discussions # for validating discussionId and getting relevant params
       discussion
+      post
       user
     } = if useCurrent then _.assign(@urlParse(), options) else options
 
@@ -188,8 +184,11 @@ class @BeatmapDiscussionHelper
         params.beatmap = discussionState.beatmapId
         params.mode = discussionState.mode
 
-    url = new URL(laroute.route('beatmapsets.discussion', params))
-    url.hash = if discussionId? then url.hash = "/#{discussionId}" else ''
+    url = new URL(route('beatmapsets.discussion', params))
+    if discussionId?
+      url.hash = "/#{discussionId}"
+      url.hash += "/#{post.id}" if post?
+
 
     if user?
       url.searchParams.set('user', user)
@@ -203,7 +202,7 @@ class @BeatmapDiscussionHelper
   @urlParse: (urlString, discussions, options = {}) =>
     options.forceDiscussionId ?= false
 
-    url = new URL(urlString ? document.location.href)
+    url = new URL(urlString ? currentUrl().href)
     [__, pathBeatmapsets, beatmapsetId, pathDiscussions, beatmapId, mode, filter] = url.pathname.split /\/+/
 
     return if pathBeatmapsets != 'beatmapsets' || pathDiscussions != 'discussion'
@@ -220,15 +219,19 @@ class @BeatmapDiscussionHelper
       user: parseInt(url.searchParams.get('user'), 10) if url.searchParams.get('user')?
 
     if url.hash[1] == '/'
-      discussionId = parseInt(url.hash[2..], 10)
+      [discussionId, postId] = url.hash[2..].split('/').map((id) -> parseInt(id, 10))
 
       if isFinite(discussionId)
         if discussions?
           discussion = _.find discussions, id: discussionId
 
           _.assign ret, @stateFromDiscussion(discussion)
+
+          return ret if discussion.posts?[0]?.id == postId
         else if options.forceDiscussionId
           ret.discussionId = discussionId
+
+    ret.postId = postId if ret.discussionId? && isFinite(postId)
 
     ret
 

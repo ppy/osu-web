@@ -25,10 +25,11 @@ return [
         'standard_converts_only' => 'Aucun score n\'est disponible pour le mode sélectionné sur cette difficulté de beatmap.',
     ],
     'checkout' => [
-        'generic' => 'Une erreur s’est produite lors de la préparation de votre commande.',
+        'generic' => 'Une erreur s’est produite lors de votre achat.',
     ],
     'search' => [
         'default' => 'Impossible d\'obtenir des résultats, réessayez plus tard.',
+        'invalid_cursor_exception' => 'Paramètre de curseur non valide spécifié.',
         'operation_timeout_exception' => 'La recherche est actuellement plus chargée que d\'habitude, réessayez plus tard.',
     ],
 ];

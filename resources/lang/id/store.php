@@ -4,14 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Gudang',
-    ],
-
     'cart' => [
         'checkout' => 'Checkout',
         'info' => ':count_delimited barang dalam keranjang ($:subtotal)|:count_delimited barang dalam keranjang ($:subtotal)',
-        'more_goodies' => 'Saya ingin melihat produk-produk lainnya yang tersedia sebelum merampungkan pesanan',
+        'more_goodies' => 'Saya ingin melihat produk-produk lainnya sebelum merampungkan pesanan',
         'shipping_fees' => 'biaya pengiriman',
         'title' => 'Keranjang Belanja',
         'total' => 'total',
@@ -131,7 +127,7 @@ return [
     ],
 
     'username_change' => [
-        'check' => 'Masukkan nama pengguna untuk memeriksa ketersediaan!',
+        'check' => 'Masukkan nama pengguna untuk memeriksa ketersediaannya!',
         'checking' => 'Memeriksa ketersediaan :username...',
         'require_login' => [
             '_' => 'Anda harus :link untuk mengubah nama Anda!',

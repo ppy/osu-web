@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Hylkää',
         'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
         'love' => 'Rakasta',
+        'love_choose' => '',
         'love_confirm' => 'Rakasta tätä beatmappia?',
         'nominate' => 'Suosittele',
         'nominate_confirm' => 'Suosittele tätä beatmappia?',
@@ -214,14 +215,14 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'anna hakusana...',
+            'prompt' => 'syötä hakusana...',
             'login_required' => 'Kirjaudu sisään hakeaksesi.',
             'options' => 'Enemmän Hakuasetuksia',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... mitään ei löytynyt.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Yleinen',
                 'genre' => 'Tyylilaji',
                 'language' => 'Kieli',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Sisällytä muunnetut beatmapit',
+        'featured_artists' => '',
         'follows' => 'Tilatut kartoittajat',
         'recommended' => 'Suositeltu vaikeustaso',
     ],
@@ -288,7 +290,7 @@ return [
         'metal' => 'Metalli',
         'classical' => 'Klassinen',
         'folk' => 'Kansanmusiikki',
-        'jazz' => 'Jatsi',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '',
@@ -314,7 +316,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Pisteytys V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Kaikki',
@@ -327,8 +329,8 @@ return [
         'korean' => 'korea',
         'spanish' => 'espanja',
         'swedish' => 'ruotsi',
-        'russian' => 'Venäläinen',
-        'polish' => 'Puolalainen',
+        'russian' => 'venäjä',
+        'polish' => 'puola',
         'instrumental' => 'Instrumentaalinen',
         'other' => 'Muu',
         'unspecified' => 'Täsmentämätön',

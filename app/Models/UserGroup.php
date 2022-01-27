@@ -35,6 +35,7 @@ class UserGroup extends Model
 
     public function getGroupAttribute(): Group
     {
+        // `group_id` attribute should always be valid or otherwise this will throw error (as it tries to return null).
         return app('groups')->byId($this->group_id);
     }
 

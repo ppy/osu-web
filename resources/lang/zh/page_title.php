@@ -23,12 +23,15 @@ return [
             '405' => '访问方法错误',
             '422' => '请求无效',
             '429' => '请求过多',
-            '500' => '服务器出现了一些问题...',
+            '500' => '服务器出现了一些问题……',
             '503' => '服务器维护中',
         ],
     ],
     'forum' => [
         '_' => '论坛',
+        'topic_logs_controller' => [
+            'index' => '主题记录',
+        ],
         'topic_watches_controller' => [
             'index' => '主页',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => '主页',
             'verify_link' => '账户验证',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '精选艺术家',
         ],
         'artists_controller' => [
             '_' => '精选艺术家',
@@ -117,7 +123,7 @@ return [
             '_' => '表现',
         ],
         'store_controller' => [
-            '_' => 'osu! 商店',
+            '_' => '商店',
         ],
         'tournaments_controller' => [
             '_' => '比赛',
@@ -127,7 +133,7 @@ return [
             'disabled' => '通知',
         ],
         'wiki_controller' => [
-            '_' => '知识库',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -135,12 +141,20 @@ return [
             '_' => '排名',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '授权应用',
+        ],
+    ],
     'store' => [
-        '_' => 'osu! 商店',
+        '_' => '商店',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => '摸图者信息',
+        ],
+        'multiplayer_controller' => [
+            '_' => '多人游戏历史',
         ],
     ],
 ];

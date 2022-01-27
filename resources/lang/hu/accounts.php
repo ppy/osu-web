@@ -48,7 +48,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'Értesítések kérése minősített beatmapok problémáival kapcsolatban a következő módokból',
+        'beatmapset_discussion_qualified_problem' => 'értesítések kérése kvalifikált beatmapok problémáival kapcsolatban a következő módokból',
         'beatmapset_disqualify' => 'értesíts, ha a következő játékmódok egy beatmapje diszkvalifikálva lett',
         'comment_reply' => 'értesítések küldése a kommentjeidre érkezett válaszokról',
         'title' => 'Értesítések',
@@ -76,14 +76,14 @@ return [
 
     'options' => [
         'beatmapset_show_nsfw' => 'beatmapekben lévő felnőtt tartalmakra vonatkozó figyelmeztetések elrejtése',
-        'beatmapset_title_show_original' => 'A beatmap metaadatai megjelenítése eredeti nyelven',
+        'beatmapset_title_show_original' => 'a beatmap metaadatai megjelenítése eredeti nyelven',
         'title' => 'Beállítások',
 
         'beatmapset_download' => [
-            '_' => 'Alapértelmezett beatmap letöltés típusa',
-            'all' => 'Videóval, ha elérhető',
-            'direct' => 'Megnyitás osu!direct-ben',
-            'no_video' => 'Videó nélkül',
+            '_' => 'alapértelmezett beatmap letöltés típusa',
+            'all' => 'videóval, ha elérhető',
+            'direct' => 'megnyitás osu!direct-ben',
+            'no_video' => 'videó nélkül',
         ],
     ],
 

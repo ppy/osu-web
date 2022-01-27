@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => '부정 행위 / 치트 사용',
+            'multiple_accounts' => '다중 계정 사용',
             'insults' => '자신 / 다른 사람을 모욕 함',
             'spam' => '도배',
             'unwanted_content' => '부적절한 콘텐츠에 링크 걸기',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Loved 비트맵',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked 및 Approved 상태의 비트맵',
+                'pending' => [
+                    'title' => '대기 중인 비트맵',
                 ],
-                'unranked' => [
-                    'title' => 'Pending 비트맵',
+                'ranked' => [
+                    'title' => '새로 랭크된 비트맵',
                 ],
             ],
             'discussions' => [
@@ -300,6 +301,9 @@ return [
                 'recent' => '최근 획득',
                 'title' => '메달',
             ],
+            'multiplayer' => [
+                'title' => '멀티플레이 게임',
+            ],
             'posts' => [
                 'title' => '게시글',
                 'title_longer' => '최근 게시글',
@@ -321,13 +325,22 @@ return [
                 'first' => [
                     'title' => '1위 달성 맵',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => '투표 참여 수 (지난 3개월 간)',
                 'received' => '받은 투표수 (지난 3개월 간)',
                 'title' => '투표',
                 'title_longer' => '최근 투표',
-                'vote_count' => ':count_delimited 투표',
+                'vote_count' => ':count_delimited개의 투표',
             ],
             'account_standing' => [
                 'title' => '계정 상태',
@@ -402,10 +415,10 @@ return [
             'total_hits' => '총 타격 횟수',
             'total_score' => '총 점수',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked 및 Approved 상태의 비트맵',
-            'loved_beatmapset_count' => 'Loved 비트맵',
-            'unranked_beatmapset_count' => '대기 중인 비트맵',
             'graveyard_beatmapset_count' => '묻힌 비트맵',
+            'loved_beatmapset_count' => 'Loved 비트맵',
+            'pending_beatmapset_count' => '대기 중인 비트맵',
+            'ranked_beatmapset_count' => '랭크된 비트맵',
         ],
     ],
 

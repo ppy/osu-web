@@ -112,7 +112,7 @@ return [
         'username' => 'Convidado',
         'error' => 'Precisas de ter sessão iniciada para fazer isto.',
     ],
-    'logout_confirm' => 'Tens a certeza que queres terminar a sessão? :(',
+    'logout_confirm' => 'Tens a certeza de que queres terminar a sessão? :(',
     'report' => [
         'button_text' => 'denunciar',
         'comments' => 'Comentários adicionais',
@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Jogada suja / Fazer batota',
+            'multiple_accounts' => 'Utilização de contas múltiplas',
             'insults' => 'Insulto a mim ou a outros',
             'spam' => 'Spam',
             'unwanted_content' => 'Enviar ligações com conteúdo impróprio',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Beatmaps adorados',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps classificados e aprovados',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmaps pendentes',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmaps classificados e aprovados',
                 ],
             ],
             'discussions' => [
@@ -300,6 +301,9 @@ return [
                 'recent' => 'As mais recentes',
                 'title' => 'Medalhas',
             ],
+            'multiplayer' => [
+                'title' => 'Jogos multijogador',
+            ],
             'posts' => [
                 'title' => 'Publicações',
                 'title_longer' => 'Publicações recentes',
@@ -320,6 +324,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Classificações de primeiro lugar',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -402,10 +415,10 @@ return [
             'total_hits' => 'Acertos totais',
             'total_score' => 'Pontuação total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmaps classificados e aprovados',
-            'loved_beatmapset_count' => 'Beatmaps adorados',
-            'unranked_beatmapset_count' => 'Beatmaps pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no cemitério',
+            'loved_beatmapset_count' => 'Beatmaps adorados',
+            'pending_beatmapset_count' => 'Beatmaps pendentes',
+            'ranked_beatmapset_count' => 'Beatmaps classificados e aprovados',
         ],
     ],
 

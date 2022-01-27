@@ -49,8 +49,8 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'belirtilen modlardaki nitelikli maplerin yeni sorunlarında bildirim al ',
-        'beatmapset_disqualify' => 'belirtilen modlardaki beatmapler diskalifiye edildiğinde bildirim al',
-        'comment_reply' => 'yorumlara yapılan yanıtlar için bildirim al',
+        'beatmapset_disqualify' => 'belirtilen modların beatmapleri diskalifiye edildiğinde bildirim al',
+        'comment_reply' => 'yorumlarına yapılan yanıtlar için bildirim al',
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'oluşturduğunuz yeni forum başlıklarında bildirimleri otomatik olarak etkinleştir',
 
@@ -61,10 +61,10 @@ return [
             'channel_message' => 'özel sohbet mesajları',
             'comment_new' => 'yeni yorumlar',
             'forum_topic_reply' => 'konu yanıtı',
-            'mail' => 'e-posta',
+            'mail' => 'posta',
             'mapping' => 'beatmap mapper',
             'push' => 'anlık',
-            'user_achievement_unlock' => 'madalya açıldı',
+            'user_achievement_unlock' => 'kullanıcı madalyası açıldı',
         ],
     ],
 
@@ -96,7 +96,7 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'Arkadaş listende olmayan kişilerden gelen mesajları engelle',
+        'friends_only' => 'arkadaş listende olmayan kişilerden gelen mesajları engelle',
         'hide_online' => 'çevrimiçi durumunu gizle',
         'title' => 'Gizlilik',
     ],
@@ -104,7 +104,7 @@ return [
     'security' => [
         'current_session' => 'şu anki',
         'end_session' => 'Oturumu Sonlandır',
-        'end_session_confirmation' => 'Bu, oturumunuzu o cihazda hemen sonlandırır. Emin misiniz?',
+        'end_session_confirmation' => 'Bu, o cihazdaki oturumunuzu hemen sonlandırır. Emin misiniz?',
         'last_active' => 'Son etkinlik:',
         'title' => 'Güvenlik',
         'web_sessions' => 'web oturumları',

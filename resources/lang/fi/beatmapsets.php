@@ -12,7 +12,11 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Hidasta vähän, pelaa enemmän.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
@@ -105,9 +109,9 @@ return [
             ],
 
             'report' => [
-                '_' => '',
+                '_' => 'Jos löydät jonkun ongelman tämän beatmapin kanssa, olmoita siitä :link hälyttääksesi tiimiä.',
                 'button' => 'Ilmoita Ongelma',
-                'link' => '',
+                'link' => 'täällä',
             ],
         ],
 
@@ -150,11 +154,12 @@ return [
                 'combo' => 'Maksimikombo',
                 'miss' => 'Ohi',
                 'mods' => 'Modit',
+                'pin' => '',
                 'player' => 'Pelaaja',
                 'pp' => '',
                 'rank' => 'Sijoitus',
-                'score_total' => 'Kokonaispisteet',
                 'score' => 'Pisteet',
+                'score_total' => 'Kokonaispisteet',
                 'time' => 'Aika',
             ],
 

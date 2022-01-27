@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Diskvalificér',
         'incorrect_state' => 'Der opstod en fejl da vi prøvede at udføre handlingen, prøv at genindlæse siden.',
         'love' => 'Elsk',
+        'love_choose' => '',
         'love_confirm' => 'Elsk dette beatmap?',
         'nominate' => 'Nominér',
         'nominate_confirm' => 'Nominér dette beatmap?',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => 'Inkluder konvertert beatmeaps',
+        'featured_artists' => '',
         'follows' => 'Subscribed mappers
 ',
         'recommended' => 'Rekommenderat sværhedsgrad',
@@ -316,7 +318,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => '',

@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Lureri / Juks',
+            'multiple_accounts' => '',
             'insults' => 'Fornærmer meg / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Deling av upassende innhold',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Elskede Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Rangerte & Godkjente Beatmaps',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Ventende Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Rangerte & Godkjente Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -300,6 +301,9 @@ return [
                 'recent' => 'Nyeste',
                 'title' => 'Medaljer',
             ],
+            'multiplayer' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => 'Innlegg',
                 'title_longer' => 'Nylige Innlegg',
@@ -320,6 +324,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Førsteplasser',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -402,10 +415,10 @@ return [
             'total_hits' => 'Totale Treff',
             'total_score' => 'Samlet Poengsum',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rangerte & Godkjente Beatmaps',
-            'loved_beatmapset_count' => 'Elskede Beatmaps',
-            'unranked_beatmapset_count' => 'Ventende Beatmaps',
             'graveyard_beatmapset_count' => 'Gravlagte Beatmaps',
+            'loved_beatmapset_count' => 'Elskede Beatmaps',
+            'pending_beatmapset_count' => 'Ventende Beatmaps',
+            'ranked_beatmapset_count' => 'Rangerte & Godkjente Beatmaps',
         ],
     ],
 

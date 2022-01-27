@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Jogando sujo / Trapaceando',
+            'multiple_accounts' => 'Usando diversas contas',
             'insults' => 'Me insultando / outros',
             'spam' => 'Spam',
             'unwanted_content' => 'Enviando links com conteúdo inapropriado',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Beatmaps Loved',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps Ranqueados & Aprovados',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmaps Pendentes',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmaps Ranqueados & Aprovados',
                 ],
             ],
             'discussions' => [
@@ -300,6 +301,10 @@ return [
                 'recent' => 'Recente',
                 'title' => 'Medalhas',
             ],
+            'multiplayer' => [
+                'title' => 'Jogos multijogador
+',
+            ],
             'posts' => [
                 'title' => 'Publicações',
                 'title_longer' => 'Publicações Recentes',
@@ -320,6 +325,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Primeiros Lugares',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -402,10 +416,10 @@ return [
             'total_hits' => 'Acertos Totais',
             'total_score' => 'Pontuação Total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
-            'loved_beatmapset_count' => 'Beatmaps Loved',
-            'unranked_beatmapset_count' => 'Beatmaps Pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no Cemitério',
+            'loved_beatmapset_count' => 'Beatmaps Loved',
+            'pending_beatmapset_count' => 'Beatmaps Pendentes',
+            'ranked_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
         ],
     ],
 

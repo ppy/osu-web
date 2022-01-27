@@ -5,12 +5,14 @@
 
 return [
     'deleted' => 'verwijderd',
+    'deleted_by' => ':timeago verwijderd door :user',
+    'deleted_by_system' => 'systeem',
     'deleted_count' => ':count_delimited verwijderde opmerking|:count_delimited verwijderde opmerkingen',
     'edited' => 'gewijzigd :timeago door :user',
     'pinned' => 'vast gezet',
     'empty' => 'Nog geen commentaar.',
     'load_replies' => 'antwoorden laden',
-    'replies_count' => ':count_delimited Antwoord-:count_delimited antwoorden',
+    'replies_count' => ':count_delimited antwoord|:count_delimited antwoorden',
     'title' => 'Opmerkingen',
 
     'commentable_name' => [

@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'fórum',
+        'topic_logs_controller' => [
+            'index' => 'registos do tópico',
+        ],
         'topic_watches_controller' => [
             'index' => 'painel de controlo',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'painel de controlo',
             'verify_link' => 'verificação da conta',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'artistas destacados',
         ],
         'artists_controller' => [
             '_' => 'artistas destacados',
@@ -61,7 +67,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'discussão do beatmap',
-            'index' => 'listagem do beatmap',
+            'index' => 'listagem de beatmaps',
             'show' => 'informação do beatmap',
         ],
         'changelog_controller' => [
@@ -111,13 +117,13 @@ return [
             '_' => 'redefinir palavra-passe',
         ],
         'ranking_controller' => [
-            '_' => 'classificação',
+            '_' => 'classificações',
         ],
         'scores_controller' => [
             '_' => 'desempenho',
         ],
         'store_controller' => [
-            '_' => 'osu!store',
+            '_' => 'loja',
         ],
         'tournaments_controller' => [
             '_' => 'torneios',
@@ -127,7 +133,7 @@ return [
             'disabled' => 'aviso',
         ],
         'wiki_controller' => [
-            '_' => 'base de conhecimento',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
@@ -135,12 +141,20 @@ return [
             '_' => 'classificação',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autorizar aplicação',
+        ],
+    ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'loja',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'informação do modder',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'histórico do multijogador',
         ],
     ],
 ];

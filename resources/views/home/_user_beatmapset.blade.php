@@ -15,10 +15,18 @@
     @endif
 
     <div class="user-home-beatmapset__meta">
-        <div class='user-home-beatmapset__title u-ellipsis-overflow'>{{$beatmapset->title}}</div>
+        <div class="user-home-beatmapset__title-container">
+            @foreach ($beatmapset->playmodesStr() as $playmode)
+                <div class="user-home-beatmapset__playmode-icon">
+                    <span class="fal fa-extra-mode-{{$playmode}}"></span>
+                </div>
+            @endforeach
+
+            <div class='user-home-beatmapset__title u-ellipsis-overflow'>{{$beatmapset->title}}</div>
+        </div>
         <div class='user-home-beatmapset__artist u-ellipsis-overflow'>{{$beatmapset->artist}}</div>
         <div class='user-home-beatmapset__creator u-ellipsis-overflow'>
-            {!! trans('home.user.beatmaps.by_user', ['user' => tag(
+            {!! osu_trans('home.user.beatmaps.by_user', ['user' => tag(
                 'span',
                 ['data-user-id' => $beatmapset->user_id, 'class' => 'js-usercard'],
                 e($beatmapset->creator)
@@ -30,7 +38,7 @@
                 @elseif ($type === 'popular')
                     <span class="fa fa-heart"></span>
                     {{ i18n_number_format($beatmapset->favourite_count) }}
-            @endif
+                @endif
             </span>
         </div>
     </div>

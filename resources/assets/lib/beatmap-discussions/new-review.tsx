@@ -2,16 +2,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
+import core from 'osu-core-singleton';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import Editor from './editor';
 
 interface Props {
-  beatmaps: BeatmapJsonExtended[];
+  beatmaps: BeatmapExtendedJson[];
   beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJsonExtended;
+  currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: BeatmapsetDiscussionJson[];
   currentUser: UserJson;
   pinned?: boolean;
@@ -21,17 +23,6 @@ interface Props {
 
 interface State {
   cssTop: string | number | undefined;
-}
-
-// TODO: move to globals.d.ts
-interface StickyHeader {
-  headerHeight: () => number;
-}
-
-declare global {
-  interface Window {
-    stickyHeader: StickyHeader;
-  }
 }
 
 export default class NewReview extends React.Component<Props, State> {
@@ -46,11 +37,11 @@ export default class NewReview extends React.Component<Props, State> {
 
   componentDidMount(): void {
     this.setTop();
-    $(window).on('resize.new-review', this.setTop);
+    $(window).on('resize', this.setTop);
   }
 
   componentWillUnmount(): void {
-    $(window).off('.new-review');
+    $(window).off('resize', this.setTop);
   }
 
   cssTop = (sticky: boolean) => {
@@ -58,7 +49,7 @@ export default class NewReview extends React.Component<Props, State> {
       return;
     }
 
-    return window.stickyHeader.headerHeight() + this.props.stickTo?.current?.getBoundingClientRect().height;
+    return core.stickyHeader.headerHeight + this.props.stickTo?.current?.getBoundingClientRect().height;
   };
 
   onFocus = () => this.setSticky(true);
@@ -75,7 +66,7 @@ export default class NewReview extends React.Component<Props, State> {
     }
 
     return (
-      <div className={osu.classWithModifiers(floatClass, floatMods)} style={{top: this.state.cssTop}}>
+      <div className={classWithModifiers(floatClass, floatMods)} style={{ top: this.state.cssTop }}>
         <div className={`${floatClass}__floatable ${floatClass}__floatable--pinned`}>
           <div className={`${floatClass}__content`}>
             <div className='osu-page osu-page--small'>

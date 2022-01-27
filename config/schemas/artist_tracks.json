@@ -1,0 +1,147 @@
+{
+  "mappings": {
+    "_doc": {
+      "dynamic": false,
+      "properties": {
+        "album": {
+          "type": "text",
+          "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        },
+        "album_id": {
+          "type": "long"
+        },
+        "album_romanized": {
+          "type": "text",
+          "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        },
+        "artist": {
+          "type": "text",
+          "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        },
+        "artist_id": {
+          "type": "long"
+        },
+        "bpm": {
+          "type": "double"
+        },
+        "created_at": {
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
+        },
+        "exclusive": {
+          "type": "boolean"
+        },
+        "genre": {
+          "type": "text",
+          "fields": {
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        },
+        "length": {
+          "type": "long"
+        },
+        "title": {
+          "type": "text",
+          "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        },
+        "title_romanized": {
+          "type": "text",
+          "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        },
+        "updated_at": {
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
+        },
+        "version": {
+          "type": "text",
+          "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "prefix": {
+            "filter": [
+              "lowercase"
+            ],
+            "tokenizer": "prefix"
+          }
+        },
+        "tokenizer": {
+          "prefix": {
+            "type": "edge_ngram",
+            "min_gram": "2",
+            "max_gram": "20",
+            "token_chars": [
+              "digit",
+              "letter",
+              "punctuation",
+              "symbol"
+            ]
+          }
+        }
+      },
+      "number_of_shards": "1",
+      "number_of_replicas": "1"
+    }
+  }
+}

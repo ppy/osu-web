@@ -3,6 +3,7 @@
 
 import { Comment } from 'comment'
 import HeaderV4 from 'header-v4'
+import { route } from 'laroute'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -21,7 +22,7 @@ export class Main extends React.Component
 
 
   componentDidMount: =>
-    pagination = document.querySelector('.js-comments-pagination').cloneNode(true)
+    pagination = newBody.querySelector('.js-comments-pagination').cloneNode(true)
     @pagination.current.innerHTML = ''
     @pagination.current.appendChild pagination
 
@@ -58,7 +59,7 @@ export class Main extends React.Component
     links = [
       {
         title: osu.trans 'comments.index.nav_title'
-        url: laroute.route('comments.index')
+        url: route('comments.index')
       }
     ]
 
@@ -66,11 +67,11 @@ export class Main extends React.Component
       links.push(
         {
           title: @props.user.username
-          url: laroute.route('users.show', user: @props.user.id)
+          url: route('users.show', user: @props.user.id)
         },
         {
           title: osu.trans 'comments.index.nav_comments'
-          url: laroute.route('comments.index', user_id: @props.user.id)
+          url: route('comments.index', user_id: @props.user.id)
         }
       )
 

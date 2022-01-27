@@ -6,7 +6,8 @@ import { createPortal } from 'react-dom'
 import * as React from 'react'
 import { button, div, i } from 'react-dom-factories'
 import { TooltipContext } from 'tooltip-context'
-import { Modal } from 'modal'
+import { isModalShowing } from 'modal-helper'
+import { nextVal } from 'utils/seq'
 
 export class PopupMenu extends PureComponent
   @contextType = TooltipContext
@@ -14,12 +15,14 @@ export class PopupMenu extends PureComponent
   @defaultProps =
     children: (_dismiss) ->
       # empty function
+    direction: 'left'
 
 
   constructor: (props) ->
     super props
 
-    @uuid = osu.uuid()
+    @eventId = "popup-menu-#{nextVal()}"
+    @button = createRef()
     @menu = createRef()
 
     @state =
@@ -28,26 +31,32 @@ export class PopupMenu extends PureComponent
 
   componentDidMount: =>
     @tooltipHideEvent = @tooltipElement().qtip('option', 'hide.event')
-    $(window).on "resize.#{@uuid}", @resize
-    $(document).on "turbolinks:before-cache.#{@uuid}", () =>
-      @removePortal()
+    $(window).on "resize.#{@eventId}", @resize
+    $(document).on "turbolinks:before-cache.#{@eventId}", @removePortal
 
 
   resize: () =>
     return if !@state.active
 
     # disappear if the tree the menu is in is no longer displayed
-    if !@menu.current.offsetParent?
+    if !@button.current.offsetParent?
       @portal.style.display = 'none'
       return
 
-    $element = $(@menu.current)
-    { top, left } = $element.offset()
+    buttonRect = @button.current.getBoundingClientRect()
+    menuRect = @menu.current.getBoundingClientRect()
+    { scrollX, scrollY } = window
+
+    left = scrollX + buttonRect.right
+    # shift the menu right if it clips out of the window;
+    # menuRect.x doesn't update until after layout is finished so the known position of buttonRect is used instead.
+    if @props.direction == 'right' || buttonRect.x - menuRect.width < 0
+      left += menuRect.width - buttonRect.width
 
     @portal.style.display = 'block'
     @portal.style.position = 'absolute'
-    @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
-    @portal.style.left = "#{Math.floor(left + $element.width())}px"
+    @portal.style.top = "#{Math.floor(scrollY + buttonRect.bottom + 5)}px"
+    @portal.style.left = "#{Math.floor(left)}px"
 
     # keeps the menu showing above the tooltip;
     # portal should be after the tooltip in the document body.
@@ -60,24 +69,24 @@ export class PopupMenu extends PureComponent
     return if prevState.active == @state.active
 
     if @state.active
-      @resize()
       @addPortal()
+      @resize()
       @tooltipElement().qtip 'option', 'hide.event', false
 
-      $(document).on "click.#{@uuid} keydown.#{@uuid}", @hide
+      $(document).on "click.#{@eventId} keydown.#{@eventId}", @hide
       @props.onShow?()
 
     else
       @removePortal()
       @tooltipElement().qtip 'option', 'hide.event', @tooltipHideEvent
 
-      $(document).off "click.#{@uuid} keydown.#{@uuid}", @hide
+      $(document).off "click.#{@eventId} keydown.#{@eventId}", @hide
       @props.onHide?()
 
 
   componentWillUnmount: =>
-    $(document).off ".#{@uuid}"
-    $(window).off ".#{@uuid}"
+    $(document).off ".#{@eventId}"
+    $(window).off ".#{@eventId}"
 
 
   dismiss: =>
@@ -85,7 +94,7 @@ export class PopupMenu extends PureComponent
 
 
   hide: (e) =>
-    return if !@state.active || Modal.isOpen() || osu.popupShowing()
+    return if !@state.active || isModalShowing()
 
     event = e.originalEvent
     return if !event? # originalEvent gets eaten by error popup?
@@ -95,7 +104,7 @@ export class PopupMenu extends PureComponent
 
 
   isMenuInPath: (path) =>
-    @menu.current in path || @portal in path
+    @button.current in path || @portal in path
 
 
   toggle: =>
@@ -118,11 +127,11 @@ export class PopupMenu extends PureComponent
     @portal ?= document.createElement('div')
 
     if @props.customRender
-      @props.customRender createPortal(@props.children(@dismiss), @portal), @menu, @toggle
+      @props.customRender createPortal(@renderMenu(), @portal), @button, @toggle
     else
       div
         className: 'popup-menu'
-        ref: @menu
+        ref: @button
         button
           className: 'popup-menu__button'
           type: 'button'
@@ -133,11 +142,10 @@ export class PopupMenu extends PureComponent
 
 
   renderMenu: =>
-    # using Fade.in causes rendering glitches from the stacking context due to will-change
+    # using fadeIn causes rendering glitches from the stacking context due to will-change
     return null unless @state.active
 
     div
-      className: "popup-menu__menu"
-      div
-        className: 'simple-menu simple-menu--popup-menu'
-        @props.children @dismiss
+      className: "popup-menu-float"
+      ref: @menu
+      @props.children @dismiss

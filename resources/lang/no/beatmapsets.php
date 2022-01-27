@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Ro ned, spill mer.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmapsliste',
         'guest_title' => 'Beatmaps',
@@ -150,11 +154,12 @@ return [
                 'combo' => 'Maks Kombo',
                 'miss' => 'Bom',
                 'mods' => 'Modifikasjoner',
+                'pin' => '',
                 'player' => 'Spiller',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Total Poengsum',
                 'score' => 'Poengsum',
+                'score_total' => 'Total Poengsum',
                 'time' => 'Tid',
             ],
 

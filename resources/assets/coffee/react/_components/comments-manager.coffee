@@ -1,9 +1,12 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
 import { runInAction } from 'mobx'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
+import { parseJsonNullable, storeJson } from 'utils/json'
+import { nextVal } from 'utils/seq'
 
 uiState = core.dataStore.uiState
 
@@ -18,15 +21,15 @@ export class CommentsManager extends React.PureComponent
 
     if props.commentableType? && props.commentableId?
       # FIXME no initialization from component?
-      json = osu.parseJson("json-comments-#{props.commentableType}-#{props.commentableId}", true)
+      json = parseJsonNullable("json-comments-#{props.commentableType}-#{props.commentableId}", true)
       if json?
         core.dataStore.updateWithCommentBundleJson(json)
         uiState.initializeWithCommentBundleJson(json)
 
-      state = osu.parseJson @jsonStorageId()
+      state = parseJsonNullable(@jsonStorageId())
       uiState.importCommentsUIState(state) if state?
 
-    @id = "comments-#{osu.uuid()}"
+    @id = "comments-#{nextVal()}"
 
 
   componentDidMount: =>
@@ -40,6 +43,7 @@ export class CommentsManager extends React.PureComponent
 
   componentWillUnmount: =>
     $.unsubscribe ".#{@id}"
+    $(document).off ".#{@id}"
 
 
   render: =>
@@ -76,7 +80,7 @@ export class CommentsManager extends React.PureComponent
 
   saveState: =>
     if @props.commentableType? && @props.commentableId?
-      osu.storeJson @jsonStorageId(), uiState.exportCommentsUIState()
+      storeJson @jsonStorageId(), uiState.exportCommentsUIState()
 
 
   toggleFollow: =>
@@ -89,7 +93,7 @@ export class CommentsManager extends React.PureComponent
 
     uiState.comments.loadingFollow = true
 
-    $.ajax laroute.route('follows.store'),
+    $.ajax route('follows.store'),
       data: params
       dataType: 'json'
       method: if uiState.comments.userFollow then 'DELETE' else 'POST'
@@ -117,7 +121,7 @@ export class CommentsManager extends React.PureComponent
       sort: sort
       parent_id: 0
 
-    $.ajax laroute.route('comments.index'),
+    $.ajax route('comments.index'),
       data: params
       dataType: 'json'
     .done (data) =>

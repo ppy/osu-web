@@ -117,7 +117,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title, :mapper님이 ',
+            'title' => ':mapper 님이 제작한 :title',
         ],
 
         'sort' => [
@@ -130,7 +130,7 @@ return [
             'deleted' => '삭제됨',
             'mapper_notes' => '노트',
             'mine' => '내 글',
-            'pending' => 'Pending',
+            'pending' => '보류 중',
             'praises' => '칭찬',
             'resolved' => '해결됨',
             'total' => '모두',
@@ -183,6 +183,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다, 페이지를 새로 고쳐보세요.',
         'love' => '하트',
+        'love_choose' => 'Loved 비트맵의 난이도 선택',
         'love_confirm' => '이 비트맵이 마음에 드시나요?',
         'nominate' => '추천',
         'nominate_confirm' => '이 비트맵을 추천하시겠습니까?',
@@ -251,6 +252,7 @@ return [
     ],
     'general' => [
         'converts' => '변환된 비트맵 포함',
+        'featured_artists' => '공식 아티스트',
         'follows' => '구독한 비트맵 제작자',
         'recommended' => '권장 난이도',
     ],
@@ -310,11 +312,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'RX' => 'Relax',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => '모두',

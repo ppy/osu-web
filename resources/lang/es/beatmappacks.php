@@ -11,13 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'LEE ESTO ANTES DE DESCARGAR',
-            'instruction' => [
-                '_' => "Instalación: Una vez que un paquete ha sido descargado, extrae el archivo .rar en la carpeta Songs de osu!.
-                    Todas las canciones siguen siendo archivos .zip y/o .osz dentro del paquete, así que osu! tendrá que extraer los mapas por sí mismo la próxima vez que entres al modo de juego.
-                    :scary extraigas los archivos zip/osz por ti mismo,
-                    o los mapas se mostrarán incorrectamente en osu! y no funcionarán correctamente.",
-                'scary' => 'NUNCA',
-            ],
+            'install_instruction' => 'Instalación: Una vez descargado un paquete, extraiga el contenido del mismo en su directorio Songs de osu! y éste hará el resto.',
             'note' => [
                 '_' => 'También ten en cuenta que es muy recomendable :scary, ya que los mapas más antiguos son de mucha menor calidad que los mapas más recientes.',
                 'scary' => 'descargar los paquetes de los más recientes a los más antiguos',

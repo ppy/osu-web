@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Kunne ikke få resultater, prøv igen senere.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'Søgemaskinen er i øjeblikket travlere end ellers, prøv igen senere.',
     ],
 ];

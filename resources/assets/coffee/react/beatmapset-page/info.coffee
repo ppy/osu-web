@@ -2,16 +2,19 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import BbcodeEditor from 'bbcode-editor'
+import MetadataEditor from 'beatmapsets-show/metadata-editor'
+import { route } from 'laroute'
 import { Modal } from 'modal'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
-import MetadataEditor from 'beatmapsets-show/metadata-editor'
 el = React.createElement
 
 export class Info extends React.Component
   constructor: (props) ->
     super props
 
+    @disposers = new Set
     @overlayRef = React.createRef()
     @chartAreaRef = React.createRef()
 
@@ -30,7 +33,7 @@ export class Info extends React.Component
 
 
   componentWillUnmount: =>
-    $(window).off '.beatmapsetPageInfo'
+    @disposers.forEach (disposer) => disposer?()
 
 
   toggleEditingDescription: =>
@@ -53,7 +56,7 @@ export class Info extends React.Component
     target = event.target
 
     @setState isBusy: true
-    $.ajax laroute.route('beatmapsets.update', beatmapset: @props.beatmapset.id),
+    $.ajax route('beatmapsets.update', beatmapset: @props.beatmapset.id),
       method: 'PATCH',
       data:
         description: value
@@ -91,11 +94,15 @@ export class Info extends React.Component
           y: d3.scaleLinear()
         modifiers: ['beatmap-success-rate']
 
-      @_failurePointsChart = new StackedBarChart @chartAreaRef.current, options
-      $(window).on 'resize.beatmapsetPageInfo', @_failurePointsChart.resize
+      failurePointsChart = new StackedBarChart @chartAreaRef.current, options
+      @_failurePointsChart = failurePointsChart
+      $(window).on 'resize', failurePointsChart.resize
+      @disposers.add(=> $(window).off 'resize', failurePointsChart.resize)
 
-    @_failurePointsChart.loadData @props.beatmap.failtimes
-    @_failurePointsChart.reattach @chartAreaRef.current
+    @disposers.add(core.reactTurbolinks.runAfterPageLoad =>
+      @_failurePointsChart.loadData @props.beatmap.failtimes
+      @_failurePointsChart.reattach @chartAreaRef.current
+    )
 
 
   renderEditMetadataButton: =>
@@ -165,7 +172,8 @@ export class Info extends React.Component
               osu.trans 'beatmapsets.show.info.source'
 
             a
-              href: laroute.route('beatmapsets.index', q: @props.beatmapset.source)
+              className: 'beatmapset-info__link'
+              href: route('beatmapsets.index', q: @props.beatmapset.source)
               @props.beatmapset.source
 
         div className: 'beatmapset-info__half-box',
@@ -173,14 +181,16 @@ export class Info extends React.Component
             h3 className: 'beatmapset-info__header',
               osu.trans 'beatmapsets.show.info.genre'
             a
-              href: laroute.route('beatmapsets.index', g: @props.beatmapset.genre.id)
+              className: 'beatmapset-info__link'
+              href: route('beatmapsets.index', g: @props.beatmapset.genre.id)
               @props.beatmapset.genre.name
 
           div className: 'beatmapset-info__half-entry',
             h3 className: 'beatmapset-info__header',
               osu.trans 'beatmapsets.show.info.language'
             a
-              href: laroute.route('beatmapsets.index', l: @props.beatmapset.language.id)
+              className: 'beatmapset-info__link'
+              href: route('beatmapsets.index', l: @props.beatmapset.language.id)
               @props.beatmapset.language.name
 
         if tags.length > 0
@@ -194,7 +204,8 @@ export class Info extends React.Component
                 [
                   a
                     key: tag
-                    href: laroute.route('beatmapsets.index', q: tag)
+                    className: 'beatmapset-info__link'
+                    href: route('beatmapsets.index', q: tag)
                     tag
                   span key: "#{tag}-space", ' '
                 ]

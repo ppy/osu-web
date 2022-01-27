@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'recusar kudosu',
         'edit' => 'editar',
         'edited' => 'Editado pela última vez por :editor :update_time.',
-        'guest' => '',
+        'guest' => 'Dificuldade de convidado feita por :user',
         'kudosu_denied' => 'Estás recusado de obter kudosu.',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi eliminada por isso poderá não ser mais discutida.',
         'message_placeholder_locked' => 'A discussão para este beatmap foi desativada.',
@@ -184,6 +184,7 @@ return [
         'disqualify' => 'Desqualificar',
         'incorrect_state' => 'Erro ao desempenhar essa ação, tenta recarregar a página.',
         'love' => 'Adorar',
+        'love_choose' => 'Escolher dificuldade para adorado',
         'love_confirm' => 'Queres adorar este beatmap?',
         'nominate' => 'Nomear',
         'nominate_confirm' => 'Pretendes nomear este beatmap?',
@@ -252,6 +253,7 @@ return [
     ],
     'general' => [
         'converts' => 'Incluir beatmaps convertidos',
+        'featured_artists' => 'Artistas destacados',
         'follows' => 'Mapeadores subscritos',
         'recommended' => 'Dificuldade recomendada',
     ],
@@ -315,7 +317,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Pontuação V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Qualquer',

@@ -1,13 +1,21 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { MessageLengthCounter } from './message-length-counter'
-import { BigButton } from 'big-button'
+import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
+import BigButton from 'big-button'
+import { route } from 'laroute'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
+import StringWithComponent from 'string-with-component'
+import TimeWithTooltip from 'time-with-tooltip'
 import UserAvatar from 'user-avatar'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+import { linkHtml } from 'utils/url'
+import { MessageLengthCounter } from './message-length-counter'
+
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -30,12 +38,12 @@ export class NewDiscussion extends React.PureComponent
 
   componentDidMount: =>
     @setTop()
-    $(window).on 'resize.new-discussion', @setTop
+    $(window).on 'resize', @setTop
     @inputBox.current?.focus() if @props.autoFocus
 
 
   componentWillUnmount: =>
-    $(window).off '.new-discussion'
+    $(window).off 'resize', @setTop
     @postXhr?.abort()
     @throttledPost.cancel()
 
@@ -63,10 +71,10 @@ export class NewDiscussion extends React.PureComponent
       @props.mode == 'generalAll'
 
     canPostNote =
-      (@props.currentUser.id == @props.beatmapset.user_id && @props.mode == 'generalAll') ||
+      @props.currentUser.id == @props.beatmapset.user_id ||
       (@props.currentUser.id == @props.currentBeatmap.user_id && @props.mode in ['general', 'timeline']) ||
       @props.currentUser.is_bng ||
-      @props.currentUser.is_nat
+      BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
 
     buttonCssClasses = 'btn-circle'
     buttonCssClasses += ' btn-circle--activated' if @props.pinned
@@ -136,19 +144,25 @@ export class NewDiscussion extends React.PureComponent
                   osu.trans 'beatmaps.discussions.new.timestamp_missing'
               else if @props.beatmapset.can_be_hyped # mode == 'generalAll'
                 if @props.currentUser.id?
-                  message =
+                  el React.Fragment, null,
                     if @props.beatmapset.current_user_attributes.can_hype
                       osu.trans 'beatmaps.hype.explanation'
                     else
                       @props.beatmapset.current_user_attributes.can_hype_reason
 
-                  if @props.beatmapset.current_user_attributes.can_hype || @props.beatmapset.current_user_attributes.remaining_hype <= 0
-                    message += " #{osu.trans 'beatmaps.hype.remaining', remaining: @props.beatmapset.current_user_attributes.remaining_hype}"
-                    if @props.beatmapset.current_user_attributes.new_hype_time?
-                      message += " #{osu.trans 'beatmaps.hype.new_time', new_time: osu.timeago(@props.beatmapset.current_user_attributes.new_hype_time)}"
-
-                  span dangerouslySetInnerHTML:
-                    __html: message
+                    if @props.beatmapset.current_user_attributes.can_hype || @props.beatmapset.current_user_attributes.remaining_hype <= 0
+                      el React.Fragment, null,
+                        el StringWithComponent,
+                          mappings:
+                            remaining: @props.beatmapset.current_user_attributes.remaining_hype
+                          pattern: " #{osu.trans 'beatmaps.hype.remaining'}"
+                        if @props.beatmapset.current_user_attributes.new_hype_time?
+                          el StringWithComponent,
+                            mappings:
+                              new_time: el TimeWithTooltip,
+                                dateTime: @props.beatmapset.current_user_attributes.new_hype_time
+                                relative: true
+                            pattern: " #{osu.trans 'beatmaps.hype.new_time'}"
                 else
                   osu.trans 'beatmaps.hype.explanation_guest'
           div
@@ -165,7 +179,7 @@ export class NewDiscussion extends React.PureComponent
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @timestamp()
           timestamps =
             for discussion in @nearbyDiscussions()
-              osu.link BeatmapDiscussionHelper.url(discussion: discussion),
+              linkHtml BeatmapDiscussionHelper.url(discussion: discussion),
                 BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
                 classNames: ['js-beatmap-discussion--jump']
           timestampsString = osu.transArray(timestamps)
@@ -198,7 +212,7 @@ export class NewDiscussion extends React.PureComponent
 
   cssTop: (sticky) =>
     return if !sticky || !@props.stickTo?.current?
-    window.stickyHeader.headerHeight() + @props.stickTo.current.getBoundingClientRect().height
+    core.stickyHeader.headerHeight + @props.stickTo.current.getBoundingClientRect().height
 
 
   handleKeyDownCallback: (type, event) =>
@@ -255,7 +269,7 @@ export class NewDiscussion extends React.PureComponent
       return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))
 
     @postXhr?.abort()
-    LoadingOverlay.show()
+    showLoadingOverlay()
     @setState posting: type
 
     data =
@@ -267,7 +281,7 @@ export class NewDiscussion extends React.PureComponent
       beatmap_discussion_post:
         message: @state.message
 
-    @postXhr = $.ajax laroute.route('beatmapsets.discussions.posts.store'),
+    @postXhr = $.ajax route('beatmapsets.discussions.posts.store'),
       method: 'POST'
       data: data
 
@@ -282,7 +296,7 @@ export class NewDiscussion extends React.PureComponent
     .fail osu.ajaxError
 
     .always =>
-      LoadingOverlay.hide()
+      hideLoadingOverlay()
       @setState posting: null
 
 
@@ -322,16 +336,16 @@ export class NewDiscussion extends React.PureComponent
     typeText = if type == 'problem' then @problemType() else type
 
     el BigButton,
-      modifiers: ['beatmap-discussion-new']
-      icon: BeatmapDiscussionHelper.messageType.icon[_.camelCase(type)]
-      isBusy: @state.posting == type
-      text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type
+      disabled: !@validPost() || @state.posting? || !@canPost()
+      icon: discussionTypeIcons[type]
+      isBusy: @state.posting == type
+      modifiers: 'beatmap-discussion-new'
+      text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       props: _.merge
-          disabled: !@validPost() || @state.posting? || !@canPost()
-          'data-type': type
-          onClick: @post
-          extraProps
+        'data-type': type
+        onClick: @post
+        extraProps
 
 
   timestamp: =>
