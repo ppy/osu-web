@@ -41,6 +41,10 @@ class UserProfileCustomization extends Model
         'views' => ['all' => ['card', 'list', 'brick'], 'default' => 'card'],
     ];
 
+    protected $attributes = [
+        'options' => '{}',
+    ];
+
     protected $casts = [
         'cover_json' => 'array',
         'options' => AsArrayObject::class,
@@ -236,7 +240,7 @@ class UserProfileCustomization extends Model
 
     public function getExtrasOrderAttribute($value)
     {
-        $newValue = $this->options['extras_order'];
+        $newValue = $this->options['extras_order'] ?? null;
 
         if ($newValue === null && $value !== null) {
             $newValue = json_decode($value, true);
