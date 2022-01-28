@@ -6,19 +6,19 @@
 namespace App\Libraries\Markdown\Indexing;
 
 use App\Libraries\Markdown\Attributes\AttributesAllowedListener;
+use App\Libraries\Markdown\Osu\Extension as OsuExtension;
 use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block as ExtensionBlock;
 use League\CommonMark\Extension\CommonMark\Node\Inline as ExtensionInline;
-use League\CommonMark\Extension\ExtensionInterface;
 use League\CommonMark\Extension\Footnote;
 use League\CommonMark\Extension\Strikethrough\Strikethrough;
 use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Node\Block;
 use League\CommonMark\Node\Inline;
 
-class Extension implements ExtensionInterface
+class Extension extends OsuExtension
 {
     public function register(EnvironmentBuilderInterface $environment): void
     {
