@@ -354,6 +354,9 @@ class SanityTest extends DuskTestCase
                 //     'pending',
                 // ],
             ],
+            'users.multiplayer.index' => [
+                'typeGroup' => 'playlists',
+            ],
             'users.scores' => [
                 'type' => 'best',
                 // 'type' => [
