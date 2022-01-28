@@ -588,7 +588,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 $this->addToGroup($group, null, $actor);
             }
 
-            UserGroupEvent::logUserSetDefault($actor, $this, $group);
+            if ($this->group_id !== $group->getKey()) {
+                UserGroupEvent::logUserSetDefault($actor, $this, $group);
+            }
 
             $this->update([
                 'group_id' => $group->getKey(),

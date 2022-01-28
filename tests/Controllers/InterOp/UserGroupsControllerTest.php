@@ -232,6 +232,28 @@ class UserGroupsControllerTest extends TestCase
         $this->assertArraySubset($playmodes, $actualPlaymodes);
     }
 
+    public function testUserGroupSetDefaultWhenAlreadyDefault()
+    {
+        $user = User::factory()->withGroup('gmt')->create();
+        $group = app('groups')->byIdentifier('gmt');
+        $userSetDefaultEventCount = $this->eventCount(UserGroupEvent::USER_SET_DEFAULT, $user, $group);
+        $url = route('interop.user-group.set-default', [
+            'group' => $group->getKey(),
+            'timestamp' => time(),
+            'user' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->post($url)
+            ->assertStatus(204);
+
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_SET_DEFAULT, $user, $group),
+            $userSetDefaultEventCount,
+        );
+    }
+
     public function testUserGroupSetDefaultWhenNotMember()
     {
         $user = User::factory()->create();
