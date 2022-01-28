@@ -107,7 +107,7 @@ export default class Main extends React.Component<Props> {
 
     if (this.tabs.current != null) {
       $(this.tabs.current).sortable({
-        containment: 'parent',
+        axis: 'x',
         cursor: 'move',
         disabled: !this.controller.withEdit,
         items: '.js-sortable--tab',
@@ -163,37 +163,35 @@ export default class Main extends React.Component<Props> {
       <UserProfileContainer user={this.controller.state.user}>
         <Header controller={this.controller} />
 
-        <div className='hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'>
-          {this.displayedExtraPages.length > 1 &&
-            <div className='osu-page'>
-              <div ref={this.tabs} className='page-mode page-mode--profile-page-extra'>
-                {this.displayedExtraPages.map((m) => (
-                  <a
-                    key={m}
-                    className={`page-mode__item ${this.isSortablePage(m) ? 'js-sortable--tab' : ''}`}
-                    data-page-id={m}
-                    href={`#${m}`}
-                    onClick={this.onTabClick}
-                  >
-                    <ExtraTab controller={this.controller} page={m} />
-                  </a>
-                ))}
-              </div>
+        <div className='osu-page osu-page--generic-compact'>
+          <div className='hidden-xs page-extra-tabs js-switchable-mode-page--scrollspy-offset'>
+            <div ref={this.tabs} className='page-mode page-mode--profile-page-extra'>
+              {this.displayedExtraPages.map((m) => (
+                <a
+                  key={m}
+                  className={`page-mode__item ${this.isSortablePage(m) ? 'js-sortable--tab' : ''}`}
+                  data-page-id={m}
+                  href={`#${m}`}
+                  onClick={this.onTabClick}
+                >
+                  <ExtraTab controller={this.controller} page={m} />
+                </a>
+              ))}
             </div>
-          }
-        </div>
+          </div>
 
-        <div ref={this.pages} className='user-profile-pages'>
-          {this.displayedExtraPages.map((name) => (
-            <div
-              key={name}
-              ref={this.extraPages[name]}
-              className={`user-profile-pages__item js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
-              data-page-id={name}
-            >
-              {this.extraPage(name)}
-            </div>
-          ))}
+          <div ref={this.pages} className='user-profile-pages'>
+            {this.displayedExtraPages.map((name) => (
+              <div
+                key={name}
+                ref={this.extraPages[name]}
+                className={`user-profile-pages__item js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
+                data-page-id={name}
+              >
+                {this.extraPage(name)}
+              </div>
+            ))}
+          </div>
         </div>
       </UserProfileContainer>
     );

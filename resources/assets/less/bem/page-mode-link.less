@@ -19,7 +19,7 @@
     color: #fff;
 
     &.@{top}--profile-page {
-      color: #fff;
+      color: hsl(var(--hsl-c1));
     }
 
     &.@{top}--post-reply {
@@ -57,9 +57,9 @@
   }
 
   &--profile-page {
-    color: white;
-    font-size: @font-size--title-small-3;
-    padding-top: 10px;
+    .link-default();
+    padding: 0;
+    margin: 0;
   }
 
   &__badge {
