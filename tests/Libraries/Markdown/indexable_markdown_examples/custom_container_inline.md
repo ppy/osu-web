@@ -7,3 +7,8 @@
 ::text::{#attribute-outside}
 
 ::::{#ignored-empty}
+
+some ::text:: here
+
+::next
+line::
