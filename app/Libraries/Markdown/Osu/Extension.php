@@ -6,7 +6,6 @@
 namespace App\Libraries\Markdown\Osu;
 
 use App\Libraries\Markdown\Attributes\AttributesAllowedListener;
-use App\Libraries\Markdown\CustomContainerInline\Extension as CustomContainerInlineExtension;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
