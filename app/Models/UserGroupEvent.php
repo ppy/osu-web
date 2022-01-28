@@ -83,20 +83,20 @@ class UserGroupEvent extends Model
     {
         $attributes['details'] = array_merge(
             [
-                'actor_name' => optional($actor)->username,
+                'actor_name' => $actor?->username,
                 'group_name' => $group->group_name,
-                'user_name' => optional($user)->username,
+                'user_name' => $user?->username,
             ],
             $attributes['details'] ?? [],
         );
 
         return static::create(array_merge(
             [
-                'actor_id' => optional($actor)->getKey(),
+                'actor_id' => $actor?->getKey(),
                 'group_id' => $group->getKey(),
                 'hidden' => !$group->hasListing(),
                 'type' => $type,
-                'user_id' => optional($user)->getKey(),
+                'user_id' => $user?->getKey(),
             ],
             $attributes,
         ));
