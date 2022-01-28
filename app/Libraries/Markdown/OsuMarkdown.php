@@ -42,6 +42,7 @@ class OsuMarkdown
     ];
 
     const DEFAULT_OSU_EXTENSION_CONFIG = [
+        'attributes_allowed' => [],
         'block_name' => 'osu-md',
         'fix_wiki_url' => false,
         'generate_toc' => false,
@@ -119,6 +120,7 @@ class OsuMarkdown
         ],
         'wiki' => [
             'osu_extension' => [
+                'attributes_allowed' => ['flag', 'id'],
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
                 'style_block_allowed_classes' => ['infobox'],
