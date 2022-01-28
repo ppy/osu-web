@@ -285,7 +285,10 @@ class OsuMarkdown
     private function getIndexableConverter(): MarkdownConverter
     {
         if ($this->indexableConverter === null) {
-            $environment = $this->createEnvironment(['osu_extension' => $this->osuExtensionConfig]);
+            $extraConfig = $this->osuExtensionConfig;
+            // remove attributes.
+            $extraConfig['attributes_allowed'] = [];
+            $environment = $this->createEnvironment(['osu_extension' => $extraConfig]);
             $environment->addExtension(new Indexing\Extension());
 
             $this->indexableConverter = new MarkdownConverter($environment);

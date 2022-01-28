@@ -22,10 +22,10 @@ class Extension extends OsuExtension
 {
     public function register(EnvironmentBuilderInterface $environment): void
     {
-        // Remove attributes
-        // FIXME: extensions aren't actually configured correctly for indexing extension.
-        $environment->addEventListener(DocumentParsedEvent::class, new AttributesAllowedListener());
-        $environment->addExtension(new AttributesExtension());
+        if ($environment->getConfiguration()->exists('osu_extension/attributes_allowed')) {
+            $environment->addEventListener(DocumentParsedEvent::class, new AttributesAllowedListener());
+            $environment->addExtension(new AttributesExtension());
+        }
 
         foreach ($this->renderers() as $class => $renderer) {
             $environment->addRenderer($class, $renderer, 10);

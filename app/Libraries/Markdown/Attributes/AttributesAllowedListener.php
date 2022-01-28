@@ -22,7 +22,7 @@ class AttributesAllowedListener implements ConfigurationAwareInterface
 
     public function __invoke(DocumentParsedEvent $documentEvent): void
     {
-        $attributesAllowed = $this->config->exists('osu_extension/attributes_allowed') ? $this->config->get('osu_extension/attributes_allowed') ?? [] : [];
+        $attributesAllowed = $this->config->get('osu_extension/attributes_allowed');
 
         $walker = $documentEvent->getDocument()->walker();
         while ($event = $walker->next()) {
