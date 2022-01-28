@@ -23,7 +23,7 @@ class Extension implements ConfigurableExtensionInterface
     public function configureSchema(ConfigurationBuilderInterface $builder): void
     {
         $builder->addSchema('osu_extension', Expect::structure([
-            'attributes_allowed' => Expect::arrayOf('string'),
+            'attributes_allowed' => Expect::arrayOf('string')->nullable(),
             'block_name' => Expect::string(),
             'fix_wiki_url' => Expect::bool(),
             'generate_toc' => Expect::bool(),

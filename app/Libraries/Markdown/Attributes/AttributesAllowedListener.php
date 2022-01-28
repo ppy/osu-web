@@ -11,7 +11,7 @@ use League\CommonMark\Extension\Attributes\Node\AttributesInline;
 use League\Config\ConfigurationAwareInterface;
 use League\Config\ConfigurationInterface;
 
-class AttributesOnlyIdListener implements ConfigurationAwareInterface
+class AttributesAllowedListener implements ConfigurationAwareInterface
 {
     private ConfigurationInterface $config;
 

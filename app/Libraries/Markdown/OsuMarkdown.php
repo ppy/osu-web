@@ -42,7 +42,6 @@ class OsuMarkdown
     ];
 
     const DEFAULT_OSU_EXTENSION_CONFIG = [
-        'attributes_allowed' => [],
         'block_name' => 'osu-md',
         'fix_wiki_url' => false,
         'generate_toc' => false,
@@ -311,7 +310,7 @@ class OsuMarkdown
         $environment->addExtension(new CustomContainerInlineExtension());
 
         if ($this->osuMarkdownConfig['parse_attribute_id']) {
-            $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());
+            $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesAllowedListener());
             $environment->addExtension(new AttributesExtension());
         }
 
