@@ -35,10 +35,11 @@ class Parser implements DelimiterProcessorInterface
     {
         $inline = new Element();
 
-        $next = $opener->next();
-        while ($next !== null && $next !== $closer) {
-            $inline->appendChild($next);
-            $next = $next->next();
+        $tmp = $opener->next();
+        while ($tmp !== null && $tmp !== $closer) {
+            $next = $tmp->next();
+            $inline->appendChild($tmp);
+            $tmp = $next;
         }
 
         $opener->insertAfter($inline);

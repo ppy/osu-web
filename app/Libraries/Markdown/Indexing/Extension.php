@@ -6,6 +6,7 @@
 namespace App\Libraries\Markdown\Indexing;
 
 use App\Libraries\Markdown\Attributes\AttributesAllowedListener;
+use App\Libraries\Markdown\CustomContainerInline\Element as CustomContainerInline;
 use App\Libraries\Markdown\Osu\Extension as OsuExtension;
 use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
@@ -37,6 +38,7 @@ class Extension extends OsuExtension
         return [
             Block\Document::class => new Renderers\BlockRenderer(),
             Block\Paragraph::class => new Renderers\BlockRenderer(),
+            CustomContainerInline::class => new Renderers\InlineRenderer(),
             ExtensionBlock\BlockQuote::class => new Renderers\BlockRenderer(),
             ExtensionBlock\FencedCode::class => new Renderers\NoopRenderer(),
             ExtensionBlock\Heading::class => new Renderers\NoopRenderer(),
