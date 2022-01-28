@@ -5,8 +5,10 @@
 
 namespace App\Libraries\Markdown\Indexing;
 
+use App\Libraries\Markdown\Attributes\AttributesAllowedListener;
 use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
+use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block as ExtensionBlock;
 use League\CommonMark\Extension\CommonMark\Node\Inline as ExtensionInline;
 use League\CommonMark\Extension\ExtensionInterface;
@@ -20,6 +22,11 @@ class Extension implements ExtensionInterface
 {
     public function register(EnvironmentBuilderInterface $environment): void
     {
+        // Remove attributes
+        // FIXME: extensions aren't actually configured correctly for indexing extension.
+        $environment->addEventListener(DocumentParsedEvent::class, new AttributesAllowedListener());
+        $environment->addExtension(new AttributesExtension());
+
         foreach ($this->renderers() as $class => $renderer) {
             $environment->addRenderer($class, $renderer, 10);
         }

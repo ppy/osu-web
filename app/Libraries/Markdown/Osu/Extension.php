@@ -5,8 +5,11 @@
 
 namespace App\Libraries\Markdown\Osu;
 
+use App\Libraries\Markdown\Attributes\AttributesAllowedListener;
+use App\Libraries\Markdown\CustomContainerInline\Extension as CustomContainerInlineExtension;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
+use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
 use League\CommonMark\Extension\ConfigurableExtensionInterface;
 use League\CommonMark\Extension\Table\Table;
@@ -44,5 +47,10 @@ class Extension implements ConfigurableExtensionInterface
             ->addRenderer(ListItem::class, new Renderers\ListItemRenderer(), 10)
             ->addRenderer(Table::class, new Renderers\TableRenderer(), 10)
             ->addEventListener(DocumentParsedEvent::class, $this->processor);
+
+        if ($environment->getConfiguration()->exists('osu_extension/attributes_allowed')) {
+            $environment->addEventListener(DocumentParsedEvent::class, new AttributesAllowedListener());
+            $environment->addExtension(new AttributesExtension());
+        }
     }
 }

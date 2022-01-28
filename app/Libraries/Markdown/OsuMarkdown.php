@@ -8,8 +8,6 @@ namespace App\Libraries\Markdown;
 use App\Libraries\Markdown\CustomContainerInline\Extension as CustomContainerInlineExtension;
 use App\Traits\Memoizes;
 use League\CommonMark\Environment\Environment;
-use League\CommonMark\Event\DocumentParsedEvent;
-use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
@@ -57,7 +55,6 @@ class OsuMarkdown
     const DEFAULT_OSU_MARKDOWN_CONFIG = [
         'block_modifiers' => [],
         'enable_footnote' => false,
-        'parse_attribute_id' => false,
         'parse_yaml_header' => true,
     ];
 
@@ -129,7 +126,6 @@ class OsuMarkdown
             'osu_markdown' => [
                 'block_modifiers' => ['wiki'],
                 'enable_footnote' => true,
-                'parse_attribute_id' => true,
             ],
         ],
     ];
@@ -307,12 +303,8 @@ class OsuMarkdown
         $environment->addExtension(new AutolinkExtension());
         $environment->addExtension(new TableExtension());
         $environment->addExtension(new StrikethroughExtension());
-        $environment->addExtension(new CustomContainerInlineExtension());
 
-        if ($this->osuMarkdownConfig['parse_attribute_id']) {
-            $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesAllowedListener());
-            $environment->addExtension(new AttributesExtension());
-        }
+        $environment->addExtension(new CustomContainerInlineExtension());
 
         if ($this->osuExtensionConfig['style_block_allowed_classes'] !== null) {
             $environment->addExtension(new StyleBlock\Extension());
