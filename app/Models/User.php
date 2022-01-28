@@ -517,17 +517,19 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $activeUserGroup = $this->findUserGroup($group, true);
 
         if ($activeUserGroup === null) {
-            $this->getConnection()->transaction(function () use ($actor, $group, $playmodes) {
-                UserGroupEvent::logUserAdd($actor, $this, $group, $playmodes);
+            $userGroup = $this
+                ->userGroups()
+                ->firstOrNew(['group_id' => $group->getKey()])
+                ->setRelation('group', $group)
+                ->fill([
+                    'playmodes' => $playmodes,
+                    'user_pending' => false,
+                ]);
 
-                $this
-                    ->userGroups()
-                    ->firstOrNew(['group_id' => $group->getKey()])
-                    ->fill([
-                        'playmodes' => $playmodes,
-                        'user_pending' => false,
-                    ])
-                    ->save();
+            $this->getConnection()->transaction(function () use ($actor, $group, $userGroup) {
+                UserGroupEvent::logUserAdd($actor, $this, $group, $userGroup->playmodes);
+
+                $userGroup->save();
             });
         } else {
             $previousPlaymodes = $activeUserGroup->playmodes ?? [];
