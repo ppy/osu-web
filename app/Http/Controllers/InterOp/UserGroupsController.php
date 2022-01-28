@@ -29,10 +29,10 @@ class UserGroupsController extends Controller
         return response(null, 204);
     }
 
-    public function setDefault($userId)
+    public function setDefault($userId, $groupId)
     {
         User::findOrFail($userId)->setDefaultGroup(
-            app('groups')->byIdOrFail(request()->input('group_id')),
+            app('groups')->byIdOrFail($groupId),
         );
 
         return response(null, 204);

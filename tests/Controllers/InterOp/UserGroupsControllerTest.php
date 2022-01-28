@@ -184,14 +184,14 @@ class UserGroupsControllerTest extends TestCase
         $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
         $userSetDefaultEventCount = $this->eventCount(UserGroupEvent::USER_SET_DEFAULT, $user, $group);
         $url = route('interop.user-group.set-default', [
-            'group_id' => $group->getKey(),
+            'group' => $group->getKey(),
             'timestamp' => time(),
             'user' => $user->getKey(),
         ]);
 
         $this
             ->withInterOpHeader($url)
-            ->put($url)
+            ->post($url)
             ->assertStatus(204);
 
         $user->refresh();
@@ -214,14 +214,14 @@ class UserGroupsControllerTest extends TestCase
         $user = User::factory()->withGroup('nat', $playmodes)->create(['group_id' => app('groups')->byIdentifier('default')->getKey()]);
         $group = app('groups')->byIdentifier('nat');
         $url = route('interop.user-group.set-default', [
-            'group_id' => $group->getKey(),
+            'group' => $group->getKey(),
             'timestamp' => time(),
             'user' => $user->getKey(),
         ]);
 
         $this
             ->withInterOpHeader($url)
-            ->put($url)
+            ->post($url)
             ->assertStatus(204);
 
         $user->refresh();
@@ -261,14 +261,14 @@ class UserGroupsControllerTest extends TestCase
         $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
         $userSetDefaultEventCount = $this->eventCount(UserGroupEvent::USER_SET_DEFAULT, $user, $group);
         $url = route('interop.user-group.set-default', [
-            'group_id' => $group->getKey(),
+            'group' => $group->getKey(),
             'timestamp' => time(),
             'user' => $user->getKey(),
         ]);
 
         $this
             ->withInterOpHeader($url)
-            ->put($url)
+            ->post($url)
             ->assertStatus(204);
 
         $user->refresh();
