@@ -62,7 +62,7 @@ class ProcessorTest extends TestCase
             (new OsuMarkdown(
                 'default',
                 osuExtensionConfig: [
-                    'attributes_allowed' => ['id'],
+                    'attributes_allowed' => ['flag', 'id'],
                     'custom_container_inline' => true,
                     'style_block_allowed_classes' => ['class-name'],
                 ],
