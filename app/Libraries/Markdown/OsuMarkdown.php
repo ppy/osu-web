@@ -41,6 +41,7 @@ class OsuMarkdown
 
     const DEFAULT_OSU_EXTENSION_CONFIG = [
         'block_name' => 'osu-md',
+        'custom_container_inline' => false,
         'fix_wiki_url' => false,
         'generate_toc' => false,
         'record_first_image' => false,
@@ -117,6 +118,7 @@ class OsuMarkdown
         'wiki' => [
             'osu_extension' => [
                 'attributes_allowed' => ['flag', 'id'],
+                'custom_container_inline' => true,
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
                 'style_block_allowed_classes' => ['infobox'],
@@ -307,7 +309,9 @@ class OsuMarkdown
         $environment->addExtension(new TableExtension());
         $environment->addExtension(new StrikethroughExtension());
 
-        $environment->addExtension(new CustomContainerInlineExtension());
+        if ($this->osuExtensionConfig['custom_container_inline']) {
+            $environment->addExtension(new CustomContainerInlineExtension());
+        }
 
         if ($this->osuExtensionConfig['style_block_allowed_classes'] !== null) {
             $environment->addExtension(new StyleBlock\Extension());
