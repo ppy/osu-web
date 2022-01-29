@@ -6,7 +6,6 @@
 namespace Database\Factories;
 
 use App\Models\NewsPost;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class NewsPostFactory extends Factory
 {

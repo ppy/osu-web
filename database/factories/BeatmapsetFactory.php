@@ -10,7 +10,6 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\Genre;
 use App\Models\Language;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BeatmapsetFactory extends Factory
 {

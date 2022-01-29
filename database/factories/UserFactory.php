@@ -10,7 +10,6 @@ namespace Database\Factories;
 use App\Models\Country;
 use App\Models\User;
 use App\Models\UserAccountHistory;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {

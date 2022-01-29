@@ -10,7 +10,6 @@ namespace Database\Factories;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\ScorePin;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ScorePinFactory extends Factory
 {
