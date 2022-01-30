@@ -30,15 +30,17 @@ abstract class Factory extends BaseFactory
 
     protected function callAfterCreating(Collection $instances, ?Model $parent = null): void
     {
-        $instances->each(function ($model) {
-            if (!$model->exists && $this->requireSaved) {
-                throw new ModelNotSavedException(
-                    method_exists($model, 'validationErrors')
-                        ? $model->validationErrors()->toSentence()
-                        : 'Failed to save model',
-                );
-            }
-        });
+        if ($this->requireSaved) {
+            $instances->each(function ($model) {
+                if (!$model->exists) {
+                    throw new ModelNotSavedException(
+                        method_exists($model, 'validationErrors')
+                            ? $model->validationErrors()->toSentence()
+                            : 'Failed to save model',
+                    );
+                }
+            });
+        }
 
         parent::callAfterCreating($instances, $parent);
     }
