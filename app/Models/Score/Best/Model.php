@@ -408,9 +408,9 @@ abstract class Model extends BaseModel
         return $result;
     }
 
-    public function getBestIdAttribute()
+    public function getBestAttribute()
     {
-        return $this->getKey();
+        return $this;
     }
 
     protected function newReportableExtraParams(): array

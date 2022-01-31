@@ -67,6 +67,7 @@ return [
         'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak ada dalam daftar teman pengguna.',
         'moderated' => 'Channel itu sedang dalam pengelolaan.',
         'no_access' => 'Anda tidak memiliki akses ke channel ini.',
+        'receive_friends_only' => '',
         'restricted' => 'Anda tidak dapat mengirim pesan pada saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
         'silenced' => 'Anda tidak dapat mengirim pesan pada saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => 'Hanya admin yang dapat melihat forum ini.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

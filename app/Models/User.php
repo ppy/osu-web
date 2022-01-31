@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Exceptions\ChangeUsernameException;
+use App\Exceptions\InvariantException;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
@@ -182,6 +183,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public $timestamps = false;
 
     protected $visible = ['user_id', 'username', 'username_clean', 'user_rank', 'osu_playstyle', 'user_colour'];
+
+    protected $attributes = [
+        'user_allow_pm' => true,
+    ];
 
     protected $casts = [
         'osu_subscriber' => 'boolean',
@@ -495,22 +500,61 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
     }
 
-    public function addToGroup(Group $group, ?self $actor = null): void
+    public function addToGroup(Group $group, ?array $playmodes = null, ?self $actor = null): void
     {
-        if ($this->findUserGroup($group, true) !== null) {
-            return;
+        $playmodes = array_unique($playmodes ?? []);
+
+        if (!$group->has_playmodes && $playmodes !== []) {
+            throw new InvariantException('Group does not allow playmodes');
         }
 
-        $this->getConnection()->transaction(function () use ($actor, $group) {
-            $this
+        $invalidPlaymodes = array_diff($playmodes, array_keys(Beatmap::MODES));
+
+        if ($invalidPlaymodes !== []) {
+            throw new InvariantException('Invalid playmodes: '.implode(', ', $invalidPlaymodes));
+        }
+
+        $activeUserGroup = $this->findUserGroup($group, true);
+
+        if ($activeUserGroup === null) {
+            $userGroup = $this
                 ->userGroups()
                 ->firstOrNew(['group_id' => $group->getKey()])
-                ->fill(['user_pending' => false])
-                ->save();
-            $this->unsetRelation('userGroups');
-            $this->resetMemoized();
-            UserGroupEvent::logUserAdd($actor, $this, $group);
-        });
+                ->setRelation('group', $group)
+                ->fill([
+                    'playmodes' => $playmodes,
+                    'user_pending' => false,
+                ]);
+
+            $this->getConnection()->transaction(function () use ($actor, $group, $userGroup) {
+                UserGroupEvent::logUserAdd($actor, $this, $group, $userGroup->playmodes);
+
+                $userGroup->save();
+            });
+        } else {
+            $previousPlaymodes = $activeUserGroup->playmodes ?? [];
+            $playmodesAdded = array_values(array_diff($playmodes, $previousPlaymodes));
+            $playmodesRemoved = array_values(array_diff($previousPlaymodes, $playmodes));
+
+            if ($playmodesAdded === [] && $playmodesRemoved === []) {
+                return;
+            }
+
+            $this->getConnection()->transaction(function () use ($activeUserGroup, $actor, $group, $playmodes, $playmodesAdded, $playmodesRemoved) {
+                if ($playmodesAdded !== []) {
+                    UserGroupEvent::logUserAddPlaymodes($actor, $this, $group, $playmodesAdded);
+                }
+
+                if ($playmodesRemoved !== []) {
+                    UserGroupEvent::logUserRemovePlaymodes($actor, $this, $group, $playmodesRemoved);
+                }
+
+                $activeUserGroup->update(['playmodes' => $playmodes]);
+            });
+        }
+
+        $this->unsetRelation('userGroups');
+        $this->resetMemoized();
     }
 
     public function removeFromGroup(Group $group, ?self $actor = null): void
@@ -522,32 +566,37 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         $this->getConnection()->transaction(function () use ($actor, $group, $userGroup) {
+            if (!$userGroup->user_pending) {
+                UserGroupEvent::logUserRemove($actor, $this, $group);
+            }
+
             $userGroup->delete();
 
             if ($this->group_id === $group->getKey()) {
                 $this->setDefaultGroup(app('groups')->byIdentifier('default'));
             }
-
-            $this->unsetRelation('userGroups');
-            $this->resetMemoized();
-
-            if (!$userGroup->user_pending) {
-                UserGroupEvent::logUserRemove($actor, $this, $group);
-            }
         });
+
+        $this->unsetRelation('userGroups');
+        $this->resetMemoized();
     }
 
     public function setDefaultGroup(Group $group, ?self $actor = null): void
     {
-        $this->addToGroup($group, $actor);
-
         $this->getConnection()->transaction(function () use ($actor, $group) {
+            if ($this->findUserGroup($group, true) === null) {
+                $this->addToGroup($group, null, $actor);
+            }
+
+            if ($this->group_id !== $group->getKey()) {
+                UserGroupEvent::logUserSetDefault($actor, $this, $group);
+            }
+
             $this->update([
                 'group_id' => $group->getKey(),
                 'user_colour' => $group->group_colour,
                 'user_rank' => $group->group_rank,
             ]);
-            UserGroupEvent::logUserSetDefault($actor, $this, $group);
         });
     }
 
@@ -794,6 +843,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->isGroup(app('groups')->byIdentifier('admin'));
     }
 
+    public function isChatAnnouncer()
+    {
+        return $this->findUserGroup(app('groups')->byIdentifier('announce'), true) !== null;
+    }
+
     public function isGMT()
     {
         return $this->isGroup(app('groups')->byIdentifier('gmt'));
@@ -1014,6 +1068,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function reportsMade()
     {
         return $this->hasMany(UserReport::class, 'reporter_id');
+    }
+
+    public function scorePins()
+    {
+        return $this->hasMany(ScorePin::class);
     }
 
     public function userGroups()
@@ -1341,6 +1400,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function maxMultiplayerRooms()
     {
         return $this->isSupporter() ? config('osu.user.max_multiplayer_rooms_supporter') : config('osu.user.max_multiplayer_rooms');
+    }
+
+    public function maxScorePins()
+    {
+        return $this->isSupporter() ? config('osu.user.max_score_pins_supporter') : config('osu.user.max_score_pins');
     }
 
     public function beatmapsetDownloadAllowance()

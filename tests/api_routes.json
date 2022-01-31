@@ -407,9 +407,12 @@
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
+            "require-scopes:chat.write",
             "auth"
         ],
-        "scopes": []
+        "scopes": [
+            "chat.write"
+        ]
     },
     {
         "uri": "api/v2/chat/channels/{channel}",

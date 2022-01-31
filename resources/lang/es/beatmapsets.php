@@ -154,11 +154,12 @@ return [
                 'combo' => 'Combo máximo',
                 'miss' => 'Fallos',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Jugador',
                 'pp' => '',
                 'rank' => 'Puesto',
-                'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',
+                'score_total' => 'Puntuación total',
                 'time' => 'Tiempo',
             ],
 

@@ -7,7 +7,7 @@ import UserGroupBadges from 'components/user-group-badges';
 import GameMode from 'interfaces/game-mode';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
+import { times } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
@@ -42,9 +42,7 @@ export default class HeaderInfo extends React.PureComponent<Props> {
             <div className='profile-info__icons'>
               {this.props.user.is_supporter && (
                 <span className='profile-info__icon profile-info__icon--supporter' title={osu.trans('users.show.is_supporter')}>
-                  {
-                    _(this.props.user.support_level).times((i) => <span key={i} className='fas fa-heart'/>)
-                  }
+                  {times(this.props.user.support_level ?? 0, (i) => <span key={i} className='fas fa-heart'/>)}
                 </span>
               )}
               <UserGroupBadges groups={this.props.user.groups} modifiers='profile-page' wrapper='profile-info__icon' />

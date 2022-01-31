@@ -4,9 +4,15 @@
 import UserJson from 'interfaces/user-json';
 import PlaylistItemJson from './playlistitem-json';
 
+const roomCategories = ['normal', 'spotlight'] as const;
+export type RoomCategory = (typeof roomCategories)[number];
+
+const roomTypes = ['playlists', 'head_to_head', 'team_versus'] as const;
+export type RoomType = (typeof roomTypes)[number];
+
 export default interface RoomJson {
   active: boolean;
-  category: string;
+  category: RoomCategory;
   channel_id: number | null;
   ends_at: string;
   host: UserJson;
@@ -16,5 +22,6 @@ export default interface RoomJson {
   participant_count: number;
   playlist?: PlaylistItemJson[];
   starts_at: string;
+  type: RoomType;
   user_id: number;
 }

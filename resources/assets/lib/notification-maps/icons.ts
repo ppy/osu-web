@@ -6,6 +6,7 @@ interface IconsMap {
 }
 
 export const categoryToIcons: IconsMap = {
+  announcement: ['fas fa-bullhorn'],
   beatmap_owner_change: ['fas fa-drafting-compass', 'fas fa-user-friends'],
   beatmapset_discussion: ['fas fa-drafting-compass', 'fas fa-comment'],
   beatmapset_problem: ['fas fa-drafting-compass', 'fas fa-exclamation-circle'],
@@ -31,6 +32,7 @@ export const nameToIcons: IconsMap = {
   beatmapset_rank: ['fas fa-drafting-compass', 'fas fa-check-double'],
   beatmapset_remove_from_loved: ['fas fa-drafting-compass', 'fas fa-heart-broken'],
   beatmapset_reset_nominations: ['fas fa-drafting-compass', 'fas fa-undo'],
+  channel_announcement: ['fas fa-bullhorn'],
   channel_message: ['fas fa-comments'],
   comment_new: ['fas fa-comment'],
   comment_reply: ['fas fa-reply'],
@@ -54,6 +56,7 @@ export const nameToIconsCompact: IconsMap = {
   beatmapset_rank: ['fas fa-check-double'],
   beatmapset_remove_from_loved: ['fas fa-heart-broken'],
   beatmapset_reset_nominations: ['fas fa-undo'],
+  channel_announcement: ['fas fa-bullhorn'],
   channel_message: ['fas fa-comments'],
   comment_new: ['fas fa-comment'],
   comment_reply: ['fas fa-reply'],

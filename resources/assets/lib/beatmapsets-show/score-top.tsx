@@ -3,6 +3,7 @@
 
 import FlagCountry from 'components/flag-country';
 import Mod from 'components/mod';
+import ScorePin from 'components/score-pin';
 import ScoreboardTime from 'components/scoreboard-time';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
@@ -11,6 +12,7 @@ import { UserLink } from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
 import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { shouldShowPp } from 'utils/beatmap-helper';
@@ -94,6 +96,17 @@ export default class ScoreTop extends React.PureComponent<Props> {
 
           <div className='beatmap-score-top__wrapping-container beatmap-score-top__wrapping-container--right'>
             <div className='beatmap-score-top__stats'>
+              {core.scorePins.canBePinned(this.props.score) &&
+                <div className='beatmap-score-top__stat'>
+                  <div className='beatmap-score-top__stat-header'>
+                    {osu.trans('beatmapsets.show.scoreboard.headers.pin')}
+                  </div>
+                  <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller u-hover'>
+                    <ScorePin className='btn-osu-big' score={this.props.score} />
+                  </div>
+                </div>
+              }
+
               <div className='beatmap-score-top__stat'>
                 <div className='beatmap-score-top__stat-header beatmap-score-top__stat-header--wider'>
                   {osu.trans('beatmapsets.show.scoreboard.headers.score_total')}

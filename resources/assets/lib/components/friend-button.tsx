@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import FriendUpdated from 'actions/friend-updated';
+import { dispatch } from 'app-dispatcher';
 import UserRelationJson from 'interfaces/user-relation-json';
 import { route } from 'laroute';
 import { observable, computed, action, makeObservable } from 'mobx';
@@ -176,7 +178,9 @@ export default class FriendButton extends React.Component<Props> {
   private readonly updateFriends = (data: UserRelationJson[]) => {
     if (core.currentUser == null) return;
 
+    // TODO: move logic to a user object?
     core.currentUser.friends = data;
     $.publish('user:update', core.currentUser);
+    dispatch(new FriendUpdated(this.props.userId));
   };
 }
