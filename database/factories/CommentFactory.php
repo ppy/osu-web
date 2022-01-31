@@ -30,4 +30,9 @@ class CommentFactory extends Factory
     {
         return $this->state(['deleted_at' => now()]);
     }
+
+    public function reply(): static
+    {
+        return $this->for(Comment::factory(), 'parent');
+    }
 }
