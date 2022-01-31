@@ -33,7 +33,13 @@ export default class MultiplayerHistory extends React.Component<Props> {
 
   render() {
     if (this.props.store.rooms.length === 0) {
-      return <div className='user-multiplayer-history'>{osu.trans('multiplayer.empty')}</div>;
+      return (
+        <div className='user-multiplayer-history'>
+          {osu.trans('multiplayer.empty._', {
+            type_group: osu.trans(`multiplayer.empty.${this.props.store.typeGroup}`),
+          })}
+        </div>
+      );
     }
 
     return (
