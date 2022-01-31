@@ -302,7 +302,6 @@ class OsuMarkdown
 
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
-        $environment->addExtension(new AutolinkExtension());
         $environment->addExtension(new TableExtension());
         $environment->addExtension(new StrikethroughExtension());
 
