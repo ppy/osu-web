@@ -31,17 +31,4 @@ class Renderer implements NodeRendererInterface
             $childRenderer->renderNodes($node->children()),
         );
     }
-
-    private function flagUrl(string $code)
-    {
-        $baseFileName = implode(
-            '-',
-            array_map(
-                fn ($char) => dechex(mb_ord($char) + 127397),
-                mb_str_split($code)
-            )
-        );
-
-        return "/assets/images/flags/{$baseFileName}.svg";
-    }
 }
