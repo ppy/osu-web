@@ -22,7 +22,7 @@ class Renderer implements NodeRendererInterface
         if ($code !== null) {
             $attrs->remove('flag');
             $attrs->set('class', 'flag-country flag-country--flat flag-country--wiki');
-            $attrs->set('style', "background-image: url('{$this->flagUrl($code)}')");
+            $attrs->set('style', "background-image: url('".flag_url($code)."')");
         }
 
         return new HtmlElement(
