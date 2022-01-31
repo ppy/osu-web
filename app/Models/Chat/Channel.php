@@ -386,13 +386,15 @@ class Channel extends Model
 
     public function receiveMessage(User $sender, ?string $content, bool $isAction = false, ?string $uuid = null)
     {
-        $content = str_replace(["\r", "\n"], ' ', trim($content));
+        if (!$this->isAnnouncement()) {
+            $content = str_replace(["\r", "\n"], ' ', trim($content));
+        }
 
         if (!present($content)) {
             throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
         }
 
-        if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
+        if (!$this->isAnnouncement() && mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
             throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
         }
 

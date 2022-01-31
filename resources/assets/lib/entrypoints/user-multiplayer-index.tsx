@@ -3,17 +3,15 @@
 
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import UserMultiplayerHistoryContext, { makeStore, updateStore } from 'user-multiplayer-history-context';
 import Main from 'user-multiplayer-index/main';
+import MultiplayerHistoryStore from 'user-multiplayer-index/multiplayer-history-store';
 import { parseJson } from 'utils/json';
 
 core.reactTurbolinks.register('user-multiplayer-index', () => {
-  const store = makeStore();
-  updateStore(store, parseJson('json-user-multiplayer-index'));
+  const store = new MultiplayerHistoryStore();
+  store.updateWithJson(parseJson('json-user-multiplayer-index'));
 
   return (
-    <UserMultiplayerHistoryContext.Provider value={store}>
-      <Main user={parseJson('json-user')} />
-    </UserMultiplayerHistoryContext.Provider>
+    <Main store={store} user={parseJson('json-user')} />
   );
 });
