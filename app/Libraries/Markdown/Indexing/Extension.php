@@ -5,12 +5,10 @@
 
 namespace App\Libraries\Markdown\Indexing;
 
-use App\Libraries\Markdown\Attributes\AttributesAllowedListener;
 use App\Libraries\Markdown\CustomContainerInline\Element as CustomContainerInline;
 use App\Libraries\Markdown\Osu\Extension as OsuExtension;
 use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
-use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block as ExtensionBlock;
 use League\CommonMark\Extension\CommonMark\Node\Inline as ExtensionInline;
