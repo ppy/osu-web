@@ -25,7 +25,6 @@ class Extension extends OsuExtension
     public function register(EnvironmentBuilderInterface $environment): void
     {
         if ($environment->getConfiguration()->exists('osu_extension/attributes_allowed')) {
-            $environment->addEventListener(DocumentParsedEvent::class, new AttributesAllowedListener());
             $environment->addExtension(new AttributesExtension());
         }
 
