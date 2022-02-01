@@ -6,9 +6,11 @@ import { ChangelogHeaderStreams } from 'changelog-header-streams'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import HeaderV4 from 'header-v4'
+import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, h1, h2, i, li, ol, p, span } from 'react-dom-factories'
 import { changelogBuild } from 'utils/url'
+
 el = React.createElement
 
 export class Main extends React.PureComponent
@@ -79,7 +81,7 @@ export class Main extends React.PureComponent
             className: 'supporter-promo__text'
             dangerouslySetInnerHTML: __html:
               osu.trans 'changelog.support.text_1',
-                link: "<a href='#{laroute.route('support-the-game')}' class='supporter-promo__link'>#{osu.trans('changelog.support.text_1_link')}</a>"
+                link: "<a href='#{route('support-the-game')}' class='supporter-promo__link'>#{osu.trans('changelog.support.text_1_link')}</a>"
           p className: 'supporter-promo__text supporter-promo__text--small',
             osu.trans('changelog.support.text_2')
 
@@ -87,7 +89,7 @@ export class Main extends React.PureComponent
   headerLinks: =>
     [
       {
-        url: laroute.route('changelog.index')
+        url: route('changelog.index')
         title: osu.trans 'layout.header.changelog.index'
       }
       {

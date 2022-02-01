@@ -34,6 +34,7 @@ function makeEmptyGroupedChannels() {
 }
 
 const channelSorts = {
+  ANNOUNCE: alphabeticalSort,
   GROUP: alphabeticalSort,
   PM: (a: Channel, b: Channel) => {
     // so 'new' channels always end up on top

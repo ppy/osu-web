@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
-import ScoreJson from 'interfaces/score-json';
-import { action, computed, makeObservable, observable } from 'mobx';
-import { observer } from 'mobx-react';
+import ScoreJson, { ScoreCurrentUserPinJson } from 'interfaces/score-json';
+import { action, autorun, computed, makeObservable, observable } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import { ContainerContext, KeyContext } from 'stateful-activation-context';
@@ -18,11 +18,16 @@ type ScoreSections = TopScoreSection | 'scoresRecent';
 const sectionMaps = {
   scoresBest: {
     countKey: 'scores_best_count',
+    showPpWeight: true,
     translationKey: 'top_ranks.best',
   },
   scoresFirsts: {
     countKey: 'scores_first_count',
     translationKey: 'top_ranks.first',
+  },
+  scoresPinned: {
+    countKey: 'scores_pinned_count',
+    translationKey: 'top_ranks.pinned',
   },
   scoresRecent: {
     countKey: 'scores_recent_count',
@@ -38,10 +43,19 @@ interface Props {
 @observer
 export default class PlayDetailList extends React.Component<Props> {
   @observable activeKey: number | null = null;
+  private readonly containerContextValue: {
+    activeKeyDidChange: (key: number | null) => void;
+  };
+  private readonly listRef = React.createRef<HTMLDivElement>();
 
   @computed
   private get paginatorJson() {
     return this.props.controller.paginatorJson(this.props.section);
+  }
+
+  @computed
+  private get withPinSortable() {
+    return this.props.section === 'scoresPinned' && this.props.controller.withEdit;
   }
 
   @computed
@@ -58,6 +72,34 @@ export default class PlayDetailList extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
+
+    // Do this after makeObservable call to make sure it's the decorated version of the function.
+    this.containerContextValue = { activeKeyDidChange: this.activeKeyDidChange };
+  }
+
+  componentDidMount() {
+    disposeOnUnmount(this, autorun(() => {
+      const list = this.listRef.current;
+      const enablePinSortable = this.withPinSortable;
+
+      if (list != null) {
+        const $list = $(list);
+
+        if (enablePinSortable) {
+          $list.sortable({
+            cursor: 'move',
+            handle: '.js-score-pin-sortable-handle',
+            items: '.js-score-pin-sortable',
+            scrollSpeed: 10,
+            update: this.onUpdatePinOrder,
+          });
+        } else {
+          if ($list.sortable('instance') != null) {
+            $list.sortable('destroy');
+          }
+        }
+      }
+    }));
   }
 
   render() {
@@ -65,20 +107,26 @@ export default class PlayDetailList extends React.Component<Props> {
       return <p>{this.paginatorJson.items.error}</p>;
     }
 
-    const { countKey, translationKey } = sectionMaps[this.props.section];
+    const sectionMap = sectionMaps[this.props.section];
+    const showPpWeight = 'showPpWeight' in sectionMap && sectionMap.showPpWeight;
 
     return (
       <>
         <ProfilePageExtraSectionTitle
-          count={this.props.controller.state.user[countKey]}
-          titleKey={`users.show.extra.${translationKey}.title`}
+          count={this.props.controller.state.user[sectionMap.countKey]}
+          titleKey={`users.show.extra.${sectionMap.translationKey}.title`}
         />
 
-        <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
-          <div className={classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })}>
+        <ContainerContext.Provider value={this.containerContextValue}>
+          <div ref={this.listRef} className={`${classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })} u-relative`}>
             {(this.uniqueItems).map((score) => (
               <KeyContext.Provider key={score.id} value={score.id}>
-                <PlayDetail activated={this.activeKey === score.id} score={score} />
+                <PlayDetail
+                  activated={this.activeKey === score.id}
+                  score={score}
+                  showPinSortableHandle={this.withPinSortable}
+                  showPpWeight={showPpWeight}
+                />
               </KeyContext.Provider>
             ))}
           </div>
@@ -101,5 +149,26 @@ export default class PlayDetailList extends React.Component<Props> {
 
   private onShowMore = () => {
     this.props.controller.apiShowMore(this.props.section);
+  };
+
+  private onUpdatePinOrder = (event: Event, ui: JQueryUI.SortableUIParams) => {
+    if (!Array.isArray(this.paginatorJson.items)) {
+      throw new Error('trying to update pin order with missing data');
+    }
+
+    const target = event.target;
+
+    if (target == null) return;
+
+    const $target = $(target);
+    const newOrder = $target.sortable('toArray', { attribute: 'data-score-pin' }).map((jsonString) => JSON.parse(jsonString) as ScoreCurrentUserPinJson);
+
+    const reordered = JSON.parse(ui.item.attr('data-score-pin') ?? '') as ScoreCurrentUserPinJson;
+    const currentIndex = this.paginatorJson.items.findIndex((item) => item.id === reordered.score_id);
+    const newIndex = newOrder.findIndex((item) => item.score_id === reordered.score_id);
+
+    if (currentIndex !== newIndex) {
+      this.props.controller.apiReorderScorePin(currentIndex, newIndex);
+    }
   };
 }

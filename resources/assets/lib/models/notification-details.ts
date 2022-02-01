@@ -3,6 +3,7 @@
 
 // FIXME: the type checks for details currently rely on Notification.name
 export default interface NotificationDetails extends Record<string, any> {
+  channel_id?: number;
   content?: string;
   coverUrl: string | null;
   embeds?: {

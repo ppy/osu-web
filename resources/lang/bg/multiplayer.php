@@ -14,7 +14,7 @@ return [
         'time_left' => ':time остава',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Прекалено голяма продължителност.',
         ],
 
         'status' => [

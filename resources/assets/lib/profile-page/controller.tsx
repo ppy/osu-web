@@ -5,13 +5,15 @@ import AchievementJson from 'interfaces/achievement-json';
 import CurrentUserJson from 'interfaces/current-user-json';
 import GameMode from 'interfaces/game-mode';
 import ExtrasJson from 'interfaces/profile-page/extras-json';
+import ScoreJson, { ScoreCurrentUserPinJson } from 'interfaces/score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
 import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-json';
 import { route } from 'laroute';
-import { debounce, keyBy } from 'lodash';
+import { debounce, keyBy, pullAt } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import core from 'osu-core-singleton';
-import { onErrorWithCallback } from 'utils/ajax';
+import { error, onErrorWithCallback } from 'utils/ajax';
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { apiShowMore, apiShowMoreRecentlyReceivedKudosu, hasMoreCheck, OffsetPaginationJson } from 'utils/offset-paginator';
 import { switchNever } from 'utils/switch-never';
 import { ProfilePageSection, profilePageSections, ProfilePageUserJson } from './extra-page-props';
@@ -24,6 +26,7 @@ const sectionToUrlType = {
   rankedBeatmapsets: 'ranked',
   scoresBest: 'best',
   scoresFirsts: 'firsts',
+  scoresPinned: 'pinned',
   scoresRecent: 'recent',
 };
 
@@ -47,6 +50,13 @@ interface InitialData {
 }
 
 export type Page = ProfileExtraPage | 'main';
+
+interface ScorePinReorderParams {
+  order1_score_id?: ScoreCurrentUserPinJson['score_id'];
+  order3_score_id?: ScoreCurrentUserPinJson['score_id'];
+  score_id: ScoreCurrentUserPinJson['score_id'];
+  score_type: ScoreCurrentUserPinJson['score_type'];
+}
 
 interface State {
   currentPage: Page;
@@ -98,6 +108,7 @@ export default class Controller {
           recentlyReceivedKudosu: {},
           scoresBest: {},
           scoresFirsts: {},
+          scoresPinned: {},
           scoresRecent: {},
         },
         user: initialData.user,
@@ -115,7 +126,53 @@ export default class Controller {
     this.scoresNotice = initialData.scores_notice;
     this.displayCoverUrl = this.state.user.cover.url;
 
+    $.subscribe('score:pin', this.onScorePinUpdate);
+
     makeObservable(this);
+  }
+
+  @action
+  apiReorderScorePin(currentIndex: number, newIndex: number) {
+    const origItems = this.state.extras.scoresPinned.slice();
+    const items = this.state.extras.scoresPinned;
+    const adjacentScoreId = items[newIndex]?.id;
+    if (adjacentScoreId == null) {
+      throw new Error('invalid newIndex specified');
+    }
+
+    // fetch item to be moved and update internal state
+    const target = items.splice(currentIndex, 1)[0];
+
+    if (target == null) {
+      throw new Error('invalid currentIndex specified');
+    }
+    if (target.current_user_attributes.pin == null) {
+      throw new Error('score is missing current user pin attribute');
+    }
+    items.splice(newIndex, 0, target);
+    this.saveState();
+
+    const params: ScorePinReorderParams = {
+      score_id: target.current_user_attributes.pin.score_id,
+      score_type: target.current_user_attributes.pin.score_type,
+    };
+    if (currentIndex > newIndex) {
+      // target will be above existing item at index
+      params.order3_score_id = adjacentScoreId;
+    } else {
+      // target will be below existing item at index
+      params.order1_score_id = adjacentScoreId;
+    }
+
+    showLoadingOverlay();
+    $.ajax(route('score-pins.reorder'), {
+      data: params,
+      dataType: 'json',
+      method: 'PUT',
+    }).fail(action((xhr: JQuery.jqXHR, status: string) => {
+      error(xhr, status);
+      this.state.extras.scoresPinned = origItems;
+    })).always(hideLoadingOverlay);
   }
 
   @action
@@ -248,6 +305,7 @@ export default class Controller {
 
       case 'scoresBest':
       case 'scoresFirsts':
+      case 'scoresPinned':
       case 'scoresRecent':
         this.xhr[section] = apiShowMore(
           this.paginatorJson(section),
@@ -267,6 +325,7 @@ export default class Controller {
   destroy() {
     Object.values(this.xhr).forEach((xhr) => xhr?.abort());
     this.debouncedSetDisplayCoverUrl.cancel();
+    $.unsubscribe('score:pin', this.onScorePinUpdate);
   }
 
   paginatorJson<T extends ProfilePageSection>(section: T) {
@@ -286,6 +345,23 @@ export default class Controller {
   setDisplayCoverUrl(url: string | null) {
     this.displayCoverUrl = url ?? this.state.user.cover.url;
   }
+
+  private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: ScoreJson) => {
+    const arrayIndex = this.state.extras.scoresPinned.findIndex((s) => s.id === score.id);
+    this.state.user.scores_pinned_count += isPinned ? 1 : -1;
+
+    if (isPinned) {
+      if (arrayIndex === -1) {
+        this.state.extras.scoresPinned.unshift(score);
+      }
+    } else {
+      if (arrayIndex !== -1) {
+        pullAt(this.state.extras.scoresPinned, arrayIndex);
+      }
+    }
+
+    this.saveState();
+  };
 
   private readonly saveState = () => {
     this.container.dataset.savedState = JSON.stringify(this.state);

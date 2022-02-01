@@ -90,7 +90,7 @@ jobs:
         with:
           stack-version: 6.8.13
 
-      - run: ./bin/db_setup.sh -h 127.0.0.1
+      - run: mysql -u root -h 127.0.0.1 < ./docker/development/db_setup.sql
 
       - run: ./build.sh
 

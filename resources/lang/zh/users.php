@@ -325,6 +325,15 @@ return [
                 'first' => [
                     'title' => '第一名',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
                 'given' => '最近三个月的给予投票',

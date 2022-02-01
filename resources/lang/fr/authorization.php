@@ -67,6 +67,7 @@ return [
         'friends_only' => 'Cet utilisateur bloque les messages des personnes qui ne sont pas dans sa liste d’amis.',
         'moderated' => 'Ce salon est actuellement restreint par un modérateur.',
         'no_access' => 'Vous n’avez pas accès à ce salon.',
+        'receive_friends_only' => '',
         'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
         'silenced' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
     ],
@@ -163,6 +164,13 @@ return [
 
         'view' => [
             'admin_only' => 'Ce forum n\'est accessible qu\'aux administrateurs.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

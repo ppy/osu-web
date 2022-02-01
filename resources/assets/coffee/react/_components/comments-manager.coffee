@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
 import { runInAction } from 'mobx'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
@@ -92,7 +93,7 @@ export class CommentsManager extends React.PureComponent
 
     uiState.comments.loadingFollow = true
 
-    $.ajax laroute.route('follows.store'),
+    $.ajax route('follows.store'),
       data: params
       dataType: 'json'
       method: if uiState.comments.userFollow then 'DELETE' else 'POST'
@@ -120,7 +121,7 @@ export class CommentsManager extends React.PureComponent
       sort: sort
       parent_id: 0
 
-    $.ajax laroute.route('comments.index'),
+    $.ajax route('comments.index'),
       data: params
       dataType: 'json'
     .done (data) =>

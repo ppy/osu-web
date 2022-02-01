@@ -154,11 +154,12 @@ return [
                 'combo' => 'Didžiausias combo',
                 'miss' => 'Nepataikyti',
                 'mods' => 'Modifikacijos',
+                'pin' => '',
                 'player' => 'Žaidėjas',
                 'pp' => '',
                 'rank' => 'Reitingas',
-                'score_total' => 'Visi taškai',
                 'score' => 'Taškai',
+                'score_total' => 'Visi taškai',
                 'time' => '',
             ],
 

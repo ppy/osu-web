@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers\Chat;
 
+use App\Libraries\Chat;
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
@@ -16,6 +17,13 @@ use Auth;
  */
 class ChannelsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('require-scopes:chat.write', ['only' => 'store']);
+
+        return parent::__construct();
+    }
+
     /**
      * Get Channel List
      *
@@ -198,6 +206,8 @@ class ChannelsController extends Controller
     /**
      * Create Channel
      *
+     * TODO: description needs fixing.
+     *
      * This endpoint creates a new channel if doesn't exist and joins it.
      * Currently only for rejoining existing PM channels which the user has left.
      *
@@ -206,11 +216,16 @@ class ChannelsController extends Controller
      * ### Response Format
      *
      * Returns [ChatChannel](#chatchannel) with `recent_messages` attribute.
-     * Note that if there's no existing PM channel, most of the fields will be blank.
+     * Note that in the case of `PM`s, if there's no existing PM channel, most of the fields will be blank.
      * In that case, [send a message](#create-new-pm) instead to create the channel.
      *
-     * @bodyParam type string required channel type (currently only supports "PM")
-     * @bodyParam target_id integer target user id for type PM
+     * @bodyParam channel object channel details; required if `type` is `ANNOUNCE`. No-example
+     * @bodyParam channel.name string the channel name; required if `type` is `ANNOUNCE`. No-example
+     * @bodyParam channel.description string the channel description; required if `type` is `ANNOUNCE`. No-example
+     * @bodyParam message string message to send with the announcement; required if `type` is `ANNOUNCE`. No-example
+     * @bodyParam target_id integer target user id; required if `type` is `PM`; ignored, otherwise. Example: 2
+     * @bodyParam target_ids integer[] target user ids; required if `type` is `PM`; ignored, otherwise. No-example
+     * @bodyParam type string required channel type (currently only supports `PM` and `ANNOUNCE`) Example: PM
      *
      * @response {
      *   "channel_id": 1,
@@ -232,14 +247,18 @@ class ChannelsController extends Controller
     public function store()
     {
         $params = get_params(request()->all(), null, [
+            'channel:any',
+            'message:string',
             'target_id:int',
+            'target_ids:int[]',
             'type:string',
         ], ['null_missing' => true]);
 
         $sender = auth()->user();
-        abort_if($params['target_id'] === null, 422, 'missing target_id parameter');
 
         if ($params['type'] === Channel::TYPES['pm']) {
+            abort_if($params['target_id'] === null, 422, 'missing target_id parameter');
+
             $target = User::findOrFail($params['target_id']);
 
             priv_check('ChatPmStart', $target)->ensureCan();
@@ -249,6 +268,8 @@ class ChannelsController extends Controller
             if ($channel->exists) {
                 $channel->addUser($sender);
             }
+        } else if ($params['type'] === Channel::TYPES['announce']) {
+            $channel = Chat::createAnnouncement($sender, $params);
         }
 
         if (isset($channel)) {
