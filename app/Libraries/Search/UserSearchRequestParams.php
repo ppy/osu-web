@@ -41,13 +41,17 @@ class UserSearchRequestParams extends UserSearchParams
             $order = static::defaultSortOrder($field);
         }
 
+        $lastvisitOrder = $order;
         switch ($field) {
             case 'username':
                 $this->sorts[] = new Sort('username.raw', $order);
+                $lastvisitOrder = $order === 'desc' ? 'asc' : 'desc';
                 break;
             default:
                 $this->sorts[] = new Sort('_score', $order);
         }
+
+        $this->sorts[] = new Sort('user_lastvisit', $lastvisitOrder);
 
         $this->sortField = $field;
         $this->sortOrder = $order;
