@@ -13,7 +13,7 @@
     word-break: break-word;
 
     &--action {
-      color: @osu-colour-l1;
+      color: hsl(var(--hsl-l1));
       font-style: italic;
 
       &::before {
@@ -37,6 +37,17 @@
     &--errored {
       color: red;
     }
+  }
+
+  // TODO: css class instead?
+  code {
+    background: hsl(var(--hsl-b4));
+  }
+
+  pre {
+    background: hsl(var(--hsl-b4));
+    border: none;
+    color: inherit;
   }
 }
 
