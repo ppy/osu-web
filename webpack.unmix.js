@@ -204,10 +204,10 @@ const rules = [
   {
     exclude: /node_modules/,
     loader: 'ts-loader',
-    test: /\.tsx?$/,
     options: {
       transpileOnly: true,
     },
+    test: /\.tsx?$/,
   },
   {
     test: /\.coffee$/,
