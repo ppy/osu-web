@@ -56,10 +56,6 @@ html, body {
 
 html {
   scroll-padding-top: @nav2-height--pinned;
-  // Safari doesn't seem to perform layout properly for overflow-wrap when css variables are updated unless the
-  // container with the updated variable is in the tree of an element with overflow-wrap set.
-  // word-break: break-word doesn't have the same issue.
-  overflow-wrap: break-word;
 
   @media @mobile {
     scroll-padding-top: @navbar-height;
