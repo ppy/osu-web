@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chatt',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nytt meddelande',
+
                 'pm' => [
                     'channel_message' => ':username säger ":title"',
                     'channel_message_compact' => ':title',

@@ -154,11 +154,12 @@ return [
                 'combo' => 'Maximální Kombo',
                 'miss' => 'Minuto',
                 'mods' => 'Módy',
+                'pin' => '',
                 'player' => 'Hráč',
                 'pp' => '',
                 'rank' => 'Umístění',
-                'score_total' => 'Celkové skóre',
                 'score' => 'Skóre',
+                'score_total' => 'Celkové skóre',
                 'time' => 'Čas',
             ],
 

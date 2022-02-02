@@ -11,16 +11,6 @@ return [
     'cannot_send' => [
         'channel' => 'Je kan helaas nu geen berichten sturen in dit kanaal. Dit kan worden veroorzaakt door een van de volgende redenen:',
         'user' => 'Je kan op het moment geen berichten sturen naar deze gebruiker. Dit kan worden veroorzaakt door een van de volgende redenen:',
-        'reasons' => [
-            'blocked' => 'Je bent geblokkeerd door de ontvanger',
-            'channel_moderated' => 'Dit kanaal is word op het moment gemodereerd',
-            'friends_only' => 'De ontvanger accepteert alleen berichten van mensen op hun vriendenlijst',
-            'not_enough_plays' => 'Je hebt nog niet genoeg gespeeld',
-            'not_verified' => 'Uw sessie is niet geverifieerd',
-            'restricted' => 'Je bent op het moment gerestrict',
-            'silenced' => 'Je bent momenteel op stil gezet',
-            'target_restricted' => 'De ontvanger is momenteel gerestrict',
-        ],
     ],
 
     'input' => [

@@ -239,9 +239,10 @@ class CommentsController extends Controller
 
     public function pinDestroy($id)
     {
-        priv_check('CommentPin')->ensureCan();
-
         $comment = Comment::findOrFail($id);
+
+        priv_check('CommentPin', $comment)->ensureCan();
+
         $comment->fill(['pinned' => false])->saveOrExplode();
 
         return CommentBundle::forComment($comment)->toArray();
@@ -249,9 +250,10 @@ class CommentsController extends Controller
 
     public function pinStore($id)
     {
-        priv_check('CommentPin')->ensureCan();
-
         $comment = Comment::findOrFail($id);
+
+        priv_check('CommentPin', $comment)->ensureCan();
+
         $comment->fill(['pinned' => true])->saveOrExplode();
 
         return CommentBundle::forComment($comment)->toArray();

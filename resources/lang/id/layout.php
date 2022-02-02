@@ -46,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => 'multiplayer',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'info',
         ],
     ],
@@ -120,19 +121,19 @@ return [
         ],
         '404' => [
             'error' => 'Laman Tidak Ditemukan',
-            'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
+            'description' => "Maaf, namun laman yang Anda minta tidak ada di sini!",
         ],
         '403' => [
-            'error' => "Anda seharusnya tidak di sini.",
+            'error' => "Anda tidak seharusnya berada di sini.",
             'description' => 'Anda dapat mencoba untuk kembali ke halaman sebelumnya.',
         ],
         '401' => [
-            'error' => "Anda seharusnya tidak di sini.",
+            'error' => "Anda tidak seharusnya berada di sini.",
             'description' => 'Anda dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin coba untuk masuk terlebih dahulu.',
         ],
         '405' => [
             'error' => 'Laman Tidak Ditemukan',
-            'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
+            'description' => "Maaf, namun laman yang Anda minta tidak ada di sini!",
         ],
         '422' => [
             'error' => 'Parameter yang diminta tidak valid',
@@ -143,16 +144,16 @@ return [
             'description' => '',
         ],
         '500' => [
-            'error' => 'Oh, tidak! Sepertinya ada sesuatu yang rusak! ;_;',
-            'description' => "Sistem osu! akan secara otomatis memberitahukan kami setiap kali terdapat kesalahan seperti ini.",
+            'error' => 'Oh, tidak! Sepertinya ada sesuatu yang bermasalah! ;_;',
+            'description' => "Sistem osu! akan secara otomatis memberitahukan kami setiap kali terdapat suatu masalah.",
         ],
         'fatal' => [
-            'error' => 'Oh, tidak! Sepertinya ada sesuatu yang (sangat) rusak! ;_;',
-            'description' => "Sistem osu! akan secara otomatis memberitahukan kami setiap kali terdapat kesalahan seperti ini.",
+            'error' => 'Oh, tidak! Sepertinya ada sesuatu yang (sangat) bermasalah! ;_;',
+            'description' => "Sistem osu! akan secara otomatis memberitahukan kami setiap kali terdapat suatu masalah.",
         ],
         '503' => [
             'error' => 'Sedang dalam pemeliharaan!',
-            'description' => "Proses pemeliharaan utamanya dapat berlangsung dalam durasi yang cukup beragam, mulai dari 5 detik hingga lebih dari 10 menit. Jika proses pemeliharaan ternyata berlangsung lebih lama dari yang sewajarnya, harap kunjungi :link untuk informasi lebih lanjut.",
+            'description' => "Proses pemeliharaan pada umumnya dapat memakan waktu yang cukup beragam, mulai dari 5 detik hingga lebih dari 10 menit. Jika proses pemeliharaan berlangsung lebih lama dari yang sewajarnya, harap kunjungi :link untuk informasi lebih lanjut.",
             'link' => [
                 'text' => '',
                 'href' => '',

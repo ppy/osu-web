@@ -154,11 +154,12 @@ return [
                 'combo' => 'Legmagasabb kombó',
                 'miss' => 'Miss',
                 'mods' => 'Modok',
+                'pin' => '',
                 'player' => 'Játékos',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Összpontszám',
                 'score' => 'Pontszám',
+                'score_total' => 'Összpontszám',
                 'time' => 'Idő',
             ],
 

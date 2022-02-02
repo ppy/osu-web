@@ -87,8 +87,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Tin nhắn mới',
+
                 'pm' => [
                     'channel_message' => ':username nói ":title"',
                     'channel_message_compact' => ':title',

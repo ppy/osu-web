@@ -154,11 +154,12 @@ return [
                 'combo' => 'Combo Tối Đa',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => 'Ghim',
                 'player' => 'Người Chơi',
                 'pp' => '',
                 'rank' => 'Xếp Hạng',
-                'score_total' => 'Tổng Điểm',
                 'score' => 'Điểm',
+                'score_total' => 'Tổng Điểm',
                 'time' => 'Thời gian',
             ],
 

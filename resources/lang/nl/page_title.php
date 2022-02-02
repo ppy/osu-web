@@ -54,7 +54,7 @@ return [
             '_' => 'beatmap discussies',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'beatmap pakketten',
+            '_' => 'beatmap packs',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => 'beatmap discussie stemmen',

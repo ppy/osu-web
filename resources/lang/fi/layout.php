@@ -46,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modaus',
-            'multiplayer' => 'moninpeli',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'tiedot',
         ],
     ],

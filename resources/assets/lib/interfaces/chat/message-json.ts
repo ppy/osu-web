@@ -6,6 +6,7 @@ import UserJson from 'interfaces/user-json';
 export default interface MessageJson {
   channel_id: number;
   content: string;
+  content_html?: string;
   is_action: boolean;
   message_id: number;
   sender?: UserJson;

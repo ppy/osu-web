@@ -63,10 +63,12 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '',
         'blocked' => 'Negalima išsiųsti žinutės vartotujui kuris jumis yra užblokavę arba jūs jį esą užblokavę.',
         'friends_only' => 'Vartotojas šiuo metu užblokavo žinutės iš žmonių kurie nėra vartotojo draugų sąraše.',
         'moderated' => 'Šiuo momentu šis kanalas yra prižiūrimas.',
         'no_access' => 'Jūs neturite leidimo įeiti į šį kanalą.',
+        'receive_friends_only' => '',
         'restricted' => 'Būnant užblokuotam, apribotam, užtildytam, jūs negalite siųsti žinutės.',
         'silenced' => '',
     ],
@@ -163,6 +165,13 @@ return [
 
         'view' => [
             'admin_only' => 'Šį forumą gali skaityti tik administratoriai.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

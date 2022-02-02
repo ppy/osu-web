@@ -16,7 +16,7 @@ export default class CommentableMetaStore {
     this.meta.clear();
   }
 
-  get(type: string, id: number) {
+  get(type: string, id: number): CommentableMetaJson | undefined {
     const obj = this.meta.get(`${type}-${id}`);
 
     return obj != null ? obj : this.meta.get(null);

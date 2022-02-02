@@ -53,7 +53,7 @@ class BeatmapsetsController extends Controller
 
     public function show($id)
     {
-        $beatmapset = Beatmapset::findOrFail($id);
+        $beatmapset = Beatmapset::whereHas('beatmaps')->findOrFail($id);
 
         $set = $this->showJson($beatmapset);
 
