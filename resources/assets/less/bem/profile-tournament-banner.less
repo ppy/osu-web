@@ -2,26 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-tournament-banner {
-  .own-layer();
-  transition: transform .2s cubic-bezier(.08,.82,.17,1);
-
-  @media @desktop {
-    position: absolute;
-    bottom: 100%;
-    margin-bottom: 10px;
-    left: 0;
-    width: 60%;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
+  display: block;
 
   &__image {
     width: 100%;
-
-    @media @desktop {
-      .default-border-radius();
-    }
+    .default-border-radius();
   }
 }

@@ -1,18 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-.profile-rank-count {
+.profile-page-cover-editor-button {
+  position: absolute;
+  bottom: 10px;
   display: flex;
-  text-align: center;
-  font-weight: bold;
-  font-size: @font-size--normal;
-  gap: 4px;
-  flex-wrap: wrap;
   justify-content: center;
-  margin: auto;
+  right: @gutter-v2;
 
   @media @desktop {
-    font-size: @font-size--normal;
-    margin: 0;
+    right: 0;
+    width: @gutter-v2-desktop;
   }
 }

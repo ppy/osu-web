@@ -4,15 +4,13 @@
 import ValueDisplay from 'components/value-display';
 import UserStatisticsJson, { RankType } from 'interfaces/user-statistics-json';
 import * as React from 'react';
-import { Modifiers } from 'utils/css';
 
 interface Props {
-  modifiers?: Modifiers;
   stats: UserStatisticsJson;
   type: RankType;
 }
 
-export default function Rank({ modifiers, stats, type }: Props) {
+export default function Rank({ stats, type }: Props) {
   const key = `${type}_rank` as const;
 
   const variantTooltip: string[] = [];
@@ -31,7 +29,7 @@ export default function Rank({ modifiers, stats, type }: Props) {
   return (
     <ValueDisplay
       label={osu.trans(`users.show.rank.${type}_simple`)}
-      modifiers={modifiers}
+      modifiers='rank'
       value={
         <div data-html-title={variantTooltip.join('')} title=''>
           {rank != null ? (

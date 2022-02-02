@@ -34,6 +34,7 @@ export default function PlayTime({ stats }: Props) {
   return (
     <ValueDisplay
       label={osu.trans('users.show.stats.play_time')}
+      modifiers={['plain', 'plain-wide']}
       value={
         <span data-tooltip-position='bottom center' title={title}>
           {timeString}

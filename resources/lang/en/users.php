@@ -159,6 +159,10 @@ return [
             '_' => 'Posted :link',
             'count' => ':count_delimited comment|:count_delimited comments',
         ],
+        'cover' => [
+            'to_0' => 'Hide cover',
+            'to_1' => 'Show cover',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Change Profile Cover',

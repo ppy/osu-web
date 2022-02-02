@@ -3,6 +3,12 @@
 
 .value-display {
   @_top: value-display;
+  --label-font-size-desktop: @font-size--normal;
+  --label-font-size: @font-size--title-small-3;
+  --label-font-weight: bold;
+  --value-color: hsl(var(--hsl-c1));
+  --value-font-size-desktop: @font-size--title-small-4;
+  --value-font-size: @font-size--title;
   display: flex;
   flex-direction: column;
   min-width: 60px;
@@ -16,21 +22,55 @@
     margin-bottom: 2px;
   }
 
+  @media @desktop {
+    --label-font-size: var(--label-font-size-desktop);
+    --value-font-size: var(--value-font-size-desktop);
+  }
+
   &--kudosu {
+    --value-font-size: @font-size--large-3;
+
     padding: 4px;
     flex: 1;
+
+    &::before {
+      background-color: @osu-colour-h1;
+    }
   }
 
-  &--kudosu::before {
-    background-color: @osu-colour-h1;
+  &--plain {
+    --label-font-size-desktop: @font-size--normal;
+    --label-font-size: @font-size--normal;
+    --label-font-weight: normal;
+    --value-color: hsl(var(--hsl-c2));
+    --value-font-size-desktop: @font-size--title-small-3;
+    --value-font-size: @font-size--title-small-3;
+    flex: 1;
+
+    &::before {
+      display: none;
+    }
   }
 
-  &--medals::before {
-    background-color: @green-light;
+  &--plain-wide {
+    flex: 2;
   }
 
-  &--pp::before {
-    background-color: @red;
+  &--rank {
+    --label-font-weight: normal;
+    --value-color: hsl(var(--hsl-c2));
+    --value-font-size: @font-size--new-header-title;
+    --value-font-size-desktop: @font-size--new-header-title;
+    line-height: 1;
+    flex: 1;
+
+    &::before {
+      display: none;
+    }
+
+    @media @desktop {
+      flex: none;
+    }
   }
 
   &__description {
@@ -39,36 +79,13 @@
   }
 
   &__label {
-    font-weight: bold;
-    font-size: @font-size--title-small-3;
-
-    @media @desktop {
-      font-size: @font-size--normal;
-    }
-
-    .@{_top}--large & {
-      @media @desktop {
-        font-size: @font-size--title-small;
-      }
-    }
+    font-weight: var(--label-font-weight);
+    font-size: var(--label-font-size);
   }
 
   &__value {
-    font-size: @font-size--title;
+    color: var(--value-color);
+    font-size: var(--value-font-size);
     font-weight: 300;
-
-    @media @desktop {
-      font-size: @font-size--title-small-4;
-    }
-
-    .@{_top}--kudosu & {
-      font-size: @font-size--large-3;
-    }
-
-    .@{_top}--large & {
-      @media @desktop {
-        font-size: @font-size--large-3;
-      }
-    }
   }
 }

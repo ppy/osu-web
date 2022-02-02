@@ -4,104 +4,127 @@
 .profile-info {
   @_top: profile-info;
 
-  .default-text-shadow();
-  padding: 20px @gutter-profile-page;
+  --content-height: 60px;
+  --cover-radius-extended-desktop: 40px;
+  --cover-radius-extended: 20px;
+  --cover-radius: 20px;
+  --cover-size-extended-desktop: @profile-avatar-size;
+  --cover-size-extended: var(--content-height);
+  --cover-size: var(--content-height);
+  --info-margin-extended-desktop: 20px;
+  --info-margin-extended: 10px;
+  --info-margin: 10px;
+  --vertical-padding: 10px;
   display: flex;
-  color: #fff;
+  flex-direction: column;
   flex: none;
   width: 100%;
-  position: relative;
+  background-color: hsl(var(--hsl-b4));
+
+  &--cover {
+    --cover-radius: var(--cover-radius-extended);
+    --cover-size: var(--cover-size-extended);
+    --info-margin: var(--info-margin-extended);
+  }
 
   @media @desktop {
-    align-self: flex-start;
-    padding-left: @gutter-profile-page-desktop;
-    flex: 1;
-    width: auto;
-    min-width: 0;
+    --cover-radius-extended: var(--cover-radius-extended-desktop);
+    --cover-size-extended: var(--cover-size-extended-desktop);
+    --info-margin-extended: var(--info-margin-extended-desktop);
   }
 
   &__avatar {
     .own-layer(); // required by safari for border-radius to be applied correctly
     flex: none;
-    width: @profile-avatar-size;
-    height: @profile-avatar-size;
-    border-radius: 25%;
+    width: var(--cover-size);
+    height: var(--cover-size);
+    border-radius: var(--cover-radius);
     overflow: hidden;
+    align-self: flex-end;
+    margin-bottom: var(--vertical-padding);
+    .default-box-shadow();
   }
 
   &__bg {
-    .full-size();
+    position: relative;
     background-size: cover;
     background-position: center;
+    height: 100px;
 
     @media @desktop {
-      display: none;
+      height: 250px;
     }
+  }
 
-    &::after {
-      .full-size();
-      content: '';
-      background-color: fade(#000, 80%);
+  &__cover-toggle {
+    .center-content();
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: var(--gutter-size);
+
+    @media @desktop {
+      width: var(--gutter-size);
+      right: 0;
     }
   }
 
   &__details {
-    padding-left: 10px;
-    flex: 1;
-    min-width: 0;
+    --gutter-size: @gutter-v2;
+    --gutter-size-desktop: @gutter-v2-desktop;
+    padding: 0 var(--gutter-size);
     display: flex;
-    flex-direction: column;
+    align-items: center;
     position: relative;
+    height: calc(var(--content-height) + var(--vertical-padding) * 2);
+
+    @media @desktop {
+      --gutter-size: var(--gutter-size-desktop);
+    }
   }
 
   &__flag {
     .link-plain();
-    height: 30px;
+    .link-white();
     display: flex;
     align-items: center;
-    font-size: @font-size--title-small;
-
-    color: @osu-colour-l1;
-    .link-hover({
-      color: @osu-colour-l1;
-    });
-
-    @media @desktop {
-      border-top: 2px solid;
-      padding-top: 5px;
-      height: 27px; // 20px + border + padding
-    }
   }
 
   &__flag-flag {
-    font-size: 30px; // icon size
-
-    @media @desktop {
-      font-size: 20px; // icon size
-    }
+    font-size: var(--icon-height); // icon size
   }
 
   &__flag-text {
     display: none;
-    padding-left: 10px;
 
     @media @desktop {
       display: block;
+      padding-left: 4px;
+      font-size: @font-size--title-small;
+    }
+  }
+
+  &__flags {
+    --icon-font-size: @font-size--small;
+    --icon-height-desktop: 20px;
+    --icon-height: 15px;
+
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+
+    @media @desktop {
+      --icon-height: var(--icon-height-desktop);
+      margin-top: 0;
     }
   }
 
   &__icon {
-    font-size: 18px; // icon size
-    height: 30px;
+    font-size: var(--icon-font-size); // icon size
+    height: var(--icon-height);
     color: @osu-colour-c1;
     display: flex;
     text-shadow: none;
-    margin: 2px;
-
-    @media @desktop {
-      font-size: 12px; // icon size
-      height: 20px;
-    }
 
     &--supporter {
       .center-content();
@@ -111,44 +134,56 @@
     }
   }
 
-  &__icon-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: auto;
-
-    @media @desktop {
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-  }
-
   &__icons {
-    display: flex;
-    margin: -2px;
-    flex-wrap: wrap;
-    align-items: flex-end;
+    align-items: baseline;
+    gap: 2px;
+    margin-left: 5px;
 
-    &--flag {
-      margin: 0;
-
+    &--flag-inline {
+      display: contents;
       @media @desktop {
-        margin-top: 10px;
+        display: none;
+      }
+    }
+
+    &--name-inline {
+      display: none;
+      @media @desktop {
+        display: flex;
       }
     }
   }
 
+  &__info {
+    margin-left: var(--info-margin);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  &__level {
+    flex: none;
+  }
+
   &__name {
-    align-self: flex-start;
-    color: #fff;
+    --icon-height: 15px;
+    --icon-font-size: @font-size--small;
+
     padding: 0;
-    margin: 0;
-    font-size: @font-size--title;
+    margin: -5px 0 0;
     font-weight: normal;
     font-style: normal;
     line-height: normal; // prevent text clipping by u-ellipsis-overflow
     max-width: 100%;
     display: flex;
+    align-items: center;
     position: relative;
+    font-size: @font-size--title-small-3;
+
+    @media @desktop {
+      font-size: @font-size--title;
+    }
   }
 
   &__previous-usernames {
@@ -157,7 +192,7 @@
     pointer-events: none;
 
     @media @desktop {
-      transform: translateY(-0.7em);
+      transform: translateY(0);
       position: absolute;
       left: 100%;
 
@@ -169,9 +204,13 @@
 
   &__title {
     .link-white();
-    align-self: flex-start;
-    font-size: @font-size--title-small-4;
-    padding: 0 0 5px;
     line-height: normal;
+    margin: 0 0 2px;
+    font-size: @font-size--normal;
+
+    @media @desktop {
+      margin-top: -4px;
+      font-size: @font-size--title-small-3;
+    }
   }
 }

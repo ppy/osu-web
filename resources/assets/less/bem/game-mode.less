@@ -37,8 +37,11 @@
 
   &__set-default {
     position: absolute;
-    bottom: 100%;
-    margin-bottom: 20px;
-    right: 0;
+    top: 100%;
+    display: flex;
+    align-items: center;
+    height: 48px; // FIXME: temporary. Matches header-v4__content
+    z-index: 1; // FIXME: temporary. Remove when proper switcher design is implemented
+    right: @gutter-v2-desktop;
   }
 }

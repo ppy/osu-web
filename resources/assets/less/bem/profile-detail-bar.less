@@ -2,90 +2,40 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-detail-bar {
+  --padding: @gutter-v2;
+  --vertical-padding: 10px;
+  --height: 60px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex: none;
-  justify-content: space-between;
   align-items: center;
-  background-color: @osu-colour-b4;
+  background-color: hsl(var(--hsl-b3));
   position: relative;
+  gap: 10px;
+  min-height: var(--height);
+  padding: 10px var(--padding);
 
   @media @desktop {
-    padding: 10px @gutter-profile-page-desktop;
-    height: 60px;
-  }
-
-  &__column {
-    display: flex;
-    padding: 5px;
-    flex-wrap: wrap;
-
-    @media @desktop {
-      margin: -5px;
-      padding: 0;
-      flex-wrap: nowrap;
-      height: calc(100% + ($margin * -2));
-    }
-
-    &--right {
-      align-items: center;
-
-      @media @desktop {
-        min-width: (@profile-stats-box-width-desktop + 10px);
-      }
-    }
-  }
-
-  &__entry {
-    flex: none;
-    margin: 5px;
-    display: flex;
-    position: relative;
-
-    &--level {
-      .center-content();
-
-      margin-left: auto;
-      height: 40px;
-    }
-
-    &--level-progress {
-      flex: 1;
-      align-items: center;
-      padding-right: 10px;
-      font-size: @font-size--normal;
-      font-weight: bold;
-    }
+    --padding: @gutter-v2-desktop;
   }
 
   &__level {
-    .center-content();
-    height: calc(100% + 10px);
-    width: 50px;
-    font-size: @font-size--large;
-    background-image: url('~@images/backgrounds/level-hexagon.svg');
-    background-position: center;
-    background-repeat: no-repeat;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: @font-size--normal;
+    font-weight: bold;
+    height: calc(var(--height) - var(--vertical-padding) * 2);
   }
 
-  &__level-progress-text {
-    position: absolute;
-    top: 50%;
-    right: 0;
-  }
-
-  &__page-toggle {
-    .center-content();
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: @gutter-profile-page-desktop;
-    height: 100%;
+  &__level-bar {
     display: none;
 
     @media @desktop {
       display: flex;
+      width: 200px;
     }
   }
 }

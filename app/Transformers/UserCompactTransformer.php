@@ -420,7 +420,7 @@ class UserCompactTransformer extends TransformerAbstract
             'beatmapset_title_show_original',
             'comments_show_deleted',
             'forum_posts_show_deleted',
-            'ranking_expanded',
+            'profile_cover_expanded',
             'user_list_filter',
             'user_list_sort',
             'user_list_view',

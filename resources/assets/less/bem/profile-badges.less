@@ -2,28 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-badges {
-  @_badge-width: 86px;
-  @_badge-height: 40px;
-  @_padding: 5px;
-
-  .inner-shadow-top();
-  padding: (@padding-profile-page - @_padding) (@gutter-profile-page - @_padding);
   display: flex;
   flex-wrap: wrap;
-  background-color: @osu-colour-b5;
-
-  @media @desktop {
-    padding-left: (@gutter-profile-page-desktop - @_padding);
-    padding-right: (@gutter-profile-page-desktop - @_padding);
-  }
+  gap: 10px;
 
   &__badge {
     flex: none;
-    width: @_badge-width;
-    height: @_badge-height;
+    width: 86px;
+    height: 40px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    margin: @_padding;
   }
 }

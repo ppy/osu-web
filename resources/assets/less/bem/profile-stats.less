@@ -2,32 +2,24 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-stats {
-  .inner-shadow-top();
-  font-size: @font-size--title-small;
-  flex: none;
-  padding: 15px @gutter-v2;
-  width: 100%;
+  font-size: @font-size--normal;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 4px 10px;
 
-  @media @desktop {
-    box-shadow: none;
-    font-size: @font-size--normal;
-    padding-right: @gutter-v2-desktop;
-    width: auto;
-    min-width: (@profile-stats-box-width-desktop + @gutter-v2-desktop + @gutter-v2);
+  &--modding {
+    max-width: max-content;
   }
 
   &__entry {
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 0;
+    display: contents;
+
+    &--key-ranked_score {
+      color: hsl(var(--hsl-h1));
+    }
   }
 
   &__key {
-    font-weight: normal;
-    margin-right: 30px;
-  }
-
-  &__value {
-    font-weight: bold;
+    font-weight: normal; // undo default from dt
   }
 }

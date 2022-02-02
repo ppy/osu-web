@@ -18,6 +18,7 @@ import { currentUrl } from 'utils/turbolinks';
 import AccountStanding from './account-standing';
 import Beatmapsets from './beatmapsets';
 import Controller, { Page, validPage } from './controller';
+import Detail from './detail';
 import ExtraTab from './extra-tab';
 import Header from './header';
 import Historical from './historical';
@@ -164,6 +165,13 @@ export default class Main extends React.Component<Props> {
         <Header controller={this.controller} />
 
         <div className='osu-page osu-page--generic-compact'>
+          <div
+            className='js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
+            data-page-id='main'
+          >
+            <Detail controller={this.controller} />
+          </div>
+
           <div className='hidden-xs page-extra-tabs js-switchable-mode-page--scrollspy-offset'>
             <div ref={this.tabs} className='page-mode page-mode--profile-page-extra'>
               {this.displayedExtraPages.map((m) => (

@@ -259,13 +259,13 @@ class UserProfileCustomization extends Model
         $this->options['extras_order'] = static::repairExtrasOrder($value);
     }
 
-    public function getRankingExpandedAttribute()
+    public function getProfileCoverExpandedAttribute()
     {
-        return $this->options['ranking_expanded'] ?? true;
+        return $this->options['profile_cover_expanded'] ?? true;
     }
 
-    public function setRankingExpandedAttribute($value)
+    public function setProfileCoverExpandedAttribute($value)
     {
-        $this->options['ranking_expanded'] = get_bool($value);
+        $this->options['profile_cover_expanded'] = get_bool($value);
     }
 }

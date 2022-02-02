@@ -13,7 +13,7 @@ export default function MedalsCount({ userAchievements }: Props) {
   return (
     <ValueDisplay
       label={osu.trans('users.show.stats.medals')}
-      modifiers='medals'
+      modifiers='plain'
       value={userAchievements.length}
     />
   );

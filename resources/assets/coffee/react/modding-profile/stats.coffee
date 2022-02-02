@@ -3,20 +3,20 @@
 
 import * as React from 'react'
 import { div, dd, dl, dt } from 'react-dom-factories'
-el = React.createElement
+import { classWithModifiers } from 'utils/css'
 
+entries = [
+  'ranked_beatmapset_count'
+  'loved_beatmapset_count'
+  'pending_beatmapset_count'
+  'graveyard_beatmapset_count'
+]
 
 export class Stats extends React.PureComponent
-  entries = [
-    'ranked_beatmapset_count'
-    'loved_beatmapset_count'
-    'pending_beatmapset_count'
-    'graveyard_beatmapset_count'
-  ]
-
-
   render: =>
-    div className: 'profile-stats', entries.map(@renderEntry)
+    div
+      className: classWithModifiers 'profile-stats', 'modding'
+      entries.map(@renderEntry)
 
 
   renderEntry: (key) =>

@@ -1,20 +1,21 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Events } from './events'
-import { Discussions } from './discussions'
-import { Header } from './header'
-import { Posts } from './posts'
-import { Votes } from './votes'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
+import HeaderV4 from 'components/header-v4'
 import { NotificationBanner } from 'components/notification-banner'
 import ProfilePageExtraTab from 'components/profile-page-extra-tab'
+import ProfileTournamentBanner from 'components/profile-tournament-banner'
 import UserProfileContainer from 'components/user-profile-container'
 import { deletedUser } from 'models/user'
 import Kudosu from 'modding-profile/kudosu'
 import core from 'osu-core-singleton'
+import Badges from 'profile-page/badges'
+import Cover from 'profile-page/header-info'
+import DetailBar from 'profile-page/detail-bar-buttons'
+import headerLinks from 'profile-page/header-links'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import { bottomPage } from 'utils/html'
@@ -22,6 +23,11 @@ import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
 import { updateQueryString } from 'utils/url'
+import { Discussions } from './discussions'
+import { Events } from './events'
+import { Posts } from './posts'
+import { Stats } from './stats'
+import { Votes } from './votes'
 
 el = React.createElement
 
@@ -150,13 +156,26 @@ export class Main extends React.PureComponent
         el BeatmapsContext.Provider, value: @beatmaps(),
           el UserProfileContainer,
             user: @state.user,
-            el Header,
-              user: @state.user
-              stats: @state.user.statistics
-              userAchievements: @props.userAchievements
+            el HeaderV4,
+              backgroundImage: @props.user.cover.url
+              links: headerLinks(@props.user, 'modding')
+              theme: 'users'
 
             div
               className: 'osu-page osu-page--generic-compact'
+
+              div
+                className: 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
+                'data-page-id': 'main'
+                el Cover, user: @props.user, currentMode: @props.user.playmode, coverUrl: @props.user.cover.url
+                if !@props.user.is_bot
+                  div className: 'profile-detail',
+                    el ProfileTournamentBanner, banner: @state.user.active_tournament_banner
+                    el Badges, badges: @state.user.badges
+                    el Stats, user: @props.user
+
+                el DetailBar, user: @props.user
+
               div
                 className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
                 div
