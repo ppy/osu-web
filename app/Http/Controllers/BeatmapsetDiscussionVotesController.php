@@ -34,7 +34,7 @@ class BeatmapsetDiscussionVotesController extends Controller
      *
      * Field         | Type                                                    | Description
      * ------------- | ------------------------------------------------------- | -----------
-     * cursor_string | string?                                                 | |
+     * cursor_string | [CursorString](#cursorstring)                           | |
      * discussions   | [BeatmapsetDiscussion](#beatmapsetdiscussion)           | |
      * users         | [UserCompact](#usercompact)                             | |
      * votes         | [BeatmapsetDiscussionVote](#beatmapsetdiscussionvote)[] | |
