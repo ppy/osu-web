@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Conversație',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Mesaj nou',
+
                 'pm' => [
                     'channel_message' => ':username spune ":title"',
                     'channel_message_compact' => ':title',

@@ -301,8 +301,8 @@ return [
                 'recent' => 'Ostatnie',
                 'title' => 'Medale',
             ],
-            'multiplayer' => [
-                'title' => 'Gry w trybie wieloosobowym',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Posty',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Pobierz powtórkę',
@@ -326,13 +329,13 @@ return [
                     'title' => 'Pierwsze miejsca',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Odepnij',
+                    'to_0_done' => 'Odpięto wynik',
+                    'to_1' => 'Przypnij',
+                    'to_1_done' => 'Przypięto wynik',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Przypięte wyniki',
                 ],
             ],
             'votes' => [

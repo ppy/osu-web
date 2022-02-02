@@ -301,8 +301,8 @@ return [
                 'recent' => 'Viimeisin',
                 'title' => 'Mitalit',
             ],
-            'multiplayer' => [
-                'title' => 'Moninpelejä',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Julkaisut',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Viimeisimmät',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Lataa Replay',

@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'チャット',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => '新しいメッセージ',
+
                 'pm' => [
                     'channel_message' => ':usernameが「:title」で発言',
                     'channel_message_compact' => ':title',

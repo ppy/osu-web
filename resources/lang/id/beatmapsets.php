@@ -154,7 +154,7 @@ return [
                 'combo' => 'Kombo Maks',
                 'miss' => 'Miss',
                 'mods' => 'Mod',
-                'pin' => '',
+                'pin' => 'Sematkan',
                 'player' => 'Pemain',
                 'pp' => '',
                 'rank' => 'Peringkat',
