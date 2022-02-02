@@ -11,7 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'BASAHIN MO ITO BAGO MAGDOWNLOAD',
-            'install_instruction' => '',
+            'install_instruction' => 'Installation: Kapag ang pack ay na-download, i-extract ang kuntento ng pack sa iyong osu! Songs directory at osu! na ang bahala.',
             'note' => [
                 '_' => 'Isaalang-alang rin na lubos na nirerekomenda sa :scary, dahil ang mga lumang maps ay mas mababang kalidad kaysa sa mga bagong maps.',
                 'scary' => 'idownload ang packs mula pinakabago hanggang pinakaluma',

@@ -63,10 +63,12 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '',
         'blocked' => 'No puedes enviar mensajes a un usuario que bloqueaste o que te haya bloqueado.',
         'friends_only' => 'Este usuario está bloqueando los mensajes de personas que no están en su lista de amigos.',
         'moderated' => 'Ese canal está actualmente siendo moderado.',
         'no_access' => 'No tienes acceso a ese canal.',
+        'receive_friends_only' => 'Es posible que el usuario no pueda responder porque sólo acepta mensajes de personas de su lista de amigos.',
         'restricted' => 'No puede enviar mensajes mientras esté silenciado, restringido o baneado.',
         'silenced' => 'No puede enviar mensajes mientras esté silenciado, restringido o baneado.',
     ],
@@ -153,7 +155,7 @@ return [
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Portada especificada inválida.',
+                'uneditable' => 'Portada especificada no válida.',
                 'not_owner' => 'Solo el dueño puede editar la portada.',
             ],
             'store' => [
@@ -163,6 +165,13 @@ return [
 
         'view' => [
             'admin_only' => 'Solo los administradores pueden ver este foro.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => 'Sólo el propietario puede anclar la puntuación.',
+            'too_many' => 'Se han anclado demasiadas puntuaciones.',
         ],
     ],
 

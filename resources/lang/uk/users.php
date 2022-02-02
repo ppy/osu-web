@@ -301,8 +301,8 @@ return [
                 'recent' => 'Останні досягнення',
                 'title' => 'Досягнення',
             ],
-            'multiplayer' => [
-                'title' => 'Ігри у мультиплеєрі',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Пости',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Недавня активність',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Завантажити повтор',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Рекорди',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [

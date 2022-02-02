@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => '¡Aún no hay partidas multijugador de osu!(lazer) jugadas!',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => 'alojado por :user',
@@ -14,7 +18,7 @@ return [
         'time_left' => 'quedan :time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'La duración es demasiado larga.',
         ],
 
         'status' => [

@@ -36,7 +36,7 @@ return [
         'blocked_count' => 'pengguna yang diblokir (:count)',
         'hide_profile' => 'Sembunyikan profil',
         'not_blocked' => 'Pengguna ini tidak diblokir.',
-        'show_profile' => 'tampilkan profil',
+        'show_profile' => 'Tampilkan profil',
         'too_many' => 'Batas pemblokiran tercapai.',
         'button' => [
             'block' => 'Blokir',
@@ -98,7 +98,7 @@ return [
 
         'beta' => [
             'main' => 'Akses beta saat ini hanya terbuka kepada pengguna-pengguna tertentu.',
-            'small' => '(osu!supporter akan segera masuk)',
+            'small' => '(para pemilik osu!supporter akan dapat segera masuk)',
         ],
     ],
 
@@ -132,13 +132,13 @@ return [
             'insults' => 'Menghina saya / orang lain',
             'spam' => 'Spam',
             'unwanted_content' => 'Menautkan konten yang tidak pantas',
-            'nonsense' => 'Berperilaku buruk',
+            'nonsense' => 'Beromong kosong',
             'other' => 'Lainnya (ketik di bawah)',
         ],
     ],
     'restricted_banner' => [
         'title' => 'Akun Anda telah di-restrict!',
-        'message' => 'Selama akun Anda di-restrict, Anda tidak dapat berinteraksi dengan para pengguna lain dan skor-skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang terbukti tidak melakukan pelanggaran apapun terhadap aturan-aturan yang berlaku. Jika Anda ingin mengajukan banding atas status akun Anda, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
+        'message' => 'Selama akun Anda di-restrict, Anda tidak akan dapat berinteraksi dengan para pengguna lain dan skor-skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang tidak melanggar aturan apapun. Apabila Anda ingin mengajukan banding, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
     ],
     'show' => [
         'age' => ':age tahun',
@@ -146,7 +146,7 @@ return [
         'first_members' => 'Di sini sejak awal',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Bergabung :date',
+        'joined_at' => 'Bergabung pada :date',
         'lastvisit' => 'Terakhir terlihat :date',
         'lastvisit_online' => 'Saat ini online',
         'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna ini telah di-ban)',
@@ -156,7 +156,7 @@ return [
         'title' => "profil :username",
 
         'comments_count' => [
-            '_' => 'Telah menulis :link',
+            '_' => 'Telah mengirimkan :link',
             'count' => ':count_delimited komentar|:count_delimited komentar',
         ],
         'edit' => [
@@ -167,7 +167,7 @@ return [
                     'broken_file' => 'Gagal memproses gambar. Mohon periksa kembali gambar yang diunggah dan coba lagi.',
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
-                    'dropzone_info' => 'Anda juga dapat meletakkan gambar Anda di sini untuk mengunggah.',
+                    'dropzone_info' => 'Anda juga dapat meletakkan gambar Anda di sini untuk mengunggahnya',
                     'size_info' => 'Ukuran gambar sampul yang disarankan adalah 2400x640',
                     'too_large' => 'Berkas yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
@@ -251,11 +251,11 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Pengguna ini belum tercatat pernah menerima kudosu! sebelumnya.",
+                    'empty' => "Pengguna ini belum pernah menerima kudosu! sebelumnya.",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Menerima :amount atas pembatalan penolakan kudosu di post modding :post',
+                            'give' => 'Memperoleh :amount atas dibatalkannya penganuliran kudosu pada topik diskusi :post',
                         ],
 
                         'deny_kudosu' => [
@@ -263,28 +263,28 @@ return [
                         ],
 
                         'delete' => [
-                            'reset' => 'Kehilangan :amount atas penghapusan post di post modding :post',
+                            'reset' => 'Kehilangan :amount atas penghapusan topik diskusi :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Menerima :amount atas pengembalian post di post modding :post',
+                            'give' => 'Memperoleh :amount atas dipulihkannya topik diskusi :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Mendapatkan :amount dari suara yang diperoleh pada topik diskusi :post',
+                            'give' => 'Memperoleh :amount dari suara yang didapat pada topik diskusi :post',
                             'reset' => 'Kehilangan :amount dari suara yang hilang pada topik diskusi :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Menerima :amount atas penilaian ulang suara di post modding :post',
-                            'reset' => 'Kehilangan :amount atas penilaian ulang suara di post modding :post',
+                            'give' => 'Memperoleh :amount atas penghitungan ulang suara pada topik diskusi :post',
+                            'reset' => 'Kehilangan :amount atas penghitungan ulang suara pada topik diskusi :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Menerima :amount dari :giver untuk posting di :post',
-                        'reset' => 'Kudosu disetel ulang oleh :giver untuk posting di :post',
-                        'revoke' => 'Kudosu ditolak oleh :giver untuk posting di :post',
+                        'give' => 'Memperoleh :amount dari :giver untuk mod yang diberikan pada beatmap :post',
+                        'reset' => 'Kudosu untuk mod yang diberikan pada beatmap :post diatur ulang oleh :giver ',
+                        'revoke' => 'Kudosu untuk mod yang diberikan pada beatmap :post ditolak oleh :giver ',
                     ],
                 ],
 
@@ -301,8 +301,8 @@ return [
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
             ],
-            'multiplayer' => [
-                'title' => 'Riwayat Pertandingan Multiplayer',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Posting',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Aktivitas Terkini',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Unduh Tayangan Ulang',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Peringkat Pertama',
+                ],
+                'pin' => [
+                    'to_0' => 'Lepas Sematan',
+                    'to_0_done' => 'Sematan skor berhasil dilepas',
+                    'to_1' => 'Sematkan',
+                    'to_1_done' => 'Skor berhasil disematkan',
+                ],
+                'pinned' => [
+                    'title' => 'Skor-Skor yang Disematkan',
                 ],
             ],
             'votes' => [
@@ -344,7 +356,7 @@ return [
                     'action' => 'tindakan',
                     'length' => 'durasi',
                     'length_permanent' => 'Permanen',
-                    'description' => 'deskripsi',
+                    'description' => 'keterangan',
                     'actor' => 'oleh :username',
 
                     'actions' => [
@@ -383,7 +395,7 @@ return [
             ],
         ],
         'post_count' => [
-            '_' => 'Telah berkontribusi terhadap :link',
+            '_' => 'Berkontribusi pada :link',
             'count' => ':count_delimited postingan forum|:count_delimited postingan forum',
         ],
         'rank' => [
@@ -395,7 +407,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',
             'level' => 'Level :level',
-            'level_progress' => 'Persentase pencapaian untuk menuju ke level selanjutnya',
+            'level_progress' => 'Persentase pencapaian menuju level berikutnya',
             'maximum_combo' => 'Kombo Maksimum',
             'medals' => 'Jumlah Medali',
             'play_count' => 'Jumlah Main',
@@ -415,7 +427,7 @@ return [
 
     'silenced_banner' => [
         'title' => 'Anda sedang di-silence.',
-        'message' => 'Anda tidak dapat melakukan tindakan-tindakan tertentu.',
+        'message' => 'Anda sedang tidak dapat melakukan tindakan-tindakan tertentu.',
     ],
 
     'status' => [
@@ -431,7 +443,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => 'Tampilan batu bata',
+        'brick' => 'Tampilan susun bata',
         'card' => 'Tampilan kartu',
         'list' => 'Tampilan daftar',
     ],

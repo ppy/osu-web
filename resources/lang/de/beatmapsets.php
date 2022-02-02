@@ -154,11 +154,12 @@ return [
                 'combo' => 'Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Spieler',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Gesamtpunktzahl',
                 'score' => 'Punktzahl',
+                'score_total' => 'Gesamtpunktzahl',
                 'time' => 'Zeit',
             ],
 

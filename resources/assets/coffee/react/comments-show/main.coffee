@@ -3,10 +3,12 @@
 
 import { Comment } from 'comment'
 import HeaderV4 from 'header-v4'
+import { route } from 'laroute'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, h1, li, ol, p, span } from 'react-dom-factories'
+
 el = React.createElement
 
 store = core.dataStore.commentStore
@@ -37,10 +39,10 @@ export class Main extends React.PureComponent
     [
         {
           title: osu.trans 'comments.index.nav_title'
-          url: laroute.route('comments.index')
+          url: route('comments.index')
         }
         {
           title: osu.trans 'comments.show.nav_title'
-          url: laroute.route('comments.show', @comment)
+          url: route('comments.show', @comment)
         }
     ]

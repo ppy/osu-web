@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Bagong mensahe',
+
                 'pm' => [
                     'channel_message' => '":title", sabi ni :username',
                     'channel_message_compact' => ':title',
@@ -149,8 +160,8 @@ return [
                 'user_beatmapset_new_compact' => 'Bagong beatmap ":title"',
                 'user_beatmapset_new_group' => 'Mga bagong beatmap ni :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Beatmap ":title" ay binuhay ni :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" ay binuhay',
             ],
         ],
 

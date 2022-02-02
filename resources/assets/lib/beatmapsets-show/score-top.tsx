@@ -1,11 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ScorePin from 'components/score-pin';
 import FlagCountry from 'flag-country';
 import BeatmapJson from 'interfaces/beatmap-json';
 import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
 import Mod from 'mod';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import ScoreboardTime from 'scoreboard-time';
 import PpValue from 'scores/pp-value';
@@ -94,6 +96,17 @@ export default class ScoreTop extends React.PureComponent<Props> {
 
           <div className='beatmap-score-top__wrapping-container beatmap-score-top__wrapping-container--right'>
             <div className='beatmap-score-top__stats'>
+              {core.scorePins.canBePinned(this.props.score) &&
+                <div className='beatmap-score-top__stat'>
+                  <div className='beatmap-score-top__stat-header'>
+                    {osu.trans('beatmapsets.show.scoreboard.headers.pin')}
+                  </div>
+                  <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller u-hover'>
+                    <ScorePin className='btn-osu-big' score={this.props.score} />
+                  </div>
+                </div>
+              }
+
               <div className='beatmap-score-top__stat'>
                 <div className='beatmap-score-top__stat-header beatmap-score-top__stat-header--wider'>
                   {osu.trans('beatmapsets.show.scoreboard.headers.score_total')}

@@ -5,9 +5,12 @@ import BeatmapJson from './beatmap-json';
 import BeatmapsetJson from './beatmapset-json';
 import RoomJson from './room-json';
 
+export type MultiplayerTypeGroup = 'playlists' | 'realtime';
+
 export default interface UserMultiplayerHistoryJson {
   beatmaps: BeatmapJson[];
   beatmapsets: BeatmapsetJson[];
   cursor: unknown;
   rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[];
+  type_group: MultiplayerTypeGroup;
 }

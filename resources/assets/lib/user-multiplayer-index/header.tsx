@@ -3,6 +3,7 @@
 
 import HeaderV4 from 'header-v4';
 import UserExtendedJson from 'interfaces/user-extended-json';
+import { MultiplayerTypeGroup } from 'interfaces/user-multiplayer-history-json';
 import Badges from 'profile-page/badges';
 import Detail from 'profile-page/detail';
 import HeaderInfo from 'profile-page/header-info';
@@ -12,6 +13,7 @@ import ProfileTournamentBanner from 'profile-tournament-banner';
 import * as React from 'react';
 
 interface Props {
+  typeGroup: MultiplayerTypeGroup;
   user: UserExtendedJson;
 }
 
@@ -22,7 +24,7 @@ export default class Header extends React.Component<Props> {
         <HeaderV4
           backgroundImage={this.props.user.cover.url}
           contentPrepend={<ProfileTournamentBanner banner={this.props.user.active_tournament_banner} />}
-          links={headerLinks(this.props.user, 'multiplayer')}
+          links={headerLinks(this.props.user, this.props.typeGroup)}
           theme='users'
         />
         <div className='osu-page osu-page--users'>

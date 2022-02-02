@@ -87,8 +87,19 @@ return [
         'channel' => [
             '_' => 'Csevegés',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Új üzenet',
+
                 'pm' => [
                     'channel_message' => ':username üzeni ":title"',
                     'channel_message_compact' => ':title',

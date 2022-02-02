@@ -301,8 +301,8 @@ return [
                 'recent' => 'Viimeisin',
                 'title' => 'Mitalit',
             ],
-            'multiplayer' => [
-                'title' => 'Moninpelejä',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Julkaisut',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Viimeisimmät',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Lataa Replay',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Kärkisijat',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [

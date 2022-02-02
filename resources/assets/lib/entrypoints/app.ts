@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import 'url-polyfill';
 import 'app-deps';
 
 import 'osu_common.coffee';
@@ -65,7 +64,6 @@ import 'bootstrap-modal.coffee';
 import 'shared.coffee';
 import 'turbolinks-overrides.coffee';
 
-import 'import-shims';  // shim imports to window
 import 'osu-core-singleton';
 import 'main.coffee';
 

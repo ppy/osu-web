@@ -301,8 +301,8 @@ return [
                 'recent' => '最近取得',
                 'title' => '成就',
             ],
-            'multiplayer' => [
-                'title' => '多人游戏',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => '回复',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => '最近活动',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => '下载回放',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => '第一名',
+                ],
+                'pin' => [
+                    'to_0' => '取消置顶',
+                    'to_0_done' => '已取消置顶成绩',
+                    'to_1' => '置顶',
+                    'to_1_done' => '已置顶成绩',
+                ],
+                'pinned' => [
+                    'title' => '置顶成绩',
                 ],
             ],
             'votes' => [

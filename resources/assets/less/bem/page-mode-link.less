@@ -3,7 +3,6 @@
 
 .page-mode-link {
   @top: page-mode-link;
-  @_post-reply-active: @pink-darker;
   .link-plain();
   .link-gray-light();
   padding: 5px 0 10px;
@@ -20,10 +19,6 @@
 
     &.@{top}--profile-page {
       color: #fff;
-    }
-
-    &.@{top}--post-reply {
-      color: @_post-reply-active;
     }
   }
 
@@ -43,17 +38,6 @@
       .link-white();
       opacity: 0.5;
     }
-  }
-
-  &--post-reply {
-    padding-left: 0;
-    padding-right: 0;
-    color: #555;
-    font-weight: 500;
-
-    .link-hover({
-      color: @_post-reply-active;
-    });
   }
 
   &--profile-page {
@@ -85,10 +69,6 @@
 
     &--black {
       background-color: @osu-colour-b6;
-    }
-
-    .@{top}--post-reply & {
-      background-color: @_post-reply-active;
     }
 
     .@{top}--profile-page & {

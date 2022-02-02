@@ -301,8 +301,8 @@ return [
                 'recent' => '최근 획득',
                 'title' => '메달',
             ],
-            'multiplayer' => [
-                'title' => '멀티플레이 게임',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => '게시글',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => '최근 활동',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => '리플레이 다운로드',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => '1위 달성 맵',
+                ],
+                'pin' => [
+                    'to_0' => '고정 해제',
+                    'to_0_done' => '고정되지 않은 점수',
+                    'to_1' => '고정',
+                    'to_1_done' => '고정 점수',
+                ],
+                'pinned' => [
+                    'title' => '고정 점수',
                 ],
             ],
             'votes' => [

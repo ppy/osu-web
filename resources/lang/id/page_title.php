@@ -23,7 +23,7 @@ return [
             '405' => 'tidak ditemukan',
             '422' => 'permintaan tidak valid',
             '429' => 'terlalu banyak permintaan',
-            '500' => 'ada yang rusak',
+            '500' => 'terdapat masalah',
             '503' => 'pemeliharaan',
         ],
     ],

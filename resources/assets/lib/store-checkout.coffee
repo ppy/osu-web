@@ -3,6 +3,7 @@
 
 # TODO: migrate to store.ts.
 
+import { route } from 'laroute'
 import { StorePaypal } from 'store-paypal'
 import { StoreXsolla } from 'store-xsolla'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
@@ -31,7 +32,7 @@ export class StoreCheckout
       showLoadingOverlay.flush()
 
       init[provider]?.then ->
-        window.osu.promisify $.post(laroute.route('store.checkout.store'), { provider, orderId })
+        window.osu.promisify $.post(route('store.checkout.store'), { provider, orderId })
       .then =>
         @startPayment(event.target.dataset)
       .catch @handleError
@@ -45,7 +46,7 @@ export class StoreCheckout
           window.location.href = url
 
       when 'free'
-        window.osu.promisify $.post(laroute.route('store.checkout.store', { orderId, provider }))
+        window.osu.promisify $.post(route('store.checkout.store', { orderId, provider }))
 
       when 'paypal'
         StorePaypal.fetchApprovalLink(orderId).then (link) ->

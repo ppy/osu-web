@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Tchat',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nouveau message',
+
                 'pm' => [
                     'channel_message' => ':username dit ":title"',
                     'channel_message_compact' => ':title',

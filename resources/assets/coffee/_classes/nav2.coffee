@@ -1,7 +1,9 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { blackoutHide, blackoutShow } from 'utils/blackout'
 import { fadeToggle } from 'utils/fade'
+import { pageChangeImmediate } from 'utils/page-change'
 
 class window.Nav2
   constructor: (@clickMenu) ->
@@ -36,7 +38,7 @@ class window.Nav2
       @centerPopup currentPopup, link
 
     $(window).on 'resize.nav2-center-popup', doCenter
-    _exported.pageChangeImmediate() if @loginBoxVisible()
+    pageChangeImmediate() if @loginBoxVisible()
     doCenter()
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
 
@@ -48,10 +50,10 @@ class window.Nav2
 
     if tree.indexOf('mobile-menu') == -1
       if previousTree.indexOf('mobile-menu') != -1
-        Blackout.hide()
+        blackoutHide()
         Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideUp(150)
     else
-      Blackout.show()
+      blackoutShow()
 
 
   centerPopup: (popup, reference) ->
