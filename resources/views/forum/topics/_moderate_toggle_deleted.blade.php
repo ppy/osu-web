@@ -9,6 +9,7 @@
         btn-circle--topic-nav
         btn-circle--yellow
         {{ $showDeleted ? '' : 'btn-circle--activated' }}
+        js-forum-topic-moderate--toggle-deleted
     "
     title="{{ osu_trans('forum.topics.moderate_toggle_deleted.' . ($showDeleted ? 'hide' : 'show')) }}"
 >
