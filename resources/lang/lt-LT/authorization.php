@@ -63,6 +63,7 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '',
         'blocked' => 'Negalima išsiųsti žinutės vartotujui kuris jumis yra užblokavę arba jūs jį esą užblokavę.',
         'friends_only' => 'Vartotojas šiuo metu užblokavo žinutės iš žmonių kurie nėra vartotojo draugų sąraše.',
         'moderated' => 'Šiuo momentu šis kanalas yra prižiūrimas.',

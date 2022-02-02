@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Papan Peringkat Teman',
-                'description' => "Lihat bagaimana kemampuanmu dibandingkan dengan teman-temanmu di papan peringkat beatmap, baik dalam game maupun di situs web.",
+                'description' => "Bandingkan skor yang kamu peroleh dengan skor teman-temanmu secara mudah baik di dalam permainan maupun di situs web.",
             ],
 
             'country_ranking' => [
@@ -66,7 +66,7 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Unduhan Otomatis',
-                'description' => 'osu! akan secara otomatis mengunduh beatmap-beatmap yang tidak kamu miliki pada saat kamu bermain multiplayer, menonton orang lain, atau mengklik tautan dalam chat!',
+                'description' => 'osu! akan secara otomatis mengunduh beatmap-beatmap yang belum kamu miliki pada saat kamu bermain multiplayer, menonton orang lain, atau mengklik tautan dalam chat!',
             ],
 
             'upload_more' => [
@@ -86,7 +86,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Opsi Pencarian Beatmap Tambahan',
-                'description' => 'Filter pencarian beatmap berdasarkan map yang belum dan sudah dimainkan juga peringkat yang dicapai (jika ada).',
+                'description' => 'Dengan osu!supporter, kamu akan dapat mencari beatmap-beatmap mana saja yang pernah kamu mainkan serta peringkat yang kamu torehkan di dalamnya.',
             ],
 
             'yellow_fellow' => [

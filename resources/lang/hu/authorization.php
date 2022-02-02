@@ -63,6 +63,7 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '',
         'blocked' => 'Nem küldhetsz üzenetet olyan felhasználónak akiket letiltottál, vagy téged tiltottak le.',
         'friends_only' => 'A felhasználó letiltotta a baráti listáján nem szereplő emberek üzeneteinek fogadását.',
         'moderated' => 'A csatorna jelenleg moderálva van.',

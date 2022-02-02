@@ -46,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'módování',
-            'multiplayer' => '',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'informace',
         ],
     ],

@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Walang osu!(lazer) multiplayer games na nalaro pa!',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => 'hinost ni :user',

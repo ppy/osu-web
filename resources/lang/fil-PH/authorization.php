@@ -63,6 +63,7 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '',
         'blocked' => 'Hindi maaaring i-message ang user na naka-block ka o na-block mo.',
         'friends_only' => 'Ang user na ito ay nagbo-block ng mga messages mula sa mga user na hindi parte ng kanyang friend list.',
         'moderated' => 'Kasalukuyang naka-moderate ang channel na ito.',
