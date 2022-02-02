@@ -14,7 +14,7 @@ export function canBeReported(score: ScoreJson) {
 
 // TODO: move to application state repository thingy later
 export function hasMenu(score: ScoreJson) {
-  return canBeReported(score) || hasReplay(score) || hasShow(score);
+  return canBeReported(score) || hasReplay(score) || hasShow(score) || core.scorePins.canBePinned(score);
 }
 
 export function hasReplay(score: ScoreJson) {

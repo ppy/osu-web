@@ -11,6 +11,11 @@ import { action } from 'mobx';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 
+interface GetChannelResponse {
+  channel: ChannelJson;
+  users: UserJson[];
+}
+
 interface GetMessagesResponse {
   messages: MessageJson[];
   users: UserJson[];
@@ -24,6 +29,10 @@ interface NewConversationJson {
 
 export function ack(since: number, lastHistoryId?: number) {
   return $.post(route('chat.ack'), { history_since: lastHistoryId, since }) as JQuery.jqXHR<AckResponseJson>;
+}
+
+export function getChannel(channelId: number) {
+  return $.get(route('chat.channels.show', { channel: channelId })) as JQuery.jqXHR<GetChannelResponse>;
 }
 
 export function getMessages(channelId: number, params?: { until?: number }) {

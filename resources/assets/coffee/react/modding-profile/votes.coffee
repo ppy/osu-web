@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title'
+import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, h1, h2, span } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
@@ -43,7 +44,7 @@ export class Votes extends React.Component
       div className: "#{bn}__avatar",
         a
           className: "#{bn}__user-link"
-          href: laroute.route('users.modding.index', user: user.id) + '#votes'
+          href: route('users.modding.index', user: user.id) + '#votes'
           el UserAvatar, user: user, modifiers: ['full-rounded']
       div
         className: "#{bn}__user"
@@ -51,7 +52,7 @@ export class Votes extends React.Component
           className: "#{bn}__user-row"
           a
             className: "#{bn}__user-link"
-            href: laroute.route('users.modding.index', user: user.id) + '#votes'
+            href: route('users.modding.index', user: user.id) + '#votes'
             span
               className: "#{bn}__user-text u-ellipsis-overflow"
               user.username

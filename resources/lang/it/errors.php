@@ -29,7 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Impossibile ottenere alcun risultato, riprova più tardi.',
-        'invalid_cursor_exception' => '',
+        'invalid_cursor_exception' => 'Parametro del cursore specificato non valido.',
         'operation_timeout_exception' => 'Attualmente la ricerca è più occupata del solito, riprova più tardi.',
     ],
 ];

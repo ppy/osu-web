@@ -301,8 +301,8 @@ return [
                 'recent' => 'Legújabb',
                 'title' => 'Medálok',
             ],
-            'multiplayer' => [
-                'title' => 'Többjátékos mód',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Bejegyzések',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Legutóbbi',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay letöltése',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Első Helyezéses Eredmények',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [

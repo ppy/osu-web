@@ -8,34 +8,40 @@
   @_padding-vertical-desktop: 5px;
   @_padding-horizontal: 20px;
   @_menu-button-width: (@_padding-horizontal * 2);
-  @_border-radius: 10px;
-  @_bg-main: @osu-colour-b3;
-  @_bg-main-hover: @osu-colour-b2;
-  @_bg-extra-hover: @osu-colour-b3;
 
-  border-radius: @_border-radius;
-  background-color: @osu-colour-b4;
+  --border-radius: 10px;
+  --bg: hsl(var(--hsl-b4));
+  --bg-main: hsl(var(--hsl-b3));
+  --pin-sortable-handle-width: 20px;
+  border-radius: var(--border-radius);
+  background-color: var(--bg);
   line-height: normal;
   color: #fff;
   font-size: @font-size--normal;
   min-height: @_min-height;
+  position: relative;
+  margin: 2px 0;
 
   @media @desktop {
     display: flex;
     min-height: auto;
+    background-color: transparent;
 
     &:hover, &--active {
-      background-color: @_bg-extra-hover;
+      --bg: hsl(var(--hsl-b3));
+      --bg-main: hsl(var(--hsl-b2));
     }
-  }
-
-  & + & {
-    margin-top: 2px;
   }
 
   &--highlightable {
     .play-detail-list--menu-active & {
       pointer-events: none;
+    }
+  }
+
+  &--pin-sortable {
+    @media @desktop {
+      margin-left: calc(-1 * var(--pin-sortable-handle-width));
     }
   }
 
@@ -86,9 +92,8 @@
     }
 
     &--top {
-      .default-border-radius();
-      border-radius: @_border-radius;
-      background-color: @_bg-main;
+      border-radius: var(--border-radius);
+      background-color: var(--bg-main);
       padding-top: 15px;
       padding-bottom: 15px;
       display: flex;
@@ -97,14 +102,10 @@
 
       @media @desktop {
         flex: 1;
-        border-radius: @_border-radius 0 0 @_border-radius;
+        border-radius: var(--border-radius) 0 0 var(--border-radius);
         padding-top: @_padding-vertical-desktop;
         padding-bottom: @_padding-vertical-desktop;
         padding-right: 0;
-
-        .@{_top}:hover &, .@{_top}--active & {
-          background-color: @_bg-main-hover;
-        }
       }
     }
   }
@@ -169,6 +170,8 @@
       padding: @_padding-vertical-desktop @_padding-horizontal @_padding-vertical-desktop (@_padding-horizontal + 10px);
       min-width: 110px;
       flex: none;
+      background: var(--bg);
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
     }
 
     &::before {
@@ -179,12 +182,8 @@
         position: absolute;
         left: 0;
         top: 0;
-        background-color: @_bg-main;
+        background-color: var(--bg-main);
         clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
-
-        .@{_top}:hover &, .@{_top}--active & {
-          background-color: @_bg-main-hover;
-        }
       }
     }
   }
@@ -200,11 +199,7 @@
     @media @desktop {
       align-items: center;
       padding: @_padding-vertical-desktop 10px;
-      background-color: @_bg-main;
-
-      .@{_top}:hover &, .@{_top}--active & {
-        background-color: @_bg-main-hover;
-      }
+      background-color: var(--bg-main);
     }
 
     &--mods {

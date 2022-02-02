@@ -105,6 +105,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('{score}', 'ScoresController@show')->name('show');
     });
 
+    Route::delete('score-pins', 'ScorePinsController@destroy')->name('score-pins.destroy');
+    Route::put('score-pins', 'ScorePinsController@reorder')->name('score-pins.reorder');
+    Route::resource('score-pins', 'ScorePinsController', ['only' => ['store']]);
+
     Route::resource('client-verifications', 'ClientVerificationsController', ['only' => ['create', 'store']]);
 
     Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
@@ -266,7 +270,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('card', 'UsersController@card')->name('card');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
-            Route::resource('multiplayer', 'MultiplayerController', ['only' => 'index']);
+            Route::resource('{typeGroup}', 'MultiplayerController', ['only' => 'index'])->where(['typeGroup' => 'multiplayer|playlists|realtime'])->names('multiplayer');
 
             Route::group(['as' => 'modding.', 'prefix' => 'modding'], function () {
                 Route::get('/', 'ModdingHistoryController@index')->name('index');
@@ -541,10 +545,10 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
             Route::apiResource('bulk', 'Indexing\BulkController', ['only' => ['store']]);
         });
 
-        Route::group(['as' => 'user-groups.'], function () {
-            Route::post('user-group', 'UserGroupsController@store')->name('store');
-            Route::delete('user-group', 'UserGroupsController@destroy')->name('destroy');
-            Route::post('user-default-group', 'UserGroupsController@setDefault')->name('store-default');
+        Route::group(['as' => 'user-group.'], function () {
+            Route::put('users/{user}/groups/{group}', 'UserGroupsController@update')->name('update');
+            Route::delete('users/{user}/groups/{group}', 'UserGroupsController@destroy')->name('destroy');
+            Route::post('users/{user}/groups/{group}/default', 'UserGroupsController@setDefault')->name('set-default');
         });
     });
 });

@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Pengguna ini belum pernah bermain multiplayer di osu!(lazer)!',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => 'di-host oleh :user',

@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute'
+
 class window.AccountEdit
   constructor: ->
     $(document).on 'input change', '.js-account-edit', @initializeUpdate
@@ -106,7 +108,7 @@ class window.AccountEdit
       form.dataset.lastValue = value
       data = "#{field}": value
 
-    url = form.dataset.url ? laroute.route('account.update')
+    url = form.dataset.url ? route('account.update')
 
     form.updating = $.ajax url,
       method: 'PUT'

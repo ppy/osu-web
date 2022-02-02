@@ -7,7 +7,7 @@ return [
     'cancel' => 'Batal',
 
     'authorise' => [
-        'request' => 'meminta izin untuk mengakses ke dalam akun Anda.',
+        'request' => 'meminta izin untuk dapat mengakses akun Anda.',
         'scopes_title' => 'Ke depannya, aplikasi ini akan mampu untuk:',
         'title' => 'Permohonan Otorisasi',
     ],
@@ -16,11 +16,11 @@ return [
         'confirm_revoke' => 'Apakah anda yakin untuk mencabut izin akses klien ini?',
         'scopes_title' => 'Aplikasi ini dapat:',
         'owned_by' => 'Dimiliki oleh :user',
-        'none' => 'Tidak ada klien',
+        'none' => 'Tidak Ada Klien',
 
         'revoked' => [
-            'false' => 'Cabut akses',
-            'true' => 'Akses telah dicabut',
+            'false' => 'Cabut Akses',
+            'true' => 'Akses Telah Dicabut',
         ],
     ],
 
@@ -42,16 +42,16 @@ return [
         'header' => 'Daftarkan aplikasi OAuth baru',
         'register' => 'Daftarkan aplikasi',
         'terms_of_use' => [
-            '_' => 'Dengan menggunakan API kami Anda menyetujui :link berikut.',
+            '_' => 'Dengan menggunakan API kami, Anda menyetujui :link berikut.',
             'link' => 'Ketentuan Penggunaan',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => 'Apakah anda yakin untuk menghapus klien ini?',
-        'confirm_reset' => 'Apakah Anda yakin untuk mengatur ulang client secret? Aksi ini akan mencabut izin akses dari token-token yang telah diotorisir sebelumnya.',
-        'new' => 'Buat aplikasi OAuth baru',
-        'none' => 'Tidak ada klien',
+        'confirm_delete' => 'Apakah Anda yakin untuk menghapus klien ini?',
+        'confirm_reset' => 'Apakah Anda yakin untuk mengatur ulang client secret? Tindakan ini akan menganulir izin akses token-token yang telah diotorisir sebelumnya.',
+        'new' => 'Buat Aplikasi OAuth Baru',
+        'none' => 'Tidak Ada Klien',
 
         'revoked' => [
             'false' => 'Hapus',

@@ -6,14 +6,14 @@
 return [
     'landing' => [
         'download' => 'Unduh sekarang',
-        'online' => '<strong>:players</strong> pemain saat ini terhubung di dalam <strong>:games</strong> ruang permainan',
-        'peak' => 'Tercatat maksimal sebanyak :count pengguna online',
+        'online' => 'dengan <strong>:players</strong> pemain yang saat ini terhubung dalam <strong>:games</strong> ruang permainan',
+        'peak' => 'Jumlah pengguna online terbanyak: :count',
         'players' => '<strong>:count</strong> pengguna terdaftar',
         'title' => 'selamat datang',
         'see_more_news' => 'lihat lebih banyak berita',
 
         'slogan' => [
-            'main' => 'game ritme free-to-win terbaik',
+            'main' => 'permainan ritme free-to-win terbaik',
             'sub' => 'rhythm is just a click away',
         ],
     ],
@@ -21,20 +21,20 @@ return [
     'search' => [
         'advanced_link' => 'Pencarian lanjutan',
         'button' => 'Cari',
-        'empty_result' => 'Tidak ditemukan!',
+        'empty_result' => 'Tidak ada hasil yang ditemukan!',
         'keyword_required' => 'Kata kunci pencarian diperlukan',
         'placeholder' => 'ketik untuk mulai mencari',
-        'title' => 'Pencarian',
+        'title' => 'pencarian',
 
         'beatmapset' => [
             'login_required' => 'Masuk untuk mencari beatmap',
             'more' => ':count hasil pencarian beatmap lainnya',
             'more_simple' => 'Lihat hasil pencarian beatmap lainnya',
-            'title' => 'Beatmaps',
+            'title' => 'Beatmap',
         ],
 
         'forum_post' => [
-            'all' => 'Semua forum',
+            'all' => 'Seluruh forum',
             'link' => 'Cari di forum',
             'login_required' => 'Masuk untuk mencari forum',
             'more_simple' => 'Lihat hasil pencarian forum lainnya',
@@ -42,7 +42,7 @@ return [
 
             'label' => [
                 'forum' => 'cari di forum',
-                'forum_children' => 'termasuk subforum',
+                'forum_children' => 'sertakan subforum',
                 'topic_id' => 'topik #',
                 'username' => 'pemilik',
             ],
@@ -60,7 +60,7 @@ return [
             'login_required' => 'Masuk untuk mencari pengguna',
             'more' => ':count hasil pencarian pengguna lainnya',
             'more_simple' => 'Lihat hasil pencarian pengguna lainnya',
-            'more_hidden' => 'Pencarian pengguna terbatas untuk :max pengguna saja. Perbaiki kata kunci pencarian Anda.',
+            'more_hidden' => 'Pencarian pengguna terbatas hanya untuk :max pengguna. Cobalah untuk mempersempit kriteria pencarian Anda.',
             'title' => 'Pengguna',
         ],
 
@@ -91,7 +91,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'buat akun',
-                'description' => 'ikuti petunjuk yang muncul di awal permainan untuk masuk atau membuat akun baru',
+                'description' => 'ikuti petunjuk yang muncul pada awal permainan untuk masuk atau membuat akun baru',
             ],
             'download' => [
                 'title' => 'unduh permainannya',
@@ -123,7 +123,7 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Beatmap Ranked Terbaru',
-            'popular' => 'Beatmap Populer',
+            'popular' => 'Beatmap Terpopuler Saat Ini',
             'by_user' => 'oleh :user',
         ],
         'buttons' => [

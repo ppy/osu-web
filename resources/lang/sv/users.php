@@ -301,8 +301,8 @@ return [
                 'recent' => 'Senaste',
                 'title' => 'Medaljer',
             ],
-            'multiplayer' => [
-                'title' => 'Flerspelarspel',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Inlägg',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Senaste',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Ladda ner Repris',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Förstaplats-ranker',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [

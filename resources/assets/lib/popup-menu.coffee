@@ -75,20 +75,20 @@ export class PopupMenu extends PureComponent
       @resize()
       @tooltipElement().qtip 'option', 'hide.event', false
 
-      $(document).on "click.#{@uuid} keydown.#{@uuid}", @hide
+      $(document).on "click.#{@eventId} keydown.#{@eventId}", @hide
       @props.onShow?()
 
     else
       @removePortal()
       @tooltipElement().qtip 'option', 'hide.event', @tooltipHideEvent
 
-      $(document).off "click.#{@uuid} keydown.#{@uuid}", @hide
+      $(document).off "click.#{@eventId} keydown.#{@eventId}", @hide
       @props.onHide?()
 
 
   componentWillUnmount: =>
-    $(document).off ".#{@uuid}"
-    $(window).off ".#{@uuid}"
+    $(document).off ".#{@eventId}"
+    $(window).off ".#{@eventId}"
 
 
   dismiss: =>

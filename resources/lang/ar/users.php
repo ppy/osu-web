@@ -301,8 +301,8 @@ return [
                 'recent' => 'الأخير',
                 'title' => 'الاوسمة',
             ],
-            'multiplayer' => [
-                'title' => 'المباريات الجماعية',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'المنشورات',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'الأخيرة',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'تحميل النتيجة',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'المراكز الاولى',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [

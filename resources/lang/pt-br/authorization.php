@@ -63,10 +63,12 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '',
         'blocked' => 'Não é possível enviar uma mensagem para um usuário que foi bloqueado ou te bloqueou.',
         'friends_only' => 'O usuário está bloqueando mensagens de pessoas fora de sua lista de amigos.',
         'moderated' => 'O canal atual está sendo moderado.',
         'no_access' => 'Você não tem acesso a esse canal.',
+        'receive_friends_only' => '',
         'restricted' => 'Você não pode enviar mensagens enquanto silenciado, restrito ou banido.',
         'silenced' => 'Você não pode enviar mensagens enquanto silenciado, restrito ou banido.',
     ],
@@ -163,6 +165,13 @@ return [
 
         'view' => [
             'admin_only' => 'Apenas administradores podem visualizar este fórum.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

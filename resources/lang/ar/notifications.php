@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'دردشة',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'رسالة جديدة',
+
                 'pm' => [
                     'channel_message' => ':title يقول :username',
                     'channel_message_compact' => 'العنوان:',
