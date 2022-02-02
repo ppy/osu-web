@@ -12,6 +12,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const dotenv = require('dotenv');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
@@ -139,10 +140,10 @@ const output = {
 
 // #region plugin list
 const plugins = [
+  new ForkTsCheckerWebpackPlugin(),
   new webpack.ProvidePlugin({
     $: 'jquery',
     _: 'lodash',
-    Cookies: 'js-cookie',
     d3: 'd3', // TODO: d3 is fat and probably should have it's own chunk
     jQuery: 'jquery',
     moment: 'moment',
@@ -203,6 +204,9 @@ const rules = [
   {
     exclude: /node_modules/,
     loader: 'ts-loader',
+    options: {
+      transpileOnly: true,
+    },
     test: /\.tsx?$/,
   },
   {

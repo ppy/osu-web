@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Пакуль яшчэ няма гульняў osu!(Лазер)!',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => ':user хост',
@@ -14,7 +18,7 @@ return [
         'time_left' => ':time засталася',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Вельмі вялікая працягласць.',
         ],
 
         'status' => [

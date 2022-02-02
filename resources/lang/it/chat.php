@@ -11,16 +11,6 @@ return [
     'cannot_send' => [
         'channel' => 'Al momento non puoi inviare messaggi in questo canale.',
         'user' => 'Al momento non puoi inviare messaggi a questo utente.',
-        'reasons' => [
-            'blocked' => 'Sei stato bloccato dal destinatario',
-            'channel_moderated' => 'Questo canale è stato moderato',
-            'friends_only' => 'Il destinatario accetta messaggi solamente da utenti nella sua lista amici',
-            'not_enough_plays' => 'Non hai giocato abbastanza',
-            'not_verified' => 'La tua sessione non è stata verificata',
-            'restricted' => 'Sei attualmente limitato',
-            'silenced' => 'Sei attualmente silenziato',
-            'target_restricted' => 'Il destinatario è attualmente limitato',
-        ],
     ],
 
     'input' => [

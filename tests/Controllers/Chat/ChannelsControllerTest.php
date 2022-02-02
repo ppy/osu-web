@@ -12,6 +12,7 @@ use App\Models\Chat\Message;
 use App\Models\Multiplayer\Score;
 use App\Models\User;
 use Faker;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class ChannelsControllerTest extends TestCase
@@ -43,6 +44,28 @@ class ChannelsControllerTest extends TestCase
     //endregion
 
     //region POST /chat/channels - Create and join channel
+    public function testChannelStoreAnnoucement()
+    {
+        $sender = User::factory()->withGroup('announce')->create();
+        $users = User::factory()->count(2)->create();
+
+        $this->actAsScopedUser($sender, ['*']);
+        $this
+            ->json('POST', route('api.chat.channels.store'), [
+                'channel' => [
+                    'description' => 'really',
+                    'name' => 'important stuff',
+                ],
+                'message' => 'annoucements!!!',
+                'target_ids' => $users->pluck('user_id')->toArray(),
+                'type' => Channel::TYPES['announce'],
+            ])
+            ->assertSuccessful()
+            ->assertJson(fn (AssertableJson $json) => $json
+                ->where('type', Channel::TYPES['announce'])
+                ->etc());
+    }
+
     public function testChannelStoreInvalid()
     {
         $this->actAsScopedUser($this->user, ['*']);
@@ -88,6 +111,7 @@ class ChannelsControllerTest extends TestCase
             ->assertJsonFragment([
                 'channel_id' => $channel->getKey(),
                 'recent_messages' => [],
+                'type' => Channel::TYPES['pm'],
             ]);
 
         $this->assertTrue($channel->hasUser($this->user));
@@ -178,7 +202,7 @@ class ChannelsControllerTest extends TestCase
             'user' => $this->user->getKey(),
         ]));
 
-        $request->assertStatus(200)->assertJsonFragment(['channel_id' => $score->room->channel_id]);
+        $request->assertStatus(200)->assertJsonFragment(['channel_id' => $score->room->channel_id, 'type' => Channel::TYPES['multiplayer']]);
     }
 
     //endregion

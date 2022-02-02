@@ -24,7 +24,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist',
-                'description' => 'Berkat dukunganmu, kami dapat melisensi berbagai lagu karya musisi-musisi berbakat dari seluruh belahan dunia untuk dapat dipergunakan secara legal di dalam lingkungan osu!.',
+                'description' => 'Berkat dukunganmu, kami dapat melisensi berbagai lagu karya musisi-musisi berbakat untuk dapat dipergunakan secara legal di dalam lingkungan osu!.',
                 'link_text' => 'Lihat daftar Featured Artist saat ini &raquo;',
             ],
             'ads' => [
@@ -50,23 +50,23 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => 'Peringkat Teman',
-                'description' => "Lihat bagaimana kemampuanmu dibandingkan dengan teman-temanmu di papan peringkat beatmap, baik dalam game maupun di situs web.",
+                'title' => 'Papan Peringkat Teman',
+                'description' => "Bandingkan skor yang kamu peroleh dengan skor teman-temanmu secara mudah baik di dalam permainan maupun di situs web.",
             ],
 
             'country_ranking' => [
-                'title' => 'Peringkat Negara',
+                'title' => 'Papan Peringkat Negara',
                 'description' => 'Taklukkan negaramu sebelum kamu menaklukkan dunia.',
             ],
 
             'mod_filtering' => [
-                'title' => 'Filter Berdasarkan Mod',
+                'title' => 'Papan Peringkat Mod',
                 'description' => 'Ingin mencari tahu siapa-siapa saja yang memainkan suatu map dengan HDHR? Tidak masalah!',
             ],
 
             'auto_downloads' => [
                 'title' => 'Unduhan Otomatis',
-                'description' => 'osu! akan secara otomatis mengunduh beatmap-beatmap yang tidak kamu miliki pada saat kamu bermain multiplayer, menonton orang lain, atau mengklik tautan dalam chat!',
+                'description' => 'osu! akan secara otomatis mengunduh beatmap-beatmap yang belum kamu miliki pada saat kamu bermain multiplayer, menonton orang lain, atau mengklik tautan dalam chat!',
             ],
 
             'upload_more' => [
@@ -85,8 +85,8 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filter Beatmap',
-                'description' => 'Filter pencarian beatmap berdasarkan map yang belum dan sudah dimainkan juga peringkat yang dicapai (jika ada).',
+                'title' => 'Opsi Pencarian Beatmap Tambahan',
+                'description' => 'Dengan osu!supporter, kamu akan dapat mencari beatmap-beatmap mana saja yang pernah kamu mainkan serta peringkat yang kamu torehkan di dalamnya.',
             ],
 
             'yellow_fellow' => [
@@ -95,8 +95,8 @@ return [
             ],
 
             'speedy_downloads' => [
-                'title' => 'Unduh Lebih Cepat',
-                'description' => 'Pembatasan jumlah unduhan yang lebih lengang, terutama saat menggunakan osu!direct.',
+                'title' => 'Unduhan Yang Cepat',
+                'description' => 'Nikmati batas unduhan yang lebih lengang, terutama saat menggunakan osu!direct.',
             ],
 
             'change_username' => [
@@ -138,8 +138,8 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukunganmu! Kamu telah membeli supporter tag sebanyak :tags kali dengan total kontribusi senilai :dollars!',
-            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags supporter tag (yang bernilai :giftedDollars) kepada para pemain lainnya. Terima kasih atas kemurahan hatimu!",
+            'contribution' => 'Terima kasih atas dukunganmu! Kamu telah membeli :tags supporter tag dengan total kontribusi senilai :dollars!',
+            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags di antaranya (:giftedDollars) kepada para pemain lainnya. Terima kasih atas kemurahan hatimu!",
             'not_yet' => "Kamu belum pernah memiliki supporter tag :(",
             'valid_until' => 'Supporter tag yang kamu miliki saat ini berlaku hingga :date!',
             'was_valid_until' => 'Masa berlaku supporter tag milikmu telah berakhir pada :date.',

@@ -154,11 +154,12 @@ return [
                 'combo' => 'Μέγιστο Combo',
                 'miss' => 'Αστοχίες',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Παίκτης',
                 'pp' => '',
                 'rank' => 'Κατάταξη',
-                'score_total' => 'Συνολικό Σκορ',
                 'score' => 'Σκορ',
+                'score_total' => 'Συνολικό Σκορ',
                 'time' => '',
             ],
 

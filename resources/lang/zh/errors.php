@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => '无法获得任何结果，请稍后再试。',
+        'invalid_cursor_exception' => '指定的光标参数无效。',
         'operation_timeout_exception' => '搜索目前比平常较繁忙，稍后再试。',
     ],
 ];

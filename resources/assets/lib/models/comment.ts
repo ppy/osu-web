@@ -70,7 +70,32 @@ export class Comment {
 
   @computed
   get canPin() {
-    return core.currentUser?.is_admin && (this.parentId == null || this.pinned);
+    if (core.currentUser == null || (this.parentId != null && !this.pinned)) {
+      return false;
+    }
+
+    if (core.currentUser.is_admin) {
+      return true;
+    }
+
+    if (
+      this.commentableType !== 'beatmapset' ||
+      (!this.pinned && core.dataStore.uiState.comments.pinnedCommentIds.length > 0)
+    ) {
+      return false;
+    }
+
+    if (this.canModerate) {
+      return true;
+    }
+
+    if (!this.isOwner) {
+      return false;
+    }
+
+    const meta = core.dataStore.commentableMetaStore.get(this.commentableType, this.commentableId);
+
+    return meta != null && 'owner_id' in meta && meta.owner_id === core.currentUser.id;
   }
 
   @computed

@@ -6,9 +6,9 @@
 return [
     'landing' => [
         'download' => 'Начать играть',
-        'online' => '<strong>:players:</strong> сейчас в игре, <strong>:games:</strong>  матчей в процессе',
-        'peak' => 'Пик, :count игроков в игре',
-        'players' => '<strong>:count</strong> игроков',
+        'online' => 'из них <strong>:players</strong> онлайн в <strong>:games</strong> матчах',
+        'peak' => 'Пик, :count игроков онлайн',
+        'players' => 'всего <strong>:count</strong> игроков',
         'title' => 'добро пожаловать',
         'see_more_news' => 'перейти ко всем новостям',
 

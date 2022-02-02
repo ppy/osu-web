@@ -6,6 +6,7 @@
 namespace App\Libraries;
 
 use App\Exceptions\API;
+use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use ChaseConey\LaravelDatadogHelper\Datadog;
@@ -26,6 +27,43 @@ class Chat
         }
 
         $transaction->exec();
+    }
+
+    public static function createAnnouncement(User $sender, array $rawParams)
+    {
+        priv_check_user($sender, 'ChatAnnounce')->ensureCan();
+
+        $params = get_params($rawParams, null, [
+            'channel:array',
+            'message:string',
+            'target_ids:int[]',
+        ], ['null_missing' => true]);
+
+        if (!isset($params['target_ids'])) {
+            throw new InvariantException('missing target_ids parameter');
+        }
+
+        if (!isset($params['channel'])) {
+            throw new InvariantException('missing channel parameter');
+        }
+
+        $users = User::whereIn('user_id', $params['target_ids'])->get();
+        if ($users->isEmpty()) {
+            throw new InvariantException('Nobody to broadcast to!');
+        }
+
+        $users = $users->push($sender)->uniqueStrict('user_id');
+
+        $channel = (new Channel())->getConnection()->transaction(function () use ($sender, $params, $users) {
+            $channel = Channel::createAnnouncement($users, $params['channel']);
+            static::sendMessage($sender, $channel, $params['message'], false);
+
+            return $channel;
+        });
+
+        Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
+
+        return $channel;
     }
 
     // Do the restricted user lookup before calling this.

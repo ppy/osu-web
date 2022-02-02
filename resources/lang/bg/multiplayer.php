@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Няма мултиплейър osu!(lazer) игри в момента!',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => 'домакин е :user',
@@ -14,7 +18,7 @@ return [
         'time_left' => ':time остава',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Прекалено голяма продължителност.',
         ],
 
         'status' => [

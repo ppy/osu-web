@@ -23,7 +23,7 @@ return [
         'length' => 'Długość',
         'relevance' => 'Trafność',
         'title' => 'Tytuł',
-        'update' => 'Zaktualizuj',
+        'update' => '',
     ],
 
     'forum_posts' => [
