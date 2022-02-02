@@ -112,6 +112,7 @@ class Score extends Model
             'Miss',
             'Ok',
             'Perfect',
+            'SmallTickHit',
             'SmallTickMiss',
         ];
         $statistics = $this->data->statistics;
