@@ -13,7 +13,7 @@ return [
         'see_more_news' => 'lihat lebih banyak berita',
 
         'slogan' => [
-            'main' => 'rhythm game free-to-win terbaik',
+            'main' => 'permainan ritme free-to-win terbaik',
             'sub' => 'rhythm is just a click away',
         ],
     ],
@@ -123,7 +123,7 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Beatmap Ranked Terbaru',
-            'popular' => 'Beatmap Populer',
+            'popular' => 'Beatmap Terpopuler Saat Ini',
             'by_user' => 'oleh :user',
         ],
         'buttons' => [

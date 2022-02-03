@@ -301,7 +301,7 @@ return [
                 'recent' => '',
                 'title' => '',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -310,6 +310,9 @@ return [
                 'show_more' => '',
             ],
             'recent_activity' => [
+                'title' => '',
+            ],
+            'realtime' => [
                 'title' => '',
             ],
             'top_ranks' => [

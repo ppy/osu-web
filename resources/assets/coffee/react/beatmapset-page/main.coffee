@@ -214,7 +214,7 @@ export class Main extends React.Component
 
   renderPage: ->
     el React.Fragment, null,
-      div className: 'osu-layout__row osu-layout__row--page-compact',
+      div className: 'osu-page osu-page--generic-compact',
         el Header,
           beatmapset: @state.beatmapset
           beatmaps: @state.beatmaps
@@ -227,30 +227,29 @@ export class Main extends React.Component
           beatmapset: @state.beatmapset
           beatmap: @state.currentBeatmap
 
-      div className: 'osu-layout__section osu-layout__section--extra',
-        if @state.beatmapset.can_be_hyped
-          div className: 'osu-page osu-page--generic-compact',
-            el Hype,
-              beatmapset: @state.beatmapset
-              currentUser: currentUser
-
-        if @state.currentBeatmap.is_scoreable
-          div className: 'osu-page osu-page--generic',
-            el Scoreboard,
-              type: @state.currentScoreboardType
-              beatmap: @state.currentBeatmap
-              scores: @state.scores
-              userScore: @state.userScore?.score
-              userScorePosition: @state.userScore?.position
-              enabledMods: @state.enabledMods
-              loading: @state.loading
-              isScoreable: @state.currentBeatmap.is_scoreable
-
+      if @state.beatmapset.can_be_hyped
         div className: 'osu-page osu-page--generic-compact',
-          el CommentsManager,
-            component: Comments
-            commentableType: 'beatmapset'
-            commentableId: @state.beatmapset.id
+          el Hype,
+            beatmapset: @state.beatmapset
+            currentUser: currentUser
+
+      if @state.currentBeatmap.is_scoreable
+        div className: 'osu-page osu-page--generic',
+          el Scoreboard,
+            type: @state.currentScoreboardType
+            beatmap: @state.currentBeatmap
+            scores: @state.scores
+            userScore: @state.userScore?.score
+            userScorePosition: @state.userScore?.position
+            enabledMods: @state.enabledMods
+            loading: @state.loading
+            isScoreable: @state.currentBeatmap.is_scoreable
+
+      div className: 'osu-page osu-page--generic-compact',
+        el CommentsManager,
+          component: Comments
+          commentableType: 'beatmapset'
+          commentableId: @state.beatmapset.id
 
 
   renderPageHeader: ->

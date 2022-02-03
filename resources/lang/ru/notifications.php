@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Чат',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Новое сообщение',
+
                 'pm' => [
                     'channel_message' => ':username говорит ":title"',
                     'channel_message_compact' => ':title',
