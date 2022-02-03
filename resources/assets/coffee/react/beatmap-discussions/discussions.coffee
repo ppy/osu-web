@@ -1,12 +1,13 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Discussion } from './discussion'
 import { IconExpand } from 'components/icon-expand'
 import * as React from 'react'
 import { a, button, div, i, p, span } from 'react-dom-factories'
 import { jsonClone } from 'utils/json'
 import { nextVal } from 'utils/seq'
+import { Discussion } from './discussion'
+
 el = React.createElement
 
 bn = 'beatmap-discussions'
