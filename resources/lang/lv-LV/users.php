@@ -301,7 +301,7 @@ return [
                 'recent' => 'Jaunākais',
                 'title' => 'Medaļas',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Nesenie',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Lejupielādēt Spēles Ierakstu',

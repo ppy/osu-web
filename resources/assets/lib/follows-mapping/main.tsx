@@ -1,10 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapsetListView from 'beatmapset-list-view';
-import FollowToggle from 'follow-toggle';
-import FollowsSubtypes from 'follows-subtypes';
-import HeaderV4 from 'header-v4';
+import BeatmapsetListView from 'components/beatmapset-list-view';
+import FollowToggle from 'components/follow-toggle';
+import FollowsSubtypes from 'components/follows-subtypes';
+import HeaderV4 from 'components/header-v4';
 import homeLinks from 'home-links';
 import CurrentUserJson from 'interfaces/current-user-json';
 import FollowMappingJson from 'interfaces/follow-mapping-json';

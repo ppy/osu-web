@@ -14,7 +14,7 @@ return [
             'install_instruction' => 'Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak berkas. rar yang Anda peroleh ke dalam folder Songs yang ada pada direktori osu! Anda.',
             'note' => [
                 '_' => 'Kami menyarankan Anda untuk :scary karena pada umumnya map-map keluaran terdahulu memiliki kualitas yang jauh lebih rendah dibanding map-map modern.',
-                'scary' => 'mengunduh paket-paket beatmap yang ada mulai dari yang paling baru hingga yang paling awal',
+                'scary' => 'mengunduh paket beatmap mulai dari yang paling baru hingga yang paling awal',
             ],
         ],
     ],

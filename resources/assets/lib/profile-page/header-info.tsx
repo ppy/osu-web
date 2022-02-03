@@ -1,15 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import FlagCountry from 'flag-country';
+import FlagCountry from 'components/flag-country';
+import UserAvatar from 'components/user-avatar';
+import UserGroupBadges from 'components/user-group-badges';
 import GameMode from 'interfaces/game-mode';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import { times } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import UserAvatar from 'user-avatar';
-import UserGroupBadges from 'user-group-badges';
 
 interface Props {
   coverUrl: string | null;

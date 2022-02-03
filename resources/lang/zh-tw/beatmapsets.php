@@ -154,7 +154,7 @@ return [
                 'combo' => '最大連擊',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
-                'pin' => '',
+                'pin' => '置頂',
                 'player' => '玩家',
                 'pp' => '',
                 'rank' => '排行榜',

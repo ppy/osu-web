@@ -1,10 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import TrackPreview from 'components/track-preview'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a,i,div,span } from 'react-dom-factories'
-import TrackPreview from 'track-preview'
 import { Voter } from './voter'
 
 el = React.createElement

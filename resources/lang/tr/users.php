@@ -301,8 +301,8 @@ return [
                 'recent' => 'En Son',
                 'title' => 'Madalyalar',
             ],
-            'multiplayer' => [
-                'title' => 'Çok Oyunculu Oyunlar',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Gönderiler',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Son',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Tekrarı İndir',

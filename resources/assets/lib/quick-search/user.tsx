@@ -1,13 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import FlagCountry from 'components/flag-country';
 import FriendButton from 'components/friend-button';
-import FlagCountry from 'flag-country';
+import { SupporterIcon } from 'components/supporter-icon';
+import UserGroupBadges from 'components/user-group-badges';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { SupporterIcon } from 'supporter-icon';
-import UserGroupBadges from 'user-group-badges';
 import { classWithModifiers } from 'utils/css';
 
 export default function User({ user, modifiers = [] }: { modifiers?: string[]; user: UserJson }) {

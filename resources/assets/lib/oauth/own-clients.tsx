@@ -1,10 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BigButton from 'big-button';
+import BigButton from 'components/big-button';
+import { Modal } from 'components/modal';
 import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import { Modal } from 'modal';
 import { ClientDetails } from 'oauth/client-details';
 import { NewClient } from 'oauth/new-client';
 import { OwnClient } from 'oauth/own-client';

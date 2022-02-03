@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { UserCard } from 'components/user-card';
 import BeatmapJson from 'interfaces/beatmap-json';
 import ScoreJson from 'interfaces/score-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { UserCard } from 'user-card';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { modeAttributesMap } from 'utils/score-helper';

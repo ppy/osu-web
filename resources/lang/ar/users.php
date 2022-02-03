@@ -301,8 +301,8 @@ return [
                 'recent' => 'الأخير',
                 'title' => 'الاوسمة',
             ],
-            'multiplayer' => [
-                'title' => 'المباريات الجماعية',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'المنشورات',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'الأخيرة',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'تحميل النتيجة',
