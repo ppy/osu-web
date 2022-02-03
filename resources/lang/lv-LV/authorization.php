@@ -63,6 +63,7 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '',
         'blocked' => 'Nevar nosūtīt ziņojumu lietotājam, kas jūs ir nobloķējis vai kuru jūs esiet nobloķējis.',
         'friends_only' => 'Lietotājs ir bloķējis ziņojumus no cilvēkiem, kas nav viņa draugu sarakstā.',
         'moderated' => 'Šis kanāls pašlaik tiek regulēts.',

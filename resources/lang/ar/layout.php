@@ -46,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'الاِقتراح',
-            'multiplayer' => 'متعدد اللاعبين',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'معلومات',
         ],
     ],

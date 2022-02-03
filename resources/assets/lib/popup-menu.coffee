@@ -9,6 +9,8 @@ import { TooltipContext } from 'tooltip-context'
 import { isModalShowing } from 'modal-helper'
 import { nextVal } from 'utils/seq'
 
+el = React.createElement
+
 export class PopupMenu extends PureComponent
   @contextType = TooltipContext
 
@@ -129,11 +131,10 @@ export class PopupMenu extends PureComponent
     if @props.customRender
       @props.customRender createPortal(@renderMenu(), @portal), @button, @toggle
     else
-      div
-        className: 'popup-menu'
-        ref: @button
+      el React.Fragment, null,
         button
-          className: 'popup-menu__button'
+          className: 'popup-menu'
+          ref: @button
           type: 'button'
           onClick: @toggle
           i className: 'fas fa-ellipsis-v'

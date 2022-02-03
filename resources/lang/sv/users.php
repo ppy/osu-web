@@ -301,8 +301,8 @@ return [
                 'recent' => 'Senaste',
                 'title' => 'Medaljer',
             ],
-            'multiplayer' => [
-                'title' => 'Flerspelarspel',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Inlägg',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Senaste',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Ladda ner Repris',

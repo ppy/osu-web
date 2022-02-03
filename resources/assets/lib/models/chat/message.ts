@@ -20,9 +20,11 @@ export default class Message {
   @observable timestamp: string = moment().toISOString();
   @observable uuid = this.messageId;
 
+  @observable private contentHtml?: string;
+
   @computed
-  get parsedContent(): string {
-    return linkify(escape(this.content), true);
+  get parsedContent() {
+    return this.contentHtml ?? linkify(escape(this.content), true);
   }
 
   @computed
@@ -36,16 +38,17 @@ export default class Message {
 
   static fromJson(json: MessageJson): Message {
     const message = new Message();
-    return Object.assign(message, {
-      channelId: json.channel_id,
-      content: json.content,
-      isAction: json.is_action,
-      messageId: json.message_id,
-      persisted: true,
-      senderId: json.sender_id,
-      timestamp: json.timestamp,
-      uuid: json.uuid ?? message.uuid,
-    });
+    message.channelId = json.channel_id;
+    message.content = json.content;
+    message.contentHtml = json.content_html;
+    message.isAction = json.is_action;
+    message.messageId = json.message_id;
+    message.persisted = true;
+    message.senderId = json.sender_id;
+    message.timestamp = json.timestamp;
+    message.uuid = json.uuid ?? message.uuid;
+
+    return message;
   }
 
   @action

@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Pesan Baru',
+
                 'pm' => [
                     'channel_message' => ':username mengatakan ":title"',
                     'channel_message_compact' => ':title',
@@ -126,7 +137,7 @@ return [
             '_' => 'Topik forum',
 
             'forum_topic_reply' => [
-                '_' => 'Balasan baru pada thread forum',
+                '_' => 'Balasan baru pada topik forum',
                 'forum_topic_reply' => ':username membalas postingan Anda pada utas forum ":title"',
                 'forum_topic_reply_compact' => ':username membalas postingan Anda',
             ],

@@ -88,8 +88,19 @@ return [
         'channel' => [
             '_' => '聊天',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => '新消息',
+
                 'pm' => [
                     'channel_message' => ':username 说：“:title”',
                     'channel_message_compact' => ':title',

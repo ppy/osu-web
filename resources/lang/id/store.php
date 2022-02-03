@@ -30,7 +30,7 @@ return [
         'cart_problems' => 'Aduh, ada masalah dengan pemesanan anda!',
         'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
         'declined' => 'Pembayaran dibatalkan.',
-        'delayed_shipping' => 'Kami saat ini sedang kebanjiran pesanan! Apabila Anda memesan sekarang, harap beri kami tenggat waktu tambahan **selama 1-2 minggu** untuk dapat mulai memproses pesanan Anda mengingat kami masih harus mengurus pesanan-pesanan yang sudah terlebih dahulu masuk sebelumnya.',
+        'delayed_shipping' => 'Kami sedang kebanjiran pesanan! Apabila Anda memesan sekarang, harap beri kami waktu tambahan **selama 1-2 minggu** untuk memproses pesanan Anda karena kami saat ini masih harus mengurus berbagai pesanan yang telah kami terima sebelumnya.',
         'old_cart' => 'Keranjang Anda nampaknya sudah kedaluwarsa dan telah dimuat ulang, silakan coba lagi.',
         'pay' => 'Checkout melalui Paypal',
         'title_compact' => 'checkout',
