@@ -276,12 +276,12 @@ class TopicsController extends Controller
      *
      * ### Response Format
      *
-     * Field         | Type                       | Notes
-     * ------------- | -------------------------- | -----
-     * cursor_string | string?                    | |
-     * posts         | [ForumPost](#forum-post)[] | Includes `body`.
-     * search        |                            | Parameters used for current request excluding cursor.
-     * topic         | [ForumTopic](#forum-topic) | |
+     * Field         | Type                          | Notes
+     * ------------- | ----------------------------- | -----
+     * cursor_string | [CursorString](#cursorstring) | |
+     * posts         | [ForumPost](#forum-post)[]    | Includes `body`.
+     * search        |                               | Parameters used for current request excluding cursor.
+     * topic         | [ForumTopic](#forum-topic)    | |
      *
      * @urlParam topic integer required Id of the topic. Example: 1
      *
