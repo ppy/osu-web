@@ -1,14 +1,14 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import FlagCountry from 'flag-country'
+import FlagCountry from 'components/flag-country'
+import Mod from 'components/mod'
+import { PlayDetailMenu } from 'components/play-detail-menu'
+import ScoreboardTime from 'components/scoreboard-time'
 import { route } from 'laroute'
 import { round } from 'lodash'
-import Mod from 'mod'
-import { PlayDetailMenu } from 'play-detail-menu'
 import * as React from 'react'
 import { a, div, span, tr, td } from 'react-dom-factories'
-import ScoreboardTime from 'scoreboard-time'
 import PpValue from 'scores/pp-value'
 import { classWithModifiers } from 'utils/css'
 import { hasMenu, modeAttributesMap } from 'utils/score-helper'

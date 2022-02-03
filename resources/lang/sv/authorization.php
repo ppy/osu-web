@@ -63,6 +63,7 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '',
         'blocked' => 'Kan inte skicka meddelanden till en användare som blockerar dig eller som du har blockerat.',
         'friends_only' => 'Användaren blockerar meddelanden från personer som inte finns på sin vänlista.',
         'moderated' => 'Den kanalen är för närvarande modererad.',

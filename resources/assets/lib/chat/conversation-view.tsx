@@ -1,6 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ShowMoreLink from 'components/show-more-link';
+import { Spinner } from 'components/spinner';
+import StringWithComponent from 'components/string-with-component';
+import UserAvatar from 'components/user-avatar';
 import { route } from 'laroute';
 import { each, isEmpty, last, throttle } from 'lodash';
 import { action, computed, makeObservable, observe, reaction } from 'mobx';
@@ -9,10 +13,7 @@ import Message from 'models/chat/message';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import ShowMoreLink from 'show-more-link';
-import { Spinner } from 'spinner';
-import StringWithComponent from 'string-with-component';
-import UserAvatar from 'user-avatar';
+import { classWithModifiers } from 'utils/css';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
@@ -188,7 +189,7 @@ export default class ConversationView extends React.Component<Props> {
     }
 
     return (
-      <div ref={this.chatViewRef} className='chat-conversation' onScroll={this.handleOnScroll}>
+      <div ref={this.chatViewRef} className={classWithModifiers('chat-conversation', channel.type)} onScroll={this.handleOnScroll}>
         <div className='chat-conversation__new-chat-avatar'>
           <UserAvatar user={{ avatar_url: channel.icon }} />
         </div>

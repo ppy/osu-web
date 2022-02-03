@@ -301,8 +301,8 @@ return [
                 'recent' => 'Останні досягнення',
                 'title' => 'Досягнення',
             ],
-            'multiplayer' => [
-                'title' => 'Ігри у мультиплеєрі',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Пости',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Недавня активність',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Завантажити повтор',

@@ -32,7 +32,7 @@ class UserFactory extends Factory
                 throw new \Exception($user->validationErrors()->toSentence());
             }
 
-            $user->addToGroup(app('groups')->byId($user->group_id));
+            $user->addToGroup(app('groups')->byIdOrFail($user->group_id));
         });
     }
 

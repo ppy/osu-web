@@ -2,12 +2,12 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import NsfwWarning from 'beatmapsets-show/nsfw-warning'
-import { Comments } from 'comments'
-import { CommentsManager } from 'comments-manager'
-import HeaderV4 from 'header-v4'
+import { Comments } from 'components/comments'
+import { CommentsManager } from 'components/comments-manager'
+import HeaderV4 from 'components/header-v4'
+import PlaymodeTabs from 'components/playmode-tabs'
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
-import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
@@ -214,7 +214,7 @@ export class Main extends React.Component
 
   renderPage: ->
     el React.Fragment, null,
-      div className: 'osu-layout__row osu-layout__row--page-compact',
+      div className: 'osu-page osu-page--generic-compact',
         el Header,
           beatmapset: @state.beatmapset
           beatmaps: @state.beatmaps
@@ -227,30 +227,29 @@ export class Main extends React.Component
           beatmapset: @state.beatmapset
           beatmap: @state.currentBeatmap
 
-      div className: 'osu-layout__section osu-layout__section--extra',
-        if @state.beatmapset.can_be_hyped
-          div className: 'osu-page osu-page--generic-compact',
-            el Hype,
-              beatmapset: @state.beatmapset
-              currentUser: currentUser
-
-        if @state.currentBeatmap.is_scoreable
-          div className: 'osu-page osu-page--generic',
-            el Scoreboard,
-              type: @state.currentScoreboardType
-              beatmap: @state.currentBeatmap
-              scores: @state.scores
-              userScore: @state.userScore?.score
-              userScorePosition: @state.userScore?.position
-              enabledMods: @state.enabledMods
-              loading: @state.loading
-              isScoreable: @state.currentBeatmap.is_scoreable
-
+      if @state.beatmapset.can_be_hyped
         div className: 'osu-page osu-page--generic-compact',
-          el CommentsManager,
-            component: Comments
-            commentableType: 'beatmapset'
-            commentableId: @state.beatmapset.id
+          el Hype,
+            beatmapset: @state.beatmapset
+            currentUser: currentUser
+
+      if @state.currentBeatmap.is_scoreable
+        div className: 'osu-page osu-page--generic',
+          el Scoreboard,
+            type: @state.currentScoreboardType
+            beatmap: @state.currentBeatmap
+            scores: @state.scores
+            userScore: @state.userScore?.score
+            userScorePosition: @state.userScore?.position
+            enabledMods: @state.enabledMods
+            loading: @state.loading
+            isScoreable: @state.currentBeatmap.is_scoreable
+
+      div className: 'osu-page osu-page--generic-compact',
+        el CommentsManager,
+          component: Comments
+          commentableType: 'beatmapset'
+          commentableId: @state.beatmapset.id
 
 
   renderPageHeader: ->

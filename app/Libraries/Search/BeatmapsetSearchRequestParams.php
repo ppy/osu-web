@@ -103,7 +103,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         $this->parseSort($sort);
-        $this->searchAfter = SearchAfterParam::make($this, $request['cursor'] ?? null);
+        $this->searchAfter = SearchAfterParam::make($this, cursor_from_params($request));
 
         // Supporter-only options.
         $this->rank = array_intersect(

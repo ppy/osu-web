@@ -1,13 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import Mod from 'components/mod';
+import { PlayDetailMenu } from 'components/play-detail-menu';
+import TimeWithTooltip from 'components/time-with-tooltip';
 import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
-import Mod from 'mod';
-import { PlayDetailMenu } from 'play-detail-menu';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import TimeWithTooltip from 'time-with-tooltip';
 import { getArtist, getTitle, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { hasMenu } from 'utils/score-helper';

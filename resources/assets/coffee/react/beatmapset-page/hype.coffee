@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import BigButton from 'big-button'
+import BigButton from 'components/big-button'
+import StringWithComponent from 'components/string-with-component'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, p, span } from 'react-dom-factories'
-import StringWithComponent from 'string-with-component'
 el = React.createElement
 
 bn = 'beatmapset-hype'

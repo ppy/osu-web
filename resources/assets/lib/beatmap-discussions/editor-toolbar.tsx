@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { Portal } from 'components/portal';
 import * as _ from 'lodash';
-import { Portal } from 'portal';
 import * as React from 'react';
 import { Editor, Node, Range } from 'slate';
 import { ReactEditor } from 'slate-react';

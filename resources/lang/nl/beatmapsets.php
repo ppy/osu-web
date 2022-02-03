@@ -154,7 +154,7 @@ return [
                 'combo' => 'Max. Combo',
                 'miss' => 'Mis',
                 'mods' => 'Mods',
-                'pin' => '',
+                'pin' => 'Vastzetten',
                 'player' => 'Speler',
                 'pp' => '',
                 'rank' => 'Rank',

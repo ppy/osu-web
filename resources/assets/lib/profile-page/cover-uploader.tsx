@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import StringWithComponent from 'components/string-with-component';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
 import { fileuploadFailCallback } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import Controller from './controller';

@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BackToTop } from 'back-to-top';
 import AvailableFilters from 'beatmaps/available-filters';
-import HeaderV4 from 'header-v4';
+import { BackToTop } from 'components/back-to-top';
+import HeaderV4 from 'components/header-v4';
 import { isEqual } from 'lodash';
 import { reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';

@@ -55,6 +55,7 @@ class OsuMarkdown
     // this config is only used in this class
     const DEFAULT_OSU_MARKDOWN_CONFIG = [
         'block_modifiers' => [],
+        'enable_autolink' => false,
         'enable_footnote' => false,
         'parse_yaml_header' => true,
     ];
@@ -71,6 +72,7 @@ class OsuMarkdown
         'comment' => [
             'osu_markdown' => [
                 'block_modifiers' => ['comment'],
+                'enable_autolink' => true,
             ],
         ],
         'contest' => [
@@ -302,7 +304,6 @@ class OsuMarkdown
 
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
-        $environment->addExtension(new AutolinkExtension());
         $environment->addExtension(new TableExtension());
         $environment->addExtension(new StrikethroughExtension());
 
@@ -316,6 +317,10 @@ class OsuMarkdown
 
         if ($this->osuMarkdownConfig['enable_footnote']) {
             $environment->addExtension(new FootnoteExtension());
+        }
+
+        if ($this->osuMarkdownConfig['enable_autolink']) {
+            $environment->addExtension(new AutolinkExtension());
         }
 
         return $environment;

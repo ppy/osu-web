@@ -301,8 +301,8 @@ return [
                 'recent' => 'Най-новите',
                 'title' => 'Медали',
             ],
-            'multiplayer' => [
-                'title' => 'Игри в мултиплейър',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Публикации',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Скорошна активност',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Изтегли повторение',
