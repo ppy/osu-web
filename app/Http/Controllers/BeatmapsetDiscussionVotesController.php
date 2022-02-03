@@ -32,12 +32,12 @@ class BeatmapsetDiscussionVotesController extends Controller
      *   The response of this endpoint is likely to change soon!
      * </aside>
      *
-     * Field       | Type                                                    | Description
-     * ----------- | ------------------------------------------------------- | -----------
-     * cursor      | [Cursor](#cursor)                                       | |
-     * discussions | [BeatmapsetDiscussion](#beatmapsetdiscussion)           | |
-     * users       | [UserCompact](#usercompact)                             | |
-     * votes       | [BeatmapsetDiscussionVote](#beatmapsetdiscussionvote)[] | |
+     * Field         | Type                                                    | Description
+     * ------------- | ------------------------------------------------------- | -----------
+     * cursor_string | [CursorString](#cursorstring)                           | |
+     * discussions   | [BeatmapsetDiscussion](#beatmapsetdiscussion)           | |
+     * users         | [UserCompact](#usercompact)                             | |
+     * votes         | [BeatmapsetDiscussionVote](#beatmapsetdiscussionvote)[] | |
      *
      * @queryParam beatmapset_discussion_id `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
      * @queryParam limit Maximum number of results.
