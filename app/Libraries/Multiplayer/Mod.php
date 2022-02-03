@@ -45,6 +45,7 @@ class Mod
     const OSU_BARRELROLL = 'BR';
     const OSU_APPROACH_DIFFERENT = 'AD';
     const OSU_AIMASSIST = 'AA';
+    const OSU_ALTERNATE = 'AL';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -317,6 +318,7 @@ class Mod
                         self::MIRROR,
                         self::NO_SCOPE,
                         self::OSU_AIMASSIST,
+                        self::OSU_ALTERNATE,
                     ]
                 ),
 
