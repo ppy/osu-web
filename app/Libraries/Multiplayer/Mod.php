@@ -44,6 +44,7 @@ class Mod
     const OSU_CLASSIC = 'CL';
     const OSU_BARRELROLL = 'BR';
     const OSU_APPROACH_DIFFERENT = 'AD';
+    const OSU_AIMASSIST = 'AA';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -238,6 +239,9 @@ class Mod
         self::HIDDEN => [
             'only_fade_approach_circles' => 'bool',
         ],
+        self::OSU_AIMASSIST => [
+            'assist_strength' => 'float',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
@@ -312,6 +316,7 @@ class Mod
                         self::OSU_APPROACH_DIFFERENT,
                         self::MIRROR,
                         self::NO_SCOPE,
+                        self::OSU_AIMASSIST,
                     ]
                 ),
 
@@ -421,6 +426,18 @@ class Mod
                         [
                             self::HARDROCK,
                             self::MIRROR,
+                        ],
+                        [
+                            self::OSU_AIMASSIST,
+                            self::OSU_AUTOPILOT,
+                        ],
+                        [
+                            self::OSU_AIMASSIST,
+                            self::OSU_WIGGLE,
+                        ],
+                        [
+                            self::OSU_AIMASSIST,
+                            self::OSU_TRANSFORM,
                         ],
                     ]
                 ),
