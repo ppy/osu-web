@@ -5,12 +5,20 @@
 export default class DumbStorage {
   private data = new Map<string, string>();
 
+  get length() {
+    return this.data.size;
+  }
+
   clear() {
     this.data.clear();
   }
 
   getItem(key: string) {
     return this.data.get(key) ?? null;
+  }
+
+  key(n: number) {
+    return [...this.data.keys()][n];
   }
 
   removeItem(key: string) {
