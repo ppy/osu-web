@@ -8,11 +8,22 @@ namespace App\Libraries\Markdown\Attributes;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Attributes\Node\Attributes;
 use League\CommonMark\Extension\Attributes\Node\AttributesInline;
+use League\Config\ConfigurationAwareInterface;
+use League\Config\ConfigurationInterface;
 
-class AttributesOnlyIdListener
+class AttributesAllowedListener implements ConfigurationAwareInterface
 {
+    private ConfigurationInterface $config;
+
+    public function setConfiguration(ConfigurationInterface $configuration): void
+    {
+        $this->config = $configuration;
+    }
+
     public function __invoke(DocumentParsedEvent $documentEvent): void
     {
+        $attributesAllowed = $this->config->get('osu_extension/attributes_allowed');
+
         $walker = $documentEvent->getDocument()->walker();
         while ($event = $walker->next()) {
             $node = $event->getNode();
@@ -21,8 +32,10 @@ class AttributesOnlyIdListener
                 $attributes = $node->getAttributes();
 
                 $newAttributes = [];
-                if (isset($attributes['id'])) {
-                    $newAttributes['id'] = $attributes['id'];
+                foreach ($attributesAllowed as $key) {
+                    if (isset($attributes[$key])) {
+                        $newAttributes[$key] = $attributes[$key];
+                    }
                 }
 
                 $node->setAttributes($newAttributes);
