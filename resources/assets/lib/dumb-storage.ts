@@ -1,26 +1,23 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-# Kind of implements localStorage
-export default class DumbStorage
-  constructor: ->
-    @_data = {}
+// Kind of implements localStorage
+export default class DumbStorage {
+  private data = new Map<string, string>();
 
+  clear() {
+    this.data.clear();
+  }
 
-  clear: =>
-    @_data = {}
+  getItem(key: string) {
+    return this.data.get(key) ?? null;
+  }
 
+  removeItem(key: string) {
+    this.data.delete(key);
+  }
 
-  getItem: (key) =>
-    if @_data.hasOwnProperty(key)
-      @_data[key]
-    else
-      null
-
-
-  removeItem: (key) =>
-    delete @_data[key]
-
-
-  setItem: (key, value) =>
-    @_data[key] = String(value)
+  setItem(key: string, value: string) {
+    this.data.set(key, value);
+  }
+}
