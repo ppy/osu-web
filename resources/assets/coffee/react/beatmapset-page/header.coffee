@@ -1,15 +1,15 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetMapping } from 'beatmapset-mapping'
 import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
 import BeatmapsetMenu from 'beatmapsets-show/beatmapset-menu'
-import BigButton from 'big-button'
+import BigButton from 'components/big-button'
+import { BeatmapsetMapping } from 'components/beatmapset-mapping'
+import UserAvatar from 'components/user-avatar'
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
-import UserAvatar from 'user-avatar'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { createClickCallback } from 'utils/html'
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url'

@@ -4,7 +4,7 @@
 /* eslint-disable max-classes-per-file */
 
 // importable coffeescript modules
-declare module 'back-to-top' {
+declare module 'components/back-to-top' {
   interface Props {
     anchor: React.RefObject<HTMLElement>;
     ref: React.RefObject<BackToTop>;
@@ -15,11 +15,11 @@ declare module 'back-to-top' {
   }
 }
 
-declare module 'comments' {
+declare module 'components/comments' {
   class Comments extends React.PureComponent<any> {}
 }
 
-declare module 'comments-manager' {
+declare module 'components/comments-manager' {
   interface Props {
     commentableId?: number;
     commentableType?: string;
@@ -30,7 +30,7 @@ declare module 'comments-manager' {
   class CommentsManager extends React.PureComponent<Props> {}
 }
 
-declare module 'modal' {
+declare module 'components/modal' {
   interface Props {
     onClose?: () => void;
     visible: boolean;
@@ -41,7 +41,7 @@ declare module 'modal' {
   }
 }
 
-declare module 'notification-banner' {
+declare module 'components/notification-banner' {
   interface Props {
     message: React.ReactFragment;
     title: string;
@@ -51,7 +51,7 @@ declare module 'notification-banner' {
   class NotificationBanner extends React.PureComponent<Props> {}
 }
 
-declare module 'popup-menu' {
+declare module 'components/popup-menu' {
   type Children = (dismiss: () => void) => React.ReactFragment;
 
   interface Props {
@@ -76,7 +76,7 @@ declare module 'react/beatmaps/search-content' {
   class SearchContent extends React.PureComponent<Props> {}
 }
 
-declare module 'report-form' {
+declare module 'components/report-form' {
   interface ReportFormProps {
     completed: boolean;
     disabled: boolean;
@@ -90,7 +90,7 @@ declare module 'report-form' {
   class ReportForm extends React.PureComponent<ReportFormProps, any> {}
 }
 
-declare module 'select-options' {
+declare module 'components/select-options' {
   interface Option<T = string> {
     id: T | null;
     text: string;

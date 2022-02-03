@@ -1,10 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ValueDisplay from 'components/value-display';
 import UserStatisticsJson, { RankType } from 'interfaces/user-statistics-json';
 import * as React from 'react';
 import { Modifiers } from 'utils/css';
-import ValueDisplay from 'value-display';
 
 interface Props {
   modifiers?: Modifiers;

@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import TimeWithTooltip from 'components/time-with-tooltip';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
@@ -8,7 +9,6 @@ import { route } from 'laroute';
 import { escape, kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
-import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers } from 'utils/css';
 import { linkHtml } from 'utils/url';
 

@@ -5,12 +5,12 @@ import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
-import ShowMoreLink from 'show-more-link';
-import StringWithComponent from 'string-with-component';
-import TimeWithTooltip from 'time-with-tooltip';
 import { OffsetPaginatorJson, itemsLength } from 'utils/offset-paginator';
 import { wikiUrl } from 'utils/url';
-import ValueDisplay from 'value-display';
+import ShowMoreLink from './show-more-link';
+import StringWithComponent from './string-with-component';
+import TimeWithTooltip from './time-with-tooltip';
+import ValueDisplay from './value-display';
 
 function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
   const textMappings = {
