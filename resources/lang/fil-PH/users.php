@@ -301,8 +301,8 @@ return [
                 'recent' => 'Pinakabago',
                 'title' => 'Mga Medalya',
             ],
-            'multiplayer' => [
-                'title' => 'Mga Laro na Multiplayer',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Mga Post',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Kamakailan',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'I-Download ang Replay',

@@ -301,7 +301,7 @@ return [
                 'recent' => 'Najnovšie',
                 'title' => 'Medaile',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Nedávne',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Stiahnuť Záznam',

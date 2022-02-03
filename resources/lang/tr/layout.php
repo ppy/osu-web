@@ -46,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modlama',
-            'multiplayer' => 'çok oyunculu',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'bilgi',
         ],
     ],

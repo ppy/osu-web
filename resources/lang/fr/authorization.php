@@ -63,11 +63,12 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '',
         'blocked' => 'Vous ne pouvez pas envoyer un message à un utilisateur qui vous a bloqué ou que vous avez bloqué.',
         'friends_only' => 'Cet utilisateur bloque les messages des personnes qui ne sont pas dans sa liste d’amis.',
         'moderated' => 'Ce salon est actuellement restreint par un modérateur.',
         'no_access' => 'Vous n’avez pas accès à ce salon.',
-        'receive_friends_only' => '',
+        'receive_friends_only' => 'L\'utilisateur n\'est peut-être pas en mesure de répondre parce que vous n\'acceptez que les messages des personnes de votre liste d\'amis.',
         'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
         'silenced' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
     ],
@@ -169,8 +170,8 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
-            'too_many' => '',
+            'not_owner' => 'Seul le propriétaire du score peut épingler le score.',
+            'too_many' => 'Trop de scores épinglés.',
         ],
     ],
 

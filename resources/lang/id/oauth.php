@@ -7,7 +7,7 @@ return [
     'cancel' => 'Batal',
 
     'authorise' => [
-        'request' => 'meminta izin untuk mengakses ke dalam akun Anda.',
+        'request' => 'meminta izin untuk dapat mengakses akun Anda.',
         'scopes_title' => 'Ke depannya, aplikasi ini akan mampu untuk:',
         'title' => 'Permohonan Otorisasi',
     ],
@@ -16,18 +16,18 @@ return [
         'confirm_revoke' => 'Apakah anda yakin untuk mencabut izin akses klien ini?',
         'scopes_title' => 'Aplikasi ini dapat:',
         'owned_by' => 'Dimiliki oleh :user',
-        'none' => 'Tidak ada klien',
+        'none' => 'Tidak Ada Klien',
 
         'revoked' => [
-            'false' => 'Cabut akses',
-            'true' => 'Akses telah dicabut',
+            'false' => 'Cabut Akses',
+            'true' => 'Akses Telah Dicabut',
         ],
     ],
 
     'client' => [
         'id' => 'ID Klien',
         'name' => 'Nama Aplikasi',
-        'redirect' => 'URL Callback Aplikasi',
+        'redirect' => 'Application Callback URL',
         'reset' => 'Atur ulang client secret',
         'reset_failed' => 'Pengaturan ulang client secret gagal',
         'secret' => 'Client Secret',

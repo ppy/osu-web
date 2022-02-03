@@ -56,7 +56,7 @@ return [
     ],
 
     'type' => [
-        'approve' => 'Persetujuan',
+        'approve' => 'Pemberian status Approved',
         'beatmap_owner_change' => 'Pergantian kepemilikan tingkat kesulitan',
         'discussion_delete' => 'Penghapusan topik diskusi',
         'discussion_post_delete' => 'Penghapusan pesan balasan',

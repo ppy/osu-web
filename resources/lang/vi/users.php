@@ -301,8 +301,8 @@ return [
                 'recent' => 'Gần Nhất',
                 'title' => 'Huy Chương',
             ],
-            'multiplayer' => [
-                'title' => 'Màn chơi nhiều người chơi',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Bài viết',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Gần Đây',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Tải Xuống Replay',
@@ -326,13 +329,13 @@ return [
                     'title' => 'Xếp Hạng Nhất',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Gỡ ghim',
+                    'to_0_done' => 'Điểm gỡ ghim',
+                    'to_1' => 'Ghim',
+                    'to_1_done' => 'Điểm được ghim',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Điểm Được Ghim',
                 ],
             ],
             'votes' => [

@@ -260,6 +260,51 @@ function current_locale_meta(): LocaleMeta
     return locale_meta(app()->getLocale());
 }
 
+function cursor_decode($cursorString): ?array
+{
+    if (is_string($cursorString) && present($cursorString)) {
+        $cursor = json_decode(base64_decode(strtr($cursorString, '-_', '+/'), true), true);
+
+        if (is_array($cursor)) {
+            return $cursor;
+        }
+    }
+
+    return null;
+}
+
+function cursor_encode(?array $cursor): ?string
+{
+    if ($cursor === null) {
+        return null;
+    }
+
+    // url safe base64
+    // reference: https://datatracker.ietf.org/doc/html/rfc4648#section-5
+    return rtrim(strtr(base64_encode(json_encode($cursor)), '+/', '-_'), '=');
+}
+
+function cursor_for_response(?array $cursor): array
+{
+    return [
+        'cursor' => $cursor,
+        'cursor_string' => cursor_encode($cursor),
+    ];
+}
+
+function cursor_from_params($params): ?array
+{
+    if (is_array($params)) {
+        $cursor = cursor_decode($params['cursor_string'] ?? null) ?? $params['cursor'] ?? null;
+
+        if (is_array($cursor)) {
+            return $cursor;
+        }
+    }
+
+    return null;
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $withClockwork = app('clockwork.support')->isEnabled();
@@ -413,6 +458,25 @@ function markdown($input, $preset = 'default')
     }
 
     return $converter[$preset]->load($input)->html();
+}
+
+function markdown_chat($input)
+{
+    static $converter;
+
+    if (!isset($converter)) {
+        $environment = new League\CommonMark\Environment\Environment([
+            'allow_unsafe_links' => false,
+            'max_nesting_level' => 20,
+            'renderer' => ['soft_break' => '<br />'],
+        ]);
+
+        $environment->addExtension(new App\Libraries\Markdown\Chat\Extension());
+
+        $converter = new League\CommonMark\MarkdownConverter($environment);
+    }
+
+    return $converter->convertToHtml($input)->getContent();
 }
 
 function markdown_plain($input)

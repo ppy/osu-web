@@ -301,8 +301,8 @@ return [
                 'recent' => '最新',
                 'title' => 'メダル',
             ],
-            'multiplayer' => [
-                'title' => 'マルチプレイ ゲーム',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => '投稿',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => '最近のアクティビティ',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'リプレイをダウンロード',
