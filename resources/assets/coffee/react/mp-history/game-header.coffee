@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import Mod from 'components/mod'
+import TimeWithTooltip from 'components/time-with-tooltip'
 import { route } from 'laroute'
-import Mod from 'mod'
 import * as React from 'react'
 import { div, a, span, h1, h2 } from 'react-dom-factories'
-import TimeWithTooltip from 'time-with-tooltip'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 
 el = React.createElement

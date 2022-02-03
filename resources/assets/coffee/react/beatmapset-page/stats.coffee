@@ -1,11 +1,12 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapBasicStats } from 'beatmap-basic-stats'
+import { BeatmapBasicStats } from 'components/beatmap-basic-stats'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, span, table, tbody, td, th, tr, i } from 'react-dom-factories'
 import { nextVal } from 'utils/seq'
+
 el = React.createElement
 
 export class Stats extends React.Component

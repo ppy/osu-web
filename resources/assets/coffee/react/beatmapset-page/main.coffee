@@ -2,12 +2,12 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import NsfwWarning from 'beatmapsets-show/nsfw-warning'
-import { Comments } from 'comments'
-import { CommentsManager } from 'comments-manager'
-import HeaderV4 from 'header-v4'
+import { Comments } from 'components/comments'
+import { CommentsManager } from 'components/comments-manager'
+import HeaderV4 from 'components/header-v4'
+import PlaymodeTabs from 'components/playmode-tabs'
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
-import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'

@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import HeaderV4 from 'header-v4';
+import HeaderV4 from 'components/header-v4';
+import { UserList } from 'components/user-list';
 import GroupJson from 'interfaces/group-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
-import { UserList } from 'user-list';
 
 interface Props {
   group: GroupJson;
