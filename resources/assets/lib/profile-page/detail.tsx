@@ -4,8 +4,8 @@
 import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import { observer } from 'mobx-react';
 import Badges from 'profile-page/badges';
-import Cover from 'profile-page/header-info';
-import DetailBar from 'profile-page/detail-bar-buttons';
+import Cover from 'profile-page/cover';
+import DetailBar from 'profile-page/detail-bar';
 import MedalsCount from 'profile-page/medals-count';
 import PlayTime from 'profile-page/play-time';
 import Pp from 'profile-page/pp';
