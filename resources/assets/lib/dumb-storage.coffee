@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 # Kind of implements localStorage
-class window.DumbStorage
+export default class DumbStorage
   constructor: ->
     @_data = {}
 
