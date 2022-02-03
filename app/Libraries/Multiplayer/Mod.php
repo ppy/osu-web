@@ -60,6 +60,7 @@ class Mod
     const MANIA_FADEIN = 'FI';
     const MANIA_INVERT = 'IN';
     const MANIA_CONSTANTSPEED = 'CS';
+    const MANIA_HOLDOFF = 'HO';
 
     // catch-specific
     const CATCH_FLOATINGFRUIT = 'FF';
@@ -350,6 +351,7 @@ class Mod
                         self::MANIA_INVERT,
                         self::MANIA_CONSTANTSPEED,
                         self::RANDOM,
+                        self::MANIA_HOLDOFF,
                     ]
                 ),
             ];
@@ -439,6 +441,10 @@ class Mod
                             self::FLASHLIGHT,
                             self::HIDDEN,
                             self::MANIA_FADEIN,
+                        ],
+                        [
+                            self::MANIA_HOLDOFF,
+                            self::MANIA_INVERT,
                         ],
                     ]
                 ),
