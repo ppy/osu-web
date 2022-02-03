@@ -76,6 +76,16 @@ export default class Forum
       .attr 'data-total', n
 
 
+
+  # null if option not available (not moderator), false/true accordingly otherwise
+  showDeleted: =>
+    toggle = document.querySelector('.js-forum-topic-moderate--toggle-deleted')
+
+    return unless toggle?
+
+    toggle.dataset.showDeleted == '1'
+
+
   deletedPosts: ->
     return null if @_deletedPostsDiv.length == 0
     parseInt @_deletedPostsDiv[0].dataset.total, 10
@@ -231,7 +241,7 @@ export default class Forum
 
 
   toggleDeleted: =>
-    xhr = osuCore.userPreferences.set('forum_posts_show_deleted', !osuCore.userPreferences.get('forum_posts_show_deleted'))
+    xhr = osuCore.userPreferences.set('forum_posts_show_deleted', !@showDeleted())
 
     callback = => Turbolinks.visit @postUrlN(@currentPostPosition)
 

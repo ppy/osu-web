@@ -12,6 +12,7 @@
         js-forum-topic-moderate--toggle-deleted
     "
     title="{{ osu_trans('forum.topics.moderate_toggle_deleted.' . ($showDeleted ? 'hide' : 'show')) }}"
+    data-show-deleted="{{ $showDeleted ? 1 : 0 }}"
 >
     <span class="btn-circle__content">
         <i class="fa fa-trash"></i>
