@@ -33,7 +33,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
     {
         // can not vote as discussion starter
         $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $currentScore = $this->currentScore();
 
         $this
             ->actingAsVerified($this->user)
@@ -43,11 +43,11 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(403);
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore, $this->currentScore($this->discussion));
+        $this->assertSame($currentScore, $this->currentScore());
 
         // and then no problem as another user
         $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $currentScore = $this->currentScore();
 
         $this
             ->actingAs($this->anotherUser)
@@ -57,14 +57,14 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(200);
 
         $this->assertSame($currentVotes + 1, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore + 1, $this->currentScore($this->discussion));
+        $this->assertSame($currentScore + 1, $this->currentScore());
 
         // can not vote ranked maps
         $this->beatmapset->update(['approved' => Beatmapset::STATES['ranked']]);
         $moreUser = User::factory()->create();
 
         $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $currentScore = $this->currentScore();
 
         $this
             ->actingAs($moreUser)
@@ -74,7 +74,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(403);
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore, $this->currentScore($this->discussion));
+        $this->assertSame($currentScore, $this->currentScore());
     }
 
     // changing vote (as BNG) only changes the score
@@ -88,7 +88,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         ]);
 
         $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $currentScore = $this->currentScore();
 
         $this
             ->actingAsVerified($bngUser)
@@ -98,7 +98,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(200);
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore - 2, $this->currentScore($this->discussion));
+        $this->assertSame($currentScore - 2, $this->currentScore());
     }
 
     // voting again has no effect
@@ -110,7 +110,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         ]);
 
         $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $currentScore = $this->currentScore();
 
         $this
             ->actingAsVerified($this->anotherUser)
@@ -120,7 +120,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(200);
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore, $this->currentScore($this->discussion));
+        $this->assertSame($currentScore, $this->currentScore());
     }
 
     // voting 0 will remove the vote
@@ -132,7 +132,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         ]);
 
         $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $currentScore = $this->currentScore();
 
         $this
             ->actingAsVerified($this->anotherUser)
@@ -142,19 +142,19 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(200);
 
         $this->assertSame($currentVotes - 1, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore - 1, $this->currentScore($this->discussion));
+        $this->assertSame($currentScore - 1, $this->currentScore());
     }
 
-    private function currentScore($discussion)
+    private function currentScore()
     {
-        return (int) $discussion->fresh()->beatmapDiscussionVotes()->sum('score');
+        return (int) $this->discussion->fresh()->beatmapDiscussionVotes()->sum('score');
     }
 
     // downvote by regular user should fail
     public function testPutVoteDownChange()
     {
         $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $currentScore = $this->currentScore();
 
         $this
             ->actingAsVerified($this->anotherUser)
@@ -164,7 +164,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(403);
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore, $this->currentScore($this->discussion));
+        $this->assertSame($currentScore, $this->currentScore());
     }
 
     // downvote by BNG user should NOT fail
@@ -173,7 +173,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $bngUser = User::factory()->withGroup('bng')->create();
 
         $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $currentScore = $this->currentScore();
 
         $this
             ->actingAsVerified($bngUser)
@@ -183,7 +183,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(200);
 
         $this->assertSame($currentVotes + 1, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore - 1, $this->currentScore($this->discussion));
+        $this->assertSame($currentScore - 1, $this->currentScore());
     }
 
     // posting reviews - fail scenarios ----
