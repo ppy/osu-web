@@ -144,10 +144,7 @@ class BeatmapsetDisqualifyNotificationsTest extends TestCase
         Event::fake();
 
         $owner = User::factory()->create();
-        $this->beatmapset = Beatmapset::factory()->qualified()->withDiscussion()->create([
-            'creator' => $owner->username,
-            'user_id' => $owner,
-        ]);
+        $this->beatmapset = Beatmapset::factory()->owner(User::factory()->create())->qualified()->withDiscussion()->create();
         $this->sender = User::factory()->withGroup('bng')->create();
         $this->user = User::factory()->create();
     }

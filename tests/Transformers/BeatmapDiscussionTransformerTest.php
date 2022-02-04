@@ -59,10 +59,7 @@ class BeatmapDiscussionTransformerTest extends TestCase
     {
         parent::setUp();
 
-        $mapper = User::factory()->create();
-        $beatmapset = Beatmapset::factory()->withDiscussion()->create([
-            'user_id' => $mapper,
-        ]);
+        $beatmapset = Beatmapset::factory()->owner(User::factory()->create())->withDiscussion()->create();
 
         $this->deletedBeatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
         $this->deletedBeatmapDiscussion->update(['deleted_at' => now()]);

@@ -10,6 +10,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\Genre;
 use App\Models\Language;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BeatmapsetFactory extends Factory
@@ -56,6 +57,14 @@ class BeatmapsetFactory extends Factory
     public function noDiscussion()
     {
         return $this->state(['discussion_enabled' => false]);
+    }
+
+    public function owner(User $user)
+    {
+        return $this->state([
+            'creator' => $user->username,
+            'user_id' => $user,
+        ]);
     }
 
     public function pending()
