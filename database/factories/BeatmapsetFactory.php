@@ -80,7 +80,7 @@ class BeatmapsetFactory extends Factory
     public function withDiscussion()
     {
         return $this
-            ->has(Beatmap::factory())
+            ->has(Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => ['user_id' => $set->user_id]))
             ->has(BeatmapDiscussion::factory()->general()->state(fn (array $attr, Beatmapset $set) => [
                 'user_id' => $set->user_id,
             ]));
