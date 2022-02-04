@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { error } from 'utils/ajax';
+import { classWithModifiers } from 'utils/css';
 import { bottomPage, htmlElementOrNull } from 'utils/html';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { pageChange } from 'utils/page-change';
@@ -51,6 +52,11 @@ export default class Main extends React.Component<Props> {
   private scrolling = false;
   private readonly tabs = React.createRef<HTMLDivElement>();
   private readonly timeouts: Partial<Record<'draggingTab' | 'modeScroll' | 'initialPageJump', number>> = {};
+
+  @computed
+  private get displayExtraTabs() {
+    return this.displayedExtraPages.length > 1;
+  }
 
   @computed
   private get displayedExtraPages() {
@@ -165,27 +171,29 @@ export default class Main extends React.Component<Props> {
 
         <div className='osu-page osu-page--generic-compact'>
           <div className='hidden-xs page-extra-tabs js-switchable-mode-page--scrollspy-offset'>
-            <div ref={this.tabs} className='page-mode page-mode--profile-page-extra'>
-              {this.displayedExtraPages.map((m) => (
-                <a
-                  key={m}
-                  className={`page-mode__item ${this.isSortablePage(m) ? 'js-sortable--tab' : ''}`}
-                  data-page-id={m}
-                  href={`#${m}`}
-                  onClick={this.onTabClick}
-                >
-                  <ExtraTab controller={this.controller} page={m} />
-                </a>
-              ))}
-            </div>
+            {this.displayExtraTabs &&
+              <div ref={this.tabs} className='page-mode page-mode--profile-page-extra'>
+                {this.displayedExtraPages.map((m) => (
+                  <a
+                    key={m}
+                    className={`page-mode__item ${this.isSortablePage(m) ? 'js-sortable--tab' : ''}`}
+                    data-page-id={m}
+                    href={`#${m}`}
+                    onClick={this.onTabClick}
+                  >
+                    <ExtraTab controller={this.controller} page={m} />
+                  </a>
+                ))}
+              </div>
+            }
           </div>
 
-          <div ref={this.pages} className='user-profile-pages'>
+          <div ref={this.pages} className={classWithModifiers('user-profile-pages', { 'no-tabs': !this.displayExtraTabs })}>
             {this.displayedExtraPages.map((name) => (
               <div
                 key={name}
                 ref={this.extraPages[name]}
-                className={`user-profile-pages__item js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
+                className={`js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
                 data-page-id={name}
               >
                 {this.extraPage(name)}

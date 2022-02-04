@@ -18,12 +18,10 @@ export default function Main(props: Props) {
     <UserProfileContainer user={props.user}>
       <Header typeGroup={props.store.typeGroup} user={props.user} />
       <div className='osu-page osu-page--generic-compact'>
-        <div className='user-profile-pages'>
-          <div className='user-profile-pages__item'>
-            <div className='page-extra'>
-              <h2 className='title title--page-extra'>{osu.trans(`users.show.extra.${props.store.typeGroup}.title`)}</h2>
-              <MultiplayerHistory store={props.store} user={props.user} />
-            </div>
+        <div className='user-profile-pages user-profile-pages--no-tabs'>
+          <div className='page-extra'>
+            <h2 className='title title--page-extra'>{osu.trans(`users.show.extra.${props.store.typeGroup}.title`)}</h2>
+            <MultiplayerHistory store={props.store} user={props.user} />
           </div>
         </div>
 

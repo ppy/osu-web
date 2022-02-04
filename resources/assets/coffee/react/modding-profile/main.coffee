@@ -181,7 +181,7 @@ export class Main extends React.PureComponent
 
   extraPage: (name) =>
     {extraClass, props, component} = @extraPageParams name
-    classes = 'user-profile-pages__item js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
+    classes = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
     classes += " #{extraClass}" if extraClass?
     props.name = name
 
