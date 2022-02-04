@@ -17,6 +17,11 @@ class BeatmapsetFactory extends Factory
 {
     protected $model = Beatmapset::class;
 
+    public function configure()
+    {
+        return $this->afterMaking(fn (Beatmapset $beatmapset) => $beatmapset->creator = $beatmapset->user?->username ?? $this->faker->userName());
+    }
+
     public function definition(): array
     {
         return [
@@ -61,8 +66,7 @@ class BeatmapsetFactory extends Factory
 
     public function owner(?User $user = null)
     {
-        return $this->state(['user_id' => $user ?? User::factory()])
-            ->afterMaking(fn (Beatmapset $beatmapset) => $beatmapset->creator = $beatmapset->user->username);
+        return $this->state(['user_id' => $user ?? User::factory()]);
     }
 
     public function pending()
