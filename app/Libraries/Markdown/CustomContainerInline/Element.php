@@ -12,11 +12,11 @@ class Element extends AbstractInline implements DelimitedInterface
 {
     public function getOpeningDelimiter(): string
     {
-        return ':';
+        return '::';
     }
 
     public function getClosingDelimiter(): string
     {
-        return ':';
+        return '::';
     }
 }
