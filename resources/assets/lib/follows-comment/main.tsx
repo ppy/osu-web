@@ -1,16 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import FollowToggle from 'follow-toggle';
-import FollowsSubtypes from 'follows-subtypes';
-import HeaderV4 from 'header-v4';
+import FollowToggle from 'components/follow-toggle';
+import FollowsSubtypes from 'components/follows-subtypes';
+import HeaderV4 from 'components/header-v4';
+import StringWithComponent from 'components/string-with-component';
+import TimeWithTooltip from 'components/time-with-tooltip';
 import homeLinks from 'home-links';
 import CurrentUserJson from 'interfaces/current-user-json';
 import FollowCommentJson from 'interfaces/follow-comment-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
-import TimeWithTooltip from 'time-with-tooltip';
 
 interface Props {
   follows: FollowCommentJson[];

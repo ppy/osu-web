@@ -3,8 +3,8 @@
 
 import BeatmapsetCardSizeSelector from 'beatmaps/beatmapset-card-size-selector'
 import VirtualListMeta from 'beatmaps/virtual-list-meta'
-import BeatmapsetPanel, { beatmapsetCardSizes } from 'beatmapset-panel'
-import Img2x from 'img2x'
+import BeatmapsetPanel, { beatmapsetCardSizes } from 'components/beatmapset-panel'
+import Img2x from 'components/img2x'
 import { route } from 'laroute'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'

@@ -1,10 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import UserAvatar from 'components/user-avatar'
 import { route } from 'laroute'
 import * as React from 'react'
 import { tr, td, a, div } from 'react-dom-factories'
-import UserAvatar from 'user-avatar'
 import { UserEntryDeleteButton } from './user-entry-delete-button'
 
 el = React.createElement
