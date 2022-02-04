@@ -15,10 +15,10 @@ interface Props {
 export class Main extends React.PureComponent<Props> {
   render() {
     return (
-      <div className='osu-layout osu-layout--full'>
+      <>
         <HeaderV4 theme='friends' />
 
-        <div className='osu-page osu-page--users'>
+        <div className='osu-page osu-page--generic-compact'>
           <UserList
             descriptionHtml={this.props.group.description?.html}
             playmodeFilter={this.props.group.has_playmodes}
@@ -27,7 +27,7 @@ export class Main extends React.PureComponent<Props> {
             users={this.props.users}
           />
         </div>
-      </div>
+      </>
     );
   }
 }
