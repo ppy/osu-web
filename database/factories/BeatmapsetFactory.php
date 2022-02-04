@@ -59,12 +59,10 @@ class BeatmapsetFactory extends Factory
         return $this->state(['discussion_enabled' => false]);
     }
 
-    public function owner(User $user)
+    public function owner(?User $user = null)
     {
-        return $this->state([
-            'creator' => $user->username,
-            'user_id' => $user,
-        ]);
+        return $this->state(['user_id' => $user ?? User::factory()])
+            ->afterMaking(fn (Beatmapset $beatmapset) => $beatmapset->creator = $beatmapset->user->username);
     }
 
     public function pending()

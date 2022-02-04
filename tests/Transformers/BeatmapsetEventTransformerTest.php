@@ -87,6 +87,6 @@ class BeatmapsetEventTransformerTest extends TestCase
     {
         parent::setUp();
 
-        $this->beatmapset = Beatmapset::factory()->owner(User::factory()->create())->withDiscussion()->create();
+        $this->beatmapset = Beatmapset::factory()->owner()->withDiscussion()->create();
     }
 }
