@@ -33,6 +33,7 @@ class BeatmapsetFactory extends Factory
             'language_id' => Language::factory(),
             'submit_date' => fn () => $this->faker->dateTime(),
             'thread_id' => 0,
+            'user_id' => 0, // follow db default if no user specified; this is for other factories that depend on user_id.
 
             // depends on approved
             'approved_date' => fn (array $attr) => $attr['approved'] > 0 ? now() : null,

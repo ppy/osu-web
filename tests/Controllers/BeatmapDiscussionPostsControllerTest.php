@@ -28,13 +28,13 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     private BeatmapDiscussionPost $beatmapDiscussionPost;
     private Beatmapset $beatmapset;
     private User $mapper;
-    private int $minPlays;
     private Beatmapset $otherBeatmapset;
     private User $user;
 
     public function testPostStoreNewDiscussion()
     {
         config()->set('osu.user.post_action_verification', false);
+        $minPlays = config('osu.user.min_plays_for_posting');
 
         $currentDiscussions = BeatmapDiscussion::count();
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
@@ -44,7 +44,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $otherUser = User::factory()->create();
         $this->beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $this->user->statisticsOsu->update(['playcount' => $this->minPlays - 1]);
+        $this->user->statisticsOsu->update(['playcount' => $minPlays - 1]);
 
         $params = $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'praise');
 
@@ -61,7 +61,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
 
-        $this->user->statisticsOsu->update(['playcount' => $this->minPlays]);
+        $this->user->statisticsOsu->update(['playcount' => $minPlays]);
 
         $this
             ->actingAsVerified($this->user)
@@ -199,8 +199,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             'queued_at' => now(),
         ]);
 
-        $user = User::factory()->withGroup($group)->create();
-        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
+        $user = User::factory()->withGroup($group)->withPlays()->create();
+
         $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
@@ -224,8 +224,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             'queued_at' => now(),
         ]);
 
-        $user = User::factory()->withGroup($group)->create();
-        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
+        $user = User::factory()->withGroup($group)->withPlays()->create();
+
         $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => false]);
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
@@ -622,8 +622,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             'resolved' => false,
         ]);
 
-        $otherUser = User::factory()->create();
-        $otherUser->statisticsOsu()->create(['playcount' => $this->minPlays]);
+        $otherUser = User::factory()->withPlays()->create();
 
         foreach ([$this->user, $otherUser] as $user) {
             $lastDiscussionPosts = BeatmapDiscussionPost::count();
@@ -756,8 +755,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         // faking prevents jobs from actually running, so events and jobs can't be asserted together.
         Queue::fake();
 
-        $user = User::factory()->withGroup($userGroup)->create();
-        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
+        $user = User::factory()->withGroup($userGroup)->withPlays()->create();
 
         $this
             ->actingAsVerified($user)
@@ -787,9 +785,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         // faking prevents jobs from actually running, so events and jobs can't be asserted together.
         Queue::fake();
 
-        $user = User::factory()->withGroup($userGroup)->create();
-
-        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
+        $user = User::factory()->withGroup($userGroup)->withPlays()->create();
 
         $this
             ->postResolveDiscussion(false, $user)
@@ -893,13 +889,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         Event::fake();
 
-        $this->minPlays = config('osu.user.min_plays_for_posting');
-
-        $this->mapper = User::factory()->create();
-        $this->mapper->statisticsOsu()->create(['playcount' => $this->minPlays]);
-
-        $this->user = User::factory()->create();
-        $this->user->statisticsOsu()->create(['playcount' => $this->minPlays]);
+        $this->mapper = User::factory()->withPlays()->create();
+        $this->user = User::factory()->withPlays()->create();
 
         $this->beatmapset = Beatmapset::factory()->create([
             'user_id' => $this->mapper,

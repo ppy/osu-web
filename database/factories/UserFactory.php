@@ -115,4 +115,13 @@ class UserFactory extends Factory
     {
         return $this->has(UserAccountHistory::factory(), 'accountHistories');
     }
+
+    public function withPlays(?int $count = null, ?string $mode = 'osu')
+    {
+        $sMode = studly_case($mode);
+
+        return $this->has("App\\Models\\UserStatistics\\{$sMode}"::factory()->state([
+            'playcount' => $count ?? config('osu.user.min_plays_for_posting'),
+        ]), "statistics{$sMode}");
+    }
 }
