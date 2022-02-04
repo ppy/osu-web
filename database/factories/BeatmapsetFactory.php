@@ -25,7 +25,6 @@ class BeatmapsetFactory extends Factory
     public function definition(): array
     {
         return [
-            'creator' => fn () => $this->faker->userName(),
             'artist' => fn () => $this->faker->name(),
             'title' => fn () => substr($this->faker->sentence(rand(0, 5)), 0, 80),
             'discussion_enabled' => true,
