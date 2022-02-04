@@ -18,6 +18,11 @@ class BeatmapDiscussionsControllerTest extends TestCase
 {
     protected static $faker;
 
+    protected User $anotherUser;
+    protected Beatmapset $beatmapset;
+    protected BeatmapDiscussion $discussion;
+    protected User $user;
+
     public static function setUpBeforeClass(): void
     {
         self::$faker = Faker\Factory::create();
@@ -75,16 +80,18 @@ class BeatmapDiscussionsControllerTest extends TestCase
     // changing vote (as BNG) only changes the score
     public function testPutVoteChangeBNG()
     {
+        $bngUser = User::factory()->withGroup('bng')->create();
+
         $this->discussion->vote([
             'score' => 1,
-            'user_id' => $this->bngUser->user_id,
+            'user_id' => $bngUser->getKey(),
         ]);
 
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore($this->discussion);
 
         $this
-            ->actingAsVerified($this->bngUser)
+            ->actingAsVerified($bngUser)
             ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
@@ -163,11 +170,13 @@ class BeatmapDiscussionsControllerTest extends TestCase
     // downvote by BNG user should NOT fail
     public function testPutVoteDownChangeBNG()
     {
+        $bngUser = User::factory()->withGroup('bng')->create();
+
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore($this->discussion);
 
         $this
-            ->actingAsVerified($this->bngUser)
+            ->actingAsVerified($bngUser)
             ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
@@ -257,24 +266,21 @@ class BeatmapDiscussionsControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->mapper = User::factory()->create();
+        $mapper = User::factory()->create();
         $this->user = User::factory()->create();
         $this->anotherUser = User::factory()->create();
-        $this->bngUser = User::factory()->withGroup('bng')->create();
         $this->beatmapset = Beatmapset::factory()->create([
-            'user_id' => $this->mapper,
+            'user_id' => $mapper,
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make([
-            'user_id' => $this->mapper,
+        $beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make([
+            'user_id' => $mapper,
         ]));
-        $this->discussion = BeatmapDiscussion::create([
-            'beatmapset_id' => $this->beatmapset->getKey(),
-            'timestamp' => 0,
-            'message_type' => 'problem',
-            'beatmap_id' => $this->beatmap->beatmap_id,
-            'user_id' => $this->user->user_id,
+        $this->discussion = BeatmapDiscussion::factory()->timeline()->create([
+            'beatmapset_id' => $this->beatmapset,
+            'beatmap_id' => $beatmap,
+            'user_id' => $this->user,
         ]);
     }
 }
