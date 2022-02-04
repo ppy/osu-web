@@ -10,6 +10,7 @@ namespace Database\Factories;
 use App\Models\Country;
 use App\Models\User;
 use App\Models\UserAccountHistory;
+use App\Models\UserStatistics\Model as UserStatisticsModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
@@ -118,10 +119,8 @@ class UserFactory extends Factory
 
     public function withPlays(?int $count = null, ?string $mode = 'osu')
     {
-        $sMode = studly_case($mode);
-
-        return $this->has("App\\Models\\UserStatistics\\{$sMode}"::factory()->state([
+        return $this->has(UserStatisticsModel::getClass($mode)::factory()->state([
             'playcount' => $count ?? config('osu.user.min_plays_for_posting'),
-        ]), "statistics{$sMode}");
+        ]), 'statistics'.studly_case($mode));
     }
 }
