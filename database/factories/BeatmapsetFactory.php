@@ -17,11 +17,6 @@ class BeatmapsetFactory extends Factory
 {
     protected $model = Beatmapset::class;
 
-    public function configure()
-    {
-        return $this->afterMaking(fn (Beatmapset $beatmapset) => $beatmapset->creator = $beatmapset->user?->username ?? $this->faker->userName());
-    }
-
     public function definition(): array
     {
         return [
@@ -42,6 +37,8 @@ class BeatmapsetFactory extends Factory
 
             // depends on approved
             'approved_date' => fn (array $attr) => $attr['approved'] > 0 ? now() : null,
+
+            'creator' => fn (array $attr) => User::find($attr['user_id'])?->username ?? $this->faker->userName(),
 
             // depends on artist and title
             'displaytitle' => fn (array $attr) => "{$attr['artist']}|{$attr['title']}",
