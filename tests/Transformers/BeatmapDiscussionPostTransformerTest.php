@@ -67,7 +67,7 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
         $beatmapset = Beatmapset::factory()->owner($mapper)->withDiscussion()->create();
 
         $this->beatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
-        $this->beatmapDiscussion->beatmapDiscussionPosts()->saveMany(factory(BeatmapDiscussionPost::class, 2)->make());
+        $this->beatmapDiscussion->beatmapDiscussionPosts()->saveMany(BeatmapDiscussionPost::factory()->count(2)->make());
         $this->deletedPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->last();
 
         $this->deletedPost->softDeleteOrExplode($mapper);

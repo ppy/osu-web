@@ -369,7 +369,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
     public function testPostUpdate()
     {
-        $beatmapDiscussionPost = factory(BeatmapDiscussionPost::class)->create([
+        $beatmapDiscussionPost = BeatmapDiscussionPost::factory()->create([
             'beatmap_discussion_id' => $this->beatmapDiscussion->id,
             'user_id' => $this->user->user_id,
         ]);
@@ -400,9 +400,9 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
     public function testPostUpdateNotLoggedIn()
     {
-        $post = factory(BeatmapDiscussionPost::class)->create([
-            'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-            'user_id' => $this->user->user_id,
+        $post = BeatmapDiscussionPost::factory()->create([
+            'beatmap_discussion_id' => $this->beatmapDiscussion,
+            'user_id' => $this->user,
         ]);
         $initialMessage = $post->message;
 
@@ -416,8 +416,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testPostUpdateWhenBeatmapsetDiscussionIsLocked()
     {
         $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
-            factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-                'user_id' => $this->user->getKey(),
+            BeatmapDiscussionPost::factory()->timeline()->make([
+                'user_id' => $this->user,
             ])
         );
         $message = $reply->message;
@@ -432,8 +432,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     {
         // reply made before resolve
         $reply1 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
-            factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-                'user_id' => $this->user->getKey(),
+            BeatmapDiscussionPost::factory()->timeline()->make([
+                'user_id' => $this->user,
             ])
         );
         $message1 = $reply1->message;
@@ -442,8 +442,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         // reply made after resolve
         $reply2 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
-            factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-                'user_id' => $this->user->getKey(),
+            BeatmapDiscussionPost::factory()->timeline()->make([
+                'user_id' => $this->user,
             ])
         );
         $message2 = $reply2->message;
@@ -458,8 +458,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     {
         // reply made before resolve
         $reply1 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
-            factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-                'user_id' => $this->user->getKey(),
+            BeatmapDiscussionPost::factory()->timeline()->make([
+                'user_id' => $this->user,
             ])
         );
         $message1 = $reply1->message;
@@ -473,8 +473,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         // reply made after resolve
         $reply2 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
-            factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-                'user_id' => $this->user->getKey(),
+            BeatmapDiscussionPost::factory()->timeline()->make([
+                'user_id' => $this->user,
             ])
         );
         $message2 = $reply2->message;
@@ -522,8 +522,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testPostDestroy()
     {
         $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
-            factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-                'user_id' => $this->user->getKey(),
+            BeatmapDiscussionPost::factory()->timeline()->make([
+                'user_id' => $this->user,
             ])
         );
 
@@ -534,8 +534,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testPostDestroyNotLoggedIn()
     {
         $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
-            factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-                'user_id' => $this->user->getKey(),
+            BeatmapDiscussionPost::factory()->timeline()->make([
+                'user_id' => $this->user,
             ])
         );
 
@@ -549,8 +549,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testPostDestroyWhenBeatmapsetDiscussionIsLocked()
     {
         $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
-            factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-                'user_id' => $this->user->getKey(),
+            BeatmapDiscussionPost::factory()->timeline()->make([
+                'user_id' => $this->user,
             ])
         );
 
@@ -564,8 +564,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     {
         // reply made before resolve
         $reply1 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
-            factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-                'user_id' => $this->user->getKey(),
+            BeatmapDiscussionPost::factory()->timeline()->make([
+                'user_id' => $this->user,
             ])
         );
 
@@ -573,8 +573,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         // reply made after resolve
         $reply2 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
-            factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-                'user_id' => $this->user->getKey(),
+            BeatmapDiscussionPost::factory()->timeline()->make([
+                'user_id' => $this->user,
             ])
         );
 
@@ -588,8 +588,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     {
         // reply made before resolve
         $reply1 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
-            factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-                'user_id' => $this->user->getKey(),
+            BeatmapDiscussionPost::factory()->timeline()->make([
+                'user_id' => $this->user,
             ])
         );
 
@@ -602,8 +602,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         // reply made after resolve
         $reply2 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
-            factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-                'user_id' => $this->user->getKey(),
+            BeatmapDiscussionPost::factory()->timeline()->make([
+                'user_id' => $this->user,
             ])
         );
 
@@ -903,8 +903,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             'beatmap_id' => $this->beatmap,
             'user_id' => $this->user,
         ]);
-        $post = factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-            'user_id' => $this->user->getKey(),
+        $post = BeatmapDiscussionPost::factory()->timeline()->make([
+            'user_id' => $this->user,
         ]);
         $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
 
