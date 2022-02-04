@@ -6,8 +6,6 @@ import Gallery from 'gallery'
 import { StoreCheckout } from 'store-checkout'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 
-window.polyfills ?= new Polyfills
-
 Turbolinks.start()
 Turbolinks.setProgressBarDelay(0)
 
