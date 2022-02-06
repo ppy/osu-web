@@ -27,6 +27,7 @@ class ScoreTransformer extends TransformerAbstract
         'beatmap',
         'beatmapset',
         'current_user_attributes',
+        'difficulty_rating',
         'rank_country',
         'rank_global',
         'weight',
@@ -123,6 +124,11 @@ class ScoreTransformer extends TransformerAbstract
     public function includeBeatmapset($score)
     {
         return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer());
+    }
+
+    public function includeDifficultyRating($score)
+    {
+        return $this->primitive($score->difficultyRating());
     }
 
     public function includeWeight($score)

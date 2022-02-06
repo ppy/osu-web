@@ -20,6 +20,10 @@ export default function Main(props: Props) {
     throw new Error('score json is missing beatmap or beatmapset details');
   }
 
+  if (props.score.difficulty_rating != null) {
+    beatmap.difficulty_rating = props.score.difficulty_rating;
+  }
+
   return (
     <>
       <HeaderV4 />
