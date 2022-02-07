@@ -1,15 +1,25 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import { div } from 'react-dom-factories'
+import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
-export ScoreboardTab = (props) ->
-  className = 'page-tabs__tab'
-  className += ' page-tabs__tab--active' if props.active
+interface Props {
+  active: boolean;
+  type: 'country' | 'friend' | 'global';
+}
 
-  div
-    className: className
-    onClick: ->
-      $.publish 'beatmapset:scoreboard:set', scoreboardType: props.type
-    osu.trans "beatmapsets.show.scoreboard.#{props.type}"
+export default function ScoreboardTab(props: Props) {
+  const onClick = React.useCallback(() => {
+    $.publish('beatmapset:scoreboard:set', { scoreboardType: props.type });
+  }, [props.type]);
+
+  return (
+    <div
+      className={classWithModifiers('page-tabs__tab', { active: props.active })}
+      onClick={onClick}
+    >
+      {osu.trans(`beatmapsets.show.scoreboard.${props.type}`)}
+    </div>
+  );
+}
