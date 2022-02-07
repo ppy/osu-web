@@ -28,53 +28,27 @@ class BeatmapDiscussionsControllerTest extends TestCase
         self::$faker = Faker\Factory::create();
     }
 
-    // normal vote
-    public function testPutVoteInitial()
+    /**
+     * @dataProvider putVoteDataProvider
+     */
+    public function testPutVote(string $beatmapState, int $status, int $change)
     {
-        // can not vote as discussion starter
-        $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore();
+        $this->beatmapset->update(['approved' => Beatmapset::STATES[$beatmapState]]);
 
-        $this
-            ->actingAsVerified($this->user)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '1'],
-            ])
-            ->assertStatus(403);
-
-        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore, $this->currentScore());
-
-        // and then no problem as another user
-        $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore();
-
-        $this
-            ->actingAs($this->anotherUser)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '1'],
-            ])
-            ->assertStatus(200);
-
-        $this->assertSame($currentVotes + 1, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore + 1, $this->currentScore());
-
-        // can not vote ranked maps
-        $this->beatmapset->update(['approved' => Beatmapset::STATES['ranked']]);
-        $moreUser = User::factory()->create();
+        $user = User::factory()->create();
 
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore();
 
         $this
-            ->actingAs($moreUser)
+            ->actingAsVerified($user)
             ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
-            ->assertStatus(403);
+            ->assertStatus($status);
 
-        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore, $this->currentScore());
+        $this->assertSame($currentVotes + $change, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore + $change, $this->currentScore());
     }
 
     // voting again has no effect
@@ -94,6 +68,24 @@ class BeatmapDiscussionsControllerTest extends TestCase
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
             ->assertStatus(200);
+
+        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore, $this->currentScore());
+    }
+
+    // can not vote as discussion starter
+    public function testPutVoteSelf()
+    {
+        $user = $this->discussion->user;
+        $currentVotes = BeatmapDiscussionVote::count();
+        $currentScore = $this->currentScore();
+
+        $this
+            ->actingAsVerified($user)
+            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
+                'beatmap_discussion_vote' => ['score' => '1'],
+            ])
+            ->assertStatus(403);
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
         $this->assertSame($currentScore, $this->currentScore());
@@ -242,6 +234,19 @@ class BeatmapDiscussionsControllerTest extends TestCase
         // ensure 3 discussions/posts are created - one for the review and one for each embedded problem
         $this->assertSame($discussionCount + 3, BeatmapDiscussion::count());
         $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
+    }
+
+    public function putVoteDataProvider()
+    {
+        return [
+            ['graveyard', 403, 0],
+            ['wip', 200, 1],
+            ['pending', 200, 1],
+            ['ranked', 403, 0],
+            ['approved', 403, 0],
+            // TODO: qualified; factory the beatmapset with the correct state instead of using update.
+            ['loved', 403, 0],
+        ];
     }
 
     public function putVoteChangeDataProvider()
