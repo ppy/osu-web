@@ -1,111 +1,164 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import FlagCountry from 'components/flag-country'
-import Mod from 'components/mod'
-import { PlayDetailMenu } from 'components/play-detail-menu'
-import ScoreboardTime from 'components/scoreboard-time'
-import { route } from 'laroute'
-import { round } from 'lodash'
-import * as React from 'react'
-import { a, div, span, tr, td } from 'react-dom-factories'
-import PpValue from 'scores/pp-value'
-import { classWithModifiers } from 'utils/css'
-import { hasMenu, modeAttributesMap } from 'utils/score-helper'
+import FlagCountry from 'components/flag-country';
+import Mod from 'components/mod';
+import { PlayDetailMenu } from 'components/play-detail-menu';
+import ScoreboardTime from 'components/scoreboard-time';
+import BeatmapJson from 'interfaces/beatmap-json';
+import ScoreJson from 'interfaces/score-json';
+import { route } from 'laroute';
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import PpValue from 'scores/pp-value';
+import { classWithModifiers, Modifiers } from 'utils/css';
+import { hasMenu, modeAttributesMap } from 'utils/score-helper';
 
-el = React.createElement
-bn = 'beatmap-scoreboard-table'
+const bn = 'beatmap-scoreboard-table';
 
-export class ScoreboardTableRow extends React.PureComponent
-  render: () =>
-    { activated, index, score } = @props
-    classMods = if activated then ['menu-active'] else ['highlightable']
-    classMods.push 'first' if index == 0
-    classMods.push 'friend' if @props.scoreboardType != 'friend' && osu.currentUserIsFriendsWith(score.user.id)
-    classMods.push 'self' if score.user.id == currentUser.id
+interface TdLinkProps {
+  children?: React.ReactNode;
+  modifiers?: Modifiers;
+}
 
-    cell = "#{bn}__cell"
+interface Props {
+  activated: boolean;
+  beatmap: BeatmapJson;
+  highlightFriends: boolean;
+  index: number;
+  score: ScoreJson;
+  showPp: boolean;
+}
 
-    tr
-      className: "#{classWithModifiers("#{bn}__body-row", classMods)}",
+@observer
+export default class ScoreboardTableRow extends React.Component<Props> {
+  @computed
+  get scoreUrl() {
+    return route('scores.show', { mode: this.props.score.mode, score: this.props.score.best_id });
+  }
 
-      el @tdLink,
-        modifiers: ['rank']
-        "##{index+1}"
+  @computed
+  get tdLink() {
+    const url = this.scoreUrl;
 
-      el @tdLink,
-        modifiers: ['grade']
-        div className: "score-rank score-rank--tiny score-rank--#{score.rank}"
+    return function TdLink(linkProps: TdLinkProps) {
+      return (
+        <td className={`${bn}__cell`}>
+          <a
+            className={classWithModifiers(`${bn}__cell-content`, linkProps.modifiers)}
+            href={url}
+          >
+            {linkProps.children}
+          </a>
+        </td>
+      );
+    };
+  }
 
-      el @tdLink,
-        modifiers: ['score']
-        osu.formatNumber(score.score)
+  constructor(props: Props) {
+    super(props);
 
-      el @tdLink,
-        modifiers: ['perfect'] if score.accuracy == 1
-        "#{osu.formatNumber(score.accuracy * 100, 2)}%"
+    makeObservable(this);
+  }
 
-      td className: cell,
-        if score.user.country_code
-          a
-            className: "#{bn}__cell-content"
-            href: route 'rankings',
-              mode: @props.beatmap.mode
-              country: score.user.country_code
-              type: 'performance'
-            el FlagCountry,
-              country: score.user.country
-              modifiers: ['flat']
+  render() {
+    const score = this.props.score;
+    const blockClass = classWithModifiers(`${bn}__body-row`,
+      this.props.activated ? 'menu-active' : 'highlightable',
+      {
+        first: this.props.index === 0,
+        friend: this.props.highlightFriends && core.currentUserModel.isFriendWith(score.user.id),
+        self: score.user.id === core.currentUser?.id,
+      },
+    );
+    const TdLink = this.tdLink;
 
-      if score.user.is_deleted
-        el @tdLink, null, osu.trans('users.deleted')
-      else
-        td className: "#{cell} u-relative",
-          a
-            className: "#{bn}__cell-content #{bn}__cell-content--user-link js-usercard"
-            'data-user-id': score.user.id
-            href: route 'users.show', user: score.user.id, mode: @props.beatmap.mode
-            score.user.username
+    return (
+      <tr className={blockClass}>
+        <TdLink modifiers='rank'>
+          {`#${this.props.index + 1}`}
+        </TdLink>
 
-          a
-            className: "#{bn}__cell-content"
-            href: route('scores.show', mode: @props.score.mode, score: @props.score.best_id)
+        <TdLink modifiers='grade'>
+          <div className={classWithModifiers('score-rank', ['tiny', score.rank])} />
+        </TdLink>
 
-      el @tdLink,
-        modifiers: ['perfect'] if score.max_combo == @props.beatmap.max_combo
-        "#{osu.formatNumber(score.max_combo)}x"
+        <TdLink modifiers='score'>
+          {osu.formatNumber(score.score)}
+        </TdLink>
 
-      for stat in modeAttributesMap[@props.beatmap.mode]
-        el @tdLink,
-          key: stat.attribute
-          modifiers: 'zero' if score.statistics[stat.attribute] == 0
-          osu.formatNumber(score.statistics[stat.attribute])
+        <TdLink modifiers={{ perfect: score.accuracy === 1 }}>
+          {`${osu.formatNumber(score.accuracy * 100, 2)}%`}
+        </TdLink>
 
-      if @props.showPp
-        el @tdLink,
-          {}
-          el PpValue, score: score
+        <td className={`${bn}__cell`}>
+          {score.user.country_code != null &&
+            <a
+              className={`${bn}__cell-content`}
+              href={route('rankings', {
+                country: score.user.country_code,
+                mode: this.props.beatmap.mode,
+                type: 'performance',
+              })}
+            >
+              <FlagCountry country={score.user.country} modifiers='flat' />
+            </a>
+          }
+        </td>
 
-      el @tdLink,
-        modifiers: ['time']
-        el ScoreboardTime,
-          dateTime: score.created_at
+        {score.user.is_deleted ? (
+          <TdLink>
+            {osu.trans('users.deleted')}
+          </TdLink>
+        ) : (
+          <td className={`${bn}__cell u-relative`}>
+            <a
+              className={`${bn}__cell-content ${bn}__cell-content--user-link js-usercard`}
+              data-user-id={score.user.id}
+              href={route('users.show', { mode: this.props.beatmap.mode, user: score.user.id })}
+            >
+              {score.user.username}
+            </a>
 
-      el @tdLink,
-        modifiers: ['mods']
-        div className: "#{bn}__mods",
-          el(Mod, mod: mod, key: mod) for mod in score.mods
+            <a className={`${bn}__cell-content`} href={this.scoreUrl} />
+          </td>
+        )}
 
-      td className: "#{bn}__popup-menu",
-        if hasMenu(score)
-          el PlayDetailMenu,
-            { score }
+        <TdLink modifiers={{ perfect: score.perfect }}>
+          {`${osu.formatNumber(score.max_combo)}x`}
+        </TdLink>
 
+        {modeAttributesMap[this.props.beatmap.mode].map((stat) => (
+          <TdLink
+            key={stat.attribute}
+            modifiers={{ zero: score.statistics[stat.attribute] === 0 }}
+          >
+            {osu.formatNumber(score.statistics[stat.attribute])}
+          </TdLink>
+        ))}
 
-  tdLink: (props) =>
-    td
-      className: "#{bn}__cell"
-      a
-        className: classWithModifiers("#{bn}__cell-content", props.modifiers)
-        href: props.href ? route('scores.show', mode: @props.score.mode, score: @props.score.best_id)
-        props.children
+        {this.props.showPp &&
+          <TdLink>
+            <PpValue score={score} />
+          </TdLink>
+        }
+
+        <TdLink modifiers='time'>
+          <ScoreboardTime dateTime={score.created_at} />
+        </TdLink>
+
+        <TdLink modifiers='mods'>
+          <div className={`${bn}__mods`}>
+            {score.mods.map((mod) => <Mod key={mod} mod={mod} />)}
+          </div>
+        </TdLink>
+
+        <td className={`${bn}__popup-menu`}>
+          {hasMenu(score) && <PlayDetailMenu score={score} />}
+        </td>
+      </tr>
+    );
+  }
+}

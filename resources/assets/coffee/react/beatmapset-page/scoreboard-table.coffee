@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { ScoreboardTableRow } from './scoreboard-table-row'
+import ScoreboardTableRow from 'beatmapsets-show/scoreboard-table-row'
 import * as React from 'react'
 import { a, div, table, tr, th, thead, tbody } from 'react-dom-factories'
 import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
@@ -57,7 +57,7 @@ export class ScoreboardTable extends React.PureComponent
                 el ScoreboardTableRow,
                   activated: @state.activeKey == index
                   beatmap: @props.beatmap
-                  showPp: showPp
+                  highlightFriends: @props.scoreboardType != 'friend'
                   index: index
                   score: score
-                  scoreboardType: @props.scoreboardType
+                  showPp: showPp
