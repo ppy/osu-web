@@ -18,9 +18,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 {
     protected static $faker;
 
-    protected Beatmapset $beatmapset;
     protected BeatmapDiscussion $discussion;
-    protected User $user;
 
     public static function setUpBeforeClass(): void
     {
@@ -32,7 +30,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
      */
     public function testPutVote(string $beatmapState, int $status, int $change)
     {
-        $this->beatmapset->update(['approved' => Beatmapset::STATES[$beatmapState]]);
+        $this->discussion->beatmapset->update(['approved' => Beatmapset::STATES[$beatmapState]]);
 
         $user = User::factory()->create();
 
@@ -129,7 +127,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
     public function testPostReviewGuest()
     {
         $this
-            ->post(route('beatmapsets.discussion.review', $this->beatmapset->getKey()))
+            ->post(route('beatmapsets.discussion.review', $this->discussion->beatmapset_id))
             ->assertUnauthorized();
     }
 
@@ -137,8 +135,8 @@ class BeatmapDiscussionsControllerTest extends TestCase
     public function testPostReviewDocumentMissing()
     {
         $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.discussion.review', $this->beatmapset->getKey()))
+            ->actingAsVerified($this->discussion->user)
+            ->post(route('beatmapsets.discussion.review', $this->discussion->beatmapset_id))
             ->assertStatus(422);
     }
 
@@ -147,6 +145,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
     // valid document containing issue embeds
     public function testPostReviewDocumentValidWithIssues()
     {
+        $user = $this->discussion->user;
         $discussionCount = BeatmapDiscussion::count();
         $discussionPostCount = BeatmapDiscussionPost::count();
         $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
@@ -159,7 +158,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
                     'discussion_type' => 'problem',
                     'text' => $timestampedIssueText,
                     'timestamp' => true,
-                    'beatmap_id' => $this->beatmapset->beatmaps->first()->getKey(),
+                    'beatmap_id' => $this->discussion->beatmap_id,
                 ],
                 [
                     'type' => 'embed',
@@ -170,14 +169,14 @@ class BeatmapDiscussionsControllerTest extends TestCase
         );
 
         $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.discussion.review', $this->beatmapset->getKey()), [
+            ->actingAsVerified($user)
+            ->post(route('beatmapsets.discussion.review', $this->discussion->beatmapset_id), [
                 'document' => $document,
             ])
             ->assertSuccessful()
             ->assertJsonFragment(
                 [
-                    'user_id' => $this->user->getKey(),
+                    'user_id' => $user->getKey(),
                     'message' => $timestampedIssueText,
                 ]
             )
@@ -189,7 +188,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             )
             ->assertJsonFragment(
                 [
-                    'user_id' => $this->user->getKey(),
+                    'user_id' => $user->getKey(),
                     'message' => $issueText,
                 ]
             );
@@ -241,19 +240,19 @@ class BeatmapDiscussionsControllerTest extends TestCase
         parent::setUp();
 
         $mapper = User::factory()->create();
-        $this->user = User::factory()->create();
-        $this->beatmapset = Beatmapset::factory()->create([
+        $user = User::factory()->create();
+        $beatmapset = Beatmapset::factory()->create([
             'user_id' => $mapper,
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make([
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make([
             'user_id' => $mapper,
         ]));
         $this->discussion = BeatmapDiscussion::factory()->timeline()->create([
-            'beatmapset_id' => $this->beatmapset,
+            'beatmapset_id' => $beatmapset,
             'beatmap_id' => $beatmap,
-            'user_id' => $this->user,
+            'user_id' => $user,
         ]);
     }
 
