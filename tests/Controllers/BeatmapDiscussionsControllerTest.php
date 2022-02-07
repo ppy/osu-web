@@ -77,32 +77,8 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($currentScore, $this->currentScore());
     }
 
-    // changing vote (as BNG) only changes the score
-    public function testPutVoteChangeBNG()
-    {
-        $bngUser = User::factory()->withGroup('bng')->create();
-
-        $this->discussion->vote([
-            'score' => 1,
-            'user_id' => $bngUser->getKey(),
-        ]);
-
-        $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore();
-
-        $this
-            ->actingAsVerified($bngUser)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '-1'],
-            ])
-            ->assertStatus(200);
-
-        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore - 2, $this->currentScore());
-    }
-
     // voting again has no effect
-    public function testPutVoteChange()
+    public function testPutVoteAgain()
     {
         $this->discussion->vote([
             'score' => 1,
@@ -145,45 +121,51 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($currentScore - 1, $this->currentScore());
     }
 
-    private function currentScore()
+    /**
+     * @dataProvider putVoteChangeDataProvider
+     */
+    public function testPutVoteChange(?string $group, int $status, int $scoreChange)
     {
-        return (int) $this->discussion->fresh()->beatmapDiscussionVotes()->sum('score');
-    }
+        $user = User::factory()->withGroup($group)->create();
 
-    // downvote by regular user should fail
-    public function testPutVoteDownChange()
-    {
+        $this->discussion->vote([
+            'score' => 1,
+            'user_id' => $user->getKey(),
+        ]);
+
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore();
 
         $this
-            ->actingAsVerified($this->anotherUser)
+            ->actingAsVerified($user)
             ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
-            ->assertStatus(403);
+            ->assertStatus($status);
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore, $this->currentScore());
+        $this->assertSame($currentScore + $scoreChange, $this->currentScore());
     }
 
-    // downvote by BNG user should NOT fail
-    public function testPutVoteDownChangeBNG()
+    /**
+     * @dataProvider putVoteDownDataProvider
+     */
+    public function testPutVoteDown(?string $group, int $status, int $voteChange, int $scoreChange)
     {
-        $bngUser = User::factory()->withGroup('bng')->create();
+        $user = User::factory()->withGroup($group)->create();
 
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore();
 
         $this
-            ->actingAsVerified($bngUser)
+            ->actingAsVerified($user)
             ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
-            ->assertStatus(200);
+            ->assertStatus($status);
 
-        $this->assertSame($currentVotes + 1, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore - 1, $this->currentScore());
+            $this->assertSame($currentVotes + $voteChange, BeatmapDiscussionVote::count());
+            $this->assertSame($currentScore + $scoreChange, $this->currentScore());
     }
 
     // posting reviews - fail scenarios ----
@@ -262,6 +244,22 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
     }
 
+    public function putVoteChangeDataProvider()
+    {
+        return [
+            'bng can change existing score' => ['bng', 200, -2],
+            'regular user cannot change existing score' => [null, 403, 0],
+        ];
+    }
+
+    public function putVoteDownDataProvider()
+    {
+        return [
+            'bng can downvote' => ['bng', 200, 1, -1],
+            'regular user cannot downvote' => [null, 403, 0, 0],
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -282,5 +280,10 @@ class BeatmapDiscussionsControllerTest extends TestCase
             'beatmap_id' => $beatmap,
             'user_id' => $this->user,
         ]);
+    }
+
+    private function currentScore()
+    {
+        return (int) $this->discussion->fresh()->beatmapDiscussionVotes()->sum('score');
     }
 }
