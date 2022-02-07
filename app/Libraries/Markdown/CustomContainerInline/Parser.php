@@ -28,7 +28,11 @@ class Parser implements DelimiterProcessorInterface
 
     public function getDelimiterUse(DelimiterInterface $opener, DelimiterInterface $closer): int
     {
-        return 2;
+        if ($opener->getLength() >= 2 && $closer->getLength() >= 2) {
+            return 2;
+        }
+
+        return 0;
     }
 
     public function process(AbstractStringContainer $opener, AbstractStringContainer $closer, int $delimiterUse): void

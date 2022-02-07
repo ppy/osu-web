@@ -39,6 +39,8 @@ class Parser extends AbstractBlockContinueParser
     {
         $currentLine = $cursor->getLine();
 
+        // TODO: closing block length is supposed to match opening block length which can be > 3;
+        // what's supposed to happen when they don't match currently is undefined.
         if ($currentLine === ':::') {
             return BlockContinue::finished();
         }
