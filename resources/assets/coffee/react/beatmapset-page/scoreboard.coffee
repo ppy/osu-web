@@ -5,11 +5,11 @@ import { route } from 'laroute'
 import ScoreTop from 'beatmapsets-show/score-top'
 import ScoreboardMod from 'beatmapsets-show/scoreboard-mod'
 import ScoreboardTab from 'beatmapsets-show/scoreboard-tab'
+import ScoreboardTable from 'beatmapsets-show/scoreboard-table'
 import * as React from 'react'
 import { div, h2, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
 import { nextVal } from 'utils/seq'
-import { ScoreboardTable } from './scoreboard-table'
 
 el = React.createElement
 
