@@ -117,8 +117,8 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->putVote($user, '-1')
             ->assertStatus($status);
 
-            $this->assertSame($currentVotes + $voteChange, BeatmapDiscussionVote::count());
-            $this->assertSame($currentScore + $scoreChange, $this->currentScore());
+        $this->assertSame($currentVotes + $voteChange, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore + $scoreChange, $this->currentScore());
     }
 
     // posting reviews - fail scenarios ----
