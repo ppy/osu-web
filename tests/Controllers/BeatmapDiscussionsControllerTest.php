@@ -18,7 +18,6 @@ class BeatmapDiscussionsControllerTest extends TestCase
 {
     protected static $faker;
 
-    protected User $anotherUser;
     protected Beatmapset $beatmapset;
     protected BeatmapDiscussion $discussion;
     protected User $user;
@@ -40,11 +39,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore();
 
-        $this
-            ->actingAsVerified($user)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '1'],
-            ])
+        $this->putVote($user, '1')
             ->assertStatus($status);
 
         $this->assertSame($currentVotes + $change, BeatmapDiscussionVote::count());
@@ -54,19 +49,17 @@ class BeatmapDiscussionsControllerTest extends TestCase
     // voting again has no effect
     public function testPutVoteAgain()
     {
+        $user = User::factory()->create();
+
         $this->discussion->vote([
             'score' => 1,
-            'user_id' => $this->anotherUser->user_id,
+            'user_id' => $user->getKey(),
         ]);
 
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore();
 
-        $this
-            ->actingAsVerified($this->anotherUser)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '1'],
-            ])
+        $this->putVote($user, '1')
             ->assertStatus(200);
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
@@ -80,11 +73,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore();
 
-        $this
-            ->actingAsVerified($user)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '1'],
-            ])
+        $this->putVote($user, '1')
             ->assertStatus(403);
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
@@ -94,19 +83,17 @@ class BeatmapDiscussionsControllerTest extends TestCase
     // voting 0 will remove the vote
     public function testPutVoteRemove()
     {
+        $user = User::factory()->create();
+
         $this->discussion->vote([
             'score' => 1,
-            'user_id' => $this->anotherUser->user_id,
+            'user_id' => $user->getKey(),
         ]);
 
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore();
 
-        $this
-            ->actingAsVerified($this->anotherUser)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '0'],
-            ])
+        $this->putVote($user, '0')
             ->assertStatus(200);
 
         $this->assertSame($currentVotes - 1, BeatmapDiscussionVote::count());
@@ -129,10 +116,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentScore = $this->currentScore();
 
         $this
-            ->actingAsVerified($user)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '-1'],
-            ])
+            ->putVote($user, '-1')
             ->assertStatus($status);
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
@@ -150,10 +134,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentScore = $this->currentScore();
 
         $this
-            ->actingAsVerified($user)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '-1'],
-            ])
+            ->putVote($user, '-1')
             ->assertStatus($status);
 
             $this->assertSame($currentVotes + $voteChange, BeatmapDiscussionVote::count());
@@ -271,7 +252,6 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $mapper = User::factory()->create();
         $this->user = User::factory()->create();
-        $this->anotherUser = User::factory()->create();
         $this->beatmapset = Beatmapset::factory()->create([
             'user_id' => $mapper,
             'discussion_enabled' => true,
@@ -290,5 +270,14 @@ class BeatmapDiscussionsControllerTest extends TestCase
     private function currentScore()
     {
         return (int) $this->discussion->fresh()->beatmapDiscussionVotes()->sum('score');
+    }
+
+    private function putVote(?User $user, string $score)
+    {
+        return $this
+            ->actingAsVerified($user)
+            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
+                'beatmap_discussion_vote' => ['score' => $score],
+            ]);
     }
 }
