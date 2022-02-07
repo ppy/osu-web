@@ -46,8 +46,10 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($currentScore + $change, $this->currentScore());
     }
 
-    // voting again has no effect
-    public function testPutVoteAgain()
+    /**
+     * @dataProvider putVoteAgainDataProvider
+     */
+    public function testPutVoteAgain(string $score, int $change)
     {
         $user = User::factory()->create();
 
@@ -59,11 +61,11 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore();
 
-        $this->putVote($user, '1')
+        $this->putVote($user, $score)
             ->assertStatus(200);
 
-        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore, $this->currentScore());
+        $this->assertSame($currentVotes + $change, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore + $change, $this->currentScore());
     }
 
     // can not vote as discussion starter
@@ -78,26 +80,6 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
         $this->assertSame($currentScore, $this->currentScore());
-    }
-
-    // voting 0 will remove the vote
-    public function testPutVoteRemove()
-    {
-        $user = User::factory()->create();
-
-        $this->discussion->vote([
-            'score' => 1,
-            'user_id' => $user->getKey(),
-        ]);
-
-        $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore();
-
-        $this->putVote($user, '0')
-            ->assertStatus(200);
-
-        $this->assertSame($currentVotes - 1, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore - 1, $this->currentScore());
     }
 
     /**
@@ -227,6 +209,14 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ['approved', 403, 0],
             // TODO: qualified; factory the beatmapset with the correct state instead of using update.
             ['loved', 403, 0],
+        ];
+    }
+
+    public function putVoteAgainDataProvider()
+    {
+        return [
+            'voting again has no effect' => ['1', 0],
+            'voting 0 will remove the vote' => ['0', -1],
         ];
     }
 
