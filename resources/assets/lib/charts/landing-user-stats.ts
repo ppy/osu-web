@@ -1,113 +1,135 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { parseJson } from 'utils/json'
+import * as d3 from 'd3';
+import { maxBy } from 'lodash';
+import { parseJson } from 'utils/json';
 
-class window.LandingUserStats
-  constructor: ->
-    # Define constants
-    @margin =
-      top: 40
-      right: 0
-      bottom: 0
-      left: 0
+interface Datum {
+  x: number;
+  y: number;
+}
 
-    # radius for peak circle
-    @peakR = 5
+const margin = {
+  bottom: 0,
+  left: 0,
+  right: 0,
+  top: 40,
+} as const;
 
-    # Define basic elements
-    @svgContainerOuter = d3
-      .select '.js-landing-graph'
+// radius for peak circle
+const peakR = 5;
 
-    # Clear out previously set graphs
-    @svgContainerOuter.selectAll('svg').remove()
+export default class LandingUserStats {
+  private readonly area: d3.Area<Datum>;
+  private data: Datum[] = [];
+  private height = 0;
+  private maxElem: Datum = { x: 0, y: 0 };
+  private peakTextLength = 0;
+  private readonly scaleX = d3.scaleLinear();
+  private readonly scaleY = d3.scaleTime();
+  private readonly svg: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>;
+  private readonly svgArea: d3.Selection<SVGPathElement, unknown, HTMLElement, unknown>;
+  private readonly svgContainerInner: d3.Selection<SVGSVGElement, unknown, HTMLElement, unknown>;
+  private readonly svgContainerOuter: d3.Selection<d3.BaseType, unknown, HTMLElement, unknown>;
+  private readonly svgPeakCircle: d3.Selection<SVGCircleElement, unknown, HTMLElement, unknown>;
+  private readonly svgPeakText: d3.Selection<SVGTextElement, unknown, HTMLElement, unknown>;
+  private width = 0;
 
-    @svgContainerInner = @svgContainerOuter
-      .append 'svg'
-      .attr 'class', 'landing-graph'
+  constructor() {
+    // Define basic elements
+    this.svgContainerOuter = d3.select('.js-landing-graph');
 
-    @svg = @svgContainerInner
-      .append 'g'
-      # Ensure no blank space at the bottom at certain zoom level in Firefox.
-      .attr 'transform', "translate(#{@margin.left}, #{@margin.top + 1})"
+    // Clear out previously set graphs
+    this.svgContainerOuter.selectAll('svg').remove();
 
-    @svgArea = @svg
-      .append 'path'
-      .attr 'class', 'landing-graph__area'
+    this.svgContainerInner = this.svgContainerOuter
+      .append('svg')
+      .attr('class', 'landing-graph');
 
-    @svgPeakText = @svg
-      .append 'text'
-      .attr 'class', 'landing-graph__text'
-      .attr 'y', (-@peakR * 2)
+    this.svg = this.svgContainerInner
+      .append('g')
+      // Ensure no blank space at the bottom at certain zoom level in Firefox.
+      .attr('transform', `translate(${margin.left}, ${margin.top + 1})`);
 
-    @svgPeakCircle = @svg
-      .append 'circle'
-      .attr 'class', 'landing-graph__circle'
-      .attr 'cy', 0
-      .attr 'r', @peakR
+    this.svgArea = this.svg
+      .append('path')
+      .attr('class', 'landing-graph__area');
 
-    @scaleX = d3.scaleLinear()
-    @scaleY = d3.scaleTime()
+    this.svgPeakText = this.svg
+      .append('text')
+      .attr('class', 'landing-graph__text')
+      .attr('y', (-peakR * 2));
 
-    @area = d3.area()
+    this.svgPeakCircle = this.svg
+      .append('circle')
+      .attr('class', 'landing-graph__circle')
+      .attr('cy', 0)
+      .attr('r', peakR);
+
+    this.area = d3.area<Datum>()
       .curve(d3.curveBasis)
-      .x (d) =>
-        @scaleX d.x
-      .y0 =>
-        @height
-      .y1 (d) =>
-        @scaleY d.y
+      .x((d) => this.scaleX(d.x))
+      .y0(() => this.height)
+      .y1((d) => this.scaleY(d.y));
 
-    # Load initial data
-    @loadData()
+    this.loadData();
+    this.resize();
+  }
 
-    # Render
-    @resize()
+  readonly resize = () => {
+    if (this.data.length === 0) return;
 
+    // set basic dimensions
+    this.width = parseInt(this.svgContainerOuter.style('width'), 10) - margin.left - margin.right;
+    this.height = parseInt(this.svgContainerOuter.style('height'), 10) - margin.top - margin.bottom;
 
-  loadData: =>
-    @data = parseJson('json-stats')
+    // set range of scales
+    this.scaleX.range([0, this.width]);
+    this.scaleY.range([this.height, 0]);
 
-    return if _.isEmpty(@data)
+    // resize svgContainerInner
+    this.svgContainerInner
+      .attr('width', this.width + margin.left + margin.right)
+      .attr('height', this.height + margin.top + margin.bottom);
 
-    @maxElem = _.maxBy @data, (o) -> o.y
+    // resize svgArea
+    this.svgArea
+      .datum(this.data)
+      .attr('d', this.area);
 
-    @scaleX.domain d3.extent(@data, (d) -> d.x)
-    @scaleY.domain [0, d3.max(@data, (d) -> d.y)]
+    // reposition peak circle...
+    this.svgPeakCircle.attr('cx', this.scaleX(this.maxElem.x));
 
-    @svgPeakText
-      .text osu.trans('home.landing.peak', count: osu.formatNumber(@maxElem.y))
-    @peakTextLength = @svgPeakText.node().getComputedTextLength()
+    // ...and its label
+    this.svgPeakText.attr('x', () => {
+      const rightX = this.scaleX(this.maxElem.x) + (peakR * 2);
+      return (this.peakTextLength + rightX) > this.width
+        ? this.scaleX(this.maxElem.x) - (this.peakTextLength + (peakR * 2))
+        : rightX;
+    });
+  };
 
+  private loadData() {
+    this.data = parseJson<Datum[]>('json-stats');
 
-  resize: =>
-    return if _.isEmpty(@data)
+    if (this.data.length === 0) return;
 
-    # set basic dimensions
-    @width = parseInt(@svgContainerOuter.style('width')) - @margin.left - @margin.right
-    @height = parseInt(@svgContainerOuter.style('height')) - @margin.top - @margin.bottom
+    // the null coalesce should be a noop due to length check above
+    this.maxElem = maxBy(this.data, (d) => d.y) ?? this.data[0];
 
-    # set range of scales
-    @scaleX.range [0, @width]
-    @scaleY.range [@height, 0]
+    const scaleXDomain = d3.extent(this.data, (d) => d.x);
+    // again, null coalesce should be a noop due to length check and data being proper
+    this.scaleX.domain([scaleXDomain[0] ?? 0, scaleXDomain[1] ?? 0]);
+    this.scaleY.domain([0, this.maxElem.y]);
 
-    # resize svgContainerInner
-    @svgContainerInner
-      .attr 'width', @width + @margin.left + @margin.right
-      .attr 'height', @height + @margin.top + @margin.bottom
+    this.svgPeakText.text(osu.trans('home.landing.peak', { count: osu.formatNumber(this.maxElem.y) }));
+    const textNode = this.svgPeakText.node();
 
-    # resize svgArea
-    @svgArea
-      .datum @data
-      .attr 'd', @area
-
-    # reposition peak circle...
-    @svgPeakCircle.attr 'cx', @scaleX(@maxElem.x)
-
-    # ...and its label
-    @svgPeakText.attr 'x', =>
-      rightX = @scaleX(@maxElem.x) + (@peakR * 2)
-      if (@peakTextLength + rightX) > @width
-        @scaleX(@maxElem.x) - (@peakTextLength + (@peakR * 2))
-      else
-        rightX
+    if (textNode == null) {
+      // this shouldn't be possible...
+      throw new Error('peak text node is missing');
+    }
+    this.peakTextLength = textNode.getComputedTextLength();
+  }
+}
