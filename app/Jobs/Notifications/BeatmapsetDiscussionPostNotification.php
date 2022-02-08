@@ -49,7 +49,7 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
         $userIds = $this->beatmapsetDiscussionPost->beatmapset->watches()->pluck('user_id');
 
         $discussion = $this->beatmapsetDiscussionPost->beatmapDiscussion;
-        if ($discussion->canBeResolved() && !$discussion->resolved) {
+        if ($discussion->canBeResolved()) {
             $userIds->push($discussion->user_id);
         }
 
