@@ -28,7 +28,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     private BeatmapDiscussionPost $beatmapDiscussionPost;
     private Beatmapset $beatmapset;
     private User $mapper;
-    private Beatmapset $otherBeatmapset;
     private User $user;
 
     public function testPostStoreNewDiscussion()
@@ -82,13 +81,11 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
     public function testPostStoreNewDiscussionInactiveBeatmapset()
     {
-        $this->beatmapset = Beatmapset::factory()->inactive()->create([
-            'user_id' => $this->mapper,
-        ]);
+        $beatmapset = Beatmapset::factory()->owner()->inactive()->create();
 
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'praise'))
+            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($beatmapset, 'praise'))
             ->assertStatus(404);
     }
 
@@ -348,15 +345,17 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
     }
 
-    public function testPostStoreNewDiscussionRequestBeatmapsetDiscussion()
+    public function testPostStoreNewDiscussionRequestBeatmapsetDiscussionDisabled()
     {
+        $beatmapset = Beatmapset::factory()->noDiscussion()->has(Beatmap::factory())->create();
+
         $currentDiscussions = BeatmapDiscussion::count();
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
             ->actingAsVerified($this->user)
             ->post(route('beatmapsets.discussions.posts.store'), [
-                'beatmapset_id' => $this->otherBeatmapset->beatmapset_id,
+                'beatmapset_id' => $beatmapset->getKey(),
                 'beatmap_discussion_post' => [
                     'message' => 'Hello',
                 ],
@@ -892,9 +891,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->mapper = User::factory()->withPlays()->create();
         $this->user = User::factory()->withPlays()->create();
 
-        $this->beatmapset = Beatmapset::factory()->create([
-            'user_id' => $this->mapper,
-        ]);
+        $this->beatmapset = Beatmapset::factory()->owner($this->mapper)->create();
         $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make([
             'user_id' => $this->mapper->getKey(),
         ]));
@@ -907,9 +904,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             'user_id' => $this->user,
         ]);
         $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
-
-        $this->otherBeatmapset = Beatmapset::factory()->noDiscussion()->create();
-        $this->otherBeatmapset->beatmaps()->save(Beatmap::factory()->make());
     }
 
     private function deletePost(BeatmapDiscussionPost $post, ?User $user = null)
