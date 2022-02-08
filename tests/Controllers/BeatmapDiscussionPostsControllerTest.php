@@ -30,25 +30,21 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     private User $mapper;
     private User $user;
 
-    public function testPostStoreNewDiscussion()
+    public function testPostStoreNewDiscussionWithoutMinPlays()
     {
         config()->set('osu.user.post_action_verification', false);
-        $minPlays = config('osu.user.min_plays_for_posting');
+        $user = User::factory()->withPlays(config('osu.user.min_plays_for_posting') - 1)->create();
+        $watcher = User::factory()->create();
+        $this->beatmapset->watches()->create(['user_id' => $watcher->getKey()]);
+        $params = $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'praise');
 
         $currentDiscussions = BeatmapDiscussion::count();
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
         $currentNotifications = Notification::count();
         $currentUserNotifications = UserNotification::count();
 
-        $otherUser = User::factory()->create();
-        $this->beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
-
-        $this->user->statisticsOsu->update(['playcount' => $minPlays - 1]);
-
-        $params = $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'praise');
-
         $this
-            ->be($this->user)
+            ->be($user)
             ->post(route('beatmapsets.discussions.posts.store'), $params)
             ->assertStatus(401)
             ->assertViewIs('users.verify');
@@ -59,22 +55,34 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($currentUserNotifications, UserNotification::count());
 
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+    }
 
-        $this->user->statisticsOsu->update(['playcount' => $minPlays]);
+    public function testPostStoreNewDiscussionWithMinPlays()
+    {
+        config()->set('osu.user.post_action_verification', false);
+        $user = User::factory()->withPlays()->create();
+        $watcher = User::factory()->create();
+        $this->beatmapset->watches()->create(['user_id' => $watcher->getKey()]);
+        $params = $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'praise');
 
         $this
-            ->actingAsVerified($this->user)
+            ->actingAsVerified($user)
             ->post(route('beatmapsets.discussions.posts.store'), $params)
             ->assertStatus(200);
+
+        $currentDiscussions = BeatmapDiscussion::count();
+        $currentDiscussionPosts = BeatmapDiscussionPost::count();
+        $currentNotifications = Notification::count();
+        $currentUserNotifications = UserNotification::count();
 
         $this->assertSame($currentDiscussions + 1, BeatmapDiscussion::count());
         $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
         $this->assertSame($currentNotifications + 1, Notification::count());
         $this->assertSame($currentUserNotifications + 1, UserNotification::count());
 
-        Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($otherUser) {
+        Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($watcher) {
             // assert watchers in receivers and sender is not.
-            return in_array($otherUser->getKey(), $event->getReceiverIds(), true)
+            return in_array($watcher->getKey(), $event->getReceiverIds(), true)
                 && !in_array($this->user->getKey(), $event->getReceiverIds(), true);
         });
     }
