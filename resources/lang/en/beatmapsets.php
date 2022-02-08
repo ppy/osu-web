@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'achieved :when',
             'country' => 'Country Ranking',
+            'error' => 'Failed loading ranking',
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
