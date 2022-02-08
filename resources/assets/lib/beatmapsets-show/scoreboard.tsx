@@ -69,50 +69,82 @@ export default class Scoreboard extends React.PureComponent<Props> {
         }
 
         <div className={classWithModifiers('beatmapset-scoreboard__main', { loading: this.props.loading })}>
-          {this.props.scores.length > 0 ? (
-            <div>
-              <div className='beatmap-scoreboard-top'>
-                <div className='beatmap-scoreboard-top__item'>
-                  <ScoreTop beatmap={this.props.beatmap} position={1} score={this.props.scores[0]} />
-                </div>
-
-                {this.props.userScore != null && this.props.scores[0].user.id !== this.props.userScore.user.id &&
-                  <div className='beatmap-scoreboard-top__item'>
-                    <ScoreTop beatmap={this.props.beatmap} position={this.props.userScorePosition} score={this.props.userScore} />
-                  </div>
-                }
-              </div>
-
-              <ScoreboardTable
-                beatmap={this.props.beatmap}
-                scoreboardType={this.props.type}
-                scores={this.props.scores}
-              />
-            </div>
-          ) : (!this.props.isScoreable ? (
-            <p className='beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'>
-              {osu.trans('beatmapsets.show.scoreboard.no_scores.unranked')}
-            </p>
-          ) : (core.currentUser?.is_supporter || (this.props.type === 'global' && enabledMods.size === 0) ? (
-            <p className='beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'>
-              {osu.trans(`beatmapsets.show.scoreboard.no_scores.${this.props.loading ? 'loading' : this.props.type}`)}
-            </p>
-          ) : (
-            <div className='beatmapset-scoreboard__notice'>
-              <p className='beatmapset-scoreboard__supporter-text'>
-                {osu.trans('beatmapsets.show.scoreboard.supporter-only')}
-              </p>
-
-              <p className='beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'>
-                <StringWithComponent
-                  mappings={{ here: <a href={route('support-the-game')}>{osu.trans('beatmapsets.show.scoreboard.supporter_link.here')}</a> }}
-                  pattern={osu.trans('beatmapsets.show.scoreboard.supporter_link._')}
-                />
-              </p>
-            </div>
-          )))}
+          {this.renderMain()}
         </div>
       </div>
+    );
+  }
+
+  private renderEmptyMessage() {
+    return (
+      <p className='beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'>
+        {osu.trans(`beatmapsets.show.scoreboard.no_scores.${this.props.loading ? 'loading' : this.props.type}`)}
+      </p>
+    );
+  }
+
+  private renderMain() {
+    if (this.props.scores.length > 0) {
+      return this.renderScores();
+    }
+
+    if (!this.props.isScoreable) {
+      return this.renderUnrankedMessage();
+    }
+
+    if (core.currentUser?.is_supporter || (this.props.type === 'global' && this.props.enabledMods.length === 0)) {
+      return this.renderEmptyMessage();
+    }
+
+    return this.renderSupporterOnlyMessage();
+  }
+
+  private renderScores() {
+    return (
+      <div>
+        <div className='beatmap-scoreboard-top'>
+          <div className='beatmap-scoreboard-top__item'>
+            <ScoreTop beatmap={this.props.beatmap} position={1} score={this.props.scores[0]} />
+          </div>
+
+          {this.props.userScore != null && this.props.scores[0].user.id !== this.props.userScore.user.id &&
+            <div className='beatmap-scoreboard-top__item'>
+              <ScoreTop beatmap={this.props.beatmap} position={this.props.userScorePosition} score={this.props.userScore} />
+            </div>
+          }
+        </div>
+
+        <ScoreboardTable
+          beatmap={this.props.beatmap}
+          scoreboardType={this.props.type}
+          scores={this.props.scores}
+        />
+      </div>
+    );
+  }
+
+  private renderSupporterOnlyMessage() {
+    return (
+      <div className='beatmapset-scoreboard__notice'>
+        <p className='beatmapset-scoreboard__supporter-text'>
+          {osu.trans('beatmapsets.show.scoreboard.supporter-only')}
+        </p>
+
+        <p className='beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'>
+          <StringWithComponent
+            mappings={{ here: <a href={route('support-the-game')}>{osu.trans('beatmapsets.show.scoreboard.supporter_link.here')}</a> }}
+            pattern={osu.trans('beatmapsets.show.scoreboard.supporter_link._')}
+          />
+        </p>
+      </div>
+    );
+  }
+
+  private renderUnrankedMessage() {
+    return (
+      <p className='beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'>
+        {osu.trans('beatmapsets.show.scoreboard.no_scores.unranked')}
+      </p>
     );
   }
 }
