@@ -256,34 +256,23 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
     }
 
-    public function testPostStoreNewReplyResolve()
+    /**
+     * @dataProvider postStoreNewReplyResolveDataProvider
+     */
+    public function testPostStoreNewReplyResolve(string $messageType, bool $resolved, bool $expected)
     {
-        // can't change resolve status for praise
-        $this->beatmapDiscussion->update(['message_type' => 'praise']);
+        $this->beatmapDiscussion->update(['message_type' => $messageType]);
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
-        $lastResolved = $this->beatmapDiscussion->fresh()->resolved;
 
         $this
-            ->postResolveDiscussion(false, $this->user)
+            ->postResolveDiscussion($resolved, $this->user)
             ->assertStatus(200);
 
-        // just add single post and no resolved state change
-        $this->assertSame($lastDiscussionPosts + 1, BeatmapDiscussionPost::count());
-        $this->assertSame($lastResolved, $this->beatmapDiscussion->fresh()->resolved);
+        // resolving adds system post
+        $change = $expected ? 2 : 1;
 
-        foreach (['problem', 'suggestion'] as $type) {
-            $this->beatmapDiscussion->update(['message_type' => $type]);
-            $lastDiscussionPosts = BeatmapDiscussionPost::count();
-            $lastResolved = $this->beatmapDiscussion->fresh()->resolved;
-
-            $this
-                ->postResolveDiscussion(!$lastResolved, $this->user)
-                ->assertStatus(200);
-
-            // each resolve adds system post
-            $this->assertSame($lastDiscussionPosts + 2, BeatmapDiscussionPost::count());
-            $this->assertSame(!$lastResolved, $this->beatmapDiscussion->fresh()->resolved);
-        }
+        $this->assertSame($lastDiscussionPosts + $change, BeatmapDiscussionPost::count());
+        $this->assertSame($expected, $this->beatmapDiscussion->fresh()->resolved);
     }
 
     public function testPostStoreNewReplyResolveByMapperOnGuestBeatmap()
@@ -796,6 +785,16 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ['gmt'],
             ['nat'],
             [null],
+        ];
+    }
+
+    public function postStoreNewReplyResolveDataProvider()
+    {
+        return [
+            ['praise', false, false],
+            ['praise', true, false], // resolving discussion that can't be resolved causes no change.
+            ['problem', true, true],
+            ['suggestion', true, true],
         ];
     }
 
