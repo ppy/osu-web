@@ -1,115 +1,118 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { route } from 'laroute'
-import ScoreTop from 'beatmapsets-show/score-top'
-import ScoreboardMod from 'beatmapsets-show/scoreboard-mod'
-import ScoreboardTab from 'beatmapsets-show/scoreboard-tab'
-import ScoreboardTable from 'beatmapsets-show/scoreboard-table'
-import * as React from 'react'
-import { div, h2, p } from 'react-dom-factories'
-import { classWithModifiers } from 'utils/css'
-import { nextVal } from 'utils/seq'
+import StringWithComponent from 'components/string-with-component';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import ScoreJson from 'interfaces/score-json';
+import { route } from 'laroute';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
+import ScoreTop from './score-top';
+import ScoreboardMod from './scoreboard-mod';
+import ScoreboardTab from './scoreboard-tab';
+import ScoreboardTable from './scoreboard-table';
+import ScoreboardType, { scoreboardTypes } from './scoreboard-type';
 
-el = React.createElement
+const defaultMods = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL', 'SO'];
+const osuMods = defaultMods.concat('TD');
+const maniaMods = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', 'MR'];
+const maniaKeyMods = ['4K', '5K', '6K', '7K', '8K', '9K'];
 
-export class Scoreboard extends React.PureComponent
-  DEFAULT_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL', 'SO']
-  OSU_MODS = DEFAULT_MODS.concat('TD')
-  MANIA_KEY_MODS = ['4K', '5K', '6K', '7K', '8K', '9K']
-  MANIA_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', 'MR']
+interface Props {
+  beatmap: BeatmapExtendedJson;
+  enabledMods: string[];
+  isScoreable: boolean;
+  loading: boolean;
+  scores: ScoreJson[];
+  type: ScoreboardType;
+  userScore?: ScoreJson;
+  userScorePosition?: number;
+}
 
-  constructor: (props) ->
-    super props
+export default class Scoreboard extends React.PureComponent<Props> {
+  get mods() {
+    if (this.props.beatmap.mode === 'mania') {
+      if (this.props.beatmap.convert) {
+        return [...maniaMods, ...maniaKeyMods];
+      }
 
-    @eventId = "beatmapsets-show-scoreboard-#{nextVal()}"
-    @state =
-      loading: false
+      return maniaMods;
+    }
 
-  setLoading: (_e, isLoading) =>
-    @setState loading: isLoading
+    if (this.props.beatmap.mode === 'osu') {
+      return osuMods;
+    }
 
-  componentDidMount: ->
-    $.subscribe "beatmapset:scoreboard:loading.#{@eventId}", @setLoading
+    return defaultMods;
+  }
 
-  componentWillUnmount: ->
-    $.unsubscribe ".#{@eventId}"
+  render() {
+    const enabledMods = new Set(this.props.enabledMods);
 
-  render: ->
-    userScoreFound = false
+    return (
+      <div className='beatmapset-scoreboard'>
+        <div className='page-tabs'>
+          {scoreboardTypes.map((type) => (
+            <ScoreboardTab
+              key={type}
+              active={this.props.type === type}
+              type={type}
+            />
+          ))}
+        </div>
 
-    className = 'beatmapset-scoreboard__main'
-    className += ' beatmapset-scoreboard__main--loading' if @props.loading
+        {this.props.isScoreable &&
+          <div className={classWithModifiers('beatmapset-scoreboard__mods', { initial: enabledMods.size === 0 })}>
+            {this.mods.map((mod) => <ScoreboardMod key={mod} enabled={enabledMods.has(mod)} mod={mod} />)}
+          </div>
+        }
 
-    mods = if @props.beatmap.mode == 'mania'
-      if @props.beatmap.convert
-        _.concat(MANIA_MODS, MANIA_KEY_MODS)
-      else
-        MANIA_MODS
+        <div className={classWithModifiers('beatmapset-scoreboard__main', { loading: this.props.loading })}>
+          {this.props.scores.length > 0 ? (
+            <div>
+              <div className='beatmap-scoreboard-top'>
+                <div className='beatmap-scoreboard-top__item'>
+                  <ScoreTop beatmap={this.props.beatmap} position={1} score={this.props.scores[0]} />
+                </div>
 
-    else if @props.beatmap.mode == 'osu'
-      OSU_MODS
-    else
-      DEFAULT_MODS
+                {this.props.userScore != null && this.props.scores[0].user.id !== this.props.userScore.user.id &&
+                  <div className='beatmap-scoreboard-top__item'>
+                    <ScoreTop beatmap={this.props.beatmap} position={this.props.userScorePosition} score={this.props.userScore} />
+                  </div>
+                }
+              </div>
 
-    div className: 'beatmapset-scoreboard',
-      div className: 'page-tabs',
-        for type in ['global', 'country', 'friend']
-          el ScoreboardTab,
-            key: type
-            type: type
-            active: @props.type == type
+              <ScoreboardTable
+                beatmap={this.props.beatmap}
+                scoreboardType={this.props.type}
+                scores={this.props.scores}
+              />
+            </div>
+          ) : (!this.props.isScoreable ? (
+            <p className='beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'>
+              {osu.trans('beatmapsets.show.scoreboard.no_scores.unranked')}
+            </p>
+          ) : (core.currentUser?.is_supporter || (this.props.type === 'global' && enabledMods.size === 0) ? (
+            <p className='beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'>
+              {osu.trans(`beatmapsets.show.scoreboard.no_scores.${this.props.loading ? 'loading' : this.props.type}`)}
+            </p>
+          ) : (
+            <div className='beatmapset-scoreboard__notice'>
+              <p className='beatmapset-scoreboard__supporter-text'>
+                {osu.trans('beatmapsets.show.scoreboard.supporter-only')}
+              </p>
 
-      if @props.isScoreable
-        div
-          className: classWithModifiers('beatmapset-scoreboard__mods', initial: @props.enabledMods.length == 0)
-          for mod in mods
-            el ScoreboardMod,
-              key: mod
-              mod: mod
-              enabled: _.includes @props.enabledMods, mod
-
-      div className: className,
-        if @props.scores.length > 0
-          div {},
-            div className: 'beatmap-scoreboard-top',
-              div className: 'beatmap-scoreboard-top__item',
-                @scoreItem score: @props.scores[0], rank: 1
-
-              if @props.userScore? && @props.scores[0].user.id != @props.userScore.user.id
-                div className: 'beatmap-scoreboard-top__item',
-                  @scoreItem score: @props.userScore, rank: @props.userScorePosition
-
-            el ScoreboardTable,
-              beatmap: @props.beatmap
-              scores: @props.scores
-              scoreboardType: @props.type
-
-        else if !@props.isScoreable
-          p
-            className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'
-            osu.trans 'beatmapsets.show.scoreboard.no_scores.unranked'
-
-        else if currentUser.is_supporter || (@props.type == 'global' && @props.enabledMods.length == 0)
-          translationKey = if @state.loading then 'loading' else @props.type
-
-          p
-            className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'
-            osu.trans "beatmapsets.show.scoreboard.no_scores.#{translationKey}"
-
-        else
-          div className: 'beatmapset-scoreboard__notice',
-            p className: 'beatmapset-scoreboard__supporter-text', osu.trans 'beatmapsets.show.scoreboard.supporter-only'
-
-            p
-              className: 'beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'
-              dangerouslySetInnerHTML:
-                __html: osu.trans 'beatmapsets.show.scoreboard.supporter-link', link: route 'support-the-game'
-
-  scoreItem: ({score, rank, itemClass, modifiers}) ->
-    el ScoreTop,
-      key: rank
-      score: score
-      position: rank
-      beatmap: @props.beatmap
-      modifiers: modifiers
+              <p className='beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'>
+                <StringWithComponent
+                  mappings={{ here: <a href={route('support-the-game')}>{osu.trans('beatmapsets.show.scoreboard.supporter_link.here')}</a> }}
+                  pattern={osu.trans('beatmapsets.show.scoreboard.supporter_link._')}
+                />
+              </p>
+            </div>
+          )))}
+        </div>
+      </div>
+    );
+  }
+}
