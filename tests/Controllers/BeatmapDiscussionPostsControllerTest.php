@@ -33,7 +33,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     /**
      * @dataProvider postStoreNewDiscussionMinPlaysDataProvider
      */
-    public function testPostStoreNewDiscussionMinPlays(?int $minPlays, bool $success)
+    public function testPostStoreNewDiscussionMinPlays(?int $minPlays, bool $verified, bool $success)
     {
         config()->set('osu.user.post_action_verification', false);
         $user = User::factory()->withPlays($minPlays)->create();
@@ -46,7 +46,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $currentNotifications = Notification::count();
         $currentUserNotifications = UserNotification::count();
 
-        $request = $this->be($user)->post(route('beatmapsets.discussions.posts.store'), $params);
+        $this->actAsUser($user, $verified);
+        $request = $this->post(route('beatmapsets.discussions.posts.store'), $params);
 
         if ($success) {
             $request->assertStatus(200);
@@ -794,8 +795,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function postStoreNewDiscussionMinPlaysDataProvider()
     {
         return [
-            [config('osu.user.min_plays_for_posting') - 1, false],
-            [null, true],
+            [config('osu.user.min_plays_for_posting') - 1, false, false],
+            [config('osu.user.min_plays_for_posting') - 1, true, true],
+            [null, false, true],
+            [null, true, true],
         ];
     }
 
