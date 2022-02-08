@@ -14,7 +14,7 @@ const margin = {
   bottom: 0,
   left: 0,
   right: 0,
-  top: 40,
+  top: 40, // space for peak text
 } as const;
 
 // radius for peak circle
