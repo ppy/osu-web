@@ -241,14 +241,9 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $mapper = User::factory()->create();
         $user = User::factory()->create();
-        $beatmapset = Beatmapset::factory()->create([
-            'user_id' => $mapper,
-            'discussion_enabled' => true,
-            'approved' => Beatmapset::STATES['pending'],
-        ]);
-        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make([
-            'user_id' => $mapper,
-        ]));
+        $beatmapset = Beatmapset::factory()->pending()->owner($mapper)->create();
+        // TODO: adding beatmap to beatmapset should probably copy come attributes.
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make(['user_id' => $mapper]));
         $this->discussion = BeatmapDiscussion::factory()->timeline()->create([
             'beatmapset_id' => $beatmapset,
             'beatmap_id' => $beatmap,
