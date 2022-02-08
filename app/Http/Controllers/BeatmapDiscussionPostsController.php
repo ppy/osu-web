@@ -6,14 +6,11 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
-use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
 use App\Libraries\BeatmapsetDiscussionPostsBundle;
 use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\User;
 
@@ -120,47 +117,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         $postParams = get_params($params, 'beatmap_discussion_post', ['message']);
-        $postParams['user_id'] = $user->getKey();
-        $post = new BeatmapDiscussionPost($postParams);
-        $post->beatmapDiscussion()->associate($discussion);
-
-        priv_check('BeatmapDiscussionPostStore', $post)->ensureCan();
-
-        $event = BeatmapsetEvent::getBeatmapsetEventType($discussion, $user);
-        $notifyQualifiedProblem = $discussion->shouldNotifyQualifiedProblem($event);
-
-        $posts = $discussion->getConnection()->transaction(function () use ($discussion, $event, $post, $user) {
-            $discussion->saveOrExplode();
-
-            // done here since discussion may or may not previously exist
-            $post->beatmap_discussion_id = $discussion->getKey();
-            $post->saveOrExplode();
-            $newPosts = [$post];
-
-            switch ($event) {
-                case BeatmapsetEvent::ISSUE_REOPEN:
-                case BeatmapsetEvent::ISSUE_RESOLVE:
-                    $systemPost = BeatmapDiscussionPost::generateLogResolveChange($user, $discussion->resolved);
-                    $systemPost->beatmap_discussion_id = $discussion->getKey();
-                    $systemPost->saveOrExplode();
-                    BeatmapsetEvent::log($event, $user, $post)->saveOrExplode();
-                    $newPosts[] = $systemPost;
-                    break;
-
-                case BeatmapsetEvent::DISQUALIFY:
-                case BeatmapsetEvent::NOMINATION_RESET:
-                    $discussion->beatmapset->disqualifyOrResetNominations($user, $discussion);
-                    break;
-            }
-
-            return $newPosts;
-        });
-
-        if ($notifyQualifiedProblem) {
-            (new BeatmapsetDiscussionQualifiedProblem($post, $user))->dispatch();
-        }
-
-        (new BeatmapsetDiscussionPostNew($post, $user))->dispatch();
+        $posts = $discussion->newDiscussionPost($user, $postParams);
 
         BeatmapsetWatch::markRead($discussion->beatmapset, $user);
 
