@@ -40,7 +40,7 @@ export default class FriendButton extends React.Component<Props> {
 
   @computed
   private get friend() {
-    return core.currentUser?.friends.find((f) => f.target_id === this.props.userId);
+    return core.currentUserModel.friends.get(this.props.userId);
   }
 
   @computed
