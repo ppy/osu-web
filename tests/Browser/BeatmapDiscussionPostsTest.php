@@ -71,14 +71,6 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
             ]);
     }
 
-    protected function createUserCapableOfDiscussing(): User
-    {
-        $user = User::factory()->create();
-        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
-
-        return $user;
-    }
-
     protected function deleteUser(User $user): void
     {
         $user->userProfileCustomization()->forceDelete();
@@ -101,10 +93,8 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
     {
         parent::setUp();
 
-        $this->minPlays = config('osu.user.min_plays_for_posting');
-
-        $this->mapper = $this->createUserCapableOfDiscussing();
-        $this->user = $this->createUserCapableOfDiscussing();
+        $this->mapper = User::factory()->withPlays()->create();
+        $this->user = User::factory()->withPlays()->create();
 
         $this->beatmapset = Beatmapset::factory()->create([
             'user_id' => $this->mapper,
@@ -117,8 +107,8 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
             'beatmap_id' => $this->beatmap,
             'user_id' => $this->user,
         ]);
-        $post = factory(BeatmapDiscussionPost::class)->states('timeline')->make([
-            'user_id' => $this->user->getKey(),
+        $post = BeatmapDiscussionPost::factory()->timeline()->make([
+            'user_id' => $this->user,
         ]);
         $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
 

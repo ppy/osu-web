@@ -409,10 +409,7 @@ class MessagesControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = User::factory()->create();
-        $minPlays = config('osu.user.min_plays_for_posting');
-        $this->user->statisticsOsu()->create(['playcount' => $minPlays]);
-
+        $this->user = User::factory()->withPlays()->create();
         $this->anotherUser = User::factory()->create();
         $this->restrictedUser = User::factory()->restricted()->create();
         $this->silencedUser = User::factory()->silenced()->create();

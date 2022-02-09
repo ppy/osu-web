@@ -5,7 +5,7 @@
 @extends('master', ['titlePrepend' => osu_trans('friends.title_compact')])
 
 @section('content')
-    <div class="js-react--friends-index osu-layout osu-layout--full"></div>
+    <div class="js-react--friends-index"></div>
 @endsection
 
 @section("script")

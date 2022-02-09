@@ -2,11 +2,11 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title'
+import UserAvatar from 'components/user-avatar'
+import UserGroupBadge from 'components/user-group-badge'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, h1, h2, span } from 'react-dom-factories'
-import UserAvatar from 'user-avatar'
-import UserGroupBadge from 'user-group-badge'
 
 el = React.createElement
 

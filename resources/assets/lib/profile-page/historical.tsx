@@ -3,6 +3,7 @@
 
 import LineChart, { makeOptionsDate } from 'charts/line-chart';
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
+import ShowMoreLink from 'components/show-more-link';
 import { curveLinear } from 'd3';
 import { escape, sortBy, times } from 'lodash';
 import { autorun, computed, makeObservable } from 'mobx';
@@ -10,7 +11,6 @@ import { disposeOnUnmount, observer } from 'mobx-react';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import ShowMoreLink from 'show-more-link';
 import { switchNever } from 'utils/switch-never';
 import BeatmapPlaycount from './beatmap-playcount';
 import ExtraHeader from './extra-header';

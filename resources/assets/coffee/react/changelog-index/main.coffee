@@ -1,13 +1,13 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Build } from 'build'
-import { ChangelogHeaderStreams } from 'changelog-header-streams'
-import HeaderV4 from 'header-v4'
+import { Build } from 'components/build'
+import { ChangelogHeaderStreams } from 'components/changelog-header-streams'
+import HeaderV4 from 'components/header-v4'
+import ShowMoreLink from 'components/show-more-link'
 import { route } from 'laroute'
 import * as React from 'react'
 import { button, div, h1, p, span } from 'react-dom-factories'
-import ShowMoreLink from 'show-more-link'
 import { jsonClone } from 'utils/json'
 
 el = React.createElement

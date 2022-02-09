@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import StringWithComponent from 'components/string-with-component';
+import { UserLink } from 'components/user-link';
 import BeatmapPlaycountJson from 'interfaces/beatmap-playcount-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
-import { UserLink } from 'user-link';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 import { showVisual } from 'utils/beatmapset-helper';
 

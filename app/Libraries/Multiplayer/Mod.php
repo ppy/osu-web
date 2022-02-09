@@ -44,6 +44,8 @@ class Mod
     const OSU_CLASSIC = 'CL';
     const OSU_BARRELROLL = 'BR';
     const OSU_APPROACH_DIFFERENT = 'AD';
+    const OSU_AIMASSIST = 'AA';
+    const OSU_ALTERNATE = 'AL';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -60,6 +62,7 @@ class Mod
     const MANIA_FADEIN = 'FI';
     const MANIA_INVERT = 'IN';
     const MANIA_CONSTANTSPEED = 'CS';
+    const MANIA_HOLDOFF = 'HO';
 
     // catch-specific
     const CATCH_FLOATINGFRUIT = 'FF';
@@ -237,6 +240,9 @@ class Mod
         self::HIDDEN => [
             'only_fade_approach_circles' => 'bool',
         ],
+        self::OSU_AIMASSIST => [
+            'assist_strength' => 'float',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
@@ -311,6 +317,8 @@ class Mod
                         self::OSU_APPROACH_DIFFERENT,
                         self::MIRROR,
                         self::NO_SCOPE,
+                        self::OSU_AIMASSIST,
+                        self::OSU_ALTERNATE,
                     ]
                 ),
 
@@ -350,6 +358,7 @@ class Mod
                         self::MANIA_INVERT,
                         self::MANIA_CONSTANTSPEED,
                         self::RANDOM,
+                        self::MANIA_HOLDOFF,
                     ]
                 ),
             ];
@@ -420,6 +429,18 @@ class Mod
                             self::HARDROCK,
                             self::MIRROR,
                         ],
+                        [
+                            self::OSU_AIMASSIST,
+                            self::OSU_AUTOPILOT,
+                        ],
+                        [
+                            self::OSU_AIMASSIST,
+                            self::OSU_WIGGLE,
+                        ],
+                        [
+                            self::OSU_AIMASSIST,
+                            self::OSU_TRANSFORM,
+                        ],
                     ]
                 ),
                 Ruleset::TAIKO => array_merge(
@@ -439,6 +460,10 @@ class Mod
                             self::FLASHLIGHT,
                             self::HIDDEN,
                             self::MANIA_FADEIN,
+                        ],
+                        [
+                            self::MANIA_HOLDOFF,
+                            self::MANIA_INVERT,
                         ],
                     ]
                 ),
