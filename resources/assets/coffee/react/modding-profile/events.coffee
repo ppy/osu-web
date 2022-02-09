@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import DiscussionEvents from 'beatmap-discussions/events'
+import BeatmapsetEvents from 'components/beatmapset-events'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
@@ -17,7 +17,7 @@ export class Events extends React.Component
           div className: 'modding-profile-list__empty', osu.trans('users.show.extra.none')
         else
           el React.Fragment, null,
-            el DiscussionEvents,
+            el BeatmapsetEvents,
               events: @props.events
               mode: 'profile'
               users: @props.users

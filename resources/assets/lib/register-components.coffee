@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import Events from 'beatmap-discussions/events'
+import BeatmapsetEvents from 'components/beatmapset-events'
 import BeatmapsetPanel from 'components/beatmapset-panel'
 import BlockButton from 'components/block-button'
 import ChatIcon from 'components/chat-icon'
@@ -52,7 +52,7 @@ core.reactTurbolinks.register 'beatmap-discussion-events', (container) ->
   props.users = _.keyBy(users, 'id')
   props.users[null] = props.users[undefined] = deletedUser.toJson()
 
-  createElement Events, props
+  createElement BeatmapsetEvents, props
 
 
 core.reactTurbolinks.register 'beatmapset-panel', (container) ->
