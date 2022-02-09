@@ -17,7 +17,7 @@ export class Events extends React.Component
           div className: 'modding-profile-list__empty', osu.trans('users.show.extra.none')
         else
           el React.Fragment, null,
-            el DiscussionEvents,
+            el BeatmapsetEvents,
               events: @props.events
               mode: 'profile'
               users: @props.users
