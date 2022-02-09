@@ -17,19 +17,19 @@ interface Props {
 export class Main extends React.PureComponent<Props> {
   render() {
     return (
-      <div className='osu-layout osu-layout--full'>
+      <>
         <HeaderV4
           backgroundImage={this.props.user.cover.url}
           links={homeLinks('friends.index')}
           theme='friends'
         />
 
-        <div className='osu-page osu-page--users'>
+        <div className='osu-page osu-page--generic-compact'>
           <UserCardTypeContext.Provider value={{isFriendsPage: true}}>
             <UserList users={this.props.friends} />
           </UserCardTypeContext.Provider>
         </div>
-      </div>
+      </>
     );
   }
 }
