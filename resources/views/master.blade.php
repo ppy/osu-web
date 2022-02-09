@@ -81,18 +81,7 @@
         @endif
         <div class="osu-layout__section osu-layout__section--full js-content {{ $currentSection }}_{{ $currentAction }}">
             @include("layout.popup")
-            @if (View::hasSection('content'))
-                @yield('content')
-            @else
-                <div class="osu-layout__row osu-layout__row--page">
-                    <h1 class="text-center">
-                        <span class="dark">{{ $currentSection }}</span>
-                        /
-                        <span class="dark">{{ $currentAction }}</span>
-                        is <span class="normal">now printing</span> <span class="light">♪</span>
-                    </h1>
-                </div>
-            @endif
+            @yield('content')
         </div>
         @if (!isset($blank))
             @include("layout.gallery_window")
