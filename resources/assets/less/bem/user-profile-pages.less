@@ -2,12 +2,21 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .user-profile-pages {
+  --vertical-gutter-top-desktop: 0;
+  --vertical-gutter-top: var(--vertical-gutter);
+  --vertical-gutter: 10px;
+
   position: relative;
   display: grid;
   gap: 10px;
-  padding: 10px 0;
+  grid-template-columns: minmax(0, 1fr);
+  padding: var(--vertical-gutter-top) 0 var(--vertical-gutter);
 
-  &__item {
-    min-width: 0;
+  @media @desktop {
+    --vertical-gutter-top: var(--vertical-gutter-top-desktop);
+  }
+
+  &--no-tabs {
+    --vertical-gutter-top-desktop: var(--vertical-gutter);
   }
 }

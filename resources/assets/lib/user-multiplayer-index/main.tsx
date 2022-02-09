@@ -37,15 +37,12 @@ export default function Main(props: Props) {
 
         <DetailBar user={props.user} />
 
-        <div className='user-profile-pages user-profile-pages--multiplayer-index'>
-          <div className='user-profile-pages__item'>
-            <div className='page-extra'>
-              <h2 className='title title--page-extra'>{osu.trans(`users.show.extra.${props.store.typeGroup}.title`)}</h2>
-              <MultiplayerHistory store={props.store} user={props.user} />
-            </div>
+        <div className='user-profile-pages user-profile-pages--no-tabs'>
+          <div className='page-extra'>
+            <h2 className='title title--page-extra'>{osu.trans(`users.show.extra.${props.store.typeGroup}.title`)}</h2>
+            <MultiplayerHistory store={props.store} user={props.user} />
           </div>
         </div>
-
       </div>
     </UserProfileContainer>
   );
