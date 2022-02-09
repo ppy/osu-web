@@ -18,163 +18,107 @@ class BeatmapDiscussionsControllerTest extends TestCase
 {
     protected static $faker;
 
+    protected BeatmapDiscussion $discussion;
+
     public static function setUpBeforeClass(): void
     {
         self::$faker = Faker\Factory::create();
     }
 
-    // normal vote
-    public function testPutVoteInitial()
+    /**
+     * @dataProvider putVoteDataProvider
+     */
+    public function testPutVote(string $beatmapState, int $status, int $change)
     {
-        // can not vote as discussion starter
-        $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $this->discussion->beatmapset->update(['approved' => Beatmapset::STATES[$beatmapState]]);
 
-        $this
-            ->actingAsVerified($this->user)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '1'],
-            ])
-            ->assertStatus(403);
-
-        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore, $this->currentScore($this->discussion));
-
-        // and then no problem as another user
-        $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
-
-        $this
-            ->actingAs($this->anotherUser)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '1'],
-            ])
-            ->assertStatus(200);
-
-        $this->assertSame($currentVotes + 1, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore + 1, $this->currentScore($this->discussion));
-
-        // can not vote ranked maps
-        $this->beatmapset->update(['approved' => Beatmapset::STATES['ranked']]);
-        $moreUser = User::factory()->create();
+        $user = User::factory()->create();
 
         $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $currentScore = $this->currentScore();
 
-        $this
-            ->actingAs($moreUser)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '1'],
-            ])
-            ->assertStatus(403);
+        $this->putVote($user, '1')
+            ->assertStatus($status);
 
-        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore, $this->currentScore($this->discussion));
+        $this->assertSame($currentVotes + $change, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore + $change, $this->currentScore());
     }
 
-    // changing vote (as BNG) only changes the score
-    public function testPutVoteChangeBNG()
+    /**
+     * @dataProvider putVoteAgainDataProvider
+     */
+    public function testPutVoteAgain(string $score, int $change)
     {
+        $user = User::factory()->create();
+
         $this->discussion->vote([
             'score' => 1,
-            'user_id' => $this->bngUser->user_id,
+            'user_id' => $user->getKey(),
         ]);
 
         $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $currentScore = $this->currentScore();
 
-        $this
-            ->actingAsVerified($this->bngUser)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '-1'],
-            ])
+        $this->putVote($user, $score)
             ->assertStatus(200);
 
-        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore - 2, $this->currentScore($this->discussion));
+        $this->assertSame($currentVotes + $change, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore + $change, $this->currentScore());
     }
 
-    // voting again has no effect
-    public function testPutVoteChange()
+    // can not vote as discussion starter
+    public function testPutVoteSelf()
     {
-        $this->discussion->vote([
-            'score' => 1,
-            'user_id' => $this->anotherUser->user_id,
-        ]);
-
+        $user = $this->discussion->user;
         $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $currentScore = $this->currentScore();
 
-        $this
-            ->actingAsVerified($this->anotherUser)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '1'],
-            ])
-            ->assertStatus(200);
-
-        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore, $this->currentScore($this->discussion));
-    }
-
-    // voting 0 will remove the vote
-    public function testPutVoteRemove()
-    {
-        $this->discussion->vote([
-            'score' => 1,
-            'user_id' => $this->anotherUser->user_id,
-        ]);
-
-        $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
-
-        $this
-            ->actingAsVerified($this->anotherUser)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '0'],
-            ])
-            ->assertStatus(200);
-
-        $this->assertSame($currentVotes - 1, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore - 1, $this->currentScore($this->discussion));
-    }
-
-    private function currentScore($discussion)
-    {
-        return (int) $discussion->fresh()->beatmapDiscussionVotes()->sum('score');
-    }
-
-    // downvote by regular user should fail
-    public function testPutVoteDownChange()
-    {
-        $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
-
-        $this
-            ->actingAsVerified($this->anotherUser)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '-1'],
-            ])
+        $this->putVote($user, '1')
             ->assertStatus(403);
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore, $this->currentScore($this->discussion));
+        $this->assertSame($currentScore, $this->currentScore());
     }
 
-    // downvote by BNG user should NOT fail
-    public function testPutVoteDownChangeBNG()
+    /**
+     * @dataProvider putVoteChangeToDownDataProvider
+     */
+    public function testPutVoteChangeToDown(?string $group, int $status, int $scoreChange)
     {
+        $user = User::factory()->withGroup($group)->create();
+
+        $this->discussion->vote([
+            'score' => 1,
+            'user_id' => $user->getKey(),
+        ]);
+
         $currentVotes = BeatmapDiscussionVote::count();
-        $currentScore = $this->currentScore($this->discussion);
+        $currentScore = $this->currentScore();
 
         $this
-            ->actingAsVerified($this->bngUser)
-            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
-                'beatmap_discussion_vote' => ['score' => '-1'],
-            ])
-            ->assertStatus(200);
+            ->putVote($user, '-1')
+            ->assertStatus($status);
 
-        $this->assertSame($currentVotes + 1, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore - 1, $this->currentScore($this->discussion));
+        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore + $scoreChange, $this->currentScore());
+    }
+
+    /**
+     * @dataProvider putVoteDownDataProvider
+     */
+    public function testPutVoteDown(?string $group, int $status, int $voteChange, int $scoreChange)
+    {
+        $user = User::factory()->withGroup($group)->create();
+
+        $currentVotes = BeatmapDiscussionVote::count();
+        $currentScore = $this->currentScore();
+
+        $this
+            ->putVote($user, '-1')
+            ->assertStatus($status);
+
+        $this->assertSame($currentVotes + $voteChange, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore + $scoreChange, $this->currentScore());
     }
 
     // posting reviews - fail scenarios ----
@@ -183,7 +127,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
     public function testPostReviewGuest()
     {
         $this
-            ->post(route('beatmapsets.discussion.review', $this->beatmapset->getKey()))
+            ->post(route('beatmapsets.discussion.review', $this->discussion->beatmapset_id))
             ->assertUnauthorized();
     }
 
@@ -191,8 +135,8 @@ class BeatmapDiscussionsControllerTest extends TestCase
     public function testPostReviewDocumentMissing()
     {
         $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.discussion.review', $this->beatmapset->getKey()))
+            ->actingAsVerified($this->discussion->user)
+            ->post(route('beatmapsets.discussion.review', $this->discussion->beatmapset_id))
             ->assertStatus(422);
     }
 
@@ -201,6 +145,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
     // valid document containing issue embeds
     public function testPostReviewDocumentValidWithIssues()
     {
+        $user = $this->discussion->user;
         $discussionCount = BeatmapDiscussion::count();
         $discussionPostCount = BeatmapDiscussionPost::count();
         $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
@@ -213,7 +158,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
                     'discussion_type' => 'problem',
                     'text' => $timestampedIssueText,
                     'timestamp' => true,
-                    'beatmap_id' => $this->beatmapset->beatmaps->first()->getKey(),
+                    'beatmap_id' => $this->discussion->beatmap_id,
                 ],
                 [
                     'type' => 'embed',
@@ -224,14 +169,14 @@ class BeatmapDiscussionsControllerTest extends TestCase
         );
 
         $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.discussion.review', $this->beatmapset->getKey()), [
+            ->actingAsVerified($user)
+            ->post(route('beatmapsets.discussion.review', $this->discussion->beatmapset_id), [
                 'document' => $document,
             ])
             ->assertSuccessful()
             ->assertJsonFragment(
                 [
-                    'user_id' => $this->user->getKey(),
+                    'user_id' => $user->getKey(),
                     'message' => $timestampedIssueText,
                 ]
             )
@@ -243,7 +188,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             )
             ->assertJsonFragment(
                 [
-                    'user_id' => $this->user->getKey(),
+                    'user_id' => $user->getKey(),
                     'message' => $issueText,
                 ]
             );
@@ -253,28 +198,70 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
     }
 
+    public function putVoteDataProvider()
+    {
+        return [
+            ['graveyard', 403, 0],
+            ['wip', 200, 1],
+            ['pending', 200, 1],
+            ['ranked', 403, 0],
+            ['approved', 403, 0],
+            // TODO: qualified; factory the beatmapset with the correct state instead of using update.
+            ['loved', 403, 0],
+        ];
+    }
+
+    public function putVoteAgainDataProvider()
+    {
+        return [
+            'voting again has no effect' => ['1', 0],
+            'voting 0 will remove the vote' => ['0', -1],
+        ];
+    }
+
+    public function putVoteChangeToDownDataProvider()
+    {
+        return [
+            'bng can change to down vote' => ['bng', 200, -2],
+            'regular user cannot change to down vote' => [null, 403, 0],
+        ];
+    }
+
+    public function putVoteDownDataProvider()
+    {
+        return [
+            'bng can down vote' => ['bng', 200, 1, -1],
+            'regular user cannot down vote' => [null, 403, 0, 0],
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->mapper = User::factory()->create();
-        $this->user = User::factory()->create();
-        $this->anotherUser = User::factory()->create();
-        $this->bngUser = User::factory()->withGroup('bng')->create();
-        $this->beatmapset = Beatmapset::factory()->create([
-            'user_id' => $this->mapper,
-            'discussion_enabled' => true,
-            'approved' => Beatmapset::STATES['pending'],
+        $mapper = User::factory()->create();
+        $user = User::factory()->create();
+        $beatmapset = Beatmapset::factory()->pending()->owner($mapper)->create();
+        // TODO: adding beatmap to beatmapset should probably copy come attributes.
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make(['user_id' => $mapper]));
+        $this->discussion = BeatmapDiscussion::factory()->timeline()->create([
+            'beatmapset_id' => $beatmapset,
+            'beatmap_id' => $beatmap,
+            'user_id' => $user,
         ]);
-        $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make([
-            'user_id' => $this->mapper,
-        ]));
-        $this->discussion = BeatmapDiscussion::create([
-            'beatmapset_id' => $this->beatmapset->getKey(),
-            'timestamp' => 0,
-            'message_type' => 'problem',
-            'beatmap_id' => $this->beatmap->beatmap_id,
-            'user_id' => $this->user->user_id,
-        ]);
+    }
+
+    private function currentScore()
+    {
+        return (int) $this->discussion->fresh()->beatmapDiscussionVotes()->sum('score');
+    }
+
+    private function putVote(?User $user, string $score)
+    {
+        return $this
+            ->actingAsVerified($user)
+            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
+                'beatmap_discussion_vote' => ['score' => $score],
+            ]);
     }
 }
