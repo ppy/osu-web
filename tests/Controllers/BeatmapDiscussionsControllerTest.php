@@ -81,9 +81,9 @@ class BeatmapDiscussionsControllerTest extends TestCase
     }
 
     /**
-     * @dataProvider putVoteChangeDataProvider
+     * @dataProvider putVoteChangeToDownDataProvider
      */
-    public function testPutVoteChange(?string $group, int $status, int $scoreChange)
+    public function testPutVoteChangeToDown(?string $group, int $status, int $scoreChange)
     {
         $user = User::factory()->withGroup($group)->create();
 
@@ -219,19 +219,19 @@ class BeatmapDiscussionsControllerTest extends TestCase
         ];
     }
 
-    public function putVoteChangeDataProvider()
+    public function putVoteChangeToDownDataProvider()
     {
         return [
-            'bng can change existing score' => ['bng', 200, -2],
-            'regular user cannot change existing score' => [null, 403, 0],
+            'bng can change to down vote' => ['bng', 200, -2],
+            'regular user cannot change to down vote' => [null, 403, 0],
         ];
     }
 
     public function putVoteDownDataProvider()
     {
         return [
-            'bng can downvote' => ['bng', 200, 1, -1],
-            'regular user cannot downvote' => [null, 403, 0, 0],
+            'bng can down vote' => ['bng', 200, 1, -1],
+            'regular user cannot down vote' => [null, 403, 0, 0],
         ];
     }
 
