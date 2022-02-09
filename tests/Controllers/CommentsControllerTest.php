@@ -237,10 +237,9 @@ class CommentsControllerTest extends TestCase
     private function prepareForStore()
     {
         config()->set('osu.user.post_action_verification', false);
-
-        $this->user = User::factory()->create();
         $this->minPlays = config('osu.user.min_plays_for_posting');
-        $this->user->statisticsOsu()->create(['playcount' => $this->minPlays]);
+
+        $this->user = User::factory()->withPlays()->create();
 
         $this->beatmapset = Beatmapset::factory()->create();
 

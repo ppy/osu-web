@@ -3,22 +3,18 @@
 
 
 .medals-group {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -10px;
+  display: grid;
+  gap: 20px;
+
+  @media @desktop {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
 
   &__group {
     .default-border-radius();
-    margin: 10px;
-    padding: 10px;
     display: inline-flex;
     flex-direction: column;
-
-    width: 100%;
-
-    @media @desktop {
-      width: calc(50% - 20px);
-    }
   }
 
   &__medal {

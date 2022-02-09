@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ShowMoreLink from 'components/show-more-link';
 import { route } from 'laroute';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -11,7 +12,6 @@ import NotificationController from 'notifications/notification-controller';
 import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import ShowMoreLink from 'show-more-link';
 import { classWithModifiers } from 'utils/css';
 import Stack from './stack';
 

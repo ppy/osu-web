@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BlockButton from 'components/block-button';
+import { PopupMenu } from 'components/popup-menu';
+import { ReportReportable } from 'components/report-reportable';
 import UserJson from 'interfaces/user-json';
 import core from 'osu-core-singleton';
-import { PopupMenu } from 'popup-menu';
 import * as React from 'react';
-import { ReportReportable } from 'report-reportable';
 
 interface Props {
   user: UserJson;
