@@ -106,7 +106,7 @@ class TestCase extends BaseTestCase
         $this->actAsUserWithToken($token, $driver);
     }
 
-    protected function actAsUser(?User $user, ?bool $verified = null, $driver = null)
+    protected function actAsUser(?User $user, bool $verified = false, $driver = null)
     {
         if ($user === null) {
             return;
@@ -114,9 +114,7 @@ class TestCase extends BaseTestCase
 
         $this->be($user, $driver);
 
-        if ($verified !== null) {
-            $this->withSession(['verified' => $verified]);
-        }
+        $this->withSession(['verified' => $verified]);
     }
 
     /**

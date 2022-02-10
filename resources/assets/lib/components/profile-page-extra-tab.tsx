@@ -22,7 +22,6 @@ export default function ProfilePageExtraTab(props: Props) {
       <span className='fake-bold' data-content={title}>
         {title}
       </span>
-      <span className='page-mode-link__stripe' />
     </span>
   );
 }

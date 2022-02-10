@@ -20,7 +20,7 @@ export class Posts extends React.Component
             for post in @props.posts
               canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(currentUser)
 
-              discussionClasses = 'beatmap-discussion beatmap-discussion--preview'
+              discussionClasses = 'beatmap-discussion beatmap-discussion--preview beatmap-discussion--modding-profile'
 
               if post.deleted_at?
                 discussionClasses += ' beatmap-discussion--deleted'
