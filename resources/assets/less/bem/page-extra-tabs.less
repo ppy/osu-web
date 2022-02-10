@@ -3,14 +3,10 @@
 
 .page-extra-tabs {
   position: sticky;
-  top: @nav2-height--pinned;
+  top: @navbar-height;
   z-index: @z-index--page-extra-tabs;
 
-  @media @mobile {
-    top: @navbar-height;
-  }
-
-  &--profile-page {
-    bottom: -2px; // border of page-mode--profile-page-extra
+  @media @desktop {
+    top: @nav2-height--pinned;
   }
 }
