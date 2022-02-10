@@ -91,7 +91,7 @@ class EsIndexWiki extends Command
     {
         return (new BasicSearch($this->indexName))
             ->query(['match_all' => new \stdClass()])
-            ->sort(new Sort('_id', 'asc'))
+            ->sort([new Sort('path.keyword', 'asc'), new Sort('locale.keyword', 'asc')])
             ->source(false);
     }
 
