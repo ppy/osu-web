@@ -156,8 +156,9 @@ export class Main extends React.PureComponent
               userAchievements: @props.userAchievements
 
             div
-              className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
-              div className: 'osu-page',
+              className: 'osu-page osu-page--generic-compact'
+              div
+                className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
                 div
                   className: 'page-mode page-mode--profile-page-extra'
                   ref: @tabs
@@ -172,15 +173,15 @@ export class Main extends React.PureComponent
                         page: m
                         currentPage: @state.currentPage
 
-            div
-              className: 'user-profile-pages'
-              ref: @pages
-              @extraPage name for name in profileOrder
+              div
+                className: 'user-profile-pages'
+                ref: @pages
+                @extraPage name for name in profileOrder
 
 
   extraPage: (name) =>
     {extraClass, props, component} = @extraPageParams name
-    classes = 'user-profile-pages__item js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
+    classes = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
     classes += " #{extraClass}" if extraClass?
     props.name = name
 

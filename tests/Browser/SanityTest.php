@@ -80,7 +80,6 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['genre'] = \App\Models\Genre::factory()->create();
         self::$scaffolding['language'] = \App\Models\Language::factory()->create();
         self::$scaffolding['beatmapset'] = \App\Models\Beatmapset::factory()->create([
-            'discussion_enabled' => true,
             'genre_id' => self::$scaffolding['genre'],
             'language_id' => self::$scaffolding['language'],
             'user_id' => self::$scaffolding['user'],

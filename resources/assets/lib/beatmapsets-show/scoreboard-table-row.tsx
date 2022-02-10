@@ -20,7 +20,21 @@ const bn = 'beatmap-scoreboard-table';
 
 interface TdLinkProps {
   children?: React.ReactNode;
+  href: string;
   modifiers?: Modifiers;
+}
+
+function TdLink(linkProps: TdLinkProps) {
+  return (
+    <td className={`${bn}__cell`}>
+      <a
+        className={classWithModifiers(`${bn}__cell-content`, linkProps.modifiers)}
+        href={linkProps.href}
+      >
+        {linkProps.children}
+      </a>
+    </td>
+  );
 }
 
 interface Props {
@@ -39,24 +53,6 @@ export default class ScoreboardTableRow extends React.Component<Props> {
     return route('scores.show', { mode: this.props.score.mode, score: this.props.score.best_id });
   }
 
-  @computed
-  get tdLink() {
-    const url = this.scoreUrl;
-
-    return function TdLink(linkProps: TdLinkProps) {
-      return (
-        <td className={`${bn}__cell`}>
-          <a
-            className={classWithModifiers(`${bn}__cell-content`, linkProps.modifiers)}
-            href={url}
-          >
-            {linkProps.children}
-          </a>
-        </td>
-      );
-    };
-  }
-
   constructor(props: Props) {
     super(props);
 
@@ -73,23 +69,22 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         self: score.user.id === core.currentUser?.id,
       },
     );
-    const TdLink = this.tdLink;
 
     return (
       <tr className={blockClass}>
-        <TdLink modifiers='rank'>
+        <TdLink href={this.scoreUrl} modifiers='rank'>
           {`#${this.props.index + 1}`}
         </TdLink>
 
-        <TdLink modifiers='grade'>
+        <TdLink href={this.scoreUrl} modifiers='grade'>
           <div className={classWithModifiers('score-rank', ['tiny', score.rank])} />
         </TdLink>
 
-        <TdLink modifiers='score'>
+        <TdLink href={this.scoreUrl} modifiers='score'>
           {osu.formatNumber(score.score)}
         </TdLink>
 
-        <TdLink modifiers={{ perfect: score.accuracy === 1 }}>
+        <TdLink href={this.scoreUrl} modifiers={{ perfect: score.accuracy === 1 }}>
           {`${osu.formatNumber(score.accuracy * 100, 2)}%`}
         </TdLink>
 
@@ -109,7 +104,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         </td>
 
         {score.user.is_deleted ? (
-          <TdLink>
+          <TdLink href={this.scoreUrl}>
             {osu.trans('users.deleted')}
           </TdLink>
         ) : (
@@ -126,13 +121,14 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           </td>
         )}
 
-        <TdLink modifiers={{ perfect: score.perfect }}>
+        <TdLink href={this.scoreUrl} modifiers={{ perfect: score.perfect }}>
           {`${osu.formatNumber(score.max_combo)}x`}
         </TdLink>
 
         {modeAttributesMap[this.props.beatmap.mode].map((stat) => (
           <TdLink
             key={stat.attribute}
+            href={this.scoreUrl}
             modifiers={{ zero: score.statistics[stat.attribute] === 0 }}
           >
             {osu.formatNumber(score.statistics[stat.attribute])}
@@ -140,16 +136,16 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         ))}
 
         {this.props.showPp &&
-          <TdLink>
+          <TdLink href={this.scoreUrl}>
             <PpValue score={score} />
           </TdLink>
         }
 
-        <TdLink modifiers='time'>
+        <TdLink href={this.scoreUrl} modifiers='time'>
           <ScoreboardTime dateTime={score.created_at} />
         </TdLink>
 
-        <TdLink modifiers='mods'>
+        <TdLink href={this.scoreUrl} modifiers='mods'>
           <div className={`${bn}__mods`}>
             {score.mods.map((mod) => <Mod key={mod} mod={mod} />)}
           </div>
