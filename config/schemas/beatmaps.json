@@ -93,6 +93,9 @@
             }
           }
         },
+        "beatmapset_id": {
+          "type": "long"
+        },
         "bpm": {
           "type": "double"
         },

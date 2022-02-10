@@ -10,6 +10,9 @@
           "type": "text",
           "analyzer": "username_lower"
         },
+        "user_id": {
+          "type": "long"
+        },
         "user_lastvisit": {
           "type": "date",
           "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
