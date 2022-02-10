@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import BigButton from 'big-button'
+import BigButton from 'components/big-button'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, button, div, h1, h2, p } from 'react-dom-factories'

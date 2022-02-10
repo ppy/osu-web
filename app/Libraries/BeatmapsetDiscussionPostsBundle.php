@@ -24,13 +24,12 @@ class BeatmapsetDiscussionPostsBundle extends BeatmapsetDiscussionsBundleBase
 
     public function toArray()
     {
-        return [
+        return array_merge([
             'beatmapsets' => json_collection($this->getBeatmapsets(), new BeatmapsetCompactTransformer()),
             'discussions' => json_collection($this->getDiscussions(), new BeatmapDiscussionTransformer()),
-            'cursor' => $this->getCursor(),
             'posts' => json_collection($this->getPosts(), new BeatmapDiscussionPostTransformer()),
             'users' => json_collection($this->getUsers(), new UserCompactTransformer()),
-        ];
+        ], cursor_for_response($this->getCursor()));
     }
 
     private function getBeatmapsets()

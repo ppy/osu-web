@@ -1,13 +1,13 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import BigButton from 'big-button'
+import BigButton from 'components/big-button'
+import UserAvatar from 'components/user-avatar'
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, form, input, label, span, i } from 'react-dom-factories'
-import UserAvatar from 'user-avatar'
 import { createClickCallback } from 'utils/html'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { MessageLengthCounter } from './message-length-counter'

@@ -301,9 +301,8 @@ return [
                 'recent' => 'Recente',
                 'title' => 'Medalhas',
             ],
-            'multiplayer' => [
-                'title' => 'Jogos multijogador
-',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Publicações',
@@ -312,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Recente',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Baixar Replay',

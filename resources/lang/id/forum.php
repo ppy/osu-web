@@ -32,7 +32,7 @@ return [
         ],
 
         'topics' => [
-            'empty' => 'Topik tidak ditemukan!',
+            'empty' => 'Tidak ada topik apapun!',
         ],
     ],
 
@@ -44,13 +44,13 @@ return [
 
     'post' => [
         'confirm_destroy' => 'Apakah Anda yakin untuk menghapus post ini?',
-        'confirm_restore' => 'Apakah Anda yakin untuk mengembalikan post ini?',
+        'confirm_restore' => 'Apakah Anda yakin untuk memulihkan post ini?',
         'edited' => 'Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.|Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.',
         'posted_at' => 'diposting :when',
         'posted_by' => 'di-post oleh :username',
 
         'actions' => [
-            'destroy' => 'Hapus Kiriman',
+            'destroy' => 'Hapus post',
             'edit' => 'Sunting post',
             'report' => 'Laporkan post',
             'restore' => 'Pulihkan post',
@@ -76,7 +76,7 @@ return [
 
     'topic' => [
         'confirm_destroy' => 'Apakah Anda yakin untuk menghapus topik ini?',
-        'confirm_restore' => 'Apakah Anda yakin untuk mengembalikan topik ini?',
+        'confirm_restore' => 'Apakah Anda yakin untuk memulihkan topik ini?',
         'deleted' => 'topik yang dihapus',
         'go_to_latest' => 'lihat postingan terbaru',
         'has_replied' => 'Anda telah mengirimkan balasan pada topik ini',
@@ -87,13 +87,13 @@ return [
         'new_topic_login' => 'Silakan masuk untuk membuat topik baru',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Ketik di sini untuk membalas',
-        'reply_title_prefix' => 'Re',
+        'reply_title_prefix' => 'Ttg',
         'started_by' => 'oleh :user',
         'started_by_verbose' => 'topik dimulai oleh :user',
 
         'actions' => [
             'destroy' => 'Hapus topik',
-            'restore' => 'Kembalikan topik',
+            'restore' => 'Pulihkan topik',
         ],
 
         'create' => [
@@ -101,26 +101,26 @@ return [
             'preview' => 'Pratinjau',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Ketik',
-            'submit' => 'Post',
+            'preview_hide' => 'Tulis',
+            'submit' => 'Kirim',
 
             'necropost' => [
-                'default' => 'Topik ini sudah tidak aktif untuk sementara waktu. Posting di sini jika Anda memiliki alasan khusus untuk melakukannya.',
+                'default' => 'Topik ini sudah tidak lagi aktif. Harap untuk tidak membuat balasan baru pada topik ini kecuali apabila Anda memiliki alasan khusus untuk melakukannya.',
 
                 'new_topic' => [
-                    '_' => "Topik ini sudah tidak aktif untuk beberapa waktu. Jika Anda tidak memiliki alasan khusus untuk memposting di sini, silakan :create saja.",
+                    '_' => "Topik ini sudah tidak lagi aktif. Apabila Anda tidak memiliki alasan khusus untuk membuat balasan baru pada topik ini, harap :create.",
                     'create' => 'buat topik baru',
                 ],
             ],
 
             'placeholder' => [
-                'body' => 'Ketik konten post di sini',
+                'body' => 'Ketik konten post Anda di sini',
                 'title' => 'Klik di sini untuk mengatur judul',
             ],
         ],
 
         'jump' => [
-            'enter' => 'klik untuk memasukkan nomor tertentu',
+            'enter' => 'klik untuk memasukkan nomor post tertentu',
             'first' => 'tuju postingan pertama',
             'last' => 'tuju postingan terakhir',
             'next' => 'lewati 10 postingan berikutnya',
@@ -187,8 +187,8 @@ return [
             'title_compact' => 'daftar pantauan topik forum',
 
             'box' => [
-                'total' => 'Topik yang dilanggan',
-                'unread' => 'Topik dengan balasan baru',
+                'total' => 'Topik forum yang dipantau',
+                'unread' => 'Topik forum dengan balasan baru',
             ],
 
             'info' => [
@@ -222,22 +222,22 @@ return [
 
             'create_poll_button' => [
                 'add' => 'Buat jajak pendapat',
-                'remove' => 'Batal membuat jajak pendapat',
+                'remove' => 'Batalkan pembuatan jajak pendapat',
             ],
 
             'poll' => [
-                'hide_results' => 'Rahasiakan suara yang masuk ketika polling sedang berjalan.',
-                'hide_results_info' => 'Hasil polling baru akan dapat terlihat ketika waktu pemungutan suara telah berakhir.',
+                'hide_results' => 'Rahasiakan hasil pada saat pemungutan suara sedang berlangsung.',
+                'hide_results_info' => 'Apabila diaktifkan, hasil suara baru akan tersedia setelah jajak pendapat berakhir.',
                 'length' => 'Jalankan jajak pendapat selama',
                 'length_days_suffix' => 'hari',
-                'length_info' => 'Biarkan kosong apabila Anda tidak ingin menerapkan tenggat waktu pada jajak pendapat ini',
+                'length_info' => 'Kosongkan apabila Anda tidak ingin menerapkan tenggat waktu pada jajak pendapat ini',
                 'max_options' => 'Pilihan per pengguna',
-                'max_options_info' => 'Jumlah opsi yang dapat dipilih setiap pengguna saat memilih.',
+                'max_options_info' => 'Jumlah pilihan yang dapat dipilih oleh masing-masing pengguna.',
                 'options' => 'Pilihan',
-                'options_info' => 'Tempatkan setiap opsi pada baris baru. Anda dapat memasukkan hingga 10 opsi.',
+                'options_info' => 'Tempatkan masing-masing pilihan pada baris baru. Anda dapat menyertakan hingga 10 pilihan.',
                 'title' => 'Pertanyaan',
                 'vote_change' => 'Izinkan pemilihan ulang.',
-                'vote_change_info' => 'Jika diaktifkan, pengguna dapat mengubah pilihan mereka.',
+                'vote_change_info' => 'Apabila diaktifkan, para pengguna akan dapat mengubah pilihan mereka.',
             ],
         ],
 
@@ -329,7 +329,7 @@ return [
             'total_posts' => 'Jumlah Post',
 
             'feature_vote' => [
-                'current' => 'Prioritas saat ini: +:count',
+                'current' => 'Prioritas Saat Ini: +:count',
                 'do' => 'Promosikan permintaan ini',
 
                 'info' => [
@@ -346,21 +346,21 @@ return [
             ],
 
             'poll' => [
-                'edit' => 'Sunting jajak pendapat',
-                'edit_warning' => 'Menyunting isi jajak pendapat akan menghilangkan semua hasil yang sudah tercatat sampai saat ini!',
+                'edit' => 'Sunting Jajak Pendapat',
+                'edit_warning' => 'Menyunting jajak pendapat akan menganulir seluruh suara yang telah masuk!',
                 'vote' => 'Pilih',
 
                 'button' => [
                     'change_vote' => 'Ubah suara',
                     'edit' => 'Sunting jajak pendapat',
-                    'view_results' => 'Lewati ke hasil jajak pendapat',
+                    'view_results' => 'Lihat hasil',
                     'vote' => 'Pilih',
                 ],
 
                 'detail' => [
-                    'end_time' => 'Pemilihan akan berakhir :time',
-                    'ended' => 'Pemilihan telah berakhir :time',
-                    'results_hidden' => 'Hasil polling baru akan dapat terlihat ketika waktu pemungutan suara telah berakhir.',
+                    'end_time' => 'Jajak pendapat akan berakhir pada :time',
+                    'ended' => 'Jajak pendapat telah berakhir pada :time',
+                    'results_hidden' => 'Hasil jajak pendapat baru akan tersedia setelah pemungutan suara berakhir.',
                     'total' => 'Jumlah suara: :count',
                 ],
             ],
@@ -368,10 +368,10 @@ return [
 
         'watch' => [
             'to_not_watching' => 'Tidak dimarkahi',
-            'to_watching' => 'Markah',
-            'to_watching_mail' => 'Markah dengan notifikasi',
-            'tooltip_mail_disable' => 'Anda sedang mengaktifkan notifikasi otomatis untuk topik ini. Klik di sini untuk menonaktifkan notifikasi otomatis',
-            'tooltip_mail_enable' => 'Anda sedang tidak mengaktifkan notifikasi otomatis untuk topik ini. Klik di sini untuk mengaktifkan notifikasi otomatis',
+            'to_watching' => 'Markahi',
+            'to_watching_mail' => 'Markahi dengan notifikasi',
+            'tooltip_mail_disable' => 'Notifikasi untuk topik ini sedang tidak aktif. Klik untuk mengaktifkan notifikasi',
+            'tooltip_mail_enable' => 'Notifikasi untuk topik ini sedang tidak aktif. Klik untuk mengaktifkan notifikasi',
         ],
     ],
 ];

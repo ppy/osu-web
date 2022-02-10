@@ -5,10 +5,9 @@
 
 namespace App\Libraries\Markdown;
 
+use App\Libraries\Markdown\CustomContainerInline\Extension as CustomContainerInlineExtension;
 use App\Traits\Memoizes;
 use League\CommonMark\Environment\Environment;
-use League\CommonMark\Event\DocumentParsedEvent;
-use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
@@ -42,6 +41,7 @@ class OsuMarkdown
 
     const DEFAULT_OSU_EXTENSION_CONFIG = [
         'block_name' => 'osu-md',
+        'custom_container_inline' => false,
         'fix_wiki_url' => false,
         'generate_toc' => false,
         'record_first_image' => false,
@@ -55,8 +55,8 @@ class OsuMarkdown
     // this config is only used in this class
     const DEFAULT_OSU_MARKDOWN_CONFIG = [
         'block_modifiers' => [],
+        'enable_autolink' => false,
         'enable_footnote' => false,
-        'parse_attribute_id' => false,
         'parse_yaml_header' => true,
     ];
 
@@ -72,6 +72,7 @@ class OsuMarkdown
         'comment' => [
             'osu_markdown' => [
                 'block_modifiers' => ['comment'],
+                'enable_autolink' => true,
             ],
         ],
         'contest' => [
@@ -118,6 +119,8 @@ class OsuMarkdown
         ],
         'wiki' => [
             'osu_extension' => [
+                'attributes_allowed' => ['flag', 'id'],
+                'custom_container_inline' => true,
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
                 'style_block_allowed_classes' => ['infobox'],
@@ -127,7 +130,6 @@ class OsuMarkdown
             'osu_markdown' => [
                 'block_modifiers' => ['wiki'],
                 'enable_footnote' => true,
-                'parse_attribute_id' => true,
             ],
         ],
     ];
@@ -287,7 +289,7 @@ class OsuMarkdown
     private function getIndexableConverter(): MarkdownConverter
     {
         if ($this->indexableConverter === null) {
-            $environment = $this->createEnvironment();
+            $environment = $this->createEnvironment(['osu_extension' => $this->osuExtensionConfig]);
             $environment->addExtension(new Indexing\Extension());
 
             $this->indexableConverter = new MarkdownConverter($environment);
@@ -302,13 +304,11 @@ class OsuMarkdown
 
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
-        $environment->addExtension(new AutolinkExtension());
         $environment->addExtension(new TableExtension());
         $environment->addExtension(new StrikethroughExtension());
 
-        if ($this->osuMarkdownConfig['parse_attribute_id']) {
-            $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());
-            $environment->addExtension(new AttributesExtension());
+        if ($this->osuExtensionConfig['custom_container_inline']) {
+            $environment->addExtension(new CustomContainerInlineExtension());
         }
 
         if ($this->osuExtensionConfig['style_block_allowed_classes'] !== null) {
@@ -317,6 +317,10 @@ class OsuMarkdown
 
         if ($this->osuMarkdownConfig['enable_footnote']) {
             $environment->addExtension(new FootnoteExtension());
+        }
+
+        if ($this->osuMarkdownConfig['enable_autolink']) {
+            $environment->addExtension(new AutolinkExtension());
         }
 
         return $environment;

@@ -1,33 +1,33 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import Events from 'beatmap-discussions/events'
-import BeatmapsetPanel from 'beatmapset-panel'
-import ChatIcon from 'chat-icon'
-import { Comments } from 'comments'
-import { CommentsManager } from 'comments-manager'
+import BeatmapsetEvents from 'components/beatmapset-events'
+import BeatmapsetPanel from 'components/beatmapset-panel'
 import BlockButton from 'components/block-button'
-import { CountdownTimer } from 'countdown-timer'
-import ForumPostReport from 'forum-post-report'
-import { LandingNews } from 'landing-news'
+import ChatIcon from 'components/chat-icon'
+import { Comments } from 'components/comments'
+import { CommentsManager } from 'components/comments-manager'
+import { CountdownTimer } from 'components/countdown-timer'
+import ForumPostReport from 'components/forum-post-report'
+import { LandingNews } from 'components/landing-news'
+import MainNotificationIcon from 'components/main-notification-icon'
+import MultiplayerSelectOptions from 'components/multiplayer-select-options'
+import QuickSearchButton from 'components/quick-search-button'
+import RankingFilter from 'components/ranking-filter'
+import { SpotlightSelectOptions } from 'components/spotlight-select-options'
+import { UserCard } from 'components/user-card'
+import { UserCardStore } from 'components/user-card-store'
+import { startListening, UserCardTooltip } from 'components/user-card-tooltip'
+import { UserCards } from 'components/user-cards'
+import { WikiSearch } from 'components/wiki-search'
 import { keyBy } from 'lodash'
 import { observable } from 'mobx'
 import { deletedUser } from 'models/user'
-import MainNotificationIcon from 'main-notification-icon'
-import MultiplayerSelectOptions from 'multiplayer-select-options'
 import NotificationWidget from 'notification-widget/main'
 import NotificationWorker from 'notifications/worker'
 import QuickSearch from 'quick-search/main'
-import QuickSearchButton from 'quick-search-button'
 import QuickSearchWorker from 'quick-search/worker'
-import RankingFilter from 'ranking-filter'
 import SocketWorker from 'socket-worker'
-import { SpotlightSelectOptions } from 'spotlight-select-options'
-import { UserCard } from 'user-card'
-import { UserCardStore } from 'user-card-store'
-import { startListening, UserCardTooltip } from 'user-card-tooltip'
-import { UserCards } from 'user-cards'
-import { WikiSearch } from 'wiki-search'
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { parseJson, parseJsonNullable } from 'utils/json'
@@ -52,7 +52,7 @@ core.reactTurbolinks.register 'beatmap-discussion-events', (container) ->
   props.users = _.keyBy(users, 'id')
   props.users[null] = props.users[undefined] = deletedUser.toJson()
 
-  createElement Events, props
+  createElement BeatmapsetEvents, props
 
 
 core.reactTurbolinks.register 'beatmapset-panel', (container) ->

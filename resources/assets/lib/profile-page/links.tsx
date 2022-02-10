@@ -1,15 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import ClickToCopy from 'click-to-copy';
+import ClickToCopy from 'components/click-to-copy';
+import StringWithComponent, { Props as StringWithComponentProps } from 'components/string-with-component';
+import TimeWithTooltip from 'components/time-with-tooltip';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import { compact } from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import StringWithComponent, { Props as StringWithComponentProps } from 'string-with-component';
-import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers } from 'utils/css';
 
 // these are ordered in the order they appear in.

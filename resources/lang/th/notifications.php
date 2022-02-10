@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'ห้องสนทนา',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'ข้อความใหม่',
+
                 'pm' => [
                     'channel_message' => ':username พูดถึง ":title"',
                     'channel_message_compact' => ':title',

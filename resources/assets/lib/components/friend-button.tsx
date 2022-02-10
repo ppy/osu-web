@@ -9,9 +9,9 @@ import { observable, computed, action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { Spinner } from 'spinner';
 import { onErrorWithCallback } from 'utils/ajax';
 import { Modifiers, classWithModifiers } from 'utils/css';
+import { Spinner } from './spinner';
 
 const bn = 'user-action-button';
 
@@ -40,7 +40,7 @@ export default class FriendButton extends React.Component<Props> {
 
   @computed
   private get friend() {
-    return core.currentUser?.friends.find((f) => f.target_id === this.props.userId);
+    return core.currentUserModel.friends.get(this.props.userId);
   }
 
   @computed

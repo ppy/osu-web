@@ -1,7 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import HeaderV4 from 'header-v4';
+import HeaderV4 from 'components/header-v4';
+import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { isModalShowing } from 'modal-helper';
@@ -15,7 +16,6 @@ import headerLinks from 'profile-page/header-links';
 import Links from 'profile-page/links';
 import RankCount from 'profile-page/rank-count';
 import Stats from 'profile-page/stats';
-import ProfileTournamentBanner from 'profile-tournament-banner';
 import * as React from 'react';
 import { nextVal } from 'utils/seq';
 import Controller from './controller';

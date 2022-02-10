@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
+import ShowMoreLink from 'components/show-more-link';
 import ScoreJson, { ScoreCurrentUserPinJson } from 'interfaces/score-json';
 import { action, autorun, computed, makeObservable, observable } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
-import ShowMoreLink from 'show-more-link';
 import { ContainerContext, KeyContext } from 'stateful-activation-context';
 import { classWithModifiers } from 'utils/css';
 import Controller from './controller';

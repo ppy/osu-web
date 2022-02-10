@@ -6,7 +6,7 @@
 return [
     'comment' => [
         'empty' => 'Anda tidak sedang memantau komentar apapun.',
-        'page_title' => 'daftar pantauan komentar',
+        'page_title' => 'komentar yang diikuti',
         'title' => 'komentar',
 
         'table' => [

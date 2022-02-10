@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetCardSize } from 'beatmapset-panel';
-import { ViewMode } from 'user-card';
-import { Filter, SortMode } from 'user-list';
+import { BeatmapsetCardSize } from 'components/beatmapset-panel';
+import { ViewMode } from 'components/user-card';
+import { Filter, SortMode } from 'components/user-list';
 
 export const defaultUserPreferencesJson: UserPreferencesJson = {
   audio_autoplay: false,
