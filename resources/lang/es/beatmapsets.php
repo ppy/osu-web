@@ -175,8 +175,8 @@ return [
                 'own' => 'Tu mejor puntuación',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => '¡Clic :here para ver todas las características de lujo que ofrece!',
+                'here' => 'aquí',
             ],
         ],
 
