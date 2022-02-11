@@ -87,12 +87,12 @@ return [
             '_' => 'Chat',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Nieuwe aankondiging',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username zegt ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Aankondiging van :username',
                 ],
             ],
 

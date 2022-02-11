@@ -174,6 +174,10 @@ return [
                 'first' => 'I Førerpositionen',
                 'own' => 'Dit Bedste',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

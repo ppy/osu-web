@@ -302,7 +302,7 @@ return [
                 'title' => 'Medaglie',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Partite Playlist',
             ],
             'posts' => [
                 'title' => 'Post',
@@ -313,7 +313,7 @@ return [
                 'title' => 'Recenti',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Partite Multigiocatore',
             ],
             'top_ranks' => [
                 'download_replay' => 'Scarica Replay',

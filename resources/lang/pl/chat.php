@@ -9,8 +9,8 @@ return [
     'title_compact' => 'czat',
 
     'cannot_send' => [
-        'channel' => 'Nie możesz wysłać wiadomości na ten kanał z jednego z następujących powodów:',
-        'user' => 'Nie możesz wysłać wiadomości do tego użytkownika z jednego z następujących powodów:',
+        'channel' => 'Nie możesz wysłać wiadomości na ten kanał.',
+        'user' => 'Nie możesz wysłać wiadomości do tego użytkownika.',
     ],
 
     'input' => [

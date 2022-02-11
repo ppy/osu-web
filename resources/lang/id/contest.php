@@ -19,7 +19,7 @@ return [
         'show_voted_only' => 'Tampilkan yang Anda pilih',
 
         'best_of' => [
-            'none_played' => "Tampaknya Anda belum pernah memainkan map-map yang tercatat diikutsertakan dalam kontes ini!",
+            'none_played' => "Tampaknya Anda belum pernah memainkan beatmap yang diikutsertakan dalam kontes ini!",
         ],
 
         'button' => [

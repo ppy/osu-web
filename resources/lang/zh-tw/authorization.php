@@ -63,7 +63,7 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => '',
+        'annnonce_only' => '本頻道僅供發布公告。',
         'blocked' => '無法向封鎖你或被你封鎖的人發送訊息。',
         'friends_only' => '用戶阻止了來自非好友的訊息。',
         'moderated' => '該頻道目前正在被管制中。',

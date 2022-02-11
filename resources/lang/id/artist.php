@@ -51,7 +51,7 @@ return [
                 'artist' => 'Artis',
                 'bpm_gte' => 'BPM Minimal',
                 'bpm_lte' => 'BPM Maksimal',
-                'empty' => 'Tidak ada lagu yang cocok dengan kriteria pencarian Anda.',
+                'empty' => 'Tidak ada lagu yang sesuai dengan kriteria pencarian Anda.',
                 'genre' => 'Aliran',
                 'genre_all' => 'Semua',
                 'length_gte' => 'Durasi Minimal',
