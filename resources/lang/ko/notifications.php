@@ -87,12 +87,12 @@ return [
             '_' => '채팅',
 
             'announcement' => [
-                '_' => '',
+                '_' => '새 공지',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username 님이 ":title" 라고 말합니다',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username 님의 공지',
                 ],
             ],
 

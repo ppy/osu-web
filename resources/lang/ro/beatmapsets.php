@@ -174,6 +174,10 @@ return [
                 'first' => 'În top',
                 'own' => 'Cel mai bun',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

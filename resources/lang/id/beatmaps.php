@@ -253,7 +253,7 @@ return [
     'general' => [
         'converts' => 'Sertakan beatmap convert',
         'featured_artists' => 'Featured artist',
-        'follows' => 'Mapper yang dipantau',
+        'follows' => 'Mapper yang diikuti',
         'recommended' => 'Rentang kesulitan yang disarankan',
     ],
     'mode' => [

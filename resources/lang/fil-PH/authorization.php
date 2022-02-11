@@ -63,12 +63,12 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => '',
+        'annnonce_only' => 'Ang channel na ito ay para sa pang-annunsyo lamang.',
         'blocked' => 'Hindi maaaring i-message ang user na naka-block ka o na-block mo.',
         'friends_only' => 'Ang user na ito ay nagbo-block ng mga messages mula sa mga user na hindi parte ng kanyang friend list.',
         'moderated' => 'Kasalukuyang naka-moderate ang channel na ito.',
         'no_access' => 'Wala kang access sa channel na iyon.',
-        'receive_friends_only' => '',
+        'receive_friends_only' => 'Ang usre na ito ay hindi maari makapag-reply dahil ikaw ay tumatanggap lamang ng mga mensahe galing sa mga taong nasa friends list mo.',
         'restricted' => 'Hindi ka maaaring maka-send ng mga mensahe habang naka-silence, restricted o banned.',
         'silenced' => 'Hindi ka maaaring maka-send ng mga mensahe habang naka-silence, restricted o banned.',
     ],
@@ -170,8 +170,8 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
-            'too_many' => '',
+            'not_owner' => 'Ang may-ari ng score lang ang maaari mag-pin ng score.',
+            'too_many' => 'Masyadong madaming naka-pin na scores.',
         ],
     ],
 

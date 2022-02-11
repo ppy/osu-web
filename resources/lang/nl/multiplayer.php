@@ -5,9 +5,9 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Nog geen osu!(lazer) :type_group spellen gespeeld!',
+        'playlists' => 'afspeellijst',
+        'realtime' => 'multiplayer',
     ],
 
     'room' => [

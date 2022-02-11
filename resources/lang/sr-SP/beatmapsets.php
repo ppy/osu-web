@@ -174,6 +174,10 @@ return [
                 'first' => '',
                 'own' => '',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

@@ -302,7 +302,7 @@ return [
                 'title' => 'Médailles',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Parties avec playlist',
             ],
             'posts' => [
                 'title' => 'Messages',
@@ -313,7 +313,7 @@ return [
                 'title' => 'Activité récente',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Parties multijoueurs',
             ],
             'top_ranks' => [
                 'download_replay' => 'Télécharger le replay',
