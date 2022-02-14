@@ -289,6 +289,6 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         // generic tie-breaker.
-        $this->sorts[] = new Sort('beatmapset_id', $sort->order);
+        $this->sorts[] = new Sort('id', $sort->order);
     }
 }
