@@ -385,17 +385,6 @@ class BeatmapDiscussion extends Model
         ])->saveOrExplode();
     }
 
-    /**
-     * To get the correct result, this should be called before discussions are updated, as it checks the open problems count.
-     */
-    public function shouldNotifyQualifiedProblem(?string $event): bool
-    {
-        return $this->beatmapset->isQualified() && (
-            $event === BeatmapsetEvent::ISSUE_REOPEN
-            || $event === null && !$this->exists && $this->isProblem()
-        ) && $this->beatmapset->beatmapDiscussions()->openProblems()->count() === 0;
-    }
-
     public function fixBeatmapsetId()
     {
         if (!$this->isDirty('beatmap_id') || $this->beatmap === null) {

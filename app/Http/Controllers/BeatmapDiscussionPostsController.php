@@ -9,9 +9,7 @@ use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BeatmapsetDiscussionPostNew;
 use App\Libraries\BeatmapsetDiscussionPostsBundle;
 use App\Libraries\BeatmapsetDiscussionReview;
-use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
-use App\Models\Beatmapset;
 use App\Models\BeatmapsetWatch;
 use App\Models\User;
 

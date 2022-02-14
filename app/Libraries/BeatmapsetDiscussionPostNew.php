@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Libraries;
 
 use App\Jobs\Notifications;
@@ -83,7 +85,7 @@ class BeatmapsetDiscussionPostNew
         priv_check_user($this->user, 'BeatmapDiscussionPostStore', $this->post)->ensureCan();
 
         $event = BeatmapsetEvent::getBeatmapsetEventType($this->discussion, $this->user);
-        $notifyQualifiedProblem = $this->discussion->shouldNotifyQualifiedProblem($event);
+        $notifyQualifiedProblem = $this->shouldNotifyQualifiedProblem($event);
 
         $posts = $this->discussion->getConnection()->transaction(function () use ($event) {
             $this->discussion->saveOrExplode();
@@ -119,5 +121,16 @@ class BeatmapsetDiscussionPostNew
         (new Notifications\BeatmapsetDiscussionPostNew($this->post, $this->user))->dispatch();
 
         return $posts;
+    }
+
+    /**
+     * To get the correct result, this should be called before discussions are updated, as it checks the open problems count.
+     */
+    private function shouldNotifyQualifiedProblem(?string $event): bool
+    {
+        return $this->beatmapset->isQualified() && (
+            $event === BeatmapsetEvent::ISSUE_REOPEN
+            || $event === null && !$this->discussion->exists && $this->discussion->isProblem()
+        ) && $this->beatmapset->beatmapDiscussions()->openProblems()->count() === 0;
     }
 }
