@@ -93,9 +93,6 @@
             }
           }
         },
-        "beatmapset_id": {
-          "type": "long"
-        },
         "bpm": {
           "type": "double"
         },
@@ -151,6 +148,9 @@
           "type": "long"
         },
         "hype": {
+          "type": "long"
+        },
+        "id": {
           "type": "long"
         },
         "language_id": {

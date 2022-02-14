@@ -3,15 +3,15 @@
     "_doc": {
       "dynamic": false,
       "properties": {
+        "id": {
+          "type": "long"
+        },
         "is_old": {
           "type": "boolean"
         },
         "previous_usernames": {
           "type": "text",
           "analyzer": "username_lower"
-        },
-        "user_id": {
-          "type": "long"
         },
         "user_lastvisit": {
           "type": "date",
