@@ -258,55 +258,6 @@ class BeatmapDiscussion extends Model
         return $this->message_type === 'problem';
     }
 
-    /**
-     * @return BeatmapDiscussionPost[]
-     */
-    public function addDiscussionPost(BeatmapDiscussionPost $post, User $user): array
-    {
-        $post->user()->associate($user);
-        $post->beatmapDiscussion()->associate($this);
-
-        priv_check_user($user, 'BeatmapDiscussionPostStore', $post)->ensureCan();
-
-        $event = BeatmapsetEvent::getBeatmapsetEventType($this, $user);
-        $notifyQualifiedProblem = $this->shouldNotifyQualifiedProblem($event);
-
-        $posts = $this->getConnection()->transaction(function () use ($event, $post, $user) {
-            $this->saveOrExplode();
-
-            // done here since discussion may or may not previously exist
-            $post->beatmap_discussion_id = $this->getKey();
-            $post->saveOrExplode();
-            $newPosts = [$post];
-
-            switch ($event) {
-                case BeatmapsetEvent::ISSUE_REOPEN:
-                case BeatmapsetEvent::ISSUE_RESOLVE:
-                    $systemPost = BeatmapDiscussionPost::generateLogResolveChange($user, $this->resolved);
-                    $systemPost->beatmap_discussion_id = $this->getKey();
-                    $systemPost->saveOrExplode();
-                    BeatmapsetEvent::log($event, $user, $post)->saveOrExplode();
-                    $newPosts[] = $systemPost;
-                    break;
-
-                case BeatmapsetEvent::DISQUALIFY:
-                case BeatmapsetEvent::NOMINATION_RESET:
-                    $this->beatmapset->disqualifyOrResetNominations($user, $this);
-                    break;
-            }
-
-            return $newPosts;
-        });
-
-        if ($notifyQualifiedProblem) {
-            (new BeatmapsetDiscussionQualifiedProblem($post, $user))->dispatch();
-        }
-
-        (new BeatmapsetDiscussionPostNew($post, $user))->dispatch();
-
-        return $posts;
-    }
-
     public function refreshKudosu($event, $eventExtraData = [])
     {
         // remove own votes

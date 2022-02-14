@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\BeatmapsetDiscussionPostNew;
 use App\Libraries\BeatmapsetDiscussionPostsBundle;
 use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\BeatmapDiscussion;
@@ -117,7 +118,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         $postParams = get_params($params, 'beatmap_discussion_post', ['message']);
-        $posts = $discussion->addDiscussionPost(new BeatmapDiscussionPost($postParams), $user);
+        $posts = (new BeatmapsetDiscussionPostNew($user, $discussion, $postParams['message']))->handle();
 
         BeatmapsetWatch::markRead($discussion->beatmapset, $user);
 
