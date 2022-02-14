@@ -25,6 +25,58 @@ class BeatmapsetDiscussionPostNew
         $this->post->beatmapDiscussion()->associate($discussion);
     }
 
+    public static function create(User $user, array $params)
+    {
+        $discussion = static::prepareDiscussion($params);
+
+        if (!$discussion->exists) {
+            priv_check('BeatmapDiscussionStore', $discussion)->ensureCan();
+        }
+
+        $postParams = get_params($params, 'beatmap_discussion_post', ['message']);
+
+        return [
+            $discussion,
+            (new static($user, $discussion, $postParams['message']))->handle(),
+        ];
+    }
+
+    private static function prepareDiscussion(array $request): BeatmapDiscussion
+    {
+        $params = get_params($request, null, [
+            'beatmap_discussion_id:int',
+            'beatmapset_id:int',
+        ], ['null_missing' => true]);
+
+        $discussionId = $params['beatmap_discussion_id'];
+
+        if ($discussionId === null) {
+            $beatmapset = Beatmapset
+                ::where('discussion_enabled', true)
+                ->findOrFail($params['beatmapset_id']);
+
+            $discussion = new BeatmapDiscussion([
+                'beatmapset_id' => $beatmapset->getKey(),
+                'user_id' => auth()->user()->getKey(),
+                'resolved' => false,
+            ]);
+
+            $discussionFilters = [
+                'beatmap_id:int',
+                'message_type',
+                'timestamp:int',
+            ];
+        } else {
+            $discussion = BeatmapDiscussion::findOrFail($discussionId);
+            $discussionFilters = ['resolved:bool'];
+        }
+
+        $discussionParams = get_params($request, 'beatmap_discussion', $discussionFilters);
+        $discussion->fill($discussionParams);
+
+        return $discussion;
+    }
+
     /**
      * @return BeatmapDiscussionPost[]
      */

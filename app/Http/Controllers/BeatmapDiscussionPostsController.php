@@ -111,14 +111,8 @@ class BeatmapDiscussionPostsController extends Controller
         /** @var User $user */
         $user = auth()->user();
         $params = request()->all();
-        $discussion = $this->prepareDiscussion($params);
 
-        if (!$discussion->exists) {
-            priv_check('BeatmapDiscussionStore', $discussion)->ensureCan();
-        }
-
-        $postParams = get_params($params, 'beatmap_discussion_post', ['message']);
-        $posts = (new BeatmapsetDiscussionPostNew($user, $discussion, $postParams['message']))->handle();
+        [$discussion, $posts] = BeatmapsetDiscussionPostNew::create($user, $params);
 
         BeatmapsetWatch::markRead($discussion->beatmapset, $user);
 
@@ -151,41 +145,5 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         return $post->beatmapset->defaultDiscussionJson();
-    }
-
-    private function prepareDiscussion(array $request): BeatmapDiscussion
-    {
-        $params = get_params($request, null, [
-            'beatmap_discussion_id:int',
-            'beatmapset_id:int',
-        ], ['null_missing' => true]);
-
-        $discussionId = $params['beatmap_discussion_id'];
-
-        if ($discussionId === null) {
-            $beatmapset = Beatmapset
-                ::where('discussion_enabled', true)
-                ->findOrFail($params['beatmapset_id']);
-
-            $discussion = new BeatmapDiscussion([
-                'beatmapset_id' => $beatmapset->getKey(),
-                'user_id' => auth()->user()->getKey(),
-                'resolved' => false,
-            ]);
-
-            $discussionFilters = [
-                'beatmap_id:int',
-                'message_type',
-                'timestamp:int',
-            ];
-        } else {
-            $discussion = BeatmapDiscussion::findOrFail($discussionId);
-            $discussionFilters = ['resolved:bool'];
-        }
-
-        $discussionParams = get_params($request, 'beatmap_discussion', $discussionFilters);
-        $discussion->fill($discussionParams);
-
-        return $discussion;
     }
 }
