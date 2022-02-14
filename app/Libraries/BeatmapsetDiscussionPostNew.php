@@ -17,7 +17,7 @@ class BeatmapsetDiscussionPostNew
     private BeatmapDiscussionPost $post;
     private Beatmapset $beatmapset;
 
-    public function __construct(private User $user, private BeatmapDiscussion $discussion, private string $message)
+    private function __construct(private User $user, private BeatmapDiscussion $discussion, private string $message)
     {
         $this->beatmapset = $discussion->beatmapset;
         $this->post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $message]);
@@ -27,7 +27,7 @@ class BeatmapsetDiscussionPostNew
 
     public static function create(User $user, array $params)
     {
-        $discussion = static::prepareDiscussion($params);
+        $discussion = static::prepareDiscussion($user, $params);
 
         if (!$discussion->exists) {
             priv_check('BeatmapDiscussionStore', $discussion)->ensureCan();
@@ -41,7 +41,7 @@ class BeatmapsetDiscussionPostNew
         ];
     }
 
-    private static function prepareDiscussion(array $request): BeatmapDiscussion
+    private static function prepareDiscussion(User $user, array $request): BeatmapDiscussion
     {
         $params = get_params($request, null, [
             'beatmap_discussion_id:int',
@@ -55,11 +55,9 @@ class BeatmapsetDiscussionPostNew
                 ::where('discussion_enabled', true)
                 ->findOrFail($params['beatmapset_id']);
 
-            $discussion = new BeatmapDiscussion([
-                'beatmapset_id' => $beatmapset->getKey(),
-                'user_id' => auth()->user()->getKey(),
-                'resolved' => false,
-            ]);
+            $discussion = new BeatmapDiscussion(['resolved' => false]);
+            $discussion->beatmapset()->associate($beatmapset);
+            $discussion->user()->associate($user);
 
             $discussionFilters = [
                 'beatmap_id:int',
