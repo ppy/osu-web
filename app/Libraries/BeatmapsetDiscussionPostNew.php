@@ -16,10 +16,12 @@ use App\Models\User;
 
 class BeatmapsetDiscussionPostNew
 {
-    private BeatmapDiscussionPost $post;
-    private Beatmapset $beatmapset;
+    protected ?BeatmapDiscussion $problemDiscussion = null;
+    protected int $priorOpenProblemCount = 0;
 
-    private ?string $event;
+    private Beatmapset $beatmapset;
+    private BeatmapDiscussionPost $post;
+    private bool $willResolvedChange = false;
 
     private function __construct(private User $user, private BeatmapDiscussion $discussion, private string $message)
     {
@@ -27,6 +29,15 @@ class BeatmapsetDiscussionPostNew
         $this->post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $message]);
         $this->post->user()->associate($user);
         $this->post->beatmapDiscussion()->associate($discussion);
+
+        if ($discussion->message_type === 'problem') {
+            $this->problemDiscussion = $discussion;
+            $this->priorOpenProblemCount = $this->beatmapset->beatmapDiscussions()->openProblems()->count();
+        }
+
+        $this->willResolvedChange = $this->discussion->exists
+            && $this->discussion->canBeResolved()
+            && $this->discussion->isDirty('resolved');
     }
 
     public static function create(User $user, array $params)
@@ -86,9 +97,6 @@ class BeatmapsetDiscussionPostNew
     {
         priv_check_user($this->user, 'BeatmapDiscussionPostStore', $this->post)->ensureCan();
 
-        $this->event = BeatmapsetEvent::getBeatmapsetEventType($this->discussion, $this->user);
-        $notifyQualifiedProblem = $this->shouldNotifyQualifiedProblem();
-
         $posts = $this->discussion->getConnection()->transaction(function () {
             $this->discussion->saveOrExplode();
 
@@ -97,54 +105,85 @@ class BeatmapsetDiscussionPostNew
             $this->post->saveOrExplode();
             $newPosts = [$this->post];
 
-            $systemPost = $this->logEvent();
+            $systemPost = $this->logResolveChange();
             if ($systemPost !== null) {
                 $newPosts[] = $systemPost;
             }
 
-            $this->disqualifyOrResetNominations();
+            $this->handleProblemDiscussion();
 
             return $newPosts;
         });
-
-        if ($notifyQualifiedProblem) {
-            (new Notifications\BeatmapsetDiscussionQualifiedProblem($this->post, $this->user))->dispatch();
-        }
 
         (new Notifications\BeatmapsetDiscussionPostNew($this->post, $this->user))->dispatch();
 
         return $posts;
     }
 
-    private function disqualifyOrResetNominations()
+    protected function handleProblemDiscussion()
     {
-        if (in_array($this->event, [BeatmapsetEvent::DISQUALIFY, BeatmapsetEvent::NOMINATION_RESET], true)) {
-            $this->beatmapset->disqualifyOrResetNominations($this->user, $this->discussion);
+        if ($this->problemDiscussion === null) {
+            return;
+        }
+
+        if ($this->shouldDisqualifyOrResetNominations()) {
+            return $this->beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
+        }
+
+        if ($this->beatmapset->isQualified() && $this->priorOpenProblemCount === 0 && !$this->problemDiscussion->resolved) {
+            (new Notifications\BeatmapsetDiscussionQualifiedProblem(
+                $this->problemDiscussion->startingPost,
+                $this->user
+            ))->dispatch();
         }
     }
 
-    private function logEvent(): ?BeatmapDiscussionPost
+    protected function shouldDisqualifyOrResetNominations(): bool
     {
-        if (!in_array($this->event, [BeatmapsetEvent::ISSUE_REOPEN, BeatmapsetEvent::ISSUE_RESOLVE], true)) {
+        // disqualify or reset nominations requires a new discussion.
+        if (!$this->discussion->wasRecentlyCreated) {
+            return false;
+        }
+
+        $beatmapset = $this->problemDiscussion->beatmapset;
+        if ($beatmapset->isQualified()) {
+            if (priv_check_user($this->user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
+                return true;
+            }
+        }
+
+        if ($beatmapset->isPending()) {
+            if ($beatmapset->hasNominations() && priv_check_user($this->user, 'BeatmapsetResetNominations', $beatmapset)->can()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function logResolveChange(): ?BeatmapDiscussionPost
+    {
+        if ($this->willResolvedChange) {
+            if ($this->discussion->resolved) {
+                priv_check_user($this->user, 'BeatmapDiscussionResolve', $this->discussion)->ensureCan();
+
+                $event = BeatmapsetEvent::ISSUE_RESOLVE;
+            } else {
+                priv_check_user($this->user, 'BeatmapDiscussionReopen', $this->discussion)->ensureCan();
+
+                $event = BeatmapsetEvent::ISSUE_REOPEN;
+            }
+        }
+
+        if (!isset($event)) {
             return null;
         }
 
         $systemPost = BeatmapDiscussionPost::generateLogResolveChange($this->user, $this->discussion->resolved);
         $systemPost->beatmap_discussion_id = $this->discussion->getKey();
         $systemPost->saveOrExplode();
-        BeatmapsetEvent::log($this->event, $this->user, $this->post)->saveOrExplode();
+        BeatmapsetEvent::log($event, $this->user, $this->post)->saveOrExplode();
 
         return $systemPost;
-    }
-
-    /**
-     * To get the correct result, this should be called before discussions are updated, as it checks the open problems count.
-     */
-    private function shouldNotifyQualifiedProblem(): bool
-    {
-        return $this->beatmapset->isQualified() && (
-            $this->event === BeatmapsetEvent::ISSUE_REOPEN
-            || $this->event === null && !$this->discussion->exists && $this->discussion->isProblem()
-        ) && $this->beatmapset->beatmapDiscussions()->openProblems()->count() === 0;
     }
 }
