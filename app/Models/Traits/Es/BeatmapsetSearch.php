@@ -50,7 +50,11 @@ trait BeatmapsetSearch
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
-            $value = $this[$field];
+            $value = match ($field) {
+                'id' => $this->getKey(),
+                default => $this->$field,
+            };
+
             if ($value instanceof Carbon) {
                 $value = $value->toIso8601String();
             }
