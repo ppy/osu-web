@@ -36,7 +36,8 @@
               "analyzer": "whitespace"
             },
             "raw": {
-              "type": "keyword"
+              "type": "keyword",
+              "normalizer": "lowercase"
             }
           },
           "analyzer": "username_lower"
@@ -76,6 +77,12 @@
             "type": "edge_ngram",
             "min_gram": "2",
             "max_gram": "20"
+          }
+        },
+        "normalizer": {
+          "lowercase": {
+            "type": "custom",
+            "filter": ["lowercase"]
           }
         },
         "tokenizer": {
