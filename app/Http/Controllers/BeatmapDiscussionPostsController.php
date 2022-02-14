@@ -117,7 +117,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         $postParams = get_params($params, 'beatmap_discussion_post', ['message']);
-        $posts = $discussion->newDiscussionPost($user, $postParams);
+        $posts = $discussion->addDiscussionPost(new BeatmapDiscussionPost($postParams), $user);
 
         BeatmapsetWatch::markRead($discussion->beatmapset, $user);
 

@@ -261,9 +261,8 @@ class BeatmapDiscussion extends Model
     /**
      * @return BeatmapDiscussionPost[]
      */
-    public function newDiscussionPost(User $user, array $params): array
+    public function addDiscussionPost(BeatmapDiscussionPost $post, User $user): array
     {
-        $post = new BeatmapDiscussionPost($params);
         $post->user()->associate($user);
         $post->beatmapDiscussion()->associate($this);
 
