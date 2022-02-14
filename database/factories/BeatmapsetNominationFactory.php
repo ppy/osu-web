@@ -7,7 +7,6 @@ namespace Database\Factories;
 
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetNomination;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BeatmapsetNominationFactory extends Factory
 {

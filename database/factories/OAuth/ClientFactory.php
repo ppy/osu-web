@@ -9,7 +9,7 @@ namespace Database\Factories\OAuth;
 
 use App\Models\OAuth\Client;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Database\Factories\Factory;
 
 class ClientFactory extends Factory
 {
