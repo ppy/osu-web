@@ -87,12 +87,12 @@ return [
             '_' => 'Chat',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Nuevo anuncio',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username dice ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Anuncio de :username',
                 ],
             ],
 

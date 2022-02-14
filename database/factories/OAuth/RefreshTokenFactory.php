@@ -8,7 +8,7 @@ declare(strict_types=1);
 namespace Database\Factories\OAuth;
 
 use App\Models\OAuth\Token;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Database\Factories\Factory;
 use Laravel\Passport\RefreshToken;
 
 class RefreshTokenFactory extends Factory

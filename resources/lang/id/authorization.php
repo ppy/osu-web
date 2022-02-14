@@ -63,7 +63,7 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => '',
+        'annnonce_only' => 'Kanal ini hanya dikhususkan untuk pengumuman.',
         'blocked' => 'Tidak dapat mengirim pesan kepada pengguna yang diblokir atau memblokir Anda.',
         'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak dalam daftar temannya.',
         'moderated' => 'Channel ini sedang dimoderasi.',
@@ -149,7 +149,7 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang hendak Anda tuju.',
             ],
         ],
 
