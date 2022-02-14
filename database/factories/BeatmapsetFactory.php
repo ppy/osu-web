@@ -11,7 +11,6 @@ use App\Models\Beatmapset;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BeatmapsetFactory extends Factory
 {

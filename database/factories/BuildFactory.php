@@ -7,7 +7,6 @@ namespace Database\Factories;
 
 use App\Models\Build;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BuildFactory extends Factory
 {

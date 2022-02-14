@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Database\Factories\UserStatistics;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Database\Factories\Factory;
 
 abstract class ModelFactory extends Factory
 {
