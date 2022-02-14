@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Reset Nomination',
             'praise' => 'Praise',
             'problem' => 'Problem',
+            'problem_warning' => 'Report Problem',
             'review' => 'Review',
             'suggestion' => 'Suggestion',
         ],
@@ -210,6 +211,7 @@ return [
         'reset_confirm' => [
             'nomination_reset' => 'Are you sure? Posting a new problem will reset the nomination process.',
             'disqualify' => 'Are you sure? This will remove the beatmap from qualifying and reset the nomination process.',
+            'problem_warning' => 'Are you sure to report issue on this beatmap? This will alert Beatmap Nominators.',
         ],
     ],
 
