@@ -5,9 +5,9 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Nenhuma partida :type_group no osu!(laer) foi jogada ainda!',
+        'playlists' => 'seleção de música',
+        'realtime' => 'multiplayer',
     ],
 
     'room' => [
@@ -18,7 +18,7 @@ return [
         'time_left' => ':time restante',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'A duração é muito longa.',
         ],
 
         'status' => [

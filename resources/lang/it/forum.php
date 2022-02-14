@@ -132,27 +132,27 @@ return [
             'button' => '',
 
             'columns' => [
-                'action' => '',
-                'date' => '',
-                'user' => '',
+                'action' => 'Azione',
+                'date' => 'Data',
+                'user' => 'Utente',
             ],
 
             'data' => [
-                'add_tag' => '',
-                'announcement' => '',
-                'edit_topic' => '',
+                'add_tag' => 'aggiunto il tag ":tag"',
+                'announcement' => 'argomento fissato e segnato come annuncio',
+                'edit_topic' => 'a :title',
                 'fork' => 'da :topic',
                 'pin' => 'argomento fissato',
                 'post_operation' => 'postato da :username',
                 'remove_tag' => 'rimosso il tag ":tag"',
-                'source_forum_operation' => '',
+                'source_forum_operation' => 'da :forum',
                 'unpin' => '',
             ],
 
             'no_results' => '',
 
             'operations' => [
-                'delete_post' => '',
+                'delete_post' => 'Post cancellato',
                 'delete_topic' => '',
                 'edit_topic' => 'Titolo dell\'argomento modificato',
                 'edit_poll' => '',
@@ -168,7 +168,7 @@ return [
                 'split_destination' => '',
                 'split_source' => '',
                 'topic_type' => '',
-                'topic_type_changed' => '',
+                'topic_type_changed' => 'Tipo del topic modificato',
                 'unlock' => 'Argomento sbloccato',
                 'unpin' => 'Argomento fissato rimosso',
                 'user_lock' => 'Argomento personale chiuso',

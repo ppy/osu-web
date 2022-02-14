@@ -174,6 +174,10 @@ return [
                 'first' => 'Az élen',
                 'own' => 'A legjobbad',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

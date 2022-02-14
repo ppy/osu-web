@@ -154,7 +154,7 @@ return [
                 'combo' => 'Pinakamahabang Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
-                'pin' => '',
+                'pin' => 'Pin',
                 'player' => 'Manlalaro',
                 'pp' => '',
                 'rank' => 'Rank',
@@ -173,6 +173,10 @@ return [
             'score' => [
                 'first' => 'Nangunguna',
                 'own' => 'Iyong Best',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

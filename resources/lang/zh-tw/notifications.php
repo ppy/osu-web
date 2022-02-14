@@ -87,12 +87,12 @@ return [
             '_' => '聊天',
 
             'announcement' => [
-                '_' => '',
+                '_' => '新增公告',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username 發表了「:title」',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username 發布的公告',
                 ],
             ],
 

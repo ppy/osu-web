@@ -46,8 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'playlists' => '',
-            'realtime' => '',
+            'playlists' => 'playlist',
+            'realtime' => 'multiplayer',
             'show' => 'info',
         ],
     ],
@@ -188,7 +188,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Pengaturan',
-            'follows' => 'Daftar Pantauan',
+            'follows' => 'Daftar Pengamatan',
             'friends' => 'Teman',
             'logout' => 'Keluar',
             'profile' => 'Profil Saya',

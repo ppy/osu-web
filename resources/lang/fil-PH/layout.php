@@ -46,8 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'playlists' => '',
-            'realtime' => '',
+            'playlists' => 'mga playlist',
+            'realtime' => 'multiplayer',
             'show' => 'info',
         ],
     ],

@@ -174,6 +174,10 @@ return [
                 'first' => '순위권',
                 'own' => '내 최고 점수',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [
