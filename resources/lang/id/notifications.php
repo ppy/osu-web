@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => 'Semua notifikasi telah dibaca!',
+    'all_read' => 'Seluruh notifikasi telah dibaca!',
     'delete' => 'Hapus :type',
     'loading' => 'Memuat notifikasi-notifikasi yang belum dibaca...',
     'mark_read' => 'Hapus :type',
@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Pengumuman baru',
+
+                'announce' => [
+                    'channel_announcement' => ':username mengatakan ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Pengumuman dari :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Pesan Baru',
+
                 'pm' => [
                     'channel_message' => ':username mengatakan ":title"',
                     'channel_message_compact' => ':title',
@@ -126,7 +137,7 @@ return [
             '_' => 'Topik forum',
 
             'forum_topic_reply' => [
-                '_' => 'Balasan baru pada thread forum',
+                '_' => 'Balasan baru pada topik forum',
                 'forum_topic_reply' => ':username membalas postingan Anda pada utas forum ":title"',
                 'forum_topic_reply_compact' => ':username membalas postingan Anda',
             ],

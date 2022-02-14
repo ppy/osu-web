@@ -154,7 +154,7 @@ return [
                 'combo' => 'Combo Massima',
                 'miss' => 'Miss',
                 'mods' => 'Mod',
-                'pin' => '',
+                'pin' => 'Fissa',
                 'player' => 'Giocatore',
                 'pp' => '',
                 'rank' => 'Posto',
@@ -173,6 +173,10 @@ return [
             'score' => [
                 'first' => 'In testa',
                 'own' => 'Il tuo miglior punteggio',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

@@ -154,7 +154,7 @@ return [
                 'combo' => 'Combo max',
                 'miss' => 'Manqué',
                 'mods' => 'Mods',
-                'pin' => '',
+                'pin' => 'Épingler',
                 'player' => 'Joueur',
                 'pp' => '',
                 'rank' => 'Rang',
@@ -173,6 +173,10 @@ return [
             'score' => [
                 'first' => 'En Tête',
                 'own' => 'Votre meilleur score',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

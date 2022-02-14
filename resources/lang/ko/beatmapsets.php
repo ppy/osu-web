@@ -154,7 +154,7 @@ return [
                 'combo' => '최대 콤보',
                 'miss' => 'Miss',
                 'mods' => '모드',
-                'pin' => '',
+                'pin' => '고정',
                 'player' => '플레이어',
                 'pp' => '',
                 'rank' => '순위',
@@ -173,6 +173,10 @@ return [
             'score' => [
                 'first' => '순위권',
                 'own' => '내 최고 점수',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

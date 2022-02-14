@@ -301,8 +301,8 @@ return [
                 'recent' => 'آخرین',
                 'title' => 'مدال ها',
             ],
-            'multiplayer' => [
-                'title' => 'بازی های چندنفره',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'پست ها',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'اخیر',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'دانلود بازپخش',

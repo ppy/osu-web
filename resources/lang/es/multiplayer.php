@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => '¡Aún no hay partidas multijugador de osu!(lazer) jugadas!',
+    'empty' => [
+        '_' => '¡Aún no se ha jugado ninguna partida de :type_group en osu!(lazer)!',
+        'playlists' => 'lista de juego',
+        'realtime' => 'multijugador',
+    ],
 
     'room' => [
         'hosted_by' => 'alojado por :user',

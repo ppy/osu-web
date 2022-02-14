@@ -63,11 +63,12 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '本頻道僅供發布公告。',
         'blocked' => '無法向封鎖你或被你封鎖的人發送訊息。',
         'friends_only' => '用戶阻止了來自非好友的訊息。',
         'moderated' => '該頻道目前正在被管制中。',
         'no_access' => '你沒有權限訪問該頻道。',
-        'receive_friends_only' => '',
+        'receive_friends_only' => '由於您只接受好友訊息，故使用者可能無法回應。',
         'restricted' => '你不能在帳戶被禁言、限制或封鎖的時候發送訊息。',
         'silenced' => '你不能在帳戶被禁言、限制或封鎖的時候傳送訊息。',
     ],
@@ -169,8 +170,8 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
-            'too_many' => '',
+            'not_owner' => '只有擁有者才可置頂成績。',
+            'too_many' => '置頂過多成績。',
         ],
     ],
 

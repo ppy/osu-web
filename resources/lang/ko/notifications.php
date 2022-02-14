@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => '채팅',
 
+            'announcement' => [
+                '_' => '새 공지',
+
+                'announce' => [
+                    'channel_announcement' => ':username 님이 ":title" 라고 말합니다',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username 님의 공지',
+                ],
+            ],
+
             'channel' => [
                 '_' => '새 메시지',
+
                 'pm' => [
                     'channel_message' => ':username 님이 ":title" 라고 하셨습니다.',
                     'channel_message_compact' => ':title',

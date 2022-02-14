@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Bagong anunsyo',
+
+                'announce' => [
+                    'channel_announcement' => 'sabi ni :username ay ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Anunsyo galing kay :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Bagong mensahe',
+
                 'pm' => [
                     'channel_message' => '":title", sabi ni :username',
                     'channel_message_compact' => ':title',

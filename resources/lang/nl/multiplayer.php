@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Nog geen osu!(lazer) multiplayerspellen gespeeld!',
+    'empty' => [
+        '_' => 'Nog geen osu!(lazer) :type_group spellen gespeeld!',
+        'playlists' => 'afspeellijst',
+        'realtime' => 'multiplayer',
+    ],
 
     'room' => [
         'hosted_by' => 'gehost door :user',
@@ -14,7 +18,7 @@ return [
         'time_left' => ':time resterend',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Tijdsduur te lang.',
         ],
 
         'status' => [

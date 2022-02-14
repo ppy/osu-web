@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Build } from 'build'
-import { ChangelogHeaderStreams } from 'changelog-header-streams'
-import { Comments } from 'comments'
-import { CommentsManager } from 'comments-manager'
-import HeaderV4 from 'header-v4'
+import { Build } from 'components/build'
+import { ChangelogHeaderStreams } from 'components/changelog-header-streams'
+import { Comments } from 'components/comments'
+import { CommentsManager } from 'components/comments-manager'
+import HeaderV4 from 'components/header-v4'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, h1, h2, i, li, ol, p, span } from 'react-dom-factories'

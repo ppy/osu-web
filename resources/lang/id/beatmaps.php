@@ -28,7 +28,7 @@ return [
         'reply_placeholder' => 'Ketik balasan Anda di sini',
         'require-login' => 'Silakan masuk untuk membuka topik bahasan baru atau mengirimkan balasan',
         'resolved' => 'Terjawab',
-        'restore' => 'kembalikan',
+        'restore' => 'pulihkan',
         'show_deleted' => 'Tampilkan yang telah dihapus',
         'title' => 'Diskusi',
 
@@ -227,7 +227,7 @@ return [
                 'genre' => 'Aliran',
                 'language' => 'Bahasa',
                 'mode' => 'Mode',
-                'nsfw' => 'Map-Map Berkonten Eksplisit',
+                'nsfw' => 'Beatmap Berkonten Eksplisit',
                 'played' => 'Riwayat Permainan',
                 'rank' => 'Torehan Peringkat',
                 'status' => 'Status',
@@ -251,9 +251,9 @@ return [
         ],
     ],
     'general' => [
-        'converts' => 'Sertakan map-map convert',
+        'converts' => 'Sertakan beatmap convert',
         'featured_artists' => 'Featured artist',
-        'follows' => 'Tampilkan hanya mapper-mapper yang dipantau',
+        'follows' => 'Mapper yang diikuti',
         'recommended' => 'Rentang kesulitan yang disarankan',
     ],
     'mode' => [

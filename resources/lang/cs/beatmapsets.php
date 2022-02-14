@@ -174,6 +174,10 @@ return [
                 'first' => 'V čele',
                 'own' => 'Vaše nejlepší',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

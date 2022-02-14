@@ -303,7 +303,7 @@ return [
                 'recent' => 'אחרון',
                 'title' => 'מדליות',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -313,6 +313,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'אחרון',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'הורד שידור חוזר',

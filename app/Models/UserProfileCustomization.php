@@ -6,7 +6,7 @@
 namespace App\Models;
 
 use App\Libraries\ProfileCover;
-use App\Traits\Memoizes;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
 /**
  * @property array|null $cover_json
@@ -18,8 +18,6 @@ use App\Traits\Memoizes;
  */
 class UserProfileCustomization extends Model
 {
-    use Memoizes;
-
     /**
      * An array of all possible profile sections, also in their default order.
      */
@@ -45,7 +43,7 @@ class UserProfileCustomization extends Model
 
     protected $casts = [
         'cover_json' => 'array',
-        'options' => 'array',
+        'options' => AsArrayObject::class,
     ];
 
     private $cover;
@@ -84,49 +82,37 @@ class UserProfileCustomization extends Model
 
     public function getAudioAutoplayAttribute()
     {
-        return $this->getOptions()['audio_autoplay'] ?? false;
+        return $this->options['audio_autoplay'] ?? false;
     }
 
     public function setAudioAutoplayAttribute($value)
     {
-        if (!is_bool($value)) {
-            $value = null;
-        }
-
-        $this->setOption('audio_autoplay', $value);
+        $this->setOption('audio_autoplay', get_bool($value));
     }
 
     public function getAudioMutedAttribute()
     {
-        return $this->getOptions()['audio_muted'] ?? false;
+        return $this->options['audio_muted'] ?? false;
     }
 
     public function setAudioMutedAttribute($value)
     {
-        if (!is_bool($value)) {
-            $value = null;
-        }
-
-        $this->setOption('audio_muted', $value);
+        $this->setOption('audio_muted', get_bool($value));
     }
 
     public function getAudioVolumeAttribute()
     {
-        return $this->getOptions()['audio_volume'] ?? 0.45;
+        return $this->options['audio_volume'] ?? 0.45;
     }
 
     public function setAudioVolumeAttribute($value)
     {
-        if (!is_float($value) && !is_int($value)) {
-            $value = null;
-        }
-
-        $this->setOption('audio_volume', $value);
+        $this->setOption('audio_volume', get_float($value));
     }
 
     public function getBeatmapsetCardSizeAttribute()
     {
-        return $this->getOptions()['beatmapset_card_size'] ?? static::BEATMAPSET_CARD_SIZES[0];
+        return $this->options['beatmapset_card_size'] ?? static::BEATMAPSET_CARD_SIZES[0];
     }
 
     public function setBeatmapsetCardSizeAttribute($value)
@@ -140,7 +126,7 @@ class UserProfileCustomization extends Model
 
     public function getBeatmapsetDownloadAttribute()
     {
-        return $this->getOptions()['beatmapset_download'] ?? static::BEATMAPSET_DOWNLOAD[0];
+        return $this->options['beatmapset_download'] ?? static::BEATMAPSET_DOWNLOAD[0];
     }
 
     public function setBeatmapsetDownloadAttribute($value)
@@ -154,49 +140,37 @@ class UserProfileCustomization extends Model
 
     public function getBeatmapsetShowNsfwAttribute()
     {
-        return $this->getOptions()['beatmapset_show_nsfw'] ?? false;
+        return $this->options['beatmapset_show_nsfw'] ?? false;
     }
 
     public function setBeatmapsetShowNsfwAttribute($value)
     {
-        if (!is_bool($value)) {
-            $value = null;
-        }
-
-        $this->setOption('beatmapset_show_nsfw', $value);
+        $this->setOption('beatmapset_show_nsfw', get_bool($value));
     }
 
     public function getBeatmapsetTitleShowOriginalAttribute()
     {
-        return $this->getOptions()['beatmapset_title_show_original'] ?? false;
+        return $this->options['beatmapset_title_show_original'] ?? false;
     }
 
     public function setBeatmapsetTitleShowOriginalAttribute($value)
     {
-        if (!is_bool($value)) {
-            $value = null;
-        }
-
-        $this->setOption('beatmapset_title_show_original', $value);
-    }
-
-    public function setCommentsShowDeletedAttribute($value)
-    {
-        if (!is_bool($value)) {
-            $value = null;
-        }
-
-        $this->setOption('comments_show_deleted', $value);
+        $this->setOption('beatmapset_title_show_original', get_bool($value));
     }
 
     public function getCommentsShowDeletedAttribute()
     {
-        return $this->getOptions()['comments_show_deleted'] ?? false;
+        return $this->options['comments_show_deleted'] ?? false;
+    }
+
+    public function setCommentsShowDeletedAttribute($value)
+    {
+        $this->setOption('comments_show_deleted', get_bool($value));
     }
 
     public function getCommentsSortAttribute()
     {
-        return $this->getOptions()['comments_sort'] ?? Comment::DEFAULT_SORT;
+        return $this->options['comments_sort'] ?? Comment::DEFAULT_SORT;
     }
 
     public function setCommentsSortAttribute($value)
@@ -210,17 +184,17 @@ class UserProfileCustomization extends Model
 
     public function getForumPostsShowDeletedAttribute()
     {
-        return $this->getOptions()['forum_posts_show_deleted'] ?? true;
+        return $this->options['forum_posts_show_deleted'] ?? true;
     }
 
     public function setForumPostsShowDeletedAttribute($value)
     {
-        $this->setOption('forum_posts_show_deleted', $value);
+        $this->setOption('forum_posts_show_deleted', get_bool($value));
     }
 
     public function getUserListFilterAttribute()
     {
-        return $this->getOptions()['user_list_filter'] ?? static::USER_LIST['filters']['default'];
+        return $this->options['user_list_filter'] ?? static::USER_LIST['filters']['default'];
     }
 
     public function setUserListFilterAttribute($value)
@@ -234,7 +208,7 @@ class UserProfileCustomization extends Model
 
     public function getUserListSortAttribute()
     {
-        return $this->getOptions()['user_list_sort'] ?? static::USER_LIST['sorts']['default'];
+        return $this->options['user_list_sort'] ?? static::USER_LIST['sorts']['default'];
     }
 
     public function setUserListSortAttribute($value)
@@ -248,7 +222,7 @@ class UserProfileCustomization extends Model
 
     public function getUserListViewAttribute()
     {
-        return $this->getOptions()['user_list_view'] ?? static::USER_LIST['views']['default'];
+        return $this->options['user_list_view'] ?? static::USER_LIST['views']['default'];
     }
 
     public function setUserListViewAttribute($value)
@@ -262,17 +236,17 @@ class UserProfileCustomization extends Model
 
     public function getExtrasOrderAttribute($value)
     {
-        if ($value !== null) {
-            $value = json_decode($value, true);
+        $newValue = $this->options['extras_order'] ?? null;
+
+        if ($newValue === null && $value !== null) {
+            $newValue = json_decode($value, true);
         }
 
-        $value = $this->getOptions()['extras_order'] ?? $value;
-
-        if ($value === null) {
+        if ($newValue === null) {
             return static::SECTIONS;
         }
 
-        return static::repairExtrasOrder($value, true);
+        return static::repairExtrasOrder($newValue, true);
     }
 
     public function setExtrasOrderAttribute($value)
@@ -283,24 +257,17 @@ class UserProfileCustomization extends Model
 
     public function getRankingExpandedAttribute()
     {
-        return $this->getOptions()['ranking_expanded'] ?? true;
+        return $this->options['ranking_expanded'] ?? true;
     }
 
     public function setRankingExpandedAttribute($value)
     {
-        $this->setOption('ranking_expanded', $value);
+        $this->setOption('ranking_expanded', get_bool($value));
     }
 
-    public function setOption($key, $value)
+    private function setOption($key, $value)
     {
-        $this->options = array_merge($this->options ?? [], [$key => $value]);
-        $this->resetMemoized();
-    }
-
-    public function getOptions()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            return $this->options;
-        });
+        $this->options ??= [];
+        $this->options[$key] = $value;
     }
 }

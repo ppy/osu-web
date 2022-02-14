@@ -10,6 +10,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\Genre;
 use App\Models\Language;
+use App\Models\User;
 
 class BeatmapsetFactory extends Factory
 {
@@ -18,7 +19,6 @@ class BeatmapsetFactory extends Factory
     public function definition(): array
     {
         return [
-            'creator' => fn () => $this->faker->userName(),
             'artist' => fn () => $this->faker->name(),
             'title' => fn () => substr($this->faker->sentence(rand(0, 5)), 0, 80),
             'discussion_enabled' => true,
@@ -32,9 +32,12 @@ class BeatmapsetFactory extends Factory
             'language_id' => Language::factory(),
             'submit_date' => fn () => $this->faker->dateTime(),
             'thread_id' => 0,
+            'user_id' => 0, // follow db default if no user specified; this is for other factories that depend on user_id.
 
             // depends on approved
             'approved_date' => fn (array $attr) => $attr['approved'] > 0 ? now() : null,
+
+            'creator' => fn (array $attr) => User::find($attr['user_id'])?->username ?? $this->faker->userName(),
 
             // depends on artist and title
             'displaytitle' => fn (array $attr) => "{$attr['artist']}|{$attr['title']}",
@@ -54,6 +57,11 @@ class BeatmapsetFactory extends Factory
     public function noDiscussion()
     {
         return $this->state(['discussion_enabled' => false]);
+    }
+
+    public function owner(?User $user = null)
+    {
+        return $this->state(['user_id' => $user ?? User::factory()]);
     }
 
     public function pending()
@@ -79,7 +87,7 @@ class BeatmapsetFactory extends Factory
     public function withDiscussion()
     {
         return $this
-            ->has(Beatmap::factory())
+            ->has(Beatmap::factory()->state(fn (array $attr, Beatmapset $set) => ['user_id' => $set->user_id]))
             ->has(BeatmapDiscussion::factory()->general()->state(fn (array $attr, Beatmapset $set) => [
                 'user_id' => $set->user_id,
             ]));

@@ -174,6 +174,10 @@ return [
                 'first' => 'Vadībā',
                 'own' => 'Tavs labākais',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

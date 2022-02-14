@@ -301,8 +301,8 @@ return [
                 'recent' => 'Más reciente',
                 'title' => 'Medallas',
             ],
-            'multiplayer' => [
-                'title' => 'Partidas multijugador',
+            'playlists' => [
+                'title' => 'Partidas de listas de juego',
             ],
             'posts' => [
                 'title' => 'Publicaciones',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Reciente',
+            ],
+            'realtime' => [
+                'title' => 'Partidas multijugador',
             ],
             'top_ranks' => [
                 'download_replay' => 'Descargar repetición',
@@ -326,13 +329,13 @@ return [
                     'title' => 'Primeros lugares',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Desanclar',
+                    'to_0_done' => 'Puntuación no anclada',
+                    'to_1' => 'Anclar',
+                    'to_1_done' => 'Puntuación anclada',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Puntuaciones ancladas',
                 ],
             ],
             'votes' => [

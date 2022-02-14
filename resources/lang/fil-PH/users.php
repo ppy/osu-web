@@ -301,8 +301,8 @@ return [
                 'recent' => 'Pinakabago',
                 'title' => 'Mga Medalya',
             ],
-            'multiplayer' => [
-                'title' => 'Mga Laro na Multiplayer',
+            'playlists' => [
+                'title' => 'Playlist Games',
             ],
             'posts' => [
                 'title' => 'Mga Post',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Kamakailan',
+            ],
+            'realtime' => [
+                'title' => 'Multiplayer Games',
             ],
             'top_ranks' => [
                 'download_replay' => 'I-Download ang Replay',
@@ -326,13 +329,13 @@ return [
                     'title' => 'Nangungunang Ranggo',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'I-unpin',
+                    'to_0_done' => 'Na-unpin na score',
+                    'to_1' => 'Pin',
+                    'to_1_done' => 'Na-pin na score',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Mga na-pin na scores',
                 ],
             ],
             'votes' => [

@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'ยังไม่มีการเล่นเกมผู้เล่นหลายคนใน osu!(lazer) เลย!',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => 'เป็นเจ้าภาพโดย :user',

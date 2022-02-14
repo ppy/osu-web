@@ -3,7 +3,7 @@
 
 import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import { dispatch } from 'app-dispatcher';
-import BigButton from 'big-button';
+import BigButton from 'components/big-button';
 import { trim } from 'lodash';
 import { action, autorun, computed, makeObservable, observe } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';

@@ -174,6 +174,10 @@ return [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
             ],
+            'supporter_link' => [
+                '_' => 'Click :here to see all the fancy features that you get!',
+                'here' => 'here',
+            ],
         ],
 
         'stats' => [

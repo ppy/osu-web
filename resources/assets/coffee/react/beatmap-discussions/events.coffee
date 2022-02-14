@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import Event from 'beatmap-discussions/event'
+import BeatmapsetEvent from 'components/beatmapset-event'
 import * as React from 'react'
 import { a, div, li, span, ul } from 'react-dom-factories'
 el = React.createElement
@@ -32,7 +32,7 @@ export class Events extends React.PureComponent
                   key: "date-#{lastCreatedAtString}"
                   className: 'beatmapset-events__title'
                   lastCreatedAtString
-              el Event,
+              el BeatmapsetEvent,
                 key: event.id
                 event: event
                 discussions: @props.discussions

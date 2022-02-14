@@ -15,7 +15,7 @@ import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export interface SearchResponse {
   beatmapsets: BeatmapsetJson[];
-  cursor: unknown;
+  cursor_string: string | null;
   error?: string;
   recommended_difficulty: number;
   total: number;
@@ -106,13 +106,13 @@ export class BeatmapsetSearch implements DispatchListener {
 
     const params = filters.queryParams;
     const key = filters.toKeyString();
-    const cursor = this.getOrCreate(key).cursor;
+    const cursorString = this.getOrCreate(key).cursorString;
 
     // undefined cursor should just do a cursorless query.
     if (from > 0) {
-      if (cursor != null) {
-        params.cursor = cursor;
-      } else if (cursor === null) {
+      if (cursorString != null) {
+        params.cursor_string = cursorString;
+      } else if (cursorString === null) {
         return Promise.resolve(null);
       }
     }

@@ -13,8 +13,8 @@ return [
             'important' => 'BACA INI SEBELUM MENGUNDUH',
             'install_instruction' => 'Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak berkas. rar yang Anda peroleh ke dalam folder Songs yang ada pada direktori osu! Anda.',
             'note' => [
-                '_' => 'Kami menyarankan Anda untuk :scary karena pada umumnya map-map keluaran terdahulu memiliki kualitas yang jauh lebih rendah dibanding map-map modern.',
-                'scary' => 'mengunduh paket-paket beatmap yang ada mulai dari yang paling baru hingga yang paling awal',
+                '_' => 'Kami menyarankan Anda untuk :scary karena pada umumnya beatmap-beatmap keluaran terdahulu memiliki kualitas yang jauh lebih rendah dibanding beatmap-beatmap modern.',
+                'scary' => 'mengunduh paket beatmap mulai dari yang paling baru hingga yang paling awal',
             ],
         ],
     ],
@@ -26,8 +26,8 @@ return [
             'not_cleared' => 'belum dimainkan',
         ],
         'no_diff_reduction' => [
-            '_' => 'Anda tidak boleh menggunakan :link untuk membuka medali yang terhubung dengan paket beatmap ini.',
-            'link' => 'mod-mod yang mempermudah permainan (EZ, NF, atau HT)',
+            '_' => 'Anda tidak dapat menggunakan :link untuk menuntaskan paket beatmap ini.',
+            'link' => 'mod-mod pengurang kesulitan',
         ],
     ],
 
