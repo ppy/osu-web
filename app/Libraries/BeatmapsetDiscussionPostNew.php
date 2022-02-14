@@ -19,6 +19,8 @@ class BeatmapsetDiscussionPostNew
     private BeatmapDiscussionPost $post;
     private Beatmapset $beatmapset;
 
+    private ?string $event;
+
     private function __construct(private User $user, private BeatmapDiscussion $discussion, private string $message)
     {
         $this->beatmapset = $discussion->beatmapset;
@@ -84,10 +86,10 @@ class BeatmapsetDiscussionPostNew
     {
         priv_check_user($this->user, 'BeatmapDiscussionPostStore', $this->post)->ensureCan();
 
-        $event = BeatmapsetEvent::getBeatmapsetEventType($this->discussion, $this->user);
-        $notifyQualifiedProblem = $this->shouldNotifyQualifiedProblem($event);
+        $this->event = BeatmapsetEvent::getBeatmapsetEventType($this->discussion, $this->user);
+        $notifyQualifiedProblem = $this->shouldNotifyQualifiedProblem();
 
-        $posts = $this->discussion->getConnection()->transaction(function () use ($event) {
+        $posts = $this->discussion->getConnection()->transaction(function () {
             $this->discussion->saveOrExplode();
 
             // done here since discussion may or may not previously exist
@@ -95,21 +97,12 @@ class BeatmapsetDiscussionPostNew
             $this->post->saveOrExplode();
             $newPosts = [$this->post];
 
-            switch ($event) {
-                case BeatmapsetEvent::ISSUE_REOPEN:
-                case BeatmapsetEvent::ISSUE_RESOLVE:
-                    $systemPost = BeatmapDiscussionPost::generateLogResolveChange($this->user, $this->discussion->resolved);
-                    $systemPost->beatmap_discussion_id = $this->discussion->getKey();
-                    $systemPost->saveOrExplode();
-                    BeatmapsetEvent::log($event, $this->user, $this->post)->saveOrExplode();
-                    $newPosts[] = $systemPost;
-                    break;
-
-                case BeatmapsetEvent::DISQUALIFY:
-                case BeatmapsetEvent::NOMINATION_RESET:
-                    $this->beatmapset->disqualifyOrResetNominations($this->user, $this->discussion);
-                    break;
+            $systemPost = $this->logEvent();
+            if ($systemPost !== null) {
+                $newPosts[] = $systemPost;
             }
+
+            $this->disqualifyOrResetNominations();
 
             return $newPosts;
         });
@@ -123,14 +116,35 @@ class BeatmapsetDiscussionPostNew
         return $posts;
     }
 
+    private function disqualifyOrResetNominations()
+    {
+        if (in_array($this->event, [BeatmapsetEvent::DISQUALIFY, BeatmapsetEvent::NOMINATION_RESET], true)) {
+            $this->beatmapset->disqualifyOrResetNominations($this->user, $this->discussion);
+        }
+    }
+
+    private function logEvent(): ?BeatmapDiscussionPost
+    {
+        if (!in_array($this->event, [BeatmapsetEvent::ISSUE_REOPEN, BeatmapsetEvent::ISSUE_RESOLVE], true)) {
+            return null;
+        }
+
+        $systemPost = BeatmapDiscussionPost::generateLogResolveChange($this->user, $this->discussion->resolved);
+        $systemPost->beatmap_discussion_id = $this->discussion->getKey();
+        $systemPost->saveOrExplode();
+        BeatmapsetEvent::log($this->event, $this->user, $this->post)->saveOrExplode();
+
+        return $systemPost;
+    }
+
     /**
      * To get the correct result, this should be called before discussions are updated, as it checks the open problems count.
      */
-    private function shouldNotifyQualifiedProblem(?string $event): bool
+    private function shouldNotifyQualifiedProblem(): bool
     {
         return $this->beatmapset->isQualified() && (
-            $event === BeatmapsetEvent::ISSUE_REOPEN
-            || $event === null && !$this->discussion->exists && $this->discussion->isProblem()
+            $this->event === BeatmapsetEvent::ISSUE_REOPEN
+            || $this->event === null && !$this->discussion->exists && $this->discussion->isProblem()
         ) && $this->beatmapset->beatmapDiscussions()->openProblems()->count() === 0;
     }
 }
