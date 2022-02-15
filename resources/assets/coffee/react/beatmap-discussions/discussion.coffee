@@ -2,11 +2,11 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
+import UserAvatar from 'components/user-avatar'
 import { route } from 'laroute'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
-import UserAvatar from 'user-avatar'
 import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'

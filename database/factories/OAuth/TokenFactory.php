@@ -10,7 +10,7 @@ namespace Database\Factories\OAuth;
 use App\Models\OAuth\Client;
 use App\Models\OAuth\Token;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Database\Factories\Factory;
 
 class TokenFactory extends Factory
 {

@@ -9,7 +9,7 @@ namespace Database\Factories\Chat;
 
 use App\Models\Chat\Channel;
 use App\Models\LegacyMatch\LegacyMatch;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Database\Factories\Factory;
 
 class ChannelFactory extends Factory
 {

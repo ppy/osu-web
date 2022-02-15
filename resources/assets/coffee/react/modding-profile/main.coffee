@@ -9,14 +9,14 @@ import { Votes } from './votes'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
+import { NotificationBanner } from 'components/notification-banner'
+import ProfilePageExtraTab from 'components/profile-page-extra-tab'
+import UserProfileContainer from 'components/user-profile-container'
 import { deletedUser } from 'models/user'
 import Kudosu from 'modding-profile/kudosu'
-import { NotificationBanner } from 'notification-banner'
 import core from 'osu-core-singleton'
-import ProfilePageExtraTab from 'components/profile-page-extra-tab'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
-import UserProfileContainer from 'user-profile-container'
 import { bottomPage } from 'utils/html'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
@@ -156,8 +156,9 @@ export class Main extends React.PureComponent
               userAchievements: @props.userAchievements
 
             div
-              className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
-              div className: 'osu-page',
+              className: 'osu-page osu-page--generic-compact'
+              div
+                className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
                 div
                   className: 'page-mode page-mode--profile-page-extra'
                   ref: @tabs
@@ -172,15 +173,15 @@ export class Main extends React.PureComponent
                         page: m
                         currentPage: @state.currentPage
 
-            div
-              className: 'user-profile-pages'
-              ref: @pages
-              @extraPage name for name in profileOrder
+              div
+                className: 'user-profile-pages'
+                ref: @pages
+                @extraPage name for name in profileOrder
 
 
   extraPage: (name) =>
     {extraClass, props, component} = @extraPageParams name
-    classes = 'user-profile-pages__item js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
+    classes = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
     classes += " #{extraClass}" if extraClass?
     props.name = name
 

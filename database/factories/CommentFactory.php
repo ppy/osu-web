@@ -8,7 +8,6 @@ namespace Database\Factories;
 use App\Libraries\MorphMap;
 use App\Models\Comment;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory
 {
@@ -29,5 +28,10 @@ class CommentFactory extends Factory
     public function deleted(): static
     {
         return $this->state(['deleted_at' => now()]);
+    }
+
+    public function reply(): static
+    {
+        return $this->for(Comment::factory(), 'parent');
     }
 }

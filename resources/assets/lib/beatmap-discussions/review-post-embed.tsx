@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
-import { BeatmapIcon } from 'beatmap-icon';
+import { BeatmapIcon } from 'components/beatmap-icon';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { BeatmapsContext } from './beatmaps-context';

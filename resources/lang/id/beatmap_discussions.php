@@ -13,7 +13,7 @@ return [
     ],
 
     'events' => [
-        'empty' => 'Belum ada yang terjadi.',
+        'empty' => 'Belum ada hal apapun yang terjadi... hingga saat ini.',
     ],
 
     'index' => [
@@ -46,7 +46,7 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Tanggal kiriman',
+        'created_at' => 'Tanggal dibuat',
         'deleted_at' => 'Tanggal penghapusan',
         'message_type' => 'Jenis',
         'permalink' => 'Tautan',

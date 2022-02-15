@@ -1,8 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DifficultyBadge from 'difficulty-badge';
-import Img2x from 'img2x';
+import DifficultyBadge from 'components/difficulty-badge';
+import Img2x from 'components/img2x';
+import StringWithComponent from 'components/string-with-component';
+import { UserLink } from 'components/user-link';
 import RoomJson from 'interfaces/room-json';
 import { route } from 'laroute';
 import { maxBy, minBy } from 'lodash';
@@ -10,23 +12,19 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
-import { UserLink } from 'user-link';
-import UserMultiplayerHistoryContext from 'user-multiplayer-history-context';
 import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
+import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {
   room: RoomJson & Required<Pick<RoomJson, 'playlist'>>;
+  store: MultiplayerHistoryStore;
 }
 
 const endingSoonDiffMs = 60 * 60 * 1000; // 60 minutes.
 
 @observer
 export default class Room extends React.Component<Props> {
-  static contextType = UserMultiplayerHistoryContext;
-  declare context: React.ContextType<typeof UserMultiplayerHistoryContext>;
-
   @computed
   private get status() {
     if (!this.props.room.active) {
@@ -40,19 +38,19 @@ export default class Room extends React.Component<Props> {
 
   @computed
   private get maxDifficulty() {
-    const max = maxBy(this.props.room.playlist, (playlist) => this.context.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
-    return this.context.beatmaps.get(max?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
+    const max = maxBy(this.props.room.playlist, (playlist) => this.props.store.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
+    return this.props.store.beatmaps.get(max?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
   }
 
   @computed
   private get minDifficulty() {
-    const min = minBy(this.props.room.playlist, (playlist) => this.context.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
-    return this.context.beatmaps.get(min?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
+    const min = minBy(this.props.room.playlist, (playlist) => this.props.store.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
+    return this.props.store.beatmaps.get(min?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
   }
 
   private get background() {
-    const beatmap = this.context.beatmaps.get(this.props.room.playlist[0].beatmap_id);
-    const beatmapset = this.context.beatmapsets.get(beatmap?.beatmapset_id ?? 0);
+    const beatmap = this.props.store.beatmaps.get(this.props.room.playlist[0].beatmap_id);
+    const beatmapset = this.props.store.beatmapsets.get(beatmap?.beatmapset_id ?? 0);
 
     if (beatmapset == null) return undefined;
 

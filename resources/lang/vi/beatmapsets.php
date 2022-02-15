@@ -154,7 +154,7 @@ return [
                 'combo' => 'Combo Tối Đa',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
-                'pin' => '',
+                'pin' => 'Ghim',
                 'player' => 'Người Chơi',
                 'pp' => '',
                 'rank' => 'Xếp Hạng',
@@ -173,6 +173,10 @@ return [
             'score' => [
                 'first' => 'Dẫn Đầu',
                 'own' => 'Tốt Nhất Của Bạn',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

@@ -1,13 +1,14 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import BbcodeEditor from 'bbcode-editor'
 import MetadataEditor from 'beatmapsets-show/metadata-editor'
+import BbcodeEditor from 'components/bbcode-editor'
+import { Modal } from 'components/modal'
 import { route } from 'laroute'
-import { Modal } from 'modal'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
+
 el = React.createElement
 
 export class Info extends React.Component

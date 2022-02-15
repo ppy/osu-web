@@ -2,15 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
+import StringWithComponent from 'components/string-with-component';
+import TimeWithTooltip from 'components/time-with-tooltip';
+import { UserLink } from 'components/user-link';
 import UserAccountHistoryJson from 'interfaces/user-account-history-json';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
-import TimeWithTooltip from 'time-with-tooltip';
-import { UserLink } from 'user-link';
 import { classWithModifiers } from 'utils/css';
 import { stripTags } from 'utils/html';
 import ExtraPageProps from './extra-page-props';

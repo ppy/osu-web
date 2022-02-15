@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Chưa chơi osu!(lazer) multiplayer!',
+    'empty' => [
+        '_' => '',
+        'playlists' => 'danh sách phát',
+        'realtime' => 'nhiều người chơi',
+    ],
 
     'room' => [
         'hosted_by' => 'chủ phòng :user',

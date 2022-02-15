@@ -301,8 +301,8 @@ return [
                 'recent' => 'Recent',
                 'title' => 'Medailles',
             ],
-            'multiplayer' => [
-                'title' => 'Multiplayer Spellen',
+            'playlists' => [
+                'title' => 'Spellen via afspeellijst',
             ],
             'posts' => [
                 'title' => 'Berichten',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Recent',
+            ],
+            'realtime' => [
+                'title' => 'Multiplayerspellen',
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
@@ -326,13 +329,13 @@ return [
                     'title' => 'Eerste Ranks',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Losmaken',
+                    'to_0_done' => 'Losgemaakte score',
+                    'to_1' => 'Vastzetten',
+                    'to_1_done' => 'Vastgezette score',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Vastgezette Scores',
                 ],
             ],
             'votes' => [

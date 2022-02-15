@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Пакуль яшчэ няма гульняў osu!(Лазер)!',
+    'empty' => [
+        '_' => 'Пакуль што няма :type_group гульняў ў osu!lazer',
+        'playlists' => 'плэйліст',
+        'realtime' => 'мультыплэер',
+    ],
 
     'room' => [
         'hosted_by' => ':user хост',

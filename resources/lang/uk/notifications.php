@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Чат',
 
+            'announcement' => [
+                '_' => 'Нове оголошення',
+
+                'announce' => [
+                    'channel_announcement' => ':username сказав ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Оголошення від :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Нове повідомлення',
+
                 'pm' => [
                     'channel_message' => ':username сказав ":title"',
                     'channel_message_compact' => ':title',

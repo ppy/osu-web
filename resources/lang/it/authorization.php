@@ -63,11 +63,12 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => 'Questo canale è solamente per gli annunci.',
         'blocked' => 'Non puoi inviare messaggi ad un utente che ti sta bloccando o che hai bloccato.',
         'friends_only' => 'L\'utente sta bloccando i messaggi da chi non è nella sua lista amici.',
         'moderated' => 'Questo canale è attualmente moderato.',
         'no_access' => 'Non hai accesso a quel canale.',
-        'receive_friends_only' => '',
+        'receive_friends_only' => 'L\'utente potrebbe non essere in grado di rispondere perché stai accettando messaggi solo da persone della tua lista amici.',
         'restricted' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',
         'silenced' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',
     ],
@@ -169,8 +170,8 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
-            'too_many' => '',
+            'not_owner' => 'Solo il proprietario del punteggio può fissarlo.',
+            'too_many' => 'Hai già fissato troppi punteggi.',
         ],
     ],
 

@@ -63,6 +63,7 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '',
         'blocked' => '',
         'friends_only' => '',
         'moderated' => '',

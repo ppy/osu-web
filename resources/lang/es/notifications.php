@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Nuevo anuncio',
+
+                'announce' => [
+                    'channel_announcement' => ':username dice ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Anuncio de :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nuevo mensaje',
+
                 'pm' => [
                     'channel_message' => ':username dice ":title"',
                     'channel_message_compact' => ':title',

@@ -46,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => 'nhiều người',
+            'playlists' => 'danh sách phát',
+            'realtime' => 'nhiều người chơi',
             'show' => 'thông tin',
         ],
     ],

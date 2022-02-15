@@ -154,7 +154,7 @@ return [
                 'combo' => '最大连击',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
-                'pin' => '',
+                'pin' => '置顶',
                 'player' => '玩家',
                 'pp' => '',
                 'rank' => '排名',
@@ -173,6 +173,10 @@ return [
             'score' => [
                 'first' => '领衔者',
                 'own' => '你的最佳成绩',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

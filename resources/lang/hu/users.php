@@ -301,8 +301,8 @@ return [
                 'recent' => 'Legújabb',
                 'title' => 'Medálok',
             ],
-            'multiplayer' => [
-                'title' => 'Többjátékos mód',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Bejegyzések',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Legutóbbi',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay letöltése',

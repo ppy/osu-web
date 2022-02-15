@@ -301,7 +301,7 @@ return [
                 'recent' => 'Πρόσφατα',
                 'title' => 'Μετάλλια',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Πρόσφατα',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Λήψη Επανάληψης',

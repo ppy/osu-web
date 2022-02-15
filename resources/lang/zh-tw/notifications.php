@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => '聊天',
 
+            'announcement' => [
+                '_' => '新增公告',
+
+                'announce' => [
+                    'channel_announcement' => ':username 發表了「:title」',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username 發布的公告',
+                ],
+            ],
+
             'channel' => [
                 '_' => '新訊息',
+
                 'pm' => [
                     'channel_message' => ':username 發表了「:title」',
                     'channel_message_compact' => ':title',

@@ -46,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modowanie',
-            'multiplayer' => 'tryb wieloosobowy',
+            'playlists' => 'tryb asynchroniczny',
+            'realtime' => 'tryb wieloosobowy',
             'show' => 'informacje',
         ],
     ],

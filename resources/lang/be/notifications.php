@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Чат',
 
+            'announcement' => [
+                '_' => 'Новая аб\'ява',
+
+                'announce' => [
+                    'channel_announcement' => ':username сказаў ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Аб\'ява ад :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Новае паведамленне',
+
                 'pm' => [
                     'channel_message' => ':username сказаў ":title"',
                     'channel_message_compact' => ':title',

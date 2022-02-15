@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Наразі ще не зіграна ні одна мультиплеерна кімната в osu!(lazer)! ',
+    'empty' => [
+        '_' => 'Наразі ще не зіграна в osu!(lazer) :type_group ні одна гра!',
+        'playlists' => 'плейліст',
+        'realtime' => 'мультиплеер',
+    ],
 
     'room' => [
         'hosted_by' => 'власник: :user',

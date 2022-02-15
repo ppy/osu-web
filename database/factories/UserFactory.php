@@ -10,7 +10,7 @@ namespace Database\Factories;
 use App\Models\Country;
 use App\Models\User;
 use App\Models\UserAccountHistory;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\UserStatistics\Model as UserStatisticsModel;
 
 class UserFactory extends Factory
 {
@@ -28,11 +28,7 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (User $user) {
-            if (!$user->exists) {
-                throw new \Exception($user->validationErrors()->toSentence());
-            }
-
-            $user->addToGroup(app('groups')->byId($user->group_id));
+            $user->addToGroup(app('groups')->byIdOrFail($user->group_id));
         });
     }
 
@@ -114,5 +110,12 @@ class UserFactory extends Factory
     public function withNote()
     {
         return $this->has(UserAccountHistory::factory(), 'accountHistories');
+    }
+
+    public function withPlays(?int $count = null, ?string $mode = 'osu')
+    {
+        return $this->has(UserStatisticsModel::getClass($mode)::factory()->state([
+            'playcount' => $count ?? config('osu.user.min_plays_for_posting'),
+        ]), 'statistics'.studly_case($mode));
     }
 }

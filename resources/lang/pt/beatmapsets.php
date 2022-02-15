@@ -174,6 +174,10 @@ return [
                 'first' => 'Na liderança',
                 'own' => 'A tua melhor',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

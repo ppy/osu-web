@@ -5,15 +5,15 @@
 
 return [
     'index' => [
-        'description' => 'Voorverpakte collecties van beatmaps gebaseerd rond een gedeeld thema.',
+        'description' => 'Voorverpakte collecties van beatmaps rond een bepaald thema.',
         'nav_title' => 'lijst',
         'title' => 'Beatmap Packs',
 
         'blurb' => [
-            'important' => 'LEES DIT VOOR TE JE DOWNLOAD',
-            'install_instruction' => '',
+            'important' => 'LEES DIT VOORALEER JE PACKS DOWNLOADT',
+            'install_instruction' => 'Hoe installeren: Wanneer het downloaden van een pack voltooid is, pak je de inhoud uit naar je osu! Songs-map. osu! doet de rest.',
             'note' => [
-                '_' => 'Merk ook op dat het is ten zeerste is aangeraden om :scary, omdat de oudste maps van mindere kwaliteit zijn dan de recentere maps.',
+                '_' => 'Houd er ook rekening mee dat het sterk aanbevolen is om :scary. Oudere beatmaps zijn vaak minder kwaliteitsvol.',
                 'scary' => 'eerst de nieuwste packs te downloaden',
             ],
         ],
@@ -26,7 +26,7 @@ return [
             'not_cleared' => 'nog niet uitgespeeld',
         ],
         'no_diff_reduction' => [
-            '_' => ':link kan niet worden gebruikt om dit pakket te wissen.',
+            '_' => 'Om dit pack uit te spelen, mogen :link niet gebruikt worden.',
             'link' => 'Mods voor moeilijkheidsvermindering',
         ],
     ],

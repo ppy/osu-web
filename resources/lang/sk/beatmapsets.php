@@ -174,6 +174,10 @@ return [
                 'first' => 'Vo Vedení',
                 'own' => 'Tvoje Najlepšie',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

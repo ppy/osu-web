@@ -92,11 +92,11 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
+            'moment' => 'YYYY年MM月',
             'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => 'YYYY年MM月',
         ],
     ],
 
