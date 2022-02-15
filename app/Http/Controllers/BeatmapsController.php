@@ -160,8 +160,7 @@ class BeatmapsController extends Controller
 
         if (is_api_request()) {
             if ($beatmap->mode != $mode) {
-                $beatmap->convert = true;
-                $beatmap->playmode = Beatmap::modeInt($mode);
+                $beatmap->convertTo($mode);
             }
 
             return json_item($beatmap, new BeatmapTransformer(), static::DEFAULT_API_INCLUDES);

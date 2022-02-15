@@ -339,4 +339,12 @@ class Beatmap extends Model
 
         return $this->hasMany("{$modelPath}\\{$mode}");
     }
+
+    public function convertTo(?string $mode)
+    {
+        if ($this->mode === 'osu' && static::isModeValid($mode)) {
+            $this->convert = true;
+            $this->playmode = static::modeInt($mode);
+        }
+    }
 }
