@@ -37,10 +37,11 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         $watcher = User::factory()->create();
         $this->beatmapset->watches()->create(['user_id' => $watcher->getKey()]);
 
-        $currentDiscussions = BeatmapDiscussion::count();
-        $currentDiscussionPosts = BeatmapDiscussionPost::count();
-        $currentNotifications = Notification::count();
-        $currentUserNotifications = UserNotification::count();
+        $change = $success ? 1 : 0;
+        $this->expectCountChange(fn () => BeatmapDiscussion::count(), $change, BeatmapDiscussion::class);
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), $change, BeatmapDiscussionPost::class);
+        $this->expectCountChange(fn () => Notification::count(), $change, Notification::class);
+        $this->expectCountChange(fn () => UserNotification::count(), $change, UserNotification::class);
 
         $discussion = new BeatmapDiscussion(['message_type' => 'praise']);
         $discussion->beatmapset()->associate($this->beatmapset);
@@ -57,12 +58,6 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
 
         // TODO: exception thrown means the fail case doesn't get this far...
-        $change = $success ? 1 : 0;
-        $this->assertSame($currentDiscussions + $change, BeatmapDiscussion::count());
-        $this->assertSame($currentDiscussionPosts + $change, BeatmapDiscussionPost::count());
-        $this->assertSame($currentNotifications + $change, Notification::count());
-        $this->assertSame($currentUserNotifications + $change, UserNotification::count());
-
         if ($success) {
             Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($user, $watcher) {
                 // assert watchers in receivers and sender is not.
