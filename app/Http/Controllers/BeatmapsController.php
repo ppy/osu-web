@@ -137,21 +137,13 @@ class BeatmapsController extends Controller
      *
      * @urlParam beatmap integer required The ID of the beatmap.
      *
+     * @queryParam mode Convert to specified [GameMode](#gamemode) if possible. Only osu!standard maps can be converted.
+     *
      * @response "See Beatmap object section."
      */
     public function show($id)
     {
         $beatmap = Beatmap::whereHas('beatmapset')->findOrFail($id);
-
-        if (is_api_request()) {
-            return json_item($beatmap, new BeatmapTransformer(), static::DEFAULT_API_INCLUDES);
-        }
-
-        $beatmapset = $beatmap->beatmapset;
-
-        if ($beatmapset === null) {
-            abort(404);
-        }
 
         if ($beatmap->mode === 'osu') {
             $params = get_params(request()->all(), null, [
@@ -165,6 +157,21 @@ class BeatmapsController extends Controller
         }
 
         $mode ??= $beatmap->mode;
+
+        if (is_api_request()) {
+            if ($beatmap->mode != $mode) {
+                $beatmap->convert = true;
+                $beatmap->playmode = Beatmap::modeInt($mode);
+            }
+
+            return json_item($beatmap, new BeatmapTransformer(), static::DEFAULT_API_INCLUDES);
+        }
+
+        $beatmapset = $beatmap->beatmapset;
+
+        if ($beatmapset === null) {
+            abort(404);
+        }
 
         return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $beatmapset->getKey()]).'#'.$mode.'/'.$beatmap->getKey());
     }
