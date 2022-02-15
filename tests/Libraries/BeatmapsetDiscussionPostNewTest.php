@@ -74,6 +74,103 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         }
     }
 
+    /**
+     * @dataProvider problemOnQualifiedBeatmapsetDataProvider
+     */
+    public function testProblemOnQualifiedBeatmapset(string $state, string $assertMethod)
+    {
+        $beatmapset = Beatmapset::factory()
+            ->owner($this->mapper)
+            ->$state()
+            ->has(Beatmap::factory()->state([
+                'user_id' => $this->mapper,
+            ]))
+            ->create();
+
+        User::factory()->create()->notificationOptions()->create([
+            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+            'details' => ['modes' => array_keys(Beatmap::MODES)],
+        ]);
+
+        $discussion = $beatmapset->beatmapDiscussions()->make([
+            'message_type' => 'problem',
+            'user_id' => $this->poster->getKey(),
+        ]);
+
+        (new BeatmapsetDiscussionPostNew($this->poster, $discussion, 'message'))->handle();
+
+        $assertMethod(NewPrivateNotificationEvent::class);
+    }
+
+    public function testSecondProblemOnQualifiedBeatmapset()
+    {
+        // TODO: add test for priorOpenProblemCount?
+
+        $beatmapset = Beatmapset::factory()
+            ->owner($this->mapper)
+            ->qualified()
+            ->has(Beatmap::factory()->state([
+                'user_id' => $this->mapper,
+            ]))
+            ->has(BeatmapDiscussion::factory()->general()->problem()->state([
+                'user_id' => $this->mapper,
+            ]))
+            ->create();
+
+        User::factory()->create()->notificationOptions()->create([
+            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+            'details' => ['modes' => array_keys(Beatmap::MODES)],
+        ]);
+
+        $discussion = $beatmapset->beatmapDiscussions()->make([
+            'message_type' => 'problem',
+            'user_id' => $this->poster->getKey(),
+        ]);
+
+        (new BeatmapsetDiscussionPostNew($this->poster, $discussion, 'message'))->handle();
+
+        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+    }
+
+    /**
+     * @dataProvider problemOnQualifiedBeatmapsetModesNotificationDataProvider
+     *
+     * @return void
+     */
+    public function testProblemOnQualifiedBeatmapsetModesNotification(string $mode, array $notificationModes, bool $expectsNotification)
+    {
+        $beatmapset = Beatmapset::factory()
+            ->owner($this->mapper)
+            ->qualified()
+            ->has(Beatmap::factory()->state([
+                'playmode' => Beatmap::MODES[$mode],
+                'user_id' => $this->mapper,
+            ]))
+            ->create();
+
+        $user = User::factory()->create();
+        $user->notificationOptions()->create([
+            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+            'details' => ['modes' => $notificationModes],
+        ]);
+
+        $discussion = $beatmapset->beatmapDiscussions()->make([
+            'message_type' => 'problem',
+            'user_id' => $this->poster->getKey(),
+        ]);
+
+        // TODO: only test the handleProblemDiscussion() part?
+        (new BeatmapsetDiscussionPostNew($this->poster, $discussion, 'message'))->handle();
+
+        if ($expectsNotification) {
+            Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($user) {
+                return in_array($user->getKey(), $event->getReceiverIds(), true);
+            });
+        } else {
+            Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+        }
+    }
+
     public function minPlaysVerificationDataProvider()
     {
         return [
@@ -84,6 +181,22 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         ];
     }
 
+    public function problemOnQualifiedBeatmapsetDataProvider()
+    {
+        return [
+            ['pending', 'Event::assertNotDispatched'],
+            ['qualified', 'Event::assertDispatched'],
+        ];
+    }
+
+    public function problemOnQualifiedBeatmapsetModesNotificationDataProvider()
+    {
+        return [
+            'with matching notification mode' => ['osu', ['osu'], true],
+            'wihtout matching notification mode' => ['osu', ['taiko'], false],
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -91,6 +204,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         Event::fake();
 
         $this->mapper = User::factory()->withPlays()->create();
+        $this->poster = User::factory()->withPlays()->create();
 
         $this->beatmapset = Beatmapset::factory()->owner($this->mapper)->create();
         $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make([

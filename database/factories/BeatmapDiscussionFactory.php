@@ -9,6 +9,7 @@ use App\Models\BeatmapDiscussion;
 
 class BeatmapDiscussionFactory extends Factory
 {
+    // TODO: decouple message_type
     const DEFAULTS = [
         'general' => [
             'timestamp' => null,
@@ -34,6 +35,11 @@ class BeatmapDiscussionFactory extends Factory
     public function general()
     {
         return $this->state(static::DEFAULTS['general']);
+    }
+
+    public function problem()
+    {
+        return $this->state(['message_type' => 'problem']);
     }
 
     public function review()

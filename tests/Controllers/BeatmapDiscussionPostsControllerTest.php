@@ -636,78 +636,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     }
 
     /**
-     * @dataProvider problemOnQualifiedBeatmapsetModesNotificationDataProvider
-     *
-     * @return void
-     */
-    public function testProblemOnQualifiedBeatmapsetModesNotification(string $mode, array $notificationModes, bool $expectsNotification)
-    {
-        $this->beatmapset->update([
-            'approved' => Beatmapset::STATES['qualified'],
-            'queued_at' => now(),
-        ]);
-        $this->beatmapset->beatmaps()->update(['playmode' => Beatmap::MODES[$mode]]);
-        $user = User::factory()->create();
-        $notificationOption = $user->notificationOptions()->firstOrCreate([
-            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
-        ]);
-        $notificationOption->update(['details' => ['modes' => $notificationModes]]);
-
-        // ensure there's no currently open problems
-        $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
-
-        $this->actingAsVerified($this->user)
-            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
-
-        if ($expectsNotification) {
-            Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($user) {
-                return in_array($user->getKey(), $event->getReceiverIds(), true);
-            });
-        } else {
-            Event::assertNotDispatched(NewPrivateNotificationEvent::class);
-        }
-    }
-
-    /**
-     * @dataProvider problemOnQualifiedBeatmapsetDataProvider
-     */
-    public function testProblemOnQualifiedBeatmapset($updateParams, $assertMethod)
-    {
-        $this->beatmapset->update($updateParams);
-        $notificationOption = User::factory()->create()->notificationOptions()->firstOrCreate([
-            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
-        ]);
-        $notificationOption->update(['details' => ['modes' => array_keys(Beatmap::MODES)]]);
-
-        // ensure there's no currently open problems
-        $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
-
-        $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
-
-        $assertMethod(NewPrivateNotificationEvent::class);
-    }
-
-    public function testSecondProblemOnQualifiedBeatmapset()
-    {
-        $this->beatmapset->update([
-            'approved' => Beatmapset::STATES['qualified'],
-            'queued_at' => now(),
-        ]);
-        $notificationOption = User::factory()->create()->notificationOptions()->firstOrCreate([
-            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
-        ]);
-        $notificationOption->update(['details' => ['modes' => array_keys(Beatmap::MODES)]]);
-
-        $this
-            ->actingAs($this->user)
-            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
-
-        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
-    }
-
-    /**
      * @dataProvider problemQueueDataProvider
      */
     public function testProblemOnBeatmapQueuesNotification(string $beatmapState, ?string $userGroup, array $queued, array $notQueued)
@@ -795,22 +723,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ['praise', true, false], // resolving discussion that can't be resolved causes no change.
             ['problem', true, true],
             ['suggestion', true, true],
-        ];
-    }
-
-    public function problemOnQualifiedBeatmapsetDataProvider()
-    {
-        return [
-            [['approved' => Beatmapset::STATES['qualified'], 'queued_at' => now()], 'Event::assertDispatched'],
-            [['approved' => Beatmapset::STATES['pending']], 'Event::assertNotDispatched'],
-        ];
-    }
-
-    public function problemOnQualifiedBeatmapsetModesNotificationDataProvider()
-    {
-        return [
-            'with matching notification mode' => ['osu', ['osu'], true],
-            'wihtout matching notification mode' => ['osu', ['taiko'], false],
         ];
     }
 
