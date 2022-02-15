@@ -42,7 +42,7 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
         $discussion = static::prepareDiscussion($user, $params);
 
         if (!$discussion->exists) {
-            priv_check('BeatmapDiscussionStore', $discussion)->ensureCan();
+            priv_check_user($user, 'BeatmapDiscussionStore', $discussion)->ensureCan();
         }
 
         $postParams = get_params($params, 'beatmap_discussion_post', ['message']);
