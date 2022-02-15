@@ -11,7 +11,7 @@ use App\Models\Beatmap;
 use App\Models\Build;
 use App\Models\Solo\ScoreToken;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Database\Factories\Factory;
 
 class ScoreTokenFactory extends Factory
 {
