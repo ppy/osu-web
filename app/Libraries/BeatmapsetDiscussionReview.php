@@ -6,12 +6,10 @@
 namespace App\Libraries;
 
 use App\Exceptions\InvariantException;
-use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
 use App\Jobs\Notifications\BeatmapsetDiscussionReviewNew;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use DB;
 use Exception;

@@ -5,8 +5,6 @@
 
 namespace App\Models;
 
-use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
-use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
 use App\Jobs\RefreshBeatmapsetUserKudosu;
 use App\Traits\Validatable;
 use Cache;
