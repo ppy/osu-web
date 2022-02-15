@@ -264,6 +264,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             $gmtUser
         );
 
+        $beatmapset->refresh();
+
         // ensure qualified beatmap has been reset to pending
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
 
@@ -349,6 +351,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             ],
             $this->user
         );
+
+        $beatmapset->refresh();
 
         // ensure beatmap status hasn't changed.
         $this->assertSame($beatmapset->status(), $state);

@@ -14,16 +14,13 @@ use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
 
-class BeatmapsetDiscussionPostNew
+class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
 {
-    protected ?BeatmapDiscussion $problemDiscussion = null;
-    protected int $priorOpenProblemCount = 0;
-
     private Beatmapset $beatmapset;
     private BeatmapDiscussionPost $post;
     private bool $willResolvedChange = false;
 
-    private function __construct(private User $user, private BeatmapDiscussion $discussion, private string $message)
+    private function __construct(protected User $user, private BeatmapDiscussion $discussion, private string $message)
     {
         $this->beatmapset = $discussion->beatmapset;
         $this->post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $message]);
@@ -118,47 +115,6 @@ class BeatmapsetDiscussionPostNew
         (new Notifications\BeatmapsetDiscussionPostNew($this->post, $this->user))->dispatch();
 
         return $posts;
-    }
-
-    protected function handleProblemDiscussion()
-    {
-        if ($this->problemDiscussion === null) {
-            return;
-        }
-
-        if ($this->shouldDisqualifyOrResetNominations()) {
-            return $this->beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
-        }
-
-        if ($this->beatmapset->isQualified() && $this->priorOpenProblemCount === 0 && !$this->problemDiscussion->resolved) {
-            (new Notifications\BeatmapsetDiscussionQualifiedProblem(
-                $this->problemDiscussion->startingPost,
-                $this->user
-            ))->dispatch();
-        }
-    }
-
-    protected function shouldDisqualifyOrResetNominations(): bool
-    {
-        // disqualify or reset nominations requires a new discussion.
-        if (!$this->discussion->wasRecentlyCreated) {
-            return false;
-        }
-
-        $beatmapset = $this->problemDiscussion->beatmapset;
-        if ($beatmapset->isQualified()) {
-            if (priv_check_user($this->user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
-                return true;
-            }
-        }
-
-        if ($beatmapset->isPending()) {
-            if ($beatmapset->hasNominations() && priv_check_user($this->user, 'BeatmapsetResetNominations', $beatmapset)->can()) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private function logResolveChange(): ?BeatmapDiscussionPost

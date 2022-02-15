@@ -16,17 +16,15 @@ use App\Models\User;
 use DB;
 use Exception;
 
-class BeatmapsetDiscussionReview
+class BeatmapsetDiscussionReview extends BeatmapsetDiscussionPostHandlesProblem
 {
     const BLOCK_TEXT_LENGTH_LIMIT = 750;
 
     private bool $isUpdate;
-    private int $priorOpenProblemCount;
-    private ?BeatmapDiscussion $problemDiscussion = null;
 
     private function __construct(
         private Beatmapset $beatmapset,
-        private User $user,
+        protected User $user,
         private array $document,
         private ?BeatmapDiscussion $discussion = null
     ) {
@@ -115,24 +113,6 @@ class BeatmapsetDiscussionReview
         $newPost->saveOrExplode();
 
         return $newDiscussion;
-    }
-
-    private function handleProblemDiscussion()
-    {
-        // handle disqualifications and the resetting of nominations
-        if ($this->problemDiscussion !== null) {
-            $event = BeatmapsetEvent::getBeatmapsetEventType($this->problemDiscussion, $this->user);
-            if (in_array($event, [BeatmapsetEvent::DISQUALIFY, BeatmapsetEvent::NOMINATION_RESET], true)) {
-                return $this->beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
-            }
-
-            if ($this->beatmapset->isQualified() && $event === null && $this->priorOpenProblemCount === 0) {
-                (new BeatmapsetDiscussionQualifiedProblem(
-                    $this->problemDiscussion->startingPost,
-                    $this->user
-                ))->dispatch();
-            }
-        }
     }
 
     private function parseBlock($block)
