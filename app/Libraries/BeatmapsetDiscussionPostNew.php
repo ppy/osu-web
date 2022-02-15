@@ -20,8 +20,12 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
     private BeatmapDiscussionPost $post;
     private bool $willResolvedChange = false;
 
-    private function __construct(protected User $user, private BeatmapDiscussion $discussion, private string $message)
+    public function __construct(protected User $user, private BeatmapDiscussion $discussion, private string $message)
     {
+        if (!$discussion->exists) {
+            priv_check_user($user, 'BeatmapDiscussionStore', $discussion)->ensureCan();
+        }
+
         $this->beatmapset = $discussion->beatmapset;
         $this->post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $message]);
         $this->post->user()->associate($user);
@@ -40,10 +44,6 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
     public static function create(User $user, array $params)
     {
         $discussion = static::prepareDiscussion($user, $params);
-
-        if (!$discussion->exists) {
-            priv_check_user($user, 'BeatmapDiscussionStore', $discussion)->ensureCan();
-        }
 
         $postParams = get_params($params, 'beatmap_discussion_post', ['message']);
 
