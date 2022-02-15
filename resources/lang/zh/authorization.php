@@ -63,7 +63,7 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => '',
+        'annnonce_only' => '此频道仅用于通知。',
         'blocked' => '无法向你已拉黑的用户发消息，或者你已经被对方拉黑了。',
         'friends_only' => '用户拒收了来自陌生人的消息。',
         'moderated' => '该频道现在正在被管制中。',

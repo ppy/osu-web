@@ -6,8 +6,8 @@
 return [
     'empty' => [
         '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        'playlists' => 'danh sách phát',
+        'realtime' => 'nhiều người chơi',
     ],
 
     'room' => [

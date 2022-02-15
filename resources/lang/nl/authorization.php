@@ -63,7 +63,7 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => '',
+        'annnonce_only' => 'Dit kanaal is enkel voor aankondigingen bestemd.',
         'blocked' => 'Kan geen bericht versturen naar een gebruiker die jou blokkeert of die jij geblokkeerd hebt.',
         'friends_only' => 'Gebruiker blokkeert berichten van mensen die niet op de vriendenlijst staan.',
         'moderated' => 'Dat kanaal wordt op dit moment gemodereerd.',

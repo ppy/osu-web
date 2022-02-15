@@ -78,10 +78,6 @@ export class Main extends React.Component
   }) =>
     @scoreboardXhr?.abort()
 
-    prevState =
-      currentScoreboardType: @state.currentScoreboardType
-      enabledMods: @state.enabledMods
-
     enabledMods = if resetMods
       []
     else if enabledMod != null && _.includes @state.enabledMods, enabledMod

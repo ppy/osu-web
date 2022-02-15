@@ -302,7 +302,7 @@ return [
                 'title' => '成就',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => '歌单游戏',
             ],
             'posts' => [
                 'title' => '回复',
@@ -313,7 +313,7 @@ return [
                 'title' => '最近活动',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => '多人游戏',
             ],
             'top_ranks' => [
                 'download_replay' => '下载回放',

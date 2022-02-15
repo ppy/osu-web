@@ -5,9 +5,9 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Brak rozegranych gier w trybie :type_group!',
+        'playlists' => 'asynchronicznym',
+        'realtime' => 'wieloosobowym',
     ],
 
     'room' => [
