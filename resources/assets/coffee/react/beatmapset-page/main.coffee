@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import NsfwWarning from 'beatmapsets-show/nsfw-warning'
+import Scoreboard from 'beatmapsets-show/scoreboard'
 import { Comments } from 'components/comments'
 import { CommentsManager } from 'components/comments-manager'
 import HeaderV4 from 'components/header-v4'
@@ -17,7 +18,6 @@ import { currentUrl } from 'utils/turbolinks'
 import { Header } from './header'
 import { Hype } from './hype'
 import { Info } from './info'
-import { Scoreboard } from './scoreboard'
 
 el = React.createElement
 

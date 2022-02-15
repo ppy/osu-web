@@ -302,7 +302,7 @@ return [
                 'title' => 'Medale',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Gry w trybie asynchronicznym',
             ],
             'posts' => [
                 'title' => 'Posty',
@@ -313,7 +313,7 @@ return [
                 'title' => 'Ostatnie',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Gry w trybie wieloosobowym',
             ],
             'top_ranks' => [
                 'download_replay' => 'Pobierz powtórkę',

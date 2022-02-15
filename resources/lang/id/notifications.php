@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => 'Semua notifikasi telah dibaca!',
+    'all_read' => 'Seluruh notifikasi telah dibaca!',
     'delete' => 'Hapus :type',
     'loading' => 'Memuat notifikasi-notifikasi yang belum dibaca...',
     'mark_read' => 'Hapus :type',
@@ -87,12 +87,12 @@ return [
             '_' => 'Chat',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Pengumuman baru',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username mengatakan ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Pengumuman dari :username',
                 ],
             ],
 

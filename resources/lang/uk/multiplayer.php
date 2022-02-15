@@ -5,9 +5,9 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Наразі ще не зіграна в osu!(lazer) :type_group ні одна гра!',
+        'playlists' => 'плейліст',
+        'realtime' => 'мультиплеер',
     ],
 
     'room' => [
