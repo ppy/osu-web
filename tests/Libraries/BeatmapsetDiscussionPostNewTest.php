@@ -253,7 +253,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
             // models created by factory still have wasRecentlyCreated = true.
             $discussion->wasRecentlyCreated = false;
         } else {
-            $discussion = $beatmapset->beatmapDiscussions()->create($params);
+            $discussion = $beatmapset->beatmapDiscussions()->make($params);
         }
 
         $subject = new BeatmapsetDiscussionPostNew($user, $discussion, 'message');
