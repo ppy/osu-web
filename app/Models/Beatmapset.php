@@ -599,7 +599,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         });
     }
 
-    public function disqualifyOrResetNominations(User $user, BeatmapDiscussion $post)
+    public function disqualifyOrResetNominations(User $user, BeatmapDiscussion $discussion)
     {
         $event = BeatmapsetEvent::DISQUALIFY;
         $notificationClass = BeatmapsetDisqualify::class;
@@ -610,15 +610,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             throw new InvariantException('invalid state');
         }
 
-        $this->getConnection()->transaction(function () use ($event, $notificationClass, $post, $user) {
+        $this->getConnection()->transaction(function () use ($discussion, $event, $notificationClass, $user) {
             $nominators = User::whereIn('user_id', $this->beatmapsetNominations()->current()->select('user_id'))->get();
 
-            BeatmapsetEvent::log($event, $user, $post, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
+            BeatmapsetEvent::log($event, $user, $discussion, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
             foreach ($nominators as $nominator) {
                 BeatmapsetEvent::log(
                     BeatmapsetEvent::NOMINATION_RESET_RECEIVED,
                     $nominator,
-                    $post,
+                    $discussion,
                     ['source_user_id' => $user->getKey(), 'source_user_username' => $user->username]
                 )->saveOrExplode();
             }

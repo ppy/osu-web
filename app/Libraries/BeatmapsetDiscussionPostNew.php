@@ -36,6 +36,7 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
             $this->priorOpenProblemCount = $this->beatmapset->beatmapDiscussions()->openProblems()->count();
         }
 
+        // TODO: this seems kind of weird, maybe pass in as param instead?
         $this->willResolvedChange = $this->discussion->exists
             && $this->discussion->canBeResolved()
             && $this->discussion->isDirty('resolved');

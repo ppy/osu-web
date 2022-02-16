@@ -202,6 +202,34 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         }
     }
 
+    public function testReopeningProblemDoesNotDisqualifyOrResetNominations()
+    {
+        $user = User::factory()->withGroup('bng')->create()->markSessionVerified();
+
+        $beatmapset = Beatmapset::factory()
+            ->owner($this->mapper)
+            ->withNominations()
+            ->qualified()
+            ->create();
+
+        $discussion = $beatmapset->beatmapDiscussions()->create([
+            'message_type' => 'problem',
+            'resolved' => true,
+            'user_id' => $user->getKey(),
+        ]);
+
+        $discussion->wasRecentlyCreated = false;
+
+        Queue::fake();
+
+        $discussion->resolved = false;
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+
+        Queue::assertPushed(NotificationsBeatmapsetDiscussionPostNew::class);
+        Queue::assertNotPushed(BeatmapsetDisqualify::class);
+        Queue::assertNotPushed(BeatmapsetResetNominations::class);
+    }
+
     /**
      * @dataProvider shouldDisqualifyOrResetNominationsDataProvider
      */

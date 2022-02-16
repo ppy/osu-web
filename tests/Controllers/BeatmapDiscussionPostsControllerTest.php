@@ -635,36 +635,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider reopenProblemQueueDataProvider
-     */
-    public function testReopenProblemOnBeatmapQueuesNotification($beatmapState, $userGroup, $queued, $notQueued)
-    {
-        // ensure there's no currently open problems
-        $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
-        $this->beatmapset->update([
-            'approved' => Beatmapset::STATES[$beatmapState],
-            'queued_at' => $beatmapState === 'qualified' ? now() : null,
-        ]);
-
-        // faking prevents jobs from actually running, so events and jobs can't be asserted together.
-        Queue::fake();
-
-        $user = User::factory()->withGroup($userGroup)->withPlays()->create();
-
-        $this
-            ->postResolveDiscussion(false, $user)
-            ->assertStatus(200);
-
-        foreach ($queued as $class) {
-            Queue::assertPushed($class);
-        }
-
-        foreach ($notQueued as $class) {
-            Queue::assertNotPushed($class);
-        }
-    }
-
     public function postStoreNewDiscussionMinPlaysDataProvider()
     {
         return [
@@ -693,38 +663,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ['praise', true, false], // resolving discussion that can't be resolved causes no change.
             ['problem', true, true],
             ['suggestion', true, true],
-        ];
-    }
-
-    public function reopenProblemQueueDataProvider()
-    {
-        return [
-            [
-                'qualified',
-                'bng',
-                [BeatmapsetDiscussionPostNew::class, BeatmapsetDiscussionQualifiedProblem::class],
-                [BeatmapsetDisqualify::class, BeatmapsetResetNominations::class],
-            ],
-            [
-                'qualified',
-                null,
-                [BeatmapsetDiscussionPostNew::class, BeatmapsetDiscussionQualifiedProblem::class],
-                [BeatmapsetDisqualify::class, BeatmapsetResetNominations::class],
-            ],
-            [
-                'pending',
-                'bng',
-                // no BeatmapsetResetNominations event expected because these tests have no nominations;
-                // see BeatmapsetEventNominationResetTest
-                [BeatmapsetDiscussionPostNew::class],
-                [BeatmapsetDiscussionQualifiedProblem::class, BeatmapsetDisqualify::class, BeatmapsetResetNominations::class],
-            ],
-            [
-                'pending',
-                null,
-                [BeatmapsetDiscussionPostNew::class],
-                [BeatmapsetDiscussionQualifiedProblem::class, BeatmapsetDisqualify::class, BeatmapsetResetNominations::class],
-            ],
         ];
     }
 
