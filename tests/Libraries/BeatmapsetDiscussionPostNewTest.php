@@ -202,14 +202,17 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         }
     }
 
-    public function testReopeningProblemDoesNotDisqualifyOrResetNominations()
+    /**
+     * @dataProvider reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider
+     */
+    public function testReopeningProblemDoesNotDisqualifyOrResetNominations(string $state)
     {
         $user = User::factory()->withGroup('bng')->create()->markSessionVerified();
 
         $beatmapset = Beatmapset::factory()
             ->owner($this->mapper)
             ->withNominations()
-            ->qualified()
+            ->$state()
             ->create();
 
         $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
@@ -320,6 +323,14 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
                 [NotificationsBeatmapsetDiscussionPostNew::class],
                 [BeatmapsetDiscussionQualifiedProblem::class, BeatmapsetDisqualify::class, BeatmapsetResetNominations::class],
             ],
+        ];
+    }
+
+    public function reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider()
+    {
+        return [
+            ['pending'],
+            ['qualified'],
         ];
     }
 
