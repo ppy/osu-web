@@ -5,9 +5,9 @@ import StringWithComponent from 'components/string-with-component';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
-import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { switchNever } from 'utils/switch-never';
 import ScoreTop from './score-top';
 import ScoreboardMod from './scoreboard-mod';
 import ScoreboardTab from './scoreboard-tab';
@@ -23,7 +23,7 @@ interface Props {
   beatmap: BeatmapExtendedJson;
   enabledMods: string[];
   isScoreable: boolean;
-  loading: boolean;
+  loadingState: null | 'error' | 'loading' | 'supporter_only' | 'unranked';
   scores: ScoreJson[];
   type: ScoreboardType;
   userScore?: ScoreJson;
@@ -68,35 +68,66 @@ export default class Scoreboard extends React.PureComponent<Props> {
           </div>
         }
 
-        <div className={classWithModifiers('beatmapset-scoreboard__main', { loading: this.props.loading })}>
+        <div className={classWithModifiers('beatmapset-scoreboard__main', { loading: this.props.loadingState === 'loading' })}>
           {this.renderMain()}
         </div>
       </div>
     );
   }
 
-  private renderEmptyMessage() {
+  private readonly onClickRetryButton = () => {
+    $.publish('beatmapset:scoreboard:retry');
+  };
+
+  private renderEmptyMessage(key: string) {
     return (
       <p className='beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'>
-        {osu.trans(`beatmapsets.show.scoreboard.no_scores.${this.props.loading ? 'loading' : this.props.type}`)}
+        {osu.trans(`beatmapsets.show.scoreboard.no_scores.${key}`)}
       </p>
     );
   }
 
+  private renderErrorMessage() {
+    return (
+      <div className='beatmapset-scoreboard__notice'>
+        <p>
+          {osu.trans('beatmapsets.show.scoreboard.error')}
+        </p>
+
+        <p className='beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'>
+          <button className='btn-osu-big btn-osu-big--rounded-thin' onClick={this.onClickRetryButton} type='button'>
+            {osu.trans('common.buttons.retry')}
+          </button>
+        </p>
+      </div>
+    );
+  }
+
   private renderMain() {
-    if (this.props.scores.length > 0) {
-      return this.renderScores();
-    }
+    switch (this.props.loadingState) {
+      case null:
+        if (this.props.scores.length > 0) {
+          return this.renderScores();
+        }
 
-    if (!this.props.isScoreable) {
-      return this.renderUnrankedMessage();
-    }
+        return this.renderEmptyMessage(this.props.type);
 
-    if (core.currentUser?.is_supporter || (this.props.type === 'global' && this.props.enabledMods.length === 0)) {
-      return this.renderEmptyMessage();
-    }
+      case 'error':
+        return this.renderErrorMessage();
 
-    return this.renderSupporterOnlyMessage();
+      case 'loading':
+        return this.renderEmptyMessage('loading');
+
+      case 'unranked':
+        return this.renderUnrankedMessage();
+
+      case 'supporter_only':
+        return this.renderSupporterOnlyMessage();
+
+      default:
+        switchNever(this.props.loadingState);
+        throw new Error('unsupported loading state');
+    }
   }
 
   private renderScores() {

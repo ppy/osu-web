@@ -66,6 +66,9 @@
             }
           }
         },
+        "id": {
+          "type": "long"
+        },
         "length": {
           "type": "long"
         },

@@ -55,7 +55,7 @@ export class Main extends React.Component
         currentBeatmap: currentBeatmap
         favcount: props.beatmapset.favourite_count
         hasFavourited: props.beatmapset.has_favourited
-        loading: false
+        loadingState: null
         showingNsfwWarning: props.beatmapset.nsfw && !core.userPreferences.get('beatmapset_show_nsfw')
         currentScoreboardType: 'global'
         enabledMods: []
@@ -78,10 +78,6 @@ export class Main extends React.Component
   }) =>
     @scoreboardXhr?.abort()
 
-    prevState =
-      currentScoreboardType: @state.currentScoreboardType
-      enabledMods: @state.enabledMods
-
     enabledMods = if resetMods
       []
     else if enabledMod != null && _.includes @state.enabledMods, enabledMod
@@ -95,8 +91,12 @@ export class Main extends React.Component
       currentScoreboardType: scoreboardType
       enabledMods: enabledMods
 
-    if !@state.currentBeatmap.is_scoreable || (!currentUser.is_supporter && (scoreboardType != 'global' || enabledMods.length > 0))
-      @setState scores: []
+    if !@state.currentBeatmap.is_scoreable
+      @setState loadingState: 'unranked'
+      return
+
+    if (!currentUser.is_supporter && (scoreboardType != 'global' || enabledMods.length > 0))
+      @setState loadingState: 'supporter_only'
       return
 
     @scoresCache ?= {}
@@ -104,6 +104,7 @@ export class Main extends React.Component
 
     loadScore = =>
       @setState
+        loadingState: null
         scores: @scoresCache[cacheKey].scores
         userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
         userScorePosition: @scoresCache[cacheKey].userScorePosition
@@ -112,8 +113,7 @@ export class Main extends React.Component
       loadScore()
       return
 
-    $.publish 'beatmapset:scoreboard:loading', true
-    @setState loading: true
+    @setState loadingState: 'loading'
 
     @scoreboardXhr = $.ajax (route 'beatmaps.scores', beatmap: @state.currentBeatmap.id),
       method: 'GET'
@@ -128,16 +128,10 @@ export class Main extends React.Component
       loadScore()
 
     .fail (xhr, status) =>
-      @setState(prevState)
+      @setState loadingState: 'error'
 
       if status == 'abort'
         return
-
-      osu.ajaxError xhr
-
-    .always =>
-      $.publish 'beatmapset:scoreboard:loading', false
-      @setState loading: false
 
 
   setCurrentBeatmap: (_e, {beatmap}) =>
@@ -187,6 +181,7 @@ export class Main extends React.Component
     $.subscribe "beatmapset:beatmap:set.#{@eventId}", @setCurrentBeatmap
     $.subscribe "playmode:set.#{@eventId}", @setCurrentPlaymode
     $.subscribe "beatmapset:scoreboard:set.#{@eventId}", @setCurrentScoreboard
+    $.subscribe "beatmapset:scoreboard:retry.#{@eventId}", @onRetryScoreboard
     $.subscribe "beatmapset:hoveredbeatmap:set.#{@eventId}", @setHoveredBeatmap
     $.subscribe "beatmapset:favourite:toggle.#{@eventId}", @toggleFavourite
     $(document).on "turbolinks:before-cache.#{@eventId}", @saveStateToContainer
@@ -210,6 +205,10 @@ export class Main extends React.Component
         el NsfwWarning, onClose: => @setState showingNsfwWarning: false
       else
         @renderPage()
+
+
+  onRetryScoreboard: =>
+    @setCurrentScoreboard null, enabledMod: @state.enabledMods
 
 
   renderPage: ->
@@ -242,7 +241,7 @@ export class Main extends React.Component
             userScore: @state.userScore?.score
             userScorePosition: @state.userScore?.position
             enabledMods: @state.enabledMods
-            loading: @state.loading
+            loadingState: @state.loadingState
             isScoreable: @state.currentBeatmap.is_scoreable
 
       div className: 'osu-page osu-page--generic-compact',
