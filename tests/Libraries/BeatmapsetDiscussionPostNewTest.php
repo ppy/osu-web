@@ -212,13 +212,11 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
             ->qualified()
             ->create();
 
-        $discussion = $beatmapset->beatmapDiscussions()->create([
-            'message_type' => 'problem',
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
+            'beatmapset_id' => $beatmapset,
             'resolved' => true,
-            'user_id' => $user->getKey(),
-        ]);
-
-        $discussion->wasRecentlyCreated = false;
+            'user_id' => $user,
+        ])->create();
 
         Queue::fake();
 
@@ -243,18 +241,13 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
             ->$state()
             ->create();
 
-        $params = [
+        $discussion = BeatmapDiscussion::factory()->general()->state([
+            'beatmapset_id' => $beatmapset,
             'message_type' => $messageType,
-            'user_id' => $user->getKey(),
-        ];
+            'user_id' => $user,
+        ]);
 
-        if ($existing) {
-            $discussion = $beatmapset->beatmapDiscussions()->create($params);
-            // models created by factory still have wasRecentlyCreated = true.
-            $discussion->wasRecentlyCreated = false;
-        } else {
-            $discussion = $beatmapset->beatmapDiscussions()->make($params);
-        }
+        $discussion = $existing ? $discussion->create() : $discussion->make();
 
         $subject = new BeatmapsetDiscussionPostNew($user, $discussion, 'message');
 
