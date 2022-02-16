@@ -166,6 +166,38 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         }
     }
 
+    /**
+     * @dataProvider shouldDisqualifyOrResetNominationsDataProvider
+     */
+    public function testShouldDisqualifyOrResetNominations(string $state, ?string $group, string $messageType, bool $existing, bool $expects)
+    {
+        $user = User::factory()->withGroup($group)->create()->markSessionVerified();
+
+        $beatmapset = Beatmapset::factory()
+            ->owner($this->mapper)
+            ->withNominations()
+            ->$state()
+            ->create();
+
+        $params = [
+            'message_type' => $messageType,
+            'user_id' => $user->getKey(),
+        ];
+
+        if ($existing) {
+            $discussion = $beatmapset->beatmapDiscussions()->create($params);
+            // models created by factory still have wasRecentlyCreated = true.
+            $discussion->wasRecentlyCreated = false;
+        } else {
+            $discussion = $beatmapset->beatmapDiscussions()->create($params);
+        }
+
+        $subject = new BeatmapsetDiscussionPostNew($user, $discussion, 'message');
+
+        $value = $this->invokeMethod($subject, 'shouldDisqualifyOrResetNominations');
+        $this->assertSame($expects, $value);
+    }
+
     public function minPlaysVerificationDataProvider()
     {
         return [
@@ -192,11 +224,45 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         ];
     }
 
+    public function shouldDisqualifyOrResetNominationsDataProvider()
+    {
+        return [
+            ['pending', 'bng', 'problem', true, false],
+            ['pending', 'bng', 'problem', false, true],
+            ['pending', 'bng', 'suggestion', true, false],
+            ['pending', 'bng', 'suggestion', false, false],
+            ['pending', 'bng_limited', 'problem', true, false],
+            ['pending', 'bng_limited', 'problem', false, true],
+            ['pending', 'bng_limited', 'suggestion', true, false],
+            ['pending', 'bng_limited', 'suggestion', false, false],
+            ['pending', null, 'problem', true, false],
+            ['pending', null, 'problem', false, false],
+            ['pending', null, 'suggestion', true, false],
+            ['pending', null, 'suggestion', false, false],
+
+            // similar to pending except bng_limited cannot disqualify
+            ['qualified', 'bng', 'problem', true, false],
+            ['qualified', 'bng', 'problem', false, true],
+            ['qualified', 'bng', 'suggestion', true, false],
+            ['qualified', 'bng', 'suggestion', false, false],
+            ['qualified', 'bng_limited', 'problem', true, false],
+            ['qualified', 'bng_limited', 'problem', false, false], // cannot disqualify
+            ['qualified', 'bng_limited', 'suggestion', true, false],
+            ['qualified', 'bng_limited', 'suggestion', false, false],
+            ['qualified', null, 'problem', true, false],
+            ['qualified', null, 'problem', false, false],
+            ['qualified', null, 'suggestion', true, false],
+            ['qualified', null, 'suggestion', false, false],
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
 
         Event::fake();
+
+        config()->set('osu.beatmapset.required_nominations', 1);
 
         $this->mapper = User::factory()->withPlays()->create();
         $this->poster = User::factory()->withPlays()->create();

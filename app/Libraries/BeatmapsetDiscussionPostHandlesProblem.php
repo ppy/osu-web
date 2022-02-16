@@ -39,6 +39,10 @@ abstract class BeatmapsetDiscussionPostHandlesProblem
 
     protected function shouldDisqualifyOrResetNominations(): bool
     {
+        if ($this->problemDiscussion === null) {
+            return false;
+        }
+
         // disqualify or reset nominations requires a new discussion.
         if ($this->problemDiscussion->wasRecentlyCreated || !$this->problemDiscussion->exists) {
             $beatmapset = $this->problemDiscussion->beatmapset;
