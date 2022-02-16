@@ -6,10 +6,6 @@
 namespace Tests\Controllers;
 
 use App\Events\NewPrivateNotificationEvent;
-use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
-use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
-use App\Jobs\Notifications\BeatmapsetDisqualify;
-use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -18,7 +14,6 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase
