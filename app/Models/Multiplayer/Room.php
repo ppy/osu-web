@@ -7,6 +7,7 @@ namespace App\Models\Multiplayer;
 
 use App\Casts\PresentString;
 use App\Exceptions\InvariantException;
+use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Model;
 use App\Models\Traits\WithDbCursorHelper;
@@ -241,6 +242,44 @@ class Room extends Model
                 LIMIT {$limit}
             ) recent_participants
         ", 'recent_participant_ids');
+    }
+
+    public function difficultyRange()
+    {
+        if ($this->relationLoaded('playlist')) {
+            $firstItem = $this->playlist[0];
+
+            if ($firstItem->relationLoaded('beatmap')) {
+                $ret = [
+                    'max' => null,
+                    'min' => null,
+                ];
+
+                $this->playlist->each(function ($item) use ($ret) {
+                    $rating = $item->beatmap->difficultyrating;
+
+                    if ($ret['max'] === null || $ret['max'] < $rating) {
+                        $ret['max'] = $rating;
+                    }
+
+                    if ($ret['min'] === null || $ret['min'] > $rating) {
+                        $ret['min'] = $rating;
+                    }
+                });
+
+                return $ret;
+            }
+        }
+
+        $range = Beatmap::selectRaw('
+            MIN(difficultyrating) as min_difficulty,
+            MAX(difficultyrating) as max_difficulty
+        ')->whereIn('beatmap_id', $this->playlist()->select('beatmap_id'))->first();
+
+        return [
+            'max' => $range->max_difficulty ?? 0,
+            'min' => $range->min_difficulty ?? 0,
+        ];
     }
 
     public function hasEnded()

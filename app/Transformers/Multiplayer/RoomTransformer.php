@@ -15,6 +15,7 @@ class RoomTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'current_user_score',
+        'difficulty_range',
         'host',
         'playlist',
         'recent_participants',
@@ -51,6 +52,11 @@ class RoomTransformer extends TransformerAbstract
         $score = UserScoreAggregate::lookupOrDefault($user, $room);
 
         return $this->item($score, new UserScoreAggregateTransformer());
+    }
+
+    public function includeDifficultyRange(Room $room)
+    {
+        return $this->primitive($room->difficultyRange());
     }
 
     public function includeHost(Room $room)
