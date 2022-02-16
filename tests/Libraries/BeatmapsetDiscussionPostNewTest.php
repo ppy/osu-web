@@ -9,6 +9,10 @@ namespace Tests\Libraries;
 
 use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\VerificationRequiredException;
+use App\Jobs\Notifications\BeatmapsetDiscussionPostNew as NotificationsBeatmapsetDiscussionPostNew;
+use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
+use App\Jobs\Notifications\BeatmapsetDisqualify;
+use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Libraries\BeatmapsetDiscussionPostNew;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
@@ -18,6 +22,7 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
 use Event;
+use Queue;
 use Tests\TestCase;
 
 class BeatmapsetDiscussionPostNewTest extends TestCase
@@ -167,6 +172,37 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
     }
 
     /**
+     * @dataProvider queuedJobsDataProvider
+     */
+    public function testQueuedJobs(string $state, ?string $group, array $queued, array $notQueued)
+    {
+        $user = User::factory()->withGroup($group)->create()->markSessionVerified();
+
+        $beatmapset = Beatmapset::factory()
+            ->owner($this->mapper)
+            ->withNominations()
+            ->$state()
+            ->create();
+
+        $discussion = $beatmapset->beatmapDiscussions()->make([
+            'message_type' => 'problem',
+            'user_id' => $user->getKey(),
+        ]);
+
+        Queue::fake();
+
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+
+        foreach ($queued as $class) {
+            Queue::assertPushed($class);
+        }
+
+        foreach ($notQueued as $class) {
+            Queue::assertNotPushed($class);
+        }
+    }
+
+    /**
      * @dataProvider shouldDisqualifyOrResetNominationsDataProvider
      */
     public function testShouldDisqualifyOrResetNominations(string $state, ?string $group, string $messageType, bool $existing, bool $expects)
@@ -221,6 +257,48 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         return [
             'with matching notification mode' => ['osu', ['osu'], true],
             'wihtout matching notification mode' => ['osu', ['taiko'], false],
+        ];
+    }
+
+    public function queuedJobsDataProvider()
+    {
+        return [
+            [
+                'qualified',
+                'bng',
+                [BeatmapsetDisqualify::class, NotificationsBeatmapsetDiscussionPostNew::class],
+                [BeatmapsetDiscussionQualifiedProblem::class, BeatmapsetResetNominations::class],
+            ],
+            [
+                'qualified',
+                'bng_limited',
+                [NotificationsBeatmapsetDiscussionPostNew::class, BeatmapsetDiscussionQualifiedProblem::class],
+                [BeatmapsetDisqualify::class, BeatmapsetResetNominations::class],
+            ],
+            [
+                'qualified',
+                null,
+                [NotificationsBeatmapsetDiscussionPostNew::class, BeatmapsetDiscussionQualifiedProblem::class],
+                [BeatmapsetDisqualify::class, BeatmapsetResetNominations::class],
+            ],
+            [
+                'pending',
+                'bng',
+                [BeatmapsetResetNominations::class, NotificationsBeatmapsetDiscussionPostNew::class],
+                [BeatmapsetDiscussionQualifiedProblem::class, BeatmapsetDisqualify::class],
+            ],
+            [
+                'pending',
+                'bng_limited',
+                [BeatmapsetResetNominations::class, NotificationsBeatmapsetDiscussionPostNew::class],
+                [BeatmapsetDiscussionQualifiedProblem::class, BeatmapsetDisqualify::class],
+            ],
+            [
+                'pending',
+                null,
+                [NotificationsBeatmapsetDiscussionPostNew::class],
+                [BeatmapsetDiscussionQualifiedProblem::class, BeatmapsetDisqualify::class, BeatmapsetResetNominations::class],
+            ],
         ];
     }
 
