@@ -16,6 +16,14 @@ class PostFactory extends Factory
 {
     protected $model = Post::class;
 
+    public function configure(): static
+    {
+        return $this->afterCreating(function (Post $post) {
+            $post->topic->refreshCache();
+            $post->forum->refreshCache();
+        });
+    }
+
     public function definition(): array
     {
         return [

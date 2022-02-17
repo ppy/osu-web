@@ -18,6 +18,11 @@ class TopicFactory extends Factory
 {
     protected $model = Topic::class;
 
+    public function configure(): static
+    {
+        return $this->afterCreating(fn (Topic $topic) => $topic->forum->refreshCache());
+    }
+
     public function definition(): array
     {
         return [
@@ -74,6 +79,6 @@ class TopicFactory extends Factory
                         return $attributes;
                     }),
             )
-            ->afterCreating(fn (Topic $topic) => $topic->refreshCache());
+            ->afterCreating(fn (Topic $topic) => $topic->refresh());
     }
 }
