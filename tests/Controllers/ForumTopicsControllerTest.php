@@ -3,306 +3,194 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Controllers;
 
-use App\Models\Forum;
+use App\Models\Forum\Authorize;
+use App\Models\Forum\Forum;
+use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
+use App\Models\Forum\TopicTrack;
 use App\Models\User;
 use App\Models\UserStatistics\Osu as StatisticsOsu;
 use Tests\TestCase;
 
 class ForumTopicsControllerTest extends TestCase
 {
-    public function testDestroy()
+    public function testPin(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->forum_id,
-        ]);
-        $user = User::factory()->create()->fresh();
-        $group = app('groups')->byIdentifier('default');
-        $user->setDefaultGroup($group);
-        $authOption = Forum\AuthOption::firstOrCreate([
-            'auth_option' => 'f_reply',
-        ]);
-        Forum\Authorize::create([
-            'group_id' => $group->group_id,
-            'forum_id' => $forum->forum_id,
-            'auth_option_id' => $authOption->auth_option_id,
-            'auth_setting' => 1,
-        ]);
-
-        $initialPostCount = Forum\Post::count();
-        $initialTopicCount = Forum\Topic::count();
-
-        // fail because no plays =)
-        $this
-            ->actingAsVerified($user)
-            ->post(route('forum.topics.reply', $topic->topic_id), [
-                'body' => 'This is test reply',
-            ])
-            ->assertStatus(403);
-
-        $this->assertSame($initialPostCount, Forum\Post::count());
-        $this->assertSame($initialTopicCount, Forum\Topic::count());
-
-        // add some plays so it passes
-        $this->addPlaycount($user);
+        $moderator = User::factory()->withGroup('gmt')->create();
+        $topic = Topic::factory()->create();
+        $typeInt = Topic::TYPES['sticky'];
 
         $this
-            ->actingAsVerified($user)
-            ->post(route('forum.topics.reply', $topic->topic_id), [
-                'body' => 'This is test reply',
-            ])
-            ->assertStatus(200);
-
-        $this->assertSame($initialPostCount + 1, Forum\Post::count());
-        $this->assertSame($initialTopicCount, Forum\Topic::count());
-    }
-
-    public function testPin()
-    {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->getKey(),
-            'topic_status' => Forum\Topic::TYPES['normal'],
-        ]);
-        $user = User::factory()->withGroup('gmt')->create();
-        $type = 'sticky';
-        $typeInt = Forum\Topic::TYPES[$type];
-
-        $this
-            ->actingAsVerified($user)
-            ->post(route('forum.topics.pin', $topic->getKey()), [
-                'pin' => $typeInt,
-            ])
+            ->actingAsVerified($moderator)
+            ->post(route('forum.topics.pin', $topic), ['pin' => $typeInt])
             ->assertSuccessful();
 
-        $this->assertSame($type, Forum\Topic::typeStr($topic->fresh()->topic_type));
+        $this->assertSame($typeInt, $topic->fresh()->topic_type);
     }
 
-    public function testReply()
+    public function testReply(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->forum_id,
-        ]);
-        $user = User::factory()->create()->fresh();
-        $group = app('groups')->byIdentifier('default');
-        $user->setDefaultGroup($group);
-        $authOption = Forum\AuthOption::firstOrCreate([
-            'auth_option' => 'f_reply',
-        ]);
-        Forum\Authorize::create([
-            'group_id' => $group->group_id,
-            'forum_id' => $forum->forum_id,
-            'auth_option_id' => $authOption->auth_option_id,
-            'auth_setting' => 1,
+        $topic = Topic::factory()->create();
+        $user = User::factory()->create();
+        Authorize::factory()->reply()->create([
+            'forum_id' => $topic->forum_id,
+            'group_id' => app('groups')->byIdentifier('default'),
         ]);
 
-        $initialPostCount = Forum\Post::count();
-        $initialTopicCount = Forum\Topic::count();
+        $initialPostCount = Post::count();
+        $initialTopicCount = Topic::count();
 
         // fail because no plays =)
         $this
             ->actingAsVerified($user)
-            ->post(route('forum.topics.reply', $topic->topic_id), [
+            ->post(route('forum.topics.reply', $topic), [
                 'body' => 'This is test reply',
             ])
             ->assertStatus(403);
 
-        $this->assertSame($initialPostCount, Forum\Post::count());
-        $this->assertSame($initialTopicCount, Forum\Topic::count());
+        $this->assertSame($initialPostCount, Post::count());
+        $this->assertSame($initialTopicCount, Topic::count());
 
         // add some plays so it passes
         $this->addPlaycount($user);
 
         $this
             ->actingAsVerified($user)
-            ->post(route('forum.topics.reply', $topic->topic_id), [
+            ->post(route('forum.topics.reply', $topic), [
                 'body' => 'This is test reply',
             ])
             ->assertStatus(200);
 
-        $this->assertSame($initialPostCount + 1, Forum\Post::count());
-        $this->assertSame($initialTopicCount, Forum\Topic::count());
+        $this->assertSame($initialPostCount + 1, Post::count());
+        $this->assertSame($initialTopicCount, Topic::count());
     }
 
-    public function testRestore()
+    public function testRestore(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->forum_id,
-        ]);
-        $poster = User::factory()->create()->fresh();
-        $poster->setDefaultGroup(app('groups')->byIdentifier('default'));
-        Forum\Post::createNew($topic, $poster, 'test', false);
-
-        $topic->refresh();
+        $moderator = User::factory()->withGroup('gmt')->create();
+        $topic = Topic::factory()->withPost()->create();
         $topic->delete();
 
-        $user = User::factory()->create()->fresh();
-        $user->setDefaultGroup(app('groups')->byIdentifier('gmt'));
-
-        $initialTopicCount = Forum\Topic::count();
+        $initialTopicCount = Topic::count();
 
         $this
-            ->actingAsVerified($user)
+            ->actingAsVerified($moderator)
             ->post(route('forum.topics.restore', $topic))
             ->assertSuccessful();
 
-        $topic->refresh();
-
-        $this->assertSame($initialTopicCount + 1, Forum\Topic::count());
+        $this->assertSame($initialTopicCount + 1, Topic::count());
     }
 
-    public function testShow()
+    public function testShow(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->forum_id,
-        ]);
-        $post = factory(Forum\Post::class)->create([
-            'forum_id' => $forum->forum_id,
-            'topic_id' => $topic->topic_id,
-        ]);
+        $topic = Topic::factory()->withPost()->create();
 
         $this
-            ->get(route('forum.topics.show', $topic->topic_id))
+            ->get(route('forum.topics.show', $topic))
             ->assertStatus(200);
     }
 
-    public function testShowNoMorePosts()
+    public function testShowNoMorePosts(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->forum_id,
-        ]);
-        $post = factory(Forum\Post::class)->create([
-            'forum_id' => $forum->forum_id,
-            'topic_id' => $topic->topic_id,
-        ]);
+        $topic = Topic::factory()->withPost()->create();
 
         $this
             ->get(route('forum.topics.show', [
-                'start' => $post->getKey() + 1,
-                'topic' => $topic->getKey(),
-            ]))->assertStatus(302);
+                'start' => $topic->topic_first_post_id + 1,
+                'topic' => $topic,
+            ]))
+            ->assertStatus(302);
     }
 
-    public function testShowNoMorePostsWithSkipLayout()
+    public function testShowNoMorePostsWithSkipLayout(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->forum_id,
-        ]);
-        $post = factory(Forum\Post::class)->create([
-            'forum_id' => $forum->forum_id,
-            'topic_id' => $topic->topic_id,
-        ]);
+        $topic = Topic::factory()->withPost()->create();
 
         $this
             ->get(route('forum.topics.show', [
                 'skip_layout' => 1,
-                'start' => $post->getKey() + 1,
-                'topic' => $topic->getKey(),
-            ]))->assertStatus(204);
+                'start' => $topic->topic_first_post_id + 1,
+                'topic' => $topic,
+            ]))
+            ->assertStatus(204);
     }
 
-    public function testShowMissingPosts()
+    public function testShowMissingPosts(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->forum_id,
-        ]);
+        $topic = Topic::factory()->create();
 
         $this
-            ->get(route('forum.topics.show', $topic->topic_id))
+            ->get(route('forum.topics.show', $topic))
             ->assertStatus(404);
     }
 
-    public function testShowNewUser()
+    public function testShowNewUser(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->forum_id,
-        ]);
-        $post = factory(Forum\Post::class)->create([
-            'forum_id' => $forum->forum_id,
-            'topic_id' => $topic->topic_id,
-        ]);
+        $topic = Topic::factory()->withPost()->create();
         $user = User::factory()->create();
 
         $this
             ->be($user)
-            ->get(route('forum.topics.show', $topic->topic_id))
+            ->get(route('forum.topics.show', $topic))
             ->assertSuccessful();
     }
 
-    public function testStore()
+    public function testStore(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $user = User::factory()->create()->fresh();
-        $group = app('groups')->byIdentifier('default');
-        $user->setDefaultGroup($group);
-        $authOption = Forum\AuthOption::firstOrCreate([
-            'auth_option' => 'f_post',
-        ]);
-        Forum\Authorize::create([
-            'group_id' => $group->getKey(),
-            'forum_id' => $forum->forum_id,
-            'auth_option_id' => $authOption->auth_option_id,
-            'auth_setting' => 1,
+        $forum = Forum::factory()->create();
+        $user = User::factory()->create();
+        Authorize::factory()->post()->create([
+            'forum_id' => $forum,
+            'group_id' => app('groups')->byIdentifier('default'),
         ]);
 
-        $initialPostCount = Forum\Post::count();
-        $initialTopicCount = Forum\Topic::count();
-        $initialTopicTrackCount = Forum\TopicTrack::count();
+        $initialPostCount = Post::count();
+        $initialTopicCount = Topic::count();
+        $initialTopicTrackCount = TopicTrack::count();
 
         // fail because no plays =)
         $this
             ->actingAsVerified($user)
-            ->post(route('forum.topics.store', ['forum_id' => $forum->forum_id]), [
+            ->post(route('forum.topics.store', ['forum_id' => $forum]), [
                 'title' => 'Test post',
                 'body' => 'This is test post',
             ])
             ->assertStatus(403);
 
-        $this->assertSame($initialPostCount, Forum\Post::count());
-        $this->assertSame($initialTopicCount, Forum\Topic::count());
-        $this->assertSame($initialTopicTrackCount, Forum\TopicTrack::count());
+        $this->assertSame($initialPostCount, Post::count());
+        $this->assertSame($initialTopicCount, Topic::count());
+        $this->assertSame($initialTopicTrackCount, TopicTrack::count());
 
         // add some plays so it passes
         $this->addPlaycount($user);
 
         $this
             ->actingAsVerified($user)
-            ->post(route('forum.topics.store', ['forum_id' => $forum->forum_id]), [
+            ->post(route('forum.topics.store', ['forum_id' => $forum]), [
                 'title' => 'Test post',
                 'body' => 'This is test post',
             ])
             ->assertRedirect(route(
                 'forum.topics.show',
-                Forum\Topic::orderBy('topic_id', 'DESC')->first()->topic_id
+                Topic::orderBy('topic_id', 'DESC')->first(),
             ));
 
-        $this->assertSame($initialPostCount + 1, Forum\Post::count());
-        $this->assertSame($initialTopicCount + 1, Forum\Topic::count());
-        $this->assertSame($initialTopicTrackCount + 1, Forum\TopicTrack::count());
+        $this->assertSame($initialPostCount + 1, Post::count());
+        $this->assertSame($initialTopicCount + 1, Topic::count());
+        $this->assertSame($initialTopicTrackCount + 1, TopicTrack::count());
     }
 
-    public function testUpdateTitle()
+    public function testUpdateTitle(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
         $user = User::factory()->create();
-        $group = app('groups')->byIdentifier('default');
-        $user->setDefaultGroup($group);
-        $initialTitle = 'New topic';
-        $topic = Forum\Topic::createNew($forum, [
-            'title' => $initialTitle,
-            'user' => $user,
-            'body' => 'This is a new topic',
+        $topic = Topic::factory()->withPost()->create([
+            'topic_poster' => $user->getKey(),
+            'topic_title' => 'Initial title',
         ]);
-
         $newTitle = 'A different title';
 
         $this
@@ -317,18 +205,11 @@ class ForumTopicsControllerTest extends TestCase
         $this->assertSame($newTitle, $topic->fresh()->topic_title);
     }
 
-    public function testUpdateTitleBlank()
+    public function testUpdateTitleBlank(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
         $user = User::factory()->create();
-        $group = app('groups')->byIdentifier('default');
-        $user->setDefaultGroup($group);
-        $initialTitle = 'New topic';
-        $topic = Forum\Topic::createNew($forum, [
-            'title' => $initialTitle,
-            'user' => $user,
-            'body' => 'This is a new topic',
-        ]);
+        $topic = Topic::factory()->withPost()->create(['topic_poster' => $user->getKey()]);
+        $title = $topic->topic_title;
 
         $this
             ->actingAsVerified($user)
@@ -339,26 +220,17 @@ class ForumTopicsControllerTest extends TestCase
             ])
             ->assertStatus(422);
 
-        $this->assertSame($initialTitle, $topic->fresh()->topic_title);
+        $this->assertSame($title, $topic->fresh()->topic_title);
     }
 
-    protected function setUp(): void
+    private function addPlaycount(User $user, ?int $playcount = null): void
     {
-        parent::setUp();
-
-        // initial user for forum posts and stuff
-        // FIXME: this is actually a hidden dependency
-        User::factory()->create();
-    }
-
-    private function addPlaycount($user, $playcount = null)
-    {
-        $playcount ?? $playcount = config('osu.forum.minimum_plays');
+        $playcount ??= config('osu.forum.minimum_plays');
 
         if ($user->statisticsOsu === null) {
             factory(StatisticsOsu::class)->create([
                 'playcount' => $playcount,
-                'user_id' => $user->getKey(),
+                'user_id' => $user,
             ]);
         } else {
             $user->statisticsOsu->update(['playcount' => $playcount]);
