@@ -201,33 +201,29 @@ class SanityTest extends DuskTestCase
 
     private static function filterLog(array $log)
     {
+        $appUrl = config('app.url');
         $return = [];
 
         foreach ($log as $line) {
             if ($line['source'] === 'network') {
                 $matches = [];
-                preg_match_all('/^([^ ]+) - Failed to load resource: the server responded with a status of ([0-9]{3}) \(([^\)]*)\)$/i', $line['message'], $matches);
-                $returnCode = get_int(optional($matches[2])[0]);
-                $url = optional($matches[1])[0];
+                $count = preg_match_all('/^([^ ]+) - Failed to load resource: the server responded with a status of ([0-9]{3}) \(([^\)]*)\)$/i', $line['message'], $matches);
 
-                // ignore missing non-critical assets
-                if (
-                    ($returnCode === 404 && starts_with($url, 'https://assets.ppy.sh')) ||
-                    ($returnCode === 403 && starts_with($url, 'https://i.ppy.sh'))
-                ) {
-                    continue;
+                if ($count !== false && $count > 0) {
+                    $returnCode = get_int($matches[2][0]);
+                    $url = $matches[1][0];
+
+                    // ignore missing non-critical assets
+                    if (
+                        ($returnCode === 403 || $returnCode === 404) && starts_with($url, ['https://assets.ppy.sh', 'https://i.ppy.sh']) ||
+                        ($returnCode < 500 && starts_with($url, $appUrl))
+                    ) {
+                        continue;
+                    }
                 }
-
-                $return[] = [
-                    'url' => $url,
-                    'status' => $returnCode,
-                    'message' => optional($matches[3])[0],
-                    'source' => 'network',
-                    'raw' => $line['message'],
-                ];
-            } else {
-                $return[] = $line;
             }
+
+            $return[] = $line;
         }
 
         return $return;
@@ -445,8 +441,8 @@ class SanityTest extends DuskTestCase
         $rawLog = $browser->driver->manage()->getLog('browser');
         $logLines = collect(self::filterLog($rawLog));
 
-        if ($logLines->contains('source', 'javascript')) {
-            $error = implode(' | ', $logLines->where('source', 'javascript')->pluck('message')->toArray());
+        if ($logLines->isNotEmpty()) {
+            $error = implode(' | ', $logLines->pluck('message')->toArray());
 
             throw new Exception("JavaScript ERROR: {$error}");
         }
