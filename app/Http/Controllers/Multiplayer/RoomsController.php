@@ -20,7 +20,7 @@ class RoomsController extends BaseController
 
     public function index()
     {
-        $compactReturn = api_version() > 20220215;
+        $compactReturn = api_version() >= 20220216;
         $params = request()->all();
         $params['user'] = auth()->user();
 
