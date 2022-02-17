@@ -263,7 +263,7 @@ class Room extends Model
                     'min' => null,
                 ];
 
-                $this->playlist->each(function ($item) use (&$ret) {
+                foreach ($this->playlist as $item) {
                     $rating = $item->beatmap->difficultyrating;
                     $ret['max'] ??= $rating;
                     $ret['min'] ??= $rating;
@@ -273,7 +273,7 @@ class Room extends Model
                     } elseif ($ret['min'] > $rating) {
                         $ret['min'] = $rating;
                     }
-                });
+                }
 
                 return $ret;
             }
