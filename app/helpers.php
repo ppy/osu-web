@@ -7,6 +7,11 @@ use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
 use Illuminate\Support\HtmlString;
 
+function api_version(): int
+{
+    return get_int(request()->header('x-api-version')) ?? 0;
+}
+
 /*
  * Like array_search but returns null if not found instead of false.
  * Strict mode only.
