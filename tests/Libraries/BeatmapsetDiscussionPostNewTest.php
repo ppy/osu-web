@@ -238,6 +238,83 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         );
     }
 
+    public function testReopenResolvedDiscussionByMapper()
+    {
+        $beatmapset = $this->beatmapsetFactory()->qualified()->create();
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
+            'beatmapset_id' => $beatmapset,
+            'resolved' => true,
+            'user_id' => $this->mapper,
+        ])->create();
+
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 2);
+
+        $discussion->resolved = false;
+        (new BeatmapsetDiscussionPostNew($this->mapper, $discussion, 'message'))->handle();
+
+        $this->assertFalse($discussion->fresh()->resolved);
+        $this->assertTrue($beatmapset->isQualified());
+    }
+
+    public function testReopenResolvedDiscussionByStarter()
+    {
+        $user = User::factory()->create()->markSessionVerified();
+        $beatmapset = $this->beatmapsetFactory()->qualified()->create();
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
+            'beatmapset_id' => $beatmapset,
+            'resolved' => true,
+            'user_id' => $user,
+        ])->create();
+
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 2);
+
+        $discussion->resolved = false;
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+
+        $this->assertFalse($discussion->fresh()->resolved);
+        $this->assertTrue($beatmapset->isQualified());
+    }
+
+    /**
+     * @dataProvider userGroupsDataProvider
+     */
+    public function testReplyResolvedDiscussion(?string $group)
+    {
+        $user = User::factory()->withGroup($group)->create()->markSessionVerified();
+        $beatmapset = $this->beatmapsetFactory()->qualified()->create();
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
+            'beatmapset_id' => $beatmapset,
+            'resolved' => true,
+            'user_id' => User::factory(),
+        ])->create();
+
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1);
+
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+
+        $this->assertTrue($discussion->fresh()->resolved);
+    }
+
+    /**
+     * @dataProvider userGroupsDataProvider
+     */
+    public function testReplyUnresolvedDiscussion(?string $group)
+    {
+        $user = User::factory()->withGroup($group)->create()->markSessionVerified();
+        $beatmapset = $this->beatmapsetFactory()->qualified()->create();
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
+            'beatmapset_id' => $beatmapset,
+            'resolved' => false,
+            'user_id' => User::factory(),
+        ])->create();
+
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1);
+
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+
+        $this->assertFalse($discussion->fresh()->resolved);
+    }
+
     /**
      * @dataProvider shouldDisqualifyOrResetNominationsDataProvider
      */
@@ -412,6 +489,17 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         ];
     }
 
+    public function userGroupsDataProvider()
+    {
+        return [
+            ['admin'],
+            ['bng'],
+            ['gmt'],
+            ['nat'],
+            [null],
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -420,7 +508,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
 
         config()->set('osu.beatmapset.required_nominations', 1);
 
-        $this->mapper = User::factory()->create();
+        $this->mapper = User::factory()->create()->markSessionVerified();
     }
 
     private function beatmapsetFactory(array $beatmapState = [])
