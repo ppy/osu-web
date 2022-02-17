@@ -67,6 +67,8 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
      */
     public function testProblemOnQualifiedBeatmapset(string $state, string $assertMethod)
     {
+        $user = User::factory()->create()->markSessionVerified();
+
         $beatmapset = Beatmapset::factory()
             ->owner($this->mapper)
             ->$state()
@@ -82,10 +84,10 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
 
         $discussion = $beatmapset->beatmapDiscussions()->make([
             'message_type' => 'problem',
-            'user_id' => $this->poster->getKey(),
+            'user_id' => $user->getKey(),
         ]);
 
-        (new BeatmapsetDiscussionPostNew($this->poster, $discussion, 'message'))->handle();
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
 
         $assertMethod(NewPrivateNotificationEvent::class);
     }
@@ -93,6 +95,8 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
     public function testSecondProblemOnQualifiedBeatmapset()
     {
         // TODO: add test for priorOpenProblemCount?
+
+        $user = User::factory()->create()->markSessionVerified();
 
         $beatmapset = Beatmapset::factory()
             ->owner($this->mapper)
@@ -112,10 +116,10 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
 
         $discussion = $beatmapset->beatmapDiscussions()->make([
             'message_type' => 'problem',
-            'user_id' => $this->poster->getKey(),
+            'user_id' => $user->getKey(),
         ]);
 
-        (new BeatmapsetDiscussionPostNew($this->poster, $discussion, 'message'))->handle();
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
 
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }
@@ -127,6 +131,8 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
      */
     public function testProblemOnQualifiedBeatmapsetModesNotification(string $mode, array $notificationModes, bool $expectsNotification)
     {
+        $user = User::factory()->create()->markSessionVerified();
+
         $beatmapset = Beatmapset::factory()
             ->owner($this->mapper)
             ->qualified()
@@ -136,23 +142,23 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
             ]))
             ->create();
 
-        $user = User::factory()->create();
-        $user->notificationOptions()->create([
+        $watcher = User::factory()->create();
+        $watcher->notificationOptions()->create([
             'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
             'details' => ['modes' => $notificationModes],
         ]);
 
         $discussion = $beatmapset->beatmapDiscussions()->make([
             'message_type' => 'problem',
-            'user_id' => $this->poster->getKey(),
+            'user_id' => $user->getKey(),
         ]);
 
         // TODO: only test the handleProblemDiscussion() part?
-        (new BeatmapsetDiscussionPostNew($this->poster, $discussion, 'message'))->handle();
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
 
         if ($expectsNotification) {
-            Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($user) {
-                return in_array($user->getKey(), $event->getReceiverIds(), true);
+            Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($watcher) {
+                return in_array($watcher->getKey(), $event->getReceiverIds(), true);
             });
         } else {
             Event::assertNotDispatched(NewPrivateNotificationEvent::class);
@@ -225,11 +231,12 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
     public function testReplyQueuesNotification(string $messageType, bool $includeStarter)
     {
         $user = User::factory()->create()->markSessionVerified();
+        $starter = User::factory()->create();
 
         $discussion = BeatmapDiscussion::factory()->general()->state([
             'beatmapset_id' => $this->beatmapset,
             'message_type' => $messageType,
-            'user_id' => $this->poster,
+            'user_id' => $starter,
         ])->create();
 
         Queue::fake();
@@ -238,10 +245,10 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
 
         Queue::assertPushed(
             NotificationsBeatmapsetDiscussionPostNew::class,
-            function (NotificationsBeatmapsetDiscussionPostNew $job) use ($includeStarter) {
+            function (NotificationsBeatmapsetDiscussionPostNew $job) use ($includeStarter, $starter) {
                 return $includeStarter
-                    ? in_array($this->poster->getKey(), $job->getReceiverIds(), true)
-                    : !in_array($this->poster->getKey(), $job->getReceiverIds(), true);
+                    ? in_array($starter->getKey(), $job->getReceiverIds(), true)
+                    : !in_array($starter->getKey(), $job->getReceiverIds(), true);
             }
         );
     }
@@ -428,8 +435,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
 
         config()->set('osu.beatmapset.required_nominations', 1);
 
-        $this->mapper = User::factory()->withPlays()->create();
-        $this->poster = User::factory()->withPlays()->create();
+        $this->mapper = User::factory()->create();
 
         $this->beatmapset = Beatmapset::factory()->owner($this->mapper)->create();
         $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make([
