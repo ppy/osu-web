@@ -366,11 +366,21 @@ class Room extends Model
             $groupedItems = $this->playlist->groupBy('expired');
 
             // the key is casted to int
-            if (isset($groupedItems[0])) {
-                $ret = $groupedItems[0]->reduce(fn (?PlaylistItem $ret, PlaylistItem $i) => $ret === null ? $i : ($i->playlist_order < $ret->playlist_order ? $i : $ret));
-            } else {
-                $ret = $groupedItems[1]->reduce(fn (?PlaylistItem $ret, PlaylistItem $i) => $ret === null ? $i : ($i->playlist_order > $ret->playlist_order ? $i : $ret));
-            }
+            $ret = isset($groupedItems[0])
+                ? $groupedItems[0]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
+                    if ($currentItem === null) {
+                        return $i;
+                    }
+
+                    return $i->playlist_order < $currentItem->playlist_order ? $i : $currentItem;
+                })
+                : $groupedItems[1]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
+                    if ($currentItem === null) {
+                        return $i;
+                    }
+
+                    return $i->playlist_order > $currentItem->playlist_order ? $i : $currentItem;
+                });
 
             $this->setRelation('currentPlaylistItem', $ret);
 
