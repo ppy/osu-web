@@ -359,10 +359,6 @@ class Room extends Model
     public function findAndSetCurrentPlaylistItem(): PlaylistItem
     {
         return $this->memoize(__FUNCTION__, function () {
-            if ($this->playlist->count() === 0) {
-                return null;
-            }
-
             $groupedItems = $this->playlist->groupBy('expired');
 
             // the key is casted to int
