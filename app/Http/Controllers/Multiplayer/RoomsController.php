@@ -20,24 +20,40 @@ class RoomsController extends BaseController
 
     public function index()
     {
+        $compactReturn = api_version() > 20220215;
         $params = request()->all();
         $params['user'] = auth()->user();
 
+        $includes = ['host.country', 'playlist.beatmap'];
+
+        if (!$compactReturn) {
+            $includes = [...$includes, 'playlist.beatmap.beatmapset', 'playlist.beatmap.baseMaxCombo'];
+        }
+
         $search = Room::search($params);
         $rooms = $search['query']
-            ->with(['host.country', 'playlist.beatmap.beatmapset', 'playlist.beatmap.baseMaxCombo'])
+            ->with($includes)
             ->withRecentParticipantIds()
             ->get();
 
         Room::preloadRecentParticipants($rooms);
 
-        return json_collection($rooms, new RoomTransformer(), [
-            'host.country',
-            'playlist.beatmap.beatmapset',
-            'playlist.beatmap.checksum',
-            'playlist.beatmap.max_combo',
-            'recent_participants',
-        ]);
+        if ($compactReturn) {
+            return json_collection($rooms, new RoomTransformer(), [
+                'difficulty_range',
+                'host.country',
+                'playlist',
+                'recent_participants',
+            ]);
+        } else {
+            return json_collection($rooms, new RoomTransformer(), [
+                'host.country',
+                'playlist.beatmap.beatmapset',
+                'playlist.beatmap.checksum',
+                'playlist.beatmap.max_combo',
+                'recent_participants',
+            ]);
+        }
     }
 
     public function join($roomId, $userId)
