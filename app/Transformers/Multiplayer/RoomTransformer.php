@@ -14,10 +14,12 @@ use Carbon\Carbon;
 class RoomTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
+        'current_playlist_item',
         'current_user_score',
         'difficulty_range',
         'host',
         'playlist',
+        'playlist_item_stats',
         'recent_participants',
         'scores',
     ];
@@ -39,6 +41,11 @@ class RoomTransformer extends TransformerAbstract
             'has_password' => $room->password !== null,
             'queue_mode' => $room->queue_mode,
         ];
+    }
+
+    public function includeCurrentPlaylistItem(Room $room)
+    {
+        return $this->item($room->currentPlaylistItem, new PlaylistItemTransformer());
     }
 
     public function includeCurrentUserScore(Room $room)
@@ -78,6 +85,11 @@ class RoomTransformer extends TransformerAbstract
             $room->playlist,
             new PlaylistItemTransformer()
         );
+    }
+
+    public function includePlaylistItemStats(Room $room)
+    {
+        return $this->primitive($room->playlistItemStats());
     }
 
     public function includeScores(Room $room)

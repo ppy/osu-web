@@ -168,6 +168,14 @@ class Room extends Model
         return $this->belongsTo(Channel::class, 'channel_id');
     }
 
+    /**
+     * See getCurrentPlaylistItemIdAttribute.
+     */
+    public function currentPlaylistItem()
+    {
+        return $this->belongsTo(PlaylistItem::class, 'current_playlist_item_id');
+    }
+
     public function host()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -302,6 +310,16 @@ class Room extends Model
         return $this->ends_at === null || Carbon::now()->lte($this->ends_at->addMinutes(5));
     }
 
+    /**
+     * This allows nested preloading of playlist item relations.
+     *
+     * playlist should be preloaded beforehand unless it's for single Room model.
+     */
+    public function getCurrentPlaylistItemIdAttribute(): int
+    {
+        return $this->findAndSetCurrentPlaylistItem()->getKey();
+    }
+
     public function getRecentParticipantIdsAttribute()
     {
         return $this->memoize(
@@ -338,6 +356,28 @@ class Room extends Model
         });
     }
 
+    public function findAndSetCurrentPlaylistItem(): PlaylistItem
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            if ($this->playlist->count() === 0) {
+                return null;
+            }
+
+            $groupedItems = $this->playlist->groupBy('expired');
+
+            // the key is casted to int
+            if (isset($groupedItems[0])) {
+                $ret = $groupedItems[0]->reduce(fn (?PlaylistItem $ret, PlaylistItem $i) => $ret === null ? $i : ($i->playlist_order < $ret->playlist_order ? $i : $ret));
+            } else {
+                $ret = $groupedItems[1]->reduce(fn (?PlaylistItem $ret, PlaylistItem $i) => $ret === null ? $i : ($i->playlist_order > $ret->playlist_order ? $i : $ret));
+            }
+
+            $this->setRelation('currentPlaylistItem', $ret);
+
+            return $ret;
+        });
+    }
+
     public function join(User $user)
     {
         if (!$this->channel->hasUser($user)) {
@@ -355,6 +395,18 @@ class Room extends Model
         }
 
         return $query;
+    }
+
+    public function playlistItemStats(): array
+    {
+        $active = $this->playlist->whereStrict('expired', false);
+        $activeCount = $active->count();
+
+        return [
+            'count_active' => $activeCount,
+            'count_total' => $this->playlist->count(),
+            'ruleset_ids' => ($activeCount === 0 ? $this->playlist : $active)->pluck('ruleset_id')->unique(),
+        ];
     }
 
     public function recentParticipants(): array
