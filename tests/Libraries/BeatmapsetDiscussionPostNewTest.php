@@ -220,6 +220,33 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
     }
 
     /**
+     * @dataProvider replyQueuesNotificationDataProvider
+     */
+    public function testReplyQueuesNotification(string $messageType, bool $includeStarter)
+    {
+        $user = User::factory()->create()->markSessionVerified();
+
+        $discussion = BeatmapDiscussion::factory()->general()->state([
+            'beatmapset_id' => $this->beatmapset,
+            'message_type' => $messageType,
+            'user_id' => $this->poster,
+        ])->create();
+
+        Queue::fake();
+
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+
+        Queue::assertPushed(
+            NotificationsBeatmapsetDiscussionPostNew::class,
+            function (NotificationsBeatmapsetDiscussionPostNew $job) use ($includeStarter) {
+                return $includeStarter
+                    ? in_array($this->poster->getKey(), $job->getReceiverIds(), true)
+                    : !in_array($this->poster->getKey(), $job->getReceiverIds(), true);
+            }
+        );
+    }
+
+    /**
      * @dataProvider shouldDisqualifyOrResetNominationsDataProvider
      */
     public function testShouldDisqualifyOrResetNominations(string $state, ?string $group, string $messageType, bool $existing, bool $expects)
@@ -349,6 +376,15 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         return [
             ['pending'],
             ['qualified'],
+        ];
+    }
+
+    public function replyQueuesNotificationDataProvider()
+    {
+        return [
+            ['praise', false],
+            ['problem', true],
+            ['suggestion', true],
         ];
     }
 
