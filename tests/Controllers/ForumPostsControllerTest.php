@@ -3,28 +3,28 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Controllers;
 
-use App\Models\Forum;
+use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
 use App\Models\User;
 use Tests\TestCase;
 
 class ForumPostsControllerTest extends TestCase
 {
-    public function testDestroy()
+    public function testDestroy(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->forum_id,
+        $topic = Topic::factory()->withPost()->create();
+        $user = User::factory()->create();
+        $post = Post::factory()->create([
+            'poster_id' => $user,
+            'topic_id' => $topic,
         ]);
-        $user = User::factory()->create()->fresh();
-        $group = app('groups')->byIdentifier('default');
-        $user->setDefaultGroup($group);
-        Forum\Post::createNew($topic, $user, 'test', false);
-        $post = Forum\Post::createNew($topic, $user, 'a reply');
 
-        $initialPostCount = Forum\Post::count();
-        $initialTopicCount = Forum\Topic::count();
+        $initialPostCount = Post::count();
+        $initialTopicCount = Topic::count();
 
         $this
             ->actingAsVerified($user)
@@ -33,24 +33,22 @@ class ForumPostsControllerTest extends TestCase
 
         $topic->refresh();
 
-        $this->assertSame($initialPostCount - 1, Forum\Post::count());
-        $this->assertSame($initialTopicCount, Forum\Topic::count());
+        $this->assertSame($initialPostCount - 1, Post::count());
+        $this->assertSame($initialTopicCount, Topic::count());
         $this->assertSame(1, $topic->postCount());
     }
 
-    public function testDestroyFirstPost()
+    public function testDestroyFirstPost(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->forum_id,
+        $topic = Topic::factory()->create();
+        $user = User::factory()->create();
+        $post = Post::factory()->create([
+            'poster_id' => $user,
+            'topic_id' => $topic,
         ]);
-        $user = User::factory()->create()->fresh();
-        $group = app('groups')->byIdentifier('default');
-        $user->setDefaultGroup($group);
-        $post = Forum\Post::createNew($topic, $user, 'test', false);
 
-        $initialPostCount = Forum\Post::count();
-        $initialTopicCount = Forum\Topic::count();
+        $initialPostCount = Post::count();
+        $initialTopicCount = Topic::count();
 
         $this
             ->actingAsVerified($user)
@@ -59,26 +57,23 @@ class ForumPostsControllerTest extends TestCase
 
         $topic->refresh();
 
-        $this->assertSame($initialPostCount, Forum\Post::count());
-        $this->assertSame($initialTopicCount, Forum\Topic::count());
+        $this->assertSame($initialPostCount, Post::count());
+        $this->assertSame($initialTopicCount, Topic::count());
         $this->assertSame(1, $topic->postCount());
     }
 
-    public function testDestroyNotLastPost()
+    public function testDestroyNotLastPost(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->forum_id,
+        $topic = Topic::factory()->withPost()->create();
+        $user = User::factory()->create();
+        $post = Post::factory()->create([
+            'poster_id' => $user,
+            'topic_id' => $topic,
         ]);
-        $user = User::factory()->create()->fresh();
-        $group = app('groups')->byIdentifier('default');
-        $user->setDefaultGroup($group);
-        Forum\Post::createNew($topic, $user, 'test', false);
-        $post = Forum\Post::createNew($topic, $user, 'a reply');
-        Forum\Post::createNew($topic, $user, 'another reply');
+        Post::factory()->create(['topic_id' => $topic]);
 
-        $initialPostCount = Forum\Post::count();
-        $initialTopicCount = Forum\Topic::count();
+        $initialPostCount = Post::count();
+        $initialTopicCount = Topic::count();
 
         $this
             ->actingAsVerified($user)
@@ -87,36 +82,28 @@ class ForumPostsControllerTest extends TestCase
 
         $topic->refresh();
 
-        $this->assertSame($initialPostCount, Forum\Post::count());
-        $this->assertSame($initialTopicCount, Forum\Topic::count());
+        $this->assertSame($initialPostCount, Post::count());
+        $this->assertSame($initialTopicCount, Topic::count());
         $this->assertSame(3, $topic->postCount());
     }
 
-    public function testRestore()
+    public function testRestore(): void
     {
-        $forum = factory(Forum\Forum::class)->states('child')->create();
-        $topic = factory(Forum\Topic::class)->create([
-            'forum_id' => $forum->forum_id,
-        ]);
-        $poster = User::factory()->create()->fresh();
-        $poster->setDefaultGroup(app('groups')->byIdentifier('default'));
-        Forum\Post::createNew($topic, $poster, 'test', false);
-        $post = Forum\Post::createNew($topic, $poster, 'a reply');
+        $moderator = User::factory()->withGroup('gmt')->create();
+        $topic = Topic::factory()->withPost()->create();
+        $post = Post::factory()->create(['topic_id' => $topic]);
         $post->delete();
 
-        $user = User::factory()->create()->fresh();
-        $user->setDefaultGroup(app('groups')->byIdentifier('gmt'));
-
-        $initialPostCount = Forum\Post::count();
+        $initialPostCount = Post::count();
 
         $this
-            ->actingAsVerified($user)
+            ->actingAsVerified($moderator)
             ->post(route('forum.posts.restore', $post))
             ->assertSuccessful();
 
         $topic->refresh();
 
-        $this->assertSame($initialPostCount + 1, Forum\Post::count());
+        $this->assertSame($initialPostCount + 1, Post::count());
         $this->assertSame(2, $topic->postCount());
     }
 }
