@@ -255,7 +255,7 @@ class Room extends Model
                     'min' => null,
                 ];
 
-                $this->playlist->each(function ($item) use ($ret) {
+                $this->playlist->each(function ($item) use (&$ret) {
                     $rating = $item->beatmap->difficultyrating;
 
                     if ($ret['max'] === null || $ret['max'] < $rating) {
