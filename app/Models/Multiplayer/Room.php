@@ -257,12 +257,12 @@ class Room extends Model
 
                 $this->playlist->each(function ($item) use (&$ret) {
                     $rating = $item->beatmap->difficultyrating;
+                    $ret['max'] ??= $rating;
+                    $ret['min'] ??= $rating;
 
-                    if ($ret['max'] === null || $ret['max'] < $rating) {
+                    if ($ret['max'] < $rating) {
                         $ret['max'] = $rating;
-                    }
-
-                    if ($ret['min'] === null || $ret['min'] > $rating) {
+                    } elseif ($ret['min'] > $rating) {
                         $ret['min'] = $rating;
                     }
                 });
