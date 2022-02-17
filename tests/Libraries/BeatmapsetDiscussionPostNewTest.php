@@ -39,8 +39,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         config()->set('osu.user.post_action_verification', false);
 
         $user = User::factory()->withPlays($minPlays)->create();
-        $watcher = User::factory()->create();
-        $this->beatmapset->watches()->create(['user_id' => $watcher->getKey()]);
+        $this->beatmapset->watches()->create(['user_id' => User::factory()->create()->getKey()]);
 
         $change = $success ? 1 : 0;
         $this->expectCountChange(fn () => BeatmapDiscussion::count(), $change, BeatmapDiscussion::class);
@@ -61,17 +60,6 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         }
 
         (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
-
-        // TODO: exception thrown means the fail case doesn't get this far...
-        if ($success) {
-            Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($user, $watcher) {
-                // assert watchers in receivers and sender is not.
-                return in_array($watcher->getKey(), $event->getReceiverIds(), true)
-                    && !in_array($user->getKey(), $event->getReceiverIds(), true);
-            });
-        } else {
-            Event::assertNotDispatched(NewPrivateNotificationEvent::class);
-        }
     }
 
     /**
@@ -256,6 +244,36 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
 
         $value = $this->invokeMethod($subject, 'shouldDisqualifyOrResetNominations');
         $this->assertSame($expects, $value);
+    }
+
+    public function testWatchersGetNotification()
+    {
+        $user = User::factory()->create()->markSessionVerified();
+        $watcher = User::factory()->create();
+        $this->beatmapset->watches()->create(['user_id' => $watcher->getKey()]);
+
+        $discussion = BeatmapDiscussion::factory()->general()->state([
+            'beatmapset_id' => $this->beatmapset,
+            'message_type' => 'praise',
+            'user_id' => $user,
+        ])->make();
+
+        Queue::fake();
+
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+
+        Queue::assertPushed(NotificationsBeatmapsetDiscussionPostNew::class, function (NotificationsBeatmapsetDiscussionPostNew $job) use ($user, $watcher) {
+            return in_array($watcher->getKey(), $job->getReceiverIds(), true)
+                && !in_array($user->getKey(), $job->getReceiverIds(), true);
+        });
+
+        $this->runFakeQueue();
+
+        // TODO: this should probably be changed to asserting "if job queued, then event is broadcast to receivers with option set"
+        Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($user, $watcher) {
+            return in_array($watcher->getKey(), $event->getReceiverIds(), true)
+                && !in_array($user->getKey(), $event->getReceiverIds(), true);
+        });
     }
 
     public function minPlaysVerificationDataProvider()
