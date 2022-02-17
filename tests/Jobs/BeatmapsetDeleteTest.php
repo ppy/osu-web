@@ -26,8 +26,12 @@ class BeatmapsetDeleteTest extends TestCase
             'user_id' => $owner,
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $eventBeforeCount = Event::count();
-        $logBeforeCount = Log::where('log_operation', 'LOG_BEATMAPSET_DELETE')->count();
+
+        $this->expectCountChange(fn () => Event::count(), 1);
+        $this->expectCountChange(
+            fn () => Log::where('log_operation', 'LOG_BEATMAPSET_DELETE')->count(),
+            0,
+        );
 
         (new BeatmapsetDelete($beatmapset, $owner))->handle();
 
@@ -36,8 +40,6 @@ class BeatmapsetDeleteTest extends TestCase
 
         $this->assertTrue($beatmapset->trashed());
         $this->assertTrue($topic->trashed());
-        $this->assertSame($eventBeforeCount + 1, Event::count());
-        $this->assertSame($logBeforeCount, Log::where('log_operation', 'LOG_BEATMAPSET_DELETE')->count());
     }
 
     public function testBeatmapsetDeletedByAnotherUser(): void
@@ -50,8 +52,12 @@ class BeatmapsetDeleteTest extends TestCase
             'user_id' => $owner,
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $eventBeforeCount = Event::count();
-        $logBeforeCount = Log::where('log_operation', 'LOG_BEATMAPSET_DELETE')->count();
+
+        $this->expectCountChange(fn () => Event::count(), 0);
+        $this->expectCountChange(
+            fn () => Log::where('log_operation', 'LOG_BEATMAPSET_DELETE')->count(),
+            1,
+        );
 
         (new BeatmapsetDelete($beatmapset, $moderator))->handle();
 
@@ -60,7 +66,5 @@ class BeatmapsetDeleteTest extends TestCase
 
         $this->assertTrue($beatmapset->trashed());
         $this->assertTrue($topic->trashed());
-        $this->assertSame($eventBeforeCount, Event::count());
-        $this->assertSame($logBeforeCount + 1, Log::where('log_operation', 'LOG_BEATMAPSET_DELETE')->count());
     }
 }

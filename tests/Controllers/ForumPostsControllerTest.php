@@ -23,8 +23,8 @@ class ForumPostsControllerTest extends TestCase
             'topic_id' => $topic,
         ]);
 
-        $initialPostCount = Post::count();
-        $initialTopicCount = Topic::count();
+        $this->expectCountChange(fn () => Post::count(), -1);
+        $this->expectCountChange(fn () => Topic::count(), 0);
 
         $this
             ->actingAsVerified($user)
@@ -33,8 +33,6 @@ class ForumPostsControllerTest extends TestCase
 
         $topic->refresh();
 
-        $this->assertSame($initialPostCount - 1, Post::count());
-        $this->assertSame($initialTopicCount, Topic::count());
         $this->assertSame(1, $topic->postCount());
     }
 
@@ -47,8 +45,8 @@ class ForumPostsControllerTest extends TestCase
             'topic_id' => $topic,
         ]);
 
-        $initialPostCount = Post::count();
-        $initialTopicCount = Topic::count();
+        $this->expectCountChange(fn () => Post::count(), 0);
+        $this->expectCountChange(fn () => Topic::count(), 0);
 
         $this
             ->actingAsVerified($user)
@@ -57,8 +55,6 @@ class ForumPostsControllerTest extends TestCase
 
         $topic->refresh();
 
-        $this->assertSame($initialPostCount, Post::count());
-        $this->assertSame($initialTopicCount, Topic::count());
         $this->assertSame(1, $topic->postCount());
     }
 
@@ -72,8 +68,8 @@ class ForumPostsControllerTest extends TestCase
         ]);
         Post::factory()->create(['topic_id' => $topic]);
 
-        $initialPostCount = Post::count();
-        $initialTopicCount = Topic::count();
+        $this->expectCountChange(fn () => Post::count(), 0);
+        $this->expectCountChange(fn () => Topic::count(), 0);
 
         $this
             ->actingAsVerified($user)
@@ -82,8 +78,6 @@ class ForumPostsControllerTest extends TestCase
 
         $topic->refresh();
 
-        $this->assertSame($initialPostCount, Post::count());
-        $this->assertSame($initialTopicCount, Topic::count());
         $this->assertSame(3, $topic->postCount());
     }
 
@@ -94,7 +88,7 @@ class ForumPostsControllerTest extends TestCase
         $post = Post::factory()->create(['topic_id' => $topic]);
         $post->delete();
 
-        $initialPostCount = Post::count();
+        $this->expectCountChange(fn () => Post::count(), 1);
 
         $this
             ->actingAsVerified($moderator)
@@ -103,7 +97,6 @@ class ForumPostsControllerTest extends TestCase
 
         $topic->refresh();
 
-        $this->assertSame($initialPostCount + 1, Post::count());
         $this->assertSame(2, $topic->postCount());
     }
 }

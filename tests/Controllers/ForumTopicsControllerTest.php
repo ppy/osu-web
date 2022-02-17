@@ -75,14 +75,12 @@ class ForumTopicsControllerTest extends TestCase
         $topic = Topic::factory()->withPost()->create();
         $topic->delete();
 
-        $initialTopicCount = Topic::count();
+        $this->expectCountChange(fn () => Topic::count(), 1);
 
         $this
             ->actingAsVerified($moderator)
             ->post(route('forum.topics.restore', $topic))
             ->assertSuccessful();
-
-        $this->assertSame($initialTopicCount + 1, Topic::count());
     }
 
     public function testShow(): void
