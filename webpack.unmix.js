@@ -271,10 +271,7 @@ const resolve = {
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
   modules: [
     resolvePath('resources/assets/lib'),
-
     resolvePath('resources/assets/coffee'),
-    resolvePath('resources/assets/coffee/react'),
-
     resolvePath('node_modules'),
   ],
   plugins: [new TsconfigPathsPlugin()],
