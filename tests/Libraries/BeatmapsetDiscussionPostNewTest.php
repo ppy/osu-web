@@ -27,8 +27,6 @@ use Tests\TestCase;
 
 class BeatmapsetDiscussionPostNewTest extends TestCase
 {
-    private Beatmap $beatmap;
-    private Beatmapset $beatmapset;
     private User $mapper;
 
     /**
@@ -39,7 +37,8 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         config()->set('osu.user.post_action_verification', false);
 
         $user = User::factory()->withPlays($minPlays)->create();
-        $this->beatmapset->watches()->create(['user_id' => User::factory()->create()->getKey()]);
+        $beatmapset = Beatmapset::factory()->owner($this->mapper)->create();
+        $beatmapset->watches()->create(['user_id' => User::factory()->create()->getKey()]);
 
         $change = $success ? 1 : 0;
         $this->expectCountChange(fn () => BeatmapDiscussion::count(), $change, BeatmapDiscussion::class);
@@ -48,7 +47,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         $this->expectCountChange(fn () => UserNotification::count(), $change, UserNotification::class);
 
         $discussion = new BeatmapDiscussion(['message_type' => 'praise']);
-        $discussion->beatmapset()->associate($this->beatmapset);
+        $discussion->beatmapset()->associate($beatmapset);
         $discussion->user()->associate($user);
 
         if ($verified) {
@@ -82,9 +81,9 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
             'details' => ['modes' => array_keys(Beatmap::MODES)],
         ]);
 
-        $discussion = $beatmapset->beatmapDiscussions()->make([
-            'message_type' => 'problem',
-            'user_id' => $user->getKey(),
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->make([
+            'beatmapset_id' => $beatmapset,
+            'user_id' => $user,
         ]);
 
         (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
@@ -114,9 +113,9 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
             'details' => ['modes' => array_keys(Beatmap::MODES)],
         ]);
 
-        $discussion = $beatmapset->beatmapDiscussions()->make([
-            'message_type' => 'problem',
-            'user_id' => $user->getKey(),
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->make([
+            'beatmapset_id' => $beatmapset,
+            'user_id' => $user,
         ]);
 
         (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
@@ -148,9 +147,9 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
             'details' => ['modes' => $notificationModes],
         ]);
 
-        $discussion = $beatmapset->beatmapDiscussions()->make([
-            'message_type' => 'problem',
-            'user_id' => $user->getKey(),
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->make([
+            'beatmapset_id' => $beatmapset,
+            'user_id' => $user,
         ]);
 
         // TODO: only test the handleProblemDiscussion() part?
@@ -178,9 +177,9 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
             ->$state()
             ->create();
 
-        $discussion = $beatmapset->beatmapDiscussions()->make([
-            'message_type' => 'problem',
-            'user_id' => $user->getKey(),
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->make([
+            'beatmapset_id' => $beatmapset,
+            'user_id' => $user,
         ]);
 
         Queue::fake();
@@ -232,9 +231,10 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
     {
         $user = User::factory()->create()->markSessionVerified();
         $starter = User::factory()->create();
+        $beatmapset = Beatmapset::factory()->owner($this->mapper)->create();
 
         $discussion = BeatmapDiscussion::factory()->general()->state([
-            'beatmapset_id' => $this->beatmapset,
+            'beatmapset_id' => $beatmapset,
             'message_type' => $messageType,
             'user_id' => $starter,
         ])->create();
@@ -284,10 +284,11 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
     {
         $user = User::factory()->create()->markSessionVerified();
         $watcher = User::factory()->create();
-        $this->beatmapset->watches()->create(['user_id' => $watcher->getKey()]);
+        $beatmapset = Beatmapset::factory()->owner($this->mapper)->create();
+        $beatmapset->watches()->create(['user_id' => $watcher->getKey()]);
 
         $discussion = BeatmapDiscussion::factory()->general()->state([
-            'beatmapset_id' => $this->beatmapset,
+            'beatmapset_id' => $beatmapset,
             'message_type' => 'praise',
             'user_id' => $user,
         ])->make();
@@ -436,10 +437,5 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         config()->set('osu.beatmapset.required_nominations', 1);
 
         $this->mapper = User::factory()->create();
-
-        $this->beatmapset = Beatmapset::factory()->owner($this->mapper)->create();
-        $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make([
-            'user_id' => $this->mapper->getKey(),
-        ]));
     }
 }
