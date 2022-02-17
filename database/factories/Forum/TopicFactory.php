@@ -31,9 +31,11 @@ class TopicFactory extends Factory
     {
         $factory = $this->state([
             'poll_hide_results' => fn () => $this->faker->boolean(),
-            'poll_length' => fn () => $this->faker->boolean()
-                ? $this->faker->numberBetween(86400, 604800)
-                : 0, // between 1 and 7 days, or infinite length
+            'poll_length' => fn () => $this->faker->randomElement([
+                // between 1 and 7 days, or infinite length
+                $this->faker->numberBetween(86400, 604800),
+                0,
+            ]),
             'poll_max_options' => 1,
             'poll_start' => fn (array $attr) => $attr['topic_time'],
             'poll_title' => fn () => $this->faker->sentence(),
