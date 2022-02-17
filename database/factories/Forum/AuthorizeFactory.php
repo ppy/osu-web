@@ -25,6 +25,11 @@ class AuthorizeFactory extends Factory
         return $this->authOption('post');
     }
 
+    public function postCount(): static
+    {
+        return $this->authOption('postCount');
+    }
+
     public function reply(): static
     {
         return $this->authOption('reply');
@@ -33,7 +38,7 @@ class AuthorizeFactory extends Factory
     private function authOption(string $option): static
     {
         return $this->state(['auth_option_id' => function () use ($option) {
-            return AuthOption::where('auth_option', "f_{$option}")->first()
+            return AuthOption::where('auth_option', strtolower("f_{$option}"))->first()
                 ?? AuthOption::factory()->$option();
         }]);
     }

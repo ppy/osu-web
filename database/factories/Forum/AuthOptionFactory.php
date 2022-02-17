@@ -24,6 +24,11 @@ class AuthOptionFactory extends Factory
         return $this->state(['auth_option' => 'f_post']);
     }
 
+    public function postCount(): static
+    {
+        return $this->state(['auth_option' => 'f_postcount']);
+    }
+
     public function reply(): static
     {
         return $this->state(['auth_option' => 'f_reply']);
