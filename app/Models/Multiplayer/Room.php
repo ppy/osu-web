@@ -254,39 +254,43 @@ class Room extends Model
 
     public function difficultyRange()
     {
+        $extraQuery = true;
+
         if ($this->relationLoaded('playlist')) {
-            $firstItem = $this->playlist[0];
+            if ($this->playlist->count() > 0) {
+                $firstItem = $this->playlist[0];
 
-            if ($firstItem->relationLoaded('beatmap')) {
-                $ret = [
-                    'max' => null,
-                    'min' => null,
-                ];
+                if ($firstItem->relationLoaded('beatmap')) {
+                    $extraQuery = false;
+                    foreach ($this->playlist as $item) {
+                        $rating = $item->beatmap->difficultyrating;
+                        $max ??= $rating;
+                        $min ??= $rating;
 
-                foreach ($this->playlist as $item) {
-                    $rating = $item->beatmap->difficultyrating;
-                    $ret['max'] ??= $rating;
-                    $ret['min'] ??= $rating;
-
-                    if ($ret['max'] < $rating) {
-                        $ret['max'] = $rating;
-                    } elseif ($ret['min'] > $rating) {
-                        $ret['min'] = $rating;
+                        if ($max < $rating) {
+                            $max = $rating;
+                        } elseif ($min > $rating) {
+                            $min = $rating;
+                        }
                     }
                 }
-
-                return $ret;
+            } else {
+                $extraQuery = false;
             }
         }
 
-        $range = Beatmap::selectRaw('
-            MIN(difficultyrating) as min_difficulty,
-            MAX(difficultyrating) as max_difficulty
-        ')->whereIn('beatmap_id', $this->playlist()->select('beatmap_id'))->first();
+        if ($extraQuery) {
+            $range = Beatmap::selectRaw('
+                MIN(difficultyrating) as min_difficulty,
+                MAX(difficultyrating) as max_difficulty
+            ')->whereIn('beatmap_id', $this->playlist()->select('beatmap_id'))->first();
+            $max = $range->max_difficulty;
+            $min = $range->min_difficulty;
+        }
 
         return [
-            'max' => $range->max_difficulty ?? 0,
-            'min' => $range->min_difficulty ?? 0,
+            'max' => $max ?? 0,
+            'min' => $min ?? 0,
         ];
     }
 
@@ -315,9 +319,9 @@ class Room extends Model
      *
      * playlist should be preloaded beforehand unless it's for single Room model.
      */
-    public function getCurrentPlaylistItemIdAttribute(): int
+    public function getCurrentPlaylistItemIdAttribute(): ?int
     {
-        return $this->findAndSetCurrentPlaylistItem()->getKey();
+        return $this->findAndSetCurrentPlaylistItem()?->getKey();
     }
 
     public function getRecentParticipantIdsAttribute()
@@ -356,34 +360,38 @@ class Room extends Model
         });
     }
 
-    public function findAndSetCurrentPlaylistItem(): PlaylistItem
+    public function findAndSetCurrentPlaylistItem(): ?PlaylistItem
     {
         return $this->memoize(__FUNCTION__, function () {
-            if ($this->isRealtime()) {
-                $groupedItems = $this->playlist->groupBy('expired');
-
-                // the key is casted to int
-                $ret = isset($groupedItems[0])
-                    ? $groupedItems[0]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
-                        if ($currentItem === null) {
-                            return $i;
-                        }
-
-                        return $i->playlist_order < $currentItem->playlist_order
-                            ? $i
-                            : $currentItem;
-                    })
-                    : $groupedItems[1]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
-                        if ($currentItem === null) {
-                            return $i;
-                        }
-
-                        return $i->played_at > $currentItem->played_at
-                            ? $i
-                            : $currentItem;
-                    });
+            if ($this->playlist->count() === 0) {
+                $ret = null;
             } else {
-                $ret = $this->playlist[0];
+                if ($this->isRealtime()) {
+                    $groupedItems = $this->playlist->groupBy('expired');
+
+                    // the key is casted to int
+                    $ret = isset($groupedItems[0])
+                        ? $groupedItems[0]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
+                            if ($currentItem === null) {
+                                return $i;
+                            }
+
+                            return $i->playlist_order < $currentItem->playlist_order
+                                ? $i
+                                : $currentItem;
+                        })
+                        : $groupedItems[1]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
+                            if ($currentItem === null) {
+                                return $i;
+                            }
+
+                            return $i->played_at > $currentItem->played_at
+                                ? $i
+                                : $currentItem;
+                        });
+                } else {
+                    $ret = $this->playlist[0];
+                }
             }
 
             $this->setRelation('currentPlaylistItem', $ret);

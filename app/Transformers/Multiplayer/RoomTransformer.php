@@ -45,7 +45,9 @@ class RoomTransformer extends TransformerAbstract
 
     public function includeCurrentPlaylistItem(Room $room)
     {
-        return $this->item($room->currentPlaylistItem, new PlaylistItemTransformer());
+        return $room->currentPlaylistItem === null
+            ? $this->null()
+            : $this->item($room->currentPlaylistItem, new PlaylistItemTransformer());
     }
 
     public function includeCurrentUserScore(Room $room)

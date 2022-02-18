@@ -36,7 +36,7 @@ export default class Room extends React.Component<Props> {
   }
 
   private get background() {
-    return this.props.room.current_playlist_item.beatmap?.beatmapset?.covers.cover;
+    return this.props.room.current_playlist_item?.beatmap?.beatmapset?.covers.cover;
   }
 
   constructor(props: Props) {

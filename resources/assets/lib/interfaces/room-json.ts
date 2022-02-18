@@ -11,7 +11,7 @@ const roomTypes = ['playlists', 'head_to_head', 'team_versus'] as const;
 export type RoomType = (typeof roomTypes)[number];
 
 interface RoomJsonAvailableIncludes {
-  current_playlist_item: PlaylistItemJson;
+  current_playlist_item: PlaylistItemJson | null;
   // current_user_score: MultiplayerScoreAggregateJson; (missing definition and not used)
   difficulty_range: {
     max: number;
