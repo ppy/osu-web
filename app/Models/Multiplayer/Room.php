@@ -359,48 +359,32 @@ class Room extends Model
     public function findAndSetCurrentPlaylistItem(): PlaylistItem
     {
         return $this->memoize(__FUNCTION__, function () {
-            $groupedItems = $this->playlist->groupBy('expired');
+            if ($this->isRealtime()) {
+                $groupedItems = $this->playlist->groupBy('expired');
 
-            // the key is casted to int
-            $ret = isset($groupedItems[0])
-                ? $groupedItems[0]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
-                    if ($currentItem === null) {
-                        return $i;
-                    }
+                // the key is casted to int
+                $ret = isset($groupedItems[0])
+                    ? $groupedItems[0]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
+                        if ($currentItem === null) {
+                            return $i;
+                        }
 
-                    if (
-                        $i->playlist_order === null
-                        || $currentItem->playlist_order === null
-                        || $i->playlist_order === $currentItem->playlist_order
-                    ) {
-                        return $i->getKey() < $currentItem->getKey()
+                        return $i->playlist_order < $currentItem->playlist_order
                             ? $i
                             : $currentItem;
-                    }
+                    })
+                    : $groupedItems[1]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
+                        if ($currentItem === null) {
+                            return $i;
+                        }
 
-                    return $i->playlist_order < $currentItem->playlist_order
-                        ? $i
-                        : $currentItem;
-                })
-                : $groupedItems[1]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
-                    if ($currentItem === null) {
-                        return $i;
-                    }
-
-                    if (
-                        $i->played_at === null
-                        || $currentItem->played_at === null
-                        || $i->played_at === $currentItem->played_at
-                    ) {
-                        return $i->getKey() > $currentItem->getKey()
+                        return $i->played_at > $currentItem->played_at
                             ? $i
                             : $currentItem;
-                    }
-
-                    return $i->played_at > $currentItem->played_at
-                        ? $i
-                        : $currentItem;
-                });
+                    });
+            } else {
+                $ret = $this->playlist[0];
+            }
 
             $this->setRelation('currentPlaylistItem', $ret);
 
