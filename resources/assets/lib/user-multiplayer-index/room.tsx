@@ -73,7 +73,7 @@ export default class Room extends React.Component<Props> {
                 '--min-difficulty': getDiffColour(this.props.room.difficulty_range.min),
               } as React.CSSProperties}
             >
-              <DifficultyBadge rating={this.props.room.difficulty_range.max} />
+              <DifficultyBadge rating={this.props.room.difficulty_range.min} />
               {this.props.room.difficulty_range.max !== this.props.room.difficulty_range.min &&
                 <DifficultyBadge rating={this.props.room.difficulty_range.max} />
               }
