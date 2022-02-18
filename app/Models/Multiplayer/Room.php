@@ -368,14 +368,30 @@ class Room extends Model
                         return $i;
                     }
 
-                    return $i->playlist_order < $currentItem->playlist_order ? $i : $currentItem;
+                    if ($i->playlist_order === null || $currentItem->playlist_order === null) {
+                        return $i->getKey() < $currentItem->getKey()
+                            ? $i
+                            : $currentItem;
+                    }
+
+                    return $i->playlist_order < $currentItem->playlist_order
+                        ? $i
+                        : $currentItem;
                 })
                 : $groupedItems[1]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
                     if ($currentItem === null) {
                         return $i;
                     }
 
-                    return $i->playlist_order > $currentItem->playlist_order ? $i : $currentItem;
+                    if ($i->played_at === null || $currentItem->played_at === null) {
+                        return $i->getKey() > $currentItem->getKey()
+                            ? $i
+                            : $currentItem;
+                    }
+
+                    return $i->played_at > $currentItem->played_at
+                        ? $i
+                        : $currentItem;
                 });
 
             $this->setRelation('currentPlaylistItem', $ret);
