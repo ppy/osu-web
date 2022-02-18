@@ -312,6 +312,8 @@ export class NewDiscussion extends React.PureComponent
 
     return 'nomination_reset' if canReset && willReset
 
+    return 'problem_warning' if willDisqualify
+
     'problem'
 
 

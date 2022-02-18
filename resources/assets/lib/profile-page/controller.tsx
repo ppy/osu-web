@@ -13,6 +13,7 @@ import { debounce, keyBy, pullAt } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import core from 'osu-core-singleton';
 import { error, onErrorWithCallback } from 'utils/ajax';
+import { jsonClone } from 'utils/json';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { apiShowMore, apiShowMoreRecentlyReceivedKudosu, hasMoreCheck, OffsetPaginationJson } from 'utils/offset-paginator';
 import { switchNever } from 'utils/switch-never';
@@ -347,6 +348,15 @@ export default class Controller {
   }
 
   private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: ScoreJson) => {
+    const scorePinData = score.current_user_attributes.pin;
+
+    if (scorePinData == null) {
+      throw new Error('score is missing pin data');
+    }
+
+    score = jsonClone(score);
+    score.id = scorePinData.score_id;
+
     const arrayIndex = this.state.extras.scoresPinned.findIndex((s) => s.id === score.id);
     this.state.user.scores_pinned_count += isPinned ? 1 : -1;
 

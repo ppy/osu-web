@@ -42,6 +42,9 @@ class RoomTest extends TestCase
         if ($expectException) {
             $this->expectException(InvariantException::class);
             $this->expectExceptionMessage(osu_trans('multiplayer.room.errors.duration_too_long'));
+            $this->expectCountChange(fn () => Room::count(), 0);
+        } else {
+            $this->expectCountChange(fn () => Room::count(), 1);
         }
 
         $room = (new Room())->startGame($user, $params);
