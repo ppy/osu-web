@@ -31,6 +31,11 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     services:
+      beatmap_difficulty_lookup_cache:
+        image: pppy/osu-beatmap-difficulty-lookup-cache
+        ports:
+          - 5000:80
+
       db:
         image: mysql:8.0
         ports:

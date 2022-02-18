@@ -34,6 +34,10 @@ return [
     'beatmaps' => [
         'max' => 50,
         'max-scores' => 50,
+
+        'difficulty_cache' => [
+            'server_url' => presence(env('BEATMAPS_DIFFICULTY_CACHE_SERVER_URL')) ?? 'http://localhost:5000',
+        ],
     ],
     'beatmap_processor' => [
         'mirrors_to_use' => array_map('intval', explode(' ', env('BM_PROCESSOR_MIRRORS', '1'))),

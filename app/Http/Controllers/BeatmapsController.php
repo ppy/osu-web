@@ -7,6 +7,9 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ScoreRetrievalException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
+use App\Libraries\BeatmapDifficultyAttributes;
+use App\Libraries\ModsHelper;
+use App\Libraries\Multiplayer\Mod;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
@@ -24,6 +27,56 @@ class BeatmapsController extends Controller
         parent::__construct();
 
         $this->middleware('require-scopes:public');
+    }
+
+    public function attributes($id)
+    {
+        $beatmap = Beatmap::findOrFail($id);
+
+        $params = get_params(request()->all(), null, [
+            'mods:any',
+            'ruleset:string',
+            'ruleset_id:int',
+        ], ['null_missing' => true]);
+
+        $rulesetId = $params['ruleset_id'];
+        abort_if(
+            $rulesetId !== null && Beatmap::modeStr($rulesetId) === null,
+            422,
+            'invalid ruleset_id specified'
+        );
+
+        if ($rulesetId === null && $params['ruleset'] !== null) {
+            $rulesetId = Beatmap::modeInt($params['ruleset']);
+            abort_if($rulesetId === null, 422, 'invalid ruleset specified');
+        }
+
+        if ($rulesetId === null) {
+            $rulesetId = $beatmap->playmode;
+        } else {
+            abort_if(
+                $rulesetId !== $beatmap->playmode && !$beatmap->canBeConverted(),
+                422,
+                "specified beatmap can't be converted to the specified ruleset"
+            );
+        }
+
+        if (isset($params['mods'])) {
+            if (ctype_digit($params['mods'])) {
+                $params['mods'] = ModsHelper::toArray((int) $params['mods']);
+            }
+            if (is_array($params['mods'])) {
+                if (count($params['mods']) > 0 && is_string($params['mods'][0])) {
+                    $params['mods'] = array_map(fn ($m) => ['acronym' => $m], $params['mods']);
+                }
+
+                $mods = Mod::parseInputArray($params['mods'], $rulesetId);
+            } else {
+                abort(422, 'invalid mods specified');
+            }
+        }
+
+        return ['attributes' => BeatmapDifficultyAttributes::get($beatmap->getKey(), $rulesetId, $mods ?? [])];
     }
 
     /**

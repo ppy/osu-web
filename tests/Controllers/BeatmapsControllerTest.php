@@ -19,6 +19,24 @@ class BeatmapsControllerTest extends TestCase
     private $user;
     private $beatmap;
 
+    public function testAttributes(): void
+    {
+        $beatmap = Beatmap::factory()->create([
+            'beatmap_id' => 567606,
+            'beatmapset_id' => Beatmapset::factory()->make(['beatmapset_id' => 246416]),
+        ]);
+
+        $this->actAsScopedUser(User::factory()->create(), ['public']);
+
+        $this->post(route('api.beatmaps.attributes', ['beatmap' => $beatmap->getKey()]))
+            ->assertSuccessful()
+            ->assertJson(fn (AssertableJson $json) =>
+                $json
+                    ->has('attributes.star_rating')
+                    ->has('attributes.max_combo')
+                    ->etc());
+    }
+
     public function testIndexForApi(): void
     {
         $beatmap = Beatmap::factory()->create();
