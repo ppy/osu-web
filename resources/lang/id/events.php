@@ -14,7 +14,7 @@ return [
     'empty' => "Pengguna ini tidak melakukan aktivitas apapun baru-baru ini!",
     'rank' => '<strong><em>:user</em></strong> telah meraih peringkat #:rank pada <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> telah kehilangan peringkat pertama pada <em>:beatmap</em> (:mode)',
-    'user_support_again' => '<strong>:user</strong> telah sekali lagi memutuskan untuk mendukung osu! - terima kasih atas kemurahan hati Anda!',
+    'user_support_again' => '<strong>:user</strong> telah kembali memutuskan untuk mendukung osu! - terima kasih atas kemurahan hati Anda!',
     'user_support_first' => '<strong>:user</strong> telah menjadi seorang osu!supporter - terima kasih atas kemurahan hati Anda!',
     'user_support_gift' => '<strong>:user</strong> telah dihadiahkan osu! supporter!',
     'username_change' => '<strong>:previousUsername</strong> telah mengubah nama penggunanya menjadi <strong><em>:user</strong></em>!',

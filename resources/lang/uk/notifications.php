@@ -87,12 +87,12 @@ return [
             '_' => 'Чат',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Нове оголошення',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username сказав ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Оголошення від :username',
                 ],
             ],
 

@@ -7,7 +7,7 @@
     "lint": "eslint --cache 'resources/assets/lib/**/*.{js,ts,tsx}' 'tests/karma/**/*.ts' '*.js'",
     "localize": "yarn run generate-localizations",
     "prod": "yarn run production",
-    "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=webpack.config.js",
+    "production": "cross-env NODE_ENV=production webpack --hide-modules --config=webpack.config.js",
     "watch": "yarn run development --watch",
     "watch-poll": "yarn run watch --watch-poll"
   },
@@ -99,7 +99,7 @@
     "img-loader": "^3.0.1",
     "imports-loader": "^0.8.0",
     "jasmine-core": "^3.4.0",
-    "karma": "^5.0.2",
+    "karma": "^6.3.14",
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",

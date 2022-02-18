@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import AvailableFilters from 'beatmaps/available-filters';
+import { SearchContent } from 'beatmaps/search-content';
 import { BackToTop } from 'components/back-to-top';
 import HeaderV4 from 'components/header-v4';
 import { isEqual } from 'lodash';
@@ -9,7 +10,6 @@ import { reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { SearchContent } from 'react/beatmaps/search-content';
 import { nextVal } from 'utils/seq';
 import { SearchStatus } from './beatmapset-search-controller';
 

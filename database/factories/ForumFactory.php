@@ -5,6 +5,10 @@
 
 use App\Models\Forum\AuthOption;
 use App\Models\Forum\Authorize;
+use App\Models\Forum\Forum;
+use App\Models\Forum\PollOption;
+use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
 use App\Models\User;
 
 $factory->define(App\Models\Forum\Forum::class, fn () => []);
@@ -31,17 +35,47 @@ $factory->state(App\Models\Forum\Forum::class, 'child', function (Faker\Generato
 
 $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker) {
     return [
-        'topic_poster' => function (array &$self) {
-            $factoryUser = User::factory()->create();
-            $self['topic_first_poster_name'] = $factoryUser->username;
-
-            return $factoryUser->getKey();
-        },
+        'forum_id' => factory(Forum::class)->state('parent'),
         'topic_title' => $faker->catchPhrase,
         'topic_views' => rand(0, 99999),
         'topic_approved' => 1,
         'topic_time' => Carbon\Carbon::createFromTimestamp(rand(1451606400, time())), // random time between 01/01/2016 12am and now
     ];
+});
+
+$factory->afterCreatingState(Topic::class, 'with_first_post', function (Topic $topic) {
+    $postAttributes = ['forum_id' => $topic->forum_id];
+
+    if ($topic->topic_poster !== null) {
+        $postAttributes['poster_id'] = $topic->topic_poster;
+    }
+
+    $topic->posts()->save(factory(Post::class)->make($postAttributes));
+    $topic->refreshCache();
+});
+
+$factory->state(Topic::class, 'poll', function (Faker\Generator $faker) {
+    return [
+        'poll_hide_results' => $faker->boolean,
+        'poll_length' => $faker->boolean ? $faker->numberBetween(86400, 604800) : 0, // between 1 and 7 days, or infinite length
+        'poll_title' => $faker->sentence,
+        'poll_vote_change' => $faker->boolean,
+    ];
+});
+
+$factory->afterCreatingState(Topic::class, 'poll', function (Topic $topic, Faker\Generator $faker) {
+    $optionCount = $faker->numberBetween(2, 10);
+    $options = [];
+
+    for ($id = 0; $id < $optionCount; $id++) {
+        $options[] = PollOption::factory()->make(['poll_option_id' => $id]);
+    }
+
+    $topic->pollOptions()->saveMany($options);
+    $topic->update([
+        'poll_max_options' => $faker->numberBetween(1, $optionCount),
+        'poll_start' => $topic->topic_time,
+    ]);
 });
 
 $factory->define(App\Models\Forum\Post::class, function (Faker\Generator $faker) {

@@ -31,7 +31,6 @@ import '_classes/forum-topic-reply.coffee';
 import '_classes/forum-topic-title.coffee';
 import '_classes/forum-topic-watch-ajax.coffee';
 import '_classes/global-drag.coffee';
-import '_classes/hits.coffee';
 import '_classes/input-handler.coffee';
 import '_classes/landing-graph.coffee';
 import '_classes/landing-user-stats.coffee';

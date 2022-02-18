@@ -145,6 +145,17 @@ class TopicPoll
         return $this;
     }
 
+    /**
+     * Get the aggregate vote count of this poll, or `0` if the poll doesn't exist. If the poll
+     * allows selecting more than one option, this may be greater than the number of users who voted.
+     */
+    public function totalVoteCount(): int
+    {
+        return $this->exists()
+            ? $this->topic->pollOptions->sum('poll_option_total')
+            : 0;
+    }
+
     public function validationErrorsTranslationPrefix()
     {
         return 'forum.topic_poll';

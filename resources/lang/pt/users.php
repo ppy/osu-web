@@ -313,7 +313,7 @@ return [
                 'title' => 'Recente',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Jogos multijogador',
             ],
             'top_ranks' => [
                 'download_replay' => 'Transferir repetição',

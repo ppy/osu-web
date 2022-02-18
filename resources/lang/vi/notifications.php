@@ -88,12 +88,12 @@ return [
             '_' => 'Chat',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Thông báo mới',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username nói rằng ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Thông báo từ :username',
                 ],
             ],
 

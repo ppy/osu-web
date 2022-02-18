@@ -43,7 +43,7 @@ return [
             ],
         ],
         'perks' => [
-            'title' => 'Oh? Apa saja yang akan saya dapatkan?!',
+            'title' => 'Menarik! Hal-hal apa saja yang akan saya dapatkan?',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'Telusuri beatmap-beatmap yang kamu kehendaki dengan cepat dan mudah tanpa harus meninggalkan permainan.',
@@ -76,7 +76,7 @@ return [
 
             'early_access' => [
                 'title' => 'Akses Pra-Rilis',
-                'description' => 'Dapatkan akses ke versi osu! terbaru lebih awal, di mana kamu dapat bebas mencoba fitur yang bahkan belum kami rilis secara publik!',
+                'description' => 'Dapatkan akses ke versi osu! terbaru lebih awal, di mana kamu dapat mencoba berbagai fitur yang bahkan belum kami rilis secara luas!',
             ],
 
             'customisation' => [
@@ -86,7 +86,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Opsi Pencarian Beatmap Tambahan',
-                'description' => 'Dengan osu!supporter, kamu akan dapat mencari beatmap-beatmap mana saja yang pernah kamu mainkan serta peringkat yang kamu torehkan di dalamnya.',
+                'description' => 'Dengan supporter tag, kamu akan dapat mencari beatmap-beatmap mana saja yang pernah kamu mainkan serta peringkat yang kamu torehkan di dalamnya.',
             ],
 
             'yellow_fellow' => [
@@ -100,8 +100,8 @@ return [
             ],
 
             'change_username' => [
-                'title' => 'Penggantian Nama Pengguna',
-                'description' => 'Apabila kamu pernah memiliki supporter tag, kamu dapat mengubah nama penggunamu secara cuma-cuma.',
+                'title' => 'Perubahan Nama Pengguna',
+                'description' => 'Apabila kamu pernah memiliki supporter tag, kamu akan dapat mengubah nama penggunamu secara cuma-cuma.',
             ],
 
             'skinnables' => [
@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Unggah Lebih Banyak Beatmap',
-                'description' => 'Jumlah beatmap Pending yang dapat kamu unggah pada satu waktu pada umumnya terbatas hanya pada bilangan :base beatmap ditambah :bonus beatmap per beatmap Ranked yang kamu miliki (hingga maks. +:bonus_max beatmap).<br/><br/> Dengan osu!supporter, kamu akan dapat mengunggah lebih banyak beatmap hingga bilangan :supporter_base beatmap ditambah :supporter_bonus beatmap per beatmap Ranked yang kamu miliki (hingga maks. +:supporter_bonus_max beatmap).',
+                'description' => 'Pada umumnya, jumlah beatmap Pending yang dapat kamu unggah pada satu waktu akan terbatas hanya pada bilangan :base beatmap ditambah :bonus beatmap per beatmap Ranked yang kamu miliki (hingga maks. +:bonus_max beatmap).<br/><br/> Dengan supporter tag, kamu akan dapat mengunggah lebih banyak beatmap hingga bilangan :supporter_base beatmap ditambah :supporter_bonus beatmap per beatmap Ranked yang kamu miliki (hingga maks. +:supporter_bonus_max beatmap).',
             ],
             'friend_filtering' => [
                 'title' => 'Papan Peringkat Teman',

@@ -11,7 +11,6 @@ use App\Models\Country;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserStatistics\Model as UserStatisticsModel;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
@@ -29,10 +28,6 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (User $user) {
-            if (!$user->exists) {
-                throw new \Exception($user->validationErrors()->toSentence());
-            }
-
             $user->addToGroup(app('groups')->byIdOrFail($user->group_id));
         });
     }
