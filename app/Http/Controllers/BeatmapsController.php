@@ -66,7 +66,7 @@ class BeatmapsController extends Controller
                 $params['mods'] = ModsHelper::toArray((int) $params['mods']);
             }
             if (is_array($params['mods'])) {
-                if (count($params['mods']) > 0 && is_string($params['mods'][0])) {
+                if (count($params['mods']) > 0 && is_string(array_first($params['mods']))) {
                     $params['mods'] = array_map(fn ($m) => ['acronym' => $m], $params['mods']);
                 }
 
