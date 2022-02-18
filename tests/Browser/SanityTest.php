@@ -8,6 +8,10 @@ namespace Tests\Browser;
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\Country;
+use App\Models\Forum\Authorize;
+use App\Models\Forum\Forum;
+use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
 use App\Models\Multiplayer\Room;
 use DB;
 use Exception;
@@ -116,38 +120,32 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factories for /community/forums/*
-        self::$scaffolding['forum_parent'] = factory(\App\Models\Forum\Forum::class)->states('parent')->create();
-        self::$scaffolding['forum'] = factory(\App\Models\Forum\Forum::class)->states('child')->create([
-            'parent_id' => self::$scaffolding['forum_parent']->getKey(),
+        self::$scaffolding['forum_parent'] = Forum::factory()->closed()->create();
+        self::$scaffolding['forum'] = Forum::factory()->create([
+            'parent_id' => self::$scaffolding['forum_parent'],
         ]);
         // satisfy group permissions required for posting in forum
         self::$scaffolding['_group'] = app('groups')->byIdentifier('default');
-        self::$scaffolding['_forum_acl_post'] = factory(\App\Models\Forum\Authorize::class)->states('post')->create([
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-            'group_id' => self::$scaffolding['_group']->getKey(),
+        self::$scaffolding['_forum_acl_post'] = Authorize::factory()->post()->create([
+            'forum_id' => self::$scaffolding['forum'],
+            'group_id' => self::$scaffolding['_group'],
         ]);
-        self::$scaffolding['_forum_acl_reply'] = factory(\App\Models\Forum\Authorize::class)->states('reply')->create([
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-            'group_id' => self::$scaffolding['_group']->getKey(),
+        self::$scaffolding['_forum_acl_reply'] = Authorize::factory()->reply()->create([
+            'forum_id' => self::$scaffolding['forum'],
+            'group_id' => self::$scaffolding['_group'],
         ]);
         self::$scaffolding['_user_group'] = \App\Models\UserGroup::first();
 
         // satisfy minimum playcount for forum posting
         self::$scaffolding['user']->statisticsOsu()->save(factory(\App\Models\UserStatistics\Osu::class)->make(['playcount' => config('osu.forum.minimum_plays')]));
 
-        self::$scaffolding['topic'] = factory(\App\Models\Forum\Topic::class)->create([
-            'topic_poster' => self::$scaffolding['user']->getKey(),
-            'topic_first_poster_name' => self::$scaffolding['user']->username,
-            'topic_last_poster_id' => self::$scaffolding['user']->getKey(),
-            'topic_last_poster_name' => self::$scaffolding['user']->username,
-            'forum_id' => self::$scaffolding['forum']->getKey(),
+        self::$scaffolding['topic'] = Topic::factory()->create([
+            'forum_id' => self::$scaffolding['forum'],
+            'topic_poster' => self::$scaffolding['user'],
         ]);
-
-        self::$scaffolding['post'] = factory(\App\Models\Forum\Post::class)->create([
-            'poster_id' => self::$scaffolding['user']->getKey(),
-            'post_username' => self::$scaffolding['user']->username,
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-            'topic_id' => self::$scaffolding['topic']->getKey(),
+        self::$scaffolding['post'] = Post::factory()->create([
+            'poster_id' => self::$scaffolding['user'],
+            'topic_id' => self::$scaffolding['topic'],
         ]);
 
         // factories for /community/chat/*
