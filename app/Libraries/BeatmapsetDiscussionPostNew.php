@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
+use App\Exceptions\InvariantException;
 use App\Jobs\Notifications;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -18,10 +19,27 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
 {
     private Beatmapset $beatmapset;
     private BeatmapDiscussionPost $post;
-    private bool $willResolvedChange = false;
+    private bool $resolvedWillChange = false;
 
-    private function __construct(protected User $user, private BeatmapDiscussion $discussion, private string $message)
+    public function __construct(protected User $user, private BeatmapDiscussion $discussion, private string $message, private ?bool $resolve = null)
     {
+        if ($resolve !== null) {
+            if (!$discussion->canBeResolved()) {
+                throw new InvariantException("{$discussion->message_type} does not support resolving.");
+            }
+
+            if (!$discussion->exists) {
+                throw new InvariantException('New discussions cannot be resolved.');
+            }
+
+            $this->resolvedWillChange = $discussion->resolved !== $resolve;
+            $discussion->resolved = $resolve;
+        }
+
+        if (!$discussion->exists) {
+            priv_check_user($user, 'BeatmapDiscussionStore', $discussion)->ensureCan();
+        }
+
         $this->beatmapset = $discussion->beatmapset;
         $this->post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $message]);
         $this->post->user()->associate($user);
@@ -31,10 +49,6 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
             $this->problemDiscussion = $discussion;
             $this->priorOpenProblemCount = $this->beatmapset->beatmapDiscussions()->openProblems()->count();
         }
-
-        $this->willResolvedChange = $this->discussion->exists
-            && $this->discussion->canBeResolved()
-            && $this->discussion->isDirty('resolved');
     }
 
     public static function create(User $user, array $params)
@@ -46,10 +60,11 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
         }
 
         $postParams = get_params($params, 'beatmap_discussion_post', ['message']);
+        $resolve = get_params($params, 'beatmap_discussion', ['resolved:bool'], ['null_missing' => true])['resolved'];
 
         return [
             $discussion,
-            (new static($user, $discussion, $postParams['message']))->handle(),
+            (new static($user, $discussion, $postParams['message'], $resolve))->handle(),
         ];
     }
 
@@ -67,22 +82,19 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
                 ::where('discussion_enabled', true)
                 ->findOrFail($params['beatmapset_id']);
 
-            $discussion = new BeatmapDiscussion(['resolved' => false]);
-            $discussion->beatmapset()->associate($beatmapset);
-            $discussion->user()->associate($user);
-
-            $discussionFilters = [
+            $discussionParams = get_params($request, 'beatmap_discussion', [
                 'beatmap_id:int',
                 'message_type',
                 'timestamp:int',
-            ];
+            ]);
+
+            $discussion = new BeatmapDiscussion(['resolved' => false]);
+            $discussion->fill($discussionParams);
+            $discussion->beatmapset()->associate($beatmapset);
+            $discussion->user()->associate($user);
         } else {
             $discussion = BeatmapDiscussion::findOrFail($discussionId);
-            $discussionFilters = ['resolved:bool'];
         }
-
-        $discussionParams = get_params($request, 'beatmap_discussion', $discussionFilters);
-        $discussion->fill($discussionParams);
 
         return $discussion;
     }
@@ -119,7 +131,7 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
 
     private function logResolveChange(): ?BeatmapDiscussionPost
     {
-        if ($this->willResolvedChange) {
+        if ($this->resolvedWillChange) {
             if ($this->discussion->resolved) {
                 priv_check_user($this->user, 'BeatmapDiscussionResolve', $this->discussion)->ensureCan();
 
