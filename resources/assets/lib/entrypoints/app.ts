@@ -22,7 +22,6 @@ import '_classes/fancy-graph.coffee';
 import '_classes/form-clear.coffee';
 import '_classes/form-confirmation.coffee';
 import '_classes/form-error.coffee';
-import '_classes/form-placeholder-hide.coffee';
 import '_classes/form-toggle.coffee';
 import '_classes/forum-auto-click.coffee';
 import '_classes/forum-cover.coffee';

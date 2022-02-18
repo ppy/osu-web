@@ -103,8 +103,7 @@ class EsIndexDocuments extends Command
         $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
 
         foreach ($types as $type) {
-            $count = $type::esIndexingQuery()->count();
-            $bar = $this->output->createProgressBar($count);
+            $bar = $this->output->createProgressBar();
 
             $this->info("{$pretext} {$type} into {$indexName}");
 
