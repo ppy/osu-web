@@ -63,6 +63,39 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
     }
 
     /**
+     * See testReopeningProblemDoesNotDisqualifyOrResetNominations for assertions
+     * jobs are not queued when reopening a resolved discussion.
+     *
+     * @dataProvider newDiscussionQueuesJobsDataProvider
+     */
+    public function testNewDiscussionQueuesJobs(string $state, ?string $group, array $queued, array $notQueued)
+    {
+        $user = User::factory()->withGroup($group)->create()->markSessionVerified();
+
+        $beatmapset = $this->beatmapsetFactory()
+            ->withNominations()
+            ->$state()
+            ->create();
+
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->make([
+            'beatmapset_id' => $beatmapset,
+            'user_id' => $user,
+        ]);
+
+        Queue::fake();
+
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+
+        foreach ($queued as $class) {
+            Queue::assertPushed($class);
+        }
+
+        foreach ($notQueued as $class) {
+            Queue::assertNotPushed($class);
+        }
+    }
+
+    /**
      * @dataProvider shouldDisqualifyOrResetNominationsDataProvider
      */
     public function testShouldDisqualifyOrResetNominations(string $state, ?string $group, string $messageType, bool $existing, bool $expects)
@@ -212,36 +245,6 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
     }
 
     //endregion
-
-    /**
-     * @dataProvider queuedJobsDataProvider
-     */
-    public function testQueuedJobs(string $state, ?string $group, array $queued, array $notQueued)
-    {
-        $user = User::factory()->withGroup($group)->create()->markSessionVerified();
-
-        $beatmapset = $this->beatmapsetFactory()
-            ->withNominations()
-            ->$state()
-            ->create();
-
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->make([
-            'beatmapset_id' => $beatmapset,
-            'user_id' => $user,
-        ]);
-
-        Queue::fake();
-
-        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
-
-        foreach ($queued as $class) {
-            Queue::assertPushed($class);
-        }
-
-        foreach ($notQueued as $class) {
-            Queue::assertNotPushed($class);
-        }
-    }
 
     //region Replying to an exisitng discussion
 
@@ -415,11 +418,13 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
     //region Reopening a resolved issue
 
     /**
+     * This test also includes reopening by other users; see testNewDiscussionQueuesJobs for new discussions
+     *
      * @dataProvider reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider
      */
-    public function testReopeningProblemDoesNotDisqualifyOrResetNominations(string $state)
+    public function testReopeningProblemDoesNotDisqualifyOrResetNominations(?string $group, string $state)
     {
-        $user = User::factory()->withGroup('bng')->create()->markSessionVerified();
+        $user = User::factory()->withGroup(null)->create()->markSessionVerified();
 
         $beatmapset = $this->beatmapsetFactory()
             ->withNominations()
@@ -429,7 +434,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
             'beatmapset_id' => $beatmapset,
             'resolved' => true,
-            'user_id' => $user,
+            'user_id' => User::factory(),
         ])->create();
 
         Queue::fake();
@@ -440,8 +445,12 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         Queue::assertPushed(NotificationsBeatmapsetDiscussionPostNew::class);
         Queue::assertNotPushed(BeatmapsetDisqualify::class);
         Queue::assertNotPushed(BeatmapsetResetNominations::class);
-    }
 
+        $discussion->refresh();
+
+        $this->assertFalse($discussion->resolved);
+        $this->assertSame($state, $beatmapset->status());
+    }
 
     public function testReopenResolvedDiscussionByMapper()
     {
@@ -508,7 +517,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         ];
     }
 
-    public function queuedJobsDataProvider()
+    public function newDiscussionQueuesJobsDataProvider()
     {
         return [
             [
@@ -553,8 +562,12 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
     public function reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider()
     {
         return [
-            ['pending'],
-            ['qualified'],
+            ['bng', 'pending'],
+            ['bng', 'qualified'],
+            ['bng_limited', 'pending'],
+            ['bng_limited', 'qualified'],
+            [null, 'pending'],
+            [null, 'qualified'],
         ];
     }
 

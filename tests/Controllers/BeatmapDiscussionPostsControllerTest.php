@@ -5,14 +5,11 @@
 
 namespace Tests\Controllers;
 
-use App\Events\NewPrivateNotificationEvent;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
-use App\Models\Notification;
 use App\Models\User;
-use App\Models\UserNotification;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
