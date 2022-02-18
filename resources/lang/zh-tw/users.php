@@ -302,7 +302,7 @@ return [
                 'title' => '成就',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => '歌單遊戲',
             ],
             'posts' => [
                 'title' => '貼文',
@@ -313,7 +313,7 @@ return [
                 'title' => '最近活動',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => '多人遊戲',
             ],
             'top_ranks' => [
                 'download_replay' => '下載重播',

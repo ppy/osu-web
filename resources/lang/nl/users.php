@@ -302,7 +302,7 @@ return [
                 'title' => 'Medailles',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Spellen via afspeellijst',
             ],
             'posts' => [
                 'title' => 'Berichten',
@@ -313,7 +313,7 @@ return [
                 'title' => 'Recent',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Multiplayerspellen',
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',

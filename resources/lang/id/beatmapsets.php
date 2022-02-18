@@ -174,6 +174,10 @@ return [
                 'first' => 'Di Posisi Pertama',
                 'own' => 'Skor Terbaik Anda',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

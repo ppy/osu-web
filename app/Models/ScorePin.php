@@ -21,7 +21,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class ScorePin extends Model
 {
-    // TODO: make it an interface and check it in isValidType
     const SCORES = [
         MorphMap::MAP[ScoreBest\Fruits::class],
         MorphMap::MAP[ScoreBest\Mania::class],
@@ -52,7 +51,7 @@ class ScorePin extends Model
 
     public function scopeWithVisibleScore($query): Builder
     {
-        return $query->whereHas('score', fn ($q) => $q->visibleUsers());
+        return $query->whereHasMorph('score', static::SCORES, fn ($q) => $q->visibleUsers());
     }
 
     public function score(): MorphTo

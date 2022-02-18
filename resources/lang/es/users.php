@@ -302,7 +302,7 @@ return [
                 'title' => 'Medallas',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Partidas de listas de juego',
             ],
             'posts' => [
                 'title' => 'Publicaciones',
@@ -313,7 +313,7 @@ return [
                 'title' => 'Reciente',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Partidas multijugador',
             ],
             'top_ranks' => [
                 'download_replay' => 'Descargar repetición',

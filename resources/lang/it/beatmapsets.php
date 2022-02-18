@@ -174,6 +174,10 @@ return [
                 'first' => 'In testa',
                 'own' => 'Il tuo miglior punteggio',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

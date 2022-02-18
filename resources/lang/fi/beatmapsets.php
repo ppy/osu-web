@@ -174,6 +174,10 @@ return [
                 'first' => 'Johdossa',
                 'own' => 'Sinun parhaasi',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [
