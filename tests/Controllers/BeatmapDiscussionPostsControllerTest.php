@@ -141,77 +141,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
     }
 
-    /**
-     * @dataProvider postStoreNewReplyResolveDataProvider
-     */
-    public function testPostStoreNewReplyResolve(string $messageType, bool $resolved, bool $expected)
-    {
-        $this->beatmapDiscussion->update(['message_type' => $messageType]);
-        $lastDiscussionPosts = BeatmapDiscussionPost::count();
-
-        $this
-            ->postResolveDiscussion($resolved, $this->user)
-            ->assertStatus(200);
-
-        // resolving adds system post
-        $change = $expected ? 2 : 1;
-
-        $this->assertSame($lastDiscussionPosts + $change, BeatmapDiscussionPost::count());
-        $this->assertSame($expected, $this->beatmapDiscussion->fresh()->resolved);
-    }
-
-    public function testPostStoreNewReplyResolveByMapperOnGuestBeatmap()
-    {
-        $guest = User::factory()->create();
-        $this->beatmap->update(['user_id' => $guest->getKey()]);
-        $this->beatmapDiscussion->update([
-            'beatmap_id' => $this->beatmap->getKey(),
-            'message_type' => 'problem',
-            'resolved' => false,
-        ]);
-        $discussionPostCount = BeatmapDiscussionPost::count();
-
-        $this
-            ->postResolveDiscussion(true, $this->mapper)
-            ->assertSuccessful();
-
-        $this->assertSame($discussionPostCount + 2, BeatmapDiscussionPost::count());
-        $this->assertTrue($this->beatmapDiscussion->fresh()->resolved);
-    }
-
-    public function testPostStoreNewReplyResolveByGuest()
-    {
-        $guest = User::factory()->create();
-        $this->beatmap->update(['user_id' => $guest->getKey()]);
-        $this->beatmapDiscussion->update([
-            'beatmap_id' => $this->beatmap->getKey(),
-            'message_type' => 'problem',
-            'resolved' => false,
-        ]);
-        $discussionPostCount = BeatmapDiscussionPost::count();
-
-        $this
-            ->postResolveDiscussion(true, $guest)
-            ->assertSuccessful();
-
-        $this->assertSame($discussionPostCount + 2, BeatmapDiscussionPost::count());
-        $this->assertTrue($this->beatmapDiscussion->fresh()->resolved);
-    }
-
-    public function testPostStoreNewReplyResolveByOtherUser()
-    {
-        $user = User::factory()->create();
-        $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => false]);
-        $lastDiscussionPosts = BeatmapDiscussionPost::count();
-
-        $this
-            ->postResolveDiscussion(true, $user)
-            ->assertStatus(403);
-
-        $this->assertSame($lastDiscussionPosts, BeatmapDiscussionPost::count());
-        $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
-    }
-
     public function testPostStoreNewDiscussionRequestBeatmapsetDiscussionDisabled()
     {
         $beatmapset = Beatmapset::factory()->noDiscussion()->has(Beatmap::factory())->create();
@@ -527,16 +456,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             [config('osu.user.min_plays_for_posting') - 1, true, true],
             [null, false, true],
             [null, true, true],
-        ];
-    }
-
-    public function postStoreNewReplyResolveDataProvider()
-    {
-        return [
-            ['praise', false, false],
-            ['praise', true, false], // resolving discussion that can't be resolved causes no change.
-            ['problem', true, true],
-            ['suggestion', true, true],
         ];
     }
 
