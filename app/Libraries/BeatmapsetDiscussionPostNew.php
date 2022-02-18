@@ -56,7 +56,7 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
         $discussion = static::prepareDiscussion($user, $params);
 
         $postParams = get_params($params, 'beatmap_discussion_post', ['message']);
-        $resolve = get_params($params, 'beatmap_discussion', ['resolved:bool'], ['null_missing' => true])['resolved'];
+        $resolve = get_params($params, 'beatmap_discussion', ['resolved:bool'])['resolved'] ?? null;
 
         return [
             $discussion,
