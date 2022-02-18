@@ -302,7 +302,7 @@ return [
                 'title' => '메달',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => '플레이리스트 게임',
             ],
             'posts' => [
                 'title' => '게시글',
@@ -313,7 +313,7 @@ return [
                 'title' => '최근 활동',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => '멀티플레이어 게임',
             ],
             'top_ranks' => [
                 'download_replay' => '리플레이 다운로드',
@@ -380,7 +380,7 @@ return [
             'reason_1' => '사용자명이 변경되었을 가능성이 있습니다.',
             'reason_2' => '보안 혹은 남용 문제 때문에 일시적으로 이 계정을 사용할 수 없습니다.',
             'reason_3' => '오타가 있나봐요!',
-            'reason_header' => '이에 대한 몇 가지 이유가 있습니다:',
+            'reason_header' => '아래 이유로 인해 발생했을 가능성이 있어요:',
             'title' => '사용자를 찾을 수 없습니다! ;_;',
         ],
         'page' => [

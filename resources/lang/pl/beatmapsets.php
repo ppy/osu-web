@@ -154,7 +154,7 @@ return [
                 'combo' => 'Combo',
                 'miss' => 'Pudła',
                 'mods' => 'Modyfikatory',
-                'pin' => '',
+                'pin' => 'Przypnij',
                 'player' => 'Gracz',
                 'pp' => '',
                 'rank' => 'Pozycja',
@@ -173,6 +173,10 @@ return [
             'score' => [
                 'first' => 'Najlepszy wynik',
                 'own' => 'Twój wynik',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

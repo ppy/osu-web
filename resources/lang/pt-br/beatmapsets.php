@@ -16,7 +16,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Artista em destaque',
     ],
 
     'index' => [
@@ -154,7 +154,7 @@ return [
                 'combo' => 'Combo Máximo',
                 'miss' => 'Erros',
                 'mods' => 'Mods',
-                'pin' => '',
+                'pin' => 'Fixar',
                 'player' => 'Jogador',
                 'pp' => '',
                 'rank' => 'Rank',
@@ -173,6 +173,10 @@ return [
             'score' => [
                 'first' => 'Na Liderança',
                 'own' => 'Seu Melhor',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

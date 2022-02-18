@@ -3,10 +3,11 @@
 
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import ScoreboardType from './scoreboard-type';
 
 interface Props {
   active: boolean;
-  type: 'country' | 'friend' | 'global';
+  type: ScoreboardType;
 }
 
 export default function ScoreboardTab(props: Props) {

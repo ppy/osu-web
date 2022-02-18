@@ -44,7 +44,6 @@ window.checkboxValidation ?= new CheckboxValidation
 window.fancyGraph ?= new FancyGraph
 window.formClear ?= new FormClear
 window.formError ?= new FormError
-window.formPlaceholderHide ?= new FormPlaceholderHide
 window.formToggle ?= new FormToggle
 window.forum ?= new Forum
 window.forumAutoClick ?= new ForumAutoClick

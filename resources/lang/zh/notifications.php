@@ -89,12 +89,12 @@ return [
             '_' => '聊天',
 
             'announcement' => [
-                '_' => '',
+                '_' => '新通知',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username：":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => '来自 :username 的通知',
                 ],
             ],
 

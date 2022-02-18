@@ -168,7 +168,9 @@ class ClientTest extends TestCase
     {
         config()->set('osu.oauth.max_user_clients', 1);
 
-        $client = Client::factory()->create(['user_id' => $this->owner]);
+        $client = Client::factory()
+            ->allowUnsaved()
+            ->create(['user_id' => $this->owner]);
         $this->assertFalse($client->exists);
         $this->assertArrayHasKey('user.oauthClients.count', $client->validationErrors()->all());
     }

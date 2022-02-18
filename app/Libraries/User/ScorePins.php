@@ -22,8 +22,11 @@ class ScorePins
         $pins = request()->attributes->get($key);
 
         if ($pins === null) {
-            $pins = ScorePin
-                ::select('score_id')
+            $user = auth()->user();
+            $pins = $user === null
+                ? []
+                : $user->scorePins()
+                ->select('score_id')
                 ->where(['score_type' => $type])
                 ->get()
                 ->keyBy(fn (ScorePin $p) => $p->score_id);

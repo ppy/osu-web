@@ -174,6 +174,10 @@ return [
                 'first' => 'An der Spitze',
                 'own' => 'Dein bester Rang',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

@@ -10,7 +10,7 @@ namespace Database\Factories\Chat;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Database\Factories\Factory;
 
 class MessageFactory extends Factory
 {
