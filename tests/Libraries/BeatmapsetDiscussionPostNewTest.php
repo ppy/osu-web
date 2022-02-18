@@ -63,6 +63,65 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
     }
 
     /**
+     * @dataProvider shouldDisqualifyOrResetNominationsDataProvider
+     */
+    public function testShouldDisqualifyOrResetNominations(string $state, ?string $group, string $messageType, bool $existing, bool $expects)
+    {
+        $user = User::factory()->withGroup($group)->create()->markSessionVerified();
+
+        $beatmapset = $this->beatmapsetFactory()
+            ->withNominations()
+            ->$state()
+            ->create();
+
+        $discussion = BeatmapDiscussion::factory()->general()->state([
+            'beatmapset_id' => $beatmapset,
+            'message_type' => $messageType,
+            'user_id' => $user,
+        ]);
+
+        $discussion = $existing ? $discussion->create() : $discussion->make();
+
+        $subject = new BeatmapsetDiscussionPostNew($user, $discussion, 'message');
+
+        $value = $this->invokeMethod($subject, 'shouldDisqualifyOrResetNominations');
+        $this->assertSame($expects, $value);
+    }
+
+    public function testWatchersGetNotification()
+    {
+        $user = User::factory()->create()->markSessionVerified();
+        $watcher = User::factory()->create();
+        $beatmapset = $this->beatmapsetFactory()->create();
+        $beatmapset->watches()->create(['user_id' => $watcher->getKey()]);
+
+        $discussion = BeatmapDiscussion::factory()->general()->state([
+            'beatmapset_id' => $beatmapset,
+            'message_type' => 'praise',
+            'user_id' => $user,
+        ])->make();
+
+        Queue::fake();
+
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+
+        Queue::assertPushed(NotificationsBeatmapsetDiscussionPostNew::class, function (NotificationsBeatmapsetDiscussionPostNew $job) use ($user, $watcher) {
+            return in_array($watcher->getKey(), $job->getReceiverIds(), true)
+                && !in_array($user->getKey(), $job->getReceiverIds(), true);
+        });
+
+        $this->runFakeQueue();
+
+        // TODO: this should probably be changed to asserting "if job queued, then event is broadcast to receivers with option set"
+        Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($user, $watcher) {
+            return in_array($watcher->getKey(), $event->getReceiverIds(), true)
+                && !in_array($user->getKey(), $event->getReceiverIds(), true);
+        });
+    }
+
+    //region Reporting problem on a beatmap
+
+    /**
      * @dataProvider problemOnQualifiedBeatmapsetDataProvider
      */
     public function testProblemOnQualifiedBeatmapset(string $state, string $assertMethod)
@@ -152,6 +211,8 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         }
     }
 
+    //endregion
+
     /**
      * @dataProvider queuedJobsDataProvider
      */
@@ -182,33 +243,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider
-     */
-    public function testReopeningProblemDoesNotDisqualifyOrResetNominations(string $state)
-    {
-        $user = User::factory()->withGroup('bng')->create()->markSessionVerified();
-
-        $beatmapset = $this->beatmapsetFactory()
-            ->withNominations()
-            ->$state()
-            ->create();
-
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
-            'beatmapset_id' => $beatmapset,
-            'resolved' => true,
-            'user_id' => $user,
-        ])->create();
-
-        Queue::fake();
-
-        $discussion->resolved = false;
-        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
-
-        Queue::assertPushed(NotificationsBeatmapsetDiscussionPostNew::class);
-        Queue::assertNotPushed(BeatmapsetDisqualify::class);
-        Queue::assertNotPushed(BeatmapsetResetNominations::class);
-    }
+    //region Replying to an exisitng discussion
 
     /**
      * @dataProvider replyQueuesNotificationDataProviderToStarter
@@ -237,43 +272,6 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
                     : !in_array($starter->getKey(), $job->getReceiverIds(), true);
             }
         );
-    }
-
-    public function testReopenResolvedDiscussionByMapper()
-    {
-        $beatmapset = $this->beatmapsetFactory()->qualified()->create();
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
-            'beatmapset_id' => $beatmapset,
-            'resolved' => true,
-            'user_id' => $this->mapper,
-        ])->create();
-
-        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 2);
-
-        $discussion->resolved = false;
-        (new BeatmapsetDiscussionPostNew($this->mapper, $discussion, 'message'))->handle();
-
-        $this->assertFalse($discussion->fresh()->resolved);
-        $this->assertTrue($beatmapset->isQualified());
-    }
-
-    public function testReopenResolvedDiscussionByStarter()
-    {
-        $user = User::factory()->create()->markSessionVerified();
-        $beatmapset = $this->beatmapsetFactory()->qualified()->create();
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
-            'beatmapset_id' => $beatmapset,
-            'resolved' => true,
-            'user_id' => $user,
-        ])->create();
-
-        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 2);
-
-        $discussion->resolved = false;
-        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
-
-        $this->assertFalse($discussion->fresh()->resolved);
-        $this->assertTrue($beatmapset->isQualified());
     }
 
     /**
@@ -315,6 +313,8 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
 
         $this->assertFalse($discussion->fresh()->resolved);
     }
+
+    //endregion
 
     //region Resolving discussions
 
@@ -412,62 +412,75 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
 
     //endregion
 
+    //region Reopening a resolved issue
+
     /**
-     * @dataProvider shouldDisqualifyOrResetNominationsDataProvider
+     * @dataProvider reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider
      */
-    public function testShouldDisqualifyOrResetNominations(string $state, ?string $group, string $messageType, bool $existing, bool $expects)
+    public function testReopeningProblemDoesNotDisqualifyOrResetNominations(string $state)
     {
-        $user = User::factory()->withGroup($group)->create()->markSessionVerified();
+        $user = User::factory()->withGroup('bng')->create()->markSessionVerified();
 
         $beatmapset = $this->beatmapsetFactory()
             ->withNominations()
             ->$state()
             ->create();
 
-        $discussion = BeatmapDiscussion::factory()->general()->state([
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
             'beatmapset_id' => $beatmapset,
-            'message_type' => $messageType,
+            'resolved' => true,
             'user_id' => $user,
-        ]);
-
-        $discussion = $existing ? $discussion->create() : $discussion->make();
-
-        $subject = new BeatmapsetDiscussionPostNew($user, $discussion, 'message');
-
-        $value = $this->invokeMethod($subject, 'shouldDisqualifyOrResetNominations');
-        $this->assertSame($expects, $value);
-    }
-
-    public function testWatchersGetNotification()
-    {
-        $user = User::factory()->create()->markSessionVerified();
-        $watcher = User::factory()->create();
-        $beatmapset = $this->beatmapsetFactory()->create();
-        $beatmapset->watches()->create(['user_id' => $watcher->getKey()]);
-
-        $discussion = BeatmapDiscussion::factory()->general()->state([
-            'beatmapset_id' => $beatmapset,
-            'message_type' => 'praise',
-            'user_id' => $user,
-        ])->make();
+        ])->create();
 
         Queue::fake();
 
+        $discussion->resolved = false;
         (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
 
-        Queue::assertPushed(NotificationsBeatmapsetDiscussionPostNew::class, function (NotificationsBeatmapsetDiscussionPostNew $job) use ($user, $watcher) {
-            return in_array($watcher->getKey(), $job->getReceiverIds(), true)
-                && !in_array($user->getKey(), $job->getReceiverIds(), true);
-        });
-
-        $this->runFakeQueue();
-
-        // TODO: this should probably be changed to asserting "if job queued, then event is broadcast to receivers with option set"
-        Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($user, $watcher) {
-            return in_array($watcher->getKey(), $event->getReceiverIds(), true)
-                && !in_array($user->getKey(), $event->getReceiverIds(), true);
-        });
+        Queue::assertPushed(NotificationsBeatmapsetDiscussionPostNew::class);
+        Queue::assertNotPushed(BeatmapsetDisqualify::class);
+        Queue::assertNotPushed(BeatmapsetResetNominations::class);
     }
+
+
+    public function testReopenResolvedDiscussionByMapper()
+    {
+        $beatmapset = $this->beatmapsetFactory()->qualified()->create();
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
+            'beatmapset_id' => $beatmapset,
+            'resolved' => true,
+            'user_id' => $this->mapper,
+        ])->create();
+
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 2);
+
+        $discussion->resolved = false;
+        (new BeatmapsetDiscussionPostNew($this->mapper, $discussion, 'message'))->handle();
+
+        $this->assertFalse($discussion->fresh()->resolved);
+        $this->assertTrue($beatmapset->isQualified());
+    }
+
+    public function testReopenResolvedDiscussionByStarter()
+    {
+        $user = User::factory()->create()->markSessionVerified();
+        $beatmapset = $this->beatmapsetFactory()->qualified()->create();
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->state([
+            'beatmapset_id' => $beatmapset,
+            'resolved' => true,
+            'user_id' => $user,
+        ])->create();
+
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 2);
+
+        $discussion->resolved = false;
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+
+        $this->assertFalse($discussion->fresh()->resolved);
+        $this->assertTrue($beatmapset->isQualified());
+    }
+
+    //endregion
 
     public function minPlaysVerificationDataProvider()
     {
