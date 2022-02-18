@@ -368,7 +368,11 @@ class Room extends Model
                         return $i;
                     }
 
-                    if ($i->playlist_order === null || $currentItem->playlist_order === null) {
+                    if (
+                        $i->playlist_order === null
+                        || $currentItem->playlist_order === null
+                        || $i->playlist_order === $currentItem->playlist_order
+                    ) {
                         return $i->getKey() < $currentItem->getKey()
                             ? $i
                             : $currentItem;
@@ -383,7 +387,11 @@ class Room extends Model
                         return $i;
                     }
 
-                    if ($i->played_at === null || $currentItem->played_at === null) {
+                    if (
+                        $i->played_at === null
+                        || $currentItem->played_at === null
+                        || $i->played_at === $currentItem->played_at
+                    ) {
                         return $i->getKey() > $currentItem->getKey()
                             ? $i
                             : $currentItem;
