@@ -9,6 +9,7 @@ namespace Tests\Libraries;
 
 use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\AuthorizationException;
+use App\Exceptions\InvariantException;
 use App\Exceptions\VerificationRequiredException;
 use App\Jobs\Notifications\BeatmapsetDiscussionPostNew as NotificationsBeatmapsetDiscussionPostNew;
 use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
@@ -334,10 +335,12 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
             'user_id' => $user,
         ])->create();
 
-        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), $expected ? 2 : 1);
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), $expected ? 2 : 0);
+        if (!$expected) {
+            $this->expectException(InvariantException::class);
+        }
 
-        $discussion->resolved = true;
-        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message', true))->handle();
 
         $this->assertSame($expected, $discussion->fresh()->resolved);
     }
@@ -359,8 +362,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
             $this->expectException(AuthorizationException::class);
         }
 
-        $discussion->resolved = true;
-        (new BeatmapsetDiscussionPostNew($this->mapper, $discussion, 'message'))->handle();
+        (new BeatmapsetDiscussionPostNew($this->mapper, $discussion, 'message', true))->handle();
 
         $this->assertSame($expected, $discussion->fresh()->resolved);
     }
@@ -384,8 +386,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
             $this->expectException(AuthorizationException::class);
         }
 
-        $discussion->resolved = true;
-        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message', true))->handle();
 
         $this->assertSame($expected, $discussion->fresh()->resolved);
     }
@@ -407,8 +408,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
             $this->expectException(AuthorizationException::class);
         }
 
-        $discussion->resolved = true;
-        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message', true))->handle();
 
         $this->assertSame($expected, $discussion->fresh()->resolved);
     }
@@ -439,8 +439,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
 
         Queue::fake();
 
-        $discussion->resolved = false;
-        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message', false))->handle();
 
         Queue::assertPushed(NotificationsBeatmapsetDiscussionPostNew::class);
         Queue::assertNotPushed(BeatmapsetDisqualify::class);
@@ -463,8 +462,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 2);
 
-        $discussion->resolved = false;
-        (new BeatmapsetDiscussionPostNew($this->mapper, $discussion, 'message'))->handle();
+        (new BeatmapsetDiscussionPostNew($this->mapper, $discussion, 'message', false))->handle();
 
         $this->assertFalse($discussion->fresh()->resolved);
         $this->assertTrue($beatmapset->isQualified());
@@ -482,8 +480,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 2);
 
-        $discussion->resolved = false;
-        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message', false))->handle();
 
         $this->assertFalse($discussion->fresh()->resolved);
         $this->assertTrue($beatmapset->isQualified());
