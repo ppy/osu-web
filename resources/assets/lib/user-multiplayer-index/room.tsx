@@ -36,11 +36,7 @@ export default class Room extends React.Component<Props> {
   }
 
   private get background() {
-    const beatmapset = this.props.room.current_playlist_item.beatmap?.beatmapset;
-
-    if (beatmapset == null) return undefined;
-
-    return beatmapset.covers.cover;
+    return this.props.room.current_playlist_item.beatmap?.beatmapset?.covers.cover;
   }
 
   constructor(props: Props) {
