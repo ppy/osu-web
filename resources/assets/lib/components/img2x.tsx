@@ -19,5 +19,9 @@ export default function Img2x(props: Props) {
     otherProps.onError = handleError;
   }
 
+  if (otherProps.src == null) {
+    return <img style={{ display: 'none' }} {...otherProps} />;
+  }
+
   return <img srcSet={`${otherProps.src} 1x, ${make2x(otherProps.src)} 2x`} {...otherProps} />;
 }
