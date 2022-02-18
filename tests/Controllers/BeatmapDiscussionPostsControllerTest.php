@@ -25,48 +25,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     private User $mapper;
     private User $user;
 
-    /**
-     * @dataProvider postStoreNewDiscussionMinPlaysDataProvider
-     */
-    public function testPostStoreNewDiscussionMinPlays(?int $minPlays, bool $verified, bool $success)
-    {
-        config()->set('osu.user.post_action_verification', false);
-        $user = User::factory()->withPlays($minPlays)->create();
-        $watcher = User::factory()->create();
-        $this->beatmapset->watches()->create(['user_id' => $watcher->getKey()]);
-        $params = $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'praise');
-
-        $currentDiscussions = BeatmapDiscussion::count();
-        $currentDiscussionPosts = BeatmapDiscussionPost::count();
-        $currentNotifications = Notification::count();
-        $currentUserNotifications = UserNotification::count();
-
-        $this->actAsUser($user, $verified);
-        $request = $this->post(route('beatmapsets.discussions.posts.store'), $params);
-
-        if ($success) {
-            $request->assertStatus(200);
-        } else {
-            $request->assertStatus(401)->assertViewIs('users.verify');
-        }
-
-        $change = $success ? 1 : 0;
-        $this->assertSame($currentDiscussions + $change, BeatmapDiscussion::count());
-        $this->assertSame($currentDiscussionPosts + $change, BeatmapDiscussionPost::count());
-        $this->assertSame($currentNotifications + $change, Notification::count());
-        $this->assertSame($currentUserNotifications + $change, UserNotification::count());
-
-        if ($success) {
-            Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($watcher) {
-                // assert watchers in receivers and sender is not.
-                return in_array($watcher->getKey(), $event->getReceiverIds(), true)
-                    && !in_array($this->user->getKey(), $event->getReceiverIds(), true);
-            });
-        } else {
-            Event::assertNotDispatched(NewPrivateNotificationEvent::class);
-        }
-    }
-
     public function testPostStoreNewDiscussionInactiveBeatmapset()
     {
         $beatmapset = Beatmapset::factory()->owner()->inactive()->create();
