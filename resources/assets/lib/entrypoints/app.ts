@@ -8,10 +8,7 @@ import 'jquery-pubsub.coffee';
 
 import '_classes/beatmap-discussion-helper.coffee';
 import '_classes/beatmapset-filter.coffee';
-import '_classes/changelog-chart.coffee';
-import '_classes/fancy-chart.coffee';
 import '_classes/input-handler.coffee';
-import '_classes/stacked-bar-chart.coffee';
 import '_classes/store-cart.coffee';
 import '_classes/store-supporter-tag-price.coffee';
 import '_classes/timeout.coffee';

@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import MetadataEditor from 'beatmapsets-show/metadata-editor'
+import StackedBarChart from 'charts/stacked-bar-chart'
 import BbcodeEditor from 'components/bbcode-editor'
 import { Modal } from 'components/modal'
 import { route } from 'laroute'

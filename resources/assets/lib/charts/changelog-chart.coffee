@@ -4,7 +4,7 @@
 import { fadeIn, fadeOut } from 'utils/fade'
 import { parseJson } from 'utils/json'
 
-class window.ChangelogChart
+export default class ChangelogChart
   constructor: (area) ->
     @options =
       scales:

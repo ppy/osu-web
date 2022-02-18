@@ -4,7 +4,7 @@
 import { fadeIn, fadeOut } from 'utils/fade'
 import { parseJsonNullable } from 'utils/json'
 
-class window.FancyChart
+export default class FancyChart
   constructor: (area, @options = {}) ->
     @options.scales ?= {}
     @options.scales.x ?= d3.scaleLinear()
