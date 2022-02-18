@@ -36,7 +36,9 @@ class BeatmapDiscussionFactory extends Factory
 
     public function definition(): array
     {
-        return array_rand_val(static::DEFAULTS);
+        return array_merge(array_rand_val(static::DEFAULTS), [
+            'resolved' => false,
+        ]);
     }
 
     public function general()
