@@ -140,6 +140,11 @@ class CommentBundle
             $query->where('user_id', $this->params->userId);
         }
 
+        if ($this->user !== null) {
+            $blocks = $this->user->blocks()->pluck('zebra_id');
+            $query->whereNotIn('user_id', $blocks);
+        }
+
         return $query;
     }
 
