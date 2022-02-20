@@ -1,0 +1,47 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.profile-header-banner {
+  @_top: profile-header-banner;
+  overflow: hidden;
+
+  @media @desktop {
+    .own-layer();
+    transition: transform .2s cubic-bezier(.08,.82,.17,1);
+
+    &:hover {
+      transform: scale(1.1);
+      z-index: 1;
+    }
+
+    & + & {
+      margin-left: 10px;
+    }
+  }
+
+  &--loved-voted-sticker {
+    .default-border-radius();
+    .link-plain();
+    .link-white();
+    background-color: @osu-colour-b6;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 4px 0 4px 10px;
+
+    .@{_top}__image {
+      margin-left: -10px;
+    }
+  }
+
+  &--tournament {
+    @media @desktop {
+      .default-border-radius();
+      width: 60%;
+    }
+
+    .@{_top}__image {
+      width: 100%;
+    }
+  }
+}

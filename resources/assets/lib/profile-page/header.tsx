@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'components/header-v4';
-import ProfileTournamentBanner from 'components/profile-tournament-banner';
+import ProfileHeaderBanners from 'components/profile-header-banners';
 import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { isModalShowing } from 'modal-helper';
@@ -53,7 +53,7 @@ export default class Header extends React.Component<Props> {
       <div className='js-switchable-mode-page--scrollspy js-switchable-mode-page--page' data-page-id='main'>
         <HeaderV4
           backgroundImage={this.props.controller.displayCoverUrl}
-          contentPrepend={<ProfileTournamentBanner banner={this.props.controller.state.user.active_tournament_banner} />}
+          contentPrepend={<ProfileHeaderBanners user={this.props.controller.state.user} />}
           isCoverUpdating={this.props.controller.isUpdatingCover}
           links={headerLinks(this.props.controller.state.user, 'show')}
           theme='users'
