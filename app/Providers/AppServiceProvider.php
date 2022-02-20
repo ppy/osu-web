@@ -14,6 +14,7 @@ use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
 use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
+use App\Libraries\ProjectLovedPollsCache;
 use App\Libraries\RouteSection;
 use App\Libraries\User\ScorePins;
 use Datadog;
@@ -34,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
         'assets-manifest' => AssetsManifest::class,
         'chat-filters' => ChatFilters::class,
         'groups' => Groups::class,
+        'loved-polls' => ProjectLovedPollsCache::class,
         'route-section' => RouteSection::class,
         'score-pins' => ScorePins::class,
     ];
@@ -55,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
             app('OsuAuthorize')->resetCache();
             app('groups')->incrementResetTicker();
             app('chat-filters')->incrementResetTicker();
+            app('loved-polls')->incrementResetTicker();
 
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.queue.run',

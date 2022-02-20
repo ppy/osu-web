@@ -11,5 +11,6 @@ class OctaneResetLocalCache
     {
         app('chat-filters')->incrementResetTicker();
         app('groups')->incrementResetTicker();
+        app('loved-polls')->incrementResetTicker();
     }
 }
