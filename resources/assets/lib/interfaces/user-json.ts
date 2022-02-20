@@ -62,6 +62,7 @@ interface UserJsonAvailableIncludes {
   unread_pm_count: number;
   user_achievements: UserAchievementJson[];
   user_preferences: UserPreferencesJson;
+  voted_in_project_loved: boolean;
 }
 
 interface UserJsonDefaultAttributes {
