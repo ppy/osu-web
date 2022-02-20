@@ -498,6 +498,7 @@ class UsersController extends Controller
      * - statistics.variants
      * - support_level
      * - user_achievements
+     * - voted_in_project_loved
      *
      * @urlParam user integer required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
      * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
