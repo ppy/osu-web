@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserRelation;
 use Tests\TestCase;
 
 class CommentsControllerTest extends TestCase
@@ -160,6 +161,34 @@ class CommentsControllerTest extends TestCase
         $this
             ->json('GET', route('api.comments.show', ['comment' => $comment->getKey()]))
             ->assertSuccessful();
+    }
+
+    public function testBlockedUserCommentsDontShow() {
+        $blockedUser = User::factory()->create();
+        $blockingUser = User::factory()->create();
+
+        UserRelation::create([
+            'user_id' => $blockingUser->user_id,
+            'zebra_id' => $blockedUser->user_id,
+            'foe' => true,
+        ]);
+
+        $comment = Comment::factory()->create([
+            'commentable_type' => 'beatmapset',
+            'user_id' => $blockedUser->getKey(),
+        ]);
+
+        $this
+            ->actingAsVerified($blockingUser)
+            ->json('GET', route('api.comments.index'))
+            ->assertSuccessful()
+            ->assertJsonMissing(['message' => $comment->message]);
+
+        $this
+            ->actingAsVerified($blockedUser)
+            ->json('GET', route('api.comments.index'))
+            ->assertSuccessful()
+            ->assertJsonFragment(['message' => $comment->message]);
     }
 
     /**
