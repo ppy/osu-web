@@ -174,6 +174,10 @@ return [
                 'first' => '领衔者',
                 'own' => '你的最佳成绩',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

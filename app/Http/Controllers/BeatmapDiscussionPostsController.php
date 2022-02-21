@@ -112,13 +112,14 @@ class BeatmapDiscussionPostsController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
-        $discussion = $this->prepareDiscussion(request());
+        $params = request()->all();
+        $discussion = $this->prepareDiscussion($params);
 
         if (!$discussion->exists) {
             priv_check('BeatmapDiscussionStore', $discussion)->ensureCan();
         }
 
-        $postParams = get_params(request()->all(), 'beatmap_discussion_post', ['message']);
+        $postParams = get_params($params, 'beatmap_discussion_post', ['message']);
         $postParams['user_id'] = $user->getKey();
         $post = new BeatmapDiscussionPost($postParams);
         $post->beatmapDiscussion()->associate($discussion);
@@ -194,14 +195,19 @@ class BeatmapDiscussionPostsController extends Controller
         return $post->beatmapset->defaultDiscussionJson();
     }
 
-    private function prepareDiscussion($request): BeatmapDiscussion
+    private function prepareDiscussion(array $request): BeatmapDiscussion
     {
-        $discussionId = get_int($request['beatmap_discussion_id']);
+        $params = get_params($request, null, [
+            'beatmap_discussion_id:int',
+            'beatmapset_id:int',
+        ], ['null_missing' => true]);
+
+        $discussionId = $params['beatmap_discussion_id'];
 
         if ($discussionId === null) {
             $beatmapset = Beatmapset
                 ::where('discussion_enabled', true)
-                ->findOrFail($request['beatmapset_id']);
+                ->findOrFail($params['beatmapset_id']);
 
             $discussion = new BeatmapDiscussion([
                 'beatmapset_id' => $beatmapset->getKey(),

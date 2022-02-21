@@ -5,9 +5,9 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Walang osu!(lazer) :type_group games na nalaro pa!',
+        'playlists' => 'playlist',
+        'realtime' => 'multiplayer',
     ],
 
     'room' => [

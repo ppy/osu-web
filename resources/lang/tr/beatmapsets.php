@@ -174,6 +174,10 @@ return [
                 'first' => 'Lider',
                 'own' => 'En İyi Skorun',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

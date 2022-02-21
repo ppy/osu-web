@@ -174,6 +174,10 @@ return [
                 'first' => 'Aan de Leiding',
                 'own' => 'Jouw beste Rang',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

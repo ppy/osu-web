@@ -46,8 +46,8 @@ return [
 
         'users' => [
             'modding' => '摸图',
-            'playlists' => '',
-            'realtime' => '',
+            'playlists' => '歌单',
+            'realtime' => '多人游戏',
             'show' => '信息',
         ],
     ],

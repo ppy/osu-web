@@ -174,6 +174,10 @@ return [
                 'first' => 'Pirmauja',
                 'own' => 'Tavo geriausias',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

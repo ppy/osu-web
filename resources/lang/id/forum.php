@@ -184,16 +184,16 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'daftar pantauan topik forum',
+            'title_compact' => 'daftar pengamatan topik forum',
 
             'box' => [
-                'total' => 'Topik forum yang dipantau',
+                'total' => 'Topik forum yang diikuti',
                 'unread' => 'Topik forum dengan balasan baru',
             ],
 
             'info' => [
                 'total' => 'Anda berlangganan :total topik.',
-                'unread' => 'Anda mempunyai :unread balasan yang belum dibalas di topik yang Anda langgan.',
+                'unread' => 'Anda memiliki :unread pesan balasan yang belum dibaca pada topik-topik yang Anda langgan.',
             ],
         ],
 

@@ -65,7 +65,7 @@ declare module 'components/popup-menu' {
   class PopupMenu extends React.PureComponent<Props, any> {}
 }
 
-declare module 'react/beatmaps/search-content' {
+declare module 'beatmaps/search-content' {
   import AvailableFilters from 'beatmaps/available-filters';
 
   interface Props {

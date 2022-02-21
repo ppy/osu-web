@@ -24,7 +24,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Anda tidak dapat memberikan hype karena fitur diskusi untuk beatmap ini sedang dibekukan oleh moderator",
+            'discussion_locked' => "Anda tidak dapat memberikan hype karena laman diskusi beatmap ini tengah dikunci",
             'guest' => 'Silakan masuk untuk dapat memberikan hype.',
             'hyped' => 'Anda telah memberikan hype untuk beatmap ini.',
             'limit_exceeded' => 'Anda telah mempergunakan seluruh hype yang Anda miliki.',
@@ -131,7 +131,7 @@ return [
         'too_short' => 'Kata sandi baru terlalu pendek.',
         'unknown_duplicate' => 'Nama pengguna atau alamat email ini sudah digunakan sebelumnya.',
         'username_available_in' => 'Nama pengguna ini akan tersedia untuk digunakan dalam :duration.',
-        'username_available_soon' => 'Nama pengguna ini dapat digunakan sekarang!',
+        'username_available_soon' => 'Nama pengguna ini tersedia untuk digunakan!',
         'username_invalid_characters' => 'Nama pengguna yang diminta mengandung karakter yang tidak valid.',
         'username_in_use' => 'Nama pengguna sudah digunakan!',
         'username_locked' => 'Nama pengguna ini telah digunakan!', // TODO: language for this should be slightly different.
@@ -147,13 +147,13 @@ return [
         'too_long' => 'Melebihi batas maksimum - hanya bisa hingga :limit karakter.',
 
         'attributes' => [
-            'username' => 'Nama Pengguna',
-            'user_email' => 'Alamat Email',
-            'password' => 'Kata Sandi',
+            'username' => 'Nama pengguna',
+            'user_email' => 'Alamat email',
+            'password' => 'Kata sandi',
         ],
 
         'change_username' => [
-            'restricted' => 'Anda tidak dapat mengganti nama pengguna ketika akun Anda sedang di-restrict.',
+            'restricted' => 'Anda tidak dapat mengubah nama pengguna pada saat akun Anda sedang di-restrict.',
             'supporter_required' => [
                 '_' => 'Anda harus memiliki :link untuk dapat mengubah nama pengguna Anda!',
                 'link_text' => 'osu!supporter',
