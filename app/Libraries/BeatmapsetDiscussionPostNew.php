@@ -45,6 +45,8 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
         $this->post->user()->associate($user);
         $this->post->beatmapDiscussion()->associate($discussion);
 
+        priv_check_user($this->user, 'BeatmapDiscussionPostStore', $this->post)->ensureCan();
+
         if ($discussion->message_type === 'problem') {
             $this->problemDiscussion = $discussion;
             $this->priorOpenProblemCount = $this->beatmapset->beatmapDiscussions()->openProblems()->count();
@@ -100,8 +102,6 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
      */
     public function handle(): array
     {
-        priv_check_user($this->user, 'BeatmapDiscussionPostStore', $this->post)->ensureCan();
-
         $posts = $this->discussion->getConnection()->transaction(function () {
             $this->discussion->saveOrExplode();
 
