@@ -371,23 +371,23 @@ class Room extends Model
 
                     // the key is casted to int
                     $ret = isset($groupedItems[0])
-                        ? $groupedItems[0]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
-                            if ($currentItem === null) {
+                        ? $groupedItems[0]->reduce(function (?PlaylistItem $prevItem, PlaylistItem $i) {
+                            if ($prevItem === null) {
                                 return $i;
                             }
 
-                            return $i->playlist_order < $currentItem->playlist_order
+                            return $i->playlist_order < $prevItem->playlist_order
                                 ? $i
-                                : $currentItem;
+                                : $prevItem;
                         })
-                        : $groupedItems[1]->reduce(function (?PlaylistItem $currentItem, PlaylistItem $i) {
-                            if ($currentItem === null) {
+                        : $groupedItems[1]->reduce(function (?PlaylistItem $prevItem, PlaylistItem $i) {
+                            if ($prevItem === null) {
                                 return $i;
                             }
 
-                            return $i->played_at > $currentItem->played_at
+                            return $i->played_at > $prevItem->played_at
                                 ? $i
-                                : $currentItem;
+                                : $prevItem;
                         });
                 } else {
                     $ret = $this->playlist[0];
