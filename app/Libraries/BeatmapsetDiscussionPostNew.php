@@ -102,7 +102,7 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
      */
     public function handle(): array
     {
-        $posts = $this->discussion->getConnection()->transaction(function () {
+        return $this->discussion->getConnection()->transaction(function () {
             $this->discussion->saveOrExplode();
 
             // done here since discussion may or may not previously exist
@@ -117,12 +117,10 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
 
             $this->handleProblemDiscussion();
 
+            (new Notifications\BeatmapsetDiscussionPostNew($this->post, $this->user))->dispatch();
+
             return $newPosts;
         });
-
-        (new Notifications\BeatmapsetDiscussionPostNew($this->post, $this->user))->dispatch();
-
-        return $posts;
     }
 
     private function logResolveChange(): ?BeatmapDiscussionPost
