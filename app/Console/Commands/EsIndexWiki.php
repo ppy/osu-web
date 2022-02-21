@@ -121,7 +121,7 @@ class EsIndexWiki extends Command
 
         if ($this->inplace) {
             $this->line('Fetching existing list...');
-            $cursor = ['']; // works with Sort(_id, asc) to start at the beginning.
+            $cursor = ['', '']; // number of params for initial cursor must match number of sorts used.
             while ($cursor !== null) {
                 $search = $this->newBaseSearch()->searchAfter(array_values($cursor));
                 $response = $search->response();
