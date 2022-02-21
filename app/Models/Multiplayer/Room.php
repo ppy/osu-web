@@ -427,7 +427,7 @@ class Room extends Model
         return [
             'count_active' => $activeCount,
             'count_total' => $this->playlist->count(),
-            'ruleset_ids' => ($activeCount === 0 ? $this->playlist : $active)->pluck('ruleset_id')->unique(),
+            'ruleset_ids' => ($activeCount === 0 ? $this->playlist : $active)->pluck('ruleset_id')->unique()->values(),
         ];
     }
 
