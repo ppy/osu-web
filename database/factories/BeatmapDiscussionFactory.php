@@ -46,6 +46,11 @@ class BeatmapDiscussionFactory extends Factory
         return $this->state(static::DEFAULTS['general']);
     }
 
+    public function mapperNote()
+    {
+        return $this->state(['message_type' => 'mapper_note']);
+    }
+
     public function problem()
     {
         return $this->state(['message_type' => 'problem']);

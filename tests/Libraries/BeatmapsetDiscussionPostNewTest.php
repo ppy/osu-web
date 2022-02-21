@@ -153,6 +153,125 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         });
     }
 
+    //region Posting mapper notes
+
+    public function testNewMapperNote()
+    {
+        $beatmapset = $this->beatmapsetFactory()->create();
+
+        $this->expectCountChange(fn () => BeatmapDiscussion::count(), 1, BeatmapDiscussion::class);
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1, BeatmapDiscussionPost::class);
+
+        $discussion = BeatmapDiscussion::factory()->general()->mapperNote()->make([
+            'beatmapset_id' => $beatmapset,
+            'user_id' => $this->mapper,
+        ]);
+
+        (new BeatmapsetDiscussionPostNew($this->mapper, $discussion, 'message'))->handle();
+    }
+
+    /**
+     * @dataProvider newMapperNoteByOtherUsersDataProvider
+     */
+    public function testNewMapperNoteByOtherUsers(?string $group, bool $expected)
+    {
+        $user = User::factory()->withGroup($group)->create()->markSessionVerified();
+        $beatmapset = $this->beatmapsetFactory()->create();
+
+        $discussion = BeatmapDiscussion::factory()->general()->mapperNote()->make([
+            'beatmapset_id' => $beatmapset,
+            'user_id' => $this->mapper,
+        ]);
+
+        $change = $expected ? 1 : 0;
+        $this->expectCountChange(fn () => BeatmapDiscussion::count(), $change, BeatmapDiscussion::class);
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), $change, BeatmapDiscussionPost::class);
+
+        if (!$expected) {
+            $this->expectException(AuthorizationException::class);
+        }
+
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+    }
+
+    public function testNewMapperNoteNoteByGuestOnGuestBeatmap()
+    {
+        $user = User::factory()->create()->markSessionVerified();
+        $beatmapset = $this->beatmapsetFactory(['user_id' => $user])->create();
+        $beatmap = $beatmapset->beatmaps->first();
+
+        $discussion = BeatmapDiscussion::factory()->general()->mapperNote()->state([
+            'beatmap_id' => $beatmap,
+            'beatmapset_id' => $beatmapset,
+            'user_id' => $user,
+        ])->make();
+
+        $this->expectCountChange(fn () => BeatmapDiscussion::count(), 1, BeatmapDiscussion::class);
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1, BeatmapDiscussionPost::class);
+
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+    }
+
+    public function testNewMapperNoteNoteByMapperOnGuestBeatmap()
+    {
+        $user = User::factory()->create()->markSessionVerified();
+        $beatmapset = $this->beatmapsetFactory(['user_id' => $user])->create();
+        $beatmap = $beatmapset->beatmaps->first();
+
+        $discussion = BeatmapDiscussion::factory()->general()->mapperNote()->state([
+            'beatmap_id' => $beatmap,
+            'beatmapset_id' => $beatmapset,
+            'user_id' => $this->mapper,
+        ])->make();
+
+        $this->expectCountChange(fn () => BeatmapDiscussion::count(), 1, BeatmapDiscussion::class);
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1, BeatmapDiscussionPost::class);
+
+        (new BeatmapsetDiscussionPostNew($this->mapper, $discussion, 'message'))->handle();
+    }
+
+    /**
+     * @dataProvider userGroupsDataProvider
+     */
+    public function testReplyToMapperNoteByOtherUsers(?string $group)
+    {
+        $user = User::factory()->withGroup($group)->create()->markSessionVerified();
+        $beatmapset = $this->beatmapsetFactory()->create();
+
+        $discussion = BeatmapDiscussion::factory()->general()->mapperNote()->create([
+            'beatmapset_id' => $beatmapset,
+            'user_id' => $this->mapper,
+        ]);
+
+        $this->expectCountChange(fn () => BeatmapDiscussion::count(), 0, BeatmapDiscussion::class);
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1, BeatmapDiscussionPost::class);
+
+        (new BeatmapsetDiscussionPostNew($user, $discussion, 'message'))->handle();
+    }
+
+    /**
+     * @dataProvider userGroupsDataProvider
+     */
+    public function testNewMapperNoteNoteByOtherUsersOnGuestBeatmap(?string $group)
+    {
+        $user = User::factory()->withGroup($group)->create()->markSessionVerified();
+        $beatmapset = $this->beatmapsetFactory(['user_id' => User::factory()])->create();
+        $beatmap = $beatmapset->beatmaps->first();
+
+        $discussion = BeatmapDiscussion::factory()->general()->mapperNote()->state([
+            'beatmap_id' => $beatmap,
+            'beatmapset_id' => $beatmapset,
+            'user_id' => $this->mapper,
+        ])->create();
+
+        $this->expectCountChange(fn () => BeatmapDiscussion::count(), 0, BeatmapDiscussion::class);
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1, BeatmapDiscussionPost::class);
+
+        (new BeatmapsetDiscussionPostNew($this->mapper, $discussion, 'message'))->handle();
+    }
+
+    //endregion
+
     //region Reporting problem on a beatmap
 
     /**
@@ -556,6 +675,17 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         ];
     }
 
+    public function newMapperNoteByOtherUsersDataProvider()
+    {
+        return [
+            ['bng', true],
+            ['bng_limited', true],
+            ['gmt', true],
+            ['nat', true],
+            [null, false],
+        ];
+    }
+
     public function reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider()
     {
         return [
@@ -642,6 +772,7 @@ class BeatmapsetDiscussionPostNewTest extends TestCase
         return [
             ['admin'],
             ['bng'],
+            ['bng_limited'],
             ['gmt'],
             ['nat'],
             [null],
