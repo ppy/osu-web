@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { PopupMenu } from 'components/popup-menu';
+import PopupMenu from 'components/popup-menu';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';

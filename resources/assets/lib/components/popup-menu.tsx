@@ -1,152 +1,189 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { createRef, PureComponent } from 'react'
-import { createPortal } from 'react-dom'
-import * as React from 'react'
-import { button, div, i } from 'react-dom-factories'
-import { TooltipContext } from 'tooltip-context'
-import { isModalShowing } from 'modal-helper'
-import { nextVal } from 'utils/seq'
+import { isModalShowing } from 'modal-helper';
+import * as React from 'react';
+import { createPortal } from 'react-dom';
+import { ContextValue, TooltipContext } from 'tooltip-context';
+import { nextVal } from 'utils/seq';
 
-el = React.createElement
+type Children = (dismiss: () => void) => React.ReactNode;
 
-export class PopupMenu extends PureComponent
-  @contextType = TooltipContext
+interface BaseProps {
+  children: Children;
+  customRender?: (children: React.ReactNode, ref: React.RefObject<HTMLElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => React.ReactNode;
+  direction: 'left' | 'right';
+  onHide?: () => void;
+  onShow?: () => void;
+  tooltipContext?: ContextValue;
+}
 
-  @defaultProps =
-    children: (_dismiss) ->
-      # empty function
-    direction: 'left'
+type DefaultProps = Pick<BaseProps, 'children' | 'direction'>;
+export type Props = Omit<BaseProps, keyof DefaultProps | 'tooltipContext'> & Partial<DefaultProps>;
 
+interface State {
+  active: boolean;
+}
 
-  constructor: (props) ->
-    super props
+class BasePopupMenu extends React.PureComponent<BaseProps, State> {
+  static readonly defaultProps: DefaultProps = {
+    children: () => null,
+    direction: 'left',
+  };
 
-    @eventId = "popup-menu-#{nextVal()}"
-    @button = createRef()
-    @menu = createRef()
+  readonly state = { active: false };
 
-    @state =
-      active: false
+  private readonly buttonRef = React.createRef<HTMLButtonElement>();
+  private readonly eventId = `popup-menu-${nextVal()}`;
+  private readonly menuRef = React.createRef<HTMLDivElement>();
+  private readonly portal = document.createElement('div');
+  private tooltipHideEvent: unknown;
 
+  private get tooltipElement() {
+    if (this.props.tooltipContext != null) {
+      return $(this.props.tooltipContext).closest('.qtip');
+    }
+  }
 
-  componentDidMount: =>
-    @tooltipHideEvent = @tooltipElement().qtip('option', 'hide.event')
-    $(window).on "resize.#{@eventId}", @resize
-    $(document).on "turbolinks:before-cache.#{@eventId}", @removePortal
+  componentDidMount() {
+    this.tooltipHideEvent = this.tooltipElement?.qtip('option', 'hide.event');
+    $(window).on(`resize.${this.eventId}`, this.resize);
+    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.removePortal);
+  }
 
+  componentDidUpdate(_prevProps: BaseProps, prevState: State) {
+    if (prevState.active === this.state.active) return;
 
-  resize: () =>
-    return if !@state.active
+    if (this.state.active) {
+      this.addPortal();
+      this.resize();
+      this.tooltipElement?.qtip('option', 'hide.event', false);
 
-    # disappear if the tree the menu is in is no longer displayed
-    if !@button.current.offsetParent?
-      @portal.style.display = 'none'
-      return
+      $(document).on(`click.${this.eventId} keydown.${this.eventId}`, this.hide);
+      this.props.onShow?.();
+    } else {
+      this.removePortal();
+      this.tooltipElement?.qtip('option', 'hide.event', this.tooltipHideEvent);
 
-    buttonRect = @button.current.getBoundingClientRect()
-    menuRect = @menu.current.getBoundingClientRect()
-    { scrollX, scrollY } = window
+      $(document).off(`click.${this.eventId} keydown.${this.eventId}`, this.hide);
+      this.props.onHide?.();
+    }
+  }
 
-    left = scrollX + buttonRect.right
-    # shift the menu right if it clips out of the window;
-    # menuRect.x doesn't update until after layout is finished so the known position of buttonRect is used instead.
-    if @props.direction == 'right' || buttonRect.x - menuRect.width < 0
-      left += menuRect.width - buttonRect.width
+  componentWillUnmount() {
+    $(document).off(`.${this.eventId}`);
+    $(window).off(`.${this.eventId}`);
+  }
 
-    @portal.style.display = 'block'
-    @portal.style.position = 'absolute'
-    @portal.style.top = "#{Math.floor(scrollY + buttonRect.bottom + 5)}px"
-    @portal.style.left = "#{Math.floor(left)}px"
+  render() {
+    if (this.props.customRender) {
+      return this.props.customRender(createPortal(this.renderMenu(), this.portal), this.buttonRef, this.toggle);
+    }
 
-    # keeps the menu showing above the tooltip;
-    # portal should be after the tooltip in the document body.
-    tooltipElement = @tooltipElement()[0]
-    if tooltipElement?
-      @portal.style.zIndex = getComputedStyle(tooltipElement).zIndex
+    return (
+      <>
+        <button
+          ref={this.buttonRef}
+          className='popup-menu'
+          onClick={this.toggle}
+          type='button'
+        >
+          <span className='fas fa-ellipsis-v' />
+        </button>
 
+        {createPortal(this.renderMenu(), this.portal)}
+      </>
+    );
+  }
 
-  componentDidUpdate: (_prevProps, prevState) =>
-    return if prevState.active == @state.active
+  private readonly addPortal = () => {
+    if (this.portal.parentElement == null) {
+      document.body.appendChild(this.portal);
+    }
+  };
 
-    if @state.active
-      @addPortal()
-      @resize()
-      @tooltipElement().qtip 'option', 'hide.event', false
+  private readonly dismiss = () => {
+    this.setState({ active: false });
+  };
 
-      $(document).on "click.#{@eventId} keydown.#{@eventId}", @hide
-      @props.onShow?()
+  private readonly hide = (e: JQuery.ClickEvent | JQuery.KeyDownEvent) => {
+    if (!this.state.active || isModalShowing()) return;
 
-    else
-      @removePortal()
-      @tooltipElement().qtip 'option', 'hide.event', @tooltipHideEvent
+    const event = e.originalEvent;
 
-      $(document).off "click.#{@eventId} keydown.#{@eventId}", @hide
-      @props.onHide?()
+    // originalEvent gets eaten by error popup?
+    if (event == null) return;
 
+    if (('key' in event && event.key === 'Escape') || ('button' in event && event.button === 0 && !this.isMenuInPath(event.composedPath()))) {
+      this.setState({ active: false });
+    }
+  };
 
-  componentWillUnmount: =>
-    $(document).off ".#{@eventId}"
-    $(window).off ".#{@eventId}"
+  private isMenuInPath(path: EventTarget[]) {
+    return path.includes(this.portal) || (this.buttonRef.current != null && path.includes(this.buttonRef.current));
+  }
 
+  private readonly removePortal = () => {
+    this.portal.remove();
+  };
 
-  dismiss: =>
-    @setState active: false
+  private renderMenu() {
+    // using fadeIn causes rendering glitches from the stacking context due to will-change
+    if (!this.state.active) return null;
 
+    return (
+      <div ref={this.menuRef} className='popup-menu-float'>
+        {this.props.children(this.dismiss)}
+      </div>
+    );
+  }
 
-  hide: (e) =>
-    return if !@state.active || isModalShowing()
+  private readonly resize = () => {
+    if (!this.state.active) return;
 
-    event = e.originalEvent
-    return if !event? # originalEvent gets eaten by error popup?
+    if (this.buttonRef.current == null || this.menuRef.current == null) {
+      throw new Error('missing button and/or menu element');
+    }
 
-    if event.keyCode == 27 || (event.button == 0 && !@isMenuInPath(event.composedPath()))
-      @setState active: false
+    // disappear if the tree the menu is in is no longer displayed
+    if (this.buttonRef.current.offsetParent == null) {
+      this.portal.style.display = 'none';
+      return;
+    }
 
+    const buttonRect = this.buttonRef.current.getBoundingClientRect();
+    const menuRect = this.menuRef.current.getBoundingClientRect();
+    const { scrollX, scrollY } = window;
 
-  isMenuInPath: (path) =>
-    @button.current in path || @portal in path
+    let left = scrollX + buttonRect.right;
+    // shift the menu right if it clips out of the window;
+    // menuRect.x doesn't update until after layout is finished so the known position of buttonRect is used instead.
+    if (this.props.direction === 'right' || buttonRect.x - menuRect.width < 0) {
+      left += menuRect.width - buttonRect.width;
+    }
 
+    this.portal.style.display = 'block';
+    this.portal.style.position = 'absolute';
+    this.portal.style.top = `${Math.floor(scrollY + buttonRect.bottom + 5)}px`;
+    this.portal.style.left = `${Math.floor(left)}px`;
 
-  toggle: =>
-    @setState active: !@state.active
+    // keeps the menu showing above the tooltip;
+    // portal should be after the tooltip in the document body.
+    const tooltipElement = this.tooltipElement?.[0];
+    if (tooltipElement != null) {
+      this.portal.style.zIndex = getComputedStyle(tooltipElement).zIndex;
+    }
+  };
 
+  private readonly toggle = () => {
+    this.setState({ active: !this.state.active });
+  };
+}
 
-  tooltipElement: =>
-    $(@context).closest('.qtip')
-
-
-  addPortal: =>
-    document.body.appendChild @portal if !@portal.parentElement?
-
-
-  removePortal: =>
-    document.body.removeChild @portal if @portal.parentElement?
-
-
-  render: =>
-    @portal ?= document.createElement('div')
-
-    if @props.customRender
-      @props.customRender createPortal(@renderMenu(), @portal), @button, @toggle
-    else
-      el React.Fragment, null,
-        button
-          className: 'popup-menu'
-          ref: @button
-          type: 'button'
-          onClick: @toggle
-          i className: 'fas fa-ellipsis-v'
-
-        createPortal @renderMenu(), @portal
-
-
-  renderMenu: =>
-    # using fadeIn causes rendering glitches from the stacking context due to will-change
-    return null unless @state.active
-
-    div
-      className: "popup-menu-float"
-      ref: @menu
-      @props.children @dismiss
+export default function PopupMenu(props: Props) {
+  return (
+    <TooltipContext.Consumer>
+      {(tooltipContext) => <BasePopupMenu {...props} tooltipContext={tooltipContext} />}
+    </TooltipContext.Consumer>
+  );
+}
