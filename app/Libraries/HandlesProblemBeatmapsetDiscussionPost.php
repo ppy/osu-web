@@ -19,7 +19,7 @@ trait HandlesProblemBeatmapsetDiscussionPost
 
     abstract private function getUser(): User;
 
-    private function handleProblemDiscussion()
+    private function handleProblemDiscussion(): void
     {
         if ($this->problemDiscussion === null) {
             return;
@@ -28,7 +28,9 @@ trait HandlesProblemBeatmapsetDiscussionPost
         $beatmapset = $this->problemDiscussion->beatmapset;
 
         if ($this->shouldDisqualifyOrResetNominations()) {
-            return $beatmapset->disqualifyOrResetNominations($this->getUser(), $this->problemDiscussion);
+            $beatmapset->disqualifyOrResetNominations($this->getUser(), $this->problemDiscussion);
+
+            return;
         }
 
         if ($beatmapset->isQualified() && !$this->hasPriorOpenProblems && !$this->problemDiscussion->resolved) {
