@@ -117,6 +117,7 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
 
             $this->handleProblemDiscussion();
 
+            // TODO: make transactional
             (new Notifications\BeatmapsetDiscussionPostNew($this->post, $this->user))->dispatch();
 
             return $newPosts;

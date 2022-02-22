@@ -11,8 +11,6 @@ use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\User;
-use DB;
-use Exception;
 
 class BeatmapsetDiscussionReview extends BeatmapsetDiscussionPostHandlesProblem
 {
@@ -196,9 +194,7 @@ class BeatmapsetDiscussionReview extends BeatmapsetDiscussionPostHandlesProblem
 
     private function process()
     {
-        try {
-            DB::beginTransaction();
-
+        $this->beatmapset->getConnection()->transaction(function () {
             [$output, $childIds] = $this->parseDocument();
 
             if (!$this->isUpdate) {
@@ -231,16 +227,12 @@ class BeatmapsetDiscussionReview extends BeatmapsetDiscussionPostHandlesProblem
 
             $this->handleProblemDiscussion();
 
-            DB::commit();
-
             if (!$this->isUpdate) {
+                // TODO: make transactional
                 (new BeatmapsetDiscussionReviewNew($this->discussion, $this->user))->dispatch();
             }
+        });
 
-            return $this->discussion;
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
+        return $this->discussion;
     }
 }
