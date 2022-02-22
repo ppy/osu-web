@@ -11,7 +11,6 @@ use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
-use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
 
@@ -19,7 +18,6 @@ class BeatmapsetDiscussionReply
 {
     use HandlesProblemBeatmapsetDiscussionPost;
 
-    private Beatmapset $beatmapset;
     private BeatmapDiscussionPost $post;
     private bool $resolvedWillChange = false;
 
@@ -38,9 +36,6 @@ class BeatmapsetDiscussionReply
             $discussion->resolved = $resolve;
         }
 
-        priv_check_user($user, 'BeatmapDiscussionStore', $discussion)->ensureCan();
-
-        $this->beatmapset = $discussion->beatmapset;
         $this->post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $message]);
         $this->post->user()->associate($user);
         $this->post->beatmapDiscussion()->associate($discussion);
@@ -49,7 +44,7 @@ class BeatmapsetDiscussionReply
 
         if ($discussion->message_type === 'problem') {
             $this->problemDiscussion = $discussion;
-            $this->hasPriorOpenProblems = $this->beatmapset->beatmapDiscussions()->openProblems()->exists();
+            $this->hasPriorOpenProblems = $discussion->beatmapset->beatmapDiscussions()->openProblems()->exists();
         }
     }
 
@@ -58,11 +53,7 @@ class BeatmapsetDiscussionReply
      */
     public function handle(): array
     {
-        return $this->discussion->getConnection()->transaction(function () {
-            $this->discussion->saveOrExplode();
-
-            // done here since discussion may or may not previously exist
-            $this->post->beatmap_discussion_id = $this->discussion->getKey();
+        return $this->post->getConnection()->transaction(function () {
             $this->post->saveOrExplode();
             $newPosts = [$this->post];
 
