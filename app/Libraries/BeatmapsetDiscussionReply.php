@@ -34,6 +34,14 @@ class BeatmapsetDiscussionReply
 
             $this->resolvedWillChange = $discussion->resolved !== $resolve;
             $discussion->resolved = $resolve;
+
+            if ($this->resolvedWillChange) {
+                if ($discussion->resolved) {
+                    priv_check_user($user, 'BeatmapDiscussionResolve', $discussion)->ensureCan();
+                } else {
+                    priv_check_user($user, 'BeatmapDiscussionReopen', $discussion)->ensureCan();
+                }
+            }
         }
 
         $this->post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $message]);
@@ -57,7 +65,7 @@ class BeatmapsetDiscussionReply
             $this->post->saveOrExplode();
             $newPosts = [$this->post];
 
-            $systemPost = $this->logResolveChange();
+            $systemPost = $this->handleResolvedChange();
             if ($systemPost !== null) {
                 $newPosts[] = $systemPost;
             }
@@ -76,23 +84,13 @@ class BeatmapsetDiscussionReply
         return $this->user;
     }
 
-    private function logResolveChange(): ?BeatmapDiscussionPost
+    private function handleResolvedChange(): ?BeatmapDiscussionPost
     {
-        if ($this->resolvedWillChange) {
-            if ($this->discussion->resolved) {
-                priv_check_user($this->user, 'BeatmapDiscussionResolve', $this->discussion)->ensureCan();
-
-                $event = BeatmapsetEvent::ISSUE_RESOLVE;
-            } else {
-                priv_check_user($this->user, 'BeatmapDiscussionReopen', $this->discussion)->ensureCan();
-
-                $event = BeatmapsetEvent::ISSUE_REOPEN;
-            }
-        }
-
-        if (!isset($event)) {
+        if (!$this->resolvedWillChange) {
             return null;
         }
+
+        $event = $this->discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN;
 
         $systemPost = BeatmapDiscussionPost::generateLogResolveChange($this->user, $this->discussion->resolved);
         $systemPost->beatmap_discussion_id = $this->discussion->getKey();
