@@ -18,8 +18,7 @@ class BeatmapsetDiscussionReply
 {
     use HandlesProblemBeatmapsetDiscussionPost;
 
-    private BeatmapDiscussionPost $post;
-    private bool $resolvedWillChange = false;
+    private array $posts = [];
 
     public function __construct(private User $user, private BeatmapDiscussion $discussion, private ?string $message, private ?bool $resolve = null)
     {
@@ -32,11 +31,8 @@ class BeatmapsetDiscussionReply
                 throw new InvariantException("{$discussion->message_type} does not support resolving.");
             }
 
-            $this->resolvedWillChange = $discussion->resolved !== $resolve;
-            $discussion->resolved = $resolve;
-
-            if ($this->resolvedWillChange) {
-                if ($discussion->resolved) {
+            if ($discussion->resolved !== $resolve) {
+                if ($resolve) {
                     priv_check_user($user, 'BeatmapDiscussionResolve', $discussion)->ensureCan();
                 } else {
                     priv_check_user($user, 'BeatmapDiscussionReopen', $discussion)->ensureCan();
@@ -63,19 +59,15 @@ class BeatmapsetDiscussionReply
     {
         return $this->post->getConnection()->transaction(function () {
             $this->post->saveOrExplode();
-            $newPosts = [$this->post];
+            $this->posts[] = $this->post;
 
-            $systemPost = $this->handleResolvedChange();
-            if ($systemPost !== null) {
-                $newPosts[] = $systemPost;
-            }
-
+            $this->handleResolvedChange($this->post);
             $this->handleProblemDiscussion();
 
             // TODO: make transactional
             (new BeatmapsetDiscussionPostNew($this->post, $this->user))->dispatch();
 
-            return $newPosts;
+            return $this->posts;
         });
     }
 
@@ -84,19 +76,35 @@ class BeatmapsetDiscussionReply
         return $this->user;
     }
 
-    private function handleResolvedChange(): ?BeatmapDiscussionPost
+    private function handleResolvedChange(BeatmapDiscussionPost $post)
     {
-        if (!$this->resolvedWillChange) {
-            return null;
+        if ($this->resolve === null) {
+            return;
         }
 
-        $event = $this->discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN;
+        // if a resolved state change was requested, check if someone else got to it first.
+        $discussion = $this->discussion->lockSelf();
+        if ($discussion->resolved !== $this->discussion->resolved) {
+            throw new InvariantException('resolved state of the discussion has changed');
+        }
 
-        $systemPost = BeatmapDiscussionPost::generateLogResolveChange($this->user, $this->discussion->resolved);
-        $systemPost->beatmap_discussion_id = $this->discussion->getKey();
-        $systemPost->saveOrExplode();
-        BeatmapsetEvent::log($event, $this->user, $this->post)->saveOrExplode();
+        if ($discussion->resolved !== $this->resolve) {
+            $discussion->resolved = $this->resolve;
+            $event = $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN;
 
-        return $systemPost;
+            $systemPost = BeatmapDiscussionPost::generateLogResolveChange($this->user, $discussion->resolved);
+            $systemPost->beatmap_discussion_id = $discussion->getKey();
+            $systemPost->saveOrExplode();
+            BeatmapsetEvent::log($event, $this->user, $post)->saveOrExplode();
+
+            $this->posts[] = $systemPost;
+        }
+
+        $discussion->saveOrExplode();
+
+        $this->discussion = $discussion;
+        if ($this->problemDiscussion !== null) {
+            $this->problemDiscussion = $discussion;
+        }
     }
 }
