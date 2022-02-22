@@ -9,7 +9,14 @@ use Illuminate\Support\HtmlString;
 
 function api_version(): int
 {
-    return get_int(request()->header('x-api-version')) ?? 0;
+    $request = request();
+    $version = $request->attributes->get('api_version');
+    if ($version === null) {
+        $version = get_int($request->header('x-api-version')) ?? 0;
+        $request->attributes->set('api_version', $version);
+    }
+
+    return $version;
 }
 
 /*

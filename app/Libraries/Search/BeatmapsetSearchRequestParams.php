@@ -15,7 +15,7 @@ use App\Models\User;
 
 class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
-    const AVAILABLE_STATUSES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'graveyard', 'mine'];
+    const AVAILABLE_STATUSES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'wip', 'graveyard', 'mine'];
     const AVAILABLE_EXTRAS = ['video', 'storyboard'];
     const AVAILABLE_GENERAL = ['recommended', 'converts', 'follows', 'featured_artists'];
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
@@ -183,7 +183,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             return 'ranked';
         }
 
-        if (in_array($this->status, ['pending', 'graveyard', 'mine'], true)) {
+        if (in_array($this->status, ['pending', 'wip', 'graveyard', 'mine'], true)) {
             return 'updated';
         }
 
