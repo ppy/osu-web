@@ -31,6 +31,7 @@ class BeatmapsetDiscussionReview extends BeatmapsetDiscussionPostHandlesProblem
         }
 
         $this->isUpdate = $this->discussion !== null;
+        $this->hasPriorOpenProblems = $this->beatmapset->beatmapDiscussions()->openProblems()->exists();
     }
 
     public static function config()
@@ -195,8 +196,6 @@ class BeatmapsetDiscussionReview extends BeatmapsetDiscussionPostHandlesProblem
 
     private function process()
     {
-        $this->priorOpenProblemCount = $this->beatmapset->beatmapDiscussions()->openProblems()->count();
-
         try {
             DB::beginTransaction();
 

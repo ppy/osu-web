@@ -13,7 +13,7 @@ use App\Models\User;
 
 abstract class BeatmapsetDiscussionPostHandlesProblem
 {
-    protected int $priorOpenProblemCount = 0;
+    protected bool $hasPriorOpenProblems = false;
     protected ?BeatmapDiscussion $problemDiscussion = null;
     protected User $user;
 
@@ -29,7 +29,7 @@ abstract class BeatmapsetDiscussionPostHandlesProblem
             return $beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
         }
 
-        if ($beatmapset->isQualified() && $this->priorOpenProblemCount === 0 && !$this->problemDiscussion->resolved) {
+        if ($beatmapset->isQualified() && !$this->hasPriorOpenProblems && !$this->problemDiscussion->resolved) {
             (new Notifications\BeatmapsetDiscussionQualifiedProblem(
                 $this->problemDiscussion->startingPost,
                 $this->user

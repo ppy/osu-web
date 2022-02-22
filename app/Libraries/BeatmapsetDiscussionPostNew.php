@@ -49,7 +49,7 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostHandlesProblem
 
         if ($discussion->message_type === 'problem') {
             $this->problemDiscussion = $discussion;
-            $this->priorOpenProblemCount = $this->beatmapset->beatmapDiscussions()->openProblems()->count();
+            $this->hasPriorOpenProblems = $this->beatmapset->beatmapDiscussions()->openProblems()->exists();
         }
     }
 
