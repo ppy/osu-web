@@ -9,13 +9,12 @@ namespace App\Libraries;
 
 use App\Jobs\Notifications;
 use App\Models\BeatmapDiscussion;
-use App\Models\User;
 
-abstract class BeatmapsetDiscussionPostHandlesProblem
+// TODO: should go into namespace
+trait HandlesProblemBeatmapsetDiscussionPost
 {
     protected bool $hasPriorOpenProblems = false;
     protected ?BeatmapDiscussion $problemDiscussion = null;
-    protected User $user;
 
     protected function handleProblemDiscussion()
     {

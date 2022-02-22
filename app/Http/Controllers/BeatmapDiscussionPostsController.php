@@ -6,10 +6,13 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\BeatmapsetDiscussionPostNew;
+use App\Libraries\BeatmapsetDiscussionNew;
 use App\Libraries\BeatmapsetDiscussionPostsBundle;
+use App\Libraries\BeatmapsetDiscussionReply;
 use App\Libraries\BeatmapsetDiscussionReview;
+use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
+use App\Models\Beatmapset;
 use App\Models\BeatmapsetWatch;
 use App\Models\User;
 
@@ -108,14 +111,31 @@ class BeatmapDiscussionPostsController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
-        $params = request()->all();
+        $request = request()->all();
 
-        [$discussion, $posts] = BeatmapsetDiscussionPostNew::create($user, $params);
+        $discussionId = get_int($request['beatmap_discussion_id'] ?? null);
+        $beatmapsetId = get_int($request['beatmapset_id'] ?? null);
 
-        BeatmapsetWatch::markRead($discussion->beatmapset, $user);
+        if ($discussionId !== null) {
+            $discussion = BeatmapDiscussion::findOrFail($discussionId);
+            $resolve = get_bool($request['beatmap_discussion']['resolved'] ?? null);
+            $message = presence(get_string($request['beatmap_discussion_post']['message'] ?? null));
+
+            $posts = (new BeatmapsetDiscussionReply($user, $discussion, $message, $resolve))->handle();
+
+            $beatmapset = $discussion->beatmapset;
+        } elseif ($beatmapsetId !== null) {
+            $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($beatmapsetId);
+
+            [$discussion, $posts] = (new BeatmapsetDiscussionNew($user, $beatmapset, $request))->handle();
+        } else {
+            abort(404);
+        }
+
+        BeatmapsetWatch::markRead($beatmapset, $user);
 
         return [
-            'beatmapset' => $discussion->beatmapset->defaultDiscussionJson(),
+            'beatmapset' => $beatmapset->defaultDiscussionJson(),
             'beatmap_discussion_post_ids' => array_pluck($posts, 'id'),
             'beatmap_discussion_id' => $discussion->getKey(),
         ];

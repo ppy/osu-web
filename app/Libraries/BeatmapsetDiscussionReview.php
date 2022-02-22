@@ -12,15 +12,17 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\User;
 
-class BeatmapsetDiscussionReview extends BeatmapsetDiscussionPostHandlesProblem
+class BeatmapsetDiscussionReview
 {
+    use HandlesProblemBeatmapsetDiscussionPost;
+
     const BLOCK_TEXT_LENGTH_LIMIT = 750;
 
     private bool $isUpdate;
 
     private function __construct(
         private Beatmapset $beatmapset,
-        protected User $user,
+        private User $user,
         private array $document,
         private ?BeatmapDiscussion $discussion = null
     ) {
