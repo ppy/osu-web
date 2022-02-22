@@ -63,4 +63,9 @@ class BeatmapsetDiscussionNew
             return [$this->discussion, [$this->post]];
         });
     }
+
+    private function getUser(): User
+    {
+        return $this->user;
+    }
 }

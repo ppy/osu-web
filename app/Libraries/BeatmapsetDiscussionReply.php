@@ -80,6 +80,11 @@ class BeatmapsetDiscussionReply
         });
     }
 
+    private function getUser(): User
+    {
+        return $this->user;
+    }
+
     private function logResolveChange(): ?BeatmapDiscussionPost
     {
         if ($this->resolvedWillChange) {

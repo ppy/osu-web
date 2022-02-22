@@ -9,14 +9,17 @@ namespace App\Libraries;
 
 use App\Jobs\Notifications;
 use App\Models\BeatmapDiscussion;
+use App\Models\User;
 
 // TODO: should go into namespace
 trait HandlesProblemBeatmapsetDiscussionPost
 {
-    protected bool $hasPriorOpenProblems = false;
-    protected ?BeatmapDiscussion $problemDiscussion = null;
+    private bool $hasPriorOpenProblems = false;
+    private ?BeatmapDiscussion $problemDiscussion = null;
 
-    protected function handleProblemDiscussion()
+    abstract private function getUser(): User;
+
+    private function handleProblemDiscussion()
     {
         if ($this->problemDiscussion === null) {
             return;
@@ -25,27 +28,27 @@ trait HandlesProblemBeatmapsetDiscussionPost
         $beatmapset = $this->problemDiscussion->beatmapset;
 
         if ($this->shouldDisqualifyOrResetNominations()) {
-            return $beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
+            return $beatmapset->disqualifyOrResetNominations($this->getUser(), $this->problemDiscussion);
         }
 
         if ($beatmapset->isQualified() && !$this->hasPriorOpenProblems && !$this->problemDiscussion->resolved) {
             (new Notifications\BeatmapsetDiscussionQualifiedProblem(
                 $this->problemDiscussion->startingPost,
-                $this->user
+                $this->getUser()
             ))->dispatch();
         }
     }
 
-    protected function shouldDisqualifyOrResetNominations(): bool
+    private function shouldDisqualifyOrResetNominations(): bool
     {
         // disqualify or reset nominations requires a new discussion.
         if ($this->problemDiscussion->wasRecentlyCreated || !$this->problemDiscussion->exists) {
             $beatmapset = $this->problemDiscussion->beatmapset;
             if ($beatmapset->isQualified()) {
-                return priv_check_user($this->user, 'BeatmapsetDisqualify', $beatmapset)->can();
+                return priv_check_user($this->getUser(), 'BeatmapsetDisqualify', $beatmapset)->can();
             } elseif ($beatmapset->isPending()) {
                 return $beatmapset->hasNominations()
-                    && priv_check_user($this->user, 'BeatmapsetResetNominations', $beatmapset)->can();
+                    && priv_check_user($this->getUser(), 'BeatmapsetResetNominations', $beatmapset)->can();
             }
         }
 
