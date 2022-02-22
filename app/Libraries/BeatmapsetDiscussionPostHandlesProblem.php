@@ -43,15 +43,10 @@ abstract class BeatmapsetDiscussionPostHandlesProblem
         if ($this->problemDiscussion->wasRecentlyCreated || !$this->problemDiscussion->exists) {
             $beatmapset = $this->problemDiscussion->beatmapset;
             if ($beatmapset->isQualified()) {
-                if (priv_check_user($this->user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
-                    return true;
-                }
-            }
-
-            if ($beatmapset->isPending()) {
-                if ($beatmapset->hasNominations() && priv_check_user($this->user, 'BeatmapsetResetNominations', $beatmapset)->can()) {
-                    return true;
-                }
+                return priv_check_user($this->user, 'BeatmapsetDisqualify', $beatmapset)->can();
+            } elseif ($beatmapset->isPending()) {
+                return $beatmapset->hasNominations()
+                    && priv_check_user($this->user, 'BeatmapsetResetNominations', $beatmapset)->can();
             }
         }
 
