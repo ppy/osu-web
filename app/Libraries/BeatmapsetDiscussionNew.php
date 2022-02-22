@@ -45,6 +45,7 @@ class BeatmapsetDiscussionNew
 
         if ($this->discussion->message_type === 'problem') {
             $this->problemDiscussion = $this->discussion;
+            $this->hasPriorOpenProblems = $this->discussion->beatmapset->beatmapDiscussions()->openProblems()->exists();
         }
     }
 
