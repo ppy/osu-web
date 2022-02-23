@@ -11,18 +11,18 @@ use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\User;
-use DB;
-use Exception;
 
-class BeatmapsetDiscussionReview extends BeatmapsetDiscussionPostHandlesProblem
+class BeatmapsetDiscussionReview
 {
+    use HandlesProblemBeatmapsetDiscussionPost;
+
     const BLOCK_TEXT_LENGTH_LIMIT = 750;
 
     private bool $isUpdate;
 
     private function __construct(
         private Beatmapset $beatmapset,
-        protected User $user,
+        private User $user,
         private array $document,
         private ?BeatmapDiscussion $discussion = null
     ) {
@@ -31,6 +31,7 @@ class BeatmapsetDiscussionReview extends BeatmapsetDiscussionPostHandlesProblem
         }
 
         $this->isUpdate = $this->discussion !== null;
+        $this->hasPriorOpenProblems = $this->beatmapset->beatmapDiscussions()->openProblems()->exists();
     }
 
     public static function config()
@@ -111,6 +112,11 @@ class BeatmapsetDiscussionReview extends BeatmapsetDiscussionPostHandlesProblem
         $newPost->saveOrExplode();
 
         return $newDiscussion;
+    }
+
+    private function getUser(): User
+    {
+        return $this->user;
     }
 
     private function parseBlock($block)
@@ -195,11 +201,7 @@ class BeatmapsetDiscussionReview extends BeatmapsetDiscussionPostHandlesProblem
 
     private function process()
     {
-        $this->priorOpenProblemCount = $this->beatmapset->beatmapDiscussions()->openProblems()->count();
-
-        try {
-            DB::beginTransaction();
-
+        $this->beatmapset->getConnection()->transaction(function () {
             [$output, $childIds] = $this->parseDocument();
 
             if (!$this->isUpdate) {
@@ -232,16 +234,12 @@ class BeatmapsetDiscussionReview extends BeatmapsetDiscussionPostHandlesProblem
 
             $this->handleProblemDiscussion();
 
-            DB::commit();
-
             if (!$this->isUpdate) {
+                // TODO: make transactional
                 (new BeatmapsetDiscussionReviewNew($this->discussion, $this->user))->dispatch();
             }
+        });
 
-            return $this->discussion;
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
+        return $this->discussion;
     }
 }

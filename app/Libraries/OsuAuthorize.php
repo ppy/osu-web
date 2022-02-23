@@ -540,7 +540,7 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkBeatmapDiscussionPostStore(?User $user, BeatmapDiscussionPost $post): string
+    public function checkBeatmapDiscussionPostStore(?User $user, Beatmapset $beatmapset): string
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
@@ -550,7 +550,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
+        if ($beatmapset->discussion_locked) {
             return 'beatmap_discussion_post.store.beatmapset_locked';
         }
 
