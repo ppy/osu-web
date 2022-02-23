@@ -174,6 +174,10 @@ return [
                 'first' => 'リード',
                 'own' => 'あなたのベスト',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

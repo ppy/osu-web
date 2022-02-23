@@ -28,7 +28,6 @@ class BeatmapDiscussionTest extends TestCase
     {
         $mapper = User::factory()->create();
         $beatmapset = Beatmapset::factory()->create([
-            'discussion_enabled' => true,
             'user_id' => $mapper,
         ]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
@@ -61,7 +60,6 @@ class BeatmapDiscussionTest extends TestCase
     {
         $mapper = User::factory()->create();
         $beatmapset = Beatmapset::factory()->create([
-            'discussion_enabled' => true,
             'user_id' => $mapper,
         ]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
@@ -98,7 +96,7 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testIsValid()
     {
-        $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
+        $beatmapset = Beatmapset::factory()->create();
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
 
         $otherBeatmapset = Beatmapset::factory()->create();
@@ -152,7 +150,7 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testSoftDeleteOrExplode()
     {
-        $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
+        $beatmapset = Beatmapset::factory()->create();
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
         $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([

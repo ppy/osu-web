@@ -7,10 +7,19 @@ namespace App\Transformers\Forum;
 
 use App\Models\Forum\Topic;
 use App\Transformers\TransformerAbstract;
+use League\Fractal\Resource\ResourceInterface;
 
 class TopicTransformer extends TransformerAbstract
 {
-    public function transform(Topic $topic)
+    protected $availableIncludes = [
+        'poll',
+    ];
+
+    protected $defaultIncludes = [
+        'poll',
+    ];
+
+    public function transform(Topic $topic): array
     {
         return [
             'created_at' => json_time($topic->topic_time),
@@ -26,5 +35,12 @@ class TopicTransformer extends TransformerAbstract
             'updated_at' => json_time($topic->topic_last_post_time),
             'user_id' => $topic->topic_poster,
         ];
+    }
+
+    public function includePoll(Topic $topic): ResourceInterface
+    {
+        return $topic->poll()->exists()
+            ? $this->item($topic, new PollTransformer())
+            : $this->null();
     }
 }

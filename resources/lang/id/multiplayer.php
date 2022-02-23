@@ -5,9 +5,9 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Pengguna ini belum pernah bermain :type_group di osu!(lazer)!',
+        'playlists' => 'playlist',
+        'realtime' => 'multiplayer',
     ],
 
     'room' => [

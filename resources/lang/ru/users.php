@@ -302,7 +302,7 @@ return [
                 'title' => 'Медали',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Игры в плейлистах',
             ],
             'posts' => [
                 'title' => 'Посты',
@@ -313,7 +313,7 @@ return [
                 'title' => 'Последняя активность',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Игры в мультиплеере',
             ],
             'top_ranks' => [
                 'download_replay' => 'Скачать повтор',

@@ -174,6 +174,10 @@ return [
                 'first' => '領先者',
                 'own' => '您的最佳成績',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

@@ -46,7 +46,7 @@ return [
 
     'card' => [
         'loading' => 'Memuat...',
-        'send_message' => 'kirim pesan',
+        'send_message' => 'Kirim pesan',
     ],
 
     'disabled' => [
@@ -59,7 +59,7 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak-pihak yang tidak bertanggung jawab untuk hal-hal yang membahayakan. Akun Anda akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
+            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak-pihak yang tidak bertanggung jawab. Akun Anda akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
             'opening' => 'Ada sejumlah alasan yang dapat menyebabkan akun Anda dinonaktifkan:',
 
             'tos' => [
@@ -142,7 +142,7 @@ return [
     ],
     'show' => [
         'age' => ':age tahun',
-        'change_avatar' => 'ganti avatar Anda!',
+        'change_avatar' => 'ubah avatar Anda!',
         'first_members' => 'Di sini sejak awal',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -151,7 +151,7 @@ return [
         'lastvisit_online' => 'Saat ini online',
         'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna ini telah di-ban)',
         'origin_country' => 'Dari :country',
-        'previous_usernames' => 'dulu dikenal sebagai',
+        'previous_usernames' => 'sebelumnya dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
         'title' => "profil :username",
 
@@ -161,7 +161,7 @@ return [
         ],
         'edit' => [
             'cover' => [
-                'button' => 'Ganti Sampul Profil',
+                'button' => 'Ubah Sampul Profil',
                 'defaults_info' => 'Pilihan sampul lainnya akan tersedia di masa mendatang',
                 'upload' => [
                     'broken_file' => 'Gagal memproses gambar. Mohon periksa kembali gambar yang diunggah dan coba lagi.',
@@ -302,7 +302,7 @@ return [
                 'title' => 'Medali',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Permainan Playlist',
             ],
             'posts' => [
                 'title' => 'Posting',
@@ -313,7 +313,7 @@ return [
                 'title' => 'Aktivitas Terkini',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Permainan Multiplayer',
             ],
             'top_ranks' => [
                 'download_replay' => 'Unduh Tayangan Ulang',
@@ -335,7 +335,7 @@ return [
                     'to_1_done' => 'Skor berhasil disematkan',
                 ],
                 'pinned' => [
-                    'title' => 'Skor-Skor yang Disematkan',
+                    'title' => 'Skor yang Disematkan',
                 ],
             ],
             'votes' => [

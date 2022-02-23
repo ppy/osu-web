@@ -7,11 +7,16 @@
   @_top-padding-y: 10px;
   @_top-padding-x: 15px;
 
+  --base-bg: hsl(var(--hsl-b4));
   .own-layer();
   display: flex;
 
   &--deleted {
     opacity: 0.5;
+  }
+
+  &--modding-profile {
+    --base-bg: hsl(var(--hsl-b3));
   }
 
   &--preview {
@@ -49,7 +54,7 @@
     margin: 5px 0;
     display: flex;
     flex-direction: column;
-    background-color: @osu-colour-b4;
+    background-color: var(--base-bg);
     overflow: hidden;
     position: relative;
 

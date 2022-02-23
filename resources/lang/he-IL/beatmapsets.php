@@ -174,6 +174,10 @@ return [
                 'first' => 'מוביל',
                 'own' => 'הכי טוב שלך',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

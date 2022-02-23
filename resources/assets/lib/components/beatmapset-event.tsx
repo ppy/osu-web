@@ -47,7 +47,7 @@ interface Props {
   users: Partial<Record<string, UserJson>>;
 }
 
-export default class Event extends React.PureComponent<Props> {
+export default class BeatmapsetEvent extends React.PureComponent<Props> {
   private get beatmapsetId(): number | undefined {
     return this.props.event.beatmapset?.id;
   }

@@ -194,7 +194,7 @@ return [
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
         'osx' => 'https://osx.ppy.sh',
-        'server_status' => 'https://twitter.com/osustatus',
+        'server_status' => 'https://status.ppy.sh',
         'smilies' => '/forum/images/smilies',
         'source_code' => 'https://github.com/ppy',
         'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',

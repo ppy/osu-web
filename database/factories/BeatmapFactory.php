@@ -9,7 +9,6 @@ namespace Database\Factories;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BeatmapFactory extends Factory
 {

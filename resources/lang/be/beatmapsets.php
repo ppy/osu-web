@@ -174,6 +174,10 @@ return [
                 'first' => 'Лідуе',
                 'own' => 'Ваш рэкорд',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [

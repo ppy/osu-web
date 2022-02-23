@@ -20,6 +20,7 @@ import TurbolinksReload from 'core/turbolinks-reload';
 import ScorePins from 'core/user/score-pins';
 import UserLogin from 'core/user/user-login';
 import UserLoginObserver from 'core/user/user-login-observer';
+import UserModel from 'core/user/user-model';
 import UserPreferences from 'core/user/user-preferences';
 import UserVerification from 'core/user/user-verification';
 import ReferenceLinkTooltip from 'core/wiki/reference-link-tooltip';
@@ -38,6 +39,7 @@ export default class OsuCore {
   readonly chatWorker = new ChatWorker();
   readonly clickMenu = new ClickMenu();
   @observable currentUser?: CurrentUserJson;
+  readonly currentUserModel = new UserModel(this);
   dataStore: RootDataStore;
   readonly enchant: Enchant;
   readonly forumPoll = new ForumPoll();
