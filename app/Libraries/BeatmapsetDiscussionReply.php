@@ -28,6 +28,12 @@ class BeatmapsetDiscussionReply
             throw new InvariantException('Cannot reply to a new discussion.');
         }
 
+        // Treat resolving to the same state as not changing.
+        // Maybe throw instead?
+        if ($resolve === $discussion->resolved) {
+            $this->resolve = null;
+        }
+
         if ($resolve !== null) {
             if (!$discussion->canBeResolved()) {
                 throw new InvariantException("{$discussion->message_type} does not support resolving.");
