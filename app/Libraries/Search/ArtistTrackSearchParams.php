@@ -92,7 +92,7 @@ class ArtistTrackSearchParams extends SearchParams
     {
         $this->sorts = [
             new Sort(static::SORT_FIELD_MAP[$this->sortField], $this->sortOrder),
-            new Sort('_id', 'asc'),
+            new Sort('id', 'asc'),
         ];
     }
 }

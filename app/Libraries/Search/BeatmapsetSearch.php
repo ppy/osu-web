@@ -325,8 +325,10 @@ class BeatmapsetSearch extends RecordSearch
                 break;
             case 'pending':
                 $query
-                    ->should(['match' => ['approved' => Beatmapset::STATES['wip']]])
-                    ->should(['match' => ['approved' => Beatmapset::STATES['pending']]]);
+                    ->must(['match' => ['approved' => Beatmapset::STATES['pending']]]);
+                break;
+            case 'wip':
+                $query->must(['match' => ['approved' => Beatmapset::STATES['wip']]]);
                 break;
             case 'graveyard':
                 $query->must(['match' => ['approved' => Beatmapset::STATES['graveyard']]]);

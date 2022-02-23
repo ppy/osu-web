@@ -35,6 +35,8 @@ class TestCase extends BaseTestCase
         'mysql-updates',
     ];
 
+    protected array $expectedCountsCallbacks = [];
+
     public function regularOAuthScopesDataProvider()
     {
         $data = [];
@@ -53,6 +55,8 @@ class TestCase extends BaseTestCase
 
     protected function setUp(): void
     {
+        $this->beforeApplicationDestroyed(fn () => $this->runExpectedCountsCallbacks());
+
         parent::setUp();
 
         // change config setting because we need more than 1 for the tests.
@@ -72,6 +76,13 @@ class TestCase extends BaseTestCase
         });
 
         app(BroadcastsPendingForTests::class)->reset();
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        $this->expectedCountsCallbacks = [];
     }
 
     /**
@@ -220,6 +231,15 @@ class TestCase extends BaseTestCase
         return $token;
     }
 
+    protected function expectCountChange(callable $callback, int $change, string $message = '')
+    {
+        $this->expectedCountsCallbacks[] = [
+            'callback' => $callback,
+            'expected' => $callback() + $change,
+            'message' => $message,
+        ];
+    }
+
     protected function fileList($path, $suffix)
     {
         return array_map(function ($file) use ($path, $suffix) {
@@ -285,5 +305,13 @@ class TestCase extends BaseTestCase
         return $this->withHeaders([
             'X-LIO-Signature' => hash_hmac('sha1', $url, config('osu.legacy.shared_interop_secret')),
         ]);
+    }
+
+    private function runExpectedCountsCallbacks()
+    {
+        foreach ($this->expectedCountsCallbacks as $expectedCount) {
+            $after = $expectedCount['callback']();
+            $this->assertSame($expectedCount['expected'], $after, $expectedCount['message']);
+        }
     }
 }

@@ -7,7 +7,7 @@
     "lint": "eslint --cache 'resources/assets/lib/**/*.{js,ts,tsx}' 'tests/karma/**/*.ts' '*.js'",
     "localize": "yarn run generate-localizations",
     "prod": "yarn run production",
-    "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=webpack.config.js",
+    "production": "cross-env NODE_ENV=production webpack --hide-modules --config=webpack.config.js",
     "watch": "yarn run development --watch",
     "watch-poll": "yarn run watch --watch-poll"
   },
