@@ -340,16 +340,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         }
     }
 
-    public function postStoreNewDiscussionMinPlaysDataProvider()
-    {
-        return [
-            [config('osu.user.min_plays_for_posting') - 1, false, false],
-            [config('osu.user.min_plays_for_posting') - 1, true, true],
-            [null, false, true],
-            [null, true, true],
-        ];
-    }
-
     protected function setUp(): void
     {
         parent::setUp();
