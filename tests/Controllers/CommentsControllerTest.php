@@ -10,7 +10,6 @@ use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
-use App\Models\UserRelation;
 use Tests\TestCase;
 
 class CommentsControllerTest extends TestCase
