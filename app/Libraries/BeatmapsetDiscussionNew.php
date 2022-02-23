@@ -7,9 +7,8 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
-use App\Jobs\Notifications;
+use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
 use App\Models\BeatmapDiscussion;
-use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\User;
 
@@ -57,7 +56,7 @@ class BeatmapsetDiscussionNew
             $this->handleProblemDiscussion();
 
             // TODO: make transactional
-            (new Notifications\BeatmapsetDiscussionPostNew($post, $this->user))->dispatch();
+            (new BeatmapsetDiscussionPostNew($post, $this->user))->dispatch();
 
             return [$this->discussion, [$post]];
         });
