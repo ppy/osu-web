@@ -32,11 +32,15 @@ return [
     ],
 
     'blocks' => [
+        'blocked_user' => 'Blocked user',
         'banner_text' => 'You have blocked this user.',
+        'comment_text' => 'This comment is not shown because you have blocked this user.',
         'blocked_count' => 'blocked users (:count)',
         'hide_profile' => 'Hide profile',
+        'hide_comment' => 'Hide comment',
         'not_blocked' => 'That user is not blocked.',
         'show_profile' => 'Show profile',
+        'show_comment' => 'Show comment',
         'too_many' => 'Block limit reached.',
         'button' => [
             'block' => 'Block',

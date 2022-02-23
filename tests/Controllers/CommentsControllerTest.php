@@ -163,34 +163,6 @@ class CommentsControllerTest extends TestCase
             ->assertSuccessful();
     }
 
-    public function testBlockedUserCommentsDontShow() {
-        $blockedUser = User::factory()->create();
-        $blockingUser = User::factory()->create();
-
-        UserRelation::create([
-            'user_id' => $blockingUser->user_id,
-            'zebra_id' => $blockedUser->user_id,
-            'foe' => true,
-        ]);
-
-        $comment = Comment::factory()->create([
-            'commentable_type' => 'beatmapset',
-            'user_id' => $blockedUser->getKey(),
-        ]);
-
-        $this
-            ->actingAsVerified($blockingUser)
-            ->json('GET', route('api.comments.index'))
-            ->assertSuccessful()
-            ->assertJsonMissing(['message' => $comment->message]);
-
-        $this
-            ->actingAsVerified($blockedUser)
-            ->json('GET', route('api.comments.index'))
-            ->assertSuccessful()
-            ->assertJsonFragment(['message' => $comment->message]);
-    }
-
     /**
      * @dataProvider apiRequiresAuthenticationDataProvider
      */
