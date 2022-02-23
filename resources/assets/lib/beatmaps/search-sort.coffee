@@ -44,7 +44,7 @@ export class SearchSort extends React.Component
     if !_.isEmpty(@props.filters.query)
       fields.relevance = true
 
-    if @props.filters.status in ['graveyard', 'pending']
+    if @props.filters.status in ['graveyard', 'pending', 'wip']
       fields.updated = true
     else if @props.filters.status in ['any', 'favourites', 'mine']
       fields.updated = true
