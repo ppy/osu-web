@@ -20,7 +20,7 @@ class WikiSitemap
         return (new BasicSearch(Page::esIndexName(), 'wiki_sitemap'))
             ->query(['exists' => ['field' => 'page']])
             ->sort(new Sort('path.keyword', 'asc'))
-            ->sort(new Sort('_id', 'asc'));
+            ->sort(new Sort('locale.keyword', 'asc'));
     }
 
     public static function get()

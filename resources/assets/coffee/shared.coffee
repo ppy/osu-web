@@ -57,7 +57,7 @@ $(document).on 'turbolinks:load', ->
 $(document).on 'click', '#popup-container, #overlay', (e) ->
   $('#overlay').fadeOut()
   $popup = $(e.target).closest('.popup-active')
-  $popup.fadeOut null, $popup.remove
+  $popup.fadeOut null, -> $popup.remove()
 
 
 ###
