@@ -22,6 +22,8 @@ class BeatmapsetDiscussionReply
 
     public function __construct(private User $user, private BeatmapDiscussion $discussion, private ?string $message, private ?bool $resolve = null)
     {
+        priv_check_user($this->user, 'BeatmapDiscussionPostStore', $discussion->beatmapset)->ensureCan();
+
         if (!$discussion->exists) {
             throw new InvariantException('Cannot reply to a new discussion.');
         }
@@ -40,13 +42,7 @@ class BeatmapsetDiscussionReply
             }
         }
 
-        $this->post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $message]);
-        $this->post->user()->associate($user);
-        $this->post->beatmapDiscussion()->associate($discussion);
-
-        priv_check_user($this->user, 'BeatmapDiscussionPostStore', $this->post)->ensureCan();
-
-        if ($discussion->message_type === 'problem') {
+        if ($discussion->isProblem()) {
             $this->problemDiscussion = $discussion;
             $this->hasPriorOpenProblems = $discussion->beatmapset->beatmapDiscussions()->openProblems()->exists();
         }
@@ -57,15 +53,18 @@ class BeatmapsetDiscussionReply
      */
     public function handle(): array
     {
-        return $this->post->getConnection()->transaction(function () {
-            $this->post->saveOrExplode();
-            $this->posts[] = $this->post;
+        return $this->discussion->getConnection()->transaction(function () {
+            $post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $this->message]);
+            $post->user()->associate($this->user);
 
-            $this->handleResolvedChange($this->post);
+            $post->saveOrExplode();
+            $this->posts[] = $post;
+
+            $this->handleResolvedChange($post);
             $this->handleProblemDiscussion();
 
             // TODO: make transactional
-            (new BeatmapsetDiscussionPostNew($this->post, $this->user))->dispatch();
+            (new BeatmapsetDiscussionPostNew($post, $this->user))->dispatch();
 
             return $this->posts;
         });

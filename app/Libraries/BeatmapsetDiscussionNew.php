@@ -18,10 +18,12 @@ class BeatmapsetDiscussionNew
     use HandlesProblemBeatmapsetDiscussionPost;
 
     private BeatmapDiscussion $discussion;
-    private BeatmapDiscussionPost $post;
+    private ?string $message;
 
     public function __construct(private User $user, private Beatmapset $beatmapset, array $request)
     {
+        priv_check_user($this->user, 'BeatmapDiscussionPostStore', $beatmapset)->ensureCan();
+
         $params = get_params($request, 'beatmap_discussion', [
             'beatmap_id:int',
             'message_type',
@@ -35,15 +37,9 @@ class BeatmapsetDiscussionNew
 
         priv_check_user($user, 'BeatmapDiscussionStore', $this->discussion)->ensureCan();
 
-        $message = presence(get_string($request['beatmap_discussion_post']['message'] ?? null));
+        $this->message = presence(get_string($request['beatmap_discussion_post']['message'] ?? null));
 
-        $this->post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $message]);
-        $this->post->user()->associate($user);
-        $this->post->beatmapDiscussion()->associate($this->discussion);
-
-        priv_check_user($this->user, 'BeatmapDiscussionPostStore', $this->post)->ensureCan();
-
-        if ($this->discussion->message_type === 'problem') {
+        if ($this->discussion->isProblem()) {
             $this->problemDiscussion = $this->discussion;
             $this->hasPriorOpenProblems = $this->discussion->beatmapset->beatmapDiscussions()->openProblems()->exists();
         }
@@ -53,15 +49,17 @@ class BeatmapsetDiscussionNew
     {
         return $this->discussion->getConnection()->transaction(function () {
             $this->discussion->saveOrExplode();
-            $this->post->beatmap_discussion_id = $this->discussion->getKey();
-            $this->post->saveOrExplode();
+
+            $post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $this->message]);
+            $post->user()->associate($this->user);
+            $post->saveOrExplode();
 
             $this->handleProblemDiscussion();
 
             // TODO: make transactional
-            (new Notifications\BeatmapsetDiscussionPostNew($this->post, $this->user))->dispatch();
+            (new Notifications\BeatmapsetDiscussionPostNew($post, $this->user))->dispatch();
 
-            return [$this->discussion, [$this->post]];
+            return [$this->discussion, [$post]];
         });
     }
 
