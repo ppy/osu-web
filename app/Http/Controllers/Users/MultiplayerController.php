@@ -9,8 +9,6 @@ use App\Http\Controllers\Controller;
 use App\Libraries\User\FindForProfilePage;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
-use App\Transformers\BeatmapCompactTransformer;
-use App\Transformers\BeatmapsetCompactTransformer;
 use App\Transformers\Multiplayer\RoomTransformer;
 use App\Transformers\UserTransformer;
 
@@ -57,15 +55,16 @@ class MultiplayerController extends Controller
             'type_group' => $typeGroup,
         ]);
 
-        [$rooms, $hasMore] = $search['query']->with(['host', 'playlist.beatmap.beatmapset'])->getWithHasMore();
-        $beatmaps = $rooms->pluck('playlist')->flatten(1)->pluck('beatmap')->unique()->values();
-        $beatmapsets = $beatmaps->pluck('beatmapset')->unique()->values();
+        [$rooms, $hasMore] = $search['query']->with([
+            'playlist.beatmap',
+            'host',
+        ])->getWithHasMore();
+        $rooms->each->findAndSetCurrentPlaylistItem();
+        $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
 
         return [
-            'beatmaps' => json_collection($beatmaps, new BeatmapCompactTransformer()),
-            'beatmapsets' => json_collection($beatmapsets, new BeatmapsetCompactTransformer()),
             'cursor' => $hasMore ? $search['cursorHelper']->next($rooms) : null,
-            'rooms' => json_collection($rooms, new RoomTransformer(), ['host', 'playlist']),
+            'rooms' => json_collection($rooms, new RoomTransformer(), ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats']),
             'search' => $search['search'],
             'type_group' => $typeGroup,
         ];

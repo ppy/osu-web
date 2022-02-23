@@ -149,6 +149,8 @@ class SanityTest extends DuskTestCase
             'forum_id' => self::$scaffolding['forum']->getKey(),
             'topic_id' => self::$scaffolding['topic']->getKey(),
         ]);
+        // TODO: make this part of post factory callback
+        self::$scaffolding['topic']->refreshCache();
 
         // factories for /community/chat/*
         self::$scaffolding['channel'] = Channel::factory()->type('public')->create();
