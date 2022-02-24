@@ -36,7 +36,7 @@ export default class IconDropdownMenu extends React.Component<Props> {
   }
 
   renderButton = (children: React.ReactNode, ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
-    const selected: MenuItem = this.props.menuOptions.find((option) => option.id === this.props.selected) || this.props.menuOptions[0];
+    const selected: MenuItem = this.props.menuOptions.find((option) => option.id === this.props.selected) ?? this.props.menuOptions[0];
     const bn = 'icon-dropdown-menu';
     const mods = [];
 
