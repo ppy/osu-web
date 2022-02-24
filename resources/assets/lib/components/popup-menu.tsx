@@ -4,6 +4,7 @@
 import { isModalShowing } from 'modal-helper';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
+import { TooltipContext } from 'tooltip-context';
 import { nextVal } from 'utils/seq';
 
 type Children = (dismiss: () => void) => React.ReactNode;
@@ -24,11 +25,13 @@ interface State {
 }
 
 export default class PopupMenu extends React.PureComponent<PropsWithDefaults, State> {
+  static readonly contextType = TooltipContext;
   static readonly defaultProps: DefaultProps = {
     children: () => null,
     direction: 'left',
   };
 
+  declare context: React.ContextType<typeof TooltipContext>;
   readonly state = { active: false };
 
   private readonly buttonRef = React.createRef<HTMLButtonElement>();
@@ -38,9 +41,9 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
   private tooltipHideEvent: unknown;
 
   private get $tooltipElement() {
-    const qtip = this.buttonRef.current?.closest('.qtip');
-
-    return qtip == null ? null : $(qtip);
+    if (this.context != null) {
+      return $(this.context).closest('.qtip');
+    }
   }
 
   componentDidMount() {

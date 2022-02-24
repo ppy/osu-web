@@ -8,6 +8,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
+import { TooltipContext } from 'tooltip-context';
 import { UserCard } from './user-card';
 
 declare global {
@@ -193,11 +194,13 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
     const activated = this.state.activeKey === this.props.lookup;
 
     return (
-      <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
-        <KeyContext.Provider value={this.props.lookup}>
-          <UserCard activated={activated} user={this.state.user} />
-        </KeyContext.Provider>
-      </ContainerContext.Provider>
+      <TooltipContext.Provider value={this.props.container}>
+        <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
+          <KeyContext.Provider value={this.props.lookup}>
+            <UserCard activated={activated} user={this.state.user} />
+          </KeyContext.Provider>
+        </ContainerContext.Provider>
+      </TooltipContext.Provider>
     );
   }
 
