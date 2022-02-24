@@ -16,6 +16,7 @@ use App\Models\Comment;
 use App\Models\Contest;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Forum\Forum;
+use App\Models\Forum\PollOption;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
@@ -1443,9 +1444,7 @@ class OsuAuthorize
      */
     public function checkForumTopicEdit(?User $user, Topic $topic): string
     {
-        $firstPost = $topic->posts()->first() ?? $topic->posts()->withTrashed()->first();
-
-        return $this->checkForumPostEdit($user, $firstPost);
+        return $this->checkForumPostEdit($user, $topic->firstPost);
     }
 
     /**
@@ -1617,33 +1616,39 @@ class OsuAuthorize
             return $forumTopicStorePermission->rawMessage();
         }
 
-        if ($topic->posts()->withTrashed()->first()->poster_id === $user->user_id) {
+        if ($topic->topic_poster === $user->user_id) {
             return 'ok';
         }
 
         return 'unauthorized';
     }
 
+    public function checkForumTopicPollOptionShowResult(?User $user, PollOption $pollOption): string
+    {
+        return $this->doCheckUser($user, 'ForumTopicPollShowResults', $pollOption->topic)->rawMessage() ?? 'ok';
+    }
+
     /**
-     * @param User|null $user
-     * @param Topic $topic
-     * @return string
+     * @throws AuthorizationCheckException
      */
     public function checkForumTopicPollShowResults(?User $user, Topic $topic): string
     {
-        if (!$topic->poll_hide_results) {
+        if (!$topic->poll_hide_results || ($topic->pollEnd()?->isPast() ?? true)) {
             return 'ok';
+        }
+
+        $this->ensureLoggedIn($user);
+
+        $isNotOAuthPermission = $this->doCheckUser($user, 'IsNotOAuth');
+        if (!$isNotOAuthPermission->can()) {
+            return $isNotOAuthPermission->rawMessage();
         }
 
         if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
             return 'ok';
         }
 
-        if ($topic->pollEnd() === null || $topic->pollEnd()->isPast()) {
-            return 'ok';
-        }
-
-        if ($user !== null && $topic->posts()->withTrashed()->first()->poster_id === $user->user_id) {
+        if ($topic->topic_poster === $user->getKey()) {
             return 'ok';
         }
 
