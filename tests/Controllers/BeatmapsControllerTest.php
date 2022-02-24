@@ -21,10 +21,7 @@ class BeatmapsControllerTest extends TestCase
 
     public function testAttributes(): void
     {
-        $beatmap = Beatmap::factory()->create([
-            'beatmap_id' => 567606,
-            'beatmapset_id' => Beatmapset::factory()->make(['beatmapset_id' => 246416]),
-        ]);
+        $beatmap = $this->createExistingOsuBeatmap();
 
         $this->actAsScopedUser(User::factory()->create(), ['public']);
 
@@ -35,6 +32,36 @@ class BeatmapsControllerTest extends TestCase
                     ->has('attributes.star_rating')
                     ->has('attributes.max_combo')
                     ->etc());
+    }
+
+    public function testAttributesInvalidRuleset(): void
+    {
+        $beatmap = $this->createExistingOsuBeatmap();
+
+        $this->actAsScopedUser(User::factory()->create(), ['public']);
+
+        $this->post(route('api.beatmaps.attributes', ['beatmap' => $beatmap->getKey(), 'ruleset' => 'invalid']))
+            ->assertStatus(422);
+    }
+
+    public function testAttributesInvalidRulesetId(): void
+    {
+        $beatmap = $this->createExistingOsuBeatmap();
+
+        $this->actAsScopedUser(User::factory()->create(), ['public']);
+
+        $this->post(route('api.beatmaps.attributes', ['beatmap' => $beatmap->getKey(), 'ruleset_id' => 1000]))
+            ->assertStatus(422);
+    }
+
+    public function testAttributesInvalidConversion(): void
+    {
+        $beatmap = $this->createExistingFruitsBeatmap();
+
+        $this->actAsScopedUser(User::factory()->create(), ['public']);
+
+        $this->post(route('api.beatmaps.attributes', ['beatmap' => $beatmap->getKey(), 'ruleset' => 'mania']))
+            ->assertStatus(422);
     }
 
     public function testIndexForApi(): void
@@ -278,5 +305,22 @@ class BeatmapsControllerTest extends TestCase
 
         $this->user = User::factory()->create();
         $this->beatmap = Beatmap::factory()->qualified()->create();
+    }
+
+    private function createExistingFruitsBeatmap()
+    {
+        return Beatmap::factory()->create([
+            'beatmap_id' => 2177697,
+            'beatmapset_id' => Beatmapset::factory()->make(['beatmapset_id' => 918591]),
+            'playmode' => Beatmap::MODES['fruits'],
+        ]);
+    }
+
+    private function createExistingOsuBeatmap()
+    {
+        return Beatmap::factory()->create([
+            'beatmap_id' => 567606,
+            'beatmapset_id' => Beatmapset::factory()->make(['beatmapset_id' => 246416]),
+        ]);
     }
 }
