@@ -1,14 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { Modal } from 'components/modal';
+import { Spinner } from 'components/spinner';
 import ChannelJson from 'interfaces/chat/channel-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { Modal } from 'modal';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { Spinner } from 'spinner';
 import { getPublicChannels } from './chat-api';
 import ConversationListItem from './conversation-list-item';
 
