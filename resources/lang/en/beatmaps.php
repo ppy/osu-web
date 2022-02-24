@@ -275,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'My Maps',
         'pending' => 'Pending',
+        'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],
