@@ -38,8 +38,6 @@ class BeatmapsetDiscussionReplyTest extends TestCase
 
         $discussion->beatmapset->watches()->create(['user_id' => $watcher->getKey()]);
 
-        Queue::fake();
-
         (new BeatmapsetDiscussionReply($user, $discussion, 'message'))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class, function (BeatmapsetDiscussionPostNew $job) use ($user, $watcher) {
@@ -69,8 +67,6 @@ class BeatmapsetDiscussionReplyTest extends TestCase
             'message_type' => $messageType,
             'user_id' => $starter,
         ]);
-
-        Queue::fake();
 
         (new BeatmapsetDiscussionReply($user, $discussion, 'message'))->handle();
 
@@ -228,7 +224,6 @@ class BeatmapsetDiscussionReplyTest extends TestCase
             'user_id' => User::factory(),
         ]);
 
-        Queue::fake();
 
         (new BeatmapsetDiscussionReply($user, $discussion, 'message', false))->handle();
 
@@ -358,6 +353,7 @@ class BeatmapsetDiscussionReplyTest extends TestCase
     {
         parent::setUp();
 
+        Queue::fake();
         Event::fake();
 
         config()->set('osu.beatmapset.required_nominations', 1);
