@@ -4,28 +4,26 @@
 import { isModalShowing } from 'modal-helper';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
-import { ContextValue, TooltipContext } from 'tooltip-context';
 import { nextVal } from 'utils/seq';
 
 type Children = (dismiss: () => void) => React.ReactNode;
 
-interface BaseProps {
+export interface Props {
   children: Children;
   customRender?: (children: React.ReactNode, ref: React.RefObject<HTMLElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => React.ReactNode;
-  direction: 'left' | 'right';
+  direction?: 'left' | 'right';
   onHide?: () => void;
   onShow?: () => void;
-  tooltipContext?: ContextValue;
 }
 
-type DefaultProps = Pick<BaseProps, 'children' | 'direction'>;
-export type Props = Omit<BaseProps, keyof DefaultProps | 'tooltipContext'> & Partial<DefaultProps>;
+type DefaultProps = Required<Pick<Props, 'children' | 'direction'>>;
+type PropsWithDefaults = Props & DefaultProps;
 
 interface State {
   active: boolean;
 }
 
-class BasePopupMenu extends React.PureComponent<BaseProps, State> {
+export default class PopupMenu extends React.PureComponent<PropsWithDefaults, State> {
   static readonly defaultProps: DefaultProps = {
     children: () => null,
     direction: 'left',
@@ -39,31 +37,31 @@ class BasePopupMenu extends React.PureComponent<BaseProps, State> {
   private readonly portal = document.createElement('div');
   private tooltipHideEvent: unknown;
 
-  private get tooltipElement() {
-    if (this.props.tooltipContext != null) {
-      return $(this.props.tooltipContext).closest('.qtip');
+  private get $tooltipElement() {
+    if (this.buttonRef.current != null) {
+      return $(this.buttonRef.current).closest('.qtip');
     }
   }
 
   componentDidMount() {
-    this.tooltipHideEvent = this.tooltipElement?.qtip('option', 'hide.event');
+    this.tooltipHideEvent = this.$tooltipElement?.qtip('option', 'hide.event');
     $(window).on(`resize.${this.eventId}`, this.resize);
     $(document).on(`turbolinks:before-cache.${this.eventId}`, this.removePortal);
   }
 
-  componentDidUpdate(_prevProps: BaseProps, prevState: State) {
+  componentDidUpdate(_prevProps: PropsWithDefaults, prevState: State) {
     if (prevState.active === this.state.active) return;
 
     if (this.state.active) {
       this.addPortal();
       this.resize();
-      this.tooltipElement?.qtip('option', 'hide.event', false);
+      this.$tooltipElement?.qtip('option', 'hide.event', false);
 
       $(document).on(`click.${this.eventId} keydown.${this.eventId}`, this.hide);
       this.props.onShow?.();
     } else {
       this.removePortal();
-      this.tooltipElement?.qtip('option', 'hide.event', this.tooltipHideEvent);
+      this.$tooltipElement?.qtip('option', 'hide.event', this.tooltipHideEvent);
 
       $(document).off(`click.${this.eventId} keydown.${this.eventId}`, this.hide);
       this.props.onHide?.();
@@ -169,7 +167,7 @@ class BasePopupMenu extends React.PureComponent<BaseProps, State> {
 
     // keeps the menu showing above the tooltip;
     // portal should be after the tooltip in the document body.
-    const tooltipElement = this.tooltipElement?.[0];
+    const tooltipElement = this.$tooltipElement?.[0];
     if (tooltipElement != null) {
       this.portal.style.zIndex = getComputedStyle(tooltipElement).zIndex;
     }
@@ -178,10 +176,4 @@ class BasePopupMenu extends React.PureComponent<BaseProps, State> {
   private readonly toggle = () => {
     this.setState({ active: !this.state.active });
   };
-}
-
-export default function PopupMenu(props: Props) {
-  const tooltipContext = React.useContext(TooltipContext);
-
-  return <BasePopupMenu {...props} tooltipContext={tooltipContext} />;
 }
