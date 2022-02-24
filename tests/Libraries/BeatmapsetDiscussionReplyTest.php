@@ -312,6 +312,27 @@ class BeatmapsetDiscussionReplyTest extends TestCase
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
     }
 
+    public function testRequestingSameResolveStateDoesNotChangeResovled()
+    {
+        $discussion = BeatmapDiscussion::factory()->general()->problem()->create([
+            'beatmapset_id' => $this->beatmapsetFactory(),
+            'resolved' => true,
+            'user_id' => $this->mapper,
+        ]);
+
+        $discussionCopy = $discussion->fresh();
+
+        $reply = new BeatmapsetDiscussionReply($this->mapper, $discussion, 'message', true);
+
+        // unresolved after query
+        $discussionCopy->update(['resolved' => false]);
+
+        $reply->handle();
+
+        // stays unresolved
+        $this->assertFalse($discussion->fresh()->resolved);
+    }
+
     public function reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider()
     {
         return [

@@ -34,7 +34,7 @@ class BeatmapsetDiscussionReply
             $this->resolve = null;
         }
 
-        if ($resolve !== null) {
+        if ($this->resolve !== null) {
             if (!$discussion->canBeResolved()) {
                 throw new InvariantException("{$discussion->message_type} does not support resolving.");
             }
