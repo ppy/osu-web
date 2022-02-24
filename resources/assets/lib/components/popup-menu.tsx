@@ -38,9 +38,9 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
   private tooltipHideEvent: unknown;
 
   private get $tooltipElement() {
-    if (this.buttonRef.current != null) {
-      return $(this.buttonRef.current).closest('.qtip');
-    }
+    const qtip = this.buttonRef.current?.closest('.qtip');
+
+    return qtip == null ? null : $(qtip);
   }
 
   componentDidMount() {
