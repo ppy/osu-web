@@ -41,9 +41,13 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
   private tooltipHideEvent: unknown;
 
   private get $tooltipElement() {
-    if (this.context != null) {
-      return $(this.context).closest('.qtip');
-    }
+    const el = this.tooltipElement;
+
+    return el == null ? null : $(el);
+  }
+
+  private get tooltipElement() {
+    return this.context?.closest('.qtip');
   }
 
   componentDidMount() {
@@ -175,7 +179,7 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
 
     // keeps the menu showing above the tooltip;
     // portal should be after the tooltip in the document body.
-    const tooltipElement = this.$tooltipElement?.[0];
+    const tooltipElement = this.tooltipElement;
     if (tooltipElement != null) {
       this.portal.style.zIndex = getComputedStyle(tooltipElement).zIndex;
     }
