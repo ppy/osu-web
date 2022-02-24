@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import PopupMenu from 'components/popup-menu';
-import * as _ from 'lodash';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { SlateContext } from './slate-context';
@@ -37,7 +36,7 @@ export default class IconDropdownMenu extends React.Component<Props> {
   }
 
   renderButton = (children: React.ReactNode, ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
-    const selected: MenuItem = _.find(this.props.menuOptions, (option) => option.id === this.props.selected) || this.props.menuOptions[0];
+    const selected: MenuItem = this.props.menuOptions.find((option) => option.id === this.props.selected) || this.props.menuOptions[0];
     const bn = 'icon-dropdown-menu';
     const mods = [];
 
