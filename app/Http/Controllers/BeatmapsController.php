@@ -43,8 +43,8 @@ class BeatmapsController extends Controller
      * Attributes | [DifficultyAttributes](#beatmapdifficultyattributes)
      *
      * @urlParam beatmap integer required Beatmap id. Example: 2
-     * @bodyParam mods number|string[]|Mod[] Mod combination. Can be either a bitset of mods, array of mod acronyms, or array of mods. Example: 1
-     * @bodyParam ruleset GameMode Ruleset of the difficulty attributes. Only valid if it's the beatmap ruleset or the beatmap can be converted to the specified ruleset. Example: osu
+     * @bodyParam mods number|string[]|Mod[] Mod combination. Can be either a bitset of mods, array of mod acronyms, or array of mods. Defaults to no mods. Example: 1
+     * @bodyParam ruleset GameMode Ruleset of the difficulty attributes. Only valid if it's the beatmap ruleset or the beatmap can be converted to the specified ruleset. Defaults to ruleset of the specified beatmap. Example: osu
      * @bodyParam ruleset_id integer The same as `ruleset` but in integer form. No-example
      *
      * @response {
