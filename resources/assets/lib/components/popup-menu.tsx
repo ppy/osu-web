@@ -55,7 +55,12 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
     if (this.state.active) {
       this.addPortal();
       this.resize();
-      this.$tooltipElement?.qtip('option', 'hide.event', false);
+      const $tooltipElement = this.$tooltipElement;
+
+      if ($tooltipElement != null) {
+        this.tooltipHideEvent = $tooltipElement.qtip('option', 'hide.event');
+        $tooltipElement.qtip('option', 'hide.event', false);
+      }
 
       $(document).on(`click.${this.eventId} keydown.${this.eventId}`, this.hide);
       this.props.onShow?.();
