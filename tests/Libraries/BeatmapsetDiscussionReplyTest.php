@@ -96,6 +96,8 @@ class BeatmapsetDiscussionReplyTest extends TestCase
 
         (new BeatmapsetDiscussionReply($user, $discussion, 'message'))->handle();
 
+        Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
+
         $this->assertTrue($discussion->fresh()->resolved);
     }
 
@@ -114,6 +116,8 @@ class BeatmapsetDiscussionReplyTest extends TestCase
         $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1);
 
         (new BeatmapsetDiscussionReply($user, $discussion, 'message'))->handle();
+
+        Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
         $this->assertFalse($discussion->fresh()->resolved);
     }
@@ -135,9 +139,12 @@ class BeatmapsetDiscussionReplyTest extends TestCase
             $this->expectException(InvariantException::class);
         }
 
-        (new BeatmapsetDiscussionReply($user, $discussion, 'message', true))->handle();
+        $posts = (new BeatmapsetDiscussionReply($user, $discussion, 'message', true))->handle();
+
+        Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
         $this->assertSame($expected, $discussion->fresh()->resolved);
+        $this->assertCount(1, $this->getSystemPosts($posts, $discussion));
     }
 
     /**
@@ -156,9 +163,12 @@ class BeatmapsetDiscussionReplyTest extends TestCase
             $this->expectException(AuthorizationException::class);
         }
 
-        (new BeatmapsetDiscussionReply($this->mapper, $discussion, 'message', true))->handle();
+        $posts = (new BeatmapsetDiscussionReply($this->mapper, $discussion, 'message', true))->handle();
+
+        Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
         $this->assertSame($expected, $discussion->fresh()->resolved);
+        $this->assertCount(1, $this->getSystemPosts($posts, $discussion));
     }
 
     /**
@@ -180,9 +190,12 @@ class BeatmapsetDiscussionReplyTest extends TestCase
             $this->expectException(AuthorizationException::class);
         }
 
-        (new BeatmapsetDiscussionReply($user, $discussion, 'message', true))->handle();
+        $posts = (new BeatmapsetDiscussionReply($user, $discussion, 'message', true))->handle();
+
+        Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
         $this->assertSame($expected, $discussion->fresh()->resolved);
+        $this->assertCount(1, $this->getSystemPosts($posts, $discussion));
     }
 
     /**
@@ -201,9 +214,12 @@ class BeatmapsetDiscussionReplyTest extends TestCase
             $this->expectException(AuthorizationException::class);
         }
 
-        (new BeatmapsetDiscussionReply($user, $discussion, 'message', true))->handle();
+        $posts = (new BeatmapsetDiscussionReply($user, $discussion, 'message', true))->handle();
+
+        Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
         $this->assertSame($expected, $discussion->fresh()->resolved);
+        $this->assertCount(1, $this->getSystemPosts($posts, $discussion));
     }
 
     /**
@@ -246,10 +262,13 @@ class BeatmapsetDiscussionReplyTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 2);
 
-        (new BeatmapsetDiscussionReply($this->mapper, $discussion, 'message', false))->handle();
+        $posts = (new BeatmapsetDiscussionReply($this->mapper, $discussion, 'message', false))->handle();
+
+        Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
         $this->assertFalse($discussion->fresh()->resolved);
         $this->assertTrue($beatmapset->fresh()->isQualified());
+        $this->assertCount(1, $this->getSystemPosts($posts, $discussion));
     }
 
     public function testReopenResolvedDiscussionByStarter()
@@ -264,10 +283,13 @@ class BeatmapsetDiscussionReplyTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 2);
 
-        (new BeatmapsetDiscussionReply($user, $discussion, 'message', false))->handle();
+        $posts = (new BeatmapsetDiscussionReply($user, $discussion, 'message', false))->handle();
+
+        Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
         $this->assertFalse($discussion->fresh()->resolved);
         $this->assertTrue($beatmapset->fresh()->isQualified());
+        $this->assertCount(1, $this->getSystemPosts($posts, $discussion));
     }
 
     /**
@@ -286,6 +308,8 @@ class BeatmapsetDiscussionReplyTest extends TestCase
         $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1, BeatmapDiscussionPost::class);
 
         (new BeatmapsetDiscussionReply($user, $discussion, 'message'))->handle();
+
+        Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
     }
 
     public function reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider()
@@ -370,5 +394,13 @@ class BeatmapsetDiscussionReplyTest extends TestCase
             ], $beatmapState)));
 
         return $factory;
+    }
+
+    private function getSystemPosts(array $posts, BeatmapDiscussion $discussion)
+    {
+        return array_filter(
+            $posts,
+            fn (BeatmapDiscussionPost $post) => $post->system && $post->beatmap_discussion_id === $discussion->getKey()
+        );
     }
 }
