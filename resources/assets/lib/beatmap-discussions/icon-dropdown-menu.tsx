@@ -48,7 +48,8 @@ export default class IconDropdownMenu extends React.Component<Props> {
     return (
       <div
         ref={ref}
-        className={classWithModifiers(bn, mods)} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+        className={classWithModifiers(bn, mods)}
+        // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
         contentEditable={false}
         onClick={toggle}
       >
