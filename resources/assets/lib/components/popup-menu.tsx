@@ -181,9 +181,7 @@ class BasePopupMenu extends React.PureComponent<BaseProps, State> {
 }
 
 export default function PopupMenu(props: Props) {
-  return (
-    <TooltipContext.Consumer>
-      {(tooltipContext) => <BasePopupMenu {...props} tooltipContext={tooltipContext} />}
-    </TooltipContext.Consumer>
-  );
+  const tooltipContext = React.useContext(TooltipContext);
+
+  return <BasePopupMenu {...props} tooltipContext={tooltipContext} />;
 }
