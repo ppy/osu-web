@@ -5,7 +5,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AddOffsetEditToBeatmapsetEvents extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -81,4 +81,4 @@ class AddOffsetEditToBeatmapsetEvents extends Migration
             'nomination_reset_received'
         )");
     }
-}
+};
