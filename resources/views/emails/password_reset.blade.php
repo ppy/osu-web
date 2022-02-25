@@ -8,6 +8,6 @@
 
 {!! osu_trans('mail.password_reset.code') !!} {{ $key }}
 
-{!! osu_trans('mail.common.report') !!}
+{!! osu_trans('mail.common.ignore') !!}
 
 @include('emails._signature')
