@@ -63,7 +63,7 @@ class BeatmapsetEventNominationResetTest extends TestCase
     public function testInterOpDisqualify()
     {
         $this->createBeatmapsetWithNominators('qualified');
-        $banchoBotUser = factory(User::class)->create([
+        $banchoBotUser = User::factory()->create([
             'user_id' => config('osu.legacy.bancho_bot_user_id'),
         ]);
 
@@ -107,17 +107,12 @@ class BeatmapsetEventNominationResetTest extends TestCase
 
         Queue::fake();
 
-        $this->sender = $this->createUserWithGroup('bng');
+        $this->sender = User::factory()->withGroup('bng')->create();
     }
 
     private function createBeatmapsetWithNominators($state)
     {
-        $owner = factory(User::class)->create();
-
-        $this->beatmapset = factory(Beatmapset::class)->states($state, 'with_discussion')->create([
-            'creator' => $owner->username,
-            'user_id' => $owner->getKey(),
-        ]);
+        $this->beatmapset = Beatmapset::factory()->owner()->$state()->withDiscussion()->create();
 
         $modes = $this->beatmapset->beatmaps->map->mode->all();
         $nominatorCount = config('osu.beatmapset.required_nominations');
@@ -125,10 +120,10 @@ class BeatmapsetEventNominationResetTest extends TestCase
         $this->nominators = [];
 
         for ($i = 0; $i < $nominatorCount; $i++) {
-            $this->nominators[] = $nominator = $this->createUserWithGroupPlaymodes('bng', $modes);
+            $this->nominators[] = $nominator = User::factory()->withGroup('bng', $modes)->create();
             BeatmapsetNomination::factory()->create([
-                'beatmapset_id' => $this->beatmapset->getKey(),
-                'user_id' => $nominator->getKey(),
+                'beatmapset_id' => $this->beatmapset,
+                'user_id' => $nominator,
             ]);
         }
     }

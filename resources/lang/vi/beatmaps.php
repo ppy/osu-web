@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'từ chối kudosu',
         'edit' => 'chỉnh sửa',
         'edited' => 'Sửa đổi lần cuối bởi :editor :update_time.',
-        'guest' => '',
+        'guest' => 'Chế độ khách bởi :user',
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
         'message_placeholder_deleted_beatmap' => 'Difficulty này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_placeholder_locked' => 'Chức năng bàn luận của beatmap này đã bị vô hiệu hóa.',
@@ -105,7 +105,7 @@ return [
                 'unsaved' => 'Huỷ lưu',
                 'timestamp' => [
                     'all-diff' => 'Các bài đăng trên "Mọi độ khó" không thể gắn mốc thời gian.',
-                    'diff' => '',
+                    'diff' => 'Nếu điều :type này bắt đầu với một dấu thời gian, nó sẽ được hiển thị trong Dòng thời gian.',
                 ],
             ],
             'insert-block' => [
@@ -183,7 +183,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'Có lỗi khi thực hiện việc này, hãy thử tải lại trang.',
         'love' => 'Yêu thích',
-        'love_choose' => '',
+        'love_choose' => 'Lựa chọn chế độ yêu thích',
         'love_confirm' => 'Yêu thích beatmap này?',
         'nominate' => 'Đề Cử',
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
@@ -252,8 +252,8 @@ return [
     ],
     'general' => [
         'converts' => 'Bao gồm beatmap được chuyển đổi',
-        'featured_artists' => '',
-        'follows' => '',
+        'featured_artists' => 'Nghệ sĩ nổi bật',
+        'follows' => 'Mapper đã đăng ký',
         'recommended' => 'Độ khó đề nghị',
     ],
     'mode' => [

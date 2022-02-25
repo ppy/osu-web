@@ -16,7 +16,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Featured artist',
     ],
 
     'index' => [
@@ -154,11 +154,12 @@ return [
                 'combo' => 'Pinakamahabang Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => 'Pin',
                 'player' => 'Manlalaro',
                 'pp' => '',
                 'rank' => 'Rank',
-                'score_total' => 'Kabuuang Puntos',
                 'score' => 'Puntos',
+                'score_total' => 'Kabuuang Puntos',
                 'time' => 'Oras',
             ],
 
@@ -172,6 +173,10 @@ return [
             'score' => [
                 'first' => 'Nangunguna',
                 'own' => 'Iyong Best',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

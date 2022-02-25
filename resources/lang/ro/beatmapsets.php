@@ -154,11 +154,12 @@ return [
                 'combo' => 'Combo maxim',
                 'miss' => 'Ratări',
                 'mods' => 'Moduri',
+                'pin' => '',
                 'player' => 'Jucător',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Scor total',
                 'score' => 'Scor',
+                'score_total' => 'Scor total',
                 'time' => 'Timp',
             ],
 
@@ -172,6 +173,10 @@ return [
             'score' => [
                 'first' => 'În top',
                 'own' => 'Cel mai bun',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

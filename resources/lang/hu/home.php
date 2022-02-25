@@ -27,10 +27,10 @@ return [
         'title' => 'Keresés',
 
         'beatmapset' => [
-            'login_required' => 'Beatmap-ek kereséséhez jelentkezz be',
+            'login_required' => 'Beatmapek kereséséhez jelentkezz be',
             'more' => ':count talált beatmap',
             'more_simple' => 'Több beatmap keresése',
-            'title' => 'Beatmap-ek',
+            'title' => 'Beatmapek',
         ],
 
         'forum_post' => [
@@ -98,7 +98,7 @@ return [
                 'description' => 'nyomd meg a fenti gombot a telepítő letöltéséhez, majd indítsd el!',
             ],
             'beatmaps' => [
-                'title' => 'beatmap-ek beszerzése',
+                'title' => 'beatmapek beszerzése',
                 'description' => [
                     '_' => ':browse felhasználók által létrehozott hatalmas beatmap könyvtárban és kezd játszani!',
                     'browse' => 'böngéssz',
@@ -122,8 +122,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Új Rangsorolt Beatmap-ek',
-            'popular' => 'Népszerű beatmap-ek',
+            'new' => 'Új rangsorolt beatmapek',
+            'popular' => 'Népszerű beatmapek',
             'by_user' => ':user által',
         ],
         'buttons' => [
@@ -131,16 +131,5 @@ return [
             'support' => 'osu! támogatása',
             'store' => 'osu!bolt',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Hűha!',
-        'subtitle' => 'Úgy néz ki nagyon jól szórakozol! :D',
-        'body' => [
-            'part-1' => 'Tudtad, hogy az osu! reklámok nélkül van fenntartva, és teljesen a játékosi támogatásra hagyatkozik a fenntartási és fejlesztési költségekhez?',
-            'part-2' => 'És azt tudtad, hogy az osu! támogatásával egy rakás hasznos funkciót kapsz, mint például a <strong>játékon belüli letöltés</strong> ami automatikusan életbe lép megfigyelőként és többjátékos módban?',
-        ],
-        'find-out-more' => 'További információért kattints ide!',
-        'download-starting' => "Oh, és ne aggódj - a letöltésedet már elindítottuk ;)",
     ],
 ];

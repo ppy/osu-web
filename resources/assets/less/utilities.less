@@ -39,13 +39,9 @@
   .fancy-scrollbar();
 }
 
-// so elements with anchors as subelements don't create stacking contexts
-// that block each other.
-.u-has-anchor {
-  position: static;
-
-  &--no-event {
-    pointer-events: none;
+.u-focus-hides-placeholder {
+  &:focus::placeholder {
+    opacity: 0;
   }
 }
 
@@ -61,6 +57,12 @@
 
 .u-hover {
   pointer-events: auto;
+}
+
+.u-invisible {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
 }
 
 .u-nav-float {

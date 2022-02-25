@@ -33,6 +33,7 @@
     "league/commonmark": "^2.0",
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
+    "league/oauth2-server": "^8.3",
     "maennchen/zipstream-php": "^2.1",
     "mariuzzo/laravel-js-localization": "*",
     "paypal/paypal-checkout-sdk": "*",
@@ -57,11 +58,9 @@
     "symfony/dom-crawler": "*"
   },
   "autoload": {
-    "classmap": [
-      "database"
-    ],
     "psr-4": {
       "App\\": "app/",
+      "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/"
     }
   },
@@ -88,6 +87,10 @@
     "optimize-autoloader": true,
     "platform": {
       "php": "8.0.0"
+    },
+    "allow-plugins": {
+      "composer/package-versions-deprecated": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
     }
   },
   "extra": {

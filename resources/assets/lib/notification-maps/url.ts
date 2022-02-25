@@ -21,7 +21,7 @@ export function urlGroup(item: Notification) {
     }
   } else if (item.name === 'user_achievement_unlock') {
     return userAchievementUrl(item);
-  } else if (item.name === 'user_beatmapset_new') {
+  } else if (item.category === 'user_beatmapset_new') {
     return `${route('users.show', { user: item.objectId })}#beatmaps`;
   }
 
@@ -29,7 +29,7 @@ export function urlGroup(item: Notification) {
     case 'beatmapset':
       return route('beatmapsets.discussion', { beatmapset: item.objectId });
     case 'channel':
-      return route('chat.index', { sendto: item.sourceUserId });
+      return item.details.channel_id != null ? route('chat.index', { channel_id: item.details.channelId }) : route('chat.index', { sendto: item.sourceUserId });
     case 'forum_topic':
       return route('forum.topics.show', { start: 'unread', topic: item.objectId });
   }
@@ -60,6 +60,8 @@ export function urlSingular(item: Notification) {
       });
     case 'beatmapset_rank':
       return route('beatmapsets.show', { beatmapset: item.objectId });
+    case 'channel_announcement':
+      return route('chat.index', { channel_id: item.details.channelId });
     case 'channel_message':
       return route('chat.index', { sendto: item.sourceUserId });
     case 'comment_new':
@@ -70,6 +72,8 @@ export function urlSingular(item: Notification) {
     case 'user_achievement_unlock':
       return userAchievementUrl(item);
     case 'user_beatmapset_new':
+      return route('beatmapsets.show', { beatmapset: item.details.beatmapsetId });
+    case 'user_beatmapset_revive':
       return route('beatmapsets.show', { beatmapset: item.details.beatmapsetId });
   }
 }

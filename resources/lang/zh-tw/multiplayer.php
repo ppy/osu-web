@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => '尚未遊玩任何一場 osu!(lazer) 多人遊戲！',
+    'empty' => [
+        '_' => '尚未遊玩 osu!(lazer) :type_group 遊戲！',
+        'playlists' => '歌單',
+        'realtime' => '多人',
+    ],
 
     'room' => [
         'hosted_by' => '房主：:user',
@@ -12,6 +16,10 @@ return [
         'map_count' => ':count_delimited 張圖譜',
         'player_count' => ':count_delimited 位玩家',
         'time_left' => '剩下 :time',
+
+        'errors' => [
+            'duration_too_long' => '持續時間過長。',
+        ],
 
         'status' => [
             'active' => '開放',

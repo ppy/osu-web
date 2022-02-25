@@ -156,8 +156,8 @@ return [
         'title' => "Profiel van :username",
 
         'comments_count' => [
-            '_' => 'Geplaatst op :link',
-            'count' => ':count_delimited commentaar::count_delimited reacties',
+            '_' => 'Heeft :link gepost',
+            'count' => ':count_delimited reactie|:count_delimited reacties',
         ],
         'edit' => [
             'cover' => [
@@ -301,8 +301,8 @@ return [
                 'recent' => 'Recent',
                 'title' => 'Medailles',
             ],
-            'multiplayer' => [
-                'title' => 'Multiplayer Spellen',
+            'playlists' => [
+                'title' => 'Spellen via afspeellijst',
             ],
             'posts' => [
                 'title' => 'Berichten',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Recent',
+            ],
+            'realtime' => [
+                'title' => 'Multiplayerspellen',
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Eerste Ranks',
+                ],
+                'pin' => [
+                    'to_0' => 'Losmaken',
+                    'to_0_done' => 'Losgemaakte score',
+                    'to_1' => 'Vastzetten',
+                    'to_1_done' => 'Vastgezette score',
+                ],
+                'pinned' => [
+                    'title' => 'Vastgezette Scores',
                 ],
             ],
             'votes' => [

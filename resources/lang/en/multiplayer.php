@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'No osu!(lazer) multiplayer games played yet!',
+    'empty' => [
+        '_' => 'No osu!(lazer) :type_group games played yet!',
+        'playlists' => 'playlist',
+        'realtime' => 'multiplayer',
+    ],
 
     'room' => [
         'hosted_by' => 'hosted by :user',
@@ -12,6 +16,10 @@ return [
         'map_count' => ':count_delimited map|:count_delimited maps',
         'player_count' => ':count_delimited player|:count_delimited players',
         'time_left' => ':time left',
+
+        'errors' => [
+            'duration_too_long' => 'Duration is too long.',
+        ],
 
         'status' => [
             'active' => 'active',

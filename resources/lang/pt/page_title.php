@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'fórum',
+        'topic_logs_controller' => [
+            'index' => 'registos do tópico',
+        ],
         'topic_watches_controller' => [
             'index' => 'painel de controlo',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'painel de controlo',
             'verify_link' => 'verificação da conta',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'artistas destacados',
         ],
         'artists_controller' => [
             '_' => 'artistas destacados',
@@ -61,7 +67,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'discussão do beatmap',
-            'index' => 'listagem do beatmap',
+            'index' => 'listagem de beatmaps',
             'show' => 'informação do beatmap',
         ],
         'changelog_controller' => [
@@ -133,6 +139,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'classificação',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autorizar aplicação',
         ],
     ],
     'store' => [

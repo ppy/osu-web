@@ -8,31 +8,30 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Libraries\User\FindForProfilePage;
 use App\Models\Multiplayer\Room;
-use App\Transformers\BeatmapCompactTransformer;
-use App\Transformers\BeatmapsetCompactTransformer;
+use App\Models\User;
 use App\Transformers\Multiplayer\RoomTransformer;
 use App\Transformers\UserTransformer;
 
 class MultiplayerController extends Controller
 {
-    public function index()
+    public function index($userId, $typeGroup)
     {
-        $request = request();
-        $user = FindForProfilePage::find($request->route('user'));
-        $params = $request->all();
-        $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+        $user = FindForProfilePage::find($userId);
 
-        $search = Room::search([
-            'cursor' => $params['cursor'] ?? null,
-            'user' => $user,
-            'limit' => $limit,
-            'mode' => 'participated',
-            'sort' => 'ended',
-        ]);
+        if (!array_key_exists($typeGroup, Room::TYPE_GROUPS)) {
+            return ujs_redirect(route('users.multiplayer.index', ['typeGroup' => 'realtime', 'user' => $userId]));
+        }
 
-        [$rooms, $hasMore] = $search['query']->with(['host', 'playlist.beatmap.beatmapset'])->getWithHasMore();
-        $beatmaps = $rooms->pluck('playlist')->flatten(1)->pluck('beatmap')->unique()->values();
-        $beatmapsets = $beatmaps->pluck('beatmapset')->unique()->values();
+        $params = get_params(request()->all(), null, [
+            'cursor:array',
+            'limit:int',
+        ], ['null_missing' => true]);
+
+        $json = $this->getJson($user, $params, $typeGroup);
+
+        if (is_json_request()) {
+            return $json;
+        }
 
         $jsonUser = json_item(
             $user,
@@ -40,18 +39,34 @@ class MultiplayerController extends Controller
             UserTransformer::PROFILE_HEADER_INCLUDES,
         );
 
-        $json = [
-            'beatmaps' => json_collection($beatmaps, new BeatmapCompactTransformer()),
-            'beatmapsets' => json_collection($beatmapsets, new BeatmapsetCompactTransformer()),
-            'cursor' => $hasMore ? $search['cursorHelper']->next($rooms) : null,
-            'rooms' => json_collection($rooms, new RoomTransformer(), ['host', 'playlist']),
-            'search' => $search['search'],
-        ];
-
-        if (is_json_request()) {
-            return $json;
-        }
-
         return ext_view('users.multiplayer.index', compact('json', 'jsonUser', 'user'));
+    }
+
+    private function getJson(User $user, array $params, string $typeGroup)
+    {
+        $limit = clamp($params['limit'] ?? 50, 1, 50);
+
+        $search = Room::search([
+            'cursor' => $params['cursor'],
+            'user' => $user,
+            'limit' => $limit,
+            'mode' => 'participated',
+            'sort' => 'ended',
+            'type_group' => $typeGroup,
+        ]);
+
+        [$rooms, $hasMore] = $search['query']->with([
+            'playlist.beatmap',
+            'host',
+        ])->getWithHasMore();
+        $rooms->each->findAndSetCurrentPlaylistItem();
+        $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
+
+        return [
+            'cursor' => $hasMore ? $search['cursorHelper']->next($rooms) : null,
+            'rooms' => json_collection($rooms, new RoomTransformer(), ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats']),
+            'search' => $search['search'],
+            'type_group' => $typeGroup,
+        ];
     }
 }

@@ -13,7 +13,7 @@ parseInt10 = (string) ->
   if _.isFinite(int) then int else null
 
 
-class @BeatmapsetFilter
+class window.BeatmapsetFilter
   @castFromString:
     genre: parseInt10
     language: parseInt10
@@ -88,7 +88,7 @@ class @BeatmapsetFilter
         if filters.query?.trim().length > 0
           'relevance_desc'
         else
-          if filters.status in ['pending', 'graveyard', 'mine']
+          if filters.status in ['pending', 'wip', 'graveyard', 'mine']
             'updated_desc'
           else
             'ranked_desc'

@@ -19,9 +19,9 @@ class BeatmapDiscussionPostTest extends TestCase
 {
     public function testMessageCharacterLimitGeneralAll()
     {
-        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $user = factory(User::class)->create();
+        $beatmapset = Beatmapset::factory()->create();
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'user_id' => $user->getKey(),
@@ -38,9 +38,9 @@ class BeatmapDiscussionPostTest extends TestCase
 
     public function testMessageCharacterLimitGeneral()
     {
-        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $user = factory(User::class)->create();
+        $beatmapset = Beatmapset::factory()->create();
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'beatmap_id' => $beatmap->getKey(),
@@ -58,9 +58,9 @@ class BeatmapDiscussionPostTest extends TestCase
 
     public function testMessageCharacterLimitTimeline()
     {
-        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $user = factory(User::class)->create();
+        $beatmapset = Beatmapset::factory()->create();
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'beatmap_id' => $beatmap->getKey(),
@@ -83,9 +83,9 @@ class BeatmapDiscussionPostTest extends TestCase
 
     public function testScopeOpenProblems()
     {
-        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $user = factory(User::class)->create();
+        $beatmapset = Beatmapset::factory()->create();
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'beatmap_id' => $beatmap->getKey(),
@@ -106,9 +106,9 @@ class BeatmapDiscussionPostTest extends TestCase
 
     public function testScopeByTypes()
     {
-        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $user = factory(User::class)->create();
+        $beatmapset = Beatmapset::factory()->create();
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'beatmap_id' => $beatmap->getKey(),
@@ -150,9 +150,9 @@ class BeatmapDiscussionPostTest extends TestCase
 
     public function testSoftDeleteOrExplode()
     {
-        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $user = factory(User::class)->create();
+        $beatmapset = Beatmapset::factory()->create();
+        $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'beatmap_id' => $beatmap->getKey(),

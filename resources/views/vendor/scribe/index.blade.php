@@ -8,6 +8,25 @@
 @include('docs.info')
 
 <style>
+    details {
+        position: relative
+    }
+
+    details::before {
+        position: absolute;
+        content: '';
+        height: 100%;
+        width: 4px;
+        margin-left: -8px;
+        border-radius: 8px;
+        background: lightgrey;
+    }
+
+    /* override pastel's override */
+    details > summary {
+        display: list-item;
+    }
+
     .badge.badge-scope {
         font-size: 80%;
         text-decoration: none;
@@ -18,6 +37,9 @@
     }
     .badge.badge-scope-oauth {
         background: #3a87ad;
+    }
+    .badge.badge-user {
+        background: #ad2a66;
     }
     .content table tr:nth-child(2n+1) > td {
         background: rgba(0, 0, 0, 0.02);

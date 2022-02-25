@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Kho hàng',
-    ],
-
     'cart' => [
         'checkout' => 'Thanh Toán',
         'info' => ':count_delimited sản phẩm trong giỏ ($:subtotal)|:count_delimited sản phẩm trong giỏ ($:subtotal)',
@@ -110,7 +106,7 @@ return [
 
         'stock' => [
             'out' => 'Mặt hàng này hiện đang hết hàng. Kiểm tra lại sau!',
-            'out_with_alternative' => 'Rất tiếc, sản phẩm này đã hết hàng. Sử dụng dropdown menu để chọn loại khác hoặc kiểm tra lại sau!',
+            'out_with_alternative' => 'Rất tiếc, sản phẩm này đã hết hàng. Sử dụng bảng chọn thả xuống để chọn loại khác hoặc kiểm tra lại sau!',
         ],
 
         'add_to_cart' => 'Thêm Vào Giỏ Hàng',

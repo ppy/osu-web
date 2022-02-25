@@ -154,11 +154,12 @@ return [
                 'combo' => 'Maksimikombo',
                 'miss' => 'Ohi',
                 'mods' => 'Modit',
+                'pin' => '',
                 'player' => 'Pelaaja',
                 'pp' => '',
                 'rank' => 'Sijoitus',
-                'score_total' => 'Kokonaispisteet',
                 'score' => 'Pisteet',
+                'score_total' => 'Kokonaispisteet',
                 'time' => 'Aika',
             ],
 
@@ -172,6 +173,10 @@ return [
             'score' => [
                 'first' => 'Johdossa',
                 'own' => 'Sinun parhaasi',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

@@ -11,13 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'PERSKAITYK PRIEŠ ATSISIŲSDAMAS',
-            'instruction' => [
-                '_' => "Įkėlimas: Kai parsisiųsi, išskleisk parsiųstą .rar failą į savo osu! \"Songs\" aplankalą.
-                    Visos dainos bus .zip ir/arba .osz archyvuose, ir osu! turės jas išskleisti prieš einant į žaidimo dainų meniu.
-                    :scary pats neišskleidinėk iš .zip/.osz archyvų,
-                    kitaip beatmapai bus atvaizduojami neteisingai ir veiks blogai.",
-                'scary' => 'JOKIU Būdu',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Taip pat yra rekomenduojama :scary, nes senesni mapai yra daug blogesnės kokybės lyginant su naujesniais.',
                 'scary' => 'siųstis nuo naujausiu iki seniausių',

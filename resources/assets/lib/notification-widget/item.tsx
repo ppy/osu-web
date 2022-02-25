@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import TimeWithTooltip from 'components/time-with-tooltip';
 import { observer } from 'mobx-react';
 import Notification from 'models/notification';
 import { NotificationContext } from 'notifications-context';
@@ -167,12 +168,9 @@ export default class Item extends React.Component<Props> {
     }
 
     return (
-      <div
-        className='notification-popup-item__row notification-popup-item__row--time'
-        dangerouslySetInnerHTML={{
-          __html: osu.timeago(this.props.item.createdAtJson),
-        }}
-      />
+      <div className='notification-popup-item__row notification-popup-item__row--time'>
+        <TimeWithTooltip dateTime={this.props.item.createdAtJson} relative />
+      </div>
     );
   }
 

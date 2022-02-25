@@ -4,14 +4,22 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Không osu!(lazer) trò chơi nhiều người chơi chưa chơi!',
+    'empty' => [
+        '_' => '',
+        'playlists' => 'danh sách phát',
+        'realtime' => 'nhiều người chơi',
+    ],
 
     'room' => [
-        'hosted_by' => 'Máy chủ bởi :user',
-        'invalid_password' => '',
-        'map_count' => ':count_delimited bản_đồ|:count_delimited bản đồ',
+        'hosted_by' => 'chủ phòng :user',
+        'invalid_password' => 'Mật khẩu phòng không đúng',
+        'map_count' => ':count_delimited map',
         'player_count' => ':count_delimited người_chơi|:count_delimited người chơi',
         'time_left' => ':time thời gian còn lại',
+
+        'errors' => [
+            'duration_too_long' => 'Thời lượng quá dài. ',
+        ],
 
         'status' => [
             'active' => 'đang Hoạt Động',

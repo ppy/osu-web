@@ -3,6 +3,7 @@
 
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
+import { showLoadingOverlay } from 'utils/loading-overlay'
 
 export class StoreXsolla
   @promiseInit: (orderNumber) ->
@@ -43,6 +44,6 @@ export class StoreXsolla
 
     XPayStationWidget.on XPayStationWidget.eventTypes.CLOSE, ->
       if done
-        LoadingOverlay.show()
-        LoadingOverlay.show.flush()
+        showLoadingOverlay()
+        showLoadingOverlay.flush()
         window.location = route('payments.xsolla.completed', 'foreignInvoice': orderNumber)

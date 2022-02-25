@@ -9,6 +9,7 @@ use App\Libraries\Notification\BatchIdentities;
 use App\Models\User;
 use App\Models\UserNotification;
 use DB;
+use Illuminate\Database\Query\Expression;
 
 /**
  * @property Channel $channel
@@ -21,9 +22,15 @@ use DB;
  */
 class UserChannel extends Model
 {
-    protected $guarded = [];
-
     protected $primaryKeys = ['user_id', 'channel_id'];
+
+    private ?int $lastReadIdToSet;
+
+    public function getLastReadIdAttribute($value): ?int
+    {
+        // return the value we tried to set it to, not the query expression.
+        return $value instanceof Expression ? $this->lastReadIdToSet : $value;
+    }
 
     public function user()
     {
@@ -48,14 +55,14 @@ class UserChannel extends Model
 
     public function markAsRead($messageId = null)
     {
-        $maxId = get_int($messageId ?? Message::where('channel_id', $this->channel_id)->max('message_id'));
+        $this->lastReadIdToSet = get_int($messageId ?? Message::where('channel_id', $this->channel_id)->max('message_id'));
 
-        if ($maxId === null) {
+        if ($this->lastReadIdToSet === null) {
             return;
         }
 
         // this prevents the read marker from going backwards
-        $this->update(['last_read_id' => DB::raw("GREATEST(COALESCE(last_read_id, 0), $maxId)")]);
+        $this->update(['last_read_id' => DB::raw("GREATEST(COALESCE(last_read_id, 0), $this->lastReadIdToSet)")]);
 
         UserNotification::batchMarkAsRead($this->user, BatchIdentities::fromParams([
             'identities' => [

@@ -12,6 +12,7 @@ return [
         'missing_translation' => '',
         'needs_cleanup_or_rewrite' => '',
         'search' => '',
+        'stub' => '',
         'toc' => '',
 
         'edit' => [

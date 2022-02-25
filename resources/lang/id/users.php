@@ -36,7 +36,7 @@ return [
         'blocked_count' => 'pengguna yang diblokir (:count)',
         'hide_profile' => 'Sembunyikan profil',
         'not_blocked' => 'Pengguna ini tidak diblokir.',
-        'show_profile' => 'tampilkan profil',
+        'show_profile' => 'Tampilkan profil',
         'too_many' => 'Batas pemblokiran tercapai.',
         'button' => [
             'block' => 'Blokir',
@@ -46,7 +46,7 @@ return [
 
     'card' => [
         'loading' => 'Memuat...',
-        'send_message' => 'kirim pesan',
+        'send_message' => 'Kirim pesan',
     ],
 
     'disabled' => [
@@ -59,7 +59,7 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak-pihak yang tidak bertanggung jawab untuk hal-hal yang membahayakan. Akun Anda akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
+            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak-pihak yang tidak bertanggung jawab. Akun Anda akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
             'opening' => 'Ada sejumlah alasan yang dapat menyebabkan akun Anda dinonaktifkan:',
 
             'tos' => [
@@ -87,7 +87,7 @@ return [
         'email_login_disabled' => 'Anda tidak lagi dapat masuk dengan menggunakan alamat email. Silakan masuk dengan menggunakan nama pengguna.',
         'failed' => 'Gagal masuk',
         'forgot' => 'Lupa kata sandi?',
-        'info' => 'Silahkan sign in untuk melanjutkan',
+        'info' => 'Silakan sign in untuk melanjutkan',
         'invalid_captcha' => 'Anda telah berulang kali gagal memasukkan kredensial pengguna yang valid. Harap selesaikan captcha berikut dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
         'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
         'password' => 'Kata Sandi',
@@ -98,7 +98,7 @@ return [
 
         'beta' => [
             'main' => 'Akses beta saat ini hanya terbuka kepada pengguna-pengguna tertentu.',
-            'small' => '(osu!supporter akan segera masuk)',
+            'small' => '(para pemilik osu!supporter akan dapat segera masuk)',
         ],
     ],
 
@@ -114,9 +114,9 @@ return [
     ],
     'logout_confirm' => 'Apa Anda yakin ingin keluar? :(',
     'report' => [
-        'button_text' => 'laporkan',
+        'button_text' => 'Laporkan',
         'comments' => 'Komentar Tambahan',
-        'placeholder' => 'Mohon berikan informasi apapun yang Anda yakini dapat bermanfaat.',
+        'placeholder' => 'Mohon berikan informasi apa pun yang Anda yakini dapat bermanfaat.',
         'reason' => 'Alasan',
         'thanks' => 'Terima kasih atas laporan Anda!',
         'title' => 'Laporkan :username?',
@@ -132,26 +132,26 @@ return [
             'insults' => 'Menghina saya / orang lain',
             'spam' => 'Spam',
             'unwanted_content' => 'Menautkan konten yang tidak pantas',
-            'nonsense' => 'Berperilaku buruk',
+            'nonsense' => 'Beromong kosong',
             'other' => 'Lainnya (ketik di bawah)',
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Akun Anda telah dibatasi!',
-        'message' => 'Selama akun Anda di-restrict, Anda tidak dapat berinteraksi dengan para pengguna lain dan skor-skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang terbukti tidak melakukan pelanggaran apapun terhadap aturan-aturan yang berlaku. Jika Anda ingin mengajukan banding atas status akun Anda, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
+        'title' => 'Akun Anda telah di-restrict!',
+        'message' => 'Selama akun Anda di-restrict, Anda tidak akan dapat berinteraksi dengan para pengguna lain dan skor-skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang tidak melanggar aturan apapun. Apabila Anda ingin mengajukan banding, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
     ],
     'show' => [
         'age' => ':age tahun',
-        'change_avatar' => 'ganti avatar Anda!',
+        'change_avatar' => 'ubah avatar Anda!',
         'first_members' => 'Di sini sejak awal',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Bergabung :date',
+        'joined_at' => 'Bergabung pada :date',
         'lastvisit' => 'Terakhir terlihat :date',
         'lastvisit_online' => 'Saat ini online',
-        'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna yang hendak Anda tuju telah di-ban sebelumnya)',
+        'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna ini telah di-ban)',
         'origin_country' => 'Dari :country',
-        'previous_usernames' => 'dulu dikenal sebagai',
+        'previous_usernames' => 'sebelumnya dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
         'title' => "profil :username",
 
@@ -161,13 +161,13 @@ return [
         ],
         'edit' => [
             'cover' => [
-                'button' => 'Ganti Sampul Profil',
+                'button' => 'Ubah Sampul Profil',
                 'defaults_info' => 'Pilihan sampul lainnya akan tersedia di masa mendatang',
                 'upload' => [
                     'broken_file' => 'Gagal memproses gambar. Mohon periksa kembali gambar yang diunggah dan coba lagi.',
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
-                    'dropzone_info' => 'Anda juga dapat meletakkan gambar Anda di sini untuk mengunggah.',
+                    'dropzone_info' => 'Anda juga dapat meletakkan gambar Anda di sini untuk mengunggahnya',
                     'size_info' => 'Ukuran gambar sampul yang disarankan adalah 2400x640',
                     'too_large' => 'Berkas yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
@@ -216,12 +216,12 @@ return [
             ],
             'discussions' => [
                 'title' => 'Diskusi',
-                'title_longer' => 'Diskusi Terbaru',
+                'title_longer' => 'Topik-Topik Diskusi Terkini',
                 'show_more' => 'lihat lebih banyak diskusi',
             ],
             'events' => [
                 'title' => 'Aktivitas',
-                'title_longer' => 'Aktivitas Terakhir',
+                'title_longer' => 'Aktivitas-Aktivitas Terkini',
                 'show_more' => 'lihat lebih banyak aktivitas',
             ],
             'historical' => [
@@ -233,14 +233,14 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'jumlah dimainkan',
-                    'title' => 'Beatmap yang Paling Banyak Dimainkan',
+                    'title' => 'Beatmap yang Paling Sering Dimainkan',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'akurasi: :percentage',
-                    'title' => 'Rekam Jejak Permainan Terbaru (24 jam)',
+                    'title' => 'Rekam Jejak Permainan Terkini (24 jam)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Riwayat Jumlah Tayangan Ulang yang Ditonton',
+                    'title' => 'Riwayat Pemutaran Tayangan Ulang',
                     'count_label' => 'Kali Tayangan Ulang Ditonton',
                 ],
             ],
@@ -251,40 +251,40 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Pengguna ini belum tercatat pernah menerima kudosu! sebelumnya.",
+                    'empty' => "Pengguna ini belum pernah menerima kudosu! sebelumnya.",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Menerima :amount atas pembatalan penolakan kudosu di post modding :post',
+                            'give' => 'Memperoleh :amount atas dibatalkannya penganuliran kudosu pada topik diskusi :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Menolak :amount di post modding :post',
+                            'reset' => 'Kehilangan :amount kudosu karena suara yang diperoleh pada topik diskusi :post telah dianulir',
                         ],
 
                         'delete' => [
-                            'reset' => 'Kehilangan :amount atas penghapusan post di post modding :post',
+                            'reset' => 'Kehilangan :amount atas penghapusan topik diskusi :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Menerima :amount atas pengembalian post di post modding :post',
+                            'give' => 'Memperoleh :amount atas dipulihkannya topik diskusi :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Mendapatkan :amount dari suara yang diperoleh pada topik diskusi :post',
+                            'give' => 'Memperoleh :amount dari suara yang didapat pada topik diskusi :post',
                             'reset' => 'Kehilangan :amount dari suara yang hilang pada topik diskusi :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Menerima :amount atas penilaian ulang suara di post modding :post',
-                            'reset' => 'Kehilangan :amount atas penilaian ulang suara di post modding :post',
+                            'give' => 'Memperoleh :amount atas penghitungan ulang suara pada topik diskusi :post',
+                            'reset' => 'Kehilangan :amount atas penghitungan ulang suara pada topik diskusi :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Menerima :amount dari :giver untuk posting di :post',
-                        'reset' => 'Kudosu disetel ulang oleh :giver untuk posting di :post',
-                        'revoke' => 'Kudosu ditolak oleh :giver untuk posting di :post',
+                        'give' => 'Memperoleh :amount dari :giver untuk mod yang diberikan pada beatmap :post',
+                        'reset' => 'Kudosu untuk mod yang diberikan pada beatmap :post diatur ulang oleh :giver ',
+                        'revoke' => 'Kudosu untuk mod yang diberikan pada beatmap :post ditolak oleh :giver ',
                     ],
                 ],
 
@@ -301,16 +301,19 @@ return [
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
             ],
-            'multiplayer' => [
-                'title' => 'Pertandingan-Pertandingan Multiplayer',
+            'playlists' => [
+                'title' => 'Permainan Playlist',
             ],
             'posts' => [
                 'title' => 'Posting',
-                'title_longer' => 'Postingan Terbaru',
+                'title_longer' => 'Postingan-Postingan Terkini',
                 'show_more' => 'lihat lebih banyak post',
             ],
             'recent_activity' => [
-                'title' => 'Terbaru',
+                'title' => 'Aktivitas Terkini',
+            ],
+            'realtime' => [
+                'title' => 'Permainan Multiplayer',
             ],
             'top_ranks' => [
                 'download_replay' => 'Unduh Tayangan Ulang',
@@ -325,26 +328,35 @@ return [
                 'first' => [
                     'title' => 'Peringkat Pertama',
                 ],
+                'pin' => [
+                    'to_0' => 'Lepas Sematan',
+                    'to_0_done' => 'Sematan skor berhasil dilepas',
+                    'to_1' => 'Sematkan',
+                    'to_1_done' => 'Skor berhasil disematkan',
+                ],
+                'pinned' => [
+                    'title' => 'Skor yang Disematkan',
+                ],
             ],
             'votes' => [
                 'given' => 'Suara Diberikan (3 bulan terakhir)',
                 'received' => 'Suara Diterima (3 bulan terakhir)',
                 'title' => 'Hak Suara',
-                'title_longer' => 'Pilihan Terbaru',
+                'title_longer' => 'Riwayat Pemberian Suara Terkini',
                 'vote_count' => ':count_delimited suara|:count_delimited suara',
             ],
             'account_standing' => [
                 'title' => 'Kondisi Akun',
-                'bad_standing' => "Akun <strong>:username</strong> tidak dalam kondisi baik :(",
-                'remaining_silence' => '<strong>:username</strong> akan dapat kembali berbicara dalam :duration.',
+                'bad_standing' => "Akun :username tidak sedang berada dalam kondisi yang baik :(",
+                'remaining_silence' => ':username akan dapat kembali berbicara :duration.',
 
                 'recent_infringements' => [
-                    'title' => 'Pelanggaran Terbaru',
+                    'title' => 'Pelanggaran Terkini',
                     'date' => 'tanggal',
                     'action' => 'tindakan',
                     'length' => 'durasi',
                     'length_permanent' => 'Permanen',
-                    'description' => 'deskripsi',
+                    'description' => 'keterangan',
                     'actor' => 'oleh :username',
 
                     'actions' => [
@@ -365,8 +377,8 @@ return [
             'website' => 'Website',
         ],
         'not_found' => [
-            'reason_1' => 'Pengguna yang hendak Anda tuju telah mengubah nama penggunanya.',
-            'reason_2' => 'Pengguna yang hendak Anda tuju telah dinonaktifkan untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
+            'reason_1' => 'Pengguna ini telah mengubah nama penggunanya.',
+            'reason_2' => 'Pengguna ini telah dinonaktifkan untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
             'reason_3' => 'Atau mungkin Anda salah ketik!',
             'reason_header' => 'Ada beberapa kemungkinan mengapa hal ini bisa terjadi:',
             'title' => 'Pengguna tidak ditemukan! ;_;',
@@ -383,7 +395,7 @@ return [
             ],
         ],
         'post_count' => [
-            '_' => 'Berkontribusi sebanyak :link',
+            '_' => 'Berkontribusi pada :link',
             'count' => ':count_delimited postingan forum|:count_delimited postingan forum',
         ],
         'rank' => [
@@ -395,13 +407,13 @@ return [
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',
             'level' => 'Level :level',
-            'level_progress' => 'Persentase pencapaian untuk menuju ke level selanjutnya',
+            'level_progress' => 'Persentase pencapaian menuju level berikutnya',
             'maximum_combo' => 'Kombo Maksimum',
             'medals' => 'Jumlah Medali',
             'play_count' => 'Jumlah Main',
             'play_time' => 'Telah Bermain Selama',
             'ranked_score' => 'Skor Ranked',
-            'replays_watched_by_others' => 'Jumlah Tayangan Ulang yang Ditonton',
+            'replays_watched_by_others' => 'Jumlah Pemutaran Tayangan Ulang',
             'score_ranks' => 'Peringkat Skor',
             'total_hits' => 'Jumlah Hit',
             'total_score' => 'Jumlah Skor',
@@ -415,7 +427,7 @@ return [
 
     'silenced_banner' => [
         'title' => 'Anda sedang di-silence.',
-        'message' => 'Anda tidak dapat melakukan tindakan-tindakan tertentu.',
+        'message' => 'Anda sedang tidak dapat melakukan tindakan-tindakan tertentu.',
     ],
 
     'status' => [
@@ -431,7 +443,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => 'Tampilan batu bata',
+        'brick' => 'Tampilan susun bata',
         'card' => 'Tampilan kartu',
         'list' => 'Tampilan daftar',
     ],

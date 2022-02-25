@@ -147,7 +147,7 @@ return [
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
         'joined_at' => '注册时间：:date',
-        'lastvisit' => '上次登录：:date',
+        'lastvisit' => '最后活跃：:date',
         'lastvisit_online' => '当前在线',
         'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
         'origin_country' => '来自 :country',
@@ -195,14 +195,14 @@ return [
                 'title' => '成就',
             ],
             'beatmaps' => [
-                'by_artist' => '由 :artist',
+                'by_artist' => '曲师：:artist',
                 'title' => '谱面',
 
                 'favourite' => [
                     'title' => '收藏的谱面',
                 ],
                 'graveyard' => [
-                    'title' => '坟场里的谱面',
+                    'title' => '已停更的谱面',
                 ],
                 'loved' => [
                     'title' => 'Loved 的谱面',
@@ -301,8 +301,8 @@ return [
                 'recent' => '最近取得',
                 'title' => '成就',
             ],
-            'multiplayer' => [
-                'title' => '多人游戏',
+            'playlists' => [
+                'title' => '歌单游戏',
             ],
             'posts' => [
                 'title' => '回复',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => '最近活动',
+            ],
+            'realtime' => [
+                'title' => '多人游戏',
             ],
             'top_ranks' => [
                 'download_replay' => '下载回放',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => '第一名',
+                ],
+                'pin' => [
+                    'to_0' => '取消置顶',
+                    'to_0_done' => '已取消置顶成绩',
+                    'to_1' => '置顶',
+                    'to_1_done' => '已置顶成绩',
+                ],
+                'pinned' => [
+                    'title' => '置顶成绩',
                 ],
             ],
             'votes' => [

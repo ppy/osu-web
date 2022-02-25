@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'ยังไม่มีการเล่นเกมผู้เล่นหลายคนใน osu!(lazer) เลย!',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => 'เป็นเจ้าภาพโดย :user',
@@ -12,6 +16,10 @@ return [
         'map_count' => ':count_delimited แมป|:count_delimited แมป',
         'player_count' => ':count_delimited ผู้เล่น|:count_delimited ผู้เล่น',
         'time_left' => 'เหลืออีก :time',
+
+        'errors' => [
+            'duration_too_long' => '',
+        ],
 
         'status' => [
             'active' => 'เปิด',

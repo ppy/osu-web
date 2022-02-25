@@ -19,7 +19,6 @@ return [
             'contest' => 'konkurranse',
             'contests' => 'konkurranser',
             'root' => 'konsoll',
-            'store_orders' => 'butikk admin',
         ],
 
         'artists' => [
@@ -47,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => '',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'info',
         ],
     ],

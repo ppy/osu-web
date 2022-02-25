@@ -7,11 +7,11 @@ There are a few different options to get started:
 ### Install prerequisites
 
 - MySQL 8.0+
-- PHP 7.2+ (with curl, gd, intl, json, mbstring, mcrypt, mysql, xml and zip extensions)
+- PHP 8.0+ (with curl, gd, intl, json, mbstring, mcrypt, mysql, xml and zip extensions)
 - nginx (or other webserver)
-- Node.js 8 or 9 (and a modern version of npm)
-- elasticsearch 5+
-- redis (not required, but you may want to use for caching and laravel's job-queue)
+- Node.js 16
+- elasticsearch 6+
+- redis
 
 ### Clone the git repository
 
@@ -42,7 +42,7 @@ Consult the [laravel documentation](https://laravel.com/docs/6.x/installation#we
 
 ```bash
 # this script assumes you can connect passwordless as root
-$ ./bin/db_setup.sh
+$ mysql -u root < ./docker/development/db_setup.sql
 ```
 
 ### Install packages and build assets
@@ -73,7 +73,44 @@ At this point you should be able to access the site via whatever webserver you c
   - To run artisan commands, run using `docker-compose run --rm php artisan`.
 
 ---
-**Note**
+**Notes**
+
+Newer versions of docker can use `docker compose` instead of `docker-compose`
+
+The `elasticsearch` and `db` containers store their data to volumes, the containers will use data on these volumes if they already exist.
+
+### Elasticsearch
+
+Existing Elasticsearch indices will be upgraded to new versions on start. Indices from a newer version cannot be used by older versions and downgrades are not supported.
+
+If you need to use a previous version of elasticsearch, e.g. to run `osu-elastic-indexer`, you can specify a previous version in a `docker-compose.override.yml` file (`volumes` and `environment` must be specified, as well, not just `image`):
+
+    services:
+      elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.23
+        volumes:
+          - elasticsearch:/usr/share/elasticsearch/data
+        environment:
+          action.auto_create_index: "false"
+          discovery.type: single-node
+          ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+
+Note that older versions of Elasticsearch do not work on ARM-based CPUs.
+
+`osu-elastic-indexer` currently cannot update indices using Elasticsearch 7; existing records can still be queried normally.
+
+### Mysql
+
+The Mysql images provided by Docker and Mysql have different uids for the `mysql` user, if you are getting permission errors when starting the `db` container like
+
+    mysqld: File './binlog.index' not found (OS errno 13 - Permission denied)
+
+update the ownership of the mysql data files:
+
+    docker-compose run --rm db sh -c 'chown -R mysql:mysql /var/lib/mysql'
+
+
+### Windows
 
 On Windows, the files inside Linux system can be found in Explorer from `\\wsl$` location.
 
@@ -85,6 +122,24 @@ Due to difference in file permission and line endings, adjustments on git may be
 git config core.eol lf
 git config core.filemode false
 ```
+
+### ARM-based CPUs
+
+Tests that require the use of Chrome (both Karma and Dusk tests) will not work inside Docker when running on ARM-based CPUs (e.g. Macs running Apple Silicon). In this scenario, these tests should be run outside of a container.
+
+Dusk tests can make use of an external Chrome driver instance by setting the following environment variables:
+- `DUSK_WEBDRIVER_URL` the url of the Chrome driver accessible from the container.
+- `APP_URL` the url that will be used to access the app running in the container from Chrome.
+
+e.g. If Docker Desktop and the default networking are used and `chromedriver` is running on the host:
+
+    docker-compose run --rm -e DUSK_WEBDRIVER_URL=host.docker.internal:9515 APP_URL=http://127.0.0.1:8080 php test browser
+
+The host `chromedriver` will need to allow connections from the container:
+
+    chromedriver --whitelisted-ips --allowed-origins='host.docker.internal'
+
+Other custom configurations to run the tests within the container are currently not supported.
 
 ---
 

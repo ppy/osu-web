@@ -242,10 +242,10 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     // valid document containing issue embeds should trigger disqualification (for GMT)
     public function testCreateDocumentDocumentValidWithIssuesShouldDisqualify()
     {
-        $gmtUser = factory(User::class)->states('gmt')->create();
-        $beatmapset = factory(Beatmapset::class)->states('qualified')->create();
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $watchingUser = factory(User::class)->create();
+        $gmtUser = User::factory()->withGroup('gmt')->create();
+        $beatmapset = Beatmapset::factory()->qualified()->create();
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make());
+        $watchingUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
 
         BeatmapsetDiscussionReview::create(
@@ -276,15 +276,14 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     // valid document containing issue embeds should reset nominations (for GMT)
     public function testCreateDocumentDocumentValidWithIssuesShouldResetNominations()
     {
-        $beatmapset = factory(Beatmapset::class)->create([
-            'discussion_enabled' => true,
+        $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make());
 
         $playmode = $beatmapset->playmodesStr()[0];
-        $natUser = $this->createUserWithGroupPlaymodes('nat', [$playmode]);
-        $watchingUser = factory(User::class)->create();
+        $natUser = User::factory()->withGroup('nat', [$playmode])->create();
+        $watchingUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
 
         // ensure beatmapset has a nomination
@@ -326,9 +325,9 @@ class BeatmapsetDiscussionReviewTest extends TestCase
      */
     public function testCreateDocumentDocumentValidWithNewIssuesShouldNotify($state, $shouldNotify)
     {
-        $gmtUser = factory(User::class)->states('gmt')->create();
-        $beatmapset = factory(Beatmapset::class)->states($state)->create();
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make(['playmode' => 0]));
+        $gmtUser = User::factory()->withGroup('gmt')->create();
+        $beatmapset = Beatmapset::factory()->$state()->create();
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make(['playmode' => 0]));
 
         $notificationOption = $gmtUser->notificationOptions()->firstOrCreate([
             'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
@@ -563,16 +562,16 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
     public function testUpdateDocumentWithNewIssueShouldDisqualify()
     {
-        $gmtUser = factory(User::class)->states('gmt')->create();
-        $beatmapset = factory(Beatmapset::class)->states('qualified')->create();
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $gmtUser = User::factory()->withGroup('gmt')->create();
+        $beatmapset = Beatmapset::factory()->qualified()->create();
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make());
         $review = $this->setUpPraiseOnlyReview($beatmapset, $gmtUser);
 
         // ensure qualified beatmap is qualified
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['qualified']);
 
         // ensure we have a user watching, otherwise no notifications will be sent
-        $watchingUser = factory(User::class)->create();
+        $watchingUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
 
         $document = json_decode($review->startingPost->message, true);
@@ -597,14 +596,13 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
     public function testUpdateDocumentWithNewIssueShouldResetNominations()
     {
-        $beatmapset = factory(Beatmapset::class)->create([
-            'discussion_enabled' => true,
+        $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make());
 
         $playmode = $beatmapset->playmodesStr()[0];
-        $natUser = $this->createUserWithGroupPlaymodes('nat', [$playmode]);
+        $natUser = User::factory()->withGroup('nat', [$playmode])->create();
         $review = $this->setUpPraiseOnlyReview($beatmapset, $natUser);
 
         // ensure qualified beatmap is pending
@@ -615,7 +613,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->assertSame($beatmapset->currentNominationCount()[$playmode], 1);
 
         // ensure we have a user watching, otherwise no notifications will be sent
-        $watchingUser = factory(User::class)->create();
+        $watchingUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
 
         $document = json_decode($review->startingPost->message, true);
@@ -645,9 +643,9 @@ class BeatmapsetDiscussionReviewTest extends TestCase
      */
     public function testUpdateDocumentWithNewIssueShouldNotifyIfQualified($state, $shouldNotify)
     {
-        $gmtUser = factory(User::class)->states('gmt')->create();
-        $beatmapset = factory(Beatmapset::class)->states($state)->create();
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make(['playmode' => 0]));
+        $gmtUser = User::factory()->withGroup('gmt')->create();
+        $beatmapset = Beatmapset::factory()->$state()->create();
+        $beatmapset->beatmaps()->save(Beatmap::factory()->make(['playmode' => 0]));
 
         $notificationOption = $gmtUser->notificationOptions()->firstOrCreate([
             'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
@@ -732,12 +730,11 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
         config()->set('osu.beatmapset.discussion_review_max_blocks', 4);
 
-        $this->user = factory(User::class)->create();
-        $this->beatmapset = factory(Beatmapset::class)->create([
-            'discussion_enabled' => true,
+        $this->user = User::factory()->create();
+        $this->beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES['pending'],
         ]);
-        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make());
     }
 
     protected function setUpReview($beatmapset = null): BeatmapDiscussion

@@ -92,7 +92,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Apabila Anda menyukai beatmap ini, berikanlah hype Anda untuk mendorong beatmap ini agar dapat selangkah lebih dekat menuju status <strong>Ranked</strong>.',
+            'action' => 'Apabila Anda menyukai beatmap ini, berikanlah hype Anda agar beatmap ini dapat selangkah lebih dekat menuju status <strong>Ranked</strong>.',
 
             'current' => [
                 '_' => 'Beatmap ini sedang berstatus :status.',
@@ -154,17 +154,18 @@ return [
                 'combo' => 'Kombo Maks',
                 'miss' => 'Miss',
                 'mods' => 'Mod',
+                'pin' => 'Sematkan',
                 'player' => 'Pemain',
                 'pp' => '',
                 'rank' => 'Peringkat',
-                'score_total' => 'Jumlah Skor',
                 'score' => 'Skor',
+                'score_total' => 'Jumlah Skor',
                 'time' => 'Waktu',
             ],
 
             'no_scores' => [
                 'country' => 'Tidak seorang pun dari negara Anda yang memiliki skor di map ini!',
-                'friend' => 'Tidak seorang pun dari daftar teman Anda yang memiliki skor di map ini!',
+                'friend' => 'Anda tidak memiliki teman yang telah menorehkan skor di map ini!',
                 'global' => 'Belum ada skor yang tercatat pada beatmap ini. Mungkin Anda tertarik untuk mencetak skor Anda sendiri?',
                 'loading' => 'Memuat skor...',
                 'unranked' => 'Beatmap ini tidak berstatus Ranked.',
@@ -172,6 +173,10 @@ return [
             'score' => [
                 'first' => 'Di Posisi Pertama',
                 'own' => 'Skor Terbaik Anda',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 
@@ -182,7 +187,7 @@ return [
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
             'stars' => 'Star Difficulty',
-            'total_length' => 'Durasi',
+            'total_length' => 'Durasi Total (Durasi Bersih: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Jumlah Circle',
             'count_sliders' => 'Jumlah Slider',

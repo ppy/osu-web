@@ -46,7 +46,7 @@ class WikiController extends Controller
         if (OsuWiki::isImage($path)) {
             $prependPath = $locale === 'images' || $cleanLocale === null ? $locale : null;
 
-            return ujs_redirect(route('wiki.image', concat_path([$prependPath, $path])));
+            return ujs_redirect(wiki_image_url(concat_path([$prependPath, $path])));
         }
 
         // if invalid locale, assume locale to be part of path and
@@ -69,7 +69,7 @@ class WikiController extends Controller
         }
 
         // legal pages should be displayed with their own style etc
-        if (starts_with("{$path}/", 'Legal/')) {
+        if (starts_with("{$path}/", 'Legal/') && !is_api_request()) {
             return ujs_redirect(wiki_url($path, $locale));
         }
 

@@ -16,7 +16,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Featured artist',
     ],
 
     'index' => [
@@ -25,7 +25,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'žádné beatmapy',
 
         'download' => [
             'all' => 'stáhnout',
@@ -43,7 +43,7 @@ return [
 
         'dialog' => [
             'confirmation' => '',
-            'header' => '',
+            'header' => 'Nominovat beatmapu',
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
@@ -57,7 +57,7 @@ return [
         'discussion' => 'Diskuze',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => 'od :artist',
             'favourite' => 'Přidat do mých oblíbených',
             'favourite_login' => '',
             'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
@@ -154,11 +154,12 @@ return [
                 'combo' => 'Maximální Kombo',
                 'miss' => 'Minuto',
                 'mods' => 'Módy',
+                'pin' => '',
                 'player' => 'Hráč',
                 'pp' => '',
                 'rank' => 'Umístění',
-                'score_total' => 'Celkové skóre',
                 'score' => 'Skóre',
+                'score_total' => 'Celkové skóre',
                 'time' => 'Čas',
             ],
 
@@ -172,6 +173,10 @@ return [
             'score' => [
                 'first' => 'V čele',
                 'own' => 'Vaše nejlepší',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

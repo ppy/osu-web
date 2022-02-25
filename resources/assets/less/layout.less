@@ -54,6 +54,14 @@ html, body {
   height: 100%;
 }
 
+html {
+  scroll-padding-top: @nav2-height--pinned;
+
+  @media @mobile {
+    scroll-padding-top: @navbar-height;
+  }
+}
+
 body {
   .default-font();
   // no overlap between rightmost side and scrollbar
@@ -96,10 +104,12 @@ body {
   width: 100%;
   top: 155px;
   z-index: 9999;
+  pointer-events: none;
 
   .alert {
-    border: none;
     .default-box-shadow();
+    border: none;
+    pointer-events: auto;
   }
 
   .popup-text {

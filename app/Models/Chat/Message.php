@@ -19,6 +19,8 @@ use App\Models\User;
  */
 class Message extends Model
 {
+    public ?string $uuid = null;
+
     protected $primaryKey = 'message_id';
     protected $casts = [
         'is_action' => 'boolean',
@@ -26,7 +28,6 @@ class Message extends Model
     protected $dates = [
         'timestamp',
     ];
-    protected $guarded = [];
 
     public function channel()
     {

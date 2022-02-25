@@ -6,7 +6,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Bạn cần phải đăng nhập để chỉnh sửa nó',
+            'null_user' => 'Cần phải đăng nhập để chỉnh sửa.',
             'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo bởi hệ thống.',
             'wrong_user' => 'Chỉ chủ bài đăng mới được chỉnh sửa.',
         ],
@@ -32,7 +32,7 @@ return [
             'beatmapset_status' => [
                 '_' => 'Tình trạng Beatmap',
                 'all' => 'Tất cả',
-                'disqualified' => 'Bị Loại',
+                'disqualified' => 'Disqualified ',
                 'never_qualified' => 'Chưa bao giờ Đủ Điều Kiện',
                 'qualified' => 'Đủ Điều Kiện',
                 'ranked' => 'Xếp Hạng',
@@ -82,7 +82,7 @@ return [
             'external_references' => 'bài đánh giá có chứa tham chiếu đến các vấn đề không thuộc bài đánh giá này',
             'invalid_block_type' => 'Loại khối không hợp lệ',
             'invalid_document' => 'đánh giá không phù hợp',
-            'invalid_discussion_type' => '',
+            'invalid_discussion_type' => 'loại thảo luận không hợp lệ',
             'minimum_issues' => 'đánh giá phải chứa tối thiểu :count vấn_đề|đánh_giá phải chứa tối thiểu :count vấn đề',
             'missing_text' => 'khối bị thiếu văn bản',
             'too_many_blocks' => 'đánh giá chỉ có thể chứa :count đoạn_văn/vấn_đề|đanh_giá chỉ có thể chứa tối đa :count đoạn_văn/vấn_đề',

@@ -15,8 +15,8 @@ return [
             'title' => 'Mengapa saya harus mendukung osu!? Ke mana saja uangnya akan disalurkan?',
 
             'team' => [
-                'title' => 'Dukung Tim Kami',
-                'description' => 'osu! senantiasa dikembangkan dan dikelola oleh sebuah tim yang berukuran kecil. Dukunganmu akan sangat membantu... keberlangsungan hidup mereka.',
+                'title' => 'Upah Tim Kami',
+                'description' => 'osu! dikembangkan dan dikelola oleh sebuah tim yang berukuran kecil. Dukunganmu akan sangat membantu... keberlangsungan hidup mereka.',
             ],
             'infra' => [
                 'title' => 'Prasarana Server',
@@ -24,17 +24,17 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist',
-                'description' => 'Berkat dukunganmu, kami dapat melisensi berbagai lagu karya musisi-musisi berbakat dari seluruh belahan dunia untuk dapat dipergunakan secara legal di dalam lingkungan osu!.',
+                'description' => 'Berkat dukunganmu, kami dapat melisensi berbagai lagu karya musisi-musisi berbakat untuk dapat dipergunakan secara legal di dalam lingkungan osu!.',
                 'link_text' => 'Lihat daftar Featured Artist saat ini &raquo;',
             ],
             'ads' => [
                 'title' => 'Bantu osu! Untuk Tetap Mandiri',
-                'description' => 'Kontribusimu memungkinkan osu! untuk dapat sepenuhnya berfungsi secara independen tanpa bergantung pada iklan-iklan maupun sponsor-sponsor dari luar.',
+                'description' => 'Kontribusimu memungkinkan osu! untuk dapat sepenuhnya berdiri secara independen tanpa harus bergantung pada iklan-iklan maupun sponsor-sponsor dari luar.',
             ],
             'tournaments' => [
-                'title' => 'Turnamen Resmi',
-                'description' => 'Dukungan yang kamu berikan akan sebagian digunakan untuk memenuhi biaya operasional (dan menambah pundi-pundi hadiah) turnamen osu! World Cup.',
-                'link_text' => 'Jelajahi turnamen &raquo;',
+                'title' => 'Pendanaan Turnamen',
+                'description' => 'Dukungan yang kamu berikan akan digunakan untuk memenuhi biaya operasional (serta menambah pundi-pundi hadiah) turnamen-turnamen World Cup resmi yang kami selenggarakan.',
+                'link_text' => 'Jelajahi turnamen-turnamen resmi kami &raquo;',
             ],
             'bounty-program' => [
                 'title' => 'Program Open Source Bounty',
@@ -43,30 +43,30 @@ return [
             ],
         ],
         'perks' => [
-            'title' => 'Oh? Apa saja yang akan saya dapatkan?!',
+            'title' => 'Menarik! Hal-hal apa saja yang akan saya dapatkan?',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'Telusuri beatmap-beatmap yang kamu kehendaki dengan cepat dan mudah tanpa harus meninggalkan permainan.',
             ],
 
             'friend_ranking' => [
-                'title' => 'Peringkat Teman',
-                'description' => "Lihat bagaimana kemampuanmu dibandingkan dengan teman-temanmu di papan peringkat beatmap, baik dalam game maupun di situs web.",
+                'title' => 'Papan Peringkat Teman',
+                'description' => "Bandingkan skor yang kamu peroleh dengan skor teman-temanmu secara mudah baik di dalam permainan maupun di situs web.",
             ],
 
             'country_ranking' => [
-                'title' => 'Peringkat Negara',
+                'title' => 'Papan Peringkat Negara',
                 'description' => 'Taklukkan negaramu sebelum kamu menaklukkan dunia.',
             ],
 
             'mod_filtering' => [
-                'title' => 'Filter Berdasarkan Mod',
+                'title' => 'Papan Peringkat Mod',
                 'description' => 'Ingin mencari tahu siapa-siapa saja yang memainkan suatu map dengan HDHR? Tidak masalah!',
             ],
 
             'auto_downloads' => [
-                'title' => 'Unduh Otomatis',
-                'description' => 'osu! akan secara otomatis mengunduh beatmap-beatmap yang tidak kamu miliki pada saat kamu bermain multiplayer, menonton orang lain, atau mengklik tautan dalam chat!',
+                'title' => 'Unduhan Otomatis',
+                'description' => 'osu! akan secara otomatis mengunduh beatmap-beatmap yang belum kamu miliki pada saat kamu bermain multiplayer, menonton orang lain, atau mengklik tautan dalam chat!',
             ],
 
             'upload_more' => [
@@ -76,17 +76,17 @@ return [
 
             'early_access' => [
                 'title' => 'Akses Pra-Rilis',
-                'description' => 'Dapatkan akses ke versi osu! terbaru lebih awal, di mana kamu dapat bebas mencoba fitur yang bahkan belum kami rilis secara publik!',
+                'description' => 'Dapatkan akses ke versi osu! terbaru lebih awal, di mana kamu dapat mencoba berbagai fitur yang bahkan belum kami rilis secara luas!',
             ],
 
             'customisation' => [
-                'title' => 'Kustomisasi',
-                'description' => "Buat laman profilmu lebih menarik dengan tambahan gambar latar dan kolom \"saya!\" yang dapat kamu isi dengan hal apapun yang kamu kehendaki.",
+                'title' => 'Kustomisasi Profil',
+                'description' => "Buat laman profilmu lebih menarik dengan tambahan gambar latar dan kolom \"saya!\" yang dapat kamu isi sesuka hatimu.",
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filter Beatmap',
-                'description' => 'Filter pencarian beatmap berdasarkan map yang belum dan sudah dimainkan juga peringkat yang dicapai (jika ada).',
+                'title' => 'Opsi Pencarian Beatmap Tambahan',
+                'description' => 'Dengan supporter tag, kamu akan dapat mencari beatmap-beatmap mana saja yang pernah kamu mainkan serta peringkat yang kamu torehkan di dalamnya.',
             ],
 
             'yellow_fellow' => [
@@ -95,13 +95,13 @@ return [
             ],
 
             'speedy_downloads' => [
-                'title' => 'Unduh Lebih Cepat',
-                'description' => 'Pembatasan jumlah unduhan yang lebih lengang, terutama saat menggunakan osu!direct.',
+                'title' => 'Unduhan Yang Cepat',
+                'description' => 'Nikmati batas unduhan yang lebih lengang, terutama saat menggunakan osu!direct.',
             ],
 
             'change_username' => [
-                'title' => 'Penggantian Nama Pengguna',
-                'description' => 'Apabila kamu pernah memiliki supporter tag, kamu dapat mengubah nama penggunamu secara cuma-cuma.',
+                'title' => 'Perubahan Nama Pengguna',
+                'description' => 'Apabila kamu pernah memiliki supporter tag, kamu akan dapat mengubah nama penggunamu secara cuma-cuma.',
             ],
 
             'skinnables' => [
@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Unggah Lebih Banyak Beatmap',
-                'description' => 'Jumlah beatmap Pending yang dapat kamu unggah pada satu waktu pada umumnya terbatas hanya pada bilangan :base beatmap ditambah :bonus beatmap per beatmap Ranked yang kamu miliki (hingga maks. +:bonus_max beatmap).<br/><br/> Dengan osu!supporter, kamu akan dapat mengunggah lebih banyak beatmap hingga bilangan :supporter_base beatmap ditambah :supporter_bonus beatmap per beatmap Ranked yang kamu miliki (hingga maks. +:supporter_bonus_max beatmap).',
+                'description' => 'Pada umumnya, jumlah beatmap Pending yang dapat kamu unggah pada satu waktu akan terbatas hanya pada bilangan :base beatmap ditambah :bonus beatmap per beatmap Ranked yang kamu miliki (hingga maks. +:bonus_max beatmap).<br/><br/> Dengan supporter tag, kamu akan dapat mengunggah lebih banyak beatmap hingga bilangan :supporter_base beatmap ditambah :supporter_bonus beatmap per beatmap Ranked yang kamu miliki (hingga maks. +:supporter_bonus_max beatmap).',
             ],
             'friend_filtering' => [
                 'title' => 'Papan Peringkat Teman',
@@ -138,8 +138,8 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukunganmu! Kamu telah membeli supporter tag sebanyak :tags kali dengan total kontribusi finansial senilai :dollars!',
-            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags supporter tag (yang bernilai :giftedDollars) kepada pemain lain. Terima kasih atas kemurahan hatimu!",
+            'contribution' => 'Terima kasih atas dukunganmu! Kamu telah membeli :tags supporter tag dengan total kontribusi senilai :dollars!',
+            'gifted' => "Dari jumlah tersebut, kamu telah menghadiahkan :giftedTags di antaranya (:giftedDollars) kepada para pemain lainnya. Terima kasih atas kemurahan hatimu!",
             'not_yet' => "Kamu belum pernah memiliki supporter tag :(",
             'valid_until' => 'Supporter tag yang kamu miliki saat ini berlaku hingga :date!',
             'was_valid_until' => 'Masa berlaku supporter tag milikmu telah berakhir pada :date.',

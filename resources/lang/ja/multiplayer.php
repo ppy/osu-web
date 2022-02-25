@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'osu!(lazer)のマルチプレイヤーゲームはまだプレイされていません。',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => ':userによってホスト',
@@ -12,6 +16,10 @@ return [
         'map_count' => ':count_delimited マップ',
         'player_count' => ':count_delimited プレイヤー',
         'time_left' => '残り :time',
+
+        'errors' => [
+            'duration_too_long' => '',
+        ],
 
         'status' => [
             'active' => 'アクティブ',

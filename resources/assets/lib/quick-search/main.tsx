@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { Spinner } from 'components/spinner';
+import StringWithComponent from 'components/string-with-component';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { Spinner } from 'spinner';
-import StringWithComponent from 'string-with-component';
 import { classWithModifiers } from 'utils/css';
 import Beatmapset from './beatmapset';
 import User from './user';
@@ -110,7 +110,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     this.selectBox(section, index);
   };
 
-  private onMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
+  private onMouseLeave = () => {
     this.props.worker.selectNone();
   };
 

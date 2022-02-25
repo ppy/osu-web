@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => 'onderwerp logs',
+        ],
         'topic_watches_controller' => [
             'index' => 'dashboard',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'dashboard',
             'verify_link' => 'account verificatie',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'aanbevolen artiesten  ',
         ],
         'artists_controller' => [
             '_' => 'aanbevolen artiesten',
@@ -48,7 +54,7 @@ return [
             '_' => 'beatmap discussies',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'beatmap pakketten',
+            '_' => 'beatmap packs',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => 'beatmap discussie stemmen',
@@ -133,6 +139,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'ranglijst',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'app machtigen',
         ],
     ],
     'store' => [

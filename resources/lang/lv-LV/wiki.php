@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'Pieprasītā lapa netika atrasta ar pašreizējo, izvēlēto valodu.',
         'needs_cleanup_or_rewrite' => '',
         'search' => 'Meklēt esošās lapas :link.',
+        'stub' => '',
         'toc' => 'Saturs',
 
         'edit' => [

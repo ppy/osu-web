@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Пакуль яшчэ няма гульняў osu!(Лазер)!',
+    'empty' => [
+        '_' => 'Пакуль што няма :type_group гульняў ў osu!lazer',
+        'playlists' => 'плэйліст',
+        'realtime' => 'мультыплэер',
+    ],
 
     'room' => [
         'hosted_by' => ':user хост',
@@ -12,6 +16,10 @@ return [
         'map_count' => ':count_delimited бітмапа|:count_delimited бітмап',
         'player_count' => ':count_delimited гулец|:count_delimited гульцоў',
         'time_left' => ':time засталася',
+
+        'errors' => [
+            'duration_too_long' => 'Вельмі вялікая працягласць.',
+        ],
 
         'status' => [
             'active' => 'актыўны',

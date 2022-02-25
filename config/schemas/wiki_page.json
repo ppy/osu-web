@@ -7,13 +7,7 @@
           "type": "date"
         },
         "layout": {
-          "fields": {
-            "keyword": {
-              "ignore_above": 256,
-              "type": "keyword"
-            }
-          },
-          "type": "text"
+          "type": "keyword"
         },
         "locale": {
           "fields": {
@@ -25,21 +19,9 @@
           "type": "text"
         },
         "page": {
-          "fields": {
-            "keyword": {
-              "ignore_above": 256,
-              "type": "keyword"
-            }
-          },
           "type": "text"
         },
         "page_text": {
-          "fields": {
-            "keyword": {
-              "ignore_above": 256,
-              "type": "keyword"
-            }
-          },
           "type": "text"
         },
         "path": {
@@ -52,12 +34,6 @@
           "type": "text"
         },
         "path_clean": {
-          "fields": {
-            "keyword": {
-              "ignore_above": 256,
-              "type": "keyword"
-            }
-          },
           "type": "text"
         },
         "tags": {
@@ -93,9 +69,6 @@
     "index": {
       "analysis": {
         "analyzer": {
-          "lowercase": {
-            "tokenizer": "lowercase"
-          },
           "autocomplete": {
             "filter": [
               "lowercase"

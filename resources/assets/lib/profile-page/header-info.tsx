@@ -1,14 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import FlagCountry from 'flag-country';
+import FlagCountry from 'components/flag-country';
+import UserAvatar from 'components/user-avatar';
+import UserGroupBadges from 'components/user-group-badges';
 import GameMode from 'interfaces/game-mode';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
+import { times } from 'lodash';
+import core from 'osu-core-singleton';
 import * as React from 'react';
-import UserAvatar from 'user-avatar';
-import UserGroupBadges from 'user-group-badges';
 
 interface Props {
   coverUrl: string | null;
@@ -26,7 +27,7 @@ export default class HeaderInfo extends React.PureComponent<Props> {
     return (
       <div className='profile-info'>
         <div className='profile-info__bg' style={{ backgroundImage: osu.urlPresence(this.props.coverUrl) }} />
-        {this.props.user.id === currentUser.id ? (
+        {this.props.user.id === core.currentUser?.id ? (
           <a className='profile-info__avatar' href={`${route('account.edit')}#avatar`} title={osu.trans('users.show.change_avatar')}>{avatar}</a>
         ) : (
           <div className='profile-info__avatar'>{avatar}</div>
@@ -41,12 +42,10 @@ export default class HeaderInfo extends React.PureComponent<Props> {
             <div className='profile-info__icons'>
               {this.props.user.is_supporter && (
                 <span className='profile-info__icon profile-info__icon--supporter' title={osu.trans('users.show.is_supporter')}>
-                  {
-                    _(this.props.user.support_level).times((i) => <span key={i} className='fas fa-heart'/>)
-                  }
+                  {times(this.props.user.support_level ?? 0, (i) => <span key={i} className='fas fa-heart'/>)}
                 </span>
               )}
-              <UserGroupBadges groups={this.props.user.groups} modifiers={['profile-page']} wrapper='profile-info__icon' />
+              <UserGroupBadges groups={this.props.user.groups} modifiers='profile-page' wrapper='profile-info__icon' />
             </div>
             <div className='profile-info__icons profile-info__icons--flag'>
               {this.props.user.country?.code != null && (

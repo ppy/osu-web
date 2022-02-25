@@ -102,13 +102,9 @@
 
         @if (count($buttons) > 0)
             <div class="forum-post__actions">
-                <div class="forum-post-actions">
-                    @foreach ($buttons as $button)
-                        <div class="forum-post-actions__action">
-                            @include("forum.posts._button_{$button}", ['post' => $post, 'type' => 'circle'])
-                        </div>
-                    @endforeach
-                </div>
+                @foreach ($buttons as $button)
+                    @include("forum.posts._button_{$button}", ['post' => $post, 'type' => 'circle'])
+                @endforeach
             </div>
         @endif
     </div>

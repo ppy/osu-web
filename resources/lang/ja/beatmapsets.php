@@ -16,7 +16,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => '注目アーティスト',
     ],
 
     'index' => [
@@ -154,11 +154,12 @@ return [
                 'combo' => '最大コンボ',
                 'miss' => 'ミス',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'プレイヤー',
                 'pp' => '',
                 'rank' => '順位',
-                'score_total' => '合計スコア',
                 'score' => 'スコア',
+                'score_total' => '合計スコア',
                 'time' => '時間',
             ],
 
@@ -172,6 +173,10 @@ return [
             'score' => [
                 'first' => 'リード',
                 'own' => 'あなたのベスト',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

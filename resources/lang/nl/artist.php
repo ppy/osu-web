@@ -12,7 +12,7 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmappen',
+        '_' => 'Beatmaps',
         'download' => 'Beatmap Sjabloon Downloaden',
         'download-na' => 'Beatmap Sjabloon nog niet beschikbaar',
     ],
@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu! beatmaps',
         'osu' => 'osu! profiel',
         'site' => 'Officiële Website',
     ],
@@ -30,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Nummers',
         'count' => ':count nummer|:count nummers',
-        'original' => '',
+        'original' => 'osu! origineel',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => 'lengte',
         'bpm' => 'bpm',
         'genre' => 'genre',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'nummers zoeken',
+
+            'form' => [
+                'advanced' => 'Geavanceerd Zoeken',
+                'album' => 'Album',
+                'artist' => 'Artiest',
+                'bpm_gte' => 'Minimale BPM',
+                'bpm_lte' => 'Maximale BPM',
+                'empty' => 'Er zijn geen nummers gevonden die aan de zoekcriteria voldoen.',
+                'genre' => 'Genre',
+                'genre_all' => 'Alles',
+                'length_gte' => 'Minimale Lengte',
+                'length_lte' => 'Maximale Lengte',
+            ],
+        ],
     ],
 ];

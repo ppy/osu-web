@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
+    'missing_route' => 'Url không hợp lệ hoặc phương pháp yêu cầu không chính xác.',
     'no_restricted_access' => 'Không thể thực hiện hành động do tài khoản của bạn đang bị hạn chế.',
     'supporter_only' => 'Bạn phải là một osu!supporter để sử dụng tính năng này.',
     'unknown' => 'Đã xảy ra lỗi không xác định.',
@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Không có kết quả, vui lòng thử lại sau.',
+        'invalid_cursor_exception' => 'Tham số con trỏ được chỉ định là không hợp lệ.',
         'operation_timeout_exception' => 'Hệ thống tìm kiếm đang quá tải, vui lòng thử lại sau.',
     ],
 ];

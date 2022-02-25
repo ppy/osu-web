@@ -7,32 +7,41 @@ import GameMode from './game-mode';
 import Rank from './rank';
 import UserJson from './user-json';
 
+export interface ScoreCurrentUserPinJson {
+  is_pinned: boolean;
+  score_id: number;
+  score_type: `score_best_${GameMode}`;
+}
+
+export type ScoreStatisticsAttribute = 'count_50' | 'count_100' | 'count_300' | 'count_geki' | 'count_katu' | 'count_miss';
+
 export default interface ScoreJson {
   accuracy: number;
   beatmap?: BeatmapExtendedJson;
   beatmapset?: BeatmapsetJson;
   best_id: number | null;
   created_at: string;
-  id: string;
+  current_user_attributes: {
+    pin?: ScoreCurrentUserPinJson;
+  };
+  id: number;
   max_combo: number;
   mode?: GameMode;
   mode_int?: number;
   mods: string[];
   passed: boolean;
+  perfect: boolean;
   pp?: number;
   rank?: Rank;
   rank_country?: number;
   rank_global?: number;
   replay: boolean;
   score: number;
-  statistics: {
-    count_100: number;
-    count_300: number;
-    count_50: number;
-    count_geki: number;
-    count_katu: number;
-    count_miss: number;
-  };
+  statistics: Record<ScoreStatisticsAttribute, number>;
   user: UserJson;
   user_id: number;
+  weight?: {
+    percentage: number;
+    pp: number;
+  };
 }

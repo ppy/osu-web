@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Чат',
 
+            'announcement' => [
+                '_' => 'Новая аб\'ява',
+
+                'announce' => [
+                    'channel_announcement' => ':username сказаў ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Аб\'ява ад :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Новае паведамленне',
+
                 'pm' => [
                     'channel_message' => ':username сказаў ":title"',
                     'channel_message_compact' => ':title',
@@ -97,7 +108,7 @@ return [
         ],
 
         'build' => [
-            '_' => 'Спic змен',
+            '_' => 'Гісторыя змен',
 
             'comment' => [
                 '_' => 'Новы каментарый',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'Новая бітмапа ":title" ад :username',
                 'user_beatmapset_new_compact' => 'Новая бітмапа ":title"',
                 'user_beatmapset_new_group' => 'Новая бітмапа ад :username',
+
+                'user_beatmapset_revive' => 'Бітмапа ":title" адноўлена :username',
+                'user_beatmapset_revive_compact' => 'Бітмапа ":title" адноўлена',
             ],
         ],
 
@@ -202,7 +216,7 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => 'Журнал зменаў ":title" мае новыя каментарыі',
+                'comment_new' => 'Гісторыя зменаў ":title" мае новыя каментарыі',
             ],
         ],
 

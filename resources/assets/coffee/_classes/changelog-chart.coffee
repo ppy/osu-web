@@ -1,7 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @ChangelogChart
+import { fadeIn, fadeOut } from 'utils/fade'
+import { parseJson } from 'utils/json'
+
+class window.ChangelogChart
   constructor: (area) ->
     @options =
       scales:
@@ -57,7 +60,7 @@ class @ChangelogChart
 
 
   loadData: ->
-    @config = osu.parseJson 'json-chart-config'
+    @config = parseJson 'json-chart-config'
 
     {data, hasData} = @normalizeData @config.build_history
 
@@ -123,15 +126,15 @@ class @ChangelogChart
 
 
   showTooltip: =>
-    Fade.in @tooltipContainer.node()
+    fadeIn @tooltipContainer.node()
 
 
   hideTooltip: =>
-    Fade.out @tooltipContainer.node()
+    fadeOut @tooltipContainer.node()
 
 
-  moveTooltip: =>
-    mousePos = d3.mouse @hoverArea.node()
+  moveTooltip: (event) =>
+    mousePos = d3.pointer event
     @x = @options.scales.x.invert mousePos[0]
     @y = mousePos[1] / @height
 
@@ -147,9 +150,11 @@ class @ChangelogChart
     x = @x
     y = @y
 
+    return unless x?
+
     pos = d3.bisector((d) -> d.data.date).left @data[0], x
 
-    return unless pos
+    return unless pos?
 
     for el, i in @data
       if y <= el[pos][1] && el[pos].data[el.key]?

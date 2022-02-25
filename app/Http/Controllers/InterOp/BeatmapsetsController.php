@@ -8,6 +8,7 @@ namespace App\Http\Controllers\InterOp;
 use App\Http\Controllers\Controller;
 use App\Jobs\BeatmapsetDelete;
 use App\Jobs\Notifications\UserBeatmapsetNew;
+use App\Jobs\Notifications\UserBeatmapsetRevive;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
@@ -20,6 +21,15 @@ class BeatmapsetsController extends Controller
         $beatmapset = Beatmapset::findOrFail($id);
 
         (new UserBeatmapsetNew($beatmapset))->dispatch();
+
+        return response(null, 204);
+    }
+
+    public function broadcastRevive($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        (new UserBeatmapsetRevive($beatmapset))->dispatch();
 
         return response(null, 204);
     }

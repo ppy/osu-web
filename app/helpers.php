@@ -7,6 +7,18 @@ use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
 use Illuminate\Support\HtmlString;
 
+function api_version(): int
+{
+    $request = request();
+    $version = $request->attributes->get('api_version');
+    if ($version === null) {
+        $version = get_int($request->header('x-api-version')) ?? 0;
+        $request->attributes->set('api_version', $version);
+    }
+
+    return $version;
+}
+
 /*
  * Like array_search but returns null if not found instead of false.
  * Strict mode only.
@@ -260,6 +272,51 @@ function current_locale_meta(): LocaleMeta
     return locale_meta(app()->getLocale());
 }
 
+function cursor_decode($cursorString): ?array
+{
+    if (is_string($cursorString) && present($cursorString)) {
+        $cursor = json_decode(base64_decode(strtr($cursorString, '-_', '+/'), true), true);
+
+        if (is_array($cursor)) {
+            return $cursor;
+        }
+    }
+
+    return null;
+}
+
+function cursor_encode(?array $cursor): ?string
+{
+    if ($cursor === null) {
+        return null;
+    }
+
+    // url safe base64
+    // reference: https://datatracker.ietf.org/doc/html/rfc4648#section-5
+    return rtrim(strtr(base64_encode(json_encode($cursor)), '+/', '-_'), '=');
+}
+
+function cursor_for_response(?array $cursor): array
+{
+    return [
+        'cursor' => $cursor,
+        'cursor_string' => cursor_encode($cursor),
+    ];
+}
+
+function cursor_from_params($params): ?array
+{
+    if (is_array($params)) {
+        $cursor = cursor_decode($params['cursor_string'] ?? null) ?? $params['cursor'] ?? null;
+
+        if (is_array($cursor)) {
+            return $cursor;
+        }
+    }
+
+    return null;
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $withClockwork = app('clockwork.support')->isEnabled();
@@ -413,6 +470,25 @@ function markdown($input, $preset = 'default')
     }
 
     return $converter[$preset]->load($input)->html();
+}
+
+function markdown_chat($input)
+{
+    static $converter;
+
+    if (!isset($converter)) {
+        $environment = new League\CommonMark\Environment\Environment([
+            'allow_unsafe_links' => false,
+            'max_nesting_level' => 20,
+            'renderer' => ['soft_break' => '<br />'],
+        ]);
+
+        $environment->addExtension(new App\Libraries\Markdown\Chat\Extension());
+
+        $converter = new League\CommonMark\MarkdownConverter($environment);
+    }
+
+    return $converter->convertToHtml($input)->getContent();
 }
 
 function markdown_plain($input)
@@ -872,6 +948,13 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
+function wiki_image_url(string $path, bool $fullUrl = true)
+{
+    static $placeholder = '_WIKI_IMAGE_';
+
+    return str_replace($placeholder, $path, route('wiki.image', ['path' => $placeholder], $fullUrl));
+}
+
 function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
     $path = $path === null ? 'Main_Page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));
@@ -1261,6 +1344,47 @@ function get_int($string)
     }
 }
 
+function get_length($string): ?array
+{
+    static $scales = [
+        'ms' => 0.001,
+        's' => 1,
+        'm' => 60,
+        'h' => 3600,
+    ];
+
+    $string = get_string($string);
+
+    if ($string === null) {
+        return null;
+    }
+
+    $scaleKey = substr($string, -2);
+
+    if (!isset($scales[$scaleKey])) {
+        $scaleKey = substr($scaleKey, -1);
+    }
+
+    if (!isset($scales[$scaleKey])) {
+        $scaleKey = 's';
+        $string .= $scaleKey;
+    }
+
+    $value = get_float(substr($string, 0, -strlen($scaleKey)));
+
+    if ($value === null) {
+        return null;
+    }
+
+    $scale = $scales[$scaleKey] ?? 1;
+    $value *= $scale;
+
+    return [
+        'scale' => $scale,
+        'value' => $value,
+    ];
+}
+
 function get_file($input)
 {
     if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
@@ -1352,6 +1476,8 @@ function get_param_value($input, $type)
             return get_file($input);
         case 'float':
             return get_float($input);
+        case 'length':
+            return get_length($input);
         case 'string':
             return get_string($input);
         case 'string_split':

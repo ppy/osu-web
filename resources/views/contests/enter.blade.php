@@ -5,7 +5,7 @@
 @extends('contests.base')
 
 @section('contest-content')
-    <div class="contest__description">{!! markdown($contestMeta->description_enter) !!}</div>
+    <div class="contest__description">{!! markdown($contestMeta->description_enter, 'contest') !!}</div>
     @include('contests._countdown', ['deadline' => $contestMeta->currentPhaseEndDate()])
     @if (!Auth::check())
       <div class='contest__voting-notice contest__voting-notice--padding'>{{osu_trans('contest.entry.login_required')}}</div>
@@ -35,5 +35,5 @@
   <script id="json-userEntries" type="application/json">
     {!! json_encode($contest->userEntries(Auth::user())) !!}
   </script>
-  @include('layout._react_js', ['src' => 'js/react/contest-entry.js'])
+  @include('layout._react_js', ['src' => 'js/contest-entry.js'])
 @stop

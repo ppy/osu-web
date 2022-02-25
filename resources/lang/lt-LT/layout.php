@@ -19,7 +19,6 @@ return [
             'contest' => 'konkursas',
             'contests' => 'konkursai',
             'root' => 'konsolė',
-            'store_orders' => '',
         ],
 
         'artists' => [
@@ -47,7 +46,8 @@ return [
 
         'users' => [
             'modding' => '',
-            'multiplayer' => '',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'informacija',
         ],
     ],

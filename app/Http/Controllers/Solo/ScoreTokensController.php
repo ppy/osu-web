@@ -14,11 +14,6 @@ use PDOException;
 
 class ScoreTokensController extends BaseController
 {
-    private static function getBeatmapOrFail($beatmapId): Beatmap
-    {
-        return Beatmap::scoreable()->findOrFail($beatmapId);
-    }
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -26,17 +21,18 @@ class ScoreTokensController extends BaseController
 
     public function store($beatmapId)
     {
-        $beatmap = static::getBeatmapOrFail($beatmapId);
+        $beatmap = Beatmap::increasesStatistics()->findOrFail($beatmapId);
         $user = auth()->user();
         $params = request()->all();
 
-        ClientCheck::assert($user, $params);
+        $build = ClientCheck::findBuild($user, $params);
 
         try {
             $scoreToken = ScoreToken::create([
-                'user_id' => $user->getKey(),
                 'beatmap_id' => $beatmap->getKey(),
+                'build_id' => $build?->getKey(),
                 'ruleset_id' => get_int($params['ruleset_id'] ?? null),
+                'user_id' => $user->getKey(),
             ]);
         } catch (PDOException $e) {
             // TODO: move this to be a validation inside Score model

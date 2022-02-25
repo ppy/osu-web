@@ -3,18 +3,25 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
+namespace Database\Factories\OAuth;
+
 use App\Models\OAuth\Token;
+use Database\Factories\Factory;
 use Laravel\Passport\RefreshToken;
 
-$factory->define(RefreshToken::class, function (Faker\Generator $faker) {
-    return [
-        'id' => str_random(40),
-        'access_token_id' => function () {
-            return factory(Token::class)->create()->getKey();
-        },
-        'revoked' => false,
-        'expires_at' => function () {
-            return now()->addDay();
-        },
-    ];
-});
+class RefreshTokenFactory extends Factory
+{
+    protected $model = RefreshToken::class;
+
+    public function definition(): array
+    {
+        return [
+            'access_token_id' => Token::factory(),
+            'expires_at' => fn () => now()->addDay(),
+            'id' => str_random(40),
+            'revoked' => false,
+        ];
+    }
+}

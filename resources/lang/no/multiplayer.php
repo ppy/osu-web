@@ -4,19 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => '',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
-        'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'hosted_by' => 'arrangert av :user',
+        'invalid_password' => 'Feil rom-passord',
+        'map_count' => ':count_delimited map|:count_delimited maps',
+        'player_count' => ':count_delimited spiller|:count_delimited spillere',
+        'time_left' => ':time igjen',
+
+        'errors' => [
+            'duration_too_long' => '',
+        ],
 
         'status' => [
-            'active' => '',
-            'ended' => '',
-            'soon' => '',
+            'active' => 'aktiv',
+            'ended' => 'avsluttet',
+            'soon' => 'slutter snart',
         ],
     ],
 ];

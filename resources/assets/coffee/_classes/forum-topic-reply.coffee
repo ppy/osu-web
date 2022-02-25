@@ -1,7 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @ForumTopicReply
+import { pageChange } from 'utils/page-change'
+import { currentUrl } from 'utils/turbolinks'
+
+class window.ForumTopicReply
   constructor: ({ @bbcodePreview, @forum, @stickyFooter }) ->
     @container = document.getElementsByClassName('js-forum-topic-reply--container')
     @box = document.getElementsByClassName('js-forum-topic-reply')
@@ -38,15 +41,15 @@ class @ForumTopicReply
 
 
   deleteState: (key) =>
-    localStorage.removeItem "forum-topic-reply--#{_exported.currentUrl().pathname}--#{key}"
+    localStorage.removeItem "forum-topic-reply--#{currentUrl().pathname}--#{key}"
 
 
   getState: (key) =>
-    localStorage.getItem "forum-topic-reply--#{_exported.currentUrl().pathname}--#{key}"
+    localStorage.getItem "forum-topic-reply--#{currentUrl().pathname}--#{key}"
 
 
   setState: (key, value) =>
-    localStorage.setItem "forum-topic-reply--#{_exported.currentUrl().pathname}--#{key}", value
+    localStorage.setItem "forum-topic-reply--#{currentUrl().pathname}--#{key}", value
 
 
   activate: =>
@@ -110,7 +113,7 @@ class @ForumTopicReply
     else
       @forum.setTotalPosts(@forum.totalPosts() + 1)
       @forum.endPost().insertAdjacentHTML 'afterend', data
-      _exported.pageChange()
+      pageChange()
 
       @forum.endPost().scrollIntoView()
 
@@ -166,4 +169,4 @@ class @ForumTopicReply
     target.insertBefore(box, target.firstChild)
 
     $input.focus() if inputFocused
-    _exported.pageChange() # sync reply box height
+    pageChange() # sync reply box height

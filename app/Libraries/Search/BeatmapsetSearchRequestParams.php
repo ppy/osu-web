@@ -5,9 +5,9 @@
 
 namespace App\Libraries\Search;
 
-use App\Exceptions\InvariantException;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Sort;
+use App\Libraries\Elasticsearch\Utils\SearchAfterParam;
 use App\Models\Beatmap;
 use App\Models\Genre;
 use App\Models\Language;
@@ -15,7 +15,7 @@ use App\Models\User;
 
 class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
-    const AVAILABLE_STATUSES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'graveyard', 'mine'];
+    const AVAILABLE_STATUSES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'wip', 'graveyard', 'mine'];
     const AVAILABLE_EXTRAS = ['video', 'storyboard'];
     const AVAILABLE_GENERAL = ['recommended', 'converts', 'follows', 'featured_artists'];
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
@@ -103,7 +103,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         $this->parseSort($sort);
-        $this->searchAfter = $this->getSearchAfter($request['cursor'] ?? null);
+        $this->searchAfter = SearchAfterParam::make($this, cursor_from_params($request));
 
         // Supporter-only options.
         $this->rank = array_intersect(
@@ -183,37 +183,11 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             return 'ranked';
         }
 
-        if (in_array($this->status, ['pending', 'graveyard', 'mine'], true)) {
+        if (in_array($this->status, ['pending', 'wip', 'graveyard', 'mine'], true)) {
             return 'updated';
         }
 
         return 'ranked';
-    }
-
-    /**
-     * Extract search_after out of cursor param. Cursor values that are not part of the sort are ignored.
-     *
-     * The search_after value passed to elasticsearch needs to be the same length as the number of
-     * sorts given.
-     */
-    private function getSearchAfter($cursor): ?array
-    {
-        if (!is_array($cursor)) {
-            return null;
-        }
-
-        $searchAfter = [];
-        /** @var Sort $sort */
-        foreach ($this->sorts as $sort) {
-            $value = $cursor[$sort->field] ?? null;
-            if ($value === null) {
-                throw new InvariantException('Cursor parameters do not match sort parameters.');
-            }
-
-            $searchAfter[] = $value;
-        }
-
-        return $searchAfter;
     }
 
     private function parseQuery(): void
@@ -315,6 +289,6 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         // generic tie-breaker.
-        $this->sorts[] = new Sort('_id', $sort->order);
+        $this->sorts[] = new Sort('id', $sort->order);
     }
 }

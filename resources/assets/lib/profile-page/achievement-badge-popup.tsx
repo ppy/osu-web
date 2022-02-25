@@ -1,20 +1,19 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import StringWithComponent from 'components/string-with-component';
+import TimeWithTooltip from 'components/time-with-tooltip';
 import AchievementJson from 'interfaces/achievement-json';
-import UserAchievementJson from 'interfaces/user-achievement-json';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
-import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers } from 'utils/css';
 import AchievementBadgeIcon from './achievement-badge-icon';
 
 interface Props {
+  achievedAt?: string;
   achievement: AchievementJson;
-  userAchievement?: UserAchievementJson | null;
 }
 
-export default function AchievementBadgePopup({ achievement, userAchievement }: Props) {
+export default function AchievementBadgePopup({ achievedAt, achievement }: Props) {
   return (
     <div className='tooltip-achievement'>
       <div className='tooltip-achievement__badge'>
@@ -22,7 +21,7 @@ export default function AchievementBadgePopup({ achievement, userAchievement }: 
           achievement={achievement}
           modifiers={{
             'dynamic-height': true,
-            locked: userAchievement == null,
+            locked: achievedAt == null,
           }}
         />
       </div>
@@ -51,10 +50,10 @@ export default function AchievementBadgePopup({ achievement, userAchievement }: 
         )}
       </div>
 
-      {userAchievement != null ? (
+      {achievedAt != null ? (
         <div className='tooltip-achievement__date'>
           <StringWithComponent
-            mappings={{ date: <TimeWithTooltip dateTime={userAchievement.achieved_at} /> }}
+            mappings={{ date: <TimeWithTooltip dateTime={achievedAt} /> }}
             pattern={osu.trans('users.show.extra.achievements.achieved-on')}
           />
         </div>

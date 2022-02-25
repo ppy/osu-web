@@ -154,11 +154,12 @@ return [
                 'combo' => '最大连击',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => '置顶',
                 'player' => '玩家',
                 'pp' => '',
                 'rank' => '排名',
-                'score_total' => '得分',
                 'score' => '得分',
+                'score_total' => '得分',
                 'time' => '达成时间',
             ],
 
@@ -172,6 +173,10 @@ return [
             'score' => [
                 'first' => '领衔者',
                 'own' => '你的最佳成绩',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

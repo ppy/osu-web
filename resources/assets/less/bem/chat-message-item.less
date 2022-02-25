@@ -1,0 +1,53 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.chat-message-item {
+  margin: 5px;
+
+  &--sending {
+    opacity: 0.2;
+  }
+
+  &__content {
+    font-family: @font-content;
+    word-break: break-word;
+
+    &--action {
+      color: hsl(var(--hsl-l1));
+      font-style: italic;
+
+      &::before {
+        content: '* ';
+      }
+      &::after {
+        content: ' *';
+      }
+    }
+  }
+
+  &__entry {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__status {
+    color: hsla(var(--hsl-h1), 0.5);
+    margin-left: 10px;
+
+    &--errored {
+      color: red;
+    }
+  }
+
+  // TODO: css class instead?
+  code {
+    background: hsl(var(--hsl-b4));
+  }
+
+  pre {
+    background: hsl(var(--hsl-b4));
+    border: none;
+    color: inherit;
+  }
+}
+

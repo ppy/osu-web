@@ -35,18 +35,15 @@
     }
   }
 
-  &--post-reply {
-    background-color: transparent;
-    font-size: @font-size--normal;
-    padding-left: 0;
-    padding-right: 0;
-    margin: 0 (-@_gutter);
-  }
-
   &--profile-page-extra {
-    padding: 0;
-    border-bottom: 2px solid @osu-colour-h1;
-    overflow: visible;
+    .default-gutter-v2();
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: @font-size--title-small;
   }
 
   &--ranking {
@@ -84,6 +81,10 @@
       margin-right: 10px;
       margin-top: 5px;
       vertical-align: middle;
+    }
+
+    .@{_top}--profile-page-extra & {
+      margin: 0;
     }
 
     @media @mobile {

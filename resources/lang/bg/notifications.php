@@ -10,7 +10,7 @@ return [
     'mark_read' => 'Изчисти :type',
     'none' => 'Няма известия',
     'see_all' => 'виж всички известия',
-    'see_channel' => 'иди в чат',
+    'see_channel' => 'към чат',
     'verifying' => 'Моля, потвърдете сесията, за преглед на известия',
 
     'filters' => [
@@ -19,7 +19,7 @@ return [
         'beatmapset' => 'бийтмапове',
         'forum_topic' => 'форум',
         'news_post' => 'новини',
-        'build' => 'версии',
+        'build' => 'промени',
         'channel' => 'чат',
     ],
 
@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Чат',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Ново съобщение',
+
                 'pm' => [
                     'channel_message' => ':username каза ":title"',
                     'channel_message_compact' => ':title',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'Нов бийтмап ":title" от :username',
                 'user_beatmapset_new_compact' => 'Нов бийтмап ":title"',
                 'user_beatmapset_new_group' => 'Нов бийтмап от :username',
+
+                'user_beatmapset_revive' => 'Бийтмапът ":title" е съживен от :username',
+                'user_beatmapset_revive_compact' => 'Бийтмапът ":title" е съживен',
             ],
         ],
 

@@ -216,13 +216,13 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'zadej klíčová slova...',
-            'login_required' => 'Přihlaste se k hledání.',
+            'login_required' => 'Pro hledání se přihlaste.',
             'options' => 'Další možnosti hledání',
             'supporter_filter' => 'Filtrování podle :filters vyžaduje štítek podporovatele',
             'not-found' => 'bez výsledků',
             'not-found-quote' => '... ups, nic nebylo nalezeno.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Obecné',
                 'genre' => 'Žánr',
                 'language' => 'Jazyk',
@@ -240,7 +240,7 @@ return [
                 'updated' => 'Aktualizováno',
                 'ranked' => 'Hodnocené',
                 'rating' => 'Hodnocení',
-                'plays' => 'Zahraní',
+                'plays' => 'Zahrání',
                 'relevance' => 'Relevance',
                 'nominations' => 'Nominace',
             ],
@@ -251,9 +251,9 @@ return [
         ],
     ],
     'general' => [
-        'converts' => 'Zahrň konvertované beatmapy',
-        'featured_artists' => '',
-        'follows' => '',
+        'converts' => 'Zahrň překonvertované beatmapy',
+        'featured_artists' => 'Featured artists',
+        'follows' => 'Odebíraní autoři map',
         'recommended' => 'Doporučená obtížnost',
     ],
     'mode' => [

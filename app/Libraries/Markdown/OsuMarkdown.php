@@ -5,10 +5,9 @@
 
 namespace App\Libraries\Markdown;
 
+use App\Libraries\Markdown\CustomContainerInline\Extension as CustomContainerInlineExtension;
 use App\Traits\Memoizes;
 use League\CommonMark\Environment\Environment;
-use League\CommonMark\Event\DocumentParsedEvent;
-use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
@@ -17,6 +16,8 @@ use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\DefaultAttributes\DefaultAttributesExtension;
+use League\CommonMark\Extension\Footnote\FootnoteExtension;
+use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
 use League\CommonMark\Extension\Table\Table;
 use League\CommonMark\Extension\Table\TableCell;
 use League\CommonMark\Extension\Table\TableExtension;
@@ -29,7 +30,7 @@ class OsuMarkdown
 {
     use Memoizes;
 
-    const VERSION = 13;
+    const VERSION = 14;
 
     const DEFAULT_COMMONMARK_CONFIG = [
         'allow_unsafe_links' => false,
@@ -40,6 +41,7 @@ class OsuMarkdown
 
     const DEFAULT_OSU_EXTENSION_CONFIG = [
         'block_name' => 'osu-md',
+        'custom_container_inline' => false,
         'fix_wiki_url' => false,
         'generate_toc' => false,
         'record_first_image' => false,
@@ -47,12 +49,14 @@ class OsuMarkdown
         'style_block_allowed_classes' => null,
         'title_from_document' => false,
         'wiki_locale' => null,
+        'with_gallery' => false,
     ];
 
     // this config is only used in this class
     const DEFAULT_OSU_MARKDOWN_CONFIG = [
         'block_modifiers' => [],
-        'parse_attribute_id' => false,
+        'enable_autolink' => false,
+        'enable_footnote' => false,
         'parse_yaml_header' => true,
     ];
 
@@ -68,6 +72,12 @@ class OsuMarkdown
         'comment' => [
             'osu_markdown' => [
                 'block_modifiers' => ['comment'],
+                'enable_autolink' => true,
+            ],
+        ],
+        'contest' => [
+            'commonmark' => [
+                'html_input' => 'allow',
             ],
         ],
         'default' => [],
@@ -109,14 +119,17 @@ class OsuMarkdown
         ],
         'wiki' => [
             'osu_extension' => [
+                'attributes_allowed' => ['flag', 'id'],
+                'custom_container_inline' => true,
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
                 'style_block_allowed_classes' => ['infobox'],
                 'title_from_document' => true,
+                'with_gallery' => true,
             ],
             'osu_markdown' => [
                 'block_modifiers' => ['wiki'],
-                'parse_attribute_id' => true,
+                'enable_footnote' => true,
             ],
         ],
     ];
@@ -141,16 +154,20 @@ class OsuMarkdown
             try {
                 $header = Yaml::parse($matches['header']);
             } catch (YamlParseException $_e) {
-                $header = [];
+                // ignores error
+            }
+
+            if (!is_array($header ?? null)) {
+                $header = null;
             }
 
             $document = $matches['document'];
-        } else {
-            $header = [];
-            $document = $input;
         }
 
-        return compact('header', 'document');
+        return [
+            'document' => $document ?? $input,
+            'header' => $header ?? [],
+        ];
     }
 
     public function __construct(
@@ -250,6 +267,10 @@ class OsuMarkdown
                 'default_attributes' => $this->createDefaultAttributesConfig(),
             ];
 
+            if ($this->osuMarkdownConfig['enable_footnote']) {
+                $extraConfig['footnote'] = $this->createFootnoteConfig();
+            }
+
             $environment = $this->createEnvironment($extraConfig);
             $environment->addExtension(new DefaultAttributesExtension());
 
@@ -268,7 +289,7 @@ class OsuMarkdown
     private function getIndexableConverter(): MarkdownConverter
     {
         if ($this->indexableConverter === null) {
-            $environment = $this->createEnvironment();
+            $environment = $this->createEnvironment(['osu_extension' => $this->osuExtensionConfig]);
             $environment->addExtension(new Indexing\Extension());
 
             $this->indexableConverter = new MarkdownConverter($environment);
@@ -283,16 +304,23 @@ class OsuMarkdown
 
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
-        $environment->addExtension(new AutolinkExtension());
         $environment->addExtension(new TableExtension());
+        $environment->addExtension(new StrikethroughExtension());
 
-        if ($this->osuMarkdownConfig['parse_attribute_id']) {
-            $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());
-            $environment->addExtension(new AttributesExtension());
+        if ($this->osuExtensionConfig['custom_container_inline']) {
+            $environment->addExtension(new CustomContainerInlineExtension());
         }
 
         if ($this->osuExtensionConfig['style_block_allowed_classes'] !== null) {
             $environment->addExtension(new StyleBlock\Extension());
+        }
+
+        if ($this->osuMarkdownConfig['enable_footnote']) {
+            $environment->addExtension(new FootnoteExtension());
+        }
+
+        if ($this->osuMarkdownConfig['enable_autolink']) {
+            $environment->addExtension(new AutolinkExtension());
         }
 
         return $environment;
@@ -349,6 +377,22 @@ class OsuMarkdown
                     ]
                 ),
             ],
+        ];
+    }
+
+    private function createFootnoteConfig()
+    {
+        $blockClass = $this->osuExtensionConfig['block_name'];
+
+        return [
+            'backref_class' => "{$blockClass}__link",
+            'backref_symbol' => '↑',
+            'container_add_hr' => false,
+            'container_class' => "{$blockClass}__footnote-container",
+            'footnote_class' => "{$blockClass}__list-item {$blockClass}__list-item--footnote",
+            'footnote_id_prefix' => 'fn-',
+            'ref_class' => "{$blockClass}__link {$blockClass}__link--footnote-ref js-reference-link",
+            'ref_id_prefix' => 'fnref-',
         ];
     }
 }

@@ -27,7 +27,7 @@ use Ds\Set;
  */
 class BeatmapDiscussionPost extends Model
 {
-    use Validatable, Reportable;
+    use Traits\Reportable, Validatable;
 
     const MESSAGE_LIMIT_TIMELINE = 750;
 
@@ -41,7 +41,7 @@ class BeatmapDiscussionPost extends Model
 
     public static function search($rawParams = [])
     {
-        $pagination = pagination($rawParams);
+        $pagination = pagination(cursor_from_params($rawParams) ?? $rawParams);
 
         $params = [
             'limit' => $pagination['limit'],

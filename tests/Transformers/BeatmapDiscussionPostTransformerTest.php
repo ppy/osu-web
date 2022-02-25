@@ -22,9 +22,9 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testWithOAuth($groupIdentifier)
+    public function testWithOAuth(?string $groupIdentifier)
     {
-        $viewer = $this->createUserWithGroup($groupIdentifier);
+        $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
 
         $json = json_item($this->deletedPost, 'BeatmapDiscussionPost');
@@ -34,9 +34,9 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testWithoutOAuth($groupIdentifier, $visible)
+    public function testWithoutOAuth(?string $groupIdentifier, bool $visible)
     {
-        $viewer = $this->createUserWithGroup($groupIdentifier);
+        $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsUser($viewer);
 
         $json = json_item($this->deletedPost, 'BeatmapDiscussionPost');
@@ -55,7 +55,7 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
             ['bng', false],
             ['gmt', true],
             ['nat', true],
-            [[], false],
+            [null, false],
         ];
     }
 
@@ -63,13 +63,11 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
     {
         parent::setUp();
 
-        $mapper = factory(User::class)->create();
-        $beatmapset = factory(Beatmapset::class)->states('with_discussion')->create([
-            'user_id' => $mapper->getKey(),
-        ]);
+        $mapper = User::factory()->create();
+        $beatmapset = Beatmapset::factory()->owner($mapper)->withDiscussion()->create();
 
         $this->beatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
-        $this->beatmapDiscussion->beatmapDiscussionPosts()->saveMany(factory(BeatmapDiscussionPost::class, 2)->make());
+        $this->beatmapDiscussion->beatmapDiscussionPosts()->saveMany(BeatmapDiscussionPost::factory()->count(2)->make());
         $this->deletedPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->last();
 
         $this->deletedPost->softDeleteOrExplode($mapper);

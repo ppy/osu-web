@@ -154,11 +154,12 @@ return [
                 'combo' => 'Maks Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Spiller',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Total Score',
                 'score' => 'Score',
+                'score_total' => 'Total Score',
                 'time' => 'Tid',
             ],
 
@@ -172,6 +173,10 @@ return [
             'score' => [
                 'first' => 'I Førerpositionen',
                 'own' => 'Dit Bedste',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

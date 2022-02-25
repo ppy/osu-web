@@ -60,6 +60,10 @@ class TopicPoll
                 $this->validationErrors()->add('title', 'required');
             }
 
+            if (mb_strlen($this->params['title']) > 255) {
+                $this->validationErrors()->add('title', 'too_long', ['limit' => 255]);
+            }
+
             if (count($this->params['options']) > count(array_unique($this->params['options']))) {
                 $this->validationErrors()->add('options', '.duplicate_options');
             }
@@ -139,6 +143,17 @@ class TopicPoll
         $this->topic = $topic;
 
         return $this;
+    }
+
+    /**
+     * Get the aggregate vote count of this poll, or `0` if the poll doesn't exist. If the poll
+     * allows selecting more than one option, this may be greater than the number of users who voted.
+     */
+    public function totalVoteCount(): int
+    {
+        return $this->exists()
+            ? $this->topic->pollOptions->sum('poll_option_total')
+            : 0;
     }
 
     public function validationErrorsTranslationPrefix()

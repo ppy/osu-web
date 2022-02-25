@@ -13,7 +13,7 @@ return [
     ],
 
     'events' => [
-        'empty' => 'Belum ada yang terjadi.',
+        'empty' => 'Belum ada hal apapun yang terjadi... hingga saat ini.',
     ],
 
     'index' => [
@@ -25,7 +25,7 @@ return [
             '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
             'mode' => 'Mode beatmap',
-            'only_unresolved' => 'Hanya tampilkan diskusi yang belum selesai',
+            'only_unresolved' => 'Hanya tampilkan topik diskusi yang belum terjawab',
             'types' => 'Tipe pesan',
             'username' => 'Nama Pengguna',
 
@@ -46,15 +46,15 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Tanggal kiriman',
+        'created_at' => 'Tanggal dibuat',
         'deleted_at' => 'Tanggal penghapusan',
         'message_type' => 'Jenis',
         'permalink' => 'Tautan',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Tidak ada postingan yang membahas masalah saya',
-        'notice' => 'Terdapat postingan pada :timestamp (:existing_timestamps). Silakan periksa sebelum memposting.',
+        'confirm' => 'Saya tidak menemukan adanya postingan yang membahas isu yang hendak saya angkat',
+        'notice' => 'Kami mendeteksi adanya postingan-postingan lain di sekitar :timestamp (:existing_timestamps). Harap periksa apakah isu yang hendak Anda angkat telah dibahas oleh pengguna lain sebelumnya.',
         'unsaved' => ':count pada kajian ini',
     ],
 
@@ -91,7 +91,7 @@ return [
     'system' => [
         'resolved' => [
             'true' => 'Ditandai sebagai telah terjawab oleh :user',
-            'false' => 'Dibuka ulang oleh :user',
+            'false' => 'Dibuka kembali oleh :user',
         ],
     ],
 

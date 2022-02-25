@@ -16,7 +16,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Featured Artist',
     ],
 
     'index' => [
@@ -154,11 +154,12 @@ return [
                 'combo' => 'Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Spieler',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Gesamtpunktzahl',
                 'score' => 'Punktzahl',
+                'score_total' => 'Gesamtpunktzahl',
                 'time' => 'Zeit',
             ],
 
@@ -172,6 +173,10 @@ return [
             'score' => [
                 'first' => 'An der Spitze',
                 'own' => 'Dein bester Rang',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

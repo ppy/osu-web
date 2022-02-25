@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'צ\'אט',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'הודעה חדשה',
+
                 'pm' => [
                     'channel_message' => ':username אומר ":title"',
                     'channel_message_compact' => ':title',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'מפה חדשה ":title" מאת :username',
                 'user_beatmapset_new_compact' => 'מפה חדשה ":title"',
                 'user_beatmapset_new_group' => 'מפות חדשות מאת :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

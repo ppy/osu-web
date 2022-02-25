@@ -13,8 +13,9 @@ use League\CommonMark\Extension\CommonMark\Node\Block;
 use League\CommonMark\Extension\CommonMark\Node\Inline;
 use League\CommonMark\Node\Block\Paragraph;
 use League\CommonMark\Node\Inline\Text;
+use League\CommonMark\Node\Node;
 use League\CommonMark\Node\NodeWalkerEvent;
-use League\CommonMark\Node\StringContainerHelper;
+use League\CommonMark\Node\StringContainerInterface;
 use League\Config\ConfigurationInterface;
 
 class DocumentProcessor
@@ -27,6 +28,8 @@ class DocumentProcessor
     private ?NodeWalkerEvent $event;
     private $node;
 
+    private int $figureIndex;
+    private ?string $galleryId;
     private array $tocSlugs;
 
     private ?string $relativeUrlRoot;
@@ -51,11 +54,14 @@ class DocumentProcessor
         $generateToc = $this->config->get('osu_extension/generate_toc');
         $recordFirstImage = $this->config->get('osu_extension/record_first_image');
         $titleFromDocument = $this->config->get('osu_extension/title_from_document');
+        $withGallery = $this->config->get('osu_extension/with_gallery');
         $this->wikiLocale = $this->config->get('osu_extension/wiki_locale');
 
         $this->setWikiPaths();
 
+        $this->figureIndex = 0;
         $this->firstImage = null;
+        $this->galleryId = null;
         $this->title = null;
         $this->toc = [];
         $this->tocSlugs = [];
@@ -82,9 +88,9 @@ class DocumentProcessor
                 $this->loadToc();
             }
 
-            $this->parseFigure();
-
             $this->proxyImage();
+
+            $this->parseFigure($withGallery);
         }
     }
 
@@ -109,6 +115,27 @@ class DocumentProcessor
         }
     }
 
+    private function getText(Node $node, bool $trim = true): string
+    {
+        $text = '';
+
+        foreach ($node->children() as $child) {
+            if ($child instanceof Inline\Image) {
+                continue;
+            } elseif ($child instanceof StringContainerInterface) {
+                $text .= $child->getLiteral();
+            } else {
+                $text .= $this->getText($child, false);
+            }
+        }
+
+        if ($trim) {
+            $text = trim($text);
+        }
+
+        return $text;
+    }
+
     private function loadToc()
     {
         if (
@@ -119,7 +146,7 @@ class DocumentProcessor
             return;
         }
 
-        $title = presence(StringContainerHelper::getChildText($this->node, [Inline\Image::class]));
+        $title = presence($this->getText($this->node));
         $slug = $this->node->data['attributes']['id'] ?? presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
@@ -137,9 +164,9 @@ class DocumentProcessor
         $this->node->data->set('attributes/id', $slug);
     }
 
-    private function parseFigure()
+    private function parseFigure($withGallery = false)
     {
-        if (!$this->node instanceof Paragraph || !$this->event->isEntering()) {
+        if (!$this->node instanceof Paragraph || $this->event->isEntering()) {
             return;
         }
 
@@ -159,6 +186,29 @@ class DocumentProcessor
             $textContainer->data->set('attributes/class', "{$blockClass}__figure-caption");
             $textContainer->appendChild($text);
             $this->node->appendChild($textContainer);
+        }
+
+        if ($withGallery) {
+            $this->galleryId ??= (string) rand();
+            $imageUrl = $image->getUrl();
+
+            if (starts_with($imageUrl, route('wiki.show', [], false))) {
+                $imageUrl = config('app.url').$imageUrl;
+            }
+
+            $imageSize = fast_imagesize($imageUrl);
+            if (!isset($imageSize)) {
+                return;
+            }
+
+            $image->data->append('attributes/class', "{$blockClass}__figure-image--gallery js-gallery");
+            $image->data->set('attributes/data-width', (string) $imageSize[0]);
+            $image->data->set('attributes/data-height', (string) $imageSize[1]);
+            $image->data->set('attributes/data-gallery-id', $this->galleryId);
+            $image->data->set('attributes/data-index', (string) $this->figureIndex);
+            $image->data->set('attributes/data-src', $imageUrl);
+
+            $this->figureIndex++;
         }
     }
 
@@ -183,7 +233,7 @@ class DocumentProcessor
             }
 
             if (OsuWiki::isImage($path)) {
-                $url = route('wiki.image', compact('path'), false);
+                $url = wiki_image_url($path, false);
             } else {
                 $locale ??= $this->wikiLocale ?? config('app.fallback_locale');
                 $url = wiki_url($path, $locale, false, false);
@@ -228,7 +278,7 @@ class DocumentProcessor
             return;
         }
 
-        $this->title = presence(StringContainerHelper::getChildText($this->node));
+        $this->title = presence($this->getText($this->node));
     }
 
     private function updateLocaleLink()

@@ -8,7 +8,6 @@ namespace Database\Seeders\ModelSeeders;
 use App\Models\RankHistory;
 use App\Models\User;
 use App\Models\UserAccountHistory;
-use App\Models\UserGroup;
 use App\Models\UserStatistics;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
@@ -40,7 +39,7 @@ class UserSeeder extends Seeder
         $this->common_countries = ['US', 'JP', 'CN', 'DE', 'TW', 'RU', 'KR', 'PL', 'CA', 'FR', 'BR', 'GB', 'AU'];
 
         // Create 10 users and their stats
-        factory(User::class, 10)->create([
+        User::factory()->count(10)->create([
             'osu_subscriber' => 1,
         ])->each(function ($u) {
 
@@ -120,13 +119,10 @@ class UserSeeder extends Seeder
             // INFRINGEMENTS
 
             // silence
-            $u->accountHistories()->save(factory(UserAccountHistory::class)->states('silence')->make());
+            $u->accountHistories()->save(UserAccountHistory::factory()->silence()->make());
 
             // note
-            $u->accountHistories()->save(factory(UserAccountHistory::class)->states('note')->make());
-
-            // USER GROUP
-            $u->userGroups()->save(new UserGroup(['group_id' => app('groups')->byIdentifier('default')->group_id]));
+            $u->accountHistories()->save(UserAccountHistory::factory()->note()->make());
         }); // end each user
     }
 }

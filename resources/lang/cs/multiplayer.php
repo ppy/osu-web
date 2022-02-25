@@ -4,17 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => '',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'invalid_password' => 'Nesprávné heslo místnosti',
+        'map_count' => ':count_delimited mapa|:count_delimited mapy|:count_delimited map',
+        'player_count' => ':count_delimited hráč|:count_delimited hráči|:count_delimited hráčů',
+        'time_left' => ':time zbývá',
+
+        'errors' => [
+            'duration_too_long' => '',
+        ],
 
         'status' => [
-            'active' => '',
+            'active' => 'aktivní',
             'ended' => '',
             'soon' => '',
         ],

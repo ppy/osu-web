@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'Ang hinihiling na pahina ay hindi mahanap para kasalukuyang piniling wika.',
         'needs_cleanup_or_rewrite' => 'Ang pahina na ito ay hindi natutugunan ang pamantayan ng osu! wiki at kailangang ayusin o isulat muli. Kung nais mo na tumulong, mangyari lamang na i-update ang artikulo!',
         'search' => 'Hinahanap ang mga kasalukuyang mga pahina para sa :link.',
+        'stub' => 'Ang artikulo na ito ay hindi pa tapos at naghihintay ng kahit sino upang palawakin ito.',
         'toc' => 'Mga Nilalaman',
 
         'edit' => [

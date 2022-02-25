@@ -18,8 +18,8 @@ return [
             '400' => 'невалидна заявка',
             '404' => 'липсва',
             '403' => 'забранен',
-            '401' => 'неоторизиран',
-            '401-verification' => 'потвърждение на акаунта',
+            '401' => 'неупълномощен',
+            '401-verification' => 'потвърждаване на профил',
             '405' => 'липсва',
             '422' => 'невалидна заявка',
             '429' => 'твърде много заявки',
@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'форум',
+        'topic_logs_controller' => [
+            'index' => 'дневници',
+        ],
         'topic_watches_controller' => [
             'index' => 'главно табло',
         ],
@@ -36,10 +39,13 @@ return [
     'main' => [
         'account_controller' => [
             'edit' => 'главно табло',
-            'verify_link' => 'потвърждение на акаунт',
+            'verify_link' => 'потвърждаване на профил',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'представени автори',
         ],
         'artists_controller' => [
-            '_' => 'Представени Артисти',
+            '_' => 'представени автори',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'бийтмап дискусии',
@@ -86,9 +92,9 @@ return [
             'show' => 'групи',
         ],
         'home_controller' => [
-            'get_download' => 'изтегли',
+            'get_download' => 'изтегляне',
             'index' => 'главно табло',
-            'search' => 'търси',
+            'search' => 'търсене',
             'support_the_game' => 'подкрепи играта',
             'testflight' => 'testflight',
         ],
@@ -96,7 +102,7 @@ return [
             '_' => 'информация',
         ],
         'livestreams_controller' => [
-            '_' => 'Игри На Живо',
+            '_' => 'игри на живо',
         ],
         'matches_controller' => [
             '_' => 'състезания',
@@ -135,12 +141,17 @@ return [
             '_' => 'класиране',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'упълномощаване на приложение',
+        ],
+    ],
     'store' => [
         '_' => 'магазин',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'редактор инфо',
+            '_' => 'инфо за редакции',
         ],
         'multiplayer_controller' => [
             '_' => 'мултиплейър история',

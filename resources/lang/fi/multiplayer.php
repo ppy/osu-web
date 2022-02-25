@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Ei vielä yhtään osu!(lazer) -moninpelejä pelattu!',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => 'isännöi :user',
@@ -12,6 +16,10 @@ return [
         'map_count' => ':count_delimited mappi|:count_delimited mappia',
         'player_count' => ':count_delimited pelaaja|:count_delimited pelaajaa',
         'time_left' => ':time jäljellä',
+
+        'errors' => [
+            'duration_too_long' => 'Liian pitkä aika.',
+        ],
 
         'status' => [
             'active' => 'aktiivinen',

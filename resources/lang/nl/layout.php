@@ -19,7 +19,6 @@ return [
             'contest' => 'competitie',
             'contests' => 'competities',
             'root' => 'console',
-            'store_orders' => 'winkel beheerder',
         ],
 
         'artists' => [
@@ -47,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => 'multiplayer',
+            'playlists' => 'afspeellijsten',
+            'realtime' => 'multiplayer',
             'show' => 'info',
         ],
     ],
@@ -167,7 +167,7 @@ return [
         'button' => 'inloggen / registreren',
 
         'login' => [
-            'forgot' => "Ik ben mij gegevens vergeten",
+            'forgot' => "Ik ben mijn inloggegevens vergeten",
             'password' => 'wachtwoord',
             'title' => 'Log In Om Verder Te Gaan',
             'username' => 'gebruikersnaam',
@@ -180,7 +180,7 @@ return [
 
         'register' => [
             'download' => 'Download',
-            'info' => 'Je hebt een account nodig, meneer. Waarom heeft u er niet al eentje?',
+            'info' => 'Download osu! om een account aan te maken!',
             'title' => "Heb je geen account?",
         ],
     ],

@@ -301,8 +301,8 @@ return [
                 'recent' => 'Neueste',
                 'title' => 'Medaillen',
             ],
-            'multiplayer' => [
-                'title' => 'Mehrspielerspiele',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Beiträge',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Neulich',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay herunterladen',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Erster Platz',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -378,7 +390,7 @@ return [
             'placeholder' => 'Seiteninhalt hier eingeben',
 
             'restriction_info' => [
-                '_' => 'Sie müssen ein :link sein, um diese Funktion freizuschalten.',
+                '_' => 'Du musst ein :link sein, um diese Funktion freizuschalten.',
                 'link' => 'osu!supporter',
             ],
         ],

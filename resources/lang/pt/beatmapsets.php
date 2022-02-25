@@ -154,11 +154,12 @@ return [
                 'combo' => 'Combo máximo',
                 'miss' => 'Erros',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Jogador',
                 'pp' => '',
                 'rank' => 'Posição',
-                'score_total' => 'Pontuação total',
                 'score' => 'Pontuação',
+                'score_total' => 'Pontuação total',
                 'time' => 'Tempo',
             ],
 
@@ -172,6 +173,10 @@ return [
             'score' => [
                 'first' => 'Na liderança',
                 'own' => 'A tua melhor',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

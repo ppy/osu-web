@@ -1,18 +1,17 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import AdminMenu from 'admin-menu';
-import { Comments } from 'comments';
-import { CommentsManager } from 'comments-manager';
+import AdminMenu from 'components/admin-menu';
+import { Comments } from 'components/comments';
+import { CommentsManager } from 'components/comments-manager';
+import NewsHeader from 'components/news-header';
+import StringWithComponent from 'components/string-with-component';
 import NewsPostJson from 'interfaces/news-post-json';
 import NewsSidebarMetaJson from 'interfaces/news-sidebar-meta-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
-import NewsHeader from 'news-header';
 import PostItem from 'news-index/post-item';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {

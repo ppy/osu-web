@@ -5,8 +5,10 @@
 
 namespace App\Libraries\Markdown\Osu;
 
+use App\Libraries\Markdown\Attributes\AttributesAllowedListener;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
+use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
 use League\CommonMark\Extension\ConfigurableExtensionInterface;
 use League\CommonMark\Extension\Table\Table;
@@ -23,7 +25,9 @@ class Extension implements ConfigurableExtensionInterface
     public function configureSchema(ConfigurationBuilderInterface $builder): void
     {
         $builder->addSchema('osu_extension', Expect::structure([
+            'attributes_allowed' => Expect::arrayOf('string')->nullable(),
             'block_name' => Expect::string(),
+            'custom_container_inline' => Expect::bool(),
             'fix_wiki_url' => Expect::bool(),
             'generate_toc' => Expect::bool(),
             'record_first_image' => Expect::bool(),
@@ -31,6 +35,7 @@ class Extension implements ConfigurableExtensionInterface
             'style_block_allowed_classes' => Expect::array()->nullable(),
             'title_from_document' => Expect::bool(),
             'wiki_locale' => Expect::string()->nullable(),
+            'with_gallery' => Expect::bool(),
         ]));
     }
 
@@ -42,5 +47,10 @@ class Extension implements ConfigurableExtensionInterface
             ->addRenderer(ListItem::class, new Renderers\ListItemRenderer(), 10)
             ->addRenderer(Table::class, new Renderers\TableRenderer(), 10)
             ->addEventListener(DocumentParsedEvent::class, $this->processor);
+
+        if ($environment->getConfiguration()->exists('osu_extension/attributes_allowed')) {
+            $environment->addEventListener(DocumentParsedEvent::class, new AttributesAllowedListener());
+            $environment->addExtension(new AttributesExtension());
+        }
     }
 }

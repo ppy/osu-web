@@ -15,6 +15,7 @@ return [
         'closing' => 'Regards,',
         'hello' => 'Hi :user,',
         'report' => 'Please reply to this email IMMEDIATELY if you did not request this change.',
+        'ignore' => 'If you did not request this, you can safely ignore this email.',
     ],
 
     'donation_thanks' => [
@@ -47,7 +48,7 @@ return [
     'password_reset' => [
         'code' => 'Your verification code is:',
         'requested' => 'Either you or someone pretending to be you has requested a password reset on your osu! account.',
-        'subject' => 'osu! account recover',
+        'subject' => 'osu! account recovery',
     ],
 
     'store_payment_completed' => [

@@ -6,6 +6,7 @@
 namespace Tests;
 
 use App\Http\Middleware\AuthApi;
+use App\Libraries\BroadcastsPendingForTests;
 use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
 use App\Models\User;
@@ -34,6 +35,8 @@ class TestCase extends BaseTestCase
         'mysql-updates',
     ];
 
+    protected array $expectedCountsCallbacks = [];
+
     public function regularOAuthScopesDataProvider()
     {
         $data = [];
@@ -52,6 +55,8 @@ class TestCase extends BaseTestCase
 
     protected function setUp(): void
     {
+        $this->beforeApplicationDestroyed(fn () => $this->runExpectedCountsCallbacks());
+
         parent::setUp();
 
         // change config setting because we need more than 1 for the tests.
@@ -69,6 +74,15 @@ class TestCase extends BaseTestCase
                 $connection->disconnect();
             }
         });
+
+        app(BroadcastsPendingForTests::class)->reset();
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        $this->expectedCountsCallbacks = [];
     }
 
     /**
@@ -82,9 +96,7 @@ class TestCase extends BaseTestCase
      */
     protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null, $driver = null)
     {
-        if ($client === null) {
-            $client = factory(Client::class)->create();
-        }
+        $client ??= Client::factory()->create();
 
         // create valid token
         $token = $this->createToken($user, $scopes, $client);
@@ -105,7 +117,7 @@ class TestCase extends BaseTestCase
         $this->actAsUserWithToken($token, $driver);
     }
 
-    protected function actAsUser(?User $user, ?bool $verified = null, $driver = null)
+    protected function actAsUser(?User $user, bool $verified = false, $driver = null)
     {
         if ($user === null) {
             return;
@@ -113,9 +125,7 @@ class TestCase extends BaseTestCase
 
         $this->be($user, $driver);
 
-        if ($verified !== null) {
-            $this->withSession(['verified' => $verified]);
-        }
+        $this->withSession(['verified' => $verified]);
     }
 
     /**
@@ -208,9 +218,7 @@ class TestCase extends BaseTestCase
      */
     protected function createToken(?User $user, ?array $scopes = null, ?Client $client = null)
     {
-        if ($client === null) {
-            $client = factory(Client::class)->create();
-        }
+        $client ??= Client::factory()->create();
 
         $token = $client->tokens()->create([
             'expires_at' => now()->addDays(1),
@@ -223,31 +231,13 @@ class TestCase extends BaseTestCase
         return $token;
     }
 
-    /**
-     * @param array|string $groupIdentifier
-     */
-    protected function createUserWithGroup($groupIdentifier, array $attributes = []): User
+    protected function expectCountChange(callable $callback, int $change, string $message = '')
     {
-        return factory(User::class)->states($groupIdentifier)->create($attributes);
-    }
-
-    protected function createUserWithGroupPlaymodes(string $groupIdentifier, array $playmodes = [], array $attributes = []): User
-    {
-        $user = $this->createUserWithGroup($groupIdentifier, $attributes);
-        $group = app('groups')->byIdentifier($groupIdentifier);
-
-        if (!$group->has_playmodes) {
-            $group->update(['has_playmodes' => true]);
-
-            // TODO: This shouldn't have to be called here, since it's already
-            // called by `Group::afterCommit`, but `Group::afterCommit` isn't
-            // running in tests when creating/saving `Group`s.
-            app('groups')->resetCache();
-        }
-
-        $user->findUserGroup($group, true)->update(['playmodes' => $playmodes]);
-
-        return $user;
+        $this->expectedCountsCallbacks[] = [
+            'callback' => $callback,
+            'expected' => $callback() + $change,
+            'message' => $message,
+        ];
     }
 
     protected function fileList($path, $suffix)
@@ -315,5 +305,13 @@ class TestCase extends BaseTestCase
         return $this->withHeaders([
             'X-LIO-Signature' => hash_hmac('sha1', $url, config('osu.legacy.shared_interop_secret')),
         ]);
+    }
+
+    private function runExpectedCountsCallbacks()
+    {
+        foreach ($this->expectedCountsCallbacks as $expectedCount) {
+            $after = $expectedCount['callback']();
+            $this->assertSame($expectedCount['expected'], $after, $expectedCount['message']);
+        }
     }
 }

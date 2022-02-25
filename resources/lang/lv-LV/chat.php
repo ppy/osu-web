@@ -11,22 +11,15 @@ return [
     'cannot_send' => [
         'channel' => '',
         'user' => '',
-        'reasons' => [
-            'blocked' => 'Adresāts Jūs ir bloķējis',
-            'channel_moderated' => '',
-            'friends_only' => '',
-            'not_enough_plays' => '',
-            'not_verified' => '',
-            'restricted' => 'Tu pašlaik esi ierobežots',
-            'silenced' => '',
-            'target_restricted' => '',
-        ],
     ],
+
     'input' => [
         'disabled' => 'neizdevās nosūtīt ziņu...',
+        'disconnected' => 'Atvienots',
         'placeholder' => 'rakstīt ziņu...',
         'send' => 'Sūtīt',
     ],
+
     'no-conversations' => [
         'howto' => "",
         'lazer' => '',

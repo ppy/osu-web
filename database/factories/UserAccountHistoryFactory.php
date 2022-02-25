@@ -3,25 +3,39 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
+namespace Database\Factories;
+
+use App\Models\User;
 use App\Models\UserAccountHistory;
 
-$factory->define(UserAccountHistory::class, function (Faker\Generator $faker) {
-    return [
-        'reason' => $faker->bs,
-        // 5 minutes (300 seconds) times 2 to the nth power (as in the standard osu silence durations)
-        'period' => 300 * (2 ** $faker->numberBetween(1, 10)),
-        'banner_id' => App\Models\User::inRandomOrder()->first()->user_id,
-    ];
-});
+class UserAccountHistoryFactory extends Factory
+{
+    protected $model = UserAccountHistory::class;
 
-$factory->state(UserAccountHistory::class, 'silence', function (Faker\Generator $faker) {
-    return ['ban_status' => 2];
-});
+    public function definition(): array
+    {
+        return [
+            'reason' => fn () => $this->faker->bs(),
+            // 5 minutes (300 seconds) times 2 to the nth power (as in the standard osu silence durations)
+            'period' => fn () => 300 * (2 ** rand(1, 10)),
+            'banner_id' => fn () => User::inRandomOrder()->first(),
+        ];
+    }
 
-$factory->state(UserAccountHistory::class, 'restriction', function (Faker\Generator $faker) {
-    return ['ban_status' => 1];
-});
+    public function note()
+    {
+        return $this->state(['ban_status' => 0]);
+    }
 
-$factory->state(UserAccountHistory::class, 'note', function (Faker\Generator $faker) {
-    return ['ban_status' => 0];
-});
+    public function restriction()
+    {
+        return $this->state(['ban_status' => 1]);
+    }
+
+    public function silence()
+    {
+        return $this->state(['ban_status' => 2]);
+    }
+}

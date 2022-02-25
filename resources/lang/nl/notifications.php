@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Nieuwe aankondiging',
+
+                'announce' => [
+                    'channel_announcement' => ':username zegt ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Aankondiging van :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nieuw bericht',
+
                 'pm' => [
                     'channel_message' => ':username zegt ":title"',
                     'channel_message_compact' => ':title',
@@ -137,7 +148,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited ongelezen bericht.|:count_delimited berichten.',
+                'legacy_pm' => ':count_delimited ongelezen bericht|:count_delimited berichten',
             ],
         ],
 
@@ -148,6 +159,11 @@ return [
                 'user_beatmapset_new' => 'Nieuwe beatmap ":title" door :username',
                 'user_beatmapset_new_compact' => 'Nieuwe beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nieuwe beatmaps door :username',
+
+                'user_beatmapset_revive' => '
+Beatmap ":title" vernieuwd door :username',
+                'user_beatmapset_revive_compact' => '
+Beatmap ":title" vernieuwd',
             ],
         ],
 

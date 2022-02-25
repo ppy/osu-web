@@ -127,6 +127,55 @@ return [
             'previous' => 'voltar 10 publicações',
         ],
 
+        'logs' => [
+            '_' => 'Logs do tópico',
+            'button' => 'Procurar por logs do tópico',
+
+            'columns' => [
+                'action' => 'Acão',
+                'date' => 'Data',
+                'user' => 'Usuário',
+            ],
+
+            'data' => [
+                'add_tag' => 'adicionou a tag ":tag"',
+                'announcement' => 'tópico fixado e marcado como anúncio',
+                'edit_topic' => 'para :title',
+                'fork' => 'de :topic',
+                'pin' => 'tópico fixado',
+                'post_operation' => 'postado por :username',
+                'remove_tag' => 'removeu a tag ":tag"',
+                'source_forum_operation' => 'de :forum',
+                'unpin' => 'tópico desafixado',
+            ],
+
+            'no_results' => 'nenhum log encontrado...',
+
+            'operations' => [
+                'delete_post' => 'Postagem excluída',
+                'delete_topic' => 'Tópico apagado',
+                'edit_topic' => 'Título do tópico alterado',
+                'edit_poll' => 'Enquete do tópico editada',
+                'fork' => 'Tópico copiado',
+                'issue_tag' => 'Etiqueta emitida',
+                'lock' => 'Tópico trancado',
+                'merge' => 'Mensagens mescladas neste tópico',
+                'move' => 'Tópico movido',
+                'pin' => 'Tópico fixado',
+                'post_edited' => 'Postagem editada',
+                'restore_post' => 'Postagem restaurada',
+                'restore_topic' => 'Tópico restaurado',
+                'split_destination' => 'Postagens duplicadas movidas',
+                'split_source' => 'Dividir postagens',
+                'topic_type' => 'Definir tipo de tópico',
+                'topic_type_changed' => 'Tipo de tópico alterado',
+                'unlock' => 'Tópico destrancado',
+                'unpin' => 'Tópico desafixado',
+                'user_lock' => 'Trancar o próprio tópico',
+                'user_unlock' => 'Destrancar o próprio tópico',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Cancelar',
             'post' => 'Salvar',

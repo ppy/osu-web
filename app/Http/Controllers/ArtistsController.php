@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Models\Artist;
 use App\Transformers\ArtistAlbumTransformer;
 use App\Transformers\ArtistTrackTransformer;
+use App\Transformers\ArtistTransformer;
 use Auth;
 
 class ArtistsController extends Controller
@@ -86,23 +87,27 @@ class ArtistsController extends Controller
             ];
         }
 
-        foreach (['twitter', 'facebook', 'spotify', 'bandcamp', 'patreon', 'soundcloud', 'youtube'] as $service) {
-            if ($artist->$service) {
+        foreach (['Twitter', 'Facebook', 'Spotify', 'Bandcamp', 'Patreon', 'SoundCloud', 'YouTube'] as $service) {
+            $serviceLowercase = strtolower($service);
+            if ($artist->$serviceLowercase) {
                 $links[] = [
-                    'title' => $service === 'youtube' ? 'YouTube' : ucwords($service),
-                    'url' => $artist->$service,
-                    'icon' => "fab fa-{$service}",
-                    'class' => $service,
+                    'title' => $service,
+                    'url' => $artist->$serviceLowercase,
+                    'icon' => "fab fa-{$serviceLowercase}",
+                    'class' => $serviceLowercase,
                 ];
             }
         }
 
         return ext_view('artists.show', [
             'artist' => $artist,
-            'links' => $links,
-            'albums' => json_collection($albums, new ArtistAlbumTransformer(), ['tracks']),
-            'tracks' => json_collection($tracks, new ArtistTrackTransformer()),
             'images' => $images,
+            'json' => [
+                'albums' => json_collection($albums, new ArtistAlbumTransformer(), ['tracks']),
+                'artist' => json_item($artist, new ArtistTransformer()),
+                'tracks' => json_collection($tracks, new ArtistTrackTransformer()),
+            ],
+            'links' => $links,
         ]);
     }
 }

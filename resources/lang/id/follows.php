@@ -5,8 +5,8 @@
 
 return [
     'comment' => [
-        'empty' => 'Anda tidak sedang memantau komentar apapun.',
-        'page_title' => 'daftar pantauan komentar',
+        'empty' => 'Anda tidak sedang mengikuti komentar apapun.',
+        'page_title' => 'komentar yang diikuti',
         'title' => 'komentar',
 
         'table' => [
@@ -20,15 +20,15 @@ return [
     ],
 
     'index' => [
-        'title_compact' => 'daftar pantauan',
+        'title_compact' => 'daftar pengamatan',
     ],
 
     'mapping' => [
-        'empty' => 'Anda tidak sedang memantau siapapun.',
-        'followers' => 'pelanggan mapping',
-        'page_title' => 'daftar pantauan mapper',
+        'empty' => 'Anda tidak sedang mengikuti siapapun.',
+        'followers' => 'pengikut mapping',
+        'page_title' => 'mapper yang diikuti',
         'title' => 'mapper',
-        'to_0' => 'hentikan notifikasi setiap kali pengguna ini mengunggah beatmap baru',
+        'to_0' => 'hentikan penerimaan notifikasi setiap kali pengguna ini mengunggah beatmap baru',
         'to_1' => 'kirimkan saya notifikasi setiap kali pengguna ini mengunggah beatmap baru',
     ],
 

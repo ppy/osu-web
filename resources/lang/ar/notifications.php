@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'دردشة',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'رسالة جديدة',
+
                 'pm' => [
                     'channel_message' => ':title يقول :username',
                     'channel_message_compact' => 'العنوان:',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'خريطة جديدة ":title" بواسطة :username',
                 'user_beatmapset_new_compact' => 'خريطة جديدة ":title"',
                 'user_beatmapset_new_group' => 'خرائِط جديدة بواسطة :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'instrumentbræt',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'instrumentbræt',
             'verify_link' => 'kontobekræftelse',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => 'udvalgte kunstnere',
@@ -132,6 +138,11 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
+            '_' => '',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
             '_' => '',
         ],
     ],

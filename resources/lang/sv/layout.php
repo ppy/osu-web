@@ -19,7 +19,6 @@ return [
             'contest' => 'tävling',
             'contests' => 'tävlingar',
             'root' => 'konsol',
-            'store_orders' => 'butiksadmin',
         ],
 
         'artists' => [
@@ -47,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => 'flerspelarläge',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'info',
         ],
     ],

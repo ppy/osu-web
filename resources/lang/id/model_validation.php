@@ -5,7 +5,7 @@
 
 return [
     'invalid' => ':attribute yang ditentukan tidak valid.',
-    'not_negative' => ':attribute tidak bisa negatif.',
+    'not_negative' => ':attribute tidak dapat bernilai negatif.',
     'required' => ':attribute diwajibkan.',
     'too_long' => ':attribute melebihi batas maksimum - hanya bisa hingga :limit karakter.',
     'wrong_confirmation' => 'Konfirmasi tidak cocok.',
@@ -13,9 +13,9 @@ return [
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Keterangan waktu telah ditentukan tetapi beatmap tidak ada.',
         'beatmapset_no_hype' => "Beatmap ini tidak dapat di-hype.",
-        'hype_requires_null_beatmap' => 'Hype hanya dapat diberikan pada kolom diskusi Umum (Seluruh tingkat kesulitan).',
-        'invalid_beatmap_id' => 'Tingkat kesulitan yang tidak valid ditentukan.',
-        'invalid_beatmapset_id' => 'Beatmap yang tidak valid ditentukan.',
+        'hype_requires_null_beatmap' => 'Hype hanya dapat diberikan pada bagian Umum (Seluruh tingkat kesulitan).',
+        'invalid_beatmap_id' => 'Tingkat kesulitan yang ditentukan tidak valid.',
+        'invalid_beatmapset_id' => 'Beatmap yang ditentukan tidak valid.',
         'locked' => 'Diskusi dikunci.',
 
         'attributes' => [
@@ -24,7 +24,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Anda tidak dapat memberikan hype karena fitur diskusi untuk beatmap ini sedang dibekukan oleh moderator",
+            'discussion_locked' => "Anda tidak dapat memberikan hype karena laman diskusi beatmap ini tengah dikunci",
             'guest' => 'Silakan masuk untuk dapat memberikan hype.',
             'hyped' => 'Anda telah memberikan hype untuk beatmap ini.',
             'limit_exceeded' => 'Anda telah mempergunakan seluruh hype yang Anda miliki.',
@@ -34,7 +34,7 @@ return [
 
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Keterangan waktu yang ditentukan melebihi panjang beatmap.',
-            'negative' => "Keterangan waktu tidak bisa bernilai negatif.",
+            'negative' => "Keterangan waktu tidak dapat mengacu pada nilai waktu yang negatif.",
         ],
     ],
 
@@ -48,8 +48,8 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => 'Anda tidak dapat membalas komentar yang sudah dihapus sebelumnya.',
-        'top_only' => 'Tidak diperbolehkan menyemat balasan komentar.',
+        'deleted_parent' => 'Anda tidak dapat membalas komentar yang telah dihapus.',
+        'top_only' => 'Komentar balasan tidak dapat disematkan.',
 
         'attributes' => [
             'message' => 'Isi pesan',
@@ -131,31 +131,31 @@ return [
         'too_short' => 'Kata sandi baru terlalu pendek.',
         'unknown_duplicate' => 'Nama pengguna atau alamat email ini sudah digunakan sebelumnya.',
         'username_available_in' => 'Nama pengguna ini akan tersedia untuk digunakan dalam :duration.',
-        'username_available_soon' => 'Nama pengguna ini dapat digunakan sekarang!',
+        'username_available_soon' => 'Nama pengguna ini tersedia untuk digunakan!',
         'username_invalid_characters' => 'Nama pengguna yang diminta mengandung karakter yang tidak valid.',
         'username_in_use' => 'Nama pengguna sudah digunakan!',
-        'username_locked' => 'Nama pengguna sudah digunakan!', // TODO: language for this should be slightly different.
+        'username_locked' => 'Nama pengguna ini telah digunakan!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Mohon gunakan garis bawah atau spasi, jangan keduanya!',
         'username_no_spaces' => "Nama pengguna tidak dapat dimulai atau diakhiri dengan spasi!",
-        'username_not_allowed' => 'Pilihan nama pengguna ini tidak diizinkan.',
+        'username_not_allowed' => 'Nama pengguna ini tidak diizinkan.',
         'username_too_short' => 'Nama pengguna yang diminta terlalu pendek.',
         'username_too_long' => 'Nama pengguna yang diminta terlalu panjang.',
         'weak' => 'Kata sandi ini berada dalam daftar hitam.',
         'wrong_current_password' => 'Kata sandi saat ini salah.',
-        'wrong_email_confirmation' => 'Konfirmasi email tidak cocok.',
-        'wrong_password_confirmation' => 'Konfirmasi kata sandi tidak cocok.',
+        'wrong_email_confirmation' => 'Alamat email tidak cocok.',
+        'wrong_password_confirmation' => 'Kata sandi tidak cocok.',
         'too_long' => 'Melebihi batas maksimum - hanya bisa hingga :limit karakter.',
 
         'attributes' => [
-            'username' => 'Nama Pengguna',
-            'user_email' => 'Alamat Email',
-            'password' => 'Kata Sandi',
+            'username' => 'Nama pengguna',
+            'user_email' => 'Alamat email',
+            'password' => 'Kata sandi',
         ],
 
         'change_username' => [
-            'restricted' => 'Anda tidak dapat mengganti nama pengguna ketika akun Anda sedang di-restrict.',
+            'restricted' => 'Anda tidak dapat mengubah nama pengguna pada saat akun Anda sedang di-restrict.',
             'supporter_required' => [
-                '_' => 'Anda harus menjadi :link untuk mengubah nama Anda!',
+                '_' => 'Anda harus memiliki :link untuk dapat mengubah nama pengguna Anda!',
                 'link_text' => 'osu!supporter',
             ],
             'username_is_same' => 'Ini nama penggunamu yang sekarang, bodoh!',
@@ -163,8 +163,8 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
-        'reason_not_valid' => 'alasan :reason tidak sah untuk jenis laporan ini.',
+        'no_ranked_beatmapset' => 'Anda tidak dapat melaporkan beatmap yang berstatus Ranked',
+        'reason_not_valid' => ':reason bukan merupakan alasan yang valid untuk jenis laporan ini.',
         'self' => "Anda tidak dapat melaporkan diri Anda sendiri!",
     ],
 

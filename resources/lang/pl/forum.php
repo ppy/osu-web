@@ -127,6 +127,56 @@ return [
             'previous' => 'cofnij się o 10 postów',
         ],
 
+        'logs' => [
+            '_' => 'Dzienniki zdarzeń wątków',
+            'button' => 'Przeglądaj dzienniki zdarzeń wątków',
+
+            'columns' => [
+                'action' => 'Zdarzenie',
+                'date' => 'Data',
+                'user' => 'Użytkownik',
+            ],
+
+            'data' => [
+                'add_tag' => 'dodano tag ":tag"',
+                'announcement' => 'przypięto wątek i oznaczono jako ogłoszenie',
+                'edit_topic' => 'do :title',
+                'fork' => 'od :topic',
+                'pin' => 'przypięty temat',
+                'post_operation' => 'opublikował :username',
+                'remove_tag' => 'usunięto ":tag" tag',
+                'source_forum_operation' => 'od :forum',
+                'unpin' => 'odpięto wątek',
+            ],
+
+            'no_results' => 'nie znaleziono logów...',
+
+            'operations' => [
+                'delete_post' => 'Usunięty post',
+                'delete_topic' => 'Usunięty temat',
+                'edit_topic' => 'Zmieniono tytuł tematu',
+                'edit_poll' => 'Edytowana ankieta tematu',
+                'fork' => 'Skopiowano temat',
+                'issue_tag' => 'Wydany tag
+',
+                'lock' => 'Zablokowany temat',
+                'merge' => '',
+                'move' => 'Przeniesiono wątek',
+                'pin' => 'Przypięto wątek',
+                'post_edited' => 'Edytowano post',
+                'restore_post' => 'Przywrócono post',
+                'restore_topic' => 'Przywrócono wątek',
+                'split_destination' => 'Przeniesione dzielone posty',
+                'split_source' => 'Podziel posty',
+                'topic_type' => 'Ustawiono typ wątku',
+                'topic_type_changed' => 'Zmieniono typ wątku',
+                'unlock' => 'Odblokowano wątek',
+                'unpin' => 'Odpięto wątek',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Anuluj',
             'post' => 'Zapisz',

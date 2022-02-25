@@ -1,17 +1,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { CircularProgress } from 'circular-progress';
+import { CircularProgress } from 'components/circular-progress';
+import { Spinner } from 'components/spinner';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { createEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
-import { Spinner } from 'spinner';
 import { sortWithMode } from 'utils/beatmap-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
@@ -45,8 +46,8 @@ interface Props {
   discussion?: BeatmapsetDiscussionJson;
   discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
   document?: string;
-  editMode?: boolean;
   editing: boolean;
+  editMode?: boolean;
   onChange?: () => void;
   onFocus?: () => void;
 }
@@ -132,7 +133,7 @@ export default class Editor extends React.Component<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
+  componentDidUpdate(prevProps: Readonly<Props>): void {
     if (this.props.document !== prevProps.document) {
       const newValue = this.valueFromProps();
 
@@ -396,9 +397,9 @@ export default class Editor extends React.Component<Props, State> {
 
   showConfirmationIfRequired = () => {
     const docContainsProblem = slateDocumentContainsNewProblem(this.state.value);
-    const canDisqualify = currentUser.is_admin || currentUser.is_moderator || currentUser.is_full_bn;
+    const canDisqualify = core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator || core.currentUser.is_full_bn);
     const willDisqualify = this.props.beatmapset.status === 'qualified' && docContainsProblem;
-    const canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng;
+    const canReset = core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_nat || core.currentUser.is_bng);
     const willReset =
       this.props.beatmapset.status === 'pending' &&
       this.props.beatmapset.nominations && nominationsCount(this.props.beatmapset.nominations, 'current') > 0 &&
