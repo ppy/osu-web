@@ -90,7 +90,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
           </div>
 
           <input
-            className='simple-form__input simple-form__input--modal'
+            className='simple-form__input'
             maxLength={6}
             name='beatmapset[offset]'
             onChange={this.setOffset}
