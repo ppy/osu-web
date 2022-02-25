@@ -33,7 +33,7 @@ class BeatmapsetFactory extends Factory
             'submit_date' => fn () => $this->faker->dateTime(),
             'thread_id' => 0,
             'user_id' => 0, // follow db default if no user specified; this is for other factories that depend on user_id.
-            'offset' => $faker->randomDigit(),
+            'offset' => fn () => $this->faker->randomDigit(),
 
             // depends on approved
             'approved_date' => fn (array $attr) => $attr['approved'] > 0 ? now() : null,
