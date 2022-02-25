@@ -6,17 +6,14 @@
   display: flex;
   flex-wrap: wrap;
   font-size: @font-size--normal;
+  --input-bg: hsl(var(--hsl-b4));
 
   &--modal {
     .default-border-radius();
     background-color: @osu-colour-b5;
     padding: 20px 20px 10px;
     max-width: 400px;
-
-    .simple-form__input {
-      background-color: @osu-colour-b6;
-      padding: 5px;
-    }
+    --input-bg: hsl(var(--hsl-b6));
   }
 
   &--search-box {
@@ -98,7 +95,7 @@
     padding: 5px 10px;
 
     resize: vertical;
-    background-color: @osu-colour-b4;
+    background-color: var(--input-bg);
     color: @osu-colour-c1;
     font-weight: normal;
     font-size: @font-size--phone-input;
