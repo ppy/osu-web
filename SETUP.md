@@ -355,7 +355,7 @@ The Dusk tests currently do not clean up completely, leaving behind test data in
 
 Javascript tests are run with Karma.
 
-Karma is currently configured to to use Headless Chrome by default; this will require Chrome or a standalone Headless Chrome to be already installed. If you are using Docker, Headless Chrome will already be installed in the container.
+Karma is currently configured to use Headless Chrome by default; this will require Chrome or a standalone Headless Chrome to be already installed. If you are using Docker, Headless Chrome will already be installed in the container.
 
 ```
 yarn karma start --single-run
