@@ -3,7 +3,7 @@
 
 import HeaderV4 from 'components/header-v4'
 import Img2x from 'components/img2x'
-import ProfileTournamentBanner from 'components/profile-tournament-banner'
+import ProfileHeaderBanners from 'components/profile-header-banners'
 import Badges from 'profile-page/badges'
 import Detail from 'profile-page/detail'
 import HeaderInfo from 'profile-page/header-info'
@@ -22,8 +22,7 @@ export class Header extends React.Component
       'data-page-id': 'main'
       el HeaderV4,
         backgroundImage: @props.user.cover.url
-        contentPrepend: el ProfileTournamentBanner,
-          banner: @props.user.active_tournament_banner
+        contentPrepend: el ProfileHeaderBanners, user: @props.user
         links: headerLinks(@props.user, 'modding')
         theme: 'users'
       div className: 'osu-page osu-page--users',

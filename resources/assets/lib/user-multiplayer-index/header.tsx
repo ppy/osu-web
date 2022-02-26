@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'components/header-v4';
-import ProfileTournamentBanner from 'components/profile-tournament-banner';
-import UserExtendedJson from 'interfaces/user-extended-json';
+import ProfileHeaderBanners from 'components/profile-header-banners';
 import { MultiplayerTypeGroup } from 'interfaces/user-multiplayer-history-json';
+import UserProfileJson from 'interfaces/user-profile-json';
 import Badges from 'profile-page/badges';
 import Detail from 'profile-page/detail';
 import HeaderInfo from 'profile-page/header-info';
@@ -14,7 +14,7 @@ import * as React from 'react';
 
 interface Props {
   typeGroup: MultiplayerTypeGroup;
-  user: UserExtendedJson;
+  user: UserProfileJson;
 }
 
 export default class Header extends React.Component<Props> {
@@ -23,7 +23,7 @@ export default class Header extends React.Component<Props> {
       <div>
         <HeaderV4
           backgroundImage={this.props.user.cover.url}
-          contentPrepend={<ProfileTournamentBanner banner={this.props.user.active_tournament_banner} />}
+          contentPrepend={<ProfileHeaderBanners user={this.props.user} />}
           links={headerLinks(this.props.user, this.props.typeGroup)}
           theme='users'
         />

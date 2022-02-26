@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserProfileContainer from 'components/user-profile-container';
-import UserExtendedJson from 'interfaces/user-extended-json';
+import UserProfileJson from 'interfaces/user-profile-json';
 import * as React from 'react';
 import Header from 'user-multiplayer-index/header';
 import MultiplayerHistory from 'user-multiplayer-index/multiplayer-history';
@@ -10,7 +10,7 @@ import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {
   store: MultiplayerHistoryStore;
-  user: UserExtendedJson;
+  user: UserProfileJson;
 }
 
 export default function Main(props: Props) {

@@ -70,6 +70,7 @@ support_level              | |
 unread_pm_count            | |
 user_achievements          | |
 user_preferences           | |
+voted_in_project_loved     | boolean
 
 <div id="usercompact-profilebanner" data-unique="usercompact-profilebanner"></div>
 

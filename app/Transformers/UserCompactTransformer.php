@@ -39,6 +39,7 @@ class UserCompactTransformer extends TransformerAbstract
         'mapping_follower_count',
         'previous_usernames',
         'support_level',
+        'voted_in_project_loved',
     ];
 
     protected string $mode;
@@ -85,6 +86,7 @@ class UserCompactTransformer extends TransformerAbstract
         'unread_pm_count',
         'user_achievements',
         'user_preferences',
+        'voted_in_project_loved',
         // TODO: should be changed to rank_history
         // TODO: should be alphabetically ordered but lazer relies on being after statistics. can revert to alphabetical after 2020-05-01
         'rankHistory',
@@ -425,6 +427,11 @@ class UserCompactTransformer extends TransformerAbstract
             'user_list_sort',
             'user_list_view',
         ]));
+    }
+
+    public function includeVotedInProjectLoved(User $user)
+    {
+        return $this->primitive(app('loved-polls')->userVotedAny($user));
     }
 
     public function setMode(string $mode)

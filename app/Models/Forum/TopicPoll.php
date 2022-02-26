@@ -106,7 +106,7 @@ class TopicPoll
             return false;
         }
 
-        return DB::transaction(function () {
+        DB::transaction(function () {
             $this->topic->update([
                 'poll_title' => $this->params['title'],
                 'poll_start' => Carbon::now(),
@@ -133,9 +133,13 @@ class TopicPoll
                     'poll_option_text' => $value,
                 ]);
             }
-
-            return true;
         });
+
+        if ($this->topic->forum_id === config('osu.forum.project_loved_forum_id')) {
+            app('loved-polls')->resetCache();
+        }
+
+        return true;
     }
 
     public function setTopic($topic)

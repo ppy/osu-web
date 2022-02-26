@@ -1,7 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserExtendedJson from 'interfaces/user-extended-json';
+import UserJson from 'interfaces/user-json';
+import UserProfileJson from 'interfaces/user-profile-json';
 import Controller from './controller';
 
 export const beatmapsetSections = [
@@ -22,20 +23,13 @@ export type HistoricalSection = typeof historicalSections[number];
 
 type ProfilePageIncludes =
   'account_history'
-  | 'active_tournament_banner'
-  | 'badges'
   | 'beatmap_playcounts_count'
-  | 'comments_count'
   | 'favourite_beatmapset_count'
-  | 'follower_count'
   | 'graveyard_beatmapset_count'
-  | 'groups'
   | 'loved_beatmapset_count'
-  | 'mapping_follower_count'
   | 'monthly_playcounts'
   | 'page'
   | 'pending_beatmapset_count'
-  | 'previous_usernames'
   | 'rank_history'
   | 'ranked_beatmapset_count'
   | 'replays_watched_counts'
@@ -44,10 +38,9 @@ type ProfilePageIncludes =
   | 'scores_pinned_count'
   | 'scores_recent_count'
   | 'statistics'
-  | 'support_level'
   | 'user_achievements';
 
-export type ProfilePageUserJson = UserExtendedJson & Required<Pick<UserExtendedJson, ProfilePageIncludes>>;
+export type ProfilePageUserJson = UserProfileJson & Required<Pick<UserJson, ProfilePageIncludes>>;
 
 export const profilePageSections = [...beatmapsetSections, ...topScoreSections, ...historicalSections, 'recentActivity', 'recentlyReceivedKudosu'] as const;
 export type ProfilePageSection = typeof profilePageSections[number];

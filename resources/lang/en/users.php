@@ -376,6 +376,10 @@ return [
             'twitter' => 'Twitter',
             'website' => 'Website',
         ],
+        'loved_voted_sticker' => [
+            'content' => 'I voted!',
+            'title' => ':username voted in the latest round of Project Loved!',
+        ],
         'not_found' => [
             'reason_1' => 'They may have changed their username.',
             'reason_2' => 'The account may be temporarily unavailable due to security or abuse issues.',
