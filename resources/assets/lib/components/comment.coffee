@@ -537,6 +537,7 @@ export class Comment extends React.PureComponent
 
   parentLink: (parent) =>
     props = title: makePreview(parent)
+    parentUser = @userFor(parent)
 
     if @props.linkParent
       component = a
@@ -548,7 +549,7 @@ export class Comment extends React.PureComponent
     component props,
       span className: 'fas fa-reply'
       ' '
-      @userFor(parent).username
+      if !isBlocked(parentUser) then @userFor(parent).username else osu.trans('users.blocks.blocked_user')
 
 
   userFor: (comment) =>
