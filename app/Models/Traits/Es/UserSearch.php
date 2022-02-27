@@ -33,19 +33,13 @@ trait UserSearch
 
         $document = [];
         foreach ($mappings as $field => $mapping) {
-            switch ($field) {
-                case 'is_old':
-                    $value = $this->isOld();
-                    break;
-                case 'previous_usernames':
-                    $value = $this->previousUsernames(true)->unique()->values();
-                    break;
-                case 'user_lastvisit':
-                    $value = $this->displayed_last_visit;
-                    break;
-                default:
-                    $value = $this[$field];
-            }
+            $value = match ($field) {
+                'id' => $this->getKey(),
+                'is_old' => $this->isOld(),
+                'previous_usernames' => $this->previousUsernames(true)->unique()->values(),
+                'user_lastvisit' => $this->displayed_last_visit,
+                default => $this->$field,
+            };
 
             if ($value instanceof Carbon) {
                 $value = $value->toIso8601String();

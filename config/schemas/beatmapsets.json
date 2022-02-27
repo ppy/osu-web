@@ -150,6 +150,9 @@
         "hype": {
           "type": "long"
         },
+        "id": {
+          "type": "long"
+        },
         "language_id": {
           "type": "long"
         },
