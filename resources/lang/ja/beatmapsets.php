@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => '達成日 :when',
             'country' => '国別ランキング',
+            'error' => '',
             'friend' => 'フレンドランキング',
             'global' => '世界ランキング',
             'supporter-link' => '<a href=":link">ここ</a>をクリックする事でosu!サポーターの詳細が見れます。',

@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'uppnått :when',
             'country' => 'Nationell rankning',
+            'error' => '',
             'friend' => 'Rankning bland vänner',
             'global' => 'Global rankning',
             'supporter-link' => 'Klicka <a href=":link">här</a> för att se alla fina funktioner du kommer få!',

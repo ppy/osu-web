@@ -42,10 +42,10 @@ return [
             'verify_link' => '',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'istaknuti umjetnici',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'istaknuti umjetnici',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => '',
@@ -94,7 +94,7 @@ return [
         'home_controller' => [
             'get_download' => '',
             'index' => '',
-            'search' => '',
+            'search' => 'pretraži',
             'support_the_game' => '',
             'testflight' => '',
         ],
@@ -108,7 +108,7 @@ return [
             '_' => '',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'vijesti',
         ],
         'notifications_controller' => [
             '_' => '',
@@ -133,7 +133,7 @@ return [
             'disabled' => '',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [

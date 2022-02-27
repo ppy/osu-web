@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Ресетујте номинацију',
             'praise' => 'Похвалите',
             'problem' => 'Проблем',
+            'problem_warning' => '',
             'review' => 'Рецензија',
             'suggestion' => 'Предлог',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '',
             'disqualify' => '',
+            'nomination_reset' => '',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => '',
         'mine' => '',
         'pending' => '',
+        'wip' => '',
         'qualified' => '',
         'ranked' => '',
     ],

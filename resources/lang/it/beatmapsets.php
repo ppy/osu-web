@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'ottenuto :when',
             'country' => 'Classifica Nazionale',
+            'error' => '',
             'friend' => 'Classifica Amici',
             'global' => 'Classifica Globale',
             'supporter-link' => 'Clicca <a href=":link">qui</a> per vedere tutte le fantastiche funzionalità che otterrai!',
@@ -175,8 +176,8 @@ return [
                 'own' => 'Il tuo miglior punteggio',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Clicca :here per scoprire tutte le fantastiche funzionalità che ricevi!',
+                'here' => 'qui',
             ],
         ],
 

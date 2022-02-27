@@ -367,7 +367,7 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => 'Не е отметнато',
+            'to_not_watching' => 'Без отметка',
             'to_watching' => 'Отметка',
             'to_watching_mail' => 'Отметка с известяване',
             'tooltip_mail_disable' => 'Включени известия. Кликни да изключиш',

@@ -50,7 +50,7 @@ return [
     ],
 
     'item' => [
-        'content' => '',
+        'content' => 'Sadržaj',
         'discussion_deleted' => '',
         'type' => '',
     ],
@@ -72,7 +72,7 @@ return [
         'kudosu_lost' => '',
         'kudosu_recalculate' => '',
         'language_edit' => '',
-        'love' => '',
+        'love' => 'Voli',
         'nominate' => '',
         'nomination_reset' => '',
         'nomination_reset_received' => '',

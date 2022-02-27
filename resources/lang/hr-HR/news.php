@@ -13,7 +13,7 @@ return [
         ],
 
         'title' => [
-            '_' => '',
+            '_' => 'vijesti',
             'info' => '',
         ],
     ],
@@ -27,7 +27,7 @@ return [
         ],
 
         'title' => [
-            '_' => '',
+            '_' => 'vijesti',
             'info' => '',
         ],
     ],
@@ -37,12 +37,12 @@ return [
     ],
 
     'store' => [
-        'button' => '',
+        'button' => 'Ažuriraj',
         'ok' => '',
     ],
 
     'update' => [
-        'button' => '',
+        'button' => 'Ažuriraj',
         'ok' => '',
     ],
 ];

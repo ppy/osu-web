@@ -15,6 +15,7 @@ return [
         'closing' => 'בברכה,',
         'hello' => 'היי :user',
         'report' => 'אנא הגב למייל הזה בצורה מיידית אם ביקשת את השינוי הזה.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

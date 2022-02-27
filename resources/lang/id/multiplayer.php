@@ -12,7 +12,7 @@ return [
 
     'room' => [
         'hosted_by' => 'di-host oleh :user',
-        'invalid_password' => 'Kata sandi tidak valid',
+        'invalid_password' => 'Kata sandi ruangan tidak valid',
         'map_count' => ':count_delimited map|:count_delimited map',
         'player_count' => ':count_delimited pemain|:count_delimited pemain',
         'time_left' => 'sisa waktu :time',

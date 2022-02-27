@@ -73,6 +73,7 @@ return [
             'nomination_reset' => '',
             'praise' => '',
             'problem' => '',
+            'problem_warning' => '',
             'review' => '',
             'suggestion' => '',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '',
             'disqualify' => '',
+            'nomination_reset' => '',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => '',
         'mine' => '',
         'pending' => '',
+        'wip' => '',
         'qualified' => '',
         'ranked' => '',
     ],

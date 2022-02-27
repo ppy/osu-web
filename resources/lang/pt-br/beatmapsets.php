@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'conquistado :when',
             'country' => 'Ranking Nacional',
+            'error' => '',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
@@ -175,8 +176,8 @@ return [
                 'own' => 'Seu Melhor',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Clique :here para ver todos os recursos que você ganhou!',
+                'here' => 'aqui',
             ],
         ],
 

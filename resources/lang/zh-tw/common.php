@@ -44,6 +44,7 @@ return [
         'reply_resolve' => '回覆並標記為已解決',
         'reset' => '重設',
         'restore' => '復原',
+        'retry' => '',
         'save' => '儲存',
         'saving' => '儲存中...',
         'search' => '搜尋',

@@ -26,7 +26,7 @@ return [
         'textarea_hint' => [
             '_' => 'Appuyez sur Entrée pour :action. Appuyez sur Shift+Entrée pour passer à la ligne.',
             'edit' => 'sauvegarder',
-            'new' => 'post',
+            'new' => 'poster',
             'reply' => 'répondre',
         ],
     ],

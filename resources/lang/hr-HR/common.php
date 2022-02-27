@@ -6,16 +6,16 @@
 return [
     'confirmation' => '',
     'confirmation_unsaved' => '',
-    'saved' => '',
+    'saved' => 'Spremljeno',
 
     'array_and' => [
-        'words_connector' => '',
+        'words_connector' => ', ',
         'two_words_connector' => '',
-        'last_word_connector' => '',
+        'last_word_connector' => ', i ',
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'NOVO',
     ],
 
     'buttons' => [
@@ -29,33 +29,34 @@ return [
         'clear' => '',
         'click_to_copy' => '',
         'click_to_copy_copied' => '',
-        'close' => '',
+        'close' => 'Zatvori',
         'collapse' => '',
         'delete' => '',
-        'edit' => '',
-        'expand' => '',
-        'hide' => '',
+        'edit' => 'Uredi',
+        'expand' => 'proširi',
+        'hide' => 'sakrij',
         'permalink' => '',
         'pin' => '',
         'post' => '',
         'read_more' => '',
-        'reply' => '',
+        'reply' => 'Odgovori',
         'reply_reopen' => '',
         'reply_resolve' => '',
         'reset' => '',
         'restore' => '',
-        'save' => '',
+        'retry' => '',
+        'save' => 'Spremi',
         'saving' => '',
-        'search' => '',
+        'search' => 'Pretraži',
         'see_more' => '',
-        'show' => '',
+        'show' => 'prikaži',
         'show_deleted' => '',
         'show_less' => '',
         'show_more' => '',
         'show_more_options' => '',
         'submit' => '',
         'unpin' => '',
-        'update' => '',
+        'update' => 'Ažuriraj',
         'upload_image' => '',
 
         'watch' => [
@@ -84,7 +85,7 @@ return [
     ],
 
     'countdown' => [
-        'days' => '',
+        'days' => 'dana',
         'hours' => '',
         'minutes' => '',
         'seconds' => '',
@@ -101,9 +102,9 @@ return [
     ],
 
     'device' => [
-        'keyboard' => '',
-        'mouse' => '',
-        'tablet' => '',
+        'keyboard' => 'Tastatura',
+        'mouse' => 'Miš',
+        'tablet' => 'Tablet',
         'touch' => '',
     ],
 
@@ -116,38 +117,38 @@ return [
     ],
 
     'pagination' => [
-        'previous' => '',
+        'previous' => 'prethodno',
         'next' => '',
     ],
 
     'score_count' => [
-        'count_100' => '',
-        'count_300' => '',
-        'count_50' => '',
+        'count_100' => '100',
+        'count_300' => '300',
+        'count_50' => '50',
         'count_geki' => '',
-        'count_katu' => '',
+        'count_katu' => '200',
         'count_miss' => '',
     ],
 
     'scoreboard_time' => [
-        'd' => '',
-        'dd' => '',
-        'h' => '',
-        'hh' => '',
-        'm' => '',
-        'mm' => '',
-        'month' => '',
-        'months' => '',
+        'd' => '%dd',
+        'dd' => '%dd',
+        'h' => '%dh',
+        'hh' => '%dh',
+        'm' => 'sada',
+        'mm' => 'sada',
+        'month' => '%dm',
+        'months' => '%dm',
         'past' => '',
-        's' => '',
-        'y' => '',
-        'yy' => '',
+        's' => 'sada',
+        'y' => '%dy',
+        'yy' => '%dy',
     ],
 
     'time' => [
         'days_ago' => '',
         'hours_ago' => '',
-        'now' => '',
+        'now' => 'sada',
         'remaining' => '',
     ],
 
