@@ -73,7 +73,7 @@ return [
             'nomination_reset' => 'Réinitialiser la nomination',
             'praise' => 'Compliments',
             'problem' => 'Problème',
-            'problem_warning' => '',
+            'problem_warning' => 'Signaler un problème',
             'review' => 'Review',
             'suggestion' => 'Suggestion',
         ],
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Êtes-vous sûr ? Cela va disqualifier la beatmap et réinitialiser le processus de nomination.',
             'nomination_reset' => 'Êtes-vous sûr ? Poster un nouveau problème va réinitialiser le processus de nomination.',
-            'problem_warning' => '',
+            'problem_warning' => 'Êtes-vous sûr de vouloir signaler un problème sur cette beatmap ? Ceci alertera les nominateurs de beatmap.',
         ],
     ],
 
@@ -275,7 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Mes maps',
         'pending' => 'En attente',
-        'wip' => '',
+        'wip' => 'WIP',
         'qualified' => 'Qualifiée',
         'ranked' => 'Classée',
     ],

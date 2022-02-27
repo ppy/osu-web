@@ -15,7 +15,7 @@ return [
         'closing' => '祝順，',
         'hello' => '嗨 :user,',
         'report' => '如果您沒有進行此項操作，請「立刻」回覆此信件!',
-        'ignore' => '',
+        'ignore' => '若您未請求，則可以安全忽略這封信。',
     ],
 
     'donation_thanks' => [
