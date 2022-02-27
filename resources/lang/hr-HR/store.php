@@ -37,7 +37,7 @@ return [
 
         'has_pending' => [
             '_' => '',
-            'link_text' => '',
+            'link_text' => 'ovdje',
         ],
 
         'pending_checkout' => [
@@ -95,14 +95,14 @@ return [
             'cancelled' => '',
             'checkout' => '',
             'delivered' => '',
-            'paid' => '',
+            'paid' => 'Plaćeno',
             'processing' => '',
             'shipped' => '',
         ],
     ],
 
     'product' => [
-        'name' => '',
+        'name' => 'Ime',
 
         'stock' => [
             'out' => '',
@@ -113,7 +113,7 @@ return [
         'notify' => '',
 
         'notification_success' => '',
-        'notification_remove_text' => '',
+        'notification_remove_text' => 'ovdje',
 
         'notification_in_stock' => '',
     ],

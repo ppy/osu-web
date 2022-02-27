@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'dosiahol :when',
             'country' => 'Rebríček Krajiny',
+            'error' => '',
             'friend' => 'Rebríček Priateľov',
             'global' => 'Celosvetový Rebríčok',
             'supporter-link' => 'Kliknite <a href=":link">tu</a> pre zobrazenie všetkych výhod, ktoré dostanete!',

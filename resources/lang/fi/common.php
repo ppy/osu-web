@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'Vastaa ja merkitse ratkaistuksi',
         'reset' => 'Nollaa',
         'restore' => 'Palauta',
+        'retry' => '',
         'save' => 'Tallenna',
         'saving' => 'Tallennetaan...',
         'search' => 'Hae',

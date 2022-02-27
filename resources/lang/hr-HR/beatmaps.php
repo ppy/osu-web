@@ -16,7 +16,7 @@ return [
         'delete' => '',
         'deleted' => '',
         'deny_kudosu' => '',
-        'edit' => '',
+        'edit' => 'uredi',
         'edited' => '',
         'guest' => '',
         'kudosu_denied' => '',
@@ -73,6 +73,7 @@ return [
             'nomination_reset' => '',
             'praise' => '',
             'problem' => '',
+            'problem_warning' => '',
             'review' => '',
             'suggestion' => '',
         ],
@@ -128,7 +129,7 @@ return [
 
         'stats' => [
             'deleted' => '',
-            'mapper_notes' => '',
+            'mapper_notes' => 'Bilješke',
             'mine' => '',
             'pending' => '',
             'praises' => '',
@@ -182,7 +183,7 @@ return [
         'disqualified_no_reason' => '',
         'disqualify' => '',
         'incorrect_state' => '',
-        'love' => '',
+        'love' => 'Voli',
         'love_choose' => '',
         'love_confirm' => '',
         'nominate' => '',
@@ -199,7 +200,7 @@ return [
         'rank_estimate' => [
             '_' => '',
             'queue' => '',
-            'soon' => '',
+            'soon' => 'uskoro',
         ],
 
         'reset_at' => [
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '',
             'disqualify' => '',
+            'nomination_reset' => '',
+            'problem_warning' => '',
         ],
     ],
 
@@ -224,8 +226,8 @@ return [
             'filters' => [
                 'extra' => '',
                 'general' => '',
-                'genre' => '',
-                'language' => '',
+                'genre' => 'Žanr',
+                'language' => 'Jezik',
                 'mode' => '',
                 'nsfw' => '',
                 'played' => '',
@@ -234,7 +236,7 @@ return [
             ],
             'sorting' => [
                 'title' => '',
-                'artist' => '',
+                'artist' => 'Umjetnik',
                 'difficulty' => '',
                 'favourites' => '',
                 'updated' => '',
@@ -252,12 +254,12 @@ return [
     ],
     'general' => [
         'converts' => '',
-        'featured_artists' => '',
+        'featured_artists' => 'Istaknuti umjetnici',
         'follows' => '',
         'recommended' => '',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Svi',
         'any' => '',
         'osu' => '',
         'taiko' => '',
@@ -266,13 +268,14 @@ return [
     ],
     'status' => [
         'any' => '',
-        'approved' => '',
+        'approved' => 'Odobreno',
         'favourites' => '',
         'graveyard' => '',
         'leaderboard' => '',
-        'loved' => '',
+        'loved' => 'Voljeno',
         'mine' => '',
         'pending' => '',
+        'wip' => '',
         'qualified' => '',
         'ranked' => '',
     ],
@@ -280,14 +283,14 @@ return [
         'any' => '',
         'unspecified' => '',
         'video-game' => '',
-        'anime' => '',
+        'anime' => 'Anime',
         'rock' => '',
         'pop' => '',
         'other' => '',
         'novelty' => '',
         'hip-hop' => '',
         'electronic' => '',
-        'metal' => '',
+        'metal' => 'Metal',
         'classical' => '',
         'folk' => '',
         'jazz' => '',
@@ -320,16 +323,16 @@ return [
     ],
     'language' => [
         'any' => '',
-        'english' => '',
-        'chinese' => '',
-        'french' => '',
-        'german' => '',
-        'italian' => '',
-        'japanese' => '',
+        'english' => 'Engleski',
+        'chinese' => 'Kineski',
+        'french' => 'Francuski',
+        'german' => 'Njemački',
+        'italian' => 'Italijanski',
+        'japanese' => 'Japanski',
         'korean' => '',
         'spanish' => '',
-        'swedish' => '',
-        'russian' => '',
+        'swedish' => 'Švedski',
+        'russian' => 'Ruski',
         'polish' => '',
         'instrumental' => '',
         'other' => '',
@@ -337,8 +340,9 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Sakrij',
+        'include' => 'Prikaži
+',
     ],
 
     'played' => [
@@ -367,9 +371,9 @@ return [
     ],
     'variant' => [
         'mania' => [
-            '4k' => '',
-            '7k' => '',
-            'all' => '',
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Svi',
         ],
     ],
 ];

@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Réinitialiser la nomination',
             'praise' => 'Compliments',
             'problem' => 'Problème',
+            'problem_warning' => '',
             'review' => 'Review',
             'suggestion' => 'Suggestion',
         ],
@@ -157,7 +158,7 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Hyper la Beatmap !',
+        'button' => 'Hyper la beatmap !',
         'button_done' => 'Déjà Hypée !',
         'confirm' => "Êtes-vous sûr ? Ceci va utiliser un de vos :n hypes restants et l'action ne peut être annulée.",
         'explanation' => 'Hyper cette beatmap permet de la rendre plus visible pour sa nomination et son classement !',
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Êtes-vous sûr ? Poster un nouveau problème va réinitialiser le processus de nomination.',
             'disqualify' => 'Êtes-vous sûr ? Cela va disqualifier la beatmap et réinitialiser le processus de nomination.',
+            'nomination_reset' => 'Êtes-vous sûr ? Poster un nouveau problème va réinitialiser le processus de nomination.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -272,7 +274,8 @@ return [
         'leaderboard' => 'Avec un classement',
         'loved' => 'Loved',
         'mine' => 'Mes maps',
-        'pending' => 'En attente & WIP',
+        'pending' => 'En attente',
+        'wip' => '',
         'qualified' => 'Qualifiée',
         'ranked' => 'Classée',
     ],

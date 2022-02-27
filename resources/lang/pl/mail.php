@@ -15,6 +15,7 @@ return [
         'closing' => 'Z wyrazami szacunku,',
         'hello' => 'Witaj, :user!',
         'report' => 'Odpowiedz na ten e-mail NATYCHMIAST, jeżeli to działanie nie zostało wykonane przez Ciebie.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

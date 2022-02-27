@@ -63,12 +63,12 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => '',
+        'annnonce_only' => 'Tento kanál je pouze pro oznámení.',
         'blocked' => 'Nemůžete napsat uživateli, kterého máte buď zablokovaného nebo vás má v zablokovaných.',
         'friends_only' => 'Uživatel blokuje zprávy od lidí, kteří nejsou v jeho listu přátel.',
         'moderated' => 'Tento kanál je právě moderován.',
         'no_access' => 'Nemáte přístup k tomu kanálu.',
-        'receive_friends_only' => '',
+        'receive_friends_only' => 'Tento uživatel nemusí být schopen odpovědět, protože přijímáte zprávy pouze od lidí ve vašem seznamu přátel.',
         'restricted' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
         'silenced' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
     ],
@@ -170,8 +170,8 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
-            'too_many' => '',
+            'not_owner' => 'Pouze vlastník skóre může připnout skóre.',
+            'too_many' => 'Připnuto příliš mnoho skóre.',
         ],
     ],
 

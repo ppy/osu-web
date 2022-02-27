@@ -8,7 +8,7 @@ return [
         'home' => 'Buka dasbor',
         'logout' => 'Keluar',
         'text' => 'Anda dapat menutup laman ini sekarang',
-        'title' => 'verifikasi klien osu! telah selesai',
+        'title' => 'verifikasi klien osu! berhasil',
     ],
 
     'create' => [

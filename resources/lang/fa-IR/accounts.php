@@ -56,14 +56,14 @@ return [
 
         'options' => [
             '_' => 'تنظیمات ارسال',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'درجه سختی میهمان',
             'beatmapset:modding' => 'مادینگ بیتمپ',
             'channel_message' => 'پیام های خصوصی چت',
             'comment_new' => 'نظرات جدید',
             'forum_topic_reply' => 'پاسخ موضوع',
             'mail' => 'ایمیل',
             'mapping' => 'مپر بیتمپ',
-            'push' => '',
+            'push' => 'اعلان push',
             'user_achievement_unlock' => 'مدال کاربر باز شد',
         ],
     ],
@@ -71,7 +71,7 @@ return [
     'oauth' => [
         'authorized_clients' => 'کلاینت های تایید هویت شده',
         'own_clients' => 'کلاینت های شما',
-        'title' => '',
+        'title' => 'OAuth',
     ],
 
     'options' => [

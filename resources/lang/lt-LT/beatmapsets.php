@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'pasiekta :when',
             'country' => 'Šalies reitingai',
+            'error' => '',
             'friend' => 'Draugų reitingai',
             'global' => 'Pasaulinis Reitingas',
             'supporter-link' => '',

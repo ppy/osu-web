@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Restablecimiento de nominación',
             'praise' => 'Elogio',
             'problem' => 'Problema',
+            'problem_warning' => '',
             'review' => 'Revisión',
             'suggestion' => 'Sugerencia',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '¿Está seguro? Publicar un nuevo problema restablecerá el proceso de nominación.',
             'disqualify' => '¿Está seguro? Esto eliminará el mapa de la calificación y restablecerá el proceso de nominación.',
+            'nomination_reset' => '¿Está seguro? Publicar un nuevo problema restablecerá el proceso de nominación.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Amados',
         'mine' => 'Mis mapas',
         'pending' => 'Pendiente y trabajo en progreso',
+        'wip' => '',
         'qualified' => 'Calificados',
         'ranked' => 'Clasificados',
     ],

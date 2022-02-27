@@ -9,20 +9,20 @@ return [
     'title_compact' => 'chat',
 
     'cannot_send' => [
-        'channel' => 'Saat ini Anda tidak dapat mengirimkan pesan pada kanal percakapan ini. Hal ini dapat disebabkan oleh beberapa alasan berikut:',
-        'user' => 'Saat ini Anda tidak dapat mengirimkan pesan pada pada pengguna yang Anda tuju. Hal ini dapat disebabkan oleh beberapa alasan berikut:',
+        'channel' => 'Anda sedang tidak dapat mengirimkan pesan pada kanal chat ini.',
+        'user' => 'Anda sedang tidak dapat mengirimkan pesan kepada pengguna ini.',
     ],
 
     'input' => [
         'disabled' => 'gagal mengirim pesan...',
         'disconnected' => 'Terputus',
-        'placeholder' => 'ketikkan pesan...',
+        'placeholder' => 'ketik pesan...',
         'send' => 'Kirim',
     ],
 
     'no-conversations' => [
         'howto' => "Mulailah suatu percakapan dengan meng-klik tombol yang tersedia pada halaman profil atau kartu pop-up pengguna.",
-        'lazer' => 'Kanal-kanal percakapan yang Anda buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',
+        'lazer' => 'Kanal chat publik yang Anda buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',
         'title' => 'belum ada percakapan',
     ],
 ];
