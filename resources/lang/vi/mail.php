@@ -15,6 +15,7 @@ return [
         'closing' => 'Trân trọng,',
         'hello' => 'Chào :user,',
         'report' => 'Hãy phản hồi email này NGAY LẬP TỨC nếu như bạn không yêu cầu sự thay đổi này.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

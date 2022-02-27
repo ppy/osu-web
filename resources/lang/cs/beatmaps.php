@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'odepřít kudosu',
         'edit' => 'upravit',
         'edited' => 'Naposledy upravil :editor v :update_time.',
-        'guest' => '',
+        'guest' => 'Obtíže hosta od :user',
         'kudosu_denied' => 'Odepřen od získávání kudosu.',
         'message_placeholder_deleted_beatmap' => 'Tato obtížnost byla smazána, takže už nemůže být probírána.',
         'message_placeholder_locked' => 'Diskuze o této mapě byly vypnuty.',
@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Obnovit nominace',
             'praise' => 'Chválit',
             'problem' => 'Problém',
+            'problem_warning' => '',
             'review' => 'Recenze',
             'suggestion' => 'Návrh',
         ],
@@ -105,7 +106,7 @@ return [
                 'unsaved' => 'Neuloženo',
                 'timestamp' => [
                     'all-diff' => 'Příspěvky na "Všechny obtížnosti" nemohou být časovány.',
-                    'diff' => '',
+                    'diff' => 'Pokud tento :type začíná časovou značkou, bude to zobrazeno v Časové ose.',
                 ],
             ],
             'insert-block' => [
@@ -146,12 +147,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Zatím žádné downvoty',
+                'up' => 'Zatím žádné upvoty',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Nejnovější downvoty',
+                'up' => 'Nejnovější upvoty',
             ],
         ],
     ],
@@ -183,22 +184,22 @@ return [
         'disqualify' => 'Diskvalifikovat',
         'incorrect_state' => 'Chyba při vykonávání akce. Prosím načtete stránku znovu.',
         'love' => 'Láska',
-        'love_choose' => '',
+        'love_choose' => 'Zvolte obtížnost pro loved',
         'love_confirm' => 'Miluješ tuto beatmapu?',
         'nominate' => 'Nominovat',
         'nominate_confirm' => 'Nominovat tuto beatmapu?',
         'nominated_by' => 'nominováno od :users',
         'not_enough_hype' => "Není dostatečný hype.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Odstranit z Loved',
+        'remove_from_loved_prompt' => 'Důvod pro odebrání z Loved:',
         'required_text' => 'Nominace: :current/:required',
         'reset_message_deleted' => 'odstraněno',
         'title' => 'Stav nominace',
         'unresolved_issues' => 'Existují stále nevyřešené problémy, které musí být řešeny jako první.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
+            '_' => 'Odhaduje se, že tato mapa bude hodnocená :date , pokud nejsou nalezeny žádné problémy. Aktuálně je #:position v :queue.',
+            'queue' => 'fronta hodnocení',
             'soon' => 'brzy',
         ],
 
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Jsi si jist? Vytvořením nové připomínky se nominační proces resetuje.',
             'disqualify' => 'Jste si jistý? Tohle odstraní beatmapu z kvalifikování a vyresetuje nominační proces.',
+            'nomination_reset' => 'Jsi si jist? Vytvořením nové připomínky se nominační proces resetuje.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -257,7 +259,7 @@ return [
         'recommended' => 'Doporučená obtížnost',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Všechny',
         'any' => 'Jakékoliv',
         'osu' => '',
         'taiko' => '',
@@ -273,6 +275,7 @@ return [
         'loved' => 'Oblíbené',
         'mine' => 'Moje mapy',
         'pending' => 'Čekající & Rozpracované',
+        'wip' => '',
         'qualified' => 'Kvalifikované',
         'ranked' => 'Hodnocené',
     ],
@@ -319,7 +322,7 @@ return [
         'V2' => '',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Jakékoliv',
         'english' => 'Anglické',
         'chinese' => 'Čínské',
         'french' => 'Francouzské',

@@ -400,7 +400,7 @@ return [
         ],
         'rank' => [
             'country' => 'Рэйтынг краін для :mode',
-            'country_simple' => 'Рэйтынг краін',
+            'country_simple' => 'Рэйтынг па краіне',
             'global' => 'Глабальны рэйтынг для :mode',
             'global_simple' => 'Глабальны рэйтынг',
         ],

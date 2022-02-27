@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'oppnådd :when',
             'country' => 'Landsrangering',
+            'error' => '',
             'friend' => 'Vennerangering',
             'global' => 'Global Rangering',
             'supporter-link' => 'Klikk <a href=":link">her</a> for å se alle de fancy funskjonene du får tildelt!',

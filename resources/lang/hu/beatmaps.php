@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Nominálás Visszaállítása',
             'praise' => 'Dicséret',
             'problem' => 'Probléma',
+            'problem_warning' => '',
             'review' => 'Összegzés',
             'suggestion' => 'Javaslat',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Biztos vagy ebben? Egy új probléma posztolása alaphelyzetbe állítja a nominálási folyamatot.',
             'disqualify' => 'Biztos vagy benne? Ezzel kizárod a beatmap-et a kvalifikálásból és alaphelyzetbe áll a nominálás.',
+            'nomination_reset' => 'Biztos vagy ebben? Egy új probléma posztolása alaphelyzetbe állítja a nominálási folyamatot.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Szeretett',
         'mine' => 'Saját mapjaim',
         'pending' => 'Függőben lévő & WIP',
+        'wip' => '',
         'qualified' => 'Kvalifikált',
         'ranked' => 'Rangsorolt',
     ],

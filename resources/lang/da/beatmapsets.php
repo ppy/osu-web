@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'opnået :when',
             'country' => 'Lande Rang',
+            'error' => '',
             'friend' => 'Rang blandt Venner',
             'global' => 'Global Rang',
             'supporter-link' => 'Klik <a href=":link">here</a> for at se alle de fede fordele du kan få!',

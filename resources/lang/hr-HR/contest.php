@@ -23,7 +23,7 @@ return [
         ],
 
         'button' => [
-            'add' => '',
+            'add' => 'Glasaj',
             'remove' => '',
             'used_up' => '',
         ],
@@ -50,17 +50,17 @@ return [
         'download' => '',
     ],
     'vote' => [
-        'list' => '',
+        'list' => 'glasovi',
         'count' => '',
         'points' => '',
     ],
     'dates' => [
         'ended' => '',
-        'ended_no_date' => '',
+        'ended_no_date' => 'Završeno',
 
         'starts' => [
             '_' => '',
-            'soon' => '',
+            'soon' => 'uskoro™',
         ],
     ],
     'states' => [

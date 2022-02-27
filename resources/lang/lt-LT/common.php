@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'Atsakyti ir išspręsti',
         'reset' => 'Atstatyti',
         'restore' => 'Atkurti',
+        'retry' => '',
         'save' => 'Išsaugoti',
         'saving' => 'Išsaugoma...',
         'search' => 'Ieškoti',

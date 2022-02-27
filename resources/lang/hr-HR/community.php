@@ -23,9 +23,9 @@ return [
                 'description' => '',
             ],
             'featured-artists' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Istaknuti Umjetnici',
+                'description' => 'Uz tvoju podršku, možemo pristupiti još sjajnijim umjetnicima i licencirati više sjajne glazbe za korištenje u osu!',
+                'link_text' => 'Pogledaj trenutni popis &raquo;',
             ],
             'ads' => [
                 'title' => '',

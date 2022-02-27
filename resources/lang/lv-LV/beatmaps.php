@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Atiestatīt Nomināciju',
             'praise' => 'Uzslavināt',
             'problem' => 'Problēma',
+            'problem_warning' => '',
             'review' => '',
             'suggestion' => 'Ieteikums',
         ],
@@ -209,8 +210,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Esiet pārliecināts? Ziņojot jaunu problēmu tiks atiestatīts nominācijas process.',
             'disqualify' => 'Vai esiet pārliecināts? Šis noņems bītmapi no kvalificēšanās un atiestatīs tās izvirzīšanu.',
+            'nomination_reset' => 'Esiet pārliecināts? Ziņojot jaunu problēmu tiks atiestatīts nominācijas process.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -274,6 +276,7 @@ return [
         'loved' => 'Mīlēts',
         'mine' => 'Manas kartes',
         'pending' => '',
+        'wip' => '',
         'qualified' => 'Kvalificēts',
         'ranked' => '',
     ],

@@ -15,6 +15,7 @@ return [
         'closing' => '',
         'hello' => '',
         'report' => '',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

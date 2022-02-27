@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'הושג :when',
             'country' => 'דירוג מדינה',
+            'error' => '',
             'friend' => 'דירוג חברים',
             'global' => 'דירוג עולמי',
             'supporter-link' => 'לחץ <a href=":link">כאן</a> כדי לראות את כל הפיצ\'רים המגניבים שאתה מקבל!',

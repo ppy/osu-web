@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => ':when에 달성함',
             'country' => '국가 순위',
+            'error' => '',
             'friend' => '친구 순위',
             'global' => '전체 순위',
             'supporter-link' => '서포터로서 누릴 수 있는 다른 멋진 기능들을 확인하려면 <a href=":link">여기</a>를 클릭해주세요!',

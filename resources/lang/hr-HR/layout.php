@@ -69,15 +69,15 @@ return [
             'dev' => '',
         ],
         'help' => [
-            '_' => '',
+            '_' => 'pomoć',
             'getAbuse' => '',
-            'getFaq' => '',
+            'getFaq' => 'faq',
             'getRules' => '',
             'getSupport' => '',
         ],
         'home' => [
-            '_' => '',
-            'team' => '',
+            '_' => 'početna',
+            'team' => 'ekipa',
         ],
         'rankings' => [
             '_' => '',
@@ -91,7 +91,7 @@ return [
     'footer' => [
         'general' => [
             '_' => '',
-            'home' => '',
+            'home' => 'Početna',
             'changelog-index' => '',
             'beatmaps' => '',
             'download' => '',
@@ -102,7 +102,7 @@ return [
             'forum' => '',
             'livestreams' => '',
             'report' => '',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => '',
@@ -168,7 +168,7 @@ return [
 
         'login' => [
             'forgot' => "",
-            'password' => '',
+            'password' => 'lozinka',
             'title' => '',
             'username' => '',
 
@@ -187,9 +187,9 @@ return [
 
     'popup_user' => [
         'links' => [
-            'account-edit' => '',
+            'account-edit' => 'Postavke',
             'follows' => '',
-            'friends' => '',
+            'friends' => 'Prijatelji',
             'logout' => '',
             'profile' => '',
         ],

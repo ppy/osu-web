@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Reiniciar nomeação',
             'praise' => 'Glorificar',
             'problem' => 'Problema',
+            'problem_warning' => '',
             'review' => 'Análise',
             'suggestion' => 'Sugestão',
         ],
@@ -209,8 +210,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Tens a certeza? Publicar um novo problema irá reiniciar o processo de nomeação.',
             'disqualify' => 'Tens a certeza? Isto irá remover o beatmap de qualificar-se e reiniciará o processo de nomeação.',
+            'nomination_reset' => 'Tens a certeza? Publicar um novo problema irá reiniciar o processo de nomeação.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -274,6 +276,7 @@ return [
         'loved' => 'Adorados',
         'mine' => 'Os meus mapas',
         'pending' => 'Pendente e Trabalho em progresso',
+        'wip' => '',
         'qualified' => 'Qualificados',
         'ranked' => 'Classificados',
     ],

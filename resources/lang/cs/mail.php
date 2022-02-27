@@ -15,6 +15,7 @@ return [
         'closing' => 'S pozdravem,',
         'hello' => 'Ahoj :user,',
         'report' => 'Okamžitě odpovězte prosím na tento e-mail, pokud jste o tuto změnu nepožádali.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

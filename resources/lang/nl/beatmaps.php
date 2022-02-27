@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Reset Nominatie',
             'praise' => 'Prijs',
             'problem' => 'Probleem',
+            'problem_warning' => '',
             'review' => 'Recensie',
             'suggestion' => 'Suggestie',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Weet je dat zeker? Een nieuw probleem posten zal het nominatieproces resetten.',
             'disqualify' => 'Weet je het zeker? Hierdoor zal de beatmap worden verwijderd van kwalificatie en wordt het nominatie proces gereset.',
+            'nomination_reset' => 'Weet je dat zeker? Een nieuw probleem posten zal het nominatieproces resetten.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Mijn Mappen',
         'pending' => 'Pending & WIP',
+        'wip' => '',
         'qualified' => 'Gekwalificeerd',
         'ranked' => 'Ranked',
     ],

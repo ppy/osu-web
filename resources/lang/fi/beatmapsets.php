@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'saavutettu :when',
             'country' => 'Maakohtaiset sijoitukset',
+            'error' => '',
             'friend' => 'Kavereiden sijoitukset',
             'global' => 'Maailmanlaajuiset sijoitukset',
             'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',

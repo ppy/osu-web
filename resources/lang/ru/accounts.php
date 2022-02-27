@@ -6,7 +6,7 @@
 return [
     'edit' => [
         'title_compact' => 'настройки аккаунта',
-        'username' => 'имя пользователя',
+        'username' => 'никнейм',
 
         'avatar' => [
             'title' => 'Аватар',

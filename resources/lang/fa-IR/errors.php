@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
+    'missing_route' => 'لینک یا متد درخواست اشتباه.',
     'no_restricted_access' => 'شما نمیتوانید این کار را موقعی که حسابتان در وضعیت محدود شده قرار دارد، انجام دهید.',
     'supporter_only' => 'شما باید حامی osu! باشید تا بتوانید از این قابلیت استفاده کنیذ.',
     'unknown' => 'خطای نامشخصی رخ داد.',
@@ -21,11 +21,11 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => '',
-        'standard_converts_only' => '',
+        'invalid_mode' => 'حالت اشتباهی مشخص شده است.',
+        'standard_converts_only' => 'هیچ امتیازی برای حالت انتخاب شده در این درجه سختی وجود ندارد.',
     ],
     'checkout' => [
-        'generic' => '',
+        'generic' => 'هنگام آماده سازی سبد تسویه حساب شما خطایی رخ داد.',
     ],
     'search' => [
         'default' => 'هیچ نتیجه ای نمیتوان گفت، بعدا امتحان کنید.',
