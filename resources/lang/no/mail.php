@@ -15,6 +15,7 @@ return [
         'closing' => 'Med vennlig hilsen,',
         'hello' => 'Hei :user,',
         'report' => 'Vennligst svar på denne emailen UMIDDELBART om du ikke ønsket denne handlingen.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

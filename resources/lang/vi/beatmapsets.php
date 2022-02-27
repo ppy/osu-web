@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'đạt được :when',
             'country' => 'Hạng Quốc Gia',
+            'error' => '',
             'friend' => 'Hạng Bạn Bè',
             'global' => 'Hạng Toàn Cầu',
             'supporter-link' => 'Nhấp vào <a href=":link">đây</a> để biết thêm những tính năng bạn có thể nhận!',
@@ -175,8 +176,8 @@ return [
                 'own' => 'Tốt Nhất Của Bạn',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Nháy vào :here để xem tất cả tính năng đặc biệt mà bạn có được!',
+                'here' => 'đây',
             ],
         ],
 

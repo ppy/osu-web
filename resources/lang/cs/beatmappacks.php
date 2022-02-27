@@ -11,7 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'PŘEČTĚTE SI PŘED STAŽENÍM',
-            'install_instruction' => '',
+            'install_instruction' => 'Instalace: Jakmile bude balíček stažen, rozbalte jej do složky osu! skladeb a osu! udělá zbytek.',
             'note' => [
                 '_' => 'Dále doporučujeme, abyste si :scary, jelikož starší mapy bývají horší kvality než ty novější.',
                 'scary' => 'stahovali balíčky od nejnovějšího po nejstarší',
@@ -26,8 +26,8 @@ return [
             'not_cleared' => 'nesplněno',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link nelze použít k vymazání tohoto balíčku.',
+            'link' => 'Režimy snižování obtížnosti',
         ],
     ],
 

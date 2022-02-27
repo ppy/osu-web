@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'Svar og marker som løst',
         'reset' => 'Nullstill',
         'restore' => 'Gjenopprett',
+        'retry' => '',
         'save' => 'Lagre',
         'saving' => 'Lagrer...',
         'search' => 'Søk',

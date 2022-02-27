@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'احتُلت عند :when',
             'country' => 'ترتيب الدولة',
+            'error' => '',
             'friend' => 'ترتيب الأصدقاء',
             'global' => 'الترتيب العالمي',
             'supporter-link' => 'اضغط <a href=":link">هنا</a> لمشاهدة كل الميزات الرائعة التي تحصل عليها!',

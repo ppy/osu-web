@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'osiągnięte :when',
             'country' => 'Ranking krajowy',
+            'error' => '',
             'friend' => 'Ranking znajomych',
             'global' => 'Ranking globalny',
             'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
@@ -175,8 +176,8 @@ return [
                 'own' => 'Twój wynik',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Kliknij :here, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
+                'here' => 'tutaj',
             ],
         ],
 

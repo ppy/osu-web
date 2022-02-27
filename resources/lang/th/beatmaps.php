@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'รีเซทการเสนอชื่อ',
             'praise' => 'ชื่นชม',
             'problem' => 'ข้อผิดพลาด',
+            'problem_warning' => '',
             'review' => 'บทวิจารณ์',
             'suggestion' => 'ข้อเสนอแนะ',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'คุณแน่ใจหรือ? ในการโพสต์ปัญหาใหม่จะรีเซ็ตการเสนอชื่อ',
             'disqualify' => 'คุณแน่ใจใช่หรือไม่? ที่จะลบบีทแมพออกและรีเซ็ตความคืบหน้า',
+            'nomination_reset' => 'คุณแน่ใจหรือ? ในการโพสต์ปัญหาใหม่จะรีเซ็ตการเสนอชื่อ',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'แมพของฉัน',
         'pending' => 'รอดำเนินการ & WIP',
+        'wip' => '',
         'qualified' => 'Qualified',
         'ranked' => 'จัดอันดับแล้ว',
     ],

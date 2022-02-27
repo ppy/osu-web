@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'Beantwoord en Los op',
         'reset' => 'Herstel',
         'restore' => 'Herstel',
+        'retry' => '',
         'save' => 'Opslaan',
         'saving' => 'Opslaan...',
         'search' => 'Zoeken',

@@ -15,6 +15,7 @@ return [
         'closing' => 'Üdvözlettel',
         'hello' => 'Üdvözöllek :user',
         'report' => 'Kérlek válaszolj erre az emailre AZZONAL, ha nem szeretnéd ezt a változást.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

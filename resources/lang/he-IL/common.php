@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'השב ופתור',
         'reset' => 'אפס',
         'restore' => 'שחזר',
+        'retry' => '',
         'save' => 'שמור',
         'saving' => 'שומר...',
         'search' => 'חפש',

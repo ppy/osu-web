@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'sasniegts :when',
             'country' => 'Valsts rangi',
+            'error' => '',
             'friend' => 'Draugu rangi',
             'global' => 'Pasaules rangi',
             'supporter-link' => '',

@@ -6,7 +6,7 @@
 return [
     'completed' => [
         'home' => '',
-        'logout' => '',
+        'logout' => 'Odjava',
         'text' => '',
         'title' => '',
     ],

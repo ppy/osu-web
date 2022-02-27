@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'realizat :when',
             'country' => 'Clasament pe țară',
+            'error' => '',
             'friend' => 'Clasamentul prietenilor',
             'global' => 'Clasament global',
             'supporter-link' => 'Click <a href=":link">aici</a> pentru a vedea toate avantajele pe care le poți obține!',

@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Adaylığı Sıfırla',
             'praise' => 'Övgü',
             'problem' => 'Sorun',
+            'problem_warning' => '',
             'review' => 'İnceleme',
             'suggestion' => 'Öneri',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Emin misin? Yeni bir sorun bildirmek aday gösterme sürecini sıfırlayacaktır.',
             'disqualify' => 'Emin misiniz? Bu, beatmapin nitelikli olmasını önleyecek ve aday gösterme sürecini sıfırlayacak.',
+            'nomination_reset' => 'Emin misin? Yeni bir sorun bildirmek aday gösterme sürecini sıfırlayacaktır.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Sevilen',
         'mine' => 'Benim Maplerim',
         'pending' => 'Beklemede & Yapım Aşamasında',
+        'wip' => '',
         'qualified' => 'Nitelikli',
         'ranked' => 'Dereceli',
     ],

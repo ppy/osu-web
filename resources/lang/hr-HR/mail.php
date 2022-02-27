@@ -15,6 +15,7 @@ return [
         'closing' => '',
         'hello' => '',
         'report' => '',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [
@@ -57,7 +58,7 @@ return [
         'shipping' => '',
         'subject' => '',
         'thank_you' => '',
-        'total' => '',
+        'total' => 'Ukupno',
     ],
 
     'supporter_gift' => [
@@ -79,7 +80,7 @@ return [
     'user_force_reactivation' => [
         'main' => '',
         'perform_reset' => '',
-        'reason' => '',
+        'reason' => 'Razlog:',
         'subject' => '',
     ],
 

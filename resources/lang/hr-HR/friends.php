@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'title_compact' => '',
+    'title_compact' => 'prijatelji',
     'too_many' => '',
 
     'buttons' => [
