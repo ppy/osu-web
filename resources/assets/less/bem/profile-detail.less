@@ -2,53 +2,71 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-detail {
+  --gutter: @gutter-v2;
   .inner-shadow-top();
+  background-color: hsl(var(--hsl-b5));
+  padding: 10px var(--gutter);
+  display: grid;
+  gap: 10px;
 
-  &__col {
-    flex: none;
-
-    &--bottom-left {
-      flex: 1;
-      margin-left: -15px; // compensates chart internal margin. Sync with ProfileDetail.RankChart.
-      position: relative;
-    }
-
-    &--bottom-right {
-      margin: -10px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    &--top-left {
-      margin: -5px;
-      display: flex;
-    }
-  }
-
-  &__empty-chart {
-    .full-size();
-    .center-content();
-    font-size: @font-size--normal;
-  }
-
-  &__row {
-    padding: 10px @gutter-v2-desktop;
+  &:empty {
     display: none;
+  }
+
+  @media @desktop {
+    --gutter: @gutter-v2-desktop;
+  }
+
+  &__chart {
+    height: 90px;
+    position: relative;
+
+    // only relevant for empty chart
+    .center-content();
+    display: flex;
+    font-size: @font-size--normal;
 
     @media @desktop {
-      display: flex;
+      margin: 0 -15px; // compensates chart internal margin. Sync with ProfileDetail.RankChart.
     }
+  }
 
-    &--top {
+  &__chart-numbers {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    @media @desktop {
+      flex-direction: row;
       justify-content: space-between;
+      align-items: flex-end;
     }
   }
 
-  &__bottom-right-item {
-    padding: 10px;
+  &__separator {
+    --separator-size: 2px;
+    background-color: hsl(var(--hsl-b6));
+    height: var(--separator-size);
+    width: 100%;
+
+    @media @desktop {
+      height: 100%;
+      width: var(--separator-size);
+    }
   }
 
-  &__top-left-item {
-    padding: 5px;
+  &__stats {
+    display: grid;
+    align-items: start;
+    gap: 15px;
+
+    @media @desktop {
+      grid-template-columns: 1fr auto auto;
+    }
+  }
+
+  &__values {
+    display: flex;
+    gap: 20px;
   }
 }
