@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import { observer } from 'mobx-react';
 import Badges from 'profile-page/badges';
 import Cover from 'profile-page/cover';
@@ -53,7 +52,6 @@ export default class Detail extends React.Component<Props> {
 
     return (
       <div className='profile-detail'>
-        <ProfileTournamentBanner banner={this.user.active_tournament_banner} />
         <Badges badges={this.user.badges} />
 
         <div className='profile-detail__stats'>

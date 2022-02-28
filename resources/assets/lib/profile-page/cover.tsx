@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'components/flag-country';
+import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import { Spinner } from 'components/spinner';
 import UserAvatar from 'components/user-avatar';
 import UserGroupBadges from 'components/user-group-badges';
@@ -43,13 +44,20 @@ export default class Cover extends React.Component<Props> {
   render() {
     return (
       <div className={classWithModifiers('profile-info', { cover: this.showCover })}>
-        {this.showCover &&
-          <div className='profile-info__bg' style={{ backgroundImage: osu.urlPresence(this.props.coverUrl) }}>
+        {(this.showCover || this.props.user.active_tournament_banner != null) &&
+          <div
+            className={classWithModifiers('profile-info__bg', { 'banner-only': !this.showCover })}
+            style={{ backgroundImage: osu.urlPresence(this.props.coverUrl) }}
+          >
             {this.props.isUpdatingCover &&
               <div className='profile-info__spinner'>
                 <Spinner />
               </div>
             }
+            <ProfileTournamentBanner
+              banner={this.props.user.active_tournament_banner}
+              modifiers={{ floating: this.showCover }}
+            />
             {this.props.editor}
           </div>
         }
