@@ -104,10 +104,12 @@ body {
   width: 100%;
   top: 155px;
   z-index: 9999;
+  pointer-events: none;
 
   .alert {
-    border: none;
     .default-box-shadow();
+    border: none;
+    pointer-events: auto;
   }
 
   .popup-text {

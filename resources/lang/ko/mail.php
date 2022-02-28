@@ -15,6 +15,7 @@ return [
         'closing' => '항상 감사드리며,',
         'hello' => ':user 님, 안녕하세요.',
         'report' => '본인이 요청하신 변경사항이 아니시라면, 이 메일로 즉시 회답하시길 바랍니다.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

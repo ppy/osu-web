@@ -15,6 +15,7 @@ return [
         'closing' => 'Terveisin',
         'hello' => 'Hei :user,',
         'report' => 'Vastaa tähän sähköpostiin VÄLITTÖMÄSTI, jos et ole pyytänyt tätä muutosta.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

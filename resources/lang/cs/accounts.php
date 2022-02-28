@@ -56,13 +56,13 @@ return [
 
         'options' => [
             '_' => 'možnosti doručení',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'obtížnost hosta',
             'beatmapset:modding' => 'módování beatmap',
             'channel_message' => 'soukromé zprávy',
             'comment_new' => 'nové komentáře',
             'forum_topic_reply' => 'odpověď v tématu',
             'mail' => 'e-mail',
-            'mapping' => '',
+            'mapping' => 'tvůrce beatmapy',
             'push' => 'push',
             'user_achievement_unlock' => 'odemčení nové medaile',
         ],

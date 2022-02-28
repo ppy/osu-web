@@ -23,7 +23,7 @@ return [
 
         'status' => [
             'active' => '',
-            'ended' => '',
+            'ended' => 'završeno',
             'soon' => '',
         ],
     ],

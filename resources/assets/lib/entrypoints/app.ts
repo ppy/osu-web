@@ -33,7 +33,6 @@ import '_classes/forum-topic-watch-ajax.coffee';
 import '_classes/global-drag.coffee';
 import '_classes/input-handler.coffee';
 import '_classes/landing-graph.coffee';
-import '_classes/landing-user-stats.coffee';
 import '_classes/menu.coffee';
 import '_classes/nav-button.coffee';
 import '_classes/nav2.coffee';

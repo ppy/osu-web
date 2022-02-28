@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => '',
             'country' => '',
+            'error' => '',
             'friend' => '',
             'global' => '',
             'supporter-link' => '',

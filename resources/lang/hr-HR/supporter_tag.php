@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'months' => '',
+    'months' => 'mjeseci',
 
     'user_search' => [
         'searching' => '',

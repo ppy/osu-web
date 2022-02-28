@@ -363,18 +363,9 @@ class TopicsController extends Controller
             }
         }
 
-        $posts = $posts
-            ->load([
-                'lastEditor',
-                'user.country',
-                'user.rank',
-                'user.supporterTagPurchases',
-                'user.userGroups',
-            ])->each(function ($item) use ($topic) {
-                $item
-                    ->setRelation('forum', $topic->forum)
-                    ->setRelation('topic', $topic);
-            });
+        $posts->each(fn ($item) => $item
+            ->setRelation('forum', $topic->forum)
+            ->setRelation('topic', $topic));
 
         $nextCursor = $cursorHelper->next($posts);
 
@@ -386,6 +377,13 @@ class TopicsController extends Controller
             ], cursor_for_response($nextCursor));
         }
 
+        $posts->load([
+            'lastEditor',
+            'user.country',
+            'user.rank',
+            'user.supporterTagPurchases',
+            'user.userGroups',
+        ]);
 
         $navUrls = [
             'next' => static::nextUrl($topic, $cursorHelper->getSortName(), $nextCursor, $showDeleted),

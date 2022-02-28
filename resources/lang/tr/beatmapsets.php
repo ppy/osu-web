@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => ':when oynandı',
             'country' => 'Ülke Sıralaması',
+            'error' => '',
             'friend' => 'Arkadaş Sıralaması',
             'global' => 'Dünya Sıralaması',
             'supporter-link' => 'Aldığınız tüm süslü özellikleri görmek için buraya <a href=":link">tıklayın</a>!',

@@ -17,13 +17,13 @@ return [
             'empty' => '',
             'last_update' => '',
             'open_issues' => '',
-            'state' => '',
-            'title' => '',
+            'state' => 'Status',
+            'title' => 'Naslov',
         ],
     ],
 
     'status' => [
         'read' => '',
-        'unread' => '',
+        'unread' => 'Nepročitano',
     ],
 ];

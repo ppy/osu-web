@@ -23,7 +23,7 @@ return [
 
     'links' => [
         'beatmaps' => 'Daftar Beatmap',
-        'osu' => 'profil osu!',
+        'osu' => 'Profil osu!',
         'site' => 'Situs Web Resmi',
     ],
 

@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'logrado :when',
             'country' => 'Clasificación Nacional',
+            'error' => '',
             'friend' => 'Clasificación entre Amigos',
             'global' => 'Clasificación Global',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',
@@ -175,8 +176,8 @@ return [
                 'own' => 'Tu mejor puntuación',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => '¡Clic :here para ver todas las características de lujo que ofrece!',
+                'here' => 'aquí',
             ],
         ],
 

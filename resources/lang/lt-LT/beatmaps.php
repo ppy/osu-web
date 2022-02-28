@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Ištrinti Nominaciją',
             'praise' => 'Pagirti',
             'problem' => 'Problema',
+            'problem_warning' => '',
             'review' => 'Apžvalga',
             'suggestion' => 'Pasiūlymas',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '',
             'disqualify' => '',
+            'nomination_reset' => '',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Patikę',
         'mine' => '',
         'pending' => '',
+        'wip' => '',
         'qualified' => 'Kvalifikuotas',
         'ranked' => 'Patvirtintas',
     ],

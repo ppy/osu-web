@@ -5,7 +5,7 @@
 
 return [
     'button' => [
-        'cancel' => '',
+        'cancel' => 'Poništi',
         'resend' => '',
         'set' => '',
         'start' => '',
