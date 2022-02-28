@@ -26,7 +26,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
   private languages = parseJson<LanguageJson[]>('json-languages');
 
   get numericOffset() {
-    if (this.state.offset != '') {
+    if (this.state.offset !== '') {
       const ret = Number(this.state.offset);
 
       if (Number.isFinite(ret)) return ret;
