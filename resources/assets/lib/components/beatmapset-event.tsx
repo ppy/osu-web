@@ -203,13 +203,16 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         } else {
           params.source_user = linkHtml(route('users.show', { user: data.source_user_id }), data.source_user_username);
         }
+        break;
       }
+      case 'offset_edit':
+        params.new = osu.formatNumber(this.props.event.comment.new);
+        params.old = osu.formatNumber(this.props.event.comment.old);
+        break;
     }
 
     const key = `beatmapset_events.event.${eventType}`;
-    let message = eventType === 'offset_edit'
-      ? osu.trans(key, {new: osu.formatNumber(params.new), old: osu.formatNumber(params.old)})
-      : osu.trans(key, params);
+    let message = osu.trans(key, params);
 
     // append owner of the event if not already included in main message
     // naive check; we don't use anything other than :user
