@@ -159,6 +159,9 @@ export class Main extends React.PureComponent
             el HeaderV4,
               backgroundImage: @props.user.cover.url
               links: headerLinks(@props.user, 'modding')
+              # add space for warning banner when user is blocked
+              modifiers:
+                restricted: core.currentUserModel.blocks.has(@props.user.id) || @props.user.is_restricted
               theme: 'users'
 
             div

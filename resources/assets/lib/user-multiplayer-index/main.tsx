@@ -5,6 +5,7 @@ import HeaderV4 from 'components/header-v4';
 import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import UserProfileContainer from 'components/user-profile-container';
 import UserExtendedJson from 'interfaces/user-extended-json';
+import core from 'osu-core-singleton';
 import Badges from 'profile-page/badges';
 import Cover from 'profile-page/cover';
 import DetailBar from 'profile-page/detail-bar';
@@ -24,6 +25,8 @@ export default function Main(props: Props) {
       <HeaderV4
         backgroundImage={props.user.cover.url}
         links={headerLinks(props.user, props.store.typeGroup)}
+        // add space for warning banner when user is blocked
+        modifiers={{ restricted: core.currentUserModel.blocks.has(props.user.id) || props.user.is_restricted }}
         theme='users'
       />
 
