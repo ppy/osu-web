@@ -10,7 +10,6 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import ExtraMenu, { showExtraMenu } from 'profile-page/extra-menu';
 import * as React from 'react';
-import { isBlocked } from 'utils/user-helper';
 
 interface Props {
   user: UserExtendedJson;
@@ -47,7 +46,7 @@ export default class DetailBar extends React.Component<Props> {
         />
 
         {/* show button even if not logged in */}
-        {(core.currentUser == null || (core.currentUser.id !== this.props.user.id && !isBlocked(this.props.user))) &&
+        {(core.currentUser == null || (!core.currentUserModel.blocks.has(this.props.user.id))) &&
           <a
             className='user-action-button user-action-button--profile-page'
             href={route('messages.users.show', { user: this.props.user.id })}
