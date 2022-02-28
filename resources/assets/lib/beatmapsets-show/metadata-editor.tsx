@@ -18,12 +18,20 @@ interface State {
   isBusy: boolean;
   languageId: number;
   nsfw: boolean;
-  offset: number | undefined;
+  offset: string;
 }
 
 export default class MetadataEditor extends React.PureComponent<Props, State> {
   private genres = parseJson<GenreJson[]>('json-genres');
   private languages = parseJson<LanguageJson[]>('json-languages');
+
+  get numericOffset() {
+    if (this.state.offset != '') {
+      const ret = Number(this.state.offset);
+
+      if (Number.isFinite(ret)) return ret;
+    }
+  }
 
   constructor(props: Props) {
     super(props);
@@ -33,7 +41,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
       isBusy: false,
       languageId: props.beatmapset.language.id ?? 0,
       nsfw: props.beatmapset.nsfw ?? false,
-      offset: props.beatmapset.offset,
+      offset: props.beatmapset.offset.toString(),
     };
   }
 
@@ -95,7 +103,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
             name='beatmapset[offset]'
             onChange={this.setOffset}
             type='text'
-            value={this.state.offset ?? ''}
+            value={this.state.offset}
           />
         </label>
 
@@ -153,7 +161,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
         genre_id: this.state.genreId,
         language_id: this.state.languageId,
         nsfw: this.state.nsfw,
-        offset: this.state.offset,
+        offset: this.numericOffset,
       } },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJson) => $.publish('beatmapset:set', { beatmapset }))
@@ -178,7 +186,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
     const value = e.currentTarget.value;
 
     if (/^-?\d*$/.test(value)) {
-      this.setState({ offset: value === '' ? undefined : Number(value) });
+      this.setState({ offset: value });
     }
   };
 }
