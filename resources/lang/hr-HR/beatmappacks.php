@@ -20,7 +20,7 @@ return [
     ],
 
     'show' => [
-        'download' => '',
+        'download' => 'Preuzmi',
         'item' => [
             'cleared' => '',
             'not_cleared' => '',
@@ -32,10 +32,10 @@ return [
     ],
 
     'mode' => [
-        'artist' => '',
+        'artist' => 'Umjetnik/Album',
         'chart' => '',
         'standard' => '',
-        'theme' => '',
+        'theme' => 'Tema',
     ],
 
     'require_login' => [

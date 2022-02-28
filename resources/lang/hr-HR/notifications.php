@@ -14,11 +14,11 @@ return [
     'verifying' => '',
 
     'filters' => [
-        '_' => '',
+        '_' => 'svi',
         'user' => '',
         'beatmapset' => '',
         'forum_topic' => '',
-        'news_post' => '',
+        'news_post' => 'vijesti',
         'build' => '',
         'channel' => '',
     ],
@@ -101,7 +101,7 @@ return [
 
                 'pm' => [
                     'channel_message' => '',
-                    'channel_message_compact' => '',
+                    'channel_message_compact' => ':title',
                     'channel_message_group' => '',
                 ],
             ],
@@ -121,7 +121,7 @@ return [
         ],
 
         'news_post' => [
-            '_' => '',
+            '_' => 'Vijesti',
 
             'comment' => [
                 '_' => '',
@@ -166,7 +166,7 @@ return [
         ],
 
         'user_achievement' => [
-            '_' => '',
+            '_' => 'Medalje',
 
             'user_achievement_unlock' => [
                 '_' => '',

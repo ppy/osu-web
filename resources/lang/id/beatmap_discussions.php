@@ -54,7 +54,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Saya tidak menemukan adanya postingan yang membahas isu yang hendak saya angkat',
-        'notice' => 'Kami mendeteksi adanya postingan-postingan lain di sekitar :timestamp (:existing_timestamps). Harap periksa apakah isu yang hendak Anda angkat telah dibahas oleh pengguna lain sebelumnya.',
+        'notice' => 'Terdapat postingan lain di sekitar :timestamp (:existing_timestamps). Harap periksa apakah isu yang hendak Anda angkat telah dibahas oleh pengguna lain sebelumnya.',
         'unsaved' => ':count pada kajian ini',
     ],
 
@@ -78,9 +78,9 @@ return [
         'go_to_child' => 'Lihat Topik Diskusi',
         'validation' => [
             'block_too_large' => 'masing-masing poin yang dikaji terbatas pada :limit karakter',
-            'external_references' => 'kajian ini mengandung satu atau lebih poin yang mengacu pada isu-isu yang tidak berasal dari beatmap ini',
-            'invalid_block_type' => 'tipe blok tidak sah',
-            'invalid_document' => 'kajian tidak sah',
+            'external_references' => 'kajian ini mengandung satu atau lebih poin yang mengacu pada isu yang tidak berasal dari beatmap ini',
+            'invalid_block_type' => 'tipe blok tidak valid',
+            'invalid_document' => 'kajian tidak valid',
             'invalid_discussion_type' => 'tipe diskusi tidak valid',
             'minimum_issues' => 'kajian harus tersusun atas setidaknya :count isu|kajian harus tersusun atas setidaknya :count isu',
             'missing_text' => 'tidak terdapat tulisan pada blok',
@@ -101,7 +101,7 @@ return [
     ],
 
     'user_filter' => [
-        'everyone' => 'Semua orang',
+        'everyone' => 'Semua',
         'label' => 'Saring berdasarkan pengguna',
     ],
 ];

@@ -15,6 +15,7 @@ return [
         'closing' => 'Cu stimă,',
         'hello' => 'Bună :user,',
         'report' => 'Vă rugăm să răspundeți la acest e-mail IMEDIAT dacă nu ați solicitat această modificare.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

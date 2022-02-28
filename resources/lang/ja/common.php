@@ -44,6 +44,7 @@ return [
         'reply_resolve' => '返信して解決',
         'reset' => 'リセット',
         'restore' => '復元',
+        'retry' => '',
         'save' => '保存',
         'saving' => '保存中・・・',
         'search' => '検索',

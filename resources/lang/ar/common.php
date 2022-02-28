@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'الرد والاِصلاح',
         'reset' => 'إعادة تعيين',
         'restore' => 'استعادة',
+        'retry' => '',
         'save' => 'حفظ',
         'saving' => 'جاري الحفظ...',
         'search' => 'البحث',

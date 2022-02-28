@@ -18,18 +18,18 @@ return [
     ],
 
     'type' => [
-        'charts' => 'In de schijnwerpers',
-        'country' => 'Landelijk',
+        'charts' => 'in de schijnwerpers',
+        'country' => 'landelijk',
         'multiplayer' => 'multiplayer',
-        'performance' => 'Prestatie',
-        'score' => 'Score',
+        'performance' => 'prestatie',
+        'score' => 'score',
     ],
 
     'spotlight' => [
-        'end_date' => 'Eind Datum',
+        'end_date' => 'Einddatum',
         'map_count' => 'Map Aantal',
         'participants' => 'Deelnemers',
-        'start_date' => 'Start Datum',
+        'start_date' => 'Startdatum',
     ],
 
     'stat' => [

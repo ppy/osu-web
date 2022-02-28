@@ -92,10 +92,10 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Hype cette map si vous avez aimé la jouer afin qu’elle progresse au statut de <strong>Classée</strong>.',
+            'action' => 'Hypez cette beatmap si vous avez aimé la jouer afin qu’elle progresse au statut de beatmap <strong>classée</strong>.',
 
             'current' => [
-                '_' => 'Cette map est actuellement :status.',
+                '_' => 'Cette beatmap est actuellement :status.',
 
                 'status' => [
                     'pending' => 'en attente',
@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'réalisé :when',
             'country' => 'Classement national',
+            'error' => '',
             'friend' => 'Classement des amis',
             'global' => 'Classement global',
             'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenues avec !',
@@ -175,8 +176,8 @@ return [
                 'own' => 'Votre meilleur score',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Cliquez :here pour connaître toutes les supers fonctions que vous obtiendrez !',
+                'here' => 'ici',
             ],
         ],
 
