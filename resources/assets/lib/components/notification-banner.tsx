@@ -1,47 +1,62 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import { div } from 'react-dom-factories'
-import { nextVal } from 'utils/seq'
-el = React.createElement
+import * as React from 'react';
+import { createPortal } from 'react-dom';
+import { nextVal } from 'utils/seq';
 
-bn = 'notification-banner-v2'
-notificationBanners = document.getElementsByClassName('js-notification-banners')
+const bn = 'notification-banner-v2';
 
-export class NotificationBanner extends React.PureComponent
-  constructor: (props) ->
-    super props
+interface Props {
+  message: React.ReactNode;
+  title: string;
+  type: string;
+}
 
-    @eventId = "notification-banner-#{nextVal()}"
-    @createPortalContainer()
+export default class NotificationBanner extends React.PureComponent<Props> {
+  private readonly eventId = `notification-banner-${nextVal()}`;
+  private readonly portalContainer: HTMLDivElement;
 
+  constructor(props: Props) {
+    super(props);
 
-  componentDidMount: =>
-    $(document).on "turbolinks:before-cache.#{@eventId}", @removePortalContainer
+    this.portalContainer = document.createElement('div');
+    const notificationBanners = (window.newBody ?? document.body).querySelector('.js-notification-banners');
+    if (notificationBanners == null) {
+      throw new Error('Notification banner container is missing');
+    }
+    notificationBanners.appendChild(this.portalContainer);
+  }
 
+  componentDidMount() {
+    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.removePortalContainer);
+  }
 
-  componentWillUnmount: =>
-    $(document).off ".#{@eventId}"
-    @removePortalContainer()
+  componentWillUnmount() {
+    $(document).off(`.${this.eventId}`);
+    this.removePortalContainer();
+  }
 
+  render() {
+    return createPortal(this.renderNotification(), this.portalContainer);
+  }
 
-  render: =>
-    notification =
-      div className: "#{bn} #{bn}--#{@props.type}",
-        div className: "#{bn}__col #{bn}__col--icon"
-        div className: "#{bn}__col #{bn}__col--label",
-          div className: "#{bn}__type", @props.type
-          div className: "#{bn}__text", @props.title
-        div className: "#{bn}__col",
-          div className: "#{bn}__text", @props.message
-    ReactDOM.createPortal notification, @portalContainer
+  private readonly removePortalContainer = () => {
+    this.portalContainer.remove();
+  };
 
-
-  removePortalContainer: =>
-    @portalContainer.remove()
-
-
-  createPortalContainer: =>
-    @portalContainer = document.createElement 'div'
-    notificationBanners[0].appendChild @portalContainer
+  private renderNotification() {
+    return (
+      <div className={`${bn} ${bn}--${this.props.type}`}>
+        <div className={`${bn}__col ${bn}__col--icon`} />
+        <div className={`${bn}__col ${bn}__col--label`}>
+          <div className={`${bn}__type`}>{this.props.type}</div>
+          <div className={`${bn}__text`}>{this.props.title}</div>
+        </div>
+        <div className={`${bn}__col`}>
+          <div className={`${bn}__text`}>{this.props.message}</div>
+        </div>
+      </div>
+    );
+  }
+}

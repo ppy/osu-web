@@ -41,16 +41,6 @@ declare module 'components/modal' {
   }
 }
 
-declare module 'components/notification-banner' {
-  interface Props {
-    message: React.ReactFragment;
-    title: string;
-    type: string;
-  }
-
-  class NotificationBanner extends React.PureComponent<Props> {}
-}
-
 declare module 'components/popup-menu' {
   type Children = (dismiss: () => void) => React.ReactFragment;
 
