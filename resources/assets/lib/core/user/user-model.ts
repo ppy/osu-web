@@ -6,6 +6,15 @@ import OsuCore from 'osu-core';
 
 export default class UserModel {
   @computed
+  get blocks() {
+    if (this.core.currentUser == null) {
+      return new Set<number>();
+    }
+
+    return new Set(this.core.currentUser.blocks.map((b) => b.target_id));
+  }
+
+  @computed
   get friends() {
     if (this.core.currentUser == null) {
       return new Map<number, undefined>();

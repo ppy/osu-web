@@ -81,8 +81,8 @@ return [
     ],
 
     'login' => [
-        '_' => '',
-        'button' => '',
+        '_' => 'Prijava',
+        'button' => 'Prijava',
         'button_posting' => '',
         'email_login_disabled' => '',
         'failed' => '',
@@ -108,7 +108,7 @@ return [
 
     'anonymous' => [
         'login_link' => '',
-        'login_text' => '',
+        'login_text' => 'prijava',
         'username' => '',
         'error' => '',
     ],
@@ -117,13 +117,13 @@ return [
         'button_text' => '',
         'comments' => '',
         'placeholder' => '',
-        'reason' => '',
+        'reason' => 'Razlog',
         'thanks' => '',
         'title' => '',
 
         'actions' => [
             'send' => '',
-            'cancel' => '',
+            'cancel' => 'Poništi',
         ],
 
         'options' => [
@@ -191,11 +191,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => '',
-                'locked' => '',
+                'locked' => 'Zaključano',
                 'title' => '',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'od :artist',
                 'title' => '',
 
                 'favourite' => [
@@ -294,12 +294,12 @@ return [
                 ],
             ],
             'me' => [
-                'title' => '',
+                'title' => 'ja!',
             ],
             'medals' => [
                 'empty' => "",
                 'recent' => '',
-                'title' => '',
+                'title' => 'Medalje',
             ],
             'playlists' => [
                 'title' => '',
@@ -310,7 +310,7 @@ return [
                 'show_more' => '',
             ],
             'recent_activity' => [
-                'title' => '',
+                'title' => 'Nedavno',
             ],
             'realtime' => [
                 'title' => '',
@@ -341,7 +341,7 @@ return [
             'votes' => [
                 'given' => '',
                 'received' => '',
-                'title' => '',
+                'title' => 'Glasovi',
                 'title_longer' => '',
                 'vote_count' => '',
             ],
@@ -352,9 +352,9 @@ return [
 
                 'recent_infringements' => [
                     'title' => '',
-                    'date' => '',
+                    'date' => 'datum',
                     'action' => '',
-                    'length' => '',
+                    'length' => 'dužina',
                     'length_permanent' => '',
                     'description' => '',
                     'actor' => '',
@@ -362,7 +362,7 @@ return [
                     'actions' => [
                         'restriction' => '',
                         'silence' => '',
-                        'note' => '',
+                        'note' => 'Bilješka',
                     ],
                 ],
             ],
@@ -409,7 +409,7 @@ return [
             'level' => '',
             'level_progress' => '',
             'maximum_combo' => '',
-            'medals' => '',
+            'medals' => 'Medalje',
             'play_count' => '',
             'play_time' => '',
             'ranked_score' => '',
@@ -431,9 +431,9 @@ return [
     ],
 
     'status' => [
-        'all' => '',
-        'online' => '',
-        'offline' => '',
+        'all' => 'Svi',
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'store' => [
         'saved' => '',

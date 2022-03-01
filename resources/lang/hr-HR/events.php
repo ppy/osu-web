@@ -21,7 +21,7 @@ return [
 
     'beatmapset_status' => [
         'approved' => '',
-        'loved' => '',
+        'loved' => 'voljeno',
         'qualified' => '',
         'ranked' => '',
     ],

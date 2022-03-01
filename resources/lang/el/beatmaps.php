@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Αλλαγή Υποψηφιότητας',
             'praise' => 'Έπαινος',
             'problem' => 'Πρόβλημα',
+            'problem_warning' => '',
             'review' => '',
             'suggestion' => 'Πρόταση',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Είστε σίγουροι; Η δημοσίευση ενός νέου προβλήματος θα επανεκκινήσει την διαδικασία υποψηφιότητας.',
             'disqualify' => 'Είστε σίγουρος; Αυτό θα αφαιρέσει το beatmap απο τα προκριματικά και θα επαναφέρει την διαδικασία πιστοποίησης.',
+            'nomination_reset' => 'Είστε σίγουροι; Η δημοσίευση ενός νέου προβλήματος θα επανεκκινήσει την διαδικασία υποψηφιότητας.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Τα Maps Μου',
         'pending' => 'Pending & WIP',
+        'wip' => '',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],

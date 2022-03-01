@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'conseguido :when',
             'country' => 'Classificação nacional',
+            'error' => '',
             'friend' => 'Classificação de amigos',
             'global' => 'Classificação global',
             'supporter-link' => 'Clica <a href=":link">aqui</a> para ver todas as funcionalidades extravagantes que obténs!',

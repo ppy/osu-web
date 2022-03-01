@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'Válaszolás és megoldás',
         'reset' => 'Visszaállítás',
         'restore' => 'Visszaállítás',
+        'retry' => '',
         'save' => 'Mentés',
         'saving' => 'Mentés...',
         'search' => 'Keresés',

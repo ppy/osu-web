@@ -4,17 +4,16 @@
 import HeaderLink from 'interfaces/header-link';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { parseJson } from 'utils/json';
-import { Spinner } from './spinner';
 
 interface Props {
   backgroundImage?: string | null;
   contentAppend?: React.ReactNode;
   contentPrepend?: React.ReactNode;
-  isCoverUpdating?: boolean;
   links: HeaderLink[];
   linksBreadcrumb?: boolean;
+  modifiers?: Modifiers;
   onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   theme?: string;
   titleAppend?: React.ReactNode;
@@ -38,6 +37,7 @@ export default class HeaderV4 extends React.Component<Props> {
       'header-v4',
       osu.presence(this.props.theme),
       { restricted: core.currentUser?.is_restricted ?? false },
+      this.props.modifiers,
     );
 
     return (
@@ -49,12 +49,6 @@ export default class HeaderV4 extends React.Component<Props> {
               style={{ backgroundImage: osu.urlPresence(this.props.backgroundImage) }}
             />
           </div>
-
-          {this.props.isCoverUpdating &&
-            <div className='header-v4__spinner'>
-              <Spinner />
-            </div>
-          }
 
           <div className='header-v4__content'>
             {this.props.contentPrepend}

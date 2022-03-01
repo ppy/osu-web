@@ -15,6 +15,7 @@ return [
         'closing' => 'Hälsningar,',
         'hello' => 'Hej :user,',
         'report' => 'Vänligen svara på detta e-postmeddelande OMEDELBART om du inte begärde denna ändring.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

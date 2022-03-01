@@ -17,7 +17,7 @@ return [
         'disabled' => '',
         'disconnected' => '',
         'placeholder' => '',
-        'send' => '',
+        'send' => 'Pošalji',
     ],
 
     'no-conversations' => [

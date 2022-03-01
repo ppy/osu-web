@@ -8,7 +8,7 @@ return [
         'disabled' => 'Beatmap saat ini tidak tersedia untuk diunduh.',
         'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pihak ketiga pemegang hak cipta.',
         'more-info' => 'Lihat di sini untuk informasi lebih lanjut.',
-        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk dipergunakan secara luas di dalam lingkungan osu!.',
+        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk osu!.',
     ],
 
     'download' => [
@@ -88,7 +88,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Beatmap yang telah Anda favorit terlalu banyak! Mohon hapus beberapa sebelum melanjutkan.',
+            'limit_reached' => 'Anda telah memiliki terlalu banyak beatmap yang Anda favoritkan! Mohon hapus beberapa sebelum melanjutkan.',
         ],
 
         'hype' => [
@@ -143,9 +143,10 @@ return [
         'scoreboard' => [
             'achieved' => 'diraih pada :when',
             'country' => 'Peringkat Negara',
+            'error' => '',
             'friend' => 'Peringkat Teman',
             'global' => 'Peringkat Global',
-            'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat semua fitur eksklusif yang Anda dapatkan!',
+            'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat seluruh fitur menarik yang akan Anda dapatkan!',
             'supporter-only' => 'Anda harus menjadi supporter untuk mengakses fitur peringkat teman dan negara!',
             'title' => 'Papan Skor',
 
@@ -175,8 +176,8 @@ return [
                 'own' => 'Skor Terbaik Anda',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Klik :here untuk melihat seluruh fitur menarik yang akan Anda dapatkan!',
+                'here' => 'di sini',
             ],
         ],
 
