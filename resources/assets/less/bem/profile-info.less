@@ -200,6 +200,17 @@
     }
   }
 
+  &__spinner {
+    display: none;
+
+    @media @desktop {
+      .center-content();
+      .full-size();
+      font-size: 60px;
+      background-color: hsla(var(--hsl-b6), 0.5);
+    }
+  }
+
   &__title {
     .link-white();
     line-height: normal;
