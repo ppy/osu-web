@@ -35,6 +35,7 @@ export default class Detail extends React.Component<Props> {
           coverUrl={this.props.controller.displayCoverUrl}
           currentMode={this.props.controller.currentMode}
           editor={<CoverEditor controller={this.props.controller} />}
+          isUpdatingCover={this.props.controller.isUpdatingCover}
           user={this.user}
         />
 

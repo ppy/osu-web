@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'components/flag-country';
+import { Spinner } from 'components/spinner';
 import UserAvatar from 'components/user-avatar';
 import UserGroupBadges from 'components/user-group-badges';
 import GameMode from 'interfaces/game-mode';
@@ -18,6 +19,7 @@ interface Props {
   coverUrl: string | null;
   currentMode: GameMode | null;
   editor?: JSX.Element;
+  isUpdatingCover?: boolean;
   user: UserExtendedJson;
 }
 
@@ -43,6 +45,11 @@ export default class Cover extends React.Component<Props> {
       <div className={classWithModifiers('profile-info', { cover: this.showCover })}>
         {this.showCover &&
           <div className='profile-info__bg' style={{ backgroundImage: osu.urlPresence(this.props.coverUrl) }}>
+            {this.props.isUpdatingCover &&
+              <div className='profile-info__spinner'>
+                <Spinner />
+              </div>
+            }
             {this.props.editor}
           </div>
         }
