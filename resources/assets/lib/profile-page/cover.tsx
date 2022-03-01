@@ -44,10 +44,7 @@ export default class Cover extends React.Component<Props> {
     return (
       <div className={classWithModifiers('profile-info', { cover: this.showCover })}>
         {this.showCover &&
-          <div
-            className='profile-info__bg'
-            style={{ backgroundImage: osu.urlPresence(this.props.coverUrl) }}
-          >
+          <div className='profile-info__bg' style={{ backgroundImage: osu.urlPresence(this.props.coverUrl) }}>
             {this.props.isUpdatingCover &&
               <div className='profile-info__spinner'>
                 <Spinner />
