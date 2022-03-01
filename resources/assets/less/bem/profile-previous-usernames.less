@@ -2,82 +2,57 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-previous-usernames {
-  @_top: profile-previous-usernames;
-  @_spacing: 10px;
-  @_line-spacing: 0px;
-  @_icon-size: @font-size--title-small;
+  position: relative;
+  font-weight: normal;
+  margin-left: 5px;
+  margin-bottom: 2px;
 
-  border-radius: @border-radius-large;
-  display: flex;
-  align-items: baseline;
-  transition: all 200ms cubic-bezier(.22,.61,.36,1);
-
-  @media @desktop {
-    width: 300px;
-    pointer-events: none;
-    margin: 5px;
-  }
-
-  &:hover {
-    @media @desktop {
-      background-color: @osu-colour-b6;
-      transform: translateY(-(@_icon-size + @_line-spacing));
-      pointer-events: auto;
-    }
-  }
-
-  &__content {
-    padding-left: 0;
-    opacity: 0;
-    will-change: opacity;
-    transition: inherit;
-    display: none;
-
-    @media @desktop {
-      display: block;
-      padding: @_spacing;
-    }
-
-    .@{_top}:hover & {
-      opacity: 1;
-    }
-  }
-
-  &__icon {
+  &__button {
     .reset-input();
-    .link-white();
-    .link-plain();
-    pointer-events: auto;
-    flex: none;
-    font-size: @_icon-size;
+    color: hsl(var(--hsl-l1));
+    font-size: @font-size--small;
+    vertical-align: middle;
 
-    &--plain {
-      padding: @_spacing; // easier hover targeting
-      display: none;
-
-      @media @desktop {
-        display: block;
-      }
+    &:hover {
+      color: hsl(var(--hsl-l3));
     }
 
-    &--with-title {
-      margin-left: @_spacing; // better tooltip positioning
+    @media @desktop {
+      font-size: @font-size--normal;
+    }
 
-      @media @desktop {
-        display: none;
-      }
+    &--active {
+      color: hsl(var(--hsl-l3));
     }
   }
 
-  &__names {
-    margin-top: @_line-spacing;
-    font-weight: bold;
-    font-size: @font-size--normal;
-    line-height: 1.2;
-    white-space: pre-wrap;
+  &__name {
+    font-size: @font-size--title-small-3;
+    color: hsl(var(--hsl-c2));
+    // Set here because otherwise erratic movement on resize
+    // due to letters appearing and hiding by ellipsis overflow
+    // combined with max-content width.
+    // Adjusted to account for scrollbar and paddings.
+    max-width: calc(100vw - 30px - var(--gutter) * 2);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &__popup {
+    --gutter: 10px;
+    .default-border-radius();
+    position: absolute;
+    z-index: @z-index--profile-previous-usernames;
+    background-color: hsl(var(--hsl-b3));
+    padding: 5px var(--gutter);
+    will-change: opacity;
+    opacity: 0;
+    transition: all 200ms;
+    width: max-content;
   }
 
   &__title {
-    font-size: @font-size--small;
+    font-size: @font-size--normal;
   }
 }

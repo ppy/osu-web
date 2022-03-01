@@ -14,6 +14,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import PreviousUsernames from './previous-usernames';
 
 interface Props {
   coverUrl: string | null;
@@ -21,10 +22,6 @@ interface Props {
   editor?: JSX.Element;
   isUpdatingCover?: boolean;
   user: UserExtendedJson;
-}
-
-function doNothing() {
-  //
 }
 
 @observer
@@ -70,11 +67,11 @@ export default class Cover extends React.Component<Props> {
             <h1 className='profile-info__name'>
               <span className='u-ellipsis-pre-overflow'>{this.props.user.username}</span>
 
-              <div className='profile-info__previous-usernames'>{this.renderPreviousUsernames()}</div>
-
               <div className='profile-info__icons profile-info__icons--name-inline'>
                 {this.renderIcons()}
               </div>
+
+              <PreviousUsernames usernames={this.props.user.previous_usernames ?? []} />
             </h1>
 
             {this.renderTitle()}
@@ -130,32 +127,6 @@ export default class Cover extends React.Component<Props> {
         }
         <UserGroupBadges groups={this.props.user.groups} modifiers='profile-page' wrapper='profile-info__icon' />
       </>
-    );
-  }
-
-  private renderPreviousUsernames() {
-    if (this.props.user.previous_usernames == null || this.props.user.previous_usernames.length === 0) return null;
-
-    const previousUsernames = this.props.user.previous_usernames.join(', ');
-
-    return (
-      <div className='profile-previous-usernames'>
-        {/* FIXME: doesn't quite work reliably. Link so title is shown in mobile (onClick is required) */}
-        <a
-          className='profile-previous-usernames__icon profile-previous-usernames__icon--with-title'
-          onClick={doNothing}
-          title={`${osu.trans('users.show.previous_usernames')}: ${previousUsernames}`}
-        >
-          <span className='fas fa-address-card' />
-        </a>
-        <div className='profile-previous-usernames__icon profile-previous-usernames__icon--plain'>
-          <span className='fas fa-address-card' />
-        </div>
-        <div className='profile-previous-usernames__content'>
-          <div className='profile-previous-usernames__title'>{osu.trans('users.show.previous_usernames')}</div>
-          <div className='profile-previous-usernames__names'>{previousUsernames}</div>
-        </div>
-      </div>
     );
   }
 
