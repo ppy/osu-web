@@ -17,6 +17,11 @@ interface Props {
 
 @observer
 export default class DetailBar extends React.Component<Props> {
+  private get showMessageButton() {
+    return core.currentUser == null
+      || (core.currentUser.id !== this.props.user.id && !core.currentUserModel.blocks.has(this.props.user.id));
+  }
+
   render() {
     return (
       <div className='profile-detail-bar'>
@@ -45,8 +50,7 @@ export default class DetailBar extends React.Component<Props> {
           userId={this.props.user.id}
         />
 
-        {/* show button even if not logged in */}
-        {(core.currentUser == null || (!core.currentUserModel.blocks.has(this.props.user.id))) &&
+        {this.showMessageButton &&
           <a
             className='user-action-button user-action-button--profile-page'
             href={route('messages.users.show', { user: this.props.user.id })}
