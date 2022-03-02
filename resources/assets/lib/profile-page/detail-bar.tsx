@@ -50,11 +50,11 @@ export default class DetailBar extends React.Component<Props> {
           userId={this.props.user.id}
         />
 
+        {/**
+          * extra div to allow using same user-action-button--profile-page
+          * like other buttons without resorting to additional styling
+          */}
         {this.showMessageButton &&
-          {/**
-            * extra div to allow using same user-action-button--profile-page
-            * like other buttons without resorting to additional styling
-            */}
           <div>
             <a
               className='user-action-button user-action-button--profile-page'
