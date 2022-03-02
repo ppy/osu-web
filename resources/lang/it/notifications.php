@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Nuovo annuncio',
+
+                'announce' => [
+                    'channel_announcement' => ':username dice ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Annuncio da :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nuovo messaggio',
+
                 'pm' => [
                     'channel_message' => ':username ha scritto ":title"',
                     'channel_message_compact' => ':title',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'Nuova beatmap ":title" di :username',
                 'user_beatmapset_new_compact' => 'Nuova beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nuove beatmap di :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

@@ -8,6 +8,7 @@ namespace App\Libraries;
 use App\Models\Group;
 use App\Traits\LocallyCached;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Groups
 {
@@ -40,9 +41,20 @@ class Groups
     /**
      * Get a group by its ID.
      */
-    public function byId(?int $id): ?Group
+    public function byId(int|string|null $id): ?Group
     {
         return $this->allById()->get($id);
+    }
+
+    /**
+     * Get a group by its ID or throw an exception.
+     *
+     * @throws ModelNotFoundException
+     */
+    public function byIdOrFail(int|string|null $id): Group
+    {
+        return $this->byId($id)
+            ?? throw (new ModelNotFoundException())->setModel(Group::class, (int) $id);
     }
 
     /**

@@ -9,9 +9,7 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Commentable;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
-use App\Traits\CommentableDefaults;
 use App\Traits\Memoizes;
-use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use Exception;
 
@@ -30,7 +28,7 @@ use Exception;
  */
 class NewsPost extends Model implements Commentable, Wiki\WikiObject
 {
-    use CommentableDefaults, Memoizes, WithDbCursorHelper;
+    use Memoizes, Traits\CommentableDefaults, Traits\WithDbCursorHelper;
 
     // in minutes
     const CACHE_DURATION = 86400;

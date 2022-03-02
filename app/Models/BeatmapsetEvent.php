@@ -161,7 +161,7 @@ class BeatmapsetEvent extends Model
 
         $params['types'] = [];
 
-        if (isset($rawParams['type'])) {
+        if (get_string($rawParams['type'] ?? null) !== null) {
             $params['types'][] = $rawParams['type'];
         }
 

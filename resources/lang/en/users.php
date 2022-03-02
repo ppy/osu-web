@@ -159,6 +159,10 @@ return [
             '_' => 'Posted :link',
             'count' => ':count_delimited comment|:count_delimited comments',
         ],
+        'cover' => [
+            'to_0' => 'Hide cover',
+            'to_1' => 'Show cover',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Change Profile Cover',
@@ -301,8 +305,8 @@ return [
                 'recent' => 'Latest',
                 'title' => 'Medals',
             ],
-            'multiplayer' => [
-                'title' => 'Multiplayer Games',
+            'playlists' => [
+                'title' => 'Playlist Games',
             ],
             'posts' => [
                 'title' => 'Posts',
@@ -311,6 +315,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Recent',
+            ],
+            'realtime' => [
+                'title' => 'Multiplayer Games',
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
@@ -324,6 +331,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'First Place Ranks',
+                ],
+                'pin' => [
+                    'to_0' => 'Unpin',
+                    'to_0_done' => 'Unpinned score',
+                    'to_1' => 'Pin',
+                    'to_1_done' => 'Pinned score',
+                ],
+                'pinned' => [
+                    'title' => 'Pinned Scores',
                 ],
             ],
             'votes' => [

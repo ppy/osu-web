@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'איפוס מועמדות',
             'praise' => 'שבח',
             'problem' => 'בעיה',
+            'problem_warning' => '',
             'review' => 'ביקורת',
             'suggestion' => 'הצעה',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'אתה בטוח? פרסום בעיה חדשה יאפס את תהליך המינוי.',
             'disqualify' => 'אתה בטוח? זה יסיר את המפה מ- "מוקדמות" ויאפס את תהליך המינוי.',
+            'nomination_reset' => 'אתה בטוח? פרסום בעיה חדשה יאפס את תהליך המינוי.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'אהובה',
         'mine' => 'המפות שלי',
         'pending' => 'בתהליך * WIP',
+        'wip' => '',
         'qualified' => 'מוסמכת',
         'ranked' => 'מדורג',
     ],

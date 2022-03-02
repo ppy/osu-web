@@ -29,7 +29,7 @@ is_online       | boolean                   | is the user currently online? (eit
 is_supporter    | boolean                   | does this user have supporter?
 last_visit      | [Timestamp](#timestamp)?  | last access time. `null` if the user hides online presence
 pm_friends_only | boolean                   | whether or not the user allows PM from other than friends
-profile_colour  | string                    | colour of username/profile highlight, hex code (e.g. `#333333`)
+profile_colour  | string?                   | colour of username/profile highlight, hex code (e.g. `#333333`)
 username        | string                    | user's display name
 
 <div id="usercompact-optionalattributes" data-unique="usercompact-optionalattributes"></div>

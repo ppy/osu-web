@@ -11,4 +11,14 @@
   &--important {
     font-weight: bold;
   }
+
+  &__markdown-inline-content {
+    display: inline;
+
+    // flatten markdown paragraphs
+    p {
+      display: inline;
+      margin: 0;
+    }
+  }
 }

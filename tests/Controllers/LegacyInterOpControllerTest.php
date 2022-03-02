@@ -14,7 +14,7 @@ class LegacyInterOpControllerTest extends TestCase
     public function testUserAchievement()
     {
         $user = User::factory()->create();
-        $achievement = factory(Achievement::class)->create();
+        $achievement = Achievement::factory()->create();
 
         $userAchievements = $user->userAchievements()->count();
         $notifications = $user->userNotifications()->count();

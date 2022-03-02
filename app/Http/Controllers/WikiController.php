@@ -46,7 +46,7 @@ class WikiController extends Controller
         if (OsuWiki::isImage($path)) {
             $prependPath = $locale === 'images' || $cleanLocale === null ? $locale : null;
 
-            return ujs_redirect(route('wiki.image', concat_path([$prependPath, $path])));
+            return ujs_redirect(wiki_image_url(concat_path([$prependPath, $path])));
         }
 
         // if invalid locale, assume locale to be part of path and

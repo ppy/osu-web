@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'הושג :when',
             'country' => 'דירוג מדינה',
+            'error' => '',
             'friend' => 'דירוג חברים',
             'global' => 'דירוג עולמי',
             'supporter-link' => 'לחץ <a href=":link">כאן</a> כדי לראות את כל הפיצ\'רים המגניבים שאתה מקבל!',
@@ -154,11 +155,12 @@ return [
                 'combo' => 'קומבו מירבי',
                 'miss' => 'פספוס',
                 'mods' => 'מודים',
+                'pin' => '',
                 'player' => 'שחקן',
                 'pp' => '',
                 'rank' => 'דירוג',
-                'score_total' => 'ציון כולל',
                 'score' => 'ציון',
+                'score_total' => 'ציון כולל',
                 'time' => 'זמן',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => 'מוביל',
                 'own' => 'הכי טוב שלך',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

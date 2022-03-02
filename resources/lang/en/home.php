@@ -132,15 +132,4 @@ return [
             'store' => 'osu!store',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'You seem to be having a good time! :D',
-        'body' => [
-            'part-1' => 'Did you know that osu! runs with no advertising, and relies on players to support its development and running costs?',
-            'part-2' => 'Did you also know that by supporting osu! you get a heap of useful features, such as <strong>in-game downloading</strong> which automatically triggers in spectator and multiplayer games?',
-        ],
-        'find-out-more' => 'Click here to find out more!',
-        'download-starting' => "Oh, and don't worry - your download has already been started for you already ;)",
-    ],
 ];

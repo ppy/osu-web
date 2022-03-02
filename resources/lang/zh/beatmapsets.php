@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => '在 :when 达成',
             'country' => '国内/区内排名',
+            'error' => '',
             'friend' => '好友排名',
             'global' => '全球排名',
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你得到的精彩功能！',
@@ -154,11 +155,12 @@ return [
                 'combo' => '最大连击',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => '置顶',
                 'player' => '玩家',
                 'pp' => '',
                 'rank' => '排名',
-                'score_total' => '得分',
                 'score' => '得分',
+                'score_total' => '得分',
                 'time' => '达成时间',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => '领衔者',
                 'own' => '你的最佳成绩',
+            ],
+            'supporter_link' => [
+                '_' => '点击 :here 查看您获得的所有精彩功能！',
+                'here' => '这里',
             ],
         ],
 

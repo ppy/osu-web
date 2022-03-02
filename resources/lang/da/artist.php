@@ -31,6 +31,7 @@ return [
         '_' => 'Sange',
         'count' => ':count_delimited sang|:count_delimited sange',
         'original' => '',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => 'længde',
         'bpm' => 'bpm',
         'genre' => 'genre',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

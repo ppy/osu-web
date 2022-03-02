@@ -132,15 +132,4 @@ return [
             'store' => 'osu!store',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Vay canına!',
-        'subtitle' => 'İyi vakit geçiriyor gibi görünüyorsunuz! :D',
-        'body' => [
-            'part-1' => 'Osu!\'nun reklamsız çalıştığını, geliştirme ve yürütme masraflarının karşılanmasında ise kendi oyuncularının desteğine güvendiğini biliyor muydun?',
-            'part-2' => 'Ayrıca, osu!\'yu destekleyerek, izleme modunda ve çoklu oyunculu oyunlarda otomatik olarak devreye giren <strong>oyun içi indirme</strong> özelliği gibi bir çok yararlı özelliklere sahip olabileceğini de biliyor muydun?',
-        ],
-        'find-out-more' => 'Daha fazlasını öğrenmek için buraya tıkla!',
-        'download-starting' => "Ah, bu arada, endişelenme! - indirme işlemin senin için çoktan başladı bile ;)",
-    ],
 ];

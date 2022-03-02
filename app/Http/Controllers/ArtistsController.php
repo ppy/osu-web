@@ -87,13 +87,14 @@ class ArtistsController extends Controller
             ];
         }
 
-        foreach (['twitter', 'facebook', 'spotify', 'bandcamp', 'patreon', 'soundcloud', 'youtube'] as $service) {
-            if ($artist->$service) {
+        foreach (['Twitter', 'Facebook', 'Spotify', 'Bandcamp', 'Patreon', 'SoundCloud', 'YouTube'] as $service) {
+            $serviceLowercase = strtolower($service);
+            if ($artist->$serviceLowercase) {
                 $links[] = [
-                    'title' => $service === 'youtube' ? 'YouTube' : ucwords($service),
-                    'url' => $artist->$service,
-                    'icon' => "fab fa-{$service}",
-                    'class' => $service,
+                    'title' => $service,
+                    'url' => $artist->$serviceLowercase,
+                    'icon' => "fab fa-{$serviceLowercase}",
+                    'class' => $serviceLowercase,
                 ];
             }
         }

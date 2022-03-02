@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => '',
             'country' => '',
+            'error' => '',
             'friend' => '',
             'global' => '',
             'supporter-link' => '',
@@ -154,11 +155,12 @@ return [
                 'combo' => '',
                 'miss' => '',
                 'mods' => '',
+                'pin' => '',
                 'player' => '',
                 'pp' => '',
                 'rank' => '',
-                'score_total' => '',
                 'score' => '',
+                'score_total' => '',
                 'time' => '',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => '',
                 'own' => '',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

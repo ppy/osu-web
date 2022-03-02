@@ -28,7 +28,7 @@ return [
         'reply_placeholder' => 'Ketik balasan Anda di sini',
         'require-login' => 'Silakan masuk untuk membuka topik bahasan baru atau mengirimkan balasan',
         'resolved' => 'Terjawab',
-        'restore' => 'kembalikan',
+        'restore' => 'pulihkan',
         'show_deleted' => 'Tampilkan yang telah dihapus',
         'title' => 'Diskusi',
 
@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Anulir Nominasi',
             'praise' => 'Pujian',
             'problem' => 'Masalah',
+            'problem_warning' => '',
             'review' => 'Kajian',
             'suggestion' => 'Saran',
         ],
@@ -139,7 +140,7 @@ return [
         'status-messages' => [
             'approved' => 'Beatmap ini telah di-approve pada :date!',
             'graveyard' => "Beatmap ini belum diperbarui sejak :date dan sepertinya telah diabaikan oleh pembuatnya...",
-            'loved' => 'Beatmap ini telah ditambahkan pada kategori \'Loved\' pada :date!',
+            'loved' => 'Beatmap ini telah ditambahkan pada kategori Loved pada :date!',
             'ranked' => 'Beatmap ini telah di-rank pada :date!',
             'wip' => 'Catatan: Beatmap ini ditandai dengan status dalam pengerjaan (work-in-progress) oleh pembuatnya.',
         ],
@@ -159,7 +160,7 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Telah di-Hype!',
-        'confirm' => "Apakah Anda yakin? Dengan ini Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Aksi ini tidak dapat diurungkan.",
+        'confirm' => "Apakah Anda yakin? Dengan ini Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Tindakan ini tidak dapat diurungkan.",
         'explanation' => 'Berikanlah hype Anda untuk membawa beatmap ini lebih dekat menuju Ranked!',
         'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini dapat segera dinominasikan dan di-rank!',
         'new_time' => "Anda akan mendapatkan hype tambahan :new_time.",
@@ -170,7 +171,7 @@ return [
     ],
 
     'feedback' => [
-        'button' => 'Tinggalkan Masukan',
+        'button' => 'Berikan Masukan',
     ],
 
     'nominations' => [
@@ -188,7 +189,7 @@ return [
         'nominate' => 'Nominasi',
         'nominate_confirm' => 'Nominasikan beatmap ini?',
         'nominated_by' => 'dinominasikan oleh :users',
-        'not_enough_hype' => "Beatmap tidak memiliki hype yang cukup.",
+        'not_enough_hype' => "Beatmap belum memperoleh cukup hype.",
         'remove_from_loved' => 'Lepas dari Loved',
         'remove_from_loved_prompt' => 'Alasan pelepasan status Loved:',
         'required_text' => 'Nominasi: :current/:required',
@@ -197,7 +198,7 @@ return [
         'unresolved_issues' => 'Terdapat satu atau lebih masalah yang belum terjawab dan harus ditangani terlebih dahulu.',
 
         'rank_estimate' => [
-            '_' => 'Map ini akan berstatus Ranked pada :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue.',
+            '_' => 'Map ini akan berstatus Ranked pada :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue yang ada.',
             'queue' => 'antrian ranking',
             'soon' => 'segera',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Apakah Anda yakin? Memposting masalah baru akan mengulang proses nominasi.',
             'disqualify' => 'Apakah Anda yakin? Tindakan ini akan melepas beatmap ini dari kategori Qualified dan mengulang proses nominasi dari awal.',
+            'nomination_reset' => 'Apakah Anda yakin? Memposting masalah baru akan mengulang proses nominasi.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -220,14 +222,14 @@ return [
             'options' => 'Pilihan Pencarian Lebih Lanjut',
             'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan osu!supporter tag yang aktif',
             'not-found' => 'tidak ada hasil',
-            'not-found-quote' => '... tidak, tidak ditemukan apa pun.',
+            'not-found-quote' => '... tidak, tidak apa hasil apapun yang ditemukan.',
             'filters' => [
-                'extra' => 'Konten Ekstra',
+                'extra' => 'Konten Tambahan',
                 'general' => 'Umum',
                 'genre' => 'Aliran',
                 'language' => 'Bahasa',
                 'mode' => 'Mode',
-                'nsfw' => 'Map-Map Berkonten Eksplisit',
+                'nsfw' => 'Beatmap Berkonten Eksplisit',
                 'played' => 'Riwayat Permainan',
                 'rank' => 'Torehan Peringkat',
                 'status' => 'Status',
@@ -237,7 +239,7 @@ return [
                 'artist' => 'Artis',
                 'difficulty' => 'Tingkat Kesulitan',
                 'favourites' => 'Jumlah Favorit',
-                'updated' => 'Tanggal Pembaruan Terakhir',
+                'updated' => 'Tanggal Pembaruan',
                 'ranked' => 'Tanggal Ranked',
                 'rating' => 'Nilai Pengguna',
                 'plays' => 'Jumlah Permainan',
@@ -251,9 +253,9 @@ return [
         ],
     ],
     'general' => [
-        'converts' => 'Sertakan map-map convert',
+        'converts' => 'Sertakan beatmap convert',
         'featured_artists' => 'Featured artist',
-        'follows' => 'Tampilkan hanya mapper-mapper yang dipantau',
+        'follows' => 'Mapper yang diikuti',
         'recommended' => 'Rentang kesulitan yang disarankan',
     ],
     'mode' => [
@@ -271,8 +273,9 @@ return [
         'graveyard' => 'Graveyard',
         'leaderboard' => 'Memiliki Leaderboard',
         'loved' => 'Loved',
-        'mine' => 'Map-Map Milik Saya',
+        'mine' => 'Map Milik Saya',
         'pending' => 'Pending & WIP',
+        'wip' => '',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],

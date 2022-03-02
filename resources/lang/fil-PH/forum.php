@@ -127,6 +127,55 @@ return [
             'previous' => 'bumalik nang 10 mga post',
         ],
 
+        'logs' => [
+            '_' => 'Topic logs',
+            'button' => 'Browse topic logs',
+
+            'columns' => [
+                'action' => 'Aksyon',
+                'date' => 'Petsa',
+                'user' => 'User',
+            ],
+
+            'data' => [
+                'add_tag' => 'idinagdag ang ":tag" tag',
+                'announcement' => 'pinned topic and marked as announcement',
+                'edit_topic' => 'to :title',
+                'fork' => 'from :topic',
+                'pin' => 'pinned topic',
+                'post_operation' => 'pinost ni :username',
+                'remove_tag' => 'tinanggal ang ":tag" tag',
+                'source_forum_operation' => 'from :forum',
+                'unpin' => 'unpinned topic',
+            ],
+
+            'no_results' => 'no logs found...',
+
+            'operations' => [
+                'delete_post' => 'Deleted post',
+                'delete_topic' => 'Deleted topic',
+                'edit_topic' => 'Changed topic title',
+                'edit_poll' => 'Edited topic poll',
+                'fork' => 'Copied topic',
+                'issue_tag' => 'Issued tag',
+                'lock' => 'Locked topic',
+                'merge' => 'Merged posts into this topic',
+                'move' => 'Moved topic',
+                'pin' => 'Pinned topic',
+                'post_edited' => 'Edited post',
+                'restore_post' => 'Restored post',
+                'restore_topic' => 'Restored topic',
+                'split_destination' => 'Moved split posts',
+                'split_source' => 'Split posts',
+                'topic_type' => 'Set topic type',
+                'topic_type_changed' => 'Changed topic type',
+                'unlock' => 'Unlocked topic',
+                'unpin' => 'Unpinned topic',
+                'user_lock' => 'Locked own topic',
+                'user_unlock' => 'Unlocked own topic',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Ikansela',
             'post' => 'I-save',

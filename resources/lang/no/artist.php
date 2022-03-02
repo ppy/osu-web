@@ -31,6 +31,7 @@ return [
         '_' => 'Sanger',
         'count' => ':count sang|:count sanger',
         'original' => '',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => 'lengde',
         'bpm' => 'spm',
         'genre' => 'sjanger',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

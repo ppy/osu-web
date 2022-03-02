@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => '達成日 :when',
             'country' => '国別ランキング',
+            'error' => '',
             'friend' => 'フレンドランキング',
             'global' => '世界ランキング',
             'supporter-link' => '<a href=":link">ここ</a>をクリックする事でosu!サポーターの詳細が見れます。',
@@ -154,11 +155,12 @@ return [
                 'combo' => '最大コンボ',
                 'miss' => 'ミス',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'プレイヤー',
                 'pp' => '',
                 'rank' => '順位',
-                'score_total' => '合計スコア',
                 'score' => 'スコア',
+                'score_total' => '合計スコア',
                 'time' => '時間',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => 'リード',
                 'own' => 'あなたのベスト',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => 'topic logs',
+        ],
         'topic_watches_controller' => [
             'index' => 'dashboard',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'dashboard',
             'verify_link' => 'account verification',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'featured artists',
         ],
         'artists_controller' => [
             '_' => 'featured artists',

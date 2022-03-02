@@ -132,15 +132,4 @@ return [
             'store' => '',
         ],
     ],
-
-    'support-osu' => [
-        'title' => '',
-        'subtitle' => '',
-        'body' => [
-            'part-1' => '',
-            'part-2' => '',
-        ],
-        'find-out-more' => '',
-        'download-starting' => "",
-    ],
 ];

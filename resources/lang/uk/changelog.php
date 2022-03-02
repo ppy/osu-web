@@ -11,7 +11,7 @@ return [
     ],
 
     'builds' => [
-        'users_online' => ':count_delimited гравець онлайн|:count_delimited гравців онлайн',
+        'users_online' => ':count_delimited гравець онлайн|:count_delimited гравці|:count_delimited гравців онлайн',
     ],
 
     'entry' => [
@@ -34,7 +34,7 @@ return [
     'support' => [
         'heading' => 'Сподобалось оновлення?',
         'text_1' => 'Підтримайте майбутні розробки osu! і :link сьогодні!',
-        'text_1_link' => 'купивши osu!послідовник',
+        'text_1_link' => 'придбавши тег osu!supporter',
         'text_2' => 'Ви не тільки прискорите розробку, але і отримаєте додаткові можливості!',
     ],
 ];

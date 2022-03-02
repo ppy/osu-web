@@ -4,19 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Pas de parties multijoueurs d\'osu!(lazer) jouées pour le moment !',
+    'empty' => [
+        '_' => 'Pas de parties jouées sur osu!(lazer) :type_group pour le moment !',
+        'playlists' => 'playlist',
+        'realtime' => 'multijoueur',
+    ],
 
     'room' => [
         'hosted_by' => 'hébergé par :user',
-        'invalid_password' => 'Mot de passe de la salle invalide',
+        'invalid_password' => 'Mot de passe invalide',
         'map_count' => ':count_delimited map|:count_delimited maps',
         'player_count' => ':count_delimited joueur|:count_delimited joueurs',
         'time_left' => ':time restant',
 
+        'errors' => [
+            'duration_too_long' => 'La durée est trop longue.',
+        ],
+
         'status' => [
-            'active' => 'active',
-            'ended' => 'terminé',
-            'soon' => 'termine bientôt',
+            'active' => 'en cours',
+            'ended' => 'terminée',
+            'soon' => 'bientôt terminée',
         ],
     ],
 ];

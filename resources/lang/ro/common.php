@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'Răspunde și rezolvă',
         'reset' => 'Resetează',
         'restore' => 'Restaurează',
+        'retry' => '',
         'save' => 'Salvează',
         'saving' => 'Se salvează...',
         'search' => 'Caută',

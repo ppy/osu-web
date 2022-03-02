@@ -15,6 +15,17 @@ return [
     'top' => 'Melhores',
     'username' => 'Usuário',
 
+    'artist_tracks' => [
+        'album' => 'Álbum',
+        'artist' => 'Artista',
+        'bpm' => 'BPM',
+        'genre' => 'Gênero',
+        'length' => 'Duração',
+        'relevance' => 'Relevância',
+        'title' => 'Título',
+        'update' => 'Atualizar',
+    ],
+
     'forum_posts' => [
         'created' => 'Hora da postagem',
         'relevance' => 'Relevância',

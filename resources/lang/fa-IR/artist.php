@@ -31,6 +31,7 @@ return [
         '_' => 'آهنگ ها',
         'count' => ':count_delimited آهنگ|:count_delimited آهنگ ها',
         'original' => 'osu! عادی',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => 'طول',
         'bpm' => 'بیت در دقیقه',
         'genre' => 'ژانر',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => 'آلبوم',
+                'artist' => 'هنرمند',
+                'bpm_gte' => 'کمترین ضرب در دقیقه',
+                'bpm_lte' => 'بیشترین ضرب در دقیقه',
+                'empty' => '',
+                'genre' => 'ژانر',
+                'genre_all' => 'همه',
+                'length_gte' => 'کمترین طول',
+                'length_lte' => 'بیشترین طول',
+            ],
+        ],
     ],
 ];

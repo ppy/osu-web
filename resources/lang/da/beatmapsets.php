@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'opnået :when',
             'country' => 'Lande Rang',
+            'error' => '',
             'friend' => 'Rang blandt Venner',
             'global' => 'Global Rang',
             'supporter-link' => 'Klik <a href=":link">here</a> for at se alle de fede fordele du kan få!',
@@ -154,11 +155,12 @@ return [
                 'combo' => 'Maks Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Spiller',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Total Score',
                 'score' => 'Score',
+                'score_total' => 'Total Score',
                 'time' => 'Tid',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => 'I Førerpositionen',
                 'own' => 'Dit Bedste',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

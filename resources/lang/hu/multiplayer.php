@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Nem játszottál még egy osu!(lazer) többjátékos játékot sem!',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => 'hosztolva :user által',
@@ -12,6 +16,10 @@ return [
         'map_count' => ':count_delimited map|:count_delimited mapok',
         'player_count' => ':count_delimited játékos|:count_delimited játékosok',
         'time_left' => ':time van hátra',
+
+        'errors' => [
+            'duration_too_long' => '',
+        ],
 
         'status' => [
             'active' => 'aktív',

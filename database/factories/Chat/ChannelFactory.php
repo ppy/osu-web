@@ -2,37 +2,48 @@
 
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
+
+declare(strict_types=1);
+
+namespace Database\Factories\Chat;
+
 use App\Models\Chat\Channel;
 use App\Models\LegacyMatch\LegacyMatch;
+use Database\Factories\Factory;
 
-$factory->define(Channel::class, function (Faker\Generator $faker) {
-    return [
-        'name' => '#'.$faker->colorName,
-        'description' => $faker->bs,
-    ];
-});
+class ChannelFactory extends Factory
+{
+    protected $model = Channel::class;
 
-$factory->state(Channel::class, 'moderated', function (Faker\Generator $faker) {
-    return ['moderated' => true];
-});
+    public function definition(): array
+    {
+        return [
+            'name' => '#'.$this->faker->colorName(),
+            'description' => $this->faker->bs(),
+        ];
+    }
 
-$factory->state(Channel::class, 'public', function (Faker\Generator $faker) {
-    return ['type' => Channel::TYPES['public']];
-});
+    public function moderated()
+    {
+        return $this->state(['moderated' => true]);
+    }
 
-$factory->state(Channel::class, 'private', function (Faker\Generator $faker) {
-    return ['type' => Channel::TYPES['private']];
-});
+    public function tourney()
+    {
+        $match = factory(LegacyMatch::class)->states('tourney')->create();
 
-$factory->state(Channel::class, 'pm', function (Faker\Generator $faker) {
-    return ['type' => Channel::TYPES['pm']];
-});
+        return $this->state([
+            'name' => "#mp_{$match->getKey()}",
+            'type' => Channel::TYPES['temporary'],
+        ]);
+    }
 
-$factory->state(Channel::class, 'tourney', function (Faker\Generator $faker) {
-    $match = factory(LegacyMatch::class)->states('tourney')->create();
+    public function type(string $type)
+    {
+        if ($type === 'tourney') {
+            return $this->tourney();
+        }
 
-    return [
-        'name' => "#mp_{$match->match_id}",
-        'type' => Channel::TYPES['temporary'],
-    ];
-});
+        return $this->state(['type' => Channel::TYPES[$type]]);
+    }
+}

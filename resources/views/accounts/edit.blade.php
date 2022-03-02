@@ -174,5 +174,5 @@
     {!! json_encode($ownClients) !!}
   </script>
 
-  @include('layout._react_js', ['src' => 'js/react/account-edit.js'])
+  @include('layout._react_js', ['src' => 'js/account-edit.js'])
 @endsection

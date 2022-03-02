@@ -5,7 +5,7 @@
 
 return [
     'pinned_topics' => 'Chủ Đề Đã Ghim',
-    'slogan' => "chơi một mình khá rất nguy hiểm đấy.",
+    'slogan' => "Chơi một mình khá là nguy hiểm đấy.",
     'subforums' => 'Diễn đàn phụ',
     'title' => 'Diễn đàn ',
 
@@ -32,7 +32,7 @@ return [
         ],
 
         'topics' => [
-            'empty' => 'Không có chủ đề nào cả!',
+            'empty' => 'Không có chủ đề!',
         ],
     ],
 
@@ -64,7 +64,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited bài đăng|:count_delimited bài đăng',
-            'topic_starter' => 'Người tạo topic',
+            'topic_starter' => 'Người tạo Bài viết',
         ],
     ],
 
@@ -78,7 +78,7 @@ return [
         'confirm_destroy' => 'Bạn có muốn xóa bài viết này?',
         'confirm_restore' => 'Bạn có muốn phục hồi bài viết này?',
         'deleted' => 'chủ đề đã xóa',
-        'go_to_latest' => 'xem bài viết mới nhất',
+        'go_to_latest' => 'xem bài viết gần đây nhất',
         'has_replied' => 'Bạn đã trả lời topic này',
         'in_forum' => 'trong :forum',
         'latest_post' => ':when bởi :user',
@@ -121,10 +121,59 @@ return [
 
         'jump' => [
             'enter' => 'click để nhập số thứ tự cụ thể',
-            'first' => 'đi đến bài đăng đầu tiên',
-            'last' => 'đi đến bài đăng cuối cùng',
+            'first' => 'bài đăng đầu tiên',
+            'last' => 'bài đăng cuối cùng',
             'next' => 'bỏ qua 10 bài đăng',
             'previous' => 'trở lại 10 bài đăng',
+        ],
+
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => 'Hành động',
+                'date' => 'Ngày',
+                'user' => 'Người dùng',
+            ],
+
+            'data' => [
+                'add_tag' => 'đã thêm nhãn ":tag"',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
         ],
 
         'post_edit' => [

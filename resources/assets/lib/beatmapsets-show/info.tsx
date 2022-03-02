@@ -1,13 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DifficultyBadge from 'difficulty-badge';
+import DifficultyBadge from 'components/difficulty-badge';
+import StringWithComponent from 'components/string-with-component';
+import { UserLink } from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { padStart } from 'lodash';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
-import { UserLink } from 'user-link';
 import CountBadge from './count-badge';
 import Extra from './extra';
 import Metadata from './metadata';
@@ -54,9 +54,8 @@ export default class Header extends React.PureComponent<Props> {
               <span className='beatmapset-info__diff-mapper'>
                 <StringWithComponent
                   mappings={{
-                    ':mapper':
+                    mapper:
                       <UserLink
-                        key='mapper'
                         user={{ id: showedBeatmap.user?.id, username: showedBeatmap.user?.username ?? '' }}
                       />,
                   }}

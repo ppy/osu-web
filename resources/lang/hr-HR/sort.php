@@ -6,14 +6,25 @@
 return [
     '_' => '',
 
-    'all' => '',
-    'friends' => '',
+    'all' => 'Svi',
+    'friends' => 'Prijatelji',
     'last_visit' => '',
-    'new' => '',
-    'old' => '',
+    'new' => 'Nedavno',
+    'old' => 'Staro',
     'rank' => '',
-    'top' => '',
+    'top' => 'Vrh',
     'username' => '',
+
+    'artist_tracks' => [
+        'album' => 'Album',
+        'artist' => 'Umjetnik',
+        'bpm' => 'BPM',
+        'genre' => 'Žanr',
+        'length' => 'Dužina',
+        'relevance' => 'Relevantnost',
+        'title' => 'Naslov',
+        'update' => 'Ažuriraj',
+    ],
 
     'forum_posts' => [
         'created' => '',
@@ -27,6 +38,6 @@ return [
 
     'users' => [
         'relevance' => '',
-        'username' => '',
+        'username' => 'Ime',
     ],
 ];

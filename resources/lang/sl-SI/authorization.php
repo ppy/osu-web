@@ -63,10 +63,12 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '',
         'blocked' => '',
         'friends_only' => '',
         'moderated' => '',
         'no_access' => '',
+        'receive_friends_only' => '',
         'restricted' => '',
         'silenced' => '',
     ],
@@ -163,6 +165,13 @@ return [
 
         'view' => [
             'admin_only' => 'Samo administrator si lahko ogleda ta forum.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

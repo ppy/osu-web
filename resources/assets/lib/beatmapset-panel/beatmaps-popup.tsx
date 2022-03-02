@@ -1,13 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DifficultyBadge from 'difficulty-badge';
+import DifficultyBadge from 'components/difficulty-badge';
+import { Portal } from 'components/portal';
 import BeatmapJson from 'interfaces/beatmap-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
-import { Portal } from 'portal';
 import * as React from 'react';
 import { TransitionStatus } from 'react-transition-group';
 import { classWithModifiers } from 'utils/css';

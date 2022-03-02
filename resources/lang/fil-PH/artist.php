@@ -31,6 +31,7 @@ return [
         '_' => 'Mga kanta',
         'count' => ':count_delimited na kanta|:count_delimited mga kanta',
         'original' => 'osu! original',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => 'haba',
         'bpm' => 'bpm',
         'genre' => 'genre',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'tracks search',
+
+            'form' => [
+                'advanced' => 'Advanced Search',
+                'album' => 'Album',
+                'artist' => 'Artist',
+                'bpm_gte' => 'BPM Minimum',
+                'bpm_lte' => 'BPM Maximum',
+                'empty' => 'Walang tracks na tumugma sa pamantayan na hinahanap.',
+                'genre' => 'Genre',
+                'genre_all' => 'Lahat',
+                'length_gte' => 'Length Minimum',
+                'length_lte' => 'Length Maximum',
+            ],
+        ],
     ],
 ];

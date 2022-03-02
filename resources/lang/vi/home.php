@@ -132,15 +132,4 @@ return [
             'store' => 'osu!store',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Dường như bạn đang có một khoảng thời gian vui vẻ! :D',
-        'body' => [
-            'part-1' => 'Bạn có biết rằng osu! không được vận hành dựa vào lợi nhuận quảng cáo, mà dựa vào sự ủng hộ của người chơi để hỗ trợ sự phát triển và chi phí hoạt động?',
-            'part-2' => 'Bạn có biết rằng bằng cách hỗ trợ osu! bạn sẽ nhận được hàng tá các tính năng hữu ích, chẳng hạn như <strong>tải xuống beatmap ngay trong game</strong> khi bạn theo dõi người chơi khác và trong chế độ multiplayer?',
-        ],
-        'find-out-more' => 'Nhấp vào đây để tìm hiểu thêm!',
-        'download-starting' => "Ồ, và đừng lo lắng - quá trình tải xuống đã được bắt đầu cho bạn rồi ;)",
-    ],
 ];

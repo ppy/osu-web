@@ -132,15 +132,4 @@ return [
             'store' => 'osu! 商店',
         ],
     ],
-
-    'support-osu' => [
-        'title' => '喔！',
-        'subtitle' => '看起来你玩得很开心！',
-        'body' => [
-            'part-1' => '你知道吗？ osu! 是一款没有广告，完全依赖玩家支持以维持开发及运营的游戏。',
-            'part-2' => '如果你支持 osu!，就可以解锁额外的功能，例如<strong>游戏内自动下载</strong>。',
-        ],
-        'find-out-more' => '点击这里以了解更多',
-        'download-starting' => "对了，别担心 - 下载已经开始了 ;)",
-    ],
 ];

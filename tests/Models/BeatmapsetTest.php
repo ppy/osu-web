@@ -411,7 +411,6 @@ class BeatmapsetTest extends TestCase
     private function createBeatmapset($params = []): Beatmapset
     {
         $defaultParams = [
-            'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
             'download_disabled' => true,
             'genre_id' => $this->fakeGenre->genre_id,
@@ -430,7 +429,6 @@ class BeatmapsetTest extends TestCase
     private function createHybridBeatmapset($params = [], $playmodes = ['osu', 'taiko']): Beatmapset
     {
         $defaultParams = [
-            'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
             'download_disabled' => true,
             'genre_id' => $this->fakeGenre->genre_id,

@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'elérve: :when',
             'country' => 'Országos Ranglista',
+            'error' => '',
             'friend' => 'Baráti Ranglista',
             'global' => 'Globális Ranglista',
             'supporter-link' => 'Kattints <a href=":link">ide</a>,hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
@@ -154,11 +155,12 @@ return [
                 'combo' => 'Legmagasabb kombó',
                 'miss' => 'Miss',
                 'mods' => 'Modok',
+                'pin' => '',
                 'player' => 'Játékos',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Összpontszám',
                 'score' => 'Pontszám',
+                'score_total' => 'Összpontszám',
                 'time' => 'Idő',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Az élen',
                 'own' => 'A legjobbad',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

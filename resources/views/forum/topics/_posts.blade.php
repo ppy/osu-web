@@ -8,7 +8,8 @@
 
 @foreach($posts as $post)
     @php
-        $withDeleteLink = priv_check('ForumPostDelete', $post)->can();
+        $deletePriv = priv_check('ForumPostDelete', $post);
+        $withDeleteLink = $deletePriv->can() || $deletePriv->rawMessage() === 'forum.post.delete.only_last_post';
 
         if ($post->trashed() && $postPosition > 0 && !$loop->first) {
             $postPosition--;

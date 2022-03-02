@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Img2x from 'img2x';
+import Img2x from 'components/img2x';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { observer } from 'mobx-react';
@@ -41,7 +41,7 @@ export default class Cover extends React.Component<Props> {
             </div>
 
             {this.props.beatmapset.nsfw && (
-              <div className='nsfw-badge nsfw-badge--cover'>
+              <div className='beatmapset-badge beatmapset-badge--cover beatmapset-badge--nsfw'>
                 {osu.trans('beatmapsets.nsfw_badge.label')}
               </div>
             )}

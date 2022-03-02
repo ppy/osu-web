@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DifficultyBadge from 'difficulty-badge';
+import DifficultyBadge from 'components/difficulty-badge';
+import StringWithComponent from 'components/string-with-component';
+import { UserLink } from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
-import { UserLink } from 'user-link';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
@@ -50,9 +50,8 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
             <span className='beatmap-list-item__mapper'>
               <StringWithComponent
                 mappings={{
-                  ':mapper':
+                  mapper:
                     <UserLink
-                      key='mapper'
                       user={{ id: this.props.mapper.id, username: this.props.mapper.username }}
                     />,
                 }}

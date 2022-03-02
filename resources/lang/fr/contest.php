@@ -65,7 +65,7 @@ return [
     ],
     'states' => [
         'entry' => 'Entrée ouverte',
-        'voting' => 'Vote démarré',
+        'voting' => 'En cours de vote',
         'results' => 'Résultats tombés',
     ],
 ];

@@ -16,7 +16,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Istaknut umjetnik',
     ],
 
     'index' => [
@@ -57,7 +57,7 @@ return [
         'discussion' => '',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => 'od :artist',
             'favourite' => '',
             'favourite_login' => '',
             'logged-out' => '',
@@ -66,7 +66,7 @@ return [
             'updated_timeago' => '',
 
             'download' => [
-                '_' => '',
+                '_' => 'Preuzmi',
                 'direct' => '',
                 'no-video' => '',
                 'video' => '',
@@ -111,18 +111,18 @@ return [
             'report' => [
                 '_' => '',
                 'button' => '',
-                'link' => '',
+                'link' => 'ovdje',
             ],
         ],
 
         'info' => [
             'description' => '',
-            'genre' => '',
-            'language' => '',
+            'genre' => 'Žanr',
+            'language' => 'Jezik',
             'no_scores' => '',
             'nsfw' => '',
             'points-of-failure' => '',
-            'source' => '',
+            'source' => 'Izvor',
             'storyboard' => '',
             'success-rate' => '',
             'tags' => '',
@@ -136,13 +136,14 @@ return [
             'buttons' => [
                 'disable' => '',
                 'listing' => '',
-                'show' => '',
+                'show' => 'Prikaži',
             ],
         ],
 
         'scoreboard' => [
             'achieved' => '',
             'country' => '',
+            'error' => '',
             'friend' => '',
             'global' => '',
             'supporter-link' => '',
@@ -154,12 +155,13 @@ return [
                 'combo' => '',
                 'miss' => '',
                 'mods' => '',
-                'player' => '',
+                'pin' => '',
+                'player' => 'Igrač',
                 'pp' => '',
                 'rank' => '',
-                'score_total' => '',
                 'score' => '',
-                'time' => '',
+                'score_total' => '',
+                'time' => 'Vrijeme',
             ],
 
             'no_scores' => [
@@ -173,17 +175,21 @@ return [
                 'first' => '',
                 'own' => '',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => 'ovdje',
+            ],
         ],
 
         'stats' => [
             'cs' => '',
             'cs-mania' => '',
             'drain' => '',
-            'accuracy' => '',
+            'accuracy' => 'Preciznost',
             'ar' => '',
             'stars' => '',
             'total_length' => '',
-            'bpm' => '',
+            'bpm' => 'BPM',
             'count_circles' => '',
             'count_sliders' => '',
             'user-rating' => '',
@@ -195,9 +201,9 @@ return [
         'status' => [
             'ranked' => '',
             'approved' => '',
-            'loved' => '',
+            'loved' => 'Voljeno',
             'qualified' => '',
-            'wip' => '',
+            'wip' => 'Rad u tijeku',
             'pending' => '',
             'graveyard' => '',
         ],

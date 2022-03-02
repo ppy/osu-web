@@ -1,7 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BigButton from 'big-button';
+import BigButton from 'components/big-button';
+import { Modal } from 'components/modal';
 import BeatmapsetEventJson, { isBeatmapsetNominationEvent } from 'interfaces/beatmapset-event-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
@@ -9,7 +10,6 @@ import UserExtendedJson from 'interfaces/user-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
-import { Modal } from 'modal';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 

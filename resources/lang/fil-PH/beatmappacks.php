@@ -11,13 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'BASAHIN MO ITO BAGO MAGDOWNLOAD',
-            'instruction' => [
-                '_' => "Pagkatapos ang isang pack ay nadownload, iextract ang .rar sa directory ng iyong osu! Songs. 
-Lahat ng mga kanta ay naka .zip'd at/o .osz'd parin sa loob ng pack, kaya ang osu! mismo ay kailangan na iextract ang mga beatmap sa susunod na beses na ikaw ay pupunta sa Play Mode.
-:scary Iextract ang mga zip's/osz's sa iyong sarili
-o ang mga beatmap ay lalabas ng hindi tama sa osu! at hindi ito gagana ng maayos.",
-                'scary' => 'Huwag',
-            ],
+            'install_instruction' => 'Installation: Kapag ang pack ay na-download, i-extract ang kuntento ng pack sa iyong osu! Songs directory at osu! na ang bahala.',
             'note' => [
                 '_' => 'Isaalang-alang rin na lubos na nirerekomenda sa :scary, dahil ang mga lumang maps ay mas mababang kalidad kaysa sa mga bagong maps.',
                 'scary' => 'idownload ang packs mula pinakabago hanggang pinakaluma',

@@ -61,15 +61,13 @@
         "genre": {
           "type": "text",
           "fields": {
-            "_prefix": {
-              "type": "text",
-              "analyzer": "prefix",
-              "search_analyzer": "standard"
-            },
             "raw": {
               "type": "keyword"
             }
           }
+        },
+        "id": {
+          "type": "long"
         },
         "length": {
           "type": "long"

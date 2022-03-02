@@ -31,6 +31,7 @@ return [
         '_' => '樂曲',
         'count' => ':count_delimited 首音樂|:count_delimited 首音樂',
         'original' => 'osu! 原創',
+        'original_badge' => '原創曲',
     ],
 
     'tracklist' => [
@@ -38,5 +39,24 @@ return [
         'length' => '長度',
         'bpm' => 'bpm',
         'genre' => '類型',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '歌曲搜尋',
+
+            'form' => [
+                'advanced' => '進階搜尋',
+                'album' => '專輯',
+                'artist' => '演出者',
+                'bpm_gte' => 'BPM 最小值',
+                'bpm_lte' => 'BPM 最大值',
+                'empty' => '找不到符合條件的歌曲。',
+                'genre' => '曲風',
+                'genre_all' => '全部',
+                'length_gte' => '長度最小值',
+                'length_lte' => '長度最大值',
+            ],
+        ],
     ],
 ];

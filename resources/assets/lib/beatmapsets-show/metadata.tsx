@@ -1,14 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { Modal } from 'components/modal';
+import TimeWithTooltip from 'components/time-with-tooltip';
+import { UserLink } from 'components/user-link';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
-import { Modal } from 'modal';
 import { deletedUser } from 'models/user';
 import * as moment from 'moment';
 import * as React from 'react';
-import TimeWithTooltip from 'time-with-tooltip';
-import { UserLink } from 'user-link';
 import MetadataEditor from './metadata-editor';
 
 interface Props {

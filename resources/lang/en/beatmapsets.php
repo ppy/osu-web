@@ -162,6 +162,7 @@ return [
         'scoreboard' => [
             'achieved' => 'achieved :when',
             'country' => 'Country Ranking',
+            'error' => 'Failed loading ranking',
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
@@ -173,11 +174,12 @@ return [
                 'combo' => 'Max Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => 'Pin',
                 'player' => 'Player',
                 'pp' => 'pp',
                 'rank' => 'Rank',
-                'score_total' => 'Total Score',
                 'score' => 'Score',
+                'score_total' => 'Total Score',
                 'time' => 'Time',
             ],
 
@@ -192,6 +194,10 @@ return [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
             ],
+            'supporter_link' => [
+                '_' => 'Click :here to see all the fancy features that you get!',
+                'here' => 'here',
+            ],
         ],
 
         'stats' => [
@@ -200,7 +206,7 @@ return [
             'drain' => 'HP Drain',
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
-            'difficulty_rating' => 'Star Difficulty',
+            'difficulty_rating' => 'Star Rating',
             'total_length' => 'Length (Drain length: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Circle Count',

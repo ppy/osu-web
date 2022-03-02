@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BigButton from 'big-button';
+import BigButton from 'components/big-button';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
@@ -104,7 +104,7 @@ export default class Toolbar extends React.PureComponent<Props> {
   }
 
   private renderDownloadButtons() {
-    if (currentUser.id && !this.props.beatmapset.availability?.download_disabled) {
+    if (core.currentUser != null && !this.props.beatmapset.availability?.download_disabled) {
       return (
         <>
           {this.props.beatmapset.video ? (
@@ -129,7 +129,7 @@ export default class Toolbar extends React.PureComponent<Props> {
 
           <DownloadButton
             key='direct'
-            href={currentUser.is_supporter
+            href={core.currentUser.is_supporter
               ? beatmapDownloadDirect(this.props.currentBeatmap.id)
               : route('support-the-game')
             }
@@ -159,7 +159,7 @@ export default class Toolbar extends React.PureComponent<Props> {
   }
 
   private renderLoginButton() {
-    if (!currentUser.id) {
+    if (core.currentUser == null) {
       return (
         <BigButton
           extraClasses={['js-user-link']}
@@ -174,7 +174,7 @@ export default class Toolbar extends React.PureComponent<Props> {
   }
 
   private renderMenuButton() {
-    if (currentUser.id && currentUser.id !== this.props.beatmapset.user_id) {
+    if (core.currentUser != null && core.currentUser.id !== this.props.beatmapset.user_id) {
       return (
         <div className='beatmapset-toolbar__menu'>
           <div className='btn-circle btn-circle--page-toggle'>

@@ -132,15 +132,4 @@ return [
             'store' => 'osu!bolt',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Hűha!',
-        'subtitle' => 'Úgy néz ki nagyon jól szórakozol! :D',
-        'body' => [
-            'part-1' => 'Tudtad, hogy az osu! reklámok nélkül van fenntartva, és teljesen a játékosi támogatásra hagyatkozik a fenntartási és fejlesztési költségekhez?',
-            'part-2' => 'És azt tudtad, hogy az osu! támogatásával egy rakás hasznos funkciót kapsz, mint például a <strong>játékon belüli letöltés</strong> ami automatikusan életbe lép megfigyelőként és többjátékos módban?',
-        ],
-        'find-out-more' => 'További információért kattints ide!',
-        'download-starting' => "Oh, és ne aggódj - a letöltésedet már elindítottuk ;)",
-    ],
 ];

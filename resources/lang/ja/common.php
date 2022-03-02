@@ -44,6 +44,7 @@ return [
         'reply_resolve' => '返信して解決',
         'reset' => 'リセット',
         'restore' => '復元',
+        'retry' => '',
         'save' => '保存',
         'saving' => '保存中・・・',
         'search' => '検索',
@@ -92,11 +93,11 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
+            'moment' => 'YYYY年MM月',
             'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => 'YYYY年MM月',
         ],
     ],
 

@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Controllers\Solo;
 
 use App\Models\Beatmap;
@@ -49,10 +51,13 @@ class ScoreTokensControllerTest extends TestCase
     public function dataProviderForTestStore()
     {
         return [
-            'ok' => ['ranked', true, true, 200],
-            'pending beatmap' => ['wip', true, true, 404],
-            'missing ruleset id' => ['ranked', false, true, 422],
+            'deleted beatmap' => ['deleted', true, true, 404],
+            'deleted beatmapset' => ['deletedBeatmapset', true, true, 404],
+            'inactive beatmap' => ['inactive', true, true, 404],
             'invalid hash' => ['ranked', true, false, 422],
+            'missing ruleset id' => ['ranked', false, true, 422],
+            'ok' => ['ranked', true, true, 200],
+            'pending beatmap' => ['wip', true, true, 200],
         ];
     }
 }

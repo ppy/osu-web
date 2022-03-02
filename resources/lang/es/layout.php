@@ -46,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => 'multijugador',
+            'playlists' => 'listas de juego',
+            'realtime' => 'multijugador',
             'show' => 'información',
         ],
     ],

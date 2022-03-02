@@ -63,10 +63,12 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => '',
         'blocked' => 'Nevar nosūtīt ziņojumu lietotājam, kas jūs ir nobloķējis vai kuru jūs esiet nobloķējis.',
         'friends_only' => 'Lietotājs ir bloķējis ziņojumus no cilvēkiem, kas nav viņa draugu sarakstā.',
         'moderated' => 'Šis kanāls pašlaik tiek regulēts.',
         'no_access' => 'Jums nav piekļuves tiesības uz šo kanālu.',
+        'receive_friends_only' => '',
         'restricted' => 'Jūs nevarat sūtīt ziņas, kamēr jūs esat apklusināts, ierobežots vai zem aizlieguma.',
         'silenced' => '',
     ],
@@ -163,6 +165,13 @@ return [
 
         'view' => [
             'admin_only' => 'Tikai admins var skatīt šo forumu.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => '',
+            'too_many' => '',
         ],
     ],
 

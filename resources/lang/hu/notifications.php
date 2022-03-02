@@ -39,7 +39,7 @@ return [
                 'beatmapset_discussion_lock_compact' => 'A megbeszélést lezárták',
                 'beatmapset_discussion_post_new' => 'Új poszt a ":title"-on :username:-tol ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Új poszt a ":title"-on :username:-tol',
-                'beatmapset_discussion_post_new_compact' => 'Új poszt :username által: ":content"',
+                'beatmapset_discussion_post_new_compact' => 'Új hozzászólás :username által: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Új poszt :username által',
                 'beatmapset_discussion_review_new' => 'Új hozzászolás problémákat tartalmazó tartalomról :username által, ezen a beatmapen: ":title"  
 :problems, javaslat :suggestions, dícséret: :praises',
@@ -87,8 +87,19 @@ return [
         'channel' => [
             '_' => 'Csevegés',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Új üzenet',
+
                 'pm' => [
                     'channel_message' => ':username üzeni ":title"',
                     'channel_message_compact' => ':title',
@@ -149,6 +160,9 @@ return [
                 'user_beatmapset_new' => 'Új ":title" beatmap :username által',
                 'user_beatmapset_new_compact' => 'Új beatmap: ":title"',
                 'user_beatmapset_new_group' => 'Új beatmapek :username által',
+
+                'user_beatmapset_revive' => '":title" beatmap felélesztve :username által',
+                'user_beatmapset_revive_compact' => '":title" beatmap felélesztve',
             ],
         ],
 

@@ -128,7 +128,7 @@ class BeatmapsetSearch extends RecordSearch
                 'terms' => [
                     $field => [
                         'index' => config('osu.elasticsearch.prefix').'blacklist',
-                        'type' => 'blacklist', // FIXME: change to _doc after upgrading from 6.1
+                        'type' => '_doc',
                         'id' => 'beatmapsets',
                         // can be changed to per-field blacklist as different fields should probably have different restrictions.
                         'path' => 'keywords',
@@ -325,8 +325,10 @@ class BeatmapsetSearch extends RecordSearch
                 break;
             case 'pending':
                 $query
-                    ->should(['match' => ['approved' => Beatmapset::STATES['wip']]])
-                    ->should(['match' => ['approved' => Beatmapset::STATES['pending']]]);
+                    ->must(['match' => ['approved' => Beatmapset::STATES['pending']]]);
+                break;
+            case 'wip':
+                $query->must(['match' => ['approved' => Beatmapset::STATES['wip']]]);
                 break;
             case 'graveyard':
                 $query->must(['match' => ['approved' => Beatmapset::STATES['graveyard']]]);

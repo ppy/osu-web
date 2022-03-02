@@ -54,8 +54,11 @@ class ChannelTransformer extends TransformerAbstract
 
     public function includeCurrentUserAttributes(Channel $channel)
     {
+        $result = $channel->checkCanMessage($this->user);
+
         return $this->primitive([
-            'can_message' => $channel->canMessage($this->user),
+            'can_message' => $result->can(),
+            'can_message_error' => $result->message(),
             'last_read_id' => $channel->lastReadIdFor($this->user),
         ]);
     }

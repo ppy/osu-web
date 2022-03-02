@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'لا توجد العاب osu!(lazer) جماعية حتى الان!',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => 'مستضافة بواسطة :user',
@@ -12,6 +16,10 @@ return [
         'map_count' => ':count_delimited الخريطة|:count_delimited خرائط',
         'player_count' => ':count_delimited لاعب|:count_delimited لاعبين',
         'time_left' => 'تبقى:time',
+
+        'errors' => [
+            'duration_too_long' => '',
+        ],
 
         'status' => [
             'active' => 'نشط',

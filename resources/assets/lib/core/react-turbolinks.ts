@@ -52,11 +52,15 @@ export default class ReactTurbolinks {
     this.boot();
   }
 
-  runAfterPageLoad(eventId: string, callback: () => void) {
+  runAfterPageLoad(callback: () => void) {
     if (document.body === window.newBody) {
       callback();
     } else {
-      $(document).one(`turbolinks:load.${eventId}`, callback);
+      $(document).one('turbolinks:load', callback);
+
+      return () => {
+        $(document).off('turbolinks:load', callback);
+      };
     }
   }
 

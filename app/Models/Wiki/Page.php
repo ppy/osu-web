@@ -16,7 +16,7 @@ use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use App\Libraries\Wiki\MainPageRenderer;
 use App\Libraries\Wiki\MarkdownRenderer;
-use App\Models\Elasticsearch\WikiPageTrait;
+use App\Models\Traits;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
 use Ds\Set;
@@ -25,7 +25,7 @@ use Log;
 
 class Page implements WikiObject
 {
-    use Memoizes, WikiPageTrait;
+    use Memoizes, Traits\Es\WikiPageSearch;
 
     const CACHE_DURATION = 5 * 60 * 60;
     const VERSION = 9;

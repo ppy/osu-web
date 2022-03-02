@@ -67,7 +67,7 @@ class BeatmapDiscussion extends Model
     // FIXME: This and other static search functions should be extracted out.
     public static function search($rawParams = [])
     {
-        $pagination = pagination($rawParams);
+        $pagination = pagination(cursor_from_params($rawParams) ?? $rawParams);
 
         $params = [
             'limit' => $pagination['limit'],

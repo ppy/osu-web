@@ -29,7 +29,7 @@ return [
         ],
 
         'profile' => [
-            'title' => '編輯個人簡介',
+            'title' => '個人資料',
 
             'user' => [
                 'user_discord' => '',

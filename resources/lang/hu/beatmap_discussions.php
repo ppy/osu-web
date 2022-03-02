@@ -74,7 +74,7 @@ return [
 
     'review' => [
         'block_count' => ':used / :max blokk használva',
-        'go_to_parent' => 'Legújabb posztok mutatása',
+        'go_to_parent' => 'Legújabb hozzászólások mutatása',
         'go_to_child' => 'Megbeszélés megtekintése',
         'validation' => [
             'block_too_large' => 'a maximális karakter szám :limit',

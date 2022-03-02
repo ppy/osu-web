@@ -1,13 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapIcon } from 'beatmap-icon';
+import { BeatmapIcon } from 'components/beatmap-icon';
+import StringWithComponent from 'components/string-with-component';
+import { UserLink } from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
-import { UserLink } from 'user-link';
 import { getArtist, getDiffColour, getTitle } from 'utils/beatmap-helper';
 
 interface Props {

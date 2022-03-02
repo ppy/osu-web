@@ -4,14 +4,22 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Няма мултиплейър osu!(lazer) игри в момента!',
+    'empty' => [
+        '_' => 'Потребителят не е играл osu!(lazer) :type_group игри все още!',
+        'playlists' => 'плейлист',
+        'realtime' => 'мултиплейър',
+    ],
 
     'room' => [
         'hosted_by' => 'домакин е :user',
         'invalid_password' => 'Грешна парола за стая',
-        'map_count' => ':count_delimited Бийтмап|:count_delimited Бийтмапа',
-        'player_count' => ':count_delimited играч|:count_delimited играчи',
+        'map_count' => ':count_delimited бийтмап|:count_delimited бийтмапа',
+        'player_count' => ':count_delimited играч|:count_delimited играча',
         'time_left' => ':time остава',
+
+        'errors' => [
+            'duration_too_long' => 'Прекалено голяма продължителност.',
+        ],
 
         'status' => [
             'active' => 'активна',

@@ -132,15 +132,4 @@ return [
             'store' => 'osu!store',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Mukhang nag e-enjoy ka! :D',
-        'body' => [
-            'part-1' => 'Alam mo ba na ang osu! ay tumatakbo ng walang advertising, at umaasa sa suporta ng mga player para sa development at gastos sa pagpapatakbo nito?',
-            'part-2' => 'Alam mo din ba na ang pagsusuporta sa osu! ay makakakuha ka ng iba\'t-ibang kapaki-pakinabang na features, katulad ng <strong>in-game downloading</strong> na nag a-awtomatikong nagtritrigger sa spectator at multiplayer games?',
-        ],
-        'find-out-more' => 'I-click ito para mas malaman pa!',
-        'download-starting' => "Wag mag alala - nagsisimula na ang iyong download ;)",
-    ],
 ];

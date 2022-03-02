@@ -15,10 +15,8 @@ class OAuthClientCredentialsRequestTest extends TestCase
      */
     public function testBotRequestingScope($scope, $status)
     {
-        $owner = User::factory()->withGroup('bot')->create();
-        $client = factory(Client::class)->create([
-            'redirect' => 'https://localhost',
-            'user_id' => $owner->getKey(),
+        $client = Client::factory()->create([
+            'user_id' => User::factory()->withGroup('bot'),
         ]);
 
         $params = [
@@ -37,11 +35,7 @@ class OAuthClientCredentialsRequestTest extends TestCase
      */
     public function testNonBotRequestingScope($scope, $status)
     {
-        $owner = User::factory()->create();
-        $client = factory(Client::class)->create([
-            'redirect' => 'https://localhost',
-            'user_id' => $owner->getKey(),
-        ]);
+        $client = Client::factory()->create();
 
         $params = [
             'client_id' => $client->getKey(),

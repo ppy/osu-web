@@ -25,7 +25,6 @@ use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
-use App\Traits\CommentableDefaults;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Cache;
@@ -103,7 +102,7 @@ use Illuminate\Database\QueryException;
  */
 class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 {
-    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, Memoizes, Reportable, SoftDeletes, Validatable;
+    use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -1049,9 +1048,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $this->beatmapsetNominations()->current()->exists();
     }
 
+    /**
+     * This will cause additional query if `difficulty_names` column is blank and beatmaps relation isn't preloaded.
+     */
     public function playmodes()
     {
-        return $this->beatmaps->pluck('playmode')->unique()->values();
+        $rawPlaymodes = present($this->difficulty_names)
+            ? collect(explode(',', $this->difficulty_names))
+                ->map(fn (string $name) => substr($name, strrpos($name, '@') + 1))
+            : $this->beatmaps->pluck('playmode');
+
+        return $rawPlaymodes->unique()->values();
     }
 
     public function playmodeCount()
@@ -1136,15 +1143,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return array_search_null($this->approved, static::STATES);
     }
 
-    public function defaultJson()
-    {
-        return json_item($this, 'Beatmapset', [
-            'beatmaps',
-            'current_user_attributes',
-            'nominations',
-        ]);
-    }
-
     public function defaultDiscussionJson()
     {
         return json_item(
@@ -1210,13 +1208,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $ratings[$i] = 0;
         }
 
-        $userRatings = $this->userRatings()
-            ->select('rating', \DB::raw('count(*) as count'))
-            ->groupBy('rating')
-            ->get();
+        if ($this->relationLoaded('userRatings')) {
+            foreach ($this->userRatings as $userRating) {
+                $ratings[$userRating->rating]++;
+            }
+        } else {
+            $userRatings = $this->userRatings()
+                ->select('rating', \DB::raw('count(*) as count'))
+                ->groupBy('rating')
+                ->get();
 
-        foreach ($userRatings as $rating) {
-            $ratings[$rating->rating] = $rating->count;
+            foreach ($userRatings as $rating) {
+                $ratings[$rating->rating] = $rating->count;
+            }
         }
 
         return $ratings;

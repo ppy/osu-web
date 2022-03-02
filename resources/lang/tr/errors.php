@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Hiç bir sonuç bulunamadı, sonra tekrar deneyiniz.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'Arama, şu an her zamankinden daha yoğun, lütfen sonra tekrar deneyiniz.',
     ],
 ];

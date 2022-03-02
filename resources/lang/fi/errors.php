@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Tuloksia ei saatu, yritä myöhemmin uudelleen.',
+        'invalid_cursor_exception' => '',
         'operation_timeout_exception' => 'Haku on tavallista aktiivisempi. Yritä uudelleen myöhemmin.',
     ],
 ];

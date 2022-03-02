@@ -8,15 +8,15 @@ return [
         'disabled' => 'Tato beatmapa není momentálně dostupná ke stažení.',
         'parts-removed' => 'Část této beatmapy byla smazána na žádost tvůrce nebo vlastníka třetí strany.',
         'more-info' => 'Pro více informací klikněte zde.',
-        'rule_violation' => '',
+        'rule_violation' => 'Některé věci obsažené v této mapě byly odstraněny poté, co byly povážené za nevhodné pro použití v osu!.',
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Zpomalte, hrajte více.',
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Featured artist',
     ],
 
     'index' => [
@@ -36,15 +36,15 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Hybridní beatmapa vyžaduje, abyste vybrali alespoň jeden herní režim, na který chcete nominovat.',
+        'incorrect_mode' => 'Nemáte oprávnění k nominaci v módu: :mode',
+        'full_bn_required' => 'Musíte být plný nominátor, abyste mohl provést kvalifikační nominaci.',
+        'too_many' => 'Požadavek na nominaci je již splněn.',
 
         'dialog' => [
-            'confirmation' => '',
+            'confirmation' => 'Jste si jisti, že chcete nominovat tuto beatmapu?',
             'header' => 'Nominovat beatmapu',
-            'hybrid_warning' => '',
+            'hybrid_warning' => 'poznámka: můžete nominovat pouze jednou, takže se ujistěte, že nominujete pro všechny herní režimy, které hodláte',
             'which_modes' => '',
         ],
     ],
@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'dosaženo :when',
             'country' => 'Státní žebříčky',
+            'error' => '',
             'friend' => 'Žebříček přátel',
             'global' => 'Celosvětové žebříčky',
             'supporter-link' => 'Klikněte <a href=":link">zde</a> pro zobrazení všech výhod, které dostanete!',
@@ -154,11 +155,12 @@ return [
                 'combo' => 'Maximální Kombo',
                 'miss' => 'Minuto',
                 'mods' => 'Módy',
+                'pin' => '',
                 'player' => 'Hráč',
                 'pp' => '',
                 'rank' => 'Umístění',
-                'score_total' => 'Celkové skóre',
                 'score' => 'Skóre',
+                'score_total' => 'Celkové skóre',
                 'time' => 'Čas',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => 'V čele',
                 'own' => 'Vaše nejlepší',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

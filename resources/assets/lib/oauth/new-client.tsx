@@ -1,16 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { Spinner } from 'components/spinner';
+import StringWithComponent from 'components/string-with-component';
+import { ValidatingInput } from 'components/validating-input';
 import { FormErrors } from 'form-errors';
 import { OwnClientJson } from 'interfaces/own-client-json';
 import { route } from 'laroute';
-import { action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { Spinner } from 'spinner';
-import StringWithComponent from 'string-with-component';
-import { ValidatingInput } from 'validating-input';
 
 const store = core.dataStore.ownClientStore;
 const uiState = core.dataStore.uiState;
@@ -20,6 +20,12 @@ export class NewClient extends React.Component {
   private static readonly inputFields = ['name', 'redirect'];
 
   private errors = new FormErrors();
+
+  constructor(props: Record<string, never>) {
+    super(props);
+
+    makeObservable(this);
+  }
 
   handleCancel = () => {
     uiState.account.newClientVisible = false;

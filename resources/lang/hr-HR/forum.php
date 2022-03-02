@@ -87,8 +87,8 @@ return [
         'new_topic_login' => '',
         'post_reply' => '',
         'reply_box_placeholder' => '',
-        'reply_title_prefix' => '',
-        'started_by' => '',
+        'reply_title_prefix' => 'Re',
+        'started_by' => 'od :user',
         'started_by_verbose' => '',
 
         'actions' => [
@@ -97,7 +97,7 @@ return [
         ],
 
         'create' => [
-            'close' => '',
+            'close' => 'Zatvori',
             'preview' => '',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -127,9 +127,58 @@ return [
             'previous' => '',
         ],
 
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => '',
+                'date' => 'Datum',
+                'user' => 'Korisnik',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
+        ],
+
         'post_edit' => [
-            'cancel' => '',
-            'post' => '',
+            'cancel' => 'Poništi',
+            'post' => 'Spremi',
         ],
     ],
 
@@ -163,7 +212,7 @@ return [
             'login_reply' => '',
             'reply' => '',
             'reply_with_quote' => '',
-            'search' => '',
+            'search' => 'Pretraži',
         ],
 
         'create' => [
@@ -180,11 +229,11 @@ return [
                 'hide_results' => '',
                 'hide_results_info' => '',
                 'length' => '',
-                'length_days_suffix' => '',
+                'length_days_suffix' => 'dana',
                 'length_info' => '',
                 'max_options' => '',
                 'max_options_info' => '',
-                'options' => '',
+                'options' => 'Opcije',
                 'options_info' => '',
                 'title' => '',
                 'vote_change' => '',
@@ -299,13 +348,13 @@ return [
             'poll' => [
                 'edit' => '',
                 'edit_warning' => '',
-                'vote' => '',
+                'vote' => 'Glasaj',
 
                 'button' => [
                     'change_vote' => '',
                     'edit' => '',
                     'view_results' => '',
-                    'vote' => '',
+                    'vote' => 'Glasaj',
                 ],
 
                 'detail' => [

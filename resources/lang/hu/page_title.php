@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'fórum',
+        'topic_logs_controller' => [
+            'index' => 'téma napló',
+        ],
         'topic_watches_controller' => [
             'index' => 'írányítópult',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'irányítópult',
             'verify_link' => 'Fiók hitelesítése',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'kiemelt előadók',
         ],
         'artists_controller' => [
             '_' => 'kiemelt előadók',

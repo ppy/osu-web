@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => '채팅',
 
+            'announcement' => [
+                '_' => '새 공지',
+
+                'announce' => [
+                    'channel_announcement' => ':username 님이 ":title" 라고 말합니다',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username 님의 공지',
+                ],
+            ],
+
             'channel' => [
                 '_' => '새 메시지',
+
                 'pm' => [
                     'channel_message' => ':username 님이 ":title" 라고 하셨습니다.',
                     'channel_message_compact' => ':title',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => ':username 님의 새로운 비트맵 ":title"',
                 'user_beatmapset_new_compact' => '새 비트맵 ":title"',
                 'user_beatmapset_new_group' => ':username 님의 새 비트맵',
+
+                'user_beatmapset_revive' => '비트맵 ":title" 이(가) :username 님에게 리뷰 받음',
+                'user_beatmapset_revive_compact' => '비트맵 ":title" 이(가) 리뷰 받음',
             ],
         ],
 

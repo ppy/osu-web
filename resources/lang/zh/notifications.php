@@ -88,8 +88,19 @@ return [
         'channel' => [
             '_' => '聊天',
 
+            'announcement' => [
+                '_' => '新通知',
+
+                'announce' => [
+                    'channel_announcement' => ':username：":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => '来自 :username 的通知',
+                ],
+            ],
+
             'channel' => [
                 '_' => '新消息',
+
                 'pm' => [
                     'channel_message' => ':username 说：“:title”',
                     'channel_message_compact' => ':title',
@@ -150,6 +161,9 @@ return [
                 'user_beatmapset_new' => ':username 上传了新谱面 “:title”',
                 'user_beatmapset_new_compact' => '新谱面 “:title”',
                 'user_beatmapset_new_group' => ':username 的新谱面',
+
+                'user_beatmapset_revive' => '谱面 ":title" 已由 :username 恢复',
+                'user_beatmapset_revive_compact' => '谱面 ":title" 已恢复',
             ],
         ],
 

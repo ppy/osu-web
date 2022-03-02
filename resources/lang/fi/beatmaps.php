@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Nollaa Suositus',
             'praise' => 'Kehu',
             'problem' => 'Ongelma',
+            'problem_warning' => '',
             'review' => 'Arvostelu',
             'suggestion' => 'Ehdotus',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Oletko varma? Uuden ongelman lähettäminen kumoaa suositusprosessin.',
             'disqualify' => 'Oletko varma? Tämä poistaa beatmapin esihyväksytyistä ja kumoaa suositusprosessin.',
+            'nomination_reset' => 'Oletko varma? Uuden ongelman lähettäminen kumoaa suositusprosessin.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -222,7 +224,7 @@ return [
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... mitään ei löytynyt.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Yleinen',
                 'genre' => 'Tyylilaji',
                 'language' => 'Kieli',
@@ -273,6 +275,7 @@ return [
         'loved' => 'Rakastettu',
         'mine' => 'Mappini',
         'pending' => 'Vireillä & WIP',
+        'wip' => '',
         'qualified' => 'Esihyväksytty',
         'ranked' => 'Hyväksytty',
     ],
@@ -290,7 +293,7 @@ return [
         'metal' => 'Metalli',
         'classical' => 'Klassinen',
         'folk' => 'Kansanmusiikki',
-        'jazz' => 'Jatsi',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '',
@@ -329,8 +332,8 @@ return [
         'korean' => 'korea',
         'spanish' => 'espanja',
         'swedish' => 'ruotsi',
-        'russian' => 'Venäläinen',
-        'polish' => 'Puolalainen',
+        'russian' => 'venäjä',
+        'polish' => 'puola',
         'instrumental' => 'Instrumentaalinen',
         'other' => 'Muu',
         'unspecified' => 'Täsmentämätön',

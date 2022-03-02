@@ -2,15 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ChannelJson from 'interfaces/chat/channel-json';
+import ChatSilenceJson from 'interfaces/chat/chat-silence-json';
 import MessageJson from 'interfaces/chat/message-json';
 
 export default interface ChatUpdatesJson {
-  messages: MessageJson[];
-  presence: ChannelJson[];
-  silences: ChatSilenceJson[];
-}
-
-interface ChatSilenceJson {
-  id: number;
-  user_id: number;
+  messages?: MessageJson[];
+  presence?: ChannelJson[];
+  silences?: ChatSilenceJson[];
 }

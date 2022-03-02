@@ -233,7 +233,7 @@ class DocumentProcessor
             }
 
             if (OsuWiki::isImage($path)) {
-                $url = route('wiki.image', compact('path'), false);
+                $url = wiki_image_url($path, false);
             } else {
                 $locale ??= $this->wikiLocale ?? config('app.fallback_locale');
                 $url = wiki_url($path, $locale, false, false);

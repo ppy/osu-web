@@ -132,15 +132,4 @@ return [
             'store' => 'osu!veikals',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Izskatās, ka tu pavadi jauku laiku! :D',
-        'body' => [
-            'part-1' => 'Vai tu zināji, ka osu! darbojās bez reklāmām, un balstās tikai uz spēlētājiem, kas atbalsta spēles attīstību un veiktspējas izmaksas?',
-            'part-2' => 'Vai tu zināji, ka atblastot osu! tu tiec pie kaudzēm noderīgām funkcijām kā piemēram <strong>bītmapju automātisko lejupielādēšanu</strong>, kas notiek, kad skaties citu spēles un kad spēlē multiplayer?',
-        ],
-        'find-out-more' => 'Spiediet šeit, lai uzzinātu vairāk!',
-        'download-starting' => "Neuztraucieties - jūsu lejupielāde ir jau sākusies priekš tevis ;)",
-    ],
 ];

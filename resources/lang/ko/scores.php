@@ -8,7 +8,7 @@ return [
         'title' => ':title 에서의 :username 님 [:version]',
 
         'beatmap' => [
-            'by' => ':artist 님이 만듦',
+            'by' => 'by :artist',
         ],
 
         'player' => [

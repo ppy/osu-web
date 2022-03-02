@@ -4,6 +4,7 @@
 import { route } from 'laroute';
 import { startsWith } from 'lodash';
 import { TurbolinksLocation } from 'turbolinks';
+import { currentUrl } from 'utils/turbolinks';
 
 const internalUrls = [
   'admin',
@@ -30,6 +31,15 @@ const internalUrls = [
 
 const internalUrlRegExp = RegExp(`^/(?:${internalUrls})(?:$|/|#)`);
 
+export const urlRegex = /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_.+!*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_.+!*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_.+!*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^.,:\s])))/ig;
+
+interface OsuLinkOptions {
+  classNames?: string[];
+  isRemote?: boolean;
+  props?: Partial<Record<string, string | undefined>>;
+  unescape?: boolean;
+}
+
 export function beatmapDownloadDirect(id: string | number): string {
   return `osu://b/${id}`;
 }
@@ -54,6 +64,67 @@ export function isInternal(location: TurbolinksLocation): boolean {
 // external link
 export function openBeatmapEditor(timestampWithRange: string): string {
   return `osu://edit/${timestampWithRange}`;
+}
+
+/**
+ * Creates a html link string.
+ *
+ * @param url href for the link
+ * @param text text for the link
+ * @param options props.className will override classNames if set.
+ * @returns html string of the link
+ */
+export function linkHtml(url: string, text: string, options?: OsuLinkOptions): string {
+  if (options?.unescape) {
+    url = unescape(url);
+    text = unescape(text);
+  }
+
+  const el = document.createElement('a');
+  el.textContent = text;
+  el.setAttribute('href', url);
+
+  if (options != null) {
+    if (options.isRemote) {
+      el.setAttribute('data-remote', '1');
+    }
+
+    if (options.classNames != null) {
+      el.className = options.classNames.join(' ');
+    }
+
+    if (options.props != null) {
+      const { className, ...props } = options.props;
+      if (className != null) {
+        el.className = className;
+      }
+
+      for (const [prop, val] of Object.entries(props)) {
+        if (val != null) el.setAttribute(prop, val);
+      }
+    }
+  }
+
+  return el.outerHTML;
+}
+
+export function linkify(text: string, newWindow = false) {
+  return text.replace(urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="_blank"' : ''}>$2</a>`);
+}
+
+export function updateQueryString(url: string | null, params: Record<string, string | null | undefined>) {
+  const docUrl = currentUrl();
+  const urlObj = new URL(url ?? docUrl.href, docUrl.origin);
+
+  for (const [key, value] of Object.entries(params)) {
+    if (value != null) {
+      urlObj.searchParams.set(key, value);
+    } else {
+      urlObj.searchParams.delete(key);
+    }
+  }
+
+  return urlObj.href;
 }
 
 export function wikiUrl(path: string, locale?: string | null | undefined) {

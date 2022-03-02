@@ -62,10 +62,6 @@
     }
   }
 
-  &--store {
-    background-color: white !important;
-  }
-
   &__col {
     width: calc(100% - 10px);
     margin: 5px;
@@ -79,12 +75,6 @@
     &--sm-4 {
       @media @desktop {
         width: calc((4 / 12 * 100%) - 10px);
-      }
-    }
-
-    &--sm-3 {
-      @media @desktop {
-        width: calc((3 / 12 * 100%) - 10px);
       }
     }
   }
@@ -128,24 +118,10 @@
       ._width-desktop;
     }
 
-    &--bootstrap {
-      .clearfix;
-    }
-
-    &--forum-post-create {
-      ._page;
-      padding: 20px;
-      padding-bottom: 0;
-    }
-
     &--full {
       display: flex;
       flex-direction: column;
       flex: 1 0 auto;
-    }
-
-    &--full-height {
-      height: 100%;
     }
 
     &--page {
@@ -159,41 +135,6 @@
       margin-bottom: 10px;
     }
 
-    &--page-compact-no-margin {
-      ._page;
-    }
-
-    &--page-profile {
-      ._page;
-      padding: 0;
-      padding-top: 20px;
-      margin-bottom: 10px;
-    }
-
-    &--sm1 {
-      ._width(20px);
-      @media @desktop {
-        ._width-desktop(20px);
-      }
-    }
-
-    &--sm2-desktop {
-      @media @desktop {
-        ._width-desktop(40px);
-      }
-    }
-
-    &--with-gutter {
-      margin-top: -5px;
-      // default vertical margin + gutter
-      margin-bottom: (10px + -5px);
-
-      width: 100%;
-      @media @desktop {
-        ._width-desktop(-5px);
-      }
-    }
-
     &--landing-sitemap {
       max-width: 800px;
       margin: 35px 0 40px;
@@ -205,51 +146,14 @@
     display: flex;
     flex-direction: column;
 
-    &--extra {
-      flex: 1 0 auto;
-      padding: 10px 0;
-    }
-
     &--full {
       flex: 1 0 auto;
-    }
-
-    &--minimum {
-      flex: none;
     }
 
     &--landing-footer {
       margin-top: auto;
       flex: none;
       .at2x("~@images/backgrounds/page-000.png", 500px, 500px);
-    }
-  }
-
-  &__sub-row {
-    padding: 20px;
-
-    &--lg1 {
-      ._page;
-
-      margin-left: -20px;
-      margin-right: -20px;
-      padding: 20px 40px;
-
-      @media @narrow {
-        padding: 20px 10px;
-      }
-    }
-
-    &--lg1-compact {
-      ._page();
-
-      margin-left: -20px;
-      margin-right: -20px;
-      padding: 0;
-    }
-
-    &--with-separator {
-      background-image: linear-gradient(to bottom, fade(#000, 20%), transparent 3px);
     }
   }
 }

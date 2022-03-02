@@ -10,8 +10,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Provjeri da li je tvoj avatar u skladu s :link.<br/>To znači da mora biti <strong>prikladno za sve uzraste</strong>. tj. bez golotinje, vulgarnosti ili sugestivnog sadržaja.',
+            'rules_link' => 'pravilima zajednice',
         ],
 
         'email' => [
@@ -48,42 +48,42 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '',
-        'beatmapset_disqualify' => '',
-        'comment_reply' => '',
-        'title' => '',
-        'topic_auto_subscribe' => '',
+        'beatmapset_discussion_qualified_problem' => 'primaj obavijesti o novom problemu na kvalificiranim beatmap-ima sljedećih modusa',
+        'beatmapset_disqualify' => 'primaj obavijesti kad beatmap-ovi sljedećih modusa budu diskvalificirani',
+        'comment_reply' => 'primaj obavijesti za odgovore na tvoje komentare',
+        'title' => 'Obavijesti',
+        'topic_auto_subscribe' => 'automatski uključi obavijesti na nove forum teme koje kreiraš',
 
         'options' => [
-            '_' => '',
+            '_' => 'načine isporuke',
             'beatmap_owner_change' => '',
             'beatmapset:modding' => '',
-            'channel_message' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mail' => '',
+            'channel_message' => 'privatne chat poruke',
+            'comment_new' => 'nove komentare',
+            'forum_topic_reply' => 'odgovor na temu',
+            'mail' => 'mail',
             'mapping' => '',
-            'push' => '',
-            'user_achievement_unlock' => '',
+            'push' => 'push',
+            'user_achievement_unlock' => 'otključanje korisničke medalje',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
-        'own_clients' => '',
-        'title' => '',
+        'authorized_clients' => 'odobreni klijenti',
+        'own_clients' => 'vlastiti klijenti',
+        'title' => 'OAuth',
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
-        'beatmapset_title_show_original' => '',
-        'title' => '',
+        'beatmapset_show_nsfw' => 'sakrij upozorenja za eksplicitni sadržaj u beatmap-ama',
+        'beatmapset_title_show_original' => 'prikaži metapodatke beatmap-a na izvornom jeziku',
+        'title' => 'Opcije',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'direct' => '',
-            'no_video' => '',
+            '_' => 'zadana vrsta za preuzimanje beatmap-a',
+            'all' => 'sa videom ako je dostupno',
+            'direct' => 'otvori u osu!direct',
+            'no_video' => 'bez videa',
         ],
     ],
 
@@ -96,18 +96,18 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => '',
-        'hide_online' => '',
-        'title' => '',
+        'friends_only' => 'blokiraj privatne poruke od osoba koje nisu na tvojoj listi prijatelja',
+        'hide_online' => 'sakrij svoju prisutnost na mreži',
+        'title' => 'Privatnost',
     ],
 
     'security' => [
-        'current_session' => '',
-        'end_session' => '',
-        'end_session_confirmation' => '',
-        'last_active' => '',
-        'title' => '',
-        'web_sessions' => '',
+        'current_session' => 'trenutna',
+        'end_session' => 'Završi sesiju',
+        'end_session_confirmation' => 'Ovo će odmah prekinuti tvoju sesiju na tom uređaju. Jesi li siguran?',
+        'last_active' => 'Zadnja aktivnost:',
+        'title' => 'Sigurnost',
+        'web_sessions' => 'web sesije',
     ],
 
     'update_email' => [
@@ -119,11 +119,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Možes ovaj tab/prozor sada zatvoriti',
+        'title' => 'Verifikacija je završena',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Nevažeći ili isteknut link za verifikaciju',
     ],
 ];

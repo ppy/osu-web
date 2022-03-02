@@ -46,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'การวิจารณ์บีทแมพ',
-            'multiplayer' => 'โหมดผู้เล่นหลายคน',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'ข้อมูล',
         ],
     ],

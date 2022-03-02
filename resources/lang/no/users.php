@@ -301,7 +301,7 @@ return [
                 'recent' => 'Nyeste',
                 'title' => 'Medaljer',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Nylige',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Last ned Reprise',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Førsteplasser',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [

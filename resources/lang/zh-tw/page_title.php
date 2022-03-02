@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => '論壇',
+        'topic_logs_controller' => [
+            'index' => '主題日誌',
+        ],
         'topic_watches_controller' => [
             'index' => '主頁',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => '主頁',
             'verify_link' => '帳戶驗證',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '精選藝術家',
         ],
         'artists_controller' => [
             '_' => '精選藝術家',

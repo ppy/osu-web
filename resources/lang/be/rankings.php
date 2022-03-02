@@ -18,11 +18,11 @@ return [
     ],
 
     'type' => [
-        'charts' => 'Чартам',
-        'country' => 'Краіна',
+        'charts' => 'па чартам',
+        'country' => 'па краінам',
         'multiplayer' => 'мультыплэер',
-        'performance' => 'Прадукцыйнасць',
-        'score' => 'Ачкі',
+        'performance' => 'па прадукцыйнасці',
+        'score' => 'па ачках',
     ],
 
     'spotlight' => [

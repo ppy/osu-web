@@ -163,7 +163,7 @@ class UserVerificationState
             $this->legacySession()->update(['verified' => true]);
         }
 
-        event(UserSessionEvent::newVerified($this->user->getKey(), $this->session->getKey()));
+        UserSessionEvent::newVerified($this->user->getKey(), $this->session->getKey())->broadcast();
     }
 
     public function verify($inputKey)

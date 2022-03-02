@@ -28,6 +28,39 @@ class ScoresControllerTest extends TestCase
             ->assertSuccessful();
     }
 
+    public function testDownloadDeletedBeatmap()
+    {
+        $this->score->beatmap->delete();
+
+        $this
+            ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->get(route('scores.download', $this->params()))
+            ->assertSuccessful();
+    }
+
+    public function testDownloadMissingBeatmap()
+    {
+        $this->score->beatmap->forceDelete();
+
+        $this
+            ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->get(route('scores.download', $this->params()))
+            ->assertStatus(422);
+    }
+
+    public function testDownloadMissingUser()
+    {
+        $this->score->user->delete();
+
+        $this
+            ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->get(route('scores.download', $this->params()))
+            ->assertStatus(422);
+    }
+
     public function testDownloadInvalidReferer()
     {
         $this

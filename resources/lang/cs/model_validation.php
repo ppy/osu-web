@@ -153,7 +153,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'Nemůžeš si změnit své uživatelské jméno, když jsi omezený.',
             'supporter_required' => [
                 '_' => 'Musíš mít :link na změnu jména!',
                 'link_text' => 'podpořit osu! nákupem supporter tagu!',

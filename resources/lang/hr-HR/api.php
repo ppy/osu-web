@@ -6,28 +6,28 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => '',
+            'empty' => 'Nije moguće poslati praznu poruku.',
             'limit_exceeded' => 'Prebrzo šaljete poruke, molim vas sačekajte trenutak prije nego što pokušate ponovo.',
-            'too_long' => '',
+            'too_long' => 'Poruka koju pokušavaš poslati je preduga.',
         ],
     ],
 
     'scopes' => [
-        'bot' => '',
-        'identify' => '',
+        'bot' => 'Se ponašati kao chat bot.',
+        'identify' => 'Tebe identificirati i očitati tvoj javni profil.',
 
         'chat' => [
-            'write' => '',
+            'write' => 'Slati poruke u tvoje ime.',
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Forum teme i objave u tvoje ime kreirati i urediti.',
         ],
 
         'friends' => [
-            'read' => '',
+            'read' => 'Vidjeti koga pratiš.',
         ],
 
-        'public' => '',
+        'public' => 'Čitati javne podatke u tvoje ime.',
     ],
 ];

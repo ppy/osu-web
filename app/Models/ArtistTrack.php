@@ -29,7 +29,7 @@ use App\Libraries\Elasticsearch\Indexable;
  */
 class ArtistTrack extends Model implements Indexable
 {
-    use Elasticsearch\ArtistTrackTrait;
+    use Traits\Es\ArtistTrackSearch;
 
     protected $casts = [
         'exclusive' => 'boolean',

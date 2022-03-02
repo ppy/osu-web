@@ -2,12 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapList from 'beatmap-discussions/beatmap-list';
+import StringWithComponent from 'components/string-with-component';
+import { UserLink } from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
-import { UserLink } from 'user-link';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 import BeatmapPicker from './beatmap-picker';
 
@@ -33,7 +33,7 @@ export default class Header extends React.PureComponent<Props> {
           </div>
 
           {this.props.beatmapset.nsfw && (
-            <div className='nsfw-badge nsfw-badge--header'>
+            <div className='beatmapset-badge beatmapset-badge--header beatmapset-badge--nsfw'>
               {osu.trans('beatmapsets.nsfw_badge.label')}
             </div>
           )}
@@ -52,9 +52,8 @@ export default class Header extends React.PureComponent<Props> {
           <div className='beatmapset-header__artist u-ellipsis-overflow'>
             <StringWithComponent
               mappings={{
-                ':artist':
+                artist:
                   <a
-                    key='artist'
                     className='beatmapset-header__text-link'
                     href={route('beatmapsets.index', { q: getArtist(this.props.beatmapset) })}
                   >
@@ -69,9 +68,8 @@ export default class Header extends React.PureComponent<Props> {
         <div className='beatmapset-header__creator'>
           <StringWithComponent
             mappings={{
-              ':creator':
+              creator:
                 <UserLink
-                  key='creator'
                   user={{ id: this.props.beatmapset.user_id, username: this.props.beatmapset.creator }}
                 />,
             }}

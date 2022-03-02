@@ -38,7 +38,7 @@ export default class RootDataStore {
     this.notificationStore = new NotificationStore();
     this.ownClientStore = new OwnClientStore();
     this.userStore = new UserStore();
-    this.channelStore = new ChannelStore(this.userStore);
+    this.channelStore = new ChannelStore();
     this.chatState = new ChatStateStore(this.channelStore);
     this.uiState = new UIStateStore(this.commentStore);
 

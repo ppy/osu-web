@@ -106,7 +106,7 @@ return [
 
             'skinnables' => [
                 'title' => 'Thêm Skin',
-                'description' => 'Thêm in-game skin, như là màn hình background ở menu chính.',
+                'description' => 'Thêm skin trong trò chơi, giống như hình nền ở bảng chọn chính.',
             ],
 
             'feature_votes' => [

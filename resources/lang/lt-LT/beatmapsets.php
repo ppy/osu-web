@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'pasiekta :when',
             'country' => 'Šalies reitingai',
+            'error' => '',
             'friend' => 'Draugų reitingai',
             'global' => 'Pasaulinis Reitingas',
             'supporter-link' => '',
@@ -154,11 +155,12 @@ return [
                 'combo' => 'Didžiausias combo',
                 'miss' => 'Nepataikyti',
                 'mods' => 'Modifikacijos',
+                'pin' => '',
                 'player' => 'Žaidėjas',
                 'pp' => '',
                 'rank' => 'Reitingas',
-                'score_total' => 'Visi taškai',
                 'score' => 'Taškai',
+                'score_total' => 'Visi taškai',
                 'time' => '',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Pirmauja',
                 'own' => 'Tavo geriausias',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

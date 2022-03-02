@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Walang osu!(lazer) multiplayer games na nalaro pa!',
+    'empty' => [
+        '_' => 'Walang osu!(lazer) :type_group games na nalaro pa!',
+        'playlists' => 'playlist',
+        'realtime' => 'multiplayer',
+    ],
 
     'room' => [
         'hosted_by' => 'hinost ni :user',
@@ -12,6 +16,10 @@ return [
         'map_count' => ':count_delimited map|:count_delimited maps',
         'player_count' => ':count_delimited player|:count_delimited players',
         'time_left' => ':time natira',
+
+        'errors' => [
+            'duration_too_long' => 'Masyadong matagal.',
+        ],
 
         'status' => [
             'active' => 'aktibo',

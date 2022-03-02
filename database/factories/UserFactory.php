@@ -10,15 +10,17 @@ namespace Database\Factories;
 use App\Models\Country;
 use App\Models\User;
 use App\Models\UserAccountHistory;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\UserStatistics\Model as UserStatisticsModel;
 
 class UserFactory extends Factory
 {
-    private static function defaultPassword()
+    const DEFAULT_PASSWORD = 'password';
+
+    private static function defaultPasswordHash()
     {
         static $password;
 
-        return $password ??= password_hash(md5('password'), PASSWORD_BCRYPT);
+        return $password ??= password_hash(md5(static::DEFAULT_PASSWORD), PASSWORD_BCRYPT);
     }
 
     protected $model = User::class;
@@ -26,7 +28,7 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (User $user) {
-            $user->addToGroup(app('groups')->byId($user->group_id));
+            $user->addToGroup(app('groups')->byIdOrFail($user->group_id));
         });
     }
 
@@ -36,9 +38,9 @@ class UserFactory extends Factory
         $countryAcronym = fn () => Country::inRandomOrder()->first() ?? Country::factory()->create();
 
         return [
-            'username' => fn () => substr(str_replace('.', ' ', $this->faker->userName()), 0, 15),
-            'user_password' => static::defaultPassword(),
-            'user_email' => fn () => $this->faker->safeEmail(),
+            'username' => fn () => substr(str_replace('.', ' ', $this->faker->unique()->userName()), 0, 15),
+            'user_password' => static::defaultPasswordHash(),
+            'user_email' => fn () => $this->faker->unique()->safeEmail(),
             'group_id' => fn () => app('groups')->byIdentifier('default'),
             'user_lastvisit' => time(),
             'user_posts' => rand(1, 500),
@@ -52,10 +54,10 @@ class UserFactory extends Factory
             'user_website' => 'http://www.google.com/',
             'user_twitter' => 'ppy',
             'user_permissions' => '',
-            'user_interests' => fn () => substr($this->faker->bs(), 30),
-            'user_occ' => fn () => substr($this->faker->catchPhrase(), 30),
+            'user_interests' => fn () => mb_substr($this->faker->bs(), 0, 30),
+            'user_occ' => fn () => mb_substr($this->faker->catchPhrase(), 0, 30),
             'user_sig' => fn () => $this->faker->realText(155),
-            'user_from' => fn () => substr($this->faker->country(), 30),
+            'user_from' => fn () => mb_substr($this->faker->country(), 0, 30),
             'user_regdate' => fn () => $this->faker->dateTimeBetween('-6 years'),
         ];
     }
@@ -70,6 +72,11 @@ class UserFactory extends Factory
     public function silenced()
     {
         return $this->has(UserAccountHistory::factory()->silence(), 'accountHistories');
+    }
+
+    public function supporter()
+    {
+        return $this->state(['osu_subscriber' => true, 'osu_subscriptionexpiry' => now()->addMonthNoOverflow(1)]);
     }
 
     public function withGroup(?string $groupIdentifier, ?array $playmodes = null)
@@ -103,5 +110,12 @@ class UserFactory extends Factory
     public function withNote()
     {
         return $this->has(UserAccountHistory::factory(), 'accountHistories');
+    }
+
+    public function withPlays(?int $count = null, ?string $mode = 'osu')
+    {
+        return $this->has(UserStatisticsModel::getClass($mode)::factory()->state([
+            'playcount' => $count ?? config('osu.user.min_plays_for_posting'),
+        ]), 'statistics'.studly_case($mode));
     }
 }

@@ -5,6 +5,7 @@
 
 namespace App\Transformers\Chat;
 
+use App\Models\Chat\Message;
 use App\Models\DeletedUser;
 use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
@@ -15,9 +16,9 @@ class MessageTransformer extends TransformerAbstract
         'sender',
     ];
 
-    public function transform($message)
+    public function transform(Message $message)
     {
-        return [
+        $response = [
             'message_id' => $message->message_id,
             'sender_id' => $message->user_id,
             'channel_id' => $message->channel_id,
@@ -25,13 +26,28 @@ class MessageTransformer extends TransformerAbstract
             'content' => $message->content,
             'is_action' => $message->is_action,
         ];
+
+        if ($message->uuid !== null) {
+            $response['uuid'] = $message->uuid;
+        }
+
+        if ($message->channel->isAnnouncement()) {
+            $response['content_html'] = markdown_chat($message->content);
+        }
+
+        return $response;
     }
 
-    public function includeSender($message)
+    public function includeSender(Message $message)
     {
         return $this->item(
             $message->sender ?? (new DeletedUser()),
             new UserCompactTransformer()
         );
+    }
+
+    public function includeUuid(Message $message)
+    {
+        return $this->primitive($message->uuid);
     }
 }

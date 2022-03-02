@@ -40,6 +40,12 @@ class Client extends PassportClient
         return $clients;
     }
 
+    public static function newFactory()
+    {
+        // force default factory class name instead of passport
+        return null;
+    }
+
     public function refreshTokens()
     {
         return $this->hasManyThrough(

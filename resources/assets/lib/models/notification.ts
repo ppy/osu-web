@@ -83,7 +83,7 @@ export default class Notification implements NotificationReadable, NotificationD
         this.details[camelCase(key)] = value;
       });
 
-      if (json.name === 'comment_new' && json.details.reply_to?.user_id === currentUser.id) {
+      if (json.name === 'comment_new' && json.details.reply_to?.user_id === core.currentUser?.id) {
         this.name = 'comment_reply';
       }
     }

@@ -15,6 +15,17 @@ return [
     'top' => 'Topp',
     'username' => 'Användarnamn',
 
+    'artist_tracks' => [
+        'album' => 'Album',
+        'artist' => 'Artist',
+        'bpm' => 'BPM',
+        'genre' => '',
+        'length' => 'Längd',
+        'relevance' => 'Relevans',
+        'title' => 'Titel',
+        'update' => 'Uppdatering',
+    ],
+
     'forum_posts' => [
         'created' => 'Inläggstid',
         'relevance' => 'Relevans',

@@ -7,6 +7,7 @@ namespace Tests\Libraries;
 
 use App\Exceptions\ValidationException;
 use App\Libraries\UserRegistration;
+use App\Models\Count;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -17,6 +18,7 @@ class UserRegistrationTest extends TestCase
         $attrs = $this->basicAttributes();
 
         $origCount = User::count();
+        $origCountCache = Count::totalUsers()->count;
         $reg = new UserRegistration($attrs);
         $thrown = $this->runSubject($reg);
 
@@ -25,6 +27,7 @@ class UserRegistrationTest extends TestCase
         $this->assertTrue($reg->user()->userGroups->every(function ($userGroup) {
             return $userGroup->user_pending === false;
         }));
+        $this->assertSame($origCountCache + 1, Count::totalUsers()->count);
     }
 
     public function testRequiresUsername()

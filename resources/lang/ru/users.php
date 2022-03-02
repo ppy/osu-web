@@ -174,7 +174,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Загрузка доступна только :link',
-                        'link' => 'приобретшим тег osu!supporter',
+                        'link' => 'с тегом osu!supporter',
                     ],
                 ],
             ],
@@ -208,7 +208,7 @@ return [
                     'title' => 'Любимые карты',
                 ],
                 'pending' => [
-                    'title' => 'Ожидающие',
+                    'title' => 'На рассмотрении',
                 ],
                 'ranked' => [
                     'title' => 'Рейтинговые и одобренные карты',
@@ -301,8 +301,8 @@ return [
                 'recent' => 'Последние полученные медали',
                 'title' => 'Медали',
             ],
-            'multiplayer' => [
-                'title' => 'Игры в мультиплеере',
+            'playlists' => [
+                'title' => 'Игры в плейлистах',
             ],
             'posts' => [
                 'title' => 'Посты',
@@ -312,6 +312,9 @@ return [
             'recent_activity' => [
                 'title' => 'Последняя активность',
             ],
+            'realtime' => [
+                'title' => 'Игры в мультиплеере',
+            ],
             'top_ranks' => [
                 'download_replay' => 'Скачать повтор',
                 'not_ranked' => 'Очки производительности выдаются только за прохождение рейтинговых карт.',
@@ -320,10 +323,19 @@ return [
                 'title' => 'Рейтинги',
 
                 'best' => [
-                    'title' => 'Лучшие результаты',
+                    'title' => 'Лучшие рекорды',
                 ],
                 'first' => [
                     'title' => 'Первые места',
+                ],
+                'pin' => [
+                    'to_0' => 'Открепить',
+                    'to_0_done' => 'Рекорд откреплён',
+                    'to_1' => 'Закрепить',
+                    'to_1_done' => 'Рекорд закреплён',
+                ],
+                'pinned' => [
+                    'title' => 'Закреплённые рекорды',
                 ],
             ],
             'votes' => [
@@ -336,7 +348,7 @@ return [
             'account_standing' => [
                 'title' => 'Нарушения',
                 'bad_standing' => "с аккаунтом <strong>:username</strong> не всё хорошо :(",
-                'remaining_silence' => 'пользователю <strong>:username</strong> можно будет говорить через :duration.',
+                'remaining_silence' => ':username сможет говорить снова через :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Недавние нарушения',

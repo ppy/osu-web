@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'dosiahol :when',
             'country' => 'Rebríček Krajiny',
+            'error' => '',
             'friend' => 'Rebríček Priateľov',
             'global' => 'Celosvetový Rebríčok',
             'supporter-link' => 'Kliknite <a href=":link">tu</a> pre zobrazenie všetkych výhod, ktoré dostanete!',
@@ -154,11 +155,12 @@ return [
                 'combo' => 'Maximálne Kombo',
                 'miss' => 'Minutie',
                 'mods' => 'Módy',
+                'pin' => '',
                 'player' => 'Hráč',
                 'pp' => '',
                 'rank' => 'Hodnotenie',
-                'score_total' => 'Celkové skóre',
                 'score' => 'Skóre',
+                'score_total' => 'Celkové skóre',
                 'time' => '',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Vo Vedení',
                 'own' => 'Tvoje Najlepšie',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

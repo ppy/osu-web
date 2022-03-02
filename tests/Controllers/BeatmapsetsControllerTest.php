@@ -16,15 +16,36 @@ class BeatmapsetsControllerTest extends TestCase
 {
     public function testBeatmapsetIsActive()
     {
-        $beatmapset = Beatmapset::factory()->create();
+        $beatmap = Beatmap::factory()->create();
 
-        $this->get(route('beatmapsets.show', ['beatmapset' => $beatmapset->getKey()]))
+        $this->get(route('beatmapsets.show', ['beatmapset' => $beatmap->beatmapset_id]))
             ->assertStatus(200);
     }
 
     public function testBeatmapsetIsNotActive()
     {
-        $beatmapset = Beatmapset::factory()->inactive()->create();
+        $beatmap = Beatmap::factory()->create([
+            'beatmapset_id' => Beatmapset::factory()->inactive(),
+        ]);
+
+        $this->get(route('beatmapsets.show', ['beatmapset' => $beatmap->beatmapset_id]))
+            ->assertStatus(404);
+    }
+
+    public function testBeatmapsetWithDeletedBeatmap()
+    {
+        $beatmap = Beatmap::factory()->create([
+            'beatmapset_id' => Beatmapset::factory(),
+            'deleted_at' => now(),
+        ]);
+
+        $this->get(route('beatmapsets.show', ['beatmapset' => $beatmap->beatmapset_id]))
+            ->assertStatus(404);
+    }
+
+    public function testBeatmapsetWithNoBeatmaps()
+    {
+        $beatmapset = Beatmapset::factory()->create();
 
         $this->get(route('beatmapsets.show', ['beatmapset' => $beatmapset->getKey()]))
             ->assertStatus(404);

@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'oppnådd :when',
             'country' => 'Landsrangering',
+            'error' => '',
             'friend' => 'Vennerangering',
             'global' => 'Global Rangering',
             'supporter-link' => 'Klikk <a href=":link">her</a> for å se alle de fancy funskjonene du får tildelt!',
@@ -154,11 +155,12 @@ return [
                 'combo' => 'Maks Kombo',
                 'miss' => 'Bom',
                 'mods' => 'Modifikasjoner',
+                'pin' => '',
                 'player' => 'Spiller',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Total Poengsum',
                 'score' => 'Poengsum',
+                'score_total' => 'Total Poengsum',
                 'time' => 'Tid',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => 'I ledelsen',
                 'own' => 'Ditt beste',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

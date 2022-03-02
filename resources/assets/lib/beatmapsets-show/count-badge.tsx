@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import StringWithComponent from 'components/string-with-component';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
@@ -17,8 +17,8 @@ export default function CountBadge({ data, modifiers }: Props) {
         <div key={key} className='beatmapset-count-badge__item'>
           <StringWithComponent
             mappings={{
-              ':value':
-                <span key={key} className='beatmapset-count-badge__value'>
+              value:
+                <span className='beatmapset-count-badge__value'>
                   {value}
                 </span>,
             }}

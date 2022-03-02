@@ -2,37 +2,31 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .page-extra {
-  @top: page-extra;
-
-  --padding: 20px;
-  --gutter: @gutter-profile-page;
   --dragdrop-margin: 0;
+  --gutter-desktop: @gutter-profile-page-desktop;
+  --gutter: @gutter-profile-page;
+  --inner-gutter: calc(var(--gutter) - var(--outer-gutter));
+  --outer-gutter-desktop: 10px;
+  --outer-gutter: 2px;
 
   .own-layer();
   .default-box-shadow();
-  .at2x-simple('~@images/backgrounds/page-extra-footer.png');
-  background-color: @osu-colour-b5;
-  background-position: bottom center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  color: #fff;
-  padding: var(--padding) var(--gutter);
-  margin-bottom: 10px;
-
+  padding: 20px var(--inner-gutter);
+  margin: 0 var(--outer-gutter);
+  position: relative;
+  background-color: hsl(var(--hsl-b4));
   font-size: @font-size--title-small;
+  border-radius: @border-radius--large;
 
   @media @desktop {
-    --gutter: @gutter-profile-page-desktop;
-  }
-
-  &--compact {
-    padding: 0;
+    --gutter: var(--gutter-desktop);
+    --outer-gutter: var(--outer-gutter-desktop);
   }
 
   &--userpage {
-    padding-right: 0px;
-    padding-bottom: 0px;
-    --dragdrop-margin: var(--gutter);
+    padding-right: 0;
+    padding-bottom: 0;
+    --dragdrop-margin: var(--inner-gutter);
   }
 
   &__actions {
@@ -93,29 +87,18 @@
     max-height: 400px;
   }
 
-  &__recent-medal {
-    margin: 0 5px;
-  }
-
   &__recent-medals {
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
     height: 1em;
     font-size: 90px; // icon size
-    margin: 0 -5px;
+    gap: 10px;
   }
 
   &__recent-medals-box {
-    background-color: @osu-colour-b4;
-    margin: 0 (-@gutter-profile-page);
-    padding: 0 @gutter-profile-page 20px;
-
-    @media @desktop {
-      margin-left: (-@gutter-profile-page-desktop);
-      margin-right: (-@gutter-profile-page-desktop);
-      padding-left: @gutter-profile-page-desktop;
-      padding-right: @gutter-profile-page-desktop;
-    }
+    background-color: hsl(var(--hsl-b3));
+    margin: 0 calc(-1 * var(--inner-gutter)) 20px;
+    padding: 0 var(--inner-gutter) 20px;
   }
 }

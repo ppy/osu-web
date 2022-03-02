@@ -301,8 +301,8 @@ return [
                 'recent' => 'En Son',
                 'title' => 'Madalyalar',
             ],
-            'multiplayer' => [
-                'title' => 'Çok Oyunculu Oyunlar',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Gönderiler',
@@ -311,6 +311,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Son',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Tekrarı İndir',
@@ -324,6 +327,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Birincilikler',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [

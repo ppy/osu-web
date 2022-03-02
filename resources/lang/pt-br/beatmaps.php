@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Reiniciar nomeação',
             'praise' => 'Elogio',
             'problem' => 'Problema',
+            'problem_warning' => '',
             'review' => 'Revisão',
             'suggestion' => 'Sugestão',
         ],
@@ -183,7 +184,7 @@ return [
         'disqualify' => 'Desqualificar',
         'incorrect_state' => 'Erro ao realizar essa ação, tente atualizar a página.',
         'love' => 'Amar',
-        'love_choose' => '',
+        'love_choose' => 'Escolher dificuldade para os mapas loved',
         'love_confirm' => 'Amar esse beatmap?',
         'nominate' => 'Nomear',
         'nominate_confirm' => 'Nomear este beatmap?',
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Você tem certeza? Postar um novo problema reiniciará as nomeações.',
             'disqualify' => 'Você tem certeza? Isso irá remover este beatmap da qualificação e reiniciará o processo de nomeação.',
+            'nomination_reset' => 'Você tem certeza? Postar um novo problema reiniciará as nomeações.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -252,7 +254,7 @@ return [
     ],
     'general' => [
         'converts' => 'Incluir beatmaps convertidos',
-        'featured_artists' => '',
+        'featured_artists' => 'Artistas em destaque',
         'follows' => 'Mappers inscritos',
         'recommended' => 'Dificuldade recomendada',
     ],
@@ -273,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Meus Maps',
         'pending' => 'Pendentes & Em Progresso',
+        'wip' => '',
         'qualified' => 'Qualificados',
         'ranked' => 'Ranqueados',
     ],

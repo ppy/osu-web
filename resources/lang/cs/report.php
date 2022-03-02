@@ -20,7 +20,7 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
+        'button' => 'Nahlásit',
         'title' => '',
     ],
 

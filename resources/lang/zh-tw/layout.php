@@ -46,7 +46,8 @@ return [
 
         'users' => [
             'modding' => '摸圖',
-            'multiplayer' => '多人遊戲',
+            'playlists' => '歌單',
+            'realtime' => '多人',
             'show' => '資訊',
         ],
     ],

@@ -136,6 +136,6 @@ class ClientsControllerTest extends TestCase
         parent::setUp();
 
         $this->owner = User::factory()->create();
-        $this->client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
+        $this->client = Client::factory()->create(['user_id' => $this->owner]);
     }
 }

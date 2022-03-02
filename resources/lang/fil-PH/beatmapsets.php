@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'nakamit nang :when',
             'country' => 'Ranggong Pambansa',
+            'error' => '',
             'friend' => 'Ranggo sa Kaibigan',
             'global' => 'Pandaigdigang Ranggo',
             'supporter-link' => 'I-click <a href=":link">ito</a> para makita ang mga feature na iyong matatamasa!',
@@ -154,11 +155,12 @@ return [
                 'combo' => 'Pinakamahabang Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => 'Pin',
                 'player' => 'Manlalaro',
                 'pp' => '',
                 'rank' => 'Rank',
-                'score_total' => 'Kabuuang Puntos',
                 'score' => 'Puntos',
+                'score_total' => 'Kabuuang Puntos',
                 'time' => 'Oras',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Nangunguna',
                 'own' => 'Iyong Best',
+            ],
+            'supporter_link' => [
+                '_' => 'Pindutin :here para makita ang mga fancy features na makukuha mo!',
+                'here' => 'ito',
             ],
         ],
 

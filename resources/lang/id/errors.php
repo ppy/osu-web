@@ -25,10 +25,11 @@ return [
         'standard_converts_only' => 'Tidak ada skor yang tercatat pada mode permainan yang dikehendaki di tingkat kesulitan ini.',
     ],
     'checkout' => [
-        'generic' => 'Terjadi kesalahan ketika akan melangsungkan proses checkout.',
+        'generic' => 'Terjadi kesalahan dalam mempersiapkan proses checkout.',
     ],
     'search' => [
         'default' => 'Hasil pencarian tidak dapat ditampilkan pada saat ini. Mohon coba lagi nanti.',
-        'operation_timeout_exception' => 'Aktivitas pencarian saat ini lebih sibuk dari biasanya. Mohon coba lagi nanti.',
+        'invalid_cursor_exception' => 'Parameter kursor yang ditentukan tidak valid.',
+        'operation_timeout_exception' => 'Aktivitas pencarian saat ini sedang lebih sibuk dari biasanya. Mohon coba lagi nanti.',
     ],
 ];

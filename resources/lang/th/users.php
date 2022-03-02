@@ -302,8 +302,8 @@ return [
                 'recent' => 'ล่าสุด',
                 'title' => 'เหรียญตรา',
             ],
-            'multiplayer' => [
-                'title' => 'เกมผู้เล่นหลายคน',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'โพสต์',
@@ -313,9 +313,12 @@ return [
             'recent_activity' => [
                 'title' => 'ล่า​สุด',
             ],
+            'realtime' => [
+                'title' => '',
+            ],
             'top_ranks' => [
                 'download_replay' => 'ดาวน์โหลดรีเพลย์',
-                'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้พีพี',
+                'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้ pp',
                 'pp_weight' => 'weighted :percentage',
                 'view_details' => 'ดูรายละเอียดเพิ่มเติม',
                 'title' => 'อันดับ',
@@ -325,6 +328,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'First Place Ranks',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [

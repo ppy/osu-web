@@ -9,7 +9,7 @@ namespace Database\Factories\Score\Best;
 
 use App\Models\Beatmap;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Database\Factories\Factory;
 
 abstract class ModelFactory extends Factory
 {

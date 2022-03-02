@@ -146,7 +146,7 @@
 
             @elseif(!$requestedNotification)
                 <a
-                    class="btn-osu-big btn-osu-big--action"
+                    class="btn-osu-big btn-osu-big--store-action js-login-required--click"
                     href="{{ route('store.notification-request', ['product' => $product->product_id]) }}"
                     data-remote="true"
                     data-method="POST"

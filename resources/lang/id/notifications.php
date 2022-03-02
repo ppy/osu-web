@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => 'Semua notifikasi telah dibaca!',
+    'all_read' => 'Seluruh notifikasi telah dibaca!',
     'delete' => 'Hapus :type',
     'loading' => 'Memuat notifikasi-notifikasi yang belum dibaca...',
     'mark_read' => 'Hapus :type',
@@ -63,7 +63,7 @@ return [
                 'beatmapset_love_compact' => 'Status beatmap dipromosikan menjadi loved',
                 'beatmapset_nominate' => '":title" telah mendapatkan nominasi',
                 'beatmapset_nominate_compact' => 'Beatmap telah mendapatkan nominasi',
-                'beatmapset_qualify' => 'Beatmap ":title" telah memperoleh jumlah nominasi yang diperlukan untuk proses ranking.',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrian ranking',
                 'beatmapset_qualify_compact' => 'Beatmap telah memasuki antrian ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',
                 'beatmapset_rank_compact' => 'Beatmap telah berstatus Ranked',
@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Pengumuman baru',
+
+                'announce' => [
+                    'channel_announcement' => ':username mengatakan ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Pengumuman dari :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Pesan Baru',
+
                 'pm' => [
                     'channel_message' => ':username mengatakan ":title"',
                     'channel_message_compact' => ':title',
@@ -126,7 +137,7 @@ return [
             '_' => 'Topik forum',
 
             'forum_topic_reply' => [
-                '_' => 'Balasan baru pada thread forum',
+                '_' => 'Balasan baru pada topik forum',
                 'forum_topic_reply' => ':username membalas postingan Anda pada utas forum ":title"',
                 'forum_topic_reply_compact' => ':username membalas postingan Anda',
             ],
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'Beatmap baru ":title" oleh :username',
                 'user_beatmapset_new_compact' => 'Beatmap baru ":title"',
                 'user_beatmapset_new_group' => 'Beatmap-beatmap baru oleh :username',
+
+                'user_beatmapset_revive' => 'Beatmap ":title" telah dipulihkan dari Graveyard oleh :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" dipulihkan',
             ],
         ],
 
@@ -183,7 +197,7 @@ return [
                 'beatmapset_disqualify' => '":title" telah didiskualifikasi',
                 'beatmapset_love' => '":title" telah dipromosikan ke dalam kategori Loved',
                 'beatmapset_nominate' => '":title" telah mendapatkan nominasi',
-                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk memasuki antrian ranking',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrian ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',
                 'beatmapset_remove_from_loved' => ':title telah dilepas dari Loved',
                 'beatmapset_reset_nominations' => 'Status nominasi pada ":title" telah dianulir',

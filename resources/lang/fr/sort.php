@@ -11,9 +11,20 @@ return [
     'last_visit' => 'Récemment actif',
     'new' => 'Récent',
     'old' => 'Ancien',
-    'rank' => 'Rang',
+    'rank' => 'Classement',
     'top' => 'Meilleurs',
     'username' => 'Nom d’utilisateur',
+
+    'artist_tracks' => [
+        'album' => 'Album',
+        'artist' => 'Artiste',
+        'bpm' => 'BPM',
+        'genre' => 'Genre',
+        'length' => 'Durée',
+        'relevance' => 'Pertinence',
+        'title' => 'Titre',
+        'update' => 'Mis à jour',
+    ],
 
     'forum_posts' => [
         'created' => 'Heure de publication',
@@ -21,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'feature_votes' => 'Priorité d\'étoiles',
+        'feature_votes' => 'Star priority',
         'new' => 'Dernière réponse',
     ],
 

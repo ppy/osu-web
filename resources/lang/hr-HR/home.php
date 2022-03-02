@@ -24,7 +24,7 @@ return [
         'empty_result' => 'Nije pronađeno!',
         'keyword_required' => '',
         'placeholder' => '',
-        'title' => '',
+        'title' => 'pretraži',
 
         'beatmapset' => [
             'login_required' => '',
@@ -49,11 +49,11 @@ return [
         ],
 
         'mode' => [
-            'all' => '',
+            'all' => 'svi',
             'beatmapset' => '',
             'forum_post' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'user' => 'igrač',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
@@ -61,13 +61,13 @@ return [
             'more' => '',
             'more_simple' => '',
             'more_hidden' => '',
-            'title' => '',
+            'title' => 'Igrači',
         ],
 
         'wiki_page' => [
             'link' => '',
             'more_simple' => '',
-            'title' => '',
+            'title' => 'Wiki',
         ],
     ],
 
@@ -101,7 +101,7 @@ return [
                 'title' => '',
                 'description' => [
                     '_' => '',
-                    'browse' => '',
+                    'browse' => 'pretraži',
                 ],
             ],
         ],
@@ -111,7 +111,7 @@ return [
     'user' => [
         'title' => '',
         'news' => [
-            'title' => '',
+            'title' => 'Vijesti',
             'error' => '',
         ],
         'header' => [
@@ -131,16 +131,5 @@ return [
             'support' => '',
             'store' => '',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => '',
-        'subtitle' => '',
-        'body' => [
-            'part-1' => '',
-            'part-2' => '',
-        ],
-        'find-out-more' => '',
-        'download-starting' => "",
     ],
 ];

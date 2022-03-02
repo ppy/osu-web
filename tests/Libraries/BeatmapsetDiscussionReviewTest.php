@@ -277,7 +277,6 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentDocumentValidWithIssuesShouldResetNominations()
     {
         $beatmapset = Beatmapset::factory()->create([
-            'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $beatmapset->beatmaps()->save(Beatmap::factory()->make());
@@ -598,7 +597,6 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testUpdateDocumentWithNewIssueShouldResetNominations()
     {
         $beatmapset = Beatmapset::factory()->create([
-            'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $beatmapset->beatmaps()->save(Beatmap::factory()->make());
@@ -734,7 +732,6 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
         $this->user = User::factory()->create();
         $this->beatmapset = Beatmapset::factory()->create([
-            'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make());

@@ -18,7 +18,7 @@ status          | string                              | |
 title           | string                              | |
 title_unicode   | string                              | |
 user_id         | number                              | |
-video           | string                              | |
+video           | boolean                             | |
 
 Those fields are optional.
 

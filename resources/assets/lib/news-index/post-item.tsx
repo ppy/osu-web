@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import StringWithComponent from 'components/string-with-component';
 import PostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
 import * as moment from 'moment';
 import * as React from 'react';
-import StringWithComponent from 'string-with-component';
 import { classWithModifiers } from 'utils/css';
 
 export default function PostItem({ modifiers, post }: { modifiers?: string[]; post: PostJson }) {

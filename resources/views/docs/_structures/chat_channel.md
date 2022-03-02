@@ -4,6 +4,7 @@
   "channel_id": 1337,
   "current_user_attributes": {
     "can_message": true,
+    "can_message_error": null,
     "last_read_id": 9150005005,
   },
   "name": "test channel",

@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'dashboard',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'dashboard',
             'verify_link' => 'verifica account',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'artisti in primo piano',
         ],
         'artists_controller' => [
             '_' => 'artisti in primo piano',
@@ -96,7 +102,7 @@ return [
             '_' => 'informazioni',
         ],
         'livestreams_controller' => [
-            '_' => 'trasmissioni in diretta',
+            '_' => 'live streaming',
         ],
         'matches_controller' => [
             '_' => 'partite',

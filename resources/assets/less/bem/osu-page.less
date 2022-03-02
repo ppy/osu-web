@@ -80,6 +80,13 @@
     }
   }
 
+  &--artist-track-search-result {
+    .default();
+    .default-gutter-v2();
+    padding-top: 10px;
+    padding-bottom: $padding-top;
+  }
+
   &--artists {
     margin-bottom: 10px;
   }
@@ -267,8 +274,9 @@
   }
 
   &--users {
-    .default;
-    background-color: @osu-colour-b3;
+    .default();
+    background-color: hsl(var(--hsl-b3));
+    margin-bottom: 0;
   }
 
   &--users-show-header {

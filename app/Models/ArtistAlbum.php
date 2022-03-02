@@ -20,6 +20,10 @@ namespace App\Models;
  */
 class ArtistAlbum extends Model
 {
+    protected $casts = [
+        'visible' => 'boolean',
+    ];
+
     public function artist()
     {
         return $this->belongsTo(Artist::class);

@@ -5,6 +5,8 @@
 
 namespace Tests\Browser;
 
+use App\Models\Chat\Channel;
+use App\Models\Chat\UserChannel;
 use App\Models\Country;
 use App\Models\Multiplayer\Room;
 use DB;
@@ -78,7 +80,6 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['genre'] = \App\Models\Genre::factory()->create();
         self::$scaffolding['language'] = \App\Models\Language::factory()->create();
         self::$scaffolding['beatmapset'] = \App\Models\Beatmapset::factory()->create([
-            'discussion_enabled' => true,
             'genre_id' => self::$scaffolding['genre'],
             'language_id' => self::$scaffolding['language'],
             'user_id' => self::$scaffolding['user'],
@@ -148,10 +149,12 @@ class SanityTest extends DuskTestCase
             'forum_id' => self::$scaffolding['forum']->getKey(),
             'topic_id' => self::$scaffolding['topic']->getKey(),
         ]);
+        // TODO: make this part of post factory callback
+        self::$scaffolding['topic']->refreshCache();
 
         // factories for /community/chat/*
-        self::$scaffolding['channel'] = factory(\App\Models\Chat\Channel::class)->states('public')->create();
-        self::$scaffolding['user_channel'] = factory(\App\Models\Chat\UserChannel::class)->create([
+        self::$scaffolding['channel'] = Channel::factory()->type('public')->create();
+        self::$scaffolding['user_channel'] = UserChannel::factory()->create([
             'channel_id' => self::$scaffolding['channel']->getKey(),
             'user_id' => self::$scaffolding['user']->getKey(),
         ]);
@@ -172,9 +175,10 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['group'] = factory(\App\Models\Group::class)->create();
 
         // factory for comments
-        self::$scaffolding['comment'] = factory(\App\Models\Comment::class)->create([
-            'user_id' => self::$scaffolding['user']->user_id,
+        self::$scaffolding['comment'] = \App\Models\Comment::factory()->create([
             'commentable_id' => self::$scaffolding['build'],
+            'commentable_type' => 'build',
+            'user_id' => self::$scaffolding['user'],
         ]);
 
         // factory for matches
@@ -199,33 +203,29 @@ class SanityTest extends DuskTestCase
 
     private static function filterLog(array $log)
     {
+        $appUrl = config('app.url');
         $return = [];
 
         foreach ($log as $line) {
             if ($line['source'] === 'network') {
                 $matches = [];
-                preg_match_all('/^([^ ]+) - Failed to load resource: the server responded with a status of ([0-9]{3}) \(([^\)]*)\)$/i', $line['message'], $matches);
-                $returnCode = get_int(optional($matches[2])[0]);
-                $url = optional($matches[1])[0];
+                $count = preg_match_all('/^([^ ]+) - Failed to load resource: the server responded with a status of ([0-9]{3}) \(([^\)]*)\)$/i', $line['message'], $matches);
 
-                // ignore missing non-critical assets
-                if (
-                    ($returnCode === 404 && starts_with($url, 'https://assets.ppy.sh')) ||
-                    ($returnCode === 403 && starts_with($url, 'https://i.ppy.sh'))
-                ) {
-                    continue;
+                if ($count !== false && $count > 0) {
+                    $returnCode = get_int($matches[2][0]);
+                    $url = $matches[1][0];
+
+                    // ignore missing non-critical assets
+                    if (
+                        ($returnCode === 403 || $returnCode === 404) && starts_with($url, ['https://assets.ppy.sh', 'https://i.ppy.sh']) ||
+                        ($returnCode < 500 && starts_with($url, $appUrl))
+                    ) {
+                        continue;
+                    }
                 }
-
-                $return[] = [
-                    'url' => $url,
-                    'status' => $returnCode,
-                    'message' => optional($matches[3])[0],
-                    'source' => 'network',
-                    'raw' => $line['message'],
-                ];
-            } else {
-                $return[] = $line;
             }
+
+            $return[] = $line;
         }
 
         return $return;
@@ -351,6 +351,9 @@ class SanityTest extends DuskTestCase
                 //     'pending',
                 // ],
             ],
+            'users.multiplayer.index' => [
+                'typeGroup' => 'playlists',
+            ],
             'users.scores' => [
                 'type' => 'best',
                 // 'type' => [
@@ -424,7 +427,7 @@ class SanityTest extends DuskTestCase
 
     private function checkAdminPermission(Browser $browser, LaravelRoute $route)
     {
-        $adminRestricted = [];
+        $adminRestricted = ['forum.topics.logs.index'];
 
         if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted, true)) {
             // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)
@@ -440,8 +443,8 @@ class SanityTest extends DuskTestCase
         $rawLog = $browser->driver->manage()->getLog('browser');
         $logLines = collect(self::filterLog($rawLog));
 
-        if ($logLines->contains('source', 'javascript')) {
-            $error = implode(' | ', $logLines->where('source', 'javascript')->pluck('message')->toArray());
+        if ($logLines->isNotEmpty()) {
+            $error = implode(' | ', $logLines->pluck('message')->toArray());
 
             throw new Exception("JavaScript ERROR: {$error}");
         }
@@ -451,7 +454,9 @@ class SanityTest extends DuskTestCase
     {
         $verificationExpected = [
             'account.edit',
+            'chat.index',
             'client-verifications.create',
+            'messages.users.show',
             'store.checkout.show',
             'store.invoice.show',
             'store.orders.index',

@@ -112,6 +112,7 @@ class Score extends Model
             'Miss',
             'Ok',
             'Perfect',
+            'SmallTickHit',
             'SmallTickMiss',
         ];
         $statistics = $this->data->statistics;
@@ -150,6 +151,7 @@ class Score extends Model
                 $score['count300'] = $statistics->Great;
                 $score['count100'] = $statistics->LargeTickHit;
                 $score['countkatu'] = $statistics->SmallTickMiss;
+                $score['count50'] = $statistics->SmallTickHit;
                 break;
             case 'mania':
                 $score['countgeki'] = $statistics->Perfect;

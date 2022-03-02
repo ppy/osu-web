@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'sasniegts :when',
             'country' => 'Valsts rangi',
+            'error' => '',
             'friend' => 'Draugu rangi',
             'global' => 'Pasaules rangi',
             'supporter-link' => '',
@@ -154,11 +155,12 @@ return [
                 'combo' => '',
                 'miss' => 'Netrāpījumi',
                 'mods' => 'Modifikācijas',
+                'pin' => '',
                 'player' => 'Spēlētājs',
                 'pp' => '',
                 'rank' => 'Rangs',
-                'score_total' => 'Kopējais punktu skaits',
                 'score' => 'Rezultāts',
+                'score_total' => 'Kopējais punktu skaits',
                 'time' => '',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Vadībā',
                 'own' => 'Tavs labākais',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

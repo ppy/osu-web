@@ -1,8 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ShowMoreLink from 'components/show-more-link';
 import { route } from 'laroute';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Name, typeNames } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
@@ -11,7 +12,6 @@ import NotificationController from 'notifications/notification-controller';
 import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import ShowMoreLink from 'show-more-link';
 import { classWithModifiers } from 'utils/css';
 import Stack from './stack';
 
@@ -50,6 +50,12 @@ export default class Main extends React.Component<Props, State> {
   @computed
   get links() {
     return this.typeNames.map((type) => ({ title: osu.trans(`notifications.filters.${type ?? '_'}`), type }));
+  }
+
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
   }
 
   static getDerivedStateFromError(error: Error) {

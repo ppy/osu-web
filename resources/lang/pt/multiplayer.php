@@ -4,7 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Nenhum jogo multiplayer de osu!(lazer) jogado ainda!',
+    'empty' => [
+        '_' => '',
+        'playlists' => '',
+        'realtime' => 'multijogador',
+    ],
 
     'room' => [
         'hosted_by' => 'alojado por :user',
@@ -12,6 +16,10 @@ return [
         'map_count' => ':count_delimited mapa|:count_delimited mapas',
         'player_count' => ':count_delimited jogador|:count_delimited jogadores',
         'time_left' => ':time restante',
+
+        'errors' => [
+            'duration_too_long' => 'A duração é muito longa.',
+        ],
 
         'status' => [
             'active' => 'activo',

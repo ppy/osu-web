@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'logrado :when',
             'country' => 'Clasificación Nacional',
+            'error' => '',
             'friend' => 'Clasificación entre Amigos',
             'global' => 'Clasificación Global',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',
@@ -154,11 +155,12 @@ return [
                 'combo' => 'Combo máximo',
                 'miss' => 'Fallos',
                 'mods' => 'Mods',
+                'pin' => 'Anclar',
                 'player' => 'Jugador',
                 'pp' => '',
                 'rank' => 'Puesto',
-                'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',
+                'score_total' => 'Puntuación total',
                 'time' => 'Tiempo',
             ],
 
@@ -172,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Liderando',
                 'own' => 'Tu mejor puntuación',
+            ],
+            'supporter_link' => [
+                '_' => '¡Clic :here para ver todas las características de lujo que ofrece!',
+                'here' => 'aquí',
             ],
         ],
 

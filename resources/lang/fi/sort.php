@@ -15,6 +15,17 @@ return [
     'top' => 'Paras',
     'username' => 'Käyttäjänimi',
 
+    'artist_tracks' => [
+        'album' => 'Albumi',
+        'artist' => 'Artisti',
+        'bpm' => 'BPM',
+        'genre' => 'Lajityyppi',
+        'length' => 'Pituus',
+        'relevance' => 'Osuvuus',
+        'title' => 'Nimi',
+        'update' => 'Päivitä',
+    ],
+
     'forum_posts' => [
         'created' => 'Viestin aika',
         'relevance' => 'Osuvuus',

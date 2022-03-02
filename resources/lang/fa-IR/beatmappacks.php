@@ -11,10 +11,7 @@ return [
 
         'blurb' => [
             'important' => '***قبل از دانلود این را بخوانید***',
-            'instruction' => [
-                '_' => "",
-                'scary' => '',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => '',
                 'scary' => '',

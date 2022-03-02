@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'kontrollpanel',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'kontrollpanel',
             'verify_link' => 'kontobekräftelse',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => 'utvalda artister',
@@ -137,7 +143,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'auktorisera app',
         ],
     ],
     'store' => [

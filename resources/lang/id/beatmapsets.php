@@ -8,7 +8,7 @@ return [
         'disabled' => 'Beatmap saat ini tidak tersedia untuk diunduh.',
         'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pihak ketiga pemegang hak cipta.',
         'more-info' => 'Lihat di sini untuk informasi lebih lanjut.',
-        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk dipergunakan secara luas di dalam lingkungan osu!.',
+        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk osu!.',
     ],
 
     'download' => [
@@ -88,11 +88,11 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Beatmap yang telah Anda favorit terlalu banyak! Mohon hapus beberapa sebelum melanjutkan.',
+            'limit_reached' => 'Anda telah memiliki terlalu banyak beatmap yang Anda favoritkan! Mohon hapus beberapa sebelum melanjutkan.',
         ],
 
         'hype' => [
-            'action' => 'Apabila Anda menyukai beatmap ini, berikanlah hype Anda untuk mendorong beatmap ini agar dapat selangkah lebih dekat menuju status <strong>Ranked</strong>.',
+            'action' => 'Apabila Anda menyukai beatmap ini, berikanlah hype Anda agar beatmap ini dapat selangkah lebih dekat menuju status <strong>Ranked</strong>.',
 
             'current' => [
                 '_' => 'Beatmap ini sedang berstatus :status.',
@@ -143,9 +143,10 @@ return [
         'scoreboard' => [
             'achieved' => 'diraih pada :when',
             'country' => 'Peringkat Negara',
+            'error' => '',
             'friend' => 'Peringkat Teman',
             'global' => 'Peringkat Global',
-            'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat semua fitur eksklusif yang Anda dapatkan!',
+            'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat seluruh fitur menarik yang akan Anda dapatkan!',
             'supporter-only' => 'Anda harus menjadi supporter untuk mengakses fitur peringkat teman dan negara!',
             'title' => 'Papan Skor',
 
@@ -154,11 +155,12 @@ return [
                 'combo' => 'Kombo Maks',
                 'miss' => 'Miss',
                 'mods' => 'Mod',
+                'pin' => 'Sematkan',
                 'player' => 'Pemain',
                 'pp' => '',
                 'rank' => 'Peringkat',
-                'score_total' => 'Jumlah Skor',
                 'score' => 'Skor',
+                'score_total' => 'Jumlah Skor',
                 'time' => 'Waktu',
             ],
 
@@ -173,6 +175,10 @@ return [
                 'first' => 'Di Posisi Pertama',
                 'own' => 'Skor Terbaik Anda',
             ],
+            'supporter_link' => [
+                '_' => 'Klik :here untuk melihat seluruh fitur menarik yang akan Anda dapatkan!',
+                'here' => 'di sini',
+            ],
         ],
 
         'stats' => [
@@ -182,7 +188,7 @@ return [
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
             'stars' => 'Star Difficulty',
-            'total_length' => 'Durasi',
+            'total_length' => 'Durasi Total (Durasi Bersih: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Jumlah Circle',
             'count_sliders' => 'Jumlah Slider',

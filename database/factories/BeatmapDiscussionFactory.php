@@ -6,7 +6,6 @@
 namespace Database\Factories;
 
 use App\Models\BeatmapDiscussion;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BeatmapDiscussionFactory extends Factory
 {

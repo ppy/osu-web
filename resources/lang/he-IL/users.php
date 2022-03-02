@@ -303,7 +303,7 @@ return [
                 'recent' => 'אחרון',
                 'title' => 'מדליות',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -313,6 +313,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'אחרון',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'הורד שידור חוזר',
@@ -326,6 +329,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'דירוגים של מקום ראשון',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [

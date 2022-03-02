@@ -132,15 +132,4 @@ return [
             'store' => 'osu!kauppa',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Vau!',
-        'subtitle' => 'Sinulla taitaa olla hauskaa! :D',
-        'body' => [
-            'part-1' => 'Tiesitkö että osu!a pidetään yllä ilman mainoksia ja turvautuu pelaajien tukeen sen kehitys- ja käyttökustannuksissa?',
-            'part-2' => 'Tiesitkö myös että osua! tukemalla saat kasan hyödyllisiä ominaisuuksia, kuten <strong>pelinsisäisen beatmappien lataamisen</strong> joka aktivoituu automaattisesti moninpelissä ja katsojatilassa?',
-        ],
-        'find-out-more' => 'Klikkaa tästä lisätietoja!',
-        'download-starting' => "Niin, ja älä huoli - latauksesi on jo aloitettu ;)",
-    ],
 ];

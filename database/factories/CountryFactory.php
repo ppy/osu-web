@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Country;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CountryFactory extends Factory
 {
@@ -24,5 +23,13 @@ class CountryFactory extends Factory
             'rankedscore' => rand(5000000, 500000000) * 10000,
             'usercount' => rand(10000, 600000),
         ];
+    }
+
+    public function fallback(): static
+    {
+        return $this->state([
+            'acronym' => Country::UNKNOWN,
+            'name' => '',
+        ]);
     }
 }
