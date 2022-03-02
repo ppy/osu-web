@@ -51,13 +51,19 @@ export default class DetailBar extends React.Component<Props> {
         />
 
         {this.showMessageButton &&
-          <a
-            className='user-action-button user-action-button--profile-page'
-            href={route('messages.users.show', { user: this.props.user.id })}
-            title={osu.trans('users.card.send_message')}
-          >
-            <i className='fas fa-envelope' />
-          </a>
+          {/**
+            * extra div to allow using same user-action-button--profile-page
+            * like other buttons without resorting to additional styling
+            */}
+          <div>
+            <a
+              className='user-action-button user-action-button--profile-page'
+              href={route('messages.users.show', { user: this.props.user.id })}
+              title={osu.trans('users.card.send_message')}
+            >
+              <i className='fas fa-envelope' />
+            </a>
+          </div>
         }
 
         {showExtraMenu(this.props.user) && <ExtraMenu user={this.props.user} />}
