@@ -84,11 +84,11 @@ abstract class HasSearch
     }
 
     /**
-     * @param array|Sort $sort
+     * @param Sort[]|Sort $sort
      *
      * @return $this
      */
-    public function sort($sort)
+    public function sort(array|Sort $sort)
     {
         if (is_array($sort)) {
             foreach ($sort as $s) {

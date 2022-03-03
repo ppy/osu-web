@@ -311,6 +311,40 @@ class BeatmapsController extends Controller
         }
     }
 
+    /**
+     * Get a User Beatmap scores
+     *
+     * Return a [User](#user)'s scores on a Beatmap
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field  | Type
+     * ------ | ----
+     * scores | [Score](#score)[]
+     *
+     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
+     * @urlParam user integer required Id of the [User](#user).
+     *
+     * @queryParam mode The [GameMode](#gamemode) to get scores for. Defaults to beatmap mode
+     */
+    public function userScoreAll($beatmapId, $userId)
+    {
+        $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
+        $mode = presence(get_string(request('mode'))) ?? $beatmap->mode;
+        $scores = BestModel::getClassByString($mode)
+            ::default()
+            ->where([
+                'beatmap_id' => $beatmap->getKey(),
+                'user_id' => $userId,
+            ])->get();
+
+        return [
+            'scores' => json_collection($scores, 'Score'),
+        ];
+    }
+
     private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)
     {
         $query = BestModel::getClassByString($mode)

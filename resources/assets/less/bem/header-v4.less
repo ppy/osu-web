@@ -113,8 +113,7 @@
     }
 
     .@{_top}--users & {
-      opacity: 1;
-      .at2x-simple('~@images/headers/supporter.jpg');
+      opacity: 0.25;
     }
   }
 
@@ -156,12 +155,6 @@
 
       .@{_top}--supporter & {
         .large();
-      }
-
-      .@{_top}--users & {
-        @media @desktop {
-          min-height: 320px;
-        }
       }
     }
   }
@@ -305,19 +298,6 @@
         padding-left: @gutter-profile-page-desktop;
         padding-right: $padding-left;
       }
-    }
-  }
-
-  &__spinner {
-    .center-content();
-    .full-size();
-    font-size: 60px;
-    background-color: hsla(var(--hsl-b6), 0.5);
-    color: @osu-colour-c1;
-    display: none;
-
-    @media @desktop {
-      display: flex;
     }
   }
 

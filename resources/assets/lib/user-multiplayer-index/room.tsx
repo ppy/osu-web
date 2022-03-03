@@ -5,9 +5,8 @@ import DifficultyBadge from 'components/difficulty-badge';
 import Img2x from 'components/img2x';
 import StringWithComponent from 'components/string-with-component';
 import { UserLink } from 'components/user-link';
-import RoomJson from 'interfaces/room-json';
+import { EndpointRoomJson } from 'interfaces/user-multiplayer-history-json';
 import { route } from 'laroute';
-import { maxBy, minBy } from 'lodash';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as moment from 'moment';
@@ -17,7 +16,7 @@ import { classWithModifiers } from 'utils/css';
 import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {
-  room: RoomJson & Required<Pick<RoomJson, 'playlist'>>;
+  room: EndpointRoomJson;
   store: MultiplayerHistoryStore;
 }
 
@@ -36,25 +35,8 @@ export default class Room extends React.Component<Props> {
     return diff < endingSoonDiffMs ? 'soon' : 'active';
   }
 
-  @computed
-  private get maxDifficulty() {
-    const max = maxBy(this.props.room.playlist, (playlist) => this.props.store.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
-    return this.props.store.beatmaps.get(max?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
-  }
-
-  @computed
-  private get minDifficulty() {
-    const min = minBy(this.props.room.playlist, (playlist) => this.props.store.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
-    return this.props.store.beatmaps.get(min?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
-  }
-
   private get background() {
-    const beatmap = this.props.store.beatmaps.get(this.props.room.playlist[0].beatmap_id);
-    const beatmapset = this.props.store.beatmapsets.get(beatmap?.beatmapset_id ?? 0);
-
-    if (beatmapset == null) return undefined;
-
-    return beatmapset.covers.cover;
+    return this.props.room.current_playlist_item?.beatmap?.beatmapset?.covers.cover;
   }
 
   constructor(props: Props) {
@@ -83,16 +65,18 @@ export default class Room extends React.Component<Props> {
             {this.renderMembers()}
           </div>
           <div className='multiplayer-room__badge-container multiplayer-room__badge-container--bottom'>
-            <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{osu.transChoice('multiplayer.room.map_count', this.props.room.playlist.length)}</div>
+            <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{osu.transChoice('multiplayer.room.map_count', this.props.room.playlist_item_stats.count_total)}</div>
             <div
               className='multiplayer-room__difficulty'
               style={{
-                '--max-difficulty': getDiffColour(this.maxDifficulty),
-                '--min-difficulty': getDiffColour(this.minDifficulty),
+                '--max-difficulty': getDiffColour(this.props.room.difficulty_range.max),
+                '--min-difficulty': getDiffColour(this.props.room.difficulty_range.min),
               } as React.CSSProperties}
             >
-              <DifficultyBadge rating={this.minDifficulty} />
-              {this.minDifficulty !== this.maxDifficulty && <DifficultyBadge rating={this.maxDifficulty} />}
+              <DifficultyBadge rating={this.props.room.difficulty_range.min} />
+              {this.props.room.difficulty_range.max !== this.props.room.difficulty_range.min &&
+                <DifficultyBadge rating={this.props.room.difficulty_range.max} />
+              }
             </div>
           </div>
         </div>

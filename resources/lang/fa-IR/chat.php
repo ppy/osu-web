@@ -4,25 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => '',
-    'talking_with' => '',
-    'title_compact' => '',
+    'talking_in' => 'در حال گفت و گو در کانال :channel',
+    'talking_with' => 'در حال گفت و گو با :name',
+    'title_compact' => 'چت',
 
     'cannot_send' => [
-        'channel' => '',
-        'user' => '',
+        'channel' => 'شما در حال حاضر نمی توانید در این چنل پیام بدهید.',
+        'user' => 'شما در حال حاضر نمی توانید به این کاربر پیام بدهید.',
     ],
 
     'input' => [
-        'disabled' => '',
-        'disconnected' => '',
-        'placeholder' => '',
-        'send' => '',
+        'disabled' => 'امکان ارسال پیام وجود ندارد...',
+        'disconnected' => 'اتصال قطع شد',
+        'placeholder' => 'پیامی بنویسید...',
+        'send' => 'ارسال',
     ],
 
     'no-conversations' => [
-        'howto' => "",
-        'lazer' => '',
-        'title' => '',
+        'howto' => "از صفحه یک کاربر یا پاپ آپ کارت یک کاربر یک گفت و گو را شروع کنید.",
+        'lazer' => 'کانال های عمومی ای که از <a href=":link">osu!lazer</a> به آن ها بپیوندید هم اینجا قابل مشاهده خواهند بود.',
+        'title' => 'هنوز هیچ گفتگویی وجود ندارد',
     ],
 ];

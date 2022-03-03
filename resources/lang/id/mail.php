@@ -15,6 +15,7 @@ return [
         'closing' => 'Salam,',
         'hello' => 'Hai :user,',
         'report' => 'Harap balas email ini DENGAN SEGERA apabila Anda tidak merasa melakukan tindakan ini.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

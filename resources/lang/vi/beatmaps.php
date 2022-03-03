@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Thiết Lập Lại Đề Cử',
             'praise' => 'Khen Ngợi',
             'problem' => 'Vấn Đề',
+            'problem_warning' => '',
             'review' => 'Đánh giá',
             'suggestion' => 'Đề Nghị',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại quá trình đề cử (nomination).',
             'disqualify' => 'Bạn chắc không? Việc này sẽ loại bỏ beatmap khỏi qualify và thiết lập lại quá trình đề cử.',
+            'nomination_reset' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại quá trình đề cử (nomination).',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Map của tôi',
         'pending' => 'Đang chờ & WIP',
+        'wip' => '',
         'qualified' => 'Qualified',
         'ranked' => 'Đã được xếp hạng',
     ],

@@ -22,7 +22,7 @@ export default function Pp({ stats }: { stats: UserStatisticsJson }) {
   return (
     <ValueDisplay
       label='pp'
-      modifiers='pp'
+      modifiers='plain'
       value={(
         <div data-html-title={variantTooltip} title=''>
           {formatNumber(stats.pp)}

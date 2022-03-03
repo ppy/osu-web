@@ -34,6 +34,7 @@ class PlaylistItem extends Model
     protected $table = 'multiplayer_playlist_items';
     protected $casts = [
         'allowed_mods' => 'object',
+        'expired' => 'boolean',
         'required_mods' => 'object',
     ];
 

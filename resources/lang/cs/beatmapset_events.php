@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'Schváleno.',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Majitel obtížnosti :beatmap se změnil na :new_user.',
         'discussion_delete' => 'Moderátor smazal tuto diskusi :discussion.',
         'discussion_lock' => 'Diskuze o této mapě byly vypnuty. (:text)',
         'discussion_post_delete' => 'Moderátor smazal příspěvek z této diskuse :discussion.',
@@ -26,17 +26,17 @@ return [
         'language_edit' => 'Jazyk změněn z :old na :new.',
         'love' => 'Tuto mapu miluje :user',
         'nominate' => 'Nominováno uživatelem :user.',
-        'nominate_modes' => '',
+        'nominate_modes' => 'Nominoval/a :user (:modes).',
         'nomination_reset' => 'Nový problém :discussion (:text) způsobil resetování nominace.',
-        'nomination_reset_received' => '',
-        'nomination_reset_received_profile' => '',
+        'nomination_reset_received' => 'Nominace uživatelem :user byla resetována uživatelem :source_user (:text)',
+        'nomination_reset_received_profile' => 'Nominace byla resetována uživatelem :user (:text)',
         'qualify' => 'Tato beatmapa získala požadované množství nominací a byla kvalifikována.',
         'rank' => 'Hodnocené.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Odstraněno z Loved uživatelem :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Odebráno explicitní označení',
+            'to_1' => 'Označeno jako explicitní',
         ],
     ],
 
@@ -57,7 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Schválení',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Změna majitele obtížnosti',
         'discussion_delete' => 'Odstranění diskuze',
         'discussion_post_delete' => 'Odstranění odpovědí diskuze',
         'discussion_post_restore' => 'Obnovení odpovědí diskuze',
@@ -75,10 +75,10 @@ return [
         'love' => 'Obliba',
         'nominate' => 'Nominace',
         'nomination_reset' => 'Resetování nominací',
-        'nomination_reset_received' => '',
-        'nsfw_toggle' => '',
+        'nomination_reset_received' => 'Nominace byla obnovena',
+        'nsfw_toggle' => 'Explicitní značka',
         'qualify' => 'Kvalifikace',
         'rank' => 'Hodnocení',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Odstranení z Loved',
     ],
 ];

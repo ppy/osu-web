@@ -73,6 +73,7 @@ return [
             'nomination_reset' => '取消提名',
             'praise' => '赞',
             'problem' => '问题',
+            'problem_warning' => '',
             'review' => '审核',
             'suggestion' => '建议',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '你确定吗？提出新的问题会重置提名。',
             'disqualify' => '你确定吗？这将 DQ 该谱面并重置提名。',
+            'nomination_reset' => '你确定吗？提出新的问题会重置提名。',
+            'problem_warning' => '',
         ],
     ],
 
@@ -272,7 +274,8 @@ return [
         'leaderboard' => '计入排名',
         'loved' => 'Loved',
         'mine' => '我的谱面',
-        'pending' => 'Pending & WIP',
+        'pending' => 'Pending',
+        'wip' => '',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],
