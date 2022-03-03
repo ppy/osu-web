@@ -187,6 +187,10 @@ export class SearchPanel extends React.Component
         name: 'status'
         options: filters.statuses
 
+      @renderFilter
+        name: 'nsfw'
+        options: filters.nsfw
+
       a
         className: 'beatmapsets-search__expand-link'
         href: '#'
@@ -216,10 +220,6 @@ export class SearchPanel extends React.Component
         @renderFilter
           name: 'played'
           options: filters.played
-
-        @renderFilter
-          name: 'nsfw'
-          options: filters.nsfw
 
 
   setHeaderPinned: (_event, pinned) =>

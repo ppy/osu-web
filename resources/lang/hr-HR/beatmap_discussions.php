@@ -22,7 +22,7 @@ return [
         'title' => '',
 
         'form' => [
-            '_' => '',
+            '_' => 'Pretraži',
             'deleted' => '',
             'mode' => '',
             'only_unresolved' => '',
@@ -31,7 +31,7 @@ return [
 
             'beatmapset_status' => [
                 '_' => '',
-                'all' => '',
+                'all' => 'Svi',
                 'disqualified' => '',
                 'never_qualified' => '',
                 'qualified' => '',
@@ -39,7 +39,7 @@ return [
             ],
 
             'user' => [
-                'label' => '',
+                'label' => 'Korisnik',
                 'overview' => '',
             ],
         ],
@@ -61,7 +61,7 @@ return [
     'owner_editor' => [
         'button' => '',
         'reset_confirm' => '',
-        'user' => '',
+        'user' => 'Vlasnik',
         'version' => '',
     ],
 

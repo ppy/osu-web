@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'nakamit nang :when',
             'country' => 'Ranggong Pambansa',
+            'error' => '',
             'friend' => 'Ranggo sa Kaibigan',
             'global' => 'Pandaigdigang Ranggo',
             'supporter-link' => 'I-click <a href=":link">ito</a> para makita ang mga feature na iyong matatamasa!',
@@ -175,8 +176,8 @@ return [
                 'own' => 'Iyong Best',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Pindutin :here para makita ang mga fancy features na makukuha mo!',
+                'here' => 'ito',
             ],
         ],
 

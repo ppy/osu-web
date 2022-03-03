@@ -8,10 +8,11 @@
   --inner-gutter: calc(var(--gutter) - var(--outer-gutter));
   --outer-gutter-desktop: 10px;
   --outer-gutter: 2px;
+  --padding-vertical: 20px; // also used by profile page bbcode-editor
 
   .own-layer();
   .default-box-shadow();
-  padding: 20px var(--inner-gutter);
+  padding: var(--padding-vertical) var(--inner-gutter);
   margin: 0 var(--outer-gutter);
   position: relative;
   background-color: hsl(var(--hsl-b4));
@@ -37,11 +38,11 @@
     position: absolute;
 
     width: auto;
-    right: @gutter-profile-page;
-    top: 20px;
+    right: var(--inner-gutter);
+    top: var(--padding-vertical);
 
     @media @desktop {
-      width: @gutter-profile-page-desktop;
+      width: var(--inner-gutter);
       right: 0;
     }
   }

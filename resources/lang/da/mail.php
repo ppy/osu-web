@@ -15,6 +15,7 @@ return [
         'closing' => 'Mvh,',
         'hello' => 'Hej :user,',
         'report' => 'Svar venligst på denne mail MED DET SAMME hvis du ikke anmodede om denne ændring.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

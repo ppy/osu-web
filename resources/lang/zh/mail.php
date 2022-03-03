@@ -15,6 +15,7 @@ return [
         'closing' => '祝您生活顺利',
         'hello' => '您好 :user ，',
         'report' => '如果操作者不是您，请立刻回复此邮件！',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

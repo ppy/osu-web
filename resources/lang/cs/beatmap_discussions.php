@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Hledat',
             'deleted' => 'Zahrnout smazané diskuze',
-            'mode' => '',
+            'mode' => 'Režim beatmapy',
             'only_unresolved' => 'Ukaž pouze nerozluštěné diskuze',
             'types' => 'Typy zpráv',
             'username' => 'Uživatelské jméno',
@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Vlastník obtížnosti',
+        'reset_confirm' => 'Resetovat vlastníka pro tuto obtížnost?',
+        'user' => 'Vlastník',
+        'version' => 'Obtížnost',
     ],
 
     'reply' => [
@@ -81,7 +81,7 @@ return [
             'external_references' => 'recenze obsahuje odkazy na problémy, které nepatří do této recenze',
             'invalid_block_type' => 'neplatný typ bloku',
             'invalid_document' => 'neplatná recenze',
-            'invalid_discussion_type' => '',
+            'invalid_discussion_type' => 'neplatný typ diskuze',
             'minimum_issues' => 'recenze musí obsahovat minimálně :count problém|recenze musí obsahovat minimálně :count problémů',
             'missing_text' => 'bloku chybí text',
             'too_many_blocks' => 'recenze mohou obsahovat pouze :count odstavec/problém|recenze mohou obsahovat pouze :count odstavců/problémů',

@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'bereikt op :when',
             'country' => 'Landranking',
+            'error' => '',
             'friend' => 'Vriendenranking',
             'global' => 'Globale Ranking',
             'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
@@ -175,8 +176,8 @@ return [
                 'own' => 'Jouw beste Rang',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Benieuwd naar de functies de je krijgt? Klik :here!',
+                'here' => 'hier',
             ],
         ],
 

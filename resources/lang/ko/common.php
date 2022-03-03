@@ -44,6 +44,7 @@ return [
         'reply_resolve' => '답변하고 토론 마무리하기',
         'reset' => '초기화',
         'restore' => '되돌리기',
+        'retry' => '',
         'save' => '저장',
         'saving' => '저장 중...',
         'search' => '검색',
