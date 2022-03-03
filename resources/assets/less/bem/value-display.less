@@ -70,6 +70,11 @@
     }
   }
 
+  @media @desktop {
+    --value-font-size: var(--value-font-size-desktop);
+    --label-font-size: var(--label-font-size-desktop);
+  }
+
   &__description {
     font-size: @font-size--title-small;
     color: white;
@@ -78,19 +83,11 @@
   &__label {
     font-weight: var(--label-font-weight);
     font-size: var(--label-font-size);
-
-    @media @desktop {
-      font-size: var(--label-font-size-desktop);
-    }
   }
 
   &__value {
     color: var(--value-color);
     font-size: var(--value-font-size);
     font-weight: 300;
-
-    @media @desktop {
-      font-size: var(--value-font-size-desktop);
-    }
   }
 }
