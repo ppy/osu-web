@@ -3,6 +3,6 @@
 
 import { createContext } from 'react';
 
-type ContextValue = HTMLElement | undefined;
+export type ContextValue = HTMLElement | undefined;
 
 export const TooltipContext = createContext(undefined as ContextValue);

@@ -17,6 +17,11 @@ interface Props {
 
 @observer
 export default class DetailBar extends React.Component<Props> {
+  private get showMessageButton() {
+    return core.currentUser == null
+      || (core.currentUser.id !== this.props.user.id && !core.currentUserModel.blocks.has(this.props.user.id));
+  }
+
   render() {
     return (
       <div className='profile-detail-bar'>
@@ -45,15 +50,18 @@ export default class DetailBar extends React.Component<Props> {
           userId={this.props.user.id}
         />
 
-        {/* show button even if not logged in */}
-        {(core.currentUser == null || (!core.currentUserModel.blocks.has(this.props.user.id))) &&
-          <a
-            className='user-action-button user-action-button--profile-page'
-            href={route('messages.users.show', { user: this.props.user.id })}
-            title={osu.trans('users.card.send_message')}
-          >
-            <i className='fas fa-envelope' />
-          </a>
+        {this.showMessageButton &&
+          // extra div to allow using same user-action-button--profile-page
+          // like other buttons without resorting to additional styling
+          <div>
+            <a
+              className='user-action-button user-action-button--profile-page'
+              href={route('messages.users.show', { user: this.props.user.id })}
+              title={osu.trans('users.card.send_message')}
+            >
+              <i className='fas fa-envelope' />
+            </a>
+          </div>
         }
 
         {showExtraMenu(this.props.user) && <ExtraMenu user={this.props.user} />}

@@ -34,8 +34,7 @@
   }
 
   &--profile-page {
-    padding-right: var(--gutter);
-    padding-bottom: var(--padding);
+    padding-right: var(--inner-gutter);
   }
 
   &__body {
@@ -136,6 +135,11 @@
 
     .@{_top}--create & {
       padding: 20px 20px 10px;
+    }
+
+    .@{_top}--profile-page & {
+      background-color: transparent;
+      padding: 0 0 var(--padding-vertical); // defined by page-extra
     }
   }
 
