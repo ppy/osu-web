@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-info {
-  --content-height: 60px;
+  --content-height: 65px;
   --cover-radius-extended-desktop: 40px;
   --cover-radius-extended: 20px;
   --cover-radius: 20px;
@@ -177,7 +177,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    font-size: @font-size--title-small-3;
+    font-size: @font-size--large;
 
     @media @desktop {
       font-size: @font-size--title;
@@ -214,11 +214,10 @@
   &__title {
     .link-white();
     line-height: normal;
-    margin: 0 0 2px;
-    font-size: @font-size--normal;
+    margin: 0 0 5px;
+    font-size: @font-size--title-small;
 
     @media @desktop {
-      margin-top: -4px;
       font-size: @font-size--title-small-3;
     }
   }
