@@ -15,7 +15,7 @@ export default class TopScores extends React.Component<ExtraPageProps> {
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
 
         {this.props.controller.scoresNotice != null && (
-          <div className='wiki-notice'>
+          <div className='wiki-notice wiki-notice--profile-page-extra'>
             <span className='fas fa-exclamation-circle' />
             {' '}
             <div
