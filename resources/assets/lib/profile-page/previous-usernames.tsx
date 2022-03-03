@@ -126,7 +126,7 @@ export default class PreviousUsernames extends React.Component<Props> {
           >
             <div className='profile-previous-usernames__title'>{osu.trans('users.show.previous_usernames')}</div>
             {this.uniqueUsernames.map((username) => (
-              <div key={username} className='profile-previous-usernames__name'>
+              <div key={username} className='profile-previous-usernames__name u-ellipsis-overflow'>
                 {username}
               </div>
             ))}
