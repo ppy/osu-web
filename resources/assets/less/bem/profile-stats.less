@@ -4,8 +4,12 @@
 .profile-stats {
   font-size: @font-size--normal;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
   gap: 4px 10px;
+
+  @media @desktop {
+    grid-template-columns: auto auto;
+  }
 
   &--modding {
     max-width: max-content;
