@@ -22,11 +22,6 @@
     margin-bottom: 2px;
   }
 
-  @media @desktop {
-    --label-font-size: var(--label-font-size-desktop);
-    --value-font-size: var(--value-font-size-desktop);
-  }
-
   &--kudosu {
     --value-font-size: @font-size--large-3;
 
@@ -83,11 +78,19 @@
   &__label {
     font-weight: var(--label-font-weight);
     font-size: var(--label-font-size);
+
+    @media @desktop {
+      font-size: var(--label-font-size-desktop);
+    }
   }
 
   &__value {
     color: var(--value-color);
     font-size: var(--value-font-size);
     font-weight: 300;
+
+    @media @desktop {
+      font-size: var(--value-font-size-desktop);
+    }
   }
 }
