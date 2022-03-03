@@ -75,7 +75,7 @@ export default class Detail extends React.Component<Props> {
               )}
             </div>
             <div className='profile-detail__chart-numbers'>
-              <div className='profile-detail__values'>
+              <div className='profile-detail__values profile-detail__values--grid'>
                 <MedalsCount userAchievements={this.user.user_achievements} />
                 <Pp stats={this.user.statistics} />
                 <PlayTime stats={this.user.statistics} />
