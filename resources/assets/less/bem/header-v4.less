@@ -111,6 +111,10 @@
     .@{_top}--tournaments & {
       .at2x-simple('~@images/headers/tournament-v2.jpg');
     }
+
+    .@{_top}--users & {
+      opacity: 0.25;
+    }
   }
 
   &__bg-container {
@@ -294,19 +298,6 @@
         padding-left: @gutter-profile-page-desktop;
         padding-right: $padding-left;
       }
-    }
-  }
-
-  &__spinner {
-    .center-content();
-    .full-size();
-    font-size: 60px;
-    background-color: hsla(var(--hsl-b6), 0.5);
-    color: @osu-colour-c1;
-    display: none;
-
-    @media @desktop {
-      display: flex;
     }
   }
 

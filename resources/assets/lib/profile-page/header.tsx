@@ -19,7 +19,6 @@ export default class Header extends React.Component<Props> {
     return (
       <HeaderV4
         backgroundImage={this.props.controller.displayCoverUrl}
-        isCoverUpdating={this.props.controller.isUpdatingCover}
         links={headerLinks(this.props.controller.state.user, 'show')}
         // add space for warning banner when user is blocked
         modifiers={{ restricted: core.currentUserModel.blocks.has(this.props.controller.state.user.id) || this.props.controller.state.user.is_restricted }}

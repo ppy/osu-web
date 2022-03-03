@@ -35,8 +35,11 @@ export default class Detail extends React.Component<Props> {
           coverUrl={this.props.controller.displayCoverUrl}
           currentMode={this.props.controller.currentMode}
           editor={<CoverEditor controller={this.props.controller} />}
+          isUpdatingCover={this.props.controller.isUpdatingCover}
           user={this.user}
         />
+
+        <ProfileTournamentBanner banner={this.user.active_tournament_banner} />
 
         {this.renderNumbers()}
 
@@ -52,7 +55,6 @@ export default class Detail extends React.Component<Props> {
 
     return (
       <div className='profile-detail'>
-        <ProfileTournamentBanner banner={this.user.active_tournament_banner} />
         <Badges badges={this.user.badges} />
 
         <div className='profile-detail__stats'>
@@ -73,7 +75,7 @@ export default class Detail extends React.Component<Props> {
               )}
             </div>
             <div className='profile-detail__chart-numbers'>
-              <div className='profile-detail__values'>
+              <div className='profile-detail__values profile-detail__values--grid'>
                 <MedalsCount userAchievements={this.user.user_achievements} />
                 <Pp stats={this.user.statistics} />
                 <PlayTime stats={this.user.statistics} />

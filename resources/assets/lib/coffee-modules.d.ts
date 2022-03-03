@@ -41,20 +41,6 @@ declare module 'components/modal' {
   }
 }
 
-declare module 'components/popup-menu' {
-  type Children = (dismiss: () => void) => React.ReactFragment;
-
-  interface Props {
-    children: Children;
-    customRender?: (children: JSX.Element[], ref: React.RefObject<HTMLElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => JSX.Element;
-    direction?: 'left' | 'right';
-    onHide?: () => void;
-    onShow?: () => void;
-  }
-
-  class PopupMenu extends React.PureComponent<Props, any> {}
-}
-
 declare module 'beatmaps/search-content' {
   import AvailableFilters from 'beatmaps/available-filters';
 
