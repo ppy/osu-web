@@ -32,7 +32,7 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
   };
 
   declare context: React.ContextType<typeof TooltipContext>;
-  readonly state = { active: false };
+  state: Readonly<State> = { active: false };
 
   private readonly buttonRef = React.createRef<HTMLButtonElement>();
   private readonly eventId = `popup-menu-${nextVal()}`;
