@@ -34,7 +34,7 @@ return [
     'blocks' => [
         'blocked_user' => 'Blocked user',
         'banner_text' => 'You have blocked this user.',
-        'comment_text' => 'This comment is not shown because you have blocked this user.',
+        'comment_text' => 'This comment is hidden.',
         'blocked_count' => 'blocked users (:count)',
         'hide_profile' => 'Hide profile',
         'hide_comment' => 'Hide comment',

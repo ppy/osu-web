@@ -37,9 +37,11 @@ export class Comment extends React.PureComponent
 
   makePreviewElement = document.createElement('div')
 
-  makePreview = (comment) ->
+  makePreview = (comment, user) ->
     if comment.isDeleted
       osu.trans('comments.deleted')
+    else if isBlocked(user)
+      osu.trans('users.blocks.comment_text')
     else
       makePreviewElement.innerHTML = comment.messageHtml
       _.truncate makePreviewElement.textContent, length: 100
@@ -60,8 +62,8 @@ export class Comment extends React.PureComponent
       expandReplies = @props.expandReplies
     else
       children = uiState.getOrderedCommentsByParentId(@props.comment.id)
-      # Collapse if either no children is loaded or current level doesn't add indentation.
-      expandReplies = children?.length > 0 && @props.depth < MAX_DEPTH
+      # Collapse if either no children is loaded, current level doesn't add indentation, or this comment is blocked.
+      expandReplies = children?.length > 0 && @props.depth < MAX_DEPTH && !isBlocked(@userFor(@props.comment))
 
     @state =
       clipped: true
@@ -102,6 +104,7 @@ export class Comment extends React.PureComponent
 
       mainModifiers = []
       mainModifiers.push 'deleted' if @props.comment.isDeleted
+      mainModifiers.push 'blocked' if isBlocked(user) && !@state.forceShow
       mainModifiers.push 'clip' if @state.clipped && longContent
 
       repliesClass = 'comment__replies'
@@ -536,8 +539,8 @@ export class Comment extends React.PureComponent
 
 
   parentLink: (parent) =>
-    props = title: makePreview(parent)
     parentUser = @userFor(parent)
+    props = title: makePreview(parent, parentUser)
 
     if @props.linkParent
       component = a
@@ -549,7 +552,7 @@ export class Comment extends React.PureComponent
     component props,
       span className: 'fas fa-reply'
       ' '
-      if !isBlocked(parentUser) then @userFor(parent).username else osu.trans('users.blocks.blocked_user')
+      if !isBlocked(parentUser) then parentUser.username else osu.trans('users.blocks.blocked_user')
 
 
   userFor: (comment) =>

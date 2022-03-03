@@ -10,6 +10,7 @@
   @_spacing: 10px;
   @_gutter-desktop-left: @gutter-v2-desktop;
   @_gutter-desktop-right: @gutter-v2-desktop;
+  @_dim_opacity: 0.5;
 
   margin-top: @_spacing;
   font-size: @font-size--normal-2;
@@ -140,7 +141,11 @@
     position: relative;
 
     &--deleted {
-      opacity: 0.5;
+      opacity: @_dim_opacity;
+    }
+
+    &--blocked {
+      opacity: @_dim_opacity;
     }
   }
 
