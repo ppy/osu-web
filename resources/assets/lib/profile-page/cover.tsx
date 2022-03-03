@@ -67,11 +67,11 @@ export default class Cover extends React.Component<Props> {
             <h1 className='profile-info__name'>
               <span className='u-ellipsis-pre-overflow'>{this.props.user.username}</span>
 
+              <PreviousUsernames usernames={this.props.user.previous_usernames ?? []} />
+
               <div className='profile-info__icons profile-info__icons--name-inline'>
                 {this.renderIcons()}
               </div>
-
-              <PreviousUsernames usernames={this.props.user.previous_usernames ?? []} />
             </h1>
 
             {this.renderTitle()}
