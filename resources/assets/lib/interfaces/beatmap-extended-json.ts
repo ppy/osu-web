@@ -12,7 +12,6 @@ export function isValid(x: BeatmapJson | BeatmapExtendedJson): x is BeatmapExten
 export default interface BeatmapExtendedJson extends BeatmapJson {
   accuracy: number;
   ar: number;
-  beatmapset_id: number;
   bpm: number;
   convert: boolean | null;
   count_circles: number;
