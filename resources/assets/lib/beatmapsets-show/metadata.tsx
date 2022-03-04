@@ -41,18 +41,6 @@ export default class Metadata extends React.PureComponent<Props, State> {
           </Modal>
         )}
 
-        <div>
-          {osu.trans('beatmapsets.show.info.creator')}
-        </div>
-        <div className='beatmapset-metadata__value'>
-          <UserLink
-            user={{
-              id: this.props.beatmapset.user_id,
-              username: this.props.beatmapset.creator,
-            }}
-          />
-        </div>
-
         {this.props.beatmapset.source !== '' && (
           <>
             <div>
