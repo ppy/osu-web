@@ -6,7 +6,7 @@ import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
-  data: { [key: string]: string };
+  data: Partial<Record<string, string>>;
   modifiers?: Modifiers;
 }
 
