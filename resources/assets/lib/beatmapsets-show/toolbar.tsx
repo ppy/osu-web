@@ -109,25 +109,21 @@ export default class Toolbar extends React.PureComponent<Props> {
           {this.props.beatmapset.video ? (
             <>
               <DownloadButton
-                key='video'
                 bottomTextKey='video'
                 href={route('beatmapsets.download', { beatmapset: this.props.beatmapset.id })}
               />
               <DownloadButton
-                key='no-video'
                 bottomTextKey='no-video'
                 href={route('beatmapsets.download', { beatmapset: this.props.beatmapset.id, noVideo: 1 })}
               />
             </>
           ) : (
             <DownloadButton
-              key='default'
               href={route('beatmapsets.download', { beatmapset: this.props.beatmapset.id })}
             />
           )}
 
           <DownloadButton
-            key='direct'
             href={core.currentUser.is_supporter
               ? beatmapDownloadDirect(this.props.currentBeatmap.id)
               : route('support-the-game')
