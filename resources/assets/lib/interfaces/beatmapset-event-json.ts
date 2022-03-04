@@ -47,6 +47,7 @@ interface DisqualifyEvent extends BaseBeatmapsetEvent {
   comment: {
     beatmap_discussion_id?: number;
     beatmap_discussion_post_id?: number;
+    // older events don't have this field
     nominator_ids?: number[];
   } | string;
   type: 'disqualify';
@@ -175,6 +176,7 @@ interface NominationResetEvent extends BaseBeatmapsetEvent {
   comment: {
     beatmap_discussion_id?: number;
     beatmap_discussion_post_id?: number;
+    // older events don't have this field
     nominator_ids?: number[];
   };
   type: 'nomination_reset';
