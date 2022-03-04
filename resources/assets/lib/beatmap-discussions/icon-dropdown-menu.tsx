@@ -1,8 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { PopupMenu } from 'components/popup-menu';
-import * as _ from 'lodash';
+import PopupMenu from 'components/popup-menu';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { SlateContext } from './slate-context';
@@ -36,8 +35,8 @@ export default class IconDropdownMenu extends React.Component<Props> {
     );
   }
 
-  renderButton = (children: JSX.Element[], ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
-    const selected: MenuItem = _.find(this.props.menuOptions, (option) => option.id === this.props.selected) || this.props.menuOptions[0];
+  renderButton = (children: React.ReactNode, ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
+    const selected: MenuItem = this.props.menuOptions.find((option) => option.id === this.props.selected) ?? this.props.menuOptions[0];
     const bn = 'icon-dropdown-menu';
     const mods = [];
 
@@ -49,7 +48,8 @@ export default class IconDropdownMenu extends React.Component<Props> {
     return (
       <div
         ref={ref}
-        className={classWithModifiers(bn, mods)} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+        className={classWithModifiers(bn, mods)}
+        // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
         contentEditable={false}
         onClick={toggle}
       >

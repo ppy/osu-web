@@ -44,4 +44,5 @@ export class NotificationBanner extends React.PureComponent
 
   createPortalContainer: =>
     @portalContainer = document.createElement 'div'
-    notificationBanners[0].appendChild @portalContainer
+    notificationBanners = (window.newBody ? document.body).querySelector('.js-notification-banners')
+    notificationBanners.appendChild @portalContainer
