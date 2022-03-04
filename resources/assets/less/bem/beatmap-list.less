@@ -6,9 +6,11 @@
   color: #fff;
   min-width: 0;
   position: relative;
+  --icons-bg-opacity: 0;
 
   &--selecting {
     z-index: @z-index--blackout-visible;
+    --icons-bg-opacity: 1;
   }
 
   &__body {
@@ -109,7 +111,24 @@
           display: grid;
           grid-template-columns: 1fr 1fr;
           font-size: 9px;
-          gap: 2px 2px;
+          gap: 2px;
+          position: relative;
+
+          &::before {
+            .default-border-radius();
+            --padding: 4px;
+            --offset: calc(-1 * var(--padding));
+            --size: calc(100% + 2 * var(--padding));
+            content: '';
+            position: absolute;
+            top: var(--offset);
+            left: var(--offset);
+            width: var(--size);
+            height: var(--size);
+            background-color: hsl(var(--hsl-b5));
+            pointer-events: none;
+            opacity: var(--icons-bg-opacity);
+          }
         }
       }
     }

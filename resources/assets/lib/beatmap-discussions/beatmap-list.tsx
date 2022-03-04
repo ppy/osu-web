@@ -63,8 +63,8 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
             onClick={this.toggleSelector}
           >
             <div className='beatmap-list__selected beatmap-list__selected--icons'>
-              {Array.from({ length: 4 }).map((_, idx) => (
-                <i key={idx} className={`fal fa-extra-mode-${this.props.currentBeatmap.mode}`} />
+              {Array.from({ length: 4 }).map((_blank, idx) => (
+                <i key={idx} className='fas fa-circle u-relative' />
               ))}
             </div>
             <div className='beatmap-list__selected beatmap-list__selected--list u-ellipsis-overflow'>
