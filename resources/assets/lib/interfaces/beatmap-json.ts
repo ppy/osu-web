@@ -3,6 +3,7 @@
 
 import BeatmapsetJson from './beatmapset-json';
 import GameMode from './game-mode';
+import UserJson from './user-json';
 
 export default interface BeatmapJson {
   beatmapset?: BeatmapsetJson;
@@ -13,6 +14,7 @@ export default interface BeatmapJson {
   max_combo?: number;
   mode: GameMode;
   status: string;
+  user?: UserJson;
   user_id: number;
   version: string;
 }
