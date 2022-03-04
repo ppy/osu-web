@@ -28,7 +28,6 @@ interface DownloadButtonProps {
 const DownloadButton = ({
   bottomTextKey,
   href,
-  osuDirect = false,
   topTextKey = '_',
 }: DownloadButtonProps) => (
   <BigButton
