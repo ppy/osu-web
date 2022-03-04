@@ -40,6 +40,10 @@ class BeatmapDiscussion extends Model
 {
     use Validatable;
 
+    protected $attributes = [
+        'resolved' => false,
+    ];
+
     protected $casts = [
         'kudosu_denied' => 'boolean',
         'resolved' => 'boolean',

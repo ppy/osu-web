@@ -29,7 +29,7 @@ class BeatmapsetDiscussionNew
             'timestamp:int',
         ], ['null_missing' => true]);
 
-        $this->discussion = new BeatmapDiscussion(['resolved' => false]);
+        $this->discussion = new BeatmapDiscussion();
         $this->discussion->fill($params);
         $this->discussion->beatmapset()->associate($beatmapset);
         $this->discussion->user()->associate($user);
