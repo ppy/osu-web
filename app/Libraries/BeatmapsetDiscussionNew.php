@@ -29,9 +29,7 @@ class BeatmapsetDiscussionNew
             'timestamp:int',
         ], ['null_missing' => true]);
 
-        $this->discussion = new BeatmapDiscussion();
-        $this->discussion->fill($params);
-        $this->discussion->beatmapset()->associate($beatmapset);
+        $this->discussion = $beatmapset->beatmapDiscussions()->make($params);
         $this->discussion->user()->associate($user);
 
         priv_check_user($user, 'BeatmapDiscussionStore', $this->discussion)->ensureCan();
