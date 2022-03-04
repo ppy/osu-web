@@ -341,6 +341,7 @@ class BeatmapsetsController extends Controller
             'beatmapset_nominations.user',
             'converts',
             'converts.failtimes',
+            'converts.user',
             'current_user_attributes',
             'description',
             'genre',

@@ -114,6 +114,7 @@ export class Header extends React.PureComponent
               currentBeatmap: @props.currentBeatmap
               getCount: @getCount
               onSelectBeatmap: @onSelectBeatmap
+              users: @props.users
 
           div
             className: "#{bn}__filter-group #{bn}__filter-group--stats"

@@ -97,12 +97,15 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
                     continue;
                 }
 
-                $beatmap = clone $beatmap;
+                $convertedBeatmap = clone $beatmap;
 
-                $beatmap->playmode = $modeInt;
-                $beatmap->convert = true;
+                $convertedBeatmap->playmode = $modeInt;
+                $convertedBeatmap->convert = true;
+                if ($beatmap->relationLoaded('user')) {
+                    $convertedBeatmap->setRelation('user', $beatmap->user);
+                }
 
-                array_push($converts, $beatmap);
+                array_push($converts, $convertedBeatmap);
             }
         }
 

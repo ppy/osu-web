@@ -91,7 +91,11 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
             $discussions = $this->getDiscussions();
 
             $allDiscussions = $discussions->merge($this->getRelatedDiscussions($discussions));
-            $userIds = $allDiscussions->pluck('user_id')->merge($allDiscussions->pluck('startingPost.last_editor_id'))->unique()->values();
+            $userIds = array_values(array_unique([
+                ...$allDiscussions->pluck('startingPost.last_editor_id'),
+                ...$allDiscussions->pluck('user_id'),
+                ...$this->getBeatmaps()->pluck('user_id'),
+            ]));
 
             $users = User::whereIn('user_id', $userIds)->with('userGroups');
 
