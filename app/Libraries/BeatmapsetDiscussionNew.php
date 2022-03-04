@@ -30,6 +30,7 @@ class BeatmapsetDiscussionNew
         ], ['null_missing' => true]);
 
         $this->discussion = $beatmapset->beatmapDiscussions()->make($params);
+        $this->discussion->beatmapset()->associate($beatmapset);
         $this->discussion->user()->associate($user);
 
         priv_check_user($user, 'BeatmapDiscussionStore', $this->discussion)->ensureCan();
@@ -48,6 +49,7 @@ class BeatmapsetDiscussionNew
             $this->discussion->saveOrExplode();
 
             $post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $this->message]);
+            $post->beatmapDiscussion()->associate($this->discussion);
             $post->user()->associate($this->user);
             $post->saveOrExplode();
 
