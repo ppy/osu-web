@@ -160,7 +160,7 @@ return [
                 'issue_tag' => 'Wydany tag
 ',
                 'lock' => 'Zablokowany temat',
-                'merge' => '',
+                'merge' => 'Scalono posty do tego wątku',
                 'move' => 'Przeniesiono wątek',
                 'pin' => 'Przypięto wątek',
                 'post_edited' => 'Edytowano post',
@@ -172,8 +172,8 @@ return [
                 'topic_type_changed' => 'Zmieniono typ wątku',
                 'unlock' => 'Odblokowano wątek',
                 'unpin' => 'Odpięto wątek',
-                'user_lock' => '',
-                'user_unlock' => '',
+                'user_lock' => 'Zamknięto własny wątek',
+                'user_unlock' => 'Odblokowano własny wątek',
             ],
         ],
 

@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'ノミネーションをリセット',
             'praise' => '称賛',
             'problem' => '問題',
+            'problem_warning' => '',
             'review' => 'レビュー',
             'suggestion' => '提案',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '本当によろしいですか？新しい問題を投稿するとノミネーション審査中ではなくなります。',
             'disqualify' => '本当によろしいですか？これによりビートマップがQualifiedから外され、ノミネーション審査がリセットされます。',
+            'nomination_reset' => '本当によろしいですか？新しい問題を投稿するとノミネーション審査中ではなくなります。',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'マイマップ',
         'pending' => 'Pending & WIP',
+        'wip' => '',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],

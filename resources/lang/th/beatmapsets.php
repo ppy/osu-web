@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'ได้รับ :when',
             'country' => 'อันดับประเทศ',
+            'error' => '',
             'friend' => 'อันดับเพื่อน',
             'global' => 'อันดับโลก',
             'supporter-link' => 'คลิก <a href=":link">ที่นี่</a> เพื่อดูสิ่งสวยงามทั้งหมดที่คุณได้รับ!',

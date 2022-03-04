@@ -8,7 +8,7 @@ return [
         'title' => '',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'od :artist',
         ],
 
         'player' => [

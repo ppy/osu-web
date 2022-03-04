@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Resetați nominalizarea',
             'praise' => 'Laudă',
             'problem' => 'Problemă',
+            'problem_warning' => '',
             'review' => 'Recenzie',
             'suggestion' => 'Sugestie',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Ești sigur? Postarea unei probleme noi va reseta procesul de nominalizare.',
             'disqualify' => 'Ești sigur? Asta va elimina beatmap-ul din calificare și va reseta procesul de nominalizare.',
+            'nomination_reset' => 'Ești sigur? Postarea unei probleme noi va reseta procesul de nominalizare.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Hărțile mele',
         'pending' => 'În așteptare & în lucru',
+        'wip' => '',
         'qualified' => 'Calificate',
         'ranked' => 'Clasat',
     ],

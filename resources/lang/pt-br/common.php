@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'Responder e Resolver',
         'reset' => 'Reiniciar',
         'restore' => 'Restaurar',
+        'retry' => '',
         'save' => 'Salvar',
         'saving' => 'Salvando...',
         'search' => 'Pesquisar',

@@ -73,6 +73,7 @@ return [
             'nomination_reset' => '추천 초기화',
             'praise' => '칭찬',
             'problem' => '문제',
+            'problem_warning' => '',
             'review' => '검토',
             'suggestion' => '제안',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '확실한가요? 새로운 문제를 제기하는 것은 추천 상태를 초기화시킵니다.',
             'disqualify' => '확실한가요? 이 작업은 비트맵을 qualify 상태에서 제거하고 추천 상태를 초기화합니다.',
+            'nomination_reset' => '확실한가요? 새로운 문제를 제기하는 것은 추천 상태를 초기화시킵니다.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => '내 비트맵',
         'pending' => '보류 중 & 작업 중',
+        'wip' => '',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],

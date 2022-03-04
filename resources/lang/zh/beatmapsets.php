@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => '在 :when 达成',
             'country' => '国内/区内排名',
+            'error' => '',
             'friend' => '好友排名',
             'global' => '全球排名',
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你得到的精彩功能！',
@@ -175,8 +176,8 @@ return [
                 'own' => '你的最佳成绩',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => '点击 :here 查看您获得的所有精彩功能！',
+                'here' => '这里',
             ],
         ],
 

@@ -1444,9 +1444,7 @@ class OsuAuthorize
      */
     public function checkForumTopicEdit(?User $user, Topic $topic): string
     {
-        $firstPost = $topic->posts()->first() ?? $topic->posts()->withTrashed()->first();
-
-        return $this->checkForumPostEdit($user, $firstPost);
+        return $this->checkForumPostEdit($user, $topic->firstPost);
     }
 
     /**
@@ -1618,7 +1616,7 @@ class OsuAuthorize
             return $forumTopicStorePermission->rawMessage();
         }
 
-        if ($topic->posts()->withTrashed()->first()->poster_id === $user->user_id) {
+        if ($topic->topic_poster === $user->user_id) {
             return 'ok';
         }
 
