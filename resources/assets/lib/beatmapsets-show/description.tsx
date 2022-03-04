@@ -5,7 +5,7 @@ import BbcodeEditor, { OnChangeProps } from 'components/bbcode-editor';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { error, onErrorWithClick } from 'utils/ajax'
+import { error, onErrorWithClick } from 'utils/ajax';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
@@ -90,9 +90,9 @@ export default class Description extends React.PureComponent<Props, State> {
   private saveDescription = ({ event, value }: OnChangeProps) => {
     this.setState({ isBusy: true });
 
-      const failCallback = event == null
-        ? (xhr: JQuery.jqXHR, status: string) => error(xhr, status)
-        : onErrorWithClick(event.target);
+    const failCallback = event == null
+      ? (xhr: JQuery.jqXHR, status: string) => error(xhr, status)
+      : onErrorWithClick(event.target);
 
     this.xhr = $.ajax(route('beatmapsets.update', { beatmapset: this.props.beatmapset.id }), {
       data: {
@@ -105,9 +105,9 @@ export default class Description extends React.PureComponent<Props, State> {
         isEditing: false,
       });
     }).fail(failCallback)
-    .always(() => {
-      this.setState({ isBusy: false });
-    });
+      .always(() => {
+        this.setState({ isBusy: false });
+      });
   };
 
   private toggleEditing = () => {

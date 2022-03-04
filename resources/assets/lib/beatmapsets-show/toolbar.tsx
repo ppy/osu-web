@@ -7,7 +7,6 @@ import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { createClickCallback } from 'utils/html';
 import { beatmapDownloadDirect } from 'utils/url';
 import BeatmapsetMenu from './beatmapset-menu';
 
@@ -185,8 +184,8 @@ export default class Toolbar extends React.PureComponent<Props> {
     }
   }
 
-  private toggleFavourite = (e: React.MouseEvent<HTMLElement>) => {
-    if (core.userLogin.showIfGuest(createClickCallback(e.target))) {
+  private toggleFavourite = () => {
+    if (core.userLogin.showIfGuest(this.toggleFavourite)) {
       return;
     }
 
