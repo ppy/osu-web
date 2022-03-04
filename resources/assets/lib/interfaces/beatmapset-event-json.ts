@@ -48,7 +48,7 @@ interface DisqualifyEvent extends BaseBeatmapsetEvent {
     beatmap_discussion_post_id?: number;
     // older events don't have this field
     nominator_ids?: number[];
-  } | string;
+  } | string; // reason string text for older events
   type: 'disqualify';
 }
 
