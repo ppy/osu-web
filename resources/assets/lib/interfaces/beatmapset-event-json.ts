@@ -80,7 +80,8 @@ interface KudosuGainEvent extends BaseBeatmapsetEvent {
   comment: {
     beatmap_discussion_id: number;
     new_vote: VoteEventJson;
-    votes: VoteEventJson[];
+    // old events are missing this
+    votes?: VoteEventJson[];
   };
   type: 'kudosu_gain';
 }
@@ -89,7 +90,8 @@ interface KudosuLostEvent extends BaseBeatmapsetEvent {
   comment: {
     beatmap_discussion_id: number;
     new_vote: VoteEventJson;
-    votes: VoteEventJson[];
+    // old events are missing this
+    votes?: VoteEventJson[];
   };
   type: 'kudosu_lost';
 }
