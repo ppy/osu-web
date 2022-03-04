@@ -106,17 +106,14 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
 
   private onDocumentClick = (e: JQuery.ClickEvent) => {
     if (e.button !== 0) return;
-
-    if ($(e.target).closest('.js-beatmap-list-selector').length) {
-      return;
-    }
+    if (osu.isClickable(e.target)) return;
 
     this.hideSelector();
   };
 
   private selectBeatmap = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
-    if ($(e.target).is('a')) return;
+    if (osu.isClickable(e.target)) return;
 
     const beatmapId = parseInt(e.currentTarget.dataset.id ?? '', 10);
     this.props.onSelectBeatmap(beatmapId);
@@ -134,7 +131,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
 
   private toggleSelector = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
-    if ($(e.target).is('a')) return;
+    if (osu.isClickable(e.target)) return;
 
     this.setSelector(!this.state.showingSelector);
   };

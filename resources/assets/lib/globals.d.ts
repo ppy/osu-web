@@ -71,7 +71,7 @@ interface OsuCommon {
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
-  isClickable: (el: HTMLElement) => boolean;
+  isClickable: (el: Element | EventTarget) => boolean;
   navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
   popup: (message: string, type: string) => void;
   presence: (str?: string | null) => string | null;
