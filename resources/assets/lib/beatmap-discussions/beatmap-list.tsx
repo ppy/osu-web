@@ -33,6 +33,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   };
 
   private readonly eventId = `beatmapset-discussions-show-beatmap-list-${nextVal()}`;
+  private readonly selectorRef = React.createRef<HTMLDivElement>();
 
   constructor(props: Props) {
     super(props);
@@ -57,6 +58,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
       <div className={classWithModifiers('beatmap-list', this.props.modifiers, { selecting: this.state.showingSelector })}>
         <div className='beatmap-list__body'>
           <div
+            ref={this.selectorRef}
             className='beatmap-list__item beatmap-list__item--selected beatmap-list__item--large js-beatmap-list-selector'
             onClick={this.toggleSelector}
           >
@@ -107,6 +109,11 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   private onDocumentClick = (e: JQuery.ClickEvent) => {
     if (e.button !== 0) return;
     if (osu.isClickable(e.target)) return;
+    if (
+      this.selectorRef.current != null
+      && e.originalEvent != null
+      && e.originalEvent.composedPath().includes(this.selectorRef.current)
+    ) return;
 
     this.hideSelector();
   };
