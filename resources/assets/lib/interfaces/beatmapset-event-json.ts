@@ -44,7 +44,7 @@ interface QualifyEvent extends BaseBeatmapsetEvent {
 interface DisqualifyEvent extends BaseBeatmapsetEvent {
   comment: {
     beatmap_discussion_id: number;
-    // never events don't have this field
+    // newer events don't have this field
     beatmap_discussion_post_id?: number;
     // older events don't have this field
     nominator_ids?: number[];
