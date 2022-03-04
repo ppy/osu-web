@@ -32,7 +32,6 @@ const DownloadButton = ({
   topTextKey = '_',
 }: DownloadButtonProps) => (
   <BigButton
-    extraClasses={!osuDirect ? ['js-beatmapset-download-link'] : undefined}
     href={href}
     modifiers='beatmapset-toolbar'
     props={{
