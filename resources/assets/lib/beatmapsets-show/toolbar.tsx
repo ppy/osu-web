@@ -34,7 +34,7 @@ const DownloadButton = ({
   <BigButton
     extraClasses={!osuDirect ? ['js-beatmapset-download-link'] : undefined}
     href={href}
-    modifiers={['beatmapset-toolbar']}
+    modifiers='beatmapset-toolbar'
     props={{
       'data-turbolinks': false,
     }}
@@ -85,7 +85,7 @@ export default class Toolbar extends React.PureComponent<Props> {
       return (
         <BigButton
           href={route('beatmapsets.discussion', { beatmapset: this.props.beatmapset.id })}
-          modifiers={['beatmapset-toolbar']}
+          modifiers='beatmapset-toolbar'
           text={osu.trans('beatmapsets.show.discussion')}
         />
       );
@@ -95,7 +95,7 @@ export default class Toolbar extends React.PureComponent<Props> {
       return (
         <BigButton
           href={this.props.beatmapset.legacy_thread_url}
-          modifiers={['beatmapset-toolbar']}
+          modifiers='beatmapset-toolbar'
           text={osu.trans('beatmapsets.show.discussion')}
         />
       );
@@ -158,7 +158,7 @@ export default class Toolbar extends React.PureComponent<Props> {
       return (
         <BigButton
           extraClasses={['js-user-link']}
-          modifiers={['beatmapset-toolbar']}
+          modifiers='beatmapset-toolbar'
           text={{
             bottom: osu.trans('beatmapsets.show.details.login_required.bottom'),
             top: osu.trans('beatmapsets.show.details.login_required.top'),
