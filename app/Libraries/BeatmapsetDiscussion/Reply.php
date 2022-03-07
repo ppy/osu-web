@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries;
+namespace App\Libraries\BeatmapsetDiscussion;
 
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
@@ -14,9 +14,9 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
 
-class BeatmapsetDiscussionReply
+class Reply
 {
-    use HandlesProblemBeatmapsetDiscussionPost;
+    use HandlesProblem;
 
     private array $posts = [];
 

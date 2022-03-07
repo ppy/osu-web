@@ -5,16 +5,16 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries;
+namespace App\Libraries\BeatmapsetDiscussion;
 
 use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\User;
 
-class BeatmapsetDiscussionNew
+class Discussion
 {
-    use HandlesProblemBeatmapsetDiscussionPost;
+    use HandlesProblem;
 
     private BeatmapDiscussion $discussion;
     private ?string $message;

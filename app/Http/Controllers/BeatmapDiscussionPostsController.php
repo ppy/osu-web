@@ -6,10 +6,10 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\BeatmapsetDiscussionNew;
+use App\Libraries\BeatmapsetDiscussion\Discussion;
 use App\Libraries\BeatmapsetDiscussionPostsBundle;
-use App\Libraries\BeatmapsetDiscussionReply;
-use App\Libraries\BeatmapsetDiscussionReview;
+use App\Libraries\BeatmapsetDiscussion\Reply;
+use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
@@ -121,13 +121,13 @@ class BeatmapDiscussionPostsController extends Controller
             $resolve = get_bool($request['beatmap_discussion']['resolved'] ?? null);
             $message = presence(get_string($request['beatmap_discussion_post']['message'] ?? null));
 
-            $posts = (new BeatmapsetDiscussionReply($user, $discussion, $message, $resolve))->handle();
+            $posts = (new Reply($user, $discussion, $message, $resolve))->handle();
 
             $beatmapset = $discussion->beatmapset;
         } elseif ($beatmapsetId !== null) {
             $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($beatmapsetId);
 
-            [$discussion, $posts] = (new BeatmapsetDiscussionNew($user, $beatmapset, $request))->handle();
+            [$discussion, $posts] = (new Discussion($user, $beatmapset, $request))->handle();
         } else {
             abort(404);
         }
@@ -154,7 +154,7 @@ class BeatmapDiscussionPostsController extends Controller
             // handle reviews (but not replies to the reviews)
             try {
                 $document = json_decode($params['message'], true);
-                BeatmapsetDiscussionReview::update($post->beatmapDiscussion, $document, auth()->user());
+                Review::update($post->beatmapDiscussion, $document, auth()->user());
             } catch (\Exception $e) {
                 throw new ModelNotSavedException($e->getMessage());
             }

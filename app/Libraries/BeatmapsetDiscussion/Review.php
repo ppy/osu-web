@@ -3,7 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Libraries;
+namespace App\Libraries\BeatmapsetDiscussion;
 
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapsetDiscussionReviewNew;
@@ -12,9 +12,9 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\User;
 
-class BeatmapsetDiscussionReview
+class Review
 {
-    use HandlesProblemBeatmapsetDiscussionPost;
+    use HandlesProblem;
 
     const BLOCK_TEXT_LENGTH_LIMIT = 750;
 

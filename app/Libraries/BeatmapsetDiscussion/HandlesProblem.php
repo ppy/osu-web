@@ -5,14 +5,13 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries;
+namespace App\Libraries\BeatmapsetDiscussion;
 
 use App\Jobs\Notifications;
 use App\Models\BeatmapDiscussion;
 use App\Models\User;
 
-// TODO: should go into namespace
-trait HandlesProblemBeatmapsetDiscussionPost
+trait HandlesProblem
 {
     private bool $hasPriorOpenProblems = false;
     private ?BeatmapDiscussion $problemDiscussion = null;
