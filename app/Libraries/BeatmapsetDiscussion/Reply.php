@@ -45,9 +45,7 @@ class Reply
             }
         }
 
-        if ($discussion->isProblem()) {
-            $this->setProblemDiscussion($discussion);
-        }
+        $this->maybeSetProblemDiscussion($discussion);
     }
 
     /**

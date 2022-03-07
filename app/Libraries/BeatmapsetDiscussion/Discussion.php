@@ -35,9 +35,7 @@ class Discussion
 
         $this->message = presence(get_string($request['beatmap_discussion_post']['message'] ?? null));
 
-        if ($this->discussion->isProblem()) {
-            $this->setProblemDiscussion($this->discussion);
-        }
+        $this->maybeSetProblemDiscussion($this->discussion);
     }
 
     public function handle(): array

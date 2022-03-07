@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace App\Libraries\BeatmapsetDiscussion;
 
-use App\Exceptions\InvariantException;
 use App\Jobs\Notifications;
 use App\Models\BeatmapDiscussion;
 use App\Models\User;
@@ -42,17 +41,14 @@ trait HandlesProblem
     }
 
     /**
-     * This should be called _before_ the new problem discussion is saved.
+     * This should be called _before_ any updates to the problem discussion are saved.
      */
-    private function setProblemDiscussion(BeatmapDiscussion $discussion)
+    private function maybeSetProblemDiscussion(BeatmapDiscussion $discussion)
     {
-        if ($this->problemDiscussion !== null) {
-            // forced sanity check.
-            throw new InvariantException('problemDiscussion cannot be reassigned once set.');
+        if ($discussion->isProblem() && $this->problemDiscussion === null) {
+            $this->hasPriorOpenProblems = $discussion->beatmapset->beatmapDiscussions()->openProblems()->exists();
+            $this->problemDiscussion = $discussion;
         }
-
-        $this->hasPriorOpenProblems = $discussion->beatmapset->beatmapDiscussions()->openProblems()->exists();
-        $this->problemDiscussion = $discussion;
     }
 
     private function shouldDisqualifyOrResetNominations(): bool

@@ -101,9 +101,7 @@ class Review
             'beatmap_id' => $beatmapId,
         ]);
 
-        if ($newDiscussion->isProblem() && $this->problemDiscussion === null) {
-            $this->setProblemDiscussion($newDiscussion);
-        }
+        $this->maybeSetProblemDiscussion($newDiscussion);
 
         $newDiscussion->saveOrExplode();
 
