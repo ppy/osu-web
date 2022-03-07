@@ -15,8 +15,7 @@ trait HandlesProblem
 {
     private bool $hasPriorOpenProblems = false;
     private ?BeatmapDiscussion $problemDiscussion = null;
-
-    abstract private function getUser(): User;
+    private User $user;
 
     private function handleProblemDiscussion(): void
     {
@@ -27,7 +26,7 @@ trait HandlesProblem
         $beatmapset = $this->problemDiscussion->beatmapset;
 
         if ($this->shouldDisqualifyOrResetNominations()) {
-            $beatmapset->disqualifyOrResetNominations($this->getUser(), $this->problemDiscussion);
+            $beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
 
             return;
         }
@@ -35,7 +34,7 @@ trait HandlesProblem
         if ($beatmapset->isQualified() && !$this->hasPriorOpenProblems && !$this->problemDiscussion->resolved) {
             (new BeatmapsetDiscussionQualifiedProblem(
                 $this->problemDiscussion->startingPost,
-                $this->getUser()
+                $this->user
             ))->dispatch();
         }
     }
@@ -57,10 +56,10 @@ trait HandlesProblem
         if ($this->problemDiscussion->wasRecentlyCreated || !$this->problemDiscussion->exists) {
             $beatmapset = $this->problemDiscussion->beatmapset;
             if ($beatmapset->isQualified()) {
-                return priv_check_user($this->getUser(), 'BeatmapsetDisqualify', $beatmapset)->can();
+                return priv_check_user($this->user, 'BeatmapsetDisqualify', $beatmapset)->can();
             } elseif ($beatmapset->isPending()) {
                 return $beatmapset->hasNominations()
-                    && priv_check_user($this->getUser(), 'BeatmapsetResetNominations', $beatmapset)->can();
+                    && priv_check_user($this->user, 'BeatmapsetResetNominations', $beatmapset)->can();
             }
         }
 

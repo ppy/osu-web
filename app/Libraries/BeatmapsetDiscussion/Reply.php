@@ -70,11 +70,6 @@ class Reply
         });
     }
 
-    private function getUser(): User
-    {
-        return $this->user;
-    }
-
     private function handleResolvedChange(BeatmapDiscussionPost $post)
     {
         if ($this->resolve === null) {

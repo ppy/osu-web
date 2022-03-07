@@ -116,11 +116,6 @@ class Review
         return $newDiscussion;
     }
 
-    private function getUser(): User
-    {
-        return $this->user;
-    }
-
     private function parseBlock($block)
     {
         if (!isset($block['type'])) {

@@ -47,9 +47,4 @@ class Discussion
             return [$this->discussion, [$post]];
         });
     }
-
-    private function getUser(): User
-    {
-        return $this->user;
-    }
 }
