@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BlockButton from 'components/block-button';
-import { NotificationBanner } from 'components/notification-banner';
+import NotificationBanner from 'components/notification-banner';
 import UserJson from 'interfaces/user-json';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
