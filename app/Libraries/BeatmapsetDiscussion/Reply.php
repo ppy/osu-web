@@ -46,8 +46,7 @@ class Reply
         }
 
         if ($discussion->isProblem()) {
-            $this->problemDiscussion = $discussion;
-            $this->hasPriorOpenProblems = $discussion->beatmapset->beatmapDiscussions()->openProblems()->exists();
+            $this->setProblemDiscussion($discussion);
         }
     }
 

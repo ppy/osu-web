@@ -36,8 +36,7 @@ class Discussion
         $this->message = presence(get_string($request['beatmap_discussion_post']['message'] ?? null));
 
         if ($this->discussion->isProblem()) {
-            $this->problemDiscussion = $this->discussion;
-            $this->hasPriorOpenProblems = $this->discussion->beatmapset->beatmapDiscussions()->openProblems()->exists();
+            $this->setProblemDiscussion($this->discussion);
         }
     }
 

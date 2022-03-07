@@ -31,7 +31,6 @@ class Review
         }
 
         $this->isUpdate = $this->discussion !== null;
-        $this->hasPriorOpenProblems = $this->beatmapset->beatmapDiscussions()->openProblems()->exists();
     }
 
     public static function config()
@@ -101,6 +100,11 @@ class Review
             'timestamp' => $timestamp,
             'beatmap_id' => $beatmapId,
         ]);
+
+        if ($newDiscussion->isProblem() && $this->problemDiscussion === null) {
+            $this->setProblemDiscussion($newDiscussion);
+        }
+
         $newDiscussion->saveOrExplode();
 
         $postParams = [
@@ -148,11 +152,6 @@ class Review
                     );
 
                     $childId = $embeddedDiscussion->getKey();
-
-                    // FIXME: separate from this loop
-                    if ($block['discussion_type'] === 'problem' && $this->problemDiscussion === null) {
-                        $this->problemDiscussion = $embeddedDiscussion;
-                    }
                 }
 
                 return [
