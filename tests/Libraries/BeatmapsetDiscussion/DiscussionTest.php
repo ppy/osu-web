@@ -28,6 +28,8 @@ use Tests\TestCase;
 
 class DiscussionTest extends TestCase
 {
+    private const TEST_MESSAGE = 'not important';
+
     private User $mapper;
 
     /**
@@ -55,7 +57,7 @@ class DiscussionTest extends TestCase
             $this->expectException(VerificationRequiredException::class);
         }
 
-        (new Discussion($user, $beatmapset, $this->makeParams('praise'), 'message'))->handle();
+        (new Discussion($user, $beatmapset, $this->makeParams('praise'), static::TEST_MESSAGE))->handle();
     }
 
     /**
@@ -75,7 +77,7 @@ class DiscussionTest extends TestCase
 
         Queue::fake();
 
-        (new Discussion($user, $beatmapset, $this->makeParams('problem'), 'message'))->handle();
+        (new Discussion($user, $beatmapset, $this->makeParams('problem'), static::TEST_MESSAGE))->handle();
 
         foreach ($queued as $class) {
             Queue::assertPushed($class);
@@ -98,7 +100,7 @@ class DiscussionTest extends TestCase
             ->$state()
             ->create();
 
-        $subject = new Discussion($user, $beatmapset, $this->makeParams($messageType), 'message');
+        $subject = new Discussion($user, $beatmapset, $this->makeParams($messageType), static::TEST_MESSAGE);
 
         $value = $this->invokeMethod($subject, 'shouldDisqualifyOrResetNominations');
         $this->assertSame($expects, $value);
@@ -113,7 +115,7 @@ class DiscussionTest extends TestCase
 
         Queue::fake();
 
-        (new Discussion($user, $beatmapset, $this->makeParams('praise'), 'message'))->handle();
+        (new Discussion($user, $beatmapset, $this->makeParams('praise'), static::TEST_MESSAGE))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class, function (BeatmapsetDiscussionPostNew $job) use ($user, $watcher) {
             return in_array($watcher->getKey(), $job->getReceiverIds(), true)
@@ -138,7 +140,7 @@ class DiscussionTest extends TestCase
         $this->expectCountChange(fn () => BeatmapDiscussion::count(), 1, BeatmapDiscussion::class);
         $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1, BeatmapDiscussionPost::class);
 
-        (new Discussion($this->mapper, $beatmapset, $this->makeParams('mapper_note'), 'message'))->handle();
+        (new Discussion($this->mapper, $beatmapset, $this->makeParams('mapper_note'), static::TEST_MESSAGE))->handle();
     }
 
     /**
@@ -157,7 +159,7 @@ class DiscussionTest extends TestCase
             $this->expectException(AuthorizationException::class);
         }
 
-        (new Discussion($user, $beatmapset, $this->makeParams('mapper_note'), 'message'))->handle();
+        (new Discussion($user, $beatmapset, $this->makeParams('mapper_note'), static::TEST_MESSAGE))->handle();
     }
 
     public function testNewMapperNoteNoteByGuestOnGuestBeatmap()
@@ -173,7 +175,7 @@ class DiscussionTest extends TestCase
             $user,
             $beatmapset,
             $this->makeParams('mapper_note', $beatmap),
-            'message'
+            static::TEST_MESSAGE
         ))->handle();
     }
 
@@ -190,7 +192,7 @@ class DiscussionTest extends TestCase
             $this->mapper,
             $beatmapset,
             $this->makeParams('mapper_note', $beatmap),
-            'message'
+            static::TEST_MESSAGE
         ))->handle();
     }
 
@@ -214,7 +216,7 @@ class DiscussionTest extends TestCase
             'details' => ['modes' => array_keys(Beatmap::MODES)],
         ]);
 
-        (new Discussion($user, $beatmapset, $this->makeParams('problem'), 'message'))->handle();
+        (new Discussion($user, $beatmapset, $this->makeParams('problem'), static::TEST_MESSAGE))->handle();
 
         $assertMethod(NewPrivateNotificationEvent::class);
     }
@@ -237,7 +239,7 @@ class DiscussionTest extends TestCase
             'details' => ['modes' => array_keys(Beatmap::MODES)],
         ]);
 
-        (new Discussion($user, $beatmapset, $this->makeParams('problem'), 'message'))->handle();
+        (new Discussion($user, $beatmapset, $this->makeParams('problem'), static::TEST_MESSAGE))->handle();
 
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }
@@ -262,7 +264,7 @@ class DiscussionTest extends TestCase
         ]);
 
         // TODO: only test the handleProblemDiscussion() part?
-        (new Discussion($user, $beatmapset, $this->makeParams('problem'), 'message'))->handle();
+        (new Discussion($user, $beatmapset, $this->makeParams('problem'), static::TEST_MESSAGE))->handle();
 
         if ($expectsNotification) {
             Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($watcher) {

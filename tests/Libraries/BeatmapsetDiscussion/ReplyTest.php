@@ -25,6 +25,8 @@ use Tests\TestCase;
 
 class ReplyTest extends TestCase
 {
+    private const TEST_MESSAGE = 'not important';
+
     private User $mapper;
 
     public function testWatchersGetNotification()
@@ -38,7 +40,7 @@ class ReplyTest extends TestCase
 
         $discussion->beatmapset->watches()->create(['user_id' => $watcher->getKey()]);
 
-        (new Reply($user, $discussion, 'message'))->handle();
+        (new Reply($user, $discussion, static::TEST_MESSAGE))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class, function (BeatmapsetDiscussionPostNew $job) use ($user, $watcher) {
             return in_array($watcher->getKey(), $job->getReceiverIds(), true)
@@ -68,7 +70,7 @@ class ReplyTest extends TestCase
             'user_id' => $starter,
         ]);
 
-        (new Reply($user, $discussion, 'message'))->handle();
+        (new Reply($user, $discussion, static::TEST_MESSAGE))->handle();
 
         Queue::assertPushed(
             BeatmapsetDiscussionPostNew::class,
@@ -94,7 +96,7 @@ class ReplyTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1);
 
-        (new Reply($user, $discussion, 'message'))->handle();
+        (new Reply($user, $discussion, static::TEST_MESSAGE))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
@@ -115,7 +117,7 @@ class ReplyTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1);
 
-        (new Reply($user, $discussion, 'message'))->handle();
+        (new Reply($user, $discussion, static::TEST_MESSAGE))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
@@ -139,7 +141,7 @@ class ReplyTest extends TestCase
             $this->expectException(InvariantException::class);
         }
 
-        $posts = (new Reply($user, $discussion, 'message', true))->handle();
+        $posts = (new Reply($user, $discussion, static::TEST_MESSAGE, true))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
@@ -163,7 +165,7 @@ class ReplyTest extends TestCase
             $this->expectException(AuthorizationException::class);
         }
 
-        $posts = (new Reply($this->mapper, $discussion, 'message', true))->handle();
+        $posts = (new Reply($this->mapper, $discussion, static::TEST_MESSAGE, true))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
@@ -190,7 +192,7 @@ class ReplyTest extends TestCase
             $this->expectException(AuthorizationException::class);
         }
 
-        $posts = (new Reply($user, $discussion, 'message', true))->handle();
+        $posts = (new Reply($user, $discussion, static::TEST_MESSAGE, true))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
@@ -214,7 +216,7 @@ class ReplyTest extends TestCase
             $this->expectException(AuthorizationException::class);
         }
 
-        $posts = (new Reply($user, $discussion, 'message', true))->handle();
+        $posts = (new Reply($user, $discussion, static::TEST_MESSAGE, true))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
@@ -241,7 +243,7 @@ class ReplyTest extends TestCase
         ]);
 
 
-        (new Reply($user, $discussion, 'message', false))->handle();
+        (new Reply($user, $discussion, static::TEST_MESSAGE, false))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
         Queue::assertNotPushed(BeatmapsetDisqualify::class);
@@ -262,7 +264,7 @@ class ReplyTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 2);
 
-        $posts = (new Reply($this->mapper, $discussion, 'message', false))->handle();
+        $posts = (new Reply($this->mapper, $discussion, static::TEST_MESSAGE, false))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
@@ -283,7 +285,7 @@ class ReplyTest extends TestCase
 
         $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 2);
 
-        $posts = (new Reply($user, $discussion, 'message', false))->handle();
+        $posts = (new Reply($user, $discussion, static::TEST_MESSAGE, false))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
 
@@ -307,7 +309,7 @@ class ReplyTest extends TestCase
         $this->expectCountChange(fn () => BeatmapDiscussion::count(), 0, BeatmapDiscussion::class);
         $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1, BeatmapDiscussionPost::class);
 
-        (new Reply($user, $discussion, 'message'))->handle();
+        (new Reply($user, $discussion, static::TEST_MESSAGE))->handle();
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
     }
@@ -322,7 +324,7 @@ class ReplyTest extends TestCase
 
         $discussionCopy = $discussion->fresh();
 
-        $reply = new Reply($this->mapper, $discussion, 'message', true);
+        $reply = new Reply($this->mapper, $discussion, static::TEST_MESSAGE, true);
 
         // unresolved after query
         $discussionCopy->update(['resolved' => false]);
