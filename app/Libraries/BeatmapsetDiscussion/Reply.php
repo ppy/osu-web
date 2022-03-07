@@ -93,17 +93,15 @@ class Reply
             throw new InvariantException('resolved state of the discussion has changed');
         }
 
-        if ($discussion->resolved !== $this->resolve) {
-            $this->discussion->resolved = $this->resolve;
-            $event = $this->discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN;
+        $this->discussion->resolved = $this->resolve;
+        $event = $this->discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN;
 
-            $systemPost = BeatmapDiscussionPost::generateLogResolveChange($this->user, $this->discussion->resolved);
-            $systemPost->beatmap_discussion_id = $this->discussion->getKey();
-            $systemPost->saveOrExplode();
-            BeatmapsetEvent::log($event, $this->user, $post)->saveOrExplode();
+        $systemPost = BeatmapDiscussionPost::generateLogResolveChange($this->user, $this->discussion->resolved);
+        $systemPost->beatmap_discussion_id = $this->discussion->getKey();
+        $systemPost->saveOrExplode();
+        BeatmapsetEvent::log($event, $this->user, $post)->saveOrExplode();
 
-            $this->posts[] = $systemPost;
-        }
+        $this->posts[] = $systemPost;
 
         $this->discussion->saveOrExplode();
     }
