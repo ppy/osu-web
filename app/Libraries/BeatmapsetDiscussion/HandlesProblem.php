@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace App\Libraries\BeatmapsetDiscussion;
 
-use App\Jobs\Notifications;
+use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
 use App\Models\BeatmapDiscussion;
 use App\Models\User;
 
@@ -33,7 +33,7 @@ trait HandlesProblem
         }
 
         if ($beatmapset->isQualified() && !$this->hasPriorOpenProblems && !$this->problemDiscussion->resolved) {
-            (new Notifications\BeatmapsetDiscussionQualifiedProblem(
+            (new BeatmapsetDiscussionQualifiedProblem(
                 $this->problemDiscussion->startingPost,
                 $this->getUser()
             ))->dispatch();
