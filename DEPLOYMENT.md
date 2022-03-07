@@ -34,7 +34,7 @@ The image built serves multiple purposes, each can be run by passing the paramet
 There are three main commands:
 
 - php: starts php-fpm on port 9000
-- assets: starts nginx on port 8000. Used to serve statis assets
+- assets: starts nginx on port 8000. Used to serve static assets
 - artisan: starts artisan command. This should be followed by correct options
 
 ### php-fpm

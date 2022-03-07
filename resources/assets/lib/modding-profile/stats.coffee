@@ -3,6 +3,7 @@
 
 import * as React from 'react'
 import { div, dd, dl, dt } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
 
 entries = [
   'ranked_beatmapset_count'
@@ -13,7 +14,9 @@ entries = [
 
 export class Stats extends React.PureComponent
   render: =>
-    div className: 'profile-stats', entries.map(@renderEntry)
+    div
+      className: classWithModifiers 'profile-stats', 'modding'
+      entries.map(@renderEntry)
 
 
   renderEntry: (key) =>

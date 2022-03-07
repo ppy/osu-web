@@ -15,6 +15,7 @@ return [
         'closing' => 'Cordialement,',
         'hello' => 'Bonjour :user,',
         'report' => 'Veuillez répondre à cet email IMMÉDIATEMENT si vous n\'avez pas demandé ce changement.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [
