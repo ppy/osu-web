@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace App\Libraries\BeatmapsetDiscussion;
 
 use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
+use App\Libraries\BeatmapsetDiscussion\Traits\HandlesProblem;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\User;

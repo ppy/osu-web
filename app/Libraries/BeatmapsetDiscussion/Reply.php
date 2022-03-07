@@ -9,6 +9,7 @@ namespace App\Libraries\BeatmapsetDiscussion;
 
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
+use App\Libraries\BeatmapsetDiscussion\Traits\HandlesProblem;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapsetEvent;

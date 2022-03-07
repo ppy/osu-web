@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace App\Libraries\BeatmapsetDiscussion;
+namespace App\Libraries\BeatmapsetDiscussion\Traits;
 
 use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
 use App\Models\BeatmapDiscussion;
