@@ -116,18 +116,23 @@ class BeatmapDiscussionPostsController extends Controller
         $discussionId = get_int($request['beatmap_discussion_id'] ?? null);
         $beatmapsetId = get_int($request['beatmapset_id'] ?? null);
 
+        $message = presence(get_string($request['beatmap_discussion_post']['message'] ?? null));
+
         if ($discussionId !== null) {
             $discussion = BeatmapDiscussion::findOrFail($discussionId);
             $resolve = get_bool($request['beatmap_discussion']['resolved'] ?? null);
-            $message = presence(get_string($request['beatmap_discussion_post']['message'] ?? null));
-
             $posts = (new Reply($user, $discussion, $message, $resolve))->handle();
 
             $beatmapset = $discussion->beatmapset;
         } elseif ($beatmapsetId !== null) {
             $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($beatmapsetId);
+            $discussionParams = get_params($request, 'beatmap_discussion', [
+                'beatmap_id:int',
+                'message_type',
+                'timestamp:int',
+            ], ['null_missing' => true]);
 
-            [$discussion, $posts] = (new Discussion($user, $beatmapset, $request))->handle();
+            [$discussion, $posts] = (new Discussion($user, $beatmapset, $discussionParams, $message))->handle();
         } else {
             abort(404);
         }

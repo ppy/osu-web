@@ -17,23 +17,14 @@ class Discussion
     use HandlesProblem;
 
     private BeatmapDiscussion $discussion;
-    private ?string $message;
 
-    public function __construct(private User $user, private Beatmapset $beatmapset, array $request)
+    public function __construct(private User $user, private Beatmapset $beatmapset, array $discussionParams, private ?string $message)
     {
-        $params = get_params($request, 'beatmap_discussion', [
-            'beatmap_id:int',
-            'message_type',
-            'timestamp:int',
-        ], ['null_missing' => true]);
-
-        $this->discussion = $beatmapset->beatmapDiscussions()->make($params);
+        $this->discussion = $beatmapset->beatmapDiscussions()->make($discussionParams);
         $this->discussion->beatmapset()->associate($beatmapset);
         $this->discussion->user()->associate($user);
 
         priv_check_user($user, 'BeatmapsetDiscussionNew', $this->discussion)->ensureCan();
-
-        $this->message = presence(get_string($request['beatmap_discussion_post']['message'] ?? null));
 
         $this->maybeSetProblemDiscussion($this->discussion);
     }
