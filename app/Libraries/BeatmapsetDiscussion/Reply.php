@@ -22,7 +22,7 @@ class Reply
 
     public function __construct(private User $user, private BeatmapDiscussion $discussion, private ?string $message, private ?bool $resolve = null)
     {
-        priv_check_user($this->user, 'BeatmapDiscussionPostStore', $discussion->beatmapset)->ensureCan();
+        priv_check_user($this->user, 'BeatmapsetDiscussionReply', $discussion->beatmapset)->ensureCan();
 
         if (!$discussion->exists) {
             throw new InvariantException('Cannot reply to a new discussion.');
@@ -40,11 +40,8 @@ class Reply
             }
 
             if ($discussion->resolved !== $resolve) {
-                if ($resolve) {
-                    priv_check_user($user, 'BeatmapDiscussionResolve', $discussion)->ensureCan();
-                } else {
-                    priv_check_user($user, 'BeatmapDiscussionReopen', $discussion)->ensureCan();
-                }
+                $priv = $resolve ? 'BeatmapDiscussionResolve' : 'BeatmapDiscussionReopen';
+                priv_check_user($user, $priv, $discussion)->ensureCan();
             }
         }
 

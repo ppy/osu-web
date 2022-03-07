@@ -21,8 +21,6 @@ class Discussion
 
     public function __construct(private User $user, private Beatmapset $beatmapset, array $request)
     {
-        priv_check_user($this->user, 'BeatmapDiscussionPostStore', $beatmapset)->ensureCan();
-
         $params = get_params($request, 'beatmap_discussion', [
             'beatmap_id:int',
             'message_type',
@@ -33,7 +31,7 @@ class Discussion
         $this->discussion->beatmapset()->associate($beatmapset);
         $this->discussion->user()->associate($user);
 
-        priv_check_user($user, 'BeatmapDiscussionStore', $this->discussion)->ensureCan();
+        priv_check_user($user, 'BeatmapsetDiscussionNew', $this->discussion)->ensureCan();
 
         $this->message = presence(get_string($request['beatmap_discussion_post']['message'] ?? null));
 

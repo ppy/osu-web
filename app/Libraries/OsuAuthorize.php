@@ -328,33 +328,6 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkBeatmapDiscussionStore(?User $user, BeatmapDiscussion $discussion): string
-    {
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
-        $this->ensureHasPlayed($user);
-
-        if ($discussion->message_type === 'mapper_note') {
-            if ($discussion->managedBy($user)) {
-                return 'ok';
-            }
-
-            if ($user->isModerator() || $user->isBNG()) {
-                return 'ok';
-            }
-
-            return 'beatmap_discussion.store.mapper_note_wrong_user';
-        }
-
-        return 'ok';
-    }
-
-    /**
-     * @param User|null $user
-     * @param BeatmapDiscussion $discussion
-     * @return string
-     * @throws AuthorizationCheckException
-     */
     public function checkBeatmapDiscussionVote(?User $user, BeatmapDiscussion $discussion): string
     {
         $prefix = 'beatmap_discussion.vote.';
@@ -536,29 +509,6 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param BeatmapDiscussionPost $post
-     * @return string
-     * @throws AuthorizationCheckException
-     */
-    public function checkBeatmapDiscussionPostStore(?User $user, Beatmapset $beatmapset): string
-    {
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
-        $this->ensureHasPlayed($user);
-
-        if ($user->isModerator()) {
-            return 'ok';
-        }
-
-        if ($beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
-        }
-
-        return 'ok';
-    }
-
-    /**
-     * @param User|null $user
      * @return string
      */
     public function checkBeatmapsetAdvancedSearch(?User $user): string
@@ -589,6 +539,59 @@ class OsuAuthorize
         }
 
         return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
+     * @param BeatmapDiscussion $discussion
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkBeatmapsetDiscussionNew(?User $user, BeatmapDiscussion $discussion): string
+    {
+        $beatmapsetDiscussionReplyPermission = $this->doCheckUser($user, 'BeatmapsetDiscussionReply', $discussion->beatmapset);
+        if (!$beatmapsetDiscussionReplyPermission->can()) {
+            return $beatmapsetDiscussionReplyPermission->rawMessage();
+        }
+
+        if ($discussion->message_type === 'mapper_note') {
+            if ($discussion->managedBy($user)) {
+                return 'ok';
+            }
+
+            if ($user->isModerator() || $user->isBNG()) {
+                return 'ok';
+            }
+
+            // TODO: key should be changed.
+            return 'beatmap_discussion.store.mapper_note_wrong_user';
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @param BeatmapDiscussionPost $post
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkBeatmapsetDiscussionReply(?User $user, Beatmapset $beatmapset): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
+
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        if ($beatmapset->discussion_locked) {
+            // TODO: key should be changed.
+            return 'beatmap_discussion_post.store.beatmapset_locked';
+        }
+
+        return 'ok';
     }
 
     /**
