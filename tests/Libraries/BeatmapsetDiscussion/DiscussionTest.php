@@ -410,14 +410,9 @@ class DiscussionTest extends TestCase
 
     private function makeParams(string $messageType, ?Beatmap $beatmap = null)
     {
-        $params = [
+        return [
+            'beatmap_id' => $beatmap !== null ? $beatmap->getKey() : null,
             'message_type' => $messageType,
         ];
-
-        if ($beatmap !== null) {
-            $params['beatmap_id'] = $beatmap->getKey();
-        }
-
-        return $params;
     }
 }
