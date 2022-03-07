@@ -7,9 +7,9 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BeatmapsetDiscussion\Discussion;
-use App\Libraries\BeatmapsetDiscussionPostsBundle;
 use App\Libraries\BeatmapsetDiscussion\Reply;
 use App\Libraries\BeatmapsetDiscussion\Review;
+use App\Libraries\BeatmapsetDiscussionPostsBundle;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
