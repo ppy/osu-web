@@ -100,7 +100,7 @@ class BeatmapDiscussionPost extends Model
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {
-            $query->withoutTrashed();
+            $query->visible();
         }
 
         // TODO: normalize with main beatmapset discussion behaviour (needs React-side fixing)
