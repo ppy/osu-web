@@ -246,7 +246,12 @@ export default class ChannelStore implements DispatchListener {
   @action
   private async handleChatMessageSendAction(event: ChatMessageSendAction) {
     const message = event.message;
-    const channel = this.getOrCreate(message.channelId);
+    const channel = this.get(message.channelId);
+    if (channel == null) {
+      console.debug('channel missing');
+      return;
+    }
+
     channel.addSendingMessage(message);
 
     try {
