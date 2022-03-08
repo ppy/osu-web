@@ -149,7 +149,11 @@ class RoomsController extends BaseController
             );
         }
 
-        $beatmaps = $room->playlist()->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
+        $playlistItemsQuery = $room->playlist();
+        if ($room->isRealtime()) {
+            $playlistItemsQuery->whereHas('scores');
+        }
+        $beatmaps = $playlistItemsQuery->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
         $beatmapsets = $beatmaps->pluck('beatmapset');
         $highScores = $room->topScores()->paginate(50);
         $spotlightRooms = Room::where('category', 'spotlight')->orderBy('id', 'DESC')->get();
