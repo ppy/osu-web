@@ -5,6 +5,7 @@
 
 namespace App\Transformers;
 
+use App\Casts\UserPreferences;
 use App\Libraries\MorphMap;
 use App\Models\Beatmap;
 use App\Models\User;
@@ -410,21 +411,7 @@ class UserCompactTransformer extends TransformerAbstract
     {
         $customization = $this->userProfileCustomization($user);
 
-        return $this->primitive($customization->only([
-            'audio_autoplay',
-            'audio_muted',
-            'audio_volume',
-            'beatmapset_card_size',
-            'beatmapset_download',
-            'beatmapset_show_nsfw',
-            'beatmapset_title_show_original',
-            'comments_show_deleted',
-            'forum_posts_show_deleted',
-            'profile_cover_expanded',
-            'user_list_filter',
-            'user_list_sort',
-            'user_list_view',
-        ]));
+        return $this->primitive($customization->only(array_keys(UserPreferences::attributes())));
     }
 
     public function setMode(string $mode)

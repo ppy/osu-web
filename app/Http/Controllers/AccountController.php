@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Casts\UserPreferences;
 use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\UserVerification;
@@ -208,21 +209,8 @@ class AccountController extends Controller
         ]);
 
         $profileParams = get_params($params, 'user_profile_customization', [
-            'audio_autoplay:bool',
-            'audio_muted:bool',
-            'audio_volume:float',
-            'beatmapset_card_size:string',
-            'beatmapset_download:string',
-            'beatmapset_show_nsfw:bool',
-            'beatmapset_title_show_original:bool',
-            'comments_show_deleted:bool',
-            'comments_sort:string',
+            ...array_map(fn ($v) => "{$v}:any", array_keys(UserPreferences::attributes())),
             'extras_order:string[]',
-            'forum_posts_show_deleted:bool',
-            'profile_cover_expanded:bool',
-            'user_list_filter:string',
-            'user_list_sort:string',
-            'user_list_view:string',
         ]);
 
         try {

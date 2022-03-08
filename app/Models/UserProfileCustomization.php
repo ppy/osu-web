@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Casts\UserPreferences;
 use App\Libraries\ProfileCover;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
@@ -31,22 +32,16 @@ class UserProfileCustomization extends Model
         'kudosu',
     ];
 
-    const BEATMAPSET_CARD_SIZES = ['normal', 'extra'];
-
-    const BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
-
-    const USER_LIST = [
-        'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
-        'sorts' => ['all' => ['last_visit', 'rank', 'username'], 'default' => 'last_visit'],
-        'views' => ['all' => ['card', 'list', 'brick'], 'default' => 'card'],
-    ];
-
-    protected $casts = [
-        'cover_json' => 'array',
-        'options' => AsArrayObject::class,
-    ];
-
     private $cover;
+
+    public function __construct(array $attributes = [])
+    {
+        static $casts;
+        $casts ??= static::modelCasts();
+        $this->casts = $casts;
+
+        parent::__construct($attributes);
+    }
 
     public static function repairExtrasOrder($value)
     {
@@ -62,6 +57,20 @@ class UserProfileCustomization extends Model
                 )
             )
         );
+    }
+
+    private static function modelCasts(): array
+    {
+        $ret = [
+            'cover_json' => 'array',
+            'options' => AsArrayObject::class,
+        ];
+        $class = UserPreferences::class;
+        foreach (UserPreferences::attributes() as $key => $_value) {
+            $ret[$key] = $class;
+        }
+
+        return $ret;
     }
 
     public function cover()
@@ -80,159 +89,6 @@ class UserProfileCustomization extends Model
         $this->save();
     }
 
-    public function getAudioAutoplayAttribute()
-    {
-        return $this->options['audio_autoplay'] ?? false;
-    }
-
-    public function setAudioAutoplayAttribute($value)
-    {
-        $this->setOption('audio_autoplay', get_bool($value));
-    }
-
-    public function getAudioMutedAttribute()
-    {
-        return $this->options['audio_muted'] ?? false;
-    }
-
-    public function setAudioMutedAttribute($value)
-    {
-        $this->setOption('audio_muted', get_bool($value));
-    }
-
-    public function getAudioVolumeAttribute()
-    {
-        return $this->options['audio_volume'] ?? 0.45;
-    }
-
-    public function setAudioVolumeAttribute($value)
-    {
-        $this->setOption('audio_volume', get_float($value));
-    }
-
-    public function getBeatmapsetCardSizeAttribute()
-    {
-        return $this->options['beatmapset_card_size'] ?? static::BEATMAPSET_CARD_SIZES[0];
-    }
-
-    public function setBeatmapsetCardSizeAttribute($value)
-    {
-        if ($value !== null && !in_array($value, static::BEATMAPSET_CARD_SIZES, true)) {
-            $value = null;
-        }
-
-        $this->setOption('beatmapset_card_size', $value);
-    }
-
-    public function getBeatmapsetDownloadAttribute()
-    {
-        return $this->options['beatmapset_download'] ?? static::BEATMAPSET_DOWNLOAD[0];
-    }
-
-    public function setBeatmapsetDownloadAttribute($value)
-    {
-        if ($value !== null && !in_array($value, static::BEATMAPSET_DOWNLOAD, true)) {
-            $value = null;
-        }
-
-        $this->setOption('beatmapset_download', $value);
-    }
-
-    public function getBeatmapsetShowNsfwAttribute()
-    {
-        return $this->options['beatmapset_show_nsfw'] ?? false;
-    }
-
-    public function setBeatmapsetShowNsfwAttribute($value)
-    {
-        $this->setOption('beatmapset_show_nsfw', get_bool($value));
-    }
-
-    public function getBeatmapsetTitleShowOriginalAttribute()
-    {
-        return $this->options['beatmapset_title_show_original'] ?? false;
-    }
-
-    public function setBeatmapsetTitleShowOriginalAttribute($value)
-    {
-        $this->setOption('beatmapset_title_show_original', get_bool($value));
-    }
-
-    public function getCommentsShowDeletedAttribute()
-    {
-        return $this->options['comments_show_deleted'] ?? false;
-    }
-
-    public function setCommentsShowDeletedAttribute($value)
-    {
-        $this->setOption('comments_show_deleted', get_bool($value));
-    }
-
-    public function getCommentsSortAttribute()
-    {
-        return $this->options['comments_sort'] ?? Comment::DEFAULT_SORT;
-    }
-
-    public function setCommentsSortAttribute($value)
-    {
-        if ($value !== null && !array_key_exists($value, Comment::SORTS)) {
-            $value = null;
-        }
-
-        $this->setOption('comments_sort', $value);
-    }
-
-    public function getForumPostsShowDeletedAttribute()
-    {
-        return $this->options['forum_posts_show_deleted'] ?? true;
-    }
-
-    public function setForumPostsShowDeletedAttribute($value)
-    {
-        $this->setOption('forum_posts_show_deleted', get_bool($value));
-    }
-
-    public function getUserListFilterAttribute()
-    {
-        return $this->options['user_list_filter'] ?? static::USER_LIST['filters']['default'];
-    }
-
-    public function setUserListFilterAttribute($value)
-    {
-        if ($value !== null && !in_array($value, static::USER_LIST['filters']['all'], true)) {
-            $value = null;
-        }
-
-        $this->setOption('user_list_filter', $value);
-    }
-
-    public function getUserListSortAttribute()
-    {
-        return $this->options['user_list_sort'] ?? static::USER_LIST['sorts']['default'];
-    }
-
-    public function setUserListSortAttribute($value)
-    {
-        if ($value !== null && !in_array($value, static::USER_LIST['sorts']['all'], true)) {
-            $value = null;
-        }
-
-        $this->setOption('user_list_sort', $value);
-    }
-
-    public function getUserListViewAttribute()
-    {
-        return $this->options['user_list_view'] ?? static::USER_LIST['views']['default'];
-    }
-
-    public function setUserListViewAttribute($value)
-    {
-        if ($value !== null && !in_array($value, static::USER_LIST['views']['all'], true)) {
-            $value = null;
-        }
-
-        $this->setOption('user_list_view', $value);
-    }
 
     public function getExtrasOrderAttribute($value)
     {
@@ -252,22 +108,7 @@ class UserProfileCustomization extends Model
     public function setExtrasOrderAttribute($value)
     {
         $this->attributes['extras_order'] = null;
-        $this->setOption('extras_order', static::repairExtrasOrder($value));
-    }
-
-    public function getProfileCoverExpandedAttribute()
-    {
-        return $this->options['profile_cover_expanded'] ?? true;
-    }
-
-    public function setProfileCoverExpandedAttribute($value)
-    {
-        $this->setOption('profile_cover_expanded', get_bool($value));
-    }
-
-    private function setOption($key, $value)
-    {
         $this->options ??= [];
-        $this->options[$key] = $value;
+        $this->options['extras_order'] = static::repairExtrasOrder($value);
     }
 }

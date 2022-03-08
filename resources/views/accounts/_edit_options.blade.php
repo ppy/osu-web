@@ -28,7 +28,7 @@
                     @php
                         $statusIsRendered = false;
                     @endphp
-                    @foreach (App\Models\UserProfileCustomization::BEATMAPSET_DOWNLOAD as $name)
+                    @foreach (App\Casts\UserPreferences::BEATMAPSET_DOWNLOAD as $name)
                         @if ($name === 'direct' && !auth()->user()->isSupporter())
                             @continue
                         @endif
