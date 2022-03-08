@@ -24,6 +24,16 @@ const endingSoonDiffMs = 60 * 60 * 1000; // 60 minutes.
 
 @observer
 export default class Room extends React.Component<Props> {
+  private get background() {
+    return this.props.room.current_playlist_item?.beatmap?.beatmapset?.covers.cover;
+  }
+
+  private get playlistItemCount() {
+    return this.props.room.active
+      ? this.props.room.playlist_item_stats.count_active
+      : this.props.room.playlist_item_stats.count_total;
+  }
+
   @computed
   private get status() {
     if (!this.props.room.active) {
@@ -37,10 +47,6 @@ export default class Room extends React.Component<Props> {
     const diff = new Date(this.props.room.ends_at).getTime() - new Date().getTime();
 
     return diff < endingSoonDiffMs ? 'soon' : 'active';
-  }
-
-  private get background() {
-    return this.props.room.current_playlist_item?.beatmap?.beatmapset?.covers.cover;
   }
 
   constructor(props: Props) {
@@ -71,7 +77,7 @@ export default class Room extends React.Component<Props> {
             {this.renderMembers()}
           </div>
           <div className='multiplayer-room__badge-container multiplayer-room__badge-container--bottom'>
-            <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{osu.transChoice('multiplayer.room.map_count', this.props.room.playlist_item_stats.count_total)}</div>
+            <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{osu.transChoice('multiplayer.room.map_count', this.playlistItemCount)}</div>
             <div
               className='multiplayer-room__difficulty'
               style={{
