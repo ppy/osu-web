@@ -9,6 +9,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import ConversationList from './conversation-list';
 import ConversationView from './conversation-view';
+import CreateChannel from './create-channel';
 import InputBox from './input-box';
 
 const lazerLink = 'https://github.com/ppy/osu/releases';
@@ -63,8 +64,9 @@ export default class MainView extends React.Component<Record<string, never>> {
           <ConversationList />
         </div>
         <div className='chat__conversation-area'>
-          <ConversationView />
-          <InputBox />
+          <CreateChannel />
+          {/* <ConversationView />
+          <InputBox /> */}
         </div>
       </>
     );
