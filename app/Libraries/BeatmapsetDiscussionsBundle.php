@@ -5,6 +5,7 @@
 
 namespace App\Libraries;
 
+use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\User;
@@ -42,7 +43,7 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
             'beatmaps' => json_collection($this->getBeatmaps(), new BeatmapTransformer()),
             'discussions' => json_collection($this->getDiscussions(), new BeatmapDiscussionTransformer(), $discussionIncludes),
             'included_discussions' => json_collection($this->getRelatedDiscussions(), new BeatmapDiscussionTransformer(), $discussionIncludes),
-            'reviews_config' => BeatmapsetDiscussionReview::config(),
+            'reviews_config' => Review::config(),
             'users' => json_collection($this->getUsers(), new UserCompactTransformer(), ['groups']),
         ], cursor_for_response($this->getCursor()));
     }

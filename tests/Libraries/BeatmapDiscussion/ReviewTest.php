@@ -3,14 +3,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace Tests\Libraries;
+namespace Tests\Libraries\BeatmapDiscussion;
 
 use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
-use App\Libraries\BeatmapsetDiscussionReview;
+use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Event;
 use Queue;
 use Tests\TestCase;
 
-class BeatmapsetDiscussionReviewTest extends TestCase
+class ReviewTest extends TestCase
 {
     protected static $faker;
     protected $beatmap;
@@ -34,7 +34,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         self::$faker = Faker\Factory::create();
     }
 
-    //region BeatmapsetDiscussionReview::create()
+    //region Review::create()
 
     //region Failure Scenarios
 
@@ -42,14 +42,14 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentEmpty()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create($this->beatmapset, [], $this->user);
+        Review::create($this->beatmapset, [], $this->user);
     }
 
     // missing block type
     public function testCreateDocumentMissingBlockType()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create(
+        Review::create(
             $this->beatmapset,
             [
                 [
@@ -64,7 +64,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentInvalidBlockType()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create(
+        Review::create(
             $this->beatmapset,
             [
                 [
@@ -79,7 +79,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentInvalidParagraphBlockContent()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create(
+        Review::create(
             $this->beatmapset,
             [
                 [
@@ -94,7 +94,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentInvalidEmbedBlockContent()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create(
+        Review::create(
             $this->beatmapset,
             [
                 [
@@ -109,7 +109,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentValidParagraphWithNoIssues()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create(
+        Review::create(
             $this->beatmapset,
             [
                 [
@@ -125,7 +125,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentValidParagraphButJSON()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create(
+        Review::create(
             $this->beatmapset,
             [
                 [
@@ -141,7 +141,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentValidIssueButJSON()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create(
+        Review::create(
             $this->beatmapset,
             [
                 [
@@ -165,7 +165,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentValidWithTooManyBlocks()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create(
+        Review::create(
             $this->beatmapset,
             [
                 [
@@ -206,7 +206,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
         $issueText = self::$faker->sentence();
 
-        BeatmapsetDiscussionReview::create(
+        Review::create(
             $this->beatmapset,
             [
                 [
@@ -248,7 +248,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $watchingUser = User::factory()->create();
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
 
-        BeatmapsetDiscussionReview::create(
+        Review::create(
             $beatmapset,
             [
                 [
@@ -263,6 +263,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             ],
             $gmtUser
         );
+
+        $beatmapset->refresh();
 
         // ensure qualified beatmap has been reset to pending
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
@@ -290,7 +292,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $beatmapset->nominate($natUser, [$playmode]);
         $this->assertSame($beatmapset->currentNominationCount()[$playmode], 1);
 
-        BeatmapsetDiscussionReview::create(
+        Review::create(
             $beatmapset,
             [
                 [
@@ -334,7 +336,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         ]);
         $notificationOption->update(['details' => ['modes' => ['osu']]]);
 
-        BeatmapsetDiscussionReview::create(
+        Review::create(
             $beatmapset,
             [
                 [
@@ -349,6 +351,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             ],
             $this->user
         );
+
+        $beatmapset->refresh();
 
         // ensure beatmap status hasn't changed.
         $this->assertSame($beatmapset->status(), $state);
@@ -369,7 +373,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
     //endregion
 
-    //region BeatmapsetDiscussionReview::update()
+    //region Review::update()
 
     //region Failure Scenarios
 
@@ -506,7 +510,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $document = json_decode($differentReview->startingPost->message, true);
 
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::update($review, $document, $this->user);
+        Review::update($review, $document, $this->user);
     }
 
     //endregion
@@ -524,7 +528,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
         $document = json_decode($review->startingPost->message, true);
 
-        BeatmapsetDiscussionReview::update($review, $document, $this->user);
+        Review::update($review, $document, $this->user);
 
         // ensure number of discussions/issues hasn't changed
         $this->assertSame($discussionCount, BeatmapDiscussion::count());
@@ -550,7 +554,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'text' => 'whee',
         ];
 
-        BeatmapsetDiscussionReview::update($review, $document, $this->user);
+        Review::update($review, $document, $this->user);
 
         // ensure new issue was created
         $this->assertSame($discussionCount + 1, BeatmapDiscussion::count());
@@ -581,7 +585,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'text' => 'whee',
         ];
 
-        BeatmapsetDiscussionReview::update($review, $document, $gmtUser);
+        Review::update($review, $document, $gmtUser);
 
         $beatmapset->refresh();
 
@@ -623,7 +627,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'text' => 'whee',
         ];
 
-        BeatmapsetDiscussionReview::update($review, $document, $natUser);
+        Review::update($review, $document, $natUser);
 
         $beatmapset->refresh();
 
@@ -664,7 +668,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'text' => 'whee',
         ];
 
-        BeatmapsetDiscussionReview::update($review, $document, $this->user);
+        Review::update($review, $document, $this->user);
 
         $beatmapset->refresh();
 
@@ -694,7 +698,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $document = json_decode($review->startingPost->message, true);
         $issue = array_shift($document); // drop the first issue
 
-        BeatmapsetDiscussionReview::update($review, $document, $this->user);
+        Review::update($review, $document, $this->user);
 
         // ensure number of discussions/issues hasn't changed
         $this->assertSame($discussionCount, BeatmapDiscussion::count());
@@ -742,7 +746,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
         $issueText = self::$faker->sentence();
 
-        return BeatmapsetDiscussionReview::create(
+        return Review::create(
             $beatmapset ?? $this->beatmapset,
             [
                 [
@@ -768,7 +772,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
     protected function setUpPraiseOnlyReview($beatmapset = null, $user = null): BeatmapDiscussion
     {
-        return BeatmapsetDiscussionReview::create(
+        return Review::create(
             $beatmapset ?? $this->beatmapset,
             [
                 [
@@ -788,6 +792,6 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     protected function updateReview($document)
     {
         $review = $this->setUpReview();
-        BeatmapsetDiscussionReview::update($review, $document, $this->user);
+        Review::update($review, $document, $this->user);
     }
 }
