@@ -32,7 +32,7 @@ interface RoomJsonDefaultAttributes {
   active: boolean;
   category: RoomCategory;
   channel_id: number | null;
-  ends_at: string;
+  ends_at: string | null;
   has_password: boolean;
   id: number;
   max_attempts: number | null;

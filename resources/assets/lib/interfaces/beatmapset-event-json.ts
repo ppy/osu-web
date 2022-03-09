@@ -31,8 +31,6 @@ interface LoveEvent extends BaseBeatmapsetEvent {
 
 interface RemoveFromLovedEvent extends BaseBeatmapsetEvent {
   comment: {
-    beatmap_discussion_id?: number;
-    beatmap_discussion_post_id?: number;
     reason: string;
   };
   type: 'remove_from_loved';
@@ -45,10 +43,12 @@ interface QualifyEvent extends BaseBeatmapsetEvent {
 
 interface DisqualifyEvent extends BaseBeatmapsetEvent {
   comment: {
-    beatmap_discussion_id?: number;
+    beatmap_discussion_id: number;
+    // newer events don't have this field
     beatmap_discussion_post_id?: number;
+    // older events don't have this field
     nominator_ids?: number[];
-  } | string;
+  } | string; // reason string text for older events
   type: 'disqualify';
 }
 
@@ -65,7 +65,6 @@ interface RankEvent extends BaseBeatmapsetEvent {
 interface KudosuAllowEvent extends BaseBeatmapsetEvent {
   comment: {
     beatmap_discussion_id: number;
-    beatmap_discussion_post_id: number;
   };
   type: 'kudosu_allow';
 }
@@ -73,42 +72,41 @@ interface KudosuAllowEvent extends BaseBeatmapsetEvent {
 interface KudosuDenyEvent extends BaseBeatmapsetEvent {
   comment: {
     beatmap_discussion_id: number;
-    beatmap_discussion_post_id: number;
   };
   type: 'kudosu_deny';
 }
 
 interface KudosuGainEvent extends BaseBeatmapsetEvent {
   comment: {
-    beatmap_discussion_id?: number;
-    beatmap_discussion_post_id?: number;
+    beatmap_discussion_id: number;
     new_vote: VoteEventJson;
-    votes: VoteEventJson[];
+    // old events are missing this
+    votes?: VoteEventJson[];
   };
   type: 'kudosu_gain';
 }
 
 interface KudosuLostEvent extends BaseBeatmapsetEvent {
   comment: {
-    beatmap_discussion_id?: number;
-    beatmap_discussion_post_id?: number;
+    beatmap_discussion_id: number;
     new_vote: VoteEventJson;
-    votes: VoteEventJson[];
+    // old events are missing this
+    votes?: VoteEventJson[];
   };
   type: 'kudosu_lost';
 }
 
 interface KudosuRecalculateEvent extends BaseBeatmapsetEvent {
   comment: {
-    beatmap_discussion_id?: number;
-    beatmap_discussion_post_id?: number;
+    beatmap_discussion_id: number;
   };
   type: 'kudosu_recalculate';
 }
 
 interface IssueResolveEvent extends BaseBeatmapsetEvent {
   comment: {
-    beatmap_discussion_id?: number;
+    beatmap_discussion_id: number;
+    // older events are missing this
     beatmap_discussion_post_id?: number;
   };
   type: 'issue_resolve';
@@ -116,7 +114,8 @@ interface IssueResolveEvent extends BaseBeatmapsetEvent {
 
 interface IssueReopenEvent extends BaseBeatmapsetEvent {
   comment: {
-    beatmap_discussion_id?: number;
+    beatmap_discussion_id: number;
+    // older events are missing this
     beatmap_discussion_post_id?: number;
   };
   type: 'issue_reopen';
@@ -124,25 +123,19 @@ interface IssueReopenEvent extends BaseBeatmapsetEvent {
 
 interface DiscussionLockEvent extends BaseBeatmapsetEvent {
   comment: {
-    beatmap_discussion_id: number;
-    beatmap_discussion_post_id: number;
     reason: string;
   };
   type: 'discussion_lock';
 }
 
 interface DiscussionUnlockEvent extends BaseBeatmapsetEvent {
-  comment: {
-    beatmap_discussion_id?: number;
-    beatmap_discussion_post_id?: number;
-  };
+  comment: null;
   type: 'discussion_unlock';
 }
 
 interface DiscussionDeleteEvent extends BaseBeatmapsetEvent {
   comment: {
-    beatmap_discussion_id?: number;
-    beatmap_discussion_post_id?: number;
+    beatmap_discussion_id: number;
   };
   type: 'discussion_delete';
 }
@@ -150,7 +143,6 @@ interface DiscussionDeleteEvent extends BaseBeatmapsetEvent {
 interface DiscussionRestoreEvent extends BaseBeatmapsetEvent {
   comment: {
     beatmap_discussion_id: number;
-    beatmap_discussion_post_id: number;
   };
   type: 'discussion_restore';
 }
@@ -173,8 +165,10 @@ interface DiscussionPostRestoreEvent extends BaseBeatmapsetEvent {
 
 interface NominationResetEvent extends BaseBeatmapsetEvent {
   comment: {
-    beatmap_discussion_id?: number;
+    beatmap_discussion_id: number;
+    // newer events don't have this field
     beatmap_discussion_post_id?: number;
+    // older events don't have this field
     nominator_ids?: number[];
   };
   type: 'nomination_reset';
@@ -183,7 +177,6 @@ interface NominationResetEvent extends BaseBeatmapsetEvent {
 interface NominationResetReceivedEvent extends BaseBeatmapsetEvent {
   comment: {
     beatmap_discussion_id: number;
-    beatmap_discussion_post_id: number;
     source_user_id: number;
     source_user_username: string;
   };
