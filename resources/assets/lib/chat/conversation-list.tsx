@@ -7,6 +7,7 @@ import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import ConversationListItem from './conversation-list-item';
+import JoinChannelButton from './join-channel-button';
 
 @observer
 export default class ConversationList extends React.Component {
@@ -19,6 +20,7 @@ export default class ConversationList extends React.Component {
             {this.renderSeparator()}
           </React.Fragment>
         ))}
+        <JoinChannelButton />
       </div>
     );
   }
