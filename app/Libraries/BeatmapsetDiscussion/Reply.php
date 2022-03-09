@@ -54,7 +54,7 @@ class Reply
      */
     public function handle(): array
     {
-        return $this->discussion->getConnection()->transaction(function () {
+        $newPost = $this->discussion->getConnection()->transaction(function () {
             $post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $this->message]);
             $post->user()->associate($this->user);
 
@@ -64,11 +64,14 @@ class Reply
             $this->handleResolvedChange($post);
             $this->handleProblemDiscussion();
 
-            // TODO: make transactional
-            (new BeatmapsetDiscussionPostNew($post, $this->user))->dispatch();
-
-            return $this->posts;
+            return $post;
         });
+
+        // TODO: make transactional
+
+        (new BeatmapsetDiscussionPostNew($newPost, $this->user))->dispatch();
+
+        return $this->posts;
     }
 
     private function handleResolvedChange(BeatmapDiscussionPost $post)
