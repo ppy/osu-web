@@ -64,9 +64,14 @@ export default class MainView extends React.Component<Record<string, never>> {
           <ConversationList />
         </div>
         <div className='chat__conversation-area'>
-          <CreateChannel />
-          {/* <ConversationView />
-          <InputBox /> */}
+          {core.dataStore.chatState.isShowingJoinChannel ? (
+            <CreateChannel />
+          ) : (
+            <>
+              <ConversationView />
+              <InputBox />
+            </>
+          )}
         </div>
       </>
     );

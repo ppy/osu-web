@@ -23,6 +23,7 @@ import PingService from './ping-service';
 export default class ChatStateStore implements DispatchListener {
   @observable isChatMounted = false;
   @observable isReady = false;
+  @observable isShowingJoinChannel = false;
   skipRefresh = false;
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
@@ -137,6 +138,11 @@ export default class ChatStateStore implements DispatchListener {
     if (this.channelList.length === 0) return;
 
     this.selectChannel(this.channelList[0].channelId, true);
+  }
+
+  @action
+  showJoinChannel() {
+    this.isShowingJoinChannel = true;
   }
 
   @action
