@@ -6,6 +6,7 @@ import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
+import { createAnnoucement } from './chat-api';
 
 type Props = Record<string, never>;
 
@@ -61,7 +62,17 @@ export default class CreateChannel extends React.Component<Props> {
   }
 
   private handleButtonClick = () => {
-    // TODO
+    const userIds = this.usersText.split(',').map(Number.parseInt);
+    console.log(userIds);
+    createAnnoucement({
+      channel: {
+        description: 'an announcement',
+        name: this.name,
+      },
+      message: 'message',
+      target_ids: userIds,
+      type: 'ANNOUNCE',
+    });
   };
 
   @action
