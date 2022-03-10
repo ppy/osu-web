@@ -103,22 +103,24 @@ class Score extends Model
 
     public function createLegacyEntryOrExplode()
     {
-        $statAttrs = [
-            'Good',
-            'Great',
-            'LargeTickHit',
-            'LargeTickMiss',
-            'Meh',
-            'Miss',
-            'Ok',
-            'Perfect',
-            'SmallTickHit',
-            'SmallTickMiss',
+        static $statAttrs = [
+            'good',
+            'great',
+            'large_tick_hit',
+            'large_tick_miss',
+            'meh',
+            'miss',
+            'ok',
+            'perfect',
+            'small_tick_hit',
+            'small_tick_miss',
         ];
-        $statistics = $this->data->statistics;
+        $origStatistics = $this->data->statistics;
+        $statistics = [];
 
         foreach ($statAttrs as $attr) {
-            $statistics->$attr = get_int($statistics->$attr ?? 0) ?? 0;
+            $altCaseAttr = studly_case($attr);
+            $statistics[$attr] = get_int($origStatistics->$attr ?? $origStatistics->$altCaseAttr ?? 0) ?? 0;
         }
 
         $scoreClass = LegacyScore\Model::getClass($this->ruleset_id);
@@ -126,11 +128,11 @@ class Score extends Model
         $score = new $scoreClass([
             'beatmap_id' => $this->beatmap_id,
             'beatmapset_id' => optional($this->beatmap)->beatmapset_id ?? 0,
-            'countmiss' => $statistics->Miss,
+            'countmiss' => $statistics['miss'],
             'enabled_mods' => ModsHelper::toBitset(array_column($this->data->mods, 'acronym')),
             'maxcombo' => $this->data->max_combo,
             'pass' => $this->data->passed,
-            'perfect' => $this->data->passed && $statistics->Miss + $statistics->LargeTickMiss === 0,
+            'perfect' => $this->data->passed && $statistics['miss'] + $statistics['large_tick_miss'] === 0,
             'rank' => $this->data->rank,
             'score' => $this->data->total_score,
             'scorechecksum' => "\0",
@@ -139,26 +141,26 @@ class Score extends Model
 
         switch (Beatmap::modeStr($this->ruleset_id)) {
             case 'osu':
-                $score['count300'] = $statistics->Great;
-                $score['count100'] = $statistics->Ok;
-                $score['count50'] = $statistics->Meh;
+                $score->count300 = $statistics['great'];
+                $score->count100 = $statistics['ok'];
+                $score->count50 = $statistics['meh'];
                 break;
             case 'taiko':
-                $score['count300'] = $statistics->Great;
-                $score['count100'] = $statistics->Ok;
+                $score->count300 = $statistics['great'];
+                $score->count100 = $statistics['ok'];
                 break;
             case 'fruits':
-                $score['count300'] = $statistics->Great;
-                $score['count100'] = $statistics->LargeTickHit;
-                $score['countkatu'] = $statistics->SmallTickMiss;
-                $score['count50'] = $statistics->SmallTickHit;
+                $score->count300 = $statistics['great'];
+                $score->count100 = $statistics['large_tick_hit'];
+                $score->countkatu = $statistics['small_tick_miss'];
+                $score->count50 = $statistics['small_tick_hit'];
                 break;
             case 'mania':
-                $score['countgeki'] = $statistics->Perfect;
-                $score['count300'] = $statistics->Great;
-                $score['countkatu'] = $statistics->Good;
-                $score['count100'] = $statistics->Ok;
-                $score['count50'] = $statistics->Meh;
+                $score->countgeki = $statistics['perfect'];
+                $score->count300 = $statistics['great'];
+                $score->countkatu = $statistics['good'];
+                $score->count100 = $statistics['ok'];
+                $score->count50 = $statistics['meh'];
                 break;
         }
 
