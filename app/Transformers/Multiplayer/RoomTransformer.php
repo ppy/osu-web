@@ -37,7 +37,7 @@ class RoomTransformer extends TransformerAbstract
             'max_attempts' => $room->max_attempts,
             'participant_count' => $room->participant_count,
             'channel_id' => $room->channel_id,
-            'active' => Carbon::now()->between($room->starts_at, $room->ends_at),
+            'active' => $room->ends_at === null || Carbon::now()->between($room->starts_at, $room->ends_at),
             'has_password' => $room->password !== null,
             'queue_mode' => $room->queue_mode,
         ];

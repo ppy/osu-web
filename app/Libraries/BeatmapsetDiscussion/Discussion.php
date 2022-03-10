@@ -32,7 +32,7 @@ class Discussion
 
     public function handle(): array
     {
-        return $this->discussion->getConnection()->transaction(function () {
+        $newPost = $this->discussion->getConnection()->transaction(function () {
             $this->discussion->saveOrExplode();
 
             $post = $this->discussion->beatmapDiscussionPosts()->make(['message' => $this->message]);
@@ -42,10 +42,12 @@ class Discussion
 
             $this->handleProblemDiscussion();
 
-            // TODO: make transactional
-            (new BeatmapsetDiscussionPostNew($post, $this->user))->dispatch();
-
-            return [$this->discussion, [$post]];
+            return $post;
         });
+
+        // TODO: make transactional
+        (new BeatmapsetDiscussionPostNew($newPost, $this->user))->dispatch();
+
+        return [$this->discussion, [$newPost]];
     }
 }

@@ -225,9 +225,10 @@ class window.BeatmapDiscussionHelper
         if discussions?
           discussion = _.find discussions, id: discussionId
 
-          _.assign ret, @stateFromDiscussion(discussion)
+          if discussion?
+            _.assign ret, @stateFromDiscussion(discussion)
 
-          return ret if discussion.posts?[0]?.id == postId
+            return ret if discussion.posts?[0]?.id == postId
         else if options.forceDiscussionId
           ret.discussionId = discussionId
 
