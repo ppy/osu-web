@@ -311,7 +311,7 @@ class BeatmapsControllerTest extends TestCase
     {
         return Beatmap::factory()->create([
             'beatmap_id' => 2177697,
-            'beatmapset_id' => Beatmapset::factory()->make(['beatmapset_id' => 918591]),
+            'beatmapset_id' => Beatmapset::factory(['beatmapset_id' => 918591]),
             'playmode' => Beatmap::MODES['fruits'],
         ]);
     }
@@ -320,7 +320,7 @@ class BeatmapsControllerTest extends TestCase
     {
         return Beatmap::factory()->create([
             'beatmap_id' => 567606,
-            'beatmapset_id' => Beatmapset::factory()->make(['beatmapset_id' => 246416]),
+            'beatmapset_id' => Beatmapset::factory(['beatmapset_id' => 246416]),
         ]);
     }
 }
