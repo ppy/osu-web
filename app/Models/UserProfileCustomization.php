@@ -69,8 +69,8 @@ class UserProfileCustomization extends Model
             'options' => AsArrayObject::class,
         ];
         $class = UserPreferences::class;
-        foreach (UserPreferences::attributes() as $key => $_value) {
-            $ret[$key] = $class;
+        foreach (UserPreferences::attributes() as $field => $_attr) {
+            $ret[$field] = $class;
         }
 
         return $ret;
