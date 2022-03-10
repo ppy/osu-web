@@ -20,7 +20,7 @@ class RoomsController extends BaseController
 
     public function index()
     {
-        $compactReturn = api_version() >= 20220216;
+        $compactReturn = api_version() >= 20220217;
         $params = request()->all();
         $params['user'] = auth()->user();
 
@@ -35,14 +35,17 @@ class RoomsController extends BaseController
             ->with($includes)
             ->withRecentParticipantIds()
             ->get();
-
         Room::preloadRecentParticipants($rooms);
 
         if ($compactReturn) {
+            $rooms->each->findAndSetCurrentPlaylistItem();
+            $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
+
             return json_collection($rooms, new RoomTransformer(), [
+                'current_playlist_item.beatmap.beatmapset',
                 'difficulty_range',
                 'host.country',
-                'playlist',
+                'playlist_item_stats',
                 'recent_participants',
             ]);
         } else {
@@ -146,7 +149,11 @@ class RoomsController extends BaseController
             );
         }
 
-        $beatmaps = $room->playlist()->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
+        $playlistItemsQuery = $room->playlist();
+        if ($room->isRealtime()) {
+            $playlistItemsQuery->whereHas('scores');
+        }
+        $beatmaps = $playlistItemsQuery->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
         $beatmapsets = $beatmaps->pluck('beatmapset');
         $highScores = $room->topScores()->paginate(50);
         $spotlightRooms = Room::where('category', 'spotlight')->orderBy('id', 'DESC')->get();

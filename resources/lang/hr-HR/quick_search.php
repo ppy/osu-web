@@ -6,10 +6,10 @@
 return [
     'mode' => [
         'beatmapset' => '',
-        'forum_post' => '',
+        'forum_post' => 'Forum',
         'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'user' => 'Igrač',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [

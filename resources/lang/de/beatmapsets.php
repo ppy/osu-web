@@ -143,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'erreicht :when',
             'country' => 'Landesrangliste',
+            'error' => '',
             'friend' => 'Freundesrangliste',
             'global' => 'Globale Rangliste',
             'supporter-link' => '<a href=":link">Hier</a> klicken, um alle tollen Features zu entdecken!',
@@ -154,7 +155,7 @@ return [
                 'combo' => 'Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
-                'pin' => '',
+                'pin' => 'Anpinnen',
                 'player' => 'Spieler',
                 'pp' => '',
                 'rank' => 'Rang',
@@ -175,8 +176,8 @@ return [
                 'own' => 'Dein bester Rang',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Klicke :here um alle schönen Features zu sehen, die du bekommst!',
+                'here' => 'hier',
             ],
         ],
 

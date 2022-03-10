@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'Odpovedať a archivovať',
         'reset' => 'Resetovať',
         'restore' => 'Obnoviť',
+        'retry' => '',
         'save' => 'Uložiť',
         'saving' => 'Ukladá sa...',
         'search' => 'Hľadať',

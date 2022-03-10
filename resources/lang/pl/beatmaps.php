@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Zresetuj nominację',
             'praise' => 'Pochwała',
             'problem' => 'Problem',
+            'problem_warning' => '',
             'review' => 'Recenzja',
             'suggestion' => 'Sugestia',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje proces nominacji.',
             'disqualify' => 'Czy na pewno chcesz to zrobić? Ta czynność odbierze tej beatmapie status zakwalifikowanej i zresetuje proces nominacji.',
+            'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje proces nominacji.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Ulubione społeczności',
         'mine' => 'Moje beatmapy',
         'pending' => 'Oczekujące',
+        'wip' => '',
         'qualified' => 'Zakwalifikowane',
         'ranked' => 'Rankingowe',
     ],

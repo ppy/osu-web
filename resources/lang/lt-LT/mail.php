@@ -15,6 +15,7 @@ return [
         'closing' => 'Pagarbiai,',
         'hello' => 'Sveiki :user,',
         'report' => 'Prašome skubiai atsakyti į šį el. pašta jeigu jūs neprašėte padaryti šių atnaujinumų.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

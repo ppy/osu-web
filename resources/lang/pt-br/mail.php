@@ -15,6 +15,7 @@ return [
         'closing' => 'Cordialmente,',
         'hello' => 'Olá, :user,',
         'report' => 'Por favor responda a este e-mail IMEDIATAMENTE se você não solicitou essa alteração.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

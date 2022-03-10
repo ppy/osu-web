@@ -18,14 +18,14 @@ return [
     'commentable_name' => [
         'beatmapset' => '',
         'build' => '',
-        'news_post' => '',
+        'news_post' => 'Vijesti',
         '_deleted' => '',
     ],
 
     'editor' => [
         'textarea_hint' => [
             '_' => '',
-            'edit' => '',
+            'edit' => 'spremi',
             'new' => '',
             'reply' => '',
         ],

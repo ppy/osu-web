@@ -165,6 +165,8 @@ class ForumTopicsControllerTest extends TestCase
             'forum_id' => $forum->forum_id,
             'topic_id' => $topic->topic_id,
         ]);
+        // TODO: make this part of post factory callback
+        $topic->refreshCache();
 
         $this
             ->get(route('forum.topics.show', $topic->topic_id))
@@ -230,6 +232,8 @@ class ForumTopicsControllerTest extends TestCase
             'forum_id' => $forum->forum_id,
             'topic_id' => $topic->topic_id,
         ]);
+        // TODO: make this part of post factory callback
+        $topic->refreshCache();
         $user = User::factory()->create();
 
         $this

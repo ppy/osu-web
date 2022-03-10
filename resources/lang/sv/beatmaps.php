@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Återställ Nominering',
             'praise' => 'Beröm',
             'problem' => 'Problem',
+            'problem_warning' => '',
             'review' => 'Recension',
             'suggestion' => 'Förslag',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Är du säker? Lägga upp ett nytt problem kommer återställa nomineringar.',
             'disqualify' => 'Är du säker? Detta kommer att ta bort beatmap från kvalificering och återställa nomineringsprocessen.',
+            'nomination_reset' => 'Är du säker? Lägga upp ett nytt problem kommer återställa nomineringar.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -273,6 +275,7 @@ return [
         'loved' => 'Älskad',
         'mine' => 'Mina Maps',
         'pending' => 'Pågående & WIP',
+        'wip' => '',
         'qualified' => 'Kvalificerad',
         'ranked' => 'Rankad',
     ],

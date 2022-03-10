@@ -32,6 +32,22 @@
         ]
     },
     {
+        "uri": "api/v2/beatmaps/{beatmap}/scores/users/{user}/all",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapsController@userScoreAll",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/beatmaps/{beatmap}/scores",
         "methods": [
             "GET",

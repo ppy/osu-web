@@ -15,6 +15,7 @@ return [
         'closing' => 'Pagbati,',
         'hello' => 'Kamusta :user,',
         'report' => 'Tumugon AGAD sa email na ito kung hindi mo nais ang pagbabagong ito.',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

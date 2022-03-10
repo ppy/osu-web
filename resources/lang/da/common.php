@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'Svar og Markér som Løst',
         'reset' => 'Nulstil',
         'restore' => 'Gendan',
+        'retry' => '',
         'save' => 'Gem',
         'saving' => 'Gemmer...',
         'search' => 'Søg',
