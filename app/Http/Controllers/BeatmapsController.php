@@ -56,7 +56,7 @@ class BeatmapsController extends Controller
      */
     public function attributes($id)
     {
-        $beatmap = Beatmap::findOrFail($id);
+        $beatmap = Beatmap::whereHas('beatmapset')->findOrFail($id);
 
         $params = get_params(request()->all(), null, [
             'mods:any',
