@@ -29,59 +29,65 @@ class UserPreferences implements CastsAttributes
         if ($ret === null) {
             $ret = [
                 'audio_autoplay' => [
-                    'cast' => 'get_bool',
+                    'type' => 'bool',
                     'default' => false,
                 ],
                 'audio_muted' => [
-                    'cast' => 'get_bool',
+                    'type' => 'bool',
                     'default' => false,
                 ],
                 'audio_volume' => [
-                    'cast' => 'get_float',
+                    'type' => 'float',
                     'default' => 0.45,
                 ],
                 'beatmapset_card_size' => [
-                    'cast' => fn ($v) => is_string($v) && in_array($v, static::BEATMAPSET_CARD_SIZES, true) ? $v : null,
+                    'type' => 'string',
+                    'validator' => fn ($v) => is_string($v) && in_array($v, static::BEATMAPSET_CARD_SIZES, true),
                     'default' => static::BEATMAPSET_CARD_SIZES[0],
                 ],
                 'beatmapset_download' => [
-                    'cast' => fn ($v) => is_string($v) && in_array($v, static::BEATMAPSET_DOWNLOAD, true) ? $v : null,
+                    'type' => 'string',
+                    'validator' => fn ($v) => is_string($v) && in_array($v, static::BEATMAPSET_DOWNLOAD, true),
                     'default' => static::BEATMAPSET_DOWNLOAD[0],
                 ],
                 'beatmapset_show_nsfw' => [
-                    'cast' => 'get_bool',
+                    'type' => 'bool',
                     'default' => false,
                 ],
                 'beatmapset_title_show_original' => [
-                    'cast' => 'get_bool',
+                    'type' => 'bool',
                     'default' => false,
                 ],
                 'comments_show_deleted' => [
-                    'cast' => 'get_bool',
+                    'type' => 'bool',
                     'default' => false,
                 ],
                 'comments_sort' => [
-                    'cast' => fn ($v) => is_string($v) && array_key_exists($v, Comment::SORTS) ? $v : null,
+                    'type' => 'string',
+                    'validator' => fn ($v) => is_string($v) && array_key_exists($v, Comment::SORTS),
                     'default' => Comment::DEFAULT_SORT,
                 ],
                 'forum_posts_show_deleted' => [
-                    'cast' => 'get_bool',
+                    'type' => 'bool',
                     'default' => true,
                 ],
                 'user_list_filter' => [
-                    'cast' => fn ($v) => is_string($v) && in_array($v, static::USER_LIST['filters']['all'], true) ? $v : null,
+                    'type' => 'string',
+                    'validator' => fn ($v) => is_string($v) && in_array($v, static::USER_LIST['filters']['all'], true),
                     'default' => static::USER_LIST['filters']['default'],
                 ],
                 'user_list_sort' => [
-                    'cast' => fn ($v) => is_string($v) && in_array($v, static::USER_LIST['sorts']['all'], true) ? $v : null,
+                    'type' => 'string',
+                    'validator' => fn ($v) => is_string($v) && in_array($v, static::USER_LIST['sorts']['all'], true),
                     'default' => static::USER_LIST['sorts']['default'],
                 ],
                 'user_list_view' => [
-                    'cast' => fn ($v) => is_string($v) && in_array($v, static::USER_LIST['views']['all'], true) ? $v : null,
+                    'type' => 'string',
+                    'validator' => fn ($v) => is_string($v) && in_array($v, static::USER_LIST['views']['all'], true),
                     'default' => static::USER_LIST['views']['default'],
                 ],
                 'profile_cover_expanded' => [
-                    'cast' => 'get_bool',
+                    'type' => 'bool',
                     'default' => true,
                 ],
             ];
@@ -98,13 +104,12 @@ class UserPreferences implements CastsAttributes
     public function set($model, string $key, $value, array $attributes): array
     {
         $model->options ??= [];
-        $castedValue = static::attributes()[$key]['cast']($value);
-        if ($castedValue === null) {
+        if ($value === null) {
             if ($model->options->offsetExists($key)) {
                 unset($model->options[$key]);
             }
         } else {
-            $model->options[$key] = $castedValue;
+            $model->options[$key] = $value;
         }
 
         return [];

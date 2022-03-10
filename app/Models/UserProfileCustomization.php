@@ -7,6 +7,7 @@ namespace App\Models;
 
 use App\Casts\UserPreferences;
 use App\Libraries\ProfileCover;
+use App\Traits\Validatable;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
 /**
@@ -19,6 +20,8 @@ use Illuminate\Database\Eloquent\Casts\AsArrayObject;
  */
 class UserProfileCustomization extends Model
 {
+    use Validatable;
+
     /**
      * An array of all possible profile sections, also in their default order.
      */
@@ -110,5 +113,32 @@ class UserProfileCustomization extends Model
         $this->attributes['extras_order'] = null;
         $this->options ??= [];
         $this->options['extras_order'] = static::repairExtrasOrder($value);
+    }
+
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
+
+        foreach (UserPreferences::attributes() as $field => $attr) {
+            if (isset($attr['validator']) && !$attr['validator']($this->$field)) {
+                $this->validationErrors()->add($field, 'invalid');
+            }
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function save(array $options = [])
+    {
+        if (!($options['skipValidations'] ?? false) && !$this->isValid()) {
+            return false;
+        }
+
+        return parent::save($options);
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'user_profile_customization';
     }
 }

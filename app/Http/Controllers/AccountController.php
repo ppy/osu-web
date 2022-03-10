@@ -209,8 +209,8 @@ class AccountController extends Controller
         ]);
 
         $profileParams = get_params($params, 'user_profile_customization', [
-            ...array_map(fn ($v) => "{$v}:any", array_keys(UserPreferences::attributes())),
             'extras_order:string[]',
+            ...collect(UserPreferences::attributes())->map(fn ($attr, $f) => "{$f}:{$attr['type']}")->values(),
         ]);
 
         try {
