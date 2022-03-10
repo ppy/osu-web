@@ -19,6 +19,7 @@ class BeatmapDifficultyAttributes
                     'mods' => $mods,
                     'ruleset_id' => $rulesetId,
                 ],
+                'timeout' => 5,
             ])
             ->getBody()
             ->getContents();
