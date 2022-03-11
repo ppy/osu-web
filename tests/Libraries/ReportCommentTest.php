@@ -31,7 +31,6 @@ class ReportCommentTest extends TestCase
         $comment->reportBy($this->reporter);
     }
 
-
     public function testReasonIsIgnored()
     {
         $comment = $this->createComment(User::factory()->create());
@@ -43,6 +42,7 @@ class ReportCommentTest extends TestCase
             'reason' => 'NotAValidReason',
         ]);
     }
+
     public function testReportableInstance()
     {
         $comment = $this->createComment(User::factory()->create());
