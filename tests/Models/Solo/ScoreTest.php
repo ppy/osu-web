@@ -23,7 +23,7 @@ class ScoreTest extends TestCase
             'passed' => true,
             'rank' => 'S',
             'ruleset_id' => 1,
-            'statistics' => ['Great' => 10],
+            'statistics' => ['great' => 10],
             'total_score' => 1000,
             'user_id' => 1,
         ]);
@@ -48,7 +48,7 @@ class ScoreTest extends TestCase
             'passed' => false,
             'rank' => 'S', // lazer may send an incorrect rank for a failed score.
             'ruleset_id' => 1,
-            'statistics' => ['Great' => 10],
+            'statistics' => ['great' => 10],
             'total_score' => 1000,
             'user_id' => 1,
         ]);
@@ -63,6 +63,29 @@ class ScoreTest extends TestCase
     }
 
     public function testLegacyScoreHitCounts()
+    {
+        $legacy = Score::createFromJsonOrExplode([
+            'accuracy' => 1,
+            'beatmap_id' => 1,
+            'ended_at' => Carbon::now(),
+            'max_combo' => 100,
+            'mods' => [],
+            'passed' => true,
+            'rank' => 'S',
+            'ruleset_id' => 0,
+            'statistics' => ['great' => 10, 'ok' => 20, 'meh' => 30, 'miss' => 40],
+            'total_score' => 1000,
+            'user_id' => 1,
+        ])->createLegacyEntryOrExplode();
+
+        $this->assertFalse($legacy->perfect);
+        $this->assertEquals($legacy->count300, 10);
+        $this->assertEquals($legacy->count100, 20);
+        $this->assertEquals($legacy->count50, 30);
+        $this->assertEquals($legacy->countmiss, 40);
+    }
+
+    public function testLegacyScoreHitCountsFromStudlyCaseStatistics()
     {
         $legacy = Score::createFromJsonOrExplode([
             'accuracy' => 1,
