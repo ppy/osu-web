@@ -70,7 +70,7 @@ class UserReport extends Model
 
     public function routeNotificationForSlack(?Notification $_notification): ?string
     {
-        if ($this->reason === 'Cheating' || $this->reason === 'MultipleAccounts') {
+        if ($this->reason === 'Cheating' || $this->reason === 'MultipleAccounts' || str_starts_with($this->reportable_type, 'score_best')) {
             return config('osu.user_report_notification.endpoint_cheating');
         } else {
             return config('osu.user_report_notification.endpoint_moderation');
@@ -95,6 +95,12 @@ class UserReport extends Model
     public function isValid()
     {
         $this->validationErrors()->reset();
+
+        $commentsLength = mb_strlen(trim($this->comments));
+
+        if ($commentsLength === 0) {
+            $this->validationErrors()->add('comments', 'required');
+        }
 
         if ($this->user_id === $this->reporter_id) {
             $this->validationErrors()->add(

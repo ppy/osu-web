@@ -30,7 +30,12 @@ export class ReportForm extends PureComponent
     @textarea = createRef()
 
     @state =
+      comments: ''
       selectedReason: @options[0]
+
+
+  handleCommentsChange: (e) =>
+    @setState comments: e.target.value
 
 
   handleReasonChange: (option) =>
@@ -95,15 +100,17 @@ export class ReportForm extends PureComponent
         className: "#{bn}__row"
         textarea
           className: "#{bn}__textarea"
+          onChange: @handleCommentsChange
           placeholder: osu.trans 'users.report.placeholder'
           ref: @textarea
+          value: @state.comments
 
       div
         className: "#{bn}__row #{bn}__row--buttons"
         [
           button
             className: "#{bn}__button #{bn}__button--report"
-            disabled: @props.disabled
+            disabled: @props.disabled || @state.comments.length == 0
             key: 'report'
             type: 'button'
             onClick: @sendReport
