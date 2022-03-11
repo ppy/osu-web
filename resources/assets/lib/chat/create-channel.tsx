@@ -2,7 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
-import { action, makeObservable, observable } from 'mobx';
+import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
+import { debounce } from 'lodash';
+import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
@@ -12,13 +15,36 @@ type Props = Record<string, never>;
 
 @observer
 export default class CreateChannel extends React.Component<Props> {
+  @observable private busy = false;
+
+  // delay needs to shorter when copy and paste, or need to be a discrete action
+  private debouncedLookupUsers = debounce(this.lookupUsers, 1000);
+
+  @observable private isValid = false;
   @observable private name = '';
   @observable private usersText = '';
+  @observable private validUsers = new Map<number, UserJson>();
 
   constructor(props: Props) {
     super(props);
 
     makeObservable(this);
+
+    // autorun(() => {
+    //   this.isValid = !this.busy && this.usersValid && osu.present(this.name);
+    //   console.log(this.isValid);
+    // });
+  }
+
+  @computed
+  private get userIds() {
+    return this.usersText.split(',').map((s) => s.trim());
+  }
+
+  @computed
+  private get usersValid() {
+    this.validateUsers();
+    return this.usersText.length === 0;
   }
 
   render() {
@@ -35,9 +61,13 @@ export default class CreateChannel extends React.Component<Props> {
         </div>
         <div className='chat-create-channel__container'>
           players to invite
+          <div>
+            {this.renderValidUsers()}
+          </div>
           <input
             className='chat-create-channel__input'
-            onChange={this.handleUsersTestInput}
+            onChange={this.handleUsersInputChange}
+            onPaste={this.handleUsersInputPaste}
             value={this.usersText}
           />
         </div>
@@ -52,6 +82,7 @@ export default class CreateChannel extends React.Component<Props> {
         </div>
         <div className='chat-create-channel__button-bar'>
           <BigButton
+            disabled={!this.isValid}
             modifiers='chat-send'
             props={{ onClick: this.handleButtonClick }}
             text='Create'
@@ -61,16 +92,24 @@ export default class CreateChannel extends React.Component<Props> {
     );
   }
 
+  renderValidUsers() {
+    return [...this.validUsers.values()].map((user) => <span key={user.id}>{user.username}</span>);
+  }
+
+  private fetchUsers(ids: string[]) {
+    return $.getJSON(route('users.index'), { ids }) as JQuery.jqXHR<{ users: UserJson[] }>;
+  }
+
   private handleButtonClick = () => {
-    const userIds = this.usersText.split(',').map(Number.parseInt);
-    console.log(userIds);
+    const targetIds = Object.keys(this.userIds).map(Number.parseInt);
+
     createAnnoucement({
       channel: {
         description: 'an announcement',
         name: this.name,
       },
       message: 'message',
-      target_ids: userIds,
+      target_ids: targetIds,
       type: 'ANNOUNCE',
     });
   };
@@ -81,11 +120,66 @@ export default class CreateChannel extends React.Component<Props> {
   };
 
   @action
-  private handleUsersTestInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  private handleUsersInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.debouncedLookupUsers.cancel();
     this.usersText = e.currentTarget.value;
+    this.debouncedLookupUsers();
   };
 
-  private lookupUsers() {
-    // TODO
+  private handleUsersInputPaste = (e: React.SyntheticEvent<HTMLInputElement>) => {
+    this.debouncedLookupUsers.cancel();
+    this.usersText = e.currentTarget.value;
+    this.debouncedLookupUsers();
+    this.debouncedLookupUsers.flush();
+  };
+
+  private async lookupUsers() {
+    this.debouncedLookupUsers.cancel();
+
+    const response = await this.fetchUsers(this.userIds);
+    runInAction(() => {
+      for (const user of response.users) {
+        this.validUsers.set(user.id, user);
+      }
+
+      this.validateUsers();
+    });
   }
+
+  private validUsersContains(userId?: string) {
+    if (userId == null) return false;
+
+    if (this.validUsers.has(Number.parseInt(userId, 10))) return true;
+
+    // maybe it's a username
+    for (const user of this.validUsers.values()) {
+      if (user.username === userId) return true;
+    }
+
+    return false;
+  }
+
+  @action
+  private validateUsers() {
+    if (this.userIds.length === 0) return false;
+
+    const userIds = this.userIds.slice();
+    const invalidUsers: string[] = [];
+
+    let userId = userIds.shift()?.trim();
+    while (osu.presence(userId) != null) {
+      if (!this.validUsersContains(userId)) {
+        console.log(`${userId} not valid`);
+        invalidUsers.push(userId);
+      }
+
+      userId = userIds.shift()?.trim();
+    }
+
+    this.usersText = invalidUsers.join(', ');
+
+    return invalidUsers.length > 0;
+  }
+
+
 }
