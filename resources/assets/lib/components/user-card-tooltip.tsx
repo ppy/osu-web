@@ -11,14 +11,8 @@ import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyC
 import { TooltipContext } from 'tooltip-context';
 import { UserCard } from './user-card';
 
-declare global {
-  interface HTMLElement {
-    _tooltip?: string;
-  }
-
-  interface JQuery {
-    qtip(...args: any): any;
-  }
+interface HTMLElementWithTooltip extends HTMLElement {
+  _tooltip?: string;
 }
 
 interface Props {
@@ -69,7 +63,7 @@ function createTooltipOptions(card: HTMLElement) {
   };
 }
 
-function createTooltip(element: HTMLElement) {
+function createTooltip(element: HTMLElementWithTooltip) {
   const userId = element.dataset.userId;
   element._tooltip = userId;
 
@@ -111,11 +105,11 @@ function onMouseLeave() {
   inCard = false;
 }
 
-function onMouseOver(event: JQueryEventObject) {
+function onMouseOver(event: JQuery.TriggeredEvent<unknown, unknown, HTMLElementWithTooltip, unknown>) {
   if (tooltipWithActiveMenu != null) return;
   if (core.windowSize.isMobile) return;
 
-  const el = event.currentTarget as HTMLElement;
+  const el = event.currentTarget;
   const userId = osu.presence(el.dataset.userId);
   if (userId == null) return;
   // don't show cards for blocked users
@@ -153,7 +147,7 @@ function shouldShow(event: JQueryEventObject, api: any) {
   }
 
   // keyed React components can end up with reused DOM elements with a previously set tooltip.
-  const target = api.target[0] as HTMLElement;
+  const target = api.target[0] as HTMLElementWithTooltip;
   if (target._tooltip !== target.dataset.userId) {
     event.preventDefault();
     $(target).trigger('mouseover');

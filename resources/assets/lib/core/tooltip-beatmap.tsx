@@ -3,6 +3,10 @@
 
 import { template } from 'lodash';
 
+interface HTMLElementWithTooltip extends HTMLElement {
+  _tooltip?: boolean;
+}
+
 const tmpl = template(`
 <div class="tooltip-beatmap">
   <div class="tooltip-beatmap__text tooltip-beatmap__text--title"><%- beatmapTitle %></div>
@@ -25,7 +29,7 @@ function my(at: string) {
   return 'left center';
 }
 
-function onMouseOver(event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) {
+function onMouseOver(event: JQuery.TriggeredEvent<unknown, unknown, HTMLElementWithTooltip, unknown>) {
   const el = event.currentTarget;
 
   if (el.dataset.beatmapTitle == null) return;
