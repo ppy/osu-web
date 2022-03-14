@@ -12,7 +12,7 @@ class ScoreTransformer extends TransformerAbstract
 {
     public function transform(Score $score)
     {
-        return array_merge((array) $score->data, [
+        return array_merge($score->data->jsonSerialize(), [
             'id' => $score->getKey(),
         ]);
     }

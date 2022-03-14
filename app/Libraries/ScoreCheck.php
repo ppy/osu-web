@@ -6,35 +6,30 @@
 namespace App\Libraries;
 
 use App\Exceptions\InvariantException;
-use stdClass;
 
 class ScoreCheck
 {
     public static function assertCompleted($score): void
     {
-        if (!ScoreRank::isValid($score->data->rank)) {
-            throw new InvariantException("'{$score->data->rank}' is not a valid rank.");
+        $data = $score->data;
+
+        if (!ScoreRank::isValid($data->rank)) {
+            throw new InvariantException("'{$data->rank}' is not a valid rank.");
         }
 
-        foreach (['total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
-            if (!present($score->data->$field)) {
+        foreach (['totalScore', 'accuracy', 'maxCombo', 'passed'] as $field) {
+            if (!present($data->$field)) {
                 throw new InvariantException("field missing: '{$field}'");
             }
         }
 
         foreach (['mods'] as $field) {
-            if (!is_array($score->data->$field)) {
+            if (!is_array($data->$field)) {
                 throw new InvariantException("field must be an array: '{$field}'");
             }
         }
 
-        foreach (['statistics'] as $field) {
-            if (!($score->data->$field instanceof stdClass)) {
-                throw new InvariantException("field must be an object: '{$field}'");
-            }
-        }
-
-        if (empty((array) $score->data->statistics)) {
+        if ($data->statistics->isEmpty()) {
             throw new InvariantException("field cannot be empty: 'statistics'");
         }
 
