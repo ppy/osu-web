@@ -27,8 +27,6 @@ export class ReportForm extends PureComponent
     if props.visibleOptions?
       @options = _.intersectionWith @options, props.visibleOptions, (left, right) -> left.id == right
 
-    @textarea = createRef()
-
     @state =
       comments: ''
       selectedReason: @options[0]
@@ -102,7 +100,6 @@ export class ReportForm extends PureComponent
           className: "#{bn}__textarea"
           onChange: @handleCommentsChange
           placeholder: osu.trans 'users.report.placeholder'
-          ref: @textarea
           value: @state.comments
 
       div
@@ -129,6 +126,6 @@ export class ReportForm extends PureComponent
   sendReport: (e) =>
     data =
       reason: @state.selectedReason?.id
-      comments: @textarea.current.value
+      comments: @state.comments
 
     @props.onSubmit? data
