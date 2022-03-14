@@ -100,6 +100,7 @@ class BeatmapDiscussionPost extends Model
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {
+            // $query->visible() may be slow for listing; calls visibleBeatmapDiscussion which calls more scopes...
             $query->withoutTrashed();
         }
 
