@@ -1,53 +1,78 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-export default class TooltipBeatmap
-  tmpl: _.template '<div class="tooltip-beatmap"><div class="tooltip-beatmap__text tooltip-beatmap__text--title"><%- beatmapTitle %></div>' +
-      '<div class="tooltip-beatmap__text" style="--diff: var(--diff-<%- difficulty %>)"><%- stars %> <i class="fas fa-star" aria-hidden="true"></i></div></div>'
+import { template } from 'lodash';
 
-  constructor: ->
-    $(document).on 'mouseover touchstart', '.js-beatmap-tooltip', @onMouseOver
+const tmpl = template(`
+<div class="tooltip-beatmap">
+  <div class="tooltip-beatmap__text tooltip-beatmap__text--title"><%- beatmapTitle %></div>
+  <div class="tooltip-beatmap__text" style="--diff: var(--diff-<%- difficulty %>)">
+    <%- stars %> <i class="fas fa-star" aria-hidden="true"></i>
+  </div>
+</div>
+`);
 
-  onMouseOver: (event) =>
-    el = event.currentTarget
+function my(at: string) {
+  switch (at) {
+    case 'top center':
+      return 'bottom center';
+    case 'left center':
+      return 'right center';
+    case 'bottom center':
+      return 'top center';
+  }
 
-    return if !el.dataset.beatmapTitle?
+  return 'left center';
+}
 
-    content = @tmpl el.dataset
+function onMouseOver(event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) {
+  const el = event.currentTarget;
 
-    if el._tooltip
-      $(el).qtip 'set', 'content.text': content
-      return
+  if (el.dataset.beatmapTitle == null) return;
 
-    at = el.dataset.tooltipPosition ? 'top center'
-    my = switch at
-      when 'top center' then 'bottom center'
-      when 'left center' then 'right center'
-      when 'right center' then 'left center'
+  const content = tmpl(el.dataset);
 
-    options =
-      overwrite: false
-      content: content
-      position:
-        my: my
-        at: at
-        viewport: $(window)
-      show:
-        event: event.type
-        ready: true
-      hide:
-        event: 'click mouseleave'
-      style:
-        classes: 'qtip qtip--tooltip-beatmap'
-        tip:
-          width: 10
-          height: 9
+  if (el._tooltip) {
+    $(el).qtip('set', { 'content.text': content });
+    return;
+  }
 
-    if event.type == 'touchstart'
-      options.hide =
-        inactive: 3000
-        event: 'unfocus'
+  const at = el.dataset.tooltipPosition ?? 'top center';
 
-    $(el).qtip options, event
+  const options = {
+    content,
+    hide: event.type === 'touchstart' ? {
+      event: 'unfocus',
+      inactive: 3000,
+    } : {
+      event: 'click mouseleave',
+    },
+    overwrite: false,
+    position: {
+      at,
+      my: my(at),
+      viewport: $(window),
+    },
+    show: {
+      event: event.type,
+      ready: true,
+    },
+    style: {
+      classes: 'qtip qtip--tooltip-beatmap',
+      tip: {
+        height: 9,
+        width: 10,
+      },
+    },
+  };
 
-    el._tooltip = true
+  $(el).qtip(options, event);
+
+  el._tooltip = true;
+}
+
+export default class TooltipBeatmap {
+  constructor() {
+    $(document).on('mouseover touchstart', '.js-beatmap-tooltip', onMouseOver);
+  }
+}

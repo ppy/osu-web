@@ -16,6 +16,7 @@ import OsuLayzr from 'core/osu-layzr';
 import ReactTurbolinks from 'core/react-turbolinks';
 import StickyHeader from 'core/sticky-header';
 import Timeago from 'core/timeago';
+import TooltipBeatmap from 'core/tooltip-beatmap';
 import TurbolinksReload from 'core/turbolinks-reload';
 import ScorePins from 'core/user/score-pins';
 import UserLogin from 'core/user/user-login';
@@ -56,6 +57,7 @@ export default class OsuCore {
   socketWorker: SocketWorker;
   readonly stickyHeader = new StickyHeader();
   readonly timeago = new Timeago();
+  readonly tooltipBeatmap = new TooltipBeatmap();
   readonly turbolinksReload = new TurbolinksReload();
   readonly userLogin: UserLogin;
   userLoginObserver: UserLoginObserver;

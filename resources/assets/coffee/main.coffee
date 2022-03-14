@@ -34,7 +34,6 @@ import StickyFooter from 'core-legacy/sticky-footer'
 import { StoreCheckout } from 'core-legacy/store-checkout'
 import StoreSupporterTag from 'core-legacy/store-supporter-tag'
 import SyncHeight from 'core-legacy/sync-height'
-import TooltipBeatmap from 'core-legacy/tooltip-beatmap'
 import TooltipDefault from 'core-legacy/tooltip-default'
 import TwitchPlayer from 'core-legacy/twitch-player'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
@@ -91,7 +90,6 @@ window.navButton ?= new NavButton
 window.postPreview ?= new PostPreview
 window.search ?= new Search
 window.stickyFooter ?= new StickyFooter
-window.tooltipBeatmap ?= new TooltipBeatmap
 window.tooltipDefault ?= new TooltipDefault
 
 window.formConfirmation ?= new FormConfirmation(window.formError)
