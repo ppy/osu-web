@@ -47,7 +47,6 @@
     "react-transition-group": "^4.4.1",
     "react-virtual-list": "^2.3.0",
     "remark-parse": "^7.0.1",
-    "require-dir": "^1.2.0",
     "shopify-buy": "^2.6.1",
     "slate": "^0.58.4",
     "slate-history": "^0.58.4",
