@@ -2,8 +2,8 @@
 # See the LICENCE file in the repository root for full licence text.
 
 export default class TooltipBeatmap
-  tmpl: _.template '<div class="tooltip-beatmap__text tooltip-beatmap__text--title"><%- beatmapTitle %></div>' +
-      '<div class="tooltip-beatmap__text" style="--diff: var(--diff-<%- difficulty %>)"><%- stars %> <i class="fas fa-star" aria-hidden="true"></i></div>'
+  tmpl: _.template '<div class="tooltip-beatmap"><div class="tooltip-beatmap__text tooltip-beatmap__text--title"><%- beatmapTitle %></div>' +
+      '<div class="tooltip-beatmap__text" style="--diff: var(--diff-<%- difficulty %>)"><%- stars %> <i class="fas fa-star" aria-hidden="true"></i></div></div>'
 
   constructor: ->
     $(document).on 'mouseover touchstart', '.js-beatmap-tooltip', @onMouseOver
@@ -38,7 +38,7 @@ export default class TooltipBeatmap
       hide:
         event: 'click mouseleave'
       style:
-        classes: 'qtip tooltip-beatmap'
+        classes: 'qtip qtip--tooltip-beatmap'
         tip:
           width: 10
           height: 9
