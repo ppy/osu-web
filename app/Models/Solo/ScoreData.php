@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace App\Models\Solo;
 
+use App\Exceptions\InvariantException;
+use App\Libraries\ScoreRank;
 use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
@@ -64,6 +66,23 @@ class ScoreData implements Castable, JsonSerializable
                 return ['data' => json_encode($value)];
             }
         };
+    }
+
+    public function assertCompleted(): void
+    {
+        if (!ScoreRank::isValid($this->rank)) {
+            throw new InvariantException("'{$this->rank}' is not a valid rank.");
+        }
+
+        foreach (['totalScore', 'accuracy', 'maxCombo', 'passed'] as $field) {
+            if (!present($this->$field)) {
+                throw new InvariantException("field missing: '{$field}'");
+            }
+        }
+
+        if ($this->statistics->isEmpty()) {
+            throw new InvariantException("field cannot be empty: 'statistics'");
+        }
     }
 
     public function jsonSerialize(): array

@@ -6,7 +6,6 @@
 namespace App\Models\Solo;
 
 use App\Libraries\ModsHelper;
-use App\Libraries\ScoreCheck;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
@@ -46,7 +45,7 @@ class Score extends Model
             'data' => $params,
         ]);
 
-        ScoreCheck::assertCompleted($score);
+        $score->data->assertCompleted();
 
         // this should potentially just be validation rather than applying this logic here, but
         // older lazer builds potentially submit incorrect details here (and we still want to

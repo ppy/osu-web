@@ -7,7 +7,6 @@ namespace App\Models\Multiplayer;
 
 use App\Exceptions\GameCompletedException;
 use App\Exceptions\InvariantException;
-use App\Libraries\ScoreCheck;
 use App\Models\Model;
 use App\Models\Solo\ScoreData;
 use App\Models\User;
@@ -132,7 +131,7 @@ class Score extends Model
             }
         }
 
-        ScoreCheck::assertCompleted($this);
+        $this->data->assertCompleted();
 
         $this->save();
     }
