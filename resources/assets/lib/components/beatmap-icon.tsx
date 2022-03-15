@@ -2,12 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import { round } from 'lodash';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { getDiffColour, getDiffRating } from 'utils/beatmap-helper';
+import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { nextVal } from 'utils/seq';
+import DifficultyBadge from './difficulty-badge';
 
 interface Props {
   beatmap: BeatmapExtendedJson;
@@ -58,18 +58,12 @@ export class BeatmapIcon extends React.Component<Props> {
     // the following mouseover should be ignored in that case.
     if (el._tooltip === this.tooltipId) return;
 
-    const diffRating = getDiffRating(this.props.beatmap.difficulty_rating);
     const $content = $(renderToStaticMarkup(
       <div
         className='tooltip-beatmap'
-        style={{
-          '--diff': `var(--diff-${diffRating})`,
-        } as React.CSSProperties}
       >
         <div className='tooltip-beatmap__text tooltip-beatmap__text--title'>{this.props.beatmap.version}</div>
-        <div className='tooltip-beatmap__text'>
-          {round(this.props.beatmap.difficulty_rating, 2)} <i aria-hidden='true' className='fas fa-star' />
-        </div>
+        <DifficultyBadge rating={this.props.beatmap.difficulty_rating} />
       </div>,
     ));
 
