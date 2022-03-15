@@ -50,12 +50,12 @@ class ScoreTest extends TestCase
         ]);
 
         $this->assertTrue($score->data->passed);
-        $this->assertEquals($score->data->rank, 'S');
+        $this->assertSame($score->data->rank, 'S');
 
         $legacy = $score->createLegacyEntryOrExplode();
 
         $this->assertTrue($legacy->perfect);
-        $this->assertEquals($legacy->rank, 'S');
+        $this->assertSame($legacy->rank, 'S');
     }
 
     public function testLegacyFailScoreIsRankD()
@@ -75,12 +75,12 @@ class ScoreTest extends TestCase
         ]);
 
         $this->assertFalse($score->data->passed);
-        $this->assertEquals($score->data->rank, 'D');
+        $this->assertSame($score->data->rank, 'D');
 
         $legacy = $score->createLegacyEntryOrExplode();
 
         $this->assertFalse($legacy->perfect);
-        $this->assertEquals($legacy->rank, 'D');
+        $this->assertSame($legacy->rank, 'D');
     }
 
     public function testLegacyScoreHitCounts()
@@ -100,10 +100,10 @@ class ScoreTest extends TestCase
         ])->createLegacyEntryOrExplode();
 
         $this->assertFalse($legacy->perfect);
-        $this->assertEquals($legacy->count300, 10);
-        $this->assertEquals($legacy->count100, 20);
-        $this->assertEquals($legacy->count50, 30);
-        $this->assertEquals($legacy->countmiss, 40);
+        $this->assertSame($legacy->count300, 10);
+        $this->assertSame($legacy->count100, 20);
+        $this->assertSame($legacy->count50, 30);
+        $this->assertSame($legacy->countmiss, 40);
     }
 
     public function testLegacyScoreHitCountsFromStudlyCaseStatistics()
@@ -123,10 +123,10 @@ class ScoreTest extends TestCase
         ])->createLegacyEntryOrExplode();
 
         $this->assertFalse($legacy->perfect);
-        $this->assertEquals($legacy->count300, 10);
-        $this->assertEquals($legacy->count100, 20);
-        $this->assertEquals($legacy->count50, 30);
-        $this->assertEquals($legacy->countmiss, 40);
+        $this->assertSame($legacy->count300, 10);
+        $this->assertSame($legacy->count100, 20);
+        $this->assertSame($legacy->count50, 30);
+        $this->assertSame($legacy->countmiss, 40);
     }
 
     public function testModsPropertyType()
