@@ -19,7 +19,7 @@ interface Props {
 export class BeatmapIcon extends React.Component<Props> {
   static readonly defaultProps = {
     showConvertMode: false,
-    showTitle: true,
+    showTitle: false,
   };
 
   private tooltipId = '';
