@@ -53,6 +53,8 @@ export class BeatmapIcon extends React.Component<Props> {
     event.persist();
     const el = event.currentTarget;
 
+    // on touch devices, touchstart and then mouseover will trigger.
+    // the following mouseover should be ignored in that case.
     if (el._tooltip === this.tooltipId) return;
 
     const diffRating = getDiffRating(this.props.beatmap.difficulty_rating);
@@ -81,7 +83,7 @@ export class BeatmapIcon extends React.Component<Props> {
     const options = {
       content: $content,
       hide: event.type === 'touchstart' ? {
-        event: 'unfocus',
+        event: 'touchstart unfocus',
         inactive: 3000,
       } : {
         event: 'click mouseleave',
