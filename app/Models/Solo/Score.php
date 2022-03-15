@@ -34,8 +34,6 @@ class Score extends Model
         'data' => ScoreData::class,
     ];
 
-    private ?ScoreData $currentData = null;
-
     public static function createFromJsonOrExplode(array $params)
     {
         $score = new static([
