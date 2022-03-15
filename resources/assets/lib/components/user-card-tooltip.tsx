@@ -137,7 +137,7 @@ function hideEffect(this: JQuery<HTMLElement>) {
   $(this).fadeTo(110, 0);
 }
 
-function shouldShow(event: JQueryEventObject, api: any) {
+function shouldShow(event: JQuery.Event, api: any) {
   if (tooltipWithActiveMenu != null || core.windowSize.isMobile) {
     return event.preventDefault();
   }
@@ -177,7 +177,7 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
       dataType: 'json',
       type: 'GET',
       url,
-    });
+    }) as JQuery.jqXHR<UserJson>;
   }
 
   render() {
