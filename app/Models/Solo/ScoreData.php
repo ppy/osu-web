@@ -32,13 +32,24 @@ class ScoreData implements Castable, JsonSerializable
 
     public function __construct(array $data)
     {
+        $mods = [];
+
+        foreach ($data['mods'] as $mod) {
+            if (isset($mod['acronym'])) {
+                if (isset($mod['settings'])) {
+                    $mod['settings'] = (object) $mod['settings'];
+                }
+                $mods[] = (object) $mod;
+            }
+        }
+
         $this->accuracy = $data['accuracy'] ?? null;
         $this->beatmapId = $data['beatmap_id'] ?? null;
         $this->buildId = $data['build_id'] ?? null;
         $this->endedAt = parse_time_to_carbon($data['ended_at'] ?? null);
         $this->maxCombo = $data['max_combo'] ?? null;
         // TODO: create a proper Mod object
-        $this->mods = array_map(fn ($v) => (object) $v, $data['mods'] ?? []);
+        $this->mods = $mods;
         $this->passed = $data['passed'] ?? false;
         $this->rank = $data['rank'] ?? null;
         $this->rulesetId = $data['ruleset_id'] ?? null;
