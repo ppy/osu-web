@@ -39,6 +39,7 @@ export class BeatmapIcon extends React.Component<Props> {
       <div
         className={className}
         onMouseOver={this.handleMouseOver}
+        onTouchStart={this.handleMouseOver}
         style={style}
       >
         <i className={`fal fa-extra-mode-${mode}`} />
@@ -46,7 +47,7 @@ export class BeatmapIcon extends React.Component<Props> {
     );
   }
 
-  private readonly handleMouseOver = (event: React.MouseEvent<HTMLElement>) => {
+  private readonly handleMouseOver = (event: React.SyntheticEvent<HTMLElement>) => {
     if (!this.props.showTitle) return;
 
     event.persist();
