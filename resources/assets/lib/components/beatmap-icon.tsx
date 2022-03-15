@@ -13,13 +13,13 @@ interface Props {
   beatmap: BeatmapExtendedJson;
   modifiers?: Modifiers;
   showConvertMode: boolean;
-  showTitle: boolean;
+  withTooltip: boolean;
 }
 
 export class BeatmapIcon extends React.Component<Props> {
   static readonly defaultProps = {
     showConvertMode: false,
-    showTitle: false,
+    withTooltip: false,
   };
 
   private tooltipId = '';
@@ -29,7 +29,7 @@ export class BeatmapIcon extends React.Component<Props> {
     const mode = this.props.beatmap.convert && !this.props.showConvertMode ? 'osu' : this.props.beatmap.mode;
 
     const className = classWithModifiers('beatmap-icon', this.props.modifiers, {
-      'with-hover': this.props.showTitle,
+      'with-hover': this.props.withTooltip,
     });
 
     const style = {
@@ -49,7 +49,7 @@ export class BeatmapIcon extends React.Component<Props> {
   }
 
   private readonly handleMouseOver = (event: React.SyntheticEvent<HTMLElement>) => {
-    if (!this.props.showTitle) return;
+    if (!this.props.withTooltip) return;
 
     event.persist();
     const el = event.currentTarget;
