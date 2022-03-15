@@ -81,8 +81,8 @@ class ScoreDataStatistics implements Arrayable, JsonSerializable
     {
         $ret = [];
 
-        foreach (static::fields() as $field => $_map) {
-            $ret[$field] = $this->$field;
+        foreach (static::fields() as $field => $map) {
+            $ret[$map['json']] = $this->$field;
         }
 
         return $ret;
