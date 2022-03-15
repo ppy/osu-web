@@ -7,10 +7,7 @@ import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { getDiffColour, getDiffRating } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
-
-interface HTMLElementWithTooltip extends HTMLElement {
-  _tooltip?: boolean;
-}
+import { nextVal } from 'utils/seq';
 
 interface Props {
   beatmap: BeatmapExtendedJson;
@@ -24,6 +21,8 @@ export class BeatmapIcon extends React.Component<Props> {
     showConvertMode: false,
     showTitle: true,
   };
+
+  private tooltipId = `beatmap-icon-${nextVal()}`;
 
   render() {
     const mode = this.props.beatmap.convert && !this.props.showConvertMode ? 'osu' : this.props.beatmap.mode;
@@ -47,11 +46,14 @@ export class BeatmapIcon extends React.Component<Props> {
     );
   }
 
-  private readonly handleMouseOver = (event: React.MouseEvent<HTMLElementWithTooltip>) => {
+  private readonly handleMouseOver = (event: React.MouseEvent<HTMLElement>) => {
     if (!this.props.showTitle) return;
 
     event.persist();
     const el = event.currentTarget;
+
+    if (el._tooltip === this.tooltipId) return;
+
     const diffRating = getDiffRating(this.props.beatmap.difficulty_rating);
     const $content = $(renderToStaticMarkup(
       <div
@@ -67,10 +69,13 @@ export class BeatmapIcon extends React.Component<Props> {
       </div>,
     ));
 
-    if (el._tooltip) {
+    if (el._tooltip != null) {
+      el._tooltip = this.tooltipId;
       $(el).qtip('set', { 'content.text': $content });
       return;
     }
+
+    el._tooltip = this.tooltipId;
 
     const options = {
       content: $content,
@@ -100,7 +105,5 @@ export class BeatmapIcon extends React.Component<Props> {
     };
 
     $(el).qtip(options, event);
-
-    el._tooltip = true;
   };
 }

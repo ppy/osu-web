@@ -24,10 +24,6 @@ interface Cache {
   };
 }
 
-interface HTMLElementWithTooltip extends HTMLElement {
-  _tooltip?: string;
-}
-
 interface Props extends RenderElementProps {
   beatmaps: BeatmapExtendedJson[];
   beatmapset: BeatmapsetJson;
@@ -45,7 +41,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   cache: Cache = {};
   declare context: React.ContextType<typeof SlateContext>;
   tooltipContent = React.createRef<HTMLScriptElement>();
-  tooltipEl?: HTMLElementWithTooltip;
+  tooltipEl?: HTMLElement;
 
   componentDidMount = () => {
     // reset timestamp to null on clone
@@ -92,7 +88,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     this.destroyTooltip();
   }
 
-  createTooltip = (event: (React.MouseEvent<HTMLElementWithTooltip> | React.TouchEvent<HTMLElementWithTooltip>)) => {
+  createTooltip = (event: (React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>)) => {
     const timestamp = this.timestamp();
     if (timestamp == null) return;
 

@@ -9,10 +9,6 @@ import { nextVal } from 'utils/seq';
 import AchievementBadgeIcon from './achievement-badge-icon';
 import AchievementBadgePopup from './achievement-badge-popup';
 
-interface HTMLImageElementWithTooltip extends HTMLImageElement {
-  _tooltip?: string;
-}
-
 interface Props {
   achievedAt?: string;
   achievement: AchievementJson;
@@ -34,7 +30,7 @@ export default class AchievementBadge extends React.PureComponent<Props> {
     );
   }
 
-  private readonly onMouseOver = (event: React.MouseEvent<HTMLImageElementWithTooltip>) => {
+  private readonly onMouseOver = (event: React.MouseEvent<HTMLImageElement>) => {
     event.persist();
     const elem = event.currentTarget;
 
