@@ -12,6 +12,27 @@ use Tests\TestCase;
 
 class ScoreTest extends TestCase
 {
+    public function testStatisticsStoredInCorrectCasing()
+    {
+        $score = Score::createFromJsonOrExplode([
+            'accuracy' => 1,
+            'beatmap_id' => 1,
+            'ended_at' => Carbon::now(),
+            'max_combo' => 100,
+            'mods' => [],
+            'passed' => true,
+            'rank' => 'S',
+            'ruleset_id' => 1,
+            'statistics' => ['Great' => 10, 'SmallTickHit' => 1],
+            'total_score' => 1000,
+            'user_id' => 1,
+        ]);
+
+        $score = $score->fresh();
+        $this->assertSame(1, json_decode($score->getAttributes()['data'], true)['statistics']['small_tick_hit']);
+        $this->assertSame(1, $score->data->statistics->smallTickHit);
+    }
+
     public function testLegacyPassScoreRetainsRank()
     {
         $score = Score::createFromJsonOrExplode([
