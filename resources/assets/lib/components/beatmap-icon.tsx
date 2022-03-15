@@ -6,7 +6,7 @@ import { round } from 'lodash';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { getDiffColour, getDiffRating } from 'utils/beatmap-helper';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface HTMLElementWithTooltip extends HTMLElement {
   _tooltip?: boolean;
@@ -14,7 +14,7 @@ interface HTMLElementWithTooltip extends HTMLElement {
 
 interface Props {
   beatmap: BeatmapExtendedJson;
-  modifier?: string;
+  modifiers?: Modifiers;
   showConvertMode: boolean;
   showTitle: boolean;
 }
@@ -28,7 +28,7 @@ export class BeatmapIcon extends React.Component<Props> {
   render() {
     const mode = this.props.beatmap.convert && !this.props.showConvertMode ? 'osu' : this.props.beatmap.mode;
 
-    const className = classWithModifiers('beatmap-icon', this.props.modifier, {
+    const className = classWithModifiers('beatmap-icon', this.props.modifiers, {
       'with-hover': this.props.showTitle,
     });
 

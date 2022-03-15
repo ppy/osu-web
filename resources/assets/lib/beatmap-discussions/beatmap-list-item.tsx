@@ -32,7 +32,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
         <div className='beatmap-list-item__col'>
           <BeatmapIcon
             beatmap={this.props.beatmap}
-            modifier={this.props.large ? 'large' : undefined}
+            modifiers={this.props.large ? 'large' : undefined}
           />
         </div>
 
