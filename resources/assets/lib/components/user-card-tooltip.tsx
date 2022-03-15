@@ -11,16 +11,6 @@ import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyC
 import { TooltipContext } from 'tooltip-context';
 import { UserCard } from './user-card';
 
-declare global {
-  interface HTMLElement {
-    _tooltip?: string;
-  }
-
-  interface JQuery {
-    qtip(...args: any): any;
-  }
-}
-
 interface Props {
   container: HTMLElement;
   lookup: string;
@@ -111,11 +101,11 @@ function onMouseLeave() {
   inCard = false;
 }
 
-function onMouseOver(event: JQueryEventObject) {
+function onMouseOver(event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) {
   if (tooltipWithActiveMenu != null) return;
   if (core.windowSize.isMobile) return;
 
-  const el = event.currentTarget as HTMLElement;
+  const el = event.currentTarget;
   const userId = osu.presence(el.dataset.userId);
   if (userId == null) return;
   // don't show cards for blocked users
@@ -147,7 +137,7 @@ function hideEffect(this: JQuery<HTMLElement>) {
   $(this).fadeTo(110, 0);
 }
 
-function shouldShow(event: JQueryEventObject, api: any) {
+function shouldShow(event: JQuery.Event, api: any) {
   if (tooltipWithActiveMenu != null || core.windowSize.isMobile) {
     return event.preventDefault();
   }
@@ -187,7 +177,7 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
       dataType: 'json',
       type: 'GET',
       url,
-    });
+    }) as JQuery.jqXHR<UserJson>;
   }
 
   render() {

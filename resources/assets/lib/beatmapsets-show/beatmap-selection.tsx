@@ -24,7 +24,7 @@ export default class BeatmapSelection extends React.PureComponent<Props> {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
-        <BeatmapIcon beatmap={this.props.beatmap} modifier='beatmapset' showTitle={false} />
+        <BeatmapIcon beatmap={this.props.beatmap} modifiers='beatmapset' />
       </a>
     );
   }

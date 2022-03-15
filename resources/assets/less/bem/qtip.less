@@ -15,6 +15,20 @@
     }
   }
 
+  &--tooltip-beatmap {
+    min-width: 110px;
+    max-width: none;
+
+    .default-border-radius();
+
+    background-color: @osu-colour-b6;
+    border: 0 solid transparent;
+
+    .qtip-content {
+      padding: 0;
+    }
+  }
+
   &--user-card {
     z-index: @z-index--user-card-tooltip !important;
     max-width: unset;

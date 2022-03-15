@@ -41,16 +41,6 @@ declare module 'components/modal' {
   }
 }
 
-declare module 'components/notification-banner' {
-  interface Props {
-    message: React.ReactFragment;
-    title: string;
-    type: string;
-  }
-
-  class NotificationBanner extends React.PureComponent<Props> {}
-}
-
 declare module 'beatmaps/search-content' {
   import AvailableFilters from 'beatmaps/available-filters';
 

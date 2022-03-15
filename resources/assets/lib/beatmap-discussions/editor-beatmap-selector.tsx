@@ -33,7 +33,7 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
       }
 
       menuOptions.push({
-        icon: <BeatmapIcon beatmap={beatmap} showTitle={false} />,
+        icon: <BeatmapIcon beatmap={beatmap} />,
         id: beatmap.id.toString(),
         label: beatmap.version,
       });

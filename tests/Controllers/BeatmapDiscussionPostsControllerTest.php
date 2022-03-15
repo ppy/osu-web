@@ -275,10 +275,9 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->postResolveDiscussion(false, $this->user)
-            ->assertStatus(200);
+            ->assertStatus(422);
 
-        // just add single post and no resolved state change
-        $this->assertSame($lastDiscussionPosts + 1, BeatmapDiscussionPost::count());
+        $this->assertSame($lastDiscussionPosts, BeatmapDiscussionPost::count());
         $this->assertSame($lastResolved, $this->beatmapDiscussion->fresh()->resolved);
 
         foreach (['problem', 'suggestion'] as $type) {
