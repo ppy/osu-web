@@ -7,10 +7,9 @@ declare(strict_types=1);
 
 namespace App\Models\Solo;
 
-use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
 
-class ScoreDataStatistics implements Arrayable, JsonSerializable
+class ScoreDataStatistics implements JsonSerializable
 {
     public int $good;
     public int $great;
@@ -86,10 +85,5 @@ class ScoreDataStatistics implements Arrayable, JsonSerializable
         }
 
         return $ret;
-    }
-
-    public function toArray(): array
-    {
-        return $this->jsonSerialize();
     }
 }
