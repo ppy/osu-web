@@ -62,8 +62,10 @@ export class BeatmapIcon extends React.Component<Props> {
       <div
         className='tooltip-beatmap'
       >
-        <div className='tooltip-beatmap__text tooltip-beatmap__text--title'>{this.props.beatmap.version}</div>
-        <DifficultyBadge rating={this.props.beatmap.difficulty_rating} />
+        <div className='tooltip-beatmap__text'>{this.props.beatmap.version}</div>
+        <div className='tooltip-beatmap__badge'>
+          <DifficultyBadge rating={this.props.beatmap.difficulty_rating} />
+        </div>
       </div>,
     ));
 
