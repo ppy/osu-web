@@ -22,9 +22,10 @@ export class BeatmapIcon extends React.Component<Props> {
     showTitle: true,
   };
 
-  private tooltipId = `beatmap-icon-${nextVal()}`;
+  private tooltipId = '';
 
   render() {
+    this.tooltipId = `beatmap-icon-${this.props.beatmap.id}-${nextVal()}`;
     const mode = this.props.beatmap.convert && !this.props.showConvertMode ? 'osu' : this.props.beatmap.mode;
 
     const className = classWithModifiers('beatmap-icon', this.props.modifiers, {
