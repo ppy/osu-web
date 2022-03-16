@@ -12,6 +12,7 @@ use App\Models\DeletedUser;
 use App\Models\LegacyMatch;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
+use App\Models\Solo\Score as SoloScore;
 use League\Fractal\Resource\Item;
 
 class ScoreTransformer extends TransformerAbstract
@@ -105,7 +106,7 @@ class ScoreTransformer extends TransformerAbstract
         return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer());
     }
 
-    public function includeCurrentUserAttributes(LegacyMatch\Score|ScoreModel $score): Item
+    public function includeCurrentUserAttributes(LegacyMatch\Score|ScoreModel|SoloScore $score): Item
     {
         return $this->item($score, new Score\CurrentUserAttributesTransformer());
     }

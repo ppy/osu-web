@@ -10,12 +10,12 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import UserAvatar from 'components/user-avatar';
 import { UserLink } from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
-import { ScoreJsonForBeatmap } from 'interfaces/score-json';
+import { SoloScoreJsonForBeatmap } from 'interfaces/solo-score-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { shouldShowPp } from 'utils/beatmap-helper';
+import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { modeAttributesMap } from 'utils/score-helper';
 
@@ -23,11 +23,12 @@ interface Props {
   beatmap: BeatmapJson;
   modifiers?: Modifiers;
   position?: number;
-  score: ScoreJsonForBeatmap;
+  score: SoloScoreJsonForBeatmap;
 }
 
 export default class ScoreTop extends React.PureComponent<Props> {
   render() {
+    const ruleset = rulesetName(this.props.score.ruleset_id);
     const avatar = <UserAvatar user={this.props.score.user} />;
 
     return (
@@ -35,7 +36,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
         <a
           className='beatmap-score-top__link-container'
           href={route('scores.show', {
-            mode: this.props.score.mode,
+            mode: ruleset,
             score: this.props.score.best_id,
           })}
         />
@@ -55,7 +56,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
               ) : (
                 <a
                   className='u-hover'
-                  href={route('users.show', { mode: this.props.score.mode, user: this.props.score.user_id })}
+                  href={route('users.show', { mode: ruleset, user: this.props.score.user_id })}
                 >
                   {avatar}
                 </a>
@@ -65,14 +66,14 @@ export default class ScoreTop extends React.PureComponent<Props> {
             <div className='beatmap-score-top__user-box'>
               <UserLink
                 className='beatmap-score-top__username u-hover'
-                mode={this.props.score.mode}
+                mode={ruleset}
                 user={this.props.score.user}
               />
 
               <div className='beatmap-score-top__achieved u-hover'>
                 <StringWithComponent
                   mappings={{
-                    when: <TimeWithTooltip dateTime={this.props.score.created_at} relative />,
+                    when: <TimeWithTooltip dateTime={this.props.score.ended_at} relative />,
                   }}
                   pattern={osu.trans('beatmapsets.show.scoreboard.achieved')}
                 />
@@ -82,7 +83,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                 className='u-hover'
                 href={route('rankings', {
                   country: this.props.score.user.country_code,
-                  mode: this.props.score.mode,
+                  mode: ruleset,
                   type: 'performance',
                 })}
               >
@@ -112,7 +113,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                   {osu.trans('beatmapsets.show.scoreboard.headers.score_total')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--score'>
-                  {osu.formatNumber(this.props.score.score)}
+                  {osu.formatNumber(this.props.score.total_score)}
                 </div>
               </div>
             </div>
@@ -146,7 +147,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
             </div>
 
             <div className='beatmap-score-top__stats beatmap-score-top__stats--wrappable'>
-              {modeAttributesMap[this.props.beatmap.mode].map((attr) => (
+              {modeAttributesMap[ruleset].map((attr) => (
                 <div key={attr.attribute} className='beatmap-score-top__stat'>
                   <div className='beatmap-score-top__stat-header'>
                     {attr.label}
@@ -173,7 +174,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                   {osu.trans('beatmapsets.show.scoreboard.headers.time')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller u-hover'>
-                  <ScoreboardTime dateTime={this.props.score.created_at} />
+                  <ScoreboardTime dateTime={this.props.score.ended_at} />
                 </div>
               </div>
 
@@ -182,7 +183,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                   {osu.trans('beatmapsets.show.scoreboard.headers.mods')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--mods u-hover'>
-                  {this.props.score.mods.map((mod) => <Mod key={mod} mod={mod} />)}
+                  {this.props.score.mods.map((mod) => <Mod key={mod.acronym} mod={mod.acronym} />)}
                 </div>
               </div>
             </div>

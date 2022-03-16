@@ -14,6 +14,8 @@ use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
 use App\Transformers\BeatmapTransformer;
+use App\Transformers\ScoreTransformer;
+use App\Transformers\Solo\ScoreTransformer as SoloScoreTransformer;
 
 /**
  * @group Beatmaps
@@ -298,8 +300,9 @@ class BeatmapsController extends Controller
 
             static $scoreIncludes = ['user', 'user.country', 'user.cover'];
 
+            $scoreTransformer = is_api_request() ? new ScoreTransformer() : new SoloScoreTransformer();
             $results = [
-                'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', $scoreIncludes),
+                'scores' => json_collection($query->visibleUsers()->forListing(), $scoreTransformer, $scoreIncludes),
             ];
 
             if (isset($userScore)) {

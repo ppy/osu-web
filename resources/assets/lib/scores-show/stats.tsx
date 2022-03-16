@@ -3,16 +3,16 @@
 
 import { UserCard } from 'components/user-card';
 import BeatmapJson from 'interfaces/beatmap-json';
-import { ScoreJsonForShow } from 'interfaces/score-json';
+import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { shouldShowPp } from 'utils/beatmap-helper';
+import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
-  score: ScoreJsonForShow;
+  score: SoloScoreJsonForShow;
 }
 
 export default function Stats(props: Props) {
@@ -54,7 +54,7 @@ export default function Stats(props: Props) {
           )}
         </div>
         <div className='score-stats__group-row'>
-          {modeAttributesMap[props.score.mode].map((attr) => (
+          {modeAttributesMap[rulesetName(props.score.ruleset_id)].map((attr) => (
             <div key={attr.attribute} className='score-stats__stat'>
               <div className='score-stats__stat-row score-stats__stat-row--label'>
                 {attr.label}
