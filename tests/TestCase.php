@@ -249,19 +249,6 @@ class TestCase extends BaseTestCase
         }, glob("{$path}/*{$suffix}"));
     }
 
-    protected function makeBeatmapsetDiscussionPostParams(Beatmapset $beatmapset, string $messageType)
-    {
-        return [
-            'beatmapset_id' => $beatmapset->getKey(),
-            'beatmap_discussion' => [
-                'message_type' => $messageType,
-            ],
-            'beatmap_discussion_post' => [
-                'message' => 'Hello',
-            ],
-        ];
-    }
-
     protected function inReceivers($id, NewPrivateNotificationEvent|BroadcastNotificationBase $obj): bool
     {
         return in_array($id, $obj->getReceiverIds(), true);
@@ -289,6 +276,19 @@ class TestCase extends BaseTestCase
         $property->setAccessible(true);
 
         $property->setValue($obj, $value);
+    }
+
+    protected function makeBeatmapsetDiscussionPostParams(Beatmapset $beatmapset, string $messageType)
+    {
+        return [
+            'beatmapset_id' => $beatmapset->getKey(),
+            'beatmap_discussion' => [
+                'message_type' => $messageType,
+            ],
+            'beatmap_discussion_post' => [
+                'message' => 'Hello',
+            ],
+        ];
     }
 
     protected function normalizeHTML($html)
