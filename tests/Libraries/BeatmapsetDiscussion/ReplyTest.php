@@ -42,18 +42,24 @@ class ReplyTest extends TestCase
 
         (new Reply($user, $discussion, static::TEST_MESSAGE))->handle();
 
-        Queue::assertPushed(BeatmapsetDiscussionPostNew::class, function (BeatmapsetDiscussionPostNew $job) use ($user, $watcher) {
-            return in_array($watcher->getKey(), $job->getReceiverIds(), true)
-                && !in_array($user->getKey(), $job->getReceiverIds(), true);
-        });
+        Queue::assertPushed(
+            BeatmapsetDiscussionPostNew::class,
+            fn (BeatmapsetDiscussionPostNew $job) => (
+                $this->inReceivers($watcher->getKey(), $job)
+                && !$this->inReceivers($user->getKey(), $job)
+            )
+        );
 
         $this->runFakeQueue();
 
         // TODO: this should probably be changed to asserting "if job queued, then event is broadcast to receivers with option set"
-        Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($user, $watcher) {
-            return in_array($watcher->getKey(), $event->getReceiverIds(), true)
-                && !in_array($user->getKey(), $event->getReceiverIds(), true);
-        });
+        Event::assertDispatched(
+            NewPrivateNotificationEvent::class,
+            fn (NewPrivateNotificationEvent $event) => (
+                $this->inReceivers($watcher->getKey(), $event)
+                && !$this->inReceivers($user->getKey(), $event)
+            )
+        );
     }
 
     /**
@@ -74,11 +80,11 @@ class ReplyTest extends TestCase
 
         Queue::assertPushed(
             BeatmapsetDiscussionPostNew::class,
-            function (BeatmapsetDiscussionPostNew $job) use ($includeStarter, $starter) {
-                return $includeStarter
-                    ? in_array($starter->getKey(), $job->getReceiverIds(), true)
-                    : !in_array($starter->getKey(), $job->getReceiverIds(), true);
-            }
+            fn (BeatmapsetDiscussionPostNew $job) => (
+                $includeStarter
+                    ? $this->inReceivers($starter->getKey(), $job)
+                    : !$this->inReceivers($starter->getKey(), $job)
+            )
         );
     }
 

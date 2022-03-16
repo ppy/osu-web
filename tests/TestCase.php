@@ -5,7 +5,9 @@
 
 namespace Tests;
 
+use App\Events\NewPrivateNotificationEvent;
 use App\Http\Middleware\AuthApi;
+use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Libraries\BroadcastsPendingForTests;
 use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
@@ -258,6 +260,11 @@ class TestCase extends BaseTestCase
                 'message' => 'Hello',
             ],
         ];
+    }
+
+    protected function inReceivers($id, NewPrivateNotificationEvent|BroadcastNotificationBase $obj): bool
+    {
+        return in_array($id, $obj->getReceiverIds(), true);
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])
