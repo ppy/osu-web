@@ -115,7 +115,7 @@ export class Post extends React.PureComponent
     canPost = !@state.posting && @state.canSave
 
     div className: "#{bn}__message-container",
-      if @props.discussion.message_type == 'review' && @props.type == 'discussion'
+      if @isReview()
         el DiscussionsContext.Consumer, null,
           (discussions) =>
             el BeatmapsContext.Consumer, null,
@@ -169,7 +169,7 @@ export class Post extends React.PureComponent
         ['beatmapsets.discussions', 'discussion', @props.discussion]
 
     div className: "#{bn}__message-container",
-      if @props.discussion.message_type == 'review' && @props.type == 'discussion'
+      if @isReview()
         div
           className: "#{bn}__message"
           el ReviewPost,
@@ -277,6 +277,10 @@ export class Post extends React.PureComponent
     currentUser.id? && @props.post.user_id != currentUser.id
 
 
+  isReview: =>
+    @props.discussion.message_type == 'review' && @props.type == 'discussion'
+
+
   isTimeline: =>
     @props.discussion.timestamp?
 
@@ -292,7 +296,7 @@ export class Post extends React.PureComponent
   updatePost: =>
     messageContent = @state.message
 
-    if @props.discussion.message_type == 'review' && @props.type == 'discussion'
+    if @isReview()
       messageContent = @reviewEditor.current.serialize()
 
       if _.isEqual(JSON.parse(@props.post.message), JSON.parse(messageContent))
@@ -326,7 +330,7 @@ export class Post extends React.PureComponent
 
 
   validPost: =>
-    if @props.discussion.message_type == 'review' && @props.type == 'discussion'
+    if @isReview()
       @reviewEditor.current?.canSave
     else
       BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())

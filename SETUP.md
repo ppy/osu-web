@@ -154,6 +154,7 @@ There are multiple services involved:
 - job: runs queued job
 - schedule: runs scheduled job every 5 minutes
 - migrator: prepare database and elasticsearch (service should exit with status 0 after finishing its task)
+- beatmap-difficulty-lookup-cache: for computing beatmap difficulty attributes
 - notification-server: main service for notification websocket server
 - notification-server-dusk: notification server to be used by browser test
 - db: database server. Can be skipped by commenting it out and setting a different database instance
