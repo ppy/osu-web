@@ -46,7 +46,7 @@ class Reply
             }
         }
 
-        $this->maybeSetProblemDiscussion($discussion);
+        $this->maybeSetProblemDiscussion($discussion, false);
     }
 
     /**

@@ -27,13 +27,6 @@ class BeatmapDiscussionFactory extends Factory
 
     protected $model = BeatmapDiscussion::class;
 
-    public function configure()
-    {
-        return $this->afterCreating(function (BeatmapDiscussion $discussion) {
-            $discussion->wasRecentlyCreated = false;
-        });
-    }
-
     public function definition(): array
     {
         return array_merge(array_rand_val(static::DEFAULTS), [
