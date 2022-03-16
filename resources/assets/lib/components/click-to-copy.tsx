@@ -48,11 +48,9 @@ export default class ClickToCopy extends React.Component<Props> {
     }
   };
 
-  componentWillMount() {
-    this.restoreTooltipText();
-  }
-
   render() {
+    this.restoreTooltipText();
+
     if (!this.props.value) {
       return <span/>;
     }
