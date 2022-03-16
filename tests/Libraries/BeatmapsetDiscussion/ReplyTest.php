@@ -45,8 +45,8 @@ class ReplyTest extends TestCase
         Queue::assertPushed(
             BeatmapsetDiscussionPostNew::class,
             fn (BeatmapsetDiscussionPostNew $job) => (
-                $this->inReceivers($watcher->getKey(), $job)
-                && !$this->inReceivers($user->getKey(), $job)
+                $this->inReceivers($watcher, $job)
+                && !$this->inReceivers($user, $job)
             )
         );
 
@@ -56,8 +56,8 @@ class ReplyTest extends TestCase
         Event::assertDispatched(
             NewPrivateNotificationEvent::class,
             fn (NewPrivateNotificationEvent $event) => (
-                $this->inReceivers($watcher->getKey(), $event)
-                && !$this->inReceivers($user->getKey(), $event)
+                $this->inReceivers($watcher, $event)
+                && !$this->inReceivers($user, $event)
             )
         );
     }
@@ -82,8 +82,8 @@ class ReplyTest extends TestCase
             BeatmapsetDiscussionPostNew::class,
             fn (BeatmapsetDiscussionPostNew $job) => (
                 $includeStarter
-                    ? $this->inReceivers($starter->getKey(), $job)
-                    : !$this->inReceivers($starter->getKey(), $job)
+                    ? $this->inReceivers($starter, $job)
+                    : !$this->inReceivers($starter, $job)
             )
         );
     }

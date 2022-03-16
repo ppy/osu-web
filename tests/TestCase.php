@@ -14,6 +14,7 @@ use App\Models\OAuth\Client;
 use App\Models\User;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Firebase\JWT\JWT;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Testing\Fakes\MailFake;
@@ -249,9 +250,9 @@ class TestCase extends BaseTestCase
         }, glob("{$path}/*{$suffix}"));
     }
 
-    protected function inReceivers($id, NewPrivateNotificationEvent|BroadcastNotificationBase $obj): bool
+    protected function inReceivers(Model $model, NewPrivateNotificationEvent|BroadcastNotificationBase $obj): bool
     {
-        return in_array($id, $obj->getReceiverIds(), true);
+        return in_array($model->getKey(), $obj->getReceiverIds(), true);
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])

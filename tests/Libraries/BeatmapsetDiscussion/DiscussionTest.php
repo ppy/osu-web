@@ -120,8 +120,8 @@ class DiscussionTest extends TestCase
         Queue::assertPushed(
             BeatmapsetDiscussionPostNew::class,
             fn (BeatmapsetDiscussionPostNew $job) => (
-                $this->inReceivers($watcher->getKey(), $job)
-                && !$this->inReceivers($user->getKey(), $job)
+                $this->inReceivers($watcher, $job)
+                && !$this->inReceivers($user, $job)
             )
         );
 
@@ -131,8 +131,8 @@ class DiscussionTest extends TestCase
         Event::assertDispatched(
             NewPrivateNotificationEvent::class,
             fn (NewPrivateNotificationEvent $event) => (
-                $this->inReceivers($watcher->getKey(), $event)
-                && !$this->inReceivers($user->getKey(), $event)
+                $this->inReceivers($watcher, $event)
+                && !$this->inReceivers($user, $event)
             )
         );
     }
@@ -275,7 +275,7 @@ class DiscussionTest extends TestCase
         if ($expectsNotification) {
             Event::assertDispatched(
                 NewPrivateNotificationEvent::class,
-                fn (NewPrivateNotificationEvent $event) => $this->inReceivers($watcher->getKey(), $event)
+                fn (NewPrivateNotificationEvent $event) => $this->inReceivers($watcher, $event)
             );
         } else {
             Event::assertNotDispatched(NewPrivateNotificationEvent::class);
