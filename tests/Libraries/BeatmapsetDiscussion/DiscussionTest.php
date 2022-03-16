@@ -117,18 +117,24 @@ class DiscussionTest extends TestCase
 
         (new Discussion($user, $beatmapset, $this->makeParams('praise'), static::TEST_MESSAGE))->handle();
 
-        Queue::assertPushed(BeatmapsetDiscussionPostNew::class, function (BeatmapsetDiscussionPostNew $job) use ($user, $watcher) {
-            return in_array($watcher->getKey(), $job->getReceiverIds(), true)
-                && !in_array($user->getKey(), $job->getReceiverIds(), true);
-        });
+        Queue::assertPushed(
+            BeatmapsetDiscussionPostNew::class,
+            fn (BeatmapsetDiscussionPostNew $job) => (
+                in_array($watcher->getKey(), $job->getReceiverIds(), true)
+                && !in_array($user->getKey(), $job->getReceiverIds(), true)
+            )
+        );
 
         $this->runFakeQueue();
 
         // TODO: this should probably be changed to asserting "if job queued, then event is broadcast to receivers with option set"
-        Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($user, $watcher) {
-            return in_array($watcher->getKey(), $event->getReceiverIds(), true)
-                && !in_array($user->getKey(), $event->getReceiverIds(), true);
-        });
+        Event::assertDispatched(
+            NewPrivateNotificationEvent::class,
+            fn (NewPrivateNotificationEvent $event) => (
+                in_array($watcher->getKey(), $event->getReceiverIds(), true)
+                && !in_array($user->getKey(), $event->getReceiverIds(), true)
+            )
+        );
     }
 
     //region Posting mapper notes
@@ -267,9 +273,10 @@ class DiscussionTest extends TestCase
         (new Discussion($user, $beatmapset, $this->makeParams('problem'), static::TEST_MESSAGE))->handle();
 
         if ($expectsNotification) {
-            Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($watcher) {
-                return in_array($watcher->getKey(), $event->getReceiverIds(), true);
-            });
+            Event::assertDispatched(
+                NewPrivateNotificationEvent::class,
+                fn (NewPrivateNotificationEvent $event) => in_array($watcher->getKey(), $event->getReceiverIds(), true)
+            );
         } else {
             Event::assertNotDispatched(NewPrivateNotificationEvent::class);
         }
