@@ -7,8 +7,8 @@ namespace App\Models\Multiplayer;
 
 use App\Exceptions\GameCompletedException;
 use App\Exceptions\InvariantException;
-use App\Libraries\ScoreCheck;
 use App\Models\Model;
+use App\Models\Solo\ScoreData;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -76,7 +76,13 @@ class Score extends Model
 
     public function getDataAttribute()
     {
-        return $this;
+        // FIXME: convert this class to the new score table layout
+        $params = $this->getAttributes();
+        $params['mods'] = json_decode($params['mods'], true);
+        $params['passed'] = get_bool($params['passed']);
+        $params['statistics'] = json_decode($params['statistics'], true);
+
+        return new ScoreData($params);
     }
 
     public function scopeCompleted($query)
@@ -125,7 +131,7 @@ class Score extends Model
             }
         }
 
-        ScoreCheck::assertCompleted($this);
+        $this->data->assertCompleted();
 
         $this->save();
     }
