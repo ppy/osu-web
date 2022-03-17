@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
+import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
@@ -61,15 +62,17 @@ export default class CreateChannel extends React.Component<Props> {
         </div>
         <div className='chat-create-channel__container'>
           players to invite
-          <div>
-            {this.renderValidUsers()}
+          <div className='chat-create-channel__users-input'>
+            <div className='chat-create-channel__users'>
+              {this.renderValidUsers()}
+            </div>
+            <input
+              className='chat-create-channel__users-text'
+              onChange={this.handleUsersInputChange}
+              onPaste={this.handleUsersInputPaste}
+              value={this.usersText}
+            />
           </div>
-          <input
-            className='chat-create-channel__input'
-            onChange={this.handleUsersInputChange}
-            onPaste={this.handleUsersInputPaste}
-            value={this.usersText}
-          />
         </div>
         <div className='chat-create-channel__container'>
           <TextareaAutosize
@@ -93,7 +96,9 @@ export default class CreateChannel extends React.Component<Props> {
   }
 
   renderValidUsers() {
-    return [...this.validUsers.values()].map((user) => <span key={user.id}>{user.username}</span>);
+    return [...this.validUsers.values()].map((user) => (
+      <UserCardBrick key={user.id} user={user} />
+    ));
   }
 
   private fetchUsers(ids: string[]) {
@@ -166,14 +171,14 @@ export default class CreateChannel extends React.Component<Props> {
     const userIds = this.userIds.slice();
     const invalidUsers: string[] = [];
 
-    let userId = userIds.shift()?.trim();
-    while (osu.presence(userId) != null) {
+    let userId = osu.presence(userIds.shift()?.trim());
+    while (userId != null) {
       if (!this.validUsersContains(userId)) {
         console.log(`${userId} not valid`);
         invalidUsers.push(userId);
       }
 
-      userId = userIds.shift()?.trim();
+      userId = osu.presence(userIds.shift()?.trim());
     }
 
     this.usersText = invalidUsers.join(', ');

@@ -20,10 +20,8 @@
   &__input {
     .default-border-radius();
     .reset-input();
-    background-color: hsl(var(--hsl-b6));
-    color: inherit;
-    padding: 1px 3px;
-    width: auto;
+    background: hsl(var(--hsl-b6));
+    padding: 5px;
     border: 2px solid transparent;
 
     &--error {
@@ -33,5 +31,37 @@
 
   &__title {
 
+  }
+
+  &__users {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: flex-start;
+
+    // this is to remove the gap from users-input when this element is empty.
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__users-input {
+    .default-border-radius();
+    .reset-input();
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-start;
+
+    background: hsl(var(--hsl-b6));
+    padding: 5px;
+    width: 100%;
+    border: 2px solid transparent;
+  }
+
+  &__users-text {
+    .reset-input();
+    flex: 1;
   }
 }
