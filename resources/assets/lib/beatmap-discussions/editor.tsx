@@ -150,10 +150,6 @@ export default class Editor extends React.Component<Props, State> {
     }
   }
 
-  componentWillUpdate(): void {
-    this.cache = {};
-  }
-
   decorateTimestamps = (entry: NodeEntry) => {
     const [node, path] = entry;
     const ranges: TimestampRange[] = [];
@@ -255,6 +251,7 @@ export default class Editor extends React.Component<Props, State> {
   };
 
   render(): React.ReactNode {
+    this.cache = {};
     const editorClass = 'beatmap-discussion-editor';
     const modifiers = this.props.editMode ? ['edit-mode'] : [];
     if (this.state.posting) {
