@@ -8,6 +8,7 @@ namespace Database\Factories;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetNomination;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
@@ -91,5 +92,15 @@ class BeatmapsetFactory extends Factory
             ->has(BeatmapDiscussion::factory()->general()->state(fn (array $attr, Beatmapset $set) => [
                 'user_id' => $set->user_id,
             ]));
+    }
+
+    public function withNominations()
+    {
+        $count = config('osu.beatmapset.required_nominations');
+
+        return $this
+            ->has(BeatmapsetNomination::factory()
+                ->count($count)
+                ->state(['user_id' => User::factory()->withGroup('bng', array_keys(Beatmap::MODES))]));
     }
 }

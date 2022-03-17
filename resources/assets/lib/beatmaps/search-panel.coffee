@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { SearchFilter } from './search-filter'
+import { runInAction } from 'mobx'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -43,7 +44,8 @@ export class SearchPanel extends React.Component
 
   expand: (e) ->
     e.preventDefault()
-    controller.isExpanded = true
+    runInAction =>
+      controller.isExpanded = true
 
 
   render: =>

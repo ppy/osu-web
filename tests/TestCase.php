@@ -5,13 +5,16 @@
 
 namespace Tests;
 
+use App\Events\NewPrivateNotificationEvent;
 use App\Http\Middleware\AuthApi;
+use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Libraries\BroadcastsPendingForTests;
 use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Firebase\JWT\JWT;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Testing\Fakes\MailFake;
@@ -247,17 +250,9 @@ class TestCase extends BaseTestCase
         }, glob("{$path}/*{$suffix}"));
     }
 
-    protected function makeBeatmapsetDiscussionPostParams(Beatmapset $beatmapset, string $messageType)
+    protected function inReceivers(Model $model, NewPrivateNotificationEvent|BroadcastNotificationBase $obj): bool
     {
-        return [
-            'beatmapset_id' => $beatmapset->getKey(),
-            'beatmap_discussion' => [
-                'message_type' => $messageType,
-            ],
-            'beatmap_discussion_post' => [
-                'message' => 'Hello',
-            ],
-        ];
+        return in_array($model->getKey(), $obj->getReceiverIds(), true);
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])
@@ -282,6 +277,19 @@ class TestCase extends BaseTestCase
         $property->setAccessible(true);
 
         $property->setValue($obj, $value);
+    }
+
+    protected function makeBeatmapsetDiscussionPostParams(Beatmapset $beatmapset, string $messageType)
+    {
+        return [
+            'beatmapset_id' => $beatmapset->getKey(),
+            'beatmap_discussion' => [
+                'message_type' => $messageType,
+            ],
+            'beatmap_discussion_post' => [
+                'message' => 'Hello',
+            ],
+        ];
     }
 
     protected function normalizeHTML($html)
