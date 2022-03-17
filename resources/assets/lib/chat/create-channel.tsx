@@ -6,7 +6,7 @@ import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
@@ -16,8 +16,6 @@ type Props = Record<string, never>;
 
 @observer
 export default class CreateChannel extends React.Component<Props> {
-  @observable private busy = false;
-
   // delay needs to shorter when copy and paste, or need to be a discrete action
   private debouncedLookupUsers = debounce(this.lookupUsers, 1000);
 
@@ -30,22 +28,11 @@ export default class CreateChannel extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
-
-    // autorun(() => {
-    //   this.isValid = !this.busy && this.usersValid && osu.present(this.name);
-    //   console.log(this.isValid);
-    // });
   }
 
   @computed
   private get userIds() {
-    return this.usersText.split(',').map((s) => s.trim());
-  }
-
-  @computed
-  private get usersValid() {
-    this.validateUsers();
-    return this.usersText.length === 0;
+    return this.usersText.split(',').map((s) => osu.presence(s.trim()));
   }
 
   render() {
@@ -101,7 +88,28 @@ export default class CreateChannel extends React.Component<Props> {
     ));
   }
 
-  private fetchUsers(ids: string[]) {
+  /**
+   * Disassembles and extract valid users from the string.
+   */
+  @action
+  private extractValidUsers() {
+    const userIds = this.usersText.split(',');
+    if (userIds.length === 0) return false;
+
+    const invalidUsers: string[] = [];
+
+    for (const userId of userIds) {
+      const trimmedUserId = osu.presence(userId.trim());
+
+      if (!this.validUsersContains(trimmedUserId)) {
+        invalidUsers.push(userId);
+      }
+    }
+
+    this.usersText = invalidUsers.join(',');
+  }
+
+  private fetchUsers(ids: (string | null)[]) {
     return $.getJSON(route('users.index'), { ids }) as JQuery.jqXHR<{ users: UserJson[] }>;
   }
 
@@ -141,17 +149,19 @@ export default class CreateChannel extends React.Component<Props> {
   private async lookupUsers() {
     this.debouncedLookupUsers.cancel();
 
-    const response = await this.fetchUsers(this.userIds);
+    const userIds = this.usersText.split(',').map((s) => osu.presence(s.trim()));
+
+    const response = await this.fetchUsers(userIds);
     runInAction(() => {
       for (const user of response.users) {
         this.validUsers.set(user.id, user);
       }
 
-      this.validateUsers();
+      this.extractValidUsers();
     });
   }
 
-  private validUsersContains(userId?: string) {
+  private validUsersContains(userId?: string | null) {
     if (userId == null) return false;
 
     if (this.validUsers.has(Number.parseInt(userId, 10))) return true;
@@ -163,28 +173,4 @@ export default class CreateChannel extends React.Component<Props> {
 
     return false;
   }
-
-  @action
-  private validateUsers() {
-    if (this.userIds.length === 0) return false;
-
-    const userIds = this.userIds.slice();
-    const invalidUsers: string[] = [];
-
-    let userId = osu.presence(userIds.shift()?.trim());
-    while (userId != null) {
-      if (!this.validUsersContains(userId)) {
-        console.log(`${userId} not valid`);
-        invalidUsers.push(userId);
-      }
-
-      userId = osu.presence(userIds.shift()?.trim());
-    }
-
-    this.usersText = invalidUsers.join(', ');
-
-    return invalidUsers.length > 0;
-  }
-
-
 }
