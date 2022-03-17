@@ -79,15 +79,6 @@ export function find<T extends BeatmapJson>(params: FindParams<T>): T | null {
   return null;
 }
 
-export function getDiffRating(rating: number) {
-  if (rating < 2) return 'easy';
-  if (rating < 2.7) return 'normal';
-  if (rating < 4) return 'hard';
-  if (rating < 5.3) return 'insane';
-  if (rating < 6.5) return 'expert';
-  return 'expert-plus';
-}
-
 export function getDiffColour(rating: number) {
   if (rating < 0.1) return '#AAAAAA';
   if (rating >= 9) return '#000000';
