@@ -51,7 +51,6 @@ export class BeatmapIcon extends React.Component<Props> {
   private readonly handleMouseOver = (event: React.SyntheticEvent<HTMLElement>) => {
     if (!this.props.withTooltip) return;
 
-    event.persist();
     const el = event.currentTarget;
 
     // on touch devices, touchstart and then mouseover will trigger.

@@ -35,7 +35,7 @@ class Reply
             $this->resolve = null;
         }
 
-        if ($resolve !== null) {
+        if ($this->resolve !== null) {
             if (!$discussion->canBeResolved()) {
                 throw new InvariantException("{$discussion->message_type} does not support resolving.");
             }
@@ -46,7 +46,7 @@ class Reply
             }
         }
 
-        $this->maybeSetProblemDiscussion($discussion);
+        $this->maybeSetProblemDiscussion($discussion, false);
     }
 
     /**

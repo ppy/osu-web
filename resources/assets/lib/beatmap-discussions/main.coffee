@@ -37,8 +37,6 @@ export class Main extends React.PureComponent
     @xhr = {}
     @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
     @restoredState = @state?
-    # FIXME: update url handler to recognize this instead
-    @focusNewDiscussion = currentUrl().hash == '#new'
 
     if @restoredState
       @state.readPostIds = new Set(@state.readPostIdsArray)
@@ -60,9 +58,12 @@ export class Main extends React.PureComponent
     @state.currentFilter = query.filter
     @state.currentBeatmapId = query.beatmapId if query.beatmapId?
     @state.selectedUserId = query.user
+    # FIXME: update url handler to recognize this instead
+    @focusNewDiscussion = currentUrl().hash == '#new'
 
 
   componentDidMount: =>
+    @focusNewDiscussion = false
     $.subscribe "playmode:set.#{@eventId}", @setCurrentPlaymode
 
     $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @update
@@ -76,11 +77,6 @@ export class Main extends React.PureComponent
 
     @jumpToDiscussionByHash() if !@restoredState
     @timeouts.checkNew = Timeout.set @checkNewTimeoutDefault, @checkNew
-
-
-  componentWillUpdate: =>
-    @cache = {}
-    @focusNewDiscussion = false
 
 
   componentDidUpdate: (_prevProps, prevState) =>
@@ -102,6 +98,8 @@ export class Main extends React.PureComponent
 
 
   render: =>
+    @cache = {}
+
     el React.Fragment, null,
       el Header,
         beatmaps: @groupedBeatmaps()

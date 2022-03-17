@@ -610,7 +610,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             throw new InvariantException('invalid state');
         }
 
-        $this->getConnection()->transaction(function () use ($event, $notificationClass, $discussion, $user) {
+        $this->getConnection()->transaction(function () use ($discussion, $event, $notificationClass, $user) {
             $nominators = User::whereIn('user_id', $this->beatmapsetNominations()->current()->select('user_id'))->get();
 
             BeatmapsetEvent::log($event, $user, $discussion, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
