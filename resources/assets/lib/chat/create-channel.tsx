@@ -116,7 +116,7 @@ export default class CreateChannel extends React.Component<Props> {
 
   renderValidUsers() {
     return [...this.validUsers.values()].map((user) => (
-      <UserCardBrick key={user.id} user={user} />
+      <UserCardBrick key={user.id} modifiers='fit' user={user} />
     ));
   }
 

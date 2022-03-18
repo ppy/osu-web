@@ -6,7 +6,8 @@
   flex-direction: column;
   gap: 10px;
   padding: 20px;
-  --input-height: 24px; // has to be tall enough to fit the brick without shifting.
+  --input-height: 30px; // has to be tall enough to fit the brick without shifting.
+  --input-size: @font-size--title-small-3;
 
   &__box {
     .reset-input();
@@ -15,6 +16,7 @@
 
   &__input {
     .reset-input();
+    font-size: var(--input-size);
     min-height: var(--input-height);
   }
 
@@ -33,7 +35,8 @@
   }
 
   &__input-label {
-    font-size: 12px;
+    font-size: @font-size--normal;
+    font-weight: normal;
     text-transform: initial;
   }
 
@@ -64,6 +67,7 @@
     gap: 5px;
     justify-content: flex-start;
 
+    font-size: var(--input-size);
     min-height: var(--input-height);
   }
 
