@@ -15,6 +15,12 @@ import { createAnnoucement } from './chat-api';
 
 type Props = Record<string, never>;
 
+interface Inputs {
+  description: string;
+  message: string;
+  name: string;
+}
+
 const BusySpinner = ({ busy }: { busy: boolean }) => (
   <div className='chat-create-channel__spinner'>
     {busy && <Spinner />}
@@ -28,9 +34,12 @@ export default class CreateChannel extends React.Component<Props> {
   };
   // delay needs to shorter when copy and paste, or need to be a discrete action
   private debouncedLookupUsers = debounce(this.lookupUsers, 1000);
-  @observable private description = '';
-  @observable private message = '';
-  @observable private name = '';
+  @observable
+  private inputs: Record<keyof Inputs, string> & Partial<Record<string, string>> = {
+    description: '',
+    message: '',
+    name: '',
+  };
   @observable private usersText = '';
   @observable private validUsers = new Map<number, UserJson>();
 
@@ -44,9 +53,9 @@ export default class CreateChannel extends React.Component<Props> {
   get isValid() {
     return this.validUsers.size > 0
       && !osu.present(this.usersText.trim()) // implies no invalid ids left
-      && osu.present(this.name.trim())
-      && osu.present(this.description.trim())
-      && osu.present(this.message.trim());
+      && osu.present(this.inputs.name.trim())
+      && osu.present(this.inputs.description.trim())
+      && osu.present(this.inputs.message.trim());
   }
 
   render() {
@@ -57,16 +66,18 @@ export default class CreateChannel extends React.Component<Props> {
           <label className='chat-create-channel__input-label'>room name</label>
           <input
             className='chat-create-channel__input'
-            onChange={this.handleNameInput}
-            value={this.name}
+            name='name'
+            onChange={this.handleInput}
+            value={this.inputs.name}
           />
         </div>
         <div className='chat-create-channel__input-container'>
           <label className='chat-create-channel__input-label'>description</label>
           <input
             className='chat-create-channel__input'
-            onChange={this.handleDescriptionInput}
-            value={this.description}
+            name='description'
+            onChange={this.handleInput}
+            value={this.inputs.description}
           />
         </div>
         <div className='chat-create-channel__input-container'>
@@ -89,8 +100,8 @@ export default class CreateChannel extends React.Component<Props> {
             autoComplete='off'
             className='chat-create-channel__box'
             maxRows={10}
-            name='textbox'
-            onChange={this.handleTextareaInput}
+            name='message'
+            onChange={this.handleInput}
             placeholder={osu.trans('chat.input.placeholder')}
             rows={10}
           />
@@ -141,28 +152,20 @@ export default class CreateChannel extends React.Component<Props> {
   private handleButtonClick = () => {
     createAnnoucement({
       channel: {
-        description: this.description.trim(),
-        name: this.name.trim(),
+        description: this.inputs.description.trim(),
+        name: this.inputs.name.trim(),
       },
-      message: this.message.trim(),
+      message: this.inputs.message.trim(),
       target_ids: [...this.validUsers.keys()],
       type: 'ANNOUNCE',
     });
   };
 
   @action
-  private handleDescriptionInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.description = e.currentTarget.value;
-  };
+  private handleInput = (e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {
+    const elem = e.currentTarget;
 
-  @action
-  private handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.name = e.currentTarget.value;
-  };
-
-  @action
-  private handleTextareaInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.message = e.currentTarget.value;
+    this.inputs[elem.name] = elem.value;
   };
 
   @action
