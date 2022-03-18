@@ -114,15 +114,13 @@ export default class CreateChannel extends React.Component<Props> {
   }
 
   private handleButtonClick = () => {
-    const targetIds = Object.keys(this.userIds).map(Number.parseInt);
-
     createAnnoucement({
       channel: {
         description: 'an announcement',
         name: this.name,
       },
       message: 'message',
-      target_ids: targetIds,
+      target_ids: [...this.validUsers.keys()],
       type: 'ANNOUNCE',
     });
   };
