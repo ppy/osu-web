@@ -12,14 +12,11 @@ interface Props {
   score: ScoreJsonForShow;
 }
 
-export default function Info(props: Props) {
-  const score = props.score;
-  const beatmapset = props.score.beatmapset;
-
+export default function Info({ score }: Props) {
   return (
     <div
       className='score-info'
-      style={{ backgroundImage: osu.urlPresence(beatmapset.covers.cover) }}
+      style={{ backgroundImage: osu.urlPresence(score.beatmapset.covers.cover) }}
     >
       <div className='score-info__item'>
         <Tower rank={score.rank} />

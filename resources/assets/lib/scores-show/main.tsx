@@ -12,9 +12,8 @@ interface Props {
   score: ScoreJsonForShow;
 }
 
-export default function Main(props: Props) {
-  const beatmap = props.score.beatmap;
-  const beatmapset = props.score.beatmapset;
+export default function Main({ score }: Props) {
+  const { beatmap, beatmapset } = score;
 
   return (
     <>
@@ -23,9 +22,9 @@ export default function Main(props: Props) {
       <div className='osu-page osu-page--generic-compact'>
         <BeatmapInfo beatmap={beatmap} beatmapset={beatmapset} />
 
-        <Info score={props.score} />
+        <Info score={score} />
 
-        <Stats beatmap={beatmap} score={props.score} />
+        <Stats beatmap={beatmap} score={score} />
       </div>
     </>
   );
