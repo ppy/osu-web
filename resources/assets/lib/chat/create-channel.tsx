@@ -53,9 +53,7 @@ export default class CreateChannel extends React.Component<Props> {
   get isValid() {
     return this.validUsers.size > 0
       && !osu.present(this.usersText.trim()) // implies no invalid ids left
-      && osu.present(this.inputs.name.trim())
-      && osu.present(this.inputs.description.trim())
-      && osu.present(this.inputs.message.trim());
+      && Object.values(this.inputs).every(osu.present);
   }
 
   render() {
@@ -68,7 +66,6 @@ export default class CreateChannel extends React.Component<Props> {
             className='chat-create-channel__input'
             name='name'
             onChange={this.handleInput}
-            value={this.inputs.name}
           />
         </div>
         <div className='chat-create-channel__input-container'>
@@ -77,7 +74,6 @@ export default class CreateChannel extends React.Component<Props> {
             className='chat-create-channel__input'
             name='description'
             onChange={this.handleInput}
-            value={this.inputs.description}
           />
         </div>
         <div className='chat-create-channel__input-container'>
@@ -150,12 +146,11 @@ export default class CreateChannel extends React.Component<Props> {
   }
 
   private handleButtonClick = () => {
+    const { description, message, name } = this.inputs;
+
     createAnnoucement({
-      channel: {
-        description: this.inputs.description.trim(),
-        name: this.inputs.name.trim(),
-      },
-      message: this.inputs.message.trim(),
+      channel: { description, name },
+      message,
       target_ids: [...this.validUsers.keys()],
       type: 'ANNOUNCE',
     });
@@ -165,7 +160,7 @@ export default class CreateChannel extends React.Component<Props> {
   private handleInput = (e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {
     const elem = e.currentTarget;
 
-    this.inputs[elem.name] = elem.value;
+    this.inputs[elem.name] = elem.value.trim();
   };
 
   @action
