@@ -3,7 +3,7 @@
 
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
 import ShowMoreLink from 'components/show-more-link';
-import ScoreJson, { ScoreCurrentUserPinJson } from 'interfaces/score-json';
+import { ScoreCurrentUserPinJson, ScoreJsonForUser } from 'interfaces/score-json';
 import { action, autorun, computed, makeObservable, observable } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
@@ -62,7 +62,7 @@ export default class PlayDetailList extends React.Component<Props> {
   private get uniqueItems() {
     if (!Array.isArray(this.paginatorJson.items)) return [];
 
-    const ret = new Map<number, ScoreJson>();
+    const ret = new Map<number, ScoreJsonForUser>();
     this.paginatorJson.items.forEach((item) => ret.set(item.id, item));
 
     return [...ret.values()];
