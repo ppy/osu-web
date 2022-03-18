@@ -44,11 +44,14 @@ class ScoreTransformer extends TransformerAbstract
             // this `best` relation is also used by `current_user_attributes` include.
             $best = $score->best;
 
-            $bestId = $best->getKey();
             $createdAt = $score->date;
             $mode = $score->getMode();
-            $pp = $best->pp;
-            $replay = $best->replay ?? false;
+
+            if ($best !== null) {
+                $bestId = $best->getKey();
+                $pp = $best->pp;
+                $replay = $best->replay ?? false;
+            }
         } else {
             // LegacyMatch\Score
             $createdAt = $score->game->start_time;
