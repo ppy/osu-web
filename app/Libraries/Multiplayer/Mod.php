@@ -448,6 +448,10 @@ class Mod
                             self::OSU_AIMASSIST,
                             self::OSU_TRANSFORM,
                         ],
+                        [
+                            self::OSU_AIMASSIST,
+                            self::RELAX,
+                        ],
                     ]
                 ),
                 Ruleset::TAIKO => array_merge(
