@@ -45,11 +45,13 @@ class ScoreTransformer extends TransformerAbstract
             $best = $score->best;
 
             $bestId = $best->getKey();
+            $createdAt = $score->date;
             $mode = $score->getMode();
             $pp = $best->pp;
             $replay = $best->replay ?? false;
         } else {
             // LegacyMatch\Score
+            $createdAt = $score->game->start_time;
             $mode = $score->gameModeString();
         }
 
@@ -65,7 +67,7 @@ class ScoreTransformer extends TransformerAbstract
         return [
             'accuracy' => $score->accuracy(),
             'best_id' => $bestId ?? null,
-            'created_at' => json_time($score->date),
+            'created_at' => json_time($createdAt),
             'id' => $score->getKey(),
             'max_combo' => $score->maxcombo,
             'mode' => $mode,
