@@ -85,6 +85,7 @@ export default class CreateChannel extends React.Component<Props> {
             <input
               className='chat-create-channel__users-text'
               onChange={this.handleUsersInputChange}
+              onKeyUp={this.handleUsersInputKeyUp}
               onPaste={this.handleUsersInputPaste}
               value={this.usersText}
             />
@@ -145,6 +146,7 @@ export default class CreateChannel extends React.Component<Props> {
     return $.getJSON(route('users.index'), { ids }) as JQuery.jqXHR<{ users: UserJson[] }>;
   }
 
+  @action
   private handleButtonClick = () => {
     const { description, message, name } = this.inputs;
 
@@ -170,6 +172,17 @@ export default class CreateChannel extends React.Component<Props> {
     this.debouncedLookupUsers();
   };
 
+  @action
+  private handleUsersInputKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Backspace' && this.usersText.length === 0) {
+      const last = [...this.validUsers.keys()].pop();
+      if (last != null) {
+        this.validUsers.delete(last);
+      }
+    }
+  };
+
+  @action
   private handleUsersInputPaste = (e: React.SyntheticEvent<HTMLInputElement>) => {
     this.debouncedLookupUsers.cancel();
     this.usersText = e.currentTarget.value;
