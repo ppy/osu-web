@@ -7,7 +7,7 @@ import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
@@ -28,16 +28,25 @@ export default class CreateChannel extends React.Component<Props> {
   };
   // delay needs to shorter when copy and paste, or need to be a discrete action
   private debouncedLookupUsers = debounce(this.lookupUsers, 1000);
-  @observable private isValid = false;
+  @observable private description = '';
+  @observable private message = '';
   @observable private name = '';
   @observable private usersText = '';
   @observable private validUsers = new Map<number, UserJson>();
-
 
   constructor(props: Props) {
     super(props);
 
     makeObservable(this);
+  }
+
+  @computed
+  get isValid() {
+    return this.validUsers.size > 0
+      && !osu.present(this.usersText.trim()) // implies no invalid ids left
+      && osu.present(this.name.trim())
+      && osu.present(this.description.trim())
+      && osu.present(this.message.trim());
   }
 
   render() {
@@ -50,6 +59,14 @@ export default class CreateChannel extends React.Component<Props> {
             className='chat-create-channel__input'
             onChange={this.handleNameInput}
             value={this.name}
+          />
+        </div>
+        <div className='chat-create-channel__input-container'>
+          <label className='chat-create-channel__input-label'>description</label>
+          <input
+            className='chat-create-channel__input'
+            onChange={this.handleDescriptionInput}
+            value={this.description}
           />
         </div>
         <div className='chat-create-channel__input-container'>
@@ -73,6 +90,7 @@ export default class CreateChannel extends React.Component<Props> {
             className='chat-create-channel__box'
             maxRows={10}
             name='textbox'
+            onChange={this.handleTextareaInput}
             placeholder={osu.trans('chat.input.placeholder')}
             rows={10}
           />
@@ -123,18 +141,28 @@ export default class CreateChannel extends React.Component<Props> {
   private handleButtonClick = () => {
     createAnnoucement({
       channel: {
-        description: 'an announcement',
-        name: this.name,
+        description: this.description.trim(),
+        name: this.name.trim(),
       },
-      message: 'message',
+      message: this.message.trim(),
       target_ids: [...this.validUsers.keys()],
       type: 'ANNOUNCE',
     });
   };
 
   @action
+  private handleDescriptionInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.description = e.currentTarget.value;
+  };
+
+  @action
   private handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.name = e.currentTarget.value;
+  };
+
+  @action
+  private handleTextareaInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.message = e.currentTarget.value;
   };
 
   @action
