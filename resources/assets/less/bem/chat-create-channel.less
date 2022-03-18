@@ -6,31 +6,44 @@
   flex-direction: column;
   gap: 10px;
   padding: 20px;
+  --input-height: 24px; // has to be tall enough to fit the brick without shifting.
 
   &__box {
-    .default-border-radius();
     .reset-input();
-  }
-
-  &__container {
-    display: flex;
-    flex-direction: column;
+    resize: none;
   }
 
   &__input {
-    .default-border-radius();
     .reset-input();
+    min-height: var(--input-height);
+  }
+
+  &__input-container {
+    .default-border-radius();
+
+    display: flex;
+    flex-direction: column;
     background: hsl(var(--hsl-b6));
+
     padding: 5px;
     border: 2px solid transparent;
 
-    &--error {
-      border-color: hsl(var(--hsl-red-2));
-    }
+    width: 100%;
+    min-height: var(--input-height);
+  }
+
+  &__input-label {
+    font-size: 12px;
+    text-transform: initial;
+  }
+
+  &__spinner {
+    display: inline-flex;
+    align-items: center;
   }
 
   &__title {
-
+    font-size: @font-size--title;
   }
 
   &__users {
@@ -46,18 +59,12 @@
   }
 
   &__users-input {
-    .default-border-radius();
-    .reset-input();
-
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
     justify-content: flex-start;
 
-    background: hsl(var(--hsl-b6));
-    padding: 5px;
-    width: 100%;
-    border: 2px solid transparent;
+    min-height: var(--input-height);
   }
 
   &__users-text {

@@ -2,11 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
+import { Spinner } from 'components/spinner';
 import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
@@ -14,15 +15,24 @@ import { createAnnoucement } from './chat-api';
 
 type Props = Record<string, never>;
 
+const BusySpinner = ({ busy }: { busy: boolean }) => (
+  <div className='chat-create-channel__spinner'>
+    {busy && <Spinner />}
+  </div>
+);
+
 @observer
 export default class CreateChannel extends React.Component<Props> {
+  @observable private busy = {
+    lookupUsers: false,
+  };
   // delay needs to shorter when copy and paste, or need to be a discrete action
   private debouncedLookupUsers = debounce(this.lookupUsers, 1000);
-
   @observable private isValid = false;
   @observable private name = '';
   @observable private usersText = '';
   @observable private validUsers = new Map<number, UserJson>();
+
 
   constructor(props: Props) {
     super(props);
@@ -30,25 +40,20 @@ export default class CreateChannel extends React.Component<Props> {
     makeObservable(this);
   }
 
-  @computed
-  private get userIds() {
-    return this.usersText.split(',').map((s) => osu.presence(s.trim()));
-  }
-
   render() {
     return (
       <div className='chat-create-channel'>
         <div className='chat-create-channel__title'>Create New Announcement</div>
-        <div className='chat-create-channel__container'>
-          room name
+        <div className='chat-create-channel__input-container'>
+          <label className='chat-create-channel__input-label'>room name</label>
           <input
             className='chat-create-channel__input'
             onChange={this.handleNameInput}
             value={this.name}
           />
         </div>
-        <div className='chat-create-channel__container'>
-          players to invite
+        <div className='chat-create-channel__input-container'>
+          <label className='chat-create-channel__input-label'>players to invite</label>
           <div className='chat-create-channel__users-input'>
             <div className='chat-create-channel__users'>
               {this.renderValidUsers()}
@@ -59,15 +64,17 @@ export default class CreateChannel extends React.Component<Props> {
               onPaste={this.handleUsersInputPaste}
               value={this.usersText}
             />
+            <BusySpinner busy={this.busy.lookupUsers} />
           </div>
         </div>
-        <div className='chat-create-channel__container'>
+        <div className='chat-create-channel__input-container'>
           <TextareaAutosize
             autoComplete='off'
             className='chat-create-channel__box'
             maxRows={10}
             name='textbox'
             placeholder={osu.trans('chat.input.placeholder')}
+            rows={10}
           />
         </div>
         <div className='chat-create-channel__button-bar'>
@@ -144,19 +151,25 @@ export default class CreateChannel extends React.Component<Props> {
     this.debouncedLookupUsers.flush();
   };
 
+  @action
   private async lookupUsers() {
+    this.busy.lookupUsers = true;
     this.debouncedLookupUsers.cancel();
 
     const userIds = this.usersText.split(',').map((s) => osu.presence(s.trim()));
 
-    const response = await this.fetchUsers(userIds);
-    runInAction(() => {
-      for (const user of response.users) {
-        this.validUsers.set(user.id, user);
-      }
+    try {
+      const response = await this.fetchUsers(userIds);
+      runInAction(() => {
+        for (const user of response.users) {
+          this.validUsers.set(user.id, user);
+        }
 
-      this.extractValidUsers();
-    });
+        this.extractValidUsers();
+      });
+    } finally {
+      runInAction(() => this.busy.lookupUsers = false);
+    }
   }
 
   private validUsersContains(userId?: string | null) {
