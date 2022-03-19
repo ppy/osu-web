@@ -6,13 +6,11 @@
 namespace App\Models\Solo;
 
 use App\Libraries\ModsHelper;
-use App\Libraries\ScoreCheck;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use stdClass;
 
 /**
  * @property int $beatmap_id
@@ -33,9 +31,8 @@ class Score extends Model
     protected $table = 'solo_scores';
     protected $casts = [
         'preserve' => 'boolean',
+        'data' => ScoreData::class,
     ];
-
-    private ?stdClass $currentData = null;
 
     public static function createFromJsonOrExplode(array $params)
     {
@@ -43,10 +40,10 @@ class Score extends Model
             'beatmap_id' => $params['beatmap_id'],
             'ruleset_id' => $params['ruleset_id'],
             'user_id' => $params['user_id'],
-            'data' => (object) $params,
+            'data' => $params,
         ]);
 
-        ScoreCheck::assertCompleted($score);
+        $score->data->assertCompleted();
 
         // this should potentially just be validation rather than applying this logic here, but
         // older lazer builds potentially submit incorrect details here (and we still want to
@@ -60,42 +57,6 @@ class Score extends Model
         return $score;
     }
 
-    public static function addMissingDataAttributes(stdClass $data)
-    {
-        static $attributes = [
-            'accuracy' => null,
-            'beatmap_id' => null,
-            'build_id' => null,
-            'ended_at' => null,
-            'max_combo' => null,
-            'mods' => null,
-            'passed' => false,
-            'rank' => null,
-            'ruleset_id' => null,
-            'started_at' => null,
-            'statistics' => null,
-            'total_score' => null,
-            'user_id' => null,
-        ];
-
-        foreach ($attributes as $key => $default) {
-            $data->$key ??= $default;
-        }
-
-        return $data;
-    }
-
-    public function getDataAttribute(?string $value)
-    {
-        return $this->currentData ??= static::addMissingDataAttributes(json_decode($value ?? '{}'));
-    }
-
-    public function setDataAttribute(stdClass $value)
-    {
-        $this->currentData = null;
-        $this->attributes['data'] = json_encode($value);
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -103,81 +64,51 @@ class Score extends Model
 
     public function createLegacyEntryOrExplode()
     {
-        $statAttrs = [
-            'Good',
-            'Great',
-            'LargeTickHit',
-            'LargeTickMiss',
-            'Meh',
-            'Miss',
-            'Ok',
-            'Perfect',
-            'SmallTickHit',
-            'SmallTickMiss',
-        ];
-        $statistics = $this->data->statistics;
-
-        foreach ($statAttrs as $attr) {
-            $statistics->$attr = get_int($statistics->$attr ?? 0) ?? 0;
-        }
-
+        $data = $this->data;
+        $statistics = $data->statistics;
         $scoreClass = LegacyScore\Model::getClass($this->ruleset_id);
 
         $score = new $scoreClass([
             'beatmap_id' => $this->beatmap_id,
-            'beatmapset_id' => optional($this->beatmap)->beatmapset_id ?? 0,
-            'countmiss' => $statistics->Miss,
-            'enabled_mods' => ModsHelper::toBitset(array_column($this->data->mods, 'acronym')),
-            'maxcombo' => $this->data->max_combo,
-            'pass' => $this->data->passed,
-            'perfect' => $this->data->passed && $statistics->Miss + $statistics->LargeTickMiss === 0,
-            'rank' => $this->data->rank,
-            'score' => $this->data->total_score,
+            'beatmapset_id' => $this->beatmap?->beatmapset_id ?? 0,
+            'countmiss' => $statistics->miss,
+            'enabled_mods' => ModsHelper::toBitset(array_column($data->mods, 'acronym')),
+            'maxcombo' => $data->maxCombo,
+            'pass' => $data->passed,
+            'perfect' => $data->passed && $statistics->miss + $statistics->largeTickMiss === 0,
+            'rank' => $data->rank,
+            'score' => $data->totalScore,
             'scorechecksum' => "\0",
             'user_id' => $this->user_id,
         ]);
 
         switch (Beatmap::modeStr($this->ruleset_id)) {
             case 'osu':
-                $score['count300'] = $statistics->Great;
-                $score['count100'] = $statistics->Ok;
-                $score['count50'] = $statistics->Meh;
+                $score->count300 = $statistics->great;
+                $score->count100 = $statistics->ok;
+                $score->count50 = $statistics->meh;
                 break;
             case 'taiko':
-                $score['count300'] = $statistics->Great;
-                $score['count100'] = $statistics->Ok;
+                $score->count300 = $statistics->great;
+                $score->count100 = $statistics->ok;
                 break;
             case 'fruits':
-                $score['count300'] = $statistics->Great;
-                $score['count100'] = $statistics->LargeTickHit;
-                $score['countkatu'] = $statistics->SmallTickMiss;
-                $score['count50'] = $statistics->SmallTickHit;
+                $score->count300 = $statistics->great;
+                $score->count100 = $statistics->largeTickHit;
+                $score->countkatu = $statistics->smallTickMiss;
+                $score->count50 = $statistics->smallTickHit;
                 break;
             case 'mania':
-                $score['countgeki'] = $statistics->Perfect;
-                $score['count300'] = $statistics->Great;
-                $score['countkatu'] = $statistics->Good;
-                $score['count100'] = $statistics->Ok;
-                $score['count50'] = $statistics->Meh;
+                $score->countgeki = $statistics->perfect;
+                $score->count300 = $statistics->great;
+                $score->countkatu = $statistics->good;
+                $score->count100 = $statistics->ok;
+                $score->count50 = $statistics->meh;
                 break;
         }
 
         $score->saveOrExplode();
 
         return $score;
-    }
-
-    public function refresh()
-    {
-        $this->currentData = null;
-
-        parent::refresh();
-    }
-
-    public function save(array $options = [])
-    {
-        $this->attributes['data'] = json_encode($this->data);
-
-        return parent::save($options);
     }
 }

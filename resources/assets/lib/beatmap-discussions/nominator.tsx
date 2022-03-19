@@ -3,7 +3,7 @@
 
 import BigButton from 'components/big-button';
 import { Modal } from 'components/modal';
-import BeatmapsetEventJson, { isBeatmapsetNominationEvent } from 'interfaces/beatmapset-event-json';
+import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
 import UserExtendedJson from 'interfaces/user-extended-json';
@@ -62,7 +62,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     };
 
     return _.some(this.nominationEvents(), (event) => {
-      if (isBeatmapsetNominationEvent(event)) {
+      if (event.type === 'nominate' && event.comment != null) {
         return event.comment.modes.includes(mode) && eventUserIsFullNominator(event, mode);
       } else {
         return eventUserIsFullNominator(event);

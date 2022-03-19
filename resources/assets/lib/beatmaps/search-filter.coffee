@@ -10,17 +10,9 @@ el = React.createElement
 controller = core.beatmapsetSearchController
 
 export class SearchFilter extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    @cache = {}
-
-
-  componentWillReceiveProps: (nextProps) =>
-    @cache = {}
-
-
   render: =>
+    @cache = {}
+
     div className: 'beatmapsets-search-filter',
       if @props.title?
         span className: 'beatmapsets-search-filter__header', @props.title

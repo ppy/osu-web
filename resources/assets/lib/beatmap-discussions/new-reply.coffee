@@ -28,11 +28,20 @@ export class NewReply extends React.PureComponent
     @box = React.createRef()
     @throttledPost = _.throttle @post, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
+    storedMessage = @storedMessage()
 
     @state =
-      editing: false
-      message: ''
+      editing: storedMessage != ''
+      message: storedMessage
       posting: null
+
+
+  componentDidUpdate: (prevProps) =>
+    if prevProps.discussion.id != @props.discussion.id
+      @setState message: @storedMessage()
+      return
+
+    @storeMessage()
 
 
   componentWillUnmount: =>
@@ -90,7 +99,7 @@ export class NewReply extends React.PureComponent
     button
       className: "#{bn}__action #{bn}__action--cancel"
       disabled: @state.posting?
-      onClick: => @setState editing: false
+      onClick: @onCancelClick
       i className: 'fas fa-times'
 
 
@@ -151,6 +160,14 @@ export class NewReply extends React.PureComponent
     @props.discussion.timestamp?
 
 
+  onCancelClick: =>
+    return if @state.message != '' && !confirm(osu.trans('common.confirmation_unsaved'))
+
+    @setState
+      editing: false
+      message: ''
+
+
   post: (event) =>
     return if !@validPost()
     showLoadingOverlay()
@@ -196,6 +213,21 @@ export class NewReply extends React.PureComponent
 
   setMessage: (e) =>
     @setState message: e.target.value
+
+
+  storageKey: =>
+    "beatmapset-discussion:reply:#{@props.discussion.id}:message"
+
+
+  storeMessage: =>
+    if @state.message == ''
+      localStorage.removeItem @storageKey()
+    else
+      localStorage.setItem @storageKey(), @state.message
+
+
+  storedMessage: =>
+    localStorage.getItem(@storageKey()) ? ''
 
 
   validPost: =>

@@ -2,15 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BlockButton from 'components/block-button';
-import { NotificationBanner } from 'components/notification-banner';
+import NotificationBanner from 'components/notification-banner';
 import UserJson from 'interfaces/user-json';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { isBlocked } from 'utils/user-helper';
 
 interface Props {
+  children?: React.ReactNode;
   user: UserJson;
 }
 
@@ -25,7 +26,7 @@ export default class UserProfileContainer extends React.Component<Props, State> 
 
   @computed
   get isBlocked() {
-    return isBlocked(this.props.user);
+    return core.currentUserModel.blocks.has(this.props.user.id);
   }
 
   constructor(props: Props) {
