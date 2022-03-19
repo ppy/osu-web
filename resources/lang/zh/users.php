@@ -159,6 +159,10 @@ return [
             '_' => '发表了 :link',
             'count' => ':count_delimited 条评论',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '更换个人资料头图',

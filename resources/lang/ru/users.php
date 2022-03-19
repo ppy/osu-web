@@ -159,6 +159,10 @@ return [
             '_' => 'Опубликовано :link',
             'count' => ':count_delimited комментарий|:count_delimited комментария|:count_delimited комментариев',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Сменить обложку профиля',

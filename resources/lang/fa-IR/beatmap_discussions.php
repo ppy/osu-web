@@ -30,7 +30,7 @@ return [
             'username' => 'نام کاربری',
 
             'beatmapset_status' => [
-                '_' => 'وضعیت بیتمپ',
+                '_' => 'وضعیت بیت مپ',
                 'all' => 'همه',
                 'disqualified' => 'رد صلاحیت',
                 'never_qualified' => 'هیچوقت واجد شرایط نشده',

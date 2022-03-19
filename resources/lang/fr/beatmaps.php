@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Êtes-vous sûr ? Cela va disqualifier la beatmap et réinitialiser le processus de nomination.',
             'nomination_reset' => 'Êtes-vous sûr ? Poster un nouveau problème va réinitialiser le processus de nomination.',
-            'problem_warning' => 'Êtes-vous sûr de vouloir signaler un problème sur cette beatmap ? Ceci alertera les nominateurs de beatmap.',
+            'problem_warning' => 'Êtes-vous sûr de vouloir signaler un problème sur cette beatmap ? Ceci alertera les Beatmap Nominators.',
         ],
     ],
 

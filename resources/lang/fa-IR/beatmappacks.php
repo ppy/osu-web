@@ -7,7 +7,7 @@ return [
     'index' => [
         'description' => '',
         'nav_title' => '',
-        'title' => 'پک بیتمپ ها',
+        'title' => 'بسته بیت مپ ها',
 
         'blurb' => [
             'important' => '***قبل از دانلود این را بخوانید***',

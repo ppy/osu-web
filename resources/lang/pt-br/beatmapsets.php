@@ -143,7 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'conquistado :when',
             'country' => 'Ranking Nacional',
-            'error' => '',
+            'error' => 'Falha ao carregar a classificação',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',

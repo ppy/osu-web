@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => '你确定吗？这将 DQ 该谱面并重置提名。',
             'nomination_reset' => '你确定吗？提出新的问题会重置提名。',
-            'problem_warning' => '',
+            'problem_warning' => '确定要报告这张谱面上的问题？将向谱面的提名者发出提醒。',
         ],
     ],
 

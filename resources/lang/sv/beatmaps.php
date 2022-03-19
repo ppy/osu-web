@@ -73,7 +73,7 @@ return [
             'nomination_reset' => 'Återställ Nominering',
             'praise' => 'Beröm',
             'problem' => 'Problem',
-            'problem_warning' => '',
+            'problem_warning' => 'Rapportera problem',
             'review' => 'Recension',
             'suggestion' => 'Förslag',
         ],

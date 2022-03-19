@@ -4,39 +4,39 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '',
-    'delete' => '',
-    'loading' => '',
-    'mark_read' => '',
-    'none' => '',
-    'see_all' => '',
-    'see_channel' => '',
-    'verifying' => '',
+    'all_read' => 'همه اعلانات خوانده شده اند!',
+    'delete' => 'حذف اعلانات :type',
+    'loading' => 'در حال بارگیری اعلانات خوانده نشده...',
+    'mark_read' => 'پاکسازی :type',
+    'none' => 'اعلانی موجود نیست',
+    'see_all' => 'نمایش همه اعلان‌ها',
+    'see_channel' => 'رفتن به چت',
+    'verifying' => 'لطفا برای دیدن اعلانات نشست خود را تصدیق کنید',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
+        '_' => 'همه',
+        'user' => 'پروفایل',
+        'beatmapset' => 'بیت مپ ها',
+        'forum_topic' => 'انجمن',
+        'news_post' => 'اخبار',
         'build' => '',
-        'channel' => '',
+        'channel' => 'چت',
     ],
 
     'item' => [
         'beatmapset' => [
-            '_' => '',
+            '_' => 'بیت مپ',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'درجه سختی میهمان',
+                'beatmap_owner_change' => 'شما هم اکنون صاحب درجه سختی :beatmap از بیت مپ :title هستید',
+                'beatmap_owner_change_compact' => 'شما هم اکنون صاحب درجه سختی :beatmap هستید',
             ],
 
             'beatmapset_discussion' => [
-                '_' => '',
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_lock_compact' => '',
+                '_' => 'بحث در مورد بیت مپ',
+                'beatmapset_discussion_lock' => 'بحث و گفت و گو برای :title قفل شده است',
+                'beatmapset_discussion_lock_compact' => 'بحث قفل شده است',
                 'beatmapset_discussion_post_new' => '',
                 'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => '',

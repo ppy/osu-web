@@ -159,6 +159,10 @@ return [
             '_' => 'Telah mengirimkan :link',
             'count' => ':count_delimited komentar|:count_delimited komentar',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ubah Sampul Profil',

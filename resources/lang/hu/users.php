@@ -159,6 +159,10 @@ return [
             '_' => ':link posztolva',
             'count' => ':count_delimited komment|:count_delimited komment',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profil Borító Változtatása',

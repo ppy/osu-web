@@ -159,6 +159,10 @@ return [
             '_' => 'Publicou :link',
             'count' => ':count_delimited comentário|:count_delimited comentários',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar a capa do perfil',
@@ -302,7 +306,7 @@ return [
                 'title' => 'Medalhas',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Playlist de partidas',
             ],
             'posts' => [
                 'title' => 'Publicações',
@@ -330,12 +334,12 @@ return [
                 ],
                 'pin' => [
                     'to_0' => 'Desafixar',
-                    'to_0_done' => '',
+                    'to_0_done' => 'Pontuação desafixada',
                     'to_1' => 'Afixar',
-                    'to_1_done' => '',
+                    'to_1_done' => 'Pontuação fixada',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Pontuações fixadas',
                 ],
             ],
             'votes' => [

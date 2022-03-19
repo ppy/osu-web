@@ -159,6 +159,10 @@ return [
             '_' => 'Heeft :link gepost',
             'count' => ':count_delimited reactie|:count_delimited reacties',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Verander Profiel Cover',

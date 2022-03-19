@@ -275,7 +275,7 @@ return [
         'loved' => 'Sevilen',
         'mine' => 'Benim Maplerim',
         'pending' => 'Beklemede & Yapım Aşamasında',
-        'wip' => '',
+        'wip' => 'Yapım Aşamasında',
         'qualified' => 'Nitelikli',
         'ranked' => 'Dereceli',
     ],

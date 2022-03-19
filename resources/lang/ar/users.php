@@ -159,6 +159,10 @@ return [
             '_' => 'نَشَر :link',
             'count' => ':count_delimited تعليق|:count_delimited تعليقات',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'تغيير صورة الغلاف',

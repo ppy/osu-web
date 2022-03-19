@@ -26,8 +26,8 @@ return [
             'not_cleared' => 'nesplněno',
         ],
         'no_diff_reduction' => [
-            '_' => ':link nelze použít k vymazání tohoto balíčku.',
-            'link' => 'Režimy snižování obtížnosti',
+            '_' => ':link nelze použít ke splnění tohoto balíčku.',
+            'link' => 'Módy snižování obtížnosti',
         ],
     ],
 
