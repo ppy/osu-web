@@ -5,22 +5,22 @@
 
 return [
     'all_read' => 'Kaikki ilmoitukset luettu!',
-    'delete' => '',
+    'delete' => 'Poista :type',
     'loading' => '',
     'mark_read' => '',
-    'none' => '',
-    'see_all' => '',
+    'none' => 'Ei ilmoituksia',
+    'see_all' => 'näytä kaikki ilmoitukset',
     'see_channel' => '',
     'verifying' => '',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
+        '_' => 'kaikki',
+        'user' => 'profiili',
+        'beatmapset' => 'beatmapit',
+        'forum_topic' => 'foorumi',
+        'news_post' => 'uutiset',
         'build' => '',
-        'channel' => '',
+        'channel' => 'chat',
     ],
 
     'item' => [

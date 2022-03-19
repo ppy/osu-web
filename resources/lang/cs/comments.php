@@ -25,9 +25,9 @@ return [
     'editor' => [
         'textarea_hint' => [
             '_' => 'Zmáčkněte Enter pro :action. Použijte Shift+Enter pro nový řádek.',
-            'edit' => 'uložit',
-            'new' => 'odeslat',
-            'reply' => 'odpovědět',
+            'edit' => 'uložení',
+            'new' => 'postnutí',
+            'reply' => 'odeslání odpovědi',
         ],
     ],
 
@@ -44,8 +44,8 @@ return [
 
     'placeholder' => [
         'edit' => 'Upravte komentář zde',
-        'new' => 'Napište nový komentář zde',
-        'reply' => 'Napište svojí odpověď zde',
+        'new' => 'Sem napište nový komentář',
+        'reply' => 'Sem napište svoji odpověď',
     ],
 
     'show' => [

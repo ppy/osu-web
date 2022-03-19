@@ -4,42 +4,42 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
-    'deleted_count' => '',
-    'edited' => '',
-    'pinned' => '',
-    'empty' => '',
-    'load_replies' => '',
-    'replies_count' => '',
-    'title' => '',
+    'deleted' => 'حذف شده',
+    'deleted_by' => 'حذف شده در :timeago توسط :user',
+    'deleted_by_system' => 'سیستم',
+    'deleted_count' => ':count_delimited نظر|:count_delimited نظرات',
+    'edited' => 'ویرایش شده در :timeago توسط :user',
+    'pinned' => 'سنجاق شده',
+    'empty' => 'هیچ دیدگاهی وجود ندارد.',
+    'load_replies' => 'نمایش پاسخ ها',
+    'replies_count' => ':count_delimited پاسخ|:count_delimited پاسخ ها',
+    'title' => 'نظرات',
 
     'commentable_name' => [
-        'beatmapset' => '',
-        'build' => '',
-        'news_post' => '',
-        '_deleted' => '',
+        'beatmapset' => 'بیت مپ',
+        'build' => 'لیست تغییرات',
+        'news_post' => 'اخبار',
+        '_deleted' => 'مورد حذف شده',
     ],
 
     'editor' => [
         'textarea_hint' => [
-            '_' => '',
-            'edit' => '',
-            'new' => '',
-            'reply' => '',
+            '_' => 'برای :action اینتر بزنید. برای خط جدید از شیفت+اینتر استفاده کنید.',
+            'edit' => 'ذخيره',
+            'new' => 'ارسال',
+            'reply' => 'پاسخ دادن',
         ],
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'برای نظر دادن وارد شوید',
+        'reply' => 'برای پاسخ دادن وارد شوید',
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'نظرات',
         'nav_title' => '',
-        'no_comments' => '',
+        'no_comments' => 'نظری یافت نشد...',
     ],
 
     'placeholder' => [

@@ -143,7 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => ':when oynandı',
             'country' => 'Ülke Sıralaması',
-            'error' => '',
+            'error' => 'Sıralama yüklenemedi',
             'friend' => 'Arkadaş Sıralaması',
             'global' => 'Dünya Sıralaması',
             'supporter-link' => 'Aldığınız tüm süslü özellikleri görmek için buraya <a href=":link">tıklayın</a>!',
@@ -155,7 +155,7 @@ return [
                 'combo' => 'Maks Kombo',
                 'miss' => 'Iska',
                 'mods' => 'Modlar',
-                'pin' => '',
+                'pin' => 'Sabitle',
                 'player' => 'Oyuncu',
                 'pp' => '',
                 'rank' => 'Sıralama',

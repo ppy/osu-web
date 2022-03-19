@@ -160,6 +160,10 @@ return [
             '_' => 'โพสต์ :link',
             'count' => ':count_delimited ความคิดเห็น|:count_delimited ความคิดเห็น',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'เปลี่ยนรูปภาพปก',
