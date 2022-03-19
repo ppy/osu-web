@@ -2043,6 +2043,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->with('beatmaps');
     }
 
+    public function profileBeatmapsetsGuest()
+    {
+        return Beatmapset::whereNotIn('beatmapset_id', $this->beatmapsets->pluck('beatmapset_id'))
+            ->whereHas('beatmaps', fn ($q) => $q->where('user_id', $this->getKey()))
+            ->active()
+            ->with('beatmaps');
+    }
+
     public function isSessionVerified()
     {
         return $this->isSessionVerified;
