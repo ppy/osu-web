@@ -33,6 +33,9 @@ class ScoresControllerTest extends TestCase
             [
                 'accuracy' => 1,
                 'max_combo' => 10,
+                'mods' => [
+                    ['acronym' => 'DT'],
+                ],
                 'passed' => true,
                 'rank' => 'A',
                 'statistics' => ['Good' => 1],
@@ -43,6 +46,7 @@ class ScoresControllerTest extends TestCase
 
         $this->assertSame($initialLegacyScoreCount + 1, $legacyScoreClass::count());
         $this->assertSame($initialScoreCount + 1, Score::count());
+        $this->assertSame(1, count(Score::last()->data->mods));
         $this->assertNotNull($scoreToken->fresh()->score);
     }
 
