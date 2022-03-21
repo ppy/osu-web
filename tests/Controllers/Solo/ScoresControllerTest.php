@@ -46,8 +46,10 @@ class ScoresControllerTest extends TestCase
 
         $this->assertSame($initialLegacyScoreCount + 1, $legacyScoreClass::count());
         $this->assertSame($initialScoreCount + 1, Score::count());
-        $this->assertSame(1, count(Score::last()->data->mods));
-        $this->assertNotNull($scoreToken->fresh()->score);
+
+        $score = $scoreToken->fresh()->score;
+        $this->assertNotNull($score);
+        $this->assertSame(1, count($score->data->mods));
     }
 
     public function testStoreCompleted()
