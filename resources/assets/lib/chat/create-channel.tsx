@@ -117,7 +117,7 @@ export default class CreateChannel extends React.Component<Props> {
 
   renderValidUsers() {
     return [...this.validUsers.values()].map((user) => (
-      <UserCardBrick key={user.id} modifiers='fit' user={user} />
+      <UserCardBrick key={user.id} modifiers='fit' onRemoveClick={this.handleRemoveUser} user={user} />
     ));
   }
 
@@ -163,6 +163,11 @@ export default class CreateChannel extends React.Component<Props> {
     const elem = e.currentTarget;
 
     this.inputs[elem.name] = elem.value.trim();
+  };
+
+  @action
+  private handleRemoveUser = (user: UserJson) => {
+    this.validUsers.delete(user.id);
   };
 
   @action

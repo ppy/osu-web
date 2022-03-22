@@ -15,6 +15,7 @@ import { ViewMode } from './user-card';
 interface Props {
   mode: ViewMode;
   modifiers?: Modifiers;
+  onRemoveClick?: (user: UserJson) => void;
   user: UserJson;
 }
 
@@ -70,7 +71,17 @@ export default class UserCardBrick extends React.Component<Props> {
         <div className='user-card-brick__username u-ellipsis-overflow'>
           {this.props.user.username}
         </div>
+        {this.props.onRemoveClick != null && (
+          <div className='user-card-brick__remove'>
+            <span className='fas fa-times' onClick={this.handleRemoveClick}/>
+          </div>
+        )}
       </a>
     );
   }
+
+  private handleRemoveClick = (e: React.SyntheticEvent<HTMLElement>) => {
+    e.preventDefault();
+    this.props.onRemoveClick?.(this.props.user);
+  };
 }
