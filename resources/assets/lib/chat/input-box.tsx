@@ -5,7 +5,7 @@ import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import { dispatch } from 'app-dispatcher';
 import BigButton from 'components/big-button';
 import { trim } from 'lodash';
-import { action, autorun, computed, makeObservable, observe } from 'mobx';
+import { action, autorun, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import { isModalShowing } from 'modal-helper';
 import Message from 'models/chat/message';
@@ -51,8 +51,8 @@ export default class InputBox extends React.Component<Props> {
 
     disposeOnUnmount(
       this,
-      observe(core.dataStore.chatState.selectedBoxed, (change) => {
-        if (change.newValue !== change.oldValue && core.windowSize.isDesktop) {
+      reaction(() => core.dataStore.chatState.selected, (newValue, oldValue) => {
+        if (newValue !== oldValue && core.windowSize.isDesktop) {
           this.focusInput();
         }
       }),
