@@ -153,8 +153,12 @@ function onRemoveUserCard(_event: unknown, element: HTMLElement | null) {
       unmountComponentAtNode(container);
     }
 
-    qtip.destroy();
-    delete element._tooltip;
+    // queue after React unmount.
+    setTimeout(() => {
+      // tooltip element doesn't get removed sometimes without immediate = true.
+      qtip.destroy(true);
+      delete element._tooltip;
+    }, 0);
   }
 }
 

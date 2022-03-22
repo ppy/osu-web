@@ -50,6 +50,10 @@ export default class UserCardBrick extends React.Component<Props> {
     makeObservable(this);
   }
 
+  componentWillUnmount() {
+    $.publish('user-card:remove', this.ref.current);
+  }
+
   render() {
     const blockClass = classWithModifiers(
       'user-card-brick',
@@ -85,7 +89,6 @@ export default class UserCardBrick extends React.Component<Props> {
 
   private handleRemoveClick = (e: React.SyntheticEvent<HTMLElement>) => {
     e.preventDefault();
-    $.publish('user-card:remove', this.ref.current);
     this.props.onRemoveClick?.(this.props.user);
   };
 }
