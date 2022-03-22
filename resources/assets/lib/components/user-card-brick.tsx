@@ -29,6 +29,8 @@ export default class UserCardBrick extends React.Component<Props> {
 
   declare context: React.ContextType<typeof UserCardTypeContext>;
 
+  private ref = React.createRef<HTMLAnchorElement>();
+
   @computed
   private get friendModifier() {
     if (core.currentUser?.friends == null) return;
@@ -58,6 +60,7 @@ export default class UserCardBrick extends React.Component<Props> {
 
     return (
       <a
+        ref={this.ref}
         className={`js-usercard ${blockClass}`}
         data-user-id={this.props.user.id}
         href={route('users.show', { user: this.props.user.id })}
@@ -82,6 +85,7 @@ export default class UserCardBrick extends React.Component<Props> {
 
   private handleRemoveClick = (e: React.SyntheticEvent<HTMLElement>) => {
     e.preventDefault();
+    $.publish('user-card:remove', this.ref.current);
     this.props.onRemoveClick?.(this.props.user);
   };
 }
