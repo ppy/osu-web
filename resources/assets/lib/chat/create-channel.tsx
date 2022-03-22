@@ -143,7 +143,7 @@ export default class CreateChannel extends React.Component<Props> {
   }
 
   private fetchUsers(ids: (string | null)[]) {
-    return $.getJSON(route('users.index'), { ids }) as JQuery.jqXHR<{ users: UserJson[] }>;
+    return $.getJSON(route('chat.users.index'), { ids }) as JQuery.jqXHR<{ users: UserJson[] }>;
   }
 
   @action
@@ -200,7 +200,11 @@ export default class CreateChannel extends React.Component<Props> {
     this.busy.lookupUsers = true;
     this.debouncedLookupUsers.cancel();
 
-    const userIds = this.usersText.split(',').map((s) => osu.presence(s.trim()));
+    const userIds = this.usersText.split(',').map((s) => osu.presence(s.trim())).filter(Boolean);
+    if (userIds.length === 0) {
+      this.busy.lookupUsers = false;
+      return;
+    }
 
     try {
       const response = await this.fetchUsers(userIds);

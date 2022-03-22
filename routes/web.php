@@ -183,6 +183,7 @@ Route::group(['middleware' => ['web']], function () {
                 Route::put('{channel}/mark-as-read/{message}', 'ChannelsController@markAsRead')->name('mark-as-read');
             });
             Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'show', 'store']]);
+            Route::apiResource('users', 'UsersController', ['only' => ['index']]);
         });
         Route::resource('chat', 'ChatController', ['only' => ['index']]);
     });
