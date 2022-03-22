@@ -13,6 +13,7 @@ import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import ChannelStore from 'stores/channel-store';
+import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
 import { getUpdates } from './chat-api';
@@ -108,6 +109,9 @@ export default class ChatStateStore implements DispatchListener {
 
     this.selected = channelId;
     this.selectedIndex = this.channelList.indexOf(channel);
+
+    const url = updateQueryString(null, { channel_id: channelId.toString() });
+    Turbolinks.controller.advanceHistory(url);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId);
