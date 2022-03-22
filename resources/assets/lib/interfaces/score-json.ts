@@ -24,6 +24,7 @@ export default interface ScoreJson {
   current_user_attributes: {
     pin?: ScoreCurrentUserPinJson;
   };
+  difficulty_rating?: number | null;
   id: number;
   max_combo: number;
   mode?: GameMode;

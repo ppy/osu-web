@@ -54,6 +54,18 @@ abstract class Model extends BaseModel
         return snake_case(get_class_basename(static::class));
     }
 
+    public function difficultyRating(): ?float
+    {
+        $value = $this->beatmap
+            ->difficulty()
+            ->where('mode', Beatmap::modeInt(static::getMode()))
+            ->where('mods', ModsHelper::toBitset($this->enabled_mods))
+            ->first()
+            ?->diff_unified;
+
+        return $value === null ? null : round($value, 2);
+    }
+
     public function scopeDefault($query)
     {
         return $query
