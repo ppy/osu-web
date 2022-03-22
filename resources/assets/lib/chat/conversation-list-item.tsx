@@ -18,7 +18,7 @@ export default class ConversationListItem extends React.Component<Props> {
     const uiState = core.dataStore.chatState;
     const baseClassName = 'chat-conversation-list-item';
 
-    const selected = this.props.channel.channelId === uiState.selected;
+    const selected = this.props.channel.channelId === uiState.selectedChannel?.channelId;
 
     return (
       <div className={classWithModifiers(baseClassName, { selected })}>

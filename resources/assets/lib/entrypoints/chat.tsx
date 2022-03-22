@@ -37,7 +37,7 @@ core.reactTurbolinks.register('chat', action(() => {
     dataStore.channelStore.lastReceivedMessageId = initial.last_message_id ?? 0;
   }
 
-  let initialChannel = 0;
+  let initialChannel: number | undefined;
   const sendTo = initial?.send_to;
 
   if (sendTo != null) {
@@ -55,13 +55,13 @@ core.reactTurbolinks.register('chat', action(() => {
   } else {
     const channelId = parseInt(currentUrlParams().get('channel_id') ?? '', 10);
     // TODO: should clear query string as well (and maybe update on channel selection?)
-    initialChannel = dataStore.channelStore.get(channelId) != null ? channelId : dataStore.chatState.selected;
+    initialChannel = dataStore.channelStore.get(channelId) != null ? channelId : dataStore.chatState.selectedChannel?.channelId;
   }
 
-  if (initialChannel !== 0) {
-    dataStore.chatState.selectChannel(initialChannel);
-  } else {
+  if (initialChannel == null) {
     dataStore.chatState.selectFirst();
+  } else {
+    dataStore.chatState.selectChannel(initialChannel);
   }
 
   return <MainView />;

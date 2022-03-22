@@ -107,7 +107,7 @@ export default class ConversationView extends React.Component<Props> {
 
     disposeOnUnmount(
       this,
-      reaction(() => core.dataStore.chatState.selected, (newValue, oldValue) => {
+      reaction(() => core.dataStore.chatState.selectedChannel, (newValue, oldValue) => {
         if (newValue !== oldValue) {
           this.didSwitchChannel = true;
         }

@@ -22,23 +22,12 @@ import PingService from './ping-service';
 export default class ChatStateStore implements DispatchListener {
   @observable isChatMounted = false;
   @observable isReady = false;
-  @observable selectedBoxed = observable.box(0);
   skipRefresh = false;
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
   private pingService: PingService;
+  @observable private selected = 0;
   private selectedIndex = 0;
-
-  @computed
-  get selected() {
-    return this.selectedBoxed.get();
-  }
-
-  // This setter should be considered private.
-  // Use selectChannel to change channel.
-  set selected(value: number) {
-    this.selectedBoxed.set(value);
-  }
 
   @computed
   get selectedChannel() {
