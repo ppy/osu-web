@@ -28,7 +28,7 @@ const BusySpinner = ({ busy }: { busy: boolean }) => (
 );
 
 @observer
-export default class CreateChannel extends React.Component<Props> {
+export default class JoinChannel extends React.Component<Props> {
   @observable private busy = {
     lookupUsers: false,
   };
