@@ -59,9 +59,9 @@ export default class CreateChannel extends React.Component<Props> {
   render() {
     return (
       <div className='chat-create-channel'>
-        <div className='chat-create-channel__title'>Create New Announcement</div>
+        <div className='chat-create-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
         <div className='chat-create-channel__input-container'>
-          <label className='chat-create-channel__input-label'>room name</label>
+          <label className='chat-create-channel__input-label'>{osu.trans('chat.join_channel.labels.name')}</label>
           <input
             className='chat-create-channel__input'
             name='name'
@@ -69,7 +69,7 @@ export default class CreateChannel extends React.Component<Props> {
           />
         </div>
         <div className='chat-create-channel__input-container'>
-          <label className='chat-create-channel__input-label'>description</label>
+          <label className='chat-create-channel__input-label'>{osu.trans('chat.join_channel.labels.description')}</label>
           <input
             className='chat-create-channel__input'
             name='description'
@@ -77,7 +77,7 @@ export default class CreateChannel extends React.Component<Props> {
           />
         </div>
         <div className='chat-create-channel__input-container'>
-          <label className='chat-create-channel__input-label'>players to invite</label>
+          <label className='chat-create-channel__input-label'>{osu.trans('chat.join_channel.labels.users')}</label>
           <div className='chat-create-channel__users-input'>
             <div className='chat-create-channel__users'>
               {this.renderValidUsers()}

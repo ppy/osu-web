@@ -13,11 +13,27 @@ return [
         'user' => 'You cannot message this user at this time.',
     ],
 
+    'channels' => [
+        'join' => 'join channel',
+    ],
+
     'input' => [
         'disabled' => 'unable to send message...',
         'disconnected' => 'Disconnected',
         'placeholder' => 'type message...',
         'send' => 'Send',
+    ],
+
+    'join_channel' => [
+        'title' => [
+            'announcement' => 'Create New Announcement',
+        ],
+
+        'labels' => [
+            'description' => 'description',
+            'name' => 'room name',
+            'users' => 'players to invite',
+        ],
     ],
 
     'no-conversations' => [
