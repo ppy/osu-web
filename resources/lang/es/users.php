@@ -159,6 +159,10 @@ return [
             '_' => 'Publicó :link',
             'count' => 'un comentario|:count_delimited comentarios',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambiar portada de perfil',

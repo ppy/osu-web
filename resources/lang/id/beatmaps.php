@@ -73,7 +73,7 @@ return [
             'nomination_reset' => 'Anulir Nominasi',
             'praise' => 'Pujian',
             'problem' => 'Masalah',
-            'problem_warning' => '',
+            'problem_warning' => 'Laporkan Masalah',
             'review' => 'Kajian',
             'suggestion' => 'Saran',
         ],
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Apakah Anda yakin? Tindakan ini akan melepas beatmap ini dari kategori Qualified dan mengulang proses nominasi dari awal.',
             'nomination_reset' => 'Apakah Anda yakin? Memposting masalah baru akan mengulang proses nominasi.',
-            'problem_warning' => '',
+            'problem_warning' => 'Apakah Anda yakin untuk melaporkan masalah yang terdapat pada beatmap ini? Tindakan ini akan memperingatkan seluruh anggota Beatmap Nominator.',
         ],
     ],
 
@@ -275,7 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Map Milik Saya',
         'pending' => 'Pending & WIP',
-        'wip' => '',
+        'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],

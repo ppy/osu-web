@@ -143,7 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'réalisé :when',
             'country' => 'Classement national',
-            'error' => '',
+            'error' => 'Échec du chargement du classement',
             'friend' => 'Classement des amis',
             'global' => 'Classement global',
             'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenues avec !',

@@ -132,14 +132,14 @@ return [
             'button' => '',
 
             'columns' => [
-                'action' => '',
-                'date' => '',
-                'user' => '',
+                'action' => 'Eylem',
+                'date' => 'Tarih',
+                'user' => 'Kullanıcı',
             ],
 
             'data' => [
-                'add_tag' => '',
-                'announcement' => '',
+                'add_tag' => '":tag" etiketi eklendi',
+                'announcement' => 'konu sabitlendi ve duyuru olarak işaretlendi',
                 'edit_topic' => '',
                 'fork' => '',
                 'pin' => '',

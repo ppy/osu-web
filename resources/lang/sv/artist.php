@@ -31,7 +31,7 @@ return [
         '_' => 'Låtar',
         'count' => ':count låt|:count låtar',
         'original' => 'osu! original',
-        'original_badge' => '',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'spårsökning',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Avancerad sökning',
+                'album' => 'Album',
+                'artist' => 'Artist',
+                'bpm_gte' => 'Minsta BPM',
+                'bpm_lte' => 'Högsta BPM',
+                'empty' => 'Inga spår som matchade sökfiltret hittades.',
+                'genre' => 'Genre',
+                'genre_all' => 'Alla',
+                'length_gte' => 'Minsta längd',
+                'length_lte' => 'Högsta längd',
             ],
         ],
     ],

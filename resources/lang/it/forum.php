@@ -7,7 +7,7 @@ return [
     'pinned_topics' => 'Topic Fissati',
     'slogan' => "è pericoloso giocare da soli.",
     'subforums' => 'Subforum',
-    'title' => 'forum osu!',
+    'title' => 'Forum',
 
     'covers' => [
         'edit' => 'Modifica la copertina',
@@ -128,8 +128,8 @@ return [
         ],
 
         'logs' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Log del topic',
+            'button' => 'Sfoglia log dei topic',
 
             'columns' => [
                 'action' => 'Azione',
@@ -146,33 +146,33 @@ return [
                 'post_operation' => 'postato da :username',
                 'remove_tag' => 'rimosso il tag ":tag"',
                 'source_forum_operation' => 'da :forum',
-                'unpin' => '',
+                'unpin' => 'topic non fissato',
             ],
 
-            'no_results' => '',
+            'no_results' => 'nessun log trovato...',
 
             'operations' => [
                 'delete_post' => 'Post cancellato',
-                'delete_topic' => '',
+                'delete_topic' => 'Topic eliminato',
                 'edit_topic' => 'Titolo dell\'argomento modificato',
-                'edit_poll' => '',
+                'edit_poll' => 'Sondaggio del topic modificato',
                 'fork' => 'Argomento copiato',
                 'issue_tag' => '',
-                'lock' => '',
-                'merge' => '',
+                'lock' => 'Topic bloccato',
+                'merge' => 'Post uniti in questo topic',
                 'move' => 'Argomento spostato',
                 'pin' => 'Argomento fissato ',
                 'post_edited' => 'Post modificato',
                 'restore_post' => 'Post ripristinato',
                 'restore_topic' => 'Argomento ripristinato',
-                'split_destination' => '',
-                'split_source' => '',
-                'topic_type' => '',
+                'split_destination' => 'Post divisi spostati',
+                'split_source' => 'Dividi i post',
+                'topic_type' => 'Tipo di topic impostato',
                 'topic_type_changed' => 'Tipo del topic modificato',
                 'unlock' => 'Argomento sbloccato',
                 'unpin' => 'Argomento fissato rimosso',
                 'user_lock' => 'Argomento personale chiuso',
-                'user_unlock' => '',
+                'user_unlock' => 'Topic proprio sbloccato',
             ],
         ],
 

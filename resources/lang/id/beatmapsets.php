@@ -143,7 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'diraih pada :when',
             'country' => 'Peringkat Negara',
-            'error' => '',
+            'error' => 'Gagal memuat peringkat',
             'friend' => 'Peringkat Teman',
             'global' => 'Peringkat Global',
             'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat seluruh fitur menarik yang akan Anda dapatkan!',

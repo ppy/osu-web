@@ -160,6 +160,10 @@ return [
 ',
             'count' => ':count_delimited תגובה|:count_delimited תגובות',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'החלף תמונת פרופיל',

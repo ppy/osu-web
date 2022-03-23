@@ -143,7 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'ottenuto :when',
             'country' => 'Classifica Nazionale',
-            'error' => '',
+            'error' => 'Impossibile caricare la classifica',
             'friend' => 'Classifica Amici',
             'global' => 'Classifica Globale',
             'supporter-link' => 'Clicca <a href=":link">qui</a> per vedere tutte le fantastiche funzionalità che otterrai!',

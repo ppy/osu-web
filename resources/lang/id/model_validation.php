@@ -67,7 +67,7 @@ return [
         ],
 
         'poll_vote' => [
-            'invalid' => 'Opsi yang ditentukan tidak valid.',
+            'invalid' => 'Pilihan yang ditentukan tidak valid.',
         ],
 
         'post' => [
