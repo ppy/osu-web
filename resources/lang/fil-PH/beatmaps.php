@@ -73,7 +73,7 @@ return [
             'nomination_reset' => 'I-reset ang nominasyon',
             'praise' => 'Puri',
             'problem' => 'Problema',
-            'problem_warning' => '',
+            'problem_warning' => 'Mag-report ng problema',
             'review' => 'Rebyu',
             'suggestion' => 'Suhestyon',
         ],
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Sigurado ka ba? Tatanggalin nito ang beatmap mula sa pagkaka-qualified at mare-reset ang proseso ng nomination.',
             'nomination_reset' => 'Sigurado ka ba? Ang pagpopost ng bagong problema ay magsisimula muli ng proseso ng nominasyon.',
-            'problem_warning' => '',
+            'problem_warning' => 'Sigurado ka ba na i-report ang isyu ng beatmap na ito? Ma-alerto ang mga Beatmap Nominators dito.',
         ],
     ],
 
@@ -275,7 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Aking mga Mapa',
         'pending' => 'Pending & WIP',
-        'wip' => '',
+        'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Nakaranggo',
     ],

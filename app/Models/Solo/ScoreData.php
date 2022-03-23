@@ -35,6 +35,7 @@ class ScoreData implements Castable, JsonSerializable
         $mods = [];
 
         foreach ($data['mods'] ?? [] as $mod) {
+            $mod = (array) $mod;
             if (is_array($mod) && isset($mod['acronym'])) {
                 if (isset($mod['settings'])) {
                     $mod['settings'] = (object) $mod['settings'];

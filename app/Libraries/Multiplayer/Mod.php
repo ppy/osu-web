@@ -47,6 +47,7 @@ class Mod
     const OSU_APPROACH_DIFFERENT = 'AD';
     const OSU_AIMASSIST = 'AA';
     const OSU_ALTERNATE = 'AL';
+    const OSU_STRICT_TRACKING = 'ST';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -324,6 +325,7 @@ class Mod
                         self::OSU_AIMASSIST,
                         self::OSU_ALTERNATE,
                         self::ADAPTIVE_SPEED,
+                        self::OSU_STRICT_TRACKING,
                     ]
                 ),
 
@@ -447,6 +449,14 @@ class Mod
                         [
                             self::OSU_AIMASSIST,
                             self::OSU_TRANSFORM,
+                        ],
+                        [
+                            self::OSU_AIMASSIST,
+                            self::RELAX,
+                        ],
+                        [
+                            self::OSU_CLASSIC,
+                            self::OSU_STRICT_TRACKING,
                         ],
                     ]
                 ),

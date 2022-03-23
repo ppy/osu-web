@@ -159,6 +159,10 @@ return [
             '_' => 'Апублікавана :link',
             'count' => ':count_delimited каментарый|:count_delimited каментарыі',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Змяніць фон профілю',

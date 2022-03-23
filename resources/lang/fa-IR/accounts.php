@@ -24,7 +24,7 @@ return [
         'password' => [
             'current' => 'پسورد فعلی',
             'new' => 'پسورد جدید',
-            'new_confirmation' => 'تایید رمز عبور',
+            'new_confirmation' => 'تایید کلمه عبور',
             'title' => 'پسورد',
         ],
 
@@ -48,8 +48,8 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'دریافت اعلانات مشکلات جدید در بیتمپ های واجد شرایط در نوع های زیر',
-        'beatmapset_disqualify' => 'دریافت اعلانات برای وقتی که بیتمپ های نوع زیر، رد صلاحیت میشوند',
+        'beatmapset_discussion_qualified_problem' => 'دریافت اعلانات مشکلات جدید در بیت مپ های واجد شرایط در نوع های زیر',
+        'beatmapset_disqualify' => 'دریافت اعلانات برای وقتی که بیت مپ های نوع زیر، رد صلاحیت میشوند',
         'comment_reply' => 'دریافت اعلانات برای پاسخ ها به کامنت شما',
         'title' => 'علامت',
         'topic_auto_subscribe' => 'فعالسازی خودکار اعلانات برای موضوعات جدید انجمن که شما میسازید',
@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => 'تنظیمات ارسال',
             'beatmap_owner_change' => 'درجه سختی میهمان',
-            'beatmapset:modding' => 'مادینگ بیتمپ',
+            'beatmapset:modding' => 'مودینگ بیت مپ',
             'channel_message' => 'پیام های خصوصی چت',
             'comment_new' => 'نظرات جدید',
             'forum_topic_reply' => 'پاسخ موضوع',
             'mail' => 'ایمیل',
-            'mapping' => 'مپر بیتمپ',
+            'mapping' => 'سازنده بیت مپ',
             'push' => 'اعلان push',
             'user_achievement_unlock' => 'مدال کاربر باز شد',
         ],
@@ -75,12 +75,12 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'مخفی کردن هشدار ها برای محتوای نامناسب در بیتمپ ها',
-        'beatmapset_title_show_original' => 'نمایش متادیتای بیتمپ ها در زبان اصلی',
+        'beatmapset_show_nsfw' => 'مخفی کردن هشدار ها برای محتوای نامناسب در بیت مپ ها',
+        'beatmapset_title_show_original' => 'نمایش متادیتای بیت مپ ها در زبان اصلی',
         'title' => 'گزینه ها',
 
         'beatmapset_download' => [
-            '_' => 'نوع پیشفرض دانلود بیتمپ ها',
+            '_' => 'نوع پیشفرض دانلود بیت مپ ها',
             'all' => 'همراه با ویدیو اگر موجود باشد',
             'direct' => 'با osu!direct باز کن',
             'no_video' => 'بدون فیلم',

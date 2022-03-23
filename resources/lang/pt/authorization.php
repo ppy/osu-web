@@ -171,7 +171,7 @@ return [
     'score' => [
         'pin' => [
             'not_owner' => '',
-            'too_many' => '',
+            'too_many' => 'Afixaste demasiadas pontuações.',
         ],
     ],
 

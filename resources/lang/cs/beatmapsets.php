@@ -8,11 +8,11 @@ return [
         'disabled' => 'Tato beatmapa není momentálně dostupná ke stažení.',
         'parts-removed' => 'Část této beatmapy byla smazána na žádost tvůrce nebo vlastníka třetí strany.',
         'more-info' => 'Pro více informací klikněte zde.',
-        'rule_violation' => 'Některé věci obsažené v této mapě byly odstraněny poté, co byly povážené za nevhodné pro použití v osu!.',
+        'rule_violation' => 'Některé assety obsažené v této mapě byly odstraněny poté, co byly posouzeny jako nevhodné pro použití v osu!.',
     ],
 
     'download' => [
-        'limit_exceeded' => 'Zpomalte, hrajte více.',
+        'limit_exceeded' => 'Zpomal, více hraj.',
     ],
 
     'featured_artist_badge' => [
@@ -36,15 +36,15 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Hybridní beatmapa vyžaduje, abyste vybrali alespoň jeden herní režim, na který chcete nominovat.',
-        'incorrect_mode' => 'Nemáte oprávnění k nominaci v módu: :mode',
-        'full_bn_required' => 'Musíte být plný nominátor, abyste mohl provést kvalifikační nominaci.',
+        'hybrid_requires_modes' => 'Hybridní beatmapa vyžaduje, abyste vybrali alespoň jeden herní režim, za který ji chcete nominovat.',
+        'incorrect_mode' => 'Nemáte oprávnění k nominaci za mód: :mode',
+        'full_bn_required' => 'Musíte být plný nominátor, abyste mohli provést kvalifikační nominaci.',
         'too_many' => 'Požadavek na nominaci je již splněn.',
 
         'dialog' => [
             'confirmation' => 'Jste si jisti, že chcete nominovat tuto beatmapu?',
             'header' => 'Nominovat beatmapu',
-            'hybrid_warning' => 'poznámka: můžete nominovat pouze jednou, takže se ujistěte, že nominujete pro všechny herní režimy, které hodláte',
+            'hybrid_warning' => 'poznámka: můžete nominovat pouze jednou, takže se ujistěte, že nominujete za všechny herní režimy, které chcete',
             'which_modes' => '',
         ],
     ],

@@ -159,6 +159,10 @@ return [
             '_' => 'Publié :link',
             'count' => ':count_delimited commentaire|:count_delimited commentaires',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
