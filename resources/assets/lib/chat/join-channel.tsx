@@ -9,6 +9,7 @@ import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
 import { createAnnoucement } from './chat-api';
@@ -50,6 +51,12 @@ export default class JoinChannel extends React.Component<Props> {
   }
 
   @computed
+  get canView() {
+    const currentUser = core.currentUserOrFail;
+    return currentUser.is_admin || currentUser.is_moderator || core.currentUserModel.inGroup('announce');
+  }
+
+  @computed
   get isValid() {
     return this.validUsers.size > 0
       && !osu.present(this.usersText.trim()) // implies no invalid ids left
@@ -57,6 +64,8 @@ export default class JoinChannel extends React.Component<Props> {
   }
 
   render() {
+    if (!this.canView) return null;
+
     return (
       <div className='chat-create-channel'>
         <div className='chat-create-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>

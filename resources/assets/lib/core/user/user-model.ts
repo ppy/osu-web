@@ -27,6 +27,10 @@ export default class UserModel {
     makeObservable(this);
   }
 
+  inGroup(identifier: string) {
+    return this.core.currentUser?.groups.some((group) => group.identifier === identifier) ?? false;
+  }
+
   isFriendWith(id: number) {
     return this.friends.get(id) != null;
   }
