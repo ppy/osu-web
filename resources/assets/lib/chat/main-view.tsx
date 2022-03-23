@@ -64,7 +64,7 @@ export default class MainView extends React.Component<Record<string, never>> {
           <ConversationList />
         </div>
         <div className='chat__conversation-area'>
-          {core.dataStore.chatState.isShowingJoinChannel ? (
+          {core.dataStore.chatState.selectedChannel == null ? (
             <CreateChannel />
           ) : (
             <>

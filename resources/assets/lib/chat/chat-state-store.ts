@@ -23,17 +23,16 @@ import PingService from './ping-service';
 export default class ChatStateStore implements DispatchListener {
   @observable isChatMounted = false;
   @observable isReady = false;
-  @observable isShowingJoinChannel = false;
   skipRefresh = false;
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
   private pingService: PingService;
-  @observable private selected = 0;
+  @observable private selected: number | null = null;
   private selectedIndex = 0;
 
   @computed
   get selectedChannel() {
-    return this.channelStore.get(this.selected);
+    return this.selected != null ? this.channelStore.get(this.selected) : null;
   }
 
   @computed
@@ -72,7 +71,11 @@ export default class ChatStateStore implements DispatchListener {
         }
 
         runInAction(() => {
-          this.channelStore.loadChannel(this.selected);
+          // TODO: use selectChannel?
+          if (this.selected !== null) {
+            this.channelStore.loadChannel(this.selected);
+          }
+
           this.isReady = true;
         });
       }
@@ -94,12 +97,18 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  selectChannel(channelId: number, replaceUrl = false) {
+  selectChannel(channelId: number | null, replaceUrl = false) {
     if (this.selected === channelId) return;
 
     // mark the channel being switched away from as read.
     if (this.selectedChannel != null) {
       this.channelStore.markAsRead(this.selectedChannel.channelId);
+    }
+
+    this.selected = channelId;
+
+    if (channelId == null) {
+      return;
     }
 
     const channel = this.channelStore.get(channelId);
@@ -108,7 +117,6 @@ export default class ChatStateStore implements DispatchListener {
       return;
     }
 
-    this.selected = channelId;
     this.selectedIndex = this.channelList.indexOf(channel);
 
     if (channel.newPmChannel) {
@@ -138,11 +146,6 @@ export default class ChatStateStore implements DispatchListener {
     if (this.channelList.length === 0) return;
 
     this.selectChannel(this.channelList[0].channelId, true);
-  }
-
-  @action
-  showJoinChannel() {
-    this.isShowingJoinChannel = true;
   }
 
   @action
