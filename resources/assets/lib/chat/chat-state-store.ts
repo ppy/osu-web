@@ -93,7 +93,7 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  selectChannel(channelId: number) {
+  selectChannel(channelId: number, updateUrl = true) {
     if (this.selected === channelId) return;
 
     // mark the channel being switched away from as read.
@@ -110,8 +110,10 @@ export default class ChatStateStore implements DispatchListener {
     this.selected = channelId;
     this.selectedIndex = this.channelList.indexOf(channel);
 
-    const url = updateQueryString(null, { channel_id: channelId.toString() });
-    Turbolinks.controller.advanceHistory(url);
+    if (updateUrl) {
+      const url = updateQueryString(null, { channel_id: channelId.toString() });
+      Turbolinks.controller.advanceHistory(url);
+    }
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId);
@@ -121,7 +123,7 @@ export default class ChatStateStore implements DispatchListener {
   selectFirst() {
     if (this.channelList.length === 0) return;
 
-    this.selectChannel(this.channelList[0].channelId);
+    this.selectChannel(this.channelList[0].channelId, false);
   }
 
   @action

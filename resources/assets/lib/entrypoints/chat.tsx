@@ -54,7 +54,7 @@ core.reactTurbolinks.register('chat', action(() => {
     }
   } else {
     const channelId = parseInt(currentUrlParams().get('channel_id') ?? '', 10);
-    initialChannel = dataStore.channelStore.get(channelId) != null ? channelId : dataStore.chatState.selectedChannel?.channelId;
+    initialChannel = dataStore.channelStore.get(channelId)?.channelId;
   }
 
   if (initialChannel == null) {
