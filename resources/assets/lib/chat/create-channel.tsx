@@ -33,7 +33,7 @@ export default class CreateChannel extends React.Component<Props> {
     lookupUsers: false,
   };
   // delay needs to shorter when copy and paste, or need to be a discrete action
-  private debouncedLookupUsers = debounce(this.lookupUsers, 1000);
+  private debouncedLookupUsers = debounce(action(() => this.lookupUsers()), 1000);
   @observable
   private inputs: Record<keyof Inputs, string> & Partial<Record<string, string>> = {
     description: '',
