@@ -7,8 +7,8 @@ import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
-import { disposeOnUnmount, observer } from 'mobx-react';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
@@ -17,10 +17,15 @@ import { createAnnoucement } from './chat-api';
 
 type Props = Record<string, never>;
 
+interface InputContainerProps {
+  error: boolean;
+}
+
 interface Inputs {
   description: string;
   message: string;
   name: string;
+  users: string;
 }
 
 const BusySpinner = ({ busy }: { busy: boolean }) => (
@@ -28,6 +33,13 @@ const BusySpinner = ({ busy }: { busy: boolean }) => (
     {busy && <Spinner />}
   </div>
 );
+
+// TODO: look at combining with ValidatingInput
+const InputContainer = observer((props: React.PropsWithChildren<InputContainerProps>) => (
+  <div className={classWithModifiers('chat-join-channel__input-container', { error: props.error })}>
+    {props.children}
+  </div>
+));
 
 @observer
 export default class JoinChannel extends React.Component<Props> {
@@ -37,38 +49,29 @@ export default class JoinChannel extends React.Component<Props> {
   // delay needs to shorter when copy and paste, or need to be a discrete action
   private debouncedLookupUsers = debounce(action(() => this.lookupUsers()), 1000);
   @observable
-  private errors = {
-    description: false,
-    message: false,
-    name: false,
-    users: false,
-  };
-  @observable
   private inputs: Record<keyof Inputs, string> & Partial<Record<string, string>> = {
     description: '',
     message: '',
     name: '',
+    users: '',
   };
-  @observable private usersText = '';
   @observable private validUsers = new Map<number, UserJson>();
 
   constructor(props: Props) {
     super(props);
 
     makeObservable(this);
+  }
 
-    disposeOnUnmount(
-      this,
-      autorun(() => {
-        this.errors.users = this.validUsers.size === 0
-          || osu.present(this.usersText.trim()); // implies invalid ids left
-        this.errors.description = !osu.present(this.inputs.description);
-        this.errors.message = !osu.present(this.inputs.message);
-        this.errors.name = !osu.present(this.inputs.name);
-
-        console.log(this.errors);
-      }),
-    );
+  @computed
+  get errors() {
+    return {
+      description: !osu.present(this.inputs.description),
+      message: !osu.present(this.inputs.message),
+      name: !osu.present(this.inputs.name),
+      users: this.validUsers.size === 0
+        || osu.present(this.inputs.users.trim()), // implies invalid ids left
+    };
   }
 
   @computed
@@ -79,7 +82,6 @@ export default class JoinChannel extends React.Component<Props> {
 
   @computed
   get isValid() {
-    console.log(Object.values(this.errors).some(Boolean));
     return !Object.values(this.errors).some(Boolean);
   }
 
@@ -89,23 +91,23 @@ export default class JoinChannel extends React.Component<Props> {
     return (
       <div className='chat-join-channel'>
         <div className='chat-join-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
-        <div className={classWithModifiers('chat-join-channel__input-container', { error: this.errors.name })}>
+        <InputContainer error={this.errors.name}>
           <label className='chat-join-channel__input-label'>{osu.trans('chat.join_channel.labels.name')}</label>
           <input
             className='chat-join-channel__input'
             name='name'
             onChange={this.handleInput}
           />
-        </div>
-        <div className={classWithModifiers('chat-join-channel__input-container', { error: this.errors.description })}>
+        </InputContainer>
+        <InputContainer error={this.errors.description}>
           <label className='chat-join-channel__input-label'>{osu.trans('chat.join_channel.labels.description')}</label>
           <input
             className='chat-join-channel__input'
             name='description'
             onChange={this.handleInput}
           />
-        </div>
-        <div className={classWithModifiers('chat-join-channel__input-container', { error: this.errors.users })}>
+        </InputContainer>
+        <InputContainer error={this.errors.users}>
           <label className='chat-join-channel__input-label'>{osu.trans('chat.join_channel.labels.users')}</label>
           <div className='chat-join-channel__users-input'>
             <div className='chat-join-channel__users'>
@@ -116,12 +118,12 @@ export default class JoinChannel extends React.Component<Props> {
               onChange={this.handleUsersInputChange}
               onKeyUp={this.handleUsersInputKeyUp}
               onPaste={this.handleUsersInputPaste}
-              value={this.usersText}
+              value={this.inputs.users}
             />
             <BusySpinner busy={this.busy.lookupUsers} />
           </div>
-        </div>
-        <div className={classWithModifiers('chat-join-channel__input-container', { error: this.errors.message })}>
+        </InputContainer>
+        <InputContainer error={this.errors.message}>
           <TextareaAutosize
             autoComplete='off'
             className='chat-join-channel__box'
@@ -131,7 +133,7 @@ export default class JoinChannel extends React.Component<Props> {
             placeholder={osu.trans('chat.input.placeholder')}
             rows={10}
           />
-        </div>
+        </InputContainer>
         <div className='chat-join-channel__button-bar'>
           <BigButton
             disabled={!this.isValid}
@@ -155,7 +157,7 @@ export default class JoinChannel extends React.Component<Props> {
    */
   @action
   private extractValidUsers() {
-    const userIds = this.usersText.split(',');
+    const userIds = this.inputs.users.split(',');
     if (userIds.length === 0) return false;
 
     const invalidUsers: string[] = [];
@@ -168,7 +170,7 @@ export default class JoinChannel extends React.Component<Props> {
       }
     }
 
-    this.usersText = invalidUsers.join(',');
+    this.inputs.users = invalidUsers.join(',');
   }
 
   private fetchUsers(ids: (string | null)[]) {
@@ -205,13 +207,13 @@ export default class JoinChannel extends React.Component<Props> {
   @action
   private handleUsersInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.debouncedLookupUsers.cancel();
-    this.usersText = e.currentTarget.value;
+    this.inputs.users = e.currentTarget.value;
     this.debouncedLookupUsers();
   };
 
   @action
   private handleUsersInputKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Backspace' && this.usersText.length === 0) {
+    if (e.key === 'Backspace' && this.inputs.users.length === 0) {
       const last = [...this.validUsers.keys()].pop();
       if (last != null) {
         this.validUsers.delete(last);
@@ -222,7 +224,7 @@ export default class JoinChannel extends React.Component<Props> {
   @action
   private handleUsersInputPaste = (e: React.SyntheticEvent<HTMLInputElement>) => {
     this.debouncedLookupUsers.cancel();
-    this.usersText = e.currentTarget.value;
+    this.inputs.users = e.currentTarget.value;
     this.debouncedLookupUsers();
     this.debouncedLookupUsers.flush();
   };
@@ -232,7 +234,7 @@ export default class JoinChannel extends React.Component<Props> {
     this.busy.lookupUsers = true;
     this.debouncedLookupUsers.cancel();
 
-    const userIds = this.usersText.split(',').map((s) => osu.presence(s.trim())).filter(Boolean);
+    const userIds = this.inputs.users.split(',').map((s) => osu.presence(s.trim())).filter(Boolean);
     if (userIds.length === 0) {
       this.busy.lookupUsers = false;
       return;
