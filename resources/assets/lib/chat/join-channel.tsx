@@ -23,7 +23,7 @@ interface Inputs {
 }
 
 const BusySpinner = ({ busy }: { busy: boolean }) => (
-  <div className='chat-create-channel__spinner'>
+  <div className='chat-join-channel__spinner'>
     {busy && <Spinner />}
   </div>
 );
@@ -67,32 +67,32 @@ export default class JoinChannel extends React.Component<Props> {
     if (!this.canView) return null;
 
     return (
-      <div className='chat-create-channel'>
-        <div className='chat-create-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
-        <div className='chat-create-channel__input-container'>
-          <label className='chat-create-channel__input-label'>{osu.trans('chat.join_channel.labels.name')}</label>
+      <div className='chat-join-channel'>
+        <div className='chat-join-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
+        <div className='chat-join-channel__input-container'>
+          <label className='chat-join-channel__input-label'>{osu.trans('chat.join_channel.labels.name')}</label>
           <input
-            className='chat-create-channel__input'
+            className='chat-join-channel__input'
             name='name'
             onChange={this.handleInput}
           />
         </div>
-        <div className='chat-create-channel__input-container'>
-          <label className='chat-create-channel__input-label'>{osu.trans('chat.join_channel.labels.description')}</label>
+        <div className='chat-join-channel__input-container'>
+          <label className='chat-join-channel__input-label'>{osu.trans('chat.join_channel.labels.description')}</label>
           <input
-            className='chat-create-channel__input'
+            className='chat-join-channel__input'
             name='description'
             onChange={this.handleInput}
           />
         </div>
-        <div className='chat-create-channel__input-container'>
-          <label className='chat-create-channel__input-label'>{osu.trans('chat.join_channel.labels.users')}</label>
-          <div className='chat-create-channel__users-input'>
-            <div className='chat-create-channel__users'>
+        <div className='chat-join-channel__input-container'>
+          <label className='chat-join-channel__input-label'>{osu.trans('chat.join_channel.labels.users')}</label>
+          <div className='chat-join-channel__users-input'>
+            <div className='chat-join-channel__users'>
               {this.renderValidUsers()}
             </div>
             <input
-              className='chat-create-channel__users-text'
+              className='chat-join-channel__users-text'
               onChange={this.handleUsersInputChange}
               onKeyUp={this.handleUsersInputKeyUp}
               onPaste={this.handleUsersInputPaste}
@@ -101,10 +101,10 @@ export default class JoinChannel extends React.Component<Props> {
             <BusySpinner busy={this.busy.lookupUsers} />
           </div>
         </div>
-        <div className='chat-create-channel__input-container'>
+        <div className='chat-join-channel__input-container'>
           <TextareaAutosize
             autoComplete='off'
-            className='chat-create-channel__box'
+            className='chat-join-channel__box'
             maxRows={10}
             name='message'
             onChange={this.handleInput}
@@ -112,7 +112,7 @@ export default class JoinChannel extends React.Component<Props> {
             rows={10}
           />
         </div>
-        <div className='chat-create-channel__button-bar'>
+        <div className='chat-join-channel__button-bar'>
           <BigButton
             disabled={!this.isValid}
             modifiers='chat-send'
