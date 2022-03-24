@@ -94,47 +94,49 @@ export default class JoinChannel extends React.Component<Props> {
 
     return (
       <div className='chat-join-channel'>
-        <div className='chat-join-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
-        <InputContainer error={this.errors.name} labelKey='chat.join_channel.labels.name'>
-          <input
-            className='chat-join-channel__input'
-            name='name'
-            onChange={this.handleInput}
-          />
-        </InputContainer>
-        <InputContainer error={this.errors.description} labelKey='chat.join_channel.labels.description'>
-          <input
-            className='chat-join-channel__input'
-            name='description'
-            onChange={this.handleInput}
-          />
-        </InputContainer>
-        <InputContainer error={this.errors.users} labelKey='chat.join_channel.labels.users'>
-          <div className='chat-join-channel__users-input'>
-            <div className='chat-join-channel__users'>
-              {this.renderValidUsers()}
-            </div>
+        <div className='chat-join-channel__fields'>
+          <div className='chat-join-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
+          <InputContainer error={this.errors.name} labelKey='chat.join_channel.labels.name'>
             <input
-              className='chat-join-channel__users-text'
-              onChange={this.handleUsersInputChange}
-              onKeyUp={this.handleUsersInputKeyUp}
-              onPaste={this.handleUsersInputPaste}
-              value={this.inputs.users}
+              className='chat-join-channel__input'
+              name='name'
+              onChange={this.handleInput}
             />
-            <BusySpinner busy={this.busy.lookupUsers} />
-          </div>
-        </InputContainer>
-        <InputContainer error={this.errors.message}>
-          <TextareaAutosize
-            autoComplete='off'
-            className='chat-join-channel__box'
-            maxRows={10}
-            name='message'
-            onChange={this.handleInput}
-            placeholder={osu.trans('chat.input.placeholder')}
-            rows={10}
-          />
-        </InputContainer>
+          </InputContainer>
+          <InputContainer error={this.errors.description} labelKey='chat.join_channel.labels.description'>
+            <input
+              className='chat-join-channel__input'
+              name='description'
+              onChange={this.handleInput}
+            />
+          </InputContainer>
+          <InputContainer error={this.errors.users} labelKey='chat.join_channel.labels.users'>
+            <div className='chat-join-channel__users-input'>
+              <div className='chat-join-channel__users'>
+                {this.renderValidUsers()}
+              </div>
+              <input
+                className='chat-join-channel__users-text'
+                onChange={this.handleUsersInputChange}
+                onKeyUp={this.handleUsersInputKeyUp}
+                onPaste={this.handleUsersInputPaste}
+                value={this.inputs.users}
+              />
+              <BusySpinner busy={this.busy.lookupUsers} />
+            </div>
+          </InputContainer>
+          <InputContainer error={this.errors.message}>
+            <TextareaAutosize
+              autoComplete='off'
+              className='chat-join-channel__box'
+              maxRows={10}
+              name='message'
+              onChange={this.handleInput}
+              placeholder={osu.trans('chat.input.placeholder')}
+              rows={10}
+            />
+          </InputContainer>
+        </div>
         <div className='chat-join-channel__button-bar'>
           <BigButton
             disabled={!this.isValid}
