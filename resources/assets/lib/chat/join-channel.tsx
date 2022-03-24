@@ -216,9 +216,7 @@ export default class JoinChannel extends React.Component<Props> {
 
   @action
   private handleUsersInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.debouncedLookupUsers.cancel();
-    this.inputs.users = e.currentTarget.value;
-    this.debouncedLookupUsers();
+    this.updateUsersInput(e.currentTarget.value);
   };
 
   @action
@@ -233,15 +231,12 @@ export default class JoinChannel extends React.Component<Props> {
 
   @action
   private handleUsersInputPaste = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    this.debouncedLookupUsers.cancel();
-    this.inputs.users = e.currentTarget.value;
-    this.debouncedLookupUsers();
+    this.updateUsersInput(e.currentTarget.value);
     this.debouncedLookupUsers.flush();
   };
 
   @action
   private async lookupUsers() {
-    this.busy.lookupUsers = true;
     this.xhr.lookupUsers?.abort();
     this.debouncedLookupUsers.cancel();
 
@@ -263,6 +258,13 @@ export default class JoinChannel extends React.Component<Props> {
     } finally {
       runInAction(() => this.busy.lookupUsers = false);
     }
+  }
+
+  private updateUsersInput(text: string) {
+    this.busy.lookupUsers = true;
+    this.debouncedLookupUsers.cancel();
+    this.inputs.users = text;
+    this.debouncedLookupUsers();
   }
 
   private validUsersContains(userId?: string | null) {
