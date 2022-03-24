@@ -9,7 +9,7 @@ import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { parseJsonNullable } from 'utils/json';
-import { currentUrlParams } from 'utils/turbolinks';
+import { currentUrl, currentUrlParams } from 'utils/turbolinks';
 
 interface ChatInitialJson {
   last_message_id: number | null;
@@ -57,7 +57,10 @@ core.reactTurbolinks.register('chat', action(() => {
     initialChannel = dataStore.channelStore.get(channelId)?.channelId;
   }
 
-  if (initialChannel == null) {
+  if (currentUrl().hash === '#join') {
+    // TODO: skip the other checks.
+    dataStore.chatState.selectChannel(null);
+  } else if (initialChannel == null) {
     dataStore.chatState.selectFirst();
   } else {
     dataStore.chatState.selectChannel(initialChannel);

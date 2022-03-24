@@ -110,6 +110,10 @@ export default class ChatStateStore implements DispatchListener {
     this.selected = channelId;
 
     if (channelId == null) {
+      Turbolinks.controller.replaceHistory(updateQueryString(null, {
+        channel_id: null,
+        sendto: null,
+      }, 'join'));
       return;
     }
 
@@ -124,19 +128,19 @@ export default class ChatStateStore implements DispatchListener {
     if (channel.newPmChannel) {
       Turbolinks.controller.replaceHistory(updateQueryString(null, {
         channel_id: null,
-      }));
+      }, ''));
     } else if (replaceUrl) {
       // Remove channel_id from location on selectFirst();
       // also handles the case when history goes back to a channel that was removed.
       Turbolinks.controller.replaceHistory(updateQueryString(null, {
         channel_id: null,
         sendto: null,
-      }));
+      }, ''));
     } else {
       Turbolinks.controller.advanceHistory(updateQueryString(null, {
         channel_id: channelId.toString(),
         sendto: null,
-      }));
+      }, ''));
     }
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
