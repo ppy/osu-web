@@ -51,7 +51,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     }
   }
 
-  compontentWillUnmount() {
+  componentWillUnmount() {
     window.clearTimeout(this.userLookupTimeout);
     Object.values(this.xhr).forEach((xhr) => xhr?.abort());
   }
