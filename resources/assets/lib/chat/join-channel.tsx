@@ -87,8 +87,8 @@ export default class JoinChannel extends React.Component<Props> {
   }
 
   @computed
-  get isValid() {
-    return !Object.values(this.errors).some(Boolean);
+  get canSend() {
+    return core.dataStore.chatState.isReady && !this.busy.create && !Object.values(this.errors).some(Boolean);
   }
 
   componentWillUnmount() {
@@ -145,10 +145,10 @@ export default class JoinChannel extends React.Component<Props> {
         </div>
         <div className='chat-join-channel__button-bar'>
           <BigButton
-            disabled={this.busy.create || !this.isValid}
+            disabled={!this.canSend}
             modifiers='chat-send'
             props={{ onClick: this.handleButtonClick }}
-            text={osu.trans('common.buttons.create')}
+            text={osu.trans(core.dataStore.chatState.isReady ? 'chat.input.create' : 'chat.input.disconnected')}
           />
         </div>
       </div>

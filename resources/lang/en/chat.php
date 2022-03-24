@@ -18,6 +18,7 @@ return [
     ],
 
     'input' => [
+        'create' => 'Create',
         'disabled' => 'unable to send message...',
         'disconnected' => 'Disconnected',
         'placeholder' => 'type message...',
