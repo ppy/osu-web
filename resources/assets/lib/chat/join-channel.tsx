@@ -48,6 +48,7 @@ const InputContainer = observer((props: React.PropsWithChildren<InputContainerPr
 @observer
 export default class JoinChannel extends React.Component<Props> {
   @observable private busy = {
+    create: false,
     lookupUsers: false,
   };
   // delay needs to shorter when copy and paste, or need to be a discrete action
@@ -60,6 +61,7 @@ export default class JoinChannel extends React.Component<Props> {
     users: '',
   };
   @observable private validUsers = new Map<number, UserJson>();
+  private xhr: Partial<Record<string, JQueryXHR>> = {};
 
   constructor(props: Props) {
     super(props);
@@ -87,6 +89,10 @@ export default class JoinChannel extends React.Component<Props> {
   @computed
   get isValid() {
     return !Object.values(this.errors).some(Boolean);
+  }
+
+  componentWillUnmount() {
+    Object.values(this.xhr).forEach((xhr) => xhr?.abort());
   }
 
   render() {
@@ -139,7 +145,7 @@ export default class JoinChannel extends React.Component<Props> {
         </div>
         <div className='chat-join-channel__button-bar'>
           <BigButton
-            disabled={!this.isValid}
+            disabled={this.busy.create || !this.isValid}
             modifiers='chat-send'
             props={{ onClick: this.handleButtonClick }}
             text={osu.trans('common.buttons.create')}
@@ -182,17 +188,18 @@ export default class JoinChannel extends React.Component<Props> {
 
   @action
   private handleButtonClick = () => {
+    this.busy.create = true;
     const { description, message, name } = this.inputs;
 
     core.dataStore.chatState.waitJoinChannelUuid = osu.uuid();
 
-    createAnnoucement({
+    this.xhr.create = createAnnoucement({
       channel: { description, name },
       message,
       target_ids: [...this.validUsers.keys()],
       type: 'ANNOUNCE',
       uuid: core.dataStore.chatState.waitJoinChannelUuid,
-    });
+    }).always(action(() => this.busy.create = false));
   };
 
   @action
@@ -235,6 +242,7 @@ export default class JoinChannel extends React.Component<Props> {
   @action
   private async lookupUsers() {
     this.busy.lookupUsers = true;
+    this.xhr.lookupUsers?.abort();
     this.debouncedLookupUsers.cancel();
 
     const userIds = this.inputs.users.split(',').map((s) => osu.presence(s.trim())).filter(Boolean);

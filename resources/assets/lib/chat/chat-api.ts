@@ -43,7 +43,7 @@ export function ack(since: number, lastHistoryId?: number) {
 }
 
 export function createAnnoucement(json: NewAnnoucementRequestJson) {
-  return $.post(route('chat.channels.store'), json);
+  return $.post(route('chat.channels.store'), json) as JQuery.jqXHR<ChannelJson>;
 }
 
 export function getChannel(channelId: number) {
