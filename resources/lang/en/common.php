@@ -31,6 +31,7 @@ return [
         'click_to_copy_copied' => 'copied to clipboard!',
         'close' => 'Close',
         'collapse' => 'collapse',
+        'create' => 'Create',
         'delete' => 'Delete',
         'edit' => 'Edit',
         'expand' => 'expand',

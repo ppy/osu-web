@@ -140,7 +140,7 @@ export default class JoinChannel extends React.Component<Props> {
             disabled={!this.isValid}
             modifiers='chat-send'
             props={{ onClick: this.handleButtonClick }}
-            text='Create'
+            text={osu.trans('common.buttons.create')}
           />
         </div>
       </div>
