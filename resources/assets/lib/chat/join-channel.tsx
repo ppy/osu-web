@@ -7,11 +7,12 @@ import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
-import { observer } from 'mobx-react';
+import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
+import { classWithModifiers } from 'utils/css';
 import { createAnnoucement } from './chat-api';
 
 type Props = Record<string, never>;
@@ -36,6 +37,13 @@ export default class JoinChannel extends React.Component<Props> {
   // delay needs to shorter when copy and paste, or need to be a discrete action
   private debouncedLookupUsers = debounce(action(() => this.lookupUsers()), 1000);
   @observable
+  private errors = {
+    description: false,
+    message: false,
+    name: false,
+    users: false,
+  };
+  @observable
   private inputs: Record<keyof Inputs, string> & Partial<Record<string, string>> = {
     description: '',
     message: '',
@@ -48,6 +56,19 @@ export default class JoinChannel extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
+
+    disposeOnUnmount(
+      this,
+      autorun(() => {
+        this.errors.users = this.validUsers.size === 0
+          || osu.present(this.usersText.trim()); // implies invalid ids left
+        this.errors.description = !osu.present(this.inputs.description);
+        this.errors.message = !osu.present(this.inputs.message);
+        this.errors.name = !osu.present(this.inputs.name);
+
+        console.log(this.errors);
+      }),
+    );
   }
 
   @computed
@@ -58,9 +79,8 @@ export default class JoinChannel extends React.Component<Props> {
 
   @computed
   get isValid() {
-    return this.validUsers.size > 0
-      && !osu.present(this.usersText.trim()) // implies no invalid ids left
-      && Object.values(this.inputs).every(osu.present);
+    console.log(Object.values(this.errors).some(Boolean));
+    return !Object.values(this.errors).some(Boolean);
   }
 
   render() {
@@ -69,7 +89,7 @@ export default class JoinChannel extends React.Component<Props> {
     return (
       <div className='chat-join-channel'>
         <div className='chat-join-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
-        <div className='chat-join-channel__input-container'>
+        <div className={classWithModifiers('chat-join-channel__input-container', { error: this.errors.name })}>
           <label className='chat-join-channel__input-label'>{osu.trans('chat.join_channel.labels.name')}</label>
           <input
             className='chat-join-channel__input'
@@ -77,7 +97,7 @@ export default class JoinChannel extends React.Component<Props> {
             onChange={this.handleInput}
           />
         </div>
-        <div className='chat-join-channel__input-container'>
+        <div className={classWithModifiers('chat-join-channel__input-container', { error: this.errors.description })}>
           <label className='chat-join-channel__input-label'>{osu.trans('chat.join_channel.labels.description')}</label>
           <input
             className='chat-join-channel__input'
@@ -85,7 +105,7 @@ export default class JoinChannel extends React.Component<Props> {
             onChange={this.handleInput}
           />
         </div>
-        <div className='chat-join-channel__input-container'>
+        <div className={classWithModifiers('chat-join-channel__input-container', { error: this.errors.users })}>
           <label className='chat-join-channel__input-label'>{osu.trans('chat.join_channel.labels.users')}</label>
           <div className='chat-join-channel__users-input'>
             <div className='chat-join-channel__users'>
@@ -101,7 +121,7 @@ export default class JoinChannel extends React.Component<Props> {
             <BusySpinner busy={this.busy.lookupUsers} />
           </div>
         </div>
-        <div className='chat-join-channel__input-container'>
+        <div className={classWithModifiers('chat-join-channel__input-container', { error: this.errors.message })}>
           <TextareaAutosize
             autoComplete='off'
             className='chat-join-channel__box'
