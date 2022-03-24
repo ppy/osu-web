@@ -24,6 +24,7 @@ export default class ChatStateStore implements DispatchListener {
   @observable isChatMounted = false;
   @observable isReady = false;
   skipRefresh = false;
+  @observable waitJoinChannelUuid: string | null = null;
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
   private pingService: PingService;
@@ -98,6 +99,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   selectChannel(channelId: number | null, replaceUrl = false) {
+    this.waitJoinChannelUuid = null;
     if (this.selected === channelId) return;
 
     // mark the channel being switched away from as read.
@@ -163,6 +165,10 @@ export default class ChatStateStore implements DispatchListener {
   @action
   private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
     this.channelStore.getOrCreate(event.json);
+
+    if (this.waitJoinChannelUuid != null && this.waitJoinChannelUuid === event.json.uuid) {
+      this.selectChannel(event.json.channel_id);
+    }
   }
 
   @action

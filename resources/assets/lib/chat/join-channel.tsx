@@ -159,11 +159,14 @@ export default class JoinChannel extends React.Component<Props> {
   private handleButtonClick = () => {
     const { description, message, name } = this.inputs;
 
+    core.dataStore.chatState.waitJoinChannelUuid = osu.uuid();
+
     createAnnoucement({
       channel: { description, name },
       message,
       target_ids: [...this.validUsers.keys()],
       type: 'ANNOUNCE',
+      uuid: core.dataStore.chatState.waitJoinChannelUuid,
     });
   };
 

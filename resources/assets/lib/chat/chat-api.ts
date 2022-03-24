@@ -29,6 +29,7 @@ interface NewAnnoucementRequestJson {
   message: string;
   target_ids: number[];
   type: 'ANNOUNCE';
+  uuid: string;
 }
 
 interface NewConversationJson {
