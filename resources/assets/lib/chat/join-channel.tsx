@@ -103,7 +103,7 @@ export default class JoinChannel extends React.Component<Props> {
               <input
                 className='chat-join-channel__users-text'
                 onChange={this.handleUsersInputChange}
-                onKeyUp={this.handleUsersInputKeyUp}
+                onKeyDown={this.handleUsersInputKeyDown}
                 onPaste={this.handleUsersInputPaste}
                 value={this.model.inputs.users}
               />
@@ -174,7 +174,7 @@ export default class JoinChannel extends React.Component<Props> {
   };
 
   @action
-  private handleUsersInputKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  private handleUsersInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Backspace' && this.model.inputs.users.length === 0) {
       const last = [...this.model.validUsers.keys()].pop();
       if (last != null) {
