@@ -86,6 +86,7 @@ export default class JoinChannel extends React.Component<Props> {
               className='chat-join-channel__input'
               name='name'
               onChange={this.handleInput}
+              value={this.model.inputs.name}
             />
           </InputContainer>
           <InputContainer error={this.model.errors.description} labelKey='chat.join_channel.labels.description'>
@@ -93,6 +94,7 @@ export default class JoinChannel extends React.Component<Props> {
               className='chat-join-channel__input'
               name='description'
               onChange={this.handleInput}
+              value={this.model.inputs.description}
             />
           </InputContainer>
           <InputContainer error={this.model.errors.users} labelKey='chat.join_channel.labels.users'>
@@ -119,6 +121,7 @@ export default class JoinChannel extends React.Component<Props> {
               onChange={this.handleInput}
               placeholder={osu.trans('chat.input.placeholder')}
               rows={10}
+              value={this.model.inputs.message}
             />
           </InputContainer>
         </div>
