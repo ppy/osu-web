@@ -9,6 +9,7 @@ import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
+import JoinChannelModel from 'models/chat/join-channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
@@ -20,13 +21,6 @@ type Props = Record<string, never>;
 interface InputContainerProps {
   error: boolean;
   labelKey?: string;
-}
-
-interface Inputs {
-  description: string;
-  message: string;
-  name: string;
-  users: string;
 }
 
 const BusySpinner = ({ busy }: { busy: boolean }) => (
@@ -53,26 +47,8 @@ export default class JoinChannel extends React.Component<Props> {
   };
   // delay needs to shorter when copy and paste, or need to be a discrete action
   private debouncedLookupUsers = debounce(action(() => this.lookupUsers()), 1000);
-  @observable
-  private inputs: Record<keyof Inputs, string> & Partial<Record<string, string>> = {
-    description: '',
-    message: '',
-    name: '',
-    users: '',
-  };
-  @observable private validUsers = new Map<number, UserJson>();
+  @observable private model = new JoinChannelModel();
   private xhr: Partial<Record<string, JQueryXHR>> = {};
-
-  @computed
-  get errors() {
-    return {
-      description: !osu.present(this.inputs.description),
-      message: !osu.present(this.inputs.message),
-      name: !osu.present(this.inputs.name),
-      users: this.validUsers.size === 0
-        || osu.present(this.inputs.users.trim()), // implies invalid ids left
-    };
-  }
 
   @computed
   get canView() {
@@ -82,7 +58,7 @@ export default class JoinChannel extends React.Component<Props> {
 
   @computed
   get canSend() {
-    return core.dataStore.chatState.isReady && !this.busy.create && !Object.values(this.errors).some(Boolean);
+    return core.dataStore.chatState.isReady && !this.busy.create && !Object.values(this.model.errors).some(Boolean);
   }
 
   constructor(props: Props) {
@@ -102,21 +78,21 @@ export default class JoinChannel extends React.Component<Props> {
       <div className='chat-join-channel'>
         <div className='chat-join-channel__fields'>
           <div className='chat-join-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
-          <InputContainer error={this.errors.name} labelKey='chat.join_channel.labels.name'>
+          <InputContainer error={this.model.errors.name} labelKey='chat.join_channel.labels.name'>
             <input
               className='chat-join-channel__input'
               name='name'
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer error={this.errors.description} labelKey='chat.join_channel.labels.description'>
+          <InputContainer error={this.model.errors.description} labelKey='chat.join_channel.labels.description'>
             <input
               className='chat-join-channel__input'
               name='description'
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer error={this.errors.users} labelKey='chat.join_channel.labels.users'>
+          <InputContainer error={this.model.errors.users} labelKey='chat.join_channel.labels.users'>
             <div className='chat-join-channel__users-input'>
               <div className='chat-join-channel__users'>
                 {this.renderValidUsers()}
@@ -126,12 +102,12 @@ export default class JoinChannel extends React.Component<Props> {
                 onChange={this.handleUsersInputChange}
                 onKeyUp={this.handleUsersInputKeyUp}
                 onPaste={this.handleUsersInputPaste}
-                value={this.inputs.users}
+                value={this.model.inputs.users}
               />
               <BusySpinner busy={this.busy.lookupUsers} />
             </div>
           </InputContainer>
-          <InputContainer error={this.errors.message}>
+          <InputContainer error={this.model.errors.message}>
             <TextareaAutosize
               autoComplete='off'
               className='chat-join-channel__box'
@@ -156,30 +132,9 @@ export default class JoinChannel extends React.Component<Props> {
   }
 
   renderValidUsers() {
-    return [...this.validUsers.values()].map((user) => (
+    return [...this.model.validUsers.values()].map((user) => (
       <UserCardBrick key={user.id} modifiers='fit' onRemoveClick={this.handleRemoveUser} user={user} />
     ));
-  }
-
-  /**
-   * Disassembles and extract valid users from the string.
-   */
-  @action
-  private extractValidUsers() {
-    const userIds = this.inputs.users.split(',');
-    if (userIds.length === 0) return false;
-
-    const invalidUsers: string[] = [];
-
-    for (const userId of userIds) {
-      const trimmedUserId = osu.presence(userId.trim());
-
-      if (!this.validUsersContains(trimmedUserId)) {
-        invalidUsers.push(userId);
-      }
-    }
-
-    this.inputs.users = invalidUsers.join(',');
   }
 
   private fetchUsers(ids: (string | null)[]) {
@@ -189,29 +144,24 @@ export default class JoinChannel extends React.Component<Props> {
   @action
   private handleButtonClick = () => {
     this.busy.create = true;
-    const { description, message, name } = this.inputs;
 
     core.dataStore.chatState.waitJoinChannelUuid = osu.uuid();
+    const json = this.model.toJson();
 
-    this.xhr.create = createAnnoucement({
-      channel: { description, name },
-      message,
-      target_ids: [...this.validUsers.keys()],
-      type: 'ANNOUNCE',
-      uuid: core.dataStore.chatState.waitJoinChannelUuid,
-    }).always(action(() => this.busy.create = false));
+    this.xhr.create = createAnnoucement(json)
+      .always(action(() => this.busy.create = false));
   };
 
   @action
   private handleInput = (e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {
     const elem = e.currentTarget;
 
-    this.inputs[elem.name] = elem.value.trim();
+    this.model.inputs[elem.name] = elem.value.trim();
   };
 
   @action
   private handleRemoveUser = (user: UserJson) => {
-    this.validUsers.delete(user.id);
+    this.model.validUsers.delete(user.id);
   };
 
   @action
@@ -221,10 +171,10 @@ export default class JoinChannel extends React.Component<Props> {
 
   @action
   private handleUsersInputKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Backspace' && this.inputs.users.length === 0) {
-      const last = [...this.validUsers.keys()].pop();
+    if (e.key === 'Backspace' && this.model.inputs.users.length === 0) {
+      const last = [...this.model.validUsers.keys()].pop();
       if (last != null) {
-        this.validUsers.delete(last);
+        this.model.validUsers.delete(last);
       }
     }
   };
@@ -240,7 +190,7 @@ export default class JoinChannel extends React.Component<Props> {
     this.xhr.lookupUsers?.abort();
     this.debouncedLookupUsers.cancel();
 
-    const userIds = this.inputs.users.split(',').map((s) => osu.presence(s.trim())).filter(Boolean);
+    const userIds = this.model.inputs.users.split(',').map((s) => osu.presence(s.trim())).filter(Boolean);
     if (userIds.length === 0) {
       this.busy.lookupUsers = false;
       return;
@@ -250,10 +200,10 @@ export default class JoinChannel extends React.Component<Props> {
       const response = await this.fetchUsers(userIds);
       runInAction(() => {
         for (const user of response.users) {
-          this.validUsers.set(user.id, user);
+          this.model.validUsers.set(user.id, user);
         }
 
-        this.extractValidUsers();
+        this.model.extractValidUsers();
       });
     } finally {
       runInAction(() => this.busy.lookupUsers = false);
@@ -263,21 +213,7 @@ export default class JoinChannel extends React.Component<Props> {
   private updateUsersInput(text: string) {
     this.busy.lookupUsers = true;
     this.debouncedLookupUsers.cancel();
-    this.inputs.users = text;
+    this.model.inputs.users = text;
     this.debouncedLookupUsers();
-  }
-
-  private validUsersContains(userId?: string | null) {
-    if (userId == null) return false;
-
-    const userIdNumber = Number(userId);
-    if (Number.isInteger(userIdNumber) && this.validUsers.has(userIdNumber)) return true;
-
-    // maybe it's a username
-    for (const user of this.validUsers.values()) {
-      if (user.username === userId) return true;
-    }
-
-    return false;
   }
 }
