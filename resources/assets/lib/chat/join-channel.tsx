@@ -5,15 +5,12 @@ import BigButton from 'components/big-button';
 import { Spinner } from 'components/spinner';
 import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
-import { route } from 'laroute';
-import { debounce } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
 import { classWithModifiers } from 'utils/css';
-import { createAnnoucement } from './chat-api';
 
 type Props = Record<string, never>;
 
@@ -40,14 +37,6 @@ const InputContainer = observer((props: React.PropsWithChildren<InputContainerPr
 
 @observer
 export default class JoinChannel extends React.Component<Props> {
-  @observable private busy = {
-    create: false,
-    lookupUsers: false,
-  };
-  // delay needs to shorter when copy and paste, or need to be a discrete action
-  private debouncedLookupUsers = debounce(action(() => this.lookupUsers()), 1000);
-  private xhr: Partial<Record<string, JQueryXHR>> = {};
-
   @computed
   get canView() {
     const currentUser = core.currentUserOrFail;
@@ -56,7 +45,7 @@ export default class JoinChannel extends React.Component<Props> {
 
   @computed
   get canSend() {
-    return core.dataStore.chatState.isReady && !this.busy.create && !Object.values(this.model.errors).some(Boolean);
+    return core.dataStore.chatState.isReady && !this.model.busy.create && !Object.values(this.model.errors).some(Boolean);
   }
 
   @computed
@@ -68,10 +57,6 @@ export default class JoinChannel extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
-  }
-
-  componentWillUnmount() {
-    Object.values(this.xhr).forEach((xhr) => xhr?.abort());
   }
 
   render() {
@@ -109,7 +94,7 @@ export default class JoinChannel extends React.Component<Props> {
                 onPaste={this.handleUsersInputPaste}
                 value={this.model.inputs.users}
               />
-              <BusySpinner busy={this.busy.lookupUsers} />
+              <BusySpinner busy={this.model.busy.lookupUsers} />
             </div>
           </InputContainer>
           <InputContainer error={this.model.errors.message}>
@@ -143,20 +128,11 @@ export default class JoinChannel extends React.Component<Props> {
     ));
   }
 
-  private fetchUsers(ids: (string | null)[]) {
-    return $.getJSON(route('chat.users.index'), { ids }) as JQuery.jqXHR<{ users: UserJson[] }>;
-  }
-
   @action
   private handleButtonClick = () => {
-    this.busy.create = true;
+    this.model.busy.create = true;
 
-    const json = this.model.toJson();
-    core.dataStore.chatState.waitJoinChannelUuid = json.uuid;
-
-    createAnnoucement(json)
-      .done(action(() => this.model.clear()))
-      .always(action(() => this.busy.create = false));
+    this.model.create()?.always(action(() => this.model.busy.create = false));
   };
 
   @action
@@ -173,7 +149,7 @@ export default class JoinChannel extends React.Component<Props> {
 
   @action
   private handleUsersInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.updateUsersInput(e.currentTarget.value);
+    this.model.updateUsers(e.currentTarget.value, false);
   };
 
   @action
@@ -188,39 +164,6 @@ export default class JoinChannel extends React.Component<Props> {
 
   @action
   private handleUsersInputPaste = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    this.updateUsersInput(e.currentTarget.value);
-    this.debouncedLookupUsers.flush();
+    this.model.updateUsers(e.currentTarget.value, true);
   };
-
-  @action
-  private async lookupUsers() {
-    this.xhr.lookupUsers?.abort();
-    this.debouncedLookupUsers.cancel();
-
-    const userIds = this.model.inputs.users.split(',').map((s) => osu.presence(s.trim())).filter(Boolean);
-    if (userIds.length === 0) {
-      this.busy.lookupUsers = false;
-      return;
-    }
-
-    try {
-      const response = await this.fetchUsers(userIds);
-      runInAction(() => {
-        for (const user of response.users) {
-          this.model.validUsers.set(user.id, user);
-        }
-
-        this.model.extractValidUsers();
-      });
-    } finally {
-      runInAction(() => this.busy.lookupUsers = false);
-    }
-  }
-
-  private updateUsersInput(text: string) {
-    this.busy.lookupUsers = true;
-    this.debouncedLookupUsers.cancel();
-    this.model.inputs.users = text;
-    this.debouncedLookupUsers();
-  }
 }
