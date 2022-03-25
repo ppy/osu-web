@@ -151,7 +151,7 @@ export default class JoinChannel extends React.Component<Props> {
     core.dataStore.chatState.waitJoinChannelUuid = osu.uuid();
     const json = this.model.toJson();
 
-    this.xhr.create = createAnnoucement(json)
+    createAnnoucement(json)
       .done(action(() => this.model.clear()))
       .always(action(() => this.busy.create = false));
   };
