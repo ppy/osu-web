@@ -3,7 +3,6 @@
 
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable, observable } from 'mobx';
-import core from 'osu-core-singleton';
 
 interface Inputs {
   description: string;
@@ -20,6 +19,7 @@ export default class CreateAnnouncement {
     users: '',
   };
   @observable validUsers = new Map<number, UserJson>();
+  private uuid = osu.uuid();
 
   @computed
   get errors() {
@@ -71,7 +71,7 @@ export default class CreateAnnouncement {
       message,
       target_ids: [...this.validUsers.keys()],
       type: 'ANNOUNCE' as const,
-      uuid: core.dataStore.chatState.waitJoinChannelUuid ?? osu.uuid(),
+      uuid: this.uuid,
     };
   }
 

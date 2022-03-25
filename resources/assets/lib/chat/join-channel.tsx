@@ -148,8 +148,8 @@ export default class JoinChannel extends React.Component<Props> {
   private handleButtonClick = () => {
     this.busy.create = true;
 
-    core.dataStore.chatState.waitJoinChannelUuid = osu.uuid();
     const json = this.model.toJson();
+    core.dataStore.chatState.waitJoinChannelUuid = json.uuid;
 
     createAnnoucement(json)
       .done(action(() => this.model.clear()))
