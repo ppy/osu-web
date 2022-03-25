@@ -45,7 +45,7 @@ export default class JoinChannel extends React.Component<Props> {
 
   @computed
   get canSend() {
-    return core.dataStore.chatState.isReady && !this.model.busy.create && !Object.values(this.model.errors).some(Boolean);
+    return core.dataStore.chatState.isReady && !this.model.busy.create && this.model.isValid;
   }
 
   @computed
@@ -113,6 +113,8 @@ export default class JoinChannel extends React.Component<Props> {
         <div className='chat-join-channel__button-bar'>
           <BigButton
             disabled={!this.canSend}
+            icon='fas fa-bullhorn'
+            isBusy={this.model.busy.create}
             modifiers='chat-send'
             props={{ onClick: this.handleButtonClick }}
             text={osu.trans(core.dataStore.chatState.isReady ? 'chat.input.create' : 'chat.input.disconnected')}
@@ -130,9 +132,7 @@ export default class JoinChannel extends React.Component<Props> {
 
   @action
   private handleButtonClick = () => {
-    this.model.busy.create = true;
-
-    this.model.create()?.always(action(() => this.model.busy.create = false));
+    this.model.create();
   };
 
   @action

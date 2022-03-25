@@ -56,19 +56,28 @@ export default class CreateAnnouncement {
 
   @action
   clear() {
-    Object.keys(this.inputs).forEach((key) => this.inputs[key] = '');
+    Object.values(this.xhr).forEach((xhr) => xhr?.abort());
+    Object.keys(this.busy).forEach((key: keyof typeof this.busy) => this.busy[key] = false);
+    Object.keys(this.inputs).forEach((key: keyof typeof this.inputs) => this.inputs[key] = '');
     this.validUsers.clear();
   }
 
   @action
   create() {
-    if (!this.isValid) return;
+    if (!this.isValid || this.busy.create) return;
 
+    // busy state should remain active so the same model can't be used to send multiple requests
+    // until the entire workflow is complete, including switching the channel.
+    // TODO: need a cancel or timeout or something?
+    this.busy.create = true;
     const json = this.toJson();
     core.dataStore.chatState.waitJoinChannelUuid = json.uuid;
 
-    return createAnnoucement(json)
-      .done(action(() => this.clear()));
+    this.xhr.create = createAnnoucement(json)
+      .fail(action((xhr: JQueryXHR) => {
+        osu.ajaxError(xhr);
+        this.busy.create = false;
+      }));
   }
 
   toJson() {

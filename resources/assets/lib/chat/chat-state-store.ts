@@ -174,6 +174,9 @@ export default class ChatStateStore implements DispatchListener {
 
     if (this.waitJoinChannelUuid != null && this.waitJoinChannelUuid === event.json.uuid) {
       this.selectChannel(event.json.channel_id);
+      if (event.json.type === 'ANNOUNCE') {
+        this.createAnnoucement.clear();
+      }
     }
   }
 
