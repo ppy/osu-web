@@ -268,7 +268,7 @@ export default class JoinChannel extends React.Component<Props> {
   }
 
   private validUsersContains(userId?: string | null) {
-    if (userId == null) return false;
+    if (userId == null || !Number.isInteger(userId)) return false;
 
     if (this.validUsers.has(Number.parseInt(userId, 10))) return true;
 
