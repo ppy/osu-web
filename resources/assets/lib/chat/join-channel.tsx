@@ -63,12 +63,6 @@ export default class JoinChannel extends React.Component<Props> {
   @observable private validUsers = new Map<number, UserJson>();
   private xhr: Partial<Record<string, JQueryXHR>> = {};
 
-  constructor(props: Props) {
-    super(props);
-
-    makeObservable(this);
-  }
-
   @computed
   get errors() {
     return {
@@ -89,6 +83,12 @@ export default class JoinChannel extends React.Component<Props> {
   @computed
   get canSend() {
     return core.dataStore.chatState.isReady && !this.busy.create && !Object.values(this.errors).some(Boolean);
+  }
+
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
   }
 
   componentWillUnmount() {
