@@ -12,6 +12,7 @@ import { supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
+import CreateAnnouncement from 'models/chat/create-announcement';
 import ChannelStore from 'stores/channel-store';
 import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
@@ -21,6 +22,7 @@ import PingService from './ping-service';
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
+  @observable createAnnoucement = new CreateAnnouncement();
   @observable isChatMounted = false;
   @observable isReady = false;
   skipRefresh = false;

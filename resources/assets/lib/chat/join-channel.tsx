@@ -9,7 +9,6 @@ import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
-import JoinChannelModel from 'models/chat/join-channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
@@ -47,7 +46,6 @@ export default class JoinChannel extends React.Component<Props> {
   };
   // delay needs to shorter when copy and paste, or need to be a discrete action
   private debouncedLookupUsers = debounce(action(() => this.lookupUsers()), 1000);
-  @observable private model = new JoinChannelModel();
   private xhr: Partial<Record<string, JQueryXHR>> = {};
 
   @computed
@@ -59,6 +57,11 @@ export default class JoinChannel extends React.Component<Props> {
   @computed
   get canSend() {
     return core.dataStore.chatState.isReady && !this.busy.create && !Object.values(this.model.errors).some(Boolean);
+  }
+
+  @computed
+  get model() {
+    return core.dataStore.chatState.createAnnoucement;
   }
 
   constructor(props: Props) {
@@ -149,6 +152,7 @@ export default class JoinChannel extends React.Component<Props> {
     const json = this.model.toJson();
 
     this.xhr.create = createAnnoucement(json)
+      .done(action(() => this.model.clear()))
       .always(action(() => this.busy.create = false));
   };
 

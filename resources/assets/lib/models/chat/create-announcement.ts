@@ -12,7 +12,7 @@ interface Inputs {
   users: string;
 }
 
-export default class JoinChannel {
+export default class CreateAnnouncement {
   @observable inputs: Record<keyof Inputs, string> & Partial<Record<string, string>> = {
     description: '',
     message: '',
@@ -34,6 +34,12 @@ export default class JoinChannel {
 
   constructor() {
     makeObservable(this);
+  }
+
+  @action
+  clear() {
+    Object.keys(this.inputs).forEach((key) => this.inputs[key] = '');
+    this.validUsers.clear();
   }
 
   /**
