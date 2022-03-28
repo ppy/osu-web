@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import ScoreJson from 'interfaces/score-json';
+import ScoreJson, { ScoreCurrentUserPinJson } from 'interfaces/score-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 
@@ -64,7 +64,7 @@ export default class ScorePins {
     this.pins.set(mapKey, isPinned);
   }
 
-  private mapKey(pin: Required<ScoreJson['current_user_attributes']>['pin']) {
+  private mapKey(pin: ScoreCurrentUserPinJson) {
     return `${pin.score_type}:${pin.score_id}`;
   }
 }
