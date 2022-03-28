@@ -5,7 +5,7 @@ import FriendUpdated from 'actions/friend-updated';
 import { dispatch } from 'app-dispatcher';
 import UserRelationJson from 'interfaces/user-relation-json';
 import { route } from 'laroute';
-import { observable, computed, action, makeObservable } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -84,11 +84,14 @@ export default class FriendButton extends React.Component<Props> {
     super(props);
 
     this.followersWithoutSelf = this.props.followers ?? 0;
-    if (this.friend != null) {
-      this.followersWithoutSelf -= 1;
-    }
 
     makeObservable(this);
+
+    runInAction(() => {
+      if (this.friend != null) {
+        this.followersWithoutSelf -= 1;
+      }
+    });
   }
 
   componentWillUnmount() {
