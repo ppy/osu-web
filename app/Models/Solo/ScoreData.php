@@ -19,7 +19,7 @@ class ScoreData implements Castable, JsonSerializable
     public float $accuracy;
     public int $beatmapId;
     public ?int $buildId;
-    public ?Carbon $endedAt;
+    public Carbon $endedAt;
     public int $maxCombo;
     public array $mods;
     public bool $passed;
