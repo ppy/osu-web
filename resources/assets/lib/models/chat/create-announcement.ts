@@ -32,7 +32,7 @@ export default class CreateAnnouncement {
   @observable validUsers = new Map<number, UserJson>();
 
   private uuid = osu.uuid();
-  private xhr: Partial<Record<string, JQueryXHR>> = {};
+  private xhrLookupUsers?: JQueryXHR;
 
   @computed
   get errors() {
@@ -56,7 +56,7 @@ export default class CreateAnnouncement {
 
   @action
   clear() {
-    Object.values(this.xhr).forEach((xhr) => xhr?.abort());
+    this.xhrLookupUsers?.abort();
     Object.keys(this.busy).forEach((key: keyof typeof this.busy) => this.busy[key] = false);
     Object.keys(this.inputs).forEach((key: keyof typeof this.inputs) => this.inputs[key] = '');
     this.validUsers.clear();
@@ -73,7 +73,7 @@ export default class CreateAnnouncement {
     const json = this.toJson();
     core.dataStore.chatState.waitJoinChannelUuid = json.uuid;
 
-    this.xhr.create = createAnnoucement(json)
+    createAnnoucement(json)
       .fail(action((xhr: JQueryXHR) => {
         osu.ajaxError(xhr);
         this.busy.create = false;
@@ -132,7 +132,7 @@ export default class CreateAnnouncement {
 
   @action
   private async lookupUsers() {
-    this.xhr.lookupUsers?.abort();
+    this.xhrLookupUsers?.abort();
     this.debouncedLookupUsers.cancel();
 
     const userIds = this.inputs.users.split(',').map((s) => osu.presence(s.trim())).filter(Boolean);
