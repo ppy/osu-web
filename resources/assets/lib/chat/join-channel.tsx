@@ -9,7 +9,6 @@ import { action, computed, makeObservable, } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea/lib';
 import { classWithModifiers } from 'utils/css';
 
 type Props = Record<string, never>;
@@ -98,11 +97,10 @@ export default class JoinChannel extends React.Component<Props> {
             </div>
           </InputContainer>
           <InputContainer error={this.model.errors.message}>
-            <TextareaAutosize
+            <textarea
               autoComplete='off'
               className='chat-join-channel__box'
               defaultValue={this.model.inputs.message}
-              maxRows={10}
               name='message'
               onChange={this.handleInput}
               placeholder={osu.trans('chat.input.placeholder')}
