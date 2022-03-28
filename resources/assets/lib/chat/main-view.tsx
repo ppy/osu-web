@@ -21,12 +21,12 @@ export default class MainView extends React.Component<Record<string, never>> {
 
   @action
   componentDidMount() {
-    $('html').addClass('osu-layout--mobile-app');
+    $('html').addClass('u-chat');
     core.dataStore.chatState.isChatMounted = true;
   }
 
   componentWillUnmount() {
-    $('html').removeClass('osu-layout--mobile-app');
+    $('html').removeClass('u-chat');
     runInAction(() => {
       core.dataStore.chatState.isChatMounted = false;
     });
