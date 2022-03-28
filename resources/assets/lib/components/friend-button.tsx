@@ -83,10 +83,12 @@ export default class FriendButton extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
+    // FIXME: this should be run again on user id change (also for runInAction below)
     this.followersWithoutSelf = this.props.followers ?? 0;
 
     makeObservable(this);
 
+    // FIXME: see setting followersWithoutSelf above
     runInAction(() => {
       if (this.friend != null) {
         this.followersWithoutSelf -= 1;
