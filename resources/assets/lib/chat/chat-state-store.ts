@@ -107,7 +107,9 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  selectChannel(channelId: number, replaceUrl = false) {
+  selectChannel(channelId: number, mode: 'advanceHistory' | 'replaceHistory' = 'advanceHistory', updateHistory = true) {
+    // TODO: enfore location url even if channel doesn't change;
+    // noticeable when navigating via ?sendto= on existing channel.
     if (this.selected === channelId) return;
 
     // mark the channel being switched away from as read.
@@ -124,33 +126,29 @@ export default class ChatStateStore implements DispatchListener {
     this.selected = channelId;
     this.selectedIndex = this.channelList.indexOf(channel);
 
-    if (channel.newPmChannel) {
-      Turbolinks.controller.replaceHistory(updateQueryString(null, {
-        channel_id: null,
-      }));
-    } else if (replaceUrl) {
-      // Remove channel_id from location on selectFirst();
-      // also handles the case when history goes back to a channel that was removed.
-      Turbolinks.controller.replaceHistory(updateQueryString(null, {
-        channel_id: null,
-        sendto: null,
-      }));
-    } else {
-      Turbolinks.controller.advanceHistory(updateQueryString(null, {
-        channel_id: channelId.toString(),
-        sendto: null,
-      }));
-    }
-
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId);
+
+    if (updateHistory) {
+      const params = channel.newPmChannel
+        ? { channel_id: null, sendto: channel.pmTarget?.toString() }
+        : { channel_id: channel.channelId.toString(), sendto: null };
+
+      Turbolinks.controller[mode](updateQueryString(null, params));
+    }
   }
 
   @action
   selectFirst() {
     if (this.channelList.length === 0) return;
 
-    this.selectChannel(this.channelList[0].channelId, true);
+    this.selectChannel(this.channelList[0].channelId, 'replaceHistory', false);
+    // Remove channel_id from location on selectFirst();
+    // also handles the case when history goes back to a channel that was removed.
+    Turbolinks.controller.replaceHistory(updateQueryString(null, {
+      channel_id: null,
+      sendto: null,
+    }));
   }
 
   @action
