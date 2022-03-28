@@ -21,24 +21,27 @@ export default class MainView extends React.Component<Record<string, never>> {
 
   @action
   componentDidMount() {
-    $('html').addClass('u-chat');
+    document.querySelector('html')?.classList.add('u-chat');
     core.dataStore.chatState.isChatMounted = true;
   }
 
   componentWillUnmount() {
-    $('html').removeClass('u-chat');
-    runInAction(() => {
-      core.dataStore.chatState.isChatMounted = false;
-    });
+    // skip cleanup on unmount if navigation is still on chat.
+    if (document.querySelector('.js-chat') == null) {
+      document.querySelector('html')?.classList.remove('u-chat');
+      runInAction(() => {
+        core.dataStore.chatState.isChatMounted = false;
+      });
+    }
   }
 
-  render(): React.ReactNode {
+  render() {
     const lazerLink = 'https://github.com/ppy/osu/releases';
     return (
       <>
         <HeaderV4 theme='chat' />
         {core.dataStore.channelStore.channels.size > 0 ? (
-          <div className='chat osu-page osu-page--chat'>
+          <div className='chat osu-page osu-page--chat js-chat'>
             <div className='chat__sidebar'>
               <ConversationList />
             </div>
@@ -48,7 +51,7 @@ export default class MainView extends React.Component<Record<string, never>> {
             </div>
           </div>
         ) : (
-          <div className='chat osu-page osu-page--chat'>
+          <div className='chat osu-page osu-page--chat js-chat'>
             <div className='chat__not-active'>
               <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />
               <div className='chat__title'>{osu.trans('chat.no-conversations.title')}</div>
