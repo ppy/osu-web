@@ -5,7 +5,7 @@ import BigButton from 'components/big-button';
 import { Spinner } from 'components/spinner';
 import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
-import { action, computed, makeObservable, } from 'mobx';
+import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { isInputKey } from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
