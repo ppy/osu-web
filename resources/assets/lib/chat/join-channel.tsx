@@ -7,6 +7,7 @@ import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable, } from 'mobx';
 import { observer } from 'mobx-react';
+import { isInputKey } from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
@@ -137,7 +138,9 @@ export default class JoinChannel extends React.Component<Props> {
   private handleInput = (e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {
     const elem = e.currentTarget;
 
-    this.model.inputs[elem.name] = elem.value.trim();
+    if (isInputKey(elem.name)) {
+      this.model.inputs[elem.name] = elem.value.trim();
+    }
   };
 
   @action

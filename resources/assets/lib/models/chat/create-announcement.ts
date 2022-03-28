@@ -8,11 +8,12 @@ import { debounce } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 
-interface Inputs {
-  description: string;
-  message: string;
-  name: string;
-  users: string;
+export const inputKeys = ['description', 'message', 'name', 'users'] as const;
+type InputKey = typeof inputKeys[number];
+type Inputs = { [key in InputKey]: string };
+
+export function isInputKey(key: string): key is InputKey {
+  return (inputKeys as Readonly<string[]>).includes(key);
 }
 
 export default class CreateAnnouncement {
@@ -23,7 +24,7 @@ export default class CreateAnnouncement {
 
   debouncedLookupUsers = debounce(action(() => this.lookupUsers()), 1000);
 
-  @observable inputs: Record<keyof Inputs, string> & Partial<Record<string, string>> = {
+  @observable inputs: Inputs = {
     description: '',
     message: '',
     name: '',
