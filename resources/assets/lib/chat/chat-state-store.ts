@@ -17,18 +17,24 @@ import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
 import { getUpdates } from './chat-api';
+import MainView from './main-view';
 import PingService from './ping-service';
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
-  @observable isChatMounted = false;
   @observable isReady = false;
   skipRefresh = false;
+  @observable viewsMounted = new Set<MainView>();
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
   private pingService: PingService;
   @observable private selected = 0;
   private selectedIndex = 0;
+
+  @computed
+  get isChatMounted() {
+    return this.viewsMounted.size > 0;
+  }
 
   @computed
   get selectedChannel() {
@@ -49,6 +55,14 @@ export default class ChatStateStore implements DispatchListener {
       // refocus channels if any gets removed
       if (changes.type === 'delete') {
         this.refocusSelectedChannel();
+      }
+    });
+
+    autorun(() => {
+      if (this.isChatMounted) {
+        document.querySelector('html')?.classList.add('u-chat');
+      } else {
+        document.querySelector('html')?.classList.remove('u-chat');
       }
     });
 
