@@ -28,14 +28,6 @@ export default class User {
     makeObservable(this);
   }
 
-  static fromJson(json: UserJson): User {
-    const user = new User(json.id);
-
-    user.updateFromJson(json);
-
-    return user;
-  }
-
   is(user?: User | UserJson | null) {
     if (user == null) return false;
     return user.id === this.id;
@@ -64,7 +56,7 @@ export default class User {
   }
 
   @action
-  updateFromJson(json: UserJson) {
+  updateWithJson(json: UserJson) {
     this.avatarUrl = json.avatar_url;
     this.countryCode = json.country_code;
     this.defaultGroup = json.default_group;

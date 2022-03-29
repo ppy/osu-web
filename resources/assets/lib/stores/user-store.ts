@@ -31,11 +31,11 @@ export default class UserStore implements DispatchListener {
     let user = this.users.get(userId);
 
     if (user == null) {
-      user = User.fromJson(json);
+      user = new User(json.id);
       this.users.set(userId, user);
-    } else {
-      user.updateFromJson(json);
     }
+
+    user.updateWithJson(json);
 
     return user;
   }
@@ -50,8 +50,7 @@ export default class UserStore implements DispatchListener {
   updateWithJson(data: UserJson[] | undefined | null) {
     if (data == null) return;
     for (const json of data) {
-      const user = User.fromJson(json);
-      this.users.set(user.id, user);
+      this.getOrCreate(json.id, json);
     }
   }
 }
