@@ -17,7 +17,6 @@ export default class User {
   @observable isOnline = false;
   @observable isSupporter = false;
   @observable lastVisit: string | null = null;
-  @observable loaded = false;
   @observable pmFriendsOnly = false;
   @observable profileColour = '';
   @observable username = '';
