@@ -229,6 +229,7 @@ class Comment extends Model
         return $this->update([
             'deleted_at' => now(),
             'deleted_by_id' => $deletedBy->getKey(),
+            'pinned' => false,
         ]);
     }
 
