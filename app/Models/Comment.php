@@ -7,7 +7,6 @@ namespace App\Models;
 
 use App\Libraries\MorphMap;
 use App\Traits\Validatable;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -228,8 +227,8 @@ class Comment extends Model
     public function softDelete($deletedBy)
     {
         return $this->update([
+            'deleted_at' => now(),
             'deleted_by_id' => $deletedBy->getKey(),
-            'deleted_at' => Carbon::now(),
         ]);
     }
 
