@@ -26,8 +26,14 @@ export default class UserStore implements DispatchListener {
     return this.users.get(id);
   }
 
+  handleDispatchAction(event: DispatcherAction) {
+    if (event instanceof MessageNewEvent) {
+      this.updateMany(event.json.users);
+    }
+  }
+
   @action
-  getOrCreate(json: UserJson): User {
+  update(json: UserJson): User {
     const userId = json.id;
     let user = this.users.get(userId);
 
@@ -41,17 +47,11 @@ export default class UserStore implements DispatchListener {
     return user;
   }
 
-  handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof MessageNewEvent) {
-      this.updateWithJson(event.json.users);
-    }
-  }
-
   @action
-  updateWithJson(data: UserJson[] | undefined | null) {
+  updateMany(data: UserJson[] | undefined | null) {
     if (data == null) return;
     for (const json of data) {
-      this.getOrCreate(json);
+      this.update(json);
     }
   }
 }
