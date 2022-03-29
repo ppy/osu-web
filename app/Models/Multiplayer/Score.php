@@ -82,6 +82,7 @@ class Score extends Model
         $params['passed'] = get_bool($params['passed']);
         $params['ruleset_id'] = $this->playlistItem->ruleset_id;
         $params['statistics'] = json_decode($params['statistics'], true);
+        $params['ruleset_id'] = $this->playlistItem->ruleset_id;
 
         return new ScoreData($params);
     }
