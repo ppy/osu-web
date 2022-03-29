@@ -46,7 +46,9 @@ class Extension implements ConfigurableExtensionInterface
         $environment
             ->addRenderer(ListItem::class, new Renderers\ListItemRenderer(), 10)
             ->addRenderer(Table::class, new Renderers\TableRenderer(), 10)
-            ->addEventListener(DocumentParsedEvent::class, $this->processor);
+            // This needs to be run after AttributesExtension so it gets
+            // correct node id attribute for table of contents.
+            ->addEventListener(DocumentParsedEvent::class, $this->processor, -10);
 
         if ($environment->getConfiguration()->exists('osu_extension/attributes_allowed')) {
             $environment->addEventListener(DocumentParsedEvent::class, new AttributesAllowedListener());
