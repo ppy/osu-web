@@ -39,7 +39,7 @@ interface SoloScoreJsonDefaultAttributes {
   replay: boolean | null;
   ruleset_id: number;
   started_at: string | null;
-  statistics: Record<SoloScoreStatisticsAttribute, number>;
+  statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
   total_score: number;
   user_id: number;
 }

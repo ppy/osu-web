@@ -130,9 +130,9 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           <TdLink
             key={stat.attribute}
             href={this.scoreUrl}
-            modifiers={{ zero: score.statistics[stat.attribute] === 0 }}
+            modifiers={{ zero: (score.statistics[stat.attribute] ?? 0) === 0 }}
           >
-            {osu.formatNumber(score.statistics[stat.attribute])}
+            {osu.formatNumber(score.statistics[stat.attribute] ?? 0)}
           </TdLink>
         ))}
 

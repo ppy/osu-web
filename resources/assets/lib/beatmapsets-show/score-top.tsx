@@ -153,7 +153,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                     {attr.label}
                   </div>
                   <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller'>
-                    {osu.formatNumber(this.props.score.statistics[attr.attribute])}
+                    {osu.formatNumber(this.props.score.statistics[attr.attribute] ?? 0)}
                   </div>
                 </div>
               ))}

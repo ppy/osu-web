@@ -60,7 +60,7 @@ export default function Stats(props: Props) {
                 {attr.label}
               </div>
               <div className='score-stats__stat-row'>
-                {props.score.statistics[attr.attribute]}
+                {osu.formatNumber(props.score.statistics[attr.attribute] ?? 0)}
               </div>
             </div>
           ))}
