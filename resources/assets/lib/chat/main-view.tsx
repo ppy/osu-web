@@ -3,8 +3,8 @@
 
 import HeaderV4 from 'components/header-v4';
 import Img2x from 'components/img2x';
-import { action, makeObservable, runInAction } from 'mobx';
-import { observer } from 'mobx-react';
+import { action, autorun, makeObservable, runInAction } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import ConversationList from './conversation-list';
@@ -17,6 +17,19 @@ export default class MainView extends React.Component<Record<string, never>> {
     super(props);
 
     makeObservable(this);
+
+    disposeOnUnmount(
+      this,
+      autorun(() => {
+        if (core.dataStore.chatState.isChatMounted) {
+          // This keeps the body element (not the html element) from rubberbanding on mobile Safari
+          // when scroll hits the end.
+          document.documentElement.classList.add('u-chat');
+        } else {
+          document.documentElement.classList.remove('u-chat');
+        }
+      }),
+    );
   }
 
   @action
