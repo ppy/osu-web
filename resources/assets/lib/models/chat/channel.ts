@@ -170,6 +170,10 @@ export default class Channel {
     // nothing to load
     if (this.newPmChannel) return;
 
+    if (this.type === 'ANNOUNCE' && this.needsRefresh) {
+      this.refresh();
+    }
+
     this.refreshMessages();
   }
 
@@ -210,8 +214,8 @@ export default class Channel {
 
   @action
   refresh() {
-    getChannel(this.channelId).done((response) => {
-      this.updateWithJson(response.channel);
+    getChannel(this.channelId).done((json) => {
+      this.updateWithJson(json);
     });
   }
 
