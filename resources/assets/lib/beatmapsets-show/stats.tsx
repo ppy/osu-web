@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default class Stats extends React.PureComponent<Props> {
-  private get stastKey(): (keyof BeatmapExtendedJson)[] {
+  private get statsKey(): (keyof BeatmapExtendedJson)[] {
     switch (this.props.beatmap.mode) {
       case 'mania':
         return ['cs', 'drain', 'accuracy', 'difficulty_rating'];
@@ -33,7 +33,7 @@ export default class Stats extends React.PureComponent<Props> {
           />
         </div>
 
-        {this.stastKey.map(this.renderStat)}
+        {this.statsKey.map(this.renderStat)}
       </div>
     );
   }
