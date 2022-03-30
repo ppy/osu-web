@@ -15,7 +15,7 @@ class CurrentUserAttributesTransformer extends TransformerAbstract
 {
     public function transform(LegacyMatch\Score|ScoreModel $score): array
     {
-        $best = $score->best;
+        $best = $score instanceof ScoreModel ? $score->best : null;
 
         return [
             'pin' => $best !== null && $this->isOwnScore($best)

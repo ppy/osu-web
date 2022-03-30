@@ -159,6 +159,10 @@ return [
             '_' => 'Публикувани :link',
             'count' => ':count_delimited коментар|:count_delimited коментара',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Промяна на профилната корица',

@@ -159,6 +159,10 @@ return [
             '_' => ':link 작성됨',
             'count' => '댓글 :count_delimited개',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '프로필 표지 변경',

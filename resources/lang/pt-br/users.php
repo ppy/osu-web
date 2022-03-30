@@ -159,6 +159,10 @@ return [
             '_' => 'Publicado :link',
             'count' => ':count_delimited comentário|:count_delimited comentários',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar Capa de Perfil',

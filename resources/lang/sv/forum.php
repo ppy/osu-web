@@ -134,14 +134,14 @@ return [
             'columns' => [
                 'action' => '',
                 'date' => '',
-                'user' => '',
+                'user' => 'Användare',
             ],
 
             'data' => [
                 'add_tag' => '',
                 'announcement' => '',
-                'edit_topic' => '',
-                'fork' => '',
+                'edit_topic' => 'till :title',
+                'fork' => 'från :topic',
                 'pin' => '',
                 'post_operation' => '',
                 'remove_tag' => '',

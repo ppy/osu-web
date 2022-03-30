@@ -159,6 +159,10 @@ return [
             '_' => '發表了 :link',
             'count' => ':count_delimited 則留言|:count_delimited 則留言',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '變更個人簡介封面',

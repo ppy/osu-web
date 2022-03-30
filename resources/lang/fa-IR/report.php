@@ -6,31 +6,31 @@
 return [
     'beatmapset' => [
         'button' => 'گزارش',
-        'title' => 'گزارش بیتمپ :username ؟',
+        'title' => 'گزارش بیت مپ کاربر :username ؟',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'گزارش',
+        'title' => 'گزارش پست :username؟',
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'گزارش',
+        'title' => 'گزارش نظر :username؟',
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'گزارش',
+        'title' => 'گزارش پست :username؟',
     ],
 
     'scores' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'گزارش کردن امتیاز',
+        'title' => 'گزارش امتیاز :username؟',
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'گزارش',
+        'title' => 'گزارش :username؟',
     ],
 ];
