@@ -10,14 +10,14 @@ interface Props {
 }
 
 export default class Stats extends React.PureComponent<Props> {
-  private get statsKey(): (keyof BeatmapExtendedJson)[] {
+  private get statsKey() {
     switch (this.props.beatmap.mode) {
       case 'mania':
-        return ['cs', 'drain', 'accuracy', 'difficulty_rating'];
+        return ['cs', 'drain', 'accuracy', 'difficulty_rating'] as const;
       case 'taiko':
-        return ['drain', 'accuracy', 'difficulty_rating'];
+        return ['drain', 'accuracy', 'difficulty_rating'] as const;
       default:
-        return ['cs', 'drain', 'accuracy', 'ar', 'difficulty_rating'];
+        return ['cs', 'drain', 'accuracy', 'ar', 'difficulty_rating'] as const;
     }
   }
 
@@ -33,37 +33,37 @@ export default class Stats extends React.PureComponent<Props> {
           />
         </div>
 
-        {this.statsKey.map(this.renderStat)}
+        {this.statsKey.map((key) => (
+          <React.Fragment key={key}>
+            {this.renderStat(key, this.props.beatmap[key])}
+          </React.Fragment>
+        ))}
       </div>
     );
   }
 
-  private renderStat = (stat: keyof BeatmapExtendedJson) => {
-    let label = stat;
-    if (this.props.beatmap.mode === 'mania' && stat === 'cs') {
+  private renderStat = (label: string, value: number) => {
+    if (this.props.beatmap.mode === 'mania' && label === 'cs') {
       label += '-mania';
     }
 
     return (
-      <React.Fragment key={stat}>
+      <>
         <div>{osu.trans(`beatmapsets.show.stats.${label}`)}</div>
         <div className='beatmapset-stats__value'>
-          {stat === 'difficulty_rating'
-            ? osu.formatNumber(this.props.beatmap.difficulty_rating)
-            : this.props.beatmap[stat]
-          }
+          {osu.formatNumber(value)}
         </div>
         <div className='beatmapset-stats__bar'>
           <div className='bar bar--beatmap-stats'>
             <div
               className='bar__fill'
               style={{
-                width: `${10 * Math.min(10, Number(this.props.beatmap[stat]))}%`,
+                width: `${10 * Math.min(10, value)}%`,
               }}
             />
           </div>
         </div>
-      </React.Fragment>
+      </>
     );
   };
 }
