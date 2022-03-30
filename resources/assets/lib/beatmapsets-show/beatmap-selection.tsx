@@ -4,7 +4,7 @@
 import { BeatmapIcon } from 'components/beatmap-icon';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
-import { getDiffRating } from 'utils/beatmap-helper';
+import { getDiffColour } from 'utils/beatmap-helper';
 import { generate as generateHash } from 'utils/beatmapset-page-hash';
 import { classWithModifiers } from 'utils/css';
 
@@ -25,7 +25,7 @@ export default class BeatmapSelection extends React.PureComponent<Props> {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         style={{
-          '--stripe-colour': `var(--diff-${getDiffRating(this.props.beatmap.difficulty_rating)})`,
+          '--stripe-colour': `${getDiffColour(this.props.beatmap.difficulty_rating)}`,
         } as React.CSSProperties}
       >
         <BeatmapIcon beatmap={this.props.beatmap} modifiers='beatmapset' />
