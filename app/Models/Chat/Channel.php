@@ -278,7 +278,7 @@ class Channel extends Model
 
     public function visibleUsers()
     {
-        if ($this->isPM()) {
+        if ($this->isPM() || $this->isAnnouncement()) {
             return $this->users();
         }
 
