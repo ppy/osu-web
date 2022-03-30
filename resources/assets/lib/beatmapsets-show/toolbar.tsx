@@ -70,34 +70,11 @@ export default class Toolbar extends React.PureComponent<Props> {
         <div className='beatmapset-toolbar__buttons'>
           {this.renderFavouriteButton()}
           {this.renderDownloadButtons()}
-          {this.renderDiscussionButtons()}
           {this.renderLoginButton()}
           {this.renderMenuButton()}
         </div>
       </div>
     );
-  }
-
-  private renderDiscussionButtons() {
-    if (this.props.beatmapset.discussion_enabled) {
-      return (
-        <BigButton
-          href={route('beatmapsets.discussion', { beatmapset: this.props.beatmapset.id })}
-          modifiers='beatmapset-toolbar'
-          text={osu.trans('beatmapsets.show.discussion')}
-        />
-      );
-    }
-
-    if (this.props.beatmapset.legacy_thread_url !== null) {
-      return (
-        <BigButton
-          href={this.props.beatmapset.legacy_thread_url}
-          modifiers='beatmapset-toolbar'
-          text={osu.trans('beatmapsets.show.discussion')}
-        />
-      );
-    }
   }
 
   private renderDownloadButtons() {
