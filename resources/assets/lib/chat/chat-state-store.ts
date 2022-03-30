@@ -59,14 +59,6 @@ export default class ChatStateStore implements DispatchListener {
     });
 
     autorun(() => {
-      if (this.isChatMounted) {
-        document.querySelector('html')?.classList.add('u-chat');
-      } else {
-        document.querySelector('html')?.classList.remove('u-chat');
-      }
-    });
-
-    autorun(() => {
       if (this.isReady && this.isChatMounted) {
         this.pingService.start();
         dispatch(new SocketMessageSendAction({ event: 'chat.start' }));
