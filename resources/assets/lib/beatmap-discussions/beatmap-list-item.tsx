@@ -5,12 +5,14 @@ import DifficultyBadge from 'components/difficulty-badge';
 import StringWithComponent from 'components/string-with-component';
 import { UserLink } from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
   beatmap: BeatmapExtendedJson;
+  beatmapset: BeatmapsetJson;
   count?: number;
   large: boolean;
   mapper: UserJson;
@@ -46,15 +48,19 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
             <span className='beatmap-list-item__version'>
               {version}
             </span>
-            {' '}
-            <span className='beatmap-list-item__mapper'>
-              <StringWithComponent
-                mappings={{
-                  mapper: <UserLink user={this.props.mapper} />,
-                }}
-                pattern={osu.trans('beatmapsets.show.details.mapped_by')}
-              />
-            </span>
+            {this.props.beatmapset.user_id !== this.props.beatmap.user_id && (
+              <>
+                {' '}
+                <span className='beatmap-list-item__mapper'>
+                  <StringWithComponent
+                    mappings={{
+                      mapper: <UserLink user={this.props.mapper} />,
+                    }}
+                    pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+                  />
+                </span>
+              </>
+            )}
           </div>
         </div>
 

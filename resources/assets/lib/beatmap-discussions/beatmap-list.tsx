@@ -70,6 +70,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
             <div className='beatmap-list__selected beatmap-list__selected--list u-ellipsis-overflow'>
               <BeatmapListItem
                 beatmap={this.props.currentBeatmap}
+                beatmapset={this.props.beatmapset}
                 large={this.props.large}
                 mapper={this.props.currentBeatmap.user ?? this.props.users[this.props.currentBeatmap.user_id] ?? deletedUser.toJson()}
                 withButton='fas fa-chevron-down'
@@ -94,6 +95,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
     >
       <BeatmapListItem
         beatmap={beatmap}
+        beatmapset={this.props.beatmapset}
         count={this.props.getCount?.(beatmap)}
         mapper={beatmap.user ?? this.props.users[beatmap.user_id] ?? deletedUser.toJson()}
       />
