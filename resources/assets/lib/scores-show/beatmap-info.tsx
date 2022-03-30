@@ -33,7 +33,7 @@ const BeatmapInfo = (props: Props) => {
 
       <div className='score-beatmap__detail'>
         <span className='score-beatmap__detail-item'>
-          <BeatmapIcon beatmap={beatmap} showConvertMode showTitle={false} />
+          <BeatmapIcon beatmap={beatmap} showConvertMode />
         </span>
 
         <span className='score-beatmap__detail-item score-beatmap__detail-item--difficulty'>

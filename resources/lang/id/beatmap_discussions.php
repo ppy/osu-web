@@ -83,7 +83,7 @@ return [
             'invalid_document' => 'kajian tidak valid',
             'invalid_discussion_type' => 'tipe diskusi tidak valid',
             'minimum_issues' => 'kajian harus tersusun atas setidaknya :count isu|kajian harus tersusun atas setidaknya :count isu',
-            'missing_text' => 'tidak terdapat tulisan pada blok',
+            'missing_text' => 'blok tidak mengandung teks',
             'too_many_blocks' => 'kajian hanya dapat tersusun sepanjang maksimal :count paragraf/isu|kajian hanya dapat tersusun sepanjang maksimal :count paragraf/isu',
         ],
     ],

@@ -12,9 +12,9 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'بیتمپ ها',
-        'download' => 'دانلود قالب بیتمپ',
-        'download-na' => 'قالب بیتمپ هنوز در دسترس نیست',
+        '_' => 'بیت مپ ها',
+        'download' => 'دانلود قالب بیت مپ',
+        'download-na' => 'قالب بیت مپ هنوز در دسترس نیست',
     ],
 
     'index' => [
@@ -31,7 +31,7 @@ return [
         '_' => 'آهنگ ها',
         'count' => ':count_delimited آهنگ|:count_delimited آهنگ ها',
         'original' => 'osu! عادی',
-        'original_badge' => '',
+        'original_badge' => 'اصلی',
     ],
 
     'tracklist' => [
@@ -43,15 +43,15 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'جستجوی قطعه ها',
 
             'form' => [
-                'advanced' => '',
+                'advanced' => 'جستجوی پیشرفته',
                 'album' => 'آلبوم',
                 'artist' => 'هنرمند',
                 'bpm_gte' => 'کمترین ضرب در دقیقه',
                 'bpm_lte' => 'بیشترین ضرب در دقیقه',
-                'empty' => '',
+                'empty' => 'هیچ قطعه ای مطابق جستجوی شما پیدا نشد.',
                 'genre' => 'ژانر',
                 'genre_all' => 'همه',
                 'length_gte' => 'کمترین طول',

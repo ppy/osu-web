@@ -75,10 +75,10 @@ return [
         'love' => 'Obliba',
         'nominate' => 'Nominace',
         'nomination_reset' => 'Resetování nominací',
-        'nomination_reset_received' => 'Nominace byla obnovena',
-        'nsfw_toggle' => 'Explicitní značka',
+        'nomination_reset_received' => 'Reset nominace přijat',
+        'nsfw_toggle' => 'Explicitní označení',
         'qualify' => 'Kvalifikace',
         'rank' => 'Hodnocení',
-        'remove_from_loved' => 'Odstranení z Loved',
+        'remove_from_loved' => 'Odstranění z Loved',
     ],
 ];

@@ -159,6 +159,10 @@ return [
             '_' => 'Julkaistu :link',
             'count' => ':count_delimited kommentti|:count_delimited kommenttia',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Muuta profiilin kansikuvaa',

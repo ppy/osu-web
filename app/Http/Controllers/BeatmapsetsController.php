@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\Handler as ExceptionsHandler;
 use App\Jobs\BeatmapsetDelete;
-use App\Libraries\BeatmapsetDiscussionReview;
+use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Libraries\CommentBundle;
 use App\Libraries\Search\BeatmapsetSearchCached;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
@@ -114,7 +114,7 @@ class BeatmapsetsController extends Controller
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
-            'reviews_config' => BeatmapsetDiscussionReview::config(),
+            'reviews_config' => Review::config(),
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());

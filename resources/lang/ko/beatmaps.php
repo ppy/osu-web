@@ -73,7 +73,7 @@ return [
             'nomination_reset' => '추천 초기화',
             'praise' => '칭찬',
             'problem' => '문제',
-            'problem_warning' => '',
+            'problem_warning' => '문제 신고',
             'review' => '검토',
             'suggestion' => '제안',
         ],
@@ -142,7 +142,7 @@ return [
             'graveyard' => "이 비트맵은 :date 이후로 업데이트되지 않았고, 제작자에게 버려진 것 같습니다..",
             'loved' => '이 비트맵은 :date에 Loved 되었습니다!',
             'ranked' => '이 비트맵은 :date에 Ranked 되었습니다!',
-            'wip' => '안내: 이 비트맵은 제작자가 \'미완성\'으로 표시한 맵입니다.',
+            'wip' => '안내: 이 비트맵은 제작자가 \'제작 중\'으로 표시한 맵입니다.',
         ],
 
         'votes' => [
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => '확실한가요? 이 작업은 비트맵을 qualify 상태에서 제거하고 추천 상태를 초기화합니다.',
             'nomination_reset' => '확실한가요? 새로운 문제를 제기하는 것은 추천 상태를 초기화시킵니다.',
-            'problem_warning' => '',
+            'problem_warning' => '정말로 이 비트맵의 문제를 신고할까요? 비트맵 Nominator에게 알림이 전송됩니다.',
         ],
     ],
 
@@ -275,7 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => '내 비트맵',
         'pending' => '보류 중 & 작업 중',
-        'wip' => '',
+        'wip' => '제작 중',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],

@@ -159,6 +159,10 @@ return [
             '_' => 'Đã đăng :link',
             'count' => ':count_delimited bình luận|:count_delimited bình luận',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Đổi Ảnh Bìa Trang Cá Nhân',

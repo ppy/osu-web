@@ -159,6 +159,10 @@ return [
             '_' => 'Postnul :link',
             'count' => ':count_delimited komentář|:count_delimited komentáře|:count_delimited komentářů',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Změnit záhlaví profilu',
@@ -240,7 +244,7 @@ return [
                     'title' => 'Nedávno zahráno (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Historie zhlédnutí replayů',
+                    'title' => 'Historie zhlédnutí záznamů',
                     'count_label' => 'Záznamů přehráno',
                 ],
             ],
@@ -413,7 +417,7 @@ return [
             'play_count' => 'Počet zahrání',
             'play_time' => 'Celkový čas hraní',
             'ranked_score' => 'Hodnocené skóre',
-            'replays_watched_by_others' => 'Replaye zhlédnuty ostatními',
+            'replays_watched_by_others' => 'Záznamy zhlédnuty ostatními',
             'score_ranks' => 'Umístění podle skóre',
             'total_hits' => 'Celkově zásahů',
             'total_score' => 'Celkové skóre',

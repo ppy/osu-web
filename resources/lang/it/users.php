@@ -159,6 +159,10 @@ return [
             '_' => 'Ha postato :link',
             'count' => ':count_delimited commento|:count_delimited commenti',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',

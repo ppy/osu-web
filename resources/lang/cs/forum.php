@@ -108,8 +108,8 @@ return [
                 'default' => 'Tohle téma bylo neaktivní už nějakou dobu. Napište pouze jesli k tomu máš důvod.',
 
                 'new_topic' => [
-                    '_' => "Toto téma je neaktivní už nějakou dobu. Pokud nemáte důvod k napsaní, prosím :create radši.",
-                    'create' => 'vytvoř nové téma',
+                    '_' => "Toto téma je už nějakou dobu neaktivní. Pokud nemáš specifický důvod k postnutí zde, prosím :create.",
+                    'create' => 'vytvoř radši nové téma',
                 ],
             ],
 

@@ -282,6 +282,11 @@ class Beatmap extends Model
         return $this->approved > 0;
     }
 
+    public function canBeConverted()
+    {
+        return $this->playmode === static::MODES['osu'];
+    }
+
     public function maxCombo()
     {
         if (!$this->convert && array_key_exists('max_combo', $this->getAttributes())) {

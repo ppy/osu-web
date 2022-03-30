@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'odepřít kudosu',
         'edit' => 'upravit',
         'edited' => 'Naposledy upravil :editor v :update_time.',
-        'guest' => 'Obtíže hosta od :user',
+        'guest' => 'Obtížnost hosta od :user',
         'kudosu_denied' => 'Odepřen od získávání kudosu.',
         'message_placeholder_deleted_beatmap' => 'Tato obtížnost byla smazána, takže už nemůže být probírána.',
         'message_placeholder_locked' => 'Diskuze o této mapě byly vypnuty.',
@@ -198,8 +198,8 @@ return [
         'unresolved_issues' => 'Existují stále nevyřešené problémy, které musí být řešeny jako první.',
 
         'rank_estimate' => [
-            '_' => 'Odhaduje se, že tato mapa bude hodnocená :date , pokud nejsou nalezeny žádné problémy. Aktuálně je #:position v :queue.',
-            'queue' => 'fronta hodnocení',
+            '_' => 'Odhaduje se, že tato mapa bude hodnocená :date, pokud nejsou nalezeny žádné problémy. Aktuálně je #:position ve :queue.',
+            'queue' => 'frontě hodnocení',
             'soon' => 'brzy',
         ],
 
@@ -260,7 +260,7 @@ return [
     ],
     'mode' => [
         'all' => 'Všechny',
-        'any' => 'Jakékoliv',
+        'any' => 'Jakýkoliv',
         'osu' => '',
         'taiko' => '',
         'fruits' => '',
@@ -280,7 +280,7 @@ return [
         'ranked' => 'Hodnocené',
     ],
     'genre' => [
-        'any' => 'Jakékoliv',
+        'any' => 'Jakýkoliv',
         'unspecified' => 'Nespecifikováno',
         'video-game' => 'Videohry',
         'anime' => 'Anime',
@@ -322,7 +322,7 @@ return [
         'V2' => '',
     ],
     'language' => [
-        'any' => 'Jakékoliv',
+        'any' => 'Jakýkoliv',
         'english' => 'Anglické',
         'chinese' => 'Čínské',
         'french' => 'Francouzské',

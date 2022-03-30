@@ -143,7 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'logrado :when',
             'country' => 'Clasificación Nacional',
-            'error' => '',
+            'error' => 'Error al cargar las clasificaciones',
             'friend' => 'Clasificación entre Amigos',
             'global' => 'Clasificación Global',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',

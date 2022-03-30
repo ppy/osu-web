@@ -11,6 +11,7 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
+  children?: React.ReactNode;
   user: UserJson;
 }
 
