@@ -27,6 +27,7 @@ core.reactTurbolinks.register('chat', action(() => {
   const dataStore = core.dataStore;
   const initial = parseJsonNullable<ChatInitialJson>('json-chat-initial', true);
 
+  console.log(initial);
   if (initial != null) {
     if (Array.isArray(initial.presence)) {
       // initial population of channel/presence data

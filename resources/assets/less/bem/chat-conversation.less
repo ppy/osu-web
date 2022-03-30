@@ -93,4 +93,17 @@
       background-color: @osu-colour-b4;
     }
   }
+
+  &__users {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: center;
+
+    margin: 10px;
+
+    &:empty {
+      display: none;
+    }
+  }
 }

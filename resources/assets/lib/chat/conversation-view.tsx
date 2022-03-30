@@ -5,11 +5,13 @@ import ShowMoreLink from 'components/show-more-link';
 import { Spinner } from 'components/spinner';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
+import UserCardBrick from 'components/user-card-brick';
 import { route } from 'laroute';
 import { each, isEmpty, last, throttle } from 'lodash';
 import { action, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
+import { deletedUser } from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -192,6 +194,9 @@ export default class ConversationView extends React.Component<Props> {
         <div className='chat-conversation__new-chat-avatar'>
           <UserAvatar user={{ avatar_url: channel.icon }} />
         </div>
+        <div className='chat-conversation__users'>
+          {this.renderUsers()}
+        </div>
         <div className='chat-conversation__chat-label'>
           {channel.pmTarget != null ? (
             <StringWithComponent
@@ -233,6 +238,16 @@ export default class ConversationView extends React.Component<Props> {
           this.renderCannotSendMessage()
         }
       </div>
+    );
+  }
+
+  renderUsers() {
+    if (this.currentChannel?.type !== 'ANNOUNCE') return null;
+
+    return (
+      this.currentChannel.users.map((userId) => (
+        <UserCardBrick key={userId} modifiers='fit' user={(core.dataStore.userStore.get(userId) ?? deletedUser).toJson()} />
+      ))
     );
   }
 
