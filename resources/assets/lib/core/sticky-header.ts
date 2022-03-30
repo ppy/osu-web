@@ -97,7 +97,7 @@ export default class StickyHeader {
   }
 
   private shouldPin(offset?: number | null) {
-    return ((offset ?? window.pageYOffset) > 30 || this.shouldStick) && !document.body.classList.contains('osu-layout__no-scroll');
+    return (offset ?? window.pageYOffset) > 30 || this.shouldStick;
   }
 
   private readonly stickOrUnstick = () => {
