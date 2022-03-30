@@ -81,7 +81,7 @@ class ScoreTransformer extends TransformerAbstract
             'pp' => $pp ?? null,
             // Ranks are hardcoded to "0" for legacy match scores atm, return F instead for now.
             'rank' => $score->rank === '0' ? 'F' : $score->rank,
-            'replay' => $replay ?? null,
+            'replay' => $replay ?? false,
             'score' => $score->score,
             'statistics' => $statistics,
             'user_id' => $score->user_id,
