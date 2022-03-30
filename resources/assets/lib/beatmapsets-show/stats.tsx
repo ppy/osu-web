@@ -43,12 +43,14 @@ export default class Stats extends React.PureComponent<Props> {
   }
 
   private renderStat = (label: string, value: number) => {
+    const addSpacer = label === 'accuracy';
     if (this.props.beatmap.mode === 'mania' && label === 'cs') {
       label += '-mania';
     }
 
     return (
       <>
+        {addSpacer && <div className='beatmapset-stats__spacer' />}
         <div>{osu.trans(`beatmapsets.show.stats.${label}`)}</div>
         <div className='beatmapset-stats__value'>
           {osu.formatNumber(value)}
