@@ -63,7 +63,6 @@ export default class User {
     this.avatarUrl = json.avatar_url;
     this.countryCode = json.country_code;
     this.defaultGroup = json.default_group;
-    this.groups = json.groups;
     this.isActive = json.is_active;
     this.isBot = json.is_bot;
     this.isOnline = json.is_online;
@@ -71,6 +70,10 @@ export default class User {
     this.pmFriendsOnly = json.pm_friends_only;
     this.profileColour= json.profile_colour ?? '';
     this.username = json.username;
+
+    if (json.groups != null) {
+      this.groups = json.groups;
+    }
   }
 }
 
