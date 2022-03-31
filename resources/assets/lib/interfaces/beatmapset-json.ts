@@ -78,7 +78,6 @@ interface HypeData {
   required: number;
 }
 
-// TODO: incomplete
 interface BeatmapsetJsonDefaultAttributes {
   artist: string;
   artist_unicode: string;
