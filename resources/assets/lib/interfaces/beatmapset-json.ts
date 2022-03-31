@@ -21,7 +21,6 @@ interface BeatmapsetDescription {
 }
 
 interface BaseNominationsInterface {
-  legacy_mode: boolean;
   nominated?: boolean;
   required_hype: number;
 }
@@ -30,10 +29,6 @@ export interface NominationsInterface extends BaseNominationsInterface {
   current: Partial<Record<GameMode, number>>;
   legacy_mode: false;
   required: Partial<Record<GameMode, number>>;
-}
-
-export function isLegacyNominationsInterface(x: BaseNominationsInterface): x is LegacyNominationsInterface {
-  return x.legacy_mode;
 }
 
 export interface LegacyNominationsInterface extends BaseNominationsInterface {
