@@ -157,7 +157,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
-    this.channelStore.getOrCreate(event.json);
+    this.channelStore.update(event.json);
   }
 
   @action
@@ -214,7 +214,7 @@ export default class ChatStateStore implements DispatchListener {
         this.lastHistoryId = newHistoryId;
       }
 
-      this.channelStore.updateWithJson(json);
+      this.channelStore.updateWithChatUpdates(json);
     });
   }
 }

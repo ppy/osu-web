@@ -35,7 +35,7 @@ function getInitialChannel() {
   if (initial != null) {
     if (Array.isArray(initial.presence)) {
       // initial population of channel/presence data
-      dataStore.channelStore.updateWithPresence(initial.presence);
+      dataStore.channelStore.updateMany(initial.presence);
       dataStore.chatState.skipRefresh = true;
     }
 
