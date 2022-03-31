@@ -223,8 +223,10 @@ export default class Channel {
   @action
   refresh() {
     getChannel(this.channelId).done((json) => {
-      this.updateWithJson(json);
-      this.usersLoaded = true;
+      runInAction(() => {
+        this.updateWithJson(json);
+        this.usersLoaded = true;
+      });
     });
   }
 
