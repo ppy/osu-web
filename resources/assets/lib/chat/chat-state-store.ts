@@ -99,7 +99,7 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  selectChannel(channelId: number, mode: 'advanceHistory' | 'replaceHistory' = 'advanceHistory', updateHistory = true) {
+  selectChannel(channelId: number, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
     // TODO: enfore location url even if channel doesn't change;
     // noticeable when navigating via ?sendto= on existing channel.
     if (this.selected === channelId) return;
@@ -121,7 +121,7 @@ export default class ChatStateStore implements DispatchListener {
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId);
 
-    if (updateHistory) {
+    if (mode != null) {
       const params = channel.newPmChannel
         ? { channel_id: null, sendto: channel.pmTarget?.toString() }
         : { channel_id: channel.channelId.toString(), sendto: null };
@@ -134,7 +134,7 @@ export default class ChatStateStore implements DispatchListener {
   selectFirst() {
     if (this.channelList.length === 0) return;
 
-    this.selectChannel(this.channelList[0].channelId, 'replaceHistory', false);
+    this.selectChannel(this.channelList[0].channelId, null);
     // Remove channel_id from location on selectFirst();
     // also handles the case when history goes back to a channel that was removed.
     Turbolinks.controller.replaceHistory(updateQueryString(null, {
