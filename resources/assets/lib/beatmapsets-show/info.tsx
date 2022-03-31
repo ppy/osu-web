@@ -5,7 +5,7 @@ import DifficultyBadge from 'components/difficulty-badge';
 import StringWithComponent from 'components/string-with-component';
 import { UserLink } from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import { padStart } from 'lodash';
 import * as React from 'react';
 import CountBadge from './count-badge';
@@ -14,7 +14,7 @@ import Metadata from './metadata';
 import Stats from './stats';
 
 interface Props {
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetJsonForShow;
   currentBeatmap: BeatmapExtendedJson;
   hoveredBeatmap: BeatmapExtendedJson | null;
 }

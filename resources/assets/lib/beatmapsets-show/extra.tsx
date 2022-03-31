@@ -2,13 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
   beatmap: BeatmapExtendedJson;
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetJsonForShow;
 }
 
 export default class Extra extends React.PureComponent<Props> {

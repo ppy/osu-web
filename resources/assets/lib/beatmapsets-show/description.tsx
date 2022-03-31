@@ -2,17 +2,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BbcodeEditor, { OnChangeProps } from 'components/bbcode-editor';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
+import { BeatmapsetDescription } from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { error, onErrorWithClick } from 'utils/ajax';
 
 interface Props {
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetJsonForShow;
 }
 
 interface State {
-  description?: BeatmapsetExtendedJson['description'];
+  description?: BeatmapsetDescription;
   isBusy: boolean;
   isEditing: boolean;
 }
@@ -99,7 +100,7 @@ export default class Description extends React.PureComponent<Props, State> {
         description: value,
       },
       method: 'PATCH',
-    }).done((data: BeatmapsetExtendedJson) => {
+    }).done((data: BeatmapsetJsonForShow) => {
       this.setState({
         description: data.description,
         isEditing: false,

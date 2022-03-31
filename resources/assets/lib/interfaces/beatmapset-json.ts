@@ -3,6 +3,7 @@
 
 import BeatmapJson from './beatmap-json';
 import BeatmapsetEventJson from './beatmapset-event-json';
+import BeatmapsetNominationJson from './beatmapset-nomination-json';
 import GameMode from './game-mode';
 import GenreJson from './genre-json';
 import LanguageJson from './language-json';
@@ -15,20 +16,12 @@ interface BeatmapsetCovers {
   slimcover: string;
 }
 
-export interface BeatmapsetNomination {
-  beatmapset_id: number;
-  created_at: string;
-  id: number;
-  modes: GameMode[];
-  reset: number;
-  reset_user_id: number | null;
-  updated_at: string | null;
-  user?: UserJson;
-  user_id: number;
+export interface BeatmapsetDescription {
+  bbcode: string | null;
+  description: string | null;
 }
 
 interface BaseNominationsInterface {
-  legacy_mode: boolean;
   nominated?: boolean;
   required_hype: number;
 }
@@ -37,10 +30,6 @@ export interface NominationsInterface extends BaseNominationsInterface {
   current: Partial<Record<GameMode, number>>;
   legacy_mode: false;
   required: Partial<Record<GameMode, number>>;
-}
-
-export function isLegacyNominationsInterface(x: BaseNominationsInterface): x is LegacyNominationsInterface {
-  return x.legacy_mode;
 }
 
 export interface LegacyNominationsInterface extends BaseNominationsInterface {
@@ -68,34 +57,37 @@ export interface CurrentUserAttributes {
   remaining_hype: number;
 }
 
-// TODO: incomplete
-export default interface BeatmapsetJson {
+interface BeatmapsetJsonAvailableIncludes {
+  beatmaps: BeatmapJson[];
+  beatmapset_nominations: BeatmapsetNominationJson[];
+  converts: BeatmapJson[];
+  current_user_attributes: CurrentUserAttributes;
+  description: BeatmapsetDescription;
+  discussions: unknown;
+  events: BeatmapsetEventJson[];
+  genre: GenreJson;
+  has_favourited: boolean;
+  language: LanguageJson;
+  nominations: BeatmapsetNominationsInterface;
+  ratings: number[];
+  recent_favourites: UserJson[];
+  related_users: UserJson[];
+  user: UserJson;
+}
+
+interface HypeData {
+  current: number;
+  required: number;
+}
+
+interface BeatmapsetJsonDefaultAttributes {
   artist: string;
   artist_unicode: string;
-  beatmaps?: BeatmapJson[];
-  beatmapset_nominations?: BeatmapsetNomination[];
   covers: BeatmapsetCovers;
   creator: string;
-  current_user_attributes?: CurrentUserAttributes;
-  description: {
-    bbcode?: string | null;
-    description: string | null;
-  };
-  discussion_enabled: boolean;
-  events?: BeatmapsetEventJson[];
   favourite_count: number;
-  genre: GenreJson;
-  has_favourited?: boolean;
-  hype?: {
-    current: number;
-    required: number;
-  };
+  hype: HypeData | null;
   id: number;
-  is_scoreable: boolean;
-  language: LanguageJson;
-  last_updated: string;
-  legacy_thread_url: string | null;
-  nominations?: BeatmapsetNominationsInterface;
   nsfw: boolean;
   play_count: number;
   preview_url: string;
@@ -108,3 +100,6 @@ export default interface BeatmapsetJson {
   user_id: number;
   video: boolean;
 }
+
+type BeatmapsetJson = BeatmapsetJsonDefaultAttributes & Partial<BeatmapsetJsonAvailableIncludes>;
+export default BeatmapsetJson;

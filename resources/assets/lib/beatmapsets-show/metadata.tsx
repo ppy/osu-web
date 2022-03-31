@@ -4,7 +4,7 @@
 import { Modal } from 'components/modal';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import { UserLink } from 'components/user-link';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
 import { deletedUser } from 'models/user';
 import * as moment from 'moment';
@@ -12,7 +12,7 @@ import * as React from 'react';
 import MetadataEditor from './metadata-editor';
 
 interface Props {
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetJsonForShow;
 }
 
 interface State {
@@ -110,14 +110,18 @@ export default class Metadata extends React.PureComponent<Props, State> {
           </>
         )}
 
-        <div>
-          {osu.trans('beatmapsets.show.info.submitted')}
-        </div>
-        <div className='beatmapset-metadata__value'>
-          {this.renderDate(this.props.beatmapset.submitted_date)}
-        </div>
+        {this.props.beatmapset.submitted_date != null && (
+          <>
+            <div>
+              {osu.trans('beatmapsets.show.info.submitted')}
+            </div>
+            <div className='beatmapset-metadata__value'>
+              {this.renderDate(this.props.beatmapset.submitted_date)}
+            </div>
+          </>
+        )}
 
-        {this.props.beatmapset.ranked > 0 ? (
+        {this.props.beatmapset.ranked > 0 && this.props.beatmapset.ranked_date != null ? (
           <>
             <div>
               {osu.trans(`beatmapsets.show.info.${this.props.beatmapset.status}`)}

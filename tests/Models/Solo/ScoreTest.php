@@ -131,7 +131,13 @@ class ScoreTest extends TestCase
 
     public function testModsPropertyType()
     {
-        $score = new Score(['data' => ['mods' => [['acronym' => 'DT']]]]);
+        $score = new Score(['data' => [
+            'beatmap_id' => 0,
+            'ended_at' => now(),
+            'mods' => [['acronym' => 'DT']],
+            'ruleset_id' => 0,
+            'user_id' => 0,
+        ]]);
 
         $this->assertTrue($score->data->mods[0] instanceof stdClass, 'mods entry should be of type stdClass');
     }
