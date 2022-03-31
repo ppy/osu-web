@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { supportedChannelTypes } from 'interfaces/chat/channel-json';
+import { SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { observer } from 'mobx-react';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
@@ -16,6 +16,7 @@ export default class ConversationList extends React.Component {
       <div className='chat-conversation-list'>
         {supportedChannelTypes.map((type) => (
           <React.Fragment key={type}>
+            {this.renderHeader(type)}
             {this.renderChannels(core.dataStore.channelStore.groupedChannels[type])}
             {this.renderSeparator()}
           </React.Fragment>
@@ -27,6 +28,14 @@ export default class ConversationList extends React.Component {
 
   private renderChannels(channels: Channel[]) {
     return channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />);
+  }
+
+  private renderHeader(type: SupportedChannelType) {
+    if (core.dataStore.channelStore.groupedChannels[type].length === 0) return null;
+
+    return (
+      <div className='chat-conversation-list__header'>{osu.trans(`chat.channels.list.title.${type}`)}</div>
+    );
   }
 
   private renderSeparator() {

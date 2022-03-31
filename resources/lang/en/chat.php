@@ -16,6 +16,14 @@ return [
 
     'channels' => [
         'join' => 'join channel',
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Announcements',
+                'GROUP' => 'Groups',
+                'PM' => 'Direct messages',
+                'PUBLIC' => 'Channels',
+            ],
+        ],
     ],
 
     'input' => [
