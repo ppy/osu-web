@@ -19,7 +19,7 @@ class BeatmapsetNominationTransformer extends TransformerAbstract
         return [
             'beatmapset_id' => $nomination->beatmapset_id,
             'created_at' => json_time($nomination->created_at),
-            'id' => $nomination->id,
+            'id' => $nomination->getKey(),
             'modes' => $nomination->modes,
             'reset' => $nomination->reset,
             'reset_user_id' => $nomination->reset_user_id,
