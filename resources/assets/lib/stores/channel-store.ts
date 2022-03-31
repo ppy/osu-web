@@ -98,7 +98,7 @@ export default class ChannelStore implements DispatchListener {
         continue;
       }
 
-      if (channel.users.includes(userId)) {
+      if (channel.userIds.includes(userId)) {
         return channel;
       }
     }
@@ -257,7 +257,7 @@ export default class ChannelStore implements DispatchListener {
 
     try {
       if (channel.newPmChannel) {
-        const users = channel.users.slice();
+        const users = channel.userIds.slice();
         const userId = users.find((user) => user !== core.currentUserOrFail.id);
 
         if (userId == null) {

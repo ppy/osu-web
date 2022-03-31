@@ -30,7 +30,7 @@ export default class Channel {
     autoScroll: true,
     scrollY: 0,
   };
-  @observable users: number[] = [];
+  @observable userIds: number[] = [];
 
   @observable private messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
@@ -98,7 +98,7 @@ export default class Channel {
       return;
     }
 
-    return this.users.find((userId: number) => userId !== core.currentUserOrFail.id);
+    return this.userIds.find((userId: number) => userId !== core.currentUserOrFail.id);
   }
 
   @computed
@@ -118,7 +118,7 @@ export default class Channel {
     channel.type = 'PM';
     channel.name = target.username;
     channel.icon = target.avatarUrl;
-    channel.users = [core.currentUserOrFail.id, target.id];
+    channel.userIds = [core.currentUserOrFail.id, target.id];
 
     return channel;
   }
@@ -239,7 +239,7 @@ export default class Channel {
     this.description = json.description;
     this.type = json.type;
     this.icon = json.icon ?? Channel.defaultIcon;
-    this.users = json.users ?? this.users;
+    this.userIds = json.users ?? this.userIds;
 
     this.serverLastMessageId = json.last_message_id;
 
