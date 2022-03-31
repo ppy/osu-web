@@ -19,7 +19,7 @@ use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use LaravelRedis as Redis;
 
@@ -285,7 +285,7 @@ class Channel extends Model
             return $this->users();
         }
 
-        return collect();
+        return new Collection();
     }
 
     public function scopePublic($query)
@@ -538,7 +538,7 @@ class Channel extends Model
 
     public function setPmUsers(array $users)
     {
-        $this->pmUsers = collect($users);
+        $this->pmUsers = new Collection($users);
     }
 
     public function setUserChannel(UserChannel $userChannel)
