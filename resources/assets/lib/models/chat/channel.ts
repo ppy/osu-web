@@ -34,6 +34,14 @@ export default class Channel {
 
   @observable private messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
+  @observable private usersLoaded = false;
+
+  @computed
+  get announcementUsers() {
+    return this.usersLoaded
+      ? this.userIds.map((userId) => core.dataStore.userStore.get(userId))
+      : null;
+  }
 
   @computed
   get canMessage() {
@@ -170,7 +178,7 @@ export default class Channel {
     // nothing to load
     if (this.newPmChannel) return;
 
-    if (this.type === 'ANNOUNCE' && this.needsRefresh) {
+    if (this.type === 'ANNOUNCE' && !this.usersLoaded) {
       this.refresh();
     }
 
@@ -216,6 +224,7 @@ export default class Channel {
   refresh() {
     getChannel(this.channelId).done((json) => {
       this.updateWithJson(json);
+      this.usersLoaded = true;
     });
   }
 

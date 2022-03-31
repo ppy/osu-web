@@ -194,9 +194,7 @@ export default class ConversationView extends React.Component<Props> {
         <div className='chat-conversation__new-chat-avatar'>
           <UserAvatar user={{ avatar_url: channel.icon }} />
         </div>
-        <div className='chat-conversation__users'>
-          {this.renderUsers()}
-        </div>
+        {this.renderUsers()}
         <div className='chat-conversation__chat-label'>
           {channel.pmTarget != null ? (
             <StringWithComponent
@@ -245,9 +243,17 @@ export default class ConversationView extends React.Component<Props> {
     if (this.currentChannel?.type !== 'ANNOUNCE') return null;
 
     return (
-      this.currentChannel.users.map((userId) => (
-        <UserCardBrick key={userId} modifiers='fit' user={(core.dataStore.userStore.get(userId) ?? deletedUser).toJson()} />
-      ))
+      <div className={classWithModifiers('chat-conversation__users', { loading: this.currentChannel.announcementUsers == null })}>
+        {this.currentChannel.announcementUsers == null ? (
+          <>
+            <Spinner modifiers='self-center' /><span>{osu.trans('chat.loading_users')}</span>
+          </>
+        ) : (
+          this.currentChannel.announcementUsers.map((user) => (
+            <UserCardBrick key={user?.id} modifiers='fit' user={(user ?? deletedUser).toJson()} />
+          ))
+        )}
+      </div>
     );
   }
 
