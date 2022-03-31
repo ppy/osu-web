@@ -80,8 +80,22 @@ class ScoreDataStatistics implements JsonSerializable
     {
         $ret = [];
 
-        foreach (static::fields() as $field => $map) {
-            $ret[$map['json']] = $this->$field;
+        $fields = static::fields();
+        foreach ($fields as $field => $map) {
+            $value = $this->$field;
+
+            if ($value !== 0) {
+                $ret[$map['json']] = $value;
+            }
+        }
+
+        // This shouldn't be needed but it's to guarantee the return has
+        // at least one thing so php doesn't json encode it as array.
+        // Using stdClass is an alternative but it's a lot of hacks
+        // for what shouldn't be possible in the first place (short of
+        // completely bogus score data).
+        if (empty($ret)) {
+            $ret[$fields['miss']['json']] = $this->miss;
         }
 
         return $ret;
