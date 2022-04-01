@@ -68,7 +68,7 @@ export default class Cover extends React.Component<Props> {
 
           <div className='beatmapset-page-cover__toggle'>
             <button
-              className='btn-circle btn-circle--page-toggle btn-circle--page-toggle-cover'
+              className='beatmapset-page-cover__preview beatmapset-page-cover__preview--circle'
               onClick={this.toggleExpand}
               title={osu.trans(`common.buttons.${expanded ? 'collapse' : 'expand'}`)}
             >

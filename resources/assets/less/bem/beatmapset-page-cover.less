@@ -2,30 +2,28 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-page-cover {
-  @_height: 50px;
-  --cover-height: @_height;
+  --content-height: 30px;
+  --cover-height: auto;
   .default-box-shadow();
 
   position: relative;
   font-size: @font-size--title-small;
   height: var(--cover-height);
+  display: flex;
+  align-items: flex-end;
 
   &--expanded {
     --cover-height: 250px;
   }
 
   &__content {
-    padding-top: 10px;
-    padding-bottom: $padding-top;
+    margin: 10px 0;
     .default-gutter-v2();
-
-    position: absolute;
-    left: 0;
-    bottom: 0;
+    height: var(--content-height);
     width: 100%;
-    height: @_height;
+    position: relative; // put this above absolute-positioned cover
+
     display: flex;
-    align-items: center;
   }
 
   &__content-item {
@@ -79,11 +77,24 @@
     &:hover {
       background-color: hsla(var(--hsl-b6), 0.75);
     }
+
+    &--circle {
+      width: var(--content-height);
+      border-radius: 10000px;
+    }
   }
 
   &__toggle {
     position: absolute;
-    right: 10px;
-    bottom: 10px;
+    top: 0;
+    height: 100%;
+    right: @gutter-v2;
+    display: flex;
+    justify-content: center;
+
+    @media @desktop {
+      right: 0;
+      width: @gutter-v2-desktop;
+    }
   }
 }
