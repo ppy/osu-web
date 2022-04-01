@@ -27,7 +27,7 @@ declare module 'components/comments-manager' {
     componentProps: any;
   }
 
-  class CommentsManager extends React.PureComponent<Props> { }
+  class CommentsManager extends React.PureComponent<Props> {}
 }
 
 declare module 'components/modal' {
@@ -49,7 +49,7 @@ declare module 'beatmaps/search-content' {
     backToTopAnchor: React.RefObject<HTMLElement>;
   }
 
-  class SearchContent extends React.PureComponent<Props> { }
+  class SearchContent extends React.PureComponent<Props> {}
 }
 
 declare module 'components/report-form' {
@@ -57,13 +57,13 @@ declare module 'components/report-form' {
     completed: boolean;
     disabled: boolean;
     onClose: () => void;
-    onSubmit: ({ comments }: { comments: string }) => void;
+    onSubmit: ({comments}: {comments: string}) => void;
     title: string;
     visible: boolean;
     visibleOptions?: string[];
   }
 
-  class ReportForm extends React.PureComponent<ReportFormProps, any> { }
+  class ReportForm extends React.PureComponent<ReportFormProps, any> {}
 }
 
 declare module 'components/select-options' {
@@ -87,5 +87,5 @@ declare module 'components/select-options' {
     selected: Option<T>;
   }
 
-  class SelectOptions<T = string> extends React.PureComponent<Props<T>> { }
+  class SelectOptions<T = string> extends React.PureComponent<Props<T>> {}
 }
