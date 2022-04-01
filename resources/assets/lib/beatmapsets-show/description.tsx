@@ -43,7 +43,7 @@ export default class Description extends React.PureComponent<Props, State> {
         {this.state.isEditing && canEdit ? (
           <BbcodeEditor
             disabled={this.state.isBusy}
-            modifiers={'beatmapset-description-editor'}
+            modifiers='beatmapset-description-editor'
             onChange={this.onEditorChange}
             rawValue={description.bbcode ?? ''}
           />
