@@ -8,8 +8,9 @@ import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import ConversationList from './conversation-list';
-import ConversationView from './conversation-view';
-import InputBox from './input-box';
+import ConversationPanel from './conversation-panel';
+
+const lazerLink = 'https://github.com/ppy/osu/releases';
 
 @observer
 export default class MainView extends React.Component<Record<string, never>> {
@@ -44,7 +45,6 @@ export default class MainView extends React.Component<Record<string, never>> {
   }
 
   render() {
-    const lazerLink = 'https://github.com/ppy/osu/releases';
     return (
       <>
         <HeaderV4 theme='chat' />
@@ -54,8 +54,7 @@ export default class MainView extends React.Component<Record<string, never>> {
               <ConversationList />
             </div>
             <div className='chat__conversation-area'>
-              <ConversationView />
-              <InputBox />
+              <ConversationPanel />
             </div>
           </div>
         ) : (

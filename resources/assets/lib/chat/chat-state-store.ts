@@ -28,7 +28,7 @@ export default class ChatStateStore implements DispatchListener {
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
   private pingService: PingService;
-  @observable private selected = 0;
+  @observable private selected: number | null = null;
   private selectedIndex = 0;
 
   @computed
@@ -38,7 +38,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @computed
   get selectedChannel() {
-    return this.channelStore.get(this.selected);
+    return this.selected != null ? this.channelStore.get(this.selected) : null;
   }
 
   @computed
@@ -77,7 +77,11 @@ export default class ChatStateStore implements DispatchListener {
         }
 
         runInAction(() => {
-          this.channelStore.loadChannel(this.selected);
+          // TODO: use selectChannel?
+          if (this.selected != null) {
+            this.channelStore.loadChannel(this.selected);
+          }
+
           this.isReady = true;
         });
       }
@@ -99,7 +103,7 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  selectChannel(channelId: number, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
+  selectChannel(channelId: number | null, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
     // TODO: enfore location url even if channel doesn't change;
     // noticeable when navigating via ?sendto= on existing channel.
     if (this.selected === channelId) return;
@@ -109,13 +113,17 @@ export default class ChatStateStore implements DispatchListener {
       this.channelStore.markAsRead(this.selectedChannel.channelId);
     }
 
+    this.selected = channelId;
+
+    if (channelId == null) return;
+
     const channel = this.channelStore.get(channelId);
+
     if (channel == null) {
       console.error(`Trying to switch to non-existent channel ${channelId}`);
       return;
     }
 
-    this.selected = channelId;
     this.selectedIndex = this.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?

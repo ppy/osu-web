@@ -28,6 +28,10 @@ function getParamValue(urlParams: URLSearchParams, key: string) {
   return Number.isInteger(value) && value > 0 ? value : null;
 }
 
+/**
+ * @returns The initial Channel; null, if requested initial Channel doesn't exist;
+ * undefined, if no initial Channel was requested.
+ */
 function getInitialChannel() {
   const dataStore = core.dataStore;
   const initial = parseJsonNullable<ChatInitialJson>('json-chat-initial', true);
@@ -64,19 +68,17 @@ function getInitialChannel() {
 
   const channelId = getParamValue(urlParams, 'channel_id');
   if (channelId != null) {
-    return dataStore.channelStore.get(channelId);
+    return dataStore.channelStore.get(channelId) ?? null;
   }
-
-  return null;
 }
 
 core.reactTurbolinks.register('chat', action(() => {
   const channel = getInitialChannel();
 
-  if (channel == null) {
+  if (channel === undefined) {
     core.dataStore.chatState.selectFirst();
   } else {
-    core.dataStore.chatState.selectChannel(channel.channelId, 'replaceHistory');
+    core.dataStore.chatState.selectChannel(channel?.channelId ?? null, 'replaceHistory');
   }
 
   return <MainView />;
