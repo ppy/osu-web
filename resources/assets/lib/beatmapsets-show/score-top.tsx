@@ -10,7 +10,7 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import UserAvatar from 'components/user-avatar';
 import { UserLink } from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -23,7 +23,7 @@ interface Props {
   beatmap: BeatmapJson;
   modifiers?: Modifiers;
   position?: number;
-  score: ScoreJson;
+  score: ScoreJsonForBeatmap;
 }
 
 export default class ScoreTop extends React.PureComponent<Props> {
