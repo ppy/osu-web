@@ -27,8 +27,8 @@ export default class Stats extends React.PureComponent<Props> {
         <div className='beatmapset-stats__count'>
           <CountBadge
             data={{
-              circle_count: `${this.props.beatmap.count_circles}`,
-              slider_count: `${this.props.beatmap.count_sliders}`,
+              circle_count: osu.formatNumber(this.props.beatmap.count_circles),
+              slider_count: osu.formatNumber(this.props.beatmap.count_sliders),
             }}
           />
         </div>
