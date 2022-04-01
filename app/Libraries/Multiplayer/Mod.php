@@ -242,7 +242,7 @@ class Mod
             'only_fade_approach_circles' => 'bool',
         ],
         self::OSU_MAGNETISED => [
-            'assist_strength' => 'float',
+            'attraction_strength' => 'float',
         ],
         self::ADAPTIVE_SPEED => [
             'initial_rate' => 'float',
