@@ -14,16 +14,6 @@ window.osu =
     '--group-colour': group?.colour ? 'initial'
 
 
-  setHash: (newHash) ->
-    currUrl = currentUrl().href
-    newUrl = currUrl.replace /#.*/, ''
-    newUrl += newHash
-
-    return if newUrl == currUrl
-
-    history.replaceState history.state, null, newUrl
-
-
   ajaxError: (xhr) ->
     return if osuCore.userLogin.showOnError(xhr)
     return if osuCore.userVerification.showOnError(xhr)

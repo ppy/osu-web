@@ -268,7 +268,7 @@ export class Main extends React.Component
 
 
   setHash: =>
-    osu.setHash BeatmapsetPageHash.generate
+    BeatmapsetPageHash.setHash BeatmapsetPageHash.generate
       beatmap: @state.currentBeatmap
 
 
