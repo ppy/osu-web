@@ -71,7 +71,7 @@ export class Entry extends React.Component
         el Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
 
       if @props.contest.show_votes
-        if @props.contest.submitted_beatmaps
+        if @props.contest.best_of
           div className:'contest__vote-count contest__vote-count--no-percentages',
             osu.transChoice 'contest.vote.points', @props.entry.results.votes
         else

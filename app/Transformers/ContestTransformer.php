@@ -16,7 +16,7 @@ class ContestTransformer extends TransformerAbstract
 
     public function transform(Contest $contest)
     {
-        $response = [
+        return [
             'best_of' => $contest->isBestOf(),
             'description' => $contest->description_voting,
             'entry_ends_at' => json_time($contest->entry_ends_at),
@@ -30,15 +30,10 @@ class ContestTransformer extends TransformerAbstract
             'show_names' => $contest->show_names,
             'show_votes' => $contest->show_votes,
             'submitted_beatmaps' => $contest->isSubmittedBeatmaps(),
+            'thumbnail_shape' => $contest->thumbnail_shape,
             'type' => $contest->type,
             'voting_ends_at' => json_time($contest->voting_ends_at),
         ];
-
-        if ($contest->hasThumbnails()) {
-            $response['thumbnail_shape'] = $contest->thumbnail_shape;
-        }
-
-        return $response;
     }
 
     public function includeEntries(Contest $contest)

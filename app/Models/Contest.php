@@ -68,7 +68,7 @@ class Contest extends Model
 
     public function isSubmittedBeatmaps(): bool
     {
-        return isset($this->getExtraOptions()['submitted_beatmaps']);
+        return $this->isBestOf() || ($this->getExtraOptions()['submitted_beatmaps'] ?? false);
     }
 
     public function isSubmissionOpen()
