@@ -316,7 +316,6 @@ export class Main extends React.PureComponent
   setCurrentPage: (_e, page, extraCallback) =>
     callback = =>
       extraCallback?()
-      @setHash?()
 
     if @state.currentPage == page
       return callback()
