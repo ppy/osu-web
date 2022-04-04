@@ -7,7 +7,7 @@ return [
     'deleted' => '[удалённый пользователь]',
 
     'beatmapset_activities' => [
-        'title' => "История редактирования карт пользователя :user",
+        'title' => "История моддинга :user",
         'title_compact' => 'Моддинг',
 
         'discussions' => [
@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited комментарий|:count_delimited комментария|:count_delimited комментариев',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Скрыть обложку',
+            'to_1' => 'Показать обложку',
         ],
         'edit' => [
             'cover' => [

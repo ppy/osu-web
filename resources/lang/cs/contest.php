@@ -29,7 +29,7 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => 'Použito :used / :max hlasů',
         ],
     ],
     'entry' => [

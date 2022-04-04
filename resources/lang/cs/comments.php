@@ -5,8 +5,8 @@
 
 return [
     'deleted' => 'odstraněno',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
+    'deleted_by' => 'odstraněno :timeago uživatelem :user',
+    'deleted_by_system' => 'systém',
     'deleted_count' => ':count_delimited smazaný komentář|:count_delimited smazané komentáře|:count_delimited smazaných komentářů',
     'edited' => 'upraveno před :timeago uživatelem :user',
     'pinned' => 'připnuto',
@@ -37,9 +37,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'komentáře',
         'nav_title' => 'výpis',
-        'no_comments' => '',
+        'no_comments' => 'nenalezeny žádné komentáře...',
     ],
 
     'placeholder' => [

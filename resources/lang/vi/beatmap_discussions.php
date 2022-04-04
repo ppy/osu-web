@@ -33,8 +33,8 @@ return [
                 '_' => 'Tình trạng Beatmap',
                 'all' => 'Tất cả',
                 'disqualified' => 'Disqualified ',
-                'never_qualified' => 'Chưa bao giờ Đủ Điều Kiện',
-                'qualified' => 'Đủ Điều Kiện',
+                'never_qualified' => 'Không bao giờ đủ tư cách',
+                'qualified' => 'Đủ tư cách',
                 'ranked' => 'Xếp Hạng',
             ],
 
@@ -61,9 +61,9 @@ return [
 
     'owner_editor' => [
         'button' => 'Chủ Sở Hữu Độ Khó',
-        'reset_confirm' => 'Đặt lại chủ sở hữu cho khó khăn này?',
-        'user' => 'Chủ Sở hữu',
-        'version' => 'Khó Khăn',
+        'reset_confirm' => 'Đặt lại chủ sở hữu cho độ khó này?',
+        'user' => 'Chủ sở hữu',
+        'version' => 'Độ khó',
     ],
 
     'reply' => [

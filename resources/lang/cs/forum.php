@@ -10,12 +10,12 @@ return [
     'title' => 'osu! fóra',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Upravit záhlaví',
 
         'create' => [
             '_' => 'Přidat titulní obrázek',
             'button' => 'Nahrát obrázek',
-            'info' => 'Velikost titulního obrázku by měla mít velikost :dimesions. Obrázek zde také můžete přetáhnout.',
+            'info' => 'Velikost titulního obrázku by měla být :dimensions. K nahrání obrázku ho také můžete přetáhnout sem.',
         ],
 
         'destroy' => [
@@ -75,7 +75,7 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
+        'confirm_destroy' => 'Opravdu odstranit téma?',
         'confirm_restore' => '',
         'deleted' => 'odstraněné téma',
         'go_to_latest' => 'zobrazit nejnovější příspěvek',
@@ -92,7 +92,7 @@ return [
         'started_by_verbose' => 'započal :user',
 
         'actions' => [
-            'destroy' => '',
+            'destroy' => 'Odstranit téma',
             'restore' => '',
         ],
 
@@ -115,7 +115,7 @@ return [
 
             'placeholder' => [
                 'body' => 'Zde napiš obsah příspěvku',
-                'title' => 'Klikni sem pro nastavení názvu',
+                'title' => 'Klikni sem pro zadání názvu',
             ],
         ],
 
@@ -226,8 +226,8 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => 'Skrýt výsledky ankety.',
+                'hide_results_info' => 'Budou zobrazeny až po konci hlasování.',
                 'length' => 'Spustit anketu po dobu',
                 'length_days_suffix' => 'dnů',
                 'length_info' => 'Ponechte prázdné pro dobu neurčitou',

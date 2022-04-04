@@ -25,7 +25,7 @@ return [
     ],
 
     'scores' => [
-        'button' => 'Báo Cáo Điểm',
+        'button' => 'Báo cáo điểm',
         'title' => 'Báo cáo điểm của :username?',
     ],
 
