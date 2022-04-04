@@ -14,8 +14,8 @@ return [
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => '沒有東西耶。大概是你離開頻道，或者是這個頻道消失了⋯⋯',
+        'title' => '找不到頻道',
     ],
 
     'input' => [

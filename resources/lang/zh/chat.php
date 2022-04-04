@@ -14,8 +14,8 @@ return [
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => '这里没有任何内容，或许你离开了频道或者它并不存在...',
+        'title' => '未找到频道',
     ],
 
     'input' => [

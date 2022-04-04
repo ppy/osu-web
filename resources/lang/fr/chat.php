@@ -14,8 +14,8 @@ return [
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Il n\'y a rien ici, vous avez peut-être quitté le canal ou alors il n\'existe pas...',
+        'title' => 'canal introuvable',
     ],
 
     'input' => [
