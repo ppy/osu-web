@@ -23,45 +23,62 @@ interface SendToJson {
   target: UserJson;
 }
 
-core.reactTurbolinks.register('chat', action(() => {
+function getParamValue(urlParams: URLSearchParams, key: string) {
+  const value = Number(urlParams.get(key));
+  return Number.isInteger(value) && value > 0 ? value : null;
+}
+
+/**
+ * @returns The initial Channel; null, if requested initial Channel doesn't exist;
+ * undefined, if no initial Channel was requested.
+ */
+function getInitialChannel() {
   const dataStore = core.dataStore;
   const initial = parseJsonNullable<ChatInitialJson>('json-chat-initial', true);
 
   if (initial != null) {
     if (Array.isArray(initial.presence)) {
       // initial population of channel/presence data
-      dataStore.channelStore.updateWithPresence(initial.presence);
+      dataStore.channelStore.updateMany(initial.presence);
       dataStore.chatState.skipRefresh = true;
     }
 
     dataStore.channelStore.lastReceivedMessageId = initial.last_message_id ?? 0;
   }
 
-  let initialChannel = 0;
+  const urlParams = currentUrlParams();
+  const sendToParam = getParamValue(urlParams, 'sendto');
   const sendTo = initial?.send_to;
 
   if (sendTo != null) {
     const target = dataStore.userStore.update(sendTo.target); // pre-populate userStore with target
     let channel = dataStore.channelStore.findPM(target.id);
 
-    if (channel != null) {
-      initialChannel = channel.channelId;
-    } else if (!target.is(core.currentUser)) {
+    if (channel == null && !target.is(core.currentUser)) {
       channel = Channel.newPM(target, sendTo.channel_id);
       channel.canMessageError = sendTo.can_message_error; // TODO: move can_message to a user prop?
       dataStore.channelStore.channels.set(channel.channelId, channel);
-      initialChannel = channel.channelId;
     }
-  } else {
-    const channelId = parseInt(currentUrlParams().get('channel_id') ?? '', 10);
-    // TODO: should clear query string as well (and maybe update on channel selection?)
-    initialChannel = dataStore.channelStore.get(channelId) != null ? channelId : dataStore.chatState.selected;
+
+    return channel;
+  } else if (sendToParam != null) {
+    // history navigation to ?sendto, json was already loaded.
+    return dataStore.channelStore.findPM(sendToParam);
   }
 
-  if (initialChannel !== 0) {
-    dataStore.chatState.selectChannel(initialChannel);
+  const channelId = getParamValue(urlParams, 'channel_id');
+  if (channelId != null) {
+    return dataStore.channelStore.get(channelId) ?? null;
+  }
+}
+
+core.reactTurbolinks.register('chat', action(() => {
+  const channel = getInitialChannel();
+
+  if (channel === undefined) {
+    core.dataStore.chatState.selectFirst();
   } else {
-    dataStore.chatState.selectFirst();
+    core.dataStore.chatState.selectChannel(channel?.channelId ?? null, 'replaceHistory');
   }
 
   return <MainView />;
