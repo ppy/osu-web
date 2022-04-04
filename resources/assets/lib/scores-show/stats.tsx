@@ -3,7 +3,7 @@
 
 import { UserCard } from 'components/user-card';
 import BeatmapJson from 'interfaces/beatmap-json';
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { shouldShowPp } from 'utils/beatmap-helper';
@@ -12,14 +12,10 @@ import { modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
-  score: ScoreJson;
+  score: ScoreJsonForShow;
 }
 
 export default function Stats(props: Props) {
-  if (props.score.mode == null) {
-    throw new Error('score json is missing mode');
-  }
-
   return (
     <div className='score-stats'>
       <div className='score-stats__group score-stats__group--user-card'>
