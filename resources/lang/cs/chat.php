@@ -13,6 +13,11 @@ return [
         'user' => 'Nemůžeme poslat vaši zprávu tomuhle uživateli. Tohle může být zapříčiněno jakýmkoliv z těchto důvodů:',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'nejsme schopni odeslat tuto zprávu...',
         'disconnected' => 'Odpojeno',

@@ -13,6 +13,11 @@ return [
         'user' => '',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'neizdevās nosūtīt ziņu...',
         'disconnected' => 'Atvienots',

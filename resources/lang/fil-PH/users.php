@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited na komento|:count_delimited na mga komento',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Itago ang cover',
+            'to_1' => 'Ipakita ang cover',
         ],
         'edit' => [
             'cover' => [

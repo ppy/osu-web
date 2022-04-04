@@ -13,6 +13,11 @@ return [
         'user' => 'Şu anda bu kişiye mesaj yazamazsınız. Şunlardan herhangi birisi buna sebep olabilir:',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'mesaj gönderilemiyor...',
         'disconnected' => 'Bağlantı kesildi',

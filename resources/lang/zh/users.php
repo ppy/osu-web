@@ -160,13 +160,13 @@ return [
             'count' => ':count_delimited 条评论',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => '隐藏头图',
+            'to_1' => '显示头图',
         ],
         'edit' => [
             'cover' => [
-                'button' => '更换个人资料头图',
-                'defaults_info' => '在将来会有更多头图可用',
+                'button' => '更换个人资料封面',
+                'defaults_info' => '在将来会有更多封面可用',
                 'upload' => [
                     'broken_file' => '上传失败。请检查上传的图片然后重试。',
                     'button' => '上传图片',
@@ -177,7 +177,7 @@ return [
                     'unsupported_format' => '不支持的格式。',
 
                     'restriction_info' => [
-                        '_' => '自定义头图只有 :link 可用',
+                        '_' => '自定义封面只有 :link 可用',
                         'link' => 'osu! 支持者',
                     ],
                 ],

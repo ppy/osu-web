@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited komentarz|:count_delimited komentarze|:count_delimited komentarzy',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Ukryj tło',
+            'to_1' => 'Pokaż tło',
         ],
         'edit' => [
             'cover' => [
