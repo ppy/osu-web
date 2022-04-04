@@ -51,7 +51,7 @@ function getInitialChannel() {
   const sendTo = initial?.send_to;
 
   if (sendTo != null) {
-    const target = dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
+    const target = dataStore.userStore.update(sendTo.target); // pre-populate userStore with target
     let channel = dataStore.channelStore.findPM(target.id);
 
     if (channel == null && !target.is(core.currentUser)) {

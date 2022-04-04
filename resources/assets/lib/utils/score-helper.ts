@@ -5,8 +5,9 @@ import GameMode from 'interfaces/game-mode';
 import ScoreJson, { ScoreStatisticsAttribute } from 'interfaces/score-json';
 import core from 'osu-core-singleton';
 
-export function canBeReported(score: ScoreJson) {
+export function canBeReported(score: ScoreJson): score is ScoreJson & Required<Pick<ScoreJson, 'best_id' | 'user'>> {
   return score.best_id != null
+    && score.user != null
     && !score.user.is_deleted
     && core.currentUser != null
     && score.user_id !== core.currentUser.id;
@@ -21,7 +22,7 @@ export function hasReplay(score: ScoreJson) {
   return score.replay;
 }
 
-export function hasShow(score: ScoreJson): score is ScoreJson & { best_id: number } {
+export function hasShow(score: ScoreJson): score is ScoreJson & Required<Pick<ScoreJson, 'best_id'>> {
   return score.best_id != null;
 }
 

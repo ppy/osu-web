@@ -462,6 +462,7 @@ class Room extends Model
             'playlist:array',
             'type',
             'queue_mode',
+            'auto_start_duration:int',
         ], ['null_missing' => true]);
 
         $this->fill([
@@ -470,6 +471,7 @@ class Room extends Model
             'starts_at' => now(),
             'type' => $params['type'],
             'queue_mode' => $params['queue_mode'],
+            'auto_start_duration' => $params['auto_start_duration'],
             'user_id' => $host->getKey(),
         ]);
 
@@ -483,12 +485,16 @@ class Room extends Model
             if (!in_array($this->queue_mode, static::REALTIME_QUEUE_MODES, true)) {
                 $this->queue_mode = static::REALTIME_DEFAULT_QUEUE_MODE;
             }
+            if ($this->auto_start_duration === null) {
+                $this->auto_start_duration = 0;
+            }
             // only for realtime rooms for now
             $this->password = $params['password'];
             $this->ends_at = now()->addSeconds(30);
         } else {
             $this->type = static::PLAYLIST_TYPE;
             $this->queue_mode = static::PLAYLIST_QUEUE_MODE;
+            $this->auto_start_duration = 0;
             if ($params['ends_at'] !== null) {
                 $this->ends_at = $params['ends_at'];
             } elseif ($params['duration'] !== null) {

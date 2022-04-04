@@ -6,7 +6,7 @@ import Mod from 'components/mod';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import ScoreboardTime from 'components/scoreboard-time';
 import BeatmapJson from 'interfaces/beatmap-json';
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -42,7 +42,7 @@ interface Props {
   beatmap: BeatmapJson;
   highlightFriends: boolean;
   index: number;
-  score: ScoreJson;
+  score: ScoreJsonForBeatmap;
   showPp: boolean;
 }
 

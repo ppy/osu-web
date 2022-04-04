@@ -16,19 +16,19 @@ use JsonSerializable;
 
 class ScoreData implements Castable, JsonSerializable
 {
-    public ?float $accuracy;
-    public ?int $beatmapId;
+    public float $accuracy;
+    public int $beatmapId;
     public ?int $buildId;
-    public ?Carbon $endedAt;
-    public ?int $maxCombo;
+    public Carbon $endedAt;
+    public int $maxCombo;
     public array $mods;
     public bool $passed;
-    public ?string $rank;
-    public ?int $rulesetId;
+    public string $rank;
+    public int $rulesetId;
     public ?Carbon $startedAt;
     public ScoreDataStatistics $statistics;
-    public ?int $totalScore;
-    public ?int $userId;
+    public int $totalScore;
+    public int $userId;
 
     public function __construct(array $data)
     {
@@ -44,20 +44,20 @@ class ScoreData implements Castable, JsonSerializable
             }
         }
 
-        $this->accuracy = $data['accuracy'] ?? null;
-        $this->beatmapId = $data['beatmap_id'] ?? null;
+        $this->accuracy = $data['accuracy'] ?? 0;
+        $this->beatmapId = $data['beatmap_id'];
         $this->buildId = $data['build_id'] ?? null;
-        $this->endedAt = parse_time_to_carbon($data['ended_at'] ?? null);
-        $this->maxCombo = $data['max_combo'] ?? null;
+        $this->endedAt = parse_time_to_carbon($data['ended_at']);
+        $this->maxCombo = $data['max_combo'] ?? 0;
         // TODO: create a proper Mod object
         $this->mods = $mods;
         $this->passed = $data['passed'] ?? false;
-        $this->rank = $data['rank'] ?? null;
-        $this->rulesetId = $data['ruleset_id'] ?? null;
+        $this->rank = $data['rank'] ?? 'F';
+        $this->rulesetId = $data['ruleset_id'];
         $this->startedAt = parse_time_to_carbon($data['started_at'] ?? null);
         $this->statistics = new ScoreDataStatistics($data['statistics'] ?? []);
-        $this->totalScore = $data['total_score'] ?? null;
-        $this->userId = $data['user_id'] ?? null;
+        $this->totalScore = $data['total_score'] ?? 0;
+        $this->userId = $data['user_id'];
     }
 
     public static function castUsing(array $arguments)

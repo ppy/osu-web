@@ -33,6 +33,15 @@ class ProcessorTest extends TestCase
         $this->assertSame($expectedOutput, $osuMarkdown->toIndexable());
     }
 
+    public function testTocId()
+    {
+        $parser = new OsuMarkdown('default', osuExtensionConfig: ['attributes_allowed' => ['id'], 'generate_toc' => true]);
+
+        $parsed = $parser->load('## some header {#headerid}')->toArray();
+
+        $this->assertTrue(isset($parsed['toc']['headerid']));
+    }
+
     public function testTocImage()
     {
         $parser = new OsuMarkdown('default', osuExtensionConfig: ['generate_toc' => true]);

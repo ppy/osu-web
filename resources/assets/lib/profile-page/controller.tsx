@@ -5,7 +5,7 @@ import AchievementJson from 'interfaces/achievement-json';
 import CurrentUserJson from 'interfaces/current-user-json';
 import GameMode from 'interfaces/game-mode';
 import ExtrasJson from 'interfaces/profile-page/extras-json';
-import ScoreJson, { ScoreCurrentUserPinJson } from 'interfaces/score-json';
+import ScoreJson, { isScoreJsonForUser, ScoreCurrentUserPinJson } from 'interfaces/score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
 import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-json';
 import { route } from 'laroute';
@@ -348,21 +348,26 @@ export default class Controller {
   }
 
   private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: ScoreJson) => {
+    // make sure the typing is correct
+    if (!isScoreJsonForUser(score)) {
+      return;
+    }
+
     const scorePinData = score.current_user_attributes.pin;
 
     if (scorePinData == null) {
       throw new Error('score is missing pin data');
     }
 
-    score = jsonClone(score);
-    score.id = scorePinData.score_id;
+    const newScore = jsonClone(score);
+    newScore.id = scorePinData.score_id;
 
-    const arrayIndex = this.state.extras.scoresPinned.findIndex((s) => s.id === score.id);
+    const arrayIndex = this.state.extras.scoresPinned.findIndex((s) => s.id === newScore.id);
     this.state.user.scores_pinned_count += isPinned ? 1 : -1;
 
     if (isPinned) {
       if (arrayIndex === -1) {
-        this.state.extras.scoresPinned.unshift(score);
+        this.state.extras.scoresPinned.unshift(newScore);
       }
     } else {
       if (arrayIndex !== -1) {
