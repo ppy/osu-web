@@ -144,6 +144,8 @@ export class Header extends React.Component
               getTitle(@props.beatmapset)
             if @props.beatmapset.nsfw
               span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
+            if @props.beatmapset.spotlight
+              span className: 'beatmapset-badge beatmapset-badge--spotlight', osu.trans('beatmapsets.spotlight_badge.label')
 
           span className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
             a

@@ -208,4 +208,8 @@ return [
             'graveyard' => 'Graveyard',
         ],
     ],
+
+    'spotlight_badge' => [
+        'label' => 'Spotlight',
+    ],
 ];

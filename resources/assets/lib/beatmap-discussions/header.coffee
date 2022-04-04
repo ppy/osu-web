@@ -90,6 +90,8 @@ export class Header extends React.PureComponent
             getTitle(@props.beatmapset)
             if @props.beatmapset.nsfw
               span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
+            if @props.beatmapset.spotlight
+              span className: 'beatmapset-badge beatmapset-badge--spotlight', osu.trans('beatmapsets.spotlight_badge.label')
           h2
             className: "#{bn}__title #{bn}__title--artist"
             getArtist(@props.beatmapset)
