@@ -21,18 +21,20 @@ import { getUpdates } from './chat-api';
 import MainView from './main-view';
 import PingService from './ping-service';
 
+type ChannelId = number | 'join' | null;
+
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
   @observable createAnnoucement = new CreateAnnouncement();
   @observable isReady = false;
-  @observable showJoinChannel = false;
+  @observable showingJoinChannel = false;
   skipRefresh = false;
   @observable viewsMounted = new Set<MainView>();
   @observable waitJoinChannelUuid: string | null = null;
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
   private pingService: PingService;
-  @observable private selected: number | null = null;
+  @observable private selected: ChannelId = null;
   private selectedIndex = 0;
 
   @computed
@@ -42,7 +44,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @computed
   get selectedChannel() {
-    return this.selected != null ? this.channelStore.get(this.selected) : null;
+    return this.selected == null || this.selected === 'join' ? null : this.channelStore.get(this.selected);
   }
 
   @computed
@@ -82,7 +84,7 @@ export default class ChatStateStore implements DispatchListener {
 
         runInAction(() => {
           // TODO: use selectChannel?
-          if (this.selected != null) {
+          if (typeof this.selected === 'number') {
             this.channelStore.loadChannel(this.selected);
           }
 
@@ -107,9 +109,8 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  selectChannel(channelId: number | null, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
-    this.showJoinChannel = false;
-    // TODO: enfore location url even if channel doesn't change;
+  selectChannel(channelId: ChannelId, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
+    // TODO: enforce location url even if channel doesn't change;
     // noticeable when navigating via ?sendto= on existing channel.
     if (this.selected === channelId) return;
 
@@ -119,6 +120,21 @@ export default class ChatStateStore implements DispatchListener {
     }
 
     this.selected = channelId;
+
+    if (channelId === 'join') {
+      this.showingJoinChannel = true;
+
+      if (mode != null) {
+        Turbolinks.controller[mode](updateQueryString(null, {
+          channel_id: null,
+          sendto: null,
+        }, 'join'));
+      }
+
+      return;
+    }
+
+    this.showingJoinChannel = false;
 
     if (channelId == null) return;
 
@@ -153,16 +169,6 @@ export default class ChatStateStore implements DispatchListener {
       channel_id: null,
       sendto: null,
     }));
-  }
-
-  @action
-  selectJoin() {
-    this.selectChannel(null, null);
-    this.showJoinChannel = true;
-    Turbolinks.controller.replaceHistory(updateQueryString(null, {
-      channel_id: null,
-      sendto: null,
-    }, 'join'));
   }
 
   @action
@@ -224,6 +230,8 @@ export default class ChatStateStore implements DispatchListener {
    * Keeps the current channel in focus, unless deleted, then focus on next channel.
    */
   private refocusSelectedChannel() {
+    if (this.showingJoinChannel) return;
+
     if (this.selectedChannel != null) {
       this.selectChannel(this.selectedChannel.channelId);
     } else {

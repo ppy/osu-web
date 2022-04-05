@@ -18,10 +18,10 @@ export default class JoinChannelButton extends React.Component {
   render() {
     if (!this.canView) return null;
 
-    const selected = core.dataStore.chatState.showJoinChannel;
+    const modifiers = { selected: core.dataStore.chatState.showingJoinChannel };
 
     return (
-      <div className={classWithModifiers('chat-conversation-list-item', { selected })}>
+      <div className={classWithModifiers('chat-conversation-list-item', modifiers)}>
         <button className='chat-conversation-list-item__tile' onClick={this.handleClick}>
           <div className='chat-conversation-list-item__avatar'>
             <span className='avatar avatar--join-channel'>
@@ -35,6 +35,6 @@ export default class JoinChannelButton extends React.Component {
   }
 
   private handleClick = () => {
-    core.dataStore.chatState.selectJoin();
+    core.dataStore.chatState.selectChannel('join');
   };
 }

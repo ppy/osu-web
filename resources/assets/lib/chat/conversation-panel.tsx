@@ -21,7 +21,7 @@ export default class ConversationPanel extends React.Component<Record<string, ne
             <ConversationView />
             <InputBox />
           </>
-        ) : core.dataStore.chatState.showJoinChannel ? (
+        ) : core.dataStore.chatState.showingJoinChannel ? (
           <JoinChannel />
         ) : (
           <div className='chat-conversation-panel__no-channel'>
