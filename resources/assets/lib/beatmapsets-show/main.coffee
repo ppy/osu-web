@@ -194,6 +194,7 @@ export class Main extends React.Component
 
   componentWillUnmount: ->
     $.unsubscribe ".#{@eventId}"
+    $(document).off ".#{@eventId}"
     @scoreboardXhr?.abort()
     @favouriteXhr?.abort()
 
