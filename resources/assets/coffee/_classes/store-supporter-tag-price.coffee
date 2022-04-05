@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { formatNumber } from 'utils/html'
+
 class window.StoreSupporterTagPrice
   @durationToPrice: (duration) ->
     duration = +duration
@@ -33,7 +35,7 @@ class window.StoreSupporterTagPrice
       else 0
 
   pricePerMonth: ->
-    osu.formatNumber(@_price / @duration(), 2)
+    formatNumber(@_price / @duration(), 2)
 
   discount: ->
     if @duration() >= 12

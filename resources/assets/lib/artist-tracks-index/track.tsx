@@ -4,6 +4,7 @@
 import ArtistTrackJson from 'interfaces/artist-track-json';
 import * as moment from 'moment';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 
 interface Props {
   track: ArtistTrackJson;
@@ -25,7 +26,7 @@ export default class Main extends React.Component<Props> {
     return (
       <div className='artist-track-v2__column'>
         <p>{this.props.track.genre}</p>
-        <p>{osu.formatNumber(this.props.track.bpm)}bpm</p>
+        <p>{formatNumber(this.props.track.bpm)}bpm</p>
       </div>
     );
   }

@@ -18,7 +18,7 @@ import { Transition } from 'react-transition-group';
 import { getArtist, getDiffColour, getTitle, group as groupBeatmaps } from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { formatNumberSuffixed } from 'utils/html';
+import { formatNumber, formatNumberSuffixed } from 'utils/html';
 import { beatmapsetDownloadDirect } from 'utils/url';
 import StringWithComponent from './string-with-component';
 import TimeWithTooltip from './time-with-tooltip';
@@ -444,8 +444,8 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             <StatsItem
               icon='fas fa-bullhorn'
               title={osu.trans('beatmaps.hype.required_text', {
-                current: osu.formatNumber(this.props.beatmapset.hype.current),
-                required: osu.formatNumber(this.props.beatmapset.hype.required),
+                current: formatNumber(this.props.beatmapset.hype.current),
+                required: formatNumber(this.props.beatmapset.hype.required),
               })}
               type='hype'
               value={this.props.beatmapset.hype.current}
@@ -456,8 +456,8 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             <StatsItem
               icon='fas fa-thumbs-up'
               title={osu.trans('beatmaps.nominations.required_text', {
-                current: osu.formatNumber(this.nominations.current),
-                required: osu.formatNumber(this.nominations.required),
+                current: formatNumber(this.nominations.current),
+                required: formatNumber(this.nominations.required),
               })}
               type='nominations'
               value={this.nominations.current}
@@ -466,14 +466,14 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
           <StatsItem
             icon={this.favourite.icon}
-            title={osu.trans('beatmaps.panel.favourites', { count: osu.formatNumber(this.props.beatmapset.favourite_count) })}
+            title={osu.trans('beatmaps.panel.favourites', { count: formatNumber(this.props.beatmapset.favourite_count) })}
             type='favourite-count'
             value={this.props.beatmapset.favourite_count}
           />
 
           <StatsItem
             icon='fas fa-play-circle'
-            title={osu.trans('beatmaps.panel.playcount', { count: osu.formatNumber(this.props.beatmapset.play_count) })}
+            title={osu.trans('beatmaps.panel.playcount', { count: formatNumber(this.props.beatmapset.play_count) })}
             type='play-count'
             value={this.props.beatmapset.play_count}
           />

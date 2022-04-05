@@ -6,6 +6,7 @@ import ArtistTrackJson, { ArtistTrackWithArtistJson } from 'interfaces/artist-tr
 import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 
 type TrackJson = {
   artist: ArtistJson;
@@ -97,7 +98,7 @@ export default class TracklistTrack extends React.PureComponent<Props> {
             {this.props.track.genre}
           </div>
           <div className='artist-track__detail artist-track__detail--bpm'>
-            {osu.formatNumber(this.props.track.bpm)}bpm
+            {formatNumber(this.props.track.bpm)}bpm
           </div>
 
           <div className='artist-track__detail artist-track__detail--length'>

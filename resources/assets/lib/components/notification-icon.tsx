@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 
 interface Props {
   count: number;
@@ -13,7 +14,7 @@ interface Props {
 
 function format(count: number) {
   // combination of latency and delays processing marking as read can cause the display count to go negative.
-  return osu.formatNumber(count > 0 ? count : 0);
+  return formatNumber(count > 0 ? count : 0);
 }
 
 export default function NotificationIcon(props: Props) {

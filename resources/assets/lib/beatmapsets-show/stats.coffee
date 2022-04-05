@@ -5,6 +5,7 @@ import { BeatmapBasicStats } from 'components/beatmap-basic-stats'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, span, table, tbody, td, th, tr } from 'react-dom-factories'
+import { formatNumber } from 'utils/html'
 import { nextVal } from 'utils/seq'
 
 el = React.createElement
@@ -47,9 +48,9 @@ export class Stats extends React.Component
 
               valueText =
                 if stat == 'stars'
-                  osu.formatNumber(value, 2)
+                  formatNumber(value, 2)
                 else
-                  osu.formatNumber(value)
+                  formatNumber(value)
 
               if @props.beatmap.mode == 'mania' && stat == 'cs'
                 stat += '-mania'
@@ -75,8 +76,8 @@ export class Stats extends React.Component
                 width: "#{(ratingsNegative / ratingsAll) * 100}%"
 
           div className: 'beatmapset-stats__rating-values',
-            span null, osu.formatNumber(ratingsNegative)
-            span null, osu.formatNumber(ratingsPositive)
+            span null, formatNumber(ratingsNegative)
+            span null, formatNumber(ratingsPositive)
 
           div className: 'beatmapset-stats__rating-header', osu.trans 'beatmapsets.show.stats.rating-spread'
 
