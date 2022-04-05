@@ -188,7 +188,7 @@ export class Main extends React.Component
 
     @setHash()
 
-    if !@restoredState || @state.loading
+    if !@restoredState
       @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
 
