@@ -16,8 +16,6 @@ export class Info extends React.Component
   constructor: (props) ->
     super props
 
-    @overlayRef = React.createRef()
-
     @state =
       isBusy: false
       isEditingDescription: false
