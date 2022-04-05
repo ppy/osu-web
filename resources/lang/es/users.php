@@ -160,8 +160,8 @@ return [
             'count' => 'un comentario|:count_delimited comentarios',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Ocultar portada',
+            'to_1' => 'Mostrar portada',
         ],
         'edit' => [
             'cover' => [

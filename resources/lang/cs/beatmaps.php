@@ -38,7 +38,7 @@ return [
         ],
 
         'empty' => [
-            'empty' => 'Zatím žádné diskuse!',
+            'empty' => 'Zatím žádné diskuze!',
             'hidden' => 'Žádná diskuze neodpovídá zvolenému filtru.',
         ],
 
@@ -62,25 +62,25 @@ return [
         'message_placeholder' => [
             'general' => 'Piště zde pro odeslání příspěvku do Obecné (:version)',
             'generalAll' => 'Piště zde pro odeslání příspěvku do Obecné (Všechny obtížnosti)',
-            'review' => 'Piště zde pro odeslání recenze',
+            'review' => 'Piště sem k přidání recenze',
             'timeline' => 'Piště zde pro zařazení příspěvku do Časové osy (:version)',
         ],
 
         'message_type' => [
             'disqualify' => 'Vyřadit',
-            'hype' => 'Nadchnout!',
+            'hype' => 'Podpořit!',
             'mapper_note' => 'Poznámka',
-            'nomination_reset' => 'Obnovit nominace',
-            'praise' => 'Chválit',
+            'nomination_reset' => 'Resetování nominace',
+            'praise' => 'Pochvala',
             'problem' => 'Problém',
-            'problem_warning' => '',
+            'problem_warning' => 'Nahlásit problém',
             'review' => 'Recenze',
             'suggestion' => 'Návrh',
         ],
 
         'mode' => [
             'events' => 'Historie',
-            'general' => 'Obecný :scope',
+            'general' => 'Obecné :scope',
             'reviews' => 'Recenze',
             'timeline' => 'Časová osa',
             'scopes' => [
@@ -90,9 +90,9 @@ return [
         ],
 
         'new' => [
-            'pin' => 'Pin',
-            'timestamp' => 'Časová sekvence',
-            'timestamp_missing' => 'ctrl-c v režimu úprav a vložte do zprávy pro přidání časové sekvence!',
+            'pin' => 'Připnout',
+            'timestamp' => 'Časová značka',
+            'timestamp_missing' => 'ctrl-c v režimu úprav a vložte do vaší zprávy pro přidání časové značky!',
             'title' => 'Nová diskuze',
             'unpin' => 'Odepnout',
         ],
@@ -106,7 +106,7 @@ return [
                 'unsaved' => 'Neuloženo',
                 'timestamp' => [
                     'all-diff' => 'Příspěvky na "Všechny obtížnosti" nemohou být časovány.',
-                    'diff' => 'Pokud tento :type začíná časovou značkou, bude to zobrazeno v Časové ose.',
+                    'diff' => 'Pokud tento :type začíná časovou značkou, zobrazí se v Časové ose.',
                 ],
             ],
             'insert-block' => [
@@ -132,8 +132,8 @@ return [
             'mapper_notes' => 'Poznámky',
             'mine' => 'Mé',
             'pending' => 'Nevyřízené',
-            'praises' => 'Chvály',
-            'resolved' => 'Vyřešeno',
+            'praises' => 'Pochvaly',
+            'resolved' => 'Vyřešené',
             'total' => 'Vše',
         ],
 
@@ -141,7 +141,7 @@ return [
             'approved' => 'Tato mapa byla schválena dne :date!',
             'graveyard' => "Tato beatmapa nebyla aktualizována od :date a pravděpodobně ji tvůrce odbyl...",
             'loved' => 'Tato beatmapa byla přidána do kategorie Oblíbené dne :date!',
-            'ranked' => 'Tato beatmapa začala být hodnocena dne :date!',
+            'ranked' => 'Tato beatmapa byla hodnocena :date!',
             'wip' => 'Tato beatmapa byla označena jako Rozpracovaná jejím autorem.',
         ],
 
@@ -158,16 +158,16 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Nadchnout beatmapu!',
+        'button' => 'Podpořit beatmapu!',
         'button_done' => 'Již jsi tuto mapu nadchnul!',
-        'confirm' => "Jsi si jist? Toto ti odebere jeden z tvých :n nadšení a nedá se to vrátit.",
-        'explanation' => 'Nadchni tuto beatmapu a udělej ji více viditelnou pro nominátory a hodnocení!',
-        'explanation_guest' => 'Přihlaš se a nadchni tuto beatmapu - udělej ji více viditelnou pro nominátory a hodnocení!',
-        'new_time' => "Další nadšení získáš až :new_time.",
-        'remaining' => 'Již ti zbývá :remaining nadšení.',
-        'required_text' => 'Nadšení: :current/:required',
-        'section_title' => 'Natěšení',
-        'title' => 'Nadšení',
+        'confirm' => "Jsi si jist? Tato akce použije jeden z tvých :n zbývajících bodů podpory a nelze vrátit zpět.",
+        'explanation' => 'Podpoř tuto beatmapu, aby byla více viditelná pro nominaci a hodnocení!',
+        'explanation_guest' => 'Přihlas se a podpoř tuto beatmapu - udělej ji více viditelnou pro nominaci a hodnocení!',
+        'new_time' => "Další body podpory dostaneš až :new_time.",
+        'remaining' => 'Zbývá ti ještě :remaining bodů podpory.',
+        'required_text' => 'Bodů podpory: :current/:required',
+        'section_title' => 'Míra natěšení',
+        'title' => 'Podpoření',
     ],
 
     'feedback' => [
@@ -188,7 +188,7 @@ return [
         'love_confirm' => 'Miluješ tuto beatmapu?',
         'nominate' => 'Nominovat',
         'nominate_confirm' => 'Nominovat tuto beatmapu?',
-        'nominated_by' => 'nominováno od :users',
+        'nominated_by' => 'nominoval/a :users',
         'not_enough_hype' => "Není dostatečný hype.",
         'remove_from_loved' => 'Odstranit z Loved',
         'remove_from_loved_prompt' => 'Důvod pro odebrání z Loved:',
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Jste si jistý? Tohle odstraní beatmapu z kvalifikování a vyresetuje nominační proces.',
             'nomination_reset' => 'Jsi si jist? Vytvořením nové připomínky se nominační proces resetuje.',
-            'problem_warning' => '',
+            'problem_warning' => 'Opravdu chcete nahlásit problém na této beatmapě? Tato akce upozorní nominátory Beatmapy.',
         ],
     ],
 
@@ -267,15 +267,15 @@ return [
         'mania' => '',
     ],
     'status' => [
-        'any' => 'Jakékoliv',
+        'any' => 'Jakákoliv',
         'approved' => 'Schválené',
-        'favourites' => 'Oblíbené',
+        'favourites' => 'Tvoje oblíbené',
         'graveyard' => 'Hřbitov',
         'leaderboard' => 'Má žebříček',
-        'loved' => 'Oblíbené',
+        'loved' => 'Oblíbené komunitou',
         'mine' => 'Moje mapy',
-        'pending' => 'Čekající & Rozpracované',
-        'wip' => '',
+        'pending' => 'Čekající',
+        'wip' => 'Rozpracované',
         'qualified' => 'Kvalifikované',
         'ranked' => 'Hodnocené',
     ],

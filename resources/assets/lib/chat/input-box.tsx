@@ -5,7 +5,7 @@ import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import { dispatch } from 'app-dispatcher';
 import BigButton from 'components/big-button';
 import { trim } from 'lodash';
-import { action, autorun, computed, makeObservable, observe } from 'mobx';
+import { action, autorun, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import { isModalShowing } from 'modal-helper';
 import Message from 'models/chat/message';
@@ -51,8 +51,8 @@ export default class InputBox extends React.Component<Props> {
 
     disposeOnUnmount(
       this,
-      observe(core.dataStore.chatState.selectedBoxed, (change) => {
-        if (change.newValue !== change.oldValue && core.windowSize.isDesktop) {
+      reaction(() => core.dataStore.chatState.selectedChannel, (newValue, oldValue) => {
+        if (newValue != null && newValue !== oldValue && core.windowSize.isDesktop) {
           this.focusInput();
         }
       }),
@@ -127,7 +127,9 @@ export default class InputBox extends React.Component<Props> {
   // TODO: move to channel?
   @action
   sendMessage(messageText?: string) {
-    if (!messageText || !osu.present(trim(messageText))) {
+    if (core.dataStore.chatState.selectedChannel == null
+      || messageText == null
+      || !osu.present(trim(messageText))) {
       return;
     }
 
@@ -151,7 +153,7 @@ export default class InputBox extends React.Component<Props> {
 
     const message = new Message();
     message.senderId = core.currentUserOrFail.id;
-    message.channelId = core.dataStore.chatState.selected;
+    message.channelId = core.dataStore.chatState.selectedChannel.channelId;
     message.content = messageText;
 
     // Technically we don't need to check command here, but doing so in case we add more commands

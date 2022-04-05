@@ -68,7 +68,7 @@ return [
         'friends_only' => 'O utilizador está a bloquear mensagens de pessoas que não façam parte da sua lista de amigos.',
         'moderated' => 'Esse canal está atualmente moderado.',
         'no_access' => 'Tu não tens acesso a esse canal.',
-        'receive_friends_only' => '',
+        'receive_friends_only' => 'O utilizador pode não conseguir responder porque só estás a aceitar mensagens de pessoas da tua lista de amigos.',
         'restricted' => 'Não podes enviar mensagens enquanto estiveres silenciado, restrito ou banido.',
         'silenced' => 'Não podes enviar mensagens enquanto estiveres silenciado, restringido ou banido.',
     ],
@@ -170,7 +170,7 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
+            'not_owner' => 'Só o dono da pontuação é que a pode fixar.',
             'too_many' => 'Afixaste demasiadas pontuações.',
         ],
     ],

@@ -45,7 +45,7 @@ return [
             'confirmation' => 'Jste si jisti, že chcete nominovat tuto beatmapu?',
             'header' => 'Nominovat beatmapu',
             'hybrid_warning' => 'poznámka: můžete nominovat pouze jednou, takže se ujistěte, že nominujete za všechny herní režimy, které chcete',
-            'which_modes' => '',
+            'which_modes' => 'Nominovat pro jaké módy?',
         ],
     ],
 
@@ -59,7 +59,7 @@ return [
         'details' => [
             'by_artist' => 'od :artist',
             'favourite' => 'Přidat do mých oblíbených',
-            'favourite_login' => '',
+            'favourite_login' => 'Pro přidání beatmapy do oblíbených se přihlas',
             'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
             'mapped_by' => 'beatmapu vytvořil :mapper',
             'unfavourite' => 'Odebrat z mých oblíbených',
@@ -80,9 +80,9 @@ return [
 
         'details_date' => [
             'approved' => 'schváleno :timeago',
-            'loved' => '',
+            'loved' => 'oblíbeno :timeago',
             'qualified' => 'kvalifikováno :timeago',
-            'ranked' => '',
+            'ranked' => 'hodnoceno :timeago',
             'submitted' => 'odesláno :timeago',
             'updated' => 'naposledy aktualizováno :timeago',
         ],
@@ -92,7 +92,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Dejte Hype téhle mapě, pokud jste si užili její hraní a pomocte jí se dostat do <strong>Hodnoceného</strong> stavu.',
+            'action' => 'Podpoř tuto mapu, pokud sis užili její hraní, a pomoz jí postoupit do <strong>Hodnoceného</strong> stavu.',
 
             'current' => [
                 '_' => 'Tato mapa je právě :status.',
@@ -123,10 +123,10 @@ return [
             'nsfw' => 'Explicitní obsah',
             'points-of-failure' => 'Body neúspěchů',
             'source' => 'Zdroj',
-            'storyboard' => '',
+            'storyboard' => 'Tato beatmapa obsahuje storyboard',
             'success-rate' => 'Úspěšnost',
             'tags' => 'Tagy',
-            'video' => '',
+            'video' => 'Tato beatmapa obsahuje video',
         ],
 
         'nsfw_warning' => [
@@ -143,7 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'dosaženo :when',
             'country' => 'Státní žebříčky',
-            'error' => '',
+            'error' => 'Nepodařilo se načíst žebříčky',
             'friend' => 'Žebříček přátel',
             'global' => 'Celosvětové žebříčky',
             'supporter-link' => 'Klikněte <a href=":link">zde</a> pro zobrazení všech výhod, které dostanete!',
@@ -155,7 +155,7 @@ return [
                 'combo' => 'Maximální Kombo',
                 'miss' => 'Minuto',
                 'mods' => 'Módy',
-                'pin' => '',
+                'pin' => 'Připnout',
                 'player' => 'Hráč',
                 'pp' => '',
                 'rank' => 'Umístění',
@@ -176,8 +176,8 @@ return [
                 'own' => 'Vaše nejlepší',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Klikni :here pro zobrazení všech výhod, které dostaneš!',
+                'here' => 'sem',
             ],
         ],
 

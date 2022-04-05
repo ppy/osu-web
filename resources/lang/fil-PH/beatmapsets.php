@@ -143,7 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'nakamit nang :when',
             'country' => 'Ranggong Pambansa',
-            'error' => '',
+            'error' => 'Hindi ma-load ang ranking',
             'friend' => 'Ranggo sa Kaibigan',
             'global' => 'Pandaigdigang Ranggo',
             'supporter-link' => 'I-click <a href=":link">ito</a> para makita ang mga feature na iyong matatamasa!',
