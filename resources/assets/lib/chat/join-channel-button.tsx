@@ -18,7 +18,7 @@ export default class JoinChannelButton extends React.Component {
   render() {
     if (!this.canView) return null;
 
-    const selected = core.dataStore.chatState.selectedChannel == null;
+    const selected = core.dataStore.chatState.showJoinChannel;
 
     return (
       <div className={classWithModifiers('chat-conversation-list-item', { selected })}>
@@ -35,6 +35,6 @@ export default class JoinChannelButton extends React.Component {
   }
 
   private handleClick = () => {
-    core.dataStore.chatState.selectChannel(null);
+    core.dataStore.chatState.selectJoin();
   };
 }

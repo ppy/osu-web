@@ -7,6 +7,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import ConversationView from './conversation-view';
 import InputBox from './input-box';
+import JoinChannel from './join-channel';
 
 const lazerLink = 'https://github.com/ppy/osu/releases';
 
@@ -20,6 +21,8 @@ export default class ConversationPanel extends React.Component<Record<string, ne
             <ConversationView />
             <InputBox />
           </>
+        ) : core.dataStore.chatState.showJoinChannel ? (
+          <JoinChannel />
         ) : (
           <div className='chat-conversation-panel__no-channel'>
             <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />

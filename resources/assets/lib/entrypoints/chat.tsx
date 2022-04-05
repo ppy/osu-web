@@ -50,13 +50,6 @@ function getInitialChannel() {
   const sendToParam = getParamValue(urlParams, 'sendto');
   const sendTo = initial?.send_to;
 
-  if (currentUrl().hash === '#join') {
-    // TODO: skip the other checks.
-    dataStore.chatState.selectChannel(null);
-
-    return null;
-  }
-
   if (sendTo != null) {
     const target = dataStore.userStore.update(sendTo.target); // pre-populate userStore with target
     let channel = dataStore.channelStore.findPM(target.id);
@@ -80,12 +73,16 @@ function getInitialChannel() {
 }
 
 core.reactTurbolinks.register('chat', action(() => {
-  const channel = getInitialChannel();
-
-  if (channel === undefined) {
-    core.dataStore.chatState.selectFirst();
+  if (currentUrl().hash === '#join') {
+    core.dataStore.chatState.selectJoin();
   } else {
-    core.dataStore.chatState.selectChannel(channel?.channelId ?? null, 'replaceHistory');
+    const channel = getInitialChannel();
+
+    if (channel === undefined) {
+      core.dataStore.chatState.selectFirst();
+    } else {
+      core.dataStore.chatState.selectChannel(channel?.channelId ?? null, 'replaceHistory');
+    }
   }
 
   return <MainView />;

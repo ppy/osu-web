@@ -25,6 +25,7 @@ import PingService from './ping-service';
 export default class ChatStateStore implements DispatchListener {
   @observable createAnnoucement = new CreateAnnouncement();
   @observable isReady = false;
+  @observable showJoinChannel = false;
   skipRefresh = false;
   @observable viewsMounted = new Set<MainView>();
   @observable waitJoinChannelUuid: string | null = null;
@@ -107,6 +108,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   selectChannel(channelId: number | null, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
+    this.showJoinChannel = false;
     // TODO: enfore location url even if channel doesn't change;
     // noticeable when navigating via ?sendto= on existing channel.
     if (this.selected === channelId) return;
@@ -118,13 +120,7 @@ export default class ChatStateStore implements DispatchListener {
 
     this.selected = channelId;
 
-    if (channelId == null) {
-      Turbolinks.controller.replaceHistory(updateQueryString(null, {
-        channel_id: null,
-        sendto: null,
-      }, 'join'));
-      return;
-    }
+    if (channelId == null) return;
 
     const channel = this.channelStore.get(channelId);
 
@@ -143,7 +139,7 @@ export default class ChatStateStore implements DispatchListener {
         ? { channel_id: null, sendto: channel.pmTarget?.toString() }
         : { channel_id: channel.channelId.toString(), sendto: null };
 
-      Turbolinks.controller[mode](updateQueryString(null, params));
+      Turbolinks.controller[mode](updateQueryString(null, params, ''));
     }
   }
 
@@ -153,11 +149,20 @@ export default class ChatStateStore implements DispatchListener {
 
     this.selectChannel(this.channelList[0].channelId, null);
     // Remove channel_id from location on selectFirst();
-    // also handles the case when history goes back to a channel that was removed.
     Turbolinks.controller.replaceHistory(updateQueryString(null, {
       channel_id: null,
       sendto: null,
     }));
+  }
+
+  @action
+  selectJoin() {
+    this.selectChannel(null, null);
+    this.showJoinChannel = true;
+    Turbolinks.controller.replaceHistory(updateQueryString(null, {
+      channel_id: null,
+      sendto: null,
+    }, 'join'));
   }
 
   @action
