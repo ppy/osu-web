@@ -31,7 +31,7 @@ const defaultNumberFormatter = new Intl.NumberFormat(window.currentLocale);
 // Duplicated definition with implementation not having explicit return type
 // so the conditional return type behaves as expected.
 // Note that actual implementation return type isn't properly checked in this case.
-// Reference: https://github.com/microsoft/TypeScript/issues/47627
+// Reference: https://github.com/microsoft/TypeScript/issues/33912
 export function formatNumber<T extends number | null>(num?: T, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): T extends number ? string : null;
 export function formatNumber<T extends number | null>(num?: T, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) {
   if (num == null) return null;
