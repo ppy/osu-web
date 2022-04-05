@@ -2,12 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Mod from 'components/mod';
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as moment from 'moment';
 import * as React from 'react';
 
 interface Props {
-  score: ScoreJson;
+  score: ScoreJsonForShow;
 }
 
 export default function Player(props: Props) {

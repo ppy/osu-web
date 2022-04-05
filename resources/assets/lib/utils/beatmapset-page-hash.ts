@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from 'interfaces/beatmap-json';
+import { currentUrl } from './turbolinks';
 
 function getInt(num: unknown) {
   let ret: number | undefined;
@@ -34,4 +35,13 @@ export function generate({ beatmap, mode }: { beatmap?: BeatmapJson; mode?: stri
   }
 
   return '';
+}
+
+export function setHash(newHash: string) {
+  const currUrl = currentUrl().href;
+  const newUrl = `${currUrl.replace(/#.*/, '')}${newHash}`;
+
+  if (newUrl === currUrl) return;
+
+  history.replaceState(history.state, '', newUrl);
 }

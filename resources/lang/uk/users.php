@@ -33,7 +33,7 @@ return [
 
     'blocks' => [
         'banner_text' => 'Ви заблокували цього користувача.',
-        'blocked_count' => 'заблоковати користувача (:count)',
+        'blocked_count' => 'заблоковані користувачі (:count)',
         'hide_profile' => 'Приховати профіль',
         'not_blocked' => 'Користувач не заблокований.',
         'show_profile' => 'Показати профіль',
@@ -147,7 +147,7 @@ return [
         'is_developer' => 'osu!розробник',
         'is_supporter' => 'osu!прихильник',
         'joined_at' => 'Дата реєстрації: :date',
-        'lastvisit' => 'Останій візіт :date',
+        'lastvisit' => 'Останній візит :date',
         'lastvisit_online' => 'Зараз в мережі',
         'missingtext' => 'Можливо, ви зробили помилку! (Або гравець заблокований)',
         'origin_country' => 'Проживає в :country',
@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited коментар|:count_delimited коментарі',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Згорнути банер',
+            'to_1' => 'Розгорнути банер',
         ],
         'edit' => [
             'cover' => [
@@ -317,7 +317,7 @@ return [
                 'title' => 'Недавня активність',
             ],
             'realtime' => [
-                'title' => 'Мультиплеерні Ігри',
+                'title' => 'Мультиплеєрні Ігри',
             ],
             'top_ranks' => [
                 'download_replay' => 'Завантажити повтор',

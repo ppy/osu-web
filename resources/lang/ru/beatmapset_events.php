@@ -57,7 +57,7 @@ return [
 
     'type' => [
         'approve' => 'Одобрено',
-        'beatmap_owner_change' => 'Сменить владельца сложности',
+        'beatmap_owner_change' => 'Смена владельца сложности',
         'discussion_delete' => 'Удаление обсуждения',
         'discussion_post_delete' => 'Удаление ответов в обсуждении',
         'discussion_post_restore' => 'Восстановление ответов в обсуждении',
@@ -65,11 +65,11 @@ return [
         'disqualify' => 'Дисквалификация',
         'genre_edit' => 'Изменение жанра',
         'issue_reopen' => 'Возобновление обсуждения',
-        'issue_resolve' => 'Обсуждение решения',
+        'issue_resolve' => 'Решение проблем',
         'kudosu_allow' => 'Квота Kudosu',
         'kudosu_deny' => 'Отказ в Kudosu',
-        'kudosu_gain' => 'Получение Kudosu',
-        'kudosu_lost' => 'Потеря Kudosu',
+        'kudosu_gain' => 'Получение кудосу',
+        'kudosu_lost' => 'Потеря кудосу',
         'kudosu_recalculate' => 'Перерасчет Kudosu',
         'language_edit' => 'Изменение языка',
         'love' => 'Любовь',

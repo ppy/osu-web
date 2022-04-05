@@ -13,6 +13,11 @@ return [
         'user' => '现在你无法向此玩家发送消息，这可能是由于以下原因：',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => '无法发送消息……',
         'disconnected' => '连接中断',

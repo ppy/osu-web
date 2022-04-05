@@ -69,6 +69,14 @@ class CommentTest extends TestCase
         $this->assertArrayHasKey('parent_id', $comment->validationErrors()->all());
     }
 
+    public function testUnpinOnDelete()
+    {
+        $comment = Comment::factory(['pinned' => true])->create();
+        $comment->softDelete(User::factory()->create());
+
+        $this->assertFalse($comment->fresh()->pinned);
+    }
+
     public function commentReplyOptionDataProvider()
     {
         return [

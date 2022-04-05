@@ -26,6 +26,11 @@ return [
         ],
     ],
 
+    'not_found' => [
+        'message' => 'There\'s nothing here, maybe you left the channel or it doesn\'t exist...',
+        'title' => 'channel not found',
+    ],
+
     'input' => [
         'create' => 'Create',
         'disabled' => 'unable to send message...',

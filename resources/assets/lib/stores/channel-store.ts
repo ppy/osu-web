@@ -81,7 +81,7 @@ export default class ChannelStore implements DispatchListener {
 
   @action
   addNewConversation(json: ChannelJson, message: MessageJson) {
-    const channel = this.getOrCreate(json);
+    const channel = this.update(json);
     // TODO: need to handle user
     channel.addMessages([Message.fromJson(message)]);
 
@@ -113,20 +113,6 @@ export default class ChannelStore implements DispatchListener {
 
   get(channelId: number): Channel | undefined {
     return this.channels.get(channelId);
-  }
-
-  @action
-  getOrCreate(json: ChannelJson): Channel {
-    const channelId = json.channel_id;
-    let channel = this.channels.get(channelId);
-
-    if (!channel) {
-      channel = new Channel(channelId);
-      this.channels.set(channelId, channel);
-    }
-
-    channel.updateWithJson(json);
-    return channel;
   }
 
   handleDispatchAction(event: DispatcherAction) {
@@ -193,9 +179,41 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  updateWithJson(updateJson: ChatUpdatesJson) {
+  update(json: ChannelJson): Channel {
+    const channelId = json.channel_id;
+    let channel = this.channels.get(channelId);
+
+    if (!channel) {
+      channel = new Channel(channelId);
+      this.channels.set(channelId, channel);
+    }
+
+    channel.updateWithJson(json);
+    return channel;
+  }
+
+  @action
+  updateMany(data: ChannelJson[]) {
+    filterSupportedChannelTypes(data).forEach((json) => {
+      this.update(json);
+    });
+
+    // remove parted channels
+    this.channels.forEach((channel) => {
+      if (channel.newPmChannel) {
+        return;
+      }
+
+      if (!data.find((json) => json.channel_id === channel.channelId)) {
+        this.channels.delete(channel.channelId);
+      }
+    });
+  }
+
+  @action
+  updateWithChatUpdates(updateJson: ChatUpdatesJson) {
     if (updateJson.presence != null) {
-      this.updateWithPresence(updateJson.presence);
+      this.updateMany(updateJson.presence);
     }
 
     if (updateJson.messages != null) {
@@ -212,24 +230,6 @@ export default class ChannelStore implements DispatchListener {
     if (updateJson.silences != null) {
       dispatch(new ChatUpdateSilences(updateJson.silences));
     }
-  }
-
-  @action
-  updateWithPresence(presence: ChannelJson[]) {
-    filterSupportedChannelTypes(presence).forEach((json) => {
-      this.getOrCreate(json);
-    });
-
-    // remove parted channels
-    this.channels.forEach((channel) => {
-      if (channel.newPmChannel) {
-        return;
-      }
-
-      if (!presence.find((json) => json.channel_id === channel.channelId)) {
-        this.channels.delete(channel.channelId);
-      }
-    });
   }
 
   @action

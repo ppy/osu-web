@@ -13,6 +13,11 @@ return [
         'user' => 'Anda sedang tidak dapat mengirimkan pesan kepada pengguna ini.',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'gagal mengirim pesan...',
         'disconnected' => 'Terputus',
