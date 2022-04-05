@@ -16,7 +16,7 @@ return [
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'téma fóra',
     ],
 
     'index' => [
@@ -25,7 +25,7 @@ return [
 
     'mapping' => [
         'empty' => 'Nesledujete žádné autory map.',
-        'followers' => '',
+        'followers' => 'odběratelé mapování',
         'page_title' => 'sledovaní autoři map',
         'title' => 'autoři map',
         'to_0' => 'přestaň mě upozorňovat, když tento uživatel nahraje novou beatmapu',

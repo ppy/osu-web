@@ -80,8 +80,8 @@ return [
 
         'details_date' => [
             'approved' => 'được chấp nhận :timeago',
-            'loved' => 'loved :timeago',
-            'qualified' => 'đủ tiêu chuẩn :timeago',
+            'loved' => 'được yêu mến :timeago',
+            'qualified' => 'đủ tư cách :timeago',
             'ranked' => 'được xếp hạng :timeago',
             'submitted' => 'được đăng :timeago',
             'updated' => 'cập nhật lần cuối :timeago',
@@ -99,7 +99,7 @@ return [
 
                 'status' => [
                     'pending' => 'chờ',
-                    'qualified' => 'qualified',
+                    'qualified' => 'đủ tư cách',
                     'wip' => 'đang thực hiện',
                 ],
             ],
@@ -143,7 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'đạt được :when',
             'country' => 'Hạng Quốc Gia',
-            'error' => '',
+            'error' => 'Tải xếp hạng thất bại',
             'friend' => 'Hạng Bạn Bè',
             'global' => 'Hạng Toàn Cầu',
             'supporter-link' => 'Nhấp vào <a href=":link">đây</a> để biết thêm những tính năng bạn có thể nhận!',
@@ -159,8 +159,8 @@ return [
                 'player' => 'Người Chơi',
                 'pp' => '',
                 'rank' => 'Xếp Hạng',
-                'score' => 'Điểm',
-                'score_total' => 'Tổng Điểm',
+                'score' => 'Số điểm',
+                'score_total' => 'Tổng điểm',
                 'time' => 'Thời gian',
             ],
 
@@ -201,11 +201,11 @@ return [
         'status' => [
             'ranked' => 'Đã được xếp hạng',
             'approved' => 'Được Chấp Nhận',
-            'loved' => 'Được yêu thích',
-            'qualified' => 'Qualified',
+            'loved' => 'Được yêu mến',
+            'qualified' => 'Đủ tư cách',
             'wip' => 'WIP',
             'pending' => 'Đang Chờ',
-            'graveyard' => 'Graveyard',
+            'graveyard' => 'Đắp mộ',
         ],
     ],
 ];

@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited 則留言|:count_delimited 則留言',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => '隱藏封面',
+            'to_1' => '顯示封面',
         ],
         'edit' => [
             'cover' => [

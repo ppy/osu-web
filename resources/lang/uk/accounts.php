@@ -57,7 +57,7 @@ return [
         'options' => [
             '_' => 'метод отримання',
             'beatmap_owner_change' => 'гостьова складність',
-            'beatmapset:modding' => 'моддінг карт',
+            'beatmapset:modding' => 'моддинг карт',
             'channel_message' => 'особисті повідомлення',
             'comment_new' => 'нові коментарі',
             'forum_topic_reply' => 'відповідь темі',

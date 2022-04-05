@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
+    'missing_route' => 'Neplatná url adresa nebo nesprávná metoda požadavku.',
     'no_restricted_access' => 'Tuto akci nemůžeš provést, když je tvůj účet v omezeném režimu.',
     'supporter_only' => 'Pro použití této funkce musíš mít osu! supporter tag.',
     'unknown' => 'Vyskytla se neznámá chyba.',
@@ -25,11 +25,11 @@ return [
         'standard_converts_only' => 'Není dostupné žádné score pro zvolený mód na této obtížnosti.',
     ],
     'checkout' => [
-        'generic' => '',
+        'generic' => 'Při zpracování vaší objednávky došlo k chybě.',
     ],
     'search' => [
-        'default' => '',
-        'invalid_cursor_exception' => '',
+        'default' => 'Nepodařilo se získat žádné výsledky, zkus to znovu později.',
+        'invalid_cursor_exception' => 'Zadán neplatný parametr kurzoru.',
         'operation_timeout_exception' => '',
     ],
 ];

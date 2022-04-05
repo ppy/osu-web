@@ -7,7 +7,7 @@ import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
 import { route } from 'laroute';
 import { each, isEmpty, last, throttle } from 'lodash';
-import { action, computed, makeObservable, observe, reaction } from 'mobx';
+import { action, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
@@ -107,9 +107,8 @@ export default class ConversationView extends React.Component<Props> {
 
     disposeOnUnmount(
       this,
-      // TODO: change to reaction and remove boxed value.
-      observe(core.dataStore.chatState.selectedBoxed, (change) => {
-        if (change.newValue !== change.oldValue) {
+      reaction(() => core.dataStore.chatState.selectedChannel, (newValue, oldValue) => {
+        if (newValue !== oldValue) {
           this.didSwitchChannel = true;
         }
       }),

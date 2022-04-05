@@ -53,9 +53,7 @@ export default class RankChart extends React.Component<Props> {
 
       const lastData = last(data);
 
-      if (lastData?.x === 0) {
-        lastData.y = -this.props.stats.global_rank;
-      } else {
+      if (lastData?.x !== 0) {
         data.push({ x: 0, y: -this.props.stats.global_rank });
       }
     }

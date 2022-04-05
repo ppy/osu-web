@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'description' => 'Toto jsou diskuze beatmap, které sledujete. Všechny nové příspěvky a aktualizace vám budou oznámeny.',
+        'description' => 'Toto jsou diskuze beatmap, které sledujete. Přijde vám oznámení, pokud se objeví nové příspěvky nebo aktualizace.',
         'title_compact' => 'sledování moddingu',
 
         'counts' => [
