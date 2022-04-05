@@ -16,7 +16,7 @@ interface Props {
   beatmapset: BeatmapsetJsonForShow & { hype: NonNullable<BeatmapsetJsonForShow['hype']> };
 }
 
-export class Hype extends React.PureComponent<Props> {
+export default class Hype extends React.PureComponent<Props> {
   private get hypeUrl() {
     return `${route('beatmapsets.discussion', {
       beatmap: '-',
