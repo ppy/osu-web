@@ -29,6 +29,7 @@ class Mod
     const MIRROR = 'MR';
     const MUTED = 'MU';
     const NO_SCOPE = 'NS';
+    const ADAPTIVE_SPEED = 'AS';
 
     // osu-specific
     const OSU_AUTOPILOT = 'AP';
@@ -44,8 +45,9 @@ class Mod
     const OSU_CLASSIC = 'CL';
     const OSU_BARRELROLL = 'BR';
     const OSU_APPROACH_DIFFERENT = 'AD';
-    const OSU_AIMASSIST = 'AA';
+    const OSU_MAGNETISED = 'MG';
     const OSU_ALTERNATE = 'AL';
+    const OSU_STRICT_TRACKING = 'ST';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -118,10 +120,9 @@ class Mod
             self::HALFTIME,
             self::DAYCORE,
             self::NIGHTCORE,
-        ],
-        [
             self::WIND_DOWN,
             self::WIND_UP,
+            self::ADAPTIVE_SPEED,
         ],
         [
             self::MANIA_KEY1,
@@ -240,8 +241,12 @@ class Mod
         self::HIDDEN => [
             'only_fade_approach_circles' => 'bool',
         ],
-        self::OSU_AIMASSIST => [
-            'assist_strength' => 'float',
+        self::OSU_MAGNETISED => [
+            'attraction_strength' => 'float',
+        ],
+        self::ADAPTIVE_SPEED => [
+            'initial_rate' => 'float',
+            'adjust_pitch' => 'bool',
         ],
     ];
 
@@ -317,8 +322,10 @@ class Mod
                         self::OSU_APPROACH_DIFFERENT,
                         self::MIRROR,
                         self::NO_SCOPE,
-                        self::OSU_AIMASSIST,
+                        self::OSU_MAGNETISED,
                         self::OSU_ALTERNATE,
+                        self::ADAPTIVE_SPEED,
+                        self::OSU_STRICT_TRACKING,
                     ]
                 ),
 
@@ -327,6 +334,7 @@ class Mod
                     [
                         self::TAIKO_SWAP,
                         self::RANDOM,
+                        self::ADAPTIVE_SPEED,
                     ]
                 ),
 
@@ -359,6 +367,7 @@ class Mod
                         self::MANIA_CONSTANTSPEED,
                         self::RANDOM,
                         self::MANIA_HOLDOFF,
+                        self::ADAPTIVE_SPEED,
                     ]
                 ),
             ];
@@ -430,16 +439,24 @@ class Mod
                             self::MIRROR,
                         ],
                         [
-                            self::OSU_AIMASSIST,
+                            self::OSU_MAGNETISED,
                             self::OSU_AUTOPILOT,
                         ],
                         [
-                            self::OSU_AIMASSIST,
+                            self::OSU_MAGNETISED,
                             self::OSU_WIGGLE,
                         ],
                         [
-                            self::OSU_AIMASSIST,
+                            self::OSU_MAGNETISED,
                             self::OSU_TRANSFORM,
+                        ],
+                        [
+                            self::OSU_MAGNETISED,
+                            self::RELAX,
+                        ],
+                        [
+                            self::OSU_CLASSIC,
+                            self::OSU_STRICT_TRACKING,
                         ],
                     ]
                 ),

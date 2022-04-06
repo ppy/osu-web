@@ -2,50 +2,107 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import * as _ from 'lodash';
 import * as React from 'react';
-import { getDiffColour, getDiffRating } from 'utils/beatmap-helper';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { getDiffColour } from 'utils/beatmap-helper';
+import { classWithModifiers, Modifiers } from 'utils/css';
+import { nextVal } from 'utils/seq';
+import DifficultyBadge from './difficulty-badge';
 
 interface Props {
   beatmap: BeatmapExtendedJson;
-  modifier?: string;
-  showConvertMode?: boolean;
-  showTitle?: boolean;
+  modifiers?: Modifiers;
+  showConvertMode: boolean;
+  withTooltip: boolean;
 }
 
-export const BeatmapIcon = (props: Props) => {
-  const {
-    beatmap,
-    modifier,
-    showConvertMode = false,
-    showTitle = true,
-  } = props;
+export class BeatmapIcon extends React.Component<Props> {
+  static readonly defaultProps = {
+    showConvertMode: false,
+    withTooltip: false,
+  };
 
-  const difficultyRating = getDiffRating(beatmap.difficulty_rating);
-  const mode = beatmap.convert && !showConvertMode ? 'osu' : beatmap.mode;
+  private tooltipId = '';
 
-  let className = 'beatmap-icon';
-  // FIXME: update to use array of string instead
-  if (modifier != null) {
-    className += ` beatmap-icon--${modifier}`;
+  render() {
+    this.tooltipId = `beatmap-icon-${this.props.beatmap.id}-${nextVal()}`;
+    const mode = this.props.beatmap.convert && !this.props.showConvertMode ? 'osu' : this.props.beatmap.mode;
+
+    const className = classWithModifiers('beatmap-icon', this.props.modifiers, {
+      'with-hover': this.props.withTooltip,
+    });
+
+    const style = {
+      '--diff': getDiffColour(this.props.beatmap.difficulty_rating),
+    } as React.CSSProperties;
+
+    return (
+      <div
+        className={className}
+        onMouseOver={this.handleMouseOver}
+        onTouchStart={this.handleMouseOver}
+        style={style}
+      >
+        <i className={`fal fa-extra-mode-${mode}`} />
+      </div>
+    );
   }
-  if (showTitle) {
-    className += ' beatmap-icon--with-hover js-beatmap-tooltip';
-  }
 
-  const style = {
-    '--diff': getDiffColour(beatmap.difficulty_rating),
-  } as React.CSSProperties;
+  private readonly handleMouseOver = (event: React.SyntheticEvent<HTMLElement>) => {
+    if (!this.props.withTooltip) return;
 
-  return (
-    <div
-      className={className}
-      data-beatmap-title={showTitle ? beatmap.version : null}
-      data-difficulty={difficultyRating}
-      data-stars={_.round(beatmap.difficulty_rating, 2)}
-      style={style}
-    >
-      <i className={`fal fa-extra-mode-${mode}`} />
-    </div>
-  );
-};
+    const el = event.currentTarget;
+
+    // on touch devices, touchstart and then mouseover will trigger.
+    // the following mouseover should be ignored in that case.
+    if (el._tooltip === this.tooltipId) return;
+
+    const $content = $(renderToStaticMarkup(
+      <div
+        className='tooltip-beatmap'
+      >
+        <div className='tooltip-beatmap__text'>{this.props.beatmap.version}</div>
+        <div className='tooltip-beatmap__badge'>
+          <DifficultyBadge rating={this.props.beatmap.difficulty_rating} />
+        </div>
+      </div>,
+    ));
+
+    if (el._tooltip != null) {
+      el._tooltip = this.tooltipId;
+      $(el).qtip('set', { 'content.text': $content });
+      return;
+    }
+
+    el._tooltip = this.tooltipId;
+
+    const options = {
+      content: $content,
+      hide: event.type === 'touchstart' ? {
+        event: 'touchstart unfocus',
+        inactive: 3000,
+      } : {
+        event: 'click mouseleave',
+      },
+      overwrite: false,
+      position: {
+        at: 'top center',
+        my: 'bottom center',
+        viewport: $(window),
+      },
+      show: {
+        event: event.type,
+        ready: true,
+      },
+      style: {
+        classes: 'qtip qtip--tooltip-beatmap',
+        tip: {
+          height: 9,
+          width: 10,
+        },
+      },
+    };
+
+    $(el).qtip(options, event);
+  };
+}

@@ -5,8 +5,8 @@
 
 return [
     'deleted' => 'odstraněno',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
+    'deleted_by' => 'odstraněno :timeago uživatelem :user',
+    'deleted_by_system' => 'systém',
     'deleted_count' => ':count_delimited smazaný komentář|:count_delimited smazané komentáře|:count_delimited smazaných komentářů',
     'edited' => 'upraveno před :timeago uživatelem :user',
     'pinned' => 'připnuto',
@@ -25,9 +25,9 @@ return [
     'editor' => [
         'textarea_hint' => [
             '_' => 'Zmáčkněte Enter pro :action. Použijte Shift+Enter pro nový řádek.',
-            'edit' => 'uložit',
-            'new' => 'odeslat',
-            'reply' => 'odpovědět',
+            'edit' => 'uložení',
+            'new' => 'postnutí',
+            'reply' => 'odeslání odpovědi',
         ],
     ],
 
@@ -37,15 +37,15 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'komentáře',
         'nav_title' => 'výpis',
-        'no_comments' => '',
+        'no_comments' => 'nenalezeny žádné komentáře...',
     ],
 
     'placeholder' => [
         'edit' => 'Upravte komentář zde',
-        'new' => 'Napište nový komentář zde',
-        'reply' => 'Napište svojí odpověď zde',
+        'new' => 'Sem napište nový komentář',
+        'reply' => 'Sem napište svoji odpověď',
     ],
 
     'show' => [

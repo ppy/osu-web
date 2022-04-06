@@ -4,7 +4,7 @@
 import Mod from 'components/mod';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForUser } from 'interfaces/score-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
@@ -16,7 +16,7 @@ const bn = 'play-detail';
 
 interface Props {
   activated: boolean;
-  score: ScoreJson;
+  score: ScoreJsonForUser;
   showPinSortableHandle?: boolean;
   showPpWeight?: boolean;
 }
@@ -29,10 +29,6 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
   render() {
     const score = this.props.score;
     const { beatmap, beatmapset } = score;
-
-    if (beatmap == null || beatmapset == null) {
-      throw new Error('score json is missing beatmap or beatmapset details');
-    }
 
     let blockClass = classWithModifiers(
       bn,

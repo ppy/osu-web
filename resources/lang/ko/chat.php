@@ -13,6 +13,11 @@ return [
         'user' => '이 유저에게 메시지를 보낼 수 없습니다. 다음과 같은 이유 때문일 수도 있습니다:',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => '메시지를 보낼 수 없습니다...',
         'disconnected' => '연결 끊김',

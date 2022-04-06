@@ -31,7 +31,6 @@ export default class AchievementBadge extends React.PureComponent<Props> {
   }
 
   private readonly onMouseOver = (event: React.MouseEvent<HTMLImageElement>) => {
-    event.persist();
     const elem = event.currentTarget;
 
     if (elem._tooltip === this.tooltipId) return;

@@ -23,6 +23,14 @@ class ReportScoreTest extends TestCase
         $score->reportBy($this->reporter);
     }
 
+    public function testNoComments()
+    {
+        $score = Best\Osu::factory()->create();
+
+        $this->expectException(ValidationException::class);
+        $score->reportBy($this->reporter);
+    }
+
     public function testReasonIsIgnored()
     {
         $score = Best\Osu::factory()->create();
@@ -30,6 +38,7 @@ class ReportScoreTest extends TestCase
         $this->expectException(ValidationException::class);
 
         $score->reportBy($this->reporter, [
+            'comments' => 'some comment',
             'reason' => 'NotAValidReason',
         ]);
     }
@@ -42,7 +51,7 @@ class ReportScoreTest extends TestCase
         $reportedCount = $query->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 
-        $report = $score->reportBy($this->reporter);
+        $report = $score->reportBy($this->reporter, ['comments' => 'some comment']);
         $this->assertSame($reportedCount + 1, $query->count());
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
         $this->assertSame($score->getKey(), $report->score_id);

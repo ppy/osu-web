@@ -3,26 +3,23 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Libraries;
+namespace App\Libraries\BeatmapsetDiscussion;
 
 use App\Exceptions\InvariantException;
-use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
 use App\Jobs\Notifications\BeatmapsetDiscussionReviewNew;
+use App\Libraries\BeatmapsetDiscussion\Traits\HandlesProblem;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetEvent;
 use App\Models\User;
-use DB;
-use Exception;
 
-class BeatmapsetDiscussionReview
+class Review
 {
+    use HandlesProblem;
+
     const BLOCK_TEXT_LENGTH_LIMIT = 750;
 
     private bool $isUpdate;
-    private int $priorOpenProblemCount;
-    private ?BeatmapDiscussion $problemDiscussion = null;
 
     private function __construct(
         private Beatmapset $beatmapset,
@@ -104,6 +101,9 @@ class BeatmapsetDiscussionReview
             'timestamp' => $timestamp,
             'beatmap_id' => $beatmapId,
         ]);
+
+        $this->maybeSetProblemDiscussion($newDiscussion);
+
         $newDiscussion->saveOrExplode();
 
         $postParams = [
@@ -115,24 +115,6 @@ class BeatmapsetDiscussionReview
         $newPost->saveOrExplode();
 
         return $newDiscussion;
-    }
-
-    private function handleProblemDiscussion()
-    {
-        // handle disqualifications and the resetting of nominations
-        if ($this->problemDiscussion !== null) {
-            $event = BeatmapsetEvent::getBeatmapsetEventType($this->problemDiscussion, $this->user);
-            if (in_array($event, [BeatmapsetEvent::DISQUALIFY, BeatmapsetEvent::NOMINATION_RESET], true)) {
-                return $this->beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
-            }
-
-            if ($this->beatmapset->isQualified() && $event === null && $this->priorOpenProblemCount === 0) {
-                (new BeatmapsetDiscussionQualifiedProblem(
-                    $this->problemDiscussion->startingPost,
-                    $this->user
-                ))->dispatch();
-            }
-        }
     }
 
     private function parseBlock($block)
@@ -164,11 +146,6 @@ class BeatmapsetDiscussionReview
                     );
 
                     $childId = $embeddedDiscussion->getKey();
-
-                    // FIXME: separate from this loop
-                    if ($block['discussion_type'] === 'problem' && $this->problemDiscussion === null) {
-                        $this->problemDiscussion = $embeddedDiscussion;
-                    }
                 }
 
                 return [
@@ -217,11 +194,7 @@ class BeatmapsetDiscussionReview
 
     private function process()
     {
-        $this->priorOpenProblemCount = $this->beatmapset->beatmapDiscussions()->openProblems()->count();
-
-        try {
-            DB::beginTransaction();
-
+        $this->beatmapset->getConnection()->transaction(function () {
             [$output, $childIds] = $this->parseDocument();
 
             if (!$this->isUpdate) {
@@ -254,16 +227,12 @@ class BeatmapsetDiscussionReview
 
             $this->handleProblemDiscussion();
 
-            DB::commit();
-
             if (!$this->isUpdate) {
+                // TODO: make transactional
                 (new BeatmapsetDiscussionReviewNew($this->discussion, $this->user))->dispatch();
             }
+        });
 
-            return $this->discussion;
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
+        return $this->discussion;
     }
 }

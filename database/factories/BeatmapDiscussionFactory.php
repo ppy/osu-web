@@ -9,6 +9,7 @@ use App\Models\BeatmapDiscussion;
 
 class BeatmapDiscussionFactory extends Factory
 {
+    // TODO: decouple message_type
     const DEFAULTS = [
         'general' => [
             'timestamp' => null,
@@ -28,12 +29,24 @@ class BeatmapDiscussionFactory extends Factory
 
     public function definition(): array
     {
-        return array_rand_val(static::DEFAULTS);
+        return array_merge(array_rand_val(static::DEFAULTS), [
+            'resolved' => false,
+        ]);
     }
 
     public function general()
     {
         return $this->state(static::DEFAULTS['general']);
+    }
+
+    public function mapperNote()
+    {
+        return $this->state(['message_type' => 'mapper_note']);
+    }
+
+    public function problem()
+    {
+        return $this->state(['message_type' => 'problem']);
     }
 
     public function review()
