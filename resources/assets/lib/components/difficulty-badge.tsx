@@ -18,7 +18,9 @@ export default function DifficultyBadge(props: { rating: number }) {
       <span className='difficulty-badge__icon'>
         <span className='fas fa-star' />
       </span>
-      {osu.formatNumber(props.rating, 2)}
+      <span className='difficulty-badge__rating'>
+        {osu.formatNumber(props.rating, 2)}
+      </span>
     </div>
   );
 }

@@ -75,7 +75,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
         href={this.props.createLink(beatmap)}
         onClick={this.selectBeatmap}
       >
-        <BeatmapListItem beatmap={beatmap} modifiers='table' />
+        <BeatmapListItem beatmap={beatmap} />
         {count != null &&
           <div className='beatmap-list__item-count'>
             {osu.formatNumber(count)}

@@ -3,7 +3,7 @@
 
 .beatmap-list-item {
   display: grid;
-  grid-template-columns: auto minmax(var(--difficulty-badge-width), max-content) 1fr;
+  grid-template-columns: auto auto 1fr;
   gap: 0.625em;
   min-width: 0;
   --difficulty-badge-width: max-content;
@@ -15,10 +15,6 @@
 
   &--full-width {
     --main-width: auto;
-  }
-
-  &--table {
-    --difficulty-badge-width: 3.4em;
   }
 
   &__col {
