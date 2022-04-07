@@ -5,10 +5,6 @@ import { formatNumber } from 'utils/html';
 
 describe('utils/html', () => {
   describe('formatNumber', () => {
-    it('format null', () => {
-      expect(formatNumber(null)).toBe(null);
-    });
-
     it('formats the number with correct precision', () => {
       expect(formatNumber(12.345, 2)).toBe('12.35');
     });
