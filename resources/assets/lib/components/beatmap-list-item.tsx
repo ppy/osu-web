@@ -1,16 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapIcon } from 'components/beatmap-icon';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import DifficultyBadge from 'components/difficulty-badge';
+import BeatmapJson from 'interfaces/beatmap-json';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
-  beatmap: BeatmapExtendedJson;
-  count?: number;
+  beatmap: BeatmapJson;
   modifiers?: Modifiers;
-  withButton?: string;
 }
 
 export default class BeatmapListItem extends React.PureComponent<Props> {
@@ -21,32 +19,18 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
     return (
       <div className={classWithModifiers('beatmap-list-item', { deleted }, this.props.modifiers)}>
         <div className='beatmap-list-item__col beatmap-list-item__col--icon'>
-          <BeatmapIcon
-            beatmap={this.props.beatmap}
-            modifiers='beatmap-list-item'
-            withTooltip
-          />
+          <span className={`fal fa-extra-mode-${this.props.beatmap.mode}`} />
+        </div>
+
+        <div className='beatmap-list-item__col'>
+          <DifficultyBadge rating={this.props.beatmap.difficulty_rating} />
         </div>
 
         <div className='beatmap-list-item__col beatmap-list-item__col--main'>
-          <div className='u-ellipsis-overflow'>
+          <div className='beatmap-list-item__version u-ellipsis-overflow'>
             {version}
           </div>
         </div>
-
-        {this.props.withButton !== undefined && (
-          <div className='beatmap-list-item__col'>
-            <i className={this.props.withButton} />
-          </div>
-        )}
-
-        {this.props.count !== undefined && (
-          <div className='beatmap-list-item__col'>
-            <div className='beatmap-list-item__counter'>
-              {this.props.count}
-            </div>
-          </div>
-        )}
       </div>
     );
   }
