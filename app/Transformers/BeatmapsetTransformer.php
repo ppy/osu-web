@@ -28,7 +28,6 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
             ],
             'bpm' => $beatmapset->bpm,
             'can_be_hyped' => $beatmapset->canBeHyped(),
-            'creator' => $beatmapset->creator,
             'discussion_enabled' => $beatmapset->discussion_enabled,
             'discussion_locked' => $beatmapset->discussion_locked,
             'is_scoreable' => $beatmapset->isScoreable(),

@@ -131,7 +131,13 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private get displayDate() {
     const attribute = displayDateMap[this.props.beatmapset.status];
 
-    return this.props.beatmapset[attribute];
+    const ret = this.props.beatmapset[attribute];
+
+    if (ret == null) {
+      throw Error('trying to display null date');
+    }
+
+    return ret;
   }
 
   @computed
