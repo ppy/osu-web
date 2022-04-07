@@ -6,6 +6,7 @@ import Mod from 'components/mod'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, span, a } from 'react-dom-factories'
+import { formatNumber } from 'utils/html'
 
 el = React.createElement
 
@@ -51,12 +52,12 @@ export class Score extends React.Component
 
               value = switch m
                 when 'combo'
-                  osu.formatNumber(@props.score.max_combo)
+                  formatNumber(@props.score.max_combo)
                 when 'accuracy'
-                  "#{osu.formatNumber(@props.score.accuracy * 100, 2)}%"
+                  "#{formatNumber(@props.score.accuracy * 100, 2)}%"
                 when 'score'
                   modifier = 'large'
-                  osu.formatNumber(@props.score.score)
+                  formatNumber(@props.score.score)
 
               div className: "mp-history-player-score__stat mp-history-player-score__stat--#{m}", key: m,
                 span className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--small', osu.trans "matches.match.score.stats.#{m}"
@@ -75,4 +76,4 @@ export class Score extends React.Component
                   osu.trans "common.score_count.#{m}"
                 span
                   className: 'mp-history-player-score__stat-number mp-history-player-score__stat-number--small'
-                  osu.formatNumber(@props.score.statistics[m])
+                  formatNumber(@props.score.statistics[m])

@@ -5,6 +5,7 @@ import TrackPreview from 'components/track-preview'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a,i,div,span } from 'react-dom-factories'
+import { formatNumber } from 'utils/html'
 import { Voter } from './voter'
 
 el = React.createElement
@@ -78,4 +79,4 @@ export class Entry extends React.Component
           div className:'contest__vote-count',
             osu.transChoice 'contest.vote.count', @props.entry.results.votes
             if isFinite(votePercentage)
-              " (#{osu.formatNumber(votePercentage)}%)"
+              " (#{formatNumber(votePercentage)}%)"
