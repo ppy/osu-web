@@ -28,14 +28,7 @@ export function createClickCallback(target: unknown) {
 
 const defaultNumberFormatter = new Intl.NumberFormat(window.currentLocale);
 
-// Duplicated definition with implementation not having explicit return type
-// so the conditional return type behaves as expected.
-// Note that actual implementation return type isn't properly checked in this case.
-// Reference: https://github.com/microsoft/TypeScript/issues/33912
-export function formatNumber<T extends number | null>(num?: T, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): T extends number ? string : null;
-export function formatNumber<T extends number | null>(num?: T, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) {
-  if (num == null) return null;
-
+export function formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) {
   if (precision == null && options == null && locale == null) {
     return defaultNumberFormatter.format(num);
   }
