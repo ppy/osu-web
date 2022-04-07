@@ -7,9 +7,14 @@
   gap: 0.625em;
   min-width: 0;
   --difficulty-badge-width: max-content;
+  --main-width: 0;
 
   &--deleted {
     opacity: 0.5;
+  }
+
+  &--full-width {
+    --main-width: auto;
   }
 
   &--table {
@@ -18,12 +23,13 @@
 
   &__col {
     &--icon {
-      display: flex;
+      .center-content();
       font-size: 1.25em;
+      width: 1em;
     }
 
     &--main {
-      min-width: 0;
+      min-width: var(--main-width);
       white-space: nowrap;
     }
   }
