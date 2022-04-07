@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import core from 'osu-core-singleton'
-import { bottomPage } from 'utils/html'
+import { bottomPage, formatNumber } from 'utils/html'
 import { hideLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
 import { currentUrl } from 'utils/turbolinks'
@@ -72,7 +72,7 @@ export default class Forum
 
   setTotalPosts: (n) =>
     $(@_totalPostsDiv)
-      .text osu.formatNumber(n)
+      .text formatNumber(n)
       .attr 'data-total', n
 
 
@@ -93,7 +93,7 @@ export default class Forum
 
   setDeletedPosts: (n) ->
     $(@_deletedPostsDiv)
-      .text osu.formatNumber(n)
+      .text formatNumber(n)
       .attr 'data-total', n
 
 
@@ -103,7 +103,7 @@ export default class Forum
     @setTotalPosts(@currentPostPosition) if @currentPostPosition > @totalPosts()
     debouncedReplaceUrl @postUrlN(@currentPostPosition)
 
-    @_postsCounter[0].textContent = osu.formatNumber @currentPostPosition
+    @_postsCounter[0].textContent = formatNumber @currentPostPosition
     @_postsProgress[0].style.width = "#{100 * @currentPostPosition / @totalPosts()}%"
 
 
@@ -188,7 +188,7 @@ export default class Forum
     postN = Math.min(postN, @totalPosts())
 
     $post = $(".js-forum-post[data-post-position='#{postN}']")
-    @_postsCounter[0].textContent = osu.formatNumber postN
+    @_postsCounter[0].textContent = formatNumber postN
 
     if $post.length
       @scrollTo $post.attr('data-post-id')
