@@ -57,7 +57,7 @@ interface ScoreJsonDefaultAttributes {
   perfect: boolean;
   pp: number | null;
   rank: Rank;
-  replay: boolean | null;
+  replay: boolean;
   score: number;
   statistics: Record<ScoreStatisticsAttribute, number>;
   user_id: number;

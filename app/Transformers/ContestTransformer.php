@@ -16,31 +16,24 @@ class ContestTransformer extends TransformerAbstract
 
     public function transform(Contest $contest)
     {
-        $response = [
-            'id' => $contest->id,
-            'name' => $contest->name,
+        return [
+            'best_of' => $contest->isBestOf(),
             'description' => $contest->description_voting,
-            'type' => $contest->type,
+            'entry_ends_at' => json_time($contest->entry_ends_at),
+            'entry_starts_at' => json_time($contest->entry_starts_at),
             'header_url' => $contest->header_url,
+            'id' => $contest->id,
+            'link_icon' => $contest->link_icon,
             'max_entries' => $contest->max_entries,
             'max_votes' => $contest->max_votes,
-            'entry_starts_at' => json_time($contest->entry_starts_at),
-            'entry_ends_at' => json_time($contest->entry_ends_at),
-            'voting_ends_at' => json_time($contest->voting_ends_at),
-            'show_votes' => $contest->show_votes,
+            'name' => $contest->name,
             'show_names' => $contest->show_names,
-            'link_icon' => $contest->link_icon,
+            'show_votes' => $contest->show_votes,
+            'submitted_beatmaps' => $contest->isSubmittedBeatmaps(),
+            'thumbnail_shape' => $contest->thumbnail_shape,
+            'type' => $contest->type,
+            'voting_ends_at' => json_time($contest->voting_ends_at),
         ];
-
-        if ($contest->hasThumbnails()) {
-            $response['thumbnail_shape'] = $contest->thumbnail_shape;
-        }
-
-        if ($contest->isBestOf()) {
-            $response['best_of'] = true;
-        }
-
-        return $response;
     }
 
     public function includeEntries(Contest $contest)

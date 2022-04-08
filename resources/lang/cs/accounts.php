@@ -5,7 +5,7 @@
 
 return [
     'edit' => [
-        'title_compact' => 'nastavení',
+        'title_compact' => 'nastavení účtu',
         'username' => 'uživatelské jméno',
 
         'avatar' => [

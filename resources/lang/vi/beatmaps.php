@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'Cập nhật vote thất bại',
+            'error' => 'Cập nhật phiếu thất bại',
         ],
     ],
 
@@ -67,22 +67,22 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => 'Disqualify',
+            'disqualify' => 'Không đủ tư cách',
             'hype' => 'Hype!',
             'mapper_note' => 'Ghi Chú',
             'nomination_reset' => 'Thiết Lập Lại Đề Cử',
-            'praise' => 'Khen Ngợi',
-            'problem' => 'Vấn Đề',
-            'problem_warning' => '',
+            'praise' => 'Khen ngợi',
+            'problem' => 'Vấn đề',
+            'problem_warning' => 'Báo cáo vấn đề',
             'review' => 'Đánh giá',
-            'suggestion' => 'Đề Nghị',
+            'suggestion' => 'Gợi ý',
         ],
 
         'mode' => [
             'events' => 'Lịch sử',
             'general' => 'Chung :scope',
             'reviews' => 'Các đánh giá',
-            'timeline' => 'Timeline',
+            'timeline' => 'Dòng thời gian',
             'scopes' => [
                 'general' => 'Difficulty này',
                 'generalAll' => 'Tất cả difficulties',
@@ -139,7 +139,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Beatmap này đã được chấp nhận (approved) vào :date!',
-            'graveyard' => "Beatmap này chưa được cập nhật từ :date và có thể đã bị bỏ rơi bởi mapper...",
+            'graveyard' => "Beatmap này chưa được cập nhật từ :date và có thể đã bị đắp mộ...",
             'loved' => 'Beatmap này đã được love vào :date!',
             'ranked' => 'Beatmap này đã được xếp hạng (ranked) vào :date!',
             'wip' => 'Ghi chú: Beatmap này được đánh dấu là đang thực hiện bởi mapper.',
@@ -164,14 +164,14 @@ return [
         'explanation' => 'Hype beatmap này để làm nó có khả năng được đề cử (nominate) và xếp hạng (rank)!',
         'explanation_guest' => 'Đăng nhập và hype beatmap này để nó có khả năng được đề cử (nominate) và xếp hạng (rank)!',
         'new_time' => "Bạn sẽ nhận được đợt hype khác vào :new_time.",
-        'remaining' => 'Bạn còn :remaining hype.',
+        'remaining' => 'Bạn chỉ còn :remaining hype.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',
         'title' => 'Hype',
     ],
 
     'feedback' => [
-        'button' => 'Để Lại Phản Hồi',
+        'button' => 'Để lại Phản hồi',
     ],
 
     'nominations' => [
@@ -190,7 +190,7 @@ return [
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
         'nominated_by' => 'Được :users đề cử',
         'not_enough_hype' => "Không đủ hype.",
-        'remove_from_loved' => 'Gỡ khỏi Được Yêu thích',
+        'remove_from_loved' => 'Gỡ khỏi Được Yêu mến',
         'remove_from_loved_prompt' => 'Lý do gỡ khỏi Được Yêu thích:',
         'required_text' => 'Trạng thái đề cử: :current/:required',
         'reset_message_deleted' => 'đã xóa',
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Bạn chắc không? Việc này sẽ loại bỏ beatmap khỏi qualify và thiết lập lại quá trình đề cử.',
             'nomination_reset' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại quá trình đề cử (nomination).',
-            'problem_warning' => '',
+            'problem_warning' => 'Bạn có chắc là muốn báo cáo vấn đề về beatmap này không? Việc này sẽ gửi cánh báo đến những người đề cử beatmap.',
         ],
     ],
 
@@ -270,13 +270,13 @@ return [
         'any' => 'Bất Kì',
         'approved' => 'Được Chấp Nhận',
         'favourites' => 'Yêu thích',
-        'graveyard' => 'Graveyard',
+        'graveyard' => 'Đắp mộ',
         'leaderboard' => 'Có danh sách xếp hạng',
-        'loved' => 'Loved',
+        'loved' => 'Được yêu mến',
         'mine' => 'Map của tôi',
         'pending' => 'Đang chờ & WIP',
-        'wip' => '',
-        'qualified' => 'Qualified',
+        'wip' => 'Chưa xong',
+        'qualified' => 'Đủ tư cách',
         'ranked' => 'Đã được xếp hạng',
     ],
     'genre' => [

@@ -8,6 +8,7 @@ import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
@@ -29,7 +30,7 @@ export default function Stats(props: Props) {
               {osu.trans('beatmapsets.show.scoreboard.headers.accuracy')}
             </div>
             <div className={classWithModifiers('score-stats__stat-row', { perfect: props.score.accuracy === 1 })}>
-              {osu.formatNumber(props.score.accuracy * 100, 2)}%
+              {formatNumber(props.score.accuracy * 100, 2)}%
             </div>
           </div>
 
@@ -38,7 +39,7 @@ export default function Stats(props: Props) {
               {osu.trans('beatmapsets.show.scoreboard.headers.combo')}
             </div>
             <div className={classWithModifiers('score-stats__stat-row', { perfect: props.score.max_combo === props.beatmap.max_combo })}>
-              {osu.formatNumber(props.score.max_combo)}x
+              {formatNumber(props.score.max_combo)}x
             </div>
           </div>
 
@@ -60,7 +61,7 @@ export default function Stats(props: Props) {
                 {attr.label}
               </div>
               <div className='score-stats__stat-row'>
-                {osu.formatNumber(props.score.statistics[attr.attribute] ?? 0)}
+                {formatNumber(props.score.statistics[attr.attribute] ?? 0)}
               </div>
             </div>
           ))}

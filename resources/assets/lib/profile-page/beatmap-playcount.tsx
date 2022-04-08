@@ -9,6 +9,7 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 import { showVisual } from 'utils/beatmapset-helper';
+import { formatNumber } from 'utils/html';
 
 const bn = 'beatmap-playcount';
 
@@ -97,7 +98,7 @@ export default class BeatmapPlaycount extends React.PureComponent<Props> {
         <span className={`${bn}__count-icon`}>
           <span className='fas fa-play' />
         </span>
-        {osu.formatNumber(this.props.playcount.count)}
+        {formatNumber(this.props.playcount.count)}
       </div>
     );
   }

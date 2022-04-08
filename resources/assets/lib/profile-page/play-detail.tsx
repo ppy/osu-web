@@ -10,6 +10,7 @@ import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { getArtist, getTitle, rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { hasMenu } from 'utils/score-helper';
 
 const bn = 'play-detail';
@@ -86,11 +87,11 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
             <div className={`${bn}__score-detail-top-right`}>
               <div className={`${bn}__accuracy-and-weighted-pp`}>
                 <span className={`${bn}__accuracy`}>
-                  {osu.formatNumber(score.accuracy * 100, 2)}%
+                  {formatNumber(score.accuracy * 100, 2)}%
                 </span>
                 {scoreWeight != null && (
                   <span className={`${bn}__weighted-pp`}>
-                    {score.pp != null && `${osu.formatNumber(Math.round(scoreWeight.pp))}pp`}
+                    {score.pp != null && `${formatNumber(Math.round(scoreWeight.pp))}pp`}
                   </span>
                 )}
               </div>
@@ -98,7 +99,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
               {scoreWeight != null && (
                 <div className={`${bn}__pp-weight`}>
                   {osu.trans('users.show.extra.top_ranks.pp_weight', {
-                    percentage: `${osu.formatNumber(Math.round(scoreWeight.percentage))}%`,
+                    percentage: `${formatNumber(Math.round(scoreWeight.percentage))}%`,
                   })}
                 </div>
               )}

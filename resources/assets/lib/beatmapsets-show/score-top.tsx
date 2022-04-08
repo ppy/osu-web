@@ -17,6 +17,7 @@ import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
@@ -113,7 +114,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                   {osu.trans('beatmapsets.show.scoreboard.headers.score_total')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--score'>
-                  {osu.formatNumber(this.props.score.total_score)}
+                  {formatNumber(this.props.score.total_score)}
                 </div>
               </div>
             </div>
@@ -128,7 +129,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                     perfect: this.props.score.accuracy === 1,
                   })}
                 >
-                  {osu.formatNumber(this.props.score.accuracy * 100, 2)}%
+                  {formatNumber(this.props.score.accuracy * 100, 2)}%
                 </div>
               </div>
 
@@ -141,7 +142,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                     perfect: this.props.score.max_combo === this.props.beatmap.max_combo,
                   })}
                 >
-                  {osu.formatNumber(this.props.score.max_combo)}x
+                  {formatNumber(this.props.score.max_combo)}x
                 </div>
               </div>
             </div>
@@ -153,7 +154,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                     {attr.label}
                   </div>
                   <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller'>
-                    {osu.formatNumber(this.props.score.statistics[attr.attribute] ?? 0)}
+                    {formatNumber(this.props.score.statistics[attr.attribute] ?? 0)}
                   </div>
                 </div>
               ))}

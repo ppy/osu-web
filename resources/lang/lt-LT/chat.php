@@ -13,6 +13,11 @@ return [
         'user' => 'Šiuo metu tu negali rašyti šiam žaidėjui. Taip galėjo nutikti dėl kažkurios iš šių priežasčių:',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'žinutės išsiųsti nepavyko...',
         'disconnected' => '',

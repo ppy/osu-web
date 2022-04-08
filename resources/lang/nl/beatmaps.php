@@ -12,14 +12,14 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu toestaan',
-        'beatmap_information' => 'Beatmap pagina',
+        'beatmap_information' => 'Beatmap Pagina',
         'delete' => 'verwijder',
         'deleted' => 'Verwijderd door :editor :delete_time.',
         'deny_kudosu' => 'kudosu ontzeggen',
         'edit' => 'bewerk',
-        'edited' => 'Laatst bewerkt door :editor :update_time',
-        'guest' => 'Gast moeilijkheidgraat door :user',
-        'kudosu_denied' => 'Verkrijgen van kudosu ontkend.',
+        'edited' => 'Laatst bewerkt door :editor :update_time.',
+        'guest' => 'Gast moeilijkheidsgraad door :user',
+        'kudosu_denied' => 'Verkrijgen van kudosu ontzegd.',
         'message_placeholder_deleted_beatmap' => 'Deze moeilijkheidsgraad is verwijderd en mag niet meer besproken worden.',
         'message_placeholder_locked' => 'Discussie voor deze beatmap is uitgeschakeld.',
         'message_placeholder_silenced' => "Kan discussie niet plaatsen als je account niet in goede staat is.",
@@ -29,16 +29,16 @@ return [
         'require-login' => 'Log in om te posten of te antwoorden',
         'resolved' => 'Opgelost',
         'restore' => 'herstel',
-        'show_deleted' => 'Toon verwijderde discussies',
+        'show_deleted' => 'Toon verwijderde',
         'title' => 'Discussies',
 
         'collapse' => [
-            'all-collapse' => 'Sluit alles',
-            'all-expand' => 'Open alles',
+            'all-collapse' => 'Alles invouwen',
+            'all-expand' => 'Alles openvouwen',
         ],
 
         'empty' => [
-            'empty' => 'Nog geen bestaande discussie!',
+            'empty' => 'Er bestaan nog geen discussies!',
             'hidden' => 'Geen discussies komen overeen met de geselecteerde filter.',
         ],
 
@@ -49,31 +49,31 @@ return [
             ],
 
             'prompt' => [
-                'lock' => 'Reden voor vergrendelen',
+                'lock' => 'Reden voor vergrendeling',
                 'unlock' => 'Weet je zeker dat je het wilt ontgrendelen?',
             ],
         ],
 
         'message_hint' => [
-            'in_general' => 'Deze post gaat naar de algemene beatmapset discussie. Om deze map te modden moet je beginnen met een tijdstip (bijv. 00:12:345).',
+            'in_general' => 'Deze post gaat naar de algemene beatmap-discussie. Om deze map te modden moet je beginnen met een tijdstip (bijv. 00:12:345).',
             'in_timeline' => 'Om meerdere tijdstippen te modden moet je meerdere keren posten (een post per tijdstip).',
         ],
 
         'message_placeholder' => [
             'general' => 'Typ hier om in General te posten (:version)',
-            'generalAll' => 'Typ hier om in General te posten (Alle moeilijkheden)',
+            'generalAll' => 'Typ hier om in General te posten (Alle moeilijkheidsgraden)',
             'review' => 'Typ hier om een recensie te plaatsen',
-            'timeline' => 'Typ hier om naar de tijdlijn te posten (:version)',
+            'timeline' => 'Typ hier om op de tijdlijn te posten (:version)',
         ],
 
         'message_type' => [
             'disqualify' => 'Diskwalificeer',
             'hype' => 'Hype!',
-            'mapper_note' => 'Opmerking',
+            'mapper_note' => 'Notitie',
             'nomination_reset' => 'Reset Nominatie',
             'praise' => 'Prijs',
             'problem' => 'Probleem',
-            'problem_warning' => '',
+            'problem_warning' => 'Rapporteer Probleem',
             'review' => 'Recensie',
             'suggestion' => 'Suggestie',
         ],
@@ -160,7 +160,7 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Al Gehyped!',
-        'confirm' => "Weet je dat zeker? Dit zal een van je :n hypes gebruiken en kan niet ongedaan gemaakt worden.",
+        'confirm' => "Weet je dit zeker? Dit zal een van je :n hypes gebruiken en kan niet ongedaan gemaakt worden.",
         'explanation' => 'Hype deze beatmap om ze zichtbaarder te maken voor nominatie en ranking!',
         'explanation_guest' => 'Log in en hype deze beatmap om ze zichtbaarder te maken voor nominatie en ranking!',
         'new_time' => "Je krijgt nog een hype :new_time.",
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Weet je het zeker? Hierdoor zal de beatmap worden verwijderd van kwalificatie en wordt het nominatie proces gereset.',
             'nomination_reset' => 'Weet je dat zeker? Een nieuw probleem posten zal het nominatieproces resetten.',
-            'problem_warning' => '',
+            'problem_warning' => 'Weet je zeker dat je een probleem op deze beatmap wilt rapporteren? Dit zal de Beatmap Nominators waarschuwen.',
         ],
     ],
 
@@ -275,7 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Mijn Mappen',
         'pending' => 'Pending & WIP',
-        'wip' => '',
+        'wip' => 'WIP',
         'qualified' => 'Gekwalificeerd',
         'ranked' => 'Ranked',
     ],

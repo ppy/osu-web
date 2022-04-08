@@ -13,6 +13,11 @@ return [
         'user' => 'Hiện bạn không thế gửi tin nhắn cho người dùng này. Điều này có thể vì những lí do sau:',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'không thể gửi tin nhắn...',
         'disconnected' => 'Đã ngắt kết nối',

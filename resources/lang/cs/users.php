@@ -11,7 +11,7 @@ return [
         'title_compact' => 'Módování',
 
         'discussions' => [
-            'title_recent' => 'Nedávno zahájená diskuze',
+            'title_recent' => 'Nedávno zahájené diskuze',
         ],
 
         'events' => [
@@ -103,7 +103,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':username\'s příspěvky',
+        'title' => 'příspěvky hráče :username',
     ],
 
     'anonymous' => [
@@ -115,7 +115,7 @@ return [
     'logout_confirm' => 'Opravdu se chceš odhlásit? :(',
     'report' => [
         'button_text' => 'Nahlásit',
-        'comments' => 'Dodatečné poznámky',
+        'comments' => 'Poznámky',
         'placeholder' => 'Uveďte prosím jakékoliv informace, které si myslíte, že by mohly být užitečné.',
         'reason' => 'Důvod',
         'thanks' => 'Děkujeme za vaše nahlášení!',
@@ -131,7 +131,7 @@ return [
             'multiple_accounts' => 'Používání více účtů',
             'insults' => 'Uráží mě / ostatní',
             'spam' => 'Spamování',
-            'unwanted_content' => 'Linkovaní nevhodného obsahu',
+            'unwanted_content' => 'Odkazování na nevhodný obsah',
             'nonsense' => 'Nesmysl',
             'other' => 'Jiný (napište níže)',
         ],
@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited komentář|:count_delimited komentáře|:count_delimited komentářů',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Skrýt záhlaví',
+            'to_1' => 'Zobrazit záhlaví',
         ],
         'edit' => [
             'cover' => [
@@ -215,7 +215,7 @@ return [
                     'title' => 'Čekající Beatmapy',
                 ],
                 'ranked' => [
-                    'title' => 'Hodnocené & Schválené Beatmapy',
+                    'title' => 'Hodnocené Beatmapy',
                 ],
             ],
             'discussions' => [
@@ -343,8 +343,8 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
+                'given' => 'Udělených hlasů (poslední 3 měsíce)',
+                'received' => 'Získaných hlasů (poslední 3 měsíce)',
                 'title' => 'Hlasy',
                 'title_longer' => 'Poslední hlasy',
                 'vote_count' => ':count_delimited hlas|:count_delimited hlasy|:count_delimited hlasů',
@@ -425,7 +425,7 @@ return [
             'graveyard_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Oblíbené Beatmapy',
             'pending_beatmapset_count' => 'Čekající Beatmapy',
-            'ranked_beatmapset_count' => '',
+            'ranked_beatmapset_count' => 'Hodnocené Beatmapy',
         ],
     ],
 

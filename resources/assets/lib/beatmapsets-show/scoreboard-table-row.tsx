@@ -15,6 +15,7 @@ import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { rulesetName } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { hasMenu, modeAttributesMap } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
@@ -82,11 +83,11 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers='score'>
-          {osu.formatNumber(score.total_score)}
+          {formatNumber(score.total_score)}
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers={{ perfect: score.accuracy === 1 }}>
-          {`${osu.formatNumber(score.accuracy * 100, 2)}%`}
+          {`${formatNumber(score.accuracy * 100, 2)}%`}
         </TdLink>
 
         <td className={`${bn}__cell`}>
@@ -123,7 +124,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         )}
 
         <TdLink href={this.scoreUrl} modifiers={{ perfect: score.legacy_perfect }}>
-          {`${osu.formatNumber(score.max_combo)}x`}
+          {`${formatNumber(score.max_combo)}x`}
         </TdLink>
 
         {modeAttributesMap[this.props.beatmap.mode].map((stat) => (
@@ -132,7 +133,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
             href={this.scoreUrl}
             modifiers={{ zero: (score.statistics[stat.attribute] ?? 0) === 0 }}
           >
-            {osu.formatNumber(score.statistics[stat.attribute] ?? 0)}
+            {formatNumber(score.statistics[stat.attribute] ?? 0)}
           </TdLink>
         ))}
 

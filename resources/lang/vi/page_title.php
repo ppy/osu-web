@@ -16,11 +16,11 @@ return [
     'error' => [
         'error' => [
             '400' => 'yêu cầu không hợp lệ',
-            '404' => 'còn thiếu',
+            '404' => 'không thấy',
             '403' => 'bị cấm',
             '401' => 'không được phép',
             '401-verification' => 'xác thực tài khoản',
-            '405' => 'còn thiếu',
+            '405' => 'không thấy',
             '422' => 'yêu cầu không hợp lệ',
             '429' => 'quá nhiều yêu cầu',
             '500' => 'có gì dó đã hỏng',

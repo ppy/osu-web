@@ -39,7 +39,7 @@ export function getMessages(channelId: number, params?: { until?: number }) {
   const request = $.get(route('chat.channels.messages.index', { channel: channelId, return_object: 1, ...params })) as JQuery.jqXHR<GetMessagesResponse>;
 
   return request.then(action((response) => {
-    core.dataStore.userStore.updateWithJson(response.users);
+    core.dataStore.userStore.updateMany(response.users);
 
     return response.messages.map((messageJson) => Message.fromJson(messageJson));
   }));

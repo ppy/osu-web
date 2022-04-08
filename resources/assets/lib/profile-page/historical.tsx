@@ -11,6 +11,7 @@ import { disposeOnUnmount, observer } from 'mobx-react';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 import { switchNever } from 'utils/switch-never';
 import BeatmapPlaycount from './beatmap-playcount';
 import ExtraHeader from './extra-header';
@@ -208,9 +209,9 @@ export default class Historical extends React.Component<ExtraPageProps> {
         circleLine: true,
         curve: curveLinear,
         formatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month_short.moment')),
-        formatY: (d: number) => osu.formatNumber(d),
+        formatY: (d: number) => formatNumber(d),
         infoBoxFormatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month.moment')),
-        infoBoxFormatY: (d: number) => `<strong>${osu.trans(`users.show.extra.historical.${attribute}.count_label`)}</strong> ${escape(osu.formatNumber(d))}`,
+        infoBoxFormatY: (d: number) => `<strong>${osu.trans(`users.show.extra.historical.${attribute}.count_label`)}</strong> ${escape(formatNumber(d))}`,
         marginRight: 60, // more spacing for x axis label
         modifiers: 'profile-page',
       });
