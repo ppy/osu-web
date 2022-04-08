@@ -4,6 +4,7 @@
 import * as React from 'react';
 import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 
 export default function DifficultyBadge(props: { rating: number }) {
   return (
@@ -19,7 +20,7 @@ export default function DifficultyBadge(props: { rating: number }) {
         <span className='fas fa-star' />
       </span>
       <span className='difficulty-badge__rating'>
-        {osu.formatNumber(props.rating, 2)}
+        {formatNumber(props.rating, 2)}
       </span>
     </div>
   );

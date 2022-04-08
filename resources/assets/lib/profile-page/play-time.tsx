@@ -5,6 +5,7 @@ import ValueDisplay from 'components/value-display';
 import UserStatisticsJson from 'interfaces/user-statistics-json';
 import * as moment from 'moment';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 
 interface Props {
   stats: UserStatisticsJson;
@@ -28,7 +29,7 @@ export default function PlayTime({ stats }: Props) {
 
   const title = osu.transChoice(`common.count.${titleUnit}`, titleValue);
 
-  let timeString = daysLeftOver > 0 ? `${osu.formatNumber(daysLeftOver)}d ` : '';
+  let timeString = daysLeftOver > 0 ? `${formatNumber(daysLeftOver)}d ` : '';
   timeString += `${hours}h ${minutes}m`;
 
   return (

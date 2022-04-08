@@ -6,6 +6,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
 import { blackoutToggle } from 'utils/blackout';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { nextVal } from 'utils/seq';
 
 interface Props {
@@ -78,7 +79,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
         <BeatmapListItem beatmap={beatmap} />
         {count != null &&
           <div className='beatmap-list__item-count'>
-            {osu.formatNumber(count)}
+            {formatNumber(count)}
           </div>
         }
       </a>
