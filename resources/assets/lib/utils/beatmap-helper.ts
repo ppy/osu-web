@@ -113,7 +113,7 @@ export function group<T extends BeatmapJson>(beatmaps?: T[] | null): Map<GameMod
   return ret;
 }
 
-export function rulesetName(id: number | null): GameMode {
+export function rulesetName(id: number): GameMode {
   switch (id) {
     case 0:
       return 'osu';
