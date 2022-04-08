@@ -1,73 +1,70 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import GameMode from 'interfaces/game-mode';
-import { sumBy } from 'lodash';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
+interface Entry {
+  count?: number;
+  disabled: boolean;
+  href?: string;
+  mode: GameMode;
+}
+
 interface Props {
-  beatmaps: Map<GameMode, BeatmapExtendedJson[]>;
-  counts?: Partial<Record<GameMode, number>>;
   currentMode: GameMode;
-  hrefFunc?: (mode: GameMode) => string;
+  defaultMode?: GameMode;
+  entries: Entry[];
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => void;
 }
 
 export default class PlaymodeTabs extends React.Component<Props> {
   render() {
     return (
-      <div className='game-mode game-mode--beatmapsets'>
-        <ul className='game-mode__items'>
-          {[...this.props.beatmaps].map(([mode, beatmaps]) => {
-            const disabled = beatmaps.length === 0;
-
-            const linkClass = classWithModifiers('game-mode-link', {
-              active: mode === this.props.currentMode,
-              disabled,
-            });
-
-            const count = this.count(mode);
-
-            return (
-              <li key={mode} className='game-mode__item'>
-                <a
-                  className={linkClass}
-                  data-disabled={disabled.toString()}
-                  data-mode={mode}
-                  href={this.props.hrefFunc?.(mode) ?? '#'}
-                  onClick={this.switchMode}
+      <ul className='game-mode'>
+        {this.props.entries.map((entry) => (
+          <li key={entry.mode}>
+            <a
+              className={classWithModifiers('game-mode-link', {
+                active: entry.mode === this.props.currentMode,
+                disabled: entry.disabled,
+              })}
+              data-disabled={entry.disabled ? '1' : '0'}
+              data-mode={entry.mode}
+              href={entry.href == null || entry.disabled ? '#' : entry.href}
+              onClick={this.onClick}
+            >
+              <span
+                className={`fal fa-extra-mode-${entry.mode}`}
+                title={entry.disabled ? undefined : osu.trans(`beatmaps.mode.${entry.mode}`)}
+              />
+              {entry.mode === this.props.defaultMode &&
+                <span
+                  className='game-mode-link__icon'
+                  title={osu.trans('users.show.edit.default_playmode.is_default_tooltip')}
                 >
-                  {osu.trans(`beatmaps.mode.${mode}`)}
-                  {count != null && <span className='game-mode-link__badge'>{count}</span>}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+                  <span className='fas fa-star' />
+                </span>
+              }
+              {entry.count != null && <span className='game-mode-link__badge'>{entry.count}</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
     );
   }
 
-  private count = (mode: GameMode) => {
-    if (this.props.counts != null) {
-      return this.props.counts[mode];
-    }
-
-    const count = sumBy(this.props.beatmaps.get(mode), (beatmap) => beatmap.convert ? 0 : 1);
-
-    return count > 0 ? count : undefined;
-  };
-
-  private switchMode = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
+  private readonly onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const target = e.currentTarget;
-
     const mode = target.dataset.mode as GameMode;
 
-    if (this.props.currentMode === mode) return;
-    if (target.dataset.disabled === 'true') return;
+    if (this.props.currentMode !== mode && target.dataset.disabled !== '1') {
+      this.props.onClick?.(e, mode);
 
-    $.publish('playmode:set', { mode });
+      return;
+    }
+
+    e.preventDefault();
   };
 }

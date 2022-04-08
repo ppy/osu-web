@@ -7,6 +7,7 @@ import { Comments } from 'components/comments'
 import { CommentsManager } from 'components/comments-manager'
 import HeaderV4 from 'components/header-v4'
 import PlaymodeTabs from 'components/playmode-tabs'
+import { gameModes } from 'interfaces/game-mode'
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -16,6 +17,7 @@ import { generate, parse, setHash } from 'utils/beatmapset-page-hash'
 import { nextVal } from 'utils/seq'
 import { currentUrl } from 'utils/turbolinks'
 import { Header } from './header'
+import headerLinks from './header-links'
 import { Hype } from './hype'
 import { Info } from './info'
 
@@ -145,7 +147,9 @@ export class Main extends React.Component
         @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
 
-  setCurrentPlaymode: (_e, {mode}) =>
+  setCurrentPlaymode: (e, mode) =>
+    e.preventDefault()
+
     return if @state.currentBeatmap.mode == mode
 
     beatmap = BeatmapHelper.find id: @state.currentBeatmap.id, mode: mode, group: @state.beatmaps
@@ -179,7 +183,6 @@ export class Main extends React.Component
   componentDidMount: ->
     $.subscribe "beatmapset:set.#{@eventId}", @setBeatmapset
     $.subscribe "beatmapset:beatmap:set.#{@eventId}", @setCurrentBeatmap
-    $.subscribe "playmode:set.#{@eventId}", @setCurrentPlaymode
     $.subscribe "beatmapset:scoreboard:set.#{@eventId}", @setCurrentScoreboard
     $.subscribe "beatmapset:scoreboard:retry.#{@eventId}", @onRetryScoreboard
     $.subscribe "beatmapset:hoveredbeatmap:set.#{@eventId}", @setHoveredBeatmap
@@ -254,14 +257,22 @@ export class Main extends React.Component
 
   renderPageHeader: ->
     unless @state.showingNsfwWarning
-      titleAppend = el PlaymodeTabs,
-        beatmaps: @state.beatmaps
+      linksAppend = el PlaymodeTabs,
+        entries: gameModes.map (mode) =>
+          beatmaps = @state.beatmaps.get(mode)
+          mainCount = beatmaps.filter((b) => !b.convert).length
+
+          count: if mainCount > 0 then mainCount else undefined
+          disabled: beatmaps.length == 0
+          href: generate(mode: mode)
+          mode: mode
         currentMode: @state.currentBeatmap.mode
-        hrefFunc: @tabHrefFunc
+        onClick: @setCurrentPlaymode
 
     el HeaderV4,
+      links: headerLinks 'show', @state.beatmapset
+      linksAppend: linksAppend
       theme: 'beatmapsets'
-      titleAppend: titleAppend
 
   saveStateToContainer: =>
     @state.beatmapsArray = Array.from(@state.beatmaps)
@@ -271,7 +282,3 @@ export class Main extends React.Component
   setHash: =>
     setHash generate
       beatmap: @state.currentBeatmap
-
-
-  tabHrefFunc: (mode) ->
-    generate mode: mode

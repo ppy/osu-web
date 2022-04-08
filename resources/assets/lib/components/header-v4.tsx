@@ -12,6 +12,7 @@ interface Props {
   contentAppend?: React.ReactNode;
   contentPrepend?: React.ReactNode;
   links: HeaderLink[];
+  linksAppend?: React.ReactNode;
   linksBreadcrumb?: boolean;
   modifiers?: Modifiers;
   onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -74,6 +75,7 @@ export default class HeaderV4 extends React.Component<Props> {
                 {this.renderLinksMobile()}
               </div>
 
+              {this.props.linksAppend}
             </div>
           </div>
         }
