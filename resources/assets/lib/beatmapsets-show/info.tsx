@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DifficultyBadge from 'components/difficulty-badge';
+import BeatmapListItem from 'components/beatmap-list-item';
 import StringWithComponent from 'components/string-with-component';
 import { UserLink } from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
@@ -40,30 +40,18 @@ export default class Header extends React.PureComponent<Props> {
     return (
       <div className='beatmapset-info'>
         <div className='beatmapset-info__item beatmapset-info__item--diff'>
-          <div className='beatmapset-info__diff-detail u-ellipsis-overflow'>
-            <div className='beatmapset-info__diff-icon'>
-              <i className={`fal fa-extra-mode-${showedBeatmap.mode}`} />
-            </div>
+          <div className='beatmapset-info__diff-detail'>
+            <BeatmapListItem beatmap={showedBeatmap} />
 
-            <DifficultyBadge modifiers='beatmapset-info' rating={showedBeatmap.difficulty_rating} />
-
-            <div className='u-ellipsis-overflow'>
-              <span className='beatmapset-info__diff-name'>
-                {showedBeatmap.version}
-              </span>
-              {' '}
-              <span className='beatmapset-info__diff-mapper'>
-                <StringWithComponent
-                  mappings={{
-                    mapper:
-                      <UserLink
-                        user={{ id: showedBeatmap.user?.id, username: showedBeatmap.user?.username ?? '' }}
-                      />,
-                  }}
-                  pattern={osu.trans('beatmapsets.show.details.mapped_by')}
-                />
-              </span>
-            </div>
+            {' '}
+            <span className='beatmapset-info__diff-mapper u-ellipsis-overflow'>
+              <StringWithComponent
+                mappings={{
+                  mapper: <UserLink user={showedBeatmap.user ?? { username: '' }} />,
+                }}
+                pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+              />
+            </span>
           </div>
 
           <CountBadge
