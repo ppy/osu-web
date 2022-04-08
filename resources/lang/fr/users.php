@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited commentaire|:count_delimited commentaires',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Cacher la bannière',
+            'to_1' => 'Afficher la bannière',
         ],
         'edit' => [
             'cover' => [

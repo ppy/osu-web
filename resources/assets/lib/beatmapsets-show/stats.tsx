@@ -3,6 +3,7 @@
 
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 import CountBadge from './count-badge';
 
 interface Props {
@@ -27,8 +28,8 @@ export default class Stats extends React.PureComponent<Props> {
         <div className='beatmapset-stats__count'>
           <CountBadge
             data={{
-              circle_count: osu.formatNumber(this.props.beatmap.count_circles),
-              slider_count: osu.formatNumber(this.props.beatmap.count_sliders),
+              circle_count: formatNumber(this.props.beatmap.count_circles),
+              slider_count: formatNumber(this.props.beatmap.count_sliders),
             }}
           />
         </div>
@@ -53,7 +54,7 @@ export default class Stats extends React.PureComponent<Props> {
         {addSpacer && <div className='beatmapset-stats__spacer' />}
         <div>{osu.trans(`beatmapsets.show.stats.${label}`)}</div>
         <div className='beatmapset-stats__value'>
-          {osu.formatNumber(value)}
+          {formatNumber(value)}
         </div>
         <div className='beatmapset-stats__bar'>
           <div className='bar bar--beatmap-stats'>

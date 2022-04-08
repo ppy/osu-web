@@ -157,7 +157,7 @@ return [
                 'edit_topic' => 'Titolo dell\'argomento modificato',
                 'edit_poll' => 'Sondaggio del topic modificato',
                 'fork' => 'Argomento copiato',
-                'issue_tag' => '',
+                'issue_tag' => 'Tag del ticket',
                 'lock' => 'Topic bloccato',
                 'merge' => 'Post uniti in questo topic',
                 'move' => 'Argomento spostato',

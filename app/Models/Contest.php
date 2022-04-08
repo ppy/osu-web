@@ -61,9 +61,14 @@ class Contest extends Model
         return $this->hasMany(ContestVote::class);
     }
 
-    public function isBestOf()
+    public function isBestOf(): bool
     {
         return isset($this->getExtraOptions()['best_of']);
+    }
+
+    public function isSubmittedBeatmaps(): bool
+    {
+        return $this->isBestOf() || ($this->getExtraOptions()['submitted_beatmaps'] ?? false);
     }
 
     public function isSubmissionOpen()

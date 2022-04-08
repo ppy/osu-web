@@ -8,6 +8,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import { padStart } from 'lodash';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 import CountBadge from './count-badge';
 import Extra from './extra';
 import Metadata from './metadata';
@@ -68,7 +69,7 @@ export default class Header extends React.PureComponent<Props> {
           <CountBadge
             data={{
               length: formatDuration(showedBeatmap.total_length),
-              song_bpm: showedBeatmap.bpm > 1000 ? '∞' : osu.formatNumber(showedBeatmap.bpm),
+              song_bpm: showedBeatmap.bpm > 1000 ? '∞' : formatNumber(showedBeatmap.bpm),
             }}
             modifiers='length-bpm'
           />

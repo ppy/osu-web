@@ -160,8 +160,8 @@ return [
             'count' => '댓글 :count_delimited개',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => '커버 숨기기',
+            'to_1' => '커버 표시',
         ],
         'edit' => [
             'cover' => [

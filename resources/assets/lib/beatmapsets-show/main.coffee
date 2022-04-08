@@ -191,12 +191,13 @@ export class Main extends React.Component
 
     @setHash()
 
-    if !@restoredState || @state.loading
+    if !@restoredState
       @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
 
   componentWillUnmount: ->
     $.unsubscribe ".#{@eventId}"
+    $(document).off ".#{@eventId}"
     @scoreboardXhr?.abort()
     @favouriteXhr?.abort()
 

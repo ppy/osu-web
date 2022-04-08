@@ -13,6 +13,11 @@ return [
         'user' => 'Nem üzenhetsz ennek a felhasználónak jelenleg. Ez emiatt az okok miatt lehet:',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'üzenet küldése sikertelen...',
         'disconnected' => 'Lecsatlakozva',

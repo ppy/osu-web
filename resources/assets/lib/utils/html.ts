@@ -26,6 +26,23 @@ export function createClickCallback(target: unknown) {
   }
 }
 
+const defaultNumberFormatter = new Intl.NumberFormat(window.currentLocale);
+
+export function formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) {
+  if (precision == null && options == null && locale == null) {
+    return defaultNumberFormatter.format(num);
+  }
+
+  options ??= {};
+
+  if (precision != null) {
+    options.minimumFractionDigits = precision;
+    options.maximumFractionDigits = precision;
+  }
+
+  return num.toLocaleString(locale ?? window.currentLocale, options);
+}
+
 export function formatNumberSuffixed(num?: number, precision?: number, options?: Intl.NumberFormatOptions) {
   if (num == null) return;
 

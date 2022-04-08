@@ -46,7 +46,7 @@ return [
 
         'users' => [
             'modding' => 'módování',
-            'playlists' => '',
+            'playlists' => 'playlisty',
             'realtime' => '',
             'show' => 'informace',
         ],

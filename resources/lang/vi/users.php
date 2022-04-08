@@ -146,7 +146,7 @@ return [
         'first_members' => 'Ở đây kể từ khi bắt đầu',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Đã tham gia :date',
+        'joined_at' => 'Đã tham gia vào :date',
         'lastvisit' => 'Lần cuối hoạt động :date',
         'lastvisit_online' => 'Hiện đang trực tuyến',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited bình luận|:count_delimited bình luận',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Ẩn ảnh bìa',
+            'to_1' => 'Hiện ảnh bìa',
         ],
         'edit' => [
             'cover' => [
@@ -317,7 +317,7 @@ return [
                 'title' => 'Gần Đây',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Màn chơi nhiều người chơi',
             ],
             'top_ranks' => [
                 'download_replay' => 'Tải Xuống Replay',
@@ -327,7 +327,7 @@ return [
                 'title' => 'Xếp Hạng',
 
                 'best' => [
-                    'title' => 'Thực Hiện Tốt Nhất',
+                    'title' => 'Thành tích tốt nhất',
                 ],
                 'first' => [
                     'title' => 'Xếp Hạng Nhất',
@@ -414,13 +414,13 @@ return [
             'level_progress' => 'Tiến độ qua level tiếp theo',
             'maximum_combo' => 'Combo Cao Nhất',
             'medals' => 'Huy Chương',
-            'play_count' => 'Số Lần Chơi',
-            'play_time' => 'Tổng Thời Gian Chơi',
+            'play_count' => 'Số lần chơi',
+            'play_time' => 'Tổng thời gian chơi',
             'ranked_score' => 'Điểm Được Xếp Hạng',
             'replays_watched_by_others' => 'Replay Được Xem',
-            'score_ranks' => 'Điểm Số',
+            'score_ranks' => 'Thứ hạng điểm',
             'total_hits' => 'Tổng Lần Bấm',
-            'total_score' => 'Tổng Điểm',
+            'total_score' => 'Tổng điểm',
             // modding stats
             'graveyard_beatmapset_count' => 'Các beatmap bị đắp mộ',
             'loved_beatmapset_count' => 'Các beatmap được yêu thích',

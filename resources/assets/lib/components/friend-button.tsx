@@ -11,6 +11,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
 import { Modifiers, classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { Spinner } from './spinner';
 
 const bn = 'user-action-button';
@@ -145,7 +146,7 @@ export default class FriendButton extends React.Component<Props> {
   private renderCounter() {
     if (!this.showFollowerCounter) return;
 
-    return <span className={`${bn}__counter`}>{osu.formatNumber(this.followers)}</span>;
+    return <span className={`${bn}__counter`}>{formatNumber(this.followers)}</span>;
   }
 
   private renderIcon() {

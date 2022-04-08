@@ -5,6 +5,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 
 interface Props {
   beatmap: BeatmapExtendedJson;
@@ -37,7 +38,7 @@ export default class Extra extends React.PureComponent<Props> {
           {osu.trans('beatmapsets.show.info.success-rate')}
         </div>
         <div className='beatmapset-extra__item beatmapset-extra__item--value beatmapset-extra__item--success-rate'>
-          {osu.formatNumber(this.successRate, 2)}%
+          {formatNumber(this.successRate, 2)}%
         </div>
         <div className='beatmapset-extra__item beatmapset-extra__item--bar'>
           {this.renderBar(this.successRate)}
@@ -88,7 +89,7 @@ export default class Extra extends React.PureComponent<Props> {
         className='beatmapset-extra__chart-bar'
         style={{
           '--background-position': `${idx * 10}%`,
-          '--bar-height': `${rating === 0 ? 0 : osu.formatNumber((rating / maxRating) * 100, 2)}%`,
+          '--bar-height': `${rating === 0 ? 0 : formatNumber((rating / maxRating) * 100, 2)}%`,
         } as React.CSSProperties}
       />
     ));

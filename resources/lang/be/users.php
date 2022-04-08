@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited каментарый|:count_delimited каментарыі',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Схаваць вокладку',
+            'to_1' => 'Паказаць вокладку',
         ],
         'edit' => [
             'cover' => [

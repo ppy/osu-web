@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited commento|:count_delimited commenti',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Nascondi copertina',
+            'to_1' => 'Mostra copertina',
         ],
         'edit' => [
             'cover' => [

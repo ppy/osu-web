@@ -7,9 +7,10 @@ import { classWithModifiers } from 'utils/css';
 import { SlateContext } from './slate-context';
 
 export interface MenuItem {
-  icon: JSX.Element;
+  icon: React.ReactNode;
   id: string;
-  label: string;
+  label: React.ReactNode;
+  renderIcon?: boolean;
 }
 
 interface Props {
@@ -66,12 +67,17 @@ export default class IconDropdownMenu extends React.Component<Props> {
       data-id={menuItem.id}
       onClick={this.select}
     >
-      <div className={classWithModifiers('simple-menu__item-icon', 'icon-dropdown-menu')}>
-        {menuItem.icon}
-      </div>
-      <div className='simple-menu__label'>
-        {menuItem.label}
-      </div>
+      {(menuItem.renderIcon ?? true)
+        ? (
+          <>
+            <div className={classWithModifiers('simple-menu__item-icon', 'icon-dropdown-menu')}>
+              {menuItem.icon}
+            </div>
+            <div className='simple-menu__label'>
+              {menuItem.label}
+            </div>
+          </>
+        ) : menuItem.label}
     </button>
   );
 

@@ -32,9 +32,6 @@ class window.StoreSupporterTagPrice
       when @_price >= 4 then 1
       else 0
 
-  pricePerMonth: ->
-    osu.formatNumber(@_price / @duration(), 2)
-
   discount: ->
     if @duration() >= 12
       46

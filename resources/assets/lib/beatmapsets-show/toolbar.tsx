@@ -7,6 +7,7 @@ import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 import { beatmapDownloadDirect } from 'utils/url';
 import BeatmapsetMenu from './beatmapset-menu';
 
@@ -53,7 +54,7 @@ export default class Toolbar extends React.PureComponent<Props> {
               {osu.trans('beatmapsets.show.details.count.total_play')}
             </div>
             <div className='beatmapset-toolbar__count-value'>
-              {osu.formatNumber(this.props.beatmapset.play_count)}
+              {formatNumber(this.props.beatmapset.play_count)}
             </div>
           </div>
 
@@ -62,7 +63,7 @@ export default class Toolbar extends React.PureComponent<Props> {
               {osu.trans('beatmapsets.show.details.count.diff_play')}
             </div>
             <div className='beatmapset-toolbar__count-value'>
-              {osu.formatNumber(this.props.currentBeatmap.playcount)}
+              {formatNumber(this.props.currentBeatmap.playcount)}
             </div>
           </div>
         </div>
@@ -123,7 +124,7 @@ export default class Toolbar extends React.PureComponent<Props> {
       >
         <i className={icon} />
         {' '}
-        {osu.formatNumber(this.props.favcount)}
+        {formatNumber(this.props.favcount)}
       </button>
     );
   }
