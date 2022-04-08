@@ -9,6 +9,7 @@ import { escape, kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { linkHtml } from 'utils/url';
 
 export type EventViewMode = 'discussions' | 'profile' | 'list';
@@ -206,8 +207,8 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         break;
       }
       case 'offset_edit':
-        params.new = osu.formatNumber(this.props.event.comment.new);
-        params.old = osu.formatNumber(this.props.event.comment.old);
+        params.new = formatNumber(this.props.event.comment.new);
+        params.old = formatNumber(this.props.event.comment.old);
         break;
     }
 
