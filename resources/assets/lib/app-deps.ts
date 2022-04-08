@@ -30,6 +30,14 @@ interface SharedStyles {
 }
 
 declare global {
+  interface JQuery {
+    qtip(...args: any): any;
+  }
+
+  interface HTMLElement {
+    _tooltip?: string;
+  }
+
   interface Window {
     $: any;
     _styles: SharedStyles;

@@ -4,14 +4,14 @@
 import { PopupMenuPersistent } from 'components/popup-menu-persistent';
 import { ReportReportable } from 'components/report-reportable';
 import ScorePin from 'components/score-pin';
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { canBeReported } from 'utils/score-helper';
 
 interface Props {
-  score: ScoreJson;
+  score: ScoreJsonForShow;
 }
 
 export default function Buttons(props: Props) {

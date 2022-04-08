@@ -13,6 +13,11 @@ return [
         'user' => 'Você não pode conversar com este usuário no momento. Isso pode ter ocorrido pelos seguintes motivos:',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'incapaz de enviar mensagem...',
         'disconnected' => 'Desconectado',

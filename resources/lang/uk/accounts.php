@@ -57,7 +57,7 @@ return [
         'options' => [
             '_' => 'метод отримання',
             'beatmap_owner_change' => 'гостьова складність',
-            'beatmapset:modding' => 'моддінг карт',
+            'beatmapset:modding' => 'моддинг карт',
             'channel_message' => 'особисті повідомлення',
             'comment_new' => 'нові коментарі',
             'forum_topic_reply' => 'відповідь темі',
@@ -75,7 +75,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'приховати попередження щодо вмісту для дорослих в біткартах',
+        'beatmapset_show_nsfw' => 'приховати попередження щодо вмісту контенту для дорослих в картах',
         'beatmapset_title_show_original' => 'показувати метадані мовою оригіналу',
         'title' => 'Налаштування',
 

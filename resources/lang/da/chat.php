@@ -13,6 +13,11 @@ return [
         'user' => 'Du kan ikke skrive til denne person på nuværende tidspunkt. Dette kan være pga. en af disse grunde:',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'kunne ikke sende besked...',
         'disconnected' => '',

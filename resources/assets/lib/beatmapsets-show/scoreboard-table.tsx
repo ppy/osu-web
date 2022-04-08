@@ -3,7 +3,7 @@
 
 import ScoreboardTableRow from 'beatmapsets-show/scoreboard-table-row';
 import BeatmapJson from 'interfaces/beatmap-json';
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { action, computed, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -18,7 +18,7 @@ const bn = 'beatmap-scoreboard-table';
 interface Props {
   beatmap: BeatmapJson;
   scoreboardType: ScoreboardType;
-  scores: ScoreJson[];
+  scores: ScoreJsonForBeatmap[];
 }
 
 @observer

@@ -27,59 +27,82 @@ class ScoreTransformer extends TransformerAbstract
         'beatmap',
         'beatmapset',
         'current_user_attributes',
+        'match',
         'rank_country',
         'rank_global',
-        'weight',
         'user',
-        'match',
+        'weight',
     ];
 
     protected $defaultIncludes = [
         'current_user_attributes',
     ];
 
-    public function transform($score)
+    public function transform(LegacyMatch\Score|ScoreModel $score)
     {
-        $ret = [
-            'id' => $score->score_id,
-            'user_id' => $score->user_id,
-            'accuracy' => $score->accuracy(),
-            'mods' => $score->enabled_mods,
-            'score' => $score->score,
-            'max_combo' => $score->maxcombo,
-            'passed' => $score->pass,
-            'perfect' => $score->perfect,
-            'statistics' => [
-                'count_50' => $score->count50,
-                'count_100' => $score->count100,
-                'count_300' => $score->count300,
-                'count_geki' => $score->countgeki,
-                'count_katu' => $score->countkatu,
-                'count_miss' => $score->countmiss,
-            ],
-            // ranks are hardcoded to "0" for game_scores atm (i.e. scores from a mp game), return null instead for now
-            'rank' => $score->rank === '0' ? null : $score->rank,
-            'created_at' => json_time($score->date),
+        if ($score instanceof ScoreModel) {
+            // this `best` relation is also used by `current_user_attributes` include.
+            $best = $score->best;
+
+            $createdAt = $score->date;
+            $mode = $score->getMode();
+
+            if ($best !== null) {
+                $bestId = $best->getKey();
+                $pp = $best->pp;
+                $replay = $best->replay ?? false;
+            }
+        } else {
+            // LegacyMatch\Score
+            $createdAt = $score->game->start_time;
+            $mode = $score->gameModeString();
+        }
+
+        $statistics = [
+            'count_100' => $score->count100,
+            'count_300' => $score->count300,
+            'count_50' => $score->count50,
+            'count_geki' => $score->countgeki,
+            'count_katu' => $score->countkatu,
+            'count_miss' => $score->countmiss,
         ];
 
-        // this `best` relation is also used by `current_user_attributes` include.
-        $best = $score->best;
+        return [
+            'accuracy' => $score->accuracy(),
+            'best_id' => $bestId ?? null,
+            'created_at' => json_time($createdAt),
+            'id' => $score->getKey(),
+            'max_combo' => $score->maxcombo,
+            'mode' => $mode,
+            'mode_int' => Beatmap::modeInt($mode),
+            'mods' => $score->enabled_mods,
+            'passed' => $score->pass,
+            'perfect' => $score->perfect,
+            'pp' => $pp ?? null,
+            // Ranks are hardcoded to "0" for legacy match scores atm, return F instead for now.
+            'rank' => $score->rank === '0' ? 'F' : $score->rank,
+            'replay' => $replay ?? false,
+            'score' => $score->score,
+            'statistics' => $statistics,
+            'user_id' => $score->user_id,
+        ];
+    }
 
-        if ($best === null) {
-            $ret['best_id'] = null;
-            $ret['pp'] = null;
-        } else {
-            $ret['best_id'] = $best->getKey();
-            $ret['pp'] = $best->pp;
+    public function includeBeatmap(LegacyMatch\Score|ScoreModel $score)
+    {
+        $beatmap = $score->beatmap;
+
+        if ($score->getMode() !== $beatmap->mode) {
+            $beatmap->convert = true;
+            $beatmap->playmode = Beatmap::MODES[$score->getMode()];
         }
 
-        if ($score instanceof ScoreModel) {
-            $ret['mode'] = $score->getMode();
-            $ret['mode_int'] = Beatmap::modeInt($score->getMode());
-            $ret['replay'] = $best->replay ?? false;
-        }
+        return $this->item($beatmap, new BeatmapTransformer());
+    }
 
-        return $ret;
+    public function includeBeatmapset(LegacyMatch\Score|ScoreModel $score)
+    {
+        return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer());
     }
 
     public function includeCurrentUserAttributes(LegacyMatch\Score|ScoreModel $score): Item
@@ -87,7 +110,7 @@ class ScoreTransformer extends TransformerAbstract
         return $this->item($score, new Score\CurrentUserAttributesTransformer());
     }
 
-    public function includeMatch($score)
+    public function includeMatch(LegacyMatch\Score $score)
     {
         return $this->primitive([
             'slot' => $score->slot,
@@ -96,36 +119,25 @@ class ScoreTransformer extends TransformerAbstract
         ]);
     }
 
-    public function includeRankCountry($score)
+    public function includeRankCountry(ScoreModel $score)
     {
         return $this->primitive($score->userRank(['type' => 'country']));
     }
 
-    public function includeRankGlobal($score)
+    public function includeRankGlobal(ScoreModel $score)
     {
         return $this->primitive($score->userRank([]));
     }
 
-    public function includeBeatmap($score)
+    public function includeUser(LegacyMatch\Score|ScoreModel $score)
     {
-        if ($score->beatmap === null) {
-            return $this->primitive(null);
-        }
-
-        if ($score->getMode() !== $score->beatmap->mode) {
-            $score->beatmap->convert = true;
-            $score->beatmap->playmode = Beatmap::MODES[$score->getMode()];
-        }
-
-        return $this->item($score->beatmap, new BeatmapTransformer());
+        return $this->item(
+            $score->user ?? new DeletedUser(['user_id' => $score->user_id]),
+            new UserCompactTransformer()
+        );
     }
 
-    public function includeBeatmapset($score)
-    {
-        return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer());
-    }
-
-    public function includeWeight($score)
+    public function includeWeight(LegacyMatch\Score|ScoreModel $score)
     {
         if ($score instanceof ScoreBest && $score->weight !== null) {
             return $this->primitive([
@@ -133,12 +145,5 @@ class ScoreTransformer extends TransformerAbstract
                 'pp' => $score->weightedPp(),
             ]);
         }
-    }
-
-    public function includeUser($score)
-    {
-        $user = $score->user ?? new DeletedUser(['user_id' => $score->user_id]);
-
-        return $this->item($user, new UserCompactTransformer());
     }
 }

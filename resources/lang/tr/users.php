@@ -159,6 +159,10 @@ return [
             '_' => ':link gönderdi',
             'count' => ':count_delimited yorum|:count_delimited yorum',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',

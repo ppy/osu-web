@@ -28,10 +28,9 @@ export class NewDiscussion extends React.PureComponent
     @throttledPost = _.throttle @post, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
 
-    # FIXME: should save state on navigation?
     @state =
       cssTop: null
-      message: ''
+      message: @storedMessage()
       timestampConfirmed: false
       posting: null
 
@@ -40,6 +39,14 @@ export class NewDiscussion extends React.PureComponent
     @setTop()
     $(window).on 'resize', @setTop
     @inputBox.current?.focus() if @props.autoFocus
+
+
+  componentDidUpdate: (prevProps) =>
+    if prevProps.beatmapset.id != @props.beatmapset.id
+      @setState message: @storedMessage()
+      return
+
+    @storeMessage()
 
 
   componentWillUnmount: =>
@@ -332,6 +339,21 @@ export class NewDiscussion extends React.PureComponent
   setTop: =>
     @setState
       cssTop: @cssTop(@props.pinned)
+
+
+  storageKey: =>
+    "beatmapset-discussion:store:#{@props.beatmapset.id}:message"
+
+
+  storeMessage: =>
+    if @state.message == ''
+      localStorage.removeItem @storageKey()
+    else
+      localStorage.setItem @storageKey(), @state.message
+
+
+  storedMessage: =>
+    localStorage.getItem(@storageKey()) ? ''
 
 
   submitButton: (type, extraProps) =>

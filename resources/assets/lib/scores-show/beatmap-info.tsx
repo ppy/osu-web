@@ -9,6 +9,7 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { getArtist, getDiffColour, getTitle } from 'utils/beatmap-helper';
+import { formatNumber } from 'utils/html';
 
 interface Props {
   beatmap: BeatmapExtendedJson;
@@ -33,7 +34,7 @@ const BeatmapInfo = (props: Props) => {
 
       <div className='score-beatmap__detail'>
         <span className='score-beatmap__detail-item'>
-          <BeatmapIcon beatmap={beatmap} showConvertMode showTitle={false} />
+          <BeatmapIcon beatmap={beatmap} showConvertMode />
         </span>
 
         <span className='score-beatmap__detail-item score-beatmap__detail-item--difficulty'>
@@ -43,7 +44,7 @@ const BeatmapInfo = (props: Props) => {
           >
             <span className='fas fa-star' />
           </span>
-          {osu.formatNumber(beatmap.difficulty_rating)}
+          {formatNumber(beatmap.difficulty_rating)}
         </span>
 
         <span className='score-beatmap__detail-item'>

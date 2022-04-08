@@ -13,6 +13,11 @@ return [
         'user' => 'Hindi ka makakapadala ng mensahe sa taong ito ngayon. Ito ay maaaring dahil sa alinman sa mga sumusunod na dahilan:',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'hindi maipadala ang mensahe...',
         'disconnected' => 'Disconnected',

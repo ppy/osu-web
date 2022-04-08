@@ -9,6 +9,7 @@
   text-align: left;
 
   font-size: 12px;
+  --icon-size: 22px;
 
   &--deleted {
     opacity: 0.5;
@@ -17,10 +18,15 @@
   &--large {
     flex: 1;
     font-size: 15px;
+    --icon-size: 30px;
   }
 
   &__col {
     flex: none;
+
+    &--icon {
+      font-size: var(--icon-size);
+    }
 
     &--main {
       min-width: 0;

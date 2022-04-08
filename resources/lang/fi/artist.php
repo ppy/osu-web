@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu! Beatmapit',
         'osu' => 'osu!-profiili',
         'site' => 'Virallinen Nettisivu',
     ],

@@ -143,7 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'conseguido :when',
             'country' => 'Classificação nacional',
-            'error' => '',
+            'error' => 'Falha ao carregar a classificação',
             'friend' => 'Classificação de amigos',
             'global' => 'Classificação global',
             'supporter-link' => 'Clica <a href=":link">aqui</a> para ver todas as funcionalidades extravagantes que obténs!',
@@ -155,7 +155,7 @@ return [
                 'combo' => 'Combo máximo',
                 'miss' => 'Erros',
                 'mods' => 'Mods',
-                'pin' => '',
+                'pin' => 'Afixar',
                 'player' => 'Jogador',
                 'pp' => '',
                 'rank' => 'Posição',
@@ -176,8 +176,8 @@ return [
                 'own' => 'A tua melhor',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Clica :here para veres todas as funcionalidades catitas que recebes!',
+                'here' => 'aqui',
             ],
         ],
 

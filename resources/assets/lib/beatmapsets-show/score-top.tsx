@@ -10,20 +10,21 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import UserAvatar from 'components/user-avatar';
 import { UserLink } from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
   modifiers?: Modifiers;
   position?: number;
-  score: ScoreJson;
+  score: ScoreJsonForBeatmap;
 }
 
 export default class ScoreTop extends React.PureComponent<Props> {
@@ -112,7 +113,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                   {osu.trans('beatmapsets.show.scoreboard.headers.score_total')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--score'>
-                  {osu.formatNumber(this.props.score.score)}
+                  {formatNumber(this.props.score.score)}
                 </div>
               </div>
             </div>
@@ -127,7 +128,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                     perfect: this.props.score.accuracy === 1,
                   })}
                 >
-                  {osu.formatNumber(this.props.score.accuracy * 100, 2)}%
+                  {formatNumber(this.props.score.accuracy * 100, 2)}%
                 </div>
               </div>
 
@@ -140,7 +141,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                     perfect: this.props.score.max_combo === this.props.beatmap.max_combo,
                   })}
                 >
-                  {osu.formatNumber(this.props.score.max_combo)}x
+                  {formatNumber(this.props.score.max_combo)}x
                 </div>
               </div>
             </div>
@@ -152,7 +153,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                     {attr.label}
                   </div>
                   <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller'>
-                    {osu.formatNumber(this.props.score.statistics[attr.attribute])}
+                    {formatNumber(this.props.score.statistics[attr.attribute])}
                   </div>
                 </div>
               ))}

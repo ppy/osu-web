@@ -87,7 +87,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
       <div className={`${bn}__content`}>
         <div className={`${bn}__selectors`}>
           <div className='icon-dropdown-menu icon-dropdown-menu--disabled'>
-            {beatmap != null && <BeatmapIcon beatmap={beatmap} />}
+            {beatmap != null && <BeatmapIcon beatmap={beatmap} withTooltip />}
             {!discussion.beatmap_id &&
               <i className='fas fa-fw fa-star-of-life' title={osu.trans('beatmaps.discussions.mode.scopes.generalAll')} />
             }

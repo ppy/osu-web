@@ -13,6 +13,11 @@ return [
         'user' => 'Vous ne pouvez pas envoyer de messages à cet utilisateur pour le moment. Cela peut être dû à une des raisons suivantes :',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'impossible d’envoyer le message...',
         'disconnected' => 'Déconnecté',

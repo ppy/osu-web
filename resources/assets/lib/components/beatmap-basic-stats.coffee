@@ -3,6 +3,7 @@
 
 import * as React from 'react'
 import { div, span } from 'react-dom-factories'
+import { formatNumber } from 'utils/html'
 
 bn = 'beatmap-basic-stats'
 
@@ -26,11 +27,11 @@ export BeatmapBasicStats = ({beatmap, beatmapset}) ->
 
       value =
         if stat == 'bpm'
-          if value > 1000 then '∞' else osu.formatNumber(value)
+          if value > 1000 then '∞' else formatNumber(value)
         else if stat == 'total_length'
           formatDuration value
         else
-          osu.formatNumber(value)
+          formatNumber(value)
 
       title =
         osu.trans "beatmapsets.show.stats.#{stat}",

@@ -5,6 +5,7 @@ declare module 'turbolinks' {
   interface Controller {
     advanceHistory(url: string): void;
     currentVisit?: Visit;
+    replaceHistory(url: string): void;
   }
 
   interface Location {

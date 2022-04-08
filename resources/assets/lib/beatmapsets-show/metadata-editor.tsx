@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapsetJson from 'interfaces/beatmapset-json';
+import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
 import { route } from 'laroute';
@@ -9,7 +9,7 @@ import * as React from 'react';
 import { parseJson } from 'utils/json';
 
 interface Props {
-  beatmapset: BeatmapsetJson;
+  beatmapset: BeatmapsetJsonForShow;
   onClose: () => void;
 }
 
@@ -164,7 +164,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
         offset: this.numericOffset,
       } },
       method: 'PATCH',
-    }).done((beatmapset: BeatmapsetJson) => $.publish('beatmapset:set', { beatmapset }))
+    }).done((beatmapset: BeatmapsetJsonForShow) => $.publish('beatmapset:set', { beatmapset }))
       .fail(osu.ajaxError)
       .always(() => this.setState({ isBusy: false }))
       .done(this.props.onClose);

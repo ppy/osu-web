@@ -13,36 +13,32 @@ import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import ChannelStore from 'stores/channel-store';
+import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
 import { getUpdates } from './chat-api';
+import MainView from './main-view';
 import PingService from './ping-service';
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
-  @observable isChatMounted = false;
   @observable isReady = false;
-  @observable selectedBoxed = observable.box(0);
   skipRefresh = false;
+  @observable viewsMounted = new Set<MainView>();
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
   private pingService: PingService;
+  @observable private selected: number | null = null;
   private selectedIndex = 0;
 
   @computed
-  get selected() {
-    return this.selectedBoxed.get();
-  }
-
-  // This setter should be considered private.
-  // Use selectChannel to change channel.
-  set selected(value: number) {
-    this.selectedBoxed.set(value);
+  get isChatMounted() {
+    return this.viewsMounted.size > 0;
   }
 
   @computed
   get selectedChannel() {
-    return this.channelStore.get(this.selected);
+    return this.selected != null ? this.channelStore.get(this.selected) : null;
   }
 
   @computed
@@ -81,7 +77,11 @@ export default class ChatStateStore implements DispatchListener {
         }
 
         runInAction(() => {
-          this.channelStore.loadChannel(this.selected);
+          // TODO: use selectChannel?
+          if (this.selected != null) {
+            this.channelStore.loadChannel(this.selected);
+          }
+
           this.isReady = true;
         });
       }
@@ -103,7 +103,9 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  selectChannel(channelId: number) {
+  selectChannel(channelId: number | null, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
+    // TODO: enfore location url even if channel doesn't change;
+    // noticeable when navigating via ?sendto= on existing channel.
     if (this.selected === channelId) return;
 
     // mark the channel being switched away from as read.
@@ -111,24 +113,42 @@ export default class ChatStateStore implements DispatchListener {
       this.channelStore.markAsRead(this.selectedChannel.channelId);
     }
 
+    this.selected = channelId;
+
+    if (channelId == null) return;
+
     const channel = this.channelStore.get(channelId);
+
     if (channel == null) {
       console.error(`Trying to switch to non-existent channel ${channelId}`);
       return;
     }
 
-    this.selected = channelId;
     this.selectedIndex = this.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId);
+
+    if (mode != null) {
+      const params = channel.newPmChannel
+        ? { channel_id: null, sendto: channel.pmTarget?.toString() }
+        : { channel_id: channel.channelId.toString(), sendto: null };
+
+      Turbolinks.controller[mode](updateQueryString(null, params));
+    }
   }
 
   @action
   selectFirst() {
     if (this.channelList.length === 0) return;
 
-    this.selectChannel(this.channelList[0].channelId);
+    this.selectChannel(this.channelList[0].channelId, null);
+    // Remove channel_id from location on selectFirst();
+    // also handles the case when history goes back to a channel that was removed.
+    Turbolinks.controller.replaceHistory(updateQueryString(null, {
+      channel_id: null,
+      sendto: null,
+    }));
   }
 
   @action
@@ -145,7 +165,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
-    this.channelStore.getOrCreate(event.json.channel_id).updateWithJson(event.json);
+    this.channelStore.update(event.json);
   }
 
   @action
@@ -202,7 +222,7 @@ export default class ChatStateStore implements DispatchListener {
         this.lastHistoryId = newHistoryId;
       }
 
-      this.channelStore.updateWithJson(json);
+      this.channelStore.updateWithChatUpdates(json);
     });
   }
 }

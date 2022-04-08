@@ -3,7 +3,7 @@
 
 import StringWithComponent from 'components/string-with-component';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
@@ -24,9 +24,9 @@ interface Props {
   enabledMods: string[];
   isScoreable: boolean;
   loadingState: null | 'error' | 'loading' | 'supporter_only' | 'unranked';
-  scores: ScoreJson[];
+  scores: ScoreJsonForBeatmap[];
   type: ScoreboardType;
-  userScore?: ScoreJson;
+  userScore?: ScoreJsonForBeatmap;
   userScorePosition?: number;
 }
 

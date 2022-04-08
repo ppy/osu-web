@@ -2,12 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Mod from 'components/mod';
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as moment from 'moment';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 
 interface Props {
-  score: ScoreJson;
+  score: ScoreJsonForShow;
 }
 
 export default function Player(props: Props) {
@@ -15,7 +16,7 @@ export default function Player(props: Props) {
     <div className='score-player'>
       <div className='score-player__row score-player__row--score'>
         <div className='score-player__score'>
-          {osu.formatNumber(props.score.score)}
+          {formatNumber(props.score.score)}
         </div>
 
         <div className='score-player__mods'>
@@ -47,7 +48,7 @@ export default function Player(props: Props) {
           {osu.trans('scores.show.player.rank.global')}
         </div>
         <div className='score-player__rank score-player__rank--value'>
-          {props.score.rank_global == null ? '-' : `#${osu.formatNumber(props.score.rank_global)}`}
+          {props.score.rank_global == null ? '-' : `#${formatNumber(props.score.rank_global)}`}
         </div>
       </div>
     </div>
