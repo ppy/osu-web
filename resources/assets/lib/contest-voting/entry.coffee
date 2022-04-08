@@ -5,6 +5,7 @@ import TrackPreview from 'components/track-preview'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a,i,div,span } from 'react-dom-factories'
+import { formatNumber } from 'utils/html'
 import { Voter } from './voter'
 
 el = React.createElement
@@ -43,8 +44,8 @@ export class Entry extends React.Component
         div className: 'contest-voting-list__preview',
           el TrackPreview, track: @props.entry
       if @props.options.showLink && @props.entry.preview
-        if @props.contest.best_of
-          a href: route('beatmapsets.show', beatmapset: @props.entry.preview), className: 'contest-voting-list__icon contest-voting-list__icon--best-of', style: { background: "url(https://b.ppy.sh/thumb/#{@props.entry.preview}.jpg)" },
+        if @props.contest.submitted_beatmaps
+          a href: route('beatmapsets.show', beatmapset: @props.entry.preview), className: 'contest-voting-list__icon contest-voting-list__icon--submitted-beatmaps', style: { background: "url(https://b.ppy.sh/thumb/#{@props.entry.preview}.jpg)" },
             span className: 'contest-voting-list__link contest-voting-list__link--shadowed',
               i className: "fal fa-fw fa-lg fa-#{@props.contest.link_icon}"
         else
@@ -78,4 +79,4 @@ export class Entry extends React.Component
           div className:'contest__vote-count',
             osu.transChoice 'contest.vote.count', @props.entry.results.votes
             if isFinite(votePercentage)
-              " (#{osu.formatNumber(votePercentage)}%)"
+              " (#{formatNumber(votePercentage)}%)"

@@ -3,6 +3,7 @@
 
 import ScoreJson from 'interfaces/score-json';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 
 interface Props {
   score: ScoreJson;
@@ -28,8 +29,8 @@ export default function PpValue(props: Props) {
   }
 
   return (
-    <span title={osu.formatNumber(props.score.pp)}>
-      {osu.formatNumber(Math.round(props.score.pp))}
+    <span title={formatNumber(props.score.pp)}>
+      {formatNumber(Math.round(props.score.pp))}
       {props.suffix}
     </span>
   );

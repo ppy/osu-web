@@ -22,7 +22,7 @@ interface BeatmapsetExtendedJsonAdditionalAttributes {
   discussion_locked: boolean;
   is_scoreable: boolean;
   last_updated: string;
-  legacy_thread_url: string;
+  legacy_thread_url: string | null;
   nominations_summary: NominationsSummary;
   ranked: number;
   ranked_date: string | null;

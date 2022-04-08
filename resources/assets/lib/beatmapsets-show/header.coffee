@@ -11,7 +11,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
-import { createClickCallback } from 'utils/html'
+import { createClickCallback, formatNumber } from 'utils/html'
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url'
 import { Stats } from './stats'
 
@@ -99,12 +99,12 @@ export class Header extends React.Component
               className: 'beatmapset-header__star-difficulty'
               style:
                 visibility: 'hidden' if !@props.hoveredBeatmap?
-              "#{osu.trans 'beatmapsets.show.stats.stars'} #{if @props.hoveredBeatmap then osu.formatNumber(@props.hoveredBeatmap.difficulty_rating, 2) else ''}"
+              "#{osu.trans 'beatmapsets.show.stats.stars'} #{if @props.hoveredBeatmap then formatNumber(@props.hoveredBeatmap.difficulty_rating, 2) else ''}"
 
             div {},
               span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.playcount'),
                 span className: 'beatmapset-header__value-icon', i className: 'fas fa-play-circle'
-                span className: 'beatmapset-header__value-name', osu.formatNumber(@props.beatmapset.play_count)
+                span className: 'beatmapset-header__value-name', formatNumber(@props.beatmapset.play_count)
 
               if @props.beatmapset.status == 'pending'
                 span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.nominations'),
@@ -119,7 +119,7 @@ export class Header extends React.Component
                 span className: 'beatmapset-header__value-icon',
                   i className: 'fas fa-heart'
                 span className: 'beatmapset-header__value-name',
-                  osu.formatNumber(@props.favcount)
+                  formatNumber(@props.favcount)
 
             # this content of this div is used as a template for the on-hover/touch above
             div

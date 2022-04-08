@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 
 interface Props {
   count?: number | null;
@@ -15,7 +16,7 @@ export default function ProfilePageExtraSectionTitle(props: Props) {
 
       {props.count != null &&
         <span className='title__count'>
-          {osu.formatNumber(props.count)}
+          {formatNumber(props.count)}
         </span>
       }
     </h3>
