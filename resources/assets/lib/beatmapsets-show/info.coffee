@@ -156,12 +156,12 @@ export class Info extends React.Component
               @props.beatmapset.language.name
 
         if tags.length > 0
-          div null,
+          div className: 'beatmapset-info__box beatmapset-info__box--tags u-fancy-scrollbar',
             h3
               className: 'beatmapset-info__header'
               osu.trans 'beatmapsets.show.info.tags'
 
-            div null,
+            div className='beatmapset-info__tags',
               for tag in tags
                 [
                   a
