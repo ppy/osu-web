@@ -95,11 +95,7 @@ export class Info extends React.Component
     tags = _(@props.beatmapset.tags)
       .split(' ')
       .filter((t) -> t? && t != '')
-      .slice(0, 21)
       .value()
-
-    tagsOverload = tags.length == 21
-    tags.pop() if tagsOverload
 
     div className: 'beatmapset-info',
       if @state.isEditingDescription
@@ -175,7 +171,6 @@ export class Info extends React.Component
                     tag
                   span key: "#{tag}-space", ' '
                 ]
-              '...' if tagsOverload
 
       div className: 'beatmapset-info__box beatmapset-info__box--success-rate',
         if @props.beatmap.playcount > 0
