@@ -22,7 +22,7 @@ export default class CreateAnnouncement {
     lookupUsers: false,
   };
 
-  debouncedLookupUsers = debounce(action(() => this.lookupUsers()), 1000);
+  debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
 
   @observable inputs: Inputs = {
     description: '',
