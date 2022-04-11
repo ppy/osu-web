@@ -32,23 +32,11 @@ function getParamValue(urlParams: URLSearchParams, key: string) {
  * @returns The initial Channel; null, if requested initial Channel doesn't exist;
  * undefined, if no initial Channel was requested.
  */
-function getInitialChannel() {
+function getInitialChannel(sendTo?: SendToJson) {
   const dataStore = core.dataStore;
-  const initial = parseJsonNullable<ChatInitialJson>('json-chat-initial', true);
-
-  if (initial != null) {
-    if (Array.isArray(initial.presence)) {
-      // initial population of channel/presence data
-      dataStore.channelStore.updateMany(initial.presence);
-      dataStore.chatState.skipRefresh = true;
-    }
-
-    dataStore.channelStore.lastReceivedMessageId = initial.last_message_id ?? 0;
-  }
 
   const urlParams = currentUrlParams();
   const sendToParam = getParamValue(urlParams, 'sendto');
-  const sendTo = initial?.send_to;
 
   if (sendTo != null) {
     const target = dataStore.userStore.update(sendTo.target); // pre-populate userStore with target
@@ -73,10 +61,22 @@ function getInitialChannel() {
 }
 
 core.reactTurbolinks.register('chat', action(() => {
+  const initial = parseJsonNullable<ChatInitialJson>('json-chat-initial', true);
+
+  if (initial != null) {
+    if (Array.isArray(initial.presence)) {
+      // initial population of channel/presence data
+      core.dataStore.channelStore.updateMany(initial.presence);
+      core.dataStore.chatState.skipRefresh = true;
+    }
+
+    core.dataStore.channelStore.lastReceivedMessageId = initial.last_message_id ?? 0;
+  }
+
   if (currentUrl().hash === '#join') {
     core.dataStore.chatState.selectChannel('join', 'replaceHistory');
   } else {
-    const channel = getInitialChannel();
+    const channel = getInitialChannel(initial?.send_to);
 
     if (channel === undefined) {
       core.dataStore.chatState.selectFirst();
