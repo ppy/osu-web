@@ -95,6 +95,14 @@ export default class CreateAnnouncement {
 
   @action
   updateUsers(text: string, immediate: boolean) {
+    if (text.length === 0) {
+      this.xhrLookupUsers?.abort();
+      this.debouncedLookupUsers.cancel();
+      this.busy.lookupUsers = false;
+      this.inputs.users = text;
+      return;
+    }
+
     this.busy.lookupUsers = true;
     this.debouncedLookupUsers.cancel();
     this.inputs.users = text;
