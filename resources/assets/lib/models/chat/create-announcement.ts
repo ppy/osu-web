@@ -164,7 +164,7 @@ export default class CreateAnnouncement {
 
     // maybe it's a username
     for (const user of this.validUsers.values()) {
-      if (user.username === userId) return true;
+      if (user.username.toLowerCase() === userId.toLowerCase()) return true;
     }
 
     return false;
