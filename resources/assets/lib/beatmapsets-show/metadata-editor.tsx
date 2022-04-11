@@ -29,7 +29,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
     if (this.state.offset !== '') {
       const ret = Number(this.state.offset);
 
-      if (Number.isFinite(ret)) return ret;
+      if (Number.isInteger(ret)) return ret;
     }
   }
 
