@@ -14,7 +14,6 @@ return [
     ],
 
     'channels' => [
-        'join' => 'join channel',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Announcements',
