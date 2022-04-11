@@ -7,7 +7,7 @@ import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import { isInputKey } from 'models/chat/create-announcement';
+import CreateAnnouncement, { InputKey, isInputKey } from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
@@ -15,8 +15,8 @@ import { classWithModifiers } from 'utils/css';
 type Props = Record<string, never>;
 
 interface InputContainerProps {
-  error: boolean;
-  labelKey?: string;
+  model: CreateAnnouncement;
+  name: InputKey;
 }
 
 const BusySpinner = ({ busy }: { busy: boolean }) => (
@@ -27,9 +27,9 @@ const BusySpinner = ({ busy }: { busy: boolean }) => (
 
 // TODO: look at combining with ValidatingInput
 const InputContainer = observer((props: React.PropsWithChildren<InputContainerProps>) => (
-  <div className={classWithModifiers('chat-join-channel__input-container', { error: props.error })}>
-    {props.labelKey && (
-      <label className='chat-join-channel__input-label'>{osu.trans(props.labelKey)}</label>
+  <div className={classWithModifiers('chat-join-channel__input-container', { error: props.model.errors[props.name] && props.model.invalidable[props.name] })}>
+    {props.name && (
+      <label className='chat-join-channel__input-label'>{osu.trans(`chat.join_channel.labels.${props.name}`)}</label>
     )}
     {props.children}
   </div>
@@ -66,29 +66,33 @@ export default class JoinChannel extends React.Component<Props> {
       <div className='chat-join-channel'>
         <div className='chat-join-channel__fields'>
           <div className='chat-join-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
-          <InputContainer error={this.model.errors.name} labelKey='chat.join_channel.labels.name'>
+          <InputContainer model={this.model} name='name'>
             <input
               className='chat-join-channel__input'
               defaultValue={this.model.inputs.name}
               name='name'
+              onBlur={this.handleBlur}
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer error={this.model.errors.description} labelKey='chat.join_channel.labels.description'>
+          <InputContainer model={this.model} name='description'>
             <input
               className='chat-join-channel__input'
               defaultValue={this.model.inputs.description}
               name='description'
+              onBlur={this.handleBlur}
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer error={this.model.errors.users} labelKey='chat.join_channel.labels.users'>
+          <InputContainer model={this.model} name='users'>
             <div className='chat-join-channel__users-input'>
               <div className='chat-join-channel__users'>
                 {this.renderValidUsers()}
               </div>
               <input
                 className='chat-join-channel__users-text'
+                name='users'
+                onBlur={this.handleBlur}
                 onChange={this.handleUsersInputChange}
                 onKeyDown={this.handleUsersInputKeyDown}
                 onPaste={this.handleUsersInputPaste}
@@ -97,12 +101,13 @@ export default class JoinChannel extends React.Component<Props> {
               <BusySpinner busy={this.model.busy.lookupUsers} />
             </div>
           </InputContainer>
-          <InputContainer error={this.model.errors.message}>
+          <InputContainer model={this.model} name='message'>
             <textarea
               autoComplete='off'
               className='chat-join-channel__box'
               defaultValue={this.model.inputs.message}
               name='message'
+              onBlur={this.handleBlur}
               onChange={this.handleInput}
               placeholder={osu.trans('chat.input.placeholder')}
               rows={10}
@@ -128,6 +133,17 @@ export default class JoinChannel extends React.Component<Props> {
       <UserCardBrick key={user.id} modifiers='fit' onRemoveClick={this.handleRemoveUser} user={user} />
     ));
   }
+
+  @action
+  private handleBlur = (e: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLTextAreaElement>) => {
+    const elem = e.target;
+
+    if (isInputKey(elem.name)) {
+      this.model.invalidable[elem.name] = true;
+    }
+
+    console.log(this.model.invalidable);
+  };
 
   @action
   private handleButtonClick = () => {

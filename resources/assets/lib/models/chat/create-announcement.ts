@@ -9,8 +9,8 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import core from 'osu-core-singleton';
 
 export const inputKeys = ['description', 'message', 'name', 'users'] as const;
-type InputKey = typeof inputKeys[number];
-type Inputs = { [key in InputKey]: string };
+export type InputKey = typeof inputKeys[number];
+type Inputs = Record<InputKey, string>;
 
 export function isInputKey(key: string): key is InputKey {
   return (inputKeys as Readonly<string[]>).includes(key);
@@ -29,6 +29,12 @@ export default class CreateAnnouncement {
     message: '',
     name: '',
     users: '',
+  };
+  @observable invalidable: Record<InputKey, boolean> = {
+    description: false,
+    message: false,
+    name: false,
+    users: false,
   };
   @observable validUsers = new Map<number, UserJson>();
 
