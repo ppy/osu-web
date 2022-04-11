@@ -5,83 +5,85 @@ import {
   ChatMessageSendAction,
 } from 'actions/chat-message-send-action';
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
+import ChatUpdateSilences from 'actions/chat-update-silences';
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import ChatAPI from 'chat/chat-api';
-import { ChannelJson, ChannelType, GetUpdatesJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
+import { markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
+import MessageNewEvent from 'chat/message-new-event';
+import DispatchListener from 'dispatch-listener';
+import ChannelJson, { filterSupportedChannelTypes, SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
+import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
+import MessageJson from 'interfaces/chat/message-json';
 import { groupBy, maxBy } from 'lodash';
-import { action, computed, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
-import UserStore from './user-store';
 
-const skippedChannelTypes = new Set<ChannelType>(['MULTIPLAYER', 'TEMPORARY']);
+function alphabeticalSort(a: Channel, b: Channel) {
+  return a.name.localeCompare(b.name);
+}
+
+function makeEmptyGroupedChannels() {
+  const empty: Partial<Record<SupportedChannelType, Channel[]>> = {};
+  for (const type of supportedChannelTypes) {
+    empty[type] = [];
+  }
+
+  return empty as Record<SupportedChannelType, Channel[]>;
+}
+
+const channelSorts = {
+  ANNOUNCE: alphabeticalSort,
+  GROUP: alphabeticalSort,
+  PM: (a: Channel, b: Channel) => {
+    // so 'new' channels always end up on top
+    if (a.newPmChannel) return -1;
+    if (b.newPmChannel) return 1;
+
+    if (a.lastMessageId === b.lastMessageId) {
+      return 0;
+    }
+
+    return a.lastMessageId > b.lastMessageId ? -1 : 1;
+  },
+  PUBLIC: alphabeticalSort,
+};
 
 @dispatchListener
-export default class ChannelStore {
+export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
-  lastPolledMessageId = 0;
+  lastReceivedMessageId = 0;
 
-  private api = new ChatAPI();
   private markingAsRead: Partial<Record<number, number>> = {};
 
   @computed
-  get channelList(): Channel[] {
-    return [...this.nonPmChannels, ...this.pmChannels];
+  get groupedChannels() {
+    const grouped = makeEmptyGroupedChannels();
+    // fill
+    for (const channel of this.channels.values()) {
+      if (channel.supportedType != null) {
+        grouped[channel.supportedType].push(channel);
+      }
+    }
+
+    // sort
+    for (const key of supportedChannelTypes) {
+      grouped[key] = grouped[key].sort(channelSorts[key]);
+    }
+
+    return grouped;
   }
 
-  @computed
-  get nonPmChannels(): Channel[] {
-    const sortedChannels: Channel[] = [];
-    this.channels.forEach((channel) => {
-      if (channel.type !== 'PM' && channel.isDisplayable) {
-        sortedChannels.push(channel);
-      }
-    });
-
-    return sortedChannels.sort((a, b) => {
-      if (a.name === b.name) {
-        return 0;
-      }
-
-      return a.name > b.name ? -1 : 1;
-    });
-  }
-
-  @computed
-  get pmChannels(): Channel[] {
-    const sortedChannels: Channel[] = [];
-    this.channels.forEach((channel) => {
-      if (channel.newPmChannel || (channel.type === 'PM' && channel.isDisplayable)) {
-        sortedChannels.push(channel);
-      }
-    });
-
-    return sortedChannels.sort((a, b) => {
-      // so 'new' channels always end up on top
-      if (a.newPmChannel) return -1;
-      if (b.newPmChannel) return 1;
-
-      if (a.lastMessageId === b.lastMessageId) {
-        return 0;
-      }
-
-      return a.lastMessageId > b.lastMessageId ? -1 : 1;
-    });
-  }
-
-  constructor(protected userStore: UserStore) {
+  constructor() {
+    makeObservable(this);
   }
 
   @action
   addNewConversation(json: ChannelJson, message: MessageJson) {
-    const channel = this.getOrCreate(json.channel_id);
-    channel.updateWithJson(json);
-    // prevent new PM channel from being deleted from presence updates requested before the new conversation but
-    // the response arrives after.
-    channel.newPmChannelTransient = true;
-    this.handleChatChannelNewMessages(channel.channelId, [message]);
+    const channel = this.update(json);
+    // TODO: need to handle user
+    channel.addMessages([Message.fromJson(message)]);
 
     return channel;
   }
@@ -113,81 +115,32 @@ export default class ChannelStore {
     return this.channels.get(channelId);
   }
 
-  @action
-  getOrCreate(channelId: number): Channel {
-    let channel = this.channels.get(channelId);
-
-    if (!channel) {
-      channel = new Channel(channelId);
-      this.channels.set(channelId, channel);
-    }
-
-    return channel;
-  }
-
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof ChatMessageSendAction) {
+    if (event instanceof MessageNewEvent) {
+      this.handleChatMessageNewEvent(event);
+    } else if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
+    } else if (event instanceof ChatUpdateSilences) {
+      this.handleChatUpdateSilences(event);
     }
   }
 
+  // TODO: load is async, needs to be reflected somewhere.
   @action
-  async loadChannel(channelId: number) {
-    const channel = this.getOrCreate(channelId);
-    if (channel.loading || channel.newPmChannel) {
-      return;
-    }
-
-    // TODO:
-    // current implementation should always have this loaded already,
-    // but future versions may skip having all the initial metadata on chat load.
-
-    if (channel.loaded) {
-      return;
-    }
-
-    channel.loading = true;
-
-    try {
-      const response = await this.api.getMessages(channelId);
-      this.handleChatChannelNewMessages(channelId, response);
-    } finally {
-      runInAction(() => {
-        channel.loading = false;
-      });
-    }
+  loadChannel(channelId: number) {
+    this.channels.get(channelId)?.load();
   }
 
   @action
-  async loadChannelEarlierMessages(channelId: number) {
-    const channel = this.get(channelId);
-
-    if (channel == null || !channel.hasEarlierMessages || channel.loadingEarlierMessages) {
-      return;
-    }
-
-    channel.loadingEarlierMessages = true;
-    let until: number | undefined;
-    // FIXME: nullable id instead?
-    if (channel.minMessageId > 0) {
-      until = channel.minMessageId;
-    }
-
-    try {
-      const response = await this.api.getMessages(channel.channelId, { until });
-      this.handleChatChannelNewMessages(channelId, response);
-    } finally {
-      runInAction(() => {
-        channel.loadingEarlierMessages = false;
-      });
-    }
+  loadChannelEarlierMessages(channelId: number) {
+    this.get(channelId)?.loadEarlierMessages();
   }
 
   @action
   markAsRead(channelId: number) {
     const channel = this.get(channelId);
 
-    if (channel == null || !channel.isUnread) {
+    if (channel == null || !channel.isUnread || !channel.uiState.autoScroll) {
       return;
     }
 
@@ -197,7 +150,7 @@ export default class ChannelStore {
 
     channel.markAsRead();
 
-    const currentTimeout = window.setTimeout(() => {
+    const currentTimeout = window.setTimeout(action(() => {
       // allow next debounce to be queued again
       if (this.markingAsRead[channelId] === currentTimeout) {
         delete this.markingAsRead[channelId];
@@ -206,107 +159,120 @@ export default class ChannelStore {
       // TODO: need to mark again in case the marker has moved?
 
       // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
-      if (channel.lastMessage?.sender.id === window.currentUser.id) {
+      if (channel.lastMessage?.sender.id === core.currentUser?.id) {
         return;
       }
 
-      this.api.markAsRead(channel.channelId, channel.lastMessageId);
-    }, 1000);
+      apiMarkAsRead(channel.channelId, channel.lastMessageId);
+    }), 1000);
 
     this.markingAsRead[channelId] = currentTimeout;
   }
 
   @action
-  partChannel(channelId: number) {
-    if (channelId > 0) {
-      this.api.partChannel(channelId, window.currentUser.id);
+  partChannel(channelId: number, remote = true) {
+    if (channelId > 0 && remote) {
+      apiPartChannel(channelId, core.currentUserOrFail.id);
     }
 
     this.channels.delete(channelId);
   }
 
   @action
-  updateWithJson(updateJson: GetUpdatesJson) {
-    this.updateWithPresence(updateJson.presence);
+  update(json: ChannelJson): Channel {
+    const channelId = json.channel_id;
+    let channel = this.channels.get(channelId);
 
-    this.lastPolledMessageId = maxBy(updateJson.messages, 'message_id')?.message_id ?? this.lastPolledMessageId;
-
-    const groups = groupBy(updateJson.messages, 'channel_id');
-    for (const key of Object.keys(groups)) {
-      const channelId = parseInt(key, 10);
-      this.handleChatChannelNewMessages(channelId, groups[channelId]);
+    if (!channel) {
+      channel = new Channel(channelId);
+      this.channels.set(channelId, channel);
     }
 
-    // TODO: convert silence handling back to action when updating through websocket is figured out.
-    const silencedUserIds = new Set<number>(updateJson.silences.map((json) => json.user_id));
-    this.removePublicMessagesFromUserIds(silencedUserIds);
+    channel.updateWithJson(json);
+    return channel;
   }
 
   @action
-  updateWithPresence(presence: PresenceJson) {
-    presence.forEach((json) => {
-      if (!skippedChannelTypes.has(json.type)) {
-        this.getOrCreate(json.channel_id).updatePresence(json);
-      }
+  updateMany(data: ChannelJson[]) {
+    filterSupportedChannelTypes(data).forEach((json) => {
+      this.update(json);
     });
 
     // remove parted channels
     this.channels.forEach((channel) => {
-      if (channel.newPmChannel || channel.newPmChannelTransient) {
+      if (channel.newPmChannel) {
         return;
       }
 
-      if (!presence.find((json) => json.channel_id === channel.channelId)) {
+      if (!data.find((json) => json.channel_id === channel.channelId)) {
         this.channels.delete(channel.channelId);
       }
     });
   }
 
   @action
-  private handleChatChannelNewMessages(channelId: number, json: MessageJson[]) {
-    const messages = json.map((messageJson) => {
-      if (messageJson.sender != null) this.userStore.getOrCreate(messageJson.sender_id, messageJson.sender);
-      return Message.fromJson(messageJson);
-    });
-
-    const channel = this.channels.get(channelId);
-    if (channel == null) return;
-
-    if (messages.length === 0) {
-      // assume no more messages.
-      channel.firstMessageId = channel.minMessageId;
-      return;
+  updateWithChatUpdates(updateJson: ChatUpdatesJson) {
+    if (updateJson.presence != null) {
+      this.updateMany(updateJson.presence);
     }
 
-    channel.addMessages(messages);
-    channel.loaded = true;
+    if (updateJson.messages != null) {
+      this.updateLastReceivedMessageId(updateJson.messages);
+
+      const groups = groupBy(updateJson.messages, 'channel_id');
+      for (const key of Object.keys(groups)) {
+        const channelId = parseInt(key, 10);
+        const messages = groups[channelId].map(Message.fromJson);
+        this.channels.get(channelId)?.addMessages(messages);
+      }
+    }
+
+    if (updateJson.silences != null) {
+      dispatch(new ChatUpdateSilences(updateJson.silences));
+    }
+  }
+
+  @action
+  private handleChatMessageNewEvent(event: MessageNewEvent) {
+    for (const message of event.json.messages) {
+      const channel = this.channels.get(message.channel_id);
+      if (channel == null) continue;
+
+      channel.addMessage(message);
+    }
+
+    this.updateLastReceivedMessageId(event.json.messages);
   }
 
   @action
   private async handleChatMessageSendAction(event: ChatMessageSendAction) {
     const message = event.message;
-    const channel = this.getOrCreate(message.channelId);
-    channel.addMessages([message], true);
-    channel.markAsRead();
+    const channel = this.get(message.channelId);
+    if (channel == null) {
+      console.debug('channel missing');
+      return;
+    }
+
+    channel.addSendingMessage(message);
 
     try {
       if (channel.newPmChannel) {
         const users = channel.users.slice();
-        const userId = users.find((user) => user !== currentUser.id);
+        const userId = users.find((user) => user !== core.currentUserOrFail.id);
 
         if (userId == null) {
           console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
           return;
         }
 
-        const response = await this.api.newConversation(userId, message);
+        const response = await newConversation(userId, message);
         runInAction(() => {
           this.channels.delete(message.channelId);
           const newChannel = this.addNewConversation(response.channel, response.message);
           dispatch(new ChatNewConversationAdded(newChannel.channelId));
         });
       } else {
-        const response = await this.api.sendMessage(message);
+        const response = await sendMessage(message);
         channel.afterSendMesssage(message, response);
       }
     } catch (error) {
@@ -317,9 +283,22 @@ export default class ChannelStore {
   }
 
   @action
+  private handleChatUpdateSilences(event: ChatUpdateSilences) {
+    const silencedUserIds = new Set<number>(event.json.map((json) => json.user_id));
+    this.removePublicMessagesFromUserIds(silencedUserIds);
+  }
+
+  @action
   private removePublicMessagesFromUserIds(userIds: Set<number>) {
-    this.nonPmChannels.forEach((channel) => {
+    this.groupedChannels.PUBLIC.forEach((channel) => {
       channel.removeMessagesFromUserIds(userIds);
     });
+  }
+
+  @action
+  private updateLastReceivedMessageId(json?: MessageJson[]) {
+    if (json == null) return;
+
+    this.lastReceivedMessageId = maxBy(json, 'message_id')?.message_id ?? this.lastReceivedMessageId;
   }
 }

@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Nominierung zurücksetzen',
             'praise' => 'Lob',
             'problem' => 'Problem',
+            'problem_warning' => 'Problem melden',
             'review' => 'Bewertung',
             'suggestion' => 'Vorschlag',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Bist du dir sicher? Der Nominierungsprozess wird durch das neue Problem zurückgesetzt.',
             'disqualify' => 'Bist du sicher? Dadurch wird die Beatmap aus der Qualifizierung entfernt und der Nominierungsprozess zurückgesetzt.',
+            'nomination_reset' => 'Bist du dir sicher? Der Nominierungsprozess wird durch das neue Problem zurückgesetzt.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -252,6 +254,7 @@ return [
     ],
     'general' => [
         'converts' => 'Konvertierte Beatmaps miteinbeziehen',
+        'featured_artists' => 'Featured Artists',
         'follows' => 'Abonnierte Mapper',
         'recommended' => 'Empfohlene Schwierigkeit',
     ],
@@ -272,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Meine Maps',
         'pending' => 'Ausstehend & WIP',
+        'wip' => 'WIP',
         'qualified' => 'Qualifiziert',
         'ranked' => 'Ranked',
     ],

@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => '포럼',
+        'topic_logs_controller' => [
+            'index' => '주제 로그',
+        ],
         'topic_watches_controller' => [
             'index' => '대시보드',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => '대시보드',
             'verify_link' => '계정 인증',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '공식 아티스트',
         ],
         'artists_controller' => [
             '_' => '공식 아티스트',
@@ -133,6 +139,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => '순위',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '앱 인증',
         ],
     ],
     'store' => [

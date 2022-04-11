@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Abranda, joga mais.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Artista destacado',
+    ],
+
     'index' => [
         'title' => 'Listagem de beatmaps',
         'guest_title' => 'Beatmaps',
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'conseguido :when',
             'country' => 'Classificação nacional',
+            'error' => 'Falha ao carregar a classificação',
             'friend' => 'Classificação de amigos',
             'global' => 'Classificação global',
             'supporter-link' => 'Clica <a href=":link">aqui</a> para ver todas as funcionalidades extravagantes que obténs!',
@@ -150,11 +155,12 @@ return [
                 'combo' => 'Combo máximo',
                 'miss' => 'Erros',
                 'mods' => 'Mods',
+                'pin' => 'Afixar',
                 'player' => 'Jogador',
                 'pp' => '',
                 'rank' => 'Posição',
-                'score_total' => 'Pontuação total',
                 'score' => 'Pontuação',
+                'score_total' => 'Pontuação total',
                 'time' => 'Tempo',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Na liderança',
                 'own' => 'A tua melhor',
+            ],
+            'supporter_link' => [
+                '_' => 'Clica :here para veres todas as funcionalidades catitas que recebes!',
+                'here' => 'aqui',
             ],
         ],
 

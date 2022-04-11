@@ -9,6 +9,7 @@ use App\Exceptions\ValidationException;
 use App\Http\Controllers\Controller;
 use App\Libraries\UserRegistration;
 use App\Models\User;
+use App\Transformers\CurrentUserTransformer;
 
 class UsersController extends Controller
 {
@@ -40,7 +41,7 @@ class UsersController extends Controller
         try {
             $registration->save();
 
-            return $registration->user()->fresh()->defaultJson();
+            return json_item($registration->user()->fresh(), new CurrentUserTransformer());
         } catch (ValidationException $ex) {
             return response(['form_error' => [
                 'user' => $registration->user()->validationErrors()->all(),

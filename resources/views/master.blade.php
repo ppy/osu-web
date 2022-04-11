@@ -81,18 +81,7 @@
         @endif
         <div class="osu-layout__section osu-layout__section--full js-content {{ $currentSection }}_{{ $currentAction }}">
             @include("layout.popup")
-            @if (View::hasSection('content'))
-                @yield('content')
-            @else
-                <div class="osu-layout__row osu-layout__row--page">
-                    <h1 class="text-center">
-                        <span class="dark">{{ $currentSection }}</span>
-                        /
-                        <span class="dark">{{ $currentAction }}</span>
-                        is <span class="normal">now printing</span> <span class="light">♪</span>
-                    </h1>
-                </div>
-            @endif
+            @yield('content')
         </div>
         @if (!isset($blank))
             @include("layout.gallery_window")
@@ -111,6 +100,12 @@
                 data-sync-height-target="permanent-fixed-footer"
             >
                 @yield('permanent-fixed-footer')
+
+                @if (config('osu.is_development_deploy'))
+                    <div class="development-deploy-footer">
+                        This is a development instance of the <a href="https://osu.ppy.sh" class="development-deploy-footer__link">osu! website</a>. Please do not login with your osu! credentials.
+                    </div>
+                @endif
             </div>
         </div>
 

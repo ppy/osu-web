@@ -42,8 +42,13 @@ class BeatmapsetQueryParser
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
                     break;
                 case 'length':
-                    $parsed = static::parseLength($m['value']);
-                    $option = static::makeFloatRangeOption($op, $parsed['value'], $parsed['scale'] / 2.0);
+                    $parsed = get_length($m['value']);
+                    if ($parsed !== null) {
+                        $option = static::makeFloatRangeOption($op, $parsed['value'], $parsed['scale'] / 2.0);
+                    }
+                    break;
+                case 'featured_artist':
+                    $option = static::makeIntOption($op, $m['value']);
                     break;
                 case 'key':
                 case 'keys':
@@ -173,6 +178,13 @@ class BeatmapsetQueryParser
         }
     }
 
+    private static function makeIntOption($operator, $value)
+    {
+        if (is_numeric($value) && $operator === '=') {
+            return get_int($value);
+        }
+    }
+
     private static function makeIntRangeOption($operator, $value)
     {
         if (!is_numeric($value)) {
@@ -211,27 +223,5 @@ class BeatmapsetQueryParser
         if ($operator === '=') {
             return presence(trim($value, '"'));
         }
-    }
-
-    private static function parseLength($input)
-    {
-        static $scales = [
-            'ms' => 0.001,
-            's' => 1,
-            'm' => 60,
-            'h' => 3600,
-        ];
-
-        $value = get_float($input);
-
-        if ($value !== null) {
-            $scale = $scales[substr($input, -2)] ?? $scales[substr($input, -1)] ?? 1;
-            $value *= $scale;
-        }
-
-        return [
-            'value' => $value,
-            'scale' => $scale ?? null,
-        ];
     }
 }

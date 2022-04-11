@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Vá devagar, jogue mais.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Artista em destaque',
+    ],
+
     'index' => [
         'title' => 'Lista de Beatmaps',
         'guest_title' => 'Beatmaps',
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'conquistado :when',
             'country' => 'Ranking Nacional',
+            'error' => 'Falha ao carregar a classificação',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
@@ -150,11 +155,12 @@ return [
                 'combo' => 'Combo Máximo',
                 'miss' => 'Erros',
                 'mods' => 'Mods',
+                'pin' => 'Fixar',
                 'player' => 'Jogador',
                 'pp' => '',
                 'rank' => 'Rank',
-                'score_total' => 'Pontuação Total',
                 'score' => 'Pontuação',
+                'score_total' => 'Pontuação Total',
                 'time' => 'Tempo',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Na Liderança',
                 'own' => 'Seu Melhor',
+            ],
+            'supporter_link' => [
+                '_' => 'Clique :here para ver todos os recursos que você ganhou!',
+                'here' => 'aqui',
             ],
         ],
 

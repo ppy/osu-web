@@ -7,8 +7,7 @@ namespace App\Models;
 
 use App\Libraries\MorphMap;
 use App\Traits\Validatable;
-use App\Traits\WithDbCursorHelper;
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property mixed $commentable
@@ -28,6 +27,7 @@ use Carbon\Carbon;
  * @property string $message
  * @property static $parent
  * @property int|null $parent_id
+ * @property bool $pinned
  * @property \Illuminate\Database\Eloquent\Collection $replies static
  * @property int $replies_count_cache
  * @property \Carbon\Carbon|null $updated_at
@@ -38,7 +38,7 @@ use Carbon\Carbon;
  */
 class Comment extends Model
 {
-    use Reportable, Validatable, WithDbCursorHelper;
+    use Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 
     const COMMENTABLES = [
         MorphMap::MAP[Beatmapset::class],
@@ -80,6 +80,11 @@ class Comment extends Model
     public static function isValidType($type)
     {
         return in_array($type, static::COMMENTABLES, true);
+    }
+
+    public function scopePinned(Builder $query): Builder
+    {
+        return $query->where('pinned', true);
     }
 
     public function scopeWithoutTrashed($query)
@@ -222,8 +227,9 @@ class Comment extends Model
     public function softDelete($deletedBy)
     {
         return $this->update([
+            'deleted_at' => now(),
             'deleted_by_id' => $deletedBy->getKey(),
-            'deleted_at' => Carbon::now(),
+            'pinned' => false,
         ]);
     }
 

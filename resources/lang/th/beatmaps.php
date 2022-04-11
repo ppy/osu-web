@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'รีเซทการเสนอชื่อ',
             'praise' => 'ชื่นชม',
             'problem' => 'ข้อผิดพลาด',
+            'problem_warning' => 'รายงานปัญหา',
             'review' => 'บทวิจารณ์',
             'suggestion' => 'ข้อเสนอแนะ',
         ],
@@ -183,7 +184,7 @@ return [
         'disqualify' => 'ตัดสิทธิ์',
         'incorrect_state' => 'เกิดข้อผิดพลาดในการดำเนินการ ลองรีเฟรชหน้าเพจนี้ดู',
         'love' => 'Love',
-        'love_choose' => '',
+        'love_choose' => 'เลือกระดับความยากสำหรับ Loved',
         'love_confirm' => 'ชอบบีทแมพนี้หรือ?',
         'nominate' => 'เสนอชื่อ',
         'nominate_confirm' => 'เสนอชื่อบีทแมพนี้?',
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'คุณแน่ใจหรือ? ในการโพสต์ปัญหาใหม่จะรีเซ็ตการเสนอชื่อ',
             'disqualify' => 'คุณแน่ใจใช่หรือไม่? ที่จะลบบีทแมพออกและรีเซ็ตความคืบหน้า',
+            'nomination_reset' => 'คุณแน่ใจหรือ? ในการโพสต์ปัญหาใหม่จะรีเซ็ตการเสนอชื่อ',
+            'problem_warning' => '',
         ],
     ],
 
@@ -252,6 +254,7 @@ return [
     ],
     'general' => [
         'converts' => 'รวมแมพคอนเวิรต์ด้วย',
+        'featured_artists' => '',
         'follows' => 'ติดตามผู้ทำแมพ',
         'recommended' => 'ระดับความยากที่แนะนำ',
     ],
@@ -272,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'แมพของฉัน',
         'pending' => 'รอดำเนินการ & WIP',
+        'wip' => '',
         'qualified' => 'Qualified',
         'ranked' => 'จัดอันดับแล้ว',
     ],

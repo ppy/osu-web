@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'ฟอรัม',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'หน้าหลัก',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'หน้าหลัก',
             'verify_link' => 'การยืนยันบัญชี',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => 'ศิลปินที่โดดเด่น',
@@ -134,6 +140,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'การจัดอันดับ',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
         ],
     ],
     'store' => [

@@ -10,7 +10,7 @@ return [
     'italic' => 'Cetak Miring',
     'link' => 'Tautan',
     'list' => 'Daftar',
-    'list_numbered' => 'Daftar Berurutan Angka',
+    'list_numbered' => 'Daftar Angka Berurut',
     'size' => [
         '_' => 'Ukuran Huruf',
         'tiny' => 'Mungil',

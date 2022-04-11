@@ -1,6 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+export function bottomPage() {
+  return bottomPageDistance() === 0;
+}
+
+export function bottomPageDistance() {
+  const page = document.documentElement;
+
+  return page.scrollHeight - page.scrollTop - page.clientHeight;
+}
+
 export function createClickCallback(target: unknown) {
   if (target instanceof HTMLElement) {
     // plain javascript here doesn't trigger submit events
@@ -14,6 +24,23 @@ export function createClickCallback(target: unknown) {
     // reference: https://github.com/jquery/jquery/blob/f5aa89af7029ae6b9203c2d3e551a8554a0b4b89/src/event.js#L586
     return () => target.click();
   }
+}
+
+const defaultNumberFormatter = new Intl.NumberFormat(window.currentLocale);
+
+export function formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) {
+  if (precision == null && options == null && locale == null) {
+    return defaultNumberFormatter.format(num);
+  }
+
+  options ??= {};
+
+  if (precision != null) {
+    options.minimumFractionDigits = precision;
+    options.maximumFractionDigits = precision;
+  }
+
+  return num.toLocaleString(locale ?? window.currentLocale, options);
 }
 
 export function formatNumberSuffixed(num?: number, precision?: number, options?: Intl.NumberFormatOptions) {
@@ -40,10 +67,22 @@ export function formatNumberSuffixed(num?: number, precision?: number, options?:
   return `${format(num / Math.pow(k, i))}${suffixes[i]}`;
 }
 
+export function htmlElementOrNull(thing: unknown) {
+  if (thing instanceof HTMLElement) {
+    return thing;
+  }
+
+  return null;
+}
+
 export const transparentGif = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 export function make2x(url?: string) {
   if (url == null) return;
 
   return url.replace(/(\.[^.]+)$/, '@2x$1');
+}
+
+export function stripTags(str: string) {
+  return str.replace(/<[^>]*>/g, '');
 }

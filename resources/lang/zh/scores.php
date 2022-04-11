@@ -23,7 +23,7 @@ return [
     ],
 
     'status' => [
-        'non_best' => '只有最棒的成绩才奖励 pp',
+        'non_best' => '只有个人最好成绩才能获取到 pp',
         'processing' => '此分数仍在计算中，即将显示',
     ],
 ];

@@ -19,6 +19,8 @@ use App\Models\User;
  */
 class Message extends Model
 {
+    public ?string $uuid = null;
+
     protected $primaryKey = 'message_id';
     protected $casts = [
         'is_action' => 'boolean',
@@ -26,7 +28,6 @@ class Message extends Model
     protected $dates = [
         'timestamp',
     ];
-    protected $guarded = [];
 
     public function channel()
     {
@@ -36,17 +37,6 @@ class Message extends Model
     public function sender()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function scopeForUser($query, User $user)
-    {
-        $channelIds = UserChannel::where([
-            'user_id' => $user->user_id,
-            'hidden' => false,
-        ])->pluck('channel_id');
-
-        return $query->whereIn('channel_id', $channelIds)
-            ->orderBy('message_id', 'desc');
     }
 
     public function scopeSince($query, $messageId)

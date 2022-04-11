@@ -55,7 +55,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Questo post andrà nella discussione generale del beatmapset. Per moddare questa beatmap, inizia il tuo messaggio con un timestamp (es. 00:12:345).',
+            'in_general' => 'Questo post andrà nella discussione generale della beatmap. Per moddare questa beatmap, inizia il tuo messaggio con un timestamp (es. 00:12:345).',
             'in_timeline' => 'Per moddare più timestamp, posta più volte (un post per timestamp).',
         ],
 
@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Resetta Nomina',
             'praise' => 'Elogio',
             'problem' => 'Problema',
+            'problem_warning' => 'Segnala un Problema',
             'review' => 'Revisione',
             'suggestion' => 'Suggerimento',
         ],
@@ -91,7 +92,7 @@ return [
         'new' => [
             'pin' => 'Fissa',
             'timestamp' => 'Timestamp',
-            'timestamp_missing' => 'fai ctrl-c nell\'editor ed incolla nel tuo messaggio per aggiungere un timestamp!',
+            'timestamp_missing' => 'fai ctrl-c nell\'editor e incolla nel tuo messaggio per aggiungere un timestamp!',
             'title' => 'Nuova Discussione',
             'unpin' => 'Non fissare',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Sei sicuro? Postando un nuovo problema si resetterà il processo di nomina.',
             'disqualify' => 'Sei sicuro? Questo rimuoverà la beatmap dalla qualificazione e resetterà il processo di nomina.',
+            'nomination_reset' => 'Sei sicuro? Postando un nuovo problema si resetterà il processo di nomina.',
+            'problem_warning' => 'Sei sicuro di voler segnalare un problema su questa beatmap? Questo avviserà i nominatori Beatmap.',
         ],
     ],
 
@@ -252,6 +254,7 @@ return [
     ],
     'general' => [
         'converts' => 'Includi beatmap convertite',
+        'featured_artists' => 'Artisti in primo piano',
         'follows' => 'Mapper iscritti',
         'recommended' => 'Difficoltà consigliata',
     ],
@@ -271,7 +274,8 @@ return [
         'leaderboard' => 'Con classifica',
         'loved' => 'Amate',
         'mine' => 'Le mie mappe',
-        'pending' => 'In Attesa & WIP',
+        'pending' => 'In Attesa',
+        'wip' => 'WIP',
         'qualified' => 'Qualificate',
         'ranked' => 'Classificate',
     ],

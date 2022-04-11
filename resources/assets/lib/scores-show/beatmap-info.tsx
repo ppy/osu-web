@@ -1,17 +1,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapIcon } from 'beatmap-icon';
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import { BeatmapIcon } from 'components/beatmap-icon';
+import StringWithComponent from 'components/string-with-component';
+import { UserLink } from 'components/user-link';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
-import { UserLink } from 'user-link';
 import { getArtist, getDiffColour, getTitle } from 'utils/beatmap-helper';
+import { formatNumber } from 'utils/html';
 
 interface Props {
-  beatmap: BeatmapJsonExtended;
+  beatmap: BeatmapExtendedJson;
   beatmapset: BeatmapsetJson;
 }
 
@@ -33,7 +34,7 @@ const BeatmapInfo = (props: Props) => {
 
       <div className='score-beatmap__detail'>
         <span className='score-beatmap__detail-item'>
-          <BeatmapIcon beatmap={beatmap} showConvertMode showTitle={false} />
+          <BeatmapIcon beatmap={beatmap} showConvertMode />
         </span>
 
         <span className='score-beatmap__detail-item score-beatmap__detail-item--difficulty'>
@@ -43,7 +44,7 @@ const BeatmapInfo = (props: Props) => {
           >
             <span className='fas fa-star' />
           </span>
-          {osu.formatNumber(beatmap.difficulty_rating)}
+          {formatNumber(beatmap.difficulty_rating)}
         </span>
 
         <span className='score-beatmap__detail-item'>
@@ -55,11 +56,7 @@ const BeatmapInfo = (props: Props) => {
           <span className='score-beatmap__mapper'>
             <StringWithComponent
               mappings={{
-                ':mapper':
-                  <UserLink
-                    key='user'
-                    user={{ id: beatmapset.user_id, username: beatmapset.creator }}
-                  />,
+                mapper: <UserLink user={{ id: beatmapset.user_id, username: beatmapset.creator }} />,
               }}
               pattern={osu.trans('beatmapsets.show.details.mapped_by')}
             />

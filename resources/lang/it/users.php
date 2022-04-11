@@ -89,7 +89,7 @@ return [
         'forgot' => 'Hai dimenticato la tua password?',
         'info' => 'Accedi per continuare',
         'invalid_captcha' => 'Troppi tentativi di accesso falliti, completa il captcha e riprova. (Ricarica la pagina se il captcha non è visibile)',
-        'locked_ip' => 'il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
+        'locked_ip' => 'Il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
         'password' => 'Password',
         'register' => "Non hai un account di osu!? Fanne uno nuovo",
         'remember' => 'Ricorda questo computer',
@@ -158,6 +158,10 @@ return [
         'comments_count' => [
             '_' => 'Ha postato :link',
             'count' => ':count_delimited commento|:count_delimited commenti',
+        ],
+        'cover' => [
+            'to_0' => 'Nascondi copertina',
+            'to_1' => 'Mostra copertina',
         ],
         'edit' => [
             'cover' => [
@@ -301,8 +305,8 @@ return [
                 'recent' => 'Più recenti',
                 'title' => 'Medaglie',
             ],
-            'multiplayer' => [
-                'title' => 'Partite Multigiocatore',
+            'playlists' => [
+                'title' => 'Partite Playlist',
             ],
             'posts' => [
                 'title' => 'Post',
@@ -311,6 +315,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Recenti',
+            ],
+            'realtime' => [
+                'title' => 'Partite Multigiocatore',
             ],
             'top_ranks' => [
                 'download_replay' => 'Scarica Replay',
@@ -324,6 +331,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Primi Posti',
+                ],
+                'pin' => [
+                    'to_0' => 'Rimuovi',
+                    'to_0_done' => 'Punteggio rimosso dai fissati',
+                    'to_1' => 'Fissa',
+                    'to_1_done' => 'Punteggio fissato',
+                ],
+                'pinned' => [
+                    'title' => 'Punteggi Fissati',
                 ],
             ],
             'votes' => [
@@ -390,7 +406,7 @@ return [
             'country' => 'Rank del paese per :mode',
             'country_simple' => 'Classifica Nazionale',
             'global' => 'Posto globale per :mode',
-            'global_simple' => 'Classifica globale',
+            'global_simple' => 'Classifica Globale',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei Colpi',

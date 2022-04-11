@@ -18,7 +18,7 @@ class ForumTopicsControllerTest extends TestCase
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
-        $user = factory(User::class)->create()->fresh();
+        $user = User::factory()->create()->fresh();
         $group = app('groups')->byIdentifier('default');
         $user->setDefaultGroup($group);
         $authOption = Forum\AuthOption::firstOrCreate([
@@ -66,7 +66,7 @@ class ForumTopicsControllerTest extends TestCase
             'forum_id' => $forum->getKey(),
             'topic_status' => Forum\Topic::TYPES['normal'],
         ]);
-        $user = $this->createUserWithGroup('gmt');
+        $user = User::factory()->withGroup('gmt')->create();
         $type = 'sticky';
         $typeInt = Forum\Topic::TYPES[$type];
 
@@ -86,7 +86,7 @@ class ForumTopicsControllerTest extends TestCase
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
-        $user = factory(User::class)->create()->fresh();
+        $user = User::factory()->create()->fresh();
         $group = app('groups')->byIdentifier('default');
         $user->setDefaultGroup($group);
         $authOption = Forum\AuthOption::firstOrCreate([
@@ -133,14 +133,14 @@ class ForumTopicsControllerTest extends TestCase
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
-        $poster = factory(User::class)->create()->fresh();
+        $poster = User::factory()->create()->fresh();
         $poster->setDefaultGroup(app('groups')->byIdentifier('default'));
         Forum\Post::createNew($topic, $poster, 'test', false);
 
         $topic->refresh();
         $topic->delete();
 
-        $user = factory(User::class)->create()->fresh();
+        $user = User::factory()->create()->fresh();
         $user->setDefaultGroup(app('groups')->byIdentifier('gmt'));
 
         $initialTopicCount = Forum\Topic::count();
@@ -165,6 +165,8 @@ class ForumTopicsControllerTest extends TestCase
             'forum_id' => $forum->forum_id,
             'topic_id' => $topic->topic_id,
         ]);
+        // TODO: make this part of post factory callback
+        $topic->refreshCache();
 
         $this
             ->get(route('forum.topics.show', $topic->topic_id))
@@ -230,7 +232,9 @@ class ForumTopicsControllerTest extends TestCase
             'forum_id' => $forum->forum_id,
             'topic_id' => $topic->topic_id,
         ]);
-        $user = factory(User::class)->create();
+        // TODO: make this part of post factory callback
+        $topic->refreshCache();
+        $user = User::factory()->create();
 
         $this
             ->be($user)
@@ -241,7 +245,7 @@ class ForumTopicsControllerTest extends TestCase
     public function testStore()
     {
         $forum = factory(Forum\Forum::class)->states('child')->create();
-        $user = factory(User::class)->create()->fresh();
+        $user = User::factory()->create()->fresh();
         $group = app('groups')->byIdentifier('default');
         $user->setDefaultGroup($group);
         $authOption = Forum\AuthOption::firstOrCreate([
@@ -293,7 +297,7 @@ class ForumTopicsControllerTest extends TestCase
     public function testUpdateTitle()
     {
         $forum = factory(Forum\Forum::class)->states('child')->create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $group = app('groups')->byIdentifier('default');
         $user->setDefaultGroup($group);
         $initialTitle = 'New topic';
@@ -320,7 +324,7 @@ class ForumTopicsControllerTest extends TestCase
     public function testUpdateTitleBlank()
     {
         $forum = factory(Forum\Forum::class)->states('child')->create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $group = app('groups')->byIdentifier('default');
         $user->setDefaultGroup($group);
         $initialTitle = 'New topic';
@@ -348,7 +352,7 @@ class ForumTopicsControllerTest extends TestCase
 
         // initial user for forum posts and stuff
         // FIXME: this is actually a hidden dependency
-        factory(User::class)->create();
+        User::factory()->create();
     }
 
     private function addPlaycount($user, $playcount = null)

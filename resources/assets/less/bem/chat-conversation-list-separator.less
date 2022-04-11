@@ -15,7 +15,11 @@
   @media @mobile {
     width: 2px;
     height: 20px;
-    margin: 0px 5px;
+    margin: 0 5px;
     align-self: center;
+  }
+
+  & + &, &:first-child, &:last-child {
+    display: none;
   }
 }

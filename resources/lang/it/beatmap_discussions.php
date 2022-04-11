@@ -60,7 +60,7 @@ return [
 
     'owner_editor' => [
         'button' => 'Mapper della difficoltà',
-        'reset_confirm' => 'Resettare il proprietario per questa difficoltà?',
+        'reset_confirm' => 'Ripristinare il proprietario per questa difficoltà?',
         'user' => 'Proprietario',
         'version' => 'Difficoltà',
     ],

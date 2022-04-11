@@ -1,17 +1,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
-import { computed, observable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 
 interface Props {
-  beatmapset: BeatmapsetJson;
+  beatmapset: BeatmapsetExtendedJson;
   onClose: () => void;
 }
 
@@ -23,6 +24,8 @@ export default class LoveConfirmation extends React.Component<Props> {
     super(props);
 
     this.selectedBeatmapIds = new Set(this.beatmaps.map((beatmap) => beatmap.id));
+
+    makeObservable(this);
   }
 
   @computed
@@ -107,7 +110,7 @@ export default class LoveConfirmation extends React.Component<Props> {
       return;
     }
 
-    LoadingOverlay.show();
+    showLoadingOverlay();
 
     const url = route('beatmapsets.love', { beatmapset: this.props.beatmapset.id });
     const params = {
@@ -119,7 +122,7 @@ export default class LoveConfirmation extends React.Component<Props> {
       $.publish('beatmapsetDiscussions:update', { beatmapset: response });
       this.props.onClose();
     }).fail(osu.ajaxError)
-      .always(LoadingOverlay.hide);
+      .always(hideLoadingOverlay);
   };
 
   private renderDiffMode(mode: GameMode, beatmaps: BeatmapJson[]) {

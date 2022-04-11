@@ -63,7 +63,7 @@ class BeatmapsetDisqualifyNotificationsTest extends TestCase
 
         Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) {
             return $event->notification->name === Notification::BEATMAPSET_DISQUALIFY
-                && in_array($this->user->getKey(), $event->getReceiverIds(), true);
+                && $this->inReceivers($this->user, $event);
         });
     }
 
@@ -86,7 +86,7 @@ class BeatmapsetDisqualifyNotificationsTest extends TestCase
 
             Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) {
                 return $event->notification->name === Notification::BEATMAPSET_DISQUALIFY
-                    && in_array($this->user->getKey(), $event->getReceiverIds(), true);
+                    && $this->inReceivers($this->user, $event);
             });
         } else {
             // We want to assert the job was queued but because there should be no receivers, there won't be a notification generated.
@@ -112,7 +112,7 @@ class BeatmapsetDisqualifyNotificationsTest extends TestCase
 
         Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) {
             return $event->notification->name === Notification::BEATMAPSET_DISQUALIFY
-                && in_array($this->user->getKey(), $event->getReceiverIds(), true);
+                && $this->inReceivers($this->user, $event);
         });
     }
 
@@ -143,13 +143,9 @@ class BeatmapsetDisqualifyNotificationsTest extends TestCase
         Queue::fake();
         Event::fake();
 
-        $owner = factory(User::class)->create();
-        $this->beatmapset = factory(Beatmapset::class)->states('qualified', 'with_discussion')->create([
-            'creator' => $owner->username,
-            'user_id' => $owner->getKey(),
-        ]);
-        $this->sender = $this->createUserWithGroup('bng');
-        $this->user = factory(User::class)->create();
+        $this->beatmapset = Beatmapset::factory()->owner()->qualified()->withDiscussion()->create();
+        $this->sender = User::factory()->withGroup('bng')->create();
+        $this->user = User::factory()->create();
     }
 
     private function createNotificationOption()

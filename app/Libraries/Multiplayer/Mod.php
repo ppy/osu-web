@@ -28,6 +28,8 @@ class Mod
     const RANDOM = 'RD';
     const MIRROR = 'MR';
     const MUTED = 'MU';
+    const NO_SCOPE = 'NS';
+    const ADAPTIVE_SPEED = 'AS';
 
     // osu-specific
     const OSU_AUTOPILOT = 'AP';
@@ -43,6 +45,9 @@ class Mod
     const OSU_CLASSIC = 'CL';
     const OSU_BARRELROLL = 'BR';
     const OSU_APPROACH_DIFFERENT = 'AD';
+    const OSU_MAGNETISED = 'MG';
+    const OSU_ALTERNATE = 'AL';
+    const OSU_STRICT_TRACKING = 'ST';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -59,6 +64,7 @@ class Mod
     const MANIA_FADEIN = 'FI';
     const MANIA_INVERT = 'IN';
     const MANIA_CONSTANTSPEED = 'CS';
+    const MANIA_HOLDOFF = 'HO';
 
     // catch-specific
     const CATCH_FLOATINGFRUIT = 'FF';
@@ -114,10 +120,9 @@ class Mod
             self::HALFTIME,
             self::DAYCORE,
             self::NIGHTCORE,
-        ],
-        [
             self::WIND_DOWN,
             self::WIND_UP,
+            self::ADAPTIVE_SPEED,
         ],
         [
             self::MANIA_KEY1,
@@ -185,6 +190,8 @@ class Mod
         ],
         self::FLASHLIGHT => [
             'follow_delay' => 'float',
+            'size_multiplier' => 'float',
+            'combo_based_size' => 'bool',
         ],
         self::OSU_GROW => [
             'start_scale' => 'float',
@@ -227,6 +234,19 @@ class Mod
         ],
         self::PERFECT => [
             'restart' => 'bool',
+        ],
+        self::NO_SCOPE => [
+            'hidden_combo_count' => 'int',
+        ],
+        self::HIDDEN => [
+            'only_fade_approach_circles' => 'bool',
+        ],
+        self::OSU_MAGNETISED => [
+            'attraction_strength' => 'float',
+        ],
+        self::ADAPTIVE_SPEED => [
+            'initial_rate' => 'float',
+            'adjust_pitch' => 'bool',
         ],
     ];
 
@@ -301,6 +321,11 @@ class Mod
                         self::RANDOM,
                         self::OSU_APPROACH_DIFFERENT,
                         self::MIRROR,
+                        self::NO_SCOPE,
+                        self::OSU_MAGNETISED,
+                        self::OSU_ALTERNATE,
+                        self::ADAPTIVE_SPEED,
+                        self::OSU_STRICT_TRACKING,
                     ]
                 ),
 
@@ -309,6 +334,7 @@ class Mod
                     [
                         self::TAIKO_SWAP,
                         self::RANDOM,
+                        self::ADAPTIVE_SPEED,
                     ]
                 ),
 
@@ -317,6 +343,7 @@ class Mod
                     [
                         self::CATCH_FLOATINGFRUIT,
                         self::MIRROR,
+                        self::NO_SCOPE,
                     ]
                 ),
 
@@ -339,6 +366,8 @@ class Mod
                         self::MANIA_INVERT,
                         self::MANIA_CONSTANTSPEED,
                         self::RANDOM,
+                        self::MANIA_HOLDOFF,
+                        self::ADAPTIVE_SPEED,
                     ]
                 ),
             ];
@@ -409,6 +438,26 @@ class Mod
                             self::HARDROCK,
                             self::MIRROR,
                         ],
+                        [
+                            self::OSU_MAGNETISED,
+                            self::OSU_AUTOPILOT,
+                        ],
+                        [
+                            self::OSU_MAGNETISED,
+                            self::OSU_WIGGLE,
+                        ],
+                        [
+                            self::OSU_MAGNETISED,
+                            self::OSU_TRANSFORM,
+                        ],
+                        [
+                            self::OSU_MAGNETISED,
+                            self::RELAX,
+                        ],
+                        [
+                            self::OSU_CLASSIC,
+                            self::OSU_STRICT_TRACKING,
+                        ],
                     ]
                 ),
                 Ruleset::TAIKO => array_merge(
@@ -428,6 +477,10 @@ class Mod
                             self::FLASHLIGHT,
                             self::HIDDEN,
                             self::MANIA_FADEIN,
+                        ],
+                        [
+                            self::MANIA_HOLDOFF,
+                            self::MANIA_INVERT,
                         ],
                     ]
                 ),

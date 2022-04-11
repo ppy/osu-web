@@ -23,7 +23,7 @@ return [
             'set_metadata' => 'Bạn phải chọn thể loại nhạc và ngôn ngữ trước khi nominating.',
         ],
         'resolve' => [
-            'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể đánh dấu cuộc thảo luận là đã được giải quyết.',
+            'not_owner' => 'Chỉ có chủ thớt và chủ beatmap mới có thể đánh dấu cuộc thảo luận là đã được giải quyết.',
         ],
 
         'store' => [
@@ -63,12 +63,14 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => 'Kênh này chỉ dành cho các thông báo.',
         'blocked' => 'Không thể nhắn tin cho người dùng đã chặn bạn hoặc nếu bạn đã chặn người đó.',
         'friends_only' => 'Người dùng này đang chặn tin nhắn từ những người không trong danh sách bạn của họ.',
         'moderated' => 'Kênh hiện đang được kiểm duyệt.',
         'no_access' => 'Bạn không có quyền truy cập vào kênh này.',
+        'receive_friends_only' => 'Người này có thể không trả lời được vì bạn đang chỉ chấp nhận tin nhắn từ người trong danh sách bạn bè.',
         'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
-        'silenced' => '',
+        'silenced' => 'Bạn không thể gửi tin nhắn khi bị tắt tiếng, bị hạn chế hoặc bị cấm.',
     ],
 
     'comment' => [
@@ -82,7 +84,7 @@ return [
 
         'entry' => [
             'limit_reached' => 'Bạn đã đạt giới hạn bài dự thi cho cuộc thi này',
-            'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm mục nào nữa và sẽ sớm mở bình chọn.',
+            'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm bài dự thi nào nữa và sẽ sớm mở bình chọn.',
         ],
     ],
 
@@ -94,7 +96,7 @@ return [
         'post' => [
             'delete' => [
                 'only_last_post' => 'Chỉ có thể xóa bài đăng cuối cùng.',
-                'locked' => 'Không thể xóa bài đăng của một topic bị khóa.',
+                'locked' => 'Không thể xóa bài đăng của một chủ đề bị khóa.',
                 'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
                 'not_owner' => 'Chỉ người đăng mới có thể xóa bài đăng.',
             ],
@@ -116,7 +118,7 @@ return [
         'topic' => [
             'reply' => [
                 'double_post' => 'Vui lòng chỉnh sửa bài đăng cuối cùng của bạn thay vì đăng thêm lần nữa.',
-                'locked' => 'Không thể trả lời một thread bị khóa.',
+                'locked' => 'Không thể trả lời một luồng bị khóa.',
                 'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
                 'no_permission' => 'Không có quyền trả lời.',
 
@@ -163,6 +165,13 @@ return [
 
         'view' => [
             'admin_only' => 'Chỉ có admin mới có thể xem diễn đàn này.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => 'Chỉ có người sở hữu có thể ghim điểm.',
+            'too_many' => 'Ghim quá nhiều điểm.',
         ],
     ],
 

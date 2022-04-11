@@ -112,7 +112,7 @@ return [
         'username' => 'Convidado',
         'error' => 'Precisas de ter sessão iniciada para fazer isto.',
     ],
-    'logout_confirm' => 'Tens a certeza que queres terminar a sessão? :(',
+    'logout_confirm' => 'Tens a certeza de que queres terminar a sessão? :(',
     'report' => [
         'button_text' => 'denunciar',
         'comments' => 'Comentários adicionais',
@@ -158,6 +158,10 @@ return [
         'comments_count' => [
             '_' => 'Publicou :link',
             'count' => ':count_delimited comentário|:count_delimited comentários',
+        ],
+        'cover' => [
+            'to_0' => 'Ocultar capa',
+            'to_1' => 'Mostrar capa',
         ],
         'edit' => [
             'cover' => [
@@ -301,8 +305,8 @@ return [
                 'recent' => 'As mais recentes',
                 'title' => 'Medalhas',
             ],
-            'multiplayer' => [
-                'title' => 'Jogos multijogador',
+            'playlists' => [
+                'title' => 'Playlist de partidas',
             ],
             'posts' => [
                 'title' => 'Publicações',
@@ -311,6 +315,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Recente',
+            ],
+            'realtime' => [
+                'title' => 'Jogos multijogador',
             ],
             'top_ranks' => [
                 'download_replay' => 'Transferir repetição',
@@ -324,6 +331,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Classificações de primeiro lugar',
+                ],
+                'pin' => [
+                    'to_0' => 'Desafixar',
+                    'to_0_done' => 'Pontuação desafixada',
+                    'to_1' => 'Afixar',
+                    'to_1_done' => 'Pontuação fixada',
+                ],
+                'pinned' => [
+                    'title' => 'Pontuações fixadas',
                 ],
             ],
             'votes' => [

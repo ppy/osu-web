@@ -7,15 +7,21 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ScoreRetrievalException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
+use App\Libraries\BeatmapDifficultyAttributes;
+use App\Libraries\ModsHelper;
+use App\Libraries\Multiplayer\Mod;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
+use App\Transformers\BeatmapTransformer;
 
 /**
  * @group Beatmaps
  */
 class BeatmapsController extends Controller
 {
+    const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo'];
+
     public function __construct()
     {
         parent::__construct();
@@ -23,9 +29,202 @@ class BeatmapsController extends Controller
         $this->middleware('require-scopes:public');
     }
 
+    /**
+     * Get Beatmap Attributes
+     *
+     * Returns difficulty attributes of beatmap with specific mode and mods combination.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Field      | Type
+     * ---------- | ----
+     * Attributes | [DifficultyAttributes](#beatmapdifficultyattributes)
+     *
+     * @urlParam beatmap integer required Beatmap id. Example: 2
+     * @bodyParam mods number|string[]|Mod[] Mod combination. Can be either a bitset of mods, array of mod acronyms, or array of mods. Defaults to no mods. Example: 1
+     * @bodyParam ruleset GameMode Ruleset of the difficulty attributes. Only valid if it's the beatmap ruleset or the beatmap can be converted to the specified ruleset. Defaults to ruleset of the specified beatmap. Example: osu
+     * @bodyParam ruleset_id integer The same as `ruleset` but in integer form. No-example
+     *
+     * @response {
+     *   "attributes": {
+     *       "max_combo": 100,
+     *       ...
+     *   }
+     * }
+     */
+    public function attributes($id)
+    {
+        $beatmap = Beatmap::whereHas('beatmapset')->findOrFail($id);
+
+        $params = get_params(request()->all(), null, [
+            'mods:any',
+            'ruleset:string',
+            'ruleset_id:int',
+        ], ['null_missing' => true]);
+
+        $rulesetId = $params['ruleset_id'];
+        abort_if(
+            $rulesetId !== null && Beatmap::modeStr($rulesetId) === null,
+            422,
+            'invalid ruleset_id specified'
+        );
+
+        if ($rulesetId === null && $params['ruleset'] !== null) {
+            $rulesetId = Beatmap::modeInt($params['ruleset']);
+            abort_if($rulesetId === null, 422, 'invalid ruleset specified');
+        }
+
+        if ($rulesetId === null) {
+            $rulesetId = $beatmap->playmode;
+        } else {
+            abort_if(
+                $rulesetId !== $beatmap->playmode && !$beatmap->canBeConverted(),
+                422,
+                "specified beatmap can't be converted to the specified ruleset"
+            );
+        }
+
+        if (isset($params['mods'])) {
+            if (ctype_digit($params['mods'])) {
+                $params['mods'] = ModsHelper::toArray((int) $params['mods']);
+            }
+            if (is_array($params['mods'])) {
+                if (count($params['mods']) > 0 && is_string(array_first($params['mods']))) {
+                    $params['mods'] = array_map(fn ($m) => ['acronym' => $m], $params['mods']);
+                }
+
+                $mods = Mod::parseInputArray($params['mods'], $rulesetId);
+            } else {
+                abort(422, 'invalid mods specified');
+            }
+        }
+
+        return ['attributes' => BeatmapDifficultyAttributes::get($beatmap->getKey(), $rulesetId, $mods ?? [])];
+    }
+
+    /**
+     * Get Beatmaps
+     *
+     * Returns list of beatmaps.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Field | Type | Description
+     * ----- | ---- | -----------
+     * beatmaps | [BeatmapCompact](#beatmapcompact)[] | Includes: beatmapset (with ratings), failtimes, max_combo.
+     *
+     * @queryParam ids[] Beatmap id to be returned. Specify once for each beatmap id requested. Up to 50 beatmaps can be requested at once. Example: 1
+     *
+     * @response {
+     *   "beatmaps": [
+     *     {
+     *       "id": 1,
+     *       "other": "attributes..."
+     *     },
+     *     {
+     *       "id": 2,
+     *       "other": "attributes..."
+     *     }
+     *   ]
+     * }
+     */
+    public function index()
+    {
+        $ids = array_slice(get_arr(request('ids'), 'get_int') ?? [], 0, 50);
+
+        if (count($ids) > 0) {
+            $beatmaps = Beatmap
+                ::whereIn('beatmap_id', $ids)
+                ->whereHas('beatmapset')
+                ->with([
+                    'beatmapset',
+                    'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
+                    'failtimes',
+                ])->withMaxCombo()
+                ->get();
+        }
+
+        return [
+            'beatmaps' => json_collection($beatmaps ?? [], new BeatmapTransformer(), static::DEFAULT_API_INCLUDES),
+        ];
+    }
+
+    /**
+     * Lookup Beatmap
+     *
+     * Returns beatmap.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * See [Get Beatmap](#get-beatmap)
+     *
+     * @queryParam checksum A beatmap checksum.
+     * @queryParam filename A filename to lookup.
+     * @queryParam id A beatmap ID to lookup.
+     *
+     * @response "See Beatmap object section"
+     */
+    public function lookup()
+    {
+        static $keyMap = [
+            'checksum' => 'checksum',
+            'filename' => 'filename',
+            'id' => 'beatmap_id',
+        ];
+
+        $params = get_params(request()->all(), null, ['checksum:string', 'filename:string', 'id:int']);
+
+        foreach ($params as $key => $value) {
+            $beatmap = Beatmap::whereHas('beatmapset')->firstWhere($keyMap[$key], $value);
+
+            if ($beatmap !== null) {
+                break;
+            }
+        }
+
+        if (!isset($beatmap)) {
+            abort(404);
+        }
+
+        return json_item($beatmap, new BeatmapTransformer(), static::DEFAULT_API_INCLUDES);
+    }
+
+    /**
+     * Get Beatmap
+     *
+     * Gets beatmap data for the specified beatmap ID.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Returns [Beatmap](#beatmap) object.
+     * Following attributes are included in the response object when applicable,
+     *
+     * Attribute                            | Notes
+     * -------------------------------------|------
+     * beatmapset                           | Includes ratings property.
+     * failtimes                            | |
+     * max_combo                            | |
+     *
+     * @urlParam beatmap integer required The ID of the beatmap.
+     *
+     * @response "See Beatmap object section."
+     */
     public function show($id)
     {
-        $beatmap = Beatmap::findOrFail($id);
+        $beatmap = Beatmap::whereHas('beatmapset')->findOrFail($id);
+
+        if (is_api_request()) {
+            return json_item($beatmap, new BeatmapTransformer(), static::DEFAULT_API_INCLUDES);
+        }
+
         $beatmapset = $beatmap->beatmapset;
 
         if ($beatmapset === null) {
@@ -57,7 +256,7 @@ class BeatmapsController extends Controller
      *
      * ### Response Format
      *
-     * Returns [BeatmapScores](#beatmapscores)
+     * Returns [BeatmapScores](#beatmapscores). `Score` object inside includes `user` and the included `user` includes `country` and `cover`.
      *
      * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
@@ -97,15 +296,17 @@ class BeatmapsController extends Controller
                 $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
             }
 
+            static $scoreIncludes = ['user', 'user.country', 'user.cover'];
+
             $results = [
-                'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
+                'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', $scoreIncludes),
             ];
 
             if (isset($userScore)) {
                 // TODO: this should be moved to user_score
                 $results['userScore'] = [
                     'position' => $userScore->userRank(compact('type', 'mods')),
-                    'score' => json_item($userScore, 'Score', ['user', 'user.country', 'user.cover']),
+                    'score' => json_item($userScore, 'Score', $scoreIncludes),
                 ];
             }
 
@@ -186,6 +387,40 @@ class BeatmapsController extends Controller
         } catch (ScoreRetrievalException $ex) {
             return error_popup($ex->getMessage());
         }
+    }
+
+    /**
+     * Get a User Beatmap scores
+     *
+     * Return a [User](#user)'s scores on a Beatmap
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field  | Type
+     * ------ | ----
+     * scores | [Score](#score)[]
+     *
+     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
+     * @urlParam user integer required Id of the [User](#user).
+     *
+     * @queryParam mode The [GameMode](#gamemode) to get scores for. Defaults to beatmap mode
+     */
+    public function userScoreAll($beatmapId, $userId)
+    {
+        $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
+        $mode = presence(get_string(request('mode'))) ?? $beatmap->mode;
+        $scores = BestModel::getClassByString($mode)
+            ::default()
+            ->where([
+                'beatmap_id' => $beatmap->getKey(),
+                'user_id' => $userId,
+            ])->get();
+
+        return [
+            'scores' => json_collection($scores, 'Score'),
+        ];
     }
 
     private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)

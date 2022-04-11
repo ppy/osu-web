@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Hidasta vähän, pelaa enemmän.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmapit',
         'guest_title' => 'Beatmapit',
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'saavutettu :when',
             'country' => 'Maakohtaiset sijoitukset',
+            'error' => '',
             'friend' => 'Kavereiden sijoitukset',
             'global' => 'Maailmanlaajuiset sijoitukset',
             'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
@@ -150,11 +155,12 @@ return [
                 'combo' => 'Maksimikombo',
                 'miss' => 'Ohi',
                 'mods' => 'Modit',
+                'pin' => '',
                 'player' => 'Pelaaja',
                 'pp' => '',
                 'rank' => 'Sijoitus',
-                'score_total' => 'Kokonaispisteet',
                 'score' => 'Pisteet',
+                'score_total' => 'Kokonaispisteet',
                 'time' => 'Aika',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Johdossa',
                 'own' => 'Sinun parhaasi',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

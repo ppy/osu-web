@@ -15,8 +15,12 @@ return [
         'limit_exceeded' => 'Reduzca la velocidad, juegue más.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Artista destacado',
+    ],
+
     'index' => [
-        'title' => 'Listado de Mapas',
+        'title' => 'Lista de mapas',
         'guest_title' => 'Mapas',
     ],
 
@@ -126,12 +130,12 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Este mapa del tiempo contiene contenido explícito, ofensivo o perturbador. ¿Desea verlo de todos modos?',
+            'details' => 'Este mapa contiene contenido explícito, ofensivo o perturbador. ¿Desea verlo de todos modos?',
             'title' => 'Contenido explícito',
 
             'buttons' => [
                 'disable' => 'Desactivar advertencia',
-                'listing' => 'Listado de mapas',
+                'listing' => 'Volver a lista de mapas',
                 'show' => 'Mostrar',
             ],
         ],
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'logrado :when',
             'country' => 'Clasificación Nacional',
+            'error' => 'Error al cargar las clasificaciones',
             'friend' => 'Clasificación entre Amigos',
             'global' => 'Clasificación Global',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',
@@ -150,11 +155,12 @@ return [
                 'combo' => 'Combo máximo',
                 'miss' => 'Fallos',
                 'mods' => 'Mods',
+                'pin' => 'Anclar',
                 'player' => 'Jugador',
                 'pp' => '',
                 'rank' => 'Puesto',
-                'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',
+                'score_total' => 'Puntuación total',
                 'time' => 'Tiempo',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Liderando',
                 'own' => 'Tu mejor puntuación',
+            ],
+            'supporter_link' => [
+                '_' => '¡Clic :here para ver todas las características de lujo que ofrece!',
+                'here' => 'aquí',
             ],
         ],
 

@@ -20,23 +20,32 @@ class ReportUserTest extends TestCase
         $this->reporter->reportBy($this->reporter);
     }
 
+    public function testNoComments()
+    {
+        $user = User::factory()->create();
+
+        $this->expectException(ValidationException::class);
+        $user->reportBy($this->reporter);
+    }
+
     public function testReasonIsNotValid()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->expectException(QueryException::class);
         $user->reportBy($this->reporter, [
+            'comments' => 'some comment',
             'reason' => 'NotAValidReason',
         ]);
     }
 
     public function testReportableInstance()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $reportedCount = $user->reportedIn()->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 
-        $report = $user->reportBy($this->reporter);
+        $report = $user->reportBy($this->reporter, ['comments' => 'some comment']);
         $this->assertSame($reportedCount + 1, $user->reportedIn()->count());
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
         $this->assertSame($report->user_id, $report->user_id);
@@ -46,6 +55,6 @@ class ReportUserTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->reporter = factory(User::class)->create();
+        $this->reporter = User::factory()->create();
     }
 }

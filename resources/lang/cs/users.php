@@ -11,7 +11,7 @@ return [
         'title_compact' => 'Módování',
 
         'discussions' => [
-            'title_recent' => 'Nedávno zahájená diskuze',
+            'title_recent' => 'Nedávno zahájené diskuze',
         ],
 
         'events' => [
@@ -34,19 +34,19 @@ return [
     'blocks' => [
         'banner_text' => 'Uživatel byl zablokován.',
         'blocked_count' => 'blokovaných uživatelů (:count)',
-        'hide_profile' => 'skrýt profil',
+        'hide_profile' => 'Skrýt profil',
         'not_blocked' => 'Tento uživatel není blokován.',
-        'show_profile' => 'zobrazit profil',
+        'show_profile' => 'Zobrazit profil',
         'too_many' => 'Byl dosažen limit blockovaných uživatelů.',
         'button' => [
-            'block' => 'blokovat',
-            'unblock' => 'odblokovat',
+            'block' => 'Blokovat',
+            'unblock' => 'Odblokovat',
         ],
     ],
 
     'card' => [
         'loading' => 'Načítání...',
-        'send_message' => 'odeslat zprávu',
+        'send_message' => 'Odeslat zprávu',
     ],
 
     'disabled' => [
@@ -88,7 +88,7 @@ return [
         'failed' => 'Nesprávné přihlášení',
         'forgot' => 'Zapoměl jsi heslo?',
         'info' => 'Prosím přihlaste se pro pokračování',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Příliš mnoho neúspěšných pokusů o přihlášení, vyplňte prosím captcha a zkuste to znovu. (Obnovte stránku pokud captcha není vidět)',
         'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
         'password' => 'Heslo',
         'register' => "Nemáš osu! účet? Vytvoř si ho",
@@ -103,7 +103,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':username\'s příspěvky',
+        'title' => 'příspěvky hráče :username',
     ],
 
     'anonymous' => [
@@ -114,31 +114,31 @@ return [
     ],
     'logout_confirm' => 'Opravdu se chceš odhlásit? :(',
     'report' => [
-        'button_text' => 'nahlásit',
-        'comments' => 'Přídavné komentáře',
-        'placeholder' => 'Prosím uveďte jakékoliv informace které si myslíte že by mohly být užitečně.',
+        'button_text' => 'Nahlásit',
+        'comments' => 'Poznámky',
+        'placeholder' => 'Uveďte prosím jakékoliv informace, které si myslíte, že by mohly být užitečné.',
         'reason' => 'Důvod',
-        'thanks' => 'Děkují za vaše nahlášení!',
+        'thanks' => 'Děkujeme za vaše nahlášení!',
         'title' => 'Nahlásit :username?',
 
         'actions' => [
-            'send' => 'Poslat Nahlášení',
+            'send' => 'Odeslat nahlášení',
             'cancel' => 'Zrušit',
         ],
 
         'options' => [
-            'cheating' => 'Faulové hráni / Podvádění',
-            'multiple_accounts' => '',
-            'insults' => 'Uráží mě / jiné',
+            'cheating' => 'Podvádění',
+            'multiple_accounts' => 'Používání více účtů',
+            'insults' => 'Uráží mě / ostatní',
             'spam' => 'Spamování',
-            'unwanted_content' => 'Linkovaní nebezpečného obsahu',
+            'unwanted_content' => 'Odkazování na nevhodný obsah',
             'nonsense' => 'Nesmysl',
-            'other' => 'Ostatní (napište dolů)',
+            'other' => 'Jiný (napište níže)',
         ],
     ],
     'restricted_banner' => [
         'title' => 'Tvůj účet byl omezen!',
-        'message' => 'Zatímco jsi v omezeném režimu, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu který by se měl sám vyřešit do nejpozději 24 hodin. Pokud si přeješ odvolat tvé omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktujte podporu</a>.',
+        'message' => 'Zatímco jsi omezený, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu, který by se měl sám vyřešit nejpozději do 24 hodin. Pokud si přeješ odvolat své omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktuj podporu</a>.',
     ],
     'show' => [
         'age' => ':age let',
@@ -156,8 +156,12 @@ return [
         'title' => "profil uživatele :username",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Postnul :link',
+            'count' => ':count_delimited komentář|:count_delimited komentáře|:count_delimited komentářů',
+        ],
+        'cover' => [
+            'to_0' => 'Skrýt záhlaví',
+            'to_1' => 'Zobrazit záhlaví',
         ],
         'edit' => [
             'cover' => [
@@ -211,7 +215,7 @@ return [
                     'title' => 'Čekající Beatmapy',
                 ],
                 'ranked' => [
-                    'title' => 'Hodnocené & Schválené Beatmapy',
+                    'title' => 'Hodnocené Beatmapy',
                 ],
             ],
             'discussions' => [
@@ -221,8 +225,8 @@ return [
             ],
             'events' => [
                 'title' => 'Události',
-                'title_longer' => 'Poslední údálosti',
-                'show_more' => 'zobrazit více eventů',
+                'title_longer' => 'Poslední události',
+                'show_more' => 'zobrazit více událostí',
             ],
             'historical' => [
                 'title' => 'Historické',
@@ -240,7 +244,7 @@ return [
                     'title' => 'Nedávno zahráno (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Historie zhlédnutí replayů',
+                    'title' => 'Historie zhlédnutí záznamů',
                     'count_label' => 'Záznamů přehráno',
                 ],
             ],
@@ -289,8 +293,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => 'tuto stránku',
+                    '_' => 'Založeno na tom, jak moc uživatel přispěl k moderaci beatmap. Další informace najdete na :link.',
+                    'link' => 'této stránce',
                 ],
             ],
             'me' => [
@@ -301,7 +305,7 @@ return [
                 'recent' => 'Nejnovější',
                 'title' => 'Medaile',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -311,6 +315,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Nedávné',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Stáhnout záznam',
@@ -325,13 +332,22 @@ return [
                 'first' => [
                     'title' => 'Umístění na prvním místě',
                 ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
+                ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
+                'given' => 'Udělených hlasů (poslední 3 měsíce)',
+                'received' => 'Získaných hlasů (poslední 3 měsíce)',
                 'title' => 'Hlasy',
                 'title_longer' => 'Poslední hlasy',
-                'vote_count' => '',
+                'vote_count' => ':count_delimited hlas|:count_delimited hlasy|:count_delimited hlasů',
             ],
             'account_standing' => [
                 'title' => 'Stav účtu',
@@ -384,7 +400,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Přispěl :link',
-            'count' => ':count příspěvkem na fóru|:count příspěvky na fóru',
+            'count' => ':count_delimited příspěvkem na fóru|:count_delimited příspěvky na fóru',
         ],
         'rank' => [
             'country' => 'Státní pozice pro :mode',
@@ -401,7 +417,7 @@ return [
             'play_count' => 'Počet zahrání',
             'play_time' => 'Celkový čas hraní',
             'ranked_score' => 'Hodnocené skóre',
-            'replays_watched_by_others' => 'Replaye zhlédnuty ostatními',
+            'replays_watched_by_others' => 'Záznamy zhlédnuty ostatními',
             'score_ranks' => 'Umístění podle skóre',
             'total_hits' => 'Celkově zásahů',
             'total_score' => 'Celkové skóre',
@@ -409,13 +425,13 @@ return [
             'graveyard_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Oblíbené Beatmapy',
             'pending_beatmapset_count' => 'Čekající Beatmapy',
-            'ranked_beatmapset_count' => '',
+            'ranked_beatmapset_count' => 'Hodnocené Beatmapy',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Momentálně jste umlčeni.',
+        'message' => 'Některé akce mohou být nedostupné.',
     ],
 
     'status' => [

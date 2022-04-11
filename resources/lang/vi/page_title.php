@@ -8,7 +8,7 @@ return [
         '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => 'forum của admin',
+        '_' => 'admin của forum',
     ],
     'admin_store' => [
         '_' => 'quản trị viên',
@@ -16,11 +16,11 @@ return [
     'error' => [
         'error' => [
             '400' => 'yêu cầu không hợp lệ',
-            '404' => 'còn thiếu',
+            '404' => 'không thấy',
             '403' => 'bị cấm',
             '401' => 'không được phép',
             '401-verification' => 'xác thực tài khoản',
-            '405' => 'còn thiếu',
+            '405' => 'không thấy',
             '422' => 'yêu cầu không hợp lệ',
             '429' => 'quá nhiều yêu cầu',
             '500' => 'có gì dó đã hỏng',
@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'diễn đàn',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'tổng quan',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'tổng quan',
             'verify_link' => 'xác thực tài khoản',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'nghệ sĩ tiêu biểu',
         ],
         'artists_controller' => [
             '_' => 'nghệ sĩ tiêu biểu',
@@ -137,15 +143,20 @@ return [
 ',
         ],
     ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'uỷ quyền ứng dụng',
+        ],
+    ],
     'store' => [
         '_' => 'cửa hàng',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'thông tin về modder',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'lịch sử chế độ nhiều người chơi',
         ],
     ],
 ];

@@ -6,7 +6,7 @@
 return [
     'instrument_declined' => 'A választott fizetési módot a Paypal visszautasította.',
     'invalid_resource_id' => 'Nem található fizetési információ.',
-    'invalid_token' => 'Hiba történt a fizetés teljesítése során.',
+    'invalid_token' => 'Hiba lépett fel a fizetés befejezése közben.',
     'old_format' => 'A fizetési link lejárt, próbálkozzon újra.',
     'resource_not_found' => 'Nem található fizetési információ.',
     'unknown' => "A fizetés vissza lett utasítva, de nem tudjuk, miért.",

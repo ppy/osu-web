@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Raportează',
+        'title' => 'Raportați beatmap-ul lui :username?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -21,7 +21,7 @@ return [
 
     'forum_post' => [
         'button' => 'Raportează',
-        'title' => '',
+        'title' => 'Raportează postarea lui :username?',
     ],
 
     'scores' => [

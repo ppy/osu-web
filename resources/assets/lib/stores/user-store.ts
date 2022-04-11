@@ -1,12 +1,21 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import DispatcherAction from 'actions/dispatcher-action';
+import { dispatchListener } from 'app-dispatcher';
+import MessageNewEvent from 'chat/message-new-event';
+import DispatchListener from 'dispatch-listener';
 import UserJson from 'interfaces/user-json';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import User from 'models/user';
 
-export default class UserStore {
+@dispatchListener
+export default class UserStore implements DispatchListener {
   @observable users = observable.map<number, User>();
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   flushStore() {
@@ -17,36 +26,32 @@ export default class UserStore {
     return this.users.get(id);
   }
 
+  handleDispatchAction(event: DispatcherAction) {
+    if (event instanceof MessageNewEvent) {
+      this.updateMany(event.json.users);
+    }
+  }
+
   @action
-  getOrCreate(userId: number, props?: UserJson): User {
+  update(json: UserJson): User {
+    const userId = json.id;
     let user = this.users.get(userId);
 
-    // TODO: update from props if newer?
-    if (user && user.loaded) {
-      return user;
-    }
-
-    if (props) {
-      user = User.fromJson(props);
-    } else {
+    if (user == null) {
       user = new User(userId);
+      this.users.set(userId, user);
     }
-    // this.users.delete(userId);
-    this.users.set(userId, user);
 
-    if (!user.loaded) {
-      user.load();
-    }
+    user.updateWithJson(json);
 
     return user;
   }
 
   @action
-  updateWithJson(data: UserJson[] | undefined | null) {
+  updateMany(data: UserJson[] | undefined | null) {
     if (data == null) return;
     for (const json of data) {
-      const user = User.fromJson(json);
-      this.users.set(user.id, user);
+      this.update(json);
     }
   }
 }

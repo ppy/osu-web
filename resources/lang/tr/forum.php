@@ -127,6 +127,55 @@ return [
             'previous' => '10 gönderi geriye git',
         ],
 
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => 'Eylem',
+                'date' => 'Tarih',
+                'user' => 'Kullanıcı',
+            ],
+
+            'data' => [
+                'add_tag' => '":tag" etiketi eklendi',
+                'announcement' => 'konu sabitlendi ve duyuru olarak işaretlendi',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'İptal',
             'post' => 'Kaydet',

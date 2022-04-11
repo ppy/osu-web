@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Nur langsam, spiel mehr.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Featured Artist',
+    ],
+
     'index' => [
         'title' => 'Beatmaps: Liste',
         'guest_title' => 'Beatmaps',
@@ -88,7 +92,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Wenn du es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
+            'action' => 'Wenn es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
 
             'current' => [
                 '_' => 'Die Map ist zurzeit :status.',
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'erreicht :when',
             'country' => 'Landesrangliste',
+            'error' => '',
             'friend' => 'Freundesrangliste',
             'global' => 'Globale Rangliste',
             'supporter-link' => '<a href=":link">Hier</a> klicken, um alle tollen Features zu entdecken!',
@@ -150,11 +155,12 @@ return [
                 'combo' => 'Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => 'Anpinnen',
                 'player' => 'Spieler',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Gesamtpunktzahl',
                 'score' => 'Punktzahl',
+                'score_total' => 'Gesamtpunktzahl',
                 'time' => 'Zeit',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => 'An der Spitze',
                 'own' => 'Dein bester Rang',
+            ],
+            'supporter_link' => [
+                '_' => 'Klicke :here um alle schönen Features zu sehen, die du bekommst!',
+                'here' => 'hier',
             ],
         ],
 

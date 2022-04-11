@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => '',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'Listarea beatmapurilor',
         'guest_title' => 'Beatmaps',
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'realizat :when',
             'country' => 'Clasament pe țară',
+            'error' => '',
             'friend' => 'Clasamentul prietenilor',
             'global' => 'Clasament global',
             'supporter-link' => 'Click <a href=":link">aici</a> pentru a vedea toate avantajele pe care le poți obține!',
@@ -150,11 +155,12 @@ return [
                 'combo' => 'Combo maxim',
                 'miss' => 'Ratări',
                 'mods' => 'Moduri',
+                'pin' => '',
                 'player' => 'Jucător',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Scor total',
                 'score' => 'Scor',
+                'score_total' => 'Scor total',
                 'time' => 'Timp',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => 'În top',
                 'own' => 'Cel mai bun',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

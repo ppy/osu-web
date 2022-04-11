@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Báo cáo',
+        'title' => 'Báo cáo beatmap của :username?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -25,7 +25,7 @@ return [
     ],
 
     'scores' => [
-        'button' => 'Báo Cáo Điểm',
+        'button' => 'Báo cáo điểm',
         'title' => 'Báo cáo điểm của :username?',
     ],
 

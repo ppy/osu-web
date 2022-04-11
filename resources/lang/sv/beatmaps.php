@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Återställ Nominering',
             'praise' => 'Beröm',
             'problem' => 'Problem',
+            'problem_warning' => 'Rapportera problem',
             'review' => 'Recension',
             'suggestion' => 'Förslag',
         ],
@@ -183,7 +184,7 @@ return [
         'disqualify' => 'Diskvalificera',
         'incorrect_state' => 'Ett fel uppstod, pröva att uppdatera sidan.',
         'love' => 'Kärlek',
-        'love_choose' => '',
+        'love_choose' => 'Välj svårighetsgrad för älskad',
         'love_confirm' => 'Älskar du denna beatmap?',
         'nominate' => 'Nominera',
         'nominate_confirm' => 'Nominera denna beatmap?',
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Är du säker? Lägga upp ett nytt problem kommer återställa nomineringar.',
             'disqualify' => 'Är du säker? Detta kommer att ta bort beatmap från kvalificering och återställa nomineringsprocessen.',
+            'nomination_reset' => 'Är du säker? Lägga upp ett nytt problem kommer återställa nomineringar.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -252,6 +254,7 @@ return [
     ],
     'general' => [
         'converts' => 'Inkludera konverterade beatmaps',
+        'featured_artists' => 'Utvalda artister',
         'follows' => 'Prenumererade mappare',
         'recommended' => 'Rekommenderad svårighetsgrad',
     ],
@@ -272,6 +275,7 @@ return [
         'loved' => 'Älskad',
         'mine' => 'Mina Maps',
         'pending' => 'Pågående & WIP',
+        'wip' => '',
         'qualified' => 'Kvalificerad',
         'ranked' => 'Rankad',
     ],

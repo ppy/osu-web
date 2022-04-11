@@ -23,9 +23,10 @@ class UserAccountHistoryTransformer extends TransformerAbstract
     {
         return [
             'description' => $h->reason,
-            'type' => $h->type,
-            'timestamp' => json_time($h->timestamp),
+            'id' => $h->getKey(),
             'length' => $h->period,
+            'timestamp' => json_time($h->timestamp),
+            'type' => $h->type,
         ];
     }
 

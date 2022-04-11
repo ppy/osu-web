@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Nulstil Nominering',
             'praise' => 'Ros',
             'problem' => 'Problem',
+            'problem_warning' => '',
             'review' => 'Anmeld',
             'suggestion' => 'Forslag',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Er du sikker? At slå et nyt problem op nulstiller nominations-processen.',
             'disqualify' => 'Er du sikker? Dette vil fjerne beatmappet fra de kvalificerede beatmaps og vil nulstille nominations-processen.',
+            'nomination_reset' => 'Er du sikker? At slå et nyt problem op nulstiller nominations-processen.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -252,6 +254,7 @@ return [
     ],
     'general' => [
         'converts' => 'Inkluder konvertert beatmeaps',
+        'featured_artists' => '',
         'follows' => 'Subscribed mappers
 ',
         'recommended' => 'Rekommenderat sværhedsgrad',
@@ -273,6 +276,7 @@ return [
         'loved' => 'Elsket',
         'mine' => 'Mine Maps',
         'pending' => 'Afventende & WIP',
+        'wip' => '',
         'qualified' => 'Kvalificeret',
         'ranked' => 'Ranked',
     ],

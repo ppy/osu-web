@@ -35,7 +35,7 @@ class UserSessionEvent extends NotificationEventBase
      *
      * @return void
      */
-    public function __construct($action, $userId, $data)
+    private function __construct($action, $userId, $data)
     {
         parent::__construct();
 

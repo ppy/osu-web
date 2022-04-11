@@ -26,6 +26,17 @@ use Request;
  */
 class TopicsController extends Controller
 {
+    private static function nextUrl($topic, $sort, $cursor, $withDeleted)
+    {
+        return route('forum.topics.show', [
+            'cursor_string' => cursor_encode($cursor),
+            'skip_layout' => 1,
+            'sort' => $sort,
+            'topic' => $topic,
+            'with_deleted' => $withDeleted,
+        ]);
+    }
+
     public function __construct()
     {
         parent::__construct();
@@ -265,20 +276,20 @@ class TopicsController extends Controller
      *
      * ### Response Format
      *
-     * Field  | Type                       | Notes
-     * ------ | -------------------------- | -----
-     * cursor | [Cursor](#cursor)          | |
-     * search |                            | Parameters used for current request excluding cursor.
-     * posts  | [ForumPost](#forum-post)[] | Includes `body`.
-     * topic  | [ForumTopic](#forum-topic) | |
+     * Field         | Type                          | Notes
+     * ------------- | ----------------------------- | -----
+     * cursor_string | [CursorString](#cursorstring) | |
+     * posts         | [ForumPost](#forum-post)[]    | Includes `body`.
+     * search        |                               | Parameters used for current request excluding cursor.
+     * topic         | [ForumTopic](#forum-topic)    | |
      *
      * @urlParam topic integer required Id of the topic. Example: 1
      *
-     * @queryParam cursor [Cursor](#cursor) for pagination. No-example
+     * @queryParam cursor_string Parameter for pagination. No-example
      * @queryParam sort Post sorting option. Valid values are `id_asc` (default) and `id_desc`. No-example
      * @queryParam limit Maximum number of posts to be returned (20 default, 50 at most). No-example
-     * @queryParam start First post id to be returned with `sort` set to `id_asc`. This parameter is ignored if `cursor` is specified. No-example
-     * @queryParam end First post id to be returned with `sort` set to `id_desc`. This parameter is ignored if `cursor` is specified. No-example
+     * @queryParam start First post id to be returned with `sort` set to `id_asc`. This parameter is ignored if `cursor_string` is specified. No-example
+     * @queryParam end First post id to be returned with `sort` set to `id_desc`. This parameter is ignored if `cursor_string` is specified. No-example
      *
      * @response {
      *   "topic": { "id": 1, "...": "..." },
@@ -286,7 +297,7 @@ class TopicsController extends Controller
      *     { "id": 1, "...": "..." },
      *     { "id": 2, "...": "..." }
      *   ],
-     *   "cursor": { "post_id": 1 },
+     *   "cursor_string": "eyJoZWxsbyI6IndvcmxkIn0",
      *   "sort": "id_asc"
      * }
      */
@@ -352,27 +363,37 @@ class TopicsController extends Controller
             }
         }
 
-        $posts = $posts
-            ->load([
-                'lastEditor',
-                'user.country',
-                'user.rank',
-                'user.supporterTagPurchases',
-                'user.userGroups',
-            ])->each(function ($item) use ($topic) {
-                $item
-                    ->setRelation('forum', $topic->forum)
-                    ->setRelation('topic', $topic);
-            });
+        $posts->each(fn ($item) => $item
+            ->setRelation('forum', $topic->forum)
+            ->setRelation('topic', $topic));
+
+        $nextCursor = $cursorHelper->next($posts);
 
         if ($isJsonRequest) {
-            return [
-                'cursor' => $cursorHelper->next($posts),
+            return array_merge([
                 'posts' => json_collection($posts, 'Forum\Post', ['body']),
                 'search' => ['limit' => $params['limit'], 'sort' => $cursorHelper->getSortName()],
                 'topic' => json_item($topic, 'Forum\Topic'),
-            ];
+            ], cursor_for_response($nextCursor));
         }
+
+        $posts->load([
+            'lastEditor',
+            'user.country',
+            'user.rank',
+            'user.supporterTagPurchases',
+            'user.userGroups',
+        ]);
+
+        $navUrls = [
+            'next' => static::nextUrl($topic, $cursorHelper->getSortName(), $nextCursor, $showDeleted),
+            'previous' => static::nextUrl(
+                $topic,
+                $cursorHelper->getSortName() === 'id_desc' ? 'id_asc' : 'id_desc',
+                $cursorHelper->next([$posts[0] ?? null]),
+                $showDeleted
+            ),
+        ];
 
         if ($cursorHelper->getSortName() === 'id_desc') {
             $posts = $posts->reverse();
@@ -384,7 +405,10 @@ class TopicsController extends Controller
         $firstPostPosition = $topic->postPosition($firstShownPostId);
 
         if ($skipLayout) {
-            return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
+            return [
+                'content' => view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'))->render(),
+                'next_url' => $navUrls['next'],
+            ];
         }
 
         $poll = $topic->poll();
@@ -420,6 +444,7 @@ class TopicsController extends Controller
             'posts',
             'featureVotes',
             'firstPostPosition',
+            'navUrls',
             'noindex',
             'topic',
             'userCanModerate',
@@ -578,7 +603,8 @@ class TopicsController extends Controller
 
     private function getIndexParams($topic, $currentUser, $userCanModerate)
     {
-        $params = get_params(request()->all(), null, [
+        $rawParams = request()->all();
+        $params = get_params($rawParams, null, [
             'start', // either number or "unread"
             'end:int',
             'n:int',
@@ -587,7 +613,6 @@ class TopicsController extends Controller
             'with_deleted:bool',
 
             'sort:string',
-            'cursor:any',
             'limit:int',
         ], ['null_missing' => true]);
 
@@ -599,6 +624,8 @@ class TopicsController extends Controller
         } else {
             $params['with_deleted'] = false;
         }
+
+        $params['cursor'] = cursor_from_params($rawParams);
 
         if (!is_array($params['cursor'])) {
             if ($params['start'] === 'unread') {

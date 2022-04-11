@@ -23,26 +23,35 @@ class ReportCommentTest extends TestCase
         $comment->reportBy($this->reporter);
     }
 
+    public function testNoComments()
+    {
+        $comment = $this->createComment(User::factory()->create());
+
+        $this->expectException(ValidationException::class);
+        $comment->reportBy($this->reporter);
+    }
+
     public function testReasonIsIgnored()
     {
-        $comment = $this->createComment(factory(User::class)->create());
+        $comment = $this->createComment(User::factory()->create());
 
         $this->expectException(ValidationException::class);
 
         $comment->reportBy($this->reporter, [
+            'comments' => 'some comment',
             'reason' => 'NotAValidReason',
         ]);
     }
 
     public function testReportableInstance()
     {
-        $comment = $this->createComment(factory(User::class)->create());
+        $comment = $this->createComment(User::factory()->create());
 
         $query = UserReport::where('reportable_type', 'comment')->where('reportable_id', $comment->getKey());
         $reportedCount = $query->count();
         $reportsCount = $this->reporter->reportsMade()->count();
 
-        $report = $comment->reportBy($this->reporter);
+        $report = $comment->reportBy($this->reporter, ['comments' => 'some comment']);
         $this->assertSame($reportedCount + 1, $query->count());
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
         $this->assertSame($report->user_id, $report->user_id);
@@ -52,12 +61,12 @@ class ReportCommentTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->reporter = factory(User::class)->create();
+        $this->reporter = User::factory()->create();
     }
 
     private function createComment($user)
     {
-        $commentable = factory(Build::class)->create();
+        $commentable = Build::factory()->create();
 
         return $commentable->comments()->create([
             'message' => 'Test',

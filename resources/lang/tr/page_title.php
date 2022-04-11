@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'kontrol paneli',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'kontrol paneli',
             'verify_link' => 'hesap doğrulama',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'featured artist\'ler',
         ],
         'artists_controller' => [
             '_' => 'featured artist\'ler',
@@ -133,6 +139,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'sıralama',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'uygulamaya izin ver',
         ],
     ],
     'store' => [

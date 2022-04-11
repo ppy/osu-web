@@ -18,11 +18,11 @@ return [
     ],
 
     'type' => [
-        'charts' => 'Výběry',
-        'country' => 'Stát',
+        'charts' => 'výběry',
+        'country' => 'stát',
         'multiplayer' => '',
-        'performance' => 'Výkon',
-        'score' => 'Skóre',
+        'performance' => 'výkon',
+        'score' => 'skóre',
     ],
 
     'spotlight' => [

@@ -1,15 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { Spinner } from 'components/spinner';
+import UserAvatar from 'components/user-avatar';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { Spinner } from 'spinner';
-import UserAvatar from 'user-avatar';
 import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { transparentGif } from 'utils/html';
@@ -40,6 +40,8 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
     this.inputUsername = props.user.username;
     this.inputUser = props.user;
+
+    makeObservable(this);
   }
 
   componentDidUpdate() {
@@ -49,7 +51,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     }
   }
 
-  compontentWillUnmount() {
+  componentWillUnmount() {
     window.clearTimeout(this.userLookupTimeout);
     Object.values(this.xhr).forEach((xhr) => xhr?.abort());
   }

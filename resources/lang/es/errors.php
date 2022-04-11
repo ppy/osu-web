@@ -21,7 +21,7 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Se ha especificado un modo no válido.',
+        'invalid_mode' => 'Modo especificado no válido.',
         'standard_converts_only' => 'No hay puntuaciones disponibles para el modo solicitado en esta dificultad del mapa.',
     ],
     'checkout' => [
@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'No se obtuvo ningún resultado, inténtalo de nuevo más tarde.',
+        'invalid_cursor_exception' => 'Parámetro de cursor especificado no válido.',
         'operation_timeout_exception' => 'La búsqueda está más ocupada de lo habitual, inténtalo de nuevo más tarde.',
     ],
 ];

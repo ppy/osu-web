@@ -9,7 +9,7 @@ use App\Models\Multiplayer\Room;
 $factory->define(Room::class, function (Faker\Generator $faker) {
     return [
         'user_id' => function (array $self) {
-            return factory(App\Models\User::class)->create()->getKey();
+            return App\Models\User::factory()->create()->getKey();
         },
         'name' => function () use ($faker) {
             return $faker->realText(20);

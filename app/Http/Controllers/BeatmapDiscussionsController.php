@@ -6,7 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\BeatmapsetDiscussionReview;
+use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Libraries\BeatmapsetDiscussionsBundle;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
@@ -84,7 +84,7 @@ class BeatmapDiscussionsController extends Controller
      * Field                     | Type                                            | Description
      * ------------------------- | ----------------------------------------------- | -----------------------------------------------------------------------
      * beatmaps                  | [Beatmap](#beatmap)[]                           | List of beatmaps associated with the discussions returned.
-     * cursor                    | [Cursor](#cursor)                               | |
+     * cursor_string             | [CursorString](#cursorstring)                   | |
      * discussions               | [BeatmapsetDiscussion](#beatmapsetdiscussion)[] | List of discussions according to `sort` order.
      * included_discussions      | [BeatmapsetDiscussion](#beatmapsetdiscussion)[] | Additional discussions related to `discussions`.
      * reviews_config.max_blocks | number                                          | Maximum number of blocks allowed in a review.
@@ -137,7 +137,7 @@ class BeatmapDiscussionsController extends Controller
 
         try {
             $document = json_decode(request()->all()['document'] ?? '[]', true);
-            BeatmapsetDiscussionReview::create($beatmapset, $document, Auth::user());
+            Review::create($beatmapset, $document, Auth::user());
         } catch (\Exception $e) {
             return error_popup($e->getMessage(), 422);
         }

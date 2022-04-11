@@ -43,18 +43,5 @@
     background-position: bottom center;
     background-repeat: repeat-x;
     filter: hue-rotate(var(--base-hue-deg)) saturate(0.6);
-
-    .@{_top}--restricted & {
-      .at2x-simple('~@images/layout/nav2-bg/red.png');
-
-      &::before {
-        content: '';
-        .full-size();
-        height: 5px;
-        background-image: url('~@images/layout/caution-bar.png');
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-    }
   }
 }

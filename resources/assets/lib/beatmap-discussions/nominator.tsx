@@ -1,18 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import {
-  BeatmapsetEvent,
-  BeatmapsetJson,
-  isBeatmapsetNominationEvent,
-} from 'beatmapsets/beatmapset-json';
-import { BigButton } from 'big-button';
+import BigButton from 'components/big-button';
+import { Modal } from 'components/modal';
+import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
-import { Modal } from 'modal';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
@@ -50,7 +47,7 @@ export class Nominator extends React.PureComponent<Props, State> {
   }
 
   hasFullNomination = (mode: GameMode) => {
-    const eventUserIsFullNominator = (event: BeatmapsetEvent, gameMode?: GameMode) => {
+    const eventUserIsFullNominator = (event: BeatmapsetEventJson, gameMode?: GameMode) => {
       if (!event.user_id) {
         return false;
       }
@@ -65,7 +62,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     };
 
     return _.some(this.nominationEvents(), (event) => {
-      if (isBeatmapsetNominationEvent(event)) {
+      if (event.type === 'nominate' && event.comment != null) {
         return event.comment.modes.includes(mode) && eventUserIsFullNominator(event, mode);
       } else {
         return eventUserIsFullNominator(event);
@@ -131,7 +128,7 @@ export class Nominator extends React.PureComponent<Props, State> {
   };
 
   nominationEvents = () => {
-    const nominations: BeatmapsetEvent[] = [];
+    const nominations: BeatmapsetEventJson[] = [];
 
     _.forEachRight(this.props.beatmapset.events ?? [], (event) => {
       if (event.type === 'nomination_reset') {
@@ -162,9 +159,9 @@ export class Nominator extends React.PureComponent<Props, State> {
 
     const button = (disabled = false) => (
       <BigButton
+        disabled={disabled}
         icon='fas fa-thumbs-up'
         props={{
-          disabled,
           onClick: this.showNominationModal,
         }}
         text={osu.trans('beatmaps.nominations.nominate')}
@@ -193,18 +190,18 @@ export class Nominator extends React.PureComponent<Props, State> {
           {content}
           <div className={`${this.bn}__buttons`}>
             <BigButton
+              disabled={(this.hybridMode() && this.state.selectedModes.length < 1) || this.state.loading}
               icon='fas fa-thumbs-up'
               isBusy={this.state.loading}
               props={{
-                disabled: (this.hybridMode() && this.state.selectedModes.length < 1) || this.state.loading,
                 onClick: this.nominate,
               }}
               text={osu.trans('beatmaps.nominations.nominate')}
             />
             <BigButton
+              disabled={this.state.loading}
               icon='fas fa-times'
               props={{
-                disabled: this.state.loading,
                 onClick: this.hideNominationModal,
               }}
               text={osu.trans('common.buttons.cancel')}

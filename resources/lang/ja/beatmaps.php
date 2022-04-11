@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'ノミネーションをリセット',
             'praise' => '称賛',
             'problem' => '問題',
+            'problem_warning' => '',
             'review' => 'レビュー',
             'suggestion' => '提案',
         ],
@@ -183,7 +184,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'エラーが発生しました。ページの再読み込みを試してください。',
         'love' => 'Lovedに追加',
-        'love_choose' => '',
+        'love_choose' => 'lovedの難易度を選択',
         'love_confirm' => 'Lovedに追加しますか？',
         'nominate' => 'ノミネート',
         'nominate_confirm' => 'このビートマップをノミネートしますか？',
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '本当によろしいですか？新しい問題を投稿するとノミネーション審査中ではなくなります。',
             'disqualify' => '本当によろしいですか？これによりビートマップがQualifiedから外され、ノミネーション審査がリセットされます。',
+            'nomination_reset' => '本当によろしいですか？新しい問題を投稿するとノミネーション審査中ではなくなります。',
+            'problem_warning' => '',
         ],
     ],
 
@@ -252,6 +254,7 @@ return [
     ],
     'general' => [
         'converts' => 'コンバートビートマップを含める',
+        'featured_artists' => '注目アーティスト',
         'follows' => 'サブスクライブ中のマッパー',
         'recommended' => '推奨難易度',
     ],
@@ -272,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'マイマップ',
         'pending' => 'Pending & WIP',
+        'wip' => '',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],

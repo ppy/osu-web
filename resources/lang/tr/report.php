@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Bildir',
+        'title' => ':username kullanıcısının beatmapi bildirilsin mi?',
     ],
 
     'beatmapset_discussion_post' => [

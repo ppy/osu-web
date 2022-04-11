@@ -132,15 +132,4 @@ return [
             'store' => 'magazinul osu!',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Se pare că ai un timp plăcut! :D',
-        'body' => [
-            'part-1' => 'Știai că osu! rulează fără nicio publicitate și se bazează pe jucători pentru a-și susține dezvoltarea și funcționarea?',
-            'part-2' => 'De asemenea, știai că prin sprijinirea osu! primești o mulțime de avantaje utile, cum ar fi <strong>descărcarea în joc a beatmapurilor</strong> care se declanșează automat în modul de spectator și jocurile multiplayer?',
-        ],
-        'find-out-more' => 'Apasă aici pentru a afla mai multe!',
-        'download-starting' => "Oh, și nu-ți face griji - descărcarea ta a început deja pentru tine ;)",
-    ],
 ];

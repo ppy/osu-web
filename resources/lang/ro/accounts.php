@@ -56,13 +56,13 @@ return [
 
         'options' => [
             '_' => 'opțiuni de livrare',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'dificultatea oaspeţilor',
             'beatmapset:modding' => 'modatul de beatmap',
             'channel_message' => 'mesaje chat private',
             'comment_new' => 'comentarii noi',
             'forum_topic_reply' => 'răspuns topic',
             'mail' => 'mail',
-            'mapping' => '',
+            'mapping' => 'cartografiere beatmap',
             'push' => 'push',
             'user_achievement_unlock' => 'medalie de utilizator deblocată',
         ],

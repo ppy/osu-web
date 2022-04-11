@@ -45,7 +45,7 @@ return [
     'post' => [
         'confirm_destroy' => '删除此回复？',
         'confirm_restore' => '恢复此回复？',
-        'edited' => '最后由 :user 于 :when 编辑，总共编辑了 :count 次。',
+        'edited' => '最后由 :user 于 :when 编辑，总共编辑了 :count_delimited 次。',
         'posted_at' => '发表于 :when',
         'posted_by' => '发帖人：:username',
 
@@ -125,6 +125,55 @@ return [
             'last' => '跳转到最后一条回复',
             'next' => '向后 10 条',
             'previous' => '向前 10 条',
+        ],
+
+        'logs' => [
+            '_' => '主题记录',
+            'button' => '浏览主题记录',
+
+            'columns' => [
+                'action' => '操作',
+                'date' => '日期',
+                'user' => '用户',
+            ],
+
+            'data' => [
+                'add_tag' => '已添加 ":tag" 标签',
+                'announcement' => '置顶并标记为公告',
+                'edit_topic' => '到 :title',
+                'fork' => '来自 :topic',
+                'pin' => '已置顶主题',
+                'post_operation' => '由 :username 发布',
+                'remove_tag' => '已移除 ":tag" 标签',
+                'source_forum_operation' => '来自 :forum',
+                'unpin' => '取消置顶',
+            ],
+
+            'no_results' => '未找到记录……',
+
+            'operations' => [
+                'delete_post' => '删除回复',
+                'delete_topic' => '删除主题',
+                'edit_topic' => '修改标题',
+                'edit_poll' => '编辑投票',
+                'fork' => '复制主题',
+                'issue_tag' => '发布标签',
+                'lock' => '锁定主题',
+                'merge' => '合并回复到这个主题',
+                'move' => '移动主题',
+                'pin' => '置顶主题',
+                'post_edited' => '编辑回复',
+                'restore_post' => '恢复回复',
+                'restore_topic' => '恢复主题',
+                'split_destination' => '移动拆分的回复',
+                'split_source' => '拆分回复',
+                'topic_type' => '设置主题类型',
+                'topic_type_changed' => '更改类型',
+                'unlock' => '解锁',
+                'unpin' => '取消置顶',
+                'user_lock' => '锁定自己发布的主题',
+                'user_unlock' => '解锁自己发布的主题',
+            ],
         ],
 
         'post_edit' => [

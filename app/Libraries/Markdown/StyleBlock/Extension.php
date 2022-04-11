@@ -5,15 +5,15 @@
 
 namespace App\Libraries\Markdown\StyleBlock;
 
-use League\CommonMark\ConfigurableEnvironmentInterface;
+use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\ExtensionInterface;
 
 class Extension implements ExtensionInterface
 {
-    public function register(ConfigurableEnvironmentInterface $environment): void
+    public function register(EnvironmentBuilderInterface $environment): void
     {
         $environment
-            ->addBlockParser(new Parser())
-            ->addBlockRenderer(Element::class, new Renderer());
+            ->addBlockStartParser(new StartParser())
+            ->addRenderer(Element::class, new Renderer());
     }
 }

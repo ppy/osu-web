@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ShowMoreLink from 'components/show-more-link';
 import { observer } from 'mobx-react';
 import Notification from 'models/notification';
 import NotificationStack from 'models/notification-stack';
@@ -11,7 +12,6 @@ import { NotificationContext } from 'notifications-context';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
-import ShowMoreLink from 'show-more-link';
 import Item from './item';
 import ItemCompact from './item-compact';
 

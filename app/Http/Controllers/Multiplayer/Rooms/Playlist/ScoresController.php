@@ -150,7 +150,7 @@ class ScoresController extends BaseController
         $user = auth()->user();
         $params = request()->all();
 
-        ClientCheck::assert($user, $params);
+        ClientCheck::findBuild($user, $params);
 
         $score = $room->startPlay($user, $playlistItem);
 

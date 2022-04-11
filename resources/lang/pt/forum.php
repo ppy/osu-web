@@ -127,6 +127,55 @@ return [
             'previous' => 'retroceder 10 publicações',
         ],
 
+        'logs' => [
+            '_' => 'Registos do tópico',
+            'button' => 'Consultar os registos do tópico',
+
+            'columns' => [
+                'action' => 'Ação',
+                'date' => 'Data',
+                'user' => 'Utilizador',
+            ],
+
+            'data' => [
+                'add_tag' => 'etiqueta ":tag" adicionada',
+                'announcement' => 'tópico fixado e marcado como declaração',
+                'edit_topic' => 'para :title',
+                'fork' => 'de :topic',
+                'pin' => 'tópico afixado',
+                'post_operation' => 'publicado por :username',
+                'remove_tag' => 'etiqueta ":tag" removida',
+                'source_forum_operation' => 'de :forum',
+                'unpin' => 'tópico desafixado',
+            ],
+
+            'no_results' => 'nenhum registo encontrado...',
+
+            'operations' => [
+                'delete_post' => 'Publicação eliminada',
+                'delete_topic' => 'Tópico eliminado',
+                'edit_topic' => 'Título do tópico alterado',
+                'edit_poll' => 'Sondagem do tópico editada',
+                'fork' => 'Tópico copiado',
+                'issue_tag' => 'Etiqueta emitida',
+                'lock' => 'Tópico bloqueado',
+                'merge' => 'Publicações fundidas para este tópico',
+                'move' => 'Tópico movido',
+                'pin' => 'Tópico afixado',
+                'post_edited' => 'Publicação editada',
+                'restore_post' => 'Publicação restaurada',
+                'restore_topic' => 'Tópico restaurado',
+                'split_destination' => 'Publicações divididas movidas',
+                'split_source' => 'Publicações divididas',
+                'topic_type' => 'Definir tipo de tópico',
+                'topic_type_changed' => 'Tipo de tópico alterado',
+                'unlock' => 'Tópico desbloqueado',
+                'unpin' => 'Tópico desafixado',
+                'user_lock' => 'Bloqueaste o teu tópico',
+                'user_unlock' => 'Desbloqueaste o teu tópico',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Cancelar',
             'post' => 'Guardar',

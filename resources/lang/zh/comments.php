@@ -24,7 +24,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => '按回车以 :action 。使用 Shift+Enter 以换行。',
+            '_' => '按回车 :action 。使用 Shift+Enter 换行。',
             'edit' => '保存',
             'new' => '发送',
             'reply' => '回复',
@@ -39,7 +39,7 @@ return [
     'index' => [
         'nav_comments' => '评论',
         'nav_title' => '列表',
-        'no_comments' => '未找到评论',
+        'no_comments' => '未找到评论……',
     ],
 
     'placeholder' => [

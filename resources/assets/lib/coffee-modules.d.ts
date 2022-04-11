@@ -4,7 +4,7 @@
 /* eslint-disable max-classes-per-file */
 
 // importable coffeescript modules
-declare module 'back-to-top' {
+declare module 'components/back-to-top' {
   interface Props {
     anchor: React.RefObject<HTMLElement>;
     ref: React.RefObject<BackToTop>;
@@ -15,39 +15,11 @@ declare module 'back-to-top' {
   }
 }
 
-declare module 'block-button' {
-  interface Props {
-    modifiers?: string[];
-    onClick?: () => void;
-    userId: number;
-    wrapperClass?: string;
-  }
-
-  class BlockButton extends React.PureComponent<Props> {}
-}
-
-declare module 'big-button' {
-  interface Props {
-    extraClasses?: string[];
-    icon: string;
-    isBusy?: boolean;
-    modifiers?: string[];
-    props: any;
-    text: string;
-  }
-
-  class BigButton extends React.PureComponent<Props> {}
-}
-
-declare module 'friend-button' {
-  class FriendButton extends React.PureComponent<any> {}
-}
-
-declare module 'comments' {
+declare module 'components/comments' {
   class Comments extends React.PureComponent<any> {}
 }
 
-declare module 'comments-manager' {
+declare module 'components/comments-manager' {
   interface Props {
     commentableId?: number;
     commentableType?: string;
@@ -58,38 +30,18 @@ declare module 'comments-manager' {
   class CommentsManager extends React.PureComponent<Props> {}
 }
 
-declare module 'modal' {
+declare module 'components/modal' {
   interface Props {
     onClose?: () => void;
     visible: boolean;
   }
-  class Modal extends React.PureComponent<Props> {}
-}
 
-declare module 'notification-banner' {
-  interface Props {
-    message: React.ReactFragment;
-    title: string;
-    type: string;
+  class Modal extends React.PureComponent<Props> {
+    static isOpen(): boolean;
   }
-
-  class NotificationBanner extends React.PureComponent<Props> {}
 }
 
-declare module 'popup-menu' {
-  type Children = (dismiss: () => void) => React.ReactFragment;
-
-  interface Props {
-    children: Children;
-    customRender?: (children: JSX.Element[], ref: React.RefObject<HTMLElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => JSX.Element;
-    onHide?: () => void;
-    onShow?: () => void;
-  }
-
-  class PopupMenu extends React.PureComponent<Props, any> {}
-}
-
-declare module 'react/beatmaps/search-content' {
+declare module 'beatmaps/search-content' {
   import AvailableFilters from 'beatmaps/available-filters';
 
   interface Props {
@@ -100,7 +52,7 @@ declare module 'react/beatmaps/search-content' {
   class SearchContent extends React.PureComponent<Props> {}
 }
 
-declare module 'report-form' {
+declare module 'components/report-form' {
   interface ReportFormProps {
     completed: boolean;
     disabled: boolean;
@@ -114,7 +66,7 @@ declare module 'report-form' {
   class ReportForm extends React.PureComponent<ReportFormProps, any> {}
 }
 
-declare module 'select-options' {
+declare module 'components/select-options' {
   interface Option<T = string> {
     id: T | null;
     text: string;

@@ -19,7 +19,6 @@ return [
             'contest' => '竞赛',
             'contests' => '竞赛',
             'root' => '控制中心',
-            'store_orders' => '商店管理',
         ],
 
         'artists' => [
@@ -47,7 +46,8 @@ return [
 
         'users' => [
             'modding' => '摸图',
-            'multiplayer' => '多人游戏',
+            'playlists' => '歌单',
+            'realtime' => '多人游戏',
             'show' => '信息',
         ],
     ],
@@ -196,7 +196,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => '键入以搜索！',
+        'initial' => '输入以搜索！',
         'retry' => '搜索失败。点此重试。',
     ],
 ];

@@ -19,7 +19,6 @@ return [
             'contest' => 'yarışma',
             'contests' => 'yarışmalar',
             'root' => 'konsol',
-            'store_orders' => 'mağaza yöneticisi',
         ],
 
         'artists' => [
@@ -47,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modlama',
-            'multiplayer' => 'çok oyunculu',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'bilgi',
         ],
     ],

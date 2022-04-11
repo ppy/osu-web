@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Rallenta, gioca di più.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Artista in primo piano',
+    ],
+
     'index' => [
         'title' => 'Lista Beatmap',
         'guest_title' => 'Beatmap',
@@ -54,11 +58,11 @@ return [
 
         'details' => [
             'by_artist' => 'di :artist',
-            'favourite' => 'Mi piace questo beatmapset',
+            'favourite' => 'Mi piace questa beatmap',
             'favourite_login' => 'Accedi per aggiungere questa beatmap ai preferiti',
             'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'mapped_by' => 'mappata da :mapper',
-            'unfavourite' => 'Non mi piace questo beatmapset',
+            'unfavourite' => 'Non mi piace questa beatmap',
             'updated_timeago' => 'ultimo aggiornamento :timeago',
 
             'download' => [
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'ottenuto :when',
             'country' => 'Classifica Nazionale',
+            'error' => 'Impossibile caricare la classifica',
             'friend' => 'Classifica Amici',
             'global' => 'Classifica Globale',
             'supporter-link' => 'Clicca <a href=":link">qui</a> per vedere tutte le fantastiche funzionalità che otterrai!',
@@ -150,11 +155,12 @@ return [
                 'combo' => 'Combo Massima',
                 'miss' => 'Miss',
                 'mods' => 'Mod',
+                'pin' => 'Fissa',
                 'player' => 'Giocatore',
                 'pp' => '',
                 'rank' => 'Posto',
-                'score_total' => 'Punteggio Totale',
                 'score' => 'Punteggio',
+                'score_total' => 'Punteggio Totale',
                 'time' => 'Tempo',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => 'In testa',
                 'own' => 'Il tuo miglior punteggio',
+            ],
+            'supporter_link' => [
+                '_' => 'Clicca :here per scoprire tutte le fantastiche funzionalità che ricevi!',
+                'here' => 'qui',
             ],
         ],
 
@@ -194,7 +204,7 @@ return [
             'loved' => 'Amata',
             'qualified' => 'Qualificata',
             'wip' => 'WIP',
-            'pending' => 'In attesa',
+            'pending' => 'In Attesa',
             'graveyard' => 'Abbandonata',
         ],
     ],

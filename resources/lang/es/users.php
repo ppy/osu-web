@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Juega sucio o hace trampa',
-            'multiple_accounts' => 'Utiliza multiples cuentas',
+            'multiple_accounts' => 'Utiliza múltiples cuentas',
             'insults' => 'Insulta a mí o a otros',
             'spam' => 'Envía mensajes spam',
             'unwanted_content' => 'Enlaza contenido inapropiado',
@@ -157,7 +157,11 @@ return [
 
         'comments_count' => [
             '_' => 'Publicó :link',
-            'count' => ':count_delimited comentario|:count_delimited comentarios',
+            'count' => 'un comentario|:count_delimited comentarios',
+        ],
+        'cover' => [
+            'to_0' => 'Ocultar portada',
+            'to_1' => 'Mostrar portada',
         ],
         'edit' => [
             'cover' => [
@@ -301,8 +305,8 @@ return [
                 'recent' => 'Más reciente',
                 'title' => 'Medallas',
             ],
-            'multiplayer' => [
-                'title' => 'Partidas multijugador',
+            'playlists' => [
+                'title' => 'Partidas de listas de juego',
             ],
             'posts' => [
                 'title' => 'Publicaciones',
@@ -311,6 +315,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Reciente',
+            ],
+            'realtime' => [
+                'title' => 'Partidas multijugador',
             ],
             'top_ranks' => [
                 'download_replay' => 'Descargar repetición',
@@ -324,6 +331,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Primeros lugares',
+                ],
+                'pin' => [
+                    'to_0' => 'Desanclar',
+                    'to_0_done' => 'Puntuación no anclada',
+                    'to_1' => 'Anclar',
+                    'to_1_done' => 'Puntuación anclada',
+                ],
+                'pinned' => [
+                    'title' => 'Puntuaciones ancladas',
                 ],
             ],
             'votes' => [

@@ -6,8 +6,8 @@
 return [
     'instrument_declined' => 'Zvolená platební metoda byla zamítnuta platební bránou PayPal.',
     'invalid_resource_id' => 'Nebyly nalezeny žádné informace o platbě.',
-    'invalid_token' => '',
-    'old_format' => '',
-    'resource_not_found' => '',
+    'invalid_token' => 'Při dokončování vaší platby došlo k chybě.',
+    'old_format' => 'Odkaz k platbě vypršel, zkuste to prosím znovu.',
+    'resource_not_found' => 'Nebyly nalezeny žádné platební údaje.',
     'unknown' => "Platba byla zamítnuta, ale nejsme si jisti proč.",
 ];

@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! beatmapleri',
         'osu' => 'osu! profili',
         'site' => 'Resmi Website',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Şarkılar',
         'count' => ':count_delimited şarkı|:count_delimited şarkı',
-        'exclusive' => 'osu!\'ya özel',
+        'original' => 'osu! orijinal',
+        'original_badge' => 'ORJİNAL',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'uzunluk',
         'bpm' => 'bpm',
         'genre' => 'tür',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'parça arama',
+
+            'form' => [
+                'advanced' => 'Gelişmiş Arama',
+                'album' => 'Albüm',
+                'artist' => 'Sanatçı',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => 'Arama kriterine uyan parça bulunamadı.',
+                'genre' => 'Tür',
+                'genre_all' => 'Tümü',
+                'length_gte' => 'Minimum Uzunluk',
+                'length_lte' => 'Maksimum Uzunluk',
+            ],
+        ],
     ],
 ];

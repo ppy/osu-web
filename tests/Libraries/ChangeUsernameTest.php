@@ -215,7 +215,7 @@ class ChangeUsernameTest extends TestCase
 
     private function createUser(array $attribs = []): User
     {
-        return factory(User::class)->create(array_merge([
+        return User::factory()->create(array_merge([
             'username' => 'iamuser',
             'username_clean' => 'iamuser',
             'user_lastvisit' => Carbon::now(),

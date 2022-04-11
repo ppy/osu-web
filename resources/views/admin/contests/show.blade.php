@@ -77,5 +77,5 @@
     {!! json_encode($entries) !!}
   </script>
 
-  @include('layout._react_js', ['src' => 'js/react/admin/contest.js'])
+  @include('layout._react_js', ['src' => 'js/admin-contest.js'])
 @stop

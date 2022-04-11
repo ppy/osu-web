@@ -1,60 +1,54 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import HeaderV4 from 'header-v4';
-import Img2x from 'img2x';
-import { observer, Provider } from 'mobx-react';
+import HeaderV4 from 'components/header-v4';
+import { action, autorun, makeObservable, runInAction } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
-import RootDataStore from 'stores/root-data-store';
-import ChatWorker from './chat-worker';
 import ConversationList from './conversation-list';
-import ConversationView from './conversation-view';
-import InputBox from './input-box';
-
-interface Props {
-  dataStore: RootDataStore;
-  worker: ChatWorker;
-}
+import ConversationPanel from './conversation-panel';
 
 @observer
-export default class MainView extends React.Component<Props> {
+export default class MainView extends React.Component<Record<string, never>> {
+  constructor(props: Record<string, never>) {
+    super(props);
+
+    makeObservable(this);
+
+    disposeOnUnmount(
+      this,
+      autorun(() => {
+        if (core.dataStore.chatState.isChatMounted) {
+          // This keeps the body element (not the html element) from rubberbanding on mobile Safari
+          // when scroll hits the end.
+          document.documentElement.classList.add('u-chat');
+        } else {
+          document.documentElement.classList.remove('u-chat');
+        }
+      }),
+    );
+  }
+
+  @action
   componentDidMount() {
-    $('html').addClass('osu-layout--mobile-app');
-    this.props.worker.startPolling();
+    core.dataStore.chatState.viewsMounted.add(this);
   }
 
   componentWillUnmount() {
-    $('html').removeClass('osu-layout--mobile-app');
-    this.props.worker.stopPolling();
+    runInAction(() => {
+      core.dataStore.chatState.viewsMounted.delete(this);
+    });
   }
 
-  render(): React.ReactNode {
-    const lazerLink = 'https://github.com/ppy/osu/releases';
+  render() {
     return (
       <>
         <HeaderV4 theme='chat' />
-        <Provider dataStore={this.props.dataStore}>
-          {this.props.dataStore.channelStore.channels.size > 0 ? (
-            <div className='chat osu-page osu-page--chat'>
-              <div className='chat__sidebar'>
-                <ConversationList />
-              </div>
-              <div className='chat__conversation-area'>
-                <ConversationView />
-                <InputBox />
-              </div>
-            </div>
-          ) : (
-            <div className='chat osu-page osu-page--chat'>
-              <div className='chat__not-active'>
-                <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />
-                <div className='chat__title'>{osu.trans('chat.no-conversations.title')}</div>
-                <div className='chat__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
-                <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', {link: lazerLink})}} />
-              </div>
-            </div>
-          )}
-        </Provider>
+        <div className='chat osu-page osu-page--chat'>
+          {core.dataStore.channelStore.channels.size > 0 && <ConversationList />}
+          <ConversationPanel />
+        </div>
       </>
     );
   }

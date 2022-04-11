@@ -29,7 +29,7 @@
 
 @admin-menu-icon-width: 50px;
 
-// update import-shims.coffee when changing the height of the header.
+// update app-deps.ts when changing the height of the header.
 @nav2-avatar-height: 60px;
 @nav2-avatar-height--pinned : 40px;
 @nav2-height: 90px;
@@ -40,7 +40,7 @@
 
 // mobile nav
 // TODO: un-bootstrap names
-@navbar-height: @nav2-height--pinned; // also in lib/import-shims.coffee
+@navbar-height: @nav2-height--pinned; // also in lib/app-deps.ts
 @navbar-padding-horizontal: 10px;
 @navbar-padding-vertical: 10px;
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
@@ -53,7 +53,6 @@
 @gutter-profile-page: @gutter-v2;
 @gutter-profile-page-desktop: @gutter-v2-desktop;
 @padding-profile-page: 10px;
-@profile-page-action: 20px;
 
 @md-paragraph-space: 1.5em;
 
@@ -92,10 +91,9 @@
 @z-index--wiki-search: 1;
 
 @z-index--beatmaps-panel: 4;
-@z-index--profile-page-cover-selector: 5;
 @z-index--profile-previous-usernames: 10;
-@z-index--profile-tournament-banner: 11;
 @z-index--page-extra-tabs: 99;
+@z-index--profile-page-cover-selector: 100; // must be at least 1 more than @z-index--page-extra-tabs
 @z-index--beatmap-discussion-editor-insertion-menu: 100;
 @z-index--simple-menu: 101;
 @z-index--simple-menu-hover-object: 102;
@@ -125,7 +123,6 @@
 @landing-dot-size: 17px;
 
 @profile-badge-size: 50px;
-@profile-header-height: 350px;
 @profile-user-bar-height: 60px;
 @profile-avatar-size: 120px;
 @profile-stats-box-width-desktop: 300px;
@@ -196,10 +193,6 @@
 
 @font-size--paginator: 12px;
 @font-size--phone-input: 16px;
-
-@font-size--support-osu-popup-body: 15px;
-@font-size--support-osu-popup-header: 48px;
-@font-size--support-osu-popup-header-smaller: 26px;
 
 @font-size--warning: 13px;
 @font-size--warning-icon: 20px;
@@ -305,16 +298,6 @@
 @ranking-page-header-inset: 40px;
 
 @btn-circle-diameter: 30px;
-
-// difficulty colours
-@diff-easy: #4EBFFF;
-@diff-normal: #66FF91;
-@diff-hard: #F7E85D;
-@diff-insane: #FF7E68;
-@diff-expert: #FE3C71;
-@diff-expert-plus: #6662DD;
-@diff-expert-plus-light: #6662DD;
-@diff-default: #000;
 
 // store slider
 @slider-callout--arrow-height: 12px;

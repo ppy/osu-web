@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Yavaş ol, daha çok oyna.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
+    ],
+
     'index' => [
         'title' => 'Beatmap Kataloğu',
         'guest_title' => 'Beatmapler',
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => ':when oynandı',
             'country' => 'Ülke Sıralaması',
+            'error' => 'Sıralama yüklenemedi',
             'friend' => 'Arkadaş Sıralaması',
             'global' => 'Dünya Sıralaması',
             'supporter-link' => 'Aldığınız tüm süslü özellikleri görmek için buraya <a href=":link">tıklayın</a>!',
@@ -150,11 +155,12 @@ return [
                 'combo' => 'Maks Kombo',
                 'miss' => 'Iska',
                 'mods' => 'Modlar',
+                'pin' => 'Sabitle',
                 'player' => 'Oyuncu',
                 'pp' => '',
                 'rank' => 'Sıralama',
-                'score_total' => 'Toplam Skor',
                 'score' => 'Skor',
+                'score_total' => 'Toplam Skor',
                 'time' => 'Zaman',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Lider',
                 'own' => 'En İyi Skorun',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

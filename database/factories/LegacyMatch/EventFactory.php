@@ -13,7 +13,7 @@ $factory->define(Event::class, function (Faker\Generator $faker) {
             return factory(LegacyMatch::class)->create()->user_id;
         },
         'user_id' => function () {
-            return factory(App\Models\User::class)->create()->user_id;
+            return App\Models\User::factory()->create()->user_id;
         },
         'timestamp' => Carbon\Carbon::now(),
     ];

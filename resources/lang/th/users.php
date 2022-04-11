@@ -160,6 +160,10 @@ return [
             '_' => 'โพสต์ :link',
             'count' => ':count_delimited ความคิดเห็น|:count_delimited ความคิดเห็น',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'เปลี่ยนรูปภาพปก',
@@ -212,7 +216,7 @@ return [
                     'title' => 'บีทแมพที่กำลังทำ',
                 ],
                 'ranked' => [
-                    'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
+                    'title' => 'บีทแมพที่จัดอันดับแล้ว',
                 ],
             ],
             'discussions' => [
@@ -302,8 +306,8 @@ return [
                 'recent' => 'ล่าสุด',
                 'title' => 'เหรียญตรา',
             ],
-            'multiplayer' => [
-                'title' => 'เกมผู้เล่นหลายคน',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'โพสต์',
@@ -313,9 +317,12 @@ return [
             'recent_activity' => [
                 'title' => 'ล่า​สุด',
             ],
+            'realtime' => [
+                'title' => '',
+            ],
             'top_ranks' => [
                 'download_replay' => 'ดาวน์โหลดรีเพลย์',
-                'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้พีพี',
+                'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้ pp',
                 'pp_weight' => 'weighted :percentage',
                 'view_details' => 'ดูรายละเอียดเพิ่มเติม',
                 'title' => 'อันดับ',
@@ -325,6 +332,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'First Place Ranks',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -410,7 +426,7 @@ return [
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
             'loved_beatmapset_count' => 'บีทแมพที่ Loved',
             'pending_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
-            'ranked_beatmapset_count' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
+            'ranked_beatmapset_count' => 'บีทแมพที่จัดอันดับแล้ว',
         ],
     ],
 

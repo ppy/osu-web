@@ -60,15 +60,6 @@ return [
                 'beatmapsets' => 'Beatmaps',
                 'forum' => 'Forum',
                 'general' => 'General',
-                'store' => 'Store',
-            ],
-        ],
-    ],
-
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Order Listing',
             ],
         ],
     ],

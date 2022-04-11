@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => '잠시 멈추시고, 좀 더 플레이해보세요.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '공식 아티스트',
+    ],
+
     'index' => [
         'title' => '비트맵 목록',
         'guest_title' => '비트맵',
@@ -26,7 +30,7 @@ return [
         'download' => [
             'all' => '다운로드',
             'video' => '영상 포함된 것으로 받기',
-            'no_video' => '영상 없는 것으로 받기',
+            'no_video' => '영상이 없는 것으로 받기',
             'direct' => 'osu!direct에서 열기',
         ],
     ],
@@ -53,11 +57,11 @@ return [
         'discussion' => '토론',
 
         'details' => [
-            'by_artist' => ':artist 님이 만듦',
+            'by_artist' => 'by :artist',
             'favourite' => '즐겨찾기',
             'favourite_login' => '로그인하여 이 비트맵을 즐겨찾기 하세요.',
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
-            'mapped_by' => ':mapper님의 맵',
+            'mapped_by' => ':mapper 님의 맵',
             'unfavourite' => '즐겨찾기 해제',
             'updated_timeago' => ':timeago에 마지막으로 수정',
 
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => ':when에 달성함',
             'country' => '국가 순위',
+            'error' => '랭킹 로딩에 실패했습니다',
             'friend' => '친구 순위',
             'global' => '전체 순위',
             'supporter-link' => '서포터로서 누릴 수 있는 다른 멋진 기능들을 확인하려면 <a href=":link">여기</a>를 클릭해주세요!',
@@ -150,11 +155,12 @@ return [
                 'combo' => '최대 콤보',
                 'miss' => 'Miss',
                 'mods' => '모드',
+                'pin' => '고정',
                 'player' => '플레이어',
                 'pp' => '',
                 'rank' => '순위',
-                'score_total' => '총 점수',
                 'score' => '점수',
+                'score_total' => '총 점수',
                 'time' => '시간',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => '순위권',
                 'own' => '내 최고 점수',
+            ],
+            'supporter_link' => [
+                '_' => '서포터가 누릴 수 있는 다른 멋진 기능들을 확인하려면 :here를 클릭해주세요!',
+                'here' => '여기',
             ],
         ],
 
@@ -194,7 +204,7 @@ return [
             'loved' => 'Loved',
             'qualified' => 'Qualified',
             'wip' => '제작 중',
-            'pending' => 'Pending',
+            'pending' => '보류 중',
             'graveyard' => '무덤에 감',
         ],
     ],

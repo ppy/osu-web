@@ -19,7 +19,6 @@ return [
             'contest' => 'concurs',
             'contests' => 'concursuri',
             'root' => 'consolă',
-            'store_orders' => 'magazin admin',
         ],
 
         'artists' => [
@@ -47,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => '',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'info',
         ],
     ],

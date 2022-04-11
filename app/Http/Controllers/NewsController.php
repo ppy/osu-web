@@ -90,22 +90,25 @@ class NewsController extends Controller
 
         $search = NewsPost::search(array_merge(compact('limit'), $params));
 
-        $posts = $search['query']->get();
+        [$posts, $hasMore] = $search['query']->getWithHasMore();
 
         if ($isFeed) {
             return ext_view("news.index-{$format}", compact('posts'), $format);
         }
 
         $postsJson = [
+            'cursor' => $hasMore ? $search['cursorHelper']->next($posts) : null,
             'news_posts' => json_collection($posts, 'NewsPost', ['preview']),
             'news_sidebar' => $this->sidebarMeta($posts[0] ?? null),
             'search' => $search['params'],
-            'cursor' => $search['cursorHelper']->next($posts),
         ];
 
         if (is_json_request()) {
             return $postsJson;
         } else {
+            // force current year search parameter for html
+            $postsJson['search']['year'] = $postsJson['news_sidebar']['current_year'];
+
             return ext_view('news.index', [
                 'atom' => [
                     'url' => route('news.index', ['format' => 'atom']),

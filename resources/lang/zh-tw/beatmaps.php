@@ -73,6 +73,7 @@ return [
             'nomination_reset' => '重置提名',
             'praise' => '讚',
             'problem' => '問題',
+            'problem_warning' => '回報問題',
             'review' => '評論',
             'suggestion' => '建議',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '你確定嗎？提出新的問題會重置提名。',
             'disqualify' => '你確定嗎？這個會移除圖譜從進榜和重設提名進度。',
+            'nomination_reset' => '你確定嗎？提出新的問題會重置提名。',
+            'problem_warning' => '您確定要回報本圖譜的問題嗎？這問題將通知圖譜管理團隊。',
         ],
     ],
 
@@ -252,6 +254,7 @@ return [
     ],
     'general' => [
         'converts' => '包括轉換圖譜',
+        'featured_artists' => '精選藝術家',
         'follows' => '訂閱的作圖者',
         'recommended' => '推薦難度',
     ],
@@ -272,6 +275,7 @@ return [
         'loved' => 'Loved',
         'mine' => '我的圖譜',
         'pending' => '待處理&製作中',
+        'wip' => '尚未完工 (WIP)',
         'qualified' => 'Qualified',
         'ranked' => '已進榜',
     ],

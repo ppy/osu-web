@@ -1,38 +1,30 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapIcon } from 'beatmap-icon';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import { BeatmapIcon } from 'components/beatmap-icon';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
-  beatmap: BeatmapJsonExtended;
+  beatmap: BeatmapExtendedJson;
   count?: number;
-  large: boolean;
+  modifiers?: Modifiers;
   withButton?: string;
 }
 
 export default class BeatmapListItem extends React.PureComponent<Props> {
-  static defaultProps = {
-    large: false,
-  };
-
   render() {
     const deleted = this.props.beatmap.deleted_at !== null;
     const version = `${this.props.beatmap.version}${deleted ? ` [${osu.trans('beatmap_discussions.index.deleted_beatmap')}]` : ''}`;
 
     return (
-      <div
-        className={classWithModifiers('beatmap-list-item', {
-          deleted,
-          large: this.props.large,
-        })}
-      >
-        <div className='beatmap-list-item__col'>
+      <div className={classWithModifiers('beatmap-list-item', { deleted }, this.props.modifiers)}>
+        <div className='beatmap-list-item__col beatmap-list-item__col--icon'>
           <BeatmapIcon
             beatmap={this.props.beatmap}
-            modifier={this.props.large ? 'large' : undefined}
+            modifiers='beatmap-list-item'
+            withTooltip
           />
         </div>
 

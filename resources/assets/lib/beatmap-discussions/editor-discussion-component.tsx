@@ -1,15 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import { BeatmapReviewDiscussionType } from 'interfaces/beatmap-discussion-review';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { Element as SlateElement, Path, Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
 import { classWithModifiers } from 'utils/css';
+import { linkHtml } from 'utils/url';
 import { DraftsContext } from './drafts-context';
 import EditorBeatmapSelector from './editor-beatmap-selector';
 import EditorIssueTypeSelector from './editor-issue-type-selector';
@@ -24,9 +25,9 @@ interface Cache {
 }
 
 interface Props extends RenderElementProps {
-  beatmaps: BeatmapJsonExtended[];
+  beatmaps: BeatmapExtendedJson[];
   beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJsonExtended;
+  currentBeatmap: BeatmapExtendedJson;
   discussionId?: number;
   discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
   editMode?: boolean;
@@ -210,7 +211,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
           // don't linkify timestamps when in edit mode
           return this.props.editMode
             ? timestamp
-            : osu.link(BeatmapDiscussionHelper.url({ discussion }),
+            : linkHtml(BeatmapDiscussionHelper.url({ discussion }),
               timestamp,
               { classNames: ['js-beatmap-discussion--jump'] },
             );

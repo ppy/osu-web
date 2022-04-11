@@ -11,5 +11,5 @@
         {!! json_encode($followsJson) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/react/follows-comment.js'])
+    @include('layout._react_js', ['src' => 'js/follows-comment.js'])
 @endsection

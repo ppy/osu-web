@@ -20,7 +20,7 @@ class ModelTest extends TestCase
     public function testDelete()
     {
         $class = Model::getClassByString(static::getRandomMode());
-        $score = factory($class)->create();
+        $score = $class::factory()->create();
 
         $initialCount = $class::count();
 
@@ -33,7 +33,7 @@ class ModelTest extends TestCase
     {
         $mode = static::getRandomMode();
         $class = Model::getClassByString($mode);
-        $score = factory($class)->create(['rank' => 'X']);
+        $score = $class::factory()->create(['rank' => 'X']);
         $statsClass = UserStatistics\Model::getClass($mode);
         $stats = factory($statsClass)->create([
             'user_id' => $score->user_id,
@@ -51,8 +51,8 @@ class ModelTest extends TestCase
     {
         $mode = static::getRandomMode();
         $class = Model::getClassByString($mode);
-        $bestScore = factory($class)->create(['rank' => 'X']);
-        $score = factory($class)->create([
+        $bestScore = $class::factory()->create(['rank' => 'X']);
+        $score = $class::factory()->create([
             'beatmap_id' => $bestScore->beatmap_id,
             'rank' => 'A',
             'score' => $bestScore->score - 10,
@@ -78,8 +78,8 @@ class ModelTest extends TestCase
     {
         $mode = static::getRandomMode();
         $class = Model::getClassByString($mode);
-        $bestScore = factory($class)->create(['rank' => 'X']);
-        $score = factory($class)->create([
+        $bestScore = $class::factory()->create(['rank' => 'X']);
+        $score = $class::factory()->create([
             'beatmap_id' => $bestScore->beatmap_id,
             'rank' => 'A',
             'score' => $bestScore->score - 10,

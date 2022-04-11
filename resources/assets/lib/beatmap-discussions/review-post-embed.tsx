@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
-import { BeatmapIcon } from 'beatmap-icon';
+import { BeatmapIcon } from 'components/beatmap-icon';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { BeatmapsContext } from './beatmaps-context';
@@ -87,7 +87,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
       <div className={`${bn}__content`}>
         <div className={`${bn}__selectors`}>
           <div className='icon-dropdown-menu icon-dropdown-menu--disabled'>
-            {beatmap != null && <BeatmapIcon beatmap={beatmap} />}
+            {beatmap != null && <BeatmapIcon beatmap={beatmap} withTooltip />}
             {!discussion.beatmap_id &&
               <i className='fas fa-fw fa-star-of-life' title={osu.trans('beatmaps.discussions.mode.scopes.generalAll')} />
             }

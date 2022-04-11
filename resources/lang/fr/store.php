@@ -4,14 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Magasin',
-    ],
-
     'cart' => [
         'checkout' => 'Acheter',
         'info' => ':count_delimited produit dans le panier ($:subtotal)|:count_delimited produits dans le panier ($:subtotal)',
-        'more_goodies' => 'Je souhaite regarder d\'autres goodies avant de passer commande',
+        'more_goodies' => 'Je souhaite chercher d\'autres goodies avant de passer commande',
         'shipping_fees' => 'frais de livraison',
         'title' => 'Panier',
         'total' => 'total',
@@ -24,7 +20,7 @@ return [
         'empty' => [
             'text' => 'Votre panier est vide.',
             'return_link' => [
-                '_' => 'Retourner à :link pour trouver quelques goodies !',
+                '_' => 'Retournez à la page :link pour trouver quelques goodies !',
                 'link_text' => 'articles',
             ],
         ],
@@ -59,10 +55,10 @@ return [
         'status' => [
             'processing' => [
                 'title' => 'Votre paiement n\'a pas encore été confirmé !',
-                'line_1' => 'Si vous avez déjà payé, nous attendons toujours de recevoir une confirmation de votre paiement. Veuillez rafraîchir cette page dans une minute ou deux !',
+                'line_1' => 'Si vous avez déjà payé, il se pourrait que nous attendions toujours de recevoir une confirmation de votre paiement. Veuillez rafraîchir cette page dans une minute ou deux !',
                 'line_2' => [
                     '_' => 'Si vous avez rencontré un problème lors de votre commande, :link',
-                    'link_text' => 'cliquez ici pour reprendre votre commande',
+                    'link_text' => 'cliquez ici pour la reprendre',
                 ],
             ],
         ],
@@ -87,11 +83,11 @@ return [
 
         'not_modifiable_exception' => [
             'cancelled' => 'Vous ne pouvez pas modifier votre commande, puisqu\'elle a été annulée.',
-            'checkout' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle est en préparation.', // checkout and processing should have the same message.
+            'checkout' => 'Vous ne pouvez pas modifier votre commande lorsqu\'elle est en préparation.', // checkout and processing should have the same message.
             'default' => 'La commande n\'est pas modifiable',
             'delivered' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a été expédiée.',
             'paid' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a déjà été payée.',
-            'processing' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle est en préparation.',
+            'processing' => 'Vous ne pouvez pas modifier votre commande lorsqu\'elle est en préparation.',
             'shipped' => 'Vous ne pouvez pas modifier votre commande puisqu\'elle a été expédiée.',
         ],
 
@@ -110,7 +106,7 @@ return [
 
         'stock' => [
             'out' => 'Cet article est en rupture de stock pour le moment. Revenez plus tard !',
-            'out_with_alternative' => 'Malheureusement cet article est en rupture de stock. Sélectionnez-en un autre à l\'aide du menu déroulant ou revenez plus tard !',
+            'out_with_alternative' => 'Malheureusement, cet article est en rupture de stock. Sélectionnez-en un autre à l\'aide du menu déroulant ou revenez plus tard !',
         ],
 
         'add_to_cart' => 'Ajouter au panier',

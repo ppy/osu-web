@@ -159,6 +159,10 @@ return [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Schimbă coperta de profil',
@@ -301,7 +305,7 @@ return [
                 'recent' => 'Recente',
                 'title' => 'Medalii',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -311,6 +315,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Recent',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Descarcă replay-ul',
@@ -324,6 +331,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Primele locuri',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -415,7 +431,7 @@ return [
 
     'silenced_banner' => [
         'title' => '',
-        'message' => '',
+        'message' => 'Unele acțiuni pot fi indisponibile.',
     ],
 
     'status' => [

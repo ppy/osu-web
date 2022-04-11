@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Чат',
 
+            'announcement' => [
+                '_' => 'Нове оголошення',
+
+                'announce' => [
+                    'channel_announcement' => ':username сказав ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Оголошення від :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Нове повідомлення',
+
                 'pm' => [
                     'channel_message' => ':username сказав ":title"',
                     'channel_message_compact' => ':title',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'Нова бітмапа ":title" від :username',
                 'user_beatmapset_new_compact' => 'Нова бітмапа ":title"',
                 'user_beatmapset_new_group' => 'Нова бітмапа від :username',
+
+                'user_beatmapset_revive' => 'Мапа ":title" була відновлена :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" відновлена',
             ],
         ],
 

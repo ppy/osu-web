@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'ช้าลงหน่อย เล่นมากขึ้น',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'รายการ Beatmap',
         'guest_title' => 'บีทแมพ',
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'ได้รับ :when',
             'country' => 'อันดับประเทศ',
+            'error' => '',
             'friend' => 'อันดับเพื่อน',
             'global' => 'อันดับโลก',
             'supporter-link' => 'คลิก <a href=":link">ที่นี่</a> เพื่อดูสิ่งสวยงามทั้งหมดที่คุณได้รับ!',
@@ -150,11 +155,12 @@ return [
                 'combo' => 'คอมโบสูงสุด',
                 'miss' => 'Miss',
                 'mods' => 'ม็อด',
+                'pin' => '',
                 'player' => 'ผู้เล่น',
                 'pp' => '',
                 'rank' => 'อันดับ',
-                'score_total' => 'คะแนนรวม',
                 'score' => 'คะแนน',
+                'score_total' => 'คะแนนรวม',
                 'time' => 'เวลา',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => 'นำ',
                 'own' => 'คะแนนดีที่สุดของคุณ',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

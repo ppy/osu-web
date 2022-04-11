@@ -18,12 +18,12 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'silindi',
-        'none_found' => 'Kriterlere uyan bir tartışma sonucu bulunamadı.',
+        'none_found' => 'Arama kriterlerine uyan bir tartışma bulunamadı.',
         'title' => 'Beatmap Tartışmaları',
 
         'form' => [
             '_' => 'Ara',
-            'deleted' => 'Silinmiş tartışmaları içer',
+            'deleted' => 'Silinmiş tartışmaları dahil et',
             'mode' => 'Beatmap modu',
             'only_unresolved' => 'Sadece çözülmemiş tartışmaları göster',
             'types' => 'Mesaj türü',
@@ -54,7 +54,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Bu gönderilerin hiçbiri sorunumla ilgili değil',
-        'notice' => ':timestamp (:existing_timestamp) civarında gönderilmiş mesajlar var. Göndermeden önce lütfen onlara bir göz atın.',
+        'notice' => ':timestamp (:existing_timestamps) civarında gönderilmiş mesajlar var. Göndermeden önce lütfen onlara bir göz atın.',
         'unsaved' => 'bu incelemede :count',
     ],
 

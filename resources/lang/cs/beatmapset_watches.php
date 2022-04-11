@@ -5,17 +5,17 @@
 
 return [
     'index' => [
-        'description' => 'Toto jsou diskuze beatmap, které sledujete. Všechny nové příspěvky a aktualizace vám budou oznámeny.',
+        'description' => 'Toto jsou diskuze beatmap, které sledujete. Přijde vám oznámení, pokud se objeví nové příspěvky nebo aktualizace.',
         'title_compact' => 'sledování moddingu',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Sledované Beatmapy',
+            'unread' => 'Beatmapy s novou aktivitou',
         ],
 
         'table' => [
             'empty' => 'Nesledujete diskuzi žádné beatmapy.',
-            'last_update' => '',
+            'last_update' => 'Poslední aktualizace',
             'open_issues' => 'Nevyřešené problémy',
             'state' => 'Stav',
             'title' => 'Název',

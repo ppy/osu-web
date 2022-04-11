@@ -8,13 +8,13 @@ import Dispatcher from 'dispatcher';
 
 class ClassA implements DispatchListener {
   count = 0;
-  handleDispatchAction(action: DispatcherAction) {
+  handleDispatchAction(_action: DispatcherAction) {
     this.count++;
   }
 }
 
 class ClassB implements DispatchListener {
-  handleDispatchAction(action: DispatcherAction) {
+  handleDispatchAction(_action: DispatcherAction) {
     // nothing
   }
 }

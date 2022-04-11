@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'foro',
+        'topic_logs_controller' => [
+            'index' => 'registros de temas',
+        ],
         'topic_watches_controller' => [
             'index' => 'panel',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'panel',
             'verify_link' => 'verificación de la cuenta',
+        ],
+        'artist_tracks_controller' => [
+            '_' => 'artistas destacados',
         ],
         'artists_controller' => [
             '_' => 'artistas destacados',
@@ -133,6 +139,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'clasificación',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autorizar aplicación',
         ],
     ],
     'store' => [

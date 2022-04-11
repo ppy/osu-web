@@ -11,10 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'İNDİRMEDEN ÖNCE OKUYUN',
-            'instruction' => [
-                '_' => "Kurulum: Bir paketi indirdikten sonra, .rar dosyasını osu!'nun Songs klasörüne çıkartın.                 Bütün şarkılar hala ya .zip ya da .osz halinde, o yüzden osu! bir sonraki Play moduna girdiğinizde beatmaplerin kendilerini çıkartması gerekecek.                    .zip/.osz dosyalarını kendiniz :scary,                    yoksa beatmapler osu!'da yanlış gözükür ve düzgün çalışmazlar.",
-                'scary' => 'ÇIKARTMAYIN',
-            ],
+            'install_instruction' => '',
             'note' => [
                 '_' => 'Ayrıca :scary tavsiye edilir, zira eski haritalar en yeni haritalara kıyasla çok daha düşük kalitededir.',
                 'scary' => 'paketleri en yeniden en eskiye doğru indirmeniz',

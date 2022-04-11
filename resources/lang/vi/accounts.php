@@ -5,7 +5,7 @@
 
 return [
     'edit' => [
-        'title_compact' => 'cài đặt',
+        'title_compact' => 'cài đặt tài khoản',
         'username' => 'tên người dùng',
 
         'avatar' => [
@@ -15,7 +15,7 @@ return [
         ],
 
         'email' => [
-            'current' => 'email hiện tại.',
+            'current' => 'email hiện tại',
             'new' => 'email mới',
             'new_confirmation' => 'xác nhận email',
             'title' => 'Email',
@@ -56,13 +56,13 @@ return [
 
         'options' => [
             '_' => 'phương thức giao hàng',
-            'beatmap_owner_change' => 'Độ khó khách mời',
+            'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'sửa đổi beatmap',
             'channel_message' => 'tin nhắn riêng tư',
             'comment_new' => 'bình luận mới',
             'forum_topic_reply' => 'trả lời chủ đề',
             'mail' => 'thư',
-            'mapping' => '',
+            'mapping' => 'người tạo beatmap',
             'push' => 'push',
             'user_achievement_unlock' => 'mở khoá huy chương',
         ],
@@ -75,7 +75,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'ẩn cảnh báo nội dung không phù hợp trong beatmap',
+        'beatmapset_show_nsfw' => 'ẩn cảnh báo nội dung không lành mạnh trong beatmap',
         'beatmapset_title_show_original' => 'hiển thị metadata của beatmap ở ngôn ngữ gốc',
         'title' => 'Tuỳ chọn',
 

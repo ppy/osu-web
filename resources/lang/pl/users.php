@@ -159,6 +159,10 @@ return [
             '_' => ':link',
             'count' => ':count_delimited komentarz|:count_delimited komentarze|:count_delimited komentarzy',
         ],
+        'cover' => [
+            'to_0' => 'Ukryj tło',
+            'to_1' => 'Pokaż tło',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Zmień tło profilu',
@@ -301,8 +305,8 @@ return [
                 'recent' => 'Ostatnie',
                 'title' => 'Medale',
             ],
-            'multiplayer' => [
-                'title' => 'Gry w trybie wieloosobowym',
+            'playlists' => [
+                'title' => 'Gry w trybie asynchronicznym',
             ],
             'posts' => [
                 'title' => 'Posty',
@@ -311,6 +315,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
+            ],
+            'realtime' => [
+                'title' => 'Gry w trybie wieloosobowym',
             ],
             'top_ranks' => [
                 'download_replay' => 'Pobierz powtórkę',
@@ -325,6 +332,15 @@ return [
                 'first' => [
                     'title' => 'Pierwsze miejsca',
                 ],
+                'pin' => [
+                    'to_0' => 'Odepnij',
+                    'to_0_done' => 'Odpięto wynik',
+                    'to_1' => 'Przypnij',
+                    'to_1_done' => 'Przypięto wynik',
+                ],
+                'pinned' => [
+                    'title' => 'Przypięte wyniki',
+                ],
             ],
             'votes' => [
                 'given' => 'Oddane głosy (ostatnie 3 miesiące)',
@@ -335,8 +351,8 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Stan konta',
-                'bad_standing' => "Konto użytkownika <strong>:username</strong> nie jest w dobrym stanie :(",
-                'remaining_silence' => 'Użytkownik <strong>:username</strong> będzie mógł pisać na czacie :duration.',
+                'bad_standing' => "Konto użytkownika :username nie jest w dobrym stanie :(",
+                'remaining_silence' => 'Użytkownik :username będzie mógł pisać na czacie :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Ostatnie przewinienia',

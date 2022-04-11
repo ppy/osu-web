@@ -15,6 +15,7 @@ return [
         'closing' => 'Cumprimentos,',
         'hello' => 'Olá :user,',
         'report' => 'Por favor responde a este email IMEDIATAMENTE se não pediste esta alteração.',
+        'ignore' => 'Se não solicitaste isto, podes ignorar este email sem riscos.',
     ],
 
     'donation_thanks' => [

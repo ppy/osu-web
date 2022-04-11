@@ -87,8 +87,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Thông báo mới',
+
+                'announce' => [
+                    'channel_announcement' => ':username nói rằng ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Thông báo từ :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Tin nhắn mới',
+
                 'pm' => [
                     'channel_message' => ':username nói ":title"',
                     'channel_message_compact' => ':title',
@@ -149,6 +160,9 @@ return [
                 'user_beatmapset_new' => 'Beatmap mới ":title" bởi :username',
                 'user_beatmapset_new_compact' => 'Beatmap mới ":title"',
                 'user_beatmapset_new_group' => 'Beatmaps mới bởi :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 

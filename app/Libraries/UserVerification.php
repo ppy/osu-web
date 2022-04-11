@@ -113,9 +113,14 @@ class UserVerification
             ));
     }
 
-    public function markVerifiedAndRespond()
+    public function markVerified()
     {
         $this->state->markVerified();
+    }
+
+    public function markVerifiedAndRespond()
+    {
+        $this->markVerified();
 
         return response([], 200);
     }

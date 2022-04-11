@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => '신고',
+        'title' => ':username 님의 비트맵을 신고하실 건가요?',
     ],
 
     'beatmapset_discussion_post' => [

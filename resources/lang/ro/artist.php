@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => '',
         'osu' => 'profilul osu!',
         'site' => 'Site-ul oficial',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Melodii',
         'count' => ':count melodie|:count melodii',
-        'exclusive' => 'exclusiv osu!',
+        'original' => '',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'durată',
         'bpm' => 'bpm',
         'genre' => 'gen',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

@@ -28,6 +28,39 @@ class ScoresControllerTest extends TestCase
             ->assertSuccessful();
     }
 
+    public function testDownloadDeletedBeatmap()
+    {
+        $this->score->beatmap->delete();
+
+        $this
+            ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->get(route('scores.download', $this->params()))
+            ->assertSuccessful();
+    }
+
+    public function testDownloadMissingBeatmap()
+    {
+        $this->score->beatmap->forceDelete();
+
+        $this
+            ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->get(route('scores.download', $this->params()))
+            ->assertStatus(422);
+    }
+
+    public function testDownloadMissingUser()
+    {
+        $this->score->user->delete();
+
+        $this
+            ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->get(route('scores.download', $this->params()))
+            ->assertStatus(422);
+    }
+
     public function testDownloadInvalidReferer()
     {
         $this
@@ -82,8 +115,8 @@ class ScoresControllerTest extends TestCase
             }
         });
 
-        $this->user = factory(User::class)->create();
-        $this->score = factory(Osu::class)->states('with_replay')->create();
+        $this->user = User::factory()->create();
+        $this->score = Osu::factory()->withReplay()->create();
     }
 
     private function params()

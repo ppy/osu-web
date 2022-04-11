@@ -159,6 +159,10 @@ return [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Zmeniť pozadie profilu',
@@ -301,7 +305,7 @@ return [
                 'recent' => 'Najnovšie',
                 'title' => 'Medaile',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -311,6 +315,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Nedávne',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Stiahnuť Záznam',
@@ -324,6 +331,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Umiestnenie na prvom mieste',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [

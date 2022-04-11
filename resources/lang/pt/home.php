@@ -132,15 +132,4 @@ return [
             'store' => 'osu!store',
         ],
     ],
-
-    'support-osu' => [
-        'title' => 'Uau!',
-        'subtitle' => 'Pareces estar a passar um momento agradável! :D',
-        'body' => [
-            'part-1' => 'Sabias que o osu! corre sem nenhuma publicidade e que depende de jogadores para apoiar o seu desenvolvimento e custos de manutenção?',
-            'part-2' => 'Também sabias que ao apoiar o osu! recebes um monte de funcionalidades úteis, tal como <strong>downloads dentro do jogo</strong> que aciona automaticamente em jogos de espectador e multijogador?',
-        ],
-        'find-out-more' => 'Clica aqui para descobrir mais!',
-        'download-starting' => "Ah e não te preocupes - o teu download já foi iniciado para ti ;)",
-    ],
 ];

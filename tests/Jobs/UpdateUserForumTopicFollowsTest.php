@@ -22,7 +22,7 @@ class UpdateUserForumTopicFollowsTest extends TestCase
         config()->set('osu.forum.admin_forum_id', $adminForum->getKey());
         $anotherForum = factory(Forum::class)->states('child')->create();
         $topic = factory(Topic::class)->create(['forum_id' => $forum->getKey()]);
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         TopicWatch::setState($topic, $user, 'watching_mail');
         $notification = Notification::create([

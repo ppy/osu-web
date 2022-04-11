@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> абнавіў бітмапу "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> апублікаваў бітмапу ":beatmapset"',
     'empty' => "Гэта карыстальнік не рабіў нічога заўважнага ў апошні час!",
-    'rank' => 'Карыстальнік <strong><em>:user</em></strong> дасягнуў #:rank рангу на бітмапе <em>:beatmap</em> (:mode)',
+    'rank' => '<strong><em>:user</em></strong> дасягнуў #:rank рангу на бітмапе <em>:beatmap</em> (:mode)',
     'rank_lost' => 'Карыстальнік <strong><em>:user</em></strong> страціў лідэрства на бітмапе <em>:beatmap</em> (:mode)',
     'user_support_again' => 'Карыстальнік <strong>:user</strong> зноў набыў тэг osu!supporter. Дзякуем за вашу падтрымку!',
     'user_support_first' => 'Карыстальнік <strong>:user</strong> набыў тэг osu!supporter. Дзякуем за вашу падтрымку!',

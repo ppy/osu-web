@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'İstenilen sayfa seçilen dilde bulunamadı.',
         'needs_cleanup_or_rewrite' => 'Bu sayfa osu! wiki standartlarına uymamaktadır, bu nedenle düzenlenmeli veya yeniden yazılmalıdır. Eğer yardımcı olabilirseniz, lütfen makaleyi güncellemeyi bir düşünün!',
         'search' => ':link için mevcut sayfaları ara.',
+        'stub' => 'Bu makale henüz taslak halindedir ve birisi tarafından genişletilmeyi beklemektedir.',
         'toc' => 'İçerik',
 
         'edit' => [

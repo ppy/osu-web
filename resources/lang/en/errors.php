@@ -29,6 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Could not get any results, try again later.',
+        'invalid_cursor_exception' => 'Invalid cursor parameter specified.',
         'operation_timeout_exception' => 'Search is currently busier than usual, try again later.',
     ],
 ];

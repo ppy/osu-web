@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'Responder y resolver',
         'reset' => 'Reiniciar',
         'restore' => 'Restaurar',
+        'retry' => 'Volver a intentar',
         'save' => 'Guardar',
         'saving' => 'Guardando...',
         'search' => 'Buscar',
@@ -104,7 +105,7 @@ return [
         'keyboard' => 'teclado',
         'mouse' => 'ratón',
         'tablet' => 'tableta',
-        'touch' => 'Pantalla Táctil',
+        'touch' => 'pantalla táctil',
     ],
 
     'dropzone' => [

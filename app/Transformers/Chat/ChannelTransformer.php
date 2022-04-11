@@ -11,9 +11,21 @@ use App\Transformers\TransformerAbstract;
 
 class ChannelTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
-        'first_message_id',
+    const CONVERSATION_INCLUDES = [
         'last_message_id',
+        'users',
+    ];
+
+    const LISTING_INCLUDES = [
+        'current_user_attributes',
+        'last_read_id',
+        ...self::CONVERSATION_INCLUDES,
+    ];
+
+    protected $availableIncludes = [
+        'current_user_attributes',
+        'last_message_id',
+        'last_read_id', // deprecated
         'recent_messages',
         'users',
     ];
@@ -40,14 +52,25 @@ class ChannelTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeFirstMessageId(Channel $channel)
+    public function includeCurrentUserAttributes(Channel $channel)
     {
-        return $this->primitive($channel->messages()->select('message_id')->orderBy('message_id')->first()->message_id ?? null);
+        $result = $channel->checkCanMessage($this->user);
+
+        return $this->primitive([
+            'can_message' => $result->can(),
+            'can_message_error' => $result->message(),
+            'last_read_id' => $channel->lastReadIdFor($this->user),
+        ]);
     }
 
     public function includeLastMessageId(Channel $channel)
     {
         return $this->primitive($channel->last_message_id);
+    }
+
+    public function includeLastReadId(Channel $channel)
+    {
+        return $this->primitive($channel->lastReadIdFor($this->user));
     }
 
     public function includeRecentMessages(Channel $channel)

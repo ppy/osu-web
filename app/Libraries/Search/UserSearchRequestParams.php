@@ -47,6 +47,7 @@ class UserSearchRequestParams extends UserSearchParams
                 break;
             default:
                 $this->sorts[] = new Sort('_score', $order);
+                $this->sorts[] = new Sort('username.raw', $order === 'desc' ? 'asc' : 'desc');
         }
 
         $this->sortField = $field;

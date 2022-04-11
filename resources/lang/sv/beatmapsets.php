@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Sakta ner, spela mer.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Utvald artist',
+    ],
+
     'index' => [
         'title' => 'Beatmaps Listning',
         'guest_title' => 'Beatmaps',
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'uppnått :when',
             'country' => 'Nationell rankning',
+            'error' => '',
             'friend' => 'Rankning bland vänner',
             'global' => 'Global rankning',
             'supporter-link' => 'Klicka <a href=":link">här</a> för att se alla fina funktioner du kommer få!',
@@ -150,11 +155,12 @@ return [
                 'combo' => 'Högsta kombo',
                 'miss' => 'Missar',
                 'mods' => 'Tillägg',
+                'pin' => '',
                 'player' => 'Spelare',
                 'pp' => '',
                 'rank' => 'Rank',
-                'score_total' => 'Total poäng',
                 'score' => 'Poäng',
+                'score_total' => 'Total poäng',
                 'time' => 'Tid',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Leder',
                 'own' => 'Ditt bästa',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

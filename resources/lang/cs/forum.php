@@ -4,18 +4,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'pinned_topics' => 'Připnuté témata',
+    'pinned_topics' => 'Připnutá témata',
     'slogan' => "je nebezpečné hrát sám.",
     'subforums' => 'Subfóra',
     'title' => 'osu! fóra',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Upravit záhlaví',
 
         'create' => [
             '_' => 'Přidat titulní obrázek',
             'button' => 'Nahrát obrázek',
-            'info' => 'Velikost titulního obrázku by měla mít velikost :dimesions. Obrázek zde také můžete přetáhnout.',
+            'info' => 'Velikost titulního obrázku by měla být :dimensions. K nahrání obrázku ho také můžete přetáhnout sem.',
         ],
 
         'destroy' => [
@@ -45,14 +45,14 @@ return [
     'post' => [
         'confirm_destroy' => 'Opravdu chcete příspěvek odstranit?',
         'confirm_restore' => 'Opravdu chcete příspěvek obnovit?',
-        'edited' => 'Naposledy upravil :user :when, celkový počet úprav :count.',
+        'edited' => 'Naposledy upravil :user :when, upraveno celkem :count_delimited krát.',
         'posted_at' => 'publikováno :when',
-        'posted_by' => '',
+        'posted_by' => 'příspěvek přidal :username',
 
         'actions' => [
             'destroy' => 'Odstranit příspěvek',
             'edit' => 'Upravit příspěvek',
-            'report' => '',
+            'report' => 'Nahlásit příspěvek',
             'restore' => 'Obnovit příspěvek',
         ],
 
@@ -64,7 +64,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited příspěvek|:count_delimited příspěvky|:count_delimited příspěvků',
-            'topic_starter' => '',
+            'topic_starter' => 'Autor tématu',
         ],
     ],
 
@@ -75,7 +75,7 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
+        'confirm_destroy' => 'Opravdu odstranit téma?',
         'confirm_restore' => '',
         'deleted' => 'odstraněné téma',
         'go_to_latest' => 'zobrazit nejnovější příspěvek',
@@ -92,7 +92,7 @@ return [
         'started_by_verbose' => 'započal :user',
 
         'actions' => [
-            'destroy' => '',
+            'destroy' => 'Odstranit téma',
             'restore' => '',
         ],
 
@@ -108,14 +108,14 @@ return [
                 'default' => 'Tohle téma bylo neaktivní už nějakou dobu. Napište pouze jesli k tomu máš důvod.',
 
                 'new_topic' => [
-                    '_' => "Toto téma je neaktivní už nějakou dobu. Pokud nemáte důvod k napsaní, prosím :create radši.",
-                    'create' => 'vytvoř nové téma',
+                    '_' => "Toto téma je už nějakou dobu neaktivní. Pokud nemáš specifický důvod k postnutí zde, prosím :create.",
+                    'create' => 'vytvoř radši nové téma',
                 ],
             ],
 
             'placeholder' => [
                 'body' => 'Zde napiš obsah příspěvku',
-                'title' => 'Klikni sem pro nastavení názvu',
+                'title' => 'Klikni sem pro zadání názvu',
             ],
         ],
 
@@ -125,6 +125,55 @@ return [
             'last' => 'přejít na poslední příspěvek',
             'next' => 'přeskočit 10 příspěvků',
             'previous' => 'vrátit se o 10 příspěvků',
+        ],
+
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => 'Akce',
+                'date' => 'Datum',
+                'user' => 'Uživatel',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => 'z :topic',
+                'pin' => '',
+                'post_operation' => 'příspěvek přidal :username',
+                'remove_tag' => '',
+                'source_forum_operation' => 'z :forum',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => 'Smazaný příspěvek',
+                'delete_topic' => 'Smazané téma',
+                'edit_topic' => 'Změněný titulek tématu',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => 'Upravený příspěvek',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
         ],
 
         'post_edit' => [
@@ -177,8 +226,8 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => 'Skrýt výsledky ankety.',
+                'hide_results_info' => 'Budou zobrazeny až po konci hlasování.',
                 'length' => 'Spustit anketu po dobu',
                 'length_days_suffix' => 'dnů',
                 'length_info' => 'Ponechte prázdné pro dobu neurčitou',

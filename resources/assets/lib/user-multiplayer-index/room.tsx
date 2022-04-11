@@ -1,31 +1,38 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DifficultyBadge from 'difficulty-badge';
-import Img2x from 'img2x';
-import RoomJson from 'interfaces/room-json';
+import DifficultyBadge from 'components/difficulty-badge';
+import Img2x from 'components/img2x';
+import StringWithComponent from 'components/string-with-component';
+import { UserLink } from 'components/user-link';
+import { EndpointRoomJson } from 'interfaces/user-multiplayer-history-json';
 import { route } from 'laroute';
-import { maxBy, minBy } from 'lodash';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import * as React from 'react';
-import { StringWithComponent } from 'string-with-component';
-import { UserLink } from 'user-link';
-import UserMultiplayerHistoryContext from 'user-multiplayer-history-context';
 import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
+import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {
-  room: RoomJson & Required<Pick<RoomJson, 'playlist'>>;
+  room: EndpointRoomJson;
+  store: MultiplayerHistoryStore;
 }
 
 const endingSoonDiffMs = 60 * 60 * 1000; // 60 minutes.
 
 @observer
 export default class Room extends React.Component<Props> {
-  static contextType = UserMultiplayerHistoryContext;
-  declare context: React.ContextType<typeof UserMultiplayerHistoryContext>;
+  private get background() {
+    return this.props.room.current_playlist_item?.beatmap?.beatmapset?.covers.cover;
+  }
+
+  private get playlistItemCount() {
+    return this.props.room.active
+      ? this.props.room.playlist_item_stats.count_active
+      : this.props.room.playlist_item_stats.count_total;
+  }
 
   @computed
   private get status() {
@@ -33,34 +40,23 @@ export default class Room extends React.Component<Props> {
       return 'ended';
     }
 
+    if (this.props.room.ends_at == null) {
+      return 'active';
+    }
+
     const diff = new Date(this.props.room.ends_at).getTime() - new Date().getTime();
 
     return diff < endingSoonDiffMs ? 'soon' : 'active';
   }
 
-  @computed
-  private get maxDifficulty() {
-    const max = maxBy(this.props.room.playlist, (playlist) => this.context.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
-    return this.context.beatmaps.get(max?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
-  }
+  constructor(props: Props) {
+    super(props);
 
-  @computed
-  private get minDifficulty() {
-    const min = minBy(this.props.room.playlist, (playlist) => this.context.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
-    return this.context.beatmaps.get(min?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
-  }
-
-  private get background() {
-    const beatmap = this.context.beatmaps.get(this.props.room.playlist[0].beatmap_id);
-    const beatmapset = this.context.beatmapsets.get(beatmap?.beatmapset_id ?? 0);
-
-    if (beatmapset == null) return undefined;
-
-    return beatmapset.covers.cover;
+    makeObservable(this);
   }
 
   render() {
-    const endsAt = moment(this.props.room.ends_at);
+    const endsAt = this.props.room.ends_at;
 
     return (
       <div className='multiplayer-room'>
@@ -68,27 +64,31 @@ export default class Room extends React.Component<Props> {
         <div className='multiplayer-room__content'>
           <div className='multiplayer-room__badge-container'>
             <div className={classWithModifiers('multiplayer-room__badge', [this.status])}>{osu.trans(`multiplayer.room.status.${this.status}`)}</div>
-            <time className='js-tooltip-time u-hover' title={this.props.room.ends_at}>
-              {this.status === 'ended'
-                ? endsAt.fromNow()
-                : osu.trans('multiplayer.room.time_left', { time: endsAt.fromNow(true) })}
-            </time>
+            {endsAt != null &&
+              <time className='js-tooltip-time u-hover' title={endsAt}>
+                {this.status === 'ended'
+                  ? moment(endsAt).fromNow()
+                  : osu.trans('multiplayer.room.time_left', { time: moment(endsAt).fromNow(true) })}
+              </time>
+            }
           </div>
           <div className='multiplayer-room__details'>
             <div className='multiplayer-room__name'>{this.props.room.name}</div>
             {this.renderMembers()}
           </div>
           <div className='multiplayer-room__badge-container multiplayer-room__badge-container--bottom'>
-            <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{osu.transChoice('multiplayer.room.map_count', this.props.room.playlist.length)}</div>
+            <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{osu.transChoice('multiplayer.room.map_count', this.playlistItemCount)}</div>
             <div
               className='multiplayer-room__difficulty'
               style={{
-                '--max-difficulty': getDiffColour(this.maxDifficulty),
-                '--min-difficulty': getDiffColour(this.minDifficulty),
+                '--max-difficulty': getDiffColour(this.props.room.difficulty_range.max),
+                '--min-difficulty': getDiffColour(this.props.room.difficulty_range.min),
               } as React.CSSProperties}
             >
-              <DifficultyBadge rating={this.minDifficulty} />
-              {this.minDifficulty !== this.maxDifficulty && <DifficultyBadge rating={this.maxDifficulty} />}
+              <DifficultyBadge rating={this.props.room.difficulty_range.min} />
+              {this.props.room.difficulty_range.max !== this.props.room.difficulty_range.min &&
+                <DifficultyBadge rating={this.props.room.difficulty_range.max} />
+              }
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@ export default class Room extends React.Component<Props> {
     return (
       <div className='multiplayer-room__host'>
         <StringWithComponent
-          mappings={{ ':user': <UserLink key='user' className='u-hover' user={this.props.room.host} /> }}
+          mappings={{ user: <UserLink className='u-hover' user={this.props.room.host} /> }}
           pattern={osu.trans('multiplayer.room.hosted_by')}
         />
       </div>

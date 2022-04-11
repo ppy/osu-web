@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Signaler',
+        'title' => 'Signaler la beatmap de :username ?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -21,7 +21,7 @@ return [
 
     'forum_post' => [
         'button' => 'Signaler',
-        'title' => 'Signaler la publication de :username ?',
+        'title' => 'Signaler le post de :username ?',
     ],
 
     'scores' => [

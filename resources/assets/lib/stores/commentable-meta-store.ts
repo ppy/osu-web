@@ -2,17 +2,21 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { CommentableMetaJson } from 'interfaces/comment-json';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
 export default class CommentableMetaStore {
   @observable meta = observable.map<string | null, CommentableMetaJson>();
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   flushStore() {
     this.meta.clear();
   }
 
-  get(type: string, id: number) {
+  get(type: string, id: number): CommentableMetaJson | undefined {
     const obj = this.meta.get(`${type}-${id}`);
 
     return obj != null ? obj : this.meta.get(null);

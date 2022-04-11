@@ -25,7 +25,6 @@ use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
-use App\Traits\CommentableDefaults;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Cache;
@@ -92,6 +91,8 @@ use Illuminate\Database\QueryException;
  * @property int $thread_id
  * @property string $title
  * @property string $title_unicode
+ * @property ArtistTrack $track
+ * @property int|null $track_id
  * @property User $user
  * @property \Illuminate\Database\Eloquent\Collection $userRatings BeatmapsetUserRating
  * @property int $user_id
@@ -101,7 +102,7 @@ use Illuminate\Database\QueryException;
  */
 class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 {
-    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, Memoizes, Reportable, SoftDeletes, Validatable;
+    use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -598,7 +599,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         });
     }
 
-    public function disqualifyOrResetNominations(User $user, BeatmapDiscussion $post)
+    public function disqualifyOrResetNominations(User $user, BeatmapDiscussion $discussion)
     {
         $event = BeatmapsetEvent::DISQUALIFY;
         $notificationClass = BeatmapsetDisqualify::class;
@@ -609,15 +610,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             throw new InvariantException('invalid state');
         }
 
-        $this->getConnection()->transaction(function () use ($event, $notificationClass, $post, $user) {
+        $this->getConnection()->transaction(function () use ($discussion, $event, $notificationClass, $user) {
             $nominators = User::whereIn('user_id', $this->beatmapsetNominations()->current()->select('user_id'))->get();
 
-            BeatmapsetEvent::log($event, $user, $post, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
+            BeatmapsetEvent::log($event, $user, $discussion, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
             foreach ($nominators as $nominator) {
                 BeatmapsetEvent::log(
                     BeatmapsetEvent::NOMINATION_RESET_RECEIVED,
                     $nominator,
-                    $post,
+                    $discussion,
                     ['source_user_id' => $user->getKey(), 'source_user_username' => $user->username]
                 )->saveOrExplode();
             }
@@ -1047,9 +1048,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $this->beatmapsetNominations()->current()->exists();
     }
 
+    /**
+     * This will cause additional query if `difficulty_names` column is blank and beatmaps relation isn't preloaded.
+     */
     public function playmodes()
     {
-        return $this->beatmaps->pluck('playmode')->unique()->values();
+        $rawPlaymodes = present($this->difficulty_names)
+            ? collect(explode(',', $this->difficulty_names))
+                ->map(fn (string $name) => substr($name, strrpos($name, '@') + 1))
+            : $this->beatmaps->pluck('playmode');
+
+        return $rawPlaymodes->unique()->values();
     }
 
     public function playmodeCount()
@@ -1134,15 +1143,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return array_search_null($this->approved, static::STATES);
     }
 
-    public function defaultJson()
-    {
-        return json_item($this, 'Beatmapset', [
-            'beatmaps',
-            'current_user_attributes',
-            'nominations',
-        ]);
-    }
-
     public function defaultDiscussionJson()
     {
         return json_item(
@@ -1163,7 +1163,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 'discussions.posts',
                 'discussions.votes',
                 'events',
-                'events.nomination_modes',
                 'nominations',
                 'related_users',
                 'related_users.groups',
@@ -1191,6 +1190,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $this->belongsTo(Forum\Topic::class, 'thread_id');
     }
 
+    public function track()
+    {
+        return $this->belongsTo(ArtistTrack::class);
+    }
+
     public function userRatings()
     {
         return $this->hasMany(BeatmapsetUserRating::class);
@@ -1204,13 +1208,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $ratings[$i] = 0;
         }
 
-        $userRatings = $this->userRatings()
-            ->select('rating', \DB::raw('count(*) as count'))
-            ->groupBy('rating')
-            ->get();
+        if ($this->relationLoaded('userRatings')) {
+            foreach ($this->userRatings as $userRating) {
+                $ratings[$userRating->rating]++;
+            }
+        } else {
+            $userRatings = $this->userRatings()
+                ->select('rating', \DB::raw('count(*) as count'))
+                ->groupBy('rating')
+                ->get();
 
-        foreach ($userRatings as $rating) {
-            $ratings[$rating->rating] = $rating->count;
+            foreach ($userRatings as $rating) {
+                $ratings[$rating->rating] = $rating->count;
+            }
         }
 
         return $ratings;

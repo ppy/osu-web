@@ -6,7 +6,7 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
-import { action, computed, observable, observe } from 'mobx';
+import { action, computed, makeObservable, observable, observe } from 'mobx';
 import SocketMessageEvent, { SocketEventData } from 'socket-message-event';
 import SocketWorker from 'socket-worker';
 import RetryDelay from 'utils/retry-delay';
@@ -57,6 +57,8 @@ export default class Worker implements DispatchListener {
     $.subscribe('user-verification:success.notifications-worker', () => {
       this.loadMore();
     });
+
+    makeObservable(this);
   }
 
   handleDispatchAction(event: DispatcherAction) {
@@ -104,12 +106,12 @@ export default class Worker implements DispatchListener {
     this.xhr.loadMore = $.ajax({ dataType: 'json', url: route('notifications.index', { unread: 1 }) })
       .always(() => {
         this.xhrLoadingState.loadMore = false;
-      }).done((data: NotificationBootJson) => {
+      }).done(action((data: NotificationBootJson) => {
         this.waitingVerification = false;
         this.loadBundle(data);
         this.retryDelay.reset();
-      })
-      .fail((xhr) => {
+      }))
+      .fail(action((xhr: JQuery.jqXHR) => {
         if (xhr.responseJSON != null && xhr.responseJSON.error === 'verification') {
           this.waitingVerification = true;
 
@@ -120,6 +122,6 @@ export default class Worker implements DispatchListener {
           return;
         }
         this.delayedRetryInitialLoadMore();
-      });
+      }));
   };
 }

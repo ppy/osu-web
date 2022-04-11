@@ -8,6 +8,7 @@ namespace App\Models;
 use App\Exceptions\InvariantException;
 use App\Exceptions\ScoreRetrievalException;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -90,7 +91,11 @@ class Beatmap extends Model
 
     public static function modeStr($int)
     {
-        return array_search_null($int, static::MODES);
+        static $lookupMap;
+
+        $lookupMap ??= array_flip(static::MODES);
+
+        return $lookupMap[$int] ?? null;
     }
 
     public function scopeBaseDifficultyRatings()
@@ -208,6 +213,11 @@ class Beatmap extends Model
             ->orderBy('difficultyrating', 'ASC');
     }
 
+    public function scopeIncreasesStatistics(Builder $query): Builder
+    {
+        return $query->whereHas('beatmapset', fn ($q) => $q->withTrashed(false));
+    }
+
     public function scopeScoreable($query)
     {
         return $query->where('approved', '>', 0);
@@ -270,6 +280,11 @@ class Beatmap extends Model
     public function isScoreable()
     {
         return $this->approved > 0;
+    }
+
+    public function canBeConverted()
+    {
+        return $this->playmode === static::MODES['osu'];
     }
 
     public function maxCombo()

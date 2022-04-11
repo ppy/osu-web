@@ -105,7 +105,7 @@ class CheckoutController extends Controller
     {
         return Auth::user()
             ->orders()
-            ->whereIn('status', ['incart', 'processing'])
+            ->whereCanCheckout()
             ->with('items.product')
             ->find($id);
     }

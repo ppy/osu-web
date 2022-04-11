@@ -142,11 +142,17 @@
     darkorange: 20;
   }
 
+  --c-saturation-1: 100%;
+  --c-saturation-2: 80%;
+  --c-saturation-3: 60%;
+  --c-lightness-1: 70%;
+  --c-lightness-2: 60%;
+  --c-lightness-3: 50%;
   each(@colours, {
     --colour-@{key}-hue: @value;
-    --hsl-@{key}-1: var(~"--colour-@{key}-hue"), 100%, 70%;
-    --hsl-@{key}-2: var(~"--colour-@{key}-hue"), 80%, 60%;
-    --hsl-@{key}-3: var(~"--colour-@{key}-hue"), 60%, 50%;
+    --hsl-@{key}-1: var(~"--colour-@{key}-hue"), var(--c-saturation-1), var(--c-lightness-1);
+    --hsl-@{key}-2: var(~"--colour-@{key}-hue"), var(--c-saturation-2), var(--c-lightness-2);
+    --hsl-@{key}-3: var(~"--colour-@{key}-hue"), var(--c-saturation-3), var(--c-lightness-3);
   });
 }
 // osu!Pink

@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Паскардзіцца',
+        'title' => 'Паскардзіцца на бітмапу :username?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -25,8 +25,8 @@ return [
     ],
 
     'scores' => [
-        'button' => 'Справаздача выніку',
-        'title' => 'Справаздача выніку :username?',
+        'button' => 'Паскардзіцца на скор',
+        'title' => 'Паскардзіцца на скор :username?',
     ],
 
     'user' => [

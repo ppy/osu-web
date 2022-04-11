@@ -15,7 +15,7 @@ export default function ExtraHeader(props: Props) {
         {osu.trans(`users.show.extra.${props.name}.title`)}
       </h2>
       {props.withEdit && (
-        <span className='page-extra-dragdrop hidden-xs js-profile-page-extra--sortable-handle'>
+        <span className='sortable-handle sortable-handle--profile-page-extra hidden-xs js-profile-page-extra--sortable-handle'>
           <i className='fas fa-bars' />
         </span>
       )}

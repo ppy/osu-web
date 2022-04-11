@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'dashbord',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'dashbord',
             'verify_link' => 'kontobekreftelse',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => 'utvalgte artister',
@@ -133,6 +139,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'rangering',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
         ],
     ],
     'store' => [

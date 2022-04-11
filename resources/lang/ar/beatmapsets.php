@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'تَمهل, ألعب أكثر.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => '',
+    ],
+
     'index' => [
         'title' => 'قائمة الخرائط',
         'guest_title' => 'الخرائط',
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'احتُلت عند :when',
             'country' => 'ترتيب الدولة',
+            'error' => '',
             'friend' => 'ترتيب الأصدقاء',
             'global' => 'الترتيب العالمي',
             'supporter-link' => 'اضغط <a href=":link">هنا</a> لمشاهدة كل الميزات الرائعة التي تحصل عليها!',
@@ -150,11 +155,12 @@ return [
                 'combo' => 'اقصى مجموع',
                 'miss' => 'اِخفاق',
                 'mods' => 'المودات',
+                'pin' => '',
                 'player' => 'اللاعب',
                 'pp' => '',
                 'rank' => 'المرتبه',
-                'score_total' => 'مجموع النقاط',
                 'score' => 'المجموع',
+                'score_total' => 'مجموع النقاط',
                 'time' => 'الوقت',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => 'في المقدمة',
                 'own' => 'أفضل ما لديك',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 

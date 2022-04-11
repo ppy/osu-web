@@ -1,3 +1,3 @@
-{{{ Class Name
+::: Class Name
 
 paragraph

@@ -159,6 +159,10 @@ return [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Αλλάξτε το Εξώφυλλο του Προφίλ σας',
@@ -301,7 +305,7 @@ return [
                 'recent' => 'Πρόσφατα',
                 'title' => 'Μετάλλια',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -311,6 +315,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Πρόσφατα',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Λήψη Επανάληψης',
@@ -324,6 +331,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Πρώτες Θέσεις',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [

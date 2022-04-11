@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Almacén',
-    ],
-
     'cart' => [
         'checkout' => 'Pagar',
         'info' => ':count_delimited producto en el carrito ($:subtotal)|:count_delimited productos en el carrito ($:subtotal)',

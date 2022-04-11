@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import TurbolinksReload from 'core/turbolinks-reload';
+import { runInAction } from 'mobx';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { currentUrl } from 'utils/turbolinks';
@@ -35,7 +36,10 @@ export default class ReactTurbolinks {
         }
 
         this.renderedContainers.add(container);
-        ReactDOM.render(elementFn(container), container);
+
+        runInAction(() => {
+          ReactDOM.render(elementFn(container), container);
+        });
       }
     }
   };
@@ -48,11 +52,15 @@ export default class ReactTurbolinks {
     this.boot();
   }
 
-  runAfterPageLoad(eventId: string, callback: () => void) {
+  runAfterPageLoad(callback: () => void) {
     if (document.body === window.newBody) {
       callback();
     } else {
-      $(document).one(`turbolinks:load.${eventId}`, callback);
+      $(document).one('turbolinks:load', callback);
+
+      return () => {
+        $(document).off('turbolinks:load', callback);
+      };
     }
   }
 

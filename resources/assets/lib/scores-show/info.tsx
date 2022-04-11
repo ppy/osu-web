@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as React from 'react';
 import Buttons from './buttons';
 import Dial from './dial';
@@ -9,29 +9,14 @@ import Player from './player';
 import Tower from './tower';
 
 interface Props {
-  score: ScoreJson;
+  score: ScoreJsonForShow;
 }
 
-export default function Info(props: Props) {
-  const score = props.score;
-  const beatmapset = props.score.beatmapset;
-
-  if (beatmapset == null) {
-    throw new Error('score json is missing beatmapset');
-  }
-
-  if (score.mode == null) {
-    throw new Error('score json is missing mode');
-  }
-
-  if (score.rank == null) {
-    throw new Error('score json is missing rank');
-  }
-
+export default function Info({ score }: Props) {
   return (
     <div
       className='score-info'
-      style={{ backgroundImage: osu.urlPresence(beatmapset.covers.cover) }}
+      style={{ backgroundImage: osu.urlPresence(score.beatmapset.covers.cover) }}
     >
       <div className='score-info__item'>
         <Tower rank={score.rank} />

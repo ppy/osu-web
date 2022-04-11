@@ -29,6 +29,9 @@ return [
     ],
     'forum' => [
         '_' => 'フォーラム',
+        'topic_logs_controller' => [
+            'index' => '',
+        ],
         'topic_watches_controller' => [
             'index' => 'ダッシュボード',
         ],
@@ -37,6 +40,9 @@ return [
         'account_controller' => [
             'edit' => 'ダッシュボード',
             'verify_link' => 'アカウント認証',
+        ],
+        'artist_tracks_controller' => [
+            '_' => '',
         ],
         'artists_controller' => [
             '_' => '注目アーティスト',
@@ -133,6 +139,11 @@ return [
     'multiplayer' => [
         'rooms_controller' => [
             '_' => 'ランキング',
+        ],
+    ],
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '',
         ],
     ],
     'store' => [

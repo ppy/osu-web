@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '',
         'reason_not_valid' => ':reason ไม่สามารถใช้ได้กับการรายงานประเภทนี้',
         'self' => "เดี๋ยว คุณรายงานตัวเองไม่ได้",
     ],

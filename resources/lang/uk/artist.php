@@ -22,14 +22,16 @@ return [
     ],
 
     'links' => [
-        'osu' => 'профіль osu!',
+        'beatmaps' => 'osu! бітмапи',
+        'osu' => 'osu! профіль',
         'site' => 'Офіційний веб-сайт',
     ],
 
     'songs' => [
         '_' => 'Пісні',
-        'count' => ':count|пісня:count пісні',
-        'exclusive' => 'osu! ексклюзив',
+        'count' => ':count_delimited пісня|:count_delimited пісні',
+        'original' => 'виключно для osu! ',
+        'original_badge' => 'ОРИГІНАЛ',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'довжина',
         'bpm' => 'bpm',
         'genre' => 'жанр',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'пошук треків',
+
+            'form' => [
+                'advanced' => 'Розширений пошук ',
+                'album' => 'Альбом ',
+                'artist' => 'Виконавець',
+                'bpm_gte' => 'Мінімальний BPM',
+                'bpm_lte' => 'Максимальний BPM',
+                'empty' => 'Не знайдено жодного треку, що відповідає критеріям пошуку.',
+                'genre' => 'Жанр ',
+                'genre_all' => 'Всі ',
+                'length_gte' => 'Мінімальна довжина ',
+                'length_lte' => 'Максимальна довжина ',
+            ],
+        ],
     ],
 ];

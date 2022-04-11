@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { isModalShowing } from 'modal-helper';
 import { fadeIn, fadeOut } from 'utils/fade';
 
 export default class ClickMenu {
@@ -140,7 +141,7 @@ export default class ClickMenu {
   private onDocumentMouseup = (e: JQuery.MouseUpEvent) => {
     if (this.documentMouseEventTarget !== e.target) return;
     if (e.button !== 0) return;
-    if (osu.popupShowing()) return;
+    if (isModalShowing()) return;
     if (this.current == null) return;
     if ($(e.target).closest('.js-click-menu').length > 0) return;
 

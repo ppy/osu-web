@@ -6,7 +6,7 @@
 import '../../resources/assets/build/locales/en';
 
 // Doesn't work when specified in karma config for some reason.
-import '../../resources/assets/app';
+import '../../resources/assets/lib/entrypoints/app';
 
 // webpack's require typings are different from node's
 // and installing either of those typings breaks the typings for the web stuff

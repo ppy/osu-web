@@ -30,7 +30,7 @@
         $class = $class ?? 'simple-menu__item';
     }
 
-    $class .= " js-post-delete-toggle--{$type}";
+    $class .= " js-post-delete-toggle js-post-delete-toggle--{$type}";
 
     $label = osu_trans("forum.{$objectString}.actions.{$deleteString}");
     $confirmation = osu_trans("forum.{$objectString}.confirm_{$deleteString}");

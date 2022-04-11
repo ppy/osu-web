@@ -5,13 +5,13 @@
 
 namespace App\Libraries\Markdown\Indexing\Renderers;
 
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\Inline\Renderer\InlineRendererInterface;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
 
-class NoopRenderer implements BlockRendererInterface, InlineRendererInterface
+class NoopRenderer implements NodeRendererInterface
 {
-    public function render($block, ElementRendererInterface $renderer, bool $inTightList = false)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): string
     {
         return '';
     }

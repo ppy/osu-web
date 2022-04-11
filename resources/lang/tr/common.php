@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'Yanıtla ve Çözümle',
         'reset' => 'Sıfırla',
         'restore' => 'Restore et',
+        'retry' => 'Yeniden dene',
         'save' => 'Kaydet',
         'saving' => 'Kaydediliyor...',
         'search' => 'Arama',

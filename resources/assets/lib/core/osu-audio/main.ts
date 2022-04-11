@@ -16,18 +16,18 @@ const createMainPlayer = () => {
       type="button"
       class="audio-player__button audio-player__button--prev js-audio--nav"
       data-audio-nav="prev"
-    ></button>
+    ><span class="fas fa-fw fa-step-backward"></span></button>
 
     <button
       type="button"
       class="audio-player__button audio-player__button--play js-audio--main-play"
-    ></button>
+    ><span class="fa-fw play-button"></span></button>
 
     <button
       type="button"
       class="audio-player__button audio-player__button--next js-audio--nav"
       data-audio-nav="next"
-    ></button>
+    ><span class="fas fa-fw fa-step-forward"></span></button>
 
     <div class="audio-player__bar audio-player__bar--progress js-audio--seek">
       <div class="audio-player__bar-current"></div>
@@ -61,7 +61,7 @@ const createPagePlayer = () => {
     <button
     type="button"
     class="audio-player__button audio-player__button--play js-audio--play"
-    ></button>
+    ><span class="fa-fw play-button"></span></button>
 
     <div class="audio-player__bar audio-player__bar--progress js-audio--seek">
       <div class="audio-player__bar-current"></div>
@@ -101,6 +101,7 @@ export default class Main {
 
   constructor(private userPreferences: UserPreferences) {
     this.audio.volume = 0;
+    this.audio.addEventListener('pause', this.onPause);
     this.audio.addEventListener('playing', this.onPlaying);
     this.audio.addEventListener('ended', this.onEnded);
     this.audio.addEventListener('timeupdate', this.onTimeupdate);
@@ -277,6 +278,10 @@ export default class Main {
     }
   };
 
+  private onPause = () => {
+    this.setState('paused');
+  };
+
   private onPlaying = () => {
     this.setTimeFormat();
     this.durationFormatted = format(this.audio.duration, this.timeFormat);
@@ -335,11 +340,6 @@ export default class Main {
       initialEvent: e,
       moveCallback: this.onVolumeChangeMove,
     });
-  };
-
-  private pause = () => {
-    this.audio.pause();
-    this.setState('paused');
   };
 
   private reattachPagePlayer = (elems?: Element[]) => {
@@ -433,8 +433,8 @@ export default class Main {
     this.state = state;
     this.syncState();
 
+    window.clearTimeout(this.hideMainPlayerTimeout);
     if (this.state === 'playing' || this.state === 'loading') {
-      window.clearTimeout(this.hideMainPlayerTimeout);
       if (this.mainPlayer != null) {
         this.mainPlayer.dataset.audioVisible = '1';
       }
@@ -468,7 +468,8 @@ export default class Main {
     this.audio.pause();
     this.currentSlider?.end();
     this.audio.currentTime = 0;
-    this.pause();
+    // manually trigger otherwise the player will have been changed when the event triggers
+    this.onPause();
   };
 
   private syncProgress = () => {
@@ -527,7 +528,7 @@ export default class Main {
     if (this.audio.paused) {
       void this.audio.play();
     } else {
-      this.pause();
+      this.audio.pause();
     }
   };
 

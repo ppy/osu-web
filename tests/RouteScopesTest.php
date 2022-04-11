@@ -49,12 +49,12 @@ class RouteScopesTest extends TestCase
             'user_id' => 1, // user doesn't need to exist and not having to create a user makes the test much faster
         ]);
 
-        $build = factory(Build::class)->create([
+        $build = Build::factory()->create([
             'version' => '1',
             'stream_id' => $stream->getKey(),
         ]);
 
-        factory(Comment::class)->create([
+        Comment::factory()->create([
             'commentable_id' => $build->getKey(),
             'commentable_type' => 'build',
             'id' => 1,

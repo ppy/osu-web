@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Zwolnij, pograj więcej!',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Wyróżniony artysta',
+    ],
+
     'index' => [
         'title' => 'Lista beatmap',
         'guest_title' => 'Beatmapy',
@@ -139,6 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => 'osiągnięte :when',
             'country' => 'Ranking krajowy',
+            'error' => 'Nie udało się załadować rankingu',
             'friend' => 'Ranking znajomych',
             'global' => 'Ranking globalny',
             'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
@@ -150,11 +155,12 @@ return [
                 'combo' => 'Combo',
                 'miss' => 'Pudła',
                 'mods' => 'Modyfikatory',
+                'pin' => 'Przypnij',
                 'player' => 'Gracz',
                 'pp' => '',
                 'rank' => 'Pozycja',
-                'score_total' => 'Wynik',
                 'score' => 'Wynik',
+                'score_total' => 'Wynik',
                 'time' => 'Data',
             ],
 
@@ -168,6 +174,10 @@ return [
             'score' => [
                 'first' => 'Najlepszy wynik',
                 'own' => 'Twój wynik',
+            ],
+            'supporter_link' => [
+                '_' => 'Kliknij :here, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
+                'here' => 'tutaj',
             ],
         ],
 

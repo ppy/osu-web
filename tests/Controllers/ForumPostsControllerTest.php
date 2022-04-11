@@ -17,7 +17,7 @@ class ForumPostsControllerTest extends TestCase
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
-        $user = factory(User::class)->create()->fresh();
+        $user = User::factory()->create()->fresh();
         $group = app('groups')->byIdentifier('default');
         $user->setDefaultGroup($group);
         Forum\Post::createNew($topic, $user, 'test', false);
@@ -44,7 +44,7 @@ class ForumPostsControllerTest extends TestCase
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
-        $user = factory(User::class)->create()->fresh();
+        $user = User::factory()->create()->fresh();
         $group = app('groups')->byIdentifier('default');
         $user->setDefaultGroup($group);
         $post = Forum\Post::createNew($topic, $user, 'test', false);
@@ -70,7 +70,7 @@ class ForumPostsControllerTest extends TestCase
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
-        $user = factory(User::class)->create()->fresh();
+        $user = User::factory()->create()->fresh();
         $group = app('groups')->byIdentifier('default');
         $user->setDefaultGroup($group);
         Forum\Post::createNew($topic, $user, 'test', false);
@@ -98,13 +98,13 @@ class ForumPostsControllerTest extends TestCase
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
-        $poster = factory(User::class)->create()->fresh();
+        $poster = User::factory()->create()->fresh();
         $poster->setDefaultGroup(app('groups')->byIdentifier('default'));
         Forum\Post::createNew($topic, $poster, 'test', false);
         $post = Forum\Post::createNew($topic, $poster, 'a reply');
         $post->delete();
 
-        $user = factory(User::class)->create()->fresh();
+        $user = User::factory()->create()->fresh();
         $user->setDefaultGroup(app('groups')->byIdentifier('gmt'));
 
         $initialPostCount = Forum\Post::count();

@@ -26,13 +26,6 @@
   --font-default-zh-tw: @font-default-zh-tw;
   --font-content: @font-content;
 
-  --diff-easy: @diff-easy;
-  --diff-normal: @diff-normal;
-  --diff-hard: @diff-hard;
-  --diff-insane: @diff-insane;
-  --diff-expert: @diff-expert;
-  --diff-expert-plus: @diff-expert-plus;
-
   --beatmapset-status-colour-default: var(--hsl-b3);
   --beatmapset-graveyard-bg: #000;
   --beatmapset-graveyard-colour: hsl(var(--hsl-b1));
@@ -52,6 +45,14 @@
 
 html, body {
   height: 100%;
+}
+
+html {
+  scroll-padding-top: @nav2-height--pinned;
+
+  @media @mobile {
+    scroll-padding-top: @navbar-height;
+  }
 }
 
 body {
@@ -96,10 +97,12 @@ body {
   width: 100%;
   top: 155px;
   z-index: 9999;
+  pointer-events: none;
 
   .alert {
-    border: none;
     .default-box-shadow();
+    border: none;
+    pointer-events: auto;
   }
 
   .popup-text {

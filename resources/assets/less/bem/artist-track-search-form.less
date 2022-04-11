@@ -1,0 +1,115 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.artist-track-search-form {
+  --input-bg: hsl(var(--hsl-b5));
+  --input-border-radius: @border-radius--large;
+  background: hsl(var(--hsl-b4));
+
+  &__advanced {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+
+    @media @desktop {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__big-input {
+    .reset-input();
+    background: var(--input-bg);
+    border-radius: var(--input-border-radius);
+    height: 50px;
+    width: 100%;
+    font-size: @font-size--title-small-4;
+    padding: 10px;
+  }
+
+  &__content {
+    --vertical-gutter: 20px;
+    .default-gutter-v2();
+    padding-top: var(--vertical-gutter);
+    padding-bottom: var(--vertical-gutter);
+
+    &--buttons {
+      --vertical-gutter: 10px;
+      background-color: hsl(var(--hsl-b3));
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+  }
+
+  &__genre-link {
+    .link-plain();
+    font-size: @font-size--normal;
+    font-weight: bold;
+    background: hsl(var(--hsl-b3));
+    color: hsl(var(--hsl-c1));
+    padding: 2px 15px 3px; // slightly more on the bottom to compensate font vertical alignment
+    border-radius: 10000px;
+    transition: none;
+    text-align: center;
+    white-space: nowrap;
+
+    &:focus, &:active {
+      color: hsl(var(--hsl-c1));
+    }
+
+    &:hover {
+      background: hsl(var(--hsl-l1));
+      color: hsl(var(--hsl-b6));
+    }
+
+    &--active {
+      background: hsl(var(--hsl-b1));
+    }
+  }
+
+  &__genres {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+  }
+
+  &__input {
+    .reset-input();
+    background: transparent;
+    font-size: @font-size--title-small-3;
+    width: 100%;
+  }
+
+  &__input-group {
+    --label-colour: hsl(var(--hsl-c2));
+    background: var(--input-bg);
+    border-radius: var(--input-border-radius);
+    text-transform: initial;
+    padding: 5px 10px 10px;
+    font-weight: initial;
+    margin: 0;
+
+    &--2 {
+      grid-column-end: span 2;
+    }
+
+    &--4 {
+      grid-column-end: span 2;
+
+      @media @desktop {
+        grid-column-end: span 4;
+      }
+    }
+
+    &--genre {
+      --label-colour: hsl(var(--hsl-c1));
+      background: none;
+    }
+  }
+
+  &__label {
+    color: var(--label-colour);
+    font-size: @font-size--normal;
+    padding-bottom: 5px;
+  }
+}

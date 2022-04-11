@@ -9,7 +9,7 @@ Field          | Type                     | Description
 accuracy       | float                    | |
 ar             | float                    | |
 beatmapset_id  | integer                  | |
-bpm            | float                    | |
+bpm            | float?                   | |
 convert        | boolean                  | |
 count_circles  | integer                  | |
 count_sliders  | integer                  | |

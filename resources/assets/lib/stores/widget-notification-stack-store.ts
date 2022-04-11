@@ -4,7 +4,7 @@
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
-import { action, computed } from 'mobx';
+import { override } from 'mobx';
 import {
   NotificationEventMoreLoaded,
   NotificationEventNew,
@@ -14,30 +14,26 @@ import NotificationStackStore from './notification-stack-store';
 
 @dispatchListener
 export default class WidgetNotificationStackStore extends NotificationStackStore implements DispatchListener {
-  @computed get totalWithPm() {
-    return this.total + this.legacyPm.count;
-  }
-
-  @action
+  @override
   handleNotificationEventMoreLoaded(event: NotificationEventMoreLoaded) {
     if (event.context.isWidget) {
       this.updateWithBundle(event.data);
     }
   }
 
-  @action
+  @override
   handleNotificationEventNew(event: NotificationEventNew) {
     if (event.data.is_read) return;
 
     super.handleNotificationEventNew(event);
   }
 
-  @action
+  @override
   handleNotificationEventRead(event: NotificationEventRead) {
     this.removeByEvent(event);
   }
 
-  @action
+  @override
   updateWithBundle(bundle: NotificationBundleJson) {
     super.updateWithBundle(bundle);
 

@@ -7,7 +7,7 @@ return [
     'deleted' => '[törölt felhasználó]',
 
     'beatmapset_activities' => [
-        'title' => ":user Modolási Történelme",
+        'title' => ":user modolási történelme",
         'title_compact' => 'Modolás',
 
         'discussions' => [
@@ -159,6 +159,10 @@ return [
             '_' => ':link posztolva',
             'count' => ':count_delimited komment|:count_delimited komment',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profil Borító Változtatása',
@@ -196,22 +200,22 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => ':artist által',
-                'title' => 'Beatmap-ek',
+                'title' => 'Beatmapek',
 
                 'favourite' => [
-                    'title' => 'Kedvenc Beatmapek',
+                    'title' => 'Kedvenc beatmapek',
                 ],
                 'graveyard' => [
-                    'title' => 'Eltemetett Beatmap-ek',
+                    'title' => 'Eltemetett beatmapek',
                 ],
                 'loved' => [
-                    'title' => 'Szeretett Beatmap-ek',
+                    'title' => 'Szeretett beatmapek',
                 ],
                 'pending' => [
-                    'title' => 'Pending Beatmap-ek',
+                    'title' => 'Függő beatmapek',
                 ],
                 'ranked' => [
-                    'title' => 'Ranked & Approved Beatmap-ek',
+                    'title' => 'Rangsorolt beatmapek',
                 ],
             ],
             'discussions' => [
@@ -233,7 +237,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'alkalommal lejátszva',
-                    'title' => 'Legtöbbet Játszott Beatmap-ek',
+                    'title' => 'Legtöbbet játszott beatmapek',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'pontosság: :percentage',
@@ -301,8 +305,8 @@ return [
                 'recent' => 'Legújabb',
                 'title' => 'Medálok',
             ],
-            'multiplayer' => [
-                'title' => 'Többjátékos mód',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Bejegyzések',
@@ -312,9 +316,12 @@ return [
             'recent_activity' => [
                 'title' => 'Legutóbbi',
             ],
+            'realtime' => [
+                'title' => '',
+            ],
             'top_ranks' => [
                 'download_replay' => 'Replay letöltése',
-                'not_ranked' => 'Kizárólag rangsorolt beatmap adhat pp-t.',
+                'not_ranked' => 'pp csak rangsorolt beatmapktől száramzik',
                 'pp_weight' => 'súlyozott :percentage',
                 'view_details' => 'Részletek mutatása',
                 'title' => 'Rangok',
@@ -324,6 +331,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Első Helyezéses Eredmények',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -407,9 +423,9 @@ return [
             'total_score' => 'Összpontszám',
             // modding stats
             'graveyard_beatmapset_count' => 'Eltemetett beatmapek',
-            'loved_beatmapset_count' => 'Kedvelt beatmapek',
-            'pending_beatmapset_count' => 'Függőben lévő beatmapek',
-            'ranked_beatmapset_count' => 'Rankedelt & jóváhagyott beatmapek',
+            'loved_beatmapset_count' => 'Szeretett beatmapek',
+            'pending_beatmapset_count' => 'Függő beatmapek',
+            'ranked_beatmapset_count' => 'Rangsorolt beatmapek',
         ],
     ],
 

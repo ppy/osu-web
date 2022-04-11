@@ -18,6 +18,8 @@ namespace App\Models;
  */
 class Country extends Model
 {
+    const UNKNOWN = 'XX';
+
     protected $table = 'osu_countries';
     protected $primaryKey = 'acronym';
     protected $keyType = 'string';

@@ -29,7 +29,7 @@
 
         @include('store.orders._status')
 
-        @if ($order->status === 'shipped')
+        @if ($order->isShipped())
             @foreach($order->trackingCodes() as $code)
                 @include('store.orders._tracking', compact('code'))
             @endforeach

@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => 'Os beatmaps classificados não podem ser denunciados',
         'reason_not_valid' => ':reason não é valida para este tipo de denúncia.',
         'self' => "Não te podes denunciar a ti mesmo!",
     ],

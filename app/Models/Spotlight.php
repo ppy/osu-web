@@ -30,7 +30,6 @@ class Spotlight extends Model
 
     protected $table = 'osu_charts';
     protected $primaryKey = 'chart_id';
-    protected $guarded = [];
 
     protected $casts = [
         'active' => 'boolean',

@@ -19,7 +19,6 @@ return [
             'contest' => 'مسابقة',
             'contests' => 'المسابقات',
             'root' => 'وحدة التحكم',
-            'store_orders' => 'مشرف المتجر',
         ],
 
         'artists' => [
@@ -47,7 +46,8 @@ return [
 
         'users' => [
             'modding' => 'الاِقتراح',
-            'multiplayer' => 'متعدد اللاعبين',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'معلومات',
         ],
     ],

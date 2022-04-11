@@ -89,7 +89,7 @@ return [
         'forgot' => 'パスワードを忘れましたか？',
         'info' => 'ログインして続行してください',
         'invalid_captcha' => 'Captcha が無効です。ページを更新して再度お試し下さい。',
-        'locked_ip' => 'あなたのIPアドレスはロックされています。数分後もう一度お試しください。',
+        'locked_ip' => 'あなたのIPアドレスは規制されています。数分後もう一度お試しください。',
         'password' => 'パスワード',
         'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
         'remember' => 'ログイン状態を保持する',
@@ -158,6 +158,10 @@ return [
         'comments_count' => [
             '_' => '投稿 :link',
             'count' => ':count_delimited コメント',
+        ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
         ],
         'edit' => [
             'cover' => [
@@ -301,8 +305,8 @@ return [
                 'recent' => '最新',
                 'title' => 'メダル',
             ],
-            'multiplayer' => [
-                'title' => 'マルチプレイ ゲーム',
+            'playlists' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => '投稿',
@@ -311,6 +315,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => '最近のアクティビティ',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'リプレイをダウンロード',
@@ -324,6 +331,15 @@ return [
                 ],
                 'first' => [
                     'title' => '1位の記録',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [

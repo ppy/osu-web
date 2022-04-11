@@ -44,6 +44,7 @@ return [
         'reply_resolve' => '返信して解決',
         'reset' => 'リセット',
         'restore' => '復元',
+        'retry' => '',
         'save' => '保存',
         'saving' => '保存中・・・',
         'search' => '検索',
@@ -53,7 +54,7 @@ return [
         'show_less' => '表示を縮小する',
         'show_more' => '展開する',
         'show_more_options' => '詳細オプションを表示する',
-        'submit' => '',
+        'submit' => '送信',
         'unpin' => 'ピン解除',
         'update' => 'アップデート',
         'upload_image' => '画像をアップロード',
@@ -92,11 +93,11 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
+            'moment' => 'YYYY年MM月',
             'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => 'YYYY年MM月',
         ],
     ],
 

@@ -14,7 +14,7 @@ return [
 
         'slogan' => [
             'main' => 'el mejor juego de ritmo gratis',
-            'sub' => 'el ritmo está solo a un clic de distancia',
+            'sub' => 'el ritmo está a un solo clic de distancia',
         ],
     ],
 
@@ -131,16 +131,5 @@ return [
             'support' => 'Apoyar a osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => '¡Wow!',
-        'subtitle' => '¡Pareces estar pasando un buen rato! :D',
-        'body' => [
-            'part-1' => '¿Sabías que osu! se mantiene sin publicidad y confía en sus jugadores para apoyar su desarrollo y costos de mantenimiento?',
-            'part-2' => '¿También sabías que apoyando a osu! obtienes un montón de características útiles, como <strong>la descarga en el juego</strong> que se activa automáticamente en partidas de espectador y multijugador?',
-        ],
-        'find-out-more' => '¡Haz clic aquí para obtener más información!',
-        'download-starting' => "Ah, y no te preocupes - tu descarga ya se ha iniciado para ti ;)",
     ],
 ];

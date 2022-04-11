@@ -159,6 +159,10 @@ return [
             '_' => '發表了 :link',
             'count' => ':count_delimited 則留言|:count_delimited 則留言',
         ],
+        'cover' => [
+            'to_0' => '隱藏封面',
+            'to_1' => '顯示封面',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '變更個人簡介封面',
@@ -301,8 +305,8 @@ return [
                 'recent' => '最新',
                 'title' => '成就',
             ],
-            'multiplayer' => [
-                'title' => '多人遊戲',
+            'playlists' => [
+                'title' => '歌單遊戲',
             ],
             'posts' => [
                 'title' => '貼文',
@@ -311,6 +315,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => '最近活動',
+            ],
+            'realtime' => [
+                'title' => '多人遊戲',
             ],
             'top_ranks' => [
                 'download_replay' => '下載重播',
@@ -324,6 +331,15 @@ return [
                 ],
                 'first' => [
                     'title' => '第一名',
+                ],
+                'pin' => [
+                    'to_0' => '取消置頂',
+                    'to_0_done' => '成績已取消置頂',
+                    'to_1' => '置頂',
+                    'to_1_done' => '已置頂成績',
+                ],
+                'pinned' => [
+                    'title' => '已置頂成績',
                 ],
             ],
             'votes' => [

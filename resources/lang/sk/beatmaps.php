@@ -73,6 +73,7 @@ return [
             'nomination_reset' => 'Obnoviť Nomináciu',
             'praise' => 'Pochvala',
             'problem' => 'Problém',
+            'problem_warning' => '',
             'review' => 'Recenzia',
             'suggestion' => 'Návrh',
         ],
@@ -208,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Si si istý? Vytvorením novej pripomienky sa proces nominácie resetne.',
             'disqualify' => 'Ste si istý? Toto odstráni beatmapu z kvalifikácie a resetuje nominačný proces.',
+            'nomination_reset' => 'Si si istý? Vytvorením novej pripomienky sa proces nominácie resetne.',
+            'problem_warning' => '',
         ],
     ],
 
@@ -252,6 +254,7 @@ return [
     ],
     'general' => [
         'converts' => 'Zahrnúť konvertované beatmapy',
+        'featured_artists' => '',
         'follows' => '',
         'recommended' => 'Odporúčaná obtiažnosť',
     ],
@@ -272,6 +275,7 @@ return [
         'loved' => 'Obľúbené',
         'mine' => 'Moje mapy',
         'pending' => 'Nerozhodnutý & prebiehajúci',
+        'wip' => '',
         'qualified' => 'Kvalifikované',
         'ranked' => 'Hodnotené',
     ],

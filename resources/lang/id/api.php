@@ -8,7 +8,7 @@ return [
         'chat' => [
             'empty' => 'Tidak dapat mengirim pesan kosong.',
             'limit_exceeded' => 'Anda mengirim pesan terlalu cepat, harap tunggu sebentar sebelum mencoba lagi.',
-            'too_long' => 'Pesan yang Anda coba kirim terlalu panjang.',
+            'too_long' => 'Pesan yang hendak Anda kirim terlalu panjang.',
         ],
     ],
 
@@ -17,11 +17,11 @@ return [
         'identify' => 'Mengenali diri Anda dan membaca profil publik Anda.',
 
         'chat' => [
-            'write' => 'Mengirimkan pesan-pesan atas nama akun Anda.',
+            'write' => 'Mengirim pesan atas nama akun Anda.',
         ],
 
         'forum' => [
-            'write' => 'Membuat dan menyunting postingan forum atas nama akun Anda.',
+            'write' => 'Membuat dan menyunting topik forum serta postingan forum atas nama akun Anda.',
         ],
 
         'friends' => [

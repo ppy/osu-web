@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => '倉庫',
-    ],
-
     'cart' => [
         'checkout' => '結帳',
         'info' => '購物車裡有 :count_delimited 件商品（$:subtotal）|購物車裡有 :count_delimited 件商品（$:subtotal）',
