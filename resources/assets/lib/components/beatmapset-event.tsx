@@ -9,6 +9,7 @@ import { escape, kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { linkHtml } from 'utils/url';
 
 export type EventViewMode = 'discussions' | 'profile' | 'list';
@@ -203,7 +204,12 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         } else {
           params.source_user = linkHtml(route('users.show', { user: data.source_user_id }), data.source_user_username);
         }
+        break;
       }
+      case 'offset_edit':
+        params.new = formatNumber(this.props.event.comment.new);
+        params.old = formatNumber(this.props.event.comment.old);
+        break;
     }
 
     const key = `beatmapset_events.event.${eventType}`;
