@@ -265,7 +265,7 @@ class BeatmapsetsController extends Controller
                 $oldLanguageId = $beatmapset->language_id;
                 $oldNsfw = $beatmapset->nsfw;
                 $oldOffset = $beatmapset->offset;
-                $user = Auth::user();
+                $user = auth()->user();
 
                 $beatmapset->fill($metadataParams)->saveOrExplode();
 
