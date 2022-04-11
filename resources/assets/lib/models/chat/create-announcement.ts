@@ -33,7 +33,7 @@ export default class CreateAnnouncement {
   @observable validUsers = new Map<number, UserJson>();
 
   private uuid = osu.uuid();
-  private xhrLookupUsers?: JQueryXHR;
+  private xhrLookupUsers?: JQuery.jqXHR<{ users: UserJson[] }>;
 
   @computed
   get errors() {
@@ -151,7 +151,8 @@ export default class CreateAnnouncement {
     }
 
     try {
-      const response = await this.fetchUsers(userIds);
+      this.xhrLookupUsers = this.fetchUsers(userIds);
+      const response = await this.xhrLookupUsers;
       runInAction(() => {
         for (const user of response.users) {
           this.validUsers.set(user.id, user);
