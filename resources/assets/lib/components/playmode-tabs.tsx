@@ -25,30 +25,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
       <ul className='game-mode'>
         {this.props.entries.map((entry) => (
           <li key={entry.mode}>
-            <a
-              className={classWithModifiers('game-mode-link', {
-                active: entry.mode === this.props.currentMode,
-                disabled: entry.disabled,
-              })}
-              data-disabled={entry.disabled ? '1' : '0'}
-              data-mode={entry.mode}
-              href={entry.href == null || entry.disabled ? '#' : entry.href}
-              onClick={this.onClick}
-            >
-              <span
-                className={`fal fa-extra-mode-${entry.mode}`}
-                title={entry.disabled ? undefined : osu.trans(`beatmaps.mode.${entry.mode}`)}
-              />
-              {entry.mode === this.props.defaultMode &&
-                <span
-                  className='game-mode-link__icon'
-                  title={osu.trans('users.show.edit.default_playmode.is_default_tooltip')}
-                >
-                  <span className='fas fa-star' />
-                </span>
-              }
-              {entry.count != null && <span className='game-mode-link__badge'>{entry.count}</span>}
-            </a>
+            {this.renderLink(entry)}
           </li>
         ))}
       </ul>
@@ -59,12 +36,50 @@ export default class PlaymodeTabs extends React.Component<Props> {
     const target = e.currentTarget;
     const mode = target.dataset.mode as GameMode;
 
-    if (this.props.currentMode !== mode && target.dataset.disabled !== '1') {
+    if (this.props.currentMode !== mode) {
       this.props.onClick?.(e, mode);
 
       return;
     }
 
     e.preventDefault();
+  };
+
+  private readonly renderLink = (entry: Entry) => {
+    const content = (
+      <>
+        <span
+          className={`fal fa-extra-mode-${entry.mode}`}
+          title={entry.disabled ? undefined : osu.trans(`beatmaps.mode.${entry.mode}`)}
+        />
+        {entry.mode === this.props.defaultMode &&
+          <span
+            className='game-mode-link__icon'
+            title={osu.trans('users.show.edit.default_playmode.is_default_tooltip')}
+          >
+            <span className='fas fa-star' />
+          </span>
+        }
+        {entry.count != null && <span className='game-mode-link__badge'>{entry.count}</span>}
+      </>
+    );
+
+    const className = classWithModifiers('game-mode-link', {
+      active: entry.mode === this.props.currentMode,
+      disabled: entry.disabled,
+    });
+
+    return entry.disabled
+      ? <span className={className}>{content}</span>
+      : (
+        <a
+          className={className}
+          data-mode={entry.mode}
+          href={entry.href ?? '#'}
+          onClick={this.onClick}
+        >
+          {content}
+        </a>
+      );
   };
 }
