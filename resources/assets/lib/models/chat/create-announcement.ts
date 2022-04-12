@@ -9,8 +9,8 @@ import { debounce } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 
-export const inputKeys = ['description', 'message', 'name', 'users'] as const;
-export type InputKey = typeof inputKeys[number];
+const inputKeys = ['description', 'message', 'name', 'users'] as const;
+type InputKey = typeof inputKeys[number];
 
 export function isInputKey(key: string): key is InputKey {
   return (inputKeys as Readonly<string[]>).includes(key);

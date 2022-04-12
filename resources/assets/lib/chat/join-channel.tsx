@@ -51,7 +51,7 @@ export default class JoinChannel extends React.Component<Props> {
       <div className='chat-join-channel'>
         <div className='chat-join-channel__fields'>
           <div className='chat-join-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
-          <InputContainer labelKey='chat.join_channel.labels.name' model={this.model} name='name'>
+          <InputContainer labelKey='chat.join_channel.labels.name' model={this.model} modifiers='chat' name='name'>
             <input
               className='chat-join-channel__input'
               defaultValue={this.model.inputs.name}
@@ -60,7 +60,7 @@ export default class JoinChannel extends React.Component<Props> {
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer labelKey='chat.join_channel.labels.description' model={this.model} name='description'>
+          <InputContainer labelKey='chat.join_channel.labels.description' model={this.model} modifiers='chat' name='description'>
             <input
               className='chat-join-channel__input'
               defaultValue={this.model.inputs.description}
@@ -69,7 +69,7 @@ export default class JoinChannel extends React.Component<Props> {
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer labelKey='chat.join_channel.labels.users' model={this.model} name='users'>
+          <InputContainer labelKey='chat.join_channel.labels.users' model={this.model} modifiers='chat' name='users'>
             <div className='chat-join-channel__users-input'>
               <div className='chat-join-channel__users'>
                 {this.renderValidUsers()}
@@ -86,7 +86,7 @@ export default class JoinChannel extends React.Component<Props> {
               <BusySpinner busy={this.model.busy.lookupUsers} />
             </div>
           </InputContainer>
-          <InputContainer model={this.model} name='message'>
+          <InputContainer model={this.model} modifiers='chat' name='message'>
             <textarea
               autoComplete='off'
               className='chat-join-channel__box'

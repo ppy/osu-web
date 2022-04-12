@@ -2,14 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { observer } from 'mobx-react';
-import { InputKey } from 'models/chat/create-announcement';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
-interface Props {
+interface CommonProps {
   labelKey?: string;
-  model: FancyForm<InputKey>;
-  name: InputKey;
+  modifiers?: Modifiers;
 }
 
 export interface FancyForm<T extends string> {
@@ -18,11 +16,19 @@ export interface FancyForm<T extends string> {
   showError: Record<T, boolean>;
 }
 
+// extra props when error marking support is used.
+type Props<T extends string> =
+  CommonProps & { model: FancyForm<T>; name: T }
+  | CommonProps & { model?: never; name?: never } ;
+
 // TODO: look at combining with ValidatingInput
-const InputContainer = observer((props: React.PropsWithChildren<Props>) => {
-  const error = props.model.errors[props.name] && props.model.showError[props.name];
+const InputContainer = observer(<T extends string>(props: React.PropsWithChildren<Props<T>>) => {
+  const error = props.model != null
+    ? props.model.errors[props.name] && props.model.showError[props.name]
+    : false;
+
   return (
-    <label className={classWithModifiers('input-container', { error })}>
+    <label className={classWithModifiers('input-container', { error }, props.modifiers)}>
       {props.labelKey != null && (
         <div className='input-container__label'>
           {osu.trans(props.labelKey)}

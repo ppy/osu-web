@@ -2,27 +2,53 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .input-container {
-  .default-border-radius();
+  --label-colour: hsl(var(--hsl-c2));
+  --input-bg: hsl(var(--hsl-b5));
 
   display: flex;
   flex-direction: column;
-  background: hsl(var(--hsl-b6));
-  font-weight: normal;
+  background: var(--input-bg);
+  border-radius: 5px;
+  text-transform: initial;
+  font-weight: initial;
 
-  padding: 5px;
-  border: 2px solid transparent;
-
+  margin: 0;
+  padding: 5px 10px 10px;
   width: 100%;
-  min-height: var(--input-height);
+
+  &--2 {
+    grid-column-end: span 2;
+  }
+
+  &--4 {
+    grid-column-end: span 2;
+
+    @media @desktop {
+      grid-column-end: span 4;
+    }
+  }
+
+  &--chat {
+    --input-bg: hsl(var(--hsl-b6));
+
+    border: 2px solid transparent;
+    padding: 5px;
+    min-height: var(--input-height);
+  }
 
   &--error {
     border-color: hsl(var(--hsl-red-2));
   }
 
+  &--genre {
+    --label-colour: hsl(var(--hsl-c1));
+    background: none;
+  }
+
   &__label {
-    color: hsl(var(--hsl-c2));
+    margin-bottom: 5px;
+    color: var(--label-colour);
     font-size: @font-size--normal;
-    text-transform: initial;
   }
 }
 
