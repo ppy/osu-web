@@ -2,44 +2,23 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
+import InputContainer from 'components/input-container';
 import { Spinner } from 'components/spinner';
 import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import { FancyForm, InputKey, isInputKey } from 'models/chat/create-announcement';
+import { isInputKey } from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
 
 type Props = Record<string, never>;
-
-interface InputContainerProps {
-  hasTitle?: boolean;
-  model: FancyForm<InputKey>;
-  name: InputKey;
-}
 
 const BusySpinner = ({ busy }: { busy: boolean }) => (
   <div className='chat-join-channel__spinner'>
     {busy && <Spinner />}
   </div>
 );
-
-// TODO: look at combining with ValidatingInput
-const InputContainer = observer((props: React.PropsWithChildren<InputContainerProps>) => {
-  const error = props.model.errors[props.name] && props.model.showError[props.name];
-  return (
-    <label className={classWithModifiers('chat-join-channel__input-container', { error })}>
-      {props.hasTitle && (
-        <div className='chat-join-channel__input-title'>
-          {osu.trans(`chat.join_channel.labels.${props.name}`)}
-        </div>
-      )}
-      {props.children}
-    </label>
-  );
-});
 
 @observer
 export default class JoinChannel extends React.Component<Props> {
@@ -72,7 +51,7 @@ export default class JoinChannel extends React.Component<Props> {
       <div className='chat-join-channel'>
         <div className='chat-join-channel__fields'>
           <div className='chat-join-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
-          <InputContainer hasTitle model={this.model} name='name'>
+          <InputContainer labelKey='chat.join_channel.labels.name' model={this.model} name='name'>
             <input
               className='chat-join-channel__input'
               defaultValue={this.model.inputs.name}
@@ -81,7 +60,7 @@ export default class JoinChannel extends React.Component<Props> {
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer hasTitle model={this.model} name='description'>
+          <InputContainer labelKey='chat.join_channel.labels.description' model={this.model} name='description'>
             <input
               className='chat-join-channel__input'
               defaultValue={this.model.inputs.description}
@@ -90,7 +69,7 @@ export default class JoinChannel extends React.Component<Props> {
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer hasTitle model={this.model} name='users'>
+          <InputContainer labelKey='chat.join_channel.labels.users' model={this.model} name='users'>
             <div className='chat-join-channel__users-input'>
               <div className='chat-join-channel__users'>
                 {this.renderValidUsers()}
