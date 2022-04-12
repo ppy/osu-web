@@ -26,7 +26,6 @@ return [
         ],
 
         'beatmapsets' => [
-            'index' => 'listing',
             'show' => 'info',
             'discussions' => 'discussion',
         ],
