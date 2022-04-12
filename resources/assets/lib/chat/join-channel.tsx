@@ -15,7 +15,7 @@ import { classWithModifiers } from 'utils/css';
 type Props = Record<string, never>;
 
 interface InputContainerProps {
-  hasLabel?: boolean;
+  hasTitle?: boolean;
   model: FancyForm<InputKey>;
   name: InputKey;
 }
@@ -30,14 +30,14 @@ const BusySpinner = ({ busy }: { busy: boolean }) => (
 const InputContainer = observer((props: React.PropsWithChildren<InputContainerProps>) => {
   const error = props.model.errors[props.name] && props.model.showError[props.name];
   return (
-    <div className={classWithModifiers('chat-join-channel__input-container', { error })}>
-      {props.hasLabel && (
-        <label className='chat-join-channel__input-label'>
+    <label className={classWithModifiers('chat-join-channel__input-container', { error })}>
+      {props.hasTitle && (
+        <div className='chat-join-channel__input-title'>
           {osu.trans(`chat.join_channel.labels.${props.name}`)}
-        </label>
+        </div>
       )}
       {props.children}
-    </div>
+    </label>
   );
 });
 
@@ -72,7 +72,7 @@ export default class JoinChannel extends React.Component<Props> {
       <div className='chat-join-channel'>
         <div className='chat-join-channel__fields'>
           <div className='chat-join-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
-          <InputContainer hasLabel model={this.model} name='name'>
+          <InputContainer hasTitle model={this.model} name='name'>
             <input
               className='chat-join-channel__input'
               defaultValue={this.model.inputs.name}
@@ -81,7 +81,7 @@ export default class JoinChannel extends React.Component<Props> {
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer hasLabel model={this.model} name='description'>
+          <InputContainer hasTitle model={this.model} name='description'>
             <input
               className='chat-join-channel__input'
               defaultValue={this.model.inputs.description}
@@ -90,7 +90,7 @@ export default class JoinChannel extends React.Component<Props> {
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer hasLabel model={this.model} name='users'>
+          <InputContainer hasTitle model={this.model} name='users'>
             <div className='chat-join-channel__users-input'>
               <div className='chat-join-channel__users'>
                 {this.renderValidUsers()}
