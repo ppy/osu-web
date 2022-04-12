@@ -15,6 +15,7 @@ import { classWithModifiers } from 'utils/css';
 type Props = Record<string, never>;
 
 interface InputContainerProps {
+  hasLabel?: boolean;
   model: FancyForm<InputKey>;
   name: InputKey;
 }
@@ -30,7 +31,7 @@ const InputContainer = observer((props: React.PropsWithChildren<InputContainerPr
   const error = props.model.errors[props.name] && props.model.showError[props.name];
   return (
     <div className={classWithModifiers('chat-join-channel__input-container', { error })}>
-      {props.name && (
+      {props.hasLabel && (
         <label className='chat-join-channel__input-label'>
           {osu.trans(`chat.join_channel.labels.${props.name}`)}
         </label>
@@ -71,7 +72,7 @@ export default class JoinChannel extends React.Component<Props> {
       <div className='chat-join-channel'>
         <div className='chat-join-channel__fields'>
           <div className='chat-join-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
-          <InputContainer model={this.model} name='name'>
+          <InputContainer hasLabel model={this.model} name='name'>
             <input
               className='chat-join-channel__input'
               defaultValue={this.model.inputs.name}
@@ -80,7 +81,7 @@ export default class JoinChannel extends React.Component<Props> {
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer model={this.model} name='description'>
+          <InputContainer hasLabel model={this.model} name='description'>
             <input
               className='chat-join-channel__input'
               defaultValue={this.model.inputs.description}
@@ -89,7 +90,7 @@ export default class JoinChannel extends React.Component<Props> {
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer model={this.model} name='users'>
+          <InputContainer hasLabel model={this.model} name='users'>
             <div className='chat-join-channel__users-input'>
               <div className='chat-join-channel__users'>
                 {this.renderValidUsers()}
