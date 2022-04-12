@@ -9,6 +9,7 @@ import { times } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 
 const bn = 'beatmapset-hype';
 
@@ -84,7 +85,9 @@ export default class Hype extends React.PureComponent<Props> {
               {osu.trans('beatmaps.hype.section_title')}
             </span>
             <span>
-              {`${this.props.beatmapset.hype.current} / ${this.props.beatmapset.hype.required}`}
+              {formatNumber(this.props.beatmapset.hype.current)}
+              {' / '}
+              {formatNumber(this.props.beatmapset.hype.required)}
             </span>
           </div>
 
