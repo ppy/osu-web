@@ -3,6 +3,7 @@
 
 import * as React from 'react'
 import { div, span } from 'react-dom-factories'
+import { formatNumber } from 'utils/html'
 
 bn = 'beatmap-basic-stats'
 
@@ -18,7 +19,7 @@ formatDuration = (value) ->
     "#{m}:#{_.padStart s, 2, 0}"
 
 
-export BeatmapBasicStats = ({beatmap}) ->
+export BeatmapBasicStats = ({beatmap, beatmapset}) ->
   div
     className: bn
     for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
@@ -26,18 +27,24 @@ export BeatmapBasicStats = ({beatmap}) ->
 
       value =
         if stat == 'bpm'
-          if value > 1000 then '∞' else osu.formatNumber(value)
+          if value > 1000 then '∞' else formatNumber(value)
         else if stat == 'total_length'
           formatDuration value
         else
-          osu.formatNumber(value)
+          formatNumber(value)
+
+      title =
+        osu.trans "beatmapsets.show.stats.#{stat}",
+          if stat == 'total_length'
+            hit_length: formatDuration(beatmap.hit_length)
+
+      if stat == 'bpm' && beatmapset.offset != 0
+        title += " (#{osu.trans 'beatmapsets.show.stats.offset', offset: formatNumber(beatmapset.offset)})"
 
       div
         className: "#{bn}__entry"
         key: stat
-        title: osu.trans "beatmapsets.show.stats.#{stat}",
-          if stat == 'total_length'
-            hit_length: formatDuration(beatmap['hit_length'])
+        title: title
         div
           className: "#{bn}__entry-icon"
           style:

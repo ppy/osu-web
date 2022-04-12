@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapExtendedJson from './beatmap-extended-json';
 import BeatmapsetJson from './beatmapset-json';
 
 interface Availability {
@@ -21,7 +22,7 @@ interface BeatmapsetExtendedJsonAdditionalAttributes {
   discussion_locked: boolean;
   is_scoreable: boolean;
   last_updated: string;
-  legacy_thread_url: string;
+  legacy_thread_url: string | null;
   nominations_summary: NominationsSummary;
   ranked: number;
   ranked_date: string | null;
@@ -30,7 +31,14 @@ interface BeatmapsetExtendedJsonAdditionalAttributes {
   tags: string;
 }
 
-type BeatmapsetExtendedJson = BeatmapsetJson & BeatmapsetExtendedJsonAdditionalAttributes;
+interface BeatmapsetExtendedJsonOverrideIncludes {
+  beatmaps: BeatmapExtendedJson[];
+}
+
+type BeatmapsetExtendedJson =
+  Omit<BeatmapsetJson, keyof BeatmapsetExtendedJsonOverrideIncludes>
+  & BeatmapsetExtendedJsonAdditionalAttributes
+  & Partial<BeatmapsetExtendedJsonOverrideIncludes>;
 export default BeatmapsetExtendedJson;
 
 export type BeatmapsetJsonForShow = BeatmapsetExtendedJson & Required<Pick<BeatmapsetExtendedJson,

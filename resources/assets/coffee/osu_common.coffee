@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { formatNumber } from 'utils/html'
 import { currentUrl } from 'utils/turbolinks'
 
 window.osu =
@@ -57,19 +58,7 @@ window.osu =
     return "#{bytes} B" if (bytes < k)
 
     i = Math.floor(Math.log(bytes) / Math.log(k))
-    "#{osu.formatNumber(bytes / Math.pow(k, i), decimals)} #{suffixes[i]}"
-
-
-  formatNumber: (number, precision, options, locale) ->
-    return null unless number?
-
-    options ?= {}
-
-    if precision?
-      options.minimumFractionDigits = precision
-      options.maximumFractionDigits = precision
-
-    number.toLocaleString locale ? currentLocale, options
+    "#{formatNumber(bytes / Math.pow(k, i), decimals)} #{suffixes[i]}"
 
 
   reloadPage: (keepScroll = true) ->
@@ -171,7 +160,7 @@ window.osu =
     if !isFallbackLocale && !osu.transExists(key, locale)
       return osu.transChoice(key, count, replacements, fallbackLocale)
 
-    replacements.count_delimited = osu.formatNumber(count, null, null, locale)
+    replacements.count_delimited = formatNumber(count, null, null, locale)
     translated = Lang.choice(key, count, replacements, locale)
 
     if !isFallbackLocale && !translated?

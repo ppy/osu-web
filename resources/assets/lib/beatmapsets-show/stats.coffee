@@ -1,34 +1,16 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import StackedBarChart from 'charts/stacked-bar-chart'
 import { BeatmapBasicStats } from 'components/beatmap-basic-stats'
 import core from 'osu-core-singleton'
 import * as React from 'react'
-import { button, div, span, table, tbody, td, th, tr, i } from 'react-dom-factories'
+import { button, div, span, table, tbody, td, th, tr } from 'react-dom-factories'
+import { formatNumber } from 'utils/html'
 import { nextVal } from 'utils/seq'
 
 el = React.createElement
 
 export class Stats extends React.Component
-  constructor: (props) ->
-    super props
-
-    @disposers = new Set
-
-
-  componentDidMount: =>
-    @_renderChart()
-
-
-  componentWillUnmount: =>
-    @disposers.forEach (disposer) => disposer?()
-
-
-  componentDidUpdate: =>
-    @_renderChart()
-
-
   render: =>
     ratingsPositive = 0
     ratingsNegative = 0
@@ -52,7 +34,7 @@ export class Stats extends React.Component
         div className: 'beatmapset-stats__elapsed-bar'
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
-        el BeatmapBasicStats, beatmap: @props.beatmap
+        el BeatmapBasicStats, beatmap: @props.beatmap, beatmapset: @props.beatmapset
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--advanced',
         table className: 'beatmap-stats-table',
@@ -66,9 +48,9 @@ export class Stats extends React.Component
 
               valueText =
                 if stat == 'stars'
-                  osu.formatNumber(value, 2)
+                  formatNumber(value, 2)
                 else
-                  osu.formatNumber(value)
+                  formatNumber(value)
 
               if @props.beatmap.mode == 'mania' && stat == 'cs'
                 stat += '-mania'
@@ -94,31 +76,26 @@ export class Stats extends React.Component
                 width: "#{(ratingsNegative / ratingsAll) * 100}%"
 
           div className: 'beatmapset-stats__rating-values',
-            span null, osu.formatNumber(ratingsNegative)
-            span null, osu.formatNumber(ratingsPositive)
+            span null, formatNumber(ratingsNegative)
+            span null, formatNumber(ratingsPositive)
 
           div className: 'beatmapset-stats__rating-header', osu.trans 'beatmapsets.show.stats.rating-spread'
 
           div
             className: 'beatmapset-stats__rating-chart'
-            ref: 'chartArea'
+            @renderRatingChart()
 
 
-  _renderChart: ->
+  renderRatingChart: =>
     return if !@props.beatmapset.is_scoreable
 
-    unless @_ratingChart
-      options =
-        scales:
-          x: d3.scaleLinear()
-          y: d3.scaleLinear()
-        modifiers: ['beatmapset-rating']
+    ratings = @props.beatmapset.ratings[1..]
+    maxValue = Math.max 1, Math.max(ratings...)
 
-      ratingChart = new StackedBarChart @refs.chartArea, options
-      $(window).on 'resize', ratingChart.resize
-      @disposers.add(=> $(window).off 'resize', ratingChart.resize)
-      @_ratingChart = ratingChart
-
-    @disposers.add(core.reactTurbolinks.runAfterPageLoad =>
-      @_ratingChart.loadData rating: @props.beatmapset.ratings[1..]
-    )
+    div className: 'stacked-bar-chart stacked-bar-chart--beatmap-fail-rate',
+      for r, i in ratings
+        div key: i, className: 'stacked-bar-chart__col',
+          div
+            className: 'stacked-bar-chart__entry'
+            style:
+              height: "#{100 * r / maxValue}%"
