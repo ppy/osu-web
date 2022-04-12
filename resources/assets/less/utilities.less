@@ -13,6 +13,15 @@
   }
 }
 
+// Variables can be generated in js using make2xCss from utils/html.
+.u-bg2x {
+  background-image: var(--bg);
+
+  @media @highdpi {
+    --bg: var(--bg2x);
+  }
+}
+
 .u-blackout-visible {
   z-index: @z-index--blackout-visible !important;
 }

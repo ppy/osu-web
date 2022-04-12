@@ -153,13 +153,12 @@
 
   &__cover {
     .full-size();
-    object-fit: cover;
     border-radius: var(--border-radius);
+    background-position: center;
+    background-size: cover;
 
     &--default {
       .at2x('~@images/layout/beatmaps/default-bg.png');
-      background-position: center;
-      background-size: cover;
     }
   }
 

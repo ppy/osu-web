@@ -3,7 +3,6 @@
 
 import BeatmapsPopup from 'beatmapset-panel/beatmaps-popup';
 import { CircularProgress } from 'components/circular-progress';
-import Img2x from 'components/img2x';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetJson, { BeatmapsetStatus } from 'interfaces/beatmapset-json';
@@ -18,7 +17,7 @@ import { Transition } from 'react-transition-group';
 import { getArtist, getDiffColour, getTitle, group as groupBeatmaps } from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { formatNumber, formatNumberSuffixed } from 'utils/html';
+import { formatNumber, formatNumberSuffixed, make2xCss } from 'utils/html';
 import { beatmapsetDownloadDirect } from 'utils/url';
 import StringWithComponent from './string-with-component';
 import TimeWithTooltip from './time-with-tooltip';
@@ -393,20 +392,18 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--play'>
           <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
           {this.showVisual && (
-            <Img2x
-              className='beatmapset-panel__cover'
-              hideOnError
-              src={this.props.beatmapset.covers.list}
+            <div
+              className='beatmapset-panel__cover u-bg2x'
+              style={make2xCss(this.props.beatmapset.covers.list)}
             />
           )}
         </div>
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--info'>
           <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
           {this.showVisual && core.windowSize.isDesktop && (
-            <Img2x
-              className='beatmapset-panel__cover'
-              hideOnError
-              src={this.props.beatmapset.covers.card}
+            <div
+              className='beatmapset-panel__cover u-bg2x'
+              style={make2xCss(this.props.beatmapset.covers.card)}
             />
           )}
         </div>

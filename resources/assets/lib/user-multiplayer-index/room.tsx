@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DifficultyBadge from 'components/difficulty-badge';
-import Img2x from 'components/img2x';
 import StringWithComponent from 'components/string-with-component';
 import { UserLink } from 'components/user-link';
 import { EndpointRoomJson } from 'interfaces/user-multiplayer-history-json';
@@ -13,6 +12,7 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
+import { make2xCss } from 'utils/html';
 import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {
@@ -100,7 +100,7 @@ export default class Room extends React.Component<Props> {
     return (
       <a className='multiplayer-room__cover-container' href={route('multiplayer.rooms.show', { room: this.props.room.id })}>
         <div className='multiplayer-room__cover multiplayer-room__cover--default' />
-        <Img2x className='multiplayer-room__cover' hideOnError src={this.background} />
+        <div className='multiplayer-room__cover u-bg2x' style={make2xCss(this.background)} />
       </a>
     );
   }

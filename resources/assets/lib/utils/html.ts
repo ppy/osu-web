@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { CSSProperties } from 'react';
+
 export function bottomPage() {
   return bottomPageDistance() === 0;
 }
@@ -81,6 +83,16 @@ export function make2x(url?: string) {
   if (url == null) return;
 
   return url.replace(/(\.[^.]+)$/, '@2x$1');
+}
+
+// Actual styling is applied by u-bg2x utility class.
+export function make2xCss(url?: string | null) {
+  if (url == null) return;
+
+  return {
+    '--bg': osu.urlPresence(url),
+    '--bg2x': osu.urlPresence(make2x(url)),
+  } as CSSProperties;
 }
 
 export function stripTags(str: string) {
