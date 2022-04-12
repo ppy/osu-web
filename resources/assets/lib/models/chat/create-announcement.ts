@@ -10,13 +10,18 @@ import core from 'osu-core-singleton';
 
 export const inputKeys = ['description', 'message', 'name', 'users'] as const;
 export type InputKey = typeof inputKeys[number];
-type Inputs = Record<InputKey, string>;
 
 export function isInputKey(key: string): key is InputKey {
   return (inputKeys as Readonly<string[]>).includes(key);
 }
 
-export default class CreateAnnouncement {
+export interface FancyForm<T extends string> {
+  errors: Record<T, boolean>;
+  inputs: Record<T, string>;
+  showError: Record<T, boolean>;
+}
+
+export default class CreateAnnouncement implements FancyForm<InputKey> {
   @observable busy = {
     create: false,
     lookupUsers: false,
@@ -24,13 +29,13 @@ export default class CreateAnnouncement {
 
   debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
 
-  @observable inputs: Inputs = {
+  @observable inputs: Record<InputKey, string> = {
     description: '',
     message: '',
     name: '',
     users: '',
   };
-  @observable invalidable: Record<InputKey, boolean> = {
+  @observable showError: Record<InputKey, boolean> = {
     description: false,
     message: false,
     name: false,

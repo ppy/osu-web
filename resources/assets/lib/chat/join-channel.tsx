@@ -7,7 +7,7 @@ import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import CreateAnnouncement, { InputKey, isInputKey } from 'models/chat/create-announcement';
+import { FancyForm, InputKey, isInputKey } from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
@@ -15,7 +15,7 @@ import { classWithModifiers } from 'utils/css';
 type Props = Record<string, never>;
 
 interface InputContainerProps {
-  model: CreateAnnouncement;
+  model: FancyForm<InputKey>;
   name: InputKey;
 }
 
@@ -26,14 +26,19 @@ const BusySpinner = ({ busy }: { busy: boolean }) => (
 );
 
 // TODO: look at combining with ValidatingInput
-const InputContainer = observer((props: React.PropsWithChildren<InputContainerProps>) => (
-  <div className={classWithModifiers('chat-join-channel__input-container', { error: props.model.errors[props.name] && props.model.invalidable[props.name] })}>
-    {props.name && (
-      <label className='chat-join-channel__input-label'>{osu.trans(`chat.join_channel.labels.${props.name}`)}</label>
-    )}
-    {props.children}
-  </div>
-));
+const InputContainer = observer((props: React.PropsWithChildren<InputContainerProps>) => {
+  const error = props.model.errors[props.name] && props.model.showError[props.name];
+  return (
+    <div className={classWithModifiers('chat-join-channel__input-container', { error })}>
+      {props.name && (
+        <label className='chat-join-channel__input-label'>
+          {osu.trans(`chat.join_channel.labels.${props.name}`)}
+        </label>
+      )}
+      {props.children}
+    </div>
+  );
+});
 
 @observer
 export default class JoinChannel extends React.Component<Props> {
@@ -139,10 +144,8 @@ export default class JoinChannel extends React.Component<Props> {
     const elem = e.target;
 
     if (isInputKey(elem.name)) {
-      this.model.invalidable[elem.name] = true;
+      this.model.showError[elem.name] = true;
     }
-
-    console.log(this.model.invalidable);
   };
 
   @action
