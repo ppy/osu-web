@@ -28,6 +28,15 @@ export function createClickCallback(target: unknown) {
   }
 }
 
+export function cssVar2x(url?: string | null) {
+  if (url == null) return;
+
+  return {
+    '--bg': osu.urlPresence(url),
+    '--bg-2x': osu.urlPresence(make2x(url)),
+  } as CSSProperties;
+}
+
 const defaultNumberFormatter = new Intl.NumberFormat(window.currentLocale);
 
 export function formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) {
@@ -83,16 +92,6 @@ export function make2x(url?: string) {
   if (url == null) return;
 
   return url.replace(/(\.[^.]+)$/, '@2x$1');
-}
-
-// Actual styling is applied by u-bg2x utility class.
-export function make2xCss(url?: string | null) {
-  if (url == null) return;
-
-  return {
-    '--bg': osu.urlPresence(url),
-    '--bg2x': osu.urlPresence(make2x(url)),
-  } as CSSProperties;
 }
 
 export function stripTags(str: string) {

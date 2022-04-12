@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetCover from 'components/beatmapset-cover';
 import DifficultyBadge from 'components/difficulty-badge';
 import StringWithComponent from 'components/string-with-component';
 import { UserLink } from 'components/user-link';
@@ -12,7 +13,6 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
-import { make2xCss } from 'utils/html';
 import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {
@@ -24,10 +24,6 @@ const endingSoonDiffMs = 60 * 60 * 1000; // 60 minutes.
 
 @observer
 export default class Room extends React.Component<Props> {
-  private get background() {
-    return this.props.room.current_playlist_item?.beatmap?.beatmapset?.covers.cover;
-  }
-
   private get playlistItemCount() {
     return this.props.room.active
       ? this.props.room.playlist_item_stats.count_active
@@ -99,8 +95,11 @@ export default class Room extends React.Component<Props> {
   private renderCover() {
     return (
       <a className='multiplayer-room__cover-container' href={route('multiplayer.rooms.show', { room: this.props.room.id })}>
-        <div className='multiplayer-room__cover multiplayer-room__cover--default' />
-        <div className='multiplayer-room__cover u-bg2x' style={make2xCss(this.background)} />
+        <BeatmapsetCover
+          beatmapset={this.props.room.current_playlist_item?.beatmap?.beatmapset}
+          modifiers='full'
+          size='cover'
+        />
       </a>
     );
   }

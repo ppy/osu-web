@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsPopup from 'beatmapset-panel/beatmaps-popup';
+import BeatmapsetCover from 'components/beatmapset-cover';
 import { CircularProgress } from 'components/circular-progress';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
@@ -17,7 +18,7 @@ import { Transition } from 'react-transition-group';
 import { getArtist, getDiffColour, getTitle, group as groupBeatmaps } from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { formatNumber, formatNumberSuffixed, make2xCss } from 'utils/html';
+import { formatNumber, formatNumberSuffixed } from 'utils/html';
 import { beatmapsetDownloadDirect } from 'utils/url';
 import StringWithComponent from './string-with-component';
 import TimeWithTooltip from './time-with-tooltip';
@@ -390,22 +391,20 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     return (
       <a className='beatmapset-panel__cover-container' href={this.url}>
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--play'>
-          <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
-          {this.showVisual && (
-            <div
-              className='beatmapset-panel__cover u-bg2x'
-              style={make2xCss(this.props.beatmapset.covers.list)}
-            />
-          )}
+          <BeatmapsetCover
+            beatmapset={this.props.beatmapset}
+            modifiers='full'
+            size='list'
+          />
         </div>
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--info'>
-          <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
-          {this.showVisual && core.windowSize.isDesktop && (
-            <div
-              className='beatmapset-panel__cover u-bg2x'
-              style={make2xCss(this.props.beatmapset.covers.card)}
+          {core.windowSize.isDesktop &&
+            <BeatmapsetCover
+              beatmapset={this.props.beatmapset}
+              modifiers='full'
+              size='card'
             />
-          )}
+          }
         </div>
       </a>
     );

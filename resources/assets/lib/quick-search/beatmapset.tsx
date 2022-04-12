@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Img2x from 'components/img2x';
+import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
@@ -13,9 +13,7 @@ export default function Beatmapset({ beatmapset, modifiers = [] }: { beatmapset:
 
   return (
     <a className={classWithModifiers('beatmapset-search-card', modifiers)} href={url}>
-      <div className='beatmapset-search-card__cover-container'>
-        <Img2x className='beatmapset-search-card__cover' src={beatmapset.covers.list} />
-      </div>
+      <BeatmapsetCover beatmapset={beatmapset} modifiers='search' size='list' />
       <div className='beatmapset-search-card__details'>
         <div className='beatmapset-search-card__title'>
           {`${getTitle(beatmapset)} `}
