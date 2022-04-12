@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { createAnnoucement } from 'chat/chat-api';
+import { FancyForm } from 'components/input-container';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
@@ -13,12 +14,6 @@ export type InputKey = typeof inputKeys[number];
 
 export function isInputKey(key: string): key is InputKey {
   return (inputKeys as Readonly<string[]>).includes(key);
-}
-
-export interface FancyForm<T extends string> {
-  errors: Record<T, boolean>;
-  inputs: Record<T, string>;
-  showError: Record<T, boolean>;
 }
 
 export default class CreateAnnouncement implements FancyForm<InputKey> {

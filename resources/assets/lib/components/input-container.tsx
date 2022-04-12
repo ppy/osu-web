@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { observer } from 'mobx-react';
-import { FancyForm, InputKey } from 'models/chat/create-announcement';
+import { InputKey } from 'models/chat/create-announcement';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
@@ -10,6 +10,12 @@ interface Props {
   labelKey?: string;
   model: FancyForm<InputKey>;
   name: InputKey;
+}
+
+export interface FancyForm<T extends string> {
+  errors: Record<T, boolean>;
+  inputs: Record<T, string>;
+  showError: Record<T, boolean>;
 }
 
 // TODO: look at combining with ValidatingInput
