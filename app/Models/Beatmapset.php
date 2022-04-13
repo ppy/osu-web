@@ -30,7 +30,6 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
-use Ds\Set;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -174,9 +173,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     {
         static $validSizes;
 
-        $validSizes ??= new Set(['raw', 'fullsize', ...self::coverSizes()]);
+        $validSizes ??= array_flip(['raw', 'fullsize', ...self::coverSizes()]);
 
-        return $validSizes->contains($coverSize);
+        return $validSizes[$coverSize] ?? false;
     }
 
     public static function popular()
