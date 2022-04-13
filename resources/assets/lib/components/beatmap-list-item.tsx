@@ -8,8 +8,8 @@ import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
   beatmap: BeatmapJson;
-  modifiers?: Modifiers;
   inline?: boolean;
+  modifiers?: Modifiers;
 }
 
 export default class BeatmapListItem extends React.PureComponent<Props> {
