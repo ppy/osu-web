@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Img2x from 'components/img2x';
+import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { observer } from 'mobx-react';
@@ -21,11 +21,10 @@ export default class Cover extends React.Component<Props> {
 
     return (
       <div className={classWithModifiers('beatmapset-page-cover', { expanded })}>
-        <div className='beatmapset-page-cover__image beatmapset-page-cover__image--default' />
-        <Img2x
-          className='beatmapset-page-cover__image'
-          hideOnError
-          src={this.props.beatmapset.covers.cover}
+        <BeatmapsetCover
+          beatmapset={this.props.beatmapset}
+          modifiers={['full', 'rect']}
+          size='cover'
         />
 
         <div className='beatmapset-page-cover__content'>
