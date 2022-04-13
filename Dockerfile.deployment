@@ -61,9 +61,9 @@ ARG GIT_SHA
 RUN printf "%s" "$GIT_SHA" > version
 
 RUN useradd -m osuweb
-RUN chown -R osuweb bootstrap/cache storage
+RUN mkdir -p storage/logs storage/framework/cache public/uploads public/uploads-avatar public/uploads-replay
+RUN chown -R osuweb bootstrap/cache storage public/uploads public/uploads-avatar public/uploads-replay
 USER osuweb
-RUN mkdir -p /app/storage/logs
 ENV LOG_CHANNEL stderr
 
 EXPOSE 8000
