@@ -159,13 +159,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         static $sizes;
 
         if ($sizes === null) {
-            $shapes = ['cover', 'card', 'list', 'slimcover'];
-            $scales = ['', '@2x'];
-
             $sizes = [];
-            foreach ($shapes as $shape) {
-                foreach ($scales as $scale) {
-                    $sizes[] = "$shape$scale";
+            foreach (['cover', 'card', 'list', 'slimcover'] as $shape) {
+                foreach (['', '@2x'] as $scale) {
+                    $sizes[] = "{$shape}{$scale}";
                 }
             }
         }
