@@ -28,6 +28,7 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'beatmapPlaycount':
       return {
+        badge: <span className='fas fa-redo' />,
         mappings: {
           beatmap: <a href={event.beatmap.url}>{event.beatmap.title}</a>,
           count: event.count,
@@ -54,6 +55,7 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'beatmapsetRevive':
       return {
+        badge: <span className='fas fa-trash-restore' />,
         mappings: {
           beatmapset: <a href={event.beatmapset.url}>{event.beatmapset.title}</a>,
           user: <strong><a href={event.user.url}>{event.user.username}</a></strong>,
@@ -62,6 +64,7 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'beatmapsetUpdate':
       return {
+        badge: <span className='fas fa-sync-alt' />,
         mappings: {
           beatmapset: <em><a href={event.beatmapset.url}>{event.beatmapset.title}</a></em>,
           user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,
@@ -90,6 +93,7 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'rankLost':
       return {
+        badge: <span className='fas fa-angle-double-down' />,
         mappings: {
           beatmap: <em><a href={event.beatmap.url}>{event.beatmap.title}</a></em>,
           mode: osu.trans(`beatmaps.mode.${event.mode}`),
