@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'join' => 'join channel',
+        'create' => 'create annoucement',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Announcements',
@@ -23,6 +23,18 @@ return [
                 'PM' => 'Direct messages',
                 'PUBLIC' => 'Channels',
             ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => 'Create New Announcement',
+        ],
+
+        'labels' => [
+            'description' => 'description',
+            'name' => 'room name',
+            'users' => 'players to invite',
         ],
     ],
 
@@ -37,18 +49,6 @@ return [
         'disconnected' => 'Disconnected',
         'placeholder' => 'type message...',
         'send' => 'Send',
-    ],
-
-    'join_channel' => [
-        'title' => [
-            'announcement' => 'Create New Announcement',
-        ],
-
-        'labels' => [
-            'description' => 'description',
-            'name' => 'room name',
-            'users' => 'players to invite',
-        ],
     ],
 
     'no-conversations' => [

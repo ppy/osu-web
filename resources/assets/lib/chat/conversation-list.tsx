@@ -6,7 +6,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import ConversationListItem from './conversation-list-item';
-import JoinChannelButton from './join-channel-button';
+import CreateAnnouncementButton from './create-announcement-button';
 
 function renderChannels(type: SupportedChannelType) {
   const channels = core.dataStore.channelStore.groupedChannels[type];
@@ -26,6 +26,6 @@ function renderChannels(type: SupportedChannelType) {
 export default observer(() => (
   <div className='chat-conversation-list'>
     {supportedChannelTypes.map(renderChannels)}
-    <JoinChannelButton />
+    <CreateAnnouncementButton />
   </div>
 ));

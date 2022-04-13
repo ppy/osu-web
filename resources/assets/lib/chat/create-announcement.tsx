@@ -15,13 +15,13 @@ import * as React from 'react';
 type Props = Record<string, never>;
 
 const BusySpinner = ({ busy }: { busy: boolean }) => (
-  <div className='chat-join-channel__spinner'>
+  <div className='chat-form__spinner'>
     {busy && <Spinner />}
   </div>
 );
 
 @observer
-export default class JoinChannel extends React.Component<Props> {
+export default class CreateAnnouncement extends React.Component<Props> {
   @computed
   get canView() {
     const currentUser = core.currentUserOrFail;
@@ -48,34 +48,34 @@ export default class JoinChannel extends React.Component<Props> {
     if (!this.canView) return null;
 
     return (
-      <div className='chat-join-channel'>
-        <div className='chat-join-channel__fields'>
-          <div className='chat-join-channel__title'>{osu.trans('chat.join_channel.title.announcement')}</div>
-          <InputContainer labelKey='chat.join_channel.labels.name' model={this.model} modifiers='chat' name='name'>
+      <div className='chat-form'>
+        <div className='chat-form__fields'>
+          <div className='chat-form__title'>{osu.trans('chat.form.title.announcement')}</div>
+          <InputContainer labelKey='chat.form.labels.name' model={this.model} modifiers='chat' name='name'>
             <input
-              className='chat-join-channel__input'
+              className='chat-form__input'
               defaultValue={this.model.inputs.name}
               name='name'
               onBlur={this.handleBlur}
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer labelKey='chat.join_channel.labels.description' model={this.model} modifiers='chat' name='description'>
+          <InputContainer labelKey='chat.form.labels.description' model={this.model} modifiers='chat' name='description'>
             <input
-              className='chat-join-channel__input'
+              className='chat-form__input'
               defaultValue={this.model.inputs.description}
               name='description'
               onBlur={this.handleBlur}
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer labelKey='chat.join_channel.labels.users' model={this.model} modifiers='chat' name='users'>
-            <div className='chat-join-channel__users-input'>
-              <div className='chat-join-channel__users'>
+          <InputContainer labelKey='chat.form.labels.users' model={this.model} modifiers='chat' name='users'>
+            <div className='chat-form__users-input'>
+              <div className='chat-form__users'>
                 {this.renderValidUsers()}
               </div>
               <input
-                className='chat-join-channel__users-text'
+                className='chat-form__users-text'
                 name='users'
                 onBlur={this.handleBlur}
                 onChange={this.handleUsersInputChange}
@@ -89,7 +89,7 @@ export default class JoinChannel extends React.Component<Props> {
           <InputContainer model={this.model} modifiers='chat' name='message'>
             <textarea
               autoComplete='off'
-              className='chat-join-channel__box'
+              className='chat-form__box'
               defaultValue={this.model.inputs.message}
               name='message'
               onBlur={this.handleBlur}
@@ -99,7 +99,7 @@ export default class JoinChannel extends React.Component<Props> {
             />
           </InputContainer>
         </div>
-        <div className='chat-join-channel__button-bar'>
+        <div className='chat-form__button-bar'>
           <BigButton
             disabled={!this.canSend}
             icon='fas fa-bullhorn'

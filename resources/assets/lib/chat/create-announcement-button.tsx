@@ -8,7 +8,7 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
 @observer
-export default class JoinChannelButton extends React.Component {
+export default class CreateAnnouncementButton extends React.Component {
   @computed
   get canView() {
     const currentUser = core.currentUserOrFail;
@@ -18,7 +18,7 @@ export default class JoinChannelButton extends React.Component {
   render() {
     if (!this.canView) return null;
 
-    const modifiers = { selected: core.dataStore.chatState.showingJoinChannel };
+    const modifiers = { selected: core.dataStore.chatState.showingCreateAnnouncement };
 
     return (
       <div className={classWithModifiers('chat-conversation-list-item', modifiers)}>
@@ -28,13 +28,13 @@ export default class JoinChannelButton extends React.Component {
               <span className='fas fa-plus' />
             </span>
           </div>
-          <div className='chat-conversation-list-item__name'>{osu.trans('chat.channels.join')}</div>
+          <div className='chat-conversation-list-item__name'>{osu.trans('chat.channels.create')}</div>
         </button>
       </div>
     );
   }
 
   private handleClick = () => {
-    core.dataStore.chatState.selectChannel('join');
+    core.dataStore.chatState.selectChannel('create');
   };
 }

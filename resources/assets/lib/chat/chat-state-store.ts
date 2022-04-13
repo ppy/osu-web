@@ -21,7 +21,7 @@ import { getUpdates } from './chat-api';
 import MainView from './main-view';
 import PingService from './ping-service';
 
-type ChannelId = number | 'join' | null;
+type ChannelId = number | 'create' | null;
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
@@ -43,11 +43,11 @@ export default class ChatStateStore implements DispatchListener {
 
   @computed
   get selectedChannel() {
-    return this.selected == null || this.selected === 'join' ? null : this.channelStore.get(this.selected);
+    return this.selected == null || this.selected === 'create' ? null : this.channelStore.get(this.selected);
   }
 
-  get showingJoinChannel() {
-    return this.selected === 'join';
+  get showingCreateAnnouncement() {
+    return this.selected === 'create';
   }
 
   @computed
@@ -124,12 +124,12 @@ export default class ChatStateStore implements DispatchListener {
 
     this.selected = channelId;
 
-    if (channelId === 'join') {
+    if (channelId === 'create') {
       if (mode != null) {
         Turbolinks.controller[mode](updateQueryString(null, {
           channel_id: null,
           sendto: null,
-        }, 'join'));
+        }, 'create'));
       }
 
       return;
@@ -229,7 +229,7 @@ export default class ChatStateStore implements DispatchListener {
    * Keeps the current channel in focus, unless deleted, then focus on next channel.
    */
   private refocusSelectedChannel() {
-    if (this.showingJoinChannel) return;
+    if (this.showingCreateAnnouncement) return;
 
     if (this.selectedChannel != null) {
       this.selectChannel(this.selectedChannel.channelId);
