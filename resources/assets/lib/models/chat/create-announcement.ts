@@ -177,13 +177,8 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     if (userId == null) return false;
 
     const userIdNumber = Number(userId);
-    if (Number.isInteger(userIdNumber) && this.validUsers.has(userIdNumber)) return true;
-
-    // maybe it's a username
-    for (const user of this.validUsers.values()) {
-      if (user.username.toLowerCase() === userId.toLowerCase()) return true;
-    }
-
-    return false;
+    return (Number.isInteger(userIdNumber) && this.validUsers.has(userIdNumber))
+      // maybe it's a username
+      || [...this.validUsers.values()].some((user) => user.username.toLowerCase() === userId.toLowerCase());
   }
 }
