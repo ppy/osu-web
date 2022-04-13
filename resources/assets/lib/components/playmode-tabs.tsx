@@ -27,11 +27,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
   render() {
     return (
       <ul className='game-mode'>
-        {this.props.entries.map((entry) => (
-          <li key={entry.mode}>
-            {this.renderLink(entry)}
-          </li>
-        ))}
+        {this.props.entries.map(this.renderLink)}
       </ul>
     );
   }
@@ -73,17 +69,21 @@ export default class PlaymodeTabs extends React.Component<Props> {
       disabled: entry.disabled,
     });
 
-    return entry.disabled
-      ? <span className={className}>{content}</span>
-      : (
-        <a
-          className={className}
-          data-mode={entry.mode}
-          href={entry.href ?? '#'}
-          onClick={this.onClick}
-        >
-          {content}
-        </a>
-      );
+    return (
+      <li key={entry.mode}>
+        {entry.disabled
+          ? <span className={className}>{content}</span>
+          : (
+            <a
+              className={className}
+              data-mode={entry.mode}
+              href={entry.href ?? '#'}
+              onClick={this.onClick}
+            >
+              {content}
+            </a>
+          )}
+      </li>
+    );
   };
 }
