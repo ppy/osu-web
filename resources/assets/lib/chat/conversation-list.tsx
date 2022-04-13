@@ -12,27 +12,23 @@ export default class ConversationList extends React.Component {
   render() {
     return (
       <div className='chat-conversation-list'>
-        {supportedChannelTypes.map((type) => (
-          <React.Fragment key={type}>
-            {this.renderChannels(type)}
-          </React.Fragment>
-        ))}
+        {supportedChannelTypes.map(this.renderChannels)}
       </div>
     );
   }
 
-  private renderChannels(type: SupportedChannelType) {
+  private renderChannels(this: void, type: SupportedChannelType) {
     const channels = core.dataStore.channelStore.groupedChannels[type];
     if (channels.length === 0) return null;
 
     return (
-      <>
+      <React.Fragment key={type}>
         <div className='chat-conversation-list__header'>
           {osu.trans(`chat.channels.list.title.${type}`)}
         </div>
         {channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
         <div className='chat-conversation-list-separator' />
-      </>
+      </React.Fragment>
     );
   }
 }
