@@ -169,13 +169,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $sizes;
     }
 
-    public static function isValidCoverSize($coverSize)
+    public static function isValidCoverSize($coverSize): bool
     {
         static $validSizes;
 
         $validSizes ??= array_flip(['raw', 'fullsize', ...self::coverSizes()]);
 
-        return $validSizes[$coverSize] ?? false;
+        return isset($validSizes[$coverSize]);
     }
 
     public static function popular()
