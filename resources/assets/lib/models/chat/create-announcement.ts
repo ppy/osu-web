@@ -101,7 +101,8 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
 
   @action
   updateUsers(text: string, immediate: boolean) {
-    if (text.length === 0) {
+    // TODO: check if change is only whitespace.
+    if (text.trim().length === 0) {
       this.xhrLookupUsers?.abort();
       this.debouncedLookupUsers.cancel();
       this.busy.lookupUsers = false;
