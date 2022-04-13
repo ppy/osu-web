@@ -94,6 +94,38 @@
     height: @item-height;
     margin-right: 5px;
     font-size: 14px; // icon size
+
+    &--ranked {
+      color: var(--beatmapset-ranked-bg);
+    }
+
+    &--qualified {
+      color: var(--beatmapset-qualified-bg);
+    }
+
+    &--loved {
+      color: var(--beatmapset-loved-bg);
+    }
+
+    &--approved {
+      color: var(--beatmapset-approved-bg);
+    }
+
+    &--danger {
+      color: hsl(var(--hsl-red-3));
+    }
+
+    &--green {
+      color: @green;
+    }
+
+    &--yellow {
+      color: @yellow;
+    }
+
+    &--pink {
+      color: @pink;
+    }
   }
 
   &__time {
