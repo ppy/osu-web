@@ -27,7 +27,6 @@ type ChannelId = number | 'join' | null;
 export default class ChatStateStore implements DispatchListener {
   @observable createAnnoucement = new CreateAnnouncement();
   @observable isReady = false;
-  @observable showingJoinChannel = false;
   skipRefresh = false;
   @observable viewsMounted = new Set<MainView>();
   @observable waitJoinChannelUuid: string | null = null;
@@ -45,6 +44,10 @@ export default class ChatStateStore implements DispatchListener {
   @computed
   get selectedChannel() {
     return this.selected == null || this.selected === 'join' ? null : this.channelStore.get(this.selected);
+  }
+
+  get showingJoinChannel() {
+    return this.selected === 'join';
   }
 
   @computed
@@ -122,8 +125,6 @@ export default class ChatStateStore implements DispatchListener {
     this.selected = channelId;
 
     if (channelId === 'join') {
-      this.showingJoinChannel = true;
-
       if (mode != null) {
         Turbolinks.controller[mode](updateQueryString(null, {
           channel_id: null,
@@ -133,8 +134,6 @@ export default class ChatStateStore implements DispatchListener {
 
       return;
     }
-
-    this.showingJoinChannel = false;
 
     if (channelId == null) return;
 
