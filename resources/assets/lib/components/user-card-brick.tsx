@@ -29,7 +29,7 @@ export default class UserCardBrick extends React.Component<Props> {
 
   declare context: React.ContextType<typeof UserCardTypeContext>;
 
-  private ref = React.createRef<HTMLAnchorElement>();
+  private ref = React.createRef<HTMLDivElement>();
 
   @computed
   private get friendModifier() {
@@ -67,32 +67,31 @@ export default class UserCardBrick extends React.Component<Props> {
       : undefined;
 
     return (
-      <a
-        ref={this.ref}
-        className={`js-usercard ${blockClass}`}
-        data-user-id={this.props.user.id}
-        href={route('users.show', { user: this.props.user.id })}
-      >
-        <div
-          className='user-card-brick__group-bar'
-          style={osu.groupColour(group)}
-          title={group?.name}
-        />
+      <div ref={this.ref} className={`js-usercard ${blockClass}`} data-user-id={this.props.user.id}>
+        <a
+          className='user-card-brick__link'
+          href={route('users.show', { user: this.props.user.id })}
+        >
+          <div
+            className='user-card-brick__group-bar'
+            style={osu.groupColour(group)}
+            title={group?.name}
+          />
 
-        <div className='user-card-brick__username u-ellipsis-overflow'>
-          {this.props.user.username}
-        </div>
-        {this.props.onRemoveClick != null && (
-          <div className='user-card-brick__remove'>
-            <span className='fas fa-times' onClick={this.handleRemoveClick}/>
+          <div className='user-card-brick__username u-ellipsis-overflow'>
+            {this.props.user.username}
           </div>
+        </a>
+        {this.props.onRemoveClick != null && (
+          <button className='user-card-brick__remove' onClick={this.handleRemoveClick}>
+            <span className='fas fa-times' />
+          </button>
         )}
-      </a>
+      </div>
     );
   }
 
-  private handleRemoveClick = (e: React.SyntheticEvent<HTMLElement>) => {
-    e.preventDefault();
+  private handleRemoveClick = () => {
     this.props.onRemoveClick?.(this.props.user);
   };
 }
