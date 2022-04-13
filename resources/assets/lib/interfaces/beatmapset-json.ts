@@ -89,6 +89,7 @@ interface BeatmapsetJsonDefaultAttributes {
   hype: HypeData | null;
   id: number;
   nsfw: boolean;
+  offset: number;
   play_count: number;
   preview_url: string;
   source: string;

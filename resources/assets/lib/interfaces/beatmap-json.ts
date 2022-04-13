@@ -5,16 +5,29 @@ import BeatmapsetJson from './beatmapset-json';
 import GameMode from './game-mode';
 import UserJson from './user-json';
 
-export default interface BeatmapJson {
-  beatmapset?: BeatmapsetJson;
+interface BeatmapFailTimesArray {
+  exit: number[];
+  fail: number[];
+}
+
+interface BeatmapJsonAvailableIncludes {
+  beatmapset: BeatmapsetJson | null;
+  checksum: string | null;
+  failtimes: BeatmapFailTimesArray;
+  max_combo: number;
+  user: UserJson;
+}
+
+interface BeatmapJsonDefaultAttributes {
   beatmapset_id: number;
-  deleted_at: string | null;
   difficulty_rating: number;
   id: number;
-  max_combo?: number;
   mode: GameMode;
   status: string;
-  user?: UserJson;
+  total_length: number;
   user_id: number;
   version: string;
 }
+
+type BeatmapJson = BeatmapJsonDefaultAttributes & Partial<BeatmapJsonAvailableIncludes>;
+export default BeatmapJson;

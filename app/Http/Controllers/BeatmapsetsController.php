@@ -251,9 +251,10 @@ class BeatmapsetsController extends Controller
         }
 
         $metadataParams = get_params($params, 'beatmapset', [
-            'language_id:int',
             'genre_id:int',
+            'language_id:int',
             'nsfw:bool',
+            'offset:int',
         ]);
 
         if (count($metadataParams) > 0) {
@@ -263,27 +264,36 @@ class BeatmapsetsController extends Controller
                 $oldGenreId = $beatmapset->genre_id;
                 $oldLanguageId = $beatmapset->language_id;
                 $oldNsfw = $beatmapset->nsfw;
+                $oldOffset = $beatmapset->offset;
+                $user = auth()->user();
 
                 $beatmapset->fill($metadataParams)->saveOrExplode();
 
                 if ($oldGenreId !== $beatmapset->genre_id) {
-                    BeatmapsetEvent::log(BeatmapsetEvent::GENRE_EDIT, Auth::user(), $beatmapset, [
+                    BeatmapsetEvent::log(BeatmapsetEvent::GENRE_EDIT, $user, $beatmapset, [
                         'old' => Genre::find($oldGenreId)->name,
                         'new' => $beatmapset->genre->name,
                     ])->saveOrExplode();
                 }
 
                 if ($oldLanguageId !== $beatmapset->language_id) {
-                    BeatmapsetEvent::log(BeatmapsetEvent::LANGUAGE_EDIT, Auth::user(), $beatmapset, [
+                    BeatmapsetEvent::log(BeatmapsetEvent::LANGUAGE_EDIT, $user, $beatmapset, [
                         'old' => Language::find($oldLanguageId)->name,
                         'new' => $beatmapset->language->name,
                     ])->saveOrExplode();
                 }
 
                 if ($oldNsfw !== $beatmapset->nsfw) {
-                    BeatmapsetEvent::log(BeatmapsetEvent::NSFW_TOGGLE, Auth::user(), $beatmapset, [
+                    BeatmapsetEvent::log(BeatmapsetEvent::NSFW_TOGGLE, $user, $beatmapset, [
                         'old' => $oldNsfw,
                         'new' => $beatmapset->nsfw,
+                    ])->saveOrExplode();
+                }
+
+                if ($oldOffset !== $beatmapset->offset) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::OFFSET_EDIT, $user, $beatmapset, [
+                        'old' => $oldOffset,
+                        'new' => $beatmapset->offset,
                     ])->saveOrExplode();
                 }
             });
