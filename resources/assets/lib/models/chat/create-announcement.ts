@@ -123,9 +123,12 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
    * Disassembles and extract valid users from the string.
    */
   @action
-  private extractValidUsers() {
+  private extractValidUsers(users: UserJson[]) {
     const userIds = this.inputs.users.split(',');
-    if (userIds.length === 0) return false;
+
+    for (const user of users) {
+      this.validUsers.set(user.id, user);
+    }
 
     const invalidUsers: string[] = [];
 
@@ -138,6 +141,9 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     }
 
     this.inputs.users = invalidUsers.join(',');
+
+    // current user is implicit, always remove.
+    this.validUsers.delete(core.currentUserOrFail.id);
   }
 
   private fetchUsers(ids: (string | null)[]) {
@@ -159,13 +165,8 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     try {
       this.xhrLookupUsers = this.fetchUsers(userIds);
       const response = await this.xhrLookupUsers;
-      runInAction(() => {
-        for (const user of response.users) {
-          this.validUsers.set(user.id, user);
-        }
 
-        this.extractValidUsers();
-      });
+      this.extractValidUsers(response.users);
     } catch (error) {
       osu.ajaxError(error);
     } finally {
