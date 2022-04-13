@@ -207,6 +207,14 @@ interface NsfwToggleEvent extends BaseBeatmapsetEvent {
   type: 'nsfw_toggle';
 }
 
+interface OffsetEditEvent extends BaseBeatmapsetEvent {
+  comment: {
+    new: number;
+    old: number;
+  };
+  type: 'offset_edit';
+}
+
 interface BeatmapOwnerChangeEvent extends BaseBeatmapsetEvent {
   comment: {
     beatmap_id: number;
@@ -250,6 +258,7 @@ type BeatmapsetEventJson =
   | GenreEditEvent
   | LanguageEditEvent
   | NsfwToggleEvent
+  | OffsetEditEvent
 
   | BeatmapOwnerChangeEvent;
 
