@@ -36,7 +36,7 @@
     "lodash": "^4.17.19",
     "mobx": "^6.3.3",
     "mobx-react": "^7.2.0",
-    "moment": "^2.11.1",
+    "moment": "^2.29.2",
     "photoswipe": "^4.1.1",
     "qtip2": "https://github.com/notbakaneko/qTip2.git#cd5f038667d2b23a44f4274c46de01834d704ce6",
     "react": "^17.0.2",

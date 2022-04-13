@@ -90,11 +90,6 @@ interface ChangelogBuild {
   version: string;
 }
 
-interface BeatmapFailTimesArray {
-  exit: number[];
-  fail: number[];
-}
-
 // TODO: incomplete
 interface BeatmapsetDiscussionJson {
   beatmap_id: number | null;

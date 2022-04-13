@@ -18,11 +18,20 @@ interface State {
   isBusy: boolean;
   languageId: number;
   nsfw: boolean;
+  offset: string;
 }
 
 export default class MetadataEditor extends React.PureComponent<Props, State> {
   private genres = parseJson<GenreJson[]>('json-genres');
   private languages = parseJson<LanguageJson[]>('json-languages');
+
+  get numericOffset() {
+    if (this.state.offset !== '') {
+      const ret = Number(this.state.offset);
+
+      if (Number.isInteger(ret)) return ret;
+    }
+  }
 
   constructor(props: Props) {
     super(props);
@@ -32,6 +41,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
       isBusy: false,
       languageId: props.beatmapset.language.id ?? 0,
       nsfw: props.beatmapset.nsfw ?? false,
+      offset: props.beatmapset.offset.toString(),
     };
   }
 
@@ -80,6 +90,21 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
               ))}
             </select>
           </div>
+        </label>
+
+        <label className='simple-form__row'>
+          <div className='simple-form__label'>
+            {osu.trans('beatmapsets.show.info.offset')}
+          </div>
+
+          <input
+            className='simple-form__input'
+            maxLength={6}
+            name='beatmapset[offset]'
+            onChange={this.setOffset}
+            type='text'
+            value={this.state.offset}
+          />
         </label>
 
         <div className='simple-form__row'>
@@ -136,6 +161,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
         genre_id: this.state.genreId,
         language_id: this.state.languageId,
         nsfw: this.state.nsfw,
+        offset: this.numericOffset,
       } },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJsonForShow) => $.publish('beatmapset:set', { beatmapset }))
@@ -154,5 +180,13 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
 
   private setNsfw = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ nsfw: e.currentTarget.checked });
+  };
+
+  private setOffset = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+
+    if (/^-?\d*$/.test(value)) {
+      this.setState({ offset: value });
+    }
   };
 }
