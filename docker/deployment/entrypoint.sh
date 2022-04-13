@@ -52,6 +52,7 @@ _schedule() {
 
 case "$command" in
     artisan) exec /app/artisan "$@";;
+    assets) exec nginx -c /app/docker/deployment/nginx-assets.conf "$@";;
     octane) _octane;;
     php) _php;;
     schedule) _schedule;;
