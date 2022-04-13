@@ -6,6 +6,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { nextVal } from 'utils/seq';
 import { Spinner } from './spinner';
 
@@ -132,7 +133,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
 
     return(
       <span className={`${bn}__counter`}>
-        {osu.formatNumber(this.followers())}
+        {formatNumber(this.followers())}
       </span>
     );
   }

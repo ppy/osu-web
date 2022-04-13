@@ -3,42 +3,29 @@
 
 import { SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { observer } from 'mobx-react';
-import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import ConversationListItem from './conversation-list-item';
 import JoinChannelButton from './join-channel-button';
 
-@observer
-export default class ConversationList extends React.Component {
-  render(): React.ReactNode {
-    return (
-      <div className='chat-conversation-list'>
-        {supportedChannelTypes.map((type) => (
-          <React.Fragment key={type}>
-            {this.renderHeader(type)}
-            {this.renderChannels(core.dataStore.channelStore.groupedChannels[type])}
-            {this.renderSeparator()}
-          </React.Fragment>
-        ))}
-        <JoinChannelButton />
+function renderChannels(type: SupportedChannelType) {
+  const channels = core.dataStore.channelStore.groupedChannels[type];
+  if (channels.length === 0) return null;
+
+  return (
+    <React.Fragment key={type}>
+      <div className='chat-conversation-list__header'>
+        {osu.trans(`chat.channels.list.title.${type}`)}
       </div>
-    );
-  }
-
-  private renderChannels(channels: Channel[]) {
-    return channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />);
-  }
-
-  private renderHeader(type: SupportedChannelType) {
-    if (core.dataStore.channelStore.groupedChannels[type].length === 0) return null;
-
-    return (
-      <div className='chat-conversation-list__header'>{osu.trans(`chat.channels.list.title.${type}`)}</div>
-    );
-  }
-
-  private renderSeparator() {
-    return <div className='chat-conversation-list-separator' />;
-  }
+      {channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
+      <div className='chat-conversation-list-separator' />
+    </React.Fragment>
+  );
 }
+
+export default observer(() => (
+  <div className='chat-conversation-list'>
+    {supportedChannelTypes.map(renderChannels)}
+    <JoinChannelButton />
+  </div>
+));

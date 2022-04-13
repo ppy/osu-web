@@ -9,6 +9,7 @@ import { sum, zip } from 'lodash'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, h3, span, textarea } from 'react-dom-factories'
+import { formatNumber } from 'utils/html'
 
 el = React.createElement
 
@@ -192,7 +193,7 @@ export class Info extends React.Component
 
             div
               className: 'beatmap-success-rate__percentage'
-              title: "#{osu.formatNumber(@props.beatmap.passcount)} / #{osu.formatNumber(@props.beatmap.playcount)}"
+              title: "#{formatNumber(@props.beatmap.passcount)} / #{formatNumber(@props.beatmap.playcount)}"
               'data-tooltip-position': 'bottom center'
               style:
                 marginLeft: "#{percentage}%"

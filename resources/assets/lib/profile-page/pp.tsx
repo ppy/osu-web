@@ -4,9 +4,10 @@
 import ValueDisplay from 'components/value-display';
 import UserStatisticsJson from 'interfaces/user-statistics-json';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 
-function formatNumber(value: number) {
-  return osu.formatNumber(Math.round(value));
+function formatNumberRounded(value: number) {
+  return formatNumber(Math.round(value));
 }
 
 export default function Pp({ stats }: { stats: UserStatisticsJson }) {
@@ -14,7 +15,7 @@ export default function Pp({ stats }: { stats: UserStatisticsJson }) {
 
   (stats.variants ?? []).forEach((variant) => {
     const name = osu.trans(`beatmaps.variant.${variant.mode}.${variant.variant}`);
-    const value = formatNumber(variant.pp);
+    const value = formatNumberRounded(variant.pp);
 
     variantTooltip += `<div>${name}: ${value}</div>`;
   });
@@ -25,7 +26,7 @@ export default function Pp({ stats }: { stats: UserStatisticsJson }) {
       modifiers='plain'
       value={(
         <div data-html-title={variantTooltip} title=''>
-          {formatNumber(stats.pp)}
+          {formatNumberRounded(stats.pp)}
         </div>
       )}
     />
