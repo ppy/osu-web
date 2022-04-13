@@ -12,10 +12,11 @@
         <div class="beatmap-discussion-timestamp__icons-container">
             <div class="beatmap-discussion-timestamp__icons">
                 <a class="link link--no-underline" href="{{ route('beatmapsets.discussion', $beatmapset) }}#/{{ $post->beatmap_discussion_id }}">
-                    <div
-                        class="beatmapset-cover"
-                        style="{{ css_var_2x('--bg', $beatmapset->coverURL('list')) }}"
-                    ></div>
+                    @include('objects._beatmapset_cover', [
+                        'beatmapset' => $beatmapset,
+                        'modifiers' => null,
+                        'size' => 'list',
+                    ])
                 </a>
                 <div class="beatmap-discussion-timestamp__icon beatmapset-activities__timeline-icon-margin">
                     <span class="fas fa-reply" title="{{ osu_trans('common.buttons.reply') }}"></span>
