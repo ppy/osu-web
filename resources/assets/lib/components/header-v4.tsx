@@ -77,6 +77,7 @@ export default class HeaderV4 extends React.Component<Props> {
                 {this.props.linksAppend}
               </div>
 
+              {this.props.linksAppend}
             </div>
           </div>
         }

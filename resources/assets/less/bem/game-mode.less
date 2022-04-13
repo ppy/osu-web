@@ -3,65 +3,19 @@
 
 .game-mode {
   line-height: normal;
-  width: 100%;
   font-size: @font-size--title-small;
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px 20px;
+  top: 0;
+  right: @gutter-v2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
   @media @desktop {
-    margin-left: auto;
-    width: auto;
-  }
-
-  &--icon {
-    position: absolute;
-    top: 0;
-    right: @gutter-v2;
-    width: auto;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    font-size: @font-size--large;
-
-    @media @desktop {
-      right: @gutter-v2-desktop;
-    }
-  }
-
-  &__items {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
-    column-gap: 10px;
-    justify-content: space-around;
-    flex-wrap: wrap;
-
-    @media @desktop {
-      justify-content: flex-end;
-      column-gap: 20px;
-    }
-
-    &--icon {
-      column-gap: 10px;
-    }
-  }
-
-  &__item {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    flex: none;
-
-    &--icon {
-      margin: 0;
-    }
-  }
-
-  &__set-default {
-    position: absolute;
-    top: 100%;
-    display: flex;
-    align-items: center;
-    height: 48px; // FIXME: temporary. Matches header-v4__content
-    z-index: 1; // FIXME: temporary. Remove when proper switcher design is implemented
     right: @gutter-v2-desktop;
   }
 }
