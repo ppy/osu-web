@@ -2,19 +2,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DifficultyBadge from 'components/difficulty-badge';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
-  beatmap: BeatmapJson;
+  beatmap: BeatmapJson | BeatmapExtendedJson;
   inline?: boolean;
   modifiers?: Modifiers;
 }
 
 export default class BeatmapListItem extends React.PureComponent<Props> {
   render() {
-    const deleted = this.props.beatmap.deleted_at !== null;
+    const deleted = 'deleted_at' in this.props.beatmap && this.props.beatmap.deleted_at !== null;
     const version = `${this.props.beatmap.version}${deleted ? ` [${osu.trans('beatmap_discussions.index.deleted_beatmap')}]` : ''}`;
 
     return (
