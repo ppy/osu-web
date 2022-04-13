@@ -30,31 +30,13 @@ class UsersController extends BaseController
             }
         }
 
-        if (!empty($numericIds)) {
-            $query = User::whereIn('user_id', $numericIds)
-                ->default()
-                ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD);
-        }
-
-        if (!empty($stringIds)) {
-            $usernameQuery = User::whereIn('username', $stringIds)
-                ->default()
-                ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD);
-
-
-            if (isset($query)) {
-                $query->union($usernameQuery);
-            } else {
-                $query = $usernameQuery;
-            }
-        }
-
-        if (isset($query)) {
-            $users = $query->get();
-        }
+        $users = User::where(fn ($q) => $q->whereIn('user_id', $numericIds)->orWhereIn('username', $stringIds))
+            ->default()
+            ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD)
+            ->get();
 
         return [
-            'users' => json_collection($users ?? [], new UserCompactTransformer(), UserCompactTransformer::CARD_INCLUDES),
+            'users' => json_collection($users, new UserCompactTransformer(), UserCompactTransformer::CARD_INCLUDES),
         ];
     }
 }
