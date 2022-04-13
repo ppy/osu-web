@@ -30,6 +30,7 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Ds\Set;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -155,13 +156,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public static function coverSizes()
     {
-        $shapes = ['cover', 'card', 'list', 'slimcover'];
-        $scales = ['', '@2x'];
+        static $sizes;
 
-        $sizes = [];
-        foreach ($shapes as $shape) {
-            foreach ($scales as $scale) {
-                $sizes[] = "$shape$scale";
+        if ($sizes === null) {
+            $shapes = ['cover', 'card', 'list', 'slimcover'];
+            $scales = ['', '@2x'];
+
+            $sizes = [];
+            foreach ($shapes as $shape) {
+                foreach ($scales as $scale) {
+                    $sizes[] = "$shape$scale";
+                }
             }
         }
 
@@ -170,9 +175,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public static function isValidCoverSize($coverSize)
     {
-        $validSizes = array_merge(['raw', 'fullsize'], self::coverSizes());
+        static $validSizes;
 
-        return in_array($coverSize, $validSizes, true);
+        $validSizes ??= new Set(['raw', 'fullsize', ...self::coverSizes()]);
+
+        return $validSizes->contains($coverSize);
     }
 
     public static function popular()
@@ -395,12 +402,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             return false;
         }
 
-        $timestamp = 0;
-        if ($customTimestamp) {
-            $timestamp = $customTimestamp;
-        } elseif ($this->cover_updated_at) {
-            $timestamp = $this->cover_updated_at->format('U');
-        }
+        $timestamp = $customTimestamp ?? $this->cover_updated_at?->format('U') ?? 0;
 
         return $this->storage()->url($this->coverPath()."{$coverSize}.jpg?{$timestamp}");
     }
