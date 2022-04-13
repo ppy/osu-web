@@ -32,18 +32,20 @@ const BeatmapInfo = (props: Props) => {
       </h1>
 
       <div className='score-beatmap__detail'>
-        <a className='score-beatmap__link-plain' href={beatmapUrl}>
-          <BeatmapListItem beatmap={beatmap} modifiers='score' />
-        </a>
+        <span className='u-ellipsis-overflow'>
+          <a className='score-beatmap__link-plain' href={beatmapUrl}>
+            <BeatmapListItem beatmap={beatmap} inline modifiers='score' />
+          </a>
 
-        {' '}
-        <span className='score-beatmap__mapper'>
-          <StringWithComponent
-            mappings={{
-              mapper: <UserLink user={{ id: beatmapset.user_id, username: beatmapset.creator }} />,
-            }}
-            pattern={osu.trans('beatmapsets.show.details.mapped_by')}
-          />
+          {' '}
+          <span className='score-beatmap__mapper'>
+            <StringWithComponent
+              mappings={{
+                mapper: <UserLink user={{ id: beatmapset.user_id, username: beatmapset.creator }} />,
+              }}
+              pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+            />
+          </span>
         </span>
       </div>
     </div>

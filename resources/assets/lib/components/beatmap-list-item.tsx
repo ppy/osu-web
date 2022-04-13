@@ -9,6 +9,7 @@ import { classWithModifiers, Modifiers } from 'utils/css';
 interface Props {
   beatmap: BeatmapJson;
   modifiers?: Modifiers;
+  inline?: boolean;
 }
 
 export default class BeatmapListItem extends React.PureComponent<Props> {
@@ -17,7 +18,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
     const version = `${this.props.beatmap.version}${deleted ? ` [${osu.trans('beatmap_discussions.index.deleted_beatmap')}]` : ''}`;
 
     return (
-      <div className={classWithModifiers('beatmap-list-item', { deleted }, this.props.modifiers)}>
+      <div className={classWithModifiers('beatmap-list-item', { deleted, inline: this.props.inline }, this.props.modifiers)}>
         <div className='beatmap-list-item__col beatmap-list-item__col--icon'>
           <span className={`fal fa-extra-mode-${this.props.beatmap.mode}`} />
         </div>
@@ -27,7 +28,7 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
         </div>
 
         <div className='beatmap-list-item__col beatmap-list-item__col--main'>
-          <div className='beatmap-list-item__version u-ellipsis-overflow'>
+          <div className={`beatmap-list-item__version ${this.props.inline ? '' : 'u-ellipsis-overflow'}`}>
             {version}
           </div>
         </div>
