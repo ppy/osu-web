@@ -179,10 +179,10 @@ export default class Channel {
     if (this.newPmChannel) return;
 
     if (this.type === 'ANNOUNCE' && !this.usersLoaded) {
-      this.refresh();
+      this.loadMetadata();
     }
 
-    this.refreshMessages();
+    this.loadRecentMessages();
   }
 
   @action
@@ -216,18 +216,18 @@ export default class Channel {
   }
 
   @action
-  markAsRead() {
-    this.setLastReadId(this.lastMessageId);
-  }
-
-  @action
-  refresh() {
+  loadMetadata() {
     getChannel(this.channelId).done((json) => {
       runInAction(() => {
         this.updateWithJson(json);
         this.usersLoaded = true;
       });
     });
+  }
+
+  @action
+  markAsRead() {
+    this.setLastReadId(this.lastMessageId);
   }
 
   @action
@@ -261,17 +261,7 @@ export default class Channel {
   }
 
   @action
-  private persistMessage(message: Message, json: MessageJson) {
-    if (json.uuid != null) {
-      this.messagesMap.delete(json.uuid);
-    }
-
-    message.persist(json);
-    this.messagesMap.set(message.messageId, message);
-  }
-
-  @action
-  private async refreshMessages() {
+  private async loadRecentMessages() {
     if (!this.needsRefresh || this.loadingMessages) return;
 
     this.loadingMessages = true;
@@ -306,6 +296,16 @@ export default class Channel {
     } catch {
       runInAction(() => this.loadingMessages = false);
     }
+  }
+
+  @action
+  private persistMessage(message: Message, json: MessageJson) {
+    if (json.uuid != null) {
+      this.messagesMap.delete(json.uuid);
+    }
+
+    message.persist(json);
+    this.messagesMap.set(message.messageId, message);
   }
 
   @action
