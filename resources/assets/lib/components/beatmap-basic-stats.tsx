@@ -1,52 +1,84 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import { div, span } from 'react-dom-factories'
-import { formatNumber } from 'utils/html'
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
+import { padStart } from 'lodash';
+import * as React from 'react';
+import { formatNumber } from 'utils/html';
 
-bn = 'beatmap-basic-stats'
+// value is in second
+function formatDuration(value: number) {
+  const s = value % 60;
+  const m = Math.floor(value / 60) % 60;
+  const h = Math.floor(value / 3600);
 
-# value is in second
-formatDuration = (value) ->
-  s = value % 60
-  m = Math.floor(value / 60) % 60
-  h = Math.floor(value / 3600)
+  if (h > 0) {
+    return `${h}:${padStart(m.toString(), 2, '0')}:${padStart(s.toString(), 2, '0')}`;
+  }
 
-  if h > 0
-    "#{h}:#{_.padStart m, 2, 0}:#{_.padStart s, 2, 0}"
-  else
-    "#{m}:#{_.padStart s, 2, 0}"
+  return `${m}:${padStart(s.toString(), 2, '0')}`;
+}
 
+const bn = 'beatmap-basic-stats';
 
-export BeatmapBasicStats = ({beatmap, beatmapset}) ->
-  div
-    className: bn
-    for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
-      value = beatmap[stat]
+const statKeys = ['total_length', 'bpm', 'count_circles', 'count_sliders'] as const;
+type StatKey = typeof statKeys[number];
 
-      value =
-        if stat == 'bpm'
-          if value > 1000 then '∞' else formatNumber(value)
-        else if stat == 'total_length'
-          formatDuration value
-        else
-          formatNumber(value)
+interface Props {
+  beatmap: BeatmapExtendedJson;
+  beatmapset: BeatmapsetJson;
+}
 
-      title =
-        osu.trans "beatmapsets.show.stats.#{stat}",
-          if stat == 'total_length'
-            hit_length: formatDuration(beatmap.hit_length)
+export default class BeatmapBasicStats extends React.PureComponent<Props> {
+  render() {
+    return (
+      <div className={bn}>
+        {statKeys.map(this.renderEntry)}
+      </div>
+    );
+  }
 
-      if stat == 'bpm' && beatmapset.offset != 0
-        title += " (#{osu.trans 'beatmapsets.show.stats.offset', offset: formatNumber(beatmapset.offset)})"
+  private readonly renderEntry = (key: StatKey) => {
+    const titleParams: Partial<Record<string, string>> = {};
+    let titleAppend = '';
+    const rawValue = this.props.beatmap[key];
+    let value: string;
 
-      div
-        className: "#{bn}__entry"
-        key: stat
-        title: title
-        div
-          className: "#{bn}__entry-icon"
-          style:
-            backgroundImage: "url(/images/layout/beatmapset-page/#{stat}.svg)"
-        span null, value
+    switch (key) {
+      case 'bpm': {
+        if (rawValue > 1000) {
+          value = '∞';
+        }
+
+        const offset = this.props.beatmapset.offset;
+        if (offset !== 0) {
+          titleAppend += ` (${osu.trans('beatmapsets.show.stats.offset', { offset: formatNumber(offset) })})`;
+        }
+        break;
+      }
+      case 'total_length':
+        value = formatDuration(this.props.beatmap[key]);
+        titleParams.hit_length = formatDuration(this.props.beatmap.hit_length);
+        break;
+    }
+
+    value ??= formatNumber(rawValue);
+
+    return (
+      <div
+        key={key}
+        className={`${bn}__entry`}
+        title={`${osu.trans(`beatmapsets.show.stats.${key}`, titleParams)}${titleAppend}`}
+      >
+        <div
+          className={`${bn}__entry-icon`}
+          style={{
+            backgroundImage: `url(/images/layout/beatmapset-page/${key}.svg)`,
+          }}
+        />
+        <span>{value}</span>
+      </div>
+    );
+  };
+}

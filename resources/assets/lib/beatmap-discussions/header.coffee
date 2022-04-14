@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapBasicStats } from 'components/beatmap-basic-stats'
+import BeatmapBasicStats from 'components/beatmap-basic-stats'
 import Chart from 'beatmap-discussions/chart'
 import BeatmapList from 'beatmap-discussions/beatmap-list'
 import { BeatmapsetMapping } from 'components/beatmapset-mapping'
