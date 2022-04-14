@@ -7,6 +7,10 @@ import { padStart } from 'lodash';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
 
+function padTimeComponent(time: number) {
+  return padStart(time.toString(), 2, '0');
+}
+
 // value is in second
 function formatDuration(value: number) {
   const s = value % 60;
@@ -14,10 +18,10 @@ function formatDuration(value: number) {
   const h = Math.floor(value / 3600);
 
   if (h > 0) {
-    return `${h}:${padStart(m.toString(), 2, '0')}:${padStart(s.toString(), 2, '0')}`;
+    return `${h}:${padTimeComponent(m)}:${padTimeComponent(s)}`;
   }
 
-  return `${m}:${padStart(s.toString(), 2, '0')}`;
+  return `${m}:${padTimeComponent(s)}`;
 }
 
 const bn = 'beatmap-basic-stats';
