@@ -1,101 +1,165 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import BeatmapBasicStats from 'components/beatmap-basic-stats'
-import core from 'osu-core-singleton'
-import * as React from 'react'
-import { button, div, span, table, tbody, td, th, tr } from 'react-dom-factories'
-import { formatNumber } from 'utils/html'
-import { nextVal } from 'utils/seq'
+import BeatmapBasicStats from 'components/beatmap-basic-stats';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
+import * as React from 'react';
+import { formatNumber } from 'utils/html';
 
-el = React.createElement
+interface Props {
+  beatmap: BeatmapExtendedJson;
+  beatmapset: BeatmapsetJsonForShow;
+}
 
-export class Stats extends React.Component
-  render: =>
-    ratingsPositive = 0
-    ratingsNegative = 0
+export default class Stats extends React.Component<Props> {
+  // the one in beatmapset has invalid rating 0 data in it
+  private get ratings() {
+    return this.props.beatmapset.ratings.slice(1);
+  }
 
-    for rating, count of @props.beatmapset.ratings
-      ratingsNegative += count if rating >= 1 && rating <= 5
-      ratingsPositive += count if rating >= 6 && rating <= 10
+  private get statKeys() {
+    switch (this.props.beatmap.mode) {
+      case 'mania':
+        return ['cs', 'drain', 'accuracy', 'difficulty_rating'] as const;
+      case 'taiko':
+        return ['drain', 'accuracy', 'difficulty_rating'] as const;
+      default:
+        return ['cs', 'drain', 'accuracy', 'ar', 'difficulty_rating'] as const;
+    }
+  }
 
-    ratingsAll = ratingsPositive + ratingsNegative
-    stats = switch @props.beatmap.mode
-              when 'mania' then ['cs', 'drain', 'accuracy', 'stars']
-              when 'taiko' then ['drain', 'accuracy', 'stars']
-              else ['cs', 'drain', 'accuracy', 'ar', 'stars']
+  render() {
+    return (
+      <div className='beatmapset-stats'>
+        <button
+          className='beatmapset-stats__row beatmapset-stats__row--preview js-audio--play js-audio--player'
+          data-audio-url={this.props.beatmapset.preview_url}
+          type='button'
+        >
+          <span className='play-button' />
+          <div className='beatmapset-stats__elapsed-bar' />
+        </button>
 
-    div className: 'beatmapset-stats',
-      button
-        type: 'button'
-        className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview js-audio--play js-audio--player"
-        'data-audio-url': @props.beatmapset.preview_url
-        span className: 'play-button'
-        div className: 'beatmapset-stats__elapsed-bar'
+        <div className='beatmapset-stats__row beatmapset-stats__row--basic'>
+          <BeatmapBasicStats beatmap={this.props.beatmap} beatmapset={this.props.beatmapset} />
+        </div>
 
-      div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
-        el BeatmapBasicStats, beatmap: @props.beatmap, beatmapset: @props.beatmapset
+        <div className='beatmapset-stats__row beatmapset-stats__row--advanced'>
+          <table className='beatmap-stats-table'>
+            <tbody>
+              {this.statKeys.map(this.renderStat)}
+            </tbody>
+          </table>
+        </div>
 
-      div className: 'beatmapset-stats__row beatmapset-stats__row--advanced',
-        table className: 'beatmap-stats-table',
-          tbody null,
-            for stat in stats
-              value =
-                if stat == 'stars'
-                  @props.beatmap.difficulty_rating
-                else
-                  @props.beatmap[stat]
+        {this.props.beatmapset.is_scoreable &&
+          <div className='beatmapset-stats__row beatmapset-stats__row--rating'>
+            <div className='beatmapset-stats__rating-header'>{osu.trans('beatmapsets.show.stats.user-rating')}</div>
 
-              valueText =
-                if stat == 'stars'
-                  formatNumber(value, 2)
-                else
-                  formatNumber(value)
+            {this.renderRatingBar()}
 
-              if @props.beatmap.mode == 'mania' && stat == 'cs'
-                stat += '-mania'
+            <div className='beatmapset-stats__rating-header'>{osu.trans('beatmapsets.show.stats.rating-spread')}</div>
 
-              tr
-                key: stat
-                th className: 'beatmap-stats-table__label', osu.trans "beatmapsets.show.stats.#{stat}"
-                td className: 'beatmap-stats-table__bar',
-                  div className: "bar bar--beatmap-stats bar--beatmap-stats-#{stat}",
-                    div
-                      className: 'bar__fill'
-                      style:
-                        width: "#{10 * Math.min 10, value}%"
-                td className: 'beatmap-stats-table__value', valueText
+            <div className='beatmapset-stats__rating-chart'>
+              {this.renderRatingChart()}
+            </div>
+          </div>
+        }
+      </div>
+    );
+  }
 
-      if @props.beatmapset.is_scoreable
-        div className: 'beatmapset-stats__row beatmapset-stats__row--rating',
-          div className: 'beatmapset-stats__rating-header', osu.trans 'beatmapsets.show.stats.user-rating'
-          div className: 'bar--beatmap-rating',
-            div
-              className: 'bar__fill'
-              style:
-                width: "#{(ratingsNegative / ratingsAll) * 100}%"
+  private renderRatingBar() {
+    const summary = {
+      negative: 0,
+      positive: 0,
+    };
 
-          div className: 'beatmapset-stats__rating-values',
-            span null, formatNumber(ratingsNegative)
-            span null, formatNumber(ratingsPositive)
+    this.ratings.forEach((count, i) => {
+      const key = i < 5 ? 'negative' : 'positive';
+      summary[key] += count;
+    });
 
-          div className: 'beatmapset-stats__rating-header', osu.trans 'beatmapsets.show.stats.rating-spread'
+    const total = Math.max(1, summary.positive + summary.negative);
 
-          div
-            className: 'beatmapset-stats__rating-chart'
-            @renderRatingChart()
+    return (
+      <>
+        <div className='bar--beatmap-rating'>
+          <div
+            className='bar__fill'
+            style={{
+              width: `${(summary.negative / total) * 100}%`,
+            }}
+          />
+        </div>
 
+        <div className='beatmapset-stats__rating-values'>
+          <span>{formatNumber(summary.negative)}</span>
+          <span>{formatNumber(summary.positive)}</span>
+        </div>
+      </>
+    );
+  }
 
-  renderRatingChart: =>
-    return if !@props.beatmapset.is_scoreable
+  private renderRatingChart() {
+    if (!this.props.beatmapset.is_scoreable) return;
 
-    ratings = @props.beatmapset.ratings[1..]
-    maxValue = Math.max 1, Math.max(ratings...)
+    const ratings = this.ratings;
+    const maxValue = Math.max(1, Math.max(...ratings));
 
-    div className: 'stacked-bar-chart stacked-bar-chart--beatmap-fail-rate',
-      for r, i in ratings
-        div key: i, className: 'stacked-bar-chart__col',
-          div
-            className: 'stacked-bar-chart__entry'
-            style:
-              height: "#{100 * r / maxValue}%"
+    return (
+      <div className='stacked-bar-chart stacked-bar-chart--beatmap-fail-rate'>
+        {ratings.map((count, i) => (
+          <div key={i} className='stacked-bar-chart__col'>
+            <div
+              className='stacked-bar-chart__entry'
+              style={{
+                height: `${100 * count / maxValue}%`,
+              }}
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  private readonly renderStat = (key: typeof this.statKeys[number]) => {
+    const rawValue = this.props.beatmap[key];
+    let label: string = key;
+    let value: string;
+
+    switch (key) {
+      case 'difficulty_rating':
+        label = 'stars';
+        value = formatNumber(rawValue, 2);
+        break;
+      case 'cs':
+        if (this.props.beatmap.mode === 'mania') {
+          label += '-mania';
+        }
+        break;
+    }
+
+    value ??= formatNumber(rawValue);
+
+    return (
+      <tr key={key}>
+        <th className='beatmap-stats-table__label'>{osu.trans(`beatmapsets.show.stats.${label}`)}</th>
+
+        <td className='beatmap-stats-table__bar'>
+          <div className={`bar bar--beatmap-stats bar--beatmap-stats-${label}`}>
+            <div
+              className='bar__fill'
+              style={{
+                width: `${10 * Math.min(10, rawValue)}%`,
+              }}
+            />
+          </div>
+        </td>
+
+        <td className='beatmap-stats-table__value'>{value}</td>
+      </tr>
+    );
+  };
+}
