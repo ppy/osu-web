@@ -39,7 +39,9 @@ export default class Channel {
   @computed
   get announcementUsers() {
     return this.usersLoaded
-      ? this.userIds.map((userId) => core.dataStore.userStore.get(userId))
+      ? this.userIds
+        .map((userId) => core.dataStore.userStore.get(userId))
+        .filter((u): u is User => u != null)
         .sort(usernameSortAscending)
       : null;
   }
