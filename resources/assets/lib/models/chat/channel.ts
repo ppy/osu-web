@@ -6,7 +6,7 @@ import ChannelJson, { ChannelType, SupportedChannelType, supportedTypeLookup } f
 import MessageJson from 'interfaces/chat/message-json';
 import { minBy, sortBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
-import User from 'models/user';
+import User, { usernameSortAscending } from 'models/user';
 import core from 'osu-core-singleton';
 import Message from './message';
 
@@ -40,6 +40,7 @@ export default class Channel {
   get announcementUsers() {
     return this.usersLoaded
       ? this.userIds.map((userId) => core.dataStore.userStore.get(userId))
+        .sort(usernameSortAscending)
       : null;
   }
 
