@@ -31,17 +31,12 @@ export default class UserProfileContainer extends React.Component<Props> {
   }
 
   render() {
-    let cssClass: string | undefined;
-    const modifiers = ['full'];
-    if (this.isBlocked && !this.forceShow) {
-      cssClass = 'osu-layout__no-scroll';
-      modifiers.push('masked');
-    }
+    const masked = this.isBlocked && !this.forceShow;
 
     return (
-      <div className={cssClass}>
+      <div className={masked ? 'osu-layout__no-scroll' : undefined}>
         {this.isBlocked && this.renderBanner()}
-        <div className={classWithModifiers('osu-layout', modifiers)}>
+        <div className={classWithModifiers('osu-layout', 'full', { masked })}>
           {this.props.children}
         </div>
       </div>
