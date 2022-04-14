@@ -9,6 +9,10 @@ export function normaliseUsername(username: string) {
   return username.trim().toLowerCase();
 }
 
+export function usernameSortAscending(x: UserJson | User , y: UserJson | User) {
+  return x.username.localeCompare(y.username);
+}
+
 export default class User {
   @observable avatarUrl = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
   @observable countryCode = 'XX';
