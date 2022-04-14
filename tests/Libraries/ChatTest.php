@@ -49,6 +49,23 @@ class ChatTest extends TestCase
         }
     }
 
+    public function testCreateAnnouncementIncludesSender()
+    {
+        $sender = User::factory()->withGroup('announce')->create()->markSessionVerified();
+        $user = User::factory()->create();
+
+        $channel = Chat::createAnnouncement($sender, [
+            'channel' => [
+                'description' => 'best',
+                'name' => 'annoucements',
+            ],
+            'message' => 'test',
+            'target_ids' => [$user->getKey()],
+        ]);
+
+        $this->assertTrue($channel->fresh()->users()->contains('user_id', $sender->getKey()));
+    }
+
     /**
      * @dataProvider verifiedDataProvider
      */
