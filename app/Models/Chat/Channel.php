@@ -264,7 +264,7 @@ class Channel extends Model
         });
     }
 
-    public function users()
+    public function users(): Collection
     {
         return $this->memoize(__FUNCTION__, function () {
             if ($this->isPM() && isset($this->pmUsers)) {
@@ -276,10 +276,15 @@ class Channel extends Model
         });
     }
 
-    public function visibleUsers()
+    public function visibleUsers(bool $showAll = true)
     {
         if ($this->isPM() || $this->isAnnouncement()) {
-            return $this->users();
+            $users = $this->users();
+            if (!$showAll) {
+                $users = $users->filter(fn (User $user) => !$user->isRestricted());
+            }
+
+            return $users;
         }
 
         return new Collection();
