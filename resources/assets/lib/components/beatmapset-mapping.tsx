@@ -1,58 +1,85 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import StringWithComponent from 'components/string-with-component'
-import TimeWithTooltip from 'components/time-with-tooltip'
-import { UserLink } from 'components/user-link'
-import { route } from 'laroute'
-import * as React from 'react'
-import { a, div, span, strong, time } from 'react-dom-factories'
+import StringWithComponent from 'components/string-with-component';
+import TimeWithTooltip from 'components/time-with-tooltip';
+import UserAvatar from 'components/user-avatar';
+import { UserLink } from 'components/user-link';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import * as moment from 'moment';
+import * as React from 'react';
 
-el = React.createElement
+const bn = 'beatmapset-mapping';
 
-bn = 'beatmapset-mapping'
-dateFormat = 'LL'
+interface Props {
+  beatmapset: BeatmapsetExtendedJson;
+  user?: BeatmapsetExtendedJson['user'];
+}
 
-export class BeatmapsetMapping extends React.PureComponent
-  render: =>
-    user =
-      id: @props.beatmapset.user_id
-      username: @props.beatmapset.creator ? osu.trans('users.deleted')
-      avatar_url: (@props.user ? @props.beatmapset.user)?.avatar_url
+interface DisplayUser {
+  avatar_url?: string;
+  id?: number;
+  username: string;
+}
 
-    div className: bn,
-      if user.id?
-        a
-          href: route 'users.show', user: user.id
-          className: 'avatar avatar--beatmapset'
-          style:
-            backgroundImage: osu.urlPresence(user.avatar_url)
-      else
-        span className: 'avatar avatar--beatmapset avatar--guest'
+export default class BeatmapsetMapping extends React.PureComponent<Props> {
+  render() {
+    const displayUser: DisplayUser = { username: this.props.beatmapset.creator };
 
-      div className: "#{bn}__content",
-        div
-          className: "#{bn}__mapper"
-          el StringWithComponent,
-            pattern: osu.trans 'beatmapsets.show.details.mapped_by'
-            mappings:
-              mapper: el UserLink, className: "#{bn}__user", user: user
+    const user = this.props.user ?? this.props.beatmapset.user;
+    if (user != null) {
+      displayUser.id = user.id;
+      displayUser.avatar_url = user.avatar_url;
+    }
 
-        @renderDate 'submitted', 'submitted_date'
+    return (
+      <div className={bn}>
+        <UserLink user={displayUser}>
+          <UserAvatar modifiers='beatmapset' user={displayUser} />
+        </UserLink>
 
-        if @props.beatmapset.ranked > 0
-          @renderDate @props.beatmapset.status, 'ranked_date'
-        else
-          @renderDate 'updated', 'last_updated'
+        <div className={`${bn}__content`}>
+          <div className={`${bn}__mapper`}>
+            <StringWithComponent
+              mappings={{
+                mapper: <UserLink className={`${bn}__user`} user={displayUser} />,
+              }}
+              pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+            />
+          </div>
 
+          {this.renderDate('submitted', 'submitted_date')}
 
-  renderDate: (key, attribute) =>
-    div null,
-      el StringWithComponent,
-        pattern: osu.trans "beatmapsets.show.details_date.#{key}"
-        mappings:
-          timeago:
-            strong null,
-              el TimeWithTooltip,
-                dateTime: @props.beatmapset[attribute]
-                relative: Math.abs(moment().diff(moment(@props.beatmapset[attribute]), 'weeks')) < 4
+          {this.props.beatmapset.ranked > 0
+            ? this.renderDate(this.props.beatmapset.status, 'ranked_date')
+            : this.renderDate('updated', 'last_updated')
+          }
+        </div>
+      </div>
+    );
+  }
+
+  private renderDate(key: string, attribute: 'last_updated' | 'ranked_date' | 'submitted_date') {
+    const date = this.props.beatmapset[attribute];
+    if (date == null) {
+      throw new Error(`beatmapset data is missing the expected date attribute: ${attribute}`);
+    }
+
+    const relative = Math.abs(moment().diff(moment(date), 'weeks')) < 4;
+
+    return (
+      <div>
+        <StringWithComponent
+          mappings={{
+            timeago: (
+              <strong>
+                <TimeWithTooltip dateTime={date} relative={relative} />
+              </strong>
+            ),
+          }}
+          pattern={osu.trans(`beatmapsets.show.details_date.${key}`)}
+        />
+      </div>
+    );
+  }
+}

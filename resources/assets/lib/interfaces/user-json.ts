@@ -83,3 +83,6 @@ interface UserJsonDefaultAttributes {
 type UserJson = UserJsonDefaultAttributes & Partial<UserJsonAvailableIncludes>;
 
 export default UserJson;
+
+// FIXME: Using Partial isn't quite correct as the keys are there but the values are null.
+export type UserJsonDeleted = Partial<UserJson> & { username: string };

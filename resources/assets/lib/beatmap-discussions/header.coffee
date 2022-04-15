@@ -4,7 +4,7 @@
 import { BeatmapBasicStats } from 'components/beatmap-basic-stats'
 import Chart from 'beatmap-discussions/chart'
 import BeatmapList from 'beatmap-discussions/beatmap-list'
-import { BeatmapsetMapping } from 'components/beatmapset-mapping'
+import BeatmapsetMapping from 'components/beatmapset-mapping'
 import BigButton from 'components/big-button'
 import HeaderV4 from 'components/header-v4'
 import PlaymodeTabs from 'components/playmode-tabs'

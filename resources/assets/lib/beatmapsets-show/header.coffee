@@ -4,7 +4,7 @@
 import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
 import BeatmapsetMenu from 'beatmapsets-show/beatmapset-menu'
 import BigButton from 'components/big-button'
-import { BeatmapsetMapping } from 'components/beatmapset-mapping'
+import BeatmapsetMapping from 'components/beatmapset-mapping'
 import UserAvatar from 'components/user-avatar'
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
