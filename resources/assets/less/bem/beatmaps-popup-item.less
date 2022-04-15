@@ -3,36 +3,17 @@
 
 .beatmaps-popup-item {
   font-size: @font-size--normal;
-  font-weight: 600;
   display: grid;
   grid-gap: 4px;
-  grid-template-columns: auto minmax(50px, max-content) 1fr;
   align-items: center;
   color: hsl(var(--hsl-c1));
   width: max-content;
   max-width: 100%;
-  --name-text-decoration: none;
+  --version-text-decoration: none;
 
   .link-hover({
-    --name-text-decoration: underline;
+    --version-text-decoration: underline;
     text-decoration: none;
     color: hsl(var(--hsl-c1));
   });
-
-  &__col {
-    &--mode {
-      font-size: 14px; // icon size
-      display: flex;
-      align-items: center;
-    }
-
-    &--name {
-      text-decoration: var(--name-text-decoration);
-    }
-  }
-
-  &__difficulty-icon {
-    font-size: 8px; // icon size
-    margin-right: 4px;
-  }
 }

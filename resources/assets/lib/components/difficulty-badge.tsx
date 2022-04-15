@@ -19,7 +19,9 @@ export default function DifficultyBadge(props: { rating: number }) {
       <span className='difficulty-badge__icon'>
         <span className='fas fa-star' />
       </span>
-      {formatNumber(props.rating, 2)}
+      <span className='difficulty-badge__rating'>
+        {formatNumber(props.rating, 2)}
+      </span>
     </div>
   );
 }

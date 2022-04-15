@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DifficultyBadge from 'components/difficulty-badge';
+import BeatmapListItem from 'components/beatmap-list-item';
 import { Portal } from 'components/portal';
 import BeatmapJson from 'interfaces/beatmap-json';
 import GameMode from 'interfaces/game-mode';
@@ -40,13 +40,7 @@ const ItemRow = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
     className='beatmaps-popup-item'
     href={route('beatmaps.show', { beatmap: beatmap.id })}
   >
-    <span className='beatmaps-popup-item__col beatmaps-popup-item__col--mode'>
-      <span className={`fal fa-extra-mode-${beatmap.mode}`} />
-    </span>
-    <DifficultyBadge rating={beatmap.difficulty_rating} />
-    <span className='beatmaps-popup-item__col beatmaps-popup-item__col--name u-ellipsis-overflow'>
-      {beatmap.version}
-    </span>
+    <BeatmapListItem beatmap={beatmap} />
   </a>
 ));
 

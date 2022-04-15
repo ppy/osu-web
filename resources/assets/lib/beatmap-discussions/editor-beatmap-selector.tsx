@@ -2,10 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapIcon } from 'components/beatmap-icon';
+import BeatmapListItem from 'components/beatmap-list-item';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
 import { Node, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
+import { classWithModifiers } from 'utils/css';
 import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
 import { SlateContext } from './slate-context';
 
@@ -21,10 +23,21 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
 
   render(): React.ReactNode {
     const menuOptions: MenuItem[] = [];
+    const listItemModifier = 'full-width';
     menuOptions.push({
       icon: <i className='fas fa-fw fa-star-of-life' />,
       id: 'all',
-      label: osu.trans('beatmaps.discussions.mode.scopes.generalAll'),
+      label: (
+        <div className={classWithModifiers('beatmap-list-item', listItemModifier)}>
+          <div className='beatmap-list-item__col beatmap-list-item__col--icon'>
+            <i className='fas fa-xs fa-star-of-life' />
+          </div>
+          <div className='beatmap-list-item__col beatmap-list-item__col--main'>
+            {osu.trans('beatmaps.discussions.mode.scopes.generalAll')}
+          </div>
+        </div>
+      ),
+      renderIcon: false,
     });
 
     this.props.beatmaps.forEach((beatmap: BeatmapExtendedJson) => {
@@ -35,7 +48,8 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
       menuOptions.push({
         icon: <BeatmapIcon beatmap={beatmap} />,
         id: beatmap.id.toString(),
-        label: beatmap.version,
+        label: <BeatmapListItem beatmap={beatmap} modifiers={listItemModifier} />,
+        renderIcon: false,
       });
     });
 
