@@ -3,19 +3,15 @@
 
 .tooltip-beatmap {
   height: 100%;
-  margin: 4px 10px;
+  font-size: @font-size--title-small;
+  color: hsl(var(--hsl-c1));
+  font-weight: 700;
 
-  &__badge {
+  &__content {
     display: flex;
-    justify-content: center;
-    margin: 4px;
-  }
-
-  &__text {
-    text-align: center;
-    font-size: 11px;
-    margin: 4px;
-    font-weight: 700;
-    color: #fff;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: $gap 10px;
   }
 }
