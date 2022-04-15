@@ -17,7 +17,7 @@ import { nextVal } from 'utils/seq'
 import { currentUrl } from 'utils/turbolinks'
 import { Header } from './header'
 import { Hype } from './hype'
-import { Info } from './info'
+import Info from './info'
 
 el = React.createElement
 
