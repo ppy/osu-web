@@ -15,7 +15,6 @@ use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
-use App\Models\Beatmapset;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
