@@ -689,16 +689,8 @@ class UsersController extends Controller
                 case 'guestBeatmapsets':
                     $transformer = 'Beatmapset';
                     $includes = ['beatmaps'];
-                    // display beatmaps with leaderboards ordered by approved_date first,
-                    // then pending -> wip -> graveyard, each ordered by last_update
                     $query = $user->profileBeatmapsetsGuest()
-                        ->orderBy('approved_date', 'desc')
-                        ->orderByField('approved', [
-                            Beatmapset::STATES['pending'],
-                            Beatmapset::STATES['wip'],
-                            Beatmapset::STATES['graveyard'],
-                        ])
-                        ->orderBy('last_update', 'desc');
+                        ->orderBy('approved_date', 'desc');
                     break;
                 case 'lovedBeatmapsets':
                     $transformer = 'Beatmapset';
