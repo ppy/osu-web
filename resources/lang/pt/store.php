@@ -20,8 +20,8 @@ return [
         'empty' => [
             'text' => 'O teu carrinho está vazio.',
             'return_link' => [
-                '_' => 'Volta ao :link para encontrar brindes!',
-                'link_text' => 'listagem da loja',
+                '_' => 'Regressa ao :link para descobrires coisas fixolas!',
+                'link_text' => 'catálogo da loja',
             ],
         ],
     ],

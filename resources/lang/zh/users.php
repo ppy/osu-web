@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited 条评论',
         ],
         'cover' => [
-            'to_0' => '隐藏头图',
-            'to_1' => '显示头图',
+            'to_0' => '隐藏封面',
+            'to_1' => '显示封面',
         ],
         'edit' => [
             'cover' => [
@@ -199,7 +199,7 @@ return [
                 'title' => '成就',
             ],
             'beatmaps' => [
-                'by_artist' => '曲师：:artist',
+                'by_artist' => 'by :artist',
                 'title' => '谱面',
 
                 'favourite' => [

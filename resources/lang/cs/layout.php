@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Přehrát další skladbu automaticky',
     ],
 
     'defaults' => [
@@ -14,15 +14,15 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'překrytí beatmapsetu',
             'contest' => 'soutěž',
             'contests' => 'soutěže',
             'root' => 'konzole',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'seznam',
         ],
 
         'changelog' => [
@@ -31,7 +31,7 @@ return [
 
         'help' => [
             'index' => 'index',
-            'sitemap' => '',
+            'sitemap' => 'Mapa stránek',
         ],
 
         'store' => [
@@ -41,23 +41,23 @@ return [
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'seznam',
         ],
 
         'users' => [
             'modding' => 'módování',
             'playlists' => 'playlisty',
-            'realtime' => '',
+            'realtime' => 'multiplayer',
             'show' => 'informace',
         ],
     ],
 
     'gallery' => [
         'close' => 'Zavřít (Esc)',
-        'fullscreen' => '',
+        'fullscreen' => 'Přepnout režim celé obrazovky',
         'zoom' => 'Přiblížit/Oddálit',
-        'previous' => '',
-        'next' => '',
+        'previous' => 'Předchozí (šipka vlevo)',
+        'next' => 'Další (šipka vpravo)',
     ],
 
     'menu' => [
@@ -102,7 +102,7 @@ return [
             'forum' => 'Komunitní fóra',
             'livestreams' => 'Živá vysílání',
             'report' => 'Náhlasit chybu',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Právní záležitosti & Stav serveru',
@@ -116,7 +116,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Neplatný parametr požadavku',
             'description' => '',
         ],
         '404' => [
@@ -136,11 +136,11 @@ return [
             'description' => "Omlouvám se, ale požadovaná stránka není nalezena!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Neplatný parametr požadavku',
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Překročen limit',
             'description' => '',
         ],
         '500' => [
@@ -164,7 +164,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'přihlásit se / vytvořit účet',
 
         'login' => [
             'forgot' => "Zapomněl jsem své údaje",
@@ -180,7 +180,7 @@ return [
 
         'register' => [
             'download' => 'Stáhnout',
-            'info' => 'Potřebujete účet, pane. Proč již jeden nemáte?',
+            'info' => 'Stáhněte si osu! pro vytvoření vlastního účtu!',
             'title' => "Nemáte účet?",
         ],
     ],
@@ -188,7 +188,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nastavení',
-            'follows' => '',
+            'follows' => 'Sledované položky',
             'friends' => 'Přátelé',
             'logout' => 'Odhlásit se',
             'profile' => 'Můj profil',

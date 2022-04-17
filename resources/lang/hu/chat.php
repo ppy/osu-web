@@ -13,6 +13,17 @@ return [
         'user' => 'Nem üzenhetsz ennek a felhasználónak jelenleg. Ez emiatt az okok miatt lehet:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
     'not_found' => [
         'message' => '',
         'title' => '',

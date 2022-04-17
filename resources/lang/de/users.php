@@ -317,7 +317,7 @@ return [
                 'title' => 'Neulich',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Mehrspieler-Spiele',
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay herunterladen',
@@ -336,10 +336,10 @@ return [
                     'to_0' => '',
                     'to_0_done' => '',
                     'to_1' => '',
-                    'to_1_done' => '',
+                    'to_1_done' => 'Angehefteter Score',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Angeheftete Scores',
                 ],
             ],
             'votes' => [

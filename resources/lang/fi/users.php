@@ -317,7 +317,7 @@ return [
                 'title' => 'Viimeisimmät',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Moninpelit',
             ],
             'top_ranks' => [
                 'download_replay' => 'Lataa Replay',

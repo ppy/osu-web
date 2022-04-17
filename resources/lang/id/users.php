@@ -356,7 +356,7 @@ return [
 
                 'recent_infringements' => [
                     'title' => 'Pelanggaran Terkini',
-                    'date' => 'tanggal',
+                    'date' => 'waktu',
                     'action' => 'tindakan',
                     'length' => 'durasi',
                     'length_permanent' => 'Permanen',

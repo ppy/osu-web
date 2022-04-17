@@ -8,7 +8,7 @@ return [
         'disabled' => 'Este beatmap não está disponível atualmente para transferência.',
         'parts-removed' => 'Algumas porções deste beatmap foram removidas a pedido do criador ou dum titular de direitos de terceiros.',
         'more-info' => 'Clica aqui para mais informações.',
-        'rule_violation' => 'Alguns elementos contidos neste mapa foram removidos após serem avaliados como não sendo adequados para uso no osu!.',
+        'rule_violation' => 'Alguns elementos contidos neste mapa foram removidos após terem sido avaliados como não sendo adequados para uso no osu!',
     ],
 
     'download' => [
@@ -121,6 +121,7 @@ return [
             'language' => 'Língua',
             'no_scores' => 'Os dados ainda estão a ser calculados...',
             'nsfw' => 'Conteúdo explícito',
+            'offset' => 'Desvio do online',
             'points-of-failure' => 'Pontos de falha',
             'source' => 'Fonte',
             'storyboard' => 'Este beatmap contém um cenário',
@@ -192,6 +193,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Número de círculos',
             'count_sliders' => 'Número de deslizadores',
+            'offset' => 'Desvio do online :offset',
             'user-rating' => 'Classificação de utilizador',
             'rating-spread' => 'Avaliação dispersada',
             'nominations' => 'Nomeações',

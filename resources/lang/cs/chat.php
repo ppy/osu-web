@@ -13,9 +13,20 @@ return [
         'user' => 'Nemůžeme poslat vaši zprávu tomuhle uživateli. Tohle může být zapříčiněno jakýmkoliv z těchto důvodů:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Nic tady není, možná jsi tento kanál opustil nebo neexistuje...',
+        'title' => 'kanál nenalezen',
     ],
 
     'input' => [

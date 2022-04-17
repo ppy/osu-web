@@ -37,7 +37,7 @@ return [
                 'user_interests' => '兴趣爱好',
                 'user_occ' => '职业',
                 'user_twitter' => '',
-                'user_website' => '个人主页',
+                'user_website' => '个人网站',
             ],
         ],
 

@@ -13,6 +13,17 @@ return [
         'user' => 'Je kan op het moment geen berichten sturen naar deze gebruiker. Dit kan worden veroorzaakt door een van de volgende redenen:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
     'not_found' => [
         'message' => '',
         'title' => '',

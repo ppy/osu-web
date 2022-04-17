@@ -5,22 +5,22 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Vše',
+        'title' => 'Stát',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Zobrazit',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Varianta',
         ],
     ],
 
     'type' => [
         'charts' => 'výběry',
         'country' => 'stát',
-        'multiplayer' => '',
+        'multiplayer' => 'hra pro více hráčů',
         'performance' => 'výkon',
         'score' => 'skóre',
     ],

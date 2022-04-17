@@ -13,9 +13,20 @@ return [
         'user' => 'Hiện bạn không thế gửi tin nhắn cho người dùng này. Điều này có thể vì những lí do sau:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Không có gì ở đây, có lẽ bạn đã thoát kênh hoặc kênh không tồn tại...',
+        'title' => 'không tìm thấy kênh',
     ],
 
     'input' => [

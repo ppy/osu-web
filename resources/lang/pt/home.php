@@ -72,7 +72,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => "vamos pôr-te<br>a começar!",
+        'tagline' => "vamos pôr-te<br>a andar!",
         'action' => 'Descarrega o osu!',
 
         'help' => [
@@ -90,7 +90,7 @@ return [
         'macos-fallback' => 'utilizadores de macOS',
         'steps' => [
             'register' => [
-                'title' => 'adquire uma conta',
+                'title' => 'obtém uma conta',
                 'description' => 'segue as indicações ao iniciares o jogo para iniciar sessão ou criar uma nova conta',
             ],
             'download' => [
@@ -98,10 +98,10 @@ return [
                 'description' => 'clica no botão acima para transferir o instalador e depois abre-o!',
             ],
             'beatmaps' => [
-                'title' => 'obtém beatmaps',
+                'title' => 'adquire beatmaps',
                 'description' => [
-                    '_' => ':browse a biblioteca vasta de beatmaps criados por utilizadores e começa a jogar!',
-                    'browse' => 'navegar',
+                    '_' => ':browse a vasta biblioteca de beatmaps criados por utilizadores e começa a jogar!',
+                    'browse' => 'explora',
                 ],
             ],
         ],
