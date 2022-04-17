@@ -2,13 +2,14 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import MetadataEditor from 'beatmapsets-show/metadata-editor'
-import StackedBarChart from 'charts/stacked-bar-chart'
 import BbcodeEditor from 'components/bbcode-editor'
 import { Modal } from 'components/modal'
 import { route } from 'laroute'
+import { sum, zip } from 'lodash'
 import core from 'osu-core-singleton'
 import * as React from 'react'
-import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
+import { a, button, div, h3, span, textarea } from 'react-dom-factories'
+import { formatNumber } from 'utils/html'
 
 el = React.createElement
 
@@ -16,26 +17,10 @@ export class Info extends React.Component
   constructor: (props) ->
     super props
 
-    @disposers = new Set
-    @overlayRef = React.createRef()
-    @chartAreaRef = React.createRef()
-
     @state =
       isBusy: false
       isEditingDescription: false
       isEditingMetadata: false
-
-
-  componentDidMount: ->
-    @renderChart()
-
-
-  componentDidUpdate: ->
-    @renderChart()
-
-
-  componentWillUnmount: =>
-    @disposers.forEach (disposer) => disposer?()
 
 
   toggleEditingDescription: =>
@@ -86,27 +71,6 @@ export class Info extends React.Component
      @props.beatmapset.current_user_attributes?.can_edit_metadata ? false
 
 
-  renderChart: ->
-    return if @props.beatmap.playcount < 1
-
-    unless @_failurePointsChart?
-      options =
-        scales:
-          x: d3.scaleLinear()
-          y: d3.scaleLinear()
-        modifiers: ['beatmap-success-rate']
-
-      failurePointsChart = new StackedBarChart @chartAreaRef.current, options
-      @_failurePointsChart = failurePointsChart
-      $(window).on 'resize', failurePointsChart.resize
-      @disposers.add(=> $(window).off 'resize', failurePointsChart.resize)
-
-    @disposers.add(core.reactTurbolinks.runAfterPageLoad =>
-      @_failurePointsChart.loadData @props.beatmap.failtimes
-      @_failurePointsChart.reattach @chartAreaRef.current
-    )
-
-
   renderEditMetadataButton: =>
     div className: 'beatmapset-info__edit-button',
       button
@@ -114,7 +78,7 @@ export class Info extends React.Component
         className: 'btn-circle'
         onClick: @toggleEditingMetadata
         span className: 'btn-circle__content',
-          i className: 'fas fa-pencil-alt'
+          span className: 'fas fa-pencil-alt'
 
 
   renderEditDescriptionButton: =>
@@ -124,7 +88,7 @@ export class Info extends React.Component
         className: 'btn-circle'
         onClick: @toggleEditingDescription
         span className: 'btn-circle__content',
-          i className: 'fas fa-pencil-alt'
+          span className: 'fas fa-pencil-alt'
 
 
   render: ->
@@ -229,7 +193,7 @@ export class Info extends React.Component
 
             div
               className: 'beatmap-success-rate__percentage'
-              title: "#{osu.formatNumber(@props.beatmap.passcount)} / #{osu.formatNumber(@props.beatmap.playcount)}"
+              title: "#{formatNumber(@props.beatmap.passcount)} / #{formatNumber(@props.beatmap.playcount)}"
               'data-tooltip-position': 'bottom center'
               style:
                 marginLeft: "#{percentage}%"
@@ -241,9 +205,24 @@ export class Info extends React.Component
 
             div
               className: 'beatmap-success-rate__chart'
-              ref: @chartAreaRef
+              @renderFailChart()
         else
           div className: 'beatmap-success-rate',
             div
               className: 'beatmap-success-rate__empty'
               osu.trans 'beatmapsets.show.info.no_scores'
+
+
+  renderFailChart: =>
+    fails = zip(@props.beatmap.failtimes.exit, @props.beatmap.failtimes.fail)
+    maxValue = Math.max 1, Math.max(fails.map(sum)...)
+
+    div className: 'stacked-bar-chart stacked-bar-chart--beatmap-fail-rate',
+      for f, i in fails
+        div key: i, className: 'stacked-bar-chart__col',
+          for value, j in f
+            div
+              className: "stacked-bar-chart__entry stacked-bar-chart__entry--#{j}"
+              key: j
+              style:
+                height: "#{100 * value / maxValue}%"

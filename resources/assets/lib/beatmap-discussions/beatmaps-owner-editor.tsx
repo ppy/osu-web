@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapsetJson from 'interfaces/beatmapset-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -11,7 +11,7 @@ import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import BeatmapOwnerEditor from './beatmap-owner-editor';
 
 interface Props {
-  beatmapset: BeatmapsetJson;
+  beatmapset: BeatmapsetExtendedJson;
   onClose: () => void;
   users: Partial<Record<number, UserJson>>;
 }

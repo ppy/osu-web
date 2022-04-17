@@ -66,8 +66,6 @@ type AjaxError = (xhr: JQuery.jqXHR) => void;
 interface OsuCommon {
   ajaxError: AjaxError;
   formatBytes: (bytes: number, decimals?: number) => string;
-  formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
-  formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
@@ -90,11 +88,6 @@ interface ChangelogBuild {
     name: string;
   };
   version: string;
-}
-
-interface BeatmapFailTimesArray {
-  exit: number[];
-  fail: number[];
 }
 
 // TODO: incomplete

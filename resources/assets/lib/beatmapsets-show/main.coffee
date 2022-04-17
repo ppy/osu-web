@@ -16,7 +16,7 @@ import { generate, parse, setHash } from 'utils/beatmapset-page-hash'
 import { nextVal } from 'utils/seq'
 import { currentUrl } from 'utils/turbolinks'
 import { Header } from './header'
-import { Hype } from './hype'
+import Hype from './hype'
 import { Info } from './info'
 
 el = React.createElement
@@ -188,12 +188,13 @@ export class Main extends React.Component
 
     @setHash()
 
-    if !@restoredState || @state.loading
+    if !@restoredState
       @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
 
   componentWillUnmount: ->
     $.unsubscribe ".#{@eventId}"
+    $(document).off ".#{@eventId}"
     @scoreboardXhr?.abort()
     @favouriteXhr?.abort()
 

@@ -2,14 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .chat-conversation-list-separator {
-  content: ' ';
-  background: @osu-colour-l1;
+  background: hsl(var(--hsl-l1));
   border-radius: 1px;
   flex-shrink: 0;
 
   @media @desktop {
-    height: 2px;
-    margin: 10px 20px;
+    display: none;
   }
 
   @media @mobile {
@@ -19,7 +17,7 @@
     align-self: center;
   }
 
-  & + &, &:first-child, &:last-child {
+  &:last-child {
     display: none;
   }
 }
