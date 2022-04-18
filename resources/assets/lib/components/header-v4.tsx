@@ -73,9 +73,8 @@ export default class HeaderV4 extends React.Component<Props> {
               <div className='header-v4__row header-v4__row--bar'>
                 {this.renderLinks()}
                 {this.renderLinksMobile()}
+                {this.props.linksAppend}
               </div>
-
-              {this.props.linksAppend}
             </div>
           </div>
         }

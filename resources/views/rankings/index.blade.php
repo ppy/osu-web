@@ -53,7 +53,7 @@
         'theme' => 'rankings',
     ]])
         @if ($hasMode)
-            @slot('navAppend')
+            @slot('linksAppend')
                 @include('rankings._mode_selector', $selectorParams)
             @endslot
         @endif
