@@ -6,11 +6,17 @@ import { FancyForm } from 'components/input-container';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
+
+interface LocalStorageProps extends Record<InputKey, string> {
+  validUsers: number[];
+}
 
 const inputKeys = ['description', 'message', 'name', 'users'] as const;
 type InputKey = typeof inputKeys[number];
+
+const localStorageKey = 'createAnnoucement';
 
 export function isInputKey(key: string): key is InputKey {
   return (inputKeys as Readonly<string[]>).includes(key);
@@ -58,7 +64,45 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
   }
 
   constructor() {
+    const saved = localStorage.getItem(localStorageKey);
+    if (saved != null) {
+      try {
+        // TODO: validate props
+        const json = JSON.parse(saved) as LocalStorageProps;
+
+        const userIds: (string | number)[] = [];
+        if (json.validUsers.length > 0) {
+          userIds.push(...json.validUsers);
+        }
+
+        if (osu.present(json.users.trim())) {
+          userIds.push(...json.users.split(','));
+        }
+
+        this.inputs.description = json.description;
+        this.inputs.message = json.message;
+        this.inputs.name = json.name;
+
+        if (userIds.length > 0) {
+          this.updateUsers(userIds.join(','), true);
+        }
+      } catch (error) {
+        console.error('invalid json in localStorage');
+        localStorage.removeItem(localStorageKey);
+      }
+    }
+
     makeObservable(this);
+
+    autorun(() => {
+      const json = {
+        ...this.inputs,
+        validUsers: [...this.validUsers.keys()],
+      };
+
+      // TODO: don't save if 'empty'?
+      localStorage.setItem(localStorageKey, JSON.stringify(json));
+    });
   }
 
   @action
@@ -67,6 +111,7 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     Object.keys(this.busy).forEach((key: keyof typeof this.busy) => this.busy[key] = false);
     Object.keys(this.inputs).forEach((key: keyof typeof this.inputs) => this.inputs[key] = '');
     this.validUsers.clear();
+    // localStorage key not removed because the currently the autorun will fill it again with empty values.
   }
 
   @action
