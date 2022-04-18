@@ -13,7 +13,7 @@ import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { createClickCallback, formatNumber } from 'utils/html'
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url'
-import { Stats } from './stats'
+import Stats from './stats'
 
 el = React.createElement
 
@@ -199,7 +199,6 @@ export class Header extends React.Component
           el Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
-            timeElapsed: @props.timeElapsed
 
 
   renderAvailabilityInfo: =>
