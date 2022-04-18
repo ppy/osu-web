@@ -170,15 +170,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $sizes;
     }
 
-    public static function isValidCoverSize($coverSize): bool
-    {
-        static $validSizes;
-
-        $validSizes ??= new Set(['raw', 'fullsize', ...self::coverSizes()]);
-
-        return $validSizes->contains($coverSize);
-    }
-
     public static function popular()
     {
         $ids = cache_remember_mutexed('popularBeatmapsetIds', 300, [], function () {
@@ -396,10 +387,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function coverURL($coverSize = 'cover', $customTimestamp = null)
     {
-        if (!self::isValidCoverSize($coverSize)) {
-            return false;
-        }
-
         $timestamp = $customTimestamp ?? $this->defaultCoverTimestamp();
 
         return $this->storage()->url($this->coverPath()."{$coverSize}.jpg?{$timestamp}");
