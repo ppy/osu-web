@@ -12,11 +12,11 @@ interface Props {
   contentAppend?: React.ReactNode;
   contentPrepend?: React.ReactNode;
   links: HeaderLink[];
+  linksAppend?: React.ReactNode;
   linksBreadcrumb?: boolean;
   modifiers?: Modifiers;
   onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   theme?: string;
-  titleAppend?: React.ReactNode;
 }
 
 interface RouteSection {
@@ -58,8 +58,6 @@ export default class HeaderV4 extends React.Component<Props> {
               <div className='header-v4__title'>
                 {this.title()}
               </div>
-
-              {this.props.titleAppend}
             </div>
 
             {this.props.contentAppend}
@@ -72,8 +70,8 @@ export default class HeaderV4 extends React.Component<Props> {
               <div className='header-v4__row header-v4__row--bar'>
                 {this.renderLinks()}
                 {this.renderLinksMobile()}
+                {this.props.linksAppend}
               </div>
-
             </div>
           </div>
         }
