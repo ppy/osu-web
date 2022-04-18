@@ -214,7 +214,7 @@ class HomeController extends Controller
                 $total = max(1, $expiration->diffInDays($lastTagPurchaseDate));
                 $used = $lastTagPurchaseDate->diffInDays();
 
-                $supporterStatus['remainingRatio'] = 100 - round($used / $total * 100, 2);
+                $supporterStatus['remainingPercent'] = 100 - round($used / $total * 100, 2);
             }
         }
 
