@@ -20,6 +20,10 @@
   }
 
   &--beatmapset {
-    right: 40px;
+    right: @gutter-beatmapset;
+
+    @media @desktop {
+      right: @gutter-beatmapset-desktop;
+    }
   }
 }
