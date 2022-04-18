@@ -386,8 +386,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function allCoverURLs()
     {
         $urls = [];
+        $timestamp = $this->defaultCoverTimestamp();
         foreach (self::coverSizes() as $size) {
-            $urls[$size] = $this->coverURL($size);
+            $urls[$size] = $this->coverURL($size, $timestamp);
         }
 
         return $urls;
@@ -399,7 +400,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             return false;
         }
 
-        $timestamp = $customTimestamp ?? $this->cover_updated_at?->format('U') ?? 0;
+        $timestamp = $customTimestamp ?? $this->defaultCoverTimestamp();
 
         return $this->storage()->url($this->coverPath()."{$coverSize}.jpg?{$timestamp}");
     }
@@ -1419,5 +1420,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         static::addGlobalScope('active', function ($builder) {
             $builder->active();
         });
+    }
+
+    private function defaultCoverTimestamp(): string
+    {
+        return $this->cover_updated_at?->format('U') ?? '0';
     }
 }
