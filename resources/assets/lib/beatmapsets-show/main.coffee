@@ -258,6 +258,7 @@ export class Main extends React.Component
   renderPageHeader: ->
     unless @state.showingNsfwWarning
       linksAppend = el PlaymodeTabs,
+        currentMode: @state.currentBeatmap.mode
         entries: gameModes.map (mode) =>
           beatmaps = @state.beatmaps.get(mode)
           mainCount = beatmaps.filter((b) => !b.convert).length
@@ -266,13 +267,13 @@ export class Main extends React.Component
           disabled: beatmaps.length == 0
           href: generate(mode: mode)
           mode: mode
-        currentMode: @state.currentBeatmap.mode
+        modifiers: 'beatmapset'
         onClick: @setCurrentPlaymode
 
     el HeaderV4,
       links: headerLinks 'show', @state.beatmapset
       linksAppend: linksAppend
-      theme: 'beatmapsets'
+      theme: 'beatmapset'
 
   saveStateToContainer: =>
     @state.beatmapsArray = Array.from(@state.beatmaps)

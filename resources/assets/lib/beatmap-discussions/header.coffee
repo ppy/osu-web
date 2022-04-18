@@ -35,8 +35,9 @@ export class Header extends React.PureComponent
             counts: @props.currentDiscussions.countsByPlaymode[mode]
             disabled: @props.beatmaps.get(mode).length == 0
             mode: mode
+          modifiers: 'beatmapset'
           onClick: @onClickMode
-        theme: 'beatmapsets'
+        theme: 'beatmapset'
 
       div
         className: 'osu-page'

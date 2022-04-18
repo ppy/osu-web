@@ -5,6 +5,11 @@
   .default-box-shadow();
   background-color: @osu-colour-b2;
   --box-height: 50px;
+  --gutter: @gutter-beatmapset;
+
+  @media @desktop {
+    --gutter: @gutter-beatmapset-desktop;
+  }
 
   &__beatmap-stats {
     position: absolute;
@@ -25,7 +30,7 @@
   &__content {
     .light-header-overlay();
     .at2x-simple('~@images/layout/beatmaps/default-bg.png');
-    padding: 70px 40px 0;
+    padding: 70px var(--gutter) 0;
     background-size: cover;
     background-position: center;
   }
