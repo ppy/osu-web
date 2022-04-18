@@ -14,6 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     nginx \
     php8.0-common \
     php8.0-curl \
+    php8.0-ds \
     php8.0-fpm \
     php8.0-gd \
     php8.0-intl \

@@ -1,10 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapBasicStats } from 'components/beatmap-basic-stats'
+import BeatmapBasicStats from 'components/beatmap-basic-stats'
 import BeatmapsetCover from 'components/beatmapset-cover'
-import Chart from 'beatmap-discussions/chart'
-import BeatmapList from 'beatmap-discussions/beatmap-list'
 import { BeatmapsetMapping } from 'components/beatmapset-mapping'
 import BigButton from 'components/big-button'
 import HeaderV4 from 'components/header-v4'
@@ -16,6 +14,8 @@ import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, h1, h2, p, span } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import BeatmapList from './beatmap-list'
+import Chart from './chart'
 import { Nominations } from './nominations'
 import { Subscribe } from './subscribe'
 import { UserFilter } from './user-filter'
