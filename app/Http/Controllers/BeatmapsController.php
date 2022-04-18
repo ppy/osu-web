@@ -87,7 +87,7 @@ class BeatmapsController extends Controller
         }
 
         if (isset($params['mods'])) {
-            if (ctype_digit($params['mods'])) {
+            if (is_numeric($params['mods'])) {
                 $params['mods'] = ModsHelper::toArray((int) $params['mods']);
             }
             if (is_array($params['mods'])) {
