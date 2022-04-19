@@ -7,12 +7,21 @@ import { showVisual } from 'utils/beatmapset-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { cssVar2x } from 'utils/html';
 
-interface Props {
-  beatmapset?: BeatmapsetJson | null;
-  isDeleted?: boolean;
-  modifiers?: Modifiers;
+interface PropsWithIsDeleted {
+  isDeleted: true;
+}
+
+interface PropsWithSize {
+  isDeleted?: false;
   size: keyof BeatmapsetJson['covers'];
 }
+
+interface BaseProps {
+  beatmapset?: BeatmapsetJson | null;
+  modifiers?: Modifiers;
+}
+
+type Props = BaseProps & (PropsWithIsDeleted | PropsWithSize);
 
 export default function BeatmapsetCover(props: Props) {
   const className = classWithModifiers('beatmapset-cover', props.modifiers);
