@@ -11,7 +11,6 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, div, p } from 'react-dom-factories'
 import VirtualList from 'react-virtual-list'
-import { showVisual } from 'utils/beatmapset-helper'
 import { Paginator } from './paginator'
 import { SearchPanel } from './search-panel'
 import { SearchSort } from './search-sort'
@@ -46,8 +45,6 @@ export class SearchContent extends React.Component
       controller = core.beatmapsetSearchController
       beatmapsetIds = controller.currentBeatmapsetIds
 
-      firstBeatmapset = core.dataStore.beatmapsetStore.get(beatmapsetIds[0])
-      searchBackground = if firstBeatmapset? && showVisual(firstBeatmapset) then firstBeatmapset.covers?.cover else null
       supporterRequiredFilterText = controller.supporterRequiredFilterText
       listCssClasses = 'beatmapsets'
       listCssClasses += ' beatmapsets--dimmed' if controller.isBusy
@@ -55,7 +52,7 @@ export class SearchContent extends React.Component
       el React.Fragment, null,
         el SearchPanel,
           innerRef: @props.backToTopAnchor
-          background: searchBackground
+          firstBeatmapset: core.dataStore.beatmapsetStore.get(beatmapsetIds[0])
           availableFilters: @props.availableFilters
 
         div className: 'js-sticky-header'

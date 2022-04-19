@@ -28,11 +28,13 @@
   }
 
   &__content {
-    .light-header-overlay();
-    .at2x-simple('~@images/layout/beatmaps/default-bg.png');
+    position: relative;
     padding: 70px var(--gutter) 0;
-    background-size: cover;
-    background-position: center;
+  }
+
+  &__cover {
+    --border-radius: 0;
+    .light-header-overlay();
   }
 
   &__title-container {
