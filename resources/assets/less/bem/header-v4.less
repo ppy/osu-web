@@ -185,6 +185,10 @@
       background-image: url('~@images/icons/beatmappacks.svg');
     }
 
+    .@{_top}--beatmapset & {
+      background-image: url('~@images/icons/beatmapsets.svg');
+    }
+
     .@{_top}--beatmapsets & {
       background-image: url('~@images/icons/beatmapsets.svg');
     }
@@ -288,6 +292,14 @@
 
       @media @desktop {
         font-size: @font-size--large;
+        height: @header-title-height;
+      }
+    }
+
+    .@{_top}--beatmapset & {
+      @media @desktop {
+        padding-left: @gutter-beatmapset-desktop;
+        padding-right: $padding-left;
       }
     }
 
@@ -303,8 +315,6 @@
   }
 
   &__title {
-    padding-top: 15px;
-    padding-bottom: 15px;
     display: none;
 
     @media @desktop {

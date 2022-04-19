@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import headerLinks from 'beatmapsets-show/header-links'
 import BeatmapBasicStats from 'components/beatmap-basic-stats'
 import BeatmapsetCover from 'components/beatmapset-cover'
 import { BeatmapsetMapping } from 'components/beatmapset-mapping'
@@ -9,6 +10,7 @@ import HeaderV4 from 'components/header-v4'
 import PlaymodeTabs from 'components/playmode-tabs'
 import StringWithComponent from 'components/string-with-component'
 import { UserLink } from 'components/user-link'
+import { gameModes } from 'interfaces/game-mode'
 import { route } from 'laroute'
 import { deletedUser } from 'models/user'
 import * as React from 'react'
@@ -26,11 +28,16 @@ export class Header extends React.PureComponent
   render: =>
     el React.Fragment, null,
       el HeaderV4,
-        theme: 'beatmapsets'
-        titleAppend: el PlaymodeTabs,
-          beatmaps: @props.beatmaps
-          counts: @props.currentDiscussions.countsByPlaymode
+        links: headerLinks 'discussions', @props.beatmapset
+        linksAppend: el PlaymodeTabs,
           currentMode: @props.currentBeatmap.mode
+          entries: gameModes.map (mode) =>
+            counts: @props.currentDiscussions.countsByPlaymode[mode]
+            disabled: @props.beatmaps.get(mode).length == 0
+            mode: mode
+          modifiers: 'beatmapset'
+          onClick: @onClickMode
+        theme: 'beatmapset'
 
       div
         className: 'osu-page'
@@ -182,11 +189,19 @@ export class Header extends React.PureComponent
 
         div className: "#{bn}__line"
 
+
   createLink: (beatmap) =>
     BeatmapDiscussionHelper.url beatmap: beatmap
 
+
   getCount: (beatmap) =>
     if beatmap.deleted_at? then undefined else @props.currentDiscussions.countsByBeatmap[beatmap.id]
+
+
+  onClickMode: (e, mode) =>
+    e.preventDefault()
+    $.publish 'playmode:set', [{ mode }]
+
 
   onSelectBeatmap: (beatmapId) =>
     $.publish 'beatmapsetDiscussions:update',
