@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import BeatmapsetCover from 'components/beatmapset-cover'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
@@ -28,7 +29,7 @@ export class Discussions extends React.Component
                     className: 'modding-profile-list__thumbnail'
                     href: BeatmapDiscussionHelper.url(discussion: discussion),
 
-                    img className: 'beatmapset-cover', src: discussion.beatmapset.covers.list
+                    el BeatmapsetCover, beatmapset: discussion.beatmapset, size: 'list'
 
                   el Discussion,
                     discussion: discussion

@@ -4,6 +4,7 @@
 import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
 import BeatmapsetMenu from 'beatmapsets-show/beatmapset-menu'
 import BigButton from 'components/big-button'
+import BeatmapsetCover from 'components/beatmapset-cover'
 import { BeatmapsetMapping } from 'components/beatmapset-mapping'
 import UserAvatar from 'components/user-avatar'
 import { route } from 'laroute'
@@ -81,10 +82,12 @@ export class Header extends React.Component
     div className: 'beatmapset-header',
       div
         className: 'beatmapset-header__content'
-        style:
-          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover)
 
-        div className: 'beatmapset-header__overlay beatmapset-header__overlay--gradient'
+        div className: 'beatmapset-header__cover',
+          el BeatmapsetCover,
+            beatmapset: @props.beatmapset
+            modifiers: 'full'
+            size: 'cover'
 
         div className: 'beatmapset-header__box beatmapset-header__box--main',
           div className: 'beatmapset-header__beatmap-picker-box',
