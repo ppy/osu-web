@@ -8,7 +8,9 @@
     $userShowNsfw = $attributesBag->get('user_beatmapset_show_nsfw');
     if ($userShowNsfw === null) {
         $user = auth()->user();
-        $userShowNsfw = ($user->userProfileCustomization ?? $user->userProfileCustomization()->make())->beatmapset_show_nsfw;
+        $userShowNsfw = $user !== null
+            ? ($user->userProfileCustomization ?? $user->userProfileCustomization()->make())->beatmapset_show_nsfw
+            : false;
         $attributesBag->set('user_beatmapset_show_nsfw', $userShowNsfw);
     }
     $style = $userShowNsfw || !$beatmapset->nsfw
