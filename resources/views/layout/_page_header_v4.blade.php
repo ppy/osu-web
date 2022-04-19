@@ -117,7 +117,7 @@
                         </div>
                     @endif
 
-                    {{ $navAppend ?? null }}
+                    {{ $linksAppend ?? null }}
                 </div>
             </div>
         </div>
