@@ -2,12 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .user-list-popup {
-  @avatar-size: 32px;
-  @avatar-margin: 1px;
-
   color: hsl(var(--hsl-c1));
   font-size: @font-size--normal;
-  max-width: calc((@avatar-size + 2 * @avatar-margin) * var(--columns) - 2 * @avatar-margin);
   display: grid;
   gap: 10px;
   --columns: 5;
@@ -18,15 +14,15 @@
 
   &__user {
     .default-border-radius();
-    width: @avatar-size;
+    width: 32px;
     height: $width;
     overflow: hidden;
   }
 
   &__users {
-    display: flex;
-    flex-wrap: wrap;
-    gap: @avatar-margin * 2;
+    display: grid;
+    grid-template-columns: repeat(var(--columns), auto);
+    gap: 2px;
   }
 
   &__remainder-count {
