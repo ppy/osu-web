@@ -58,11 +58,7 @@ export function createTooltip(target: HTMLElement, positionAt: PositionAt, conte
 export default function UserListPopup(props: Props) {
   return (
     <div className='user-list-popup'>
-      {props.title != null &&
-        <div className='user-list-popup__title'>
-          {props.title}
-        </div>
-      }
+      {props.title}
       {props.users.length > 0 &&
         <div className='user-list-popup__users'>
           {props.users.map((user) => (
