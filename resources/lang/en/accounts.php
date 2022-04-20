@@ -48,8 +48,8 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'receive notifications for new problem on qualified beatmaps of following modes',
-        'beatmapset_disqualify' => 'receive notifications for when beatmaps of following modes are disqualified',
+        'beatmapset_discussion_qualified_problem' => 'receive notifications for new problems on qualified beatmaps of the following modes',
+        'beatmapset_disqualify' => 'receive notifications for when beatmaps of the following modes are disqualified',
         'comment_reply' => 'receive notifications for replies to your comments',
         'title' => 'Notifications',
         'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create',
