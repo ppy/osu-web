@@ -181,7 +181,7 @@ export class Discussion extends React.PureComponent
     target = event.currentTarget
     type = target.dataset.type
 
-    @tooltips[type] ?= createTooltip target, 'top center', => @getTooltipContent(type)
+    @tooltips[type] ?= createTooltip target, 'top center', @getTooltipContent(type)
 
 
   doVote: (e) =>

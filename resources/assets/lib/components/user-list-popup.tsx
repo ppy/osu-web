@@ -18,7 +18,7 @@ const atToMy = {
   'top center': 'bottom center',
 };
 
-export function createTooltip(target: HTMLElement, positionAt: PositionAt, content: () => string) {
+export function createTooltip(target: HTMLElement, positionAt: PositionAt, content: string | (() => string)) {
   if (target._tooltip === '1') return;
 
   target._tooltip = '1';
