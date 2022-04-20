@@ -23,7 +23,6 @@ export function createTooltip(target: HTMLElement, positionAt: PositionAt, conte
 
   target._tooltip = '1';
 
-
   return $(target).qtip({
     content: {
       text: content,
