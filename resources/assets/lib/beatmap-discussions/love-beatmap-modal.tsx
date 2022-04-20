@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { computed, makeObservable, observable } from 'mobx';
@@ -12,7 +12,7 @@ import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 
 interface Props {
-  beatmapset: BeatmapsetJson;
+  beatmapset: BeatmapsetExtendedJson;
   onClose: () => void;
 }
 

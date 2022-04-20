@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Some assets contained within this map have been removed after being judged as not being suitable for use in osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Deleted beatmap',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Slow down, play more.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Language',
             'no_scores' => 'Data still being calculated...',
             'nsfw' => 'Explicit content',
+            'offset' => 'Online offset',
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Circle Count',
             'count_sliders' => 'Slider Count',
+            'offset' => 'Online offset: :offset',
             'user-rating' => 'User Rating',
             'rating-spread' => 'Rating Spread',
             'nominations' => 'Nominations',

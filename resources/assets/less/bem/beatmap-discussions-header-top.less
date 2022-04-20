@@ -4,6 +4,12 @@
 .beatmap-discussions-header-top {
   .default-box-shadow();
   background-color: @osu-colour-b2;
+  --box-height: 50px;
+  --gutter: @gutter-beatmapset;
+
+  @media @desktop {
+    --gutter: @gutter-beatmapset-desktop;
+  }
 
   &__beatmap-stats {
     position: absolute;
@@ -22,11 +28,13 @@
   }
 
   &__content {
+    position: relative;
+    padding: 70px var(--gutter) 0;
+  }
+
+  &__cover {
+    --border-radius: 0;
     .light-header-overlay();
-    .at2x-simple('~@images/layout/beatmaps/default-bg.png');
-    padding: 70px 40px 0;
-    background-size: cover;
-    background-position: center;
   }
 
   &__title-container {

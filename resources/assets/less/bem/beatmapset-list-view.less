@@ -2,9 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-list-view {
+  --border-radius: @border-radius-large;
   height: 40px;
   width: 100%;
-  border-radius: @border-radius-large;
+  border-radius: var(--border-radius);
   display: flex;
   background-color: hsl(var(--hsl-b3));
   color: inherit;
@@ -20,21 +21,10 @@
     margin-left: 5px;
   }
 
-  &__cover {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    border-radius: inherit;
-  }
-
   &__cover-container {
     flex: none;
     width: 80px;
-    background-size: cover;
-    background-position: center;
-    border-radius: @border-radius-large;
-    .at2x('~@images/layout/beatmaps/default-bg.png');
+    position: relative;
 
     &--blank {
       background-image: none;
