@@ -4,22 +4,16 @@
 .user-list-popup {
   @avatar-size: 32px;
   @avatar-margin: 1px;
-  @columns: 10;
-  @columns-mobile: 5;
 
-  z-index: @z-index--user-card-tooltip !important;
-
-  background-color: hsla(var(--hsl-b6), 0.75);
-  color: white;
+  color: hsl(var(--hsl-c1));
   font-size: @font-size--normal;
-  max-width: ((@avatar-size + 2*@avatar-margin) * @columns) + 20px;
-  padding: 5px;
+  max-width: calc((@avatar-size + 2 * @avatar-margin) * var(--columns) - 2 * @avatar-margin);
+  display: grid;
+  gap: 10px;
+  --columns: 5;
 
-  .default-border-radius();
-  .default-box-shadow();
-
-  @media @mobile {
-    max-width: ((@avatar-size + 2*@avatar-margin) * @columns-mobile) + 20px;
+  @media @desktop  {
+    --columns: 10;
   }
 
   // for when it's inside another container (for example qtip)
@@ -29,26 +23,20 @@
     box-shadow: none;
   }
 
-  &__title {
-    margin-bottom: 10px;
-  }
-
   &__user {
     .default-border-radius();
-    display: inline-block;
     width: @avatar-size;
-    height: @avatar-size;
-    margin: 0px @avatar-margin;
+    height: $width;
     overflow: hidden;
+  }
+
+  &__users {
+    display: flex;
+    flex-wrap: wrap;
+    gap: @avatar-margin * 2;
   }
 
   &__remainder-count {
     text-align: right;
-    margin-top: 5px;
-  }
-
-  // fix qtip's padding
-  .qtip-content {
-    padding: 5px;
   }
 }
