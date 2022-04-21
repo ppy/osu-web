@@ -1,10 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Discussion } from '../beatmap-discussions/discussion'
+import { Discussion } from 'beatmap-discussions/discussion'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
+import BeatmapsetCover from 'components/beatmapset-cover'
 import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, img } from 'react-dom-factories'
@@ -114,7 +115,9 @@ export class Main extends React.PureComponent
                     className: 'modding-profile-list__thumbnail'
                     href: BeatmapDiscussionHelper.url(discussion: discussion),
 
-                    img className: 'beatmapset-cover', src: discussion.beatmapset.covers.list
+                    el BeatmapsetCover,
+                      beatmapset: discussion.beatmapset
+                      size: 'list'
 
                   el Discussion,
                     discussion: discussion

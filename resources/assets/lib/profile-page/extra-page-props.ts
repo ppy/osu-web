@@ -6,6 +6,7 @@ import Controller from './controller';
 
 export const beatmapsetSections = [
   'favouriteBeatmapsets',
+  'guestBeatmapsets',
   'rankedBeatmapsets',
   'lovedBeatmapsets',
   'pendingBeatmapsets',
@@ -29,6 +30,7 @@ type ProfilePageIncludes =
   | 'favourite_beatmapset_count'
   | 'follower_count'
   | 'graveyard_beatmapset_count'
+  | 'guest_beatmapset_count'
   | 'groups'
   | 'loved_beatmapset_count'
   | 'mapping_follower_count'

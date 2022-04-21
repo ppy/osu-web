@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetCover from 'components/beatmapset-cover';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import UserJson from 'interfaces/user-json';
@@ -69,8 +70,6 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
   }
 
   renderProfileVersion() {
-    const cover = this.props.event.beatmapset?.covers?.list;
-
     let discussionLink: string | undefined;
     if (this.beatmapsetId != null) {
       discussionLink = route('beatmapsets.discussion', { beatmapset: this.beatmapsetId });
@@ -83,12 +82,10 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       <div className='beatmapset-event'>
         {discussionLink != null ? (
           <a href={discussionLink}>
-            <img className='beatmapset-cover' src={cover} />
+            <BeatmapsetCover beatmapset={this.props.event.beatmapset} size='list' />
           </a>
         ) : (
-          // TODO: this text barely fits and should be replaced with an icon
-          // instead of a translation that overflows.
-          <span className='beatmapset-cover'>beatmap deleted</span>
+          <BeatmapsetCover isDeleted />
         )}
         <div
           className={classWithModifiers('beatmapset-event__icon', ['beatmapset-activities'])}

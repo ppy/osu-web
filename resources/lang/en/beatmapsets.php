@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Some assets contained within this map have been removed after being judged as not being suitable for use in osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Deleted beatmap',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Slow down, play more.',
     ],

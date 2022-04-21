@@ -31,6 +31,7 @@ interface UserJsonAvailableIncludes {
   friends: UserRelationJson[];
   graveyard_beatmapset_count: number;
   groups: UserGroupJson[];
+  guest_beatmapset_count: number;
   is_admin: boolean;
   is_bng: boolean;
   is_full_bn: boolean;

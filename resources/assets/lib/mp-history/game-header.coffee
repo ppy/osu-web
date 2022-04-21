@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetCover from 'components/beatmapset-cover'
 import Mod from 'components/mod'
 import TimeWithTooltip from 'components/time-with-tooltip'
 import { route } from 'laroute'
@@ -21,8 +22,11 @@ export class GameHeader extends React.Component
     a
       className: 'mp-history-game__header'
       href: (route 'beatmaps.show', beatmap: @props.beatmap.id) if @props.beatmap.id
-      style:
-        backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover)
+
+      el BeatmapsetCover,
+        beatmapset: @props.beatmapset
+        modifiers: 'full'
+        size: 'cover'
 
       div
         className: 'mp-history-game__header-overlay'

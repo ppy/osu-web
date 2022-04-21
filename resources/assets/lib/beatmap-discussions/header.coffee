@@ -3,6 +3,7 @@
 
 import headerLinks from 'beatmapsets-show/header-links'
 import BeatmapBasicStats from 'components/beatmap-basic-stats'
+import BeatmapsetCover from 'components/beatmapset-cover'
 import { BeatmapsetMapping } from 'components/beatmapset-mapping'
 import BigButton from 'components/big-button'
 import HeaderV4 from 'components/header-v4'
@@ -15,7 +16,6 @@ import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, h1, h2, p, span } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
-import { showVisual } from 'utils/beatmapset-helper'
 import BeatmapList from './beatmap-list'
 import Chart from './chart'
 import { Nominations } from './nominations'
@@ -86,8 +86,12 @@ export class Header extends React.PureComponent
 
       div
         className: "#{bn}__content"
-        style:
-          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover) if showVisual(@props.beatmapset)
+
+        div className: "#{bn}__cover",
+          el BeatmapsetCover,
+            beatmapset: @props.beatmapset
+            modifiers: 'full'
+            size: 'cover'
 
         a
           className: "#{bn}__title-container"
