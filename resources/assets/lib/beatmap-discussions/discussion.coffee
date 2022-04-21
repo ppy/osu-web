@@ -1,8 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { discussionTypeIcons } from 'beatmap-discussions/discussion-type'
-import UserAvatar from 'components/user-avatar'
+import UserListPopup, { createTooltip } from 'components/user-list-popup'
 import { route } from 'laroute'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
@@ -10,6 +9,7 @@ import { button, div, i, span, a } from 'react-dom-factories'
 import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+import { discussionTypeIcons } from './discussion-type'
 import { NewReply } from './new-reply'
 import { Post } from './post'
 import { SystemPost } from './system-post'
@@ -19,43 +19,20 @@ el = React.createElement
 
 bn = 'beatmap-discussion'
 
-VoterList = ({type, discussion, users}) =>
-  div
-    className: 'user-list-popup user-list-popup--blank'
-    if discussion.votes[type] < 1
-      osu.trans "beatmaps.discussions.votes.none.#{type}"
-    else
-      el React.Fragment, null,
-        div className: 'user-list-popup__title',
-          osu.trans("beatmaps.discussions.votes.latest.#{type}")
-          ':'
-        discussion.votes['voters'][type].map (userId) =>
-          a
-            href: route('users.show', user: userId)
-            className: 'js-usercard user-list-popup__user'
-            key: userId
-            'data-user-id': userId
-            el UserAvatar, user: users[userId] ? [], modifiers: ['full']
-        if discussion.votes[type] > discussion.votes['voters'][type].length
-          div className: 'user-list-popup__remainder-count',
-            osu.transChoice 'common.count.plus_others', discussion.votes[type] - discussion.votes['voters'][type].length
-
-
 export class Discussion extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "beatmap-discussion-entry-#{@props.discussion.id}"
     @tooltips = {}
-
-
-  componentWillUnmount: =>
-    @voteXhr?.abort()
 
 
   componentDidUpdate: =>
     for own type, tooltip of @tooltips
-      @refreshTooltip(tooltip.qtip('api'), type)
+      tooltip.qtip('api')?.set('content.text', @getTooltipContent(type))
+
+
+  componentWillUnmount: =>
+    @voteXhr?.abort()
 
 
   render: =>
@@ -188,43 +165,23 @@ export class Discussion extends React.PureComponent
 
 
   getTooltipContent: (type) =>
-    renderToStaticMarkup el(VoterList, type: type, discussion: @props.discussion, users: @props.users)
+    count = @props.discussion.votes[type]
+    title =
+      if count < 1
+        osu.trans "beatmaps.discussions.votes.none.#{type}"
+      else
+        "#{osu.trans("beatmaps.discussions.votes.latest.#{type}")}:"
+    users = @props.discussion.votes['voters'][type].map (id) =>
+      @props.users[id] ? {}
 
-
-  refreshTooltip: (api, type) =>
-    api?.set('content.text', @getTooltipContent(type))
+    renderToStaticMarkup el(UserListPopup, { count, title, users })
 
 
   showVoters: (event) =>
     target = event.currentTarget
+    type = target.dataset.type
 
-    return if target._tooltip
-
-    target._tooltip = true
-
-    type = target.getAttribute('data-type')
-
-    @tooltips[type] =
-      $(target).qtip
-        style:
-          classes: 'user-list-popup'
-          def: false
-          tip: false
-        content:
-          text: @getTooltipContent(type)
-        position:
-          at: 'top center'
-          my: 'bottom center'
-          viewport: $(window)
-        show:
-          delay: 100
-          ready: true
-          solo: true
-          effect: -> $(this).fadeTo(110, 1)
-        hide:
-          fixed: true
-          delay: 500
-          effect: -> $(this).fadeTo(250, 0)
+    @tooltips[type] ?= createTooltip target, 'top center', @getTooltipContent(type)
 
 
   doVote: (e) =>
