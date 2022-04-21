@@ -58,11 +58,9 @@ export class BeatmapIcon extends React.Component<Props> {
     if (el._tooltip === this.tooltipId) return;
 
     const $content = $(renderToStaticMarkup(
-      <div
-        className='tooltip-beatmap'
-      >
-        <div className='tooltip-beatmap__text'>{this.props.beatmap.version}</div>
-        <div className='tooltip-beatmap__badge'>
+      <div className='tooltip-beatmap'>
+        <div className='tooltip-beatmap__content'>
+          <div>{this.props.beatmap.version}</div>
           <DifficultyBadge rating={this.props.beatmap.difficulty_rating} />
         </div>
       </div>,

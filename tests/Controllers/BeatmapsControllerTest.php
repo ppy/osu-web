@@ -25,7 +25,9 @@ class BeatmapsControllerTest extends TestCase
 
         $this->actAsScopedUser(User::factory()->create(), ['public']);
 
-        $this->post(route('api.beatmaps.attributes', ['beatmap' => $beatmap->getKey()]))
+        $this->post(route('api.beatmaps.attributes', ['beatmap' => $beatmap->getKey()]), [
+            'mods' => 1,
+        ])
             ->assertSuccessful()
             ->assertJson(fn (AssertableJson $json) =>
                 $json

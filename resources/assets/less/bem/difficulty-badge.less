@@ -6,17 +6,27 @@
   border-radius: 10000px;
   background-color: var(--bg);
   color: hsl(var(--hsl-b6));
-  padding: 0 6px;
+  padding: 0 0.5em;
   display: flex;
   align-items: center;
   font-weight: 800;
+  font-size: ~"max(0.8em, @{font-size--normal})";
+  height: 100%;
 
   &--expert-plus {
     color: hsl(var(--hsl-orange-1));
   }
 
   &__icon {
-    font-size: 8px; // icon size
-    margin-right: 4px;
+    font-size: 0.6em; // icon size
+    margin-right: 0.4em;
+  }
+
+  &__rating {
+    // Ensure equal badge width for most common difficulties (single digit
+    // with two decimal digits).
+    // Font width is at most 0.67em for the numbers.
+    // Lastly add 0.25em for decimal separator.
+    width: 0.67em * 3 + 0.25em;
   }
 }

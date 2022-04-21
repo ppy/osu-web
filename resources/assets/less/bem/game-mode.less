@@ -3,45 +3,27 @@
 
 .game-mode {
   line-height: normal;
-  width: 100%;
   font-size: @font-size--title-small;
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px 20px;
+  top: 0;
+  right: @gutter-v2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
   @media @desktop {
-    margin-left: auto;
-    width: auto;
-  }
-
-  &__items {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0 -5px; // 5px margin __item
-    justify-content: space-around;
-    flex-wrap: wrap;
-
-    @media @desktop {
-      margin: -10px -10px; // 10px margin __item
-      justify-content: flex-end;
-    }
-  }
-
-  &__item {
-    margin: 10px 5px; // linked to __items
-    flex: none;
-
-    @media @desktop {
-      margin-left: 10px;
-      margin-right: $margin-left;
-    }
-  }
-
-  &__set-default {
-    position: absolute;
-    top: 100%;
-    display: flex;
-    align-items: center;
-    height: 48px; // FIXME: temporary. Matches header-v4__content
-    z-index: 1; // FIXME: temporary. Remove when proper switcher design is implemented
     right: @gutter-v2-desktop;
+  }
+
+  &--beatmapset {
+    right: @gutter-beatmapset;
+
+    @media @desktop {
+      right: @gutter-beatmapset-desktop;
+    }
   }
 }

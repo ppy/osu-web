@@ -60,7 +60,7 @@
         </div>
     @endslot
 
-    @slot('navAppend')
+    @slot('linksAppend')
         @if(isset($cart) && $cart && $cart->items()->exists())
             <a href="{{ route('store.cart.show') }}" class="btn-osu-big btn-osu-big--store-cart">
                 <span class="btn-osu-big__content">
