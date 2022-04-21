@@ -95,13 +95,13 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     makeObservable(this);
 
     autorun(() => {
-      const json = {
+      const props: LocalStorageProps = {
         ...this.inputs,
         validUsers: [...this.validUsers.keys()],
       };
 
       // TODO: don't save if 'empty'?
-      localStorage.setItem(localStorageKey, JSON.stringify(json));
+      localStorage.setItem(localStorageKey, JSON.stringify(props));
     });
   }
 
