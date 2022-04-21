@@ -213,6 +213,10 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
 
       this.extractValidUsers(response.users);
     } catch (error) {
+      if (this.xhrLookupUsers?.readyState === 0 && this.xhrLookupUsers === error) {
+        return;
+      }
+
       osu.ajaxError(error);
     } finally {
       runInAction(() => this.busy.lookupUsers = false);
