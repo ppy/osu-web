@@ -1,256 +1,356 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import BeatmapsetCover from 'components/beatmapset-cover'
-import BeatmapsetMapping from 'components/beatmapset-mapping'
-import BigButton from 'components/big-button'
-import UserListPopup, { createTooltip } from 'components/user-list-popup'
-import { route } from 'laroute'
-import core from 'osu-core-singleton'
-import * as React from 'react'
-import { renderToStaticMarkup } from 'react-dom/server'
-import { div, span, a, img, ol, li, i } from 'react-dom-factories'
-import { getArtist, getTitle } from 'utils/beatmap-helper'
-import { createClickCallback, formatNumber } from 'utils/html'
-import { beatmapDownloadDirect, wikiUrl } from 'utils/url'
-import BeatmapPicker from './beatmap-picker'
-import BeatmapsetMenu from './beatmapset-menu'
-import Stats from './stats'
+import BeatmapsetCover from 'components/beatmapset-cover';
+import BeatmapsetMapping from 'components/beatmapset-mapping';
+import BigButton from 'components/big-button';
+import UserListPopup, { createTooltip } from 'components/user-list-popup';
+import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
+import GameMode from 'interfaces/game-mode';
+import { route } from 'laroute';
+import { action, computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { getArtist, getTitle } from 'utils/beatmap-helper';
+import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
+import { beatmapDownloadDirect, wikiUrl } from 'utils/url';
+import BeatmapPicker from './beatmap-picker';
+import BeatmapsetMenu from './beatmapset-menu';
+import Stats from './stats';
 
-el = React.createElement
+const favouritesToShow = 50;
 
-export class Header extends React.Component
-  favouritesToShow: 50
+interface DownloadButtonOptions {
+  bottomTextKey?: string;
+  href: string;
+  icon?: string;
+  topTextKey?: string;
+}
 
+interface Props {
+  beatmaps: Map<GameMode, BeatmapsetJsonForShow['beatmaps']>;
+  beatmapset: BeatmapsetJsonForShow;
+  currentBeatmap: BeatmapsetJsonForShow['beatmaps'][number];
+  favcount: number;
+  hasFavourited: boolean;
+  hoveredBeatmap: BeatmapsetJsonForShow['beatmaps'][number];
+}
 
-  constructor: (props) ->
-    super props
+@observer
+export default class Header extends React.Component<Props> {
+  @computed
+  private get favouritePopup() {
+    return renderToStaticMarkup(
+      <UserListPopup count={this.props.favcount} users={this.filteredFavourites} />,
+    );
+  }
 
-    @filteredFavourites = []
+  @computed
+  private get filteredFavourites() {
+    let ret = this.props.beatmapset.recent_favourites;
 
+    const user = core.currentUser;
+    if (user != null) {
+      ret = ret.filter((f) => f.id !== user.id);
 
-  getFavouriteTooltipContent: =>
-    renderToStaticMarkup el(UserListPopup, count: @props.favcount, users: @filteredFavourites)
+      if (this.props.hasFavourited) {
+        ret.unshift(user);
+      }
+    }
 
+    return ret.slice(0, favouritesToShow);
+  }
 
-  hasAvailabilityInfo: =>
-    @props.beatmapset.availability.download_disabled || @props.beatmapset.availability.more_information?
+  private get hasAvailabilityInfo() {
+    return this.props.beatmapset.availability.download_disabled
+      || this.props.beatmapset.availability.more_information != null;
+  }
 
+  constructor(props: Props) {
+    super(props);
 
-  showFavourites: (event) =>
-    target = event.currentTarget
+    makeObservable(this);
+  }
 
-    if @filteredFavourites.length < 1
-      if osu.present(target._tooltip)
-        target._tooltip = ''
-        $(target).qtip 'destroy', true
+  render() {
+    const favouriteButton = this.props.hasFavourited
+      ? {
+        action: 'unfavourite',
+        icon: 'fas fa-heart',
+      } : {
+        action: 'favourite',
+        icon: 'far fa-heart',
+      };
 
-      return
+    return (
+      <div className='beatmapset-header'>
+        <div className='beatmapset-header__content'>
+          <div className='beatmapset-header__cover'>
+            <BeatmapsetCover
+              beatmapset={this.props.beatmapset}
+              modifiers='full'
+              size='cover'
+            />
+          </div>
 
-    createTooltip target, 'right center', @getFavouriteTooltipContent
+          <div className='beatmapset-header__box beatmapset-header__box--main'>
+            <div className='beatmapset-header__beatmap-picker-box'>
+              <BeatmapPicker
+                beatmaps={this.props.beatmaps.get(this.props.currentBeatmap.mode) ?? []}
+                currentBeatmap={this.props.currentBeatmap}
+              />
 
+              <span className='beatmapset-header__diff-name'>
+                {this.props.hoveredBeatmap == null ? this.props.currentBeatmap.version : this.props.hoveredBeatmap.version}
+              </span>
 
-  render: ->
-    @filteredFavourites = @props.beatmapset.recent_favourites.filter (f) -> f.id != currentUser.id
-    @filteredFavourites.unshift(currentUser) if @props.hasFavourited
-    @filteredFavourites = @filteredFavourites[...@favouritesToShow]
+              {this.props.hoveredBeatmap != null &&
+                <span className='beatmapset-header__star-difficulty'>
+                  {osu.trans('beatmapsets.show.stats.stars')}
+                  {' '}
+                  {formatNumber(this.props.hoveredBeatmap.difficulty_rating, 2)}
+                </span>
+              }
 
-    favouriteButton =
-      if @props.hasFavourited
-        action: 'unfavourite'
-        icon: 'fas fa-heart'
-      else
-        action: 'favourite'
-        icon: 'far fa-heart'
+              <div>
+                <span className='beatmapset-header__value' title={osu.trans('beatmapsets.show.stats.playcount')}>
+                  <span className='beatmapset-header__value-icon'><span className='fas fa-play-circle' /></span>
+                  <span className='beatmapset-header__value-name'>{formatNumber(this.props.beatmapset.play_count)}</span>
+                </span>
 
-    div className: 'beatmapset-header',
-      div
-        className: 'beatmapset-header__content'
+                {this.props.beatmapset.status === 'pending' &&
+                  <span className='beatmapset-header__value' title={osu.trans('beatmapsets.show.stats.nominations')}>
+                    <span className='beatmapset-header__value-icon'><span className='fas fa-thumbs-up' /></span>
+                    <span className='beatmapset-header__value-name'>
+                      {formatNumber(this.props.beatmapset.nominations_summary.current)}
+                    </span>
+                  </span>
+                }
 
-        div className: 'beatmapset-header__cover',
-          el BeatmapsetCover,
-            beatmapset: @props.beatmapset
-            modifiers: 'full'
-            size: 'cover'
+                <span
+                  className={classWithModifiers('beatmapset-header__value', { 'has-favourites': this.props.favcount > 0 })}
+                  onMouseOver={this.onEnterFavouriteIcon}
+                  onTouchStart={this.onEnterFavouriteIcon}
+                >
+                  <span className='beatmapset-header__value-icon'>
+                    <span className='fas fa-heart' />
+                  </span>
+                  <span className='beatmapset-header__value-name'>
+                    {formatNumber(this.props.favcount)}
+                  </span>
+                </span>
+              </div>
+            </div>
 
-        div className: 'beatmapset-header__box beatmapset-header__box--main',
-          div className: 'beatmapset-header__beatmap-picker-box',
-            el BeatmapPicker,
-              beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
-              currentBeatmap: @props.currentBeatmap
+            <span className='beatmapset-header__details-text beatmapset-header__details-text--title'>
+              <a
+                className='beatmapset-header__details-text-link'
+                href={route('beatmapsets.index', { q: getTitle(this.props.beatmapset) })}
+              >
+                {getTitle(this.props.beatmapset)}
+              </a>
+              {this.props.beatmapset.nsfw &&
+                <span className='beatmapset-badge beatmapset-badge--nsfw'>{osu.trans('beatmapsets.nsfw_badge.label')}</span>
+              }
+            </span>
 
-            span className: 'beatmapset-header__diff-name',
-              if @props.hoveredBeatmap? then @props.hoveredBeatmap.version else @props.currentBeatmap.version
+            <span className='beatmapset-header__details-text beatmapset-header__details-text--artist'>
+              <a
+                className='beatmapset-header__details-text-link'
+                href={route('beatmapsets.index', { q: getArtist(this.props.beatmapset) })}
+              >
+                {getArtist(this.props.beatmapset)}
+              </a>
+              {this.props.beatmapset.track_id != null &&
+                <a
+                  className='beatmapset-badge beatmapset-badge--featured-artist'
+                  href={route('tracks.show', { track: this.props.beatmapset.track_id })}
+                >
+                  {osu.trans('beatmapsets.featured_artist_badge.label')}
+                </a>
+              }
+            </span>
 
-            span
-              className: 'beatmapset-header__star-difficulty'
-              style:
-                visibility: 'hidden' if !@props.hoveredBeatmap?
-              "#{osu.trans 'beatmapsets.show.stats.stars'} #{if @props.hoveredBeatmap then formatNumber(@props.hoveredBeatmap.difficulty_rating, 2) else ''}"
+            <BeatmapsetMapping beatmapset={this.props.beatmapset} />
 
-            div {},
-              span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.playcount'),
-                span className: 'beatmapset-header__value-icon', i className: 'fas fa-play-circle'
-                span className: 'beatmapset-header__value-name', formatNumber(@props.beatmapset.play_count)
+            {this.renderAvailabilityInfo()}
 
-              if @props.beatmapset.status == 'pending'
-                span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.nominations'),
-                  span className: 'beatmapset-header__value-icon', i className: 'fas fa-thumbs-up'
-                  span className: 'beatmapset-header__value-name',
-                    @props.beatmapset.nominations_summary.current
+            <div className='beatmapset-header__buttons'>
+              {core.currentUser != null &&
+                <BigButton
+                  icon={favouriteButton.icon}
+                  modifiers={['beatmapset-header-square', `beatmapset-header-square-${favouriteButton.action}`]}
+                  props={{
+                    onClick: this.onClickFavourite,
+                    title: osu.trans(`beatmapsets.show.details.${favouriteButton.action}`),
+                  }}
+                />
+              }
 
-              span
-                className: "beatmapset-header__value#{if @props.favcount > 0 then ' beatmapset-header__value--has-favourites' else ''}"
-                onMouseOver: @showFavourites
-                onTouchStart: @showFavourites
-                span className: 'beatmapset-header__value-icon',
-                  i className: 'fas fa-heart'
-                span className: 'beatmapset-header__value-name',
-                  formatNumber(@props.favcount)
+              {this.renderDownloadButtons()}
+              {this.renderLoginButton()}
 
-          span className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
-            a
-              className: 'beatmapset-header__details-text-link'
-              href: route 'beatmapsets.index', q: getTitle(@props.beatmapset)
-              getTitle(@props.beatmapset)
-            if @props.beatmapset.nsfw
-              span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
+              {!this.props.beatmapset.is_scoreable && core.currentUser != null && core.currentUser.id !== this.props.beatmapset.user_id &&
+                <div className='beatmapset-header__more'>
+                  <div className='btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail'>
+                    <BeatmapsetMenu beatmapset={this.props.beatmapset} />
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
 
-          span className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
-            a
-              className: 'beatmapset-header__details-text-link'
-              href: route 'beatmapsets.index', q: getArtist(@props.beatmapset)
-              getArtist(@props.beatmapset)
-            if @props.beatmapset.track_id?
-              a
-                className: 'beatmapset-badge beatmapset-badge--featured-artist'
-                href: route 'tracks.show', @props.beatmapset.track_id
-                osu.trans('beatmapsets.featured_artist_badge.label')
+          <div className='beatmapset-header__box beatmapset-header__box--stats'>
+            {this.renderStatusBar()}
 
-          el BeatmapsetMapping, beatmapset: @props.beatmapset
+            <Stats
+              beatmap={this.props.currentBeatmap}
+              beatmapset={this.props.beatmapset}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-          @renderAvailabilityInfo()
+  private downloadButton({ bottomTextKey, href, icon = 'fas fa-download', topTextKey = '_' }: DownloadButtonOptions) {
+    return (
+      <BigButton
+        href={href}
+        icon={icon}
+        modifiers='beatmapset-header'
+        props={{
+          'data-turbolinks': 'false',
+        }}
+        text={{
+          bottom: bottomTextKey == null ? undefined : osu.trans(`beatmapsets.show.details.download.${bottomTextKey}`),
+          top: osu.trans(`beatmapsets.show.details.download.${topTextKey}`),
+        }}
+      />
+    );
+  }
 
-          div
-            className: 'beatmapset-header__buttons'
+  private readonly onClickFavourite = () => {
+    if (core.userLogin.showIfGuest(this.onClickFavourite)) return;
 
-            if currentUser.id?
-              el BigButton,
-                icon: favouriteButton.icon
-                modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
-                props:
-                  onClick: @toggleFavourite
-                  title: osu.trans "beatmapsets.show.details.#{favouriteButton.action}"
+    $.publish('beatmapset:favourite:toggle');
+  };
 
-            @renderDownloadButtons()
+  @action
+  private readonly onEnterFavouriteIcon = (event: React.MouseEvent<HTMLSpanElement> | React.TouchEvent<HTMLSpanElement>) => {
+    const target = event.currentTarget;
 
-            @renderLoginButton()
+    if (this.filteredFavourites.length < 1) {
+      if (target._tooltip === '1') {
+        target._tooltip = '';
+        $(target).qtip('destroy', true);
+      }
 
-            if currentUser.id? && currentUser.id != @props.beatmapset.user_id && !@props.beatmapset.is_scoreable
-              div className: 'beatmapset-header__more',
-                div className: 'btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail',
-                  el BeatmapsetMenu,
-                    beatmapset: @props.beatmapset
+      return;
+    }
 
-        div className: 'beatmapset-header__box beatmapset-header__box--stats',
-          @renderStatusBar()
-          el Stats,
-            beatmapset: @props.beatmapset
-            beatmap: @props.currentBeatmap
+    createTooltip(target, 'right center', action(() => this.favouritePopup));
+  };
 
+  private renderAvailabilityInfo() {
+    if (core.currentUser == null || !this.hasAvailabilityInfo) return;
 
-  renderAvailabilityInfo: =>
-    return unless currentUser.id? && @hasAvailabilityInfo()
+    let label: string;
+    let href: string | null;
 
-    href = if @props.beatmapset.availability.more_information == 'rule_violation'
-              "#{wikiUrl('Rules')}#beatmap-submission-rules"
-            else
-              @props.beatmapset.availability.more_information
+    if (this.props.beatmapset.availability.download_disabled) {
+      label = osu.trans('beatmapsets.availability.disabled');
+    } else {
+      if (this.props.beatmapset.availability.more_information === 'rule_violation') {
+        label = osu.trans('beatmapsets.availability.rule_violation');
+        href = `${wikiUrl('Rules')}#beatmap-submission-rules`;
+      } else {
+        label = osu.trans('beatmapsets.availability.parts-removed');
+      }
+    }
 
-    div
-      className: 'beatmapset-header__availability-info',
-      if @props.beatmapset.availability.download_disabled
-        osu.trans 'beatmapsets.availability.disabled'
-      else if @props.beatmapset.availability.more_information == 'rule_violation'
-        osu.trans 'beatmapsets.availability.rule_violation'
-      else
-        osu.trans 'beatmapsets.availability.parts-removed'
+    href ??= this.props.beatmapset.availability.more_information;
 
-      if href?
-        div className: 'beatmapset-header__availability-link',
-          a
-            href: href
-            target: '_blank'
-            osu.trans 'beatmapsets.availability.more-info'
+    return (
+      <div className='beatmapset-header__availability-info'>
+        {label}
 
+        {href != null &&
+          <div className='beatmapset-header__availability-link'>
+            <a href={href} rel="noreferrer" target='_blank'>
+              {osu.trans('beatmapsets.availability.more-info')}
+            </a>
+          </div>
+        }
+      </div>
+    );
+  }
 
-  renderDownloadButtons: =>
-    if currentUser.id? && !@props.beatmapset.availability?.download_disabled
-      [
-        if @props.beatmapset.video
-          [
-            @downloadButton
-              key: 'video'
-              href: route 'beatmapsets.download', beatmapset: @props.beatmapset.id
-              bottomTextKey: 'video'
+  private renderDownloadButtons() {
+    if (core.currentUser == null || (this.props.beatmapset.availability?.download_disabled ?? false)) return;
 
-            @downloadButton
-              key: 'no-video'
-              href: route 'beatmapsets.download', beatmapset: @props.beatmapset.id, noVideo: 1
-              bottomTextKey: 'no-video'
-          ]
-        else
-          @downloadButton
-            key: 'default'
-            href: route 'beatmapsets.download', beatmapset: @props.beatmapset.id
+    return (
+      <>
+        {this.props.beatmapset.video ? (
+          <>
+            {this.downloadButton({
+              bottomTextKey: 'video',
+              href: route('beatmapsets.download', { beatmapset: this.props.beatmapset.id }),
+            })}
 
-        @downloadButton
-          key: 'direct'
-          topTextKey: 'direct'
-          osuDirect: true
-          href:
-            if currentUser.is_supporter
-              beatmapDownloadDirect @props.currentBeatmap.id
-            else
-              route 'support-the-game'
-      ]
+            {this.downloadButton({
+              bottomTextKey: 'no-video',
+              href: route('beatmapsets.download', { beatmapset: this.props.beatmapset.id, noVideo: 1 }),
+            })}
+          </>
+        ) : (this.downloadButton({
+          href: route('beatmapsets.download', { beatmapset: this.props.beatmapset.id }),
+        }))}
 
+        {this.downloadButton({
+          href: core.currentUser.is_supporter
+            ? beatmapDownloadDirect(this.props.currentBeatmap.id)
+            : route('support-the-game'),
+          topTextKey: 'direct',
+        })}
+      </>
+    );
+  }
 
-  renderLoginButton: ->
-    if !currentUser.id?
-      el BigButton,
-        extraClasses: ['js-user-link']
-        icon: 'fas fa-lock'
-        modifiers: 'beatmapset-header'
-        text:
-          top: osu.trans 'beatmapsets.show.details.login_required.top'
-          bottom: osu.trans 'beatmapsets.show.details.login_required.bottom'
+  private renderLoginButton() {
+    if (core.currentUser != null) return;
 
+    return (
+      <BigButton
+        extraClasses={['js-user-link']}
+        icon='fas fa-lock'
+        modifiers='beatmapset-header'
+        text={{
+          bottom: osu.trans('beatmapsets.show.details.login_required.bottom'),
+          top: osu.trans('beatmapsets.show.details.login_required.top'),
+        }}
+      />
+    );
+  }
 
-  renderStatusBar: =>
-    div className: 'beatmapset-header__status',
-      if @props.beatmapset.storyboard
-        div
-          className: 'beatmapset-status beatmapset-status--show-icon'
-          title: osu.trans('beatmapsets.show.info.storyboard')
-          i className: 'fas fa-image'
-      div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
-
-
-  downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
-    el BigButton,
-      key: key
-      href: href
-      icon: icon
-      modifiers: 'beatmapset-header'
-      props:
-        'data-turbolinks': 'false'
-      text:
-        top: osu.trans "beatmapsets.show.details.download.#{topTextKey}"
-        bottom: if bottomTextKey? then osu.trans "beatmapsets.show.details.download.#{bottomTextKey}"
-
-
-  toggleFavourite: (e) ->
-    return if core.userLogin.showIfGuest(createClickCallback(e.target))
-
-    $.publish 'beatmapset:favourite:toggle'
+  private renderStatusBar() {
+    return (
+      <div className='beatmapset-header__status'>
+        {this.props.beatmapset.storyboard &&
+          <div
+            className='beatmapset-status beatmapset-status--show-icon'
+            title={osu.trans('beatmapsets.show.info.storyboard')}
+          >
+            <span className='fas fa-image' />
+          </div>
+        }
+        <div className='beatmapset-status beatmapset-status--show'>
+          {osu.trans(`beatmapsets.show.status.${this.props.currentBeatmap.status}`)}
+        </div>
+      </div>
+    );
+  }
+}
