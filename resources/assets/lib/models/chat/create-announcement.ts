@@ -28,8 +28,6 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     lookupUsers: false,
   };
 
-  debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
-
   @observable inputs: Record<InputKey, string> = {
     description: '',
     message: '',
@@ -44,6 +42,7 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
   };
   @observable validUsers = new Map<number, UserJson>();
 
+  private debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
   private uuid = osu.uuid();
   private xhrLookupUsers?: JQuery.jqXHR<{ users: UserJson[] }>;
 
@@ -146,18 +145,18 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
 
   @action
   updateUsers(text: string, immediate: boolean) {
+    this.debouncedLookupUsers.cancel();
+    this.inputs.users = text;
+
     // TODO: check if change is only whitespace.
     if (text.trim().length === 0) {
       this.xhrLookupUsers?.abort();
-      this.debouncedLookupUsers.cancel();
       this.busy.lookupUsers = false;
-      this.inputs.users = text;
+
       return;
     }
 
     this.busy.lookupUsers = true;
-    this.debouncedLookupUsers.cancel();
-    this.inputs.users = text;
     this.debouncedLookupUsers();
 
     if (immediate) {

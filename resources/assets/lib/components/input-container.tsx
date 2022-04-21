@@ -19,14 +19,14 @@ export interface FancyForm<T extends string> {
 
 // extra props when error marking support is used.
 type Props<T extends string> =
-  CommonProps & { model: FancyForm<T>; name: T }
-  | CommonProps & { model?: never; name?: never } ;
+  CommonProps & (
+    { model: FancyForm<T>; name: T }
+    | { model?: never; name?: never }
+  );
 
 // TODO: look at combining with ValidatingInput
 const InputContainer = observer(<T extends string>(props: React.PropsWithChildren<Props<T>>) => {
-  const error = props.model != null
-    ? props.model.errors[props.name] && props.model.showError[props.name]
-    : false;
+  const error = props.model != null && props.model.errors[props.name] && props.model.showError[props.name];
 
   return (
     <label className={classWithModifiers('input-container', { error }, props.modifiers)} htmlFor={props.for}>
