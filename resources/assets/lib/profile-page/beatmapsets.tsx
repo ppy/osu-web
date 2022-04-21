@@ -31,6 +31,11 @@ const sectionKeys = [
     translationKey: 'pending',
   },
   {
+    countKey: 'guest_beatmapset_count',
+    key: 'guestBeatmapsets',
+    translationKey: 'guest',
+  },
+  {
     countKey: 'graveyard_beatmapset_count',
     key: 'graveyardBeatmapsets',
     translationKey: 'graveyard',
