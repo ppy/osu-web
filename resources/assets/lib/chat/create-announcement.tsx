@@ -69,7 +69,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer labelKey='chat.form.labels.users' model={this.model} modifiers='chat' name='users'>
+          <InputContainer for='chat-form-users' labelKey='chat.form.labels.users' model={this.model} modifiers='chat' name='users'>
             <div className='chat-form__users-input'>
               <div className='chat-form__users'>
                 <UserCardBrick modifiers='fit' user={core.currentUserOrFail} />
@@ -77,6 +77,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               </div>
               <input
                 className='chat-form__users-text'
+                id='chat-form-users'
                 name='users'
                 onBlur={this.handleBlur}
                 onChange={this.handleUsersInputChange}

@@ -6,6 +6,7 @@ import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface CommonProps {
+  for?: string;
   labelKey?: string;
   modifiers?: Modifiers;
 }
@@ -28,7 +29,7 @@ const InputContainer = observer(<T extends string>(props: React.PropsWithChildre
     : false;
 
   return (
-    <label className={classWithModifiers('input-container', { error }, props.modifiers)}>
+    <label className={classWithModifiers('input-container', { error }, props.modifiers)} htmlFor={props.for}>
       {props.labelKey != null && (
         <div className='input-container__label'>
           {osu.trans(props.labelKey)}
