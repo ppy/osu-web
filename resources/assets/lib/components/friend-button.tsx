@@ -5,12 +5,13 @@ import FriendUpdated from 'actions/friend-updated';
 import { dispatch } from 'app-dispatcher';
 import UserRelationJson from 'interfaces/user-relation-json';
 import { route } from 'laroute';
-import { observable, computed, action, makeObservable } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
 import { Modifiers, classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { Spinner } from './spinner';
 
 const bn = 'user-action-button';
@@ -83,12 +84,17 @@ export default class FriendButton extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
+    // FIXME: this should be run again on user id change (also for runInAction below)
     this.followersWithoutSelf = this.props.followers ?? 0;
-    if (this.friend != null) {
-      this.followersWithoutSelf -= 1;
-    }
 
     makeObservable(this);
+
+    // FIXME: see setting followersWithoutSelf above
+    runInAction(() => {
+      if (this.friend != null) {
+        this.followersWithoutSelf -= 1;
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -140,7 +146,7 @@ export default class FriendButton extends React.Component<Props> {
   private renderCounter() {
     if (!this.showFollowerCounter) return;
 
-    return <span className={`${bn}__counter`}>{osu.formatNumber(this.followers)}</span>;
+    return <span className={`${bn}__counter`}>{formatNumber(this.followers)}</span>;
   }
 
   private renderIcon() {

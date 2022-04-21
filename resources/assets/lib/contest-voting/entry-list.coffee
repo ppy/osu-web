@@ -43,7 +43,7 @@ export class EntryList extends BaseEntryList
         if @state.options.showPreview
           div className: 'contest-voting-list__icon'
         if @state.options.showLink
-          div className: classWithModifiers('contest-voting-list__icon', 'best-of': @state.contest.best_of)
+          div className: classWithModifiers('contest-voting-list__icon', 'submitted-beatmaps': @state.contest.submitted_beatmaps)
         div className: 'contest-voting-list__header-wrapper',
           div className: 'contest-voting-list__header-title', osu.trans('contest.entry._')
           div className: 'contest-voting-list__header-voted-toggle-button',

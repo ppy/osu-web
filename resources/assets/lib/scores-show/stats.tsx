@@ -3,23 +3,20 @@
 
 import { UserCard } from 'components/user-card';
 import BeatmapJson from 'interfaces/beatmap-json';
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
-  score: ScoreJson;
+  score: ScoreJsonForShow;
 }
 
 export default function Stats(props: Props) {
-  if (props.score.mode == null) {
-    throw new Error('score json is missing mode');
-  }
-
   return (
     <div className='score-stats'>
       <div className='score-stats__group score-stats__group--user-card'>
@@ -33,7 +30,7 @@ export default function Stats(props: Props) {
               {osu.trans('beatmapsets.show.scoreboard.headers.accuracy')}
             </div>
             <div className={classWithModifiers('score-stats__stat-row', { perfect: props.score.accuracy === 1 })}>
-              {osu.formatNumber(props.score.accuracy * 100, 2)}%
+              {formatNumber(props.score.accuracy * 100, 2)}%
             </div>
           </div>
 
@@ -42,7 +39,7 @@ export default function Stats(props: Props) {
               {osu.trans('beatmapsets.show.scoreboard.headers.combo')}
             </div>
             <div className={classWithModifiers('score-stats__stat-row', { perfect: props.score.max_combo === props.beatmap.max_combo })}>
-              {osu.formatNumber(props.score.max_combo)}x
+              {formatNumber(props.score.max_combo)}x
             </div>
           </div>
 

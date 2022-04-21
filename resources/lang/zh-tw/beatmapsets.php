@@ -143,7 +143,7 @@ return [
         'scoreboard' => [
             'achieved' => '在 :when 達成',
             'country' => '國內排行榜',
-            'error' => '',
+            'error' => '無法載入排行榜',
             'friend' => '好友排行榜',
             'global' => '世界排行榜',
             'supporter-link' => '點擊 <a href=":link">這裡</a> 來查看你可以得到的精彩功能！',

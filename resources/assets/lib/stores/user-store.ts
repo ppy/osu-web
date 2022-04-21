@@ -26,42 +26,32 @@ export default class UserStore implements DispatchListener {
     return this.users.get(id);
   }
 
+  handleDispatchAction(event: DispatcherAction) {
+    if (event instanceof MessageNewEvent) {
+      this.updateMany(event.json.users);
+    }
+  }
+
   @action
-  getOrCreate(userId: number, props?: UserJson): User {
+  update(json: UserJson): User {
+    const userId = json.id;
     let user = this.users.get(userId);
 
-    // TODO: update from props if newer?
-    if (user && user.loaded) {
-      return user;
-    }
-
-    if (props) {
-      user = User.fromJson(props);
-    } else {
+    if (user == null) {
       user = new User(userId);
+      this.users.set(userId, user);
     }
-    // this.users.delete(userId);
-    this.users.set(userId, user);
 
-    if (!user.loaded) {
-      user.load();
-    }
+    user.updateWithJson(json);
 
     return user;
   }
 
-  handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof MessageNewEvent) {
-      this.updateWithJson(event.json.users);
-    }
-  }
-
   @action
-  updateWithJson(data: UserJson[] | undefined | null) {
+  updateMany(data: UserJson[] | undefined | null) {
     if (data == null) return;
     for (const json of data) {
-      const user = User.fromJson(json);
-      this.users.set(user.id, user);
+      this.update(json);
     }
   }
 }

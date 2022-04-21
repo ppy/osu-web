@@ -3,6 +3,7 @@
 
 import * as d3 from 'd3';
 import { maxBy } from 'lodash';
+import { formatNumber } from 'utils/html';
 import { parseJson } from 'utils/json';
 
 interface Datum {
@@ -123,7 +124,7 @@ export default class LandingUserStats {
     this.scaleX.domain([scaleXDomain[0] ?? 0, scaleXDomain[1] ?? 0]);
     this.scaleY.domain([0, this.maxElem.y]);
 
-    this.svgPeakText.text(osu.trans('home.landing.peak', { count: osu.formatNumber(this.maxElem.y) }));
+    this.svgPeakText.text(osu.trans('home.landing.peak', { count: formatNumber(this.maxElem.y) }));
     const textNode = this.svgPeakText.node();
 
     if (textNode == null) {

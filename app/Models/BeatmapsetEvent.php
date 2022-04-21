@@ -52,6 +52,7 @@ class BeatmapsetEvent extends Model
     const GENRE_EDIT = 'genre_edit';
     const LANGUAGE_EDIT = 'language_edit';
     const NSFW_TOGGLE = 'nsfw_toggle';
+    const OFFSET_EDIT = 'offset_edit';
 
     const BEATMAP_OWNER_CHANGE = 'beatmap_owner_change';
 
@@ -209,6 +210,7 @@ class BeatmapsetEvent extends Model
                     static::GENRE_EDIT,
                     static::LANGUAGE_EDIT,
                     static::NSFW_TOGGLE,
+                    static::OFFSET_EDIT,
 
                     static::ISSUE_RESOLVE,
                     static::ISSUE_REOPEN,

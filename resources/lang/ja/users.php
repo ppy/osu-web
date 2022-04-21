@@ -159,6 +159,10 @@ return [
             '_' => '投稿 :link',
             'count' => ':count_delimited コメント',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'カバー画像の変更',

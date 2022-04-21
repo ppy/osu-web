@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetCover from 'components/beatmapset-cover'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img, span } from 'react-dom-factories'
@@ -33,7 +34,9 @@ export class Posts extends React.Component
                   className: 'modding-profile-list__thumbnail'
                   href: BeatmapDiscussionHelper.url(discussion: post.beatmap_discussion),
 
-                  img className: 'beatmapset-cover', src: post.beatmap_discussion.beatmapset.covers.list
+                  el BeatmapsetCover,
+                    beatmapset: post.beatmap_discussion.beatmapset
+                    size: 'list'
 
                 div className: "modding-profile-list__timestamp hidden-xs",
                   div className: "beatmap-discussion-timestamp",

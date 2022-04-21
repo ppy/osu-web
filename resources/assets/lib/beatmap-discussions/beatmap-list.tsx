@@ -1,18 +1,19 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapListItem from 'components/beatmap-list-item';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
 import { blackoutToggle } from 'utils/blackout';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { nextVal } from 'utils/seq';
-import BeatmapListItem from './beatmap-list-item';
 
 interface Props {
   beatmaps: BeatmapExtendedJson[];
   createLink: (beatmap: BeatmapExtendedJson) => string;
   currentBeatmap: BeatmapExtendedJson;
-  getCount?: (beatmap: BeatmapExtendedJson) => number | undefined;
+  getCount: (beatmap: BeatmapExtendedJson) => number | undefined;
   onSelectBeatmap: (beatmapId: number) => void;
 }
 
@@ -50,7 +51,10 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
             href={this.props.createLink(this.props.currentBeatmap)}
             onClick={this.toggleSelector}
           >
-            <BeatmapListItem beatmap={this.props.currentBeatmap} large withButton='fas fa-chevron-down' />
+            <BeatmapListItem beatmap={this.props.currentBeatmap} modifiers='large' />
+            <div className='beatmap-list__item-selector-button'>
+              <span className='fas fa-chevron-down' />
+            </div>
           </a>
 
           <div className='beatmap-list__selector'>
@@ -61,17 +65,26 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
     );
   }
 
-  private beatmapListItem = (beatmap: BeatmapExtendedJson) => (
-    <a
-      key={beatmap.id}
-      className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.currentBeatmap.id })}
-      data-id={beatmap.id}
-      href={this.props.createLink(beatmap)}
-      onClick={this.selectBeatmap}
-    >
-      <BeatmapListItem beatmap={beatmap} count={this.props.getCount?.(beatmap)} />
-    </a>
-  );
+  private beatmapListItem = (beatmap: BeatmapExtendedJson) => {
+    const count = this.props.getCount(beatmap);
+
+    return (
+      <a
+        key={beatmap.id}
+        className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.currentBeatmap.id })}
+        data-id={beatmap.id}
+        href={this.props.createLink(beatmap)}
+        onClick={this.selectBeatmap}
+      >
+        <BeatmapListItem beatmap={beatmap} />
+        {count != null &&
+          <div className='beatmap-list__item-count'>
+            {formatNumber(count)}
+          </div>
+        }
+      </a>
+    );
+  };
 
   private hideSelector = () => {
     if (this.state.showingSelector) {

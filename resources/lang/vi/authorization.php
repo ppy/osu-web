@@ -23,7 +23,7 @@ return [
             'set_metadata' => 'Bạn phải chọn thể loại nhạc và ngôn ngữ trước khi nominating.',
         ],
         'resolve' => [
-            'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể đánh dấu cuộc thảo luận là đã được giải quyết.',
+            'not_owner' => 'Chỉ có chủ thớt và chủ beatmap mới có thể đánh dấu cuộc thảo luận là đã được giải quyết.',
         ],
 
         'store' => [
@@ -84,7 +84,7 @@ return [
 
         'entry' => [
             'limit_reached' => 'Bạn đã đạt giới hạn bài dự thi cho cuộc thi này',
-            'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm mục nào nữa và sẽ sớm mở bình chọn.',
+            'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm bài dự thi nào nữa và sẽ sớm mở bình chọn.',
         ],
     ],
 
@@ -96,7 +96,7 @@ return [
         'post' => [
             'delete' => [
                 'only_last_post' => 'Chỉ có thể xóa bài đăng cuối cùng.',
-                'locked' => 'Không thể xóa bài đăng của một topic bị khóa.',
+                'locked' => 'Không thể xóa bài đăng của một chủ đề bị khóa.',
                 'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
                 'not_owner' => 'Chỉ người đăng mới có thể xóa bài đăng.',
             ],
@@ -118,7 +118,7 @@ return [
         'topic' => [
             'reply' => [
                 'double_post' => 'Vui lòng chỉnh sửa bài đăng cuối cùng của bạn thay vì đăng thêm lần nữa.',
-                'locked' => 'Không thể trả lời một thread bị khóa.',
+                'locked' => 'Không thể trả lời một luồng bị khóa.',
                 'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
                 'no_permission' => 'Không có quyền trả lời.',
 

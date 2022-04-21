@@ -4,14 +4,16 @@
 .beatmap-discussions-header-bottom {
   .default-box-shadow();
   .inner-shadow-top();
+  --gutter: @gutter-beatmapset;
 
   display: flex;
-  padding: 0 20px;
+  padding: 0 var(--gutter);
   background-color: @osu-colour-b5;
   flex-direction: column;
   margin-bottom: @page-spacing;
 
   @media @desktop {
+    --gutter: calc(@gutter-beatmapset-desktop - @gutter-small-desktop);
     flex-direction: row;
     align-items: stretch;
   }

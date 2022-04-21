@@ -4,26 +4,17 @@
 import * as React from 'react';
 import { make2x } from 'utils/html';
 
-interface Props extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
-  hideOnError?: boolean;
-}
+type ImgProps = React.ImgHTMLAttributes<HTMLImageElement>;
 
-// hides img elements that have errored (hides native browser broken-image icons)
-function handleError(e: React.SyntheticEvent<HTMLElement>) {
-  e.currentTarget.style.display = 'none';
-}
+// explicit className typing otherwise eslint complains.
+type Props = ImgProps & Pick<ImgProps, 'className'>;
 
 export default function Img2x(props: Props) {
-  const { hideOnError = false, ...otherProps } = props;
-  if (hideOnError) {
-    otherProps.onError = handleError;
-  }
+  const { className = '', ...otherProps } = props;
 
   if (otherProps.src == null) {
-    otherProps.className ??= '';
-    otherProps.className += ' u-hidden';
-    return <img {...otherProps} />;
+    return <img {...otherProps} className={`${className} u-hidden`} />;
   }
 
-  return <img srcSet={`${otherProps.src} 1x, ${make2x(otherProps.src)} 2x`} {...otherProps} />;
+  return <img className={className} srcSet={`${otherProps.src} 1x, ${make2x(otherProps.src)} 2x`} {...otherProps} />;
 }

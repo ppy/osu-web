@@ -6,21 +6,14 @@ import * as React from 'react'
 import { div, a, span } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
 import { updateQueryString } from 'utils/url'
+import { formatNumber } from 'utils/html'
 el = React.createElement
 controller = core.beatmapsetSearchController
 
 export class SearchFilter extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    @cache = {}
-
-
-  componentWillReceiveProps: (nextProps) =>
-    @cache = {}
-
-
   render: =>
+    @cache = {}
+
     div className: 'beatmapsets-search-filter',
       if @props.title?
         span className: 'beatmapsets-search-filter__header', @props.title
@@ -33,7 +26,7 @@ export class SearchFilter extends React.PureComponent
 
           text = option.name
           if @props.name == 'general' && option.id == 'recommended' && @props.recommendedDifficulty?
-            text += " (#{osu.formatNumber(@props.recommendedDifficulty, 2)})"
+            text += " (#{formatNumber(@props.recommendedDifficulty, 2)})"
 
           a
             key: i

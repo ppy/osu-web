@@ -2,23 +2,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'components/header-v4';
-import ScoreJson from 'interfaces/score-json';
+import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as React from 'react';
 import BeatmapInfo from './beatmap-info';
 import Info from './info';
 import Stats from './stats';
 
 interface Props {
-  score: ScoreJson;
+  score: ScoreJsonForShow;
 }
 
-export default function Main(props: Props) {
-  const beatmap = props.score.beatmap;
-  const beatmapset = props.score.beatmapset;
-
-  if (beatmap == null || beatmapset == null) {
-    throw new Error('score json is missing beatmap or beatmapset details');
-  }
+export default function Main({ score }: Props) {
+  const { beatmap, beatmapset } = score;
 
   return (
     <>
@@ -27,9 +22,9 @@ export default function Main(props: Props) {
       <div className='osu-page osu-page--generic-compact'>
         <BeatmapInfo beatmap={beatmap} beatmapset={beatmapset} />
 
-        <Info score={props.score} />
+        <Info score={score} />
 
-        <Stats beatmap={beatmap} score={props.score} />
+        <Stats beatmap={beatmap} score={score} />
       </div>
     </>
   );

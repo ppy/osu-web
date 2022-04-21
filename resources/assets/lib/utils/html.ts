@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { CSSProperties } from 'react';
+
 export function bottomPage() {
   return bottomPageDistance() === 0;
 }
@@ -24,6 +26,32 @@ export function createClickCallback(target: unknown) {
     // reference: https://github.com/jquery/jquery/blob/f5aa89af7029ae6b9203c2d3e551a8554a0b4b89/src/event.js#L586
     return () => target.click();
   }
+}
+
+export function cssVar2x(url?: string | null) {
+  if (url == null) return;
+
+  return {
+    '--bg': osu.urlPresence(url),
+    '--bg-2x': osu.urlPresence(make2x(url)),
+  } as CSSProperties;
+}
+
+const defaultNumberFormatter = new Intl.NumberFormat(window.currentLocale);
+
+export function formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) {
+  if (precision == null && options == null && locale == null) {
+    return defaultNumberFormatter.format(num);
+  }
+
+  options ??= {};
+
+  if (precision != null) {
+    options.minimumFractionDigits = precision;
+    options.maximumFractionDigits = precision;
+  }
+
+  return num.toLocaleString(locale ?? window.currentLocale, options);
 }
 
 export function formatNumberSuffixed(num?: number, precision?: number, options?: Intl.NumberFormatOptions) {

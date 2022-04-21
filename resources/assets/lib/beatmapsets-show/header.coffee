@@ -4,6 +4,7 @@
 import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
 import BeatmapsetMenu from 'beatmapsets-show/beatmapset-menu'
 import BigButton from 'components/big-button'
+import BeatmapsetCover from 'components/beatmapset-cover'
 import { BeatmapsetMapping } from 'components/beatmapset-mapping'
 import UserAvatar from 'components/user-avatar'
 import { route } from 'laroute'
@@ -11,9 +12,9 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
-import { createClickCallback } from 'utils/html'
+import { createClickCallback, formatNumber } from 'utils/html'
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url'
-import { Stats } from './stats'
+import Stats from './stats'
 
 el = React.createElement
 
@@ -81,10 +82,12 @@ export class Header extends React.Component
     div className: 'beatmapset-header',
       div
         className: 'beatmapset-header__content'
-        style:
-          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover)
 
-        div className: 'beatmapset-header__overlay beatmapset-header__overlay--gradient'
+        div className: 'beatmapset-header__cover',
+          el BeatmapsetCover,
+            beatmapset: @props.beatmapset
+            modifiers: 'full'
+            size: 'cover'
 
         div className: 'beatmapset-header__box beatmapset-header__box--main',
           div className: 'beatmapset-header__beatmap-picker-box',
@@ -99,12 +102,12 @@ export class Header extends React.Component
               className: 'beatmapset-header__star-difficulty'
               style:
                 visibility: 'hidden' if !@props.hoveredBeatmap?
-              "#{osu.trans 'beatmapsets.show.stats.stars'} #{if @props.hoveredBeatmap then osu.formatNumber(@props.hoveredBeatmap.difficulty_rating, 2) else ''}"
+              "#{osu.trans 'beatmapsets.show.stats.stars'} #{if @props.hoveredBeatmap then formatNumber(@props.hoveredBeatmap.difficulty_rating, 2) else ''}"
 
             div {},
               span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.playcount'),
                 span className: 'beatmapset-header__value-icon', i className: 'fas fa-play-circle'
-                span className: 'beatmapset-header__value-name', osu.formatNumber(@props.beatmapset.play_count)
+                span className: 'beatmapset-header__value-name', formatNumber(@props.beatmapset.play_count)
 
               if @props.beatmapset.status == 'pending'
                 span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.nominations'),
@@ -119,7 +122,7 @@ export class Header extends React.Component
                 span className: 'beatmapset-header__value-icon',
                   i className: 'fas fa-heart'
                 span className: 'beatmapset-header__value-name',
-                  osu.formatNumber(@props.favcount)
+                  formatNumber(@props.favcount)
 
             # this content of this div is used as a template for the on-hover/touch above
             div
@@ -173,19 +176,6 @@ export class Header extends React.Component
 
             @renderDownloadButtons()
 
-            if @props.beatmapset.discussion_enabled
-              el BigButton,
-                href: route('beatmapsets.discussion', beatmapset: @props.beatmapset.id)
-                icon: 'far fa-comments'
-                modifiers: 'beatmapset-header'
-                text: osu.trans 'beatmapsets.show.discussion'
-            else if @props.beatmapset.legacy_thread_url
-              el BigButton,
-                href: @props.beatmapset.legacy_thread_url
-                icon: 'far fa-comments'
-                modifiers: 'beatmapset-header'
-                text: osu.trans('beatmapsets.show.discussion')
-
             @renderLoginButton()
 
             if currentUser.id? && currentUser.id != @props.beatmapset.user_id && !@props.beatmapset.is_scoreable
@@ -199,7 +189,6 @@ export class Header extends React.Component
           el Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
-            timeElapsed: @props.timeElapsed
 
 
   renderAvailabilityInfo: =>

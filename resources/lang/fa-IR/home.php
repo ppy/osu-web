@@ -5,24 +5,24 @@
 
 return [
     'landing' => [
-        'download' => '',
-        'online' => '',
-        'peak' => '',
-        'players' => '',
-        'title' => '',
-        'see_more_news' => '',
+        'download' => 'همین حالا دانلود کنید',
+        'online' => '<strong>:players</strong> نفر هم اکنون در <strong>:games</strong> بازی آنلاین هستند',
+        'peak' => 'بالاترین، :count کاربر آنلاین',
+        'players' => '<strong>:count</strong> کاربر ثبت نامی',
+        'title' => 'خوش آمدید',
+        'see_more_news' => 'دیدن خبر های بیشتر',
 
         'slogan' => [
-            'main' => '',
-            'sub' => '',
+            'main' => 'بهترین بازی ریتمی رایگان برای برنده شدن',
+            'sub' => 'ریتم یک کلیک فاصله دارد',
         ],
     ],
 
     'search' => [
-        'advanced_link' => '',
-        'button' => '',
-        'empty_result' => '',
-        'keyword_required' => '',
+        'advanced_link' => 'جستجوی پیشرفته',
+        'button' => 'جستجو',
+        'empty_result' => 'چیزی پیدا نشد!',
+        'keyword_required' => 'یک کلمه کلیدی برای جستجو لازم است',
         'placeholder' => '',
         'title' => '',
 

@@ -66,7 +66,7 @@ return [
             'index' => 'tableau de bord',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'discussion sur les beatmaps',
+            'discussion' => 'discussion de la beatmap',
             'index' => 'liste des beatmaps',
             'show' => 'informations sur la beatmap',
         ],
@@ -117,7 +117,7 @@ return [
             '_' => 'réinitialisation du mot de passe',
         ],
         'ranking_controller' => [
-            '_' => 'classement',
+            '_' => 'classements',
         ],
         'scores_controller' => [
             '_' => 'performance',

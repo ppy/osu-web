@@ -17,7 +17,6 @@ export default class User {
   @observable isOnline = false;
   @observable isSupporter = false;
   @observable lastVisit: string | null = null;
-  @observable loaded = false;
   @observable pmFriendsOnly = false;
   @observable profileColour = '';
   @observable username = '';
@@ -28,31 +27,9 @@ export default class User {
     makeObservable(this);
   }
 
-  static fromJson(json: UserJson): User {
-    const user = new User(json.id);
-    return Object.assign(user, {
-      avatarUrl: json.avatar_url,
-      countryCode: json.country_code,
-      defaultGroup: json.default_group,
-      groups: json.groups,
-      isActive: json.is_active,
-      isBot: json.is_bot,
-      isOnline: json.is_online,
-      isSupporter: json.is_supporter,
-      loaded: true,
-      pmFriendsOnly: json.pm_friends_only,
-      profileColour: json.profile_colour,
-      username: json.username,
-    });
-  }
-
   is(user?: User | UserJson | null) {
     if (user == null) return false;
     return user.id === this.id;
-  }
-
-  load() {
-    // TODO: do automagic loading stuff?
   }
 
   /**
@@ -78,17 +55,18 @@ export default class User {
   }
 
   @action
-  updateFromJson(json: UserJson) {
-    this.username = json.username;
+  updateWithJson(json: UserJson) {
     this.avatarUrl = json.avatar_url;
-    this.profileColour = json.profile_colour ?? '';
     this.countryCode = json.country_code;
-    this.isSupporter = json.is_supporter;
+    this.defaultGroup = json.default_group;
+    this.groups = json.groups;
     this.isActive = json.is_active;
     this.isBot = json.is_bot;
     this.isOnline = json.is_online;
+    this.isSupporter = json.is_supporter;
     this.pmFriendsOnly = json.pm_friends_only;
-    this.loaded = true;
+    this.profileColour= json.profile_colour ?? '';
+    this.username = json.username;
   }
 }
 

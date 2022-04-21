@@ -73,7 +73,7 @@ return [
             'nomination_reset' => 'Сбросить номинацию',
             'praise' => 'Похвала',
             'problem' => 'Проблема',
-            'problem_warning' => '',
+            'problem_warning' => 'Сообщить о проблеме',
             'review' => 'Отзыв',
             'suggestion' => 'Предложение',
         ],
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Уверены? Карта будет снята с квалификации и статус номинирования будет сброшен.',
             'nomination_reset' => 'Вы уверены? Сообщение о новой проблеме сбросит статус номинации.',
-            'problem_warning' => '',
+            'problem_warning' => 'Вы действительно хотите сообщить о проблеме в этой карте? Номинаторы будут оповещены.',
         ],
     ],
 
@@ -220,7 +220,7 @@ return [
             'prompt' => 'введите ключевые слова...',
             'login_required' => 'Войдите, чтобы искать.',
             'options' => 'Больше настроек поиска',
-            'supporter_filter' => 'Сортировка по :filters требует наличия osu!supporter',
+            'supporter_filter' => 'Сортировка по критерию :filters требует наличия тега osu!supporter',
             'not-found' => 'нет результатов',
             'not-found-quote' => '... увы, ничего не найдено.',
             'filters' => [
@@ -247,7 +247,7 @@ return [
                 'nominations' => 'Номинациям',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Сортировка по :filters требует :link',
+                '_' => 'Сортировка по критерию :filters требует :link',
                 'link_text' => 'тег osu!supporter',
             ],
         ],
@@ -275,7 +275,7 @@ return [
         'loved' => 'Любимые',
         'mine' => 'Мои карты',
         'pending' => 'На рассмотрении',
-        'wip' => '',
+        'wip' => 'В разработке',
         'qualified' => 'Квалифицированные',
         'ranked' => 'Рейтинговые',
     ],

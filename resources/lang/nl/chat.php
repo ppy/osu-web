@@ -13,6 +13,11 @@ return [
         'user' => 'Je kan op het moment geen berichten sturen naar deze gebruiker. Dit kan worden veroorzaakt door een van de volgende redenen:',
     ],
 
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'niet in staat om bericht te verzenden...',
         'disconnected' => 'Verbinding verbroken',

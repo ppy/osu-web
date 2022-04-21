@@ -115,7 +115,7 @@ return [
     'logout_confirm' => 'Are you sure you want to sign out? :(',
     'report' => [
         'button_text' => 'Report',
-        'comments' => 'Additional Comments',
+        'comments' => 'Comments',
         'placeholder' => 'Please provide any information you believe could be useful.',
         'reason' => 'Reason',
         'thanks' => 'Thanks for your report!',
