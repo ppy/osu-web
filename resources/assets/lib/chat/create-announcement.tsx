@@ -156,7 +156,8 @@ export default class CreateAnnouncement extends React.Component<Props> {
 
   @action
   private handleUsersInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Backspace' && this.model.inputs.users.length === 0) {
+    const elem = e.currentTarget;
+    if (e.key === 'Backspace' && elem.selectionStart === 0 && elem.selectionEnd === 0) {
       const last = [...this.model.validUsers.keys()].pop();
       if (last != null) {
         this.model.validUsers.delete(last);
