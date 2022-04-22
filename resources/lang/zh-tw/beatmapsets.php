@@ -11,6 +11,10 @@ return [
         'rule_violation' => '已移除此圖譜中部份被評斷為不合適於 osu! 的內容。',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '欲速則不達。',
     ],

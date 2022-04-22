@@ -16,10 +16,10 @@ return [
     'channels' => [
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => '公告',
+                'GROUP' => '群組',
+                'PM' => '私訊',
+                'PUBLIC' => '頻道',
             ],
         ],
     ],

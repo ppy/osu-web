@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Część zawartości tej beatmapy została usunięta po uznaniu jej za nieodpowiednią do użycia w osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Zwolnij, pograj więcej!',
     ],

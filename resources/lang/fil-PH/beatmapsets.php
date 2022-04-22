@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Iilang bagay sa map na ito ang tinanggal pagkatapos ituring na hindi angkop para gamitin sa osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Hinay lang, maglaro ka muna.',
     ],

@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Một số nội dung có trong map này đã bị xóa sau khi bị đánh giá là không phù hợp để sử dụng trong osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Chậm lại, chơi nhiều hơn.',
     ],

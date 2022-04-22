@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Porzucone beatmapy',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',
                 ],

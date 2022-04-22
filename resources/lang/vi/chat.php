@@ -16,10 +16,10 @@ return [
     'channels' => [
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Thông báo',
+                'GROUP' => 'Nhóm',
+                'PM' => 'Tin nhắn trực tiếp',
+                'PUBLIC' => 'Kênh',
             ],
         ],
     ],

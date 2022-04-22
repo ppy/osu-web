@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Einige in dieser Beatmap enthaltene Assets wurden entfernt, nachdem sie als nicht für die Verwendung in osu! geeignet eingestuft worden waren.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Nur langsam, spiel mehr.',
     ],
@@ -144,7 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'erreicht :when',
             'country' => 'Landesrangliste',
-            'error' => '',
+            'error' => 'Die Rangliste konnte nicht geladen werden',
             'friend' => 'Freundesrangliste',
             'global' => 'Globale Rangliste',
             'supporter-link' => '<a href=":link">Hier</a> klicken, um alle tollen Features zu entdecken!',

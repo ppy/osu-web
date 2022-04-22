@@ -16,10 +16,10 @@ return [
     'channels' => [
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Pengumuman',
+                'GROUP' => 'Grup',
+                'PM' => 'Pesan pribadi',
+                'PUBLIC' => 'Kanal chat',
             ],
         ],
     ],

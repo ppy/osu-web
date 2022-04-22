@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Alguns arquivos contidos neste mapa foram removidos depois de serem julgados como não sendo adequados para uso no osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Vá devagar, jogue mais.',
     ],

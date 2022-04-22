@@ -78,7 +78,7 @@ return [
         'nomination_reset' => 'Nominierung zurücksetzten',
         'nomination_reset_received' => 'Nomination Reset erhalten',
         'nsfw_toggle' => 'Explizit-Markierung',
-        'offset_edit' => '',
+        'offset_edit' => 'Offset bearbeiten',
         'qualify' => 'Qualifikation',
         'rank' => 'Ranking',
         'remove_from_loved' => 'Loved-Entfernung',

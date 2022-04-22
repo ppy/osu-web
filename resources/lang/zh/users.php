@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '[被删除的用户]',
+    'deleted' => '[已删除的用户]',
 
     'beatmapset_activities' => [
         'title' => ":user 的摸图历史",
@@ -207,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => '已停更的谱面',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Loved 的谱面',

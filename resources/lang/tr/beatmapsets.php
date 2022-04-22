@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Bu beatmap üzerinde yer alan bazı varlıklar osu!\'da kullanıma uygun olmadığına karar verildikten sonra kaldırıldı.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Yavaş ol, daha çok oyna.',
     ],

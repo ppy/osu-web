@@ -25,6 +25,11 @@ return [
             'index' => 'seznam',
         ],
 
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
+        ],
+
         'changelog' => [
             'index' => 'výpis',
         ],

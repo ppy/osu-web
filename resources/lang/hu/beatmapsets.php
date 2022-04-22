@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Ennek a map-nek néhány elemét eltávolítottuk, mert nem találtuk őket megfelelőnek az osu!-ban történő használathoz.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Lassíts le, játssz többet.',
     ],

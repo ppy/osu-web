@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang telah Anda miliki terlebih dahulu.',
     ],

@@ -11,6 +11,10 @@ return [
         'rule_violation' => '已在审核后移除了谱面中不适合于 osu! 展示的内容。',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '慢一点，打几张图再回来吧。',
     ],

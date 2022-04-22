@@ -16,10 +16,10 @@ return [
     'channels' => [
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => '通知',
+                'GROUP' => '群聊',
+                'PM' => '私聊',
+                'PUBLIC' => '频道',
             ],
         ],
     ],

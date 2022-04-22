@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'חלק מהקבצים של המפה הוסרו אחרי שהגדרו כלא מתאימים לשימוש ב-!osu.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '',
     ],

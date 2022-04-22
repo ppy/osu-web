@@ -16,10 +16,10 @@ return [
     'channels' => [
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Oznámení',
+                'GROUP' => 'Skupiny',
+                'PM' => 'Přímé zprávy',
+                'PUBLIC' => 'Kanály',
             ],
         ],
     ],

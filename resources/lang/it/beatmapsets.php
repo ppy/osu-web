@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Alcuni elementi contenuti in questa mappa sono stati rimossi dopo che sono stati giudicati non idonei per l\'uso in osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Rallenta, gioca di più.',
     ],

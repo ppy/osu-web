@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Vissa delar av denna map har tagits bort då de anses vara olämpliga i osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Sakta ner, spela mer.',
     ],

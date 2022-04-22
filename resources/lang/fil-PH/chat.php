@@ -16,10 +16,10 @@ return [
     'channels' => [
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Mga Anunsyo',
+                'GROUP' => 'Mga grupo',
+                'PM' => 'Direktang mensahe',
+                'PUBLIC' => 'Channels',
             ],
         ],
     ],

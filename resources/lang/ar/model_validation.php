@@ -163,7 +163,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
+        'no_ranked_beatmapset' => 'الخرائط الـ Ranked لا يمكن الإبلاغ عنها',
         'reason_not_valid' => ':reason ليس مقبولا لنوع الأبلاغ هذا.',
         'self' => "لا يمكنك الإبلاغ عن نفسك!",
     ],

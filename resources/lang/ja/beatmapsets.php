@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'このマップに含まれる一部のアセットは、osu!での使用に適さないと判断され、削除されています。',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'スピードを落として、もっと遊ぼう。',
     ],

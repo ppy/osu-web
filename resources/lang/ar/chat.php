@@ -16,22 +16,22 @@ return [
     'channels' => [
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'الإعلانات',
+                'GROUP' => 'المجموعات',
+                'PM' => 'الرسائل المباشرة',
+                'PUBLIC' => 'القنوات',
             ],
         ],
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'لا يوجد شيء هنا، ربما تركت القناة أو أنها غير موجودة...',
+        'title' => 'القناة غير موجودة',
     ],
 
     'input' => [
         'disabled' => 'غير قادر على إرسال الرسالة...',
-        'disconnected' => '',
+        'disconnected' => 'تم قطع الاتصال',
         'placeholder' => 'اكتب الرسالة...',
         'send' => 'إرسال',
     ],

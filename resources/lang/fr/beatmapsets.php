@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Certains éléments contenus dans cette beatmap ont été supprimés après avoir été jugés inappropriés pour osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Ralentissez, jouez plus.',
     ],

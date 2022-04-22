@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Begrabene Beatmaps',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
@@ -306,7 +309,7 @@ return [
                 'title' => 'Medaillen',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Wiedergabelisten-Spiele',
             ],
             'posts' => [
                 'title' => 'Beiträge',
@@ -333,9 +336,9 @@ return [
                     'title' => 'Erster Platz',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
+                    'to_0' => 'Ablösen',
+                    'to_0_done' => 'Abgelöster Score',
+                    'to_1' => 'Anheften',
                     'to_1_done' => 'Angehefteter Score',
                 ],
                 'pinned' => [

@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '',
     ],

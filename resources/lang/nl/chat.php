@@ -16,17 +16,17 @@ return [
     'channels' => [
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Aankondigingen',
+                'GROUP' => 'Groepen',
+                'PM' => 'Privé Berichten',
+                'PUBLIC' => 'Kanalen',
             ],
         ],
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Er is hier niks, misschien heb je het kanaal verlaten of het bestaat niet...',
+        'title' => 'kanaal niet gevonden',
     ],
 
     'input' => [

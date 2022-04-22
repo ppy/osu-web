@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Alguns elementos contidos neste mapa foram removidos após terem sido avaliados como não sendo adequados para uso no osu!',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Abranda, joga mais.',
     ],

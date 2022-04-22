@@ -7,8 +7,12 @@ return [
     'availability' => [
         'disabled' => 'Deze beatmap kan momenteel niet gedownload worden.',
         'parts-removed' => 'Delen van deze beatmap zijn verwijderd op verzoek van de maker of een derde rechthouder.',
-        'more-info' => 'Check hier voor meer informatie.',
+        'more-info' => 'Klik hier voor meer informatie.',
         'rule_violation' => 'Sommige activa in deze map zijn verwijderd nadat ze zijn beschouwd als niet geschikt voor gebruik in osu!.',
+    ],
+
+    'cover' => [
+        'deleted' => '',
     ],
 
     'download' => [
@@ -126,7 +130,7 @@ return [
             'source' => 'Bron',
             'storyboard' => 'Deze beatmap bevat verhaalborden',
             'success-rate' => 'Slagingspercentage',
-            'tags' => 'Labels',
+            'tags' => 'Tags',
             'video' => 'Deze beatmap bevat een video',
         ],
 
@@ -144,7 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'bereikt op :when',
             'country' => 'Landranking',
-            'error' => '',
+            'error' => 'Ranglijst laden is mislukt',
             'friend' => 'Vriendenranking',
             'global' => 'Globale Ranking',
             'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
@@ -184,10 +188,10 @@ return [
 
         'stats' => [
             'cs' => 'Cirkelgrootte',
-            'cs-mania' => 'Aantal Lanen',
+            'cs-mania' => 'Aantal toetsen',
             'drain' => 'HP Drain',
-            'accuracy' => 'Precisie',
-            'ar' => 'Benaderingssnelheid',
+            'accuracy' => 'Nauwkeurigheidsgraad',
+            'ar' => 'Approach Rate',
             'stars' => 'Sterrenmoeilijkheid',
             'total_length' => 'Lengte',
             'bpm' => 'BPM',
