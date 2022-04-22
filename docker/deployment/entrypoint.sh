@@ -23,10 +23,7 @@ _php() {
 }
 
 _schedule() {
-  while sleep 300; do
-    exec /app/artisan schedule:run &
-    echo 'Sleeping for 5 minutes'
-  done
+  /app/artisan schedule:run
 }
 
 case "$command" in
