@@ -4,12 +4,6 @@
 --}}
 @extends('master')
 
-@php
-    $user = auth()->user();
-    $profileCustomization = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
-    $beatmapsetShowNsfw = $profileCustomization->beatmapset_show_nsfw;
-@endphp
-
 @section('content')
     @include('home._user_header_default')
 
@@ -85,7 +79,7 @@
 
                 <div class="user-home__beatmapsets">
                     @foreach ($newBeatmapsets as $beatmapset)
-                        @include('home._user_beatmapset', ['type' => 'new', 'showNsfw' => $beatmapsetShowNsfw])
+                        @include('home._user_beatmapset', ['type' => 'new'])
                     @endforeach
                 </div>
 
@@ -95,7 +89,7 @@
 
                 <div class="user-home__beatmapsets">
                     @foreach ($popularBeatmapsets as $beatmapset)
-                        @include('home._user_beatmapset', ['type' => 'popular', 'showNsfw' => $beatmapsetShowNsfw])
+                        @include('home._user_beatmapset', ['type' => 'popular'])
                     @endforeach
                 </div>
             </div>

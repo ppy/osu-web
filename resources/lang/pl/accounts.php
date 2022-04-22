@@ -49,7 +49,7 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
-        'beatmapset_disqualify' => 'otrzymuj powiadomienia o dyskwalifikacjach beatmap z następujących trybów',
+        'beatmapset_disqualify' => 'otrzymuj powiadomienia o dyskwalifikacjach beatmap następujących trybów',
         'comment_reply' => 'otrzymuj powiadomienia o odpowiedziach do twoich komentarzy',
         'title' => 'Powiadomienia',
         'topic_auto_subscribe' => 'automatycznie włączaj powiadomienia dla twoich wątków na forum',

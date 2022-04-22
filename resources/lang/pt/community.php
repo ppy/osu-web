@@ -16,7 +16,7 @@ return [
 
             'team' => [
                 'title' => 'Apoiar a equipa',
-                'description' => 'Uma pequena equipa desenvolve e executa o osu!. O teu apoio ajuda-os a, tu sabes... viver.',
+                'description' => 'Uma pequena equipa desenvolve e sustenta o osu! O teu apoio ajuda-os a, tu sabes... viver.',
             ],
             'infra' => [
                 'title' => 'Infraestrutura do servidor',
@@ -33,7 +33,7 @@ return [
             ],
             'tournaments' => [
                 'title' => 'Torneios oficiais',
-                'description' => 'Ajuda a financiar o funcionamento dos (e os prémios para os) torneios oficiais do Campeonato do Mundo osu!.',
+                'description' => 'Ajuda a financiar o funcionamento dos torneios oficiais (e os seus prémios) do Campeonato do Mundo osu!',
                 'link_text' => 'Explorar torneios &raquo;',
             ],
             'bounty-program' => [

@@ -34,7 +34,7 @@ return [
                 'all' => 'Tất cả',
                 'disqualified' => 'Disqualified ',
                 'never_qualified' => 'Không bao giờ đủ tư cách',
-                'qualified' => 'Đủ tư cách',
+                'qualified' => 'Qualified',
                 'ranked' => 'Xếp Hạng',
             ],
 

@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetCover from 'components/beatmapset-cover';
 import DifficultyBadge from 'components/difficulty-badge';
-import Img2x from 'components/img2x';
 import StringWithComponent from 'components/string-with-component';
 import { UserLink } from 'components/user-link';
 import { EndpointRoomJson } from 'interfaces/user-multiplayer-history-json';
@@ -24,10 +24,6 @@ const endingSoonDiffMs = 60 * 60 * 1000; // 60 minutes.
 
 @observer
 export default class Room extends React.Component<Props> {
-  private get background() {
-    return this.props.room.current_playlist_item?.beatmap?.beatmapset?.covers.cover;
-  }
-
   private get playlistItemCount() {
     return this.props.room.active
       ? this.props.room.playlist_item_stats.count_active
@@ -99,8 +95,11 @@ export default class Room extends React.Component<Props> {
   private renderCover() {
     return (
       <a className='multiplayer-room__cover-container' href={route('multiplayer.rooms.show', { room: this.props.room.id })}>
-        <div className='multiplayer-room__cover multiplayer-room__cover--default' />
-        <Img2x className='multiplayer-room__cover' hideOnError src={this.background} />
+        <BeatmapsetCover
+          beatmapset={this.props.room.current_playlist_item?.beatmap?.beatmapset}
+          modifiers='full'
+          size='cover'
+        />
       </a>
     );
   }

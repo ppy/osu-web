@@ -11,6 +11,10 @@ return [
         'rule_violation' => '이 맵에 포함된 일부 요소는 osu!에서 사용하기에 적합하지 않다고 판단되어 제거되었습니다.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '잠시 멈추시고, 좀 더 플레이해보세요.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => '언어',
             'no_scores' => '데이터를 수집중입니다...',
             'nsfw' => '부적절한 내용',
+            'offset' => '온라인 오프셋',
             'points-of-failure' => '실패 지점',
             'source' => '원작',
             'storyboard' => '이 비트맵은 스토리보드를 포함합니다.',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Circle Count',
             'count_sliders' => 'Slider Count',
+            'offset' => '온라인 오프셋 :offset',
             'user-rating' => '유저 평점',
             'rating-spread' => '평점 분포도',
             'nominations' => '추천',

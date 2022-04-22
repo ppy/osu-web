@@ -4,15 +4,11 @@
 --}}
 
 <a class='user-home-beatmapset' href="{{route('beatmapsets.show', $beatmapset->beatmapset_id)}}">
-    @if ($beatmapset->nsfw && !$showNsfw)
-        <div class="user-home-beatmapset__cover user-home-beatmapset__cover--blank"></div>
-    @else
-        <img
-            class='user-home-beatmapset__cover'
-            src="{{$beatmapset->allCoverURLs()['list']}}"
-            srcSet="{{$beatmapset->allCoverURLs()['list']}} 1x, {{$beatmapset->allCoverURLs()['list@2x']}} 2x"
-        />
-    @endif
+    @include('objects._beatmapset_cover', [
+        'beatmapset' => $beatmapset,
+        'modifiers' => 'home',
+        'size' => 'list',
+    ])
 
     <div class="user-home-beatmapset__meta">
         <div class="user-home-beatmapset__title-container">
