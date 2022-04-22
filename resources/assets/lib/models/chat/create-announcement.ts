@@ -121,18 +121,6 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
       }));
   }
 
-  toJson() {
-    const { description, message, name } = this.inputs;
-
-    return {
-      channel: { description, name },
-      message,
-      target_ids: [...this.validUsers.keys()],
-      type: 'ANNOUNCE' as const,
-      uuid: this.uuid,
-    };
-  }
-
   @action
   updateUsers(text: string, immediate: boolean) {
     this.debouncedLookupUsers.cancel();
@@ -230,6 +218,18 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
       message: '',
       name: '',
       users: '',
+    };
+  }
+
+  private toJson() {
+    const { description, message, name } = this.inputs;
+
+    return {
+      channel: { description, name },
+      message,
+      target_ids: [...this.validUsers.keys()],
+      type: 'ANNOUNCE' as const,
+      uuid: this.uuid,
     };
   }
 

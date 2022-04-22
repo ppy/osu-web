@@ -23,12 +23,12 @@ const BusySpinner = ({ busy }: { busy: boolean }) => (
 @observer
 export default class CreateAnnouncement extends React.Component<Props> {
   @computed
-  get canSend() {
+  private get canSend() {
     return core.dataStore.chatState.isReady && !this.model.busy.has('create') && this.model.isValid;
   }
 
   @computed
-  get model() {
+  private get model() {
     return core.dataStore.chatState.createAnnoucement;
   }
 
@@ -107,12 +107,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
     );
   }
 
-  renderValidUsers() {
-    return [...this.model.validUsers.values()].map((user) => (
-      <UserCardBrick key={user.id} modifiers='fit' onRemoveClick={this.handleRemoveUser} user={user} />
-    ));
-  }
-
   @action
   private handleBlur = (e: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLTextAreaElement>) => {
     const elem = e.target;
@@ -161,4 +155,10 @@ export default class CreateAnnouncement extends React.Component<Props> {
   private handleUsersInputPaste = (e: React.SyntheticEvent<HTMLInputElement>) => {
     this.model.updateUsers(e.currentTarget.value, true);
   };
+
+  private renderValidUsers() {
+    return [...this.model.validUsers.values()].map((user) => (
+      <UserCardBrick key={user.id} modifiers='fit' onRemoveClick={this.handleRemoveUser} user={user} />
+    ));
+  }
 }
