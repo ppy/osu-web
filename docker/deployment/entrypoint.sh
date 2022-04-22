@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# exit on any failure
+set -e
+
 command=php
 if [ "$#" -gt 0 ]; then
     command="$1"
@@ -7,9 +10,6 @@ if [ "$#" -gt 0 ]; then
 fi
 
 _octane() {
-  # exit on any failure
-  set -e
-
   /app/artisan config:cache
   /app/artisan route:cache
 
