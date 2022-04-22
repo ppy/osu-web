@@ -5,9 +5,9 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Noch keine osu!(lazer) :type_group -spiele gespielt!',
+        'playlists' => 'Wiedergabelisten',
+        'realtime' => 'Mehrspieler',
     ],
 
     'room' => [
@@ -18,7 +18,7 @@ return [
         'time_left' => ':time übrig',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Die Dauer ist zu lang.',
         ],
 
         'status' => [

@@ -91,6 +91,7 @@ export default class Header extends React.Component<Props> {
           <div className='beatmapset-header__cover'>
             <BeatmapsetCover
               beatmapset={this.props.beatmapset}
+              forceShowVisual
               modifiers='full'
               size='cover'
             />

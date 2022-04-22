@@ -22,6 +22,7 @@ import { ProfilePageSection, profilePageSections, ProfilePageUserJson } from './
 const sectionToUrlType = {
   favouriteBeatmapsets: 'favourite',
   graveyardBeatmapsets: 'graveyard',
+  guestBeatmapsets: 'guest',
   lovedBeatmapsets: 'loved',
   pendingBeatmapsets: 'pending',
   rankedBeatmapsets: 'ranked',
@@ -102,6 +103,7 @@ export default class Controller {
           beatmapPlaycounts: {},
           favouriteBeatmapsets: {},
           graveyardBeatmapsets: {},
+          guestBeatmapsets: {},
           lovedBeatmapsets: {},
           pendingBeatmapsets: {},
           rankedBeatmapsets: {},
@@ -279,6 +281,7 @@ export default class Controller {
 
       case 'favouriteBeatmapsets':
       case 'graveyardBeatmapsets':
+      case 'guestBeatmapsets':
       case 'lovedBeatmapsets':
       case 'pendingBeatmapsets':
       case 'rankedBeatmapsets':

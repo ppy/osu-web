@@ -20,7 +20,7 @@ interface Props {
   } | string;
 }
 
-export default class BigButton extends React.PureComponent<Props> {
+export default class BigButton extends React.Component<Props> {
   static readonly defaultProps = {
     disabled: false,
     extraClasses: [],

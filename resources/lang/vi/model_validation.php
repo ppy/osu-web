@@ -163,7 +163,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
+        'no_ranked_beatmapset' => 'Beatmap đã Được Xếp hạng không thể bị báo cáo',
         'reason_not_valid' => '',
         'self' => "Bạn không thể báo cáo chính mình!",
     ],
