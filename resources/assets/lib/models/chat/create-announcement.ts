@@ -23,23 +23,9 @@ export function isInputKey(key: string): key is InputKey {
 }
 
 export default class CreateAnnouncement implements FancyForm<InputKey> {
-  @observable busy = {
-    create: false,
-    lookupUsers: false,
-  };
-
-  @observable inputs: Record<InputKey, string> = {
-    description: '',
-    message: '',
-    name: '',
-    users: '',
-  };
-  @observable showError: Record<InputKey, boolean> = {
-    description: false,
-    message: false,
-    name: false,
-    users: false,
-  };
+  @observable busy: Record<'create' | 'lookupUsers', boolean>;
+  @observable inputs: Record<InputKey, string>;
+  @observable showError: Record<InputKey, boolean>;
   @observable validUsers = new Map<number, UserJson>();
 
   private debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
@@ -63,6 +49,10 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
   }
 
   constructor() {
+    this.busy = this.resetBusy();
+    this.inputs = this.resetInputs();
+    this.showError = this.resetErrors();
+
     const saved = localStorage.getItem(localStorageKey);
     if (saved != null) {
       try {
@@ -107,8 +97,9 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
   @action
   clear() {
     this.xhrLookupUsers?.abort();
-    Object.keys(this.busy).forEach((key: keyof typeof this.busy) => this.busy[key] = false);
-    Object.keys(this.inputs).forEach((key: keyof typeof this.inputs) => this.inputs[key] = '');
+    this.resetBusy();
+    this.resetErrors();
+    this.resetInputs();
     this.validUsers.clear();
     // localStorage key not removed because the currently the autorun will fill it again with empty values.
   }
@@ -221,6 +212,34 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     } finally {
       runInAction(() => this.busy.lookupUsers = false);
     }
+  }
+
+  @action
+  private resetBusy() {
+    return this.busy = {
+      create: false,
+      lookupUsers: false,
+    };
+  }
+
+  @action
+  private resetErrors() {
+    return this.showError = {
+      description: false,
+      message: false,
+      name: false,
+      users: false,
+    };
+  }
+
+  @action
+  private resetInputs() {
+    return this.inputs = {
+      description: '',
+      message: '',
+      name: '',
+      users: '',
+    };
   }
 
   private validUsersContains(userId?: string | null) {
