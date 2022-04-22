@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .chat-form {
-  --input-height: 30px; // has to be tall enough to fit the brick without shifting.
   --input-size: @font-size--title-small-3;
 
   flex: 1;
@@ -34,7 +33,6 @@
     .reset-input();
     color: hsl(var(--hsl-c1));
     font-size: var(--input-size);
-    min-height: var(--input-height);
   }
 
   &__spinner {
@@ -67,7 +65,6 @@
 
     color: hsl(var(--hsl-c1));
     font-size: var(--input-size);
-    min-height: var(--input-height);
   }
 
   &__users-text {
