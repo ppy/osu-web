@@ -30,7 +30,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
 
   @computed
   get canSend() {
-    return core.dataStore.chatState.isReady && !this.model.busy.create && this.model.isValid;
+    return core.dataStore.chatState.isReady && !this.model.busy.has('create') && this.model.isValid;
   }
 
   @computed
@@ -83,7 +83,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
                 onPaste={this.handleUsersInputPaste}
                 value={this.model.inputs.users}
               />
-              <BusySpinner busy={this.model.busy.lookupUsers} />
+              <BusySpinner busy={this.model.busy.has('lookupUsers')} />
             </div>
           </InputContainer>
           <InputContainer model={this.model} modifiers='chat' name='message'>
@@ -103,7 +103,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
           <BigButton
             disabled={!this.canSend}
             icon='fas fa-bullhorn'
-            isBusy={this.model.busy.create}
+            isBusy={this.model.busy.has('create')}
             modifiers='chat-send'
             props={{ onClick: this.handleButtonClick }}
             text={osu.trans(core.dataStore.chatState.isReady ? 'chat.input.create' : 'chat.input.disconnected')}

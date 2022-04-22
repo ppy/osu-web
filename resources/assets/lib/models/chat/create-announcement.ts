@@ -23,7 +23,7 @@ export function isInputKey(key: string): key is InputKey {
 }
 
 export default class CreateAnnouncement implements FancyForm<InputKey> {
-  @observable busy: Record<'create' | 'lookupUsers', boolean>;
+  @observable busy = new Set<'create' | 'lookupUsers'>();
   @observable inputs: Record<InputKey, string>;
   @observable showError: Record<InputKey, boolean>;
   @observable validUsers = new Map<number, UserJson>();
@@ -49,7 +49,6 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
   }
 
   constructor() {
-    this.busy = this.resetBusy();
     this.inputs = this.resetInputs();
     this.showError = this.resetErrors();
 
@@ -97,7 +96,7 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
   @action
   clear() {
     this.xhrLookupUsers?.abort();
-    this.resetBusy();
+    this.busy.clear();
     this.resetErrors();
     this.resetInputs();
     this.validUsers.clear();
@@ -106,19 +105,19 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
 
   @action
   create() {
-    if (!this.isValid || this.busy.create) return;
+    if (!this.isValid || this.busy.has('create')) return;
 
     // busy state should remain active so the same model can't be used to send multiple requests
     // until the entire workflow is complete, including switching the channel.
     // TODO: need a cancel or timeout or something?
-    this.busy.create = true;
+    this.busy.add('create');
     const json = this.toJson();
     core.dataStore.chatState.waitJoinChannelUuid = json.uuid;
 
     createAnnoucement(json)
       .fail(action((xhr: JQueryXHR) => {
         osu.ajaxError(xhr);
-        this.busy.create = false;
+        this.busy.delete('create');
       }));
   }
 
@@ -142,12 +141,12 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     // TODO: check if change is only whitespace.
     if (text.trim().length === 0) {
       this.xhrLookupUsers?.abort();
-      this.busy.lookupUsers = false;
+      this.busy.delete('lookupUsers');
 
       return;
     }
 
-    this.busy.lookupUsers = true;
+    this.busy.add('lookupUsers');
     this.debouncedLookupUsers();
 
     if (immediate) {
@@ -194,7 +193,7 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
 
     const userIds = this.inputs.users.split(',').map((s) => osu.presence(s.trim())).filter(Boolean);
     if (userIds.length === 0) {
-      this.busy.lookupUsers = false;
+      this.busy.delete('lookupUsers');
       return;
     }
 
@@ -210,16 +209,8 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
 
       osu.ajaxError(error);
     } finally {
-      runInAction(() => this.busy.lookupUsers = false);
+      runInAction(() => this.busy.delete('lookupUsers'));
     }
-  }
-
-  @action
-  private resetBusy() {
-    return this.busy = {
-      create: false,
-      lookupUsers: false,
-    };
   }
 
   @action
