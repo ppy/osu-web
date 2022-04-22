@@ -849,6 +849,11 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapsetOffsetEdit(): string
+    {
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @return string
