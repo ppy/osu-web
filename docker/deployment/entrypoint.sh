@@ -16,14 +16,9 @@ _octane() {
   /app/artisan octane:start --host=0.0.0.0
 }
 
-_schedule() {
-  /app/artisan schedule:run
-}
-
 case "$command" in
     artisan) exec /app/artisan "$@";;
     assets) exec nginx -c /app/docker/deployment/nginx-assets.conf "$@";;
     octane) _octane;;
-    schedule) _schedule;;
     *) exec "$command" "$@";;
 esac
