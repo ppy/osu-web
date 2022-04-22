@@ -33,26 +33,21 @@ The image built serves multiple purposes, each can be run by passing the paramet
 
 There are three main commands:
 
-- php: starts php-fpm on port 9000
-- assets: starts nginx on port 8000. Used to serve static assets
+- octane: starts octane on port 8000
+- assets: starts nginx on port 8080. Used to serve static assets
 - artisan: starts artisan command. This should be followed by correct options
 
-### php-fpm
+### octane
 
-Command: `php`
+Command: `octane`
 
-Connect to it at port 9000 through a reverse proxy like `nginx`. Root directory for it is `/app/public`.
-
-Technically the proxy should only be accessing `/index.php` as there's no other public accessible php scripts.
-Use something like `SCRIPT_FILENAME /app/public/index.php` when using nginx.
-
-php (or more accurately, php-fpm) config can be overridden by mounting the file to `/app/docker/deployment/php-fpm.conf`. See the included default file for reference. User/group settings aren't actually used as it's already run using non-root user but it needs a valid username.
+Serves PHP over HTTP. Connect to it at port 8000 through a reverse proxy like `nginx`.
 
 ### static assets
 
 Command: `assets`
 
-This serves static files using nginx at port 8000. Similar to php-fpm, nginx config file can be overridden through `/app/docker/deployment/nginx-assets.conf`.
+This serves static files using nginx at port 8080. Similar to php-fpm, nginx config file can be overridden through `/app/docker/deployment/nginx-assets.conf`.
 
 ### job runner
 
