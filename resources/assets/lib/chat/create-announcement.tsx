@@ -70,11 +70,9 @@ export default class CreateAnnouncement extends React.Component<Props> {
             />
           </InputContainer>
           <InputContainer for='chat-form-users' labelKey='chat.form.labels.users' model={this.model} modifiers='chat' name='users'>
-            <div className='chat-form__users-input'>
-              <div className='chat-form__users'>
-                <UserCardBrick modifiers='fit' user={core.currentUserOrFail} />
-                {this.renderValidUsers()}
-              </div>
+            <div className='chat-form__input chat-form__input--users'>
+              <UserCardBrick modifiers='fit' user={core.currentUserOrFail} />
+              {this.renderValidUsers()}
               <input
                 className='chat-form__users-text'
                 id='chat-form-users'
