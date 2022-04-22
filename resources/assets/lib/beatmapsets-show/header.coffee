@@ -86,6 +86,7 @@ export class Header extends React.Component
         div className: 'beatmapset-header__cover',
           el BeatmapsetCover,
             beatmapset: @props.beatmapset
+            forceShowVisual: true # check already covered by parent component
             modifiers: 'full'
             size: 'cover'
 
