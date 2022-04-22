@@ -45,7 +45,7 @@ COPY package.json yarn.lock ./
 RUN yarnpkg
 
 COPY . .
-RUN mkdir -p bootstrap/cache storage/framework/views storage/framework/sessions
+RUN mkdir -p bootstrap/cache storage/logs storage/framework/cache storage/framework/views storage/framework/sessions public/uploads public/uploads-avatar public/uploads-replay
 RUN composer dump-autoload
 
 ARG APP_URL
@@ -61,7 +61,6 @@ ARG GIT_SHA
 RUN printf "%s" "$GIT_SHA" > version
 
 RUN useradd -m osuweb
-RUN mkdir -p storage/logs storage/framework/cache public/uploads public/uploads-avatar public/uploads-replay
 RUN chown -R osuweb bootstrap/cache storage public/uploads public/uploads-avatar public/uploads-replay
 USER osuweb
 ENV LOG_CHANNEL stderr
