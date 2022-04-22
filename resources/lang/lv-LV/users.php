@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Kapā Metamās Bītmapes',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Mīļākās Bītmapes',
                 ],

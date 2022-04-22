@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => '',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => '',
                 ],

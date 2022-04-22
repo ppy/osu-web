@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => '무덤에 간 비트맵',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Loved 비트맵',
                 ],

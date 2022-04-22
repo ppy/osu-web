@@ -13,9 +13,20 @@ return [
         'user' => 'No puede enviar un mensaje a este usuario en este momento. Esto puede deberse a cualquiera de las siguientes razones:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Anuncios',
+                'GROUP' => 'Grupos',
+                'PM' => 'Mensajes directos',
+                'PUBLIC' => 'Canales',
+            ],
+        ],
+    ],
+
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'No hay nada aquí, tal vez ha abandonado el canal o no existe...',
+        'title' => 'canal no encontrado',
     ],
 
     'input' => [

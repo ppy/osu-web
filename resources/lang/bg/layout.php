@@ -25,6 +25,11 @@ return [
             'index' => 'автори',
         ],
 
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
+        ],
+
         'changelog' => [
             'index' => 'списък',
         ],

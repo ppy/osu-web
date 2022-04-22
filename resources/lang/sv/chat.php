@@ -13,6 +13,17 @@ return [
         'user' => 'Du kan inte skicka ett meddelande till denna användare just nu. Detta kan bero på någon av följande skäl:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
     'not_found' => [
         'message' => '',
         'title' => '',

@@ -5,9 +5,9 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'لا توجد العاب osu!(lazer) :type_group لعبت حتى الأن!',
+        'playlists' => 'قائمة التشغيل',
+        'realtime' => 'لعب جماعي',
     ],
 
     'room' => [
@@ -18,7 +18,7 @@ return [
         'time_left' => 'تبقى:time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'المدة طويلة جداً.',
         ],
 
         'status' => [
