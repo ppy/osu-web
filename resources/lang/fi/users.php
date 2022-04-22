@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Kuopatut',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Rakastetut beatmapit',
                 ],
@@ -317,7 +320,7 @@ return [
                 'title' => 'Viimeisimmät',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Moninpelit',
             ],
             'top_ranks' => [
                 'download_replay' => 'Lataa Replay',

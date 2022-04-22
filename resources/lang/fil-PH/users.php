@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Mga Inilibing na Beatmap',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Mga Minamahal na Beatmap',
                 ],

@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Заброшенные карты',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Любимые карты',
                 ],

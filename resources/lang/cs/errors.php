@@ -30,6 +30,6 @@ return [
     'search' => [
         'default' => 'Nepodařilo se získat žádné výsledky, zkus to znovu později.',
         'invalid_cursor_exception' => 'Zadán neplatný parametr kurzoru.',
-        'operation_timeout_exception' => '',
+        'operation_timeout_exception' => 'Hledání je v současné době zaneprázdněnější, než obvykle, opakujte akci později.',
     ],
 ];

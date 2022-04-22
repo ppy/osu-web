@@ -13,9 +13,20 @@ return [
         'user' => '现在你无法向此玩家发送消息，这可能是由于以下原因：',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '通知',
+                'GROUP' => '群聊',
+                'PM' => '私聊',
+                'PUBLIC' => '频道',
+            ],
+        ],
+    ],
+
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => '这里没有任何内容，或许你离开了频道或者它并不存在...',
+        'title' => '未找到频道',
     ],
 
     'input' => [

@@ -15,7 +15,7 @@ return [
         'closing' => 'Met vriendelijke groet,',
         'hello' => 'Hallo :user,',
         'report' => 'Reageer op deze e-mail met SPOED als je niet om deze wijziging hebt verzocht.',
-        'ignore' => '',
+        'ignore' => 'Als dit verzoek niet van jou kwam, dan kun je dit bericht negeren.',
     ],
 
     'donation_thanks' => [

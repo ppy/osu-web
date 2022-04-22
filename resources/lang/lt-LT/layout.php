@@ -25,6 +25,11 @@ return [
             'index' => 'sąrašas',
         ],
 
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
+        ],
+
         'changelog' => [
             'index' => 'sąrašas',
         ],

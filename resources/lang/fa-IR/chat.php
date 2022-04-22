@@ -13,6 +13,17 @@ return [
         'user' => 'شما در حال حاضر نمی توانید به این کاربر پیام بدهید.',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
     'not_found' => [
         'message' => '',
         'title' => '',
