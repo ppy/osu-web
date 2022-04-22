@@ -12,6 +12,9 @@ import { parseJsonNullable } from 'utils/json';
 import { currentUrl, currentUrlParams } from 'utils/turbolinks';
 
 interface ChatInitialJson {
+  current_user_attributes: {
+    can_chat_announce: boolean;
+  };
   last_message_id: number | null;
   presence: ChannelJson[];
   send_to?: SendToJson;
@@ -68,6 +71,7 @@ core.reactTurbolinks.register('chat', action(() => {
       // initial population of channel/presence data
       core.dataStore.channelStore.updateMany(initial.presence);
       core.dataStore.chatState.skipRefresh = true;
+      core.dataStore.chatState.canChatAnnounce = initial.current_user_attributes.can_chat_announce;
     }
 
     core.dataStore.channelStore.lastReceivedMessageId = initial.last_message_id ?? 0;

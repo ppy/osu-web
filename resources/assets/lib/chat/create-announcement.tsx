@@ -23,12 +23,6 @@ const BusySpinner = ({ busy }: { busy: boolean }) => (
 @observer
 export default class CreateAnnouncement extends React.Component<Props> {
   @computed
-  get canView() {
-    const currentUser = core.currentUserOrFail;
-    return currentUser.is_admin || currentUser.is_moderator || core.currentUserModel.inGroup('announce');
-  }
-
-  @computed
   get canSend() {
     return core.dataStore.chatState.isReady && !this.model.busy.has('create') && this.model.isValid;
   }
@@ -45,7 +39,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
   }
 
   render() {
-    if (!this.canView) return null;
+    if (!core.dataStore.chatState.canChatAnnounce) return null;
 
     return (
       <div className='chat-form'>

@@ -25,6 +25,7 @@ type ChannelId = number | 'create' | null;
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
+  @observable canChatAnnounce = false;
   @observable createAnnoucement = new CreateAnnouncement();
   @observable isReady = false;
   skipRefresh = false;
