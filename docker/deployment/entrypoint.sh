@@ -7,34 +7,13 @@ if [ "$#" -gt 0 ]; then
 fi
 
 _octane() {
-  # exit on config update fail
+  # exit on any failure
   set -e
 
   /app/artisan config:cache
   /app/artisan route:cache
 
-  /app/docker/deployment/entrypoint.sh config_reloader &
-  /app/artisan octane:start --host=0.0.0.0 &
-  OCTANE_PID=$!
-
-  wait $OCTANE_PID
-
-  echo "octane exit $?"
-
-  # kill child processes (config reloader)
-  pkill -TERM -P $$
-}
-
-_config_reloader() {
-  while true; do
-    echo "Awaiting config update on .env..."
-    inotifywait -e modify .env
-
-    echo "Reloading config..."
-    /app/artisan config:cache
-    /app/artisan route:cache
-    /app/artisan octane:reload
-  done
+  /app/artisan octane:start --host=0.0.0.0
 }
 
 _php() {
@@ -56,6 +35,5 @@ case "$command" in
     octane) _octane;;
     php) _php;;
     schedule) _schedule;;
-    config_reloader) _config_reloader;;
     *) exec "$command" "$@";;
 esac
