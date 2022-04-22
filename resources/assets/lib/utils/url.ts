@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
-import { startsWith } from 'lodash';
+import { startsWith, unescape } from 'lodash';
 import { TurbolinksLocation } from 'turbolinks';
 import { currentUrl } from 'utils/turbolinks';
 

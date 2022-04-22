@@ -126,6 +126,10 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
         if (
             $beatmapset !== null
             && in_array($beatmapset->status(), ['wip', 'graveyard', 'pending'], true)
@@ -651,6 +655,16 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @return string
+     */
+    public function checkBeatmapsetRemoveFromLoved(?User $user): string
+    {
+        // admin only (:
+        return 'unauthorized';
     }
 
     /**

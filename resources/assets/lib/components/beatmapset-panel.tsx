@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsPopup from 'beatmapset-panel/beatmaps-popup';
+import BeatmapsetCover from 'components/beatmapset-cover';
 import { CircularProgress } from 'components/circular-progress';
-import Img2x from 'components/img2x';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetJson, { BeatmapsetStatus } from 'interfaces/beatmapset-json';
@@ -391,24 +391,20 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     return (
       <a className='beatmapset-panel__cover-container' href={this.url}>
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--play'>
-          <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
-          {this.showVisual && (
-            <Img2x
-              className='beatmapset-panel__cover'
-              hideOnError
-              src={this.props.beatmapset.covers.list}
-            />
-          )}
+          <BeatmapsetCover
+            beatmapset={this.props.beatmapset}
+            modifiers='full'
+            size='list'
+          />
         </div>
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--info'>
-          <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
-          {this.showVisual && core.windowSize.isDesktop && (
-            <Img2x
-              className='beatmapset-panel__cover'
-              hideOnError
-              src={this.props.beatmapset.covers.card}
+          {core.windowSize.isDesktop &&
+            <BeatmapsetCover
+              beatmapset={this.props.beatmapset}
+              modifiers='full'
+              size='card'
             />
-          )}
+          }
         </div>
       </a>
     );
