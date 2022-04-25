@@ -41,9 +41,12 @@ type BeatmapsetExtendedJson =
   & Partial<BeatmapsetExtendedJsonOverrideIncludes>;
 export default BeatmapsetExtendedJson;
 
-export type BeatmapsetJsonForShow = BeatmapsetExtendedJson & Required<Pick<BeatmapsetExtendedJson,
-| 'beatmaps' // TODO: also mark failtimes and max_combo as included
-| 'converts' // TODO: also mark failtimes as included
+interface BeatmapsetJsonForShowOverrideIncludes {
+  beatmaps: (BeatmapExtendedJson & Required<Pick<BeatmapExtendedJson, 'failtimes' | 'max_combo'>>)[];
+  converts: (BeatmapExtendedJson & Required<Pick<BeatmapExtendedJson, 'failtimes'>>)[];
+}
+
+type BeatmapsetJsonForShowIncludes = Required<Pick<BeatmapsetExtendedJson,
 | 'current_user_attributes'
 | 'description'
 | 'genre'
@@ -52,3 +55,7 @@ export type BeatmapsetJsonForShow = BeatmapsetExtendedJson & Required<Pick<Beatm
 | 'recent_favourites'
 | 'user'
 >>;
+
+export type BeatmapsetJsonForShow =
+  Omit<BeatmapsetExtendedJson & BeatmapsetJsonForShowIncludes, keyof BeatmapsetJsonForShowOverrideIncludes>
+  & BeatmapsetJsonForShowOverrideIncludes;
