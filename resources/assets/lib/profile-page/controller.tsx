@@ -129,9 +129,9 @@ export default class Controller {
     this.scoresNotice = initialData.scores_notice;
     this.displayCoverUrl = this.state.user.cover.url;
 
-    $.subscribe('score:pin', this.onScorePinUpdate);
-
     makeObservable(this);
+
+    $.subscribe('score:pin', this.onScorePinUpdate);
   }
 
   @action
@@ -350,6 +350,7 @@ export default class Controller {
     this.displayCoverUrl = url ?? this.state.user.cover.url;
   }
 
+  @action
   private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: ScoreJson) => {
     // make sure the typing is correct
     if (!isScoreJsonForUser(score)) {
