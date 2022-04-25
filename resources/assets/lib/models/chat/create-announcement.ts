@@ -29,6 +29,7 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
   @observable validUsers = new Map<number, UserJson>();
 
   private debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
+  private initialized = false;
   private uuid = osu.uuid();
   private xhrLookupUsers?: JQuery.jqXHR<{ users: UserJson[] }>;
 
@@ -51,6 +52,41 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
   constructor() {
     this.inputs = this.resetInputs();
     this.showError = this.resetErrors();
+
+    makeObservable(this);
+  }
+
+  @action
+  clear() {
+    this.xhrLookupUsers?.abort();
+    this.busy.clear();
+    this.resetErrors();
+    this.resetInputs();
+    this.validUsers.clear();
+    // localStorage key not removed because the currently the autorun will fill it again with empty values.
+  }
+
+  @action
+  create() {
+    if (!this.isValid || this.busy.has('create')) return;
+
+    // busy state should remain active so the same model can't be used to send multiple requests
+    // until the entire workflow is complete, including switching the channel.
+    // TODO: need a cancel or timeout or something?
+    this.busy.add('create');
+    const json = this.toJson();
+    core.dataStore.chatState.waitJoinChannelUuid = json.uuid;
+
+    createAnnoucement(json)
+      .fail(action((xhr: JQueryXHR) => {
+        osu.ajaxError(xhr);
+        this.busy.delete('create');
+      }));
+  }
+
+  @action
+  initialize() {
+    if (this.initialized) return;
 
     const saved = localStorage.getItem(localStorageKey);
     if (saved != null) {
@@ -80,8 +116,6 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
       }
     }
 
-    makeObservable(this);
-
     autorun(() => {
       const props: LocalStorageProps = {
         ...this.inputs,
@@ -91,34 +125,8 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
       // TODO: don't save if 'empty'?
       localStorage.setItem(localStorageKey, JSON.stringify(props));
     });
-  }
 
-  @action
-  clear() {
-    this.xhrLookupUsers?.abort();
-    this.busy.clear();
-    this.resetErrors();
-    this.resetInputs();
-    this.validUsers.clear();
-    // localStorage key not removed because the currently the autorun will fill it again with empty values.
-  }
-
-  @action
-  create() {
-    if (!this.isValid || this.busy.has('create')) return;
-
-    // busy state should remain active so the same model can't be used to send multiple requests
-    // until the entire workflow is complete, including switching the channel.
-    // TODO: need a cancel or timeout or something?
-    this.busy.add('create');
-    const json = this.toJson();
-    core.dataStore.chatState.waitJoinChannelUuid = json.uuid;
-
-    createAnnoucement(json)
-      .fail(action((xhr: JQueryXHR) => {
-        osu.ajaxError(xhr);
-        this.busy.delete('create');
-      }));
+    this.initialized = true;
   }
 
   @action

@@ -6,7 +6,7 @@ import InputContainer from 'components/input-container';
 import { Spinner } from 'components/spinner';
 import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
-import { action, computed, makeObservable } from 'mobx';
+import { action, computed, makeObservable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { isInputKey } from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
@@ -36,6 +36,10 @@ export default class CreateAnnouncement extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
+
+    runInAction(() => {
+      this.model.initialize();
+    });
   }
 
   render() {
