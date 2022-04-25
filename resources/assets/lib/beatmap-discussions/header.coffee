@@ -4,7 +4,7 @@
 import headerLinks from 'beatmapsets-show/header-links'
 import BeatmapBasicStats from 'components/beatmap-basic-stats'
 import BeatmapsetCover from 'components/beatmapset-cover'
-import { BeatmapsetMapping } from 'components/beatmapset-mapping'
+import BeatmapsetMapping from 'components/beatmapset-mapping'
 import BigButton from 'components/big-button'
 import HeaderV4 from 'components/header-v4'
 import PlaymodeTabs from 'components/playmode-tabs'
