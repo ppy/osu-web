@@ -129,9 +129,10 @@ export default class Controller {
     this.scoresNotice = initialData.scores_notice;
     this.displayCoverUrl = this.state.user.cover.url;
 
-    $.subscribe('score:pin', this.onScorePinUpdate);
-
     makeObservable(this);
+
+    $.subscribe('score:pin', this.onScorePinUpdate);
+    $(document).on('turbolinks:before-cache', this.saveState);
   }
 
   @action
@@ -330,6 +331,8 @@ export default class Controller {
     Object.values(this.xhr).forEach((xhr) => xhr?.abort());
     this.debouncedSetDisplayCoverUrl.cancel();
     $.unsubscribe('score:pin', this.onScorePinUpdate);
+    $(document).off('turbolinks:before-cache', this.saveState);
+    this.saveState();
   }
 
   paginatorJson<T extends ProfilePageSection>(section: T) {
@@ -350,6 +353,7 @@ export default class Controller {
     this.displayCoverUrl = url ?? this.state.user.cover.url;
   }
 
+  @action
   private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: ScoreJson) => {
     // make sure the typing is correct
     if (!isScoreJsonForUser(score)) {
