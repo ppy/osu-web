@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Išmesti Beatmapai',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => '',
                 ],

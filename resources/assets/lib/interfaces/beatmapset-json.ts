@@ -7,7 +7,7 @@ import BeatmapsetEventJson from './beatmapset-event-json';
 import GameMode from './game-mode';
 import GenreJson from './genre-json';
 import LanguageJson from './language-json';
-import UserJson from './user-json';
+import UserJson, { UserJsonDeleted } from './user-json';
 
 interface BeatmapsetCovers {
   card: string;
@@ -47,6 +47,7 @@ export type BeatmapsetStatus =
 export interface CurrentUserAttributes {
   can_delete: boolean;
   can_edit_metadata: boolean;
+  can_edit_offset: boolean;
   can_hype: boolean;
   can_hype_reason: string;
   can_love: boolean;
@@ -71,7 +72,7 @@ interface BeatmapsetJsonAvailableIncludes {
   ratings: number[];
   recent_favourites: UserJson[];
   related_users: UserJson[];
-  user: UserJson;
+  user: UserJson | UserJsonDeleted;
 }
 
 interface HypeData {

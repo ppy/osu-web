@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Graveyardのビートマップ',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Lovedされたビートマップ',
                 ],

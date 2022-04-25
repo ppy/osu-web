@@ -138,7 +138,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'over' => 'Polling selesai dan tidak dapat dipilih lagi.',
-                'play_more' => 'Anda harus bermain lebih banyak untuk dapat memberikan suara pada forum.',
+                'play_more' => 'Anda harus lebih banyak bermain sebelum Anda dapat memberikan suara pada forum.',
                 'voted' => 'Pengubahan suara tidak diizinkan.',
 
                 'user' => [

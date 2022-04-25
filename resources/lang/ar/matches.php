@@ -33,7 +33,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'الدقة',
-                'combo' => 'السرد',
+                'combo' => 'كومبو',
                 'score' => 'المجموع',
             ],
         ],
@@ -54,7 +54,7 @@ return [
         'scoring-type' => [
             'score' => 'أعلى نتيجة',
             'accuracy' => 'اعلى دقة',
-            'combo' => 'اعلى سرد',
+            'combo' => 'اعلى كومبو',
             'scorev2' => 'المجموع نسخة 2',
         ],
     ],

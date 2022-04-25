@@ -96,20 +96,8 @@
   }
 }
 
-.default-header-overlay() {
-  position: relative;
-
-  &::before {
-    .full-size();
-    content: '';
-    background-color: hsla(var(--hsl-b1), 80%);
-  }
-}
-
 .light-header-overlay() {
-  position: relative;
-
-  &::before {
+  &::after {
     .full-size();
     content: '';
     background-color: hsla(var(--hsl-b5), 60%);

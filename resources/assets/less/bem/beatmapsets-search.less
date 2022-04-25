@@ -30,13 +30,16 @@
     }
   }
 
-  &__background {
-    .default-header-overlay();
+  &__cover {
     .full-size();
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     opacity: 0.5;
+    --border-radius: 0;
+
+    &::after {
+      .full-size();
+      content: '';
+      background-color: hsla(var(--hsl-b1), 80%);
+    }
   }
 
   &__expand-link {

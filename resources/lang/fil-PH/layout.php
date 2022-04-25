@@ -25,6 +25,11 @@ return [
             'index' => 'listahan',
         ],
 
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
+        ],
+
         'changelog' => [
             'index' => 'listahan',
         ],
