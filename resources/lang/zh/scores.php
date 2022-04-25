@@ -8,7 +8,7 @@ return [
         'title' => ':username 在 :title [:version] 上的成绩',
 
         'beatmap' => [
-            'by' => '曲师：:artist',
+            'by' => 'by :artist',
         ],
 
         'player' => [

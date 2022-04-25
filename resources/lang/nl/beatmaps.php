@@ -229,9 +229,9 @@ return [
                 'genre' => 'Genre',
                 'language' => 'Taal',
                 'mode' => 'Mode',
-                'nsfw' => 'Expliciete inhoud',
+                'nsfw' => 'Expliciete Inhoud',
                 'played' => 'Gespeeld',
-                'rank' => 'Rank Behaald',
+                'rank' => 'Behaalde Rank',
                 'status' => 'Categorieën',
             ],
             'sorting' => [

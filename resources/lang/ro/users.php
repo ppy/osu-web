@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Beatmaps îngropate',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Beatmaps iubite',
                 ],

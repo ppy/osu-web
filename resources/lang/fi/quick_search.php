@@ -8,7 +8,7 @@ return [
         'beatmapset' => '',
         'forum_post' => '',
         'other' => '',
-        'user' => '',
+        'user' => 'Pelaaja',
         'wiki_page' => 'Wiki',
     ],
 

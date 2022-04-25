@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Закінутыя бітмапы',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Любімыя бітмапы',
                 ],

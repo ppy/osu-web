@@ -139,7 +139,7 @@ return [
 
             'data' => [
                 'add_tag' => 'etiqueta ":tag" adicionada',
-                'announcement' => 'tópico fixado e marcado como declaração',
+                'announcement' => 'tópico afixado e marcado como comunicado',
                 'edit_topic' => 'para :title',
                 'fork' => 'de :topic',
                 'pin' => 'tópico afixado',
@@ -314,9 +314,9 @@ return [
             'to_1' => 'Afixar tópico',
             'to_1_confirm' => 'Afixar tópico?',
             'to_1_done' => 'O tópico foi afixado',
-            'to_2' => 'Afixar tópico e marcar como uma declaração pública',
-            'to_2_confirm' => 'Afixar tópico e marcá-lo como um comunicado?',
-            'to_2_done' => 'O tópico foi afixado e marcado como uma declaração pública',
+            'to_2' => 'Afixar tópico e marcar como comunicado',
+            'to_2_confirm' => 'Afixar tópico e marcar como comunicado?',
+            'to_2_done' => 'O tópico foi afixado e marcado como comunicado',
         ],
 
         'moderate_toggle_deleted' => [
