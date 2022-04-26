@@ -23,6 +23,7 @@ use App\Transformers\Solo\ScoreTransformer as SoloScoreTransformer;
 class BeatmapsController extends Controller
 {
     const DEFAULT_API_INCLUDES = ['beatmapset.ratings', 'failtimes', 'max_combo'];
+    const DEFAULT_SCORE_INCLUDES = ['user', 'user.country', 'user.cover'];
 
     public function __construct()
     {
@@ -298,18 +299,20 @@ class BeatmapsController extends Controller
                 $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
             }
 
-            static $scoreIncludes = ['user', 'user.country', 'user.cover'];
-
-            $scoreTransformer = is_api_request() ? new ScoreTransformer() : new SoloScoreTransformer();
+            $scoreTransformer = $this->getScoreTransformer();
             $results = [
-                'scores' => json_collection($query->visibleUsers()->forListing(), $scoreTransformer, $scoreIncludes),
+                'scores' => json_collection(
+                    $query->visibleUsers()->forListing(),
+                    $scoreTransformer,
+                    static::DEFAULT_SCORE_INCLUDES
+                ),
             ];
 
             if (isset($userScore)) {
                 // TODO: this should be moved to user_score
                 $results['userScore'] = [
                     'position' => $userScore->userRank(compact('type', 'mods')),
-                    'score' => json_item($userScore, 'Score', $scoreIncludes),
+                    'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
                 ];
             }
 
@@ -385,7 +388,11 @@ class BeatmapsController extends Controller
 
             return [
                 'position' => $score->userRank(compact('mods')),
-                'score' => json_item($score, 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
+                'score' => json_item(
+                    $score,
+                    $this->getScoreTransformer(),
+                    ['beatmap', ...static::DEFAULT_SCORE_INCLUDES]
+                ),
             ];
         } catch (ScoreRetrievalException $ex) {
             return error_popup($ex->getMessage());
@@ -422,7 +429,7 @@ class BeatmapsController extends Controller
             ])->get();
 
         return [
-            'scores' => json_collection($scores, 'Score'),
+            'scores' => json_collection($scores, $this->getScoreTransformer()),
         ];
     }
 
@@ -439,5 +446,10 @@ class BeatmapsController extends Controller
         }
 
         return $query;
+    }
+
+    private function getScoreTransformer()
+    {
+        return is_api_request() ? new ScoreTransformer() : new SoloScoreTransformer();
     }
 }
