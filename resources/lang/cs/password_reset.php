@@ -13,7 +13,7 @@ return [
 
     'error' => [
         'contact_support' => 'Prosím kontaktujte podporu pro obnovení účtu.',
-        'expired' => '',
+        'expired' => 'Platnost ověřovacího kódu vypršela.',
         'invalid' => '',
         'is_privileged' => 'Kontaktujte peppyho lulz.',
         'missing_key' => 'Vyžadováno.',
@@ -38,7 +38,7 @@ return [
         'username' => 'Zadejte Vaši e-mailovou adresu nebo uživatelské jméno',
 
         'support' => [
-            '_' => '',
+            '_' => 'Potřebujete další pomoc? Kontaktujte nás prostřednictvím :button.',
             'button' => '',
         ],
     ],

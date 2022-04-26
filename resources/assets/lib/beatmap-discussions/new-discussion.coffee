@@ -24,6 +24,7 @@ export class NewDiscussion extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @disposers = new Set
     @inputBox = React.createRef()
     @throttledPost = _.throttle @post, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
@@ -38,7 +39,9 @@ export class NewDiscussion extends React.PureComponent
   componentDidMount: =>
     @setTop()
     $(window).on 'resize', @setTop
-    @inputBox.current?.focus() if @props.autoFocus
+
+    if @props.autoFocus
+      @disposers.add(core.reactTurbolinks.runAfterPageLoad => @inputBox.current?.focus())
 
 
   componentDidUpdate: (prevProps) =>
@@ -53,6 +56,7 @@ export class NewDiscussion extends React.PureComponent
     $(window).off 'resize', @setTop
     @postXhr?.abort()
     @throttledPost.cancel()
+    @disposers.forEach (disposer) => disposer?()
 
 
   render: =>

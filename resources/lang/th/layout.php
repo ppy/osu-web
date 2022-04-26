@@ -25,6 +25,11 @@ return [
             'index' => 'รายการ',
         ],
 
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
+        ],
+
         'changelog' => [
             'index' => 'รายการ',
         ],

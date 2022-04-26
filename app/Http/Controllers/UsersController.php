@@ -220,6 +220,7 @@ class UsersController extends Controller
         static $mapping = [
             'favourite' => 'favouriteBeatmapsets',
             'graveyard' => 'graveyardBeatmapsets',
+            'guest' => 'guestBeatmapsets',
             'loved' => 'lovedBeatmapsets',
             'most_played' => 'beatmapPlaycounts',
             'ranked' => 'rankedBeatmapsets',
@@ -522,6 +523,7 @@ class UsersController extends Controller
             'beatmap_playcounts_count',
             'favourite_beatmapset_count',
             'graveyard_beatmapset_count',
+            'guest_beatmapset_count',
             'loved_beatmapset_count',
             'monthly_playcounts',
             'page',
@@ -577,6 +579,7 @@ class UsersController extends Controller
                 'beatmapPlaycounts' => 5,
                 'favouriteBeatmapsets' => 6,
                 'graveyardBeatmapsets' => 2,
+                'guestBeatmapsets' => 6,
                 'lovedBeatmapsets' => 6,
                 'pendingBeatmapsets' => 6,
                 'rankedBeatmapsets' => 6,
@@ -681,6 +684,12 @@ class UsersController extends Controller
                     $includes = ['beatmaps'];
                     $query = $user->profileBeatmapsetsGraveyard()
                         ->orderBy('last_update', 'desc');
+                    break;
+                case 'guestBeatmapsets':
+                    $transformer = 'Beatmapset';
+                    $includes = ['beatmaps'];
+                    $query = $user->profileBeatmapsetsGuest()
+                        ->orderBy('approved_date', 'desc');
                     break;
                 case 'lovedBeatmapsets':
                     $transformer = 'Beatmapset';

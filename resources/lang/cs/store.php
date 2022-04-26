@@ -67,12 +67,12 @@ return [
     'order' => [
         'cancel' => 'Zrušit objednávku',
         'cancel_confirm' => 'Tato objednávka bude zrušena a platba za ni nebude přijata. Poskytovatel platby nemusí okamžitě uvolnit rezervované finanční prostředky. Jste si jisti?',
-        'cancel_not_allowed' => '',
+        'cancel_not_allowed' => 'Tuto objednávku momentálně nelze zrušit.',
         'invoice' => 'Zobrazit fakturu',
         'no_orders' => 'Nejsou zde žádné objednávky k zobrazení.',
         'paid_on' => 'Objednávka zadána :date',
         'resume' => 'Obnovit objednávku',
-        'shopify_expired' => '',
+        'shopify_expired' => 'Odkaz na objednávku pro tuto objednávku vypršel.',
 
         'item' => [
             'display_name' => [

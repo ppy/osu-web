@@ -18,6 +18,7 @@ interface PropsWithSize {
 
 interface BaseProps {
   beatmapset?: BeatmapsetJson | null;
+  forceShowVisual?: boolean;
   modifiers?: Modifiers;
 }
 
@@ -37,7 +38,7 @@ export default function BeatmapsetCover(props: Props) {
     );
   }
 
-  const style = props.beatmapset != null && showVisual(props.beatmapset)
+  const style = props.beatmapset != null && (props.forceShowVisual || showVisual(props.beatmapset))
     ? cssVar2x(props.beatmapset.covers[props.size])
     : undefined;
 

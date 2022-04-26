@@ -13,9 +13,20 @@ return [
         'user' => 'Al momento non puoi inviare messaggi a questo utente.',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Annunci',
+                'GROUP' => 'Gruppi',
+                'PM' => 'Conversazioni',
+                'PUBLIC' => 'Canali',
+            ],
+        ],
+    ],
+
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Non c\'è niente qui, forse hai lasciato il canale oppure non esiste...',
+        'title' => 'canale non trovato',
     ],
 
     'input' => [

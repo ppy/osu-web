@@ -1,9 +1,9 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import BigButton from 'components/big-button'
 import BeatmapsetCover from 'components/beatmapset-cover'
-import { BeatmapsetMapping } from 'components/beatmapset-mapping'
+import BeatmapsetMapping from 'components/beatmapset-mapping'
+import BigButton from 'components/big-button'
 import UserListPopup, { createTooltip } from 'components/user-list-popup'
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
@@ -70,6 +70,7 @@ export class Header extends React.Component
         div className: 'beatmapset-header__cover',
           el BeatmapsetCover,
             beatmapset: @props.beatmapset
+            forceShowVisual: true # check already covered by parent component
             modifiers: 'full'
             size: 'cover'
 

@@ -170,7 +170,7 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
+            'not_owner' => 'Nur der Eigentümer kann den Score anpinnen.',
             'too_many' => 'Zu viele Scores angepinnt.',
         ],
     ],

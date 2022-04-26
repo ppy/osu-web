@@ -7,7 +7,7 @@ import { Modifiers } from 'utils/css';
 import { switchNever } from 'utils/switch-never';
 import AchievementBadge from './achievement-badge';
 
-export default function parseEvent(event: EventJson, modifiers: Modifiers): { badge?: React.ReactNode; mappings?: Record<string, React.ReactNode> } {
+export default function parseEvent(event: EventJson, modifiers: Modifiers): { badge?: React.ReactNode; iconModifiers?: string; mappings?: Record<string, React.ReactNode> } {
   if (event.parse_error) return {};
 
   switch (event.type) {
@@ -28,6 +28,7 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'beatmapPlaycount':
       return {
+        badge: <span className='fas fa-play' />,
         mappings: {
           beatmap: <a href={event.beatmap.url}>{event.beatmap.title}</a>,
           count: event.count,
@@ -36,6 +37,8 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'beatmapsetApprove':
       return {
+        badge: <span className='fas fa-check' />,
+        iconModifiers: event.approval,
         mappings: {
           approval: osu.trans(`events.beatmapset_status.${event.approval}`),
           beatmapset: <a href={event.beatmapset.url}>{event.beatmapset.title}</a>,
@@ -45,6 +48,8 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'beatmapsetDelete':
       return {
+        badge: <span className='far fa-trash-alt' />,
+        iconModifiers: 'danger',
         mappings: {
           beatmapset: event.beatmapset.title,
         },
@@ -52,6 +57,7 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'beatmapsetRevive':
       return {
+        badge: <span className='fas fa-trash-restore' />,
         mappings: {
           beatmapset: <a href={event.beatmapset.url}>{event.beatmapset.title}</a>,
           user: <strong><a href={event.user.url}>{event.user.username}</a></strong>,
@@ -60,6 +66,8 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'beatmapsetUpdate':
       return {
+        badge: <span className='fas fa-sync-alt' />,
+        iconModifiers: 'green',
         mappings: {
           beatmapset: <em><a href={event.beatmapset.url}>{event.beatmapset.title}</a></em>,
           user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,
@@ -68,6 +76,8 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'beatmapsetUpload':
       return {
+        badge: <span className='fas fa-arrow-up' />,
+        iconModifiers: 'orange',
         mappings: {
           beatmapset: <a href={event.beatmapset.url}>{event.beatmapset.title}</a>,
           user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,
@@ -87,6 +97,7 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'rankLost':
       return {
+        badge: <span className='fas fa-angle-double-down' />,
         mappings: {
           beatmap: <em><a href={event.beatmap.url}>{event.beatmap.title}</a></em>,
           mode: osu.trans(`beatmaps.mode.${event.mode}`),
@@ -96,6 +107,8 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'userSupportAgain':
       return {
+        badge: <span className='fas fa-heart' />,
+        iconModifiers: 'pink',
         mappings: {
           user: <strong><a href={event.user.url}>{event.user.username}</a></strong>,
         },
@@ -103,6 +116,8 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'userSupportFirst':
       return {
+        badge: <span className='fas fa-heart' />,
+        iconModifiers: 'pink',
         mappings: {
           user: <strong><a href={event.user.url}>{event.user.username}</a></strong>,
         },
@@ -110,6 +125,8 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'userSupportGift':
       return {
+        badge: <span className='fas fa-gift' />,
+        iconModifiers: 'pink',
         mappings: {
           user: <strong><a href={event.user.url}>{event.user.username}</a></strong>,
         },
@@ -117,6 +134,7 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
 
     case 'usernameChange':
       return {
+        badge: <span className='fas fa-tag' />,
         mappings: {
           previousUsername: <strong>{event.user.previousUsername}</strong>,
           user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,

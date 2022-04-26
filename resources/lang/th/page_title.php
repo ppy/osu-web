@@ -42,7 +42,7 @@ return [
             'verify_link' => 'การยืนยันบัญชี',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'ศิลปินโดดเด่น',
         ],
         'artists_controller' => [
             '_' => 'ศิลปินที่โดดเด่น',

@@ -33,7 +33,7 @@ return [
     ],
 
     'stat' => [
-        'accuracy' => 'Precisie',
+        'accuracy' => 'Nauwkeurigheid',
         'active_users' => 'Actieve gebruikers',
         'country' => 'Land',
         'play_count' => 'Aantal keer gespeeld',

@@ -12,6 +12,7 @@ export default interface ExtrasJson {
   beatmapPlaycounts: BeatmapPlaycountJson[];
   favouriteBeatmapsets: BeatmapsetExtendedJson[];
   graveyardBeatmapsets: BeatmapsetExtendedJson[];
+  guestBeatmapsets: BeatmapsetExtendedJson[];
   lovedBeatmapsets: BeatmapsetExtendedJson[];
   pendingBeatmapsets: BeatmapsetExtendedJson[];
   rankedBeatmapsets: BeatmapsetExtendedJson[];

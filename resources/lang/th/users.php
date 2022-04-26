@@ -209,6 +209,9 @@ return [
                 'graveyard' => [
                     'title' => 'สุสานบีทแมพ',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'บีทแมพที่ Loved',
                 ],
