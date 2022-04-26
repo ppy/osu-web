@@ -8,7 +8,7 @@ import { openBeatmapEditor, linkHtml } from 'utils/url'
 
 class window.BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
-  @DEFAULT_MODE: 'timeline'
+  @DEFAULT_MODE: 'generalAll'
   @DEFAULT_FILTER: 'total'
   @MAX_MESSAGE_PREVIEW_LENGTH: 100
   @MAX_LENGTH_TIMELINE: 750
