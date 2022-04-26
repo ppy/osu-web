@@ -71,6 +71,7 @@ class Mod
 
     // taiko-specific
     const TAIKO_SWAP = 'SW';
+    const TAIKO_CLASSIC = 'CL';
 
     // non-scorable
     const AUTOPLAY = 'AT';
@@ -335,6 +336,7 @@ class Mod
                         self::TAIKO_SWAP,
                         self::RANDOM,
                         self::ADAPTIVE_SPEED,
+                        self::TAIKO_CLASSIC,
                     ]
                 ),
 

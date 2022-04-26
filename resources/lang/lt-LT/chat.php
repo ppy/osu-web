@@ -13,6 +13,17 @@ return [
         'user' => 'Šiuo metu tu negali rašyti šiam žaidėjui. Taip galėjo nutikti dėl kažkurios iš šių priežasčių:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
     'not_found' => [
         'message' => '',
         'title' => '',

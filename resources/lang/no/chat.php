@@ -13,6 +13,17 @@ return [
         'user' => 'Du kan ikke sende meldinger til denne brukeren akkurat nå. Dette kan være en av følgende grunner:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
     'not_found' => [
         'message' => '',
         'title' => '',

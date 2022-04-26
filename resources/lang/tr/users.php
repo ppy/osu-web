@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Mezarlıktaki Beatmapler',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
                 ],

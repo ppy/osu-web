@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Jezik',
             'no_scores' => '',
             'nsfw' => '',
+            'offset' => '',
             'points-of-failure' => '',
             'source' => 'Izvor',
             'storyboard' => '',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => '',
             'count_sliders' => '',
+            'offset' => '',
             'user-rating' => '',
             'rating-spread' => '',
             'nominations' => '',

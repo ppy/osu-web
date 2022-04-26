@@ -6,7 +6,7 @@
 return [
     'beatmapset' => [
         'button' => 'إبلاغ',
-        'title' => '',
+        'title' => 'الإبلاع عن خريطة :username؟',
     ],
 
     'beatmapset_discussion_post' => [
