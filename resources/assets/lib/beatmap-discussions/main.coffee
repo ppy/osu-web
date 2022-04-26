@@ -33,6 +33,7 @@ export class Main extends React.PureComponent
     @checkNewTimeoutDefault = 10000
     @checkNewTimeoutMax = 60000
     @cache = {}
+    @disposers = new Set
     @timeouts = {}
     @xhr = {}
     @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
@@ -75,7 +76,9 @@ export class Main extends React.PureComponent
     $(document).on "click.#{@eventId}", '.js-beatmap-discussion--jump', @jumpToClick
     $(document).on "turbolinks:before-cache.#{@eventId}", @saveStateToContainer
 
-    @jumpToDiscussionByHash() if !@restoredState
+    if !@restoredState
+      @disposers.add core.reactTurbolinks.runAfterPageLoad(@jumpToDiscussionByHash)
+
     @timeouts.checkNew = Timeout.set @checkNewTimeoutDefault, @checkNew
 
 
@@ -95,6 +98,7 @@ export class Main extends React.PureComponent
 
     Timeout.clear(timeout) for _name, timeout of @timeouts
     xhr?.abort() for _name, xhr of @xhr
+    @disposers.forEach (disposer) => disposer?()
 
 
   render: =>
