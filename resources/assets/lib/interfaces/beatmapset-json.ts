@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapExtendedJson from './beatmap-extended-json';
 import BeatmapJson from './beatmap-json';
 import BeatmapsetEventJson from './beatmapset-event-json';
 import GameMode from './game-mode';
@@ -46,6 +47,7 @@ export type BeatmapsetStatus =
 export interface CurrentUserAttributes {
   can_delete: boolean;
   can_edit_metadata: boolean;
+  can_edit_offset: boolean;
   can_hype: boolean;
   can_hype_reason: string;
   can_love: boolean;
@@ -58,7 +60,7 @@ export interface CurrentUserAttributes {
 
 interface BeatmapsetJsonAvailableIncludes {
   beatmaps: BeatmapJson[];
-  converts: BeatmapJson[];
+  converts: BeatmapExtendedJson[];
   current_user_attributes: CurrentUserAttributes;
   description: BeatmapsetDescription;
   discussions: unknown;
