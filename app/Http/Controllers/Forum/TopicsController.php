@@ -390,7 +390,7 @@ class TopicsController extends Controller
             'previous' => static::nextUrl(
                 $topic,
                 $cursorHelper->getSortName() === 'id_desc' ? 'id_asc' : 'id_desc',
-                $cursorHelper->next([$posts[0] ?? null]),
+                $cursorHelper->next([$posts->first()]),
                 $showDeleted
             ),
         ];
