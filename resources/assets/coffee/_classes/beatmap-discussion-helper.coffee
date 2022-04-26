@@ -150,6 +150,7 @@ class window.BeatmapDiscussionHelper
       discussions # for validating discussionId and getting relevant params
       discussion
       post
+      postId
       user
     } = if useCurrent then _.assign(@urlParse(), options) else options
 
@@ -187,7 +188,9 @@ class window.BeatmapDiscussionHelper
     url = new URL(route('beatmapsets.discussion', params))
     if discussionId?
       url.hash = "/#{discussionId}"
-      url.hash += "/#{post.id}" if post?
+
+      postId = post.id if post?
+      url.hash += "/#{postId}" if postId?
 
 
     if user?
