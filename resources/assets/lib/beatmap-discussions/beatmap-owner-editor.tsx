@@ -7,7 +7,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
@@ -90,10 +90,12 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     );
   }
 
+  @action
   private handleCancelEditingClick = () => {
     this.editing = false;
   };
 
+  @action
   private handleResetClick = () => {
     if (!confirm(osu.trans('beatmap_discussions.owner_editor.reset_confirm'))) return;
 
@@ -107,6 +109,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     this.updateOwner(this.inputUser.id);
   };
 
+  @action
   private handleStartEditingClick = () => {
     this.editing = true;
     this.shouldFocusInputOnNextRender = true;
@@ -114,6 +117,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     this.inputUsername = this.props.user.username;
   };
 
+  @action
   private handleUsernameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.inputUsername = e.currentTarget.value;
 
@@ -208,6 +212,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     );
   }
 
+  @action
   private updateOwner = (userId: number) => {
     this.xhr.updateOwner?.abort();
 
@@ -222,14 +227,14 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     this.xhr.updateOwner = $.ajax(route('beatmaps.update-owner', { beatmap: this.props.beatmap.id }), {
       data: { beatmap: { user_id: userId } },
       method: 'PUT',
-    }).done((data: BeatmapsetWithDiscussionJson) => {
+    }).done(action((data: BeatmapsetWithDiscussionJson) => {
       $.publish('beatmapsetDiscussions:update', { beatmapset: data });
       this.editing = false;
-    }).fail(onErrorWithCallback(() => {
+    })).fail(onErrorWithCallback(() => {
       this.updateOwner(userId);
-    })).always(() => {
+    })).always(action(() => {
       this.updatingOwner = false;
-    });
+    }));
   };
 
   private userLookup = () => {
@@ -238,15 +243,15 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     this.xhr.userLookup = $.ajax(route('users.check-username-exists'), {
       data: { username: this.inputUsername.trim() },
       method: 'POST',
-    }).done((user: UserJson) => {
+    }).done(action((user: UserJson) => {
       if (user.id > 0) {
         this.props.userByName.set(user.username, user);
         this.inputUser = user;
       }
-    }).fail(
+    })).fail(
       onErrorWithCallback(this.userLookup),
-    ).always(() => {
+    ).always(action(() => {
       this.checkingUser = false;
-    });
+    }));
   };
 }
