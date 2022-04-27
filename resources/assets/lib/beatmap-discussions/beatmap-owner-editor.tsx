@@ -128,10 +128,10 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     if (inputUsernameNormalised === this.checkingUser) return;
 
     window.clearTimeout(this.userLookupTimeout);
+    this.xhr.userLookup?.abort();
     this.checkingUser = this.inputUser == null && inputUsernameNormalised !== '' ? inputUsernameNormalised : null;
 
     if (this.checkingUser != null) {
-      this.xhr.userLookup?.abort();
       this.userLookupTimeout = window.setTimeout(this.userLookup, 500);
     }
   };
