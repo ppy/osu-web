@@ -7,16 +7,13 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import { normaliseUsername } from 'models/user';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { transparentGif } from 'utils/html';
-
-function normaliseUsername(username: string) {
-  return username.trim().toLowerCase();
-}
 
 type BeatmapsetWithDiscussionJson = BeatmapsetExtendedJson;
 
@@ -32,18 +29,21 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   @observable private checkingUser: string | null = null;
   @observable private editing = false;
   private inputRef = React.createRef<HTMLInputElement>();
-  @observable private inputUser?: UserJson;
   @observable private inputUsername: string;
   private shouldFocusInputOnNextRender = false;
   @observable private updatingOwner = false;
   private userLookupTimeout?: number;
   private xhr: Partial<Record<string, JQuery.jqXHR>> = {};
 
+  @computed
+  private get inputUser() {
+    return this.props.userByName.get(normaliseUsername(this.inputUsername));
+  }
+
   constructor(props: Props) {
     super(props);
 
     this.inputUsername = props.user.username;
-    this.inputUser = props.user;
 
     makeObservable(this);
   }
@@ -117,7 +117,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   private handleStartEditingClick = () => {
     this.editing = true;
     this.shouldFocusInputOnNextRender = true;
-    this.inputUser = this.props.user;
     this.inputUsername = this.props.user.username;
   };
 
@@ -127,8 +126,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     const inputUsernameNormalised = normaliseUsername(this.inputUsername);
 
     if (inputUsernameNormalised === this.checkingUser) return;
-
-    this.inputUser = this.props.userByName.get(inputUsernameNormalised);
 
     window.clearTimeout(this.userLookupTimeout);
     this.checkingUser = this.inputUser == null && inputUsernameNormalised !== '' ? inputUsernameNormalised : null;
@@ -256,7 +253,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     }).done(action((user: UserJson) => {
       if (user.id > 0) {
         this.props.userByName.set(currentCheckingUser, user);
-        this.inputUser = user;
       }
     })).fail(
       onErrorWithCallback(this.userLookup),
