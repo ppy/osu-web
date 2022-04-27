@@ -47,7 +47,7 @@ Serves PHP over HTTP. Connect to it at port 8000 through a reverse proxy like `n
 
 Command: `assets`
 
-This serves static files using nginx at port 8080. Similar to php-fpm, nginx config file can be overridden through `/app/docker/deployment/nginx-assets.conf`.
+This serves static files using nginx at port 8080. The nginx config file is located at `/app/docker/deployment/nginx-assets.conf` and can be overridden by mounting.
 
 ### job runner
 
