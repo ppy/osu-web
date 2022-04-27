@@ -257,10 +257,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     })).fail(
       onErrorWithCallback(this.userLookup),
     ).always(action(() => {
-      // Avoid reset when request is aborted and checkingUser is set to different value.
-      if (this.checkingUser === currentCheckingUser) {
-        this.checkingUser = null;
-      }
+      this.checkingUser = null;
     }));
   };
 }
