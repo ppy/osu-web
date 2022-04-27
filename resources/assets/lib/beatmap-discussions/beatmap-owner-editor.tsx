@@ -115,9 +115,9 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   };
 
   private handleUsernameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.inputUsername = e.currentTarget.value.trim();
+    this.inputUsername = e.currentTarget.value;
 
-    this.inputUser = this.props.userByName.get(this.inputUsername);
+    this.inputUser = this.props.userByName.get(this.inputUsername.trim());
 
     window.clearTimeout(this.userLookupTimeout);
 
