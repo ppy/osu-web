@@ -14,6 +14,10 @@ import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { transparentGif } from 'utils/html';
 
+function normaliseUsername(username: string) {
+  return username.trim().toLowerCase();
+}
+
 type BeatmapsetWithDiscussionJson = BeatmapsetExtendedJson;
 
 interface Props {
@@ -25,7 +29,7 @@ interface Props {
 
 @observer
 export default class BeatmapOwnerEditor extends React.Component<Props> {
-  @observable private checkingUser = false;
+  @observable private checkingUser: string | null = null;
   @observable private editing = false;
   private inputRef = React.createRef<HTMLInputElement>();
   @observable private inputUser?: UserJson;
@@ -120,14 +124,17 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   @action
   private handleUsernameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.inputUsername = e.currentTarget.value;
-    const inputUsernameTrimmed = this.inputUsername.trim();
+    const inputUsernameNormalised = normaliseUsername(this.inputUsername);
 
-    this.inputUser = this.props.userByName.get(inputUsernameTrimmed);
+    if (inputUsernameNormalised === this.checkingUser) return;
+
+    this.inputUser = this.props.userByName.get(inputUsernameNormalised);
 
     window.clearTimeout(this.userLookupTimeout);
-    this.checkingUser = this.inputUser == null && inputUsernameTrimmed !== '';
+    this.checkingUser = this.inputUser == null && inputUsernameNormalised !== '' ? inputUsernameNormalised : null;
 
-    if (this.checkingUser) {
+    if (this.checkingUser != null) {
+      this.xhr.userLookup?.abort();
       this.userLookupTimeout = window.setTimeout(this.userLookup, 500);
     }
   };
@@ -137,7 +144,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   };
 
   private renderAvatar() {
-    if (this.checkingUser) {
+    if (this.checkingUser != null) {
       return <Spinner />;
     }
 
@@ -239,20 +246,25 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   };
 
   private userLookup = () => {
-    this.xhr.userLookup?.abort();
+    const currentCheckingUser = this.checkingUser;
+
+    if (currentCheckingUser == null) return;
 
     this.xhr.userLookup = $.ajax(route('users.check-username-exists'), {
-      data: { username: this.inputUsername.trim() },
+      data: { username: currentCheckingUser },
       method: 'POST',
     }).done(action((user: UserJson) => {
       if (user.id > 0) {
-        this.props.userByName.set(user.username, user);
+        this.props.userByName.set(currentCheckingUser, user);
         this.inputUser = user;
       }
     })).fail(
       onErrorWithCallback(this.userLookup),
     ).always(action(() => {
-      this.checkingUser = false;
+      // Avoid reset when request is aborted and checkingUser is set to different value.
+      if (this.checkingUser === currentCheckingUser) {
+        this.checkingUser = null;
+      }
     }));
   };
 }
