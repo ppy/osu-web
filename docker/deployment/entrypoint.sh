@@ -2,6 +2,8 @@
 
 # exit on any failure
 set -e
+# exit on unassigned variable
+set -u
 
 command=php
 if [ "$#" -gt 0 ]; then
