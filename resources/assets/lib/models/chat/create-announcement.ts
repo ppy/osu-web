@@ -244,8 +244,7 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
   private validUsersContains(userId?: string | null) {
     if (userId == null) return false;
 
-    const userIdNumber = Number(userId);
-    return (Number.isInteger(userIdNumber) && this.validUsers.has(userIdNumber))
+    return this.validUsers.has(Number(userId))
       // maybe it's a username
       || [...this.validUsers.values()].some((user) => user.username.toLowerCase() === userId.toLowerCase());
   }
