@@ -7,7 +7,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { normaliseUsername } from 'models/user';
 import * as React from 'react';
@@ -16,6 +16,11 @@ import { classWithModifiers } from 'utils/css';
 import { transparentGif } from 'utils/html';
 
 type BeatmapsetWithDiscussionJson = BeatmapsetExtendedJson;
+
+interface XhrCollection {
+  updateOwner?: JQuery.jqXHR<BeatmapsetWithDiscussionJson>;
+  userLookup?: JQuery.jqXHR<UserJson>;
+}
 
 interface Props {
   beatmap: BeatmapJson;
@@ -33,7 +38,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   private shouldFocusInputOnNextRender = false;
   @observable private updatingOwner = false;
   private userLookupTimeout?: number;
-  private xhr: Partial<Record<string, JQuery.jqXHR>> = {};
+  private xhr: XhrCollection = {};
 
   @computed
   private get inputUser() {
@@ -232,7 +237,8 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     this.xhr.updateOwner = $.ajax(route('beatmaps.update-owner', { beatmap: this.props.beatmap.id }), {
       data: { beatmap: { user_id: userId } },
       method: 'PUT',
-    }).done(action((data: BeatmapsetWithDiscussionJson) => {
+    });
+    this.xhr.updateOwner.done((data) => runInAction(() => {
       $.publish('beatmapsetDiscussions:update', { beatmapset: data });
       this.editing = false;
     })).fail(onErrorWithCallback(() => {
@@ -250,7 +256,8 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     this.xhr.userLookup = $.ajax(route('users.check-username-exists'), {
       data: { username: currentCheckingUser },
       method: 'POST',
-    }).done(action((user: UserJson) => {
+    });
+    this.xhr.userLookup.done((user) => runInAction(() => {
       if (user.id > 0) {
         this.props.userByName.set(currentCheckingUser, user);
       }
