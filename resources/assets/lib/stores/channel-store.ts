@@ -17,7 +17,7 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
-import { error as ajaxError } from 'utils/ajax';
+import { onError } from 'utils/ajax';
 
 function alphabeticalSort(a: Channel, b: Channel) {
   return a.name.localeCompare(b.name);
@@ -278,7 +278,7 @@ export default class ChannelStore implements DispatchListener {
       channel.afterSendMesssage(message, null);
       // FIXME: this seems like the wrong place to tigger an error popup.
       // FIXME: error is typed as any
-      ajaxError(error, error.statusText);
+      onError(error);
     }
   }
 
