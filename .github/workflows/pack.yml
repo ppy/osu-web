@@ -24,7 +24,6 @@ jobs:
           tags: |
             type=raw,value=latest,enable=${{ !contains(github.ref_name, '-') }}
             type=raw,value=${{ github.ref_name }}
-            type=sha
           flavor: |
             latest=false
       -
