@@ -23,7 +23,7 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=raw,value=latest,enable=${{ !contains(github.ref_name, '-') }}
-            type=raw,pattern=${{ github.ref_name }}
+            type=raw,value=${{ github.ref_name }}
             type=sha
           flavor: |
             latest=false
