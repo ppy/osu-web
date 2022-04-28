@@ -26,16 +26,20 @@ export class Client {
   }
 
   @action
-  async revoke() {
+  revoke() {
     this.isRevoking = true;
 
-    return $.ajax({
+    const xhr = $.ajax({
       method: 'DELETE',
       url: route('oauth.authorized-clients.destroy', { authorized_client: this.id }),
-    }).then(() => {
+    }) as JQuery.jqXHR<void>;
+
+    xhr.done(action(() => {
       this.revoked = true;
-    }).always(() => {
+    })).always(action(() => {
       this.isRevoking = false;
-    });
+    }));
+
+    return xhr;
   }
 }
