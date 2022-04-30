@@ -69,7 +69,7 @@ const BeatmapDots = observer(({ compact, beatmaps, mode }: { beatmaps: BeatmapJs
 
 const BeatmapsetBadge = ({ type }: { type: string }) => (
   <span className={`beatmapset-badge beatmapset-badge--${type} beatmapset-badge--panel`}>
-    {osu.trans(`beatmapsets.${type.replace('-', '_')}_badge.label`)}
+    {osu.trans(`beatmapsets.${type.replaceAll('-', '_')}_badge.label`)}
   </span>
 );
 
