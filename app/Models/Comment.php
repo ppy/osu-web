@@ -190,6 +190,7 @@ class Comment extends Model
         if ($this->parent_id !== null && $this->parent !== null) {
             $this->commentable_id = $this->parent->commentable_id;
             $this->commentable_type = $this->parent->commentable_type;
+            $this->unsetRelation('commentable');
         }
 
         if (!$this->isValid()) {
