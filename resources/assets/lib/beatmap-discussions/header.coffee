@@ -206,4 +206,4 @@ export class Header extends React.PureComponent
   onSelectBeatmap: (beatmapId) =>
     $.publish 'beatmapsetDiscussions:update',
       beatmapId: beatmapId
-      mode: BeatmapDiscussionHelper.DEFAULT_MODE
+      mode: 'timeline'
