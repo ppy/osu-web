@@ -223,10 +223,12 @@ export class SearchPanel extends React.Component
 
 
   setHeaderPinned: (_event, pinned) =>
+    focusOptions = preventScroll: true
+
     if pinned && document.activeElement == @inputRef.current
-      @pinnedInputRef.current.focus()
+      @pinnedInputRef.current.focus(focusOptions)
     else if !pinned && document.activeElement == @pinnedInputRef.current
-      @inputRef.current.focus()
+      @inputRef.current.focus(focusOptions)
 
 
   mountPortal: (portal, root) ->
