@@ -171,7 +171,7 @@ use Request;
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
  */
-class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable
+class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable, Traits\ReportableInterface
 {
     use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserAvatar, Traits\UserScoreable, Traits\UserStore, Validatable;
 
@@ -944,11 +944,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->user_type === 1;
     }
 
-    public function isDeleted()
-    {
-        return starts_with($this->username, 'DeletedUser_');
-    }
-
     public function isOld()
     {
         return preg_match('/_old(_\d+)?$/', $this->username) === 1;
@@ -972,6 +967,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 $lastBan->period !== 0 &&
                 $lastBan->endTime()->isFuture();
         });
+    }
+
+    public function trashed()
+    {
+        return starts_with($this->username, 'DeletedUser_');
     }
 
     /**

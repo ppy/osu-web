@@ -13,6 +13,7 @@ use PDOException;
 trait Reportable
 {
     abstract protected function newReportableExtraParams(): array;
+    abstract public function trashed();
 
     public function reportedIn()
     {
