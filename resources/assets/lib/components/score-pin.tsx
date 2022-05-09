@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import ScoreJson from 'interfaces/score-json';
+import SoloScoreJson from 'interfaces/solo-score-json';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -11,7 +11,7 @@ import { onErrorWithCallback } from 'utils/ajax';
 interface Props {
   className: string;
   onUpdate?: () => void;
-  score: ScoreJson;
+  score: SoloScoreJson;
 }
 
 @observer
