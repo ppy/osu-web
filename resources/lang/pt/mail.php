@@ -32,7 +32,7 @@ return [
         ],
 
         'support' => [
-            '_' => 'Muito obrigado pelo teu :support ao osu!.',
+            '_' => 'Muito obrigado pelo teu :support ao osu!',
             'first' => 'apoio',
             'repeat' => 'apoio contínuo',
         ],
@@ -47,7 +47,7 @@ return [
 
     'password_reset' => [
         'code' => 'O teu código de verificação é:',
-        'requested' => 'Tu ou alguém a fingir que és tu solicitou um reinício da palavra-passe na tua conta osu!.',
+        'requested' => 'Tu ou alguém a fingir que és tu, solicitou uma redefinição da palavra-passe na tua conta osu!',
         'subject' => 'Recuperação da conta osu!',
     ],
 

@@ -31,6 +31,7 @@ interface UserJsonAvailableIncludes {
   friends: UserRelationJson[];
   graveyard_beatmapset_count: number;
   groups: UserGroupJson[];
+  guest_beatmapset_count: number;
   is_admin: boolean;
   is_bng: boolean;
   is_full_bn: boolean;
@@ -83,3 +84,6 @@ interface UserJsonDefaultAttributes {
 type UserJson = UserJsonDefaultAttributes & Partial<UserJsonAvailableIncludes>;
 
 export default UserJson;
+
+// FIXME: Using Partial isn't quite correct as the keys are there but the values are null.
+export type UserJsonDeleted = Partial<UserJson> & { username: string };

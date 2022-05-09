@@ -29,7 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'لم نمتكن من جلب اي نتائج, حاول مجددا لاحقا.',
-        'invalid_cursor_exception' => '',
+        'invalid_cursor_exception' => 'معلوم المؤشر المحدد غير صالح.',
         'operation_timeout_exception' => 'حاليا البحث مشغول اكثر من العادة, حاول مجددا لاحقا.',
     ],
 ];

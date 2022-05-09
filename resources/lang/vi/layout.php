@@ -25,6 +25,11 @@ return [
             'index' => 'danh sách',
         ],
 
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
+        ],
+
         'changelog' => [
             'index' => 'danh sách',
         ],

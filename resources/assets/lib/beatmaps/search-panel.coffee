@@ -1,12 +1,14 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { SearchFilter } from './search-filter'
+import BeatmapsetCover from 'components/beatmapset-cover'
 import { runInAction } from 'mobx'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, a, i, input, h1, h2, li, ol, span } from 'react-dom-factories'
+import { SearchFilter } from './search-filter'
+
 el = React.createElement
 controller = core.beatmapsetSearchController
 
@@ -138,10 +140,8 @@ export class SearchPanel extends React.Component
     div
       ref: @props.innerRef
       className: 'beatmapsets-search'
-      div
-        className: 'beatmapsets-search__background beatmapsets-search__background--guest'
-        style:
-          backgroundImage: osu.urlPresence(@props.background)
+      div className: 'beatmapsets-search__cover',
+        el BeatmapsetCover, beatmapset: @props.firstBeatmapset, modifiers: 'full', size: 'cover'
       div className: 'beatmapsets-search__input-container js-user-link',
         input
           className: 'beatmapsets-search__input'
@@ -160,10 +160,8 @@ export class SearchPanel extends React.Component
     div
       ref: @props.innerRef
       className: cssClasses
-      div
-        className: 'beatmapsets-search__background'
-        style:
-          backgroundImage: osu.urlPresence(@props.background)
+      div className: 'beatmapsets-search__cover',
+        el BeatmapsetCover, beatmapset: @props.firstBeatmapset, modifiers: 'full', size: 'cover'
       div className: 'beatmapsets-search__input-container',
         input
           className: 'beatmapsets-search__input js-beatmapsets-search-input'

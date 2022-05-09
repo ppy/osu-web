@@ -10,8 +10,8 @@ return [
 
     'array_and' => [
         'words_connector' => '，',
-        'two_words_connector' => '和',
-        'last_word_connector' => '和',
+        'two_words_connector' => ' 和 ',
+        'last_word_connector' => ' 和 ',
     ],
 
     'badges' => [

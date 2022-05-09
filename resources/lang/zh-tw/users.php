@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => '已拋棄的圖譜',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => '喜歡的圖譜',
                 ],

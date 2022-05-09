@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => 'المنتدى',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'سجلات الموضوع',
         ],
         'topic_watches_controller' => [
             'index' => 'لوحة التحكم',
@@ -42,7 +42,7 @@ return [
             'verify_link' => 'التحقق من الحساب',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'الفنانين المميزين',
         ],
         'artists_controller' => [
             '_' => 'الفنانين المميزين',
@@ -143,7 +143,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'صادِق التطبيق',
         ],
     ],
     'store' => [

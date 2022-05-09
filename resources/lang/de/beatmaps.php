@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Bist du sicher? Dadurch wird die Beatmap aus der Qualifizierung entfernt und der Nominierungsprozess zurückgesetzt.',
             'nomination_reset' => 'Bist du dir sicher? Der Nominierungsprozess wird durch das neue Problem zurückgesetzt.',
-            'problem_warning' => '',
+            'problem_warning' => 'Bist du sicher, dass du ein Problem in dieser Beatmap melden möchtest? Dies wird die Beatmap-Nominatoren alarmieren.',
         ],
     ],
 

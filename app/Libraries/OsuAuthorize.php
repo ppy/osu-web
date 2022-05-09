@@ -126,6 +126,10 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
         if (
             $beatmapset !== null
             && in_array($beatmapset->status(), ['wip', 'graveyard', 'pending'], true)
@@ -655,6 +659,16 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @return string
+     */
+    public function checkBeatmapsetRemoveFromLoved(?User $user): string
+    {
+        // admin only (:
+        return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
      * @param Beatmapset $beatmapset
      * @return string
      * @throws AuthorizationCheckException
@@ -833,6 +847,11 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
 
         return 'ok';
+    }
+
+    public function checkBeatmapsetOffsetEdit(): string
+    {
+        return 'unauthorized';
     }
 
     /**

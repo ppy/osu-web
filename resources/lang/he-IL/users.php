@@ -209,6 +209,9 @@ return [
                 'graveyard' => [
                     'title' => 'מפות בבית הקברות',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'מפות אהובות',
                 ],

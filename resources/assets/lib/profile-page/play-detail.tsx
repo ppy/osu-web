@@ -4,11 +4,11 @@
 import Mod from 'components/mod';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import { ScoreJsonForUser } from 'interfaces/score-json';
+import { SoloScoreJsonForUser } from 'interfaces/solo-score-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { getArtist, getTitle, shouldShowPp } from 'utils/beatmap-helper';
+import { getArtist, getTitle, rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { hasMenu } from 'utils/score-helper';
@@ -17,7 +17,7 @@ const bn = 'play-detail';
 
 interface Props {
   activated: boolean;
-  score: ScoreJsonForUser;
+  score: SoloScoreJsonForUser;
   showPinSortableHandle?: boolean;
   showPpWeight?: boolean;
 }
@@ -60,7 +60,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           <div className={`${bn}__detail`}>
             <a
               className={`${bn}__title u-ellipsis-overflow`}
-              href={route('beatmaps.show', { beatmap: beatmap.id, mode: score.mode })}
+              href={route('beatmaps.show', { beatmap: beatmap.id, mode: rulesetName(score.ruleset_id) })}
             >
               {getTitle(beatmapset)}
               {' '}
@@ -73,7 +73,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
                 {beatmap.version}
               </span>
               <span className={`${bn}__time`}>
-                <TimeWithTooltip dateTime={score.created_at} relative />
+                <TimeWithTooltip dateTime={score.ended_at} relative />
               </span>
             </div>
           </div>
@@ -107,7 +107,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           </div>
 
           <div className={`${bn}__score-detail ${bn}__score-detail--mods`}>
-            {score.mods.map((mod) => <Mod key={mod} mod={mod} />)}
+            {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod.acronym} />)}
           </div>
 
           <div className={`${bn}__pp`}>

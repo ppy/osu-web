@@ -122,7 +122,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nieuwe Gerankte Beatmappen',
+            'new' => 'Nieuwe Ranked Beatmaps',
             'popular' => 'Populaire Beatmaps',
             'by_user' => 'door :user',
         ],

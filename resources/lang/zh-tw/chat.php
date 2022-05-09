@@ -13,9 +13,20 @@ return [
         'user' => '您現在無法對這個玩家發送訊息。可能是Bug或是以下原因:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '公告',
+                'GROUP' => '群組',
+                'PM' => '私訊',
+                'PUBLIC' => '頻道',
+            ],
+        ],
+    ],
+
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => '沒有東西耶。大概是你離開頻道，或者是這個頻道消失了⋯⋯',
+        'title' => '找不到頻道',
     ],
 
     'input' => [
