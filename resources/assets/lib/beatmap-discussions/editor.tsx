@@ -13,6 +13,7 @@ import * as React from 'react';
 import { createEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
+import { onError } from 'utils/ajax';
 import { sortWithMode } from 'utils/beatmap-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
@@ -244,7 +245,7 @@ export default class Editor extends React.Component<Props, State> {
             $.publish('beatmapsetDiscussions:update', { beatmapset: data });
             this.resetInput();
           })
-          .fail(osu.ajaxError)
+          .fail(onError)
           .always(() => this.setState({ posting: false }));
       });
     }

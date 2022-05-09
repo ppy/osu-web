@@ -9,6 +9,7 @@ use App\Exceptions\ClassNotFoundException;
 use App\Libraries\ModsHelper;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
+use App\Models\Solo\ScoreData;
 use App\Models\Traits\Scoreable;
 use App\Models\User;
 
@@ -125,5 +126,50 @@ abstract class Model extends BaseModel
     public function url()
     {
         return route('scores.show', ['mode' => static::getMode(), 'score' => $this->getKey()]);
+    }
+
+    public function getDataAttribute()
+    {
+        $attributes = $this->getAttributes();
+        $mods = array_map(fn ($m) => ['acronym' => $m, 'settings' => []], $this->enabled_mods);
+        $statistics = [
+            'miss' => $this->countmiss,
+            'great' => $this->count300,
+        ];
+        $ruleset = static::getMode();
+        switch ($ruleset) {
+            case 'osu':
+                $statistics['ok'] = $this->count100;
+                $statistics['meh'] = $this->count50;
+                break;
+            case 'taiko':
+                $statistics['ok'] = $this->count100;
+                break;
+            case 'fruits':
+                $statistics['large_tick_hit'] = $this->count100;
+                $statistics['small_tick_hit'] = $this->count50;
+                $statistics['small_tick_miss'] = $this->countkatu;
+                break;
+            case 'mania':
+                $statistics['perfect'] = $this->countgeki;
+                $statistics['good'] = $this->countkatu;
+                $statistics['ok'] = $this->count100;
+                $statistics['meh'] = $this->count50;
+                break;
+        }
+
+        return new ScoreData([
+            'accuracy' => $this->accuracy(),
+            'beatmap_id' => $this->beatmap_id,
+            'ended_at' => $attributes['date'],
+            'max_combo' => $this->maxcombo,
+            'mods' => $mods,
+            'passed' => $this->pass,
+            'rank' => $this->rank,
+            'ruleset_id' => Beatmap::modeInt($ruleset),
+            'statistics' => $statistics,
+            'total_score' => $this->score,
+            'user_id' => $this->user_id,
+        ]);
     }
 }

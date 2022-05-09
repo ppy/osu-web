@@ -61,10 +61,7 @@ interface JQueryStatic {
   unsubscribe: (eventName: string, handler?: unknown) => void;
 }
 
-type AjaxError = (xhr: JQuery.jqXHR) => void;
-
 interface OsuCommon {
-  ajaxError: AjaxError;
   formatBytes: (bytes: number, decimals?: number) => string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;

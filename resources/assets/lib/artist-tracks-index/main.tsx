@@ -6,9 +6,10 @@ import ShowMoreLink from 'components/show-more-link';
 import TracklistTrack from 'components/tracklist-track';
 import { ArtistTrackWithArtistJson } from 'interfaces/artist-track-json';
 import { route } from 'laroute';
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { jsonClone } from 'utils/json';
 import SearchForm, { ArtistTrackSearch } from './search-form';
@@ -42,7 +43,7 @@ const headerLinks = [
 export default class Main extends React.Component<Props> {
   @observable private data = jsonClone(this.props.data);
   @observable private isNavigating = false;
-  @observable private loadingXhr?: JQuery.jqXHR | null = null;
+  @observable private loadingXhr?: JQuery.jqXHR<ArtistTracksIndex> | null = null;
 
   constructor(props: Props) {
     super(props);
@@ -100,16 +101,16 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly handleShowMore = () => {
-    this.loadingXhr = $.getJSON(route('artists.tracks.index'), { ...this.data.search, cursor: this.data.cursor })
-      .done(action((newData: ArtistTracksIndex) => {
-        const { container, ...prevProps } = this.props;
-        newData.artist_tracks = this.data.artist_tracks.concat(newData.artist_tracks);
-        this.data = newData;
-        this.props.container.dataset.props = JSON.stringify({ ...prevProps, data: this.data });
-      })).fail(osu.ajaxError)
-      .always(action(() => {
-        this.loadingXhr = null;
-      }));
+    this.loadingXhr = $.getJSON(route('artists.tracks.index'), { ...this.data.search, cursor: this.data.cursor });
+
+    this.loadingXhr.done((newData) => runInAction(() => {
+      const { container, ...prevProps } = this.props;
+      newData.artist_tracks = this.data.artist_tracks.concat(newData.artist_tracks);
+      this.data = newData;
+      this.props.container.dataset.props = JSON.stringify({ ...prevProps, data: this.data });
+    })).fail(onError).always(action(() => {
+      this.loadingXhr = null;
+    }));
   };
 
   private readonly onNewSearch = (url: string) => {
