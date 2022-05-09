@@ -236,7 +236,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     this.xhr.userLookup?.abort();
 
     this.xhr.userLookup = $.ajax(route('users.check-username-exists'), {
-      data: { username: this.inputUsername },
+      data: { username: this.inputUsername.trim() },
       method: 'POST',
     }).done((user: UserJson) => {
       if (user.id > 0) {
