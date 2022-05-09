@@ -18,7 +18,7 @@ import PpValue from 'scores/pp-value';
 import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { modeAttributesMap } from 'utils/score-helper';
+import { isPerfect, modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -139,7 +139,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                 </div>
                 <div
                   className={classWithModifiers('beatmap-score-top__stat-value', {
-                    perfect: this.props.score.legacy_perfect,
+                    perfect: isPerfect(this.props.score),
                   })}
                 >
                   {formatNumber(this.props.score.max_combo)}x
