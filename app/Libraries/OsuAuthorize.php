@@ -722,7 +722,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->user_id === $beatmapset->user_id || $user->isModerator()) {
+        if ((!$beatmapset->download_disabled && $user->user_id === $beatmapset->user_id) || $user->isModerator()) {
             return 'ok';
         }
 
@@ -1151,6 +1151,12 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
+
+        $commentable = $comment->commentable;
+
+        if ($commentable instanceof Beatmapset && $commentable->download_disabled) {
+            return 'unauthorized';
+        }
 
         return 'ok';
     }
