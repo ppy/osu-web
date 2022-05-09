@@ -30,7 +30,7 @@ interface PpWeight {
   pp: number;
 }
 
-interface ScoreJsonAvailableIncludes {
+export interface ScoreJsonAvailableIncludes {
   beatmap: BeatmapExtendedJson;
   beatmapset: BeatmapsetJson;
   match: Match;
@@ -40,7 +40,7 @@ interface ScoreJsonAvailableIncludes {
   weight: PpWeight;
 }
 
-interface ScoreJsonDefaultIncludes {
+export interface ScoreJsonDefaultIncludes {
   current_user_attributes: ScoreCurrentUserAttributesJson;
 }
 
@@ -66,13 +66,3 @@ interface ScoreJsonDefaultAttributes {
 type ScoreJson = ScoreJsonDefaultAttributes & ScoreJsonDefaultIncludes & Partial<ScoreJsonAvailableIncludes>;
 
 export default ScoreJson;
-
-export type ScoreJsonForBeatmap = ScoreJson & Required<Pick<ScoreJson, 'user'>>;
-
-export type ScoreJsonForShow = ScoreJson & Required<Pick<ScoreJson, 'beatmap' | 'beatmapset' | 'best_id' | 'rank_global' | 'replay' | 'user'>>;
-
-export type ScoreJsonForUser = ScoreJson & Required<Pick<ScoreJson, 'beatmap' | 'beatmapset' | 'user'>>;
-
-export function isScoreJsonForUser(score: ScoreJson): score is ScoreJsonForUser {
-  return score.beatmap != null && score.beatmapset != null && score.user != null;
-}
