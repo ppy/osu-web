@@ -130,13 +130,29 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (
-            $beatmapset !== null
-            && in_array($beatmapset->status(), ['wip', 'graveyard', 'pending'], true)
-            && !$beatmapset->hasNominations()
-            && $beatmapset->user_id === $user->getKey()
-        ) {
-            return 'ok';
+        if ($beatmapset !== null) {
+            $status = $beatmapset->approved;
+
+            static $lovedModifiable = [
+                Beatmapset::STATES['graveyard'],
+                Beatmapset::STATES['loved'],
+            ];
+            if ($user->isProjectLoved() && in_array($status, $lovedModifiable, true)) {
+                return 'ok';
+            }
+
+            static $ownerModifiable = [
+                Beatmapset::STATES['wip'],
+                Beatmapset::STATES['graveyard'],
+                Beatmapset::STATES['pending'],
+            ];
+            if (
+                in_array($status, $ownerModifiable, true)
+                && !$beatmapset->hasNominations()
+                && $beatmapset->user_id === $user->getKey()
+            ) {
+                return 'ok';
+            }
         }
 
         return 'unauthorized';
