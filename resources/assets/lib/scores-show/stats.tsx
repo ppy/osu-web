@@ -38,7 +38,7 @@ export default function Stats(props: Props) {
             <div className='score-stats__stat-row score-stats__stat-row--label'>
               {osu.trans('beatmapsets.show.scoreboard.headers.combo')}
             </div>
-            <div className={classWithModifiers('score-stats__stat-row', { perfect: props.score.max_combo === props.beatmap.max_combo })}>
+            <div className={classWithModifiers('score-stats__stat-row', { perfect: props.score.legacy_perfect })}>
               {formatNumber(props.score.max_combo)}x
             </div>
           </div>

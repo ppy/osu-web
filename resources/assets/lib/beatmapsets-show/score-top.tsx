@@ -139,7 +139,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
                 </div>
                 <div
                   className={classWithModifiers('beatmap-score-top__stat-value', {
-                    perfect: this.props.score.max_combo === this.props.beatmap.max_combo,
+                    perfect: this.props.score.legacy_perfect,
                   })}
                 >
                   {formatNumber(this.props.score.max_combo)}x
