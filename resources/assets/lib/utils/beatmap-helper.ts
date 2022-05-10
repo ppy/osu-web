@@ -113,6 +113,21 @@ export function group<T extends BeatmapJson>(beatmaps?: T[] | null): Map<GameMod
   return ret;
 }
 
+export function rulesetName(id: number): GameMode {
+  switch (id) {
+    case 0:
+      return 'osu';
+    case 1:
+      return 'taiko';
+    case 2:
+      return 'fruits';
+    case 3:
+      return 'mania';
+    default:
+      throw new Error('invalid ruleset id passed');
+  }
+}
+
 export function shouldShowPp(beatmap: BeatmapJson) {
   return beatmap.status === 'ranked' || beatmap.status === 'approved';
 }

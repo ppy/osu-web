@@ -9,11 +9,12 @@ namespace App\Transformers\Score;
 
 use App\Models\LegacyMatch;
 use App\Models\Score\Model as ScoreModel;
+use App\Models\Solo\Score as SoloScore;
 use App\Transformers\TransformerAbstract;
 
 class CurrentUserAttributesTransformer extends TransformerAbstract
 {
-    public function transform(LegacyMatch\Score|ScoreModel $score): array
+    public function transform(LegacyMatch\Score|ScoreModel|SoloScore $score): array
     {
         $best = $score instanceof ScoreModel ? $score->best : null;
 

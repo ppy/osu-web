@@ -2,14 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'components/header-v4';
-import { ScoreJsonForShow } from 'interfaces/score-json';
+import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
 import * as React from 'react';
 import BeatmapInfo from './beatmap-info';
 import Info from './info';
 import Stats from './stats';
 
 interface Props {
-  score: ScoreJsonForShow;
+  score: SoloScoreJsonForShow;
 }
 
 export default function Main({ score }: Props) {
