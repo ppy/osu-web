@@ -1152,7 +1152,7 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
-        $commentable = $comment->commentable ?? $comment->parent?->commentable;
+        $commentable = $comment->commentable;
 
         if ($commentable instanceof Beatmapset && $commentable->downloadLimited()) {
             return 'comment.store.disabled';
