@@ -16,7 +16,7 @@ import PpValue from 'scores/pp-value';
 import { rulesetName } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { hasMenu, isPerfect, modeAttributesMap } from 'utils/score-helper';
+import { hasMenu, isPerfectCombo, modeAttributesMap } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -123,7 +123,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           </td>
         )}
 
-        <TdLink href={this.scoreUrl} modifiers={{ perfect: isPerfect(score) }}>
+        <TdLink href={this.scoreUrl} modifiers={{ perfect: isPerfectCombo(score) }}>
           {`${formatNumber(score.max_combo)}x`}
         </TdLink>
 
