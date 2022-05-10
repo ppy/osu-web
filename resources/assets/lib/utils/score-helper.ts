@@ -26,6 +26,18 @@ export function hasShow(score: SoloScoreJson): score is SoloScoreJson & Required
   return score.best_id != null;
 }
 
+export function isPerfectCombo(score: SoloScoreJson) {
+  // TODO: Check against beatmap max_combo instead.
+  //       It's currently done this way because the beatmap data is sometimes
+  //       missing max_combo attribute for the score's mods combination.
+  return score.legacy_perfect ?? (
+    ([
+      'miss',
+      'large_tick_miss',
+    ] as const).every((attr) => score.statistics[attr] == null || score.statistics[attr] === 0)
+  );
+}
+
 interface AttributeData {
   attribute: SoloScoreStatisticsAttribute;
   label: string;
