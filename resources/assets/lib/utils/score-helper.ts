@@ -34,7 +34,6 @@ export function isPerfect(score: SoloScoreJson) {
     ([
       'miss',
       'large_tick_miss',
-      'small_tick_miss',
     ] as const).every((attr) => score.statistics[attr] == null || score.statistics[attr] === 0)
   );
 }
