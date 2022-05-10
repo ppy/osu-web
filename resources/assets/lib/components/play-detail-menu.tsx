@@ -2,23 +2,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ScorePin from 'components/score-pin';
-import ScoreJson from 'interfaces/score-json';
+import SoloScoreJson from 'interfaces/solo-score-json';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { rulesetName } from 'utils/beatmap-helper';
 import { canBeReported, hasReplay, hasShow } from 'utils/score-helper';
 import { PopupMenuPersistent } from './popup-menu-persistent';
 import { ReportReportable } from './report-reportable';
 
 interface Props {
-  score: ScoreJson;
+  score: SoloScoreJson;
 }
 
 @observer
 export class PlayDetailMenu extends React.Component<Props> {
   render() {
     const { score } = this.props;
+    const ruleset = rulesetName(score.ruleset_id);
 
     const children = (dismiss: () => void) => (
       <div className='simple-menu'>
@@ -33,7 +35,7 @@ export class PlayDetailMenu extends React.Component<Props> {
         {hasShow(score) && (
           <a
             className='simple-menu__item'
-            href={route('scores.show', { mode: score.mode, score: score.best_id })}
+            href={route('scores.show', { mode: ruleset, score: score.best_id })}
           >
             {osu.trans('users.show.extra.top_ranks.view_details')}
           </a>
@@ -43,7 +45,7 @@ export class PlayDetailMenu extends React.Component<Props> {
           <a
             className='simple-menu__item js-login-required--click'
             data-turbolinks={false}
-            href={route('scores.download', { mode: score.mode, score: score.best_id })}
+            href={route('scores.download', { mode: ruleset, score: score.best_id })}
             onClick={dismiss}
           >
             {osu.trans('users.show.extra.top_ranks.download_replay')}
@@ -55,7 +57,7 @@ export class PlayDetailMenu extends React.Component<Props> {
             baseKey='scores'
             className='simple-menu__item'
             reportableId={score.best_id?.toString() ?? ''}
-            reportableType={`score_best_${score.mode}`}
+            reportableType={`score_best_${ruleset}`}
             user={score.user}
           />
         )}

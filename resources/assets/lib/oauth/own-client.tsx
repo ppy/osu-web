@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 
 const uiState = core.dataStore.uiState;
 
@@ -18,7 +19,7 @@ export class OwnClient extends React.Component<Props> {
   deleteClicked = () => {
     if (!confirm(osu.trans('oauth.own_clients.confirm_delete'))) return;
 
-    this.props.client.delete().catch(osu.ajaxError);
+    this.props.client.delete().fail(onError);
   };
 
   render() {

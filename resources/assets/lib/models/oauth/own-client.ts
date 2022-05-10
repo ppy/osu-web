@@ -22,31 +22,39 @@ export class OwnClient extends Client {
   }
 
   @action
-  async delete() {
+  delete() {
     this.isRevoking = true;
 
-    return $.ajax({
+    const xhr = $.ajax({
       method: 'DELETE',
       url: route('oauth.clients.destroy', { client: this.id }),
-    }).then(() => {
+    }) as JQuery.jqXHR<void>;
+
+    xhr.done(action(() => {
       this.revoked = true;
-    }).always(() => {
+    })).always(action(() => {
       this.isRevoking = false;
-    });
+    }));
+
+    return xhr;
   }
 
   @action
-  async resetSecret() {
+  resetSecret() {
     this.isResetting = true;
 
-    return $.ajax({
+    const xhr = $.ajax({
       method: 'POST',
       url: route('oauth.clients.reset-secret', { client: this.id }),
-    }).then((data: OwnClientJson) => {
+    }) as JQuery.jqXHR<OwnClientJson>;
+
+    xhr.done((data) => {
       this.updateFromJson(data);
-    }).always(() => {
+    }).always(action(() => {
       this.isResetting = false;
-    });
+    }));
+
+    return xhr;
   }
 
   @action
@@ -61,18 +69,22 @@ export class OwnClient extends Client {
   }
 
   @action
-  async updateWith(partial: Partial<OwnClient>) {
+  updateWith(partial: Partial<OwnClient>) {
     const { redirect } = partial;
     this.isUpdating = true;
 
-    return $.ajax({
+    const xhr = $.ajax({
       data: { redirect },
       method: 'PUT',
       url: route('oauth.clients.update', { client: this.id }),
-    }).then((data: OwnClientJson) => {
+    }) as JQuery.jqXHR<OwnClientJson>;
+
+    xhr.done((data) => {
       this.updateFromJson(data);
-    }).always(() => {
+    }).always(action(() => {
       this.isUpdating = false;
-    });
+    }));
+
+    return xhr;
   }
 }

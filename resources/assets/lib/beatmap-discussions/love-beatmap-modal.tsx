@@ -8,6 +8,7 @@ import { route } from 'laroute';
 import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 
@@ -121,7 +122,7 @@ export default class LoveConfirmation extends React.Component<Props> {
     $.ajax(url, params).done((response) => {
       $.publish('beatmapsetDiscussions:update', { beatmapset: response });
       this.props.onClose();
-    }).fail(osu.ajaxError)
+    }).fail(onError)
       .always(hideLoadingOverlay);
   };
 
