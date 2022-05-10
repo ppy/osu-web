@@ -910,6 +910,20 @@
         ]
     },
     {
+        "uri": "api/v2/me/download-quota-check",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\HomeController@downloadQuotaCheck",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "auth"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/me/{mode?}",
         "methods": [
             "GET",
@@ -925,20 +939,6 @@
         "scopes": [
             "identify"
         ]
-    },
-    {
-        "uri": "api/v2/me/download-quota-check",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\HomeController@downloadQuotaCheck",
-        "middlewares": [
-            "throttle:1200,1,api:",
-            "require-scopes",
-            "auth"
-        ],
-        "scopes": []
     },
     {
         "uri": "api/v2/oauth/tokens/current",
