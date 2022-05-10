@@ -5,15 +5,32 @@
 
 namespace App\Transformers\Solo;
 
-use App\Models\Solo\Score;
-use App\Transformers\TransformerAbstract;
+use App\Models\LegacyMatch;
+use App\Models\Score\Model as ScoreModel;
+use App\Models\Solo\Score as SoloScore;
+use App\Transformers\ScoreTransformer as BaseScoreTransformer;
 
-class ScoreTransformer extends TransformerAbstract
+class ScoreTransformer extends BaseScoreTransformer
 {
-    public function transform(Score $score)
+    public function transform(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
+        if ($score instanceof ScoreModel) {
+            $legacyPerfect = $score->perfect;
+            $best = $score->best;
+
+            if ($best !== null) {
+                $bestId = $best->getKey();
+                $pp = $best->pp;
+                $replay = $best->replay;
+            }
+        }
+
         return array_merge($score->data->jsonSerialize(), [
+            'best_id' => $bestId ?? null,
             'id' => $score->getKey(),
+            'legacy_perfect' => $legacyPerfect ?? null,
+            'pp' => $pp ?? null,
+            'replay' => $replay ?? false,
         ]);
     }
 }

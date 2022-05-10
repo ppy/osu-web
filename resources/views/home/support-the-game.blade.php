@@ -20,7 +20,7 @@
                         </a>
                         <div class="supporter-status__flex-container-inner">
                             <div class="supporter-status__progress-bar supporter-status__progress-bar--active">
-                                <div class="supporter-status__progress-bar-fill supporter-status__progress-bar-fill--active" style="width: {{$supporterStatus['remainingRatio'] ?? 0}}%;"></div>
+                                <div class="supporter-status__progress-bar-fill supporter-status__progress-bar-fill--active" style="width: {{ $supporterStatus['remainingPercent'] ?? '0' }}%;"></div>
                             </div>
                             @if ($supporterStatus['expiration'] !== null)
                             <div class="supporter-status__text supporter-status__text--first">

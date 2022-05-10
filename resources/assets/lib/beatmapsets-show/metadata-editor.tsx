@@ -6,6 +6,7 @@ import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
 import { route } from 'laroute';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 import { parseJson } from 'utils/json';
 
 interface Props {
@@ -24,6 +25,10 @@ interface State {
 export default class MetadataEditor extends React.PureComponent<Props, State> {
   private genres = parseJson<GenreJson[]>('json-genres');
   private languages = parseJson<LanguageJson[]>('json-languages');
+
+  get canEditOffset() {
+    return this.props.beatmapset.current_user_attributes.can_edit_offset;
+  }
 
   get numericOffset() {
     if (this.state.offset !== '') {
@@ -92,20 +97,22 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
           </div>
         </label>
 
-        <label className='simple-form__row'>
-          <div className='simple-form__label'>
-            {osu.trans('beatmapsets.show.info.offset')}
-          </div>
+        {this.canEditOffset &&
+          <label className='simple-form__row'>
+            <div className='simple-form__label'>
+              {osu.trans('beatmapsets.show.info.offset')}
+            </div>
 
-          <input
-            className='simple-form__input'
-            maxLength={6}
-            name='beatmapset[offset]'
-            onChange={this.setOffset}
-            type='text'
-            value={this.state.offset}
-          />
-        </label>
+            <input
+              className='simple-form__input'
+              maxLength={6}
+              name='beatmapset[offset]'
+              onChange={this.setOffset}
+              type='text'
+              value={this.state.offset}
+            />
+          </label>
+        }
 
         <div className='simple-form__row'>
           <div className='simple-form__label'>
@@ -161,11 +168,11 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
         genre_id: this.state.genreId,
         language_id: this.state.languageId,
         nsfw: this.state.nsfw,
-        offset: this.numericOffset,
+        offset: this.canEditOffset ? this.numericOffset : undefined,
       } },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJsonForShow) => $.publish('beatmapset:set', { beatmapset }))
-      .fail(osu.ajaxError)
+      .fail(onError)
       .always(() => this.setState({ isBusy: false }))
       .done(this.props.onClose);
   };

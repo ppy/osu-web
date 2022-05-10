@@ -15,13 +15,13 @@ return [
         'closing' => 'S pozdravem,',
         'hello' => 'Ahoj :user,',
         'report' => 'Okamžitě odpovězte prosím na tento e-mail, pokud jste o tuto změnu nepožádali.',
-        'ignore' => '',
+        'ignore' => 'Pokud jste o toto nežádali, prosím ignoruj tento e-mail.',
     ],
 
     'donation_thanks' => [
         'benefit_more' => 'Více výhod pro podporovatele se budou přidávat!',
-        'feedback' => "",
-        'keep_free' => '',
+        'feedback' => "Pokud máš jakékoliv dotazy nebo zpětnou vazbu, neváhej se odpovědět na tento e-mail; ozvu se ti zpátky co nejdříve co můžu!",
+        'keep_free' => 'Je to díky lidem jako jsti ty, proč osu! může běžet hladce bez jakýkoliv reklam nebo nucených plateb.',
         'keep_running' => 'Tvoje podpora udržuje osu! po dobu :minutes! Možná se to nezdá jako mnoho, ale to všechno se sčítá :).',
         'subject' => 'Díky, osu! tě <3luje',
         'translation' => '',

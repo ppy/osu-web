@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 
 const uiState = core.dataStore.uiState;
 
@@ -69,8 +70,8 @@ export class ClientDetails extends React.Component<Props, State> {
     if (this.props.client.isResetting) return;
 
     this.props.client.resetSecret()
-      .then(() => this.setState({ isSecretVisible: true }))
-      .catch(osu.ajaxError);
+      .done(() => this.setState({ isSecretVisible: true }))
+      .fail(onError);
   };
 
   @action

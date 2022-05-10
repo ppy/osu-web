@@ -1,18 +1,20 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
-import BeatmapsetMenu from 'beatmapsets-show/beatmapset-menu'
+import BeatmapsetCover from 'components/beatmapset-cover'
+import BeatmapsetMapping from 'components/beatmapset-mapping'
 import BigButton from 'components/big-button'
-import { BeatmapsetMapping } from 'components/beatmapset-mapping'
-import UserAvatar from 'components/user-avatar'
+import UserListPopup, { createTooltip } from 'components/user-list-popup'
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import * as React from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { createClickCallback, formatNumber } from 'utils/html'
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url'
+import BeatmapPicker from './beatmap-picker'
+import BeatmapsetMenu from './beatmapset-menu'
 import Stats from './stats'
 
 el = React.createElement
@@ -27,6 +29,10 @@ export class Header extends React.Component
     @filteredFavourites = []
 
 
+  getFavouriteTooltipContent: =>
+    renderToStaticMarkup el(UserListPopup, count: @props.favcount, users: @filteredFavourites)
+
+
   hasAvailabilityInfo: =>
     @props.beatmapset.availability.download_disabled || @props.beatmapset.availability.more_information?
 
@@ -35,35 +41,14 @@ export class Header extends React.Component
     target = event.currentTarget
 
     if @filteredFavourites.length < 1
-      if target._tooltip
-        target._tooltip = false
+      if osu.present(target._tooltip)
+        target._tooltip = ''
         $(target).qtip 'destroy', true
 
       return
 
-    return if target._tooltip
+    createTooltip target, 'right center', @getFavouriteTooltipContent
 
-    target._tooltip = true
-
-    $(target).qtip
-      style:
-        classes: 'user-list-popup'
-        def: false
-        tip: false
-      content:
-        text: (event, api) => $('.user-list-popup__template').html()
-      position:
-        at: 'right center'
-        my: 'left center'
-        viewport: $(window)
-      show:
-        delay: 100
-        ready: true
-        effect: -> $(this).fadeTo(110, 1)
-      hide:
-        fixed: true
-        delay: 500
-        effect: -> $(this).fadeTo(250, 0)
 
   render: ->
     @filteredFavourites = @props.beatmapset.recent_favourites.filter (f) -> f.id != currentUser.id
@@ -81,10 +66,13 @@ export class Header extends React.Component
     div className: 'beatmapset-header',
       div
         className: 'beatmapset-header__content'
-        style:
-          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover)
 
-        div className: 'beatmapset-header__overlay beatmapset-header__overlay--gradient'
+        div className: 'beatmapset-header__cover',
+          el BeatmapsetCover,
+            beatmapset: @props.beatmapset
+            forceShowVisual: true # check already covered by parent component
+            modifiers: 'full'
+            size: 'cover'
 
         div className: 'beatmapset-header__box beatmapset-header__box--main',
           div className: 'beatmapset-header__beatmap-picker-box',
@@ -120,22 +108,6 @@ export class Header extends React.Component
                   i className: 'fas fa-heart'
                 span className: 'beatmapset-header__value-name',
                   formatNumber(@props.favcount)
-
-            # this content of this div is used as a template for the on-hover/touch above
-            div
-              className: 'user-list-popup user-list-popup__template'
-              style:
-                display: 'none'
-              @filteredFavourites.map (user) ->
-                a
-                  href: route('users.show', user: user.id)
-                  className: 'js-usercard user-list-popup__user'
-                  key: user.id
-                  'data-user-id': user.id
-                  el UserAvatar, user: user, modifiers: ['full']
-              if @props.favcount > @filteredFavourites.length
-                div className: 'user-list-popup__remainder-count',
-                  osu.transChoice 'common.count.plus_others', @props.favcount - @filteredFavourites.length
 
           span className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
             a

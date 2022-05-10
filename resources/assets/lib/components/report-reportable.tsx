@@ -5,6 +5,7 @@ import { ReportForm } from 'components/report-form';
 import { route } from 'laroute';
 import { Dictionary } from 'lodash';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 
 type ReactButton = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 type ReactButtonWithoutRef = Pick<ReactButton, Exclude<keyof ReactButton, 'ref'>>;
@@ -80,7 +81,7 @@ export class ReportReportable extends React.PureComponent<Props, State> {
       this.timeout = window.setTimeout(this.onFormClose, 1000);
       this.setState({ completed: true });
     }).fail((xhr) => {
-      osu.ajaxError(xhr);
+      onError(xhr);
       this.setState({ disabled : false });
     });
   };

@@ -5,6 +5,7 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
+import BeatmapsetCover from './beatmapset-cover';
 
 interface Props {
   beatmapset?: BeatmapsetJson;
@@ -32,12 +33,7 @@ export default class BeatmapsetListView extends React.PureComponent<Props> {
         href={route('beatmapsets.show', { beatmapset: this.props.beatmapset.id })}
       >
         <div className='beatmapset-list-view__cover-container'>
-          <div
-            className='beatmapset-list-view__cover'
-            style={{
-              backgroundImage: osu.urlPresence(this.props.beatmapset.covers.card),
-            }}
-          />
+          <BeatmapsetCover beatmapset={this.props.beatmapset} modifiers='full' size='card' />
         </div>
         <div className='beatmapset-list-view__content'>
           <div className='beatmapset-list-view__title u-ellipsis-overflow'>

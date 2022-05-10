@@ -25,6 +25,11 @@ return [
             'index' => '列表',
         ],
 
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
+        ],
+
         'changelog' => [
             'index' => '列表',
         ],

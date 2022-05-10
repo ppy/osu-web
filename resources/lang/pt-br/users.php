@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited comentário|:count_delimited comentários',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Ocultar capa',
+            'to_1' => 'Mostrar capa',
         ],
         'edit' => [
             'cover' => [
@@ -207,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps no Cemitério',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Beatmaps Loved',
