@@ -235,8 +235,6 @@ export default class Header extends React.Component<Props> {
   }
 
   private readonly onClickFavourite = () => {
-    if (core.userLogin.showIfGuest(this.onClickFavourite)) return;
-
     $.publish('beatmapset:favourite:toggle');
   };
 
