@@ -6,6 +6,7 @@ import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
 import { route } from 'laroute';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 import { parseJson } from 'utils/json';
 
 interface Props {
@@ -171,7 +172,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
       } },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJsonForShow) => $.publish('beatmapset:set', { beatmapset }))
-      .fail(osu.ajaxError)
+      .fail(onError)
       .always(() => this.setState({ isBusy: false }))
       .done(this.props.onClose);
   };

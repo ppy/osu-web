@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import GameMode from 'interfaces/game-mode';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
 
@@ -10,10 +11,7 @@ interface Props {
   className?: string;
   mode?: GameMode;
   tooltipPosition?: string;
-  user: {
-    id?: number;
-    username: string;
-  };
+  user: Partial<Pick<UserJson, 'id' | 'username'>>;
 }
 
 export class UserLink extends React.PureComponent<Props> {

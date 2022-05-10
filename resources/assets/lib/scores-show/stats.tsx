@@ -9,7 +9,7 @@ import PpValue from 'scores/pp-value';
 import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { modeAttributesMap } from 'utils/score-helper';
+import { isPerfectCombo, modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -38,7 +38,7 @@ export default function Stats(props: Props) {
             <div className='score-stats__stat-row score-stats__stat-row--label'>
               {osu.trans('beatmapsets.show.scoreboard.headers.combo')}
             </div>
-            <div className={classWithModifiers('score-stats__stat-row', { perfect: props.score.max_combo === props.beatmap.max_combo })}>
+            <div className={classWithModifiers('score-stats__stat-row', { perfect: isPerfectCombo(props.score) })}>
               {formatNumber(props.score.max_combo)}x
             </div>
           </div>
