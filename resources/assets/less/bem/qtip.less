@@ -36,4 +36,14 @@
     font-size: unset;
     line-height: unset;
   }
+
+  &--user-list {
+    z-index: @z-index--user-card-tooltip !important;
+    max-width: unset;
+    background-color: hsla(var(--hsl-b6), 0.75);
+    padding: 5px 1px; // combined with .qtip-content's 5px 9px
+
+    .default-border-radius();
+    .default-box-shadow();
+  }
 }
