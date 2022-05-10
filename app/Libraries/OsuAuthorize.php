@@ -1181,6 +1181,11 @@ class OsuAuthorize
                 return 'comment.update.deleted';
             }
 
+            $commentable = $comment->commentable;
+            if ($commentable instanceof Beatmapset && $commentable->downloadLimited()) {
+                return 'comment.store.disabled';
+            }
+
             return 'ok';
         }
 
