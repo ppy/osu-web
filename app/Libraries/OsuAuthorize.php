@@ -1155,7 +1155,7 @@ class OsuAuthorize
         $commentable = $comment->commentable ?? $comment->parent?->commentable;
 
         if ($commentable instanceof Beatmapset && $commentable->downloadLimited()) {
-            return 'unauthorized';
+            return 'comment.store.disabled';
         }
 
         return 'ok';
