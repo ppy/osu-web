@@ -722,7 +722,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->user_id === $beatmapset->user_id || $user->isModerator()) {
+        if ((!$beatmapset->downloadLimited() && $user->getKey() === $beatmapset->user_id) || $user->isModerator()) {
             return 'ok';
         }
 
@@ -1152,6 +1152,12 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
+        $commentable = $comment->commentable;
+
+        if ($commentable instanceof Beatmapset && $commentable->downloadLimited()) {
+            return 'comment.store.disabled';
+        }
+
         return 'ok';
     }
 
@@ -1173,6 +1179,11 @@ class OsuAuthorize
         if ($comment->user_id === $user->getKey()) {
             if ($comment->trashed()) {
                 return 'comment.update.deleted';
+            }
+
+            $commentable = $comment->commentable;
+            if ($commentable instanceof Beatmapset && $commentable->downloadLimited()) {
+                return 'comment.store.disabled';
             }
 
             return 'ok';

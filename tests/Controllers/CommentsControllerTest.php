@@ -82,6 +82,19 @@ class CommentsControllerTest extends TestCase
         $this->assertSame($previousNotifications + 1, Notification::count());
     }
 
+    public function testStoreDownloadLimitedBeatmapset()
+    {
+        $this->prepareForStore();
+        $this->beatmapset->update(['download_disabled_url' => 'https://hello.world']);
+
+        $this->expectCountChange(fn () => Comment::count(), 0);
+
+        $this
+            ->be($this->user)
+            ->post(route('comments.store'), $this->params)
+            ->assertStatus(403);
+    }
+
     public function testStoreNotEnoughPlays()
     {
         $this->prepareForStore();
@@ -144,6 +157,71 @@ class CommentsControllerTest extends TestCase
             ->assertStatus(200);
 
         $this->assertSame($previousComments + 1, $this->beatmapset->comments()->count());
+    }
+
+    public function testStoreReplyDownloadLimitedBeatmapset()
+    {
+        $this->prepareForStore();
+        $parent = $this->beatmapset->comments()->create([
+            'user_id' => $this->user->getKey(),
+            'message' => 'Hello.',
+        ]);
+        $this->beatmapset->update(['download_disabled_url' => 'https://hello.world']);
+
+        $params = ['comment' => [
+            'parent_id' => $parent->getKey(),
+            'message' => 'This is a reply.',
+        ]];
+
+        $this->expectCountChange(fn () => Comment::count(), 0);
+
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('comments.store'), $params)
+            ->assertStatus(403);
+    }
+
+    public function testUpdate()
+    {
+        $this->prepareForStore();
+        $comment = $this->beatmapset->comments()->create([
+            'user_id' => $this->user->getKey(),
+            'message' => 'Hello.',
+        ]);
+
+        $newMessage = 'Edited.';
+        $params = ['comment' => [
+            'message' => $newMessage,
+        ]];
+
+        $this
+            ->actingAsVerified($this->user)
+            ->put(route('comments.update', $comment), $params)
+            ->assertSuccessful();
+
+        $this->assertSame($newMessage, $comment->fresh()->message);
+    }
+
+    public function testUpdateDownloadLimitedBeatmapset()
+    {
+        $this->prepareForStore();
+        $oldMessage = 'Hello.';
+        $comment = $this->beatmapset->comments()->create([
+            'user_id' => $this->user->getKey(),
+            'message' => $oldMessage,
+        ]);
+        $this->beatmapset->update(['download_disabled_url' => 'https://hello.world']);
+
+        $params = ['comment' => [
+            'message' => 'Edited.',
+        ]];
+
+        $this
+            ->actingAsVerified($this->user)
+            ->put(route('comments.update', $comment), $params)
+            ->assertStatus(403);
+
+        $this->assertSame($oldMessage, $comment->fresh()->message);
     }
 
     public function testApiUnauthenticatedUserCanViewIndex()
