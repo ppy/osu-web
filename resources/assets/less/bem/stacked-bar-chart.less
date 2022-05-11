@@ -2,21 +2,33 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .stacked-bar-chart {
-  @_top: stacked-bar-chart;
+  display: flex;
+  width: 100%;
+  height: 100%;
 
-  &__bar {
-    shape-rendering: crispEdges;
+  &--beatmap-fail-rate {
+    --colour-0: @yellow;
+    --colour-1: @yellow-darker;
+  }
 
-    .@{_top}--beatmapset-rating & {
-      fill: @blue-dark;
+  &__col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  &__entry {
+    transition: 120ms all;
+    flex: none;
+    background: @blue-dark;
+
+    &--0 {
+      background: var(--colour-0);
     }
 
-    .@{_top}--beatmap-success-rate &--fail {
-      fill: @yellow-darker;
-    }
-
-    .@{_top}--beatmap-success-rate &--exit {
-      fill: @yellow;
+    &--1 {
+      background: var(--colour-1);
     }
   }
 }

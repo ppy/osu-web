@@ -5,27 +5,25 @@
   .own-layer();
 
   display: grid;
-  grid-gap: 10px;
+  gap: 10px;
   // auto-fit centres if there's only 1 card
   grid-template-columns: repeat(auto-fill, minmax(@user-card-width-min, @user-card-width));
 
   justify-content: center;
 
   .search-result--user & {
-    grid-gap: 5px;
+    gap: 5px;
   }
 
   &--list {
     grid-template-columns: 1fr;
-    grid-gap: 2px;
+    gap: 2px;
   }
 
   &--brick {
-    --item-margin: 2px;
     display: flex;
     flex-wrap: wrap;
-    margin: calc(var(--item-margin) * -1);
     justify-content: flex-start;
-    grid-gap: 0; // firefox supports gap in flex but we're not using it
+    gap: 4px;
   }
 }

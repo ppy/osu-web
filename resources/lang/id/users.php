@@ -98,7 +98,7 @@ return [
 
         'beta' => [
             'main' => 'Akses beta saat ini hanya terbuka kepada pengguna-pengguna tertentu.',
-            'small' => '(para pemilik osu!supporter akan dapat segera masuk)',
+            'small' => '(para pemilik osu!supporter akan segera masuk)',
         ],
     ],
 
@@ -112,7 +112,7 @@ return [
         'username' => 'Tamu',
         'error' => 'Anda harus masuk terlebih dahulu untuk dapat melakukan tindakan ini.',
     ],
-    'logout_confirm' => 'Apa Anda yakin ingin keluar? :(',
+    'logout_confirm' => 'Apakah Anda yakin ingin keluar? :(',
     'report' => [
         'button_text' => 'Laporkan',
         'comments' => 'Komentar Tambahan',
@@ -159,6 +159,10 @@ return [
             '_' => 'Telah mengirimkan :link',
             'count' => ':count_delimited komentar|:count_delimited komentar',
         ],
+        'cover' => [
+            'to_0' => 'Sembunyikan sampul',
+            'to_1' => 'Tampilkan sampul',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ubah Sampul Profil',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmap Graveyard',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Beatmap Loved',
@@ -352,7 +359,7 @@ return [
 
                 'recent_infringements' => [
                     'title' => 'Pelanggaran Terkini',
-                    'date' => 'tanggal',
+                    'date' => 'waktu',
                     'action' => 'tindakan',
                     'length' => 'durasi',
                     'length_permanent' => 'Permanen',

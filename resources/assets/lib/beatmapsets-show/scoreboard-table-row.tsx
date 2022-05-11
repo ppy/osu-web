@@ -6,15 +6,17 @@ import Mod from 'components/mod';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import ScoreboardTime from 'components/scoreboard-time';
 import BeatmapJson from 'interfaces/beatmap-json';
-import ScoreJson from 'interfaces/score-json';
+import { SoloScoreJsonForBeatmap } from 'interfaces/solo-score-json';
 import { route } from 'laroute';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
+import { rulesetName } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
-import { hasMenu, modeAttributesMap } from 'utils/score-helper';
+import { formatNumber } from 'utils/html';
+import { hasMenu, isPerfectCombo, modeAttributesMap } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -42,7 +44,7 @@ interface Props {
   beatmap: BeatmapJson;
   highlightFriends: boolean;
   index: number;
-  score: ScoreJson;
+  score: SoloScoreJsonForBeatmap;
   showPp: boolean;
 }
 
@@ -50,7 +52,7 @@ interface Props {
 export default class ScoreboardTableRow extends React.Component<Props> {
   @computed
   get scoreUrl() {
-    return route('scores.show', { mode: this.props.score.mode, score: this.props.score.best_id });
+    return route('scores.show', { mode: rulesetName(this.props.score.ruleset_id), score: this.props.score.best_id });
   }
 
   constructor(props: Props) {
@@ -81,11 +83,11 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers='score'>
-          {osu.formatNumber(score.score)}
+          {formatNumber(score.total_score)}
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers={{ perfect: score.accuracy === 1 }}>
-          {`${osu.formatNumber(score.accuracy * 100, 2)}%`}
+          {`${formatNumber(score.accuracy * 100, 2)}%`}
         </TdLink>
 
         <td className={`${bn}__cell`}>
@@ -121,17 +123,17 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           </td>
         )}
 
-        <TdLink href={this.scoreUrl} modifiers={{ perfect: score.perfect }}>
-          {`${osu.formatNumber(score.max_combo)}x`}
+        <TdLink href={this.scoreUrl} modifiers={{ perfect: isPerfectCombo(score) }}>
+          {`${formatNumber(score.max_combo)}x`}
         </TdLink>
 
         {modeAttributesMap[this.props.beatmap.mode].map((stat) => (
           <TdLink
             key={stat.attribute}
             href={this.scoreUrl}
-            modifiers={{ zero: score.statistics[stat.attribute] === 0 }}
+            modifiers={{ zero: (score.statistics[stat.attribute] ?? 0) === 0 }}
           >
-            {osu.formatNumber(score.statistics[stat.attribute])}
+            {formatNumber(score.statistics[stat.attribute] ?? 0)}
           </TdLink>
         ))}
 
@@ -142,12 +144,12 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         }
 
         <TdLink href={this.scoreUrl} modifiers='time'>
-          <ScoreboardTime dateTime={score.created_at} />
+          <ScoreboardTime dateTime={score.ended_at} />
         </TdLink>
 
         <TdLink href={this.scoreUrl} modifiers='mods'>
           <div className={`${bn}__mods`}>
-            {score.mods.map((mod) => <Mod key={mod} mod={mod} />)}
+            {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod.acronym} />)}
           </div>
         </TdLink>
 

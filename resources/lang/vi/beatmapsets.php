@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Một số nội dung có trong map này đã bị xóa sau khi bị đánh giá là không phù hợp để sử dụng trong osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Chậm lại, chơi nhiều hơn.',
     ],
@@ -80,8 +84,8 @@ return [
 
         'details_date' => [
             'approved' => 'được chấp nhận :timeago',
-            'loved' => 'loved :timeago',
-            'qualified' => 'đủ tiêu chuẩn :timeago',
+            'loved' => 'được yêu mến :timeago',
+            'qualified' => 'đủ tư cách :timeago',
             'ranked' => 'được xếp hạng :timeago',
             'submitted' => 'được đăng :timeago',
             'updated' => 'cập nhật lần cuối :timeago',
@@ -99,7 +103,7 @@ return [
 
                 'status' => [
                     'pending' => 'chờ',
-                    'qualified' => 'qualified',
+                    'qualified' => 'đủ tư cách',
                     'wip' => 'đang thực hiện',
                 ],
             ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Ngôn Ngữ',
             'no_scores' => 'Vẫn đang tính toán dữ liệu...',
             'nsfw' => 'Nội dung không lành mạnh',
+            'offset' => '',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',
             'source' => 'Nguồn',
             'storyboard' => 'Beatmap này chứa storyboard',
@@ -143,7 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'đạt được :when',
             'country' => 'Hạng Quốc Gia',
-            'error' => '',
+            'error' => 'Tải xếp hạng thất bại',
             'friend' => 'Hạng Bạn Bè',
             'global' => 'Hạng Toàn Cầu',
             'supporter-link' => 'Nhấp vào <a href=":link">đây</a> để biết thêm những tính năng bạn có thể nhận!',
@@ -159,8 +164,8 @@ return [
                 'player' => 'Người Chơi',
                 'pp' => '',
                 'rank' => 'Xếp Hạng',
-                'score' => 'Điểm',
-                'score_total' => 'Tổng Điểm',
+                'score' => 'Số điểm',
+                'score_total' => 'Tổng điểm',
                 'time' => 'Thời gian',
             ],
 
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Số Nốt Bấm',
             'count_sliders' => 'Số Nốt Trượt',
+            'offset' => '',
             'user-rating' => 'Đánh Giá',
             'rating-spread' => 'Phân Loại Đánh Giá',
             'nominations' => 'Đề cử',
@@ -201,11 +207,11 @@ return [
         'status' => [
             'ranked' => 'Đã được xếp hạng',
             'approved' => 'Được Chấp Nhận',
-            'loved' => 'Được yêu thích',
-            'qualified' => 'Qualified',
+            'loved' => 'Được yêu mến',
+            'qualified' => 'Đủ tư cách',
             'wip' => 'WIP',
             'pending' => 'Đang Chờ',
-            'graveyard' => 'Graveyard',
+            'graveyard' => 'Đắp mộ',
         ],
     ],
 ];

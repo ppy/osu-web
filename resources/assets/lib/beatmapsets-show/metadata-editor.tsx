@@ -1,15 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapsetJson from 'interfaces/beatmapset-json';
+import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
 import { route } from 'laroute';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 import { parseJson } from 'utils/json';
 
 interface Props {
-  beatmapset: BeatmapsetJson;
+  beatmapset: BeatmapsetJsonForShow;
   onClose: () => void;
 }
 
@@ -18,11 +19,24 @@ interface State {
   isBusy: boolean;
   languageId: number;
   nsfw: boolean;
+  offset: string;
 }
 
 export default class MetadataEditor extends React.PureComponent<Props, State> {
   private genres = parseJson<GenreJson[]>('json-genres');
   private languages = parseJson<LanguageJson[]>('json-languages');
+
+  get canEditOffset() {
+    return this.props.beatmapset.current_user_attributes.can_edit_offset;
+  }
+
+  get numericOffset() {
+    if (this.state.offset !== '') {
+      const ret = Number(this.state.offset);
+
+      if (Number.isInteger(ret)) return ret;
+    }
+  }
 
   constructor(props: Props) {
     super(props);
@@ -32,6 +46,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
       isBusy: false,
       languageId: props.beatmapset.language.id ?? 0,
       nsfw: props.beatmapset.nsfw ?? false,
+      offset: props.beatmapset.offset.toString(),
     };
   }
 
@@ -81,6 +96,23 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
             </select>
           </div>
         </label>
+
+        {this.canEditOffset &&
+          <label className='simple-form__row'>
+            <div className='simple-form__label'>
+              {osu.trans('beatmapsets.show.info.offset')}
+            </div>
+
+            <input
+              className='simple-form__input'
+              maxLength={6}
+              name='beatmapset[offset]'
+              onChange={this.setOffset}
+              type='text'
+              value={this.state.offset}
+            />
+          </label>
+        }
 
         <div className='simple-form__row'>
           <div className='simple-form__label'>
@@ -136,10 +168,11 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
         genre_id: this.state.genreId,
         language_id: this.state.languageId,
         nsfw: this.state.nsfw,
+        offset: this.canEditOffset ? this.numericOffset : undefined,
       } },
       method: 'PATCH',
-    }).done((beatmapset: BeatmapsetJson) => $.publish('beatmapset:set', { beatmapset }))
-      .fail(osu.ajaxError)
+    }).done((beatmapset: BeatmapsetJsonForShow) => $.publish('beatmapset:set', { beatmapset }))
+      .fail(onError)
       .always(() => this.setState({ isBusy: false }))
       .done(this.props.onClose);
   };
@@ -154,5 +187,13 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
 
   private setNsfw = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ nsfw: e.currentTarget.checked });
+  };
+
+  private setOffset = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+
+    if (/^-?\d*$/.test(value)) {
+      this.setState({ offset: value });
+    }
   };
 }

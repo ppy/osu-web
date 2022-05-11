@@ -159,6 +159,10 @@ return [
             '_' => 'Upplagd :link',
             'count' => ':count_delimited kommentar|:count_delimited kommentarer',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ändra Profilomslag',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps på kyrkogården',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Älskade beatmaps',
@@ -329,9 +336,9 @@ return [
                     'title' => 'Förstaplats-ranker',
                 ],
                 'pin' => [
-                    'to_0' => '',
+                    'to_0' => 'Lossa',
                     'to_0_done' => '',
-                    'to_1' => '',
+                    'to_1' => 'Fäst',
                     'to_1_done' => '',
                 ],
                 'pinned' => [

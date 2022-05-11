@@ -159,6 +159,10 @@ return [
             '_' => ':link 작성됨',
             'count' => '댓글 :count_delimited개',
         ],
+        'cover' => [
+            'to_0' => '커버 숨기기',
+            'to_1' => '커버 표시',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '프로필 표지 변경',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => '무덤에 간 비트맵',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Loved 비트맵',

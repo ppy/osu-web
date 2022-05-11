@@ -13,6 +13,22 @@ return [
         'user' => 'Hindi ka makakapadala ng mensahe sa taong ito ngayon. Ito ay maaaring dahil sa alinman sa mga sumusunod na dahilan:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Mga Anunsyo',
+                'GROUP' => 'Mga grupo',
+                'PM' => 'Direktang mensahe',
+                'PUBLIC' => 'Channels',
+            ],
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Walang laman dito, maaaring umalis ka sa channel o wala ito...',
+        'title' => 'ang channel ay hindi nahanap',
+    ],
+
     'input' => [
         'disabled' => 'hindi maipadala ang mensahe...',
         'disconnected' => 'Disconnected',

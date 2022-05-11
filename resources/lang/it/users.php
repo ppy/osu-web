@@ -159,6 +159,10 @@ return [
             '_' => 'Ha postato :link',
             'count' => ':count_delimited commento|:count_delimited commenti',
         ],
+        'cover' => [
+            'to_0' => 'Nascondi copertina',
+            'to_1' => 'Mostra copertina',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmap Abbandonate',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Beatmap Amate',
@@ -317,7 +324,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Scarica Replay',
-                'not_ranked' => 'Solo le mappe classificate danno pp.',
+                'not_ranked' => 'Solo le beatmap classificate conferiscono pp',
                 'pp_weight' => 'valutata :percentage',
                 'view_details' => 'Visualizza Dettagli',
                 'title' => 'Rank',

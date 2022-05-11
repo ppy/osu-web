@@ -13,6 +13,22 @@ return [
         'user' => '現在このユーザーへメッセージを送信できません。理由は次のいずれかである可能性があります：',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
         'disabled' => 'メッセージの送信ができません...',
         'disconnected' => '',

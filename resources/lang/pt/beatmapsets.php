@@ -8,7 +8,11 @@ return [
         'disabled' => 'Este beatmap não está disponível atualmente para transferência.',
         'parts-removed' => 'Algumas porções deste beatmap foram removidas a pedido do criador ou dum titular de direitos de terceiros.',
         'more-info' => 'Clica aqui para mais informações.',
-        'rule_violation' => 'Alguns elementos contidos neste mapa foram removidos após serem avaliados como não sendo adequados para uso no osu!.',
+        'rule_violation' => 'Alguns elementos contidos neste mapa foram removidos após terem sido avaliados como não sendo adequados para uso no osu!',
+    ],
+
+    'cover' => [
+        'deleted' => '',
     ],
 
     'download' => [
@@ -121,6 +125,7 @@ return [
             'language' => 'Língua',
             'no_scores' => 'Os dados ainda estão a ser calculados...',
             'nsfw' => 'Conteúdo explícito',
+            'offset' => 'Desvio do online',
             'points-of-failure' => 'Pontos de falha',
             'source' => 'Fonte',
             'storyboard' => 'Este beatmap contém um cenário',
@@ -143,7 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'conseguido :when',
             'country' => 'Classificação nacional',
-            'error' => '',
+            'error' => 'Falha ao carregar a classificação',
             'friend' => 'Classificação de amigos',
             'global' => 'Classificação global',
             'supporter-link' => 'Clica <a href=":link">aqui</a> para ver todas as funcionalidades extravagantes que obténs!',
@@ -155,7 +160,7 @@ return [
                 'combo' => 'Combo máximo',
                 'miss' => 'Erros',
                 'mods' => 'Mods',
-                'pin' => '',
+                'pin' => 'Afixar',
                 'player' => 'Jogador',
                 'pp' => '',
                 'rank' => 'Posição',
@@ -176,8 +181,8 @@ return [
                 'own' => 'A tua melhor',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Clica :here para veres todas as funcionalidades catitas que recebes!',
+                'here' => 'aqui',
             ],
         ],
 
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Número de círculos',
             'count_sliders' => 'Número de deslizadores',
+            'offset' => 'Desvio do online :offset',
             'user-rating' => 'Classificação de utilizador',
             'rating-spread' => 'Avaliação dispersada',
             'nominations' => 'Nomeações',

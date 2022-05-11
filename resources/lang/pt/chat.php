@@ -13,6 +13,22 @@ return [
         'user' => 'Não podes enviar mensagens a este utilizador de momento. Isto poderá ser devido a uma das razões:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Comunicados',
+                'GROUP' => 'Grupos',
+                'PM' => 'Mensagens diretas',
+                'PUBLIC' => 'Canais',
+            ],
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Não há nada aqui, talvez tenhas saído do canal ou ele não existe...',
+        'title' => 'canal não escontrado',
+    ],
+
     'input' => [
         'disabled' => 'incapacitado de enviar mensagem...',
         'disconnected' => 'Desligado',

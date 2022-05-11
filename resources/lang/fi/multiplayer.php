@@ -7,7 +7,7 @@ return [
     'empty' => [
         '_' => '',
         'playlists' => '',
-        'realtime' => '',
+        'realtime' => 'moninpeli',
     ],
 
     'room' => [

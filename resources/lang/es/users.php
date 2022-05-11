@@ -159,6 +159,10 @@ return [
             '_' => 'Publicó :link',
             'count' => 'un comentario|:count_delimited comentarios',
         ],
+        'cover' => [
+            'to_0' => 'Ocultar portada',
+            'to_1' => 'Mostrar portada',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambiar portada de perfil',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Mapas Abandonados',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Mapas Amados',

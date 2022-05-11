@@ -160,6 +160,10 @@ return [
 ',
             'count' => ':count_delimited תגובה|:count_delimited תגובות',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'החלף תמונת פרופיל',
@@ -204,6 +208,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'מפות בבית הקברות',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'מפות אהובות',

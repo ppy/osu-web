@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang telah Anda miliki terlebih dahulu.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Bahasa',
             'no_scores' => 'Data sedang diproses...',
             'nsfw' => 'Konten eksplisit',
+            'offset' => 'Offset online',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
             'storyboard' => 'Beatmap ini menyertakan storyboard',
@@ -143,7 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'diraih pada :when',
             'country' => 'Peringkat Negara',
-            'error' => '',
+            'error' => 'Gagal memuat peringkat',
             'friend' => 'Peringkat Teman',
             'global' => 'Peringkat Global',
             'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat seluruh fitur menarik yang akan Anda dapatkan!',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Jumlah Circle',
             'count_sliders' => 'Jumlah Slider',
+            'offset' => 'Offset online: :offset',
             'user-rating' => 'Nilai Pengguna',
             'rating-spread' => 'Persebaran Nilai Pengguna',
             'nominations' => 'Nominasi',

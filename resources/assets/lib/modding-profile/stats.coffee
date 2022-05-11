@@ -4,6 +4,7 @@
 import * as React from 'react'
 import { div, dd, dl, dt } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { formatNumber } from 'utils/html'
 
 entries = [
   'ranked_beatmapset_count'
@@ -24,4 +25,4 @@ export class Stats extends React.PureComponent
       className: 'profile-stats__entry'
       key: key
       dt className: 'profile-stats__key', osu.trans("users.show.stats.#{key}")
-      dd className: 'profile-stats__value', osu.formatNumber(@props.user[key])
+      dd className: 'profile-stats__value', formatNumber(@props.user[key])

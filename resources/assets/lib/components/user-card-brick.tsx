@@ -55,6 +55,10 @@ export default class UserCardBrick extends React.Component<Props> {
       this.friendModifier,
     );
 
+    const group = this.props.user.groups != null && this.props.user.groups.length > 0
+      ? this.props.user.groups[0]
+      : undefined;
+
     return (
       <a
         className={`js-usercard ${blockClass}`}
@@ -63,8 +67,8 @@ export default class UserCardBrick extends React.Component<Props> {
       >
         <div
           className='user-card-brick__group-bar'
-          style={osu.groupColour(this.props.user.groups?.[0])}
-          title={this.props.user.groups?.[0]?.name}
+          style={osu.groupColour(group)}
+          title={group?.name}
         />
 
         <div className='user-card-brick__username u-ellipsis-overflow'>

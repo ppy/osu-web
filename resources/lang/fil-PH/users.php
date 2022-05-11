@@ -159,6 +159,10 @@ return [
             '_' => 'Nag-post sa :link',
             'count' => ':count_delimited na komento|:count_delimited na mga komento',
         ],
+        'cover' => [
+            'to_0' => 'Itago ang cover',
+            'to_1' => 'Ipakita ang cover',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Palitan ang cover',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Mga Inilibing na Beatmap',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Mga Minamahal na Beatmap',

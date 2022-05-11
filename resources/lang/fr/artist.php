@@ -5,7 +5,7 @@
 
 return [
     'page_description' => 'Artistes affiliés à osu!',
-    'title' => 'Artistes plébiscités',
+    'title' => 'Artistes affiliés',
 
     'admin' => [
         'hidden' => 'L\'ARTISTE EST ACTUELLEMENT MASQUÉ',
@@ -43,7 +43,7 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => 'recherche de musiques',
+            '_' => 'recherche de titres',
 
             'form' => [
                 'advanced' => 'Recherche Avancée',
@@ -51,9 +51,9 @@ return [
                 'artist' => 'Artiste',
                 'bpm_gte' => 'BPM Minimum',
                 'bpm_lte' => 'BPM Maximum',
-                'empty' => 'Aucune musique correspondant aux critères de recherche n\'a été trouvée.',
+                'empty' => 'Aucune musique correspondant aux critères de recherche n\'a été trouvé.',
                 'genre' => 'Genre',
-                'genre_all' => 'Tout',
+                'genre_all' => 'Tous',
                 'length_gte' => 'Durée minimale',
                 'length_lte' => 'Durée maximale',
             ],

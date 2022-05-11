@@ -13,6 +13,22 @@ return [
         'user' => 'Du kannst derzeit keine Nachrichten an diesen User senden. Dies kann folgende Gründe haben:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Ankündigungen',
+                'GROUP' => 'Gruppen',
+                'PM' => 'Direktnachrichten',
+                'PUBLIC' => 'Kanäle',
+            ],
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Hier gibt es nichts, vielleicht hast du den Channel verlassen oder er existiert nicht...',
+        'title' => 'Channel nicht gefunden',
+    ],
+
     'input' => [
         'disabled' => 'Nachricht konnte nicht gesendet werden...',
         'disconnected' => 'Verbindung getrennt',

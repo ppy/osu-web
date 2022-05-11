@@ -25,6 +25,11 @@ return [
             'index' => 'список',
         ],
 
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
+        ],
+
         'changelog' => [
             'index' => 'список',
         ],
@@ -45,9 +50,9 @@ return [
         ],
 
         'users' => [
-            'modding' => 'моддінг',
+            'modding' => 'моддинг',
             'playlists' => 'плейлісти',
-            'realtime' => 'мультиплеер',
+            'realtime' => 'мультиплеєр',
             'show' => 'інформація',
         ],
     ],
@@ -191,7 +196,7 @@ return [
             'follows' => 'Список перегляду',
             'friends' => 'Друзі',
             'logout' => 'Вийти',
-            'profile' => 'Мій профайл',
+            'profile' => 'Мій профіль',
         ],
     ],
 

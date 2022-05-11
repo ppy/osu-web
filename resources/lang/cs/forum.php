@@ -10,12 +10,12 @@ return [
     'title' => 'osu! fóra',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Upravit záhlaví',
 
         'create' => [
             '_' => 'Přidat titulní obrázek',
             'button' => 'Nahrát obrázek',
-            'info' => 'Velikost titulního obrázku by měla mít velikost :dimesions. Obrázek zde také můžete přetáhnout.',
+            'info' => 'Velikost titulního obrázku by měla být :dimensions. K nahrání obrázku ho také můžete přetáhnout sem.',
         ],
 
         'destroy' => [
@@ -28,7 +28,7 @@ return [
         'latest_post' => 'Poslední příspěvek',
 
         'index' => [
-            'title' => '',
+            'title' => 'Přehled',
         ],
 
         'topics' => [
@@ -75,12 +75,12 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Opravdu odstranit téma?',
+        'confirm_restore' => 'Opravdu checeš obnovit téma?',
         'deleted' => 'odstraněné téma',
         'go_to_latest' => 'zobrazit nejnovější příspěvek',
-        'has_replied' => '',
-        'in_forum' => '',
+        'has_replied' => 'Odpověděl jsi na toto téma',
+        'in_forum' => 'v :forum',
         'latest_post' => ':when uživatelem :user',
         'latest_reply_by' => 'poslední odpověd od :user',
         'new_topic' => 'Založit nové téma',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'započal :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Odstranit téma',
+            'restore' => 'Odnovit téma',
         ],
 
         'create' => [
@@ -108,14 +108,14 @@ return [
                 'default' => 'Tohle téma bylo neaktivní už nějakou dobu. Napište pouze jesli k tomu máš důvod.',
 
                 'new_topic' => [
-                    '_' => "Toto téma je neaktivní už nějakou dobu. Pokud nemáte důvod k napsaní, prosím :create radši.",
-                    'create' => 'vytvoř nové téma',
+                    '_' => "Toto téma je už nějakou dobu neaktivní. Pokud nemáš specifický důvod k postnutí zde, prosím :create.",
+                    'create' => 'vytvoř radši nové téma',
                 ],
             ],
 
             'placeholder' => [
                 'body' => 'Zde napiš obsah příspěvku',
-                'title' => 'Klikni sem pro nastavení názvu',
+                'title' => 'Klikni sem pro zadání názvu',
             ],
         ],
 
@@ -128,8 +128,8 @@ return [
         ],
 
         'logs' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Logy témat',
+            'button' => 'Procházen logy témata',
 
             'columns' => [
                 'action' => 'Akce',
@@ -138,41 +138,41 @@ return [
             ],
 
             'data' => [
-                'add_tag' => '',
-                'announcement' => '',
-                'edit_topic' => '',
+                'add_tag' => 'přidán ":tag" tag',
+                'announcement' => 'téma připnuto a označeno jako oznámení',
+                'edit_topic' => 'do :title',
                 'fork' => 'z :topic',
-                'pin' => '',
+                'pin' => 'téma připnuté',
                 'post_operation' => 'příspěvek přidal :username',
-                'remove_tag' => '',
+                'remove_tag' => 'odstraněn tag ":tag"',
                 'source_forum_operation' => 'z :forum',
-                'unpin' => '',
+                'unpin' => 'téma odepnuté',
             ],
 
-            'no_results' => '',
+            'no_results' => 'žádné logy nenalezeny...',
 
             'operations' => [
                 'delete_post' => 'Smazaný příspěvek',
                 'delete_topic' => 'Smazané téma',
                 'edit_topic' => 'Změněný titulek tématu',
-                'edit_poll' => '',
-                'fork' => '',
-                'issue_tag' => '',
-                'lock' => '',
-                'merge' => '',
-                'move' => '',
-                'pin' => '',
+                'edit_poll' => 'Upraveno téma hlasování',
+                'fork' => 'Téma zkopírované',
+                'issue_tag' => 'Tag vydaný',
+                'lock' => 'Téma uzamčeno',
+                'merge' => 'Příspěvky byly sloučeny do tohoto tématu',
+                'move' => 'Téma přesunuto',
+                'pin' => 'Téma připnuto',
                 'post_edited' => 'Upravený příspěvek',
-                'restore_post' => '',
-                'restore_topic' => '',
-                'split_destination' => '',
-                'split_source' => '',
-                'topic_type' => '',
-                'topic_type_changed' => '',
-                'unlock' => '',
-                'unpin' => '',
-                'user_lock' => '',
-                'user_unlock' => '',
+                'restore_post' => 'Příspěvek obnoven',
+                'restore_topic' => 'Téma obnoveno',
+                'split_destination' => 'Rozdělené příspěvky přesunuty',
+                'split_source' => 'Příspěvky rozděleny',
+                'topic_type' => 'Typ témata nastaven',
+                'topic_type_changed' => 'Typ tématu změněn',
+                'unlock' => 'Téma odemknuto',
+                'unpin' => 'Téma odepnuto',
+                'user_lock' => 'Vlastní téma uzamčeno',
+                'user_unlock' => 'Vlastní téma odemčeno',
             ],
         ],
 
@@ -226,8 +226,8 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => 'Skrýt výsledky ankety.',
+                'hide_results_info' => 'Budou zobrazeny až po konci hlasování.',
                 'length' => 'Spustit anketu po dobu',
                 'length_days_suffix' => 'dnů',
                 'length_info' => 'Ponechte prázdné pro dobu neurčitou',
@@ -296,10 +296,10 @@ return [
         'lock' => [
             'is_locked' => 'Toto téma je uzamčené a nelze na něj odpovědět',
             'to_0' => 'Odemknout téma',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Odemknout téma?',
             'to_0_done' => 'Téma bylo odemčeno',
             'to_1' => 'Uzamknout téma',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Uzamknout téma?',
             'to_1_done' => 'Téma bylo uzamčeno',
         ],
 
@@ -309,13 +309,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Odepnout téma',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Odepnout téma?',
             'to_0_done' => 'Téma bylo odepnuto',
             'to_1' => 'Připnout téma',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Připnout téma?',
             'to_1_done' => 'Téma bylo připnuto',
             'to_2' => 'Připíchni téma a označ jako oznámení',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Připnout téma a označit jako oznámení?',
             'to_2_done' => 'Téma bylo připnuto a označeno jako oznámení',
         ],
 
@@ -347,7 +347,7 @@ return [
 
             'poll' => [
                 'edit' => 'Upravení ankety',
-                'edit_warning' => '',
+                'edit_warning' => 'Upravování ankety odstraní všechny aktuální hlasy! ',
                 'vote' => 'Hlasovat',
 
                 'button' => [
@@ -360,7 +360,7 @@ return [
                 'detail' => [
                     'end_time' => 'Hlasování skončí za :time',
                     'ended' => 'Hlasování skončilo :time',
-                    'results_hidden' => '',
+                    'results_hidden' => 'Výsledky budou zobrazeny po ukončení hlasování.',
                     'total' => 'Celkem hlasů: :count',
                 ],
             ],

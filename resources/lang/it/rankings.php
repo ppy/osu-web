@@ -18,11 +18,11 @@ return [
     ],
 
     'type' => [
-        'charts' => 'Spotlight',
-        'country' => 'Paese',
+        'charts' => 'spotlight',
+        'country' => 'paese',
         'multiplayer' => 'multigiocatore',
-        'performance' => 'Performance',
-        'score' => 'Punteggio',
+        'performance' => 'performance',
+        'score' => 'punteggio',
     ],
 
     'spotlight' => [

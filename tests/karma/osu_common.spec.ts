@@ -3,7 +3,6 @@
 
 import GroupJson from 'interfaces/group-json';
 import * as React from 'react';
-
 describe('osu_common', () => {
   describe('locale file loaded in test runner', () => {
     it('should be loaded', () => {
@@ -57,20 +56,6 @@ describe('osu_common', () => {
 
     it('convert value to KB without precision', () => {
       expect(osu.formatBytes(1000, 0)).toBe('1 KB');
-    });
-  });
-
-  describe('formatNumber', () => {
-    it('format null', () => {
-      expect(osu.formatNumber(null)).toBe(null);
-    });
-
-    it('formats the number with correct precision', () => {
-      expect(osu.formatNumber(12.345, 2)).toBe('12.35');
-    });
-
-    it('formats the number without precision', () => {
-      expect(osu.formatNumber(12.34, 0)).toBe('12');
     });
   });
 

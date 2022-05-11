@@ -57,6 +57,7 @@ export function urlSingular(item: Notification) {
         beatmapId: item.details.beatmapId,
         beatmapsetId: item.objectId,
         discussionId: item.details.discussionId,
+        postId: item.details.postId,
       });
     case 'beatmapset_rank':
       return route('beatmapsets.show', { beatmapset: item.objectId });

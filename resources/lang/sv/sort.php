@@ -19,7 +19,7 @@ return [
         'album' => 'Album',
         'artist' => 'Artist',
         'bpm' => 'BPM',
-        'genre' => '',
+        'genre' => 'Genre',
         'length' => 'Längd',
         'relevance' => 'Relevans',
         'title' => 'Titel',

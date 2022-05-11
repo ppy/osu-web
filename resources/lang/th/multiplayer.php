@@ -6,8 +6,8 @@
 return [
     'empty' => [
         '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        'playlists' => 'รายการเพลง',
+        'realtime' => 'โหมดผู้เล่นหลายคน',
     ],
 
     'room' => [
@@ -18,7 +18,7 @@ return [
         'time_left' => 'เหลืออีก :time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'ระยะเวลายาวเกินไป',
         ],
 
         'status' => [

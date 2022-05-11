@@ -13,6 +13,22 @@ return [
         'user' => 'Nie możesz wysłać wiadomości do tego użytkownika.',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Ogłoszenia',
+                'GROUP' => 'Grupy',
+                'PM' => 'Wiadomości prywatne',
+                'PUBLIC' => 'Kanały',
+            ],
+        ],
+    ],
+
+    'not_found' => [
+        'message' => '',
+        'title' => 'nie znaleziono kanału',
+    ],
+
     'input' => [
         'disabled' => 'nie udało się wysłać wiadomości...',
         'disconnected' => 'Rozłączono',

@@ -159,6 +159,10 @@ return [
             '_' => 'Slået op :link',
             'count' => ':count_delimited kommentar|:count_delimited kommentarer',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Skift Coverbillede',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps på Kirkegården',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Elskede beatmaps',

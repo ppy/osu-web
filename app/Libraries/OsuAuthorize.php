@@ -26,6 +26,7 @@ use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
 use App\Models\Score\Best\Model as ScoreBest;
+use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserContestEntry;
 use Carbon\Carbon;
@@ -126,13 +127,33 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if (
-            $beatmapset !== null
-            && in_array($beatmapset->status(), ['wip', 'graveyard', 'pending'], true)
-            && !$beatmapset->hasNominations()
-            && $beatmapset->user_id === $user->getKey()
-        ) {
+        if ($user->isModerator()) {
             return 'ok';
+        }
+
+        if ($beatmapset !== null) {
+            $status = $beatmapset->approved;
+
+            static $lovedModifiable = [
+                Beatmapset::STATES['graveyard'],
+                Beatmapset::STATES['loved'],
+            ];
+            if ($user->isProjectLoved() && in_array($status, $lovedModifiable, true)) {
+                return 'ok';
+            }
+
+            static $ownerModifiable = [
+                Beatmapset::STATES['wip'],
+                Beatmapset::STATES['graveyard'],
+                Beatmapset::STATES['pending'],
+            ];
+            if (
+                in_array($status, $ownerModifiable, true)
+                && !$beatmapset->hasNominations()
+                && $beatmapset->user_id === $user->getKey()
+            ) {
+                return 'ok';
+            }
         }
 
         return 'unauthorized';
@@ -655,6 +676,16 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @return string
+     */
+    public function checkBeatmapsetRemoveFromLoved(?User $user): string
+    {
+        // admin only (:
+        return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
      * @param Beatmapset $beatmapset
      * @return string
      * @throws AuthorizationCheckException
@@ -708,7 +739,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->user_id === $beatmapset->user_id || $user->isModerator()) {
+        if ((!$beatmapset->downloadLimited() && $user->getKey() === $beatmapset->user_id) || $user->isModerator()) {
             return 'ok';
         }
 
@@ -833,6 +864,11 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
 
         return 'ok';
+    }
+
+    public function checkBeatmapsetOffsetEdit(): string
+    {
+        return 'unauthorized';
     }
 
     /**
@@ -1133,6 +1169,12 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
+        $commentable = $comment->commentable;
+
+        if ($commentable instanceof Beatmapset && $commentable->downloadLimited()) {
+            return 'comment.store.disabled';
+        }
+
         return 'ok';
     }
 
@@ -1154,6 +1196,11 @@ class OsuAuthorize
         if ($comment->user_id === $user->getKey()) {
             if ($comment->trashed()) {
                 return 'comment.update.deleted';
+            }
+
+            $commentable = $comment->commentable;
+            if ($commentable instanceof Beatmapset && $commentable->downloadLimited()) {
+                return 'comment.store.disabled';
             }
 
             return 'ok';
@@ -1850,6 +1897,18 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkUserReport(?User $user, ReportableInterface $model): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (!$model->trashed()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
     }
 
     /**

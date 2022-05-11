@@ -39,7 +39,7 @@ return [
     ],
 
     'require_login' => [
-        '_' => 'Anda harus :link untuk dapat mengunduh',
+        '_' => 'Anda harus :link untuk mengunduh',
         'link_text' => 'masuk',
     ],
 ];

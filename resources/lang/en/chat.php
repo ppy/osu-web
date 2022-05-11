@@ -13,6 +13,22 @@ return [
         'user' => 'You cannot message this user at this time.',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Announcements',
+                'GROUP' => 'Groups',
+                'PM' => 'Direct messages',
+                'PUBLIC' => 'Channels',
+            ],
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'There\'s nothing here, maybe you left the channel or it doesn\'t exist...',
+        'title' => 'channel not found',
+    ],
+
     'input' => [
         'disabled' => 'unable to send message...',
         'disconnected' => 'Disconnected',

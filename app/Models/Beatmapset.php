@@ -101,7 +101,7 @@ use Illuminate\Database\QueryException;
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
  */
-class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
+class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, Traits\ReportableInterface
 {
     use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
@@ -157,24 +157,18 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public static function coverSizes()
     {
-        $shapes = ['cover', 'card', 'list', 'slimcover'];
-        $scales = ['', '@2x'];
+        static $sizes;
 
-        $sizes = [];
-        foreach ($shapes as $shape) {
-            foreach ($scales as $scale) {
-                $sizes[] = "$shape$scale";
+        if ($sizes === null) {
+            $sizes = [];
+            foreach (['cover', 'card', 'list', 'slimcover'] as $shape) {
+                foreach (['', '@2x'] as $scale) {
+                    $sizes[] = "{$shape}{$scale}";
+                }
             }
         }
 
         return $sizes;
-    }
-
-    public static function isValidCoverSize($coverSize)
-    {
-        $validSizes = array_merge(['raw', 'fullsize'], self::coverSizes());
-
-        return in_array($coverSize, $validSizes, true);
     }
 
     public static function popular()
@@ -384,8 +378,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function allCoverURLs()
     {
         $urls = [];
+        $timestamp = $this->defaultCoverTimestamp();
         foreach (self::coverSizes() as $size) {
-            $urls[$size] = $this->coverURL($size);
+            $urls[$size] = $this->coverURL($size, $timestamp);
         }
 
         return $urls;
@@ -393,16 +388,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function coverURL($coverSize = 'cover', $customTimestamp = null)
     {
-        if (!self::isValidCoverSize($coverSize)) {
-            return false;
-        }
-
-        $timestamp = 0;
-        if ($customTimestamp) {
-            $timestamp = $customTimestamp;
-        } elseif ($this->cover_updated_at) {
-            $timestamp = $this->cover_updated_at->format('U');
-        }
+        $timestamp = $customTimestamp ?? $this->defaultCoverTimestamp();
 
         return $this->storage()->url($this->coverPath()."{$coverSize}.jpg?{$timestamp}");
     }
@@ -415,6 +401,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function storeCover($target_filename, $source_path)
     {
         $this->storage()->put($this->coverPath().$target_filename, file_get_contents($source_path));
+    }
+
+    public function downloadLimited()
+    {
+        return $this->download_disabled || $this->download_disabled_url !== null;
     }
 
     public function previewURL()
@@ -1422,5 +1413,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         static::addGlobalScope('active', function ($builder) {
             $builder->active();
         });
+    }
+
+    private function defaultCoverTimestamp(): string
+    {
+        return $this->cover_updated_at?->format('U') ?? '0';
     }
 }

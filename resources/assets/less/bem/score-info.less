@@ -14,12 +14,6 @@
   flex-direction: column;
   position: relative;
 
-  &::before {
-    .full-size();
-    content: '';
-    background-color: hsla(var(--hsl-b6), 0.75);
-  }
-
   @media @desktop {
     flex-direction: row;
   }
@@ -50,6 +44,16 @@
       @media @desktop {
         flex: 1;
       }
+    }
+  }
+
+  &__cover {
+    --border-radius: 0;
+
+    &::after {
+      .full-size();
+      content: '';
+      background-color: hsla(var(--hsl-b6), 0.75);
     }
   }
 }

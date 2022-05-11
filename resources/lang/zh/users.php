@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '[被删除的用户]',
+    'deleted' => '[已删除的用户]',
 
     'beatmapset_activities' => [
         'title' => ":user 的摸图历史",
@@ -159,10 +159,14 @@ return [
             '_' => '发表了 :link',
             'count' => ':count_delimited 条评论',
         ],
+        'cover' => [
+            'to_0' => '隐藏封面',
+            'to_1' => '显示封面',
+        ],
         'edit' => [
             'cover' => [
-                'button' => '更换个人资料头图',
-                'defaults_info' => '在将来会有更多头图可用',
+                'button' => '更换个人资料封面',
+                'defaults_info' => '在将来会有更多封面可用',
                 'upload' => [
                     'broken_file' => '上传失败。请检查上传的图片然后重试。',
                     'button' => '上传图片',
@@ -173,7 +177,7 @@ return [
                     'unsupported_format' => '不支持的格式。',
 
                     'restriction_info' => [
-                        '_' => '自定义头图只有 :link 可用',
+                        '_' => '自定义封面只有 :link 可用',
                         'link' => 'osu! 支持者',
                     ],
                 ],
@@ -195,7 +199,7 @@ return [
                 'title' => '成就',
             ],
             'beatmaps' => [
-                'by_artist' => '曲师：:artist',
+                'by_artist' => 'by :artist',
                 'title' => '谱面',
 
                 'favourite' => [
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => '已停更的谱面',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Loved 的谱面',

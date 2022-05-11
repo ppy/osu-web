@@ -4,6 +4,7 @@
 import ValueDisplay from 'components/value-display';
 import UserStatisticsJson, { RankType } from 'interfaces/user-statistics-json';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 
 interface Props {
   stats: UserStatisticsJson;
@@ -19,7 +20,7 @@ export default function Rank({ stats, type }: Props) {
     if (variantRank == null) continue;
 
     const name = osu.trans(`beatmaps.variant.${variant.mode}.${variant.variant}`);
-    const value = `#${osu.formatNumber(variantRank)}`;
+    const value = `#${formatNumber(variantRank)}`;
 
     variantTooltip.push(`<div>${name}: ${value}</div>`);
   }
@@ -33,7 +34,7 @@ export default function Rank({ stats, type }: Props) {
       value={
         <div data-html-title={variantTooltip.join('')} title=''>
           {rank != null ? (
-            `#${osu.formatNumber(rank)}`
+            `#${formatNumber(rank)}`
           ) : '-'}
         </div>
       }

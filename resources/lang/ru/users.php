@@ -7,7 +7,7 @@ return [
     'deleted' => '[удалённый пользователь]',
 
     'beatmapset_activities' => [
-        'title' => "История редактирования карт пользователя :user",
+        'title' => "История моддинга :user",
         'title_compact' => 'Моддинг',
 
         'discussions' => [
@@ -159,6 +159,10 @@ return [
             '_' => 'Опубликовано :link',
             'count' => ':count_delimited комментарий|:count_delimited комментария|:count_delimited комментариев',
         ],
+        'cover' => [
+            'to_0' => 'Скрыть обложку',
+            'to_1' => 'Показать обложку',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Сменить обложку профиля',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Заброшенные карты',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Любимые карты',

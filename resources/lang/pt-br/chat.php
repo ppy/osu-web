@@ -13,6 +13,22 @@ return [
         'user' => 'Você não pode conversar com este usuário no momento. Isso pode ter ocorrido pelos seguintes motivos:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Não há nada aqui, talvez você tenha saído do canal ou ele não existe...',
+        'title' => 'canal não encontrado',
+    ],
+
     'input' => [
         'disabled' => 'incapaz de enviar mensagem...',
         'disconnected' => 'Desconectado',

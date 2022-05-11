@@ -159,6 +159,10 @@ return [
             '_' => 'Publié :link',
             'count' => ':count_delimited commentaire|:count_delimited commentaires',
         ],
+        'cover' => [
+            'to_0' => 'Cacher la bannière',
+            'to_1' => 'Afficher la bannière',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps dans le cimetière',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Beatmaps loved',

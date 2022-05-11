@@ -115,7 +115,7 @@ return [
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'report' => [
         'button_text' => 'Zgłoś',
-        'comments' => 'Dodatkowe informacje',
+        'comments' => 'Opis',
         'placeholder' => 'Podaj wszystkie informacje, które mogą okazać się przydatne.',
         'reason' => 'Powód',
         'thanks' => 'Dziękujemy za zgłoszenie!',
@@ -158,6 +158,10 @@ return [
         'comments_count' => [
             '_' => ':link',
             'count' => ':count_delimited komentarz|:count_delimited komentarze|:count_delimited komentarzy',
+        ],
+        'cover' => [
+            'to_0' => 'Ukryj tło',
+            'to_1' => 'Pokaż tło',
         ],
         'edit' => [
             'cover' => [
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Porzucone beatmapy',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',

@@ -13,6 +13,22 @@ return [
         'user' => 'Anda sedang tidak dapat mengirimkan pesan kepada pengguna ini.',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Pengumuman',
+                'GROUP' => 'Grup',
+                'PM' => 'Pesan pribadi',
+                'PUBLIC' => 'Kanal chat',
+            ],
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Tidak ada apa-apa di sini. Mungkin Anda telah meninggalkan kanal ini atau kanal yang hendak Anda tuju tidak ada...',
+        'title' => 'kanal percakapan tidak ditemukan',
+    ],
+
     'input' => [
         'disabled' => 'gagal mengirim pesan...',
         'disconnected' => 'Terputus',

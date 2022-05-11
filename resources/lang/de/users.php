@@ -159,6 +159,10 @@ return [
             '_' => ':link abgegeben',
             'count' => ':count_delimited Kommentar|:count_delimited Kommentare',
         ],
+        'cover' => [
+            'to_0' => 'Cover verbergen',
+            'to_1' => 'Cover anzeigen',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profilbanner ändern',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Begrabene Beatmaps',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
@@ -302,7 +309,7 @@ return [
                 'title' => 'Medaillen',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Wiedergabelisten-Spiele',
             ],
             'posts' => [
                 'title' => 'Beiträge',
@@ -313,7 +320,7 @@ return [
                 'title' => 'Neulich',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Mehrspieler-Spiele',
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay herunterladen',
@@ -329,13 +336,13 @@ return [
                     'title' => 'Erster Platz',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Ablösen',
+                    'to_0_done' => 'Abgelöster Score',
+                    'to_1' => 'Anheften',
+                    'to_1_done' => 'Angehefteter Score',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Angeheftete Scores',
                 ],
             ],
             'votes' => [

@@ -76,8 +76,8 @@ return [
         'action' => 'Download osu!',
 
         'help' => [
-            '_' => 'if you have problem starting the game or registering for account, :help_forum_link or :support_button.',
-            'help_forum_link' => 'check help forum',
+            '_' => 'if you have a problem starting the game or registering for an account, :help_forum_link or :support_button.',
+            'help_forum_link' => 'check the help forum',
             'support_button' => 'contact support',
         ],
 

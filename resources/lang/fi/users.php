@@ -159,6 +159,10 @@ return [
             '_' => 'Julkaistu :link',
             'count' => ':count_delimited kommentti|:count_delimited kommenttia',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Muuta profiilin kansikuvaa',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Kuopatut',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Rakastetut beatmapit',
@@ -313,7 +320,7 @@ return [
                 'title' => 'Viimeisimmät',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Moninpelit',
             ],
             'top_ranks' => [
                 'download_replay' => 'Lataa Replay',
