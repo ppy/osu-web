@@ -12,6 +12,7 @@ ln -snf "$outdir" "/deploy/current"
 
 cd "$outdir"
 
+# if debug is enabled
 if [ ! "${APP_DEBUG:-false}" = "true" ]
 then
   php artisan config:cache
