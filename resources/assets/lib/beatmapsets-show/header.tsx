@@ -157,7 +157,7 @@ export default class Header extends React.Component<Props> {
                 <span className='beatmapset-badge beatmapset-badge--nsfw'>{osu.trans('beatmapsets.nsfw_badge.label')}</span>
               }
               {this.props.beatmapset.spotlight &&
-                <span className='beatmapset-badge beatmapset-badge--spotlight'>{osu.trans('beatmapsets.nsfw_badge.label')}</span>
+                <span className='beatmapset-badge beatmapset-badge--spotlight'>{osu.trans('beatmapsets.spotlight_badge.label')}</span>
               }
             </span>
 
