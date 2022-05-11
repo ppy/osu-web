@@ -5,7 +5,7 @@ import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { deletedUser } from 'models/user';
+import { deletedUser, normaliseUsername } from 'models/user';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import BeatmapOwnerEditor from './beatmap-owner-editor';
@@ -29,7 +29,7 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
     // as there's separate process handling unknown users
     for (const user of Object.values(props.users)) {
       if (user != null) {
-        this.userByName.set(user.username, user);
+        this.userByName.set(normaliseUsername(user.username), user);
       }
     }
 

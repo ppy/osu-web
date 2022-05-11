@@ -8,6 +8,7 @@ namespace Tests\Controllers;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
+use App\Models\Forum;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
@@ -170,6 +171,37 @@ class BeatmapsetsControllerTest extends TestCase
     }
 
     /**
+     * @dataProvider dataProviderForTestBeatmapsetUpdateDescriptionAsOwner
+     */
+    public function testBeatmapsetUpdateDescriptionAsOwner(bool $downloadDisabled, ?string $downloadDisabledUrl, bool $ok)
+    {
+        $topic = factory(Forum\Topic::class)->create();
+        $post = factory(Forum\Post::class)->create(['topic_id' => $topic->getKey()]);
+        $topic->refreshCache();
+
+        $beatmapset = Beatmapset::factory()->create([
+            'download_disabled' => $downloadDisabled,
+            'download_disabled_url' => $downloadDisabledUrl,
+            'user_id' => User::factory(),
+            'thread_id' => $topic->getKey(),
+        ]);
+        $owner = $beatmapset->user;
+        $beatmapset->updateDescription('old description', $owner);
+
+        $newDescription = 'new description';
+        $expectedDescription = $ok ? $newDescription : $beatmapset->editableDescription();
+
+        $this->actingAsVerified($owner)
+            ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
+                'description' => $newDescription,
+            ])->assertStatus($ok ? 200 : 403);
+
+        $beatmapset->refresh();
+
+        $this->assertSame($expectedDescription, $beatmapset->editableDescription());
+    }
+
+    /**
      * @dataProvider beatmapsetStatesDataProvider
      */
     public function testBeatmapsetUpdateMetadataAsOwner($state)
@@ -249,6 +281,16 @@ class BeatmapsetsControllerTest extends TestCase
             ['gmt', false],
             ['nat', false],
             ['owner', false],
+        ];
+    }
+
+    public function dataProviderForTestBeatmapsetUpdateDescriptionAsOwner(): array
+    {
+        return [
+            [false, null, true],
+            [true, null, false],
+            [false, 'https://fail.works/notice', false],
+            [true, 'https://fail.works/notice', false],
         ];
     }
 }

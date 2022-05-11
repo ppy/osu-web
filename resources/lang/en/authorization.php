@@ -74,6 +74,9 @@ return [
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Comments are disabled',
+        ],
         'update' => [
             'deleted' => "Can't edit deleted post.",
         ],
